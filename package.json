@@ -14,6 +14,7 @@
     "soul": "bun bin/cli/index.ts"
   },
   "dependencies": {
+    "@clack/prompts": "^1.4.0",
     "ajv": "^8.17.1",
     "yaml": "^2.6.0"
   }
