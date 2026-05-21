@@ -17,8 +17,22 @@
  * suggestions across the discovered slugs.
  */
 import { readdir, stat } from "node:fs/promises";
-import { basename, join, resolve, sep } from "node:path";
+import { basename, dirname, join, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 import { ProfileError, type LinkPlan, type ResolvedProfile } from "../../../profiles/_types";
+
+// ---------------------------------------------------------------------------
+// Repo-root helpers (used by resolveLocalSkill)
+// ---------------------------------------------------------------------------
+
+const REPO_ROOT = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "..",
+);
+
+const DEFAULT_SKILLS_ROOT = join(REPO_ROOT, "skills", "skills");
 
 // ---------------------------------------------------------------------------
 // Error classes
@@ -263,3 +277,28 @@ function levenshtein(a: string, b: string): number {
 // Re-export for internal tests that want to assert the platform separator
 // isn't leaking into target paths.
 export const _internal = { sep };
+
+// ---------------------------------------------------------------------------
+// Convenience export for launch.ts — resolve a single skill id → source dir
+// ---------------------------------------------------------------------------
+
+/**
+ * Resolve a single skill id (e.g. "design/ui-ux-pro-max") to its absolute
+ * source directory on disk, using the repo's `skills/skills/` root.
+ *
+ * This is a thin wrapper over the internal `resolveOne` + `walk` logic that
+ * already exists; it just removes the need for callers to build a fake
+ * ResolvedProfile or pass skillsRoot explicitly.
+ *
+ * Uses SOUL_REPO_ROOT env var as override if set (so tests can inject a
+ * different root without touching the real skills tree).
+ */
+export async function resolveLocalSkill(id: string): Promise<string> {
+  const skillsRoot = process.env.SOUL_REPO_ROOT
+    ? join(process.env.SOUL_REPO_ROOT, "skills", "skills")
+    : DEFAULT_SKILLS_ROOT;
+  const root = resolve(skillsRoot);
+  const { categoryIndex, slugIndex, allSlugs } = await walk(root);
+  const plan = await resolveOne(id, root, categoryIndex, slugIndex, allSlugs);
+  return plan.source;
+}

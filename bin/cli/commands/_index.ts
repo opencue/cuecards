@@ -45,6 +45,10 @@ export const COMMANDS = {
     summary: "Generate claude-<profile> aliases for zsh/bash/pwsh (A16)",
     load: () => import("./init-shell"),
   },
+  launch: {
+    summary: "Resolve+materialize a profile then exec claude/codex (hot path)",
+    load: () => import("./launch"),
+  },
 } as const satisfies Record<string, Command>;
 
 export type CommandName = keyof typeof COMMANDS;
