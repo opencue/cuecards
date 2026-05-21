@@ -58,8 +58,9 @@ function profile(local: string[]): ResolvedProfile {
     name: "test",
     description: "fixture",
     agents: ["claude-code"],
-    skills: { local, npx: [], plugins: [] },
+    skills: { local: local.map((id) => ({ id })), npx: [] },
     mcps: [],
+    plugins: [],
     env: {},
     inheritanceChain: ["test"],
   };

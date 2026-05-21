@@ -7,20 +7,29 @@
 
 export type AgentKind = "claude-code" | "codex";
 
-export type MCPRef = string;
+export interface AgentScoped {
+  agents?: AgentKind[];
+}
 
-export type SkillRef = string;
+// String form is sugar for { id: string }.
+export type MCPRef = string | (AgentScoped & { id: string });
 
-export interface NpxSkillRef {
+export type SkillRef = string | (AgentScoped & { id: string });
+
+// Top-level plugin enablement. "<plugin>@<marketplace>" or object form.
+export type PluginRef = string | (AgentScoped & { id: string });
+
+export interface NpxSkillRef extends AgentScoped {
   repo: string;
   pin?: string;
-  skills: SkillRef[];
+  skills: string[];
 }
 
 export interface ProfileSkills {
   local?: SkillRef[];
   npx?: NpxSkillRef[];
-  plugins?: string[];
+  // NOTE: `skills.plugins` was retired in favor of top-level `plugins:`.
+  // Using it will throw a SchemaViolation.
 }
 
 export interface Profile {
@@ -30,13 +39,23 @@ export interface Profile {
   inherits?: string;
   skills?: ProfileSkills;
   mcps?: MCPRef[];
+  plugins?: PluginRef[];
   env?: Record<string, string>;
 }
 
-export interface ResolvedProfile extends Profile {
+// In the resolved (post-inherit) form every ref is normalized to its object shape.
+export interface ResolvedMCP { id: string; agents?: AgentKind[]; }
+export interface ResolvedSkill { id: string; agents?: AgentKind[]; }
+export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
+
+export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plugins"> {
   agents: AgentKind[];
-  skills: Required<ProfileSkills>;
-  mcps: MCPRef[];
+  skills: {
+    local: ResolvedSkill[];
+    npx: NpxSkillRef[];
+  };
+  mcps: ResolvedMCP[];
+  plugins: ResolvedPlugin[];
   env: Record<string, string>;
   inheritanceChain: string[];
 }

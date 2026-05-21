@@ -64,8 +64,13 @@ function makeProfile(plugins: string[]): ResolvedProfile {
     name: "test-profile",
     description: "test fixture",
     agents: ["claude-code"],
-    skills: { local: [], npx: [], plugins },
+    skills: { local: [], npx: [] },
     mcps: [],
+    // Plugin ids follow <name>@<marketplace> convention; resolver extracts the
+    // part before '@' as the on-disk directory name.
+    plugins: plugins.map((id) => ({
+      id: id.includes("@") ? id : `${id}@claude-plugins-official`,
+    })),
     env: {},
     inheritanceChain: ["test-profile"],
   };

@@ -86,7 +86,9 @@ export async function resolveLocal(
 
   const plans: LinkPlan[] = [];
   for (const ref of refs) {
-    plans.push(await resolveOne(ref, root, categoryIndex, slugIndex, allSlugs));
+    // ResolvedSkill is { id: string; agents?: AgentKind[] }; pass just the id.
+    const id = typeof ref === "string" ? ref : (ref as { id: string }).id;
+    plans.push(await resolveOne(id, root, categoryIndex, slugIndex, allSlugs));
   }
   return plans;
 }

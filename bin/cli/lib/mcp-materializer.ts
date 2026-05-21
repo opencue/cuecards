@@ -288,7 +288,12 @@ export async function materializeMcp(
     ...Object.keys(codexCfg.servers),
   ]);
 
-  for (const id of profile.mcps) {
+  // Extract string ids from the resolved MCPs (which may be { id, agents? } objects).
+  const mcpIds = profile.mcps.map((ref) =>
+    typeof ref === "string" ? ref : (ref as { id: string }).id,
+  );
+
+  for (const id of mcpIds) {
     if (!knownUnion.has(id)) {
       throw new McpNotFound(id, [...knownUnion].sort());
     }
@@ -300,14 +305,14 @@ export async function materializeMcp(
     claude: filterAgentConfig(
       claudeCfg,
       "claude",
-      profile.mcps,
+      mcpIds,
       profile.env,
       procEnv,
     ),
     codex: filterAgentConfig(
       codexCfg,
       "codex",
-      profile.mcps,
+      mcpIds,
       profile.env,
       procEnv,
     ),

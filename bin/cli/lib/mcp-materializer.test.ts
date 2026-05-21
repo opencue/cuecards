@@ -90,17 +90,23 @@ async function writeFixtures(root: string): Promise<void> {
 }
 
 function makeProfile(
-  overrides: Partial<ResolvedProfile> = {},
+  overrides: Partial<ResolvedProfile & { mcps: (string | { id: string })[] }> = {},
 ): ResolvedProfile {
+  const { mcps: rawMcps, ...rest } = overrides;
+  // Normalize string mcps to { id } objects for the new ResolvedProfile shape.
+  const mcps = rawMcps
+    ? rawMcps.map((ref) => (typeof ref === "string" ? { id: ref } : ref))
+    : [];
   return {
     name: "test",
     description: "fixture",
     agents: ["claude-code", "codex"],
-    skills: { local: [], npx: [], plugins: [] },
-    mcps: [],
+    skills: { local: [], npx: [] },
+    mcps,
+    plugins: [],
     env: {},
     inheritanceChain: ["test"],
-    ...overrides,
+    ...rest,
   };
 }
 

@@ -80,8 +80,9 @@ describe("loadProfile", () => {
     // Schema default for agents is applied by the loader when neither parent
     // nor child declared it.
     expect(resolved.agents).toEqual(["claude-code", "codex"]);
-    expect(resolved.skills).toEqual({ local: [], npx: [], plugins: [] });
+    expect(resolved.skills).toEqual({ local: [], npx: [] });
     expect(resolved.mcps).toEqual([]);
+    expect(resolved.plugins).toEqual([]);
     expect(resolved.env).toEqual({});
     expect(resolved.inheritanceChain).toEqual(["minimal"]);
   });
@@ -122,10 +123,11 @@ describe("loadProfile", () => {
     expect(resolved.inheritanceChain).toEqual(["core", "inherits"]);
 
     // Primitive array merge: parent items first, child appended, deduped.
+    // In the resolved form, string refs are normalized to { id } objects.
     expect(resolved.skills.local).toEqual([
-      "meta/caveman-commit",
-      "meta/find-skills",
-      "medusa/building-with-medusa",
+      { id: "meta/caveman-commit" },
+      { id: "meta/find-skills" },
+      { id: "medusa/building-with-medusa" },
     ]);
 
     // NpxSkillRef merge by `repo`: child overrides the whole entry.
@@ -133,7 +135,8 @@ describe("loadProfile", () => {
       { repo: "anthropics/skills", pin: "tag@v0.5.0", skills: ["xlsx"] },
     ]);
 
-    expect(resolved.mcps).toEqual(["claude-mem", "medusadocs"]);
+    // MCPs are normalized to { id } object form.
+    expect(resolved.mcps).toEqual([{ id: "claude-mem" }, { id: "medusadocs" }]);
 
     // Env: child keys override, parent-only keys survive.
     expect(resolved.env).toEqual({

@@ -35,28 +35,44 @@
       "properties": {
         "local": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
-          "uniqueItems": true,
+          "items": {
+            "oneOf": [
+              { "type": "string", "minLength": 1 },
+              { "$ref": "#/$defs/AgentScopedRef" }
+            ]
+          },
           "description": "Paths relative to soul/skills/ (e.g. 'medusa/building-with-medusa')."
         },
         "npx": {
           "type": "array",
-          "items": { "$ref": "#/$defs/NpxSkillRef" },
-          "uniqueItems": true
-        },
-        "plugins": {
-          "type": "array",
-          "items": { "type": "string", "minLength": 1 },
-          "uniqueItems": true,
-          "description": "Claude Code plugin names; resolved from ~/.claude/plugins/<name>/skills/."
+          "items": { "$ref": "#/$defs/NpxSkillRef" }
         }
       }
     },
     "mcps": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 },
-      "uniqueItems": true,
-      "description": "MCP server IDs that must exist in soul/mcps/configs/."
+      "items": {
+        "oneOf": [
+          { "type": "string", "minLength": 1 },
+          { "$ref": "#/$defs/AgentScopedRef" }
+        ]
+      },
+      "default": [],
+      "description": "MCP server IDs that must exist in soul/mcps/configs/. Accepts plain string or {id, agents} object."
+    },
+    "plugins": {
+      "type": "array",
+      "description": "Claude Code plugin enablements as <plugin>@<marketplace>.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*@[a-z0-9][a-z0-9_-]*$"
+          },
+          { "$ref": "#/$defs/AgentScopedPluginRef" }
+        ]
+      },
+      "default": []
     },
     "env": {
       "type": "object",
@@ -65,6 +81,37 @@
     }
   },
   "$defs": {
+    "AgentKind": {
+      "enum": ["claude-code", "codex"]
+    },
+    "AgentScopedRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        }
+      }
+    },
+    "AgentScopedPluginRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*@[a-z0-9][a-z0-9_-]*$",
+          "description": "Plugin enablement as <plugin>@<marketplace>."
+        },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        }
+      }
+    },
     "NpxSkillRef": {
       "type": "object",
       "additionalProperties": false,
@@ -85,6 +132,10 @@
           "items": { "type": "string", "minLength": 1 },
           "minItems": 1,
           "uniqueItems": true
+        },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
         }
       }
     }

@@ -514,17 +514,15 @@ export function generateProfile(
   }
 
   const skills = buildProfileSkills(included);
-  if (
-    skills.local.length > 0 ||
-    skills.npx.length > 0 ||
-    skills.plugins.length > 0
-  ) {
+  if (skills.local.length > 0 || skills.npx.length > 0) {
     profile.skills = {};
     if (skills.local.length > 0) profile.skills.local = skills.local.map((x) => x.ref);
     if (skills.npx.length > 0) profile.skills.npx = skills.npx.map((x) => x.ref);
-    if (skills.plugins.length > 0) {
-      profile.skills.plugins = skills.plugins.map((x) => x.ref);
-    }
+  }
+  // Plugins move to top-level `plugins:` with @<marketplace> qualifier.
+  // Scanner discovers plugins by name; we emit them as <name>@claude-plugins-official.
+  if (skills.plugins.length > 0) {
+    profile.plugins = skills.plugins.map((x) => `${x.ref}@claude-plugins-official`);
   }
 
   return {
@@ -1071,10 +1069,12 @@ function renderProfileYaml(
         }
       }
     }
-    if (skills.plugins.length > 0) {
-      lines.push("  plugins:");
-      renderStringRefsByDomain(lines, skills.plugins);
-    }
+  }
+
+  // Plugins are top-level with <plugin>@<marketplace> qualifier.
+  if (skills.plugins.length > 0) {
+    lines.push("plugins:");
+    renderStringRefsByDomain(lines, skills.plugins.map((x) => ({ ref: `${x.ref}@claude-plugins-official`, domain: x.domain })));
   }
 
   return lines.join("\n") + "\n";

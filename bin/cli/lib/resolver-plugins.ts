@@ -2,7 +2,7 @@
  * Plugin skills resolver (Agent A8).
  *
  * Given a `ResolvedProfile`, walk the Claude Code plugins root and produce a
- * `LinkPlan[]` for every entry in `profile.skills.plugins`. Claude Code
+ * `LinkPlan[]` for every entry in `profile.plugins`. Claude Code
  * plugins ship a `skills/` directory; each `<plugin>/skills/<slug>/SKILL.md`
  * we find becomes one plan with the target namespaced as
  * `.claude/skills/<plugin>:<slug>/` so it cannot collide with local- or
@@ -77,7 +77,7 @@ export interface ResolvePluginsOptions {
 }
 
 /**
- * Resolve every `skills.plugins` entry on the profile into one or more
+ * Resolve every `plugins` entry on the profile into one or more
  * `LinkPlan`s.
  *
  * For each plugin name:
@@ -95,14 +95,16 @@ export async function resolvePlugins(
   profile: ResolvedProfile,
   opts: ResolvePluginsOptions = {},
 ): Promise<LinkPlan[]> {
-  const refs = profile.skills?.plugins ?? [];
+  const refs = profile.plugins ?? [];
   if (refs.length === 0) return [];
 
   const root = resolvePluginsRoot(opts.pluginsRoot);
 
   const plans: LinkPlan[] = [];
-  for (const name of refs) {
-    plans.push(...(await resolveOnePlugin(name, root)));
+  for (const ref of refs) {
+    // Use the part before '@' as the plugin directory name on disk.
+    const pluginName = ref.id.split("@")[0]!;
+    plans.push(...(await resolveOnePlugin(pluginName, root)));
   }
   return plans;
 }

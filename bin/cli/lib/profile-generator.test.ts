@@ -129,11 +129,13 @@ describe("generateProfile", () => {
 
     const resolved = await loadProfile("test-gen");
     expect(resolved.name).toBe("test-gen");
-    expect(resolved.skills.local).toEqual(["medusa/building-storefronts"]);
+    // Resolved form normalizes string refs to { id } objects.
+    expect(resolved.skills.local).toEqual([{ id: "medusa/building-storefronts" }]);
     expect(resolved.skills.npx).toEqual([
       { repo: "anthropics/skills", skills: ["pdf"] },
     ]);
-    expect(resolved.skills.plugins).toEqual(["claude-mem"]);
+    // Plugins move to top-level with @<marketplace> qualifier.
+    expect(resolved.plugins).toEqual([{ id: "claude-mem@claude-plugins-official" }]);
   });
 
   test("does not overwrite an existing profile unless force is set", async () => {

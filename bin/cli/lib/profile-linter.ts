@@ -385,9 +385,9 @@ function checkStaticRules(
 
   const localSlugs = new Map<string, string[]>();
   for (const ref of profile.skills.local) {
-    const slug = lastPathSegment(ref);
+    const slug = lastPathSegment(ref.id);
     const refs = localSlugs.get(slug) ?? [];
-    refs.push(ref);
+    refs.push(ref.id);
     localSlugs.set(slug, refs);
   }
 
@@ -418,7 +418,7 @@ function declaredSkillCount(profile: ResolvedProfile): number {
     (count, entry) => count + entry.skills.length,
     0,
   );
-  return profile.skills.local.length + npxSkillCount + profile.skills.plugins.length;
+  return profile.skills.local.length + npxSkillCount + profile.plugins.length;
 }
 
 function lastPathSegment(ref: string): string {
@@ -446,7 +446,7 @@ async function checkLocalSkills(
       });
       resolvedCount += plans.length;
     } catch (err) {
-      addResolverIssue(result, "local skill", ref, err);
+      addResolverIssue(result, "local skill", ref.id, err);
     }
   }
 
@@ -531,7 +531,7 @@ async function checkPlugins(
   result: ProfileLintResult,
   opts: ProfileLinterOptions,
 ): Promise<void> {
-  const refs = profile.skills.plugins;
+  const refs = profile.plugins;
   if (refs.length === 0) {
     addCheck(result, "plugins", "no plugins declared");
     return;
@@ -540,12 +540,12 @@ async function checkPlugins(
   let resolvedCount = 0;
   for (const ref of refs) {
     try {
-      await resolvePlugins(profileWithPlugin(profile, ref), {
+      await resolvePlugins(profileWithPlugin(profile, ref.id), {
         pluginsRoot: opts.pluginsRoot,
       });
       resolvedCount += 1;
     } catch (err) {
-      addResolverIssue(result, "plugin", ref, err);
+      addResolverIssue(result, "plugin", ref.id, err);
     }
   }
 
@@ -565,15 +565,15 @@ async function checkMcps(
   }
 
   let resolvedCount = 0;
-  for (const id of profile.mcps) {
+  for (const ref of profile.mcps) {
     try {
-      await materializeMcp(profileWithMcp(profile, id), {
+      await materializeMcp(profileWithMcp(profile, ref), {
         configsRoot: opts.configsRoot ?? DEFAULT_CONFIGS_ROOT,
         processEnv: opts.processEnv,
       });
       resolvedCount += 1;
     } catch (err) {
-      addResolverIssue(result, "MCP", id, err);
+      addResolverIssue(result, "MCP", ref.id, err);
     }
   }
 
@@ -597,24 +597,25 @@ function addResolverIssue(
   );
 }
 
-function profileWithLocal(profile: ResolvedProfile, ref: string): ResolvedProfile {
+function profileWithLocal(profile: ResolvedProfile, ref: ResolvedProfile["skills"]["local"][number]): ResolvedProfile {
   return {
     ...profile,
-    skills: { local: [ref], npx: [], plugins: [] },
+    skills: { local: [ref], npx: [] },
   };
 }
 
-function profileWithPlugin(profile: ResolvedProfile, ref: string): ResolvedProfile {
+function profileWithPlugin(profile: ResolvedProfile, id: string): ResolvedProfile {
   return {
     ...profile,
-    skills: { local: [], npx: [], plugins: [ref] },
+    skills: { local: [], npx: [] },
+    plugins: [{ id }],
   };
 }
 
-function profileWithMcp(profile: ResolvedProfile, id: string): ResolvedProfile {
+function profileWithMcp(profile: ResolvedProfile, ref: ResolvedProfile["mcps"][number]): ResolvedProfile {
   return {
     ...profile,
-    mcps: [id],
+    mcps: [ref],
   };
 }
 

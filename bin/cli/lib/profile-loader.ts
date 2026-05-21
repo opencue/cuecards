@@ -18,11 +18,17 @@ import { parse as parseYaml } from "yaml";
 import {
   InheritanceCycle,
   InheritanceDepthExceeded,
+  type MCPRef,
   type NpxSkillRef,
+  type PluginRef,
   type Profile,
   ProfileError,
   ProfileNotFound,
+  type ResolvedMCP,
+  type ResolvedPlugin,
   type ResolvedProfile,
+  type ResolvedSkill,
+  type SkillRef,
   SchemaViolation,
 } from "../../../profiles/_types";
 
@@ -124,6 +130,23 @@ async function readRawProfile(name: string): Promise<Profile> {
     ]);
   }
 
+  // Pre-validation: check plugin marketplace qualifier early so the error
+  // message is friendlier than Ajv's pattern mismatch.
+  const PLUGIN_PATTERN = /^[a-z0-9][a-z0-9-]*@[a-z0-9][a-z0-9_-]*$/;
+  const rawRecord = parsed as Record<string, unknown>;
+  if (Array.isArray(rawRecord.plugins)) {
+    for (const ref of rawRecord.plugins as unknown[]) {
+      const id = typeof ref === "string" ? ref : (typeof ref === "object" && ref !== null ? (ref as Record<string, unknown>).id : null);
+      if (typeof id === "string" && !PLUGIN_PATTERN.test(id)) {
+        throw new ProfileError(
+          "INVALID_PLUGIN_REF",
+          `Profile "${name}" has a plugin without a marketplace qualifier: "${id}". ` +
+            `Plugins must use the format <plugin>@<marketplace> (e.g. "${id}@claude-plugins-official").`,
+        );
+      }
+    }
+  }
+
   const validate = await getValidator();
   if (!validate(parsed)) {
     throw new SchemaViolation(
@@ -148,6 +171,35 @@ async function readRawProfile(name: string): Promise<Profile> {
 }
 
 // ---------------------------------------------------------------------------
+// Normalization helpers — convert raw YAML refs to canonical object form
+// ---------------------------------------------------------------------------
+
+/**
+ * Normalize a raw MCPRef (string or {id, agents?}) to { id, agents? }.
+ * Strings become `{ id: string }` with no agents key.
+ */
+function normalizeMCPRef(raw: MCPRef): ResolvedMCP {
+  if (typeof raw === "string") return { id: raw };
+  return raw.agents ? { id: raw.id, agents: raw.agents } : { id: raw.id };
+}
+
+/**
+ * Normalize a raw SkillRef (string or {id, agents?}) to ResolvedSkill form.
+ */
+function normalizeSkillRef(raw: SkillRef): ResolvedSkill {
+  if (typeof raw === "string") return { id: raw };
+  return raw.agents ? { id: raw.id, agents: raw.agents } : { id: raw.id };
+}
+
+/**
+ * Normalize a raw PluginRef (string or {id, agents?}) to ResolvedPlugin form.
+ */
+function normalizePluginRef(raw: PluginRef): ResolvedPlugin {
+  if (typeof raw === "string") return { id: raw };
+  return raw.agents ? { id: raw.id, agents: raw.agents } : { id: raw.id };
+}
+
+// ---------------------------------------------------------------------------
 // Deep-merge helpers
 // ---------------------------------------------------------------------------
 
@@ -168,6 +220,45 @@ function dedupePrimitiveArray<T extends string>(
 }
 
 /**
+ * Merge ResolvedMCP arrays — dedup by `id`, child wins on collision.
+ */
+function mergeMCPRefs(
+  parent: ResolvedMCP[] | undefined,
+  child: ResolvedMCP[] | undefined,
+): ResolvedMCP[] {
+  const byId = new Map<string, ResolvedMCP>();
+  for (const ref of parent ?? []) byId.set(ref.id, ref);
+  for (const ref of child ?? []) byId.set(ref.id, ref);
+  return [...byId.values()];
+}
+
+/**
+ * Merge ResolvedSkill arrays — dedup by `id`, child wins on collision.
+ */
+function mergeSkillRefs(
+  parent: ResolvedSkill[] | undefined,
+  child: ResolvedSkill[] | undefined,
+): ResolvedSkill[] {
+  const byId = new Map<string, ResolvedSkill>();
+  for (const ref of parent ?? []) byId.set(ref.id, ref);
+  for (const ref of child ?? []) byId.set(ref.id, ref);
+  return [...byId.values()];
+}
+
+/**
+ * Merge ResolvedPlugin arrays — dedup by `id`, child wins on collision.
+ */
+function mergePluginRefs(
+  parent: ResolvedPlugin[] | undefined,
+  child: ResolvedPlugin[] | undefined,
+): ResolvedPlugin[] {
+  const byId = new Map<string, ResolvedPlugin>();
+  for (const ref of parent ?? []) byId.set(ref.id, ref);
+  for (const ref of child ?? []) byId.set(ref.id, ref);
+  return [...byId.values()];
+}
+
+/**
  * Merge NpxSkillRef arrays. Identity = `repo`. When parent and child both have
  * the same repo, the child entry wins entirely (its pin + skills replace the
  * parent's). Per SCHEMA.md the merge rule for arrays is "concat + dedupe by
@@ -185,19 +276,31 @@ function mergeNpxRefs(
 }
 
 interface ProfileSkillsResolved {
-  local: string[];
+  local: ResolvedSkill[];
   npx: NpxSkillRef[];
-  plugins: string[];
 }
 
 function mergeSkills(
-  parent: Profile["skills"],
+  parent: ResolvedProfile["skills"] | undefined,
   child: Profile["skills"],
+  profileName: string,
 ): ProfileSkillsResolved {
+  // Guard: reject the old skills.plugins shape with a clear migration error.
+  if (child && "plugins" in child && (child as Record<string, unknown>).plugins !== undefined) {
+    throw new SchemaViolation(profileName, [
+      {
+        keyword: "deprecated-field",
+        message:
+          'skills.plugins has been renamed. Move plugin entries to top-level "plugins:" ' +
+          'and add the @<marketplace> qualifier (e.g. "myplugin@claude-plugins-official").',
+      },
+    ]);
+  }
+
+  const childLocal = child?.local?.map(normalizeSkillRef);
   return {
-    local: dedupePrimitiveArray(parent?.local, child?.local),
+    local: mergeSkillRefs(parent?.local, childLocal),
     npx: mergeNpxRefs(parent?.npx, child?.npx),
-    plugins: dedupePrimitiveArray(parent?.plugins, child?.plugins),
   };
 }
 
@@ -272,8 +375,15 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       // because the chain is already flattened. But we surface it on the leaf
       // so callers can see the immediate parent if they want.
       inherits: child.inherits,
-      skills: mergeSkills(acc.skills, child.skills),
-      mcps: dedupePrimitiveArray(acc.mcps, child.mcps),
+      skills: mergeSkills(acc.skills, child.skills, child.name),
+      mcps: mergeMCPRefs(
+        acc.mcps,
+        child.mcps?.map(normalizeMCPRef),
+      ),
+      plugins: mergePluginRefs(
+        acc.plugins,
+        child.plugins?.map(normalizePluginRef),
+      ),
       env: mergeEnv(acc.env, child.env),
       inheritanceChain: [...acc.inheritanceChain, child.name],
     };
@@ -289,17 +399,29 @@ function foldChain(chain: Profile[]): ResolvedProfile {
 
 /** Promote a raw `Profile` into a `ResolvedProfile` with all defaults applied. */
 function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
+  // Guard: reject the old skills.plugins shape.
+  if (p.skills && "plugins" in p.skills && (p.skills as Record<string, unknown>).plugins !== undefined) {
+    throw new SchemaViolation(p.name, [
+      {
+        keyword: "deprecated-field",
+        message:
+          'skills.plugins has been renamed. Move plugin entries to top-level "plugins:" ' +
+          'and add the @<marketplace> qualifier (e.g. "myplugin@claude-plugins-official").',
+      },
+    ]);
+  }
+
   return {
     name: p.name,
     description: p.description,
     agents: p.agents && p.agents.length > 0 ? [...p.agents] : [],
     inherits: p.inherits,
     skills: {
-      local: [...(p.skills?.local ?? [])],
+      local: (p.skills?.local ?? []).map(normalizeSkillRef),
       npx: [...(p.skills?.npx ?? [])],
-      plugins: [...(p.skills?.plugins ?? [])],
     },
-    mcps: [...(p.mcps ?? [])],
+    mcps: (p.mcps ?? []).map(normalizeMCPRef),
+    plugins: (p.plugins ?? []).map(normalizePluginRef),
     env: { ...(p.env ?? {}) },
     inheritanceChain: chain,
   };
