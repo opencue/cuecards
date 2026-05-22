@@ -23,6 +23,10 @@
       "maxLength": 2,
       "description": "Optional emoji icon shown in picker and materialized CLAUDE.md header."
     },
+    "iconImage": {
+      "type": "string",
+      "description": "Path to a PNG/JPG logo, relative to the profile dir. Rendered inline in Kitty terminals via the graphics protocol; falls back to `icon` emoji elsewhere."
+    },
     "agents": {
       "type": "array",
       "items": { "enum": ["claude-code", "codex"] },

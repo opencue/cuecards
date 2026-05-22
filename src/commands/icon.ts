@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import * as p from "@clack/prompts";
 
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
+import { loadProfile } from "../lib/profile-loader";
 import { homedir } from "node:os";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -72,6 +73,15 @@ export async function run(args: string[]): Promise<number> {
   }
 
   await writeFile(yamlPath, out.join("\n"));
+
+  // Mention iconImage if the profile also has one configured
+  try {
+    const loaded = await loadProfile(profileName);
+    if (loaded.iconImage) {
+      p.log.info(`Profile also has iconImage: "${loaded.iconImage}" (used in Kitty terminals)`);
+    }
+  } catch { /* non-critical */ }
+
   p.outro(`${choice} set for ${profileName}`);
   return 0;
 }

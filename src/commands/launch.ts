@@ -21,6 +21,7 @@ import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { runPicker, type PickerOption } from "../lib/picker";
 import { materializeRuntime } from "../lib/runtime-materializer";
 import { resolveLocalSkill, listAllSkillIds } from "../lib/resolver-local";
+import { isKittyTerminal, renderKittyImage } from "../lib/kitty-image";
 
 // ---------------------------------------------------------------------------
 // Arg parsing
@@ -101,10 +102,25 @@ export function sortProfileOptions(opts: PickerOption[], pinnedProfile?: string)
 async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[]> {
   const names = await listProfiles();
   const opts: PickerOption[] = [];
+  const kitty = isKittyTerminal();
+  const profilesRoot = process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(
+    resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+    "profiles",
+  );
   for (const name of names) {
     try {
       const p = await loadProfile(name);
-      opts.push({ value: name, label: p.icon ? `${p.icon} ${name}` : name, hint: p.description });
+      let iconLabel: string;
+      if (kitty && p.iconImage) {
+        const imgPath = resolve(profilesRoot, name, p.iconImage);
+        iconLabel = renderKittyImage(imgPath, 2, 1);
+      } else if (p.icon) {
+        iconLabel = p.icon;
+      } else {
+        iconLabel = "";
+      }
+      const label = iconLabel ? `${iconLabel} ${name}` : name;
+      opts.push({ value: name, label, hint: p.description });
     } catch {
       opts.push({ value: name, label: name, hint: "" });
     }

@@ -352,6 +352,7 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       name: child.name,
       description: child.description,
       icon: child.icon ?? acc.icon,
+      iconImage: child.iconImage ?? acc.iconImage,
       // agents: arrays merge by dedupe; if neither parent nor child declares
       // agents we fall back to the default at the end.
       agents: dedupePrimitiveArray(
@@ -390,6 +391,7 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     name: p.name,
     description: p.description,
     icon: p.icon,
+    iconImage: p.iconImage,
     agents: p.agents && p.agents.length > 0 ? [...p.agents] : [],
     inherits: p.inherits,
     skills: {

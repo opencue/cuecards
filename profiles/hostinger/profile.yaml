@@ -1,5 +1,6 @@
 name: hostinger
 icon: "🟪"
+iconImage: "logo.png"
 description: "Hostinger DNS, domain, VPS, and hosting management"
 inherits: core
 skills:
