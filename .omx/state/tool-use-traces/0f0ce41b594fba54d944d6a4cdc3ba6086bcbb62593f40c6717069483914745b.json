@@ -1,9 +1,0 @@
-{
-  "schema_version": 1,
-  "trace_id": "omx:019e16f0-dac6-7521-8ff3-a3a13c35f55d:call_xo5KgPu0p60FReI0e23Lcy2C",
-  "event_id": "omx:019e16f0-dac6-7521-8ff3-a3a13c35f55d:call_xo5KgPu0p60FReI0e23Lcy2C:pre_tool_use",
-  "session_id": "019e16f0-dac6-7521-8ff3-a3a13c35f55d",
-  "tool_use_id": "call_xo5KgPu0p60FReI0e23Lcy2C",
-  "tool_name": "Bash",
-  "recorded_at": "2026-05-11T12:10:51.677Z"
-}

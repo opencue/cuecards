@@ -117,4 +117,121 @@ describe("materializeRuntime", () => {
     const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
     expect(Object.keys(settings.mcpServers)).toEqual(["claude-mem"]);
   });
+
+  test("credentialsSource: copies .credentials.json into runtime", async () => {
+    const credSrc = join(root, "creds");
+    const { mkdir, writeFile } = await import("node:fs/promises");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(join(credSrc, ".credentials.json"), '{"claudeAiOauth":{"token":"abc"}}');
+
+    const out = await materializeRuntime({
+      profile: sampleProfile,
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    });
+
+    const copied = await readFile(join(out.runtimeDir, ".credentials.json"), "utf8");
+    expect(copied).toBe('{"claudeAiOauth":{"token":"abc"}}');
+  });
+
+  test("credentialsSource: merges existing settings.json (preserves permissions)", async () => {
+    const credSrc = join(root, "creds");
+    const { mkdir, writeFile } = await import("node:fs/promises");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(
+      join(credSrc, "settings.json"),
+      JSON.stringify({
+        permissions: { allow: ["Bash(*)"], defaultMode: "auto" },
+        trustedDirectories: ["/home/user/work"],
+        skipAutoPermissionPrompt: true,
+        enabledPlugins: { "existing@marketplace": true },
+        mcpServers: { existingMcp: { command: "x" } },
+      }),
+    );
+
+    const out = await materializeRuntime({
+      profile: sampleProfile,
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    });
+
+    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    // Account-level settings preserved
+    expect(settings.permissions).toEqual({ allow: ["Bash(*)"], defaultMode: "auto" });
+    expect(settings.trustedDirectories).toEqual(["/home/user/work"]);
+    expect(settings.skipAutoPermissionPrompt).toBe(true);
+    // Profile plugins/mcps merged on top
+    expect(settings.enabledPlugins).toEqual({
+      "existing@marketplace": true,
+      "frontend-design@claude-plugins-official": true,
+    });
+    expect(settings.mcpServers).toEqual({
+      existingMcp: { command: "x" },
+      "claude-mem": { command: "claude-mem" },
+    });
+  });
+
+  test("credentialsSource: refreshes credentials AND settings on cache hit", async () => {
+    const credSrcA = join(root, "credsA");
+    const credSrcB = join(root, "credsB");
+    const { mkdir, writeFile, copyFile: _ } = await import("node:fs/promises");
+    await mkdir(credSrcA, { recursive: true });
+    await mkdir(credSrcB, { recursive: true });
+    await writeFile(join(credSrcA, ".credentials.json"), '{"token":"A"}');
+    await writeFile(join(credSrcB, ".credentials.json"), '{"token":"B"}');
+    await writeFile(
+      join(credSrcA, "settings.json"),
+      JSON.stringify({ permissions: { allow: ["A"] } }),
+    );
+    await writeFile(
+      join(credSrcB, "settings.json"),
+      JSON.stringify({ permissions: { allow: ["B"] } }),
+    );
+
+    const args = {
+      profile: sampleProfile,
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+    };
+
+    // First launch with account A → builds runtime with A's creds + settings
+    const first = await materializeRuntime({ ...args, credentialsSource: credSrcA });
+    expect(first.rebuilt).toBe(true);
+    expect(await readFile(join(first.runtimeDir, ".credentials.json"), "utf8")).toBe('{"token":"A"}');
+    let s1 = JSON.parse(await readFile(join(first.runtimeDir, "settings.json"), "utf8"));
+    expect(s1.permissions.allow).toEqual(["A"]);
+
+    // Second launch with account B (same profile) → hash matches → cache hit,
+    // but credentials AND settings should both refresh from B.
+    const second = await materializeRuntime({ ...args, credentialsSource: credSrcB });
+    expect(second.rebuilt).toBe(false);
+    expect(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8")).toBe('{"token":"B"}');
+    let s2 = JSON.parse(await readFile(join(second.runtimeDir, "settings.json"), "utf8"));
+    expect(s2.permissions.allow).toEqual(["B"]);
+  });
+
+  test("CLAUDE.md stamp uses real ISO timestamp, not literal $(date)", async () => {
+    const out = await materializeRuntime({
+      profile: sampleProfile,
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    });
+    const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
+    expect(claudemd).not.toContain("$(date)");
+    expect(claudemd).toMatch(/generated \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  });
 });

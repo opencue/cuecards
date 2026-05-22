@@ -57,6 +57,10 @@ export const COMMANDS = {
     summary: "Pick an emoji icon for a profile",
     load: () => import("./icon"),
   },
+  "create-profile": {
+    summary: "Create a new profile.yaml from skills/MCPs (interactive or from agent skill)",
+    load: () => import("./create-profile"),
+  },
   "migrate-symlinks": {
     summary: "Rewrite ~/.codex and ~/.claude-accounts symlinks from soul/ to cue/",
     load: () => import("./migrate-symlinks"),

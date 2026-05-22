@@ -84,6 +84,20 @@ function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise
 // Helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Sort picker options: pinned profile first, "full" second, rest alphabetical.
+ * Pure function so tests don't need filesystem.
+ */
+export function sortProfileOptions(opts: PickerOption[], pinnedProfile?: string): PickerOption[] {
+  return [...opts].sort((a, b) => {
+    if (a.value === pinnedProfile) return -1;
+    if (b.value === pinnedProfile) return 1;
+    if (a.value === "full") return -1;
+    if (b.value === "full") return 1;
+    return a.value.localeCompare(b.value);
+  });
+}
+
 async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[]> {
   const names = await listProfiles();
   const opts: PickerOption[] = [];
@@ -95,15 +109,7 @@ async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[
       opts.push({ value: name, label: name, hint: "" });
     }
   }
-  // Sort: pinned/existing profile first, 'full' second, rest alphabetical.
-  opts.sort((a, b) => {
-    if (a.value === pinnedProfile) return -1;
-    if (b.value === pinnedProfile) return 1;
-    if (a.value === "full") return -1;
-    if (b.value === "full") return 1;
-    return a.value.localeCompare(b.value);
-  });
-  return opts;
+  return sortProfileOptions(opts, pinnedProfile);
 }
 
 async function loadMcpRegistry(agent: "claude-code" | "codex"): Promise<Record<string, unknown>> {
@@ -175,7 +181,16 @@ export async function run(args: string[]): Promise<number> {
 
   // Resolve profile.
   const cwd = process.cwd();
-  const isAccountAlias = !!process.env.CLAUDE_CONFIG_DIR && process.env.CLAUDE_CONFIG_DIR !== join(homedir(), ".claude");
+  // Normalize paths (resolve symlinks, strip trailing slashes) so an explicit
+  // CLAUDE_CONFIG_DIR=$HOME/.claude (or $HOME/.claude/) doesn't trigger
+  // account-alias mode.
+  const ccd = process.env.CLAUDE_CONFIG_DIR;
+  let isAccountAlias = false;
+  if (ccd) {
+    const defaultDir = resolve(homedir(), ".claude");
+    const setDir = resolve(ccd);
+    isAccountAlias = setDir !== defaultDir;
+  }
   const existingResolved = await resolveProfileForCwd({
     cwd,
     homeDir: homedir(),

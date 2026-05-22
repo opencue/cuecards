@@ -67,6 +67,34 @@ concurrent running session never sees a partial state.
 For Codex the shape is identical under `runtime/<profile>/codex/` with
 `CODEX_HOME` and a `config.toml` instead of `settings.json`.
 
+## Multi-account / credentials persistence
+
+When `CLAUDE_CONFIG_DIR` is set in the environment **before** launching cue
+(typically via a shell alias like `claude-account2`), cue treats this as
+*account-alias mode*:
+
+1. The path in `CLAUDE_CONFIG_DIR` is the **credentials source**.
+2. cue copies `.credentials.json` from there into the materialized runtime so
+   you don't have to log in again.
+3. cue reads the source's `settings.json` and merges the profile's plugins +
+   MCPs on top — preserving `permissions`, `trustedDirectories`, and
+   `skipAutoPermissionPrompt` from the account.
+4. Both files are refreshed on every launch (even on cache hit) so switching
+   accounts on the same profile doesn't leak settings between accounts.
+5. The picker is **always shown** in account-alias mode, with the previously
+   pinned profile on top — so each session can use a different profile
+   without losing the auth.
+
+Example alias:
+
+```bash
+alias claude-account2="CLAUDE_CONFIG_DIR=$HOME/.claude-accounts/account2 cue launch claude"
+```
+
+The detection compares `realpath(CLAUDE_CONFIG_DIR)` against
+`realpath($HOME/.claude)` — so trailing slashes and symlinks don't accidentally
+trigger account-alias mode.
+
 ## Bypass paths
 
 - `claude --cue-profile frontend` — skip resolve, use `frontend` directly.

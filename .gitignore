@@ -17,3 +17,6 @@ claude-plugins-official/
 
 # Generated runtime (lives at ~/.config/cue/ but excluded if symlinked in for inspection)
 .cue-hash
+
+# OMX agent state (per-session traces, not source-controlled)
+.omx/

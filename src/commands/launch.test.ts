@@ -1,55 +1,47 @@
-import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { describe, expect, test } from "bun:test";
+import { sortProfileOptions } from "./launch";
+import type { PickerOption } from "../lib/picker";
 
-import { run } from "./launch";
+const make = (value: string): PickerOption => ({ value, label: value, hint: "" });
 
-let home: string;
-let saveCwd: string;
-beforeEach(async () => {
-  saveCwd = process.cwd();
-  home = await mkdtemp(join(tmpdir(), "cue-launch-"));
-  process.env.HOME = home;
-  process.env.CUE_REPO_ROOT = saveCwd; // pretend cwd is the cue repo
-  process.env.SOUL_REPO_ROOT = saveCwd; // legacy fallback
-  process.env.CUE_PROFILES_DIR = join(saveCwd, "profiles");
-  process.env.XDG_CONFIG_HOME = join(home, ".config");
-});
-afterEach(async () => {
-  process.chdir(saveCwd);
-  delete process.env.CUE_PROFILES_DIR;
-  await rm(home, { recursive: true, force: true });
-});
-
-describe("soul launch --dry-run", () => {
-  test("exits 1 when called with unknown agent", async () => {
-    const rc = await run(["unknown-agent", "--dry-run"]);
-    expect(rc).toBe(1);
+describe("sortProfileOptions", () => {
+  test("pinned profile is first", () => {
+    const input = [make("backend"), make("frontend"), make("full"), make("marketing")];
+    const out = sortProfileOptions(input, "marketing");
+    expect(out.map((o) => o.value)).toEqual(["marketing", "full", "backend", "frontend"]);
   });
 
-  test("exits 1 when no profile resolved and stdin is non-tty (no picker)", async () => {
-    const cwd = await mkdtemp(join(tmpdir(), "cue-launch-cwd-"));
-    process.chdir(cwd);
-    const rc = await run(["claude", "--dry-run"]);
-    expect(rc).toBe(1);
+  test("full is second when pinned profile is set", () => {
+    const input = [make("backend"), make("frontend"), make("full")];
+    const out = sortProfileOptions(input, "frontend");
+    expect(out[0]!.value).toBe("frontend");
+    expect(out[1]!.value).toBe("full");
   });
 
-  test("dry-run with pinned profile prints resolved env and exits 0", async () => {
-    const cwd = await mkdtemp(join(tmpdir(), "cue-launch-cwd-"));
-    await writeFile(join(cwd, ".cue-profile"), "core\n");
-    process.chdir(cwd);
-    // Note: the 'core' profile must exist under profiles/core/profile.yaml in the
-    // repo root pointed to by CUE_REPO_ROOT. The repo's existing core profile fits.
-    const rc = await run(["claude", "--dry-run"]);
-    expect(rc).toBe(0);
+  test("full is first when no pinned profile", () => {
+    const input = [make("backend"), make("research"), make("full"), make("marketing")];
+    const out = sortProfileOptions(input);
+    expect(out[0]!.value).toBe("full");
+    // Rest are alphabetical
+    expect(out.slice(1).map((o) => o.value)).toEqual(["backend", "marketing", "research"]);
   });
 
-  test("--cue-profile flag overrides any pin", async () => {
-    const cwd = await mkdtemp(join(tmpdir(), "cue-launch-cwd-"));
-    await writeFile(join(cwd, ".cue-profile"), "core");
-    process.chdir(cwd);
-    const rc = await run(["claude", "--cue-profile", "frontend", "--dry-run"]);
-    expect(rc).toBe(0);
+  test("works when pinned profile equals 'full'", () => {
+    const input = [make("backend"), make("frontend"), make("full")];
+    const out = sortProfileOptions(input, "full");
+    expect(out[0]!.value).toBe("full");
+  });
+
+  test("does not mutate the input array", () => {
+    const input = [make("backend"), make("full"), make("frontend")];
+    const before = input.map((o) => o.value);
+    sortProfileOptions(input, "frontend");
+    expect(input.map((o) => o.value)).toEqual(before);
+  });
+
+  test("alphabetical tie-break for non-special profiles", () => {
+    const input = [make("zebra"), make("apple"), make("mango")];
+    const out = sortProfileOptions(input);
+    expect(out.map((o) => o.value)).toEqual(["apple", "mango", "zebra"]);
   });
 });

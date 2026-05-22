@@ -64,13 +64,21 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   try {
     const existing = (await readFile(join(runtimeDir, ".cue-hash"), "utf8")).trim();
     if (existing === hash) {
-      // Always refresh credentials even on cache hit.
+      // Always refresh credentials AND settings on cache hit so account
+      // switches don't leak settings/permissions across runs.
       if (input.credentialsSource) {
-        const credSrc = join(input.credentialsSource, ".credentials.json");
+        const { copyFile } = await import("node:fs/promises");
         try {
-          const { copyFile } = await import("node:fs/promises");
-          await copyFile(credSrc, join(runtimeDir, ".credentials.json"));
+          await copyFile(
+            join(input.credentialsSource, ".credentials.json"),
+            join(runtimeDir, ".credentials.json"),
+          );
         } catch { /* no credentials yet */ }
+        // Re-merge settings.json from current credentialsSource.
+        if (agent === "claude-code") {
+          const merged = await buildClaudeSettings(profile, agent, input);
+          await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
+        }
       }
       return { runtimeDir, rebuilt: false, hash };
     }
@@ -92,11 +100,6 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
 
   // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
-  const enabledPlugins: Record<string, true> = {};
-  for (const plugin of profile.plugins) {
-    if (!appliesToAgent(plugin, agent)) continue;
-    enabledPlugins[plugin.id] = true;
-  }
   const mcpServers: Record<string, unknown> = {};
   for (const m of profile.mcps) {
     if (!appliesToAgent(m, agent)) continue;
@@ -104,20 +107,8 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     if (reg !== undefined) mcpServers[m.id] = reg;
   }
   if (agent === "claude-code") {
-    // Merge with existing settings from credentials source (preserves permissions, trust, etc.)
-    let baseSettings: Record<string, unknown> = {};
-    if (input.credentialsSource) {
-      try {
-        const raw = await readFile(join(input.credentialsSource, "settings.json"), "utf8");
-        baseSettings = JSON.parse(raw);
-      } catch { /* no existing settings — start fresh */ }
-    }
-    const settings = {
-      ...baseSettings,
-      enabledPlugins: { ...(baseSettings.enabledPlugins as Record<string, unknown> ?? {}), ...enabledPlugins },
-      mcpServers: { ...(baseSettings.mcpServers as Record<string, unknown> ?? {}), ...mcpServers },
-    };
-    await writeFile(join(tmpDir, "settings.json"), JSON.stringify(settings, null, 2) + "\n");
+    const merged = await buildClaudeSettings(profile, agent, input);
+    await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
     // Codex equivalent — write config.toml from registry. Caller pre-renders to TOML.
     await writeFile(join(tmpDir, "config.toml"), tomlRender({ mcp_servers: mcpServers }));
@@ -128,7 +119,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   const stamp = `<!-- cue: profile=${profile.name} icon=${iconStr} -->\n` +
                 `# Active Profile: ${iconStr ? iconStr + " " : ""}${profile.name}\n` +
                 `> ${profile.description}\n` +
-                `> generated $(date) — do not hand-edit\n\n`;
+                `> generated ${new Date().toISOString()} — do not hand-edit\n\n`;
   await writeFile(join(tmpDir, agent === "claude-code" ? "CLAUDE.md" : "AGENTS.md"), stamp + input.userClaudeMd);
 
   // 4. hash (no trailing newline so /^[a-f0-9]{64}$/ matches directly)
@@ -148,6 +139,41 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   await rename(tmpDir, runtimeDir);
 
   return { runtimeDir, rebuilt: true, hash };
+}
+
+// Build the merged Claude Code settings.json content (string).
+// Reads existing settings from credentialsSource (preserves permissions,
+// trustedDirectories, skipAutoPermissionPrompt) and overlays the profile's
+// plugins + MCPs.
+async function buildClaudeSettings(
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  input: MaterializeInput,
+): Promise<string> {
+  const enabledPlugins: Record<string, true> = {};
+  for (const plugin of profile.plugins) {
+    if (!appliesToAgent(plugin, agent)) continue;
+    enabledPlugins[plugin.id] = true;
+  }
+  const mcpServers: Record<string, unknown> = {};
+  for (const m of profile.mcps) {
+    if (!appliesToAgent(m, agent)) continue;
+    const reg = input.mcpRegistry[m.id];
+    if (reg !== undefined) mcpServers[m.id] = reg;
+  }
+  let baseSettings: Record<string, unknown> = {};
+  if (input.credentialsSource) {
+    try {
+      const raw = await readFile(join(input.credentialsSource, "settings.json"), "utf8");
+      baseSettings = JSON.parse(raw);
+    } catch { /* no existing settings — start fresh */ }
+  }
+  const settings = {
+    ...baseSettings,
+    enabledPlugins: { ...(baseSettings.enabledPlugins as Record<string, unknown> ?? {}), ...enabledPlugins },
+    mcpServers: { ...(baseSettings.mcpServers as Record<string, unknown> ?? {}), ...mcpServers },
+  };
+  return JSON.stringify(settings, null, 2);
 }
 
 // Minimal TOML emitter for the MCP config block. Replace with `@iarna/toml` if

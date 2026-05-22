@@ -130,6 +130,8 @@ say ""
 say "${DIM}Step 5/6 — authmux${RESET}"
 if command -v authmux >/dev/null 2>&1; then
   ok "authmux $(authmux --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' | head -1) already installed"
+elif ! command -v npm >/dev/null 2>&1; then
+  warn "npm not found — skipping authmux install (install Node.js + npm, then run: npm install -g authmux)"
 else
   say "  Installing authmux globally…"
   npm install -g authmux 2>&1 | tail -3

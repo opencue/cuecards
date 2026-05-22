@@ -192,6 +192,54 @@ cue use medusa-dev
 cd profiles/medusa-dev/workspace && claude
 ```
 
+Each profile carries an emoji icon shown in the picker:
+
+```
+🐻 backend         APIs, webhooks, security review, CI, package, …
+🦋 frontend        Frontend UI implementation, redesign, screenshots, …
+🦜 marketing       Marketing — copywriting, SEO, CRO, growth, …
+🦉 research        Source-backed lookup, extraction, market research
+🐺 fleet-control   Multi-agent orchestration, Colony, OMX, gx
+🦚 creative-media  Image, video, brand, visual generation
+🐝 docs-writer     Markdown, PDF, Obsidian, structured writing
+🐆 caveman-quick   Fast low-context edits, summaries, reviews
+🦄 full            Diagnostic profile — every local skill + MCP
+🐢 core            Shared baseline (claude-mem, meta skills, …)
+```
+
+Pick or change an icon: `cue icon <profile>` (interactive emoji picker).
+
+The active profile is also stamped at the top of the materialized `CLAUDE.md`,
+so `/goal` inside Claude Code shows which profile is loaded.
+
+### Saving the current session as a profile
+
+From any Claude Code session, ask: *"save this as a profile"*. The
+`meta/save-profile` skill walks you through the steps and calls
+`cue create-profile` to write the YAML:
+
+```bash
+cue create-profile my-project \
+  --icon "🦊" \
+  --description "My project work" \
+  --skills design/ui-ux-pro-max,research/find-skills \
+  --pin
+```
+
+### Multi-account flow (with authmux)
+
+If you keep separate Claude/Codex accounts (e.g. via `authmux`), point each
+alias at its own `CLAUDE_CONFIG_DIR`:
+
+```bash
+alias claude-account2="CLAUDE_CONFIG_DIR=$HOME/.claude-accounts/account2 cue launch claude"
+```
+
+cue detects the pre-set config dir, copies `.credentials.json` and merges the
+account's `settings.json` into the materialized runtime, and **always shows
+the picker** with the previously-pinned profile on top — so you can pick a
+different profile per session without losing the auth.
+
 Start with the docs hub at **[docs/profiles/](./docs/profiles/)** for the schema, inheritance model, scan-to-profile flow, and troubleshooting.
 
 ---

@@ -1,9 +1,0 @@
-{
-  "schema_version": 1,
-  "trace_id": "omx:019e16f0-dac6-7521-8ff3-a3a13c35f55d:call_fdijspYHbtVVC8w6i1jr3ayi",
-  "event_id": "omx:019e16f0-dac6-7521-8ff3-a3a13c35f55d:call_fdijspYHbtVVC8w6i1jr3ayi:pre_tool_use",
-  "session_id": "019e16f0-dac6-7521-8ff3-a3a13c35f55d",
-  "tool_use_id": "call_fdijspYHbtVVC8w6i1jr3ayi",
-  "tool_name": "apply_patch",
-  "recorded_at": "2026-05-11T12:12:13.919Z"
-}
