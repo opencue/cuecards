@@ -1,4 +1,5 @@
 name: core
+icon: "🐢"
 description: Baseline shared by every cue profile — meta skills + cross-session memory
 skills:
   local:

@@ -1,4 +1,5 @@
 name: research
+icon: "🦉"
 description: Source-backed lookup, extraction, keyword, browser, crate, and market research
 inherits: core
 skills:

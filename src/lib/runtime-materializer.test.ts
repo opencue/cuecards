@@ -44,7 +44,7 @@ describe("materializeRuntime", () => {
     expect(settings.mcpServers).toEqual({ "claude-mem": { command: "claude-mem", args: [] } });
 
     const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
-    expect(claudemd).toMatch(/^# cue profile: test-frontend/);
+    expect(claudemd).toMatch(/^<!-- cue: profile=test-frontend/);
     expect(claudemd).toContain("# user CLAUDE.md");
 
     const hash = await readFile(join(out.runtimeDir, ".cue-hash"), "utf8");

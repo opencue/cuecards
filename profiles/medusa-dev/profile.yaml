@@ -1,4 +1,5 @@
 name: medusa-dev
+icon: "🦊"
 description: Medusa v2 backend, storefront, admin, migration, and shop setup work
 inherits: core
 skills:

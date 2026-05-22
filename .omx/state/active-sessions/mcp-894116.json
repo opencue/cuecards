@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "repoRoot": "/home/deadpool/Documents/cue",
+  "branch": "main",
+  "taskName": "Session start: mcp-connect",
+  "latestTaskPreview": "Session start: mcp-connect",
+  "agentName": "unknown",
+  "cliName": "unknown",
+  "worktreePath": "/home/deadpool/Documents/cue",
+  "taskMode": "",
+  "openspecTier": "",
+  "taskRoutingReason": "colony hook cwd binding",
+  "startedAt": "2026-05-22T10:01:26.404Z",
+  "lastHeartbeatAt": "2026-05-22T10:01:26.404Z",
+  "state": "working",
+  "sessionKey": "mcp-894116"
+}

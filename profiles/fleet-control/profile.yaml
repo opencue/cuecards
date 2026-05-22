@@ -1,4 +1,5 @@
 name: fleet-control
+icon: "🐺"
 description: Multi-agent orchestration, Colony coordination, OMX flows, and gx safety
 inherits: core
 skills:

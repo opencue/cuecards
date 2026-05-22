@@ -1,4 +1,5 @@
 name: docs-writer
+icon: "🐝"
 description: Documentation, Markdown, PDF, Obsidian, and structured writing work
 inherits: core
 skills:

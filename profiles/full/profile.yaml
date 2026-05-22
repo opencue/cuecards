@@ -1,4 +1,5 @@
 name: full
+icon: "🦄"
 description: Diagnostic fallback profile that loads every local skill and MCP
 inherits: core
 skills:

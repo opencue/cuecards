@@ -1,4 +1,5 @@
 name: frontend
+icon: "🦋"
 description: Frontend UI implementation, redesign, screenshots, testing, and visual polish
 inherits: core
 skills:

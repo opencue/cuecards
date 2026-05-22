@@ -1,4 +1,5 @@
 name: backend
+icon: "🐻"
 description: APIs, webhooks, security review, CI, package, database, and deploy work
 inherits: core
 skills:

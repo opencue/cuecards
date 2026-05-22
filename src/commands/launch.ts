@@ -90,7 +90,7 @@ async function listProfileOptions(): Promise<PickerOption[]> {
   for (const name of names) {
     try {
       const p = await loadProfile(name);
-      opts.push({ value: name, label: name, hint: p.description });
+      opts.push({ value: name, label: p.icon ? `${p.icon} ${name}` : name, hint: p.description });
     } catch {
       opts.push({ value: name, label: name, hint: "" });
     }

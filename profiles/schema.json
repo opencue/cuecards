@@ -18,6 +18,11 @@
       "maxLength": 200,
       "description": "One-line description shown in `soul list` and embedded in the materialized CLAUDE.md stamp."
     },
+    "icon": {
+      "type": "string",
+      "maxLength": 2,
+      "description": "Optional emoji icon shown in picker and materialized CLAUDE.md header."
+    },
     "agents": {
       "type": "array",
       "items": { "enum": ["claude-code", "codex"] },

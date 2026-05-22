@@ -1,4 +1,5 @@
 name: creative-media
+icon: "🦚"
 description: Image, video, product asset, brand, and visual generation workflows
 inherits: core
 skills:

@@ -35,6 +35,7 @@ export interface ProfileSkills {
 export interface Profile {
   name: string;
   description: string;
+  icon?: string;
   agents?: AgentKind[];
   inherits?: string;
   skills?: ProfileSkills;

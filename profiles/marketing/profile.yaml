@@ -1,4 +1,5 @@
 name: marketing
+icon: "🦜"
 description: Marketing — copywriting, SEO, CRO, growth, channels, brand
 inherits: core
 skills:

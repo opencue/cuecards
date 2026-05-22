@@ -100,7 +100,9 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
 
   // 3. CLAUDE.md with stamp
-  const stamp = `# cue profile: ${profile.name}\n` +
+  const iconStr = profile.icon ?? "";
+  const stamp = `<!-- cue: profile=${profile.name} icon=${iconStr} -->\n` +
+                `# Active Profile: ${iconStr ? iconStr + " " : ""}${profile.name}\n` +
                 `> ${profile.description}\n` +
                 `> generated $(date) — do not hand-edit\n\n`;
   await writeFile(join(tmpDir, agent === "claude-code" ? "CLAUDE.md" : "AGENTS.md"), stamp + input.userClaudeMd);

@@ -53,6 +53,10 @@ export const COMMANDS = {
     summary: "Print the active profile and its resolved capability counts",
     load: () => import("./current"),
   },
+  icon: {
+    summary: "Pick an emoji icon for a profile",
+    load: () => import("./icon"),
+  },
   "migrate-symlinks": {
     summary: "Rewrite ~/.codex and ~/.claude-accounts symlinks from soul/ to cue/",
     load: () => import("./migrate-symlinks"),

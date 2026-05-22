@@ -1,4 +1,5 @@
 name: caveman-quick
+icon: "🐆"
 description: Fast low-context edits, summaries, reviews, notes, and commit prep
 inherits: core
 skills:
