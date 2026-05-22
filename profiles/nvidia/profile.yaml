@@ -1,0 +1,20 @@
+name: nvidia
+icon: "🟢"
+iconImage: "logo.png"
+description: "NVIDIA cuOpt: routing, LP/MILP, GPU-accelerated optimization (12 skills)"
+inherits: core
+skills:
+  local:
+    - nvidia/cuopt-developer
+    - nvidia/cuopt-install
+    - nvidia/cuopt-numerical-optimization-api-c
+    - nvidia/cuopt-numerical-optimization-api-cli
+    - nvidia/cuopt-numerical-optimization-api-python
+    - nvidia/cuopt-routing-api-python
+    - nvidia/cuopt-server-api-python
+    - nvidia/cuopt-server-common
+    - nvidia/cuopt-user-rules
+    - nvidia/numerical-optimization-formulation
+    - nvidia/routing-formulation
+    - nvidia/skill-evolution
+mcps: []
