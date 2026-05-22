@@ -23,6 +23,8 @@ export interface MaterializeInput {
   mcpRegistry: Record<string, unknown>;
   /** Content of ~/.claude/CLAUDE.md (or ~/.codex/AGENTS.md) to append. */
   userClaudeMd: string;
+  /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
+  credentialsSource?: string;
 }
 
 export interface MaterializeOutput {
@@ -61,7 +63,17 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   // Short-circuit if hash matches.
   try {
     const existing = (await readFile(join(runtimeDir, ".cue-hash"), "utf8")).trim();
-    if (existing === hash) return { runtimeDir, rebuilt: false, hash };
+    if (existing === hash) {
+      // Always refresh credentials even on cache hit.
+      if (input.credentialsSource) {
+        const credSrc = join(input.credentialsSource, ".credentials.json");
+        try {
+          const { copyFile } = await import("node:fs/promises");
+          await copyFile(credSrc, join(runtimeDir, ".credentials.json"));
+        } catch { /* no credentials yet */ }
+      }
+      return { runtimeDir, rebuilt: false, hash };
+    }
   } catch { /* not present — fall through to build */ }
 
   // Build in a sibling tmp dir, atomic-swap at the end.
@@ -110,7 +122,16 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   // 4. hash (no trailing newline so /^[a-f0-9]{64}$/ matches directly)
   await writeFile(join(tmpDir, ".cue-hash"), hash);
 
-  // 5. Atomic swap: rm -rf old, rename tmp.
+  // 5. Copy .credentials.json from source config dir (auth persistence).
+  if (input.credentialsSource) {
+    const credSrc = join(input.credentialsSource, ".credentials.json");
+    try {
+      const { copyFile } = await import("node:fs/promises");
+      await copyFile(credSrc, join(tmpDir, ".credentials.json"));
+    } catch { /* no credentials yet — user will log in once */ }
+  }
+
+  // 6. Atomic swap: rm -rf old, rename tmp.
   await rm(runtimeDir, { recursive: true, force: true });
   await rename(tmpDir, runtimeDir);
 

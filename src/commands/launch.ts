@@ -84,7 +84,7 @@ function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise
 // Helpers
 // ---------------------------------------------------------------------------
 
-async function listProfileOptions(): Promise<PickerOption[]> {
+async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[]> {
   const names = await listProfiles();
   const opts: PickerOption[] = [];
   for (const name of names) {
@@ -95,6 +95,14 @@ async function listProfileOptions(): Promise<PickerOption[]> {
       opts.push({ value: name, label: name, hint: "" });
     }
   }
+  // Sort: pinned/existing profile first, 'full' second, rest alphabetical.
+  opts.sort((a, b) => {
+    if (a.value === pinnedProfile) return -1;
+    if (b.value === pinnedProfile) return 1;
+    if (a.value === "full") return -1;
+    if (b.value === "full") return 1;
+    return a.value.localeCompare(b.value);
+  });
   return opts;
 }
 
@@ -167,14 +175,16 @@ export async function run(args: string[]): Promise<number> {
 
   // Resolve profile.
   const cwd = process.cwd();
-  const resolved = parsed.forcePick
-    ? { source: "none" as const }
-    : await resolveProfileForCwd({
-        cwd,
-        homeDir: homedir(),
-        configDir: configDir(),
-        override: parsed.override,
-      });
+  const existingResolved = await resolveProfileForCwd({
+    cwd,
+    homeDir: homedir(),
+    configDir: configDir(),
+    override: parsed.override,
+  });
+  const resolved = parsed.forcePick ? { source: "none" as const } : existingResolved;
+  const existingProfile = existingResolved.source !== "none"
+    ? (existingResolved as { source: string; profile: string }).profile
+    : undefined;
 
   let profileName: string;
   if (resolved.source === "none") {
@@ -184,7 +194,7 @@ export async function run(args: string[]): Promise<number> {
       );
       return 1;
     }
-    const options = await listProfileOptions();
+    const options = await listProfileOptions(existingProfile);
     const picked = await runPicker({ cwd, options });
     profileName = picked.profile;
   } else {
@@ -211,6 +221,11 @@ export async function run(args: string[]): Promise<number> {
     ];
   }
 
+  // Detect pre-set CLAUDE_CONFIG_DIR (e.g. from claude-account2 alias) as credentials source.
+  const credentialsSource = agentKind === "claude-code"
+    ? (process.env.CLAUDE_CONFIG_DIR || join(homedir(), ".claude"))
+    : undefined;
+
   const runtime = await materializeRuntime({
     profile,
     agent: agentKind,
@@ -218,6 +233,7 @@ export async function run(args: string[]): Promise<number> {
     skillSourceLookup: (id) => resolveLocalSkill(id),
     mcpRegistry: await loadMcpRegistry(agentKind),
     userClaudeMd: await readUserClaudeMd(agentKind),
+    credentialsSource,
   });
 
   const envKey = agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
