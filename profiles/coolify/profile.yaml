@@ -1,5 +1,5 @@
 name: coolify
-icon: "🟣"
+icon: "🅒"
 description: "Coolify deploys, server config, app env vars, and CI"
 inherits: core
 skills:
