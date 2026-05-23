@@ -10,13 +10,23 @@ import { spawnSync } from "node:child_process";
 
 const CONFIG_DIR = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue");
 const FLAG_FILE = join(CONFIG_DIR, ".star-prompted");
+const ANALYTICS_FILE = join(CONFIG_DIR, "analytics.jsonl");
 const REPO = "recodeee/cue";
+const SESSION_THRESHOLD = 10;
 
 export async function maybePromptStar(): Promise<void> {
   // Only prompt once ever
   if (existsSync(FLAG_FILE)) return;
   // Only in interactive TTY
   if (!process.stdin.isTTY || !process.stdout.isTTY) return;
+
+  // Only after N sessions
+  let sessionCount = 0;
+  try {
+    const content = require("node:fs").readFileSync(ANALYTICS_FILE, "utf8");
+    sessionCount = (content.match(/"event":"start"/g) ?? []).length;
+  } catch {}
+  if (sessionCount < SESSION_THRESHOLD) return;
   // Check if gh CLI is available
   const ghCheck = spawnSync("gh", ["--version"], { encoding: "utf8", timeout: 3000 });
   if (ghCheck.status !== 0) { markDone(); return; }

@@ -31,10 +31,10 @@ function getSkillUsage(): Map<string, number> {
   const projectsDir = join(homedir(), ".claude", "projects");
   try {
     // Use grep to scan all session jsonl files for SKILL.md reads
-    const res = spawnSync("grep", ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
+    const res = spawnSync("grep", ["-roh", "--include=*.jsonl", "-m", "500", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
       stdio: ["ignore", "pipe", "pipe"],
       encoding: "utf8",
-      timeout: 10000,
+      timeout: 3000,
     });
     if (res.status === 0 && res.stdout) {
       for (const line of res.stdout.split("\n")) {

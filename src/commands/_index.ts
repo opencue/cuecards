@@ -33,6 +33,10 @@ export const COMMANDS = {
     summary: "Print a tree of installed skills/plugins grouped by domain (A10/A11)",
     load: () => import("./scan"),
   },
+  score: {
+    summary: "Profile efficiency score (A+ to F) with SVG badge",
+    load: () => import("./score"),
+  },
   doctor: {
     summary: "Diff declared profile vs actual disk state; --fix repairs (A15)",
     load: () => import("./doctor"),
@@ -88,6 +92,10 @@ export const COMMANDS = {
   ask: {
     summary: "Show what a skill does — description, summary, size",
     load: () => import("./ask"),
+  },
+  ai: {
+    summary: "Create a profile from natural language description",
+    load: () => import("./ai"),
   },
   builtin: {
     summary: "Manage built-in skills shared across all profiles",
@@ -217,6 +225,18 @@ export const COMMANDS = {
     summary: "Output shell completion script (bash/zsh)",
     load: () => import("./completions"),
   },
+  clean: {
+    summary: "Prune stale runtimes, old cache, reclaim disk space",
+    load: () => import("./clean"),
+  },
+  migrate: {
+    summary: "Auto-migrate profiles to latest schema version",
+    load: () => import("./migrate"),
+  },
+  suggest: {
+    summary: "Profile recommendations based on usage patterns",
+    load: () => import("./suggest"),
+  },
   watch: {
     summary: "Auto-switch profile notification on cd (shell hook)",
     load: () => import("./watch"),
@@ -232,6 +252,22 @@ export const COMMANDS = {
   sources: {
     summary: "Show GitHub repos that provide skills for a profile",
     load: () => import("./sources"),
+  },
+  sponsor: {
+    summary: "Star the repo / show support links",
+    load: async () => ({
+      run: async () => {
+        const { maybePromptStar } = await import("../lib/star-prompt");
+        // Force the prompt regardless of session count
+        const { existsSync, unlinkSync } = await import("node:fs");
+        const { join } = await import("node:path");
+        const { homedir } = await import("node:os");
+        const flag = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", ".star-prompted");
+        if (existsSync(flag)) unlinkSync(flag);
+        await maybePromptStar();
+        return 0;
+      },
+    }),
   },
   "migrate-symlinks": {
     summary: "Rewrite ~/.codex and ~/.claude-accounts symlinks from soul/ to cue/",

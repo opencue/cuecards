@@ -824,10 +824,10 @@ async function cmdRank(args: string[]): Promise<number> {
   // Scan session transcripts for skill reads
   const usage = new Map<string, number>();
   try {
-    const res = spawnSync("grep", ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
+    const res = spawnSync("grep", ["-roh", "--include=*.jsonl", "-m", "500", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
       stdio: ["ignore", "pipe", "pipe"],
       encoding: "utf8",
-      timeout: 15000,
+      timeout: 3000,
     });
     if (res.status === 0 && res.stdout) {
       for (const line of res.stdout.split("\n")) {

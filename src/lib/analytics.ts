@@ -37,17 +37,17 @@ export function recordSkillUsage(profile: string, agent: "claude-code" | "codex"
   if (!existsSync(projectsDir)) return;
 
   try {
-    const { readdirSync, statSync } = require("node:fs");
+    const { readdirSync, statSync, openSync, readSync, closeSync } = require("node:fs");
     const dirs = readdirSync(projectsDir).filter((d: string) => {
       try { return statSync(join(projectsDir, d)).isDirectory(); } catch { return false; }
     });
 
-    // Find most recent session
+    // Find most recent session (only check last 5 dirs)
     let latestFile = "";
     let latestMtime = 0;
-    for (const dir of dirs) {
+    for (const dir of dirs.slice(-5)) {
       const files = readdirSync(join(projectsDir, dir)).filter((f: string) => f.endsWith(".jsonl"));
-      for (const f of files) {
+      for (const f of files.slice(-3)) {
         const p = join(projectsDir, dir, f);
         const mt = statSync(p).mtimeMs;
         if (mt > latestMtime) { latestMtime = mt; latestFile = p; }
@@ -56,7 +56,12 @@ export function recordSkillUsage(profile: string, agent: "claude-code" | "codex"
 
     if (!latestFile || Date.now() - latestMtime > 300_000) return; // only last 5 min
 
-    const content = readFileSync(latestFile, "utf8");
+    // Read only first 50KB
+    const fd = openSync(latestFile, "r");
+    const buf = Buffer.alloc(50_000);
+    const bytesRead = readSync(fd, buf, 0, 50_000, 0);
+    closeSync(fd);
+    const content = buf.toString("utf8", 0, bytesRead);
     const skillRefs = content.match(/skills\/([a-z][a-z0-9-]*(?:\/[a-z][a-z0-9-]*)?)\/SKILL\.md/g);
     if (!skillRefs) return;
 

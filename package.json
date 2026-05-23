@@ -1,6 +1,6 @@
 {
   "name": "cue-ai",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "cue — Agent Profile Manager for Claude Code & Codex. Pick a profile, launch with the right skills, MCPs, and plugins.",
   "type": "module",
   "bin": {
@@ -14,7 +14,7 @@
     "cue": "bun src/index.ts",
     "test": "bun test",
     "build": "bun build src/index.ts --no-bundle",
-    "postinstall": "echo '\\n✅ cue installed. Run `cue init` in any project to get started.\\n   Docs: https://github.com/recodeee/cue\\n'"
+    "postinstall": "echo '' && echo '  ✅ cue installed. Run: cue init' && echo '  Docs: https://github.com/recodeee/cue' && echo ''"
   },
   "keywords": [
     "claude-code",

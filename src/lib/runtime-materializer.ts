@@ -13,6 +13,14 @@ import { dirname, join } from "node:path";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
 
+/** MCP server configuration as stored in the registry. */
+export interface McpServerConfig {
+  command: string;
+  args?: string[];
+  env?: Record<string, string>;
+  cwd?: string;
+}
+
 export interface MaterializeInput {
   profile: ResolvedProfile;
   agent: AgentKind;
@@ -20,7 +28,7 @@ export interface MaterializeInput {
   /** Map skill id → source dir on disk (caller resolves local/npx/plugin paths). */
   skillSourceLookup: (id: string) => Promise<string>;
   /** Pre-resolved sanitized MCP registry for this agent. */
-  mcpRegistry: Record<string, unknown>;
+  mcpRegistry: Record<string, McpServerConfig>;
   /** Content of ~/.claude/CLAUDE.md (or ~/.codex/AGENTS.md) to append. */
   userClaudeMd: string;
   /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
@@ -96,7 +104,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
 
   // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
-  const mcpServers: Record<string, unknown> = {};
+  const mcpServers: Record<string, McpServerConfig> = {};
   for (const m of profile.mcps) {
     if (!appliesToAgent(m, agent)) continue;
     const reg = input.mcpRegistry[m.id];
@@ -153,6 +161,20 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   if (mcpsList.length > 0) {
     stamp += `## MCP Servers: ${mcpsList.join(", ")}\n\n`;
   }
+
+  // Skill usage analytics — help the model prioritize frequently-used skills
+  try {
+    const { skillStats } = await import("./analytics");
+    const stats = skillStats(profile.name);
+    if (stats.length > 0) {
+      stamp += `## Skill Usage (last 30 days)\n\n`;
+      stamp += `Prioritize these skills — they're the ones actually used:\n`;
+      for (const s of stats.slice(0, 8)) {
+        stamp += `- \`${s.skill}\` (${s.hits}× used)\n`;
+      }
+      stamp += "\n";
+    }
+  } catch { /* analytics unavailable — skip */ }
 
   // Profile fit monitoring
   stamp += `## Profile Fit Monitor\n\n` +
@@ -314,7 +336,7 @@ async function buildClaudeSettings(
     if (!appliesToAgent(plugin, agent)) continue;
     enabledPlugins[plugin.id] = true;
   }
-  const mcpServers: Record<string, unknown> = {};
+  const mcpServers: Record<string, McpServerConfig> = {};
   for (const m of profile.mcps) {
     if (!appliesToAgent(m, agent)) continue;
     const reg = input.mcpRegistry[m.id];
@@ -371,20 +393,22 @@ async function getLastSessionSummary(profileName: string): Promise<string | null
 
     if (!projectDir) return null;
 
-    // Find most recent .jsonl
-    const sessions = readdirSync(projectDir)
-      .filter((f) => f.endsWith(".jsonl"))
+    // Find most recent .jsonl (limit scan to avoid slow stat on large dirs)
+    const allFiles = readdirSync(projectDir).filter((f) => f.endsWith(".jsonl"));
+    if (allFiles.length === 0) return null;
+
+    // Sort by name (includes timestamp) — take last 3 only
+    const recent = allFiles.sort().slice(-3);
+    const sessions = recent
       .map((f) => ({ name: f, mtime: statSync(join(projectDir, f)).mtimeMs }))
       .sort((a, b) => b.mtime - a.mtime);
-
-    if (sessions.length === 0) return null;
 
     const lastFile = join(projectDir, sessions[0]!.name);
     const lastMtime = new Date(sessions[0]!.mtime);
     const ago = formatTimeAgo(lastMtime);
 
     // Extract a quick summary: last few assistant messages
-    const res = spawnSync("tail", ["-50", lastFile], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const res = spawnSync("tail", ["-50", lastFile], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 2000 });
     if (!res.stdout) return null;
 
     const lines = res.stdout.split("\n").filter(Boolean);
@@ -441,7 +465,7 @@ async function getSkillChains(skillsList: string[]): Promise<string | null> {
     const res = spawnSync("grep", ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
       stdio: ["ignore", "pipe", "pipe"],
       encoding: "utf8",
-      timeout: 5000,
+      timeout: 2000,
     });
 
     if (!res.stdout) return null;

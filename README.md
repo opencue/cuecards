@@ -41,7 +41,7 @@ That's it. `cd` into any other repo and `claude` will boot with that repo's prof
 - [How it works](#how-it-works)
 - [Agents cue supports](#agents-cue-supports)
 - [`cue optimizer` — see every loadout at a glance](#cue-optimizer--see-every-loadout-at-a-glance)
-- [The 19-profile catalog](#the-19-profile-catalog)
+- [The 23-profile catalog](#the-23-profile-catalog)
 - [Create your own profile in 30 seconds](#️-create-your-own-profile-in-30-seconds)
 - [`cue share` — community profiles](#-cue-share--community-profiles)
 - [Install](#install)
@@ -308,16 +308,16 @@ Each card shows what's actually loaded *plus* how often you've reached for each 
 
 ---
 
-## The 19-profile catalog
+## The 23-profile catalog
 
-> **TL;DR** — 19 profiles ship with cue: `core`, `backend`, `frontend`, `marketing`, `medusa-dev`, `cybersecurity`, `nvidia`, `creative-media`, `docs-writer`, `caveman-quick`, `coolify`, `hostinger`, `fleet-control`, `readme-writer`, `full`, `research`, `threejs`, `video`, plus the per-OS `setup` profile. Switch with `cue use <name>`.
+> **TL;DR** — 23 profiles ship with cue: `core`, `backend`, `frontend`, `nextjs`, `python-api`, `rust`, `go-api`, `marketing`, `medusa-dev`, `cybersecurity`, `nvidia`, `creative-media`, `docs-writer`, `caveman-quick`, `coolify`, `hostinger`, `fleet-control`, `readme-writer`, `full`, `research`, `threejs`, `video`, `affiliate`, plus the per-OS `setup` profile. Switch with `cue use <name>`.
 
 <p align="center">
   <img src="./docs/assets/profiles-grid.svg" alt="The 16 profiles shipped with cue" width="820">
 </p>
 
 <details>
-<summary>📋 <b>All 19 profiles as a table</b> (for screen readers / LLM ingestion)</summary>
+<summary>📋 <b>All 23 profiles as a table</b> (for screen readers / LLM ingestion)</summary>
 
 | Profile | Domain |
 |---|---|
@@ -339,6 +339,11 @@ Each card shows what's actually loaded *plus* how often you've reached for each 
 | `research` | Deep research, literature review, citation management. |
 | `threejs` | Three.js 3D scenes, shaders, WebGL, interactive visuals. |
 | `video` | Video/GIF analysis — frame extraction, transcription, Claude Vision. |
+| `affiliate` | Affiliate marketing, link management, conversion tracking. |
+| `nextjs` | Next.js full-stack — App Router, Server Components, API routes, Vercel. |
+| `python-api` | Python API — FastAPI, Django, Flask, SQLAlchemy, Alembic, pytest. |
+| `rust` | Rust — cargo, async, traits, error handling, CLI tools, systems. |
+| `go-api` | Go API — net/http, gin/echo/chi, GORM, migrations, testing. |
 | `setup` | Per-OS install assistant. |
 
 Canonical source: [`docs/data/profiles.md`](./docs/data/profiles.md).
@@ -571,6 +576,20 @@ cue glues together a small set of excellent open-source projects. Star counts ar
 | [astral-sh/uv](https://github.com/astral-sh/uv) | Python venv manager used by `setup/<os>.md` to run uvx-based MCP servers (Excel / Word) | [![stars](https://img.shields.io/github/stars/astral-sh/uv?style=flat-square&label=★&color=22c55e)](https://github.com/astral-sh/uv) |
 
 Plus the **brand logos** you see in the optimizer dashboard and hero come from each vendor's official press kit (OpenAI, NVIDIA, Hostinger, Coolify, Medusa, Stripe, Higgsfield, Obsidian) — see [`resources/icons/`](./resources/icons/).
+
+---
+
+## Who uses cue
+
+Projects and teams using `.cue-profile` in production:
+
+| Project | Profile | What they do |
+|---------|---------|-------------|
+| [recodeee/cue](https://github.com/recodeee/cue) | `full`, `readme-writer` | This repo — dogfooding cue on itself |
+| [recodeee/colony](https://github.com/recodeee/colony) | `fleet-control` | Multi-agent coordination MCP |
+| [recodeee/gitguardex](https://github.com/recodeee/gitguardex) | `backend` | Branch + worktree isolation for parallel agents |
+
+> **Using cue?** Add your project — open a PR or drop a link in [Discussions](https://github.com/recodeee/cue/discussions).
 
 ---
 

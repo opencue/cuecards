@@ -461,6 +461,25 @@ export async function run(args: string[]): Promise<number> {
     credentialsSource,
   });
 
+  // Auto-doctor on first build: warn about missing CLIs/MCPs
+  if (runtime.rebuilt) {
+    try {
+      const { existsSync } = await import("node:fs");
+      const doctorFlag = join(configDir(), "runtime", profileName, ".doctor-done");
+      if (!existsSync(doctorFlag)) {
+        const { spawnSync } = await import("node:child_process");
+        const res = spawnSync(process.argv[0]!, [join(import.meta.dir, "../index.ts"), "doctor", "--quiet"], {
+          encoding: "utf8", timeout: 5000, stdio: ["ignore", "pipe", "pipe"],
+        });
+        if (res.stdout?.includes("❌") || res.stdout?.includes("missing")) {
+          process.stderr.write("\x1b[33m⚠ cue doctor found issues. Run `cue doctor --fix` to repair.\x1b[0m\n");
+        }
+        const { writeFileSync } = await import("node:fs");
+        writeFileSync(doctorFlag, new Date().toISOString());
+      }
+    } catch { /* non-fatal */ }
+  }
+
   // --rematerialize: report and exit (no exec)
   if (parsed.rematerialize) {
     process.stdout.write(

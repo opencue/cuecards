@@ -65,10 +65,19 @@ function scanSessions(profileName: string): BenchmarkResult {
     const fullDir = join(projectsDir, dir);
     const sessions = readdirSync(fullDir).filter(f => f.endsWith(".jsonl"));
 
-    for (const sess of sessions) {
+    for (const sess of sessions.slice(-10)) { // only last 10 sessions per project
       const sessPath = join(fullDir, sess);
-      let lines: string[];
-      try { lines = readFileSync(sessPath, "utf8").split("\n").filter(Boolean); } catch { continue; }
+      let content: string;
+      try {
+        // Read only first 20KB — enough for profile stamp + token usage lines
+        const fd = require("node:fs").openSync(sessPath, "r");
+        const buf = Buffer.alloc(20_000);
+        const n = require("node:fs").readSync(fd, buf, 0, 20_000, 0);
+        require("node:fs").closeSync(fd);
+        content = buf.toString("utf8", 0, n);
+      } catch { continue; }
+
+      const lines = content.split("\n").filter(Boolean);
 
       let hasProfile = false;
       let sessionTokensIn = 0;

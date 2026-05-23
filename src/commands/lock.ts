@@ -2,12 +2,14 @@
  * `cue lock <profile>` / `cue unlock <profile>` — profile locking.
  */
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
+const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
 
 export function isProfileLocked(profileName: string): { locked: boolean; by?: string; reason?: string } {
   const yamlPath = join(PROFILES_DIR, profileName, "profile.yaml");
@@ -84,5 +86,23 @@ export async function run(args: string[]): Promise<number> {
 
   writeFileSync(yamlPath, content);
   process.stdout.write(`🔒 Locked profile "${profileName}"${by ? ` (by ${by})` : ""}\n`);
+
+  // Generate profile.lock with skill content hashes
+  const { loadProfile } = await import("../lib/profile-loader");
+  try {
+    const profile = await loadProfile(profileName);
+    const lockEntries: Record<string, string> = {};
+    for (const s of profile.skills.local) {
+      const skillPath = join(SKILLS_ROOT, s.id, "SKILL.md");
+      if (existsSync(skillPath)) {
+        const hash = createHash("sha256").update(readFileSync(skillPath)).digest("hex").slice(0, 12);
+        lockEntries[s.id] = hash;
+      }
+    }
+    const lockFile = join(PROFILES_DIR, profileName, "profile.lock");
+    writeFileSync(lockFile, JSON.stringify({ locked_at: new Date().toISOString(), skills: lockEntries }, null, 2) + "\n");
+    process.stdout.write(`📋 Generated profile.lock (${Object.keys(lockEntries).length} skill hashes)\n`);
+  } catch { /* non-fatal */ }
+
   return 0;
 }

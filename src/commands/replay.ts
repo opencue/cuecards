@@ -50,6 +50,12 @@ function findSession(id: string): string | null {
 }
 
 export async function run(args: string[]): Promise<number> {
+  // Route --what-if to the dedicated what-if module
+  if (args.includes("--what-if")) {
+    const { run: runWhatIf } = await import("./replay-whatif");
+    return runWhatIf(args);
+  }
+
   const json = args.includes("--json");
   const profileIdx = args.indexOf("--profile");
   const targetProfile = profileIdx >= 0 ? args[profileIdx + 1] : null;

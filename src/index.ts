@@ -70,17 +70,28 @@ function printHelp(): void {
       ["launch", "Resolve + materialize + exec claude/codex"],
       ["shell", "Install/uninstall shims (~/.local/bin)"],
       ["update", "Self-update: git pull + bun install"],
+      ["upgrade", "Pull new skills from the registry"],
+      ["clean", "Prune stale runtimes and cache"],
+      ["migrate", "Auto-migrate profiles to latest schema"],
     ],
     "Multi-Agent": [
       ["colony-dispatch", "Resolve profile for a Colony task"],
       ["handoff", "Pass skill context between agents"],
       ["trace", "Live session inspector"],
       ["replay", "Replay session with different profile"],
+      ["replay --what-if", "Simulate session with alternate profile"],
+    ],
+    "Intelligence": [
+      ["ai", "Create profile from natural language"],
+      ["suggest", "Usage-based profile recommendations"],
+      ["score", "Profile efficiency score (A+ to F)"],
+      ["benchmark", "Measure token usage from transcripts"],
     ],
     "Import / Export": [
       ["import", "Import profile from URL, file, or repo"],
       ["export", "Export profile as portable YAML"],
       ["snapshot", "Export/restore current profile state"],
+      ["share", "Publish/browse community profiles"],
     ],
   };
 

@@ -1,0 +1,39 @@
+name: Deploy Registry
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/registry/**'
+      - 'docs/landing/**'
+
+permissions:
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build site
+        run: |
+          mkdir -p _site
+          cp docs/landing/index.html _site/
+          cp -r docs/registry _site/registry
+          cp -r docs/assets _site/assets 2>/dev/null || true
+
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

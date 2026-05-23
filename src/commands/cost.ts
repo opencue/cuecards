@@ -2,7 +2,7 @@
  * `cue cost [profile]` — estimate token budget for a profile.
  */
 
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,6 +11,29 @@ import { resolveProfileForCwd } from "../lib/cwd-resolver";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+
+// Expand wildcard (*/*) to all actual skill IDs on disk.
+function expandSkillIds(ids: string[]): string[] {
+  const result: string[] = [];
+  for (const id of ids) {
+    if (id === "*/*") {
+      try {
+        const cats = readdirSync(SKILLS_ROOT, { withFileTypes: true }).filter(d => d.isDirectory());
+        for (const cat of cats) {
+          const skills = readdirSync(join(SKILLS_ROOT, cat.name), { withFileTypes: true }).filter(d => d.isDirectory());
+          for (const s of skills) {
+            if (existsSync(join(SKILLS_ROOT, cat.name, s.name, "SKILL.md"))) {
+              result.push(`${cat.name}/${s.name}`);
+            }
+          }
+        }
+      } catch {}
+    } else if (!id.includes("*")) {
+      result.push(id);
+    }
+  }
+  return result;
+}
 const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
 
 function estimateTokens(text: string): number {
@@ -44,7 +67,7 @@ async function runCompare(json: boolean): Promise<number> {
   for (const name of profiles) {
     try {
       const profile = await loadProfile(name);
-      const skillIds = profile.skills.local.map((s: any) => s.id);
+      const skillIds = expandSkillIds(profile.skills.local.map((s: any) => s.id));
       const skillTokens = skillIds.reduce((sum: number, id: string) => sum + getSkillTokens(id), 0);
       const mcpIds = profile.mcps.map((m: any) => m.id);
       const mcpToolCount = mcpIds.reduce((sum: number, id: string) => sum + getMcpToolCount(id), 0);
@@ -102,7 +125,7 @@ export async function run(args: string[]): Promise<number> {
   const profile = await loadProfile(profileName!);
 
   // Skills cost
-  const skillIds = profile.skills.local.map(s => s.id);
+  const skillIds = expandSkillIds(profile.skills.local.map(s => s.id));
   const skillTokens = skillIds.reduce((sum, id) => sum + getSkillTokens(id), 0);
 
   // MCP cost (tool descriptions)
