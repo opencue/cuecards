@@ -1,6 +1,6 @@
 name: marketing
 icon: "🦜"
-description: Marketing — copywriting, SEO, CRO, growth, channels, brand, awesome-list outreach
+description: Marketing — copywriting, SEO, CRO, growth, channels, brand, awesome-list outreach, X/Twitter
 inherits: core
 skills:
   local:
@@ -9,5 +9,7 @@ skills:
     - design/high-end-visual-design
     - design/imagegen-frontend-web
     - meta/awesome-list-submit
+mcps:
+  - x-api
 plugins:
   - marketing-skills@claude-code-skills
