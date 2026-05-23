@@ -339,22 +339,25 @@ export function probeKittyTerminal(timeoutMs = 100): Promise<boolean> {
  * Use this from the launch hot path; `isKittyTerminal()` is the env-only
  * sync version kept around for callers that can't await.
  *
- * The probe is the only reliable signal — env vars like KITTY_WINDOW_ID can
- * leak into non-Kitty terminals (e.g. GNOME Terminal launched from a Kitty
- * session). When the probe is available (TTY), we always use it.
+ * Trust strong env signals (KITTY_WINDOW_ID, TERM=xterm-kitty) directly —
+ * these are set by Kitty itself and reliable. Only probe when signals are
+ * ambiguous (e.g. inside tmux with no Kitty env vars).
  */
 export async function detectKittyTerminal(timeoutMs = 100): Promise<boolean> {
   if (process.env.CUE_DISABLE_KITTY_IMAGES === "1") return false;
+  if (process.env.CUE_KITTY === "1") return true;
 
-  // If we can probe (TTY), always probe — it's the only reliable signal.
-  // Env vars like KITTY_WINDOW_ID leak through tmux/child terminals.
+  // Strong signals — trust directly (Kitty sets these for child processes)
+  if (process.env.TERM === "xterm-kitty") return true;
+  if (process.env.KITTY_WINDOW_ID) return true;
+  if (process.env.KITTY_PID) return true;
+
+  // Weak/ambiguous — probe the terminal
   if (process.stdout.isTTY && process.stdin.isTTY) {
     return probeKittyTerminal(timeoutMs);
   }
 
-  // Non-TTY fallback: trust env hints
-  if (process.env.CUE_KITTY === "1") return true;
-  if (process.env.TERM === "xterm-kitty") return true;
-  if (process.env.KITTY_WINDOW_ID) return true;
+  // Non-TTY fallback
+  if (process.env.TERM_PROGRAM === "kitty") return true;
   return false;
 }
