@@ -9,6 +9,7 @@ skills:
     - meta/analyze
     - meta/cue-usage
     - meta/builtin-manager
+    - meta/kiro-powers
     - caveman/caveman
     - caveman/caveman-commit
 plugins:
