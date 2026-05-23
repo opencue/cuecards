@@ -135,16 +135,19 @@ function scanSkill(id: string): SecurityIssue[] {
   const issues: SecurityIssue[] = [];
 
   // Context-aware skipping: many skills are documentation/examples, not instructions
-  const isSecuritySkill = /security|review|audit|pentest|vuln/i.test(id);
+  const isSecuritySkill = /security|review|audit|pentest|vuln|incident|forensic|malware|threat|exploit|attack|defense|firewall|intrusion|packet|capture|siem|dfir|reverse.?engineer|phishing|ransomware|encryption|cipher|brute.?force|privilege.?escalat|lateral.?movement|exfiltrat|injection|xss|csrf|owasp|cve|mitre|apt|red.?team|blue.?team|soc|honeypot|sandbox|rootkit|botnet|payload|shellcode|beacon|c2|command.?and.?control|network.?monitor|log.?analy|hardening|compliance|nist|iso.?27|pci.?dss|hipaa|gdpr|zero.?trust|devsecops|container.?security|cloud.?security|iam|access.?control|authentication|authorization/i.test(id);
   const isMetaSkill = /skill-evolution|builtin-manager|doctor|help|omx|plugin-creator|save-profile/i.test(id);
   const isApiDocSkill = /hostinger|medusa|stripe|coolify|deployment|kiro/i.test(id);
   const isDesignSkill = /design|remotion|higgsfield|imagegen/i.test(id);
   const isOrchSkill = /colony|pipeline|fleet|orchestration|worker/i.test(id);
   const isResearchSkill = /research|find-skills|openai-docs/i.test(id);
+  // Skills from known cybersecurity packs (Anthropic-Cybersecurity-Skills)
+  const isCyberPack = existsSync(join(GLOBAL_SKILLS_ROOT, id, "SKILL.md")) &&
+    !existsSync(join(SKILLS_ROOT, id, "SKILL.md"));
 
   for (const rule of RULES) {
     // Skip rules for skill categories where these patterns are expected documentation
-    if (isSecuritySkill && ["SEC1", "SEC4", "SEC5"].includes(rule.code)) continue;
+    if ((isSecuritySkill || isCyberPack) && ["SEC1", "SEC2", "SEC3", "SEC4", "SEC5"].includes(rule.code)) continue;
     if (isMetaSkill && ["SEC4", "SEC5"].includes(rule.code)) continue;
     if (isApiDocSkill && ["SEC1", "SEC2", "SEC5"].includes(rule.code)) continue;
     if (isDesignSkill && ["SEC2"].includes(rule.code)) continue;
