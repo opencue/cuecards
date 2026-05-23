@@ -195,6 +195,19 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
 
   // 6. Atomic swap: rm -rf old, rename tmp.
+  // Preserve .claude.json and backups/ — Claude Code writes session state here
+  // and resume depends on it surviving across rematerializations.
+  const preserveFiles = [".claude.json", "backups"];
+  for (const name of preserveFiles) {
+    const oldPath = join(runtimeDir, name);
+    const newPath = join(tmpDir, name);
+    try {
+      const st = await lstat(oldPath);
+      if (st.isFile() || st.isDirectory()) {
+        await rename(oldPath, newPath);
+      }
+    } catch { /* doesn't exist — skip */ }
+  }
   await rm(runtimeDir, { recursive: true, force: true });
   await rename(tmpDir, runtimeDir);
 
