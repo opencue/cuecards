@@ -1,68 +1,76 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" fill="none" role="img" aria-label="without cue vs with cue: per-session loadout comparison">
+  <style>
+    .t-h    { font: 700 18px -apple-system, system-ui, sans-serif; fill: #f1f5f9; }
+    .t-sub  { font: 12px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+    .t-card-h { font: 700 16px -apple-system, system-ui, sans-serif; fill: #f1f5f9; }
+    .t-card-s { font: 11px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+    .t-mono { font: 11px 'SF Mono', monospace; fill: #f1f5f9; }
+    .t-mono-d { font: 11px 'SF Mono', monospace; fill: #64748b; }
+    .t-foot-h { font: 700 11px -apple-system, system-ui, sans-serif; }
+    .t-foot-s { font: 10px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+  </style>
   <defs>
     <linearGradient id="badBg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.10"/>
-      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.02"/>
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.04"/>
     </linearGradient>
     <linearGradient id="goodBg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.10"/>
-      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.02"/>
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.04"/>
     </linearGradient>
   </defs>
 
-  <text x="40" y="36" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" fill="currentColor">Per-session loadout — before vs after</text>
-  <text x="40" y="56" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#6b7280">Every Claude Code / Codex session sees only what the active profile carries.</text>
+  <text x="40" y="36" class="t-h">Per-session loadout — before vs after</text>
+  <text x="40" y="56" class="t-sub">Every Claude Code / Codex session sees only what the active profile carries.</text>
 
-  <!-- left: without cue -->
   <g transform="translate(40,84)">
-    <rect width="400" height="316" rx="14" fill="url(#badBg)" stroke="#ef4444" stroke-opacity="0.45" stroke-width="1.5"/>
-    <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#ef4444" font-weight="700" letter-spacing="2">WITHOUT CUE</text>
-    <text x="20" y="56" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="700" fill="currentColor">Every session loads everything</text>
-    <text x="20" y="74" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">one global <tspan font-family="'SF Mono', monospace" fill="currentColor">~/.claude/</tspan> shared across all repos</text>
+    <rect width="400" height="316" rx="14" fill="url(#badBg)" stroke="#f87171" stroke-opacity="0.6" stroke-width="1.5"/>
+    <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#f87171" font-weight="700" letter-spacing="2">WITHOUT CUE</text>
+    <text x="20" y="56" class="t-card-h">Every session loads everything</text>
+    <text x="20" y="74" class="t-card-s">one global <tspan font-family="'SF Mono', monospace" fill="#e5e7eb">~/.claude/</tspan> shared across all repos</text>
 
-    <g transform="translate(20,100)" font-family="'SF Mono', monospace" font-size="11" fill="currentColor">
-      <text x="0" y="0">~/.claude/</text>
-      <text x="12" y="18" fill="#9ca3af">├─ skills/</text>
-      <text x="32" y="34" fill="#6b7280">all 1,927 SKILL.md files</text>
-      <text x="32" y="50" fill="#ef4444">▢ stripe-webhooks (irrelevant)</text>
-      <text x="32" y="66" fill="#ef4444">▢ kismet (wireless pentest)</text>
-      <text x="32" y="82" fill="#ef4444">▢ playwright (frontend only)</text>
-      <text x="32" y="98" fill="#ef4444">▢ … 1,924 more</text>
-      <text x="12" y="118" fill="#9ca3af">├─ mcps/</text>
-      <text x="32" y="134" fill="#ef4444">▢ every MCP server you ever installed</text>
-      <text x="12" y="154" fill="#9ca3af">└─ plugins/</text>
-      <text x="32" y="170" fill="#ef4444">▢ all plugins enabled, every session</text>
+    <g transform="translate(20,100)" font-family="'SF Mono', monospace" font-size="11">
+      <text x="0" y="0" class="t-mono">~/.claude/</text>
+      <text x="12" y="18" class="t-mono-d">├─ skills/</text>
+      <text x="32" y="34" class="t-mono-d">all 1,927 SKILL.md files</text>
+      <text x="32" y="50" fill="#fca5a5">▢ stripe-webhooks (irrelevant)</text>
+      <text x="32" y="66" fill="#fca5a5">▢ kismet (wireless pentest)</text>
+      <text x="32" y="82" fill="#fca5a5">▢ playwright (frontend only)</text>
+      <text x="32" y="98" fill="#fca5a5">▢ … 1,924 more</text>
+      <text x="12" y="118" class="t-mono-d">├─ mcps/</text>
+      <text x="32" y="134" fill="#fca5a5">▢ every MCP server you ever installed</text>
+      <text x="12" y="154" class="t-mono-d">└─ plugins/</text>
+      <text x="32" y="170" fill="#fca5a5">▢ all plugins enabled, every session</text>
     </g>
 
     <g transform="translate(20,288)">
-      <text x="0" y="0" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#ef4444" font-weight="700">⚠ Context overload</text>
-      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="10" fill="#6b7280">model picks irrelevant skills, wastes tokens, mis-routes</text>
+      <text x="0" y="0" class="t-foot-h" fill="#f87171">⚠ Context overload</text>
+      <text x="0" y="14" class="t-foot-s">model picks irrelevant skills, wastes tokens, mis-routes</text>
     </g>
   </g>
 
-  <!-- right: with cue -->
   <g transform="translate(456,84)">
-    <rect width="384" height="316" rx="14" fill="url(#goodBg)" stroke="#22c55e" stroke-opacity="0.45" stroke-width="1.5"/>
-    <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#22c55e" font-weight="700" letter-spacing="2">WITH CUE</text>
-    <text x="20" y="56" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="700" fill="currentColor">Each session loads one profile</text>
-    <text x="20" y="74" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">isolated <tspan font-family="'SF Mono', monospace" fill="currentColor">CLAUDE_CONFIG_DIR</tspan> per profile, hash-cached</text>
+    <rect width="384" height="316" rx="14" fill="url(#goodBg)" stroke="#4ade80" stroke-opacity="0.6" stroke-width="1.5"/>
+    <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#4ade80" font-weight="700" letter-spacing="2">WITH CUE</text>
+    <text x="20" y="56" class="t-card-h">Each session loads one profile</text>
+    <text x="20" y="74" class="t-card-s">isolated <tspan font-family="'SF Mono', monospace" fill="#e5e7eb">CLAUDE_CONFIG_DIR</tspan> per profile, hash-cached</text>
 
-    <g transform="translate(20,100)" font-family="'SF Mono', monospace" font-size="11" fill="currentColor">
-      <text x="0" y="0">~/.config/cue/runtime/medusa-dev/</text>
-      <text x="12" y="18" fill="#9ca3af">└─ claude/</text>
-      <text x="32" y="34" fill="#22c55e">✓ skills/ — 12 + 7 inherited</text>
-      <text x="48" y="50" fill="#6b7280">medusa-reference, db-migrate, …</text>
-      <text x="32" y="66" fill="#22c55e">✓ mcps/ — 2 servers</text>
-      <text x="48" y="82" fill="#6b7280">medusadocs, coolify</text>
-      <text x="32" y="98" fill="#22c55e">✓ CLAUDE.md — profile-stamped</text>
-      <text x="32" y="120" fill="#22c55e">✗ no marketing skills loaded</text>
-      <text x="32" y="136" fill="#22c55e">✗ no pentest tools loaded</text>
-      <text x="32" y="152" fill="#22c55e">✗ no frontend MCPs loaded</text>
+    <g transform="translate(20,100)" font-family="'SF Mono', monospace" font-size="11">
+      <text x="0" y="0" class="t-mono">~/.config/cue/runtime/medusa-dev/</text>
+      <text x="12" y="18" class="t-mono-d">└─ claude/</text>
+      <text x="32" y="34" fill="#86efac">✓ skills/ — 12 + 7 inherited</text>
+      <text x="48" y="50" class="t-mono-d">medusa-reference, db-migrate, …</text>
+      <text x="32" y="66" fill="#86efac">✓ mcps/ — 2 servers</text>
+      <text x="48" y="82" class="t-mono-d">medusadocs, coolify</text>
+      <text x="32" y="98" fill="#86efac">✓ CLAUDE.md — profile-stamped</text>
+      <text x="32" y="120" fill="#86efac">✗ no marketing skills loaded</text>
+      <text x="32" y="136" fill="#86efac">✗ no pentest tools loaded</text>
+      <text x="32" y="152" fill="#86efac">✗ no frontend MCPs loaded</text>
     </g>
 
     <g transform="translate(20,288)">
-      <text x="0" y="0" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#22c55e" font-weight="700">✓ Focused loadout</text>
-      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="10" fill="#6b7280">smaller prompt surface, faster decisions, no cross-talk</text>
+      <text x="0" y="0" class="t-foot-h" fill="#4ade80">✓ Focused loadout</text>
+      <text x="0" y="14" class="t-foot-s">smaller prompt surface, faster decisions, no cross-talk</text>
     </g>
   </g>
 </svg>

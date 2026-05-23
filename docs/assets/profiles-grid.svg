@@ -1,151 +1,171 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" fill="none" role="img" aria-label="cue profile catalog">
   <style>
-    .pTitle  { font: 700 22px -apple-system, system-ui, sans-serif; fill: currentColor; }
-    .pSub    { font: 13px -apple-system, system-ui, sans-serif; fill: #6b7280; }
-    .pName   { font: 700 14px -apple-system, system-ui, sans-serif; fill: currentColor; }
-    .pDesc   { font: 11px -apple-system, system-ui, sans-serif; fill: #6b7280; }
-    .pNum    { font: 700 12px 'SF Mono', monospace; fill: #6366f1; }
-    .pTag    { font: 9px 'SF Mono', monospace; fill: #6b7280; letter-spacing: 0.5; }
+    .pTitle  { font: 700 22px -apple-system, system-ui, sans-serif; fill: #f1f5f9; }
+    .pSub    { font: 13px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+    .pName   { font: 700 14px -apple-system, system-ui, sans-serif; fill: #f1f5f9; }
+    .pDesc   { font: 11px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+    .pNum    { font: 700 12px 'SF Mono', monospace; }
+    .pTag    { font: 9px 'SF Mono', monospace; fill: #94a3b8; letter-spacing: 0.5; }
   </style>
 
-  <!-- header -->
   <text x="40" y="40" class="pTitle">The 16-profile catalog</text>
-  <text x="40" y="62" class="pSub">Each card is a self-contained loadout. Skill / MCP / CLI counts taken from <tspan font-family="'SF Mono', monospace" fill="currentColor">cue optimizer</tspan>.</text>
+  <text x="40" y="62" class="pSub">Each card is a self-contained loadout. Counts taken from <tspan font-family="'SF Mono', monospace" fill="#cbd5e1">cue optimizer</tspan>.</text>
 
-  <!-- card template repeated -->
-  <!-- Row 1 -->
   <g transform="translate(40,92)">
-    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🐻</text>
-    <text x="52" y="32" class="pName">backend</text>
-    <text x="52" y="50" class="pDesc">APIs · webhooks · CI · packages</text>
-    <text x="16" y="84" class="pNum">11 skills</text>
+    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.55"/>
+    <g transform="translate(14,18)" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="24" height="6" rx="1.5"/>
+      <rect x="2" y="11" width="24" height="6" rx="1.5"/>
+      <rect x="2" y="19" width="24" height="6" rx="1.5"/>
+      <circle cx="6" cy="6" r="0.8" fill="#6366f1"/>
+      <circle cx="6" cy="14" r="0.8" fill="#6366f1"/>
+      <circle cx="6" cy="22" r="0.8" fill="#6366f1"/>
+    </g>
+    <text x="56" y="34" class="pName">backend</text>
+    <text x="56" y="52" class="pDesc">APIs · webhooks · CI</text>
+    <text x="16" y="86" class="pNum" fill="#6366f1">11 skills</text>
     <text x="16" y="100" class="pTag">1 MCP · 2 CLIs · 167 reads</text>
   </g>
   <g transform="translate(252,92)">
-    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.06" stroke="#8b5cf6" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🦋</text>
-    <text x="52" y="32" class="pName">frontend</text>
-    <text x="52" y="50" class="pDesc">UI · redesign · screenshots</text>
-    <text x="16" y="84" class="pNum">10 skills</text>
+    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.55"/>
+    <g transform="translate(14,18)" stroke="#8b5cf6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="24" height="22" rx="2.5"/>
+      <line x1="2" y1="10" x2="26" y2="10"/>
+      <circle cx="6" cy="6.5" r="0.9" fill="#8b5cf6"/>
+      <circle cx="9" cy="6.5" r="0.9" fill="#8b5cf6"/>
+      <circle cx="12" cy="6.5" r="0.9" fill="#8b5cf6"/>
+    </g>
+    <text x="56" y="34" class="pName">frontend</text>
+    <text x="56" y="52" class="pDesc">UI · redesign · screenshots</text>
+    <text x="16" y="86" class="pNum" fill="#8b5cf6">10 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 1,056 reads</text>
   </g>
   <g transform="translate(464,92)">
-    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🦜</text>
-    <text x="52" y="32" class="pName">marketing</text>
-    <text x="52" y="50" class="pDesc">copy · SEO · CRO · brand</text>
-    <text x="16" y="84" class="pNum">4 skills</text>
+    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.55"/>
+    <g transform="translate(14,18)" stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11v6l4 0v-6z"/>
+      <path d="M7 11l16-6v18l-16-6z"/>
+      <path d="M11 17v4l3 0v-2"/>
+    </g>
+    <text x="56" y="34" class="pName">marketing</text>
+    <text x="56" y="52" class="pDesc">copy · SEO · CRO · brand</text>
+    <text x="16" y="86" class="pNum" fill="#f59e0b">4 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 44 reads</text>
   </g>
   <g transform="translate(676,92)">
-    <rect width="164" height="120" rx="12" fill="#22c55e" fill-opacity="0.06" stroke="#22c55e" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🦉</text>
-    <text x="52" y="32" class="pName">research</text>
-    <text x="52" y="50" class="pDesc">lookup · OSINT</text>
-    <text x="16" y="84" class="pNum">10 skills</text>
+    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+oFFw03EYxKYYcAAAU+SURBVGje7ZlbiJZFGICfz/XUX9kutu1CWyqSVmCxHUxiJSTcorYyKrJMrOxgUMSGHSgsgjC7iJKkE4jlhWa0bElEUrElZS5mmZ0zs0wTkdSkdrPd7eliZ7++/7jfvxre7Dc3887MO/P878w7M+/8kRzZb8gRHn8QYBBgEGAQgKEDUfqH793DUYyNjj90AstKP7vQBjNxwYle5yq7yuwlmcpo2sMiRxSsmuA3/u8AXcwM2fNd7EZ/5VtbvClY42QXeIF1Zqx1is1+lhooNcBcEcf5Xk7Xu2ks0HyIc9yRCiLl8G0iTnFfTnknizwmCDVOtdHJsVzpmykQUgLMEOvcnVPa6viQbUwYvYs2zxOxwlf6RUg1/D6Gi8uyOtvshfEvf9GeHI2D3C3iCDd6GABeFmsTztbDQivCAPPzpqUvLRBxUj9O2u/g7zvfMeLt9hn4GSeIWO2Dbk/8vq22ZsH0MEfExQ4Y4EenxcLToZslIg7zIQ8kWv7OXVaIo1yU+MV7GSWOGyjAOkeHbCQuCd08IpKzvj90YkKckKi9XsStJRCKHkbfejG/AefSzpi82rOjvtxOZzuV74A6biEDfE8T8/wTgAYAvir/LOhmkoiz7ULG5llgFyKdLAxeP9wF/oHsZnZYnmN8VXldxJdKWKBI8UoRLw3zWRig1XGheZWfJIZod0rITvMxEVeUD3CFmIk3nnyAj52epTDT/Vn6TwY79Ka15QJ0USk2x2r5AL2GH2Gz8x1mr1MuzfL477wsFraVC7BexC9KAGCNC8Jxs8OHg79MdIl/JPrZ4FUinpK1X6QAWCZmEir5AHfamaWx077DutoXsyzxgogzygN4VhxdEmBXns62hHB2wnpyhxi5uQhCwX2gEthPd849MM1XzyhgI+fxhH36T0TVyFNFNAoCTAR6+DQrcn+Kd1NE8pezJZpDBR08wBWh/bHcCrTwd3qAM6JjgZZYbgC2MZ2r/aFfiBN4KVrHeGBDXHYlcIDPC+sWnpkm8Tj3xm75QPDrjKeXXAOPhJm+X6xOXFGGWmw7KnIWzAR+597APJTHo3VMBjr4OsVKyP2GkgH2pp8CuDZqBJZyWzhUYHLUHq3h0qAw1/VZBn3bWSUAuvkLOK5wZTH/PEDvjl5na5bpNtgQspf4pSKbvTiuLjwF7SJuKjgFRQFke5yd5g9ZyiusFrHCW5wXVsfoEgDNYm3evbFfgLUJoTJnf/slsdMjzvObogC7yJg8WVItQoAdADxKE7Cf25js2nje66KbqQr5SbzDc9HIovM/1w5G0lxsmOIWWC7i68pqTwqF17hF2cesIFf5bLBMYTc8GAK6G8s7C3rTWyI+r8ieeMiMN1gTVsBdiVtwIYA2zw2YOwcC8JOI18eq6z0nUT09+EBfeiYPoC/VlAxOSgDIWeLRiTttN2u8yCGe5eqsLj8IUdIQW0L5PaGq2vvcU3KMkpWrRGzMcaDsSGdTHKI1JOLDJvFMl+fcGsoG6KHX6A8VMeFv9O0C1a40iXiCuPxwhOdfhtvfwrzODrLYyiBclvMWsELM5FxTBwggq8Olc6qtdsSWecNTQ4PTXZP3ZFEnzk/5RpKiSVtwOxzmqU613lFBrnJxXuy7hyliVd5bwiEAyG5mFKyY5pac3/m2Y8T/Qtn+U5T2H5NNtvARP9FBJeNpYBEHgAquoYnTOIbttNPKRgBmsyyqSNlvSs78tNU5jixQUe9rZT3ZDRigd2oes94oiDXOsq3s98LUU1D862S7ndRGtQPSPgwAh/Yd8dfyQYBBgEGAQYB/AakGcqYcVCEPAAAAAElFTkSuQmCC" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">research</text>
+    <text x="56" y="52" class="pDesc">openai · OSINT</text>
+    <text x="16" y="86" class="pNum" fill="#22c55e">10 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 4 CLIs · 108 reads</text>
   </g>
-
-  <!-- Row 2 -->
   <g transform="translate(40,224)">
-    <rect width="200" height="120" rx="12" fill="#ec4899" fill-opacity="0.06" stroke="#ec4899" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🐺</text>
-    <text x="52" y="32" class="pName">fleet-control</text>
-    <text x="52" y="50" class="pDesc">Colony · gx · multi-agent</text>
-    <text x="16" y="84" class="pNum">12 skills</text>
+    <rect width="200" height="120" rx="12" fill="#ec4899" fill-opacity="0.08" stroke="#ec4899" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,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" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">fleet-control</text>
+    <text x="56" y="52" class="pDesc">Colony · gx · multi-agent</text>
+    <text x="16" y="86" class="pNum" fill="#ec4899">12 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs · 338 reads</text>
   </g>
   <g transform="translate(252,224)">
-    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🦊</text>
-    <text x="52" y="32" class="pName">medusa-dev</text>
-    <text x="52" y="50" class="pDesc">Medusa v2 backend + storefront</text>
-    <text x="16" y="84" class="pNum">12 skills</text>
+    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,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" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">medusa-dev</text>
+    <text x="56" y="52" class="pDesc">Medusa v2 backend + storefront</text>
+    <text x="16" y="86" class="pNum" fill="#6366f1">12 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 4 CLIs · 51 reads</text>
   </g>
   <g transform="translate(464,224)">
-    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.06" stroke="#8b5cf6" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🦚</text>
-    <text x="52" y="32" class="pName">creative-media</text>
-    <text x="52" y="50" class="pDesc">image · video · brand assets</text>
-    <text x="16" y="84" class="pNum">12 skills</text>
+    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAECUExURfDw8O/v7+/v8O7u7/Pz8PX18fHx8PLy8PX18PT08OXl7uvr7/b28ff38enp7vj48e3t7+jo7uTk7eLi7ePj7fn58erq7sfH6K+v47S05LOz5LKy5Nvb7K+v5NLS6re35bCw5L+/5omJ3JCQ3o+P3Y6O3d/f7M/P6YiI3MDA55WV342N3YqK3aKi4ZeX35aW3+Dg7dHR6o+P3sTE55yc4JSU3pKS3qio4sPD55ub4JOT3pGR3qen4uHh7c3N6ZmZ36am4p+f4Jqa35iY37Gx5NPT6sbG6NDQ6tfX65SU34uL3YqK3KGh4cHB58zM6aCg4aur46Wl4oyM3aOj4bW15f////Hu/FoAAAAXdFJOUwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvZNQYAAAAAFiS0dEVZMEuDMAAAAHdElNRQfqBRcNNxGMSmGHAAACdklEQVRYw+2We1faMBjGk7Y01LYM8DJu4qVQpShVsKhcBNmcuqvOff/PstJcxbRlZ56dnSPPfzx5+BGSvG8CwP8hyKUwU5GZYpR7AKpM4Yd4U3luMi7UMkyAgqHOTcRMkGWmAdlUtfelcgWrukbCUKttE7NcqhsqgZo7VWLu7unkX0A1U9p3GlhNV8Ouah1Q0zls2RSQ89rEPDpGHFB2Oj6Wd0IBmVNqdro9iwHOAmL2z4UZVBq+hxUIAGr6zQsOuByQ5HC0AsQBXE2NzukiAJ9eDvDjAOMs0OcCdp0Deu+wqWumfAbVphdgDWr5XKQCvKKm126BAnbN4qRPks6UAhQI1tyTSO64dj27xPowGlO3+NE/I+7kZp26G4AVJEQaUTY/Gw4iBY1phphos9IOsDvor9s0zCpsXrlEKni2SGTl8kalyxcZqawfCG2ClbBkm+TbHNOZ3ixA6J+gkAZwUZ6FhaZqkUZpwzRAcdPAUUtoqnrt4BSrfjVJAXy6ucXR2zvAa2GbNdVu4AXxgPt7jwadz/Km6tPvx82A5uKaKpccIBlfAV4JIGzjy21KG49u58Nuc0GNL18RAySOh0cZ1Vu9iwX1vn0nRzVtfP4bhm29kJ3hTTNtHKhS0XJNG1/pNaSI71eYvLZQ9tQNuzkXgInfB0JUOAdmjklNIoQXwBZLmoA8wqGa3fHo/T8bJ908UN/6MSHJzoP4QuH3v5sMyE3Y++FR7Afd5e6+ZR5ZywJS34lvDhA2Tby0SwACX7ILu0f9IZaTdg46DZL8+cRuZ2jsHZ+PsKYbKBFgPjyS5NMvnTdVHf15MSFeTH9fznG2RMrSyX+m3ysPDSzfadvjAAAAAElFTkSuQmCC" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">creative-media</text>
+    <text x="56" y="52" class="pDesc">image · video · brand</text>
+    <text x="16" y="86" class="pNum" fill="#8b5cf6">12 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 6 CLIs · 57 reads</text>
   </g>
   <g transform="translate(676,224)">
-    <rect width="164" height="120" rx="12" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🐝</text>
-    <text x="52" y="32" class="pName">docs-writer</text>
-    <text x="52" y="50" class="pDesc">md · pdf · obsidian</text>
-    <text x="16" y="84" class="pNum">8 skills</text>
+    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,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" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">docs-writer</text>
+    <text x="56" y="52" class="pDesc">md · pdf · obsidian</text>
+    <text x="16" y="86" class="pNum" fill="#f59e0b">8 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs</text>
   </g>
-
-  <!-- Row 3 -->
   <g transform="translate(40,356)">
-    <rect width="200" height="120" rx="12" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🔒</text>
-    <text x="52" y="32" class="pName">cybersecurity</text>
-    <text x="52" y="50" class="pDesc">red/blue team · forensics · DFIR</text>
-    <text x="16" y="84" class="pNum">754 skills</text>
+    <rect width="200" height="120" rx="12" fill="#ef4444" fill-opacity="0.08" stroke="#ef4444" stroke-opacity="0.55"/>
+    <text x="16" y="40" font-size="26">🔒</text>
+    <text x="56" y="34" class="pName">cybersecurity</text>
+    <text x="56" y="52" class="pDesc">red/blue team · forensics</text>
+    <text x="16" y="86" class="pNum" fill="#ef4444">754 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 75 CLIs · biggest pack</text>
   </g>
   <g transform="translate(252,356)">
-    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.06" stroke="#22c55e" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🎮</text>
-    <text x="52" y="32" class="pName">nvidia</text>
-    <text x="52" y="50" class="pDesc">cuOpt · LP/MILP · routing</text>
-    <text x="16" y="84" class="pNum">11 skills</text>
+    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,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" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">nvidia</text>
+    <text x="56" y="52" class="pDesc">cuOpt · LP/MILP · routing</text>
+    <text x="16" y="86" class="pNum" fill="#22c55e">11 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs</text>
   </g>
   <g transform="translate(464,356)">
-    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🧊</text>
-    <text x="52" y="32" class="pName">coolify</text>
-    <text x="52" y="50" class="pDesc">deploys · env vars · Traefik</text>
-    <text x="16" y="84" class="pNum">6 skills</text>
+    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACJklEQVR4nO2aPU/bUBSGz7lxUoePoYEklWBmqIS6IHUrsLYDU1kidkTaAYmqLCxMHRgqtVW3Du3W7vwHJCZWhqqiQyjmS4CaOMGH1UksgYXtN+09z/jq5urRK90bWz5MMahXvCUi/hrnN4NCQPzk85/SXm9uEDKDhBaAFkBjfQEOWiBLlse8CWZ5FM6sKiDn0GsS8zacWX8EtAC0ABrrC3BelY9fxlhfFaYfqdmkiDF8TkF/7gjT97tvw98+HZYWe9PVyYNi82LUvY9gFnCBXebuLJG/wZY/tGkeXK8lsVfWWH8HaAFoATSx74C1amP4Lzkb4UyELkl4PTmt7IhdQIuHhyjwe5+n33w8Km0lp5Ud1h8BLQAtgEYLQAug0QLQAmi0ALQAGi0ALYBGC0ALoNEC0AJotAC0ABotAC2ARgtAC6DRAtACaLQAtAAa6wuI/WlsrDFyejjuzYSzggl+J6eULVyveu/uvFjYF+GrNIXSwuTyXz40Ro96c45avDp5UGw23cfhzHULP32//eJ/G5ePPAIdf2TKmGA3nLXb17W05JBYfwlqAWgBNJF3QM6nX5KnrnnAnEM7nQ7NZqOVDiuVkxqzLISzyALenz08I+qfCK1XvHTMMoI5mCbhrslY64+AFoAWQGN9AfFehvKF7aDVmrl94eDhus19v13syyPfBeJSL588JxM8S2KvVBGeI6Kn4SiRcXlhmWdhHZf/F9EC0AJobgCGpm1dGHy4sAAAAABJRU5ErkJggg==" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">coolify</text>
+    <text x="56" y="52" class="pDesc">deploys · env vars · Traefik</text>
+    <text x="16" y="86" class="pNum" fill="#6366f1">6 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs · 93 reads</text>
   </g>
   <g transform="translate(676,356)">
-    <rect width="164" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.06" stroke="#8b5cf6" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🏠</text>
-    <text x="52" y="32" class="pName">hostinger</text>
-    <text x="52" y="50" class="pDesc">DNS · VPS · API</text>
-    <text x="16" y="84" class="pNum">5 skills</text>
+    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.08" stroke="#8b5cf6" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,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" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">hostinger</text>
+    <text x="56" y="52" class="pDesc">DNS · VPS · API</text>
+    <text x="16" y="86" class="pNum" fill="#8b5cf6">5 skills</text>
     <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs</text>
   </g>
-
-  <!-- Row 4 -->
   <g transform="translate(40,488)">
-    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🐆</text>
-    <text x="52" y="32" class="pName">caveman-quick</text>
-    <text x="52" y="50" class="pDesc">terse · low-context edits</text>
-    <text x="16" y="84" class="pNum">7 skills</text>
+    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.55"/>
+    <image href="data:image/png;base64,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" x="14" y="18" width="30" height="30"/>
+    <text x="56" y="34" class="pName">caveman-quick</text>
+    <text x="56" y="52" class="pDesc">terse · low-context edits</text>
+    <text x="16" y="86" class="pNum" fill="#f59e0b">7 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 66 reads</text>
   </g>
   <g transform="translate(252,488)">
-    <rect width="200" height="120" rx="12" fill="#ec4899" fill-opacity="0.06" stroke="#ec4899" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🎨</text>
-    <text x="52" y="32" class="pName">readme-writer</text>
-    <text x="52" y="50" class="pDesc">README · SVG · diagrams</text>
-    <text x="16" y="84" class="pNum">3 skills</text>
+    <rect width="200" height="120" rx="12" fill="#ec4899" fill-opacity="0.08" stroke="#ec4899" stroke-opacity="0.55"/>
+    <g transform="translate(14,18)" stroke="#ec4899" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 3h12l5 5v17a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/>
+      <path d="M17 3v5h5"/>
+      <text x="14" y="22" font-family="'SF Mono', monospace" font-size="10" font-weight="700" fill="#ec4899" stroke="none" text-anchor="middle">md</text>
+    </g>
+    <text x="56" y="34" class="pName">readme-writer</text>
+    <text x="56" y="52" class="pDesc">README · SVG · diagrams</text>
+    <text x="16" y="86" class="pNum" fill="#ec4899">3 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 3 CLIs</text>
   </g>
   <g transform="translate(464,488)">
-    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.06" stroke="#22c55e" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🐢</text>
-    <text x="52" y="32" class="pName">core</text>
-    <text x="52" y="50" class="pDesc">shared baseline (inherited)</text>
-    <text x="16" y="84" class="pNum">7 skills</text>
+    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.08" stroke="#22c55e" stroke-opacity="0.55"/>
+    <g transform="translate(14,18)" stroke="#22c55e" stroke-width="2" fill="none" stroke-linejoin="round">
+      <path d="M14 2L25 8.5v13L14 28L3 21.5v-13z"/>
+      <circle cx="14" cy="15" r="4" stroke="#22c55e" stroke-width="1.5"/>
+    </g>
+    <text x="56" y="34" class="pName">core</text>
+    <text x="56" y="52" class="pDesc">shared baseline (inherited)</text>
+    <text x="16" y="86" class="pNum" fill="#22c55e">7 skills</text>
     <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 44 reads</text>
   </g>
   <g transform="translate(676,488)">
-    <rect width="164" height="120" rx="12" fill="#6b7280" fill-opacity="0.06" stroke="#6b7280" stroke-opacity="0.3"/>
-    <text x="16" y="36" font-size="26">🦄</text>
-    <text x="52" y="32" class="pName">full</text>
-    <text x="52" y="50" class="pDesc">diagnostic fallback</text>
-    <text x="16" y="84" class="pNum">every skill</text>
+    <rect width="200" height="120" rx="12" fill="#6b7280" fill-opacity="0.08" stroke="#6b7280" stroke-opacity="0.55"/>
+    <g transform="translate(14,18)">
+      <rect x="2"  y="2"  width="10" height="10" rx="2" fill="#6366f1"/>
+      <rect x="16" y="2"  width="10" height="10" rx="2" fill="#22c55e"/>
+      <rect x="2"  y="16" width="10" height="10" rx="2" fill="#f59e0b"/>
+      <rect x="16" y="16" width="10" height="10" rx="2" fill="#ec4899"/>
+    </g>
+    <text x="56" y="34" class="pName">full</text>
+    <text x="56" y="52" class="pDesc">diagnostic fallback</text>
+    <text x="16" y="86" class="pNum" fill="#6b7280">every skill</text>
     <text x="16" y="100" class="pTag">don't use day-to-day</text>
   </g>
 </svg>

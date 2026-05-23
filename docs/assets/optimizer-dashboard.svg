@@ -1,105 +1,111 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" fill="none" role="img" aria-label="cue optimizer summary: 16 profiles, 1927 skills, 15 MCPs, 79 CLIs">
+  <style>
+    .t-eyebrow { font: 700 11px 'SF Mono', monospace; letter-spacing: 2px; fill: #94a3b8; }
+    .t-h       { font: 700 22px -apple-system, system-ui, sans-serif; fill: #f1f5f9; }
+    .t-sub     { font: 13px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+    .t-secn    { font: 700 13px -apple-system, system-ui, sans-serif; fill: #f1f5f9; }
+    .t-secn-s  { font: 11px -apple-system, system-ui, sans-serif; fill: #94a3b8; }
+    .bar-bg    { fill: #334155; fill-opacity: 0.55; }
+    .row-lbl   { font: 12px 'SF Mono', monospace; fill: #f1f5f9; }
+    .row-val   { font: 11px 'SF Mono', monospace; fill: #94a3b8; }
+  </style>
   <defs>
     <linearGradient id="dashAcc1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/>
+      <stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#c084fc"/>
     </linearGradient>
     <linearGradient id="dashAcc2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#0ea5e9"/>
+      <stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
     <linearGradient id="dashAcc3" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/>
+      <stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#f87171"/>
     </linearGradient>
     <linearGradient id="dashAcc4" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#8b5cf6"/>
+      <stop offset="0%" stop-color="#f472b6"/><stop offset="100%" stop-color="#c084fc"/>
     </linearGradient>
   </defs>
 
-  <!-- header -->
   <g transform="translate(40,32)">
-    <text x="0" y="0" font-family="'SF Mono', monospace" font-size="11" fill="#6b7280" letter-spacing="2">CUE OPTIMIZER · LIVE SCAN</text>
-    <text x="0" y="28" font-family="-apple-system, system-ui, sans-serif" font-size="22" font-weight="700" fill="currentColor">What's loaded across every profile</text>
-    <text x="0" y="50" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#6b7280">One read across every <tspan font-family="'SF Mono', monospace" fill="currentColor">profile.yaml</tspan> — skills, MCPs, required CLIs, install status, usage frequency.</text>
+    <text x="0" y="0" class="t-eyebrow">CUE OPTIMIZER · LIVE SCAN</text>
+    <text x="0" y="28" class="t-h">What's loaded across every profile</text>
+    <text x="0" y="50" class="t-sub">One read across every <tspan font-family="'SF Mono', monospace" fill="#e5e7eb">profile.yaml</tspan> — skills, MCPs, required CLIs, install status, usage frequency.</text>
   </g>
 
-  <!-- big number cards -->
   <g transform="translate(40,108)">
-    <g transform="translate(0,0)">
-      <rect width="190" height="120" rx="14" fill="url(#dashAcc1)" fill-opacity="0.10" stroke="#6366f1" stroke-opacity="0.35" stroke-width="1.5"/>
-      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#6366f1" font-weight="700" letter-spacing="2">PROFILES</text>
+    <g>
+      <rect width="190" height="120" rx="14" fill="#6366f1" fill-opacity="0.14" stroke="#818cf8" stroke-opacity="0.6" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#a5b4fc" font-weight="700" letter-spacing="2">PROFILES</text>
       <text x="20" y="86" font-family="-apple-system, system-ui, sans-serif" font-size="56" font-weight="800" fill="url(#dashAcc1)">16</text>
-      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">one per workflow domain</text>
+      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#94a3b8">one per workflow domain</text>
     </g>
 
     <g transform="translate(204,0)">
-      <rect width="190" height="120" rx="14" fill="url(#dashAcc2)" fill-opacity="0.10" stroke="#22c55e" stroke-opacity="0.35" stroke-width="1.5"/>
-      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#22c55e" font-weight="700" letter-spacing="2">SKILLS</text>
+      <rect width="190" height="120" rx="14" fill="#22c55e" fill-opacity="0.14" stroke="#4ade80" stroke-opacity="0.6" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#4ade80" font-weight="700" letter-spacing="2">SKILLS</text>
       <text x="20" y="86" font-family="-apple-system, system-ui, sans-serif" font-size="56" font-weight="800" fill="url(#dashAcc2)">1,927</text>
-      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">SKILL.md files indexed</text>
+      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#94a3b8">SKILL.md files indexed</text>
     </g>
 
     <g transform="translate(408,0)">
-      <rect width="190" height="120" rx="14" fill="url(#dashAcc3)" fill-opacity="0.10" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="1.5"/>
-      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#f59e0b" font-weight="700" letter-spacing="2">MCP SERVERS</text>
+      <rect width="190" height="120" rx="14" fill="#f59e0b" fill-opacity="0.14" stroke="#fbbf24" stroke-opacity="0.6" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#fbbf24" font-weight="700" letter-spacing="2">MCP SERVERS</text>
       <text x="20" y="86" font-family="-apple-system, system-ui, sans-serif" font-size="56" font-weight="800" fill="url(#dashAcc3)">15</text>
-      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">scoped per profile</text>
+      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#94a3b8">scoped per profile</text>
     </g>
 
     <g transform="translate(612,0)">
-      <rect width="190" height="120" rx="14" fill="url(#dashAcc4)" fill-opacity="0.10" stroke="#ec4899" stroke-opacity="0.35" stroke-width="1.5"/>
-      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#ec4899" font-weight="700" letter-spacing="2">REQUIRED CLIs</text>
+      <rect width="190" height="120" rx="14" fill="#ec4899" fill-opacity="0.14" stroke="#f472b6" stroke-opacity="0.6" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'SF Mono', monospace" font-size="11" fill="#f472b6" font-weight="700" letter-spacing="2">REQUIRED CLIs</text>
       <text x="20" y="86" font-family="-apple-system, system-ui, sans-serif" font-size="56" font-weight="800" fill="url(#dashAcc4)">79</text>
-      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">install status checked</text>
+      <text x="20" y="108" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#94a3b8">install status checked</text>
     </g>
   </g>
 
-  <!-- usage chart -->
   <g transform="translate(40,260)">
-    <text x="0" y="0" font-family="-apple-system, system-ui, sans-serif" font-size="13" font-weight="700" fill="currentColor">Top skills by session reads</text>
-    <text x="0" y="18" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">scanned from <tspan font-family="'SF Mono', monospace" fill="currentColor">~/.claude/projects/**/*.jsonl</tspan></text>
+    <text x="0" y="0" class="t-secn">Top skills by session reads</text>
+    <text x="0" y="18" class="t-secn-s">scanned from <tspan font-family="'SF Mono', monospace" fill="#e5e7eb">~/.claude/projects/**/*.jsonl</tspan></text>
 
-    <g transform="translate(0,36)" font-family="'SF Mono', monospace" font-size="11" fill="currentColor">
-      <!-- bar rows -->
-      <g transform="translate(0,0)">
-        <text x="0" y="11">🦋 ui-ux-pro-max</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
+    <g transform="translate(0,36)">
+      <g>
+        <text x="0" y="11" class="row-lbl">🦋 ui-ux-pro-max</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
         <rect x="180" y="2" width="600" height="12" rx="4" fill="url(#dashAcc1)"/>
-        <text x="788" y="11" text-anchor="end" fill="#ffffff" font-weight="700">1008×</text>
+        <text x="788" y="11" text-anchor="end" fill="#0f172a" font-weight="800" font-family="'SF Mono', monospace" font-size="11">1008×</text>
       </g>
       <g transform="translate(0,22)">
-        <text x="0" y="11">🐺 worker</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
-        <rect x="180" y="2" width="81" height="12" rx="4" fill="#8b5cf6"/>
-        <text x="266" y="11" fill="#6b7280">136×</text>
+        <text x="0" y="11" class="row-lbl">🐺 worker</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
+        <rect x="180" y="2" width="81" height="12" rx="4" fill="#a78bfa"/>
+        <text x="266" y="11" class="row-val">136×</text>
       </g>
       <g transform="translate(0,44)">
-        <text x="0" y="11">🐺 gitguardex</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
-        <rect x="180" y="2" width="68" height="12" rx="4" fill="#8b5cf6"/>
-        <text x="253" y="11" fill="#6b7280">114×</text>
+        <text x="0" y="11" class="row-lbl">🐺 gitguardex</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
+        <rect x="180" y="2" width="68" height="12" rx="4" fill="#a78bfa"/>
+        <text x="253" y="11" class="row-val">114×</text>
       </g>
       <g transform="translate(0,66)">
-        <text x="0" y="11">🦉 awesome-rust-search</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
-        <rect x="180" y="2" width="31" height="12" rx="4" fill="#22c55e"/>
-        <text x="216" y="11" fill="#6b7280">52×</text>
+        <text x="0" y="11" class="row-lbl">🦉 awesome-rust-search</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
+        <rect x="180" y="2" width="31" height="12" rx="4" fill="#4ade80"/>
+        <text x="216" y="11" class="row-val">52×</text>
       </g>
       <g transform="translate(0,88)">
-        <text x="0" y="11">🐻 supabase</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
-        <rect x="180" y="2" width="25" height="12" rx="4" fill="#22c55e"/>
-        <text x="210" y="11" fill="#6b7280">42×</text>
+        <text x="0" y="11" class="row-lbl">🐻 supabase</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
+        <rect x="180" y="2" width="25" height="12" rx="4" fill="#4ade80"/>
+        <text x="210" y="11" class="row-val">42×</text>
       </g>
       <g transform="translate(0,110)">
-        <text x="0" y="11">🐻 stripe-best-practices</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
-        <rect x="180" y="2" width="19" height="12" rx="4" fill="#22c55e"/>
-        <text x="204" y="11" fill="#6b7280">32×</text>
+        <text x="0" y="11" class="row-lbl">🐻 stripe-best-practices</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
+        <rect x="180" y="2" width="19" height="12" rx="4" fill="#4ade80"/>
+        <text x="204" y="11" class="row-val">32×</text>
       </g>
       <g transform="translate(0,132)">
-        <text x="0" y="11">🐢 caveman</text>
-        <rect x="180" y="2" width="600" height="12" rx="4" fill="#e5e7eb" fill-opacity="0.4"/>
-        <rect x="180" y="2" width="13" height="12" rx="4" fill="#f59e0b"/>
-        <text x="198" y="11" fill="#6b7280">21×</text>
+        <text x="0" y="11" class="row-lbl">🐢 caveman</text>
+        <rect x="180" y="2" width="600" height="12" rx="4" class="bar-bg"/>
+        <rect x="180" y="2" width="13" height="12" rx="4" fill="#fbbf24"/>
+        <text x="198" y="11" class="row-val">21×</text>
       </g>
     </g>
   </g>
