@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" fill="none" role="img" aria-label="cue — Agent Profile Manager">
+  <defs>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="heroAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <pattern id="heroGrid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#6366f1" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="320" rx="20" fill="url(#heroBg)"/>
+  <rect width="800" height="320" rx="20" fill="url(#heroGrid)"/>
+
+  <!-- left: brand -->
+  <g transform="translate(56,72)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="84" font-weight="800" fill="url(#heroAccent)" letter-spacing="-3">cue</text>
+    <text x="0" y="44" font-family="'SF Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="14" fill="#6b7280" letter-spacing="2">AGENT · PROFILE · MANAGER</text>
+
+    <text x="0" y="100" font-family="-apple-system, system-ui, sans-serif" font-size="20" font-weight="600" fill="currentColor">One <tspan fill="#6366f1">profile</tspan>. One launch. Nothing else loaded.</text>
+    <text x="0" y="128" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#6b7280">A thin shim between your shell and <tspan font-family="'SF Mono', monospace" fill="currentColor">claude</tspan> / <tspan font-family="'SF Mono', monospace" fill="currentColor">codex</tspan>.</text>
+    <text x="0" y="148" font-family="-apple-system, system-ui, sans-serif" font-size="14" fill="#6b7280">Per-directory profiles. Materialized runtimes. No daemon.</text>
+
+    <g transform="translate(0,176)">
+      <rect width="118" height="32" rx="8" fill="#111827"/>
+      <text x="14" y="21" font-family="'SF Mono', monospace" font-size="13" fill="#22c55e">$</text>
+      <text x="28" y="21" font-family="'SF Mono', monospace" font-size="13" fill="#e5e7eb">cue list</text>
+
+      <rect x="130" width="124" height="32" rx="8" fill="#111827"/>
+      <text x="144" y="21" font-family="'SF Mono', monospace" font-size="13" fill="#22c55e">$</text>
+      <text x="158" y="21" font-family="'SF Mono', monospace" font-size="13" fill="#e5e7eb">claude</text>
+    </g>
+  </g>
+
+  <!-- right: floating profile chips -->
+  <g transform="translate(488,40)" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="currentColor">
+    <g transform="translate(20,0)">
+      <rect width="124" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#6366f1" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🐻</text>
+      <text x="40" y="22" font-weight="600">backend</text>
+    </g>
+    <g transform="translate(168,28)">
+      <rect width="124" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🦋</text>
+      <text x="40" y="22" font-weight="600">frontend</text>
+    </g>
+    <g transform="translate(0,72)">
+      <rect width="124" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#22c55e" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🦜</text>
+      <text x="40" y="22" font-weight="600">marketing</text>
+    </g>
+    <g transform="translate(148,100)">
+      <rect width="138" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#f59e0b" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🐺</text>
+      <text x="40" y="22" font-weight="600">fleet-control</text>
+    </g>
+    <g transform="translate(8,144)">
+      <rect width="124" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#6366f1" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🦊</text>
+      <text x="40" y="22" font-weight="600">medusa-dev</text>
+    </g>
+    <g transform="translate(156,172)">
+      <rect width="126" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#8b5cf6" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🎨</text>
+      <text x="40" y="22" font-weight="600">readme-svg</text>
+    </g>
+    <g transform="translate(24,216)">
+      <rect width="124" height="36" rx="10" fill="#ffffff" fill-opacity="0.65" stroke="#6366f1" stroke-opacity="0.35"/>
+      <text x="14" y="23" font-size="18">🦉</text>
+      <text x="40" y="22" font-weight="600">research</text>
+    </g>
+  </g>
+
+  <!-- corner badge -->
+  <g transform="translate(700,28)">
+    <rect width="80" height="22" rx="11" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-opacity="0.5"/>
+    <text x="40" y="15" text-anchor="middle" font-family="'SF Mono', monospace" font-size="10" fill="#22c55e" font-weight="700">MIT · OSS</text>
+  </g>
+</svg>

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" fill="none" role="img" aria-label="cue launch flow: resolve → materialize → exec">
+  <defs>
+    <marker id="archArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#6366f1"/>
+    </marker>
+    <linearGradient id="cardA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="cardC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- title -->
+  <text x="40" y="36" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" fill="currentColor">The launch flow</text>
+  <text x="40" y="56" font-family="-apple-system, system-ui, sans-serif" font-size="13" fill="#6b7280">What happens when you type <tspan font-family="'SF Mono', monospace" fill="currentColor">claude</tspan> in a directory with a <tspan font-family="'SF Mono', monospace" fill="currentColor">.cue-profile</tspan> pin.</text>
+
+  <!-- shell input -->
+  <g transform="translate(40,92)">
+    <rect width="160" height="48" rx="10" fill="#111827"/>
+    <text x="14" y="29" font-family="'SF Mono', monospace" font-size="13" fill="#22c55e">$</text>
+    <text x="28" y="29" font-family="'SF Mono', monospace" font-size="13" fill="#e5e7eb">claude</text>
+    <text x="14" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#9ca3af">~/projects/q4-launch</text>
+  </g>
+
+  <!-- arrow shell → resolve -->
+  <path d="M204 116 H236" stroke="#6366f1" stroke-width="2" marker-end="url(#archArrow)"/>
+
+  <!-- 1. Resolve -->
+  <g transform="translate(240,80)">
+    <rect width="200" height="200" rx="14" fill="url(#cardA)" stroke="#6366f1" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6366f1" font-weight="700" letter-spacing="2">STEP 1</text>
+    <text x="16" y="52" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" fill="currentColor">Resolve</text>
+    <text x="16" y="74" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#6b7280">Walk parents for a profile pin.</text>
+
+    <g font-family="'SF Mono', monospace" font-size="11" fill="currentColor">
+      <text x="16" y="104">./.cue-profile</text>
+      <text x="172" y="104" text-anchor="end" fill="#22c55e">✓ hit</text>
+
+      <text x="16" y="126" fill="#9ca3af">../</text>
+      <text x="172" y="126" text-anchor="end" fill="#9ca3af">—</text>
+
+      <text x="16" y="148" fill="#9ca3af">$HOME/.cue-profile</text>
+      <text x="172" y="148" text-anchor="end" fill="#9ca3af">—</text>
+
+      <text x="16" y="170" fill="#9ca3af">TUI picker fallback</text>
+      <text x="172" y="170" text-anchor="end" fill="#9ca3af">—</text>
+    </g>
+
+    <rect x="16" y="180" width="168" height="2" fill="#6366f1" fill-opacity="0.3"/>
+    <text x="16" y="194" font-family="'SF Mono', monospace" font-size="11" font-weight="700" fill="#6366f1">→ medusa-dev</text>
+  </g>
+
+  <!-- arrow resolve → materialize -->
+  <path d="M444 180 H472" stroke="#6366f1" stroke-width="2" marker-end="url(#archArrow)"/>
+
+  <!-- 2. Materialize -->
+  <g transform="translate(476,80)">
+    <rect width="200" height="200" rx="14" fill="url(#cardB)" stroke="#8b5cf6" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="16" y="28" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#8b5cf6" font-weight="700" letter-spacing="2">STEP 2</text>
+    <text x="16" y="52" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" fill="currentColor">Materialize</text>
+    <text x="16" y="74" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#6b7280">Build the runtime tree, hash short-circuit.</text>
+
+    <g font-family="'SF Mono', monospace" font-size="11" fill="currentColor">
+      <text x="16" y="104">~/.config/cue/runtime/</text>
+      <text x="24" y="120" fill="#8b5cf6">└─ medusa-dev/</text>
+      <text x="36" y="136" fill="#9ca3af">├─ claude/</text>
+      <text x="48" y="152" fill="#6b7280">│  ├─ skills/</text>
+      <text x="48" y="168" fill="#6b7280">│  ├─ mcps/</text>
+      <text x="48" y="184" fill="#6b7280">│  └─ CLAUDE.md</text>
+      <text x="36" y="200" fill="#9ca3af">└─ codex/</text>
+    </g>
+
+    <g transform="translate(16,210)">
+      <rect width="60" height="16" rx="4" fill="#22c55e" fill-opacity="0.18"/>
+      <text x="30" y="12" text-anchor="middle" font-family="'SF Mono', monospace" font-size="10" fill="#22c55e" font-weight="700">cached</text>
+      <text x="68" y="12" font-family="'SF Mono', monospace" font-size="10" fill="#6b7280">sha256 == previous</text>
+    </g>
+  </g>
+
+  <!-- arrow materialize → exec -->
+  <path d="M680 180 H708" stroke="#6366f1" stroke-width="2" marker-end="url(#archArrow)"/>
+
+  <!-- 3. Exec -->
+  <g transform="translate(712,80)">
+    <rect width="148" height="200" rx="14" fill="url(#cardC)" stroke="#22c55e" stroke-opacity="0.45" stroke-width="1.5"/>
+    <text x="14" y="28" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#22c55e" font-weight="700" letter-spacing="2">STEP 3</text>
+    <text x="14" y="52" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="700" fill="currentColor">Exec</text>
+    <text x="14" y="74" font-family="-apple-system, system-ui, sans-serif" font-size="12" fill="#6b7280">Hand off to the real agent.</text>
+
+    <g font-family="'SF Mono', monospace" font-size="10" fill="currentColor">
+      <text x="14" y="104" fill="#9ca3af">CLAUDE_CONFIG_DIR=</text>
+      <text x="14" y="118" fill="#22c55e">~/.config/cue/</text>
+      <text x="14" y="132" fill="#22c55e">  runtime/medusa-dev</text>
+
+      <text x="14" y="160" fill="#9ca3af">exec /usr/local/bin/</text>
+      <text x="14" y="174" fill="currentColor">claude  "$@"</text>
+    </g>
+    <text x="14" y="196" font-family="-apple-system, system-ui, sans-serif" font-size="10" fill="#22c55e" font-weight="700">▶ session boots</text>
+  </g>
+
+  <!-- footnote -->
+  <text x="40" y="324" font-family="-apple-system, system-ui, sans-serif" font-size="11" fill="#6b7280">
+    Cold-start cost: one <tspan font-family="'SF Mono', monospace" fill="currentColor">stat()</tspan> + one <tspan font-family="'SF Mono', monospace" fill="currentColor">sha256</tspan>. Materialization runs only when the resolved profile actually changed.
+  </text>
+</svg>

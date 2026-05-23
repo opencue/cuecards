@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" fill="none" role="img" aria-label="cue profile catalog">
+  <style>
+    .pTitle  { font: 700 22px -apple-system, system-ui, sans-serif; fill: currentColor; }
+    .pSub    { font: 13px -apple-system, system-ui, sans-serif; fill: #6b7280; }
+    .pName   { font: 700 14px -apple-system, system-ui, sans-serif; fill: currentColor; }
+    .pDesc   { font: 11px -apple-system, system-ui, sans-serif; fill: #6b7280; }
+    .pNum    { font: 700 12px 'SF Mono', monospace; fill: #6366f1; }
+    .pTag    { font: 9px 'SF Mono', monospace; fill: #6b7280; letter-spacing: 0.5; }
+  </style>
+
+  <!-- header -->
+  <text x="40" y="40" class="pTitle">The 16-profile catalog</text>
+  <text x="40" y="62" class="pSub">Each card is a self-contained loadout. Skill / MCP / CLI counts taken from <tspan font-family="'SF Mono', monospace" fill="currentColor">cue optimizer</tspan>.</text>
+
+  <!-- card template repeated -->
+  <!-- Row 1 -->
+  <g transform="translate(40,92)">
+    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🐻</text>
+    <text x="52" y="32" class="pName">backend</text>
+    <text x="52" y="50" class="pDesc">APIs · webhooks · CI · packages</text>
+    <text x="16" y="84" class="pNum">11 skills</text>
+    <text x="16" y="100" class="pTag">1 MCP · 2 CLIs · 167 reads</text>
+  </g>
+  <g transform="translate(252,92)">
+    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.06" stroke="#8b5cf6" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🦋</text>
+    <text x="52" y="32" class="pName">frontend</text>
+    <text x="52" y="50" class="pDesc">UI · redesign · screenshots</text>
+    <text x="16" y="84" class="pNum">10 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 1,056 reads</text>
+  </g>
+  <g transform="translate(464,92)">
+    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🦜</text>
+    <text x="52" y="32" class="pName">marketing</text>
+    <text x="52" y="50" class="pDesc">copy · SEO · CRO · brand</text>
+    <text x="16" y="84" class="pNum">4 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 44 reads</text>
+  </g>
+  <g transform="translate(676,92)">
+    <rect width="164" height="120" rx="12" fill="#22c55e" fill-opacity="0.06" stroke="#22c55e" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🦉</text>
+    <text x="52" y="32" class="pName">research</text>
+    <text x="52" y="50" class="pDesc">lookup · OSINT</text>
+    <text x="16" y="84" class="pNum">10 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 4 CLIs · 108 reads</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(40,224)">
+    <rect width="200" height="120" rx="12" fill="#ec4899" fill-opacity="0.06" stroke="#ec4899" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🐺</text>
+    <text x="52" y="32" class="pName">fleet-control</text>
+    <text x="52" y="50" class="pDesc">Colony · gx · multi-agent</text>
+    <text x="16" y="84" class="pNum">12 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs · 338 reads</text>
+  </g>
+  <g transform="translate(252,224)">
+    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🦊</text>
+    <text x="52" y="32" class="pName">medusa-dev</text>
+    <text x="52" y="50" class="pDesc">Medusa v2 backend + storefront</text>
+    <text x="16" y="84" class="pNum">12 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 4 CLIs · 51 reads</text>
+  </g>
+  <g transform="translate(464,224)">
+    <rect width="200" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.06" stroke="#8b5cf6" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🦚</text>
+    <text x="52" y="32" class="pName">creative-media</text>
+    <text x="52" y="50" class="pDesc">image · video · brand assets</text>
+    <text x="16" y="84" class="pNum">12 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 6 CLIs · 57 reads</text>
+  </g>
+  <g transform="translate(676,224)">
+    <rect width="164" height="120" rx="12" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🐝</text>
+    <text x="52" y="32" class="pName">docs-writer</text>
+    <text x="52" y="50" class="pDesc">md · pdf · obsidian</text>
+    <text x="16" y="84" class="pNum">8 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(40,356)">
+    <rect width="200" height="120" rx="12" fill="#ef4444" fill-opacity="0.06" stroke="#ef4444" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🔒</text>
+    <text x="52" y="32" class="pName">cybersecurity</text>
+    <text x="52" y="50" class="pDesc">red/blue team · forensics · DFIR</text>
+    <text x="16" y="84" class="pNum">754 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 75 CLIs · biggest pack</text>
+  </g>
+  <g transform="translate(252,356)">
+    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.06" stroke="#22c55e" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🎮</text>
+    <text x="52" y="32" class="pName">nvidia</text>
+    <text x="52" y="50" class="pDesc">cuOpt · LP/MILP · routing</text>
+    <text x="16" y="84" class="pNum">11 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs</text>
+  </g>
+  <g transform="translate(464,356)">
+    <rect width="200" height="120" rx="12" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🧊</text>
+    <text x="52" y="32" class="pName">coolify</text>
+    <text x="52" y="50" class="pDesc">deploys · env vars · Traefik</text>
+    <text x="16" y="84" class="pNum">6 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs · 93 reads</text>
+  </g>
+  <g transform="translate(676,356)">
+    <rect width="164" height="120" rx="12" fill="#8b5cf6" fill-opacity="0.06" stroke="#8b5cf6" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🏠</text>
+    <text x="52" y="32" class="pName">hostinger</text>
+    <text x="52" y="50" class="pDesc">DNS · VPS · API</text>
+    <text x="16" y="84" class="pNum">5 skills</text>
+    <text x="16" y="100" class="pTag">2 MCPs · 2 CLIs</text>
+  </g>
+
+  <!-- Row 4 -->
+  <g transform="translate(40,488)">
+    <rect width="200" height="120" rx="12" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🐆</text>
+    <text x="52" y="32" class="pName">caveman-quick</text>
+    <text x="52" y="50" class="pDesc">terse · low-context edits</text>
+    <text x="16" y="84" class="pNum">7 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 66 reads</text>
+  </g>
+  <g transform="translate(252,488)">
+    <rect width="200" height="120" rx="12" fill="#ec4899" fill-opacity="0.06" stroke="#ec4899" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🎨</text>
+    <text x="52" y="32" class="pName">readme-writer</text>
+    <text x="52" y="50" class="pDesc">README · SVG · diagrams</text>
+    <text x="16" y="84" class="pNum">3 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 3 CLIs</text>
+  </g>
+  <g transform="translate(464,488)">
+    <rect width="200" height="120" rx="12" fill="#22c55e" fill-opacity="0.06" stroke="#22c55e" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🐢</text>
+    <text x="52" y="32" class="pName">core</text>
+    <text x="52" y="50" class="pDesc">shared baseline (inherited)</text>
+    <text x="16" y="84" class="pNum">7 skills</text>
+    <text x="16" y="100" class="pTag">0 MCPs · 2 CLIs · 44 reads</text>
+  </g>
+  <g transform="translate(676,488)">
+    <rect width="164" height="120" rx="12" fill="#6b7280" fill-opacity="0.06" stroke="#6b7280" stroke-opacity="0.3"/>
+    <text x="16" y="36" font-size="26">🦄</text>
+    <text x="52" y="32" class="pName">full</text>
+    <text x="52" y="50" class="pDesc">diagnostic fallback</text>
+    <text x="16" y="84" class="pNum">every skill</text>
+    <text x="16" y="100" class="pTag">don't use day-to-day</text>
+  </g>
+</svg>

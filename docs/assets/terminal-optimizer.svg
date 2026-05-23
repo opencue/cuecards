@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" fill="none" role="img" aria-label="cue optimizer terminal output">
+  <!-- window -->
+  <rect width="880" height="540" rx="12" fill="#0f0f1a"/>
+  <rect width="880" height="36" rx="12" fill="#1a1a2e"/>
+  <rect y="24" width="880" height="12" fill="#1a1a2e"/>
+  <circle cx="22" cy="18" r="6" fill="#ff5f57"/>
+  <circle cx="44" cy="18" r="6" fill="#febc2e"/>
+  <circle cx="66" cy="18" r="6" fill="#28c840"/>
+  <text x="440" y="22" text-anchor="middle" font-family="'SF Mono', monospace" font-size="11" fill="#7a7a93">~/Documents/cue — cue optimizer</text>
+
+  <!-- terminal content -->
+  <g font-family="'SF Mono', 'Fira Code', monospace" font-size="12" transform="translate(20,60)">
+    <text x="0" y="0" fill="#28c840">$</text>
+    <text x="14" y="0" fill="#e5e7eb">cue optimizer</text>
+
+    <!-- profile 1 - backend -->
+    <text x="0" y="28" fill="#7c7c93">╭── 🐻  </text><text x="68" y="28" fill="#e5e7eb">backend</text>
+    <text x="0" y="44" fill="#7c7c93">│</text>
+    <text x="0" y="60" fill="#7c7c93">│   📦 Skills: </text><text x="100" y="60" fill="#a5b4fc">11</text>
+    <text x="124" y="60" fill="#7c7c93">🔌 MCPs: </text><text x="184" y="60" fill="#a5b4fc">1</text>
+    <text x="200" y="60" fill="#7c7c93">🖥️  CLIs: </text><text x="260" y="60" fill="#a5b4fc">2</text>
+    <text x="0" y="76" fill="#7c7c93">│</text>
+    <text x="0" y="92" fill="#7c7c93">│   ┌─ 📦 Skills</text>
+    <text x="0" y="108" fill="#7c7c93">│   │  📊 Total usage: </text><text x="160" y="108" fill="#fbbf24">167</text><text x="184" y="108" fill="#7c7c93"> reads across sessions</text>
+    <text x="0" y="124" fill="#7c7c93">│   │</text>
+    <text x="0" y="140" fill="#7c7c93">│   │  </text><text x="48" y="140" fill="#e5e7eb">stripe-best-practices  </text><text x="220" y="140" fill="#6366f1">█░</text><text x="244" y="140" fill="#fbbf24"> 32×</text>
+    <text x="0" y="156" fill="#7c7c93">│   │  </text><text x="48" y="156" fill="#e5e7eb">supabase               </text><text x="220" y="156" fill="#6366f1">█░</text><text x="244" y="156" fill="#fbbf24"> 42×</text>
+    <text x="0" y="172" fill="#7c7c93">│   │  </text><text x="48" y="172" fill="#e5e7eb">pnpm                   </text><text x="220" y="172" fill="#6366f1">█░</text><text x="244" y="172" fill="#fbbf24"> 32×</text>
+    <text x="0" y="188" fill="#7c7c93">│   │  </text><text x="48" y="188" fill="#e5e7eb">coolify                </text><text x="220" y="188" fill="#6366f1">█░</text><text x="244" y="188" fill="#fbbf24"> 10×</text>
+    <text x="0" y="204" fill="#7c7c93">│   └</text>
+
+    <!-- frontend -->
+    <text x="0" y="232" fill="#7c7c93">├── 🦋  </text><text x="68" y="232" fill="#e5e7eb">frontend</text>
+    <text x="0" y="248" fill="#7c7c93">│   📦 Skills: </text><text x="100" y="248" fill="#a5b4fc">10</text>
+    <text x="124" y="248" fill="#7c7c93">📊 </text><text x="144" y="248" fill="#fbbf24">1,056×</text>
+    <text x="0" y="264" fill="#7c7c93">│   │  </text><text x="48" y="264" fill="#e5e7eb">ui-ux-pro-max          </text><text x="220" y="264" fill="#22c55e">██████████░</text><text x="356" y="264" fill="#22c55e"> 1008×</text>
+
+    <!-- cybersecurity -->
+    <text x="0" y="292" fill="#7c7c93">├── 🔒  </text><text x="68" y="292" fill="#e5e7eb">cybersecurity</text>
+    <text x="0" y="308" fill="#7c7c93">│   📦 Skills: </text><text x="100" y="308" fill="#ef4444">754</text>
+    <text x="140" y="308" fill="#7c7c93">🖥️  CLIs: </text><text x="200" y="308" fill="#ef4444">75</text>
+    <text x="0" y="324" fill="#7c7c93">│   │  performing-* (172)   implementing-* (167)   detecting-* (87)</text>
+    <text x="0" y="340" fill="#7c7c93">│   │  </text><text x="48" y="340" fill="#22c55e">✅ python   </text><text x="148" y="340" fill="#7c7c93">— 336 skills</text>
+    <text x="0" y="356" fill="#7c7c93">│   │  </text><text x="48" y="356" fill="#ef4444">❌ splunk   </text><text x="148" y="356" fill="#7c7c93">— 80  skills</text>
+    <text x="0" y="372" fill="#7c7c93">│   │  </text><text x="48" y="372" fill="#22c55e">✅ aws      </text><text x="148" y="372" fill="#7c7c93">— 62  skills</text>
+    <text x="0" y="388" fill="#7c7c93">│   │  </text><text x="48" y="388" fill="#ef4444">❌ wireshark</text><text x="148" y="388" fill="#7c7c93">— 24  skills</text>
+
+    <!-- footer -->
+    <text x="0" y="416" fill="#7c7c93">├── 🦊  </text><text x="68" y="416" fill="#e5e7eb">medusa-dev</text>
+    <text x="160" y="416" fill="#7c7c93">12 skills · 2 MCPs · 4 CLIs · 51 reads</text>
+    <text x="0" y="432" fill="#7c7c93">├── 🐺  </text><text x="68" y="432" fill="#e5e7eb">fleet-control</text>
+    <text x="160" y="432" fill="#7c7c93">12 skills · 2 MCPs · 2 CLIs · 338 reads</text>
+    <text x="0" y="448" fill="#7c7c93">╰──</text>
+
+    <text x="0" y="478" fill="#7c7c93">  📊 </text><text x="36" y="478" fill="#a5b4fc" font-weight="700">16</text>
+    <text x="60" y="478" fill="#7c7c93"> profiles  ·  📦 </text><text x="174" y="478" fill="#22c55e" font-weight="700">1,927</text>
+    <text x="216" y="478" fill="#7c7c93"> skills  ·  🔌 </text><text x="314" y="478" fill="#f59e0b" font-weight="700">15</text>
+    <text x="338" y="478" fill="#7c7c93"> MCPs  ·  🖥️  </text><text x="430" y="478" fill="#ec4899" font-weight="700">79</text>
+    <text x="454" y="478" fill="#7c7c93"> CLIs</text>
+  </g>
+</svg>
