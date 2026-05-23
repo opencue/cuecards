@@ -3,9 +3,13 @@ node_modules/
 .omx/
 .omc/
 .deleted-stubs/
-profiles/_cache/
+profiles/_cache/bun/
+profiles/_cache/npx/
 test/
 *.test.ts
 draft.md
 agents-fleet/
 andrej-karpathy-skills/
+docs/landing/
+docs/superpowers/
+resources/claude-plugins-official/
