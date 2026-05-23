@@ -14,12 +14,14 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { homedir } from "node:os";
 
 import { listAllSkillIds } from "../lib/resolver-local";
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const GLOBAL_SKILLS_ROOT = join(homedir(), ".claude", "skills");
 
 interface SecurityIssue {
   code: string;
@@ -123,7 +125,9 @@ const RULES: { code: string; severity: "critical" | "high" | "medium"; patterns:
 ];
 
 function scanSkill(id: string): SecurityIssue[] {
-  const path = join(SKILLS_ROOT, id, "SKILL.md");
+  // Try both local repo skills and global ~/.claude/skills
+  let path = join(SKILLS_ROOT, id, "SKILL.md");
+  if (!existsSync(path)) path = join(GLOBAL_SKILLS_ROOT, id, "SKILL.md");
   if (!existsSync(path)) return [];
 
   const content = readFileSync(path, "utf8");
@@ -228,6 +232,17 @@ Examples:
 
   if (all) {
     skillIds = await listAllSkillIds();
+    // Also include global skills from ~/.claude/skills/
+    if (existsSync(GLOBAL_SKILLS_ROOT)) {
+      try {
+        const globalDirs = readdirSync(GLOBAL_SKILLS_ROOT, { withFileTypes: true });
+        for (const d of globalDirs) {
+          if (d.isDirectory() && existsSync(join(GLOBAL_SKILLS_ROOT, d.name, "SKILL.md"))) {
+            if (!skillIds.includes(d.name)) skillIds.push(d.name);
+          }
+        }
+      } catch { /* skip */ }
+    }
   } else if (profileName) {
     try {
       const profile = await loadProfile(profileName);
@@ -237,8 +252,18 @@ Examples:
       return 1;
     }
   } else {
-    // Default: scan all
+    // Default: scan all (local + global)
     skillIds = await listAllSkillIds();
+    if (existsSync(GLOBAL_SKILLS_ROOT)) {
+      try {
+        const globalDirs = readdirSync(GLOBAL_SKILLS_ROOT, { withFileTypes: true });
+        for (const d of globalDirs) {
+          if (d.isDirectory() && existsSync(join(GLOBAL_SKILLS_ROOT, d.name, "SKILL.md"))) {
+            if (!skillIds.includes(d.name)) skillIds.push(d.name);
+          }
+        }
+      } catch { /* skip */ }
+    }
   }
 
   process.stderr.write(`🔒 Scanning ${skillIds.length} skills for security issues...\n\n`);
