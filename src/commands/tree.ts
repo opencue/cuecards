@@ -2,8 +2,10 @@
  * `cue tree [profile]` — visualize profile inheritance tree.
  */
 
+import { resolve } from "node:path";
 import { loadProfile } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
+import { detectKittyTerminal, transmitKittyImage, kittyPlaceholderLabel } from "../lib/kitty-image";
 
 export async function run(args: string[]): Promise<number> {
   const json = args.includes("--json");
@@ -18,6 +20,19 @@ export async function run(args: string[]): Promise<number> {
 
   const profile = await loadProfile(profileName!);
   const chain = profile.inheritanceChain;
+  const kitty = await detectKittyTerminal();
+  const profilesRoot = resolve(new URL(import.meta.url).pathname, "..", "..", "..", "profiles");
+  let nextImageId = 1;
+
+  function getIcon(p: any, name: string): string {
+    if (kitty && p.iconImage && nextImageId <= 255) {
+      const imgPath = resolve(profilesRoot, name, p.iconImage);
+      const id = nextImageId++;
+      transmitKittyImage(imgPath, id, 2, 1);
+      return kittyPlaceholderLabel(id, 2, 1);
+    }
+    return p.icon ?? "";
+  }
 
   if (json) {
     const tree = {
@@ -33,7 +48,7 @@ export async function run(args: string[]): Promise<number> {
   }
 
   // Build visual tree
-  const icon = profile.icon ?? "";
+  const icon = getIcon(profile, profileName!);
   process.stdout.write(`${icon} ${profileName}\n`);
 
   // Show inheritance chain (ancestors)
@@ -42,7 +57,7 @@ export async function run(args: string[]): Promise<number> {
       const ancestor = chain[i]!;
       try {
         const ancestorProfile = await loadProfile(ancestor);
-        const aIcon = ancestorProfile.icon ?? "";
+        const aIcon = getIcon(ancestorProfile, ancestor);
         const indent = "│   ".repeat(chain.length - 1 - i);
         process.stdout.write(`${indent}└── ${aIcon} ${ancestor}\n`);
 
