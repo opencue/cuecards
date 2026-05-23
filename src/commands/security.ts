@@ -134,20 +134,28 @@ function scanSkill(id: string): SecurityIssue[] {
   const lines = content.split("\n");
   const issues: SecurityIssue[] = [];
 
-  // Context-aware skipping: many skills are documentation/examples, not instructions
-  const isSecuritySkill = /security|review|audit|pentest|vuln|incident|forensic|malware|threat|exploit|attack|defense|firewall|intrusion|packet|capture|siem|dfir|reverse.?engineer|phishing|ransomware|encryption|cipher|brute.?force|privilege.?escalat|lateral.?movement|exfiltrat|injection|xss|csrf|owasp|cve|mitre|apt|red.?team|blue.?team|soc|honeypot|sandbox|rootkit|botnet|payload|shellcode|beacon|c2|command.?and.?control|network.?monitor|log.?analy|hardening|compliance|nist|iso.?27|pci.?dss|hipaa|gdpr|zero.?trust|devsecops|container.?security|cloud.?security|iam|access.?control|authentication|authorization/i.test(id);
-  const isMetaSkill = /skill-evolution|builtin-manager|doctor|help|omx|plugin-creator|save-profile/i.test(id);
+  // Context-aware skipping: determine skill category from its frontmatter
+  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+  const frontmatter = fmMatch?.[1] ?? "";
+  const description = (frontmatter.match(/^description:\s*(.+)/m)?.[1] ?? "").toLowerCase();
+  const tags = (frontmatter.match(/^tags:\s*\[([^\]]*)\]/m)?.[1] ?? "").toLowerCase();
+  const category = (frontmatter.match(/^category:\s*(.+)/m)?.[1] ?? "").toLowerCase();
+  const allMeta = `${id} ${description} ${tags} ${category}`;
+
+  const isSecuritySkill = /security|pentest|vuln|incident|forensic|malware|threat|exploit|dfir|siem|red.?team|blue.?team|cybersecurity|infosec|soc|hardening|compliance|review\//i.test(allMeta);
+  const isMetaSkill = /^meta\/|category:\s*meta/i.test(`${id}\n${frontmatter}`);
   const isApiDocSkill = /hostinger|medusa|stripe|coolify|deployment|kiro/i.test(id);
   const isDesignSkill = /design|remotion|higgsfield|imagegen/i.test(id);
   const isOrchSkill = /colony|pipeline|fleet|orchestration|worker/i.test(id);
   const isResearchSkill = /research|find-skills|openai-docs/i.test(id);
-  // Skills from known cybersecurity packs (Anthropic-Cybersecurity-Skills)
-  const isCyberPack = existsSync(join(GLOBAL_SKILLS_ROOT, id, "SKILL.md")) &&
+  // Global skills (in ~/.claude/skills but not in repo) are typically from
+  // curated packs (cybersecurity, etc) — treat as educational content
+  const isGlobalPack = existsSync(join(GLOBAL_SKILLS_ROOT, id, "SKILL.md")) &&
     !existsSync(join(SKILLS_ROOT, id, "SKILL.md"));
 
   for (const rule of RULES) {
     // Skip rules for skill categories where these patterns are expected documentation
-    if ((isSecuritySkill || isCyberPack) && ["SEC1", "SEC2", "SEC3", "SEC4", "SEC5"].includes(rule.code)) continue;
+    if ((isSecuritySkill || isGlobalPack) && ["SEC1", "SEC2", "SEC3", "SEC4", "SEC5"].includes(rule.code)) continue;
     if (isMetaSkill && ["SEC4", "SEC5"].includes(rule.code)) continue;
     if (isApiDocSkill && ["SEC1", "SEC2", "SEC5"].includes(rule.code)) continue;
     if (isDesignSkill && ["SEC2"].includes(rule.code)) continue;
@@ -158,8 +166,12 @@ function scanSkill(id: string): SecurityIssue[] {
       const line = lines[i]!;
 
       // Skip lines that are clearly safe contexts
-      if (/\b(MUST NOT|must not|do not|don't|never|avoid|reject)\b/i.test(line)) continue;
+      if (/\b(MUST NOT|must not|do not|don't|never|avoid|reject|block|forbid|disallow|detect|flag|warn|alert)\b/i.test(line)) continue;
       if (/^#|^\/\/|^\s*\*|NEVER|prohibited/i.test(line.trim())) continue;
+      // Skip lines that list things to detect/block/remove (security documentation)
+      if (/^-\s*(Remove|Add|Block|Detect|Flag|Check|Scan|Verify|Validate|Ensure)/i.test(line.trim())) continue;
+      // Skip lines about checking/testing for vulnerabilities (security review tools)
+      if (/\b(check|test|scan|verify|detect|audit|review|validate|ensure|confirm)\b.*\b(key|secret|token|credential|exposed|leak)/i.test(line)) continue;
       // Skip lines inside code blocks (``` fenced) — these are examples
       if (/^```/.test(line.trim())) continue;
       // Skip lines that are curl examples showing API usage (documentation)
