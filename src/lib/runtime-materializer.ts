@@ -255,9 +255,20 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
         await rm(targetPath, { force: true });
       } catch { continue; }
     }
-    try {
-      await symlink(sourcePath, targetPath);
-    } catch { /* race or permission — skip silently */ }
+
+    // .credentials.json must be COPIED (not symlinked) because Claude Code
+    // refreshes tokens via atomic write (write tmp → rename), which replaces
+    // symlinks with regular files, leaving the source stale.
+    if (name === ".credentials.json") {
+      const { copyFile } = await import("node:fs/promises");
+      try {
+        await copyFile(sourcePath, targetPath);
+      } catch { /* skip */ }
+    } else {
+      try {
+        await symlink(sourcePath, targetPath);
+      } catch { /* race or permission — skip silently */ }
+    }
   }
 }
 

@@ -586,6 +586,17 @@ export async function run(args: string[]): Promise<number> {
         const duration_s = Math.round((Date.now() - new Date(startTs).getTime()) / 1000);
         recordEvent({ ts: new Date().toISOString(), event: "end", profile: profileName, agent: agentKind, cwd: process.cwd(), duration_s });
       } catch { /* best-effort */ }
+      // Sync refreshed credentials back to source so next launch has valid tokens
+      if (credentialsSource) {
+        try {
+          const { copyFileSync, existsSync: ex } = require("node:fs");
+          const runtimeCreds = join(runtime.runtimeDir, ".credentials.json");
+          const sourceCreds = join(credentialsSource, ".credentials.json");
+          if (ex(runtimeCreds)) {
+            copyFileSync(runtimeCreds, sourceCreds);
+          }
+        } catch { /* best-effort */ }
+      }
     });
   } catch { /* analytics non-fatal */ }
 
