@@ -1,0 +1,11 @@
+name: trendradar
+icon: "📡"
+description: TrendRadar — news aggregation, trend analysis, AI-powered filtering, and notification dispatch via MCP
+inherits: core
+skills:
+  local:
+    - research/trendradar
+    - research/keyword-research
+mcps:
+  - trendradar
+plugins: []
