@@ -187,7 +187,7 @@ describe("materializeRuntime", () => {
     expect(st.isFile()).toBe(true);
   });
 
-  test("credentialsSource: merges existing settings.json (preserves permissions)", async () => {
+  test("credentialsSource: preserves account-level settings but isolates MCPs + plugins per profile", async () => {
     const credSrc = join(root, "creds");
     const { mkdir, writeFile } = await import("node:fs/promises");
     await mkdir(credSrc, { recursive: true });
@@ -197,8 +197,14 @@ describe("materializeRuntime", () => {
         permissions: { allow: ["Bash(*)"], defaultMode: "auto" },
         trustedDirectories: ["/home/user/work"],
         skipAutoPermissionPrompt: true,
-        enabledPlugins: { "existing@marketplace": true },
-        mcpServers: { existingMcp: { command: "x" } },
+        // These two MUST NOT leak into the profile runtime — the profile is
+        // the sole source of truth for MCPs + plugins. Otherwise every MCP
+        // the user has registered globally appears in EVERY profile, defeating
+        // isolation. Pinned by this test (regression: profiles like
+        // `cybersecurity` with `mcps: []` were inheriting random user-scoped
+        // MCPs like `teherguminet-admin` because of the merge).
+        enabledPlugins: { "user-globally-installed@marketplace": true },
+        mcpServers: { userGloballyInstalledMcp: { command: "x" } },
       }),
     );
 
@@ -213,17 +219,16 @@ describe("materializeRuntime", () => {
     });
 
     const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
-    // Account-level settings preserved
+    // Account-level settings preserved (these are user-scoped, not profile-scoped)
     expect(settings.permissions).toEqual({ allow: ["Bash(*)"], defaultMode: "auto" });
     expect(settings.trustedDirectories).toEqual(["/home/user/work"]);
     expect(settings.skipAutoPermissionPrompt).toBe(true);
-    // Profile plugins/mcps merged on top
+    // Profile plugins/mcps are EXCLUSIVE — only what the profile declared.
+    // The account-level entries from the source settings.json must NOT leak.
     expect(settings.enabledPlugins).toEqual({
-      "existing@marketplace": true,
       "frontend-design@claude-plugins-official": true,
     });
     expect(settings.mcpServers).toEqual({
-      existingMcp: { command: "x" },
       "claude-mem": { command: "claude-mem" },
     });
   });
@@ -285,5 +290,184 @@ describe("materializeRuntime", () => {
     const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
     expect(claudemd).not.toContain("$(date)");
     expect(claudemd).toMatch(/generated \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Rules / commands / hooks — ECC-derived resource paths
+  // ---------------------------------------------------------------------------
+
+  test("commands: symlinks each ref into commands/ and lists them in CLAUDE.md", async () => {
+    // Materializer resolves command refs against <repo>/resources/commands/<ref>.md
+    // — we already vendor a few of these, so use a known-good one.
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-cmds",
+      inheritanceChain: ["test-cmds"],
+      rules: [], hooks: [],
+      commands: ["code-review", "checkpoint"],
+    };
+    const out = await materializeRuntime({
+      profile, agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    });
+    const cmdLink = await readlink(join(out.runtimeDir, "commands", "code-review.md"));
+    expect(cmdLink).toContain("resources/commands/code-review.md");
+    const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
+    expect(claudemd).toContain("## Available Commands");
+    expect(claudemd).toContain("/code-review");
+    expect(claudemd).toContain("/checkpoint");
+  });
+
+  test("rules: symlinks into rules/ + writes index (NOT inlined bodies)", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-rules",
+      inheritanceChain: ["test-rules"],
+      commands: [], hooks: [],
+      rules: ["common/security", "common/testing"],
+    };
+    const out = await materializeRuntime({
+      profile, agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    });
+    const link = await readlink(join(out.runtimeDir, "rules", "security.md"));
+    expect(link).toContain("resources/rules/common/security.md");
+    const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
+    // Index reference present, but the rule body must NOT be inlined — the
+    // whole point of the symlink-only approach is to skip the token bleed.
+    expect(claudemd).toContain("## Rules (2)");
+    expect(claudemd).toContain("`rules/security.md`");
+    expect(claudemd).not.toMatch(/^## Security Review Triggers/m);
+  });
+
+  test("hooks: merges hook JSON into settings.json under matching event keys", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-hooks",
+      inheritanceChain: ["test-hooks"],
+      rules: [], commands: [],
+      hooks: ["bash-quality-preflight.json", "session-summary.json"],
+    };
+    const out = await materializeRuntime({
+      profile, agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    });
+    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    expect(settings.hooks.PreToolUse).toBeArray();
+    expect(settings.hooks.PreToolUse[0].matcher).toBe("Bash");
+    expect(settings.hooks.Stop).toBeArray();
+    expect(settings.hooks.Stop[0].hooks[0].id).toBe("cue:stop:session-summary");
+    // Symlinks also created under hooks/
+    const link = await readlink(join(out.runtimeDir, "hooks", "bash-quality-preflight.json"));
+    expect(link).toContain("resources/hooks/bash-quality-preflight.json");
+  });
+
+  // Claude Code reads MCP servers from .claude.json (top-level `mcpServers`),
+  // NOT from settings.json. The materializer must therefore merge profile MCPs
+  // into .claude.json — and copy (not symlink) it so mutations don't leak back
+  // into the shared account file.
+  test("merges profile MCPs into .claude.json + copies (not symlinks) it", async () => {
+    const credSrc = join(root, "creds");
+    const { mkdir, writeFile, lstat } = await import("node:fs/promises");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(
+      join(credSrc, ".claude.json"),
+      JSON.stringify({
+        numStartups: 42,
+        oauthAccount: { emailAddress: "u@example.com" },
+        mcpServers: { "preexisting": { command: "/bin/pre" } },
+      }),
+    );
+
+    const out = await materializeRuntime({
+      profile: sampleProfile,
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    });
+
+    // Must be a real file, not a symlink — otherwise mutations leak back to
+    // the source account file and pollute other profiles sharing the account.
+    const st = await lstat(join(out.runtimeDir, ".claude.json"));
+    expect(st.isSymbolicLink()).toBe(false);
+    expect(st.isFile()).toBe(true);
+
+    // Profile MCPs merged in under top-level `mcpServers`, preserving the
+    // source's preexisting entries and other top-level fields.
+    const cj = JSON.parse(await readFile(join(out.runtimeDir, ".claude.json"), "utf8"));
+    expect(cj.mcpServers["claude-mem"]).toEqual({ command: "claude-mem", args: [] });
+    expect(cj.mcpServers["preexisting"]).toEqual({ command: "/bin/pre" });
+    expect(cj.numStartups).toBe(42);
+    expect(cj.oauthAccount).toEqual({ emailAddress: "u@example.com" });
+
+    // Source .claude.json untouched — proof the copy isolates per-profile writes.
+    const src = JSON.parse(await readFile(join(credSrc, ".claude.json"), "utf8"));
+    expect(src.mcpServers).toEqual({ "preexisting": { command: "/bin/pre" } });
+  });
+
+  // Cache-hit path must also re-sync MCPs into .claude.json, so adding/removing
+  // an MCP to a profile takes effect even when the profile hash hasn't changed
+  // for unrelated reasons. (In practice, adding an MCP changes the hash — but
+  // an account swap with a different source .claude.json triggers a cache hit.)
+  test("cache hit: refreshes .claude.json mcpServers from current registry", async () => {
+    const credSrc = join(root, "creds");
+    const { mkdir, writeFile } = await import("node:fs/promises");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ numStartups: 1 }));
+
+    const args = {
+      profile: sampleProfile,
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem-v1" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    };
+    await materializeRuntime(args);
+
+    // Second build: same profile (hash hit) but registry changed.
+    const second = await materializeRuntime({
+      ...args,
+      mcpRegistry: { "claude-mem": { command: "claude-mem-v2" } },
+    });
+    expect(second.rebuilt).toBe(false);
+
+    const cj = JSON.parse(await readFile(join(second.runtimeDir, ".claude.json"), "utf8"));
+    expect(cj.mcpServers["claude-mem"]).toEqual({ command: "claude-mem-v2" });
+  });
+
+  test("missing rule/command/hook ref is non-fatal", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-missing",
+      inheritanceChain: ["test-missing"],
+      rules: ["does/not/exist"],
+      commands: ["ghost-command"],
+      hooks: ["nope.json"],
+    };
+    const out = await materializeRuntime({
+      profile, agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/source/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    });
+    expect(out.rebuilt).toBe(true);
+    // No symlinks created for missing refs — directories may exist but be empty.
+    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    expect(settings.hooks).toBeUndefined();
   });
 });

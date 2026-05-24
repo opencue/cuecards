@@ -94,6 +94,10 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
 
   const hash = computeHash(profile, agent);
 
+  // Collect profile MCP entries once — used by both cache-hit and rebuild paths
+  // for the .claude.json sync.
+  const mcpServers = collectProfileMcps(profile, agent, effectiveInput.mcpRegistry);
+
   // Short-circuit if hash matches.
   try {
     const existing = (await readFile(join(runtimeDir, ".cue-hash"), "utf8")).trim();
@@ -109,6 +113,9 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
         // Re-overlay any source entries that aren't already present (e.g.
         // user added a new sessions/ entry, plugins/, etc.).
         await overlaySourceState(runtimeDir, effectiveInput.credentialsSource);
+      }
+      if (agent === "claude-code") {
+        await syncMcpsIntoClaudeJson(runtimeDir, mcpServers);
       }
       return { runtimeDir, rebuilt: false, hash };
     }
@@ -129,11 +136,16 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     await symlink(src, target);
   }
 
+  // Defensive defaults — older fixtures may not declare these arrays.
+  const profileRules = profile.rules ?? [];
+  const profileCommands = profile.commands ?? [];
+  const profileHooks = profile.hooks ?? [];
+
   // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
-  if (agent === "claude-code" && profile.commands.length > 0) {
+  if (agent === "claude-code" && profileCommands.length > 0) {
     const commandsDir = join(tmpDir, "commands");
     await mkdir(commandsDir, { recursive: true });
-    for (const ref of profile.commands) {
+    for (const ref of profileCommands) {
       const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_COMMANDS);
       try {
         await lstat(src);
@@ -143,10 +155,10 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
 
   // 1c. Rules — symlink into rules/. Contents get appended to CLAUDE.md below.
-  if (profile.rules.length > 0) {
+  if (profileRules.length > 0) {
     const rulesDir = join(tmpDir, "rules");
     await mkdir(rulesDir, { recursive: true });
-    for (const ref of profile.rules) {
+    for (const ref of profileRules) {
       const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_RULES);
       try {
         await lstat(src);
@@ -156,25 +168,32 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
 
   // 1d. Hooks — symlink scripts into hooks/. settings.json wiring happens in buildClaudeSettings.
-  if (agent === "claude-code" && profile.hooks.length > 0) {
+  // A hook ref points at a `.json` config; its referenced script (e.g. `<stem>.sh`)
+  // lives next to it in resources/hooks/ and must be symlinked too, otherwise the
+  // Stop/PreToolUse/etc. hook fires `bash $CLAUDE_CONFIG_DIR/hooks/<stem>.sh` and
+  // dies with "No such file or directory".
+  if (agent === "claude-code" && profileHooks.length > 0) {
     const hooksDir = join(tmpDir, "hooks");
     await mkdir(hooksDir, { recursive: true });
-    for (const ref of profile.hooks) {
+    for (const ref of profileHooks) {
       const src = resolveResourcePath(ref, RESOURCES_HOOKS);
       try {
         await lstat(src);
         await symlink(src, join(hooksDir, basename(src)));
       } catch { /* missing source — skip */ }
+      const stem = basename(ref).replace(/\.[^.]+$/, "");
+      for (const ext of [".sh", ".py", ".js", ".mjs", ".ts"]) {
+        const companion = join(RESOURCES_HOOKS, `${stem}${ext}`);
+        try {
+          await lstat(companion);
+          await symlink(companion, join(hooksDir, `${stem}${ext}`));
+        } catch { /* no companion at this ext — skip */ }
+      }
     }
   }
 
   // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
-  const mcpServers: Record<string, McpServerConfig> = {};
-  for (const m of profile.mcps) {
-    if (!appliesToAgent(m, agent)) continue;
-    const reg = effectiveInput.mcpRegistry[m.id];
-    if (reg !== undefined) mcpServers[m.id] = reg;
-  }
+  // mcpServers was already collected above (used by both code paths).
   if (agent === "claude-code") {
     const merged = await buildClaudeSettings(profile, agent, effectiveInput);
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
@@ -241,16 +260,9 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     }
   } catch { /* analytics unavailable — skip */ }
 
-  // Profile fit monitoring
-  stamp += `## Profile Fit Monitor\n\n` +
-    `Track how well this profile matches the work being done. If you notice:\n` +
-    `- You're doing work outside this profile's domain (e.g. backend work in a frontend profile)\n` +
-    `- None of the loaded skills are relevant to what the user is asking\n` +
-    `- You keep needing tools/skills that aren't in this profile\n\n` +
-    `Then after completing the user's immediate request, suggest switching:\n\n` +
-    `> 💡 This session has been mostly [backend/infra/docs] work — your current profile is **${profile.name}**.\n` +
-    `> A better fit might be **[suggested]**. Switch with: \`/cue switch [name]\` or \`echo [name] > .cue-profile\`\n\n` +
-    `Only suggest once per session. Don't interrupt urgent work.\n\n`;
+  // Profile fit monitoring — formerly a ~150-token hardcoded block; now a
+  // skill (meta/profile-fit-monitor) loaded on demand. Net per-message cost
+  // drops to just the skill's description line in "## Available Skills".
 
   // #8: Warm-start context — last session summary
   const lastSession = await getLastSessionSummary(profile.name);
@@ -266,16 +278,16 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
 
   // Rules — index only. Symlinks live in rules/; Claude reads on demand instead
   // of paying the full token cost every turn.
-  if (profile.rules.length > 0) {
-    stamp += `## Rules (${profile.rules.length})\n\n` +
+  if (profileRules.length > 0) {
+    stamp += `## Rules (${profileRules.length})\n\n` +
       `Read on demand from \`rules/\`:\n` +
-      profile.rules.map((r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``).join("\n") + "\n\n";
+      profileRules.map((r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``).join("\n") + "\n\n";
   }
 
   // Commands — list as a quick reference
-  if (profile.commands.length > 0) {
+  if (profileCommands.length > 0) {
     stamp += `## Available Commands\n\n` +
-      profile.commands.map((c) => `- /${basename(c, ".md")}`).join("\n") + "\n\n";
+      profileCommands.map((c) => `- /${basename(c, ".md")}`).join("\n") + "\n\n";
   }
 
   stamp += `---\n*generated ${new Date().toISOString()} — do not hand-edit*\n\n`;
@@ -331,7 +343,54 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   await rm(runtimeDir, { recursive: true, force: true });
   await rename(tmpDir, runtimeDir);
 
+  if (agent === "claude-code") {
+    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers);
+  }
+
   return { runtimeDir, rebuilt: true, hash };
+}
+
+function collectProfileMcps(
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  registry: Record<string, McpServerConfig>,
+): Record<string, McpServerConfig> {
+  const out: Record<string, McpServerConfig> = {};
+  for (const m of profile.mcps) {
+    if (!appliesToAgent(m, agent)) continue;
+    const reg = registry[m.id];
+    if (reg !== undefined) out[m.id] = reg;
+  }
+  return out;
+}
+
+// Claude Code reads MCP server definitions from .claude.json's top-level
+// `mcpServers` field, not from settings.json. Without this sync, profile MCPs
+// declared in profile.yaml never get started.
+//
+// We dereference any symlink first and write a real file in its place so
+// per-profile MCP additions don't leak back into a shared account-level
+// .claude.json (e.g. multiple cue profiles backed by the same account file).
+async function syncMcpsIntoClaudeJson(
+  runtimeDir: string,
+  mcpServers: Record<string, McpServerConfig>,
+): Promise<void> {
+  const target = join(runtimeDir, ".claude.json");
+  let parsed: Record<string, unknown> = {};
+  try {
+    const raw = await readFile(target, "utf8"); // follows symlink
+    parsed = JSON.parse(raw);
+  } catch {
+    // missing or unreadable — start with an empty doc; claude will fill the
+    // rest on next startup. If the file isn't valid JSON we'd lose state, but
+    // claude itself would also fail to read it, so a clean rewrite is fine.
+  }
+  const existing = (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
+  parsed.mcpServers = { ...existing, ...mcpServers };
+
+  // Replace whatever's there (symlink or stale file) with a real file copy.
+  await rm(target, { force: true });
+  await writeFile(target, JSON.stringify(parsed, null, 2));
 }
 
 // Build the merged Claude Code settings.json content (string).
@@ -441,12 +500,7 @@ async function buildClaudeSettings(
     if (!appliesToAgent(plugin, agent)) continue;
     enabledPlugins[plugin.id] = true;
   }
-  const mcpServers: Record<string, McpServerConfig> = {};
-  for (const m of profile.mcps) {
-    if (!appliesToAgent(m, agent)) continue;
-    const reg = input.mcpRegistry[m.id];
-    if (reg !== undefined) mcpServers[m.id] = reg;
-  }
+  const mcpServers = collectProfileMcps(profile, agent, input.mcpRegistry);
   let baseSettings: Record<string, unknown> = {};
   if (input.credentialsSource) {
     try {
@@ -463,7 +517,7 @@ async function buildClaudeSettings(
   for (const [k, v] of Object.entries(baseHooks)) {
     mergedHooks[k] = Array.isArray(v) ? [...v] : [];
   }
-  for (const ref of profile.hooks) {
+  for (const ref of (profile.hooks ?? [])) {
     const src = resolveResourcePath(ref, RESOURCES_HOOKS);
     try {
       const raw = await readFile(src, "utf8");
@@ -477,8 +531,16 @@ async function buildClaudeSettings(
 
   const settings: Record<string, unknown> = {
     ...baseSettings,
-    enabledPlugins: { ...(baseSettings.enabledPlugins as Record<string, unknown> ?? {}), ...enabledPlugins },
-    mcpServers: { ...(baseSettings.mcpServers as Record<string, unknown> ?? {}), ...mcpServers },
+    // MCPs are profile-scoped — do NOT merge baseSettings.mcpServers in.
+    // Otherwise every MCP registered in the user's source ~/.claude/settings.json
+    // (or ~/.claude-accounts/<acct>/settings.json) leaks into every profile's
+    // runtime, defeating profile isolation. Profiles like `cybersecurity` that
+    // declare `mcps: []` would otherwise show whatever the user has globally.
+    mcpServers,
+    // Same reasoning for plugins: profile is the source of truth. `enabledPlugins`
+    // controls Claude Code's plugin marketplace toggles per-profile; merging from
+    // baseSettings would re-enable marketing plugins inside a backend profile.
+    enabledPlugins,
   };
   if (Object.keys(mergedHooks).length > 0) {
     settings.hooks = mergedHooks;
