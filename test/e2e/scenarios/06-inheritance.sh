@@ -15,7 +15,7 @@ import { pathToFileURL } from "node:url";
 import { join } from "node:path";
 
 const repo = process.argv[2];
-const loaderUrl = pathToFileURL(join(repo, "bin/cli/lib/profile-loader.ts")).href;
+const loaderUrl = pathToFileURL(join(repo, "src/lib/profile-loader.ts")).href;
 const { loadProfile } = await import(loaderUrl);
 
 const core = await loadProfile("core");
@@ -25,18 +25,24 @@ if (chain !== "core -> medusa-dev") {
   throw new Error(`expected core -> medusa-dev inheritance chain, got ${chain}`);
 }
 
-for (const skill of core.skills.local) {
-  if (!child.skills.local.includes(skill)) {
+const coreLocalSkills = core.skills.local.map((s) => (typeof s === "string" ? s : s.id));
+const childLocalSkills = child.skills.local.map((s) => (typeof s === "string" ? s : s.id));
+for (const skill of coreLocalSkills) {
+  if (!childLocalSkills.includes(skill)) {
     throw new Error(`medusa-dev did not inherit core local skill ${skill}`);
   }
 }
-for (const plugin of core.skills.plugins) {
-  if (!child.skills.plugins.includes(plugin)) {
+const corePlugins = (core.plugins ?? []).map((p) => p.id);
+const childPlugins = (child.plugins ?? []).map((p) => p.id);
+for (const plugin of corePlugins) {
+  if (!childPlugins.includes(plugin)) {
     throw new Error(`medusa-dev did not inherit core plugin ${plugin}`);
   }
 }
-for (const mcp of core.mcps) {
-  if (!child.mcps.includes(mcp)) {
+const coreMcps = core.mcps.map((m) => (typeof m === "string" ? m : m.id));
+const childMcps = child.mcps.map((m) => (typeof m === "string" ? m : m.id));
+for (const mcp of coreMcps) {
+  if (!childMcps.includes(mcp)) {
     throw new Error(`medusa-dev did not inherit core MCP ${mcp}`);
   }
 }

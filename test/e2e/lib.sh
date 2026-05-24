@@ -37,6 +37,13 @@ ensure_temp_home() {
   if [ "${SOUL_E2E_HOME_READY:-0}" != "1" ]; then
     export HOME="$SOUL_E2E_WORK/home"
     mkdir -p "$HOME"
+    # Stub plugin dirs so the validate resolver finds them in the temp HOME.
+    # The resolver only checks the plugin dir exists; an empty skills/ tree
+    # is valid and contributes zero plans.
+    mkdir -p \
+      "$HOME/.claude/plugins/claude-mem" \
+      "$HOME/.claude/plugins/marketing-skills" \
+      "$HOME/.claude/plugins/claude-video-vision"
     SOUL_E2E_HOME_READY=1
     export SOUL_E2E_HOME_READY
   fi
