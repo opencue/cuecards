@@ -335,8 +335,34 @@ async function findRealBinary(name: string): Promise<string | null> {
  *      account they touched most recently)
  *   4. ~/.claude as last-resort fallback (materializer will skip the copy if
  *      .credentials.json isn't there)
+ *
+ * Once the source is chosen, we run a "freshness sweep": Anthropic's OAuth
+ * rotates the refresh token on every refresh, so any per-profile cue runtime
+ * that ran more recently than the source has *the* live refresh token, and
+ * source's copy is dead. Without healing, materializing a new profile would
+ * copy the dead token in and force a re-login. `syncFreshestToSource` looks
+ * across `runtime/<profile>/claude/.credentials.json` for matching
+ * accountUuid and copies the freshest one back to source.
  */
 async function resolveClaudeCredentialsSource(): Promise<string> {
+  const picked = await pickClaudeCredentialsSource();
+  // Heal source from freshest sibling runtime (if any). Silent best-effort.
+  try {
+    const { syncFreshestToSource } = await import("../lib/credentials-sync");
+    const runtimeRoot = join(configDir(), "runtime");
+    const result = await syncFreshestToSource(picked, runtimeRoot);
+    if (result.synced) {
+      // Tiny breadcrumb so users can see when the heal kicked in. Stays on
+      // stderr so it doesn't pollute pipelines or `claude --print` output.
+      process.stderr.write(
+        `▸ cue: refreshed source credentials from a sibling runtime (rotated refresh-token healed)\n`,
+      );
+    }
+  } catch { /* heal is best-effort — never block the launch */ }
+  return picked;
+}
+
+async function pickClaudeCredentialsSource(): Promise<string> {
   if (process.env.CLAUDE_CONFIG_DIR) return process.env.CLAUDE_CONFIG_DIR;
 
   const homeClaude = join(homedir(), ".claude");
