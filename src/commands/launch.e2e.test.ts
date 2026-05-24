@@ -12,11 +12,19 @@ import { spawnSync } from "node:child_process";
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 
 function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> } = {}): { status: number; stdout: string; stderr: string } {
+  // Strip env vars set when the test runner itself is running inside a cue
+  // session — they propagate to the child cue invocation and break it in
+  // ways that have nothing to do with the test:
+  //   CUE_LAUNCHING=1       → triggers the shim-recursion guard
+  //   CLAUDE_CONFIG_DIR=... → triggers isAccountAlias → forces picker → fails on non-TTY
+  const cleanEnv = { ...process.env, ...opts.env };
+  delete cleanEnv.CUE_LAUNCHING;
+  delete cleanEnv.CLAUDE_CONFIG_DIR;
   const res = spawnSync("bun", ["run", CUE_BIN, ...args], {
     encoding: "utf8",
     timeout: 15000,
     cwd: opts.cwd ?? process.cwd(),
-    env: { ...process.env, ...opts.env },
+    env: cleanEnv,
   });
   return { status: res.status ?? 1, stdout: res.stdout ?? "", stderr: res.stderr ?? "" };
 }
