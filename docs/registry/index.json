@@ -63,6 +63,16 @@
       "profile": "cybersecurity"
     },
     {
+      "id": "agentshield",
+      "name": "AgentShield",
+      "description": "Security auditor for AI agent configurations — scans .claude/, settings.json, mcp.json, hooks, and agents for secrets, permission misconfigs, hook injection, MCP supply-chain risks, and prompt-injection vectors",
+      "repo": "affaan-m/agentshield",
+      "path": "skills/security/agentshield",
+      "tags": ["security", "claude-code", "mcp", "audit", "agent-security", "ecc"],
+      "requires": ["node"],
+      "profile": "cybersecurity"
+    },
+    {
       "id": "rtk-context-trim",
       "name": "RTK Context Trim",
       "description": "Trim shell output tokens using RTK — 60-90% savings on ls/git/cat",

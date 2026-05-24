@@ -8,6 +8,7 @@ skills:
     - review/code-review
     - review/security-best-practices
     - review/security-review
+    - security/agentshield
     - stripe/stripe-best-practices
     - stripe/stripe-webhooks
     - deployment/supabase

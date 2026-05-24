@@ -1,9 +1,10 @@
 name: cybersecurity
 icon: "🔒"
-description: "Skills from mukul975/Anthropic-Cybersecurity-Skills"
+description: "Skills from mukul975/Anthropic-Cybersecurity-Skills + agentshield (agent config auditor)"
 inherits: core
 skills:
   local:
+    - security/agentshield
     - acquiring-disk-image-with-dd-and-dcfldd
     - analyzing-active-directory-acl-abuse
     - analyzing-android-malware-with-apktool
