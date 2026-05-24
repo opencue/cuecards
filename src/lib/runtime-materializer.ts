@@ -12,6 +12,7 @@ import { mkdir, rename, rm, symlink, writeFile, readFile, mkdtemp, readdir, lsta
 import { dirname, join } from "node:path";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
+import { normalizeUvxGitServers } from "./uvx-installer";
 
 /** MCP server configuration as stored in the registry. */
 export interface McpServerConfig {
@@ -66,6 +67,21 @@ function computeHash(profile: ResolvedProfile, agent: AgentKind): string {
 export async function materializeRuntime(input: MaterializeInput): Promise<MaterializeOutput> {
   const { profile, agent, runtimeRoot } = input;
   const runtimeDir = join(runtimeRoot, profile.name, agentSubdir(agent));
+
+  // Normalize any `uvx --from git+<repo> <bin>` MCP entries: install the
+  // package locally with `uv tool install` and rewrite the entry to call the
+  // installed binary. Sidesteps both the MCP-startup cold-download race and
+  // the auto-mode classifier's "fetch arbitrary code from URL" block.
+  // Idempotent — re-runs detect an existing binary and just rewrite.
+  const { normalized: normalizedRegistry, report: uvxReport } =
+    normalizeUvxGitServers(input.mcpRegistry);
+  const effectiveInput: MaterializeInput = { ...input, mcpRegistry: normalizedRegistry };
+  if (uvxReport.installed.length > 0) {
+    process.stderr.write(
+      `[cue] installed uvx MCPs: ${uvxReport.installed.join(", ")}\n`,
+    );
+  }
+
   const hash = computeHash(profile, agent);
 
   // Short-circuit if hash matches.
@@ -74,15 +90,15 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     if (existing === hash) {
       // Refresh state from credentialsSource even on cache hit so account
       // switches and newly-added source entries are reflected.
-      if (input.credentialsSource) {
+      if (effectiveInput.credentialsSource) {
         // Re-merge settings.json from current credentialsSource.
         if (agent === "claude-code") {
-          const merged = await buildClaudeSettings(profile, agent, input);
+          const merged = await buildClaudeSettings(profile, agent, effectiveInput);
           await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
         }
         // Re-overlay any source entries that aren't already present (e.g.
         // user added a new sessions/ entry, plugins/, etc.).
-        await overlaySourceState(runtimeDir, input.credentialsSource);
+        await overlaySourceState(runtimeDir, effectiveInput.credentialsSource);
       }
       return { runtimeDir, rebuilt: false, hash };
     }
@@ -107,11 +123,11 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   const mcpServers: Record<string, McpServerConfig> = {};
   for (const m of profile.mcps) {
     if (!appliesToAgent(m, agent)) continue;
-    const reg = input.mcpRegistry[m.id];
+    const reg = effectiveInput.mcpRegistry[m.id];
     if (reg !== undefined) mcpServers[m.id] = reg;
   }
   if (agent === "claude-code") {
-    const merged = await buildClaudeSettings(profile, agent, input);
+    const merged = await buildClaudeSettings(profile, agent, effectiveInput);
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
     // Codex equivalent — write config.toml from registry. Caller pre-renders to TOML.
