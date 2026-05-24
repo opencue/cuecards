@@ -9,10 +9,20 @@
 
 import { createHash } from "node:crypto";
 import { mkdir, rename, rm, symlink, writeFile, readFile, mkdtemp, readdir, lstat } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve as resolvePath, basename, isAbsolute } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
 import { normalizeUvxGitServers } from "./uvx-installer";
+
+const REPO_ROOT = resolvePath(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const RESOURCES_RULES = join(REPO_ROOT, "resources", "rules");
+const RESOURCES_COMMANDS = join(REPO_ROOT, "resources", "commands");
+const RESOURCES_HOOKS = join(REPO_ROOT, "resources", "hooks");
+
+function resolveResourcePath(ref: string, base: string): string {
+  return isAbsolute(ref) ? ref : join(base, ref);
+}
 
 /** MCP server configuration as stored in the registry. */
 export interface McpServerConfig {
@@ -119,6 +129,45 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     await symlink(src, target);
   }
 
+  // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
+  if (agent === "claude-code" && profile.commands.length > 0) {
+    const commandsDir = join(tmpDir, "commands");
+    await mkdir(commandsDir, { recursive: true });
+    for (const ref of profile.commands) {
+      const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_COMMANDS);
+      try {
+        await lstat(src);
+        await symlink(src, join(commandsDir, basename(src)));
+      } catch { /* missing source — skip */ }
+    }
+  }
+
+  // 1c. Rules — symlink into rules/. Contents get appended to CLAUDE.md below.
+  if (profile.rules.length > 0) {
+    const rulesDir = join(tmpDir, "rules");
+    await mkdir(rulesDir, { recursive: true });
+    for (const ref of profile.rules) {
+      const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_RULES);
+      try {
+        await lstat(src);
+        await symlink(src, join(rulesDir, basename(src)));
+      } catch { /* missing source — skip */ }
+    }
+  }
+
+  // 1d. Hooks — symlink scripts into hooks/. settings.json wiring happens in buildClaudeSettings.
+  if (agent === "claude-code" && profile.hooks.length > 0) {
+    const hooksDir = join(tmpDir, "hooks");
+    await mkdir(hooksDir, { recursive: true });
+    for (const ref of profile.hooks) {
+      const src = resolveResourcePath(ref, RESOURCES_HOOKS);
+      try {
+        await lstat(src);
+        await symlink(src, join(hooksDir, basename(src)));
+      } catch { /* missing source — skip */ }
+    }
+  }
+
   // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
   const mcpServers: Record<string, McpServerConfig> = {};
   for (const m of profile.mcps) {
@@ -215,6 +264,20 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     stamp += `## Common Workflows\n\n${chains}\n\n`;
   }
 
+  // Rules — index only. Symlinks live in rules/; Claude reads on demand instead
+  // of paying the full token cost every turn.
+  if (profile.rules.length > 0) {
+    stamp += `## Rules (${profile.rules.length})\n\n` +
+      `Read on demand from \`rules/\`:\n` +
+      profile.rules.map((r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``).join("\n") + "\n\n";
+  }
+
+  // Commands — list as a quick reference
+  if (profile.commands.length > 0) {
+    stamp += `## Available Commands\n\n` +
+      profile.commands.map((c) => `- /${basename(c, ".md")}`).join("\n") + "\n\n";
+  }
+
   stamp += `---\n*generated ${new Date().toISOString()} — do not hand-edit*\n\n`;
 
   await writeFile(join(tmpDir, agent === "claude-code" ? "CLAUDE.md" : "AGENTS.md"), stamp + input.userClaudeMd);
@@ -279,6 +342,9 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
 const CUE_MANAGED_ENTRIES = new Set([
   "settings.json",
   "skills",
+  "commands",
+  "hooks",
+  "rules",
   "CLAUDE.md",
   "AGENTS.md",
   ".cue-hash",
@@ -388,11 +454,35 @@ async function buildClaudeSettings(
       baseSettings = JSON.parse(raw);
     } catch { /* no existing settings — start fresh */ }
   }
-  const settings = {
+
+  // Merge profile hooks. A hook ref points to a JSON file with shape
+  // { hooks: { PreToolUse: [...], ... } } — same shape Claude Code expects.
+  // Multiple hook files concat their event arrays under each lifecycle key.
+  let mergedHooks: Record<string, unknown[]> = {};
+  const baseHooks = (baseSettings.hooks as Record<string, unknown[]> | undefined) ?? {};
+  for (const [k, v] of Object.entries(baseHooks)) {
+    mergedHooks[k] = Array.isArray(v) ? [...v] : [];
+  }
+  for (const ref of profile.hooks) {
+    const src = resolveResourcePath(ref, RESOURCES_HOOKS);
+    try {
+      const raw = await readFile(src, "utf8");
+      const parsed = JSON.parse(raw) as { hooks?: Record<string, unknown[]> };
+      for (const [event, entries] of Object.entries(parsed.hooks ?? {})) {
+        if (!Array.isArray(entries)) continue;
+        mergedHooks[event] = [...(mergedHooks[event] ?? []), ...entries];
+      }
+    } catch { /* missing or malformed — skip */ }
+  }
+
+  const settings: Record<string, unknown> = {
     ...baseSettings,
     enabledPlugins: { ...(baseSettings.enabledPlugins as Record<string, unknown> ?? {}), ...enabledPlugins },
     mcpServers: { ...(baseSettings.mcpServers as Record<string, unknown> ?? {}), ...mcpServers },
   };
+  if (Object.keys(mergedHooks).length > 0) {
+    settings.hooks = mergedHooks;
+  }
   return JSON.stringify(settings, null, 2);
 }
 

@@ -87,6 +87,24 @@
       "type": "object",
       "additionalProperties": { "type": "string" },
       "description": "Env vars set when this profile is materialized; values may contain ${VAR} placeholders."
+    },
+    "rules": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "default": [],
+      "description": "Rule files (relative to resources/rules/ or absolute) loaded into the session. Enforce coding standards, security policies, etc."
+    },
+    "commands": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "default": [],
+      "description": "Slash command files (relative to resources/commands/) scoped to this profile."
+    },
+    "hooks": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "default": [],
+      "description": "Hook scripts (relative to resources/hooks/) activated for this profile. Lifecycle: PreToolUse, PostToolUse, SessionStart, SessionEnd, Stop."
     }
   },
   "$defs": {

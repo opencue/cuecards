@@ -373,6 +373,9 @@ function foldChain(chain: Profile[]): ResolvedProfile {
         child.plugins?.map(normalizePluginRef),
       ),
       env: mergeEnv(acc.env, child.env),
+      rules: dedupePrimitiveArray(acc.rules, child.rules),
+      commands: dedupePrimitiveArray(acc.commands, child.commands),
+      hooks: dedupePrimitiveArray(acc.hooks, child.hooks),
       inheritanceChain: [...acc.inheritanceChain, child.name],
     };
   }
@@ -401,6 +404,9 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     mcps: (p.mcps ?? []).map(normalizeMCPRef),
     plugins: (p.plugins ?? []).map(normalizePluginRef),
     env: { ...(p.env ?? {}) },
+    rules: [...(p.rules ?? [])],
+    commands: [...(p.commands ?? [])],
+    hooks: [...(p.hooks ?? [])],
     inheritanceChain: chain,
   };
 }

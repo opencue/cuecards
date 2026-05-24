@@ -1,0 +1,24 @@
+name: ecc
+icon: "🦅"
+description: Everything Claude Code patterns — code review, dev workflow, language-specific rules
+inherits: core
+skills:
+  local: []
+rules:
+  - common/code-review
+  - common/coding-style
+  - common/development-workflow
+  - common/git-workflow
+  - common/security
+  - common/testing
+  - typescript/coding-style
+  - typescript/patterns
+  - typescript/security
+  - typescript/testing
+commands:
+  - code-review
+  - checkpoint
+  - feature-dev
+  - build-fix
+  - cost-report
+  - aside

@@ -43,6 +43,9 @@ export interface Profile {
   mcps?: MCPRef[];
   plugins?: PluginRef[];
   env?: Record<string, string>;
+  rules?: string[];
+  commands?: string[];
+  hooks?: string[];
 }
 
 // In the resolved (post-inherit) form every ref is normalized to its object shape.
@@ -59,6 +62,9 @@ export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plug
   mcps: ResolvedMCP[];
   plugins: ResolvedPlugin[];
   env: Record<string, string>;
+  rules: string[];
+  commands: string[];
+  hooks: string[];
   inheritanceChain: string[];
 }
 
