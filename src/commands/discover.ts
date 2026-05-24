@@ -90,6 +90,11 @@ const SEARCH_QUERIES = [
   { q: "\"allowed-tools\" in:file extension:md pushed:>{RECENT}", label: "allowed-tools frontmatter" },
   // MCP SDK dependents
   { q: "\"@modelcontextprotocol/sdk\" in:file filename:package.json", label: "MCP SDK users" },
+  // Popular repos (high stars) — find the big ones people already use
+  { q: "path:SKILL.md stars:>50", label: "popular skills (★50+)" },
+  { q: "topic:claude-code stars:>100", label: "popular claude-code (★100+)" },
+  { q: "topic:mcp-server stars:>100", label: "popular MCP servers (★100+)" },
+  { q: "\"claude\" \"skill\" in:readme stars:>200 pushed:>{RECENT}", label: "popular claude repos (★200+)" },
 ];
 
 function recentDate(): string {
