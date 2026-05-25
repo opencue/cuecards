@@ -1,0 +1,52 @@
+# VOLARIA — Postiz account map
+#
+# Lists the Postiz integrations that publish under this brand. The agent
+# looks this up before posting and confirms the (brand, account) pair
+# with the user. If an integration is missing here, the agent prompts
+# the user for the handle/ID and offers to append it.
+#
+# Discover live integration IDs:
+#   postiz integrations:list -o json | jq '.[] | {id, identifier, providerIdentifier, name}'
+# or via MCP:
+#   mcp__postiz__list_integrations
+#
+# Edit this file when you connect a new Volaria account in Postiz.
+
+brand: volaria
+
+# Postiz integration IDs per platform. Fill in actual IDs from
+# `postiz integrations:list` — placeholders here are templates only.
+accounts:
+  x:
+    handle: "@volaria"           # TODO confirm
+    integration_id: ""           # TODO from postiz integrations:list
+    primary: true
+  threads:
+    handle: "@volaria"           # TODO confirm
+    integration_id: ""
+  instagram:
+    handle: "@volaria"           # TODO confirm
+    integration_id: ""
+  linkedin:
+    handle: "volaria-financial"  # TODO confirm
+    integration_id: ""
+
+# Default publish targets per content type. Agent posts to ALL listed
+# platforms unless the user overrides at publish time.
+defaults:
+  card-image:       [x, threads, instagram]   # the 4:5 vertical card format
+  thread:           [x]                        # X-only by design
+  article-link:     [x, threads, linkedin]    # blog post share
+  breaking-news:    [x, threads]               # speed-first, image optional
+
+# Cadence guardrails. Agent warns (does not block) if the queue would
+# exceed these in any 24h window.
+cadence:
+  max_posts_per_day:   6
+  min_minutes_between: 45
+  blackout_hours_utc:  [0, 1, 2, 3, 4]  # don't schedule during dead hours
+
+# Compliance notes the agent must respect for this brand.
+compliance:
+  - "Not financial advice — append disclaimer to any trade-actionable copy."
+  - "Never name specific clients or AUM figures in public posts."

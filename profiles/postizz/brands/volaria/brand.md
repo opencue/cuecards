@@ -30,6 +30,25 @@ Authoritative, dry-witty, market-aware. Drop opinions confidently.
 Never hedge. Avoid finfluencer cringe ("to the moon", emoji-spam,
 "this is huge"). Tickers stay clean (`$NVDA`, not `$NVDA 🚀`).
 
+## Composite voices (article-writer)
+
+When invoking `/article` (article-writer skill) under VOLARIA, use these
+voice mixes by default. Voice definitions live in the article-writer
+skill's [voices library](../../../../../resources/skills/skills/content/article-writer/voices.md).
+Do not invent new voices — add them to the shared library so other
+brands can reuse them.
+
+| Preset | Default voice mix | Notes |
+|---|---|---|
+| `qa-interview` | `macro-strategist, eu-prime-broker, us-vc-partner` | Pick 2-3. Add `hk-allocator` for Asia-tilted topics, `defense-procurement` for dual-use / supply-chain stories. |
+| `op-ed` | `none` | VOLARIA op-eds are single-author voice. Use the brand voice above. |
+| `sector-analysis` | `macro-strategist, quant-hedge, ai-infra-founder` | Swap `ai-infra-founder` for `defense-procurement` / `eu-policy-analyst` depending on the sector. |
+| `listicle` | `none` | Crisp brand voice; no composite quotes. |
+| `breaking-news` | `none` | Lede + context only. If a quote is essential, use one voice — never a multi-voice panel for breaking. |
+
+Composite-voice articles MUST include the standard composite-voices
+disclaimer in frontmatter (see article-writer SKILL.md, Phase 2).
+
 ## Card template — 4:5 vertical meme news card
 
 Use this as the system prompt for image-gen calls when posting a

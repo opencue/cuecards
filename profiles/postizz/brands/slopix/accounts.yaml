@@ -1,0 +1,12 @@
+# slopix_ — Postiz account map (placeholder)
+#
+# Fill this in alongside brand.md before the agent will publish under
+# this brand. Until then, posting attempts will halt and prompt for
+# the missing handles/IDs.
+
+brand: slopix
+
+accounts: {}    # TODO add platform integrations
+defaults: {}
+cadence: {}
+compliance: []

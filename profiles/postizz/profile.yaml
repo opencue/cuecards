@@ -9,20 +9,20 @@ recommends:
 skills:
   local:
     - content/trend-to-thread   # end-to-end pipeline: trendradar → article → X thread → Higgsfield → Postiz draft
+    - content/article-writer    # topic-agnostic long-form writer (5 presets + voice library + source-discipline)
+    - content/article-to-everywhere   # fan-out finished article → X + LinkedIn + Substack + Reddit derivatives
   npx:
     - repo: gitroomhq/postiz-agent
       skills: [postiz-agent]
-    # Blog/SEO/GEO skills for long-form content that drives social posts
+    # Blog/SEO/GEO skills that actually fire in a social-posting flow.
+    # Audit-heavy skills (content-quality-auditor, meta-tags-optimizer,
+    # entity-optimizer) live on the blog-writer profile — use
+    # `cue use blog-writer+postizz` when you need both surfaces.
     - repo: aaron-he-zhu/seo-geo-claude-skills
       skills:
         - seo-content-writer
         - geo-content-optimizer
         - content-refresher
-        - content-quality-auditor
-        - meta-tags-optimizer
-        - entity-optimizer
-    - repo: sanity-io/agent-toolkit
-      skills: [seo-aeo-best-practices]
     - repo: promptingcompany/agent-skills
       skills: [generative-engine-optimization]
     - repo: aahl/skills
@@ -31,6 +31,10 @@ mcps:
   - postiz
 rules:
   - postiz/x-cashtag-limit
+commands:
+  - brand-status   # /brand-status — list registered brands + Postiz drift check
+  - post-as        # /post-as <brand> — full brand-aware post composer
+  - article-as     # /article-as <brand> <preset> — brand-aware article-writer shortcut
 env:
   POSTIZ_API_URL: "http://localhost:4007/api"
   POSTIZ_API_KEY: "${POSTIZ_API_KEY}"
