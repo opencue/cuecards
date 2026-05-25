@@ -38,6 +38,16 @@
       "pattern": "^[a-z][a-z0-9-]{1,63}$",
       "description": "Single parent profile name. Depth ≤ 3, cycles forbidden."
     },
+    "recommends": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]{1,63}$"
+      },
+      "uniqueItems": true,
+      "default": [],
+      "description": "Companion profile names suggested at activation time (cue use prints them and offers to compose via 'a+b+c'). Metadata only — does not auto-merge skills/MCPs."
+    },
     "skills": {
       "type": "object",
       "additionalProperties": false,

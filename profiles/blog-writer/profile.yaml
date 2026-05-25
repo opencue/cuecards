@@ -2,6 +2,9 @@ name: blog-writer
 icon: "✍️"
 description: SEO + GEO blog writing — keyword research, AI-citation optimization, content audits, schema, refresh, rank tracking
 inherits: core
+recommends:
+  - postizz       # distribute the post — schedule across 32+ social platforms
+  - trendradar    # find what to write about — trend/news aggregation
 skills:
   npx:
     # aaron-he-zhu/seo-geo-claude-skills — 20-skill SEO+GEO pack (CORE-EEAT + CITE frameworks)

@@ -2,10 +2,14 @@ name: trendradar
 icon: "📡"
 description: TrendRadar — news aggregation, trend analysis, AI-powered filtering, and notification dispatch via MCP
 inherits: core
+recommends:
+  - blog-writer   # turn trending topics into SEO/GEO-optimized long-form content
+  - postizz       # push the trending angle out across social platforms
 skills:
   local:
     - research/trendradar
     - research/keyword-research
+    - nvidia/aiq-research
 mcps:
   - trendradar
 plugins: []

@@ -39,6 +39,11 @@ export interface Profile {
   iconImage?: string;
   agents?: AgentKind[];
   inherits?: string;
+  // Companion profiles surfaced at `cue use` time as suggestions. Activating
+  // them is opt-in: the user is offered `cue use <name>+<rec1>+<rec2>` which
+  // composes via foldComposite. Recommendations are NOT inherited and do NOT
+  // auto-merge skills/MCPs — purely a discovery hint.
+  recommends?: string[];
   skills?: ProfileSkills;
   mcps?: MCPRef[];
   plugins?: PluginRef[];
@@ -84,6 +89,7 @@ export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plug
   playbooks: string[];
   qualityGates: string[];
   evals: string[];
+  recommends: string[];
   inheritanceChain: string[];
 }
 

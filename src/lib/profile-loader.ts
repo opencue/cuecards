@@ -3,6 +3,10 @@
  * draft-07 schema in `profiles/schema.json`, and resolves the `inherits`
  * chain into a fully-merged `ResolvedProfile`.
  *
+ * Also supports composite selectors of the form `a+b[+c…]` — each part is
+ * loaded independently (full inherits chain resolved per part) and the
+ * resulting `ResolvedProfile`s are unioned together. See `foldComposite`.
+ *
  * Pure-ish: the only side effects are filesystem reads under `profiles/`.
  * Never throws raw — every failure surfaces as a typed `ProfileError` subclass
  * from `profiles/_types.ts`.
@@ -382,6 +386,7 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       playbooks: dedupePrimitiveArray(acc.playbooks, child.playbooks),
       qualityGates: dedupePrimitiveArray(acc.qualityGates, child.qualityGates),
       evals: dedupePrimitiveArray(acc.evals, child.evals),
+      recommends: dedupePrimitiveArray(acc.recommends, child.recommends),
       inheritanceChain: [...acc.inheritanceChain, child.name],
     };
   }
@@ -417,6 +422,7 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     playbooks: [...(p.playbooks ?? [])],
     qualityGates: [...(p.qualityGates ?? [])],
     evals: [...(p.evals ?? [])],
+    recommends: [...(p.recommends ?? [])],
     inheritanceChain: chain,
   };
 }
@@ -426,18 +432,138 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
 // ---------------------------------------------------------------------------
 
 /**
+ * Parse a profile selector into its component profile names.
+ *
+ * Plain names pass through as a single-element array. Composite selectors
+ * use `+` as separator (e.g. `"postizz+trendradar"`). Whitespace around each
+ * part is trimmed and empty parts are rejected.
+ */
+export function parseProfileSelector(selector: string): string[] {
+  const parts = selector.split("+").map((p) => p.trim()).filter((p) => p.length > 0);
+  if (parts.length === 0) {
+    throw new ProfileError(
+      "INVALID_SELECTOR",
+      `Profile selector "${selector}" is empty after parsing`,
+    );
+  }
+  return parts;
+}
+
+/** True when the selector names two or more profiles to merge. */
+export function isCompositeSelector(selector: string): boolean {
+  return selector.includes("+") && parseProfileSelector(selector).length > 1;
+}
+
+/**
+ * Fold an ordered list of already-resolved profiles into one composite
+ * `ResolvedProfile`.
+ *
+ * Merge rules (left-first, right-last semantics):
+ *   - `name`: synthesized from the selector (`"a+b"`)
+ *   - `description`: joined with " + "
+ *   - `icon`/`iconImage`: first non-empty wins
+ *   - `agents`: union with dedupe
+ *   - `inherits`: dropped (each component is already flattened)
+ *   - `skills`/`mcps`/`plugins`: union by id, later wins on collision
+ *   - `env`: shallow merge, later wins on collision
+ *   - `rules`/`commands`/`hooks`/`playbooks`/`qualityGates`/`evals`: dedupe-concat
+ *   - `persona`: concatenated with `## <profile name>` headers so both
+ *     personas stay legible. Empty personas are skipped.
+ *   - `inheritanceChain`: each part's chain joined with `+`
+ */
+function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProfile {
+  if (parts.length === 0) {
+    throw new ProfileError("EMPTY_COMPOSITE", `Composite selector "${selector}" resolved to zero profiles`);
+  }
+  if (parts.length === 1) return parts[0]!;
+
+  const head = parts[0]!;
+  let acc: ResolvedProfile = {
+    name: selector,
+    description: parts.map((p) => p.description).join(" + "),
+    icon: parts.find((p) => p.icon)?.icon,
+    iconImage: parts.find((p) => p.iconImage)?.iconImage,
+    agents: [...head.agents] as ResolvedProfile["agents"],
+    inherits: undefined,
+    skills: { local: [...head.skills.local], npx: [...head.skills.npx] },
+    mcps: [...head.mcps],
+    plugins: [...head.plugins],
+    env: { ...head.env },
+    rules: [...head.rules],
+    commands: [...head.commands],
+    hooks: [...head.hooks],
+    persona: head.persona && head.persona.trim().length > 0
+      ? `## ${head.name}\n\n${head.persona.trim()}`
+      : "",
+    playbooks: [...head.playbooks],
+    qualityGates: [...head.qualityGates],
+    evals: [...head.evals],
+    recommends: [...head.recommends],
+    inheritanceChain: [head.inheritanceChain.join("+")],
+  };
+
+  for (let i = 1; i < parts.length; i++) {
+    const next = parts[i]!;
+    const nextPersona = next.persona && next.persona.trim().length > 0
+      ? `## ${next.name}\n\n${next.persona.trim()}`
+      : "";
+    acc = {
+      name: selector,
+      description: acc.description,
+      icon: acc.icon ?? next.icon,
+      iconImage: acc.iconImage ?? next.iconImage,
+      agents: dedupePrimitiveArray(acc.agents, next.agents) as ResolvedProfile["agents"],
+      inherits: undefined,
+      skills: {
+        local: mergeObjectRefs<ResolvedSkill>(acc.skills.local, next.skills.local),
+        npx: mergeNpxRefs(acc.skills.npx, next.skills.npx),
+      },
+      mcps: mergeObjectRefs<ResolvedMCP>(acc.mcps, next.mcps),
+      plugins: mergeObjectRefs<ResolvedPlugin>(acc.plugins, next.plugins),
+      env: mergeEnv(acc.env, next.env),
+      rules: dedupePrimitiveArray(acc.rules, next.rules),
+      commands: dedupePrimitiveArray(acc.commands, next.commands),
+      hooks: dedupePrimitiveArray(acc.hooks, next.hooks),
+      persona: [acc.persona, nextPersona].filter((s) => s.length > 0).join("\n\n"),
+      playbooks: dedupePrimitiveArray(acc.playbooks, next.playbooks),
+      qualityGates: dedupePrimitiveArray(acc.qualityGates, next.qualityGates),
+      evals: dedupePrimitiveArray(acc.evals, next.evals),
+      recommends: dedupePrimitiveArray(acc.recommends, next.recommends),
+      inheritanceChain: [...acc.inheritanceChain, next.inheritanceChain.join("+")],
+    };
+  }
+
+  if (acc.agents.length === 0) {
+    acc = { ...acc, agents: [...DEFAULT_AGENTS] };
+  }
+  return acc;
+}
+
+/**
  * Load and fully resolve a profile by name. Reads
  * `profiles/<name>/profile.yaml`, validates it, then recursively merges in any
  * ancestor profiles declared via `inherits`.
  *
- * @throws ProfileNotFound      if `profiles/<name>/profile.yaml` is missing
+ * Accepts composite selectors of the form `a+b[+c…]` — each part is loaded
+ * independently and the results are unioned via {@link foldComposite}.
+ *
+ * @throws ProfileNotFound      if any component profile is missing
  * @throws SchemaViolation      if YAML is malformed or fails schema validation
- * @throws InheritanceCycle     if the `inherits` chain loops
- * @throws InheritanceDepthExceeded if the chain has more than 3 ancestors
+ * @throws InheritanceCycle     if any component's `inherits` chain loops
+ * @throws InheritanceDepthExceeded if any chain has more than 3 ancestors
  */
 export async function loadProfile(name: string): Promise<ResolvedProfile> {
-  const chain = await buildInheritanceChain(name);
-  return foldChain(chain);
+  const parts = parseProfileSelector(name);
+  if (parts.length === 1) {
+    const chain = await buildInheritanceChain(parts[0]!);
+    return foldChain(chain);
+  }
+  const resolved: ResolvedProfile[] = [];
+  for (const part of parts) {
+    const chain = await buildInheritanceChain(part);
+    resolved.push(foldChain(chain));
+  }
+  return foldComposite(name, resolved);
 }
 
 /**
