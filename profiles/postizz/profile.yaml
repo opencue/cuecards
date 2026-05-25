@@ -1,11 +1,14 @@
 name: postizz
 icon: "📮"
+iconImage: "logo.png"
 description: Postiz — AI social media scheduling, posting, analytics across 32+ platforms via MCP + CLI
 inherits: core
 recommends:
   - blog-writer   # author the long-form piece this social campaign promotes
   - trendradar    # surface trending topics worth posting about
 skills:
+  local:
+    - content/trend-to-thread   # end-to-end pipeline: trendradar → article → X thread → Higgsfield → Postiz draft
   npx:
     - repo: gitroomhq/postiz-agent
       skills: [postiz-agent]
