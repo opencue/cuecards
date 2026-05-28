@@ -1,6 +1,6 @@
 {
   "name": "cue-ai",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "cue — Agent Profile Manager for Claude Code & Codex. Pick a profile, launch with the right skills, MCPs, and plugins.",
   "type": "module",
   "bin": {
@@ -14,7 +14,7 @@
     "cue": "bun src/index.ts",
     "test": "bun test",
     "build": "bun build src/index.ts --no-bundle",
-    "postinstall": "echo '' && echo '  ✅ cue installed. Run: cue init' && echo '  Docs: https://github.com/opencue/cue' && echo ''"
+    "postinstall": "echo '' && echo '  ✅ cue installed. Run: cue init' && echo '  Docs: https://github.com/opencue/cuecards' && echo ''"
   },
   "keywords": [
     "claude-code",
@@ -27,15 +27,15 @@
     "cli",
     "developer-tools"
   ],
-  "author": "recodeee",
+  "author": "NagyVikt",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opencue/cue.git"
+    "url": "https://github.com/opencue/cuecards.git"
   },
-  "homepage": "https://github.com/opencue/cue",
+  "homepage": "https://github.com/opencue/cuecards",
   "bugs": {
-    "url": "https://github.com/opencue/cue/issues"
+    "url": "https://github.com/opencue/cuecards/issues"
   },
   "files": [
     "bin/",
