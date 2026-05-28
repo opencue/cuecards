@@ -41,7 +41,7 @@ cat <<'EOF'
   ░ ░         ░        ░  ░
 
   Profile manager + skill discovery for Claude Code, Codex, Cursor, and 10+ AI agents
-  https://github.com/opencue/cue · MIT
+  https://github.com/opencue/cuecards · MIT
 
 EOF
 
@@ -86,10 +86,22 @@ case "$METHOD" in
       git -C "$DIR" fetch origin "$REF"
       git -C "$DIR" reset --hard "origin/$REF"
     else
-      info "Cloning opencue/cue@$REF to $DIR"
-      git clone --depth 1 --branch "$REF" https://github.com/opencue/cue "$DIR"
+      info "Cloning opencue/cuecards@$REF to $DIR"
+      git clone --depth 1 --branch "$REF" https://github.com/opencue/cuecards "$DIR"
     fi
+    info "Initializing submodules (skills, mcps)"
+    git -C "$DIR" submodule update --init --recursive --depth 1 2>/dev/null || \
+      warn "Submodule init failed; smart-loader catalog will fall back to live filesystem scan"
     (cd "$DIR" && bun install --frozen-lockfile)
+    # Rebuild local catalog from the freshly-cloned skills tree so smart-loader's
+    # fast path works from first launch instead of waiting for the next mtime check.
+    if [ -x "$DIR/resources/skills/scripts/rebuild-catalog-local.sh" ]; then
+      info "Building skill catalog index"
+      CUE_SKILLS_ROOT="$DIR/resources/skills/skills" \
+        CUE_CATALOG_DIR="$DIR/resources/skills/catalog" \
+        bash "$DIR/resources/skills/scripts/rebuild-catalog-local.sh" >/dev/null 2>&1 || \
+        warn "Catalog rebuild failed; first smart-lookup will trigger one"
+    fi
     # Symlink the bin into a directory likely on PATH
     BIN_DIR=""
     for candidate in "$HOME/.local/bin" "$HOME/bin" "/usr/local/bin"; do
@@ -127,7 +139,7 @@ if [ "${CUE_NO_POST_INSTALL:-0}" != "1" ]; then
     ${C_GREEN}4.${C_RESET} ${C_BOLD}claude${C_RESET}          ${C_DIM}# cue auto-resolves the right profile for this cwd${C_RESET}
 
   Docs:    ${C_CYAN}https://opencue.github.io/cue/${C_RESET}
-  Issues:  ${C_CYAN}https://github.com/opencue/cue/issues${C_RESET}
+  Issues:  ${C_CYAN}https://github.com/opencue/cuecards/issues${C_RESET}
 
 EOF
 fi
