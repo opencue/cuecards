@@ -30,6 +30,7 @@ import { ingest } from "../lib/telemetry-ingest";
 import {
   compositeReport,
   missLeaderboard,
+  promotionCandidates,
   topSkills,
   zombies as zombiesReport,
 } from "../lib/telemetry-report";
@@ -320,6 +321,40 @@ async function zombiesCmd(args: string[]): Promise<number> {
   return 0;
 }
 
+async function promoteCmd(args: string[]): Promise<number> {
+  const windowDays = parseDuration(getArgValue(args, "--window"), 30);
+  const minInvocations = parseInt(getArgValue(args, "--min") ?? "3", 10);
+  const asJson = args.includes("--json");
+
+  // Build profile → declared-skills map by scanning all profiles.
+  const declaredByProfile = new Map<string, Set<string>>();
+  const profiles = await listProfiles();
+  for (const name of profiles) {
+    declaredByProfile.set(name, await declaredSkillNamesForProfile(name));
+  }
+
+  const rows = promotionCandidates(declaredByProfile, windowDays, minInvocations);
+  if (asJson) {
+    process.stdout.write(JSON.stringify(rows, null, 2) + "\n");
+    return 0;
+  }
+
+  process.stdout.write(`\n${bold(`Promotion candidates (last ${windowDays}d, min ${minInvocations} invocations)`)}\n`);
+  process.stdout.write(`${dim("Skills firing in a profile that doesn't declare them. Smart-loader is doing the work; promote them to the profile so they ship as real Skill() entries.")}\n\n`);
+  if (rows.length === 0) {
+    process.stdout.write(`  ${dim("(no candidates — smart-loading isn't hot enough yet, or every fired skill is already declared)")}\n\n`);
+    return 0;
+  }
+  for (const r of rows.slice(0, 20)) {
+    process.stdout.write(`  ${r.invocations.toString().padStart(4)}× ${r.skill.padEnd(40)} ${dim(`→ add to profile '${r.profile}'`)}\n`);
+  }
+  if (rows.length > 20) {
+    process.stdout.write(`\n  ${dim(`(+${rows.length - 20} more)`)}\n`);
+  }
+  process.stdout.write("\n");
+  return 0;
+}
+
 async function missesCmd(args: string[]): Promise<number> {
   const windowDays = parseDuration(getArgValue(args, "--window"), 30);
   const limit = parseInt(getArgValue(args, "--limit") ?? "20", 10);
@@ -377,6 +412,7 @@ function printUsage(): void {
       "  zombies   List skills in the active profile with 0 invocations.",
       "  top       List most-invoked skills.",
       "  misses    List user prompts that should have triggered a skill but didn't.",
+      "  promote   Suggest profile additions for skills repeatedly smart-loaded.",
     ].join("\n") + "\n",
   );
 }
@@ -394,6 +430,7 @@ export async function run(args: string[]): Promise<number> {
     case "top":     return topCmd(rest);
     case "zombies": return zombiesCmd(rest);
     case "misses":  return missesCmd(rest);
+    case "promote": return promoteCmd(rest);
     case undefined:
     case "--help":
     case "-h":

@@ -41,13 +41,19 @@ export interface ReportSnapshot {
   misses: MissEntry[];
 }
 
+export interface PromotionCandidate {
+  skill: string;
+  profile: string;
+  invocations: number;
+}
+
 function sinceFromDays(days: number): Date {
   return new Date(Date.now() - days * 24 * 3600 * 1000);
 }
 
 export function topSkills(windowDays = 30, limit = 10): TopSkillEntry[] {
   const since = sinceFromDays(windowDays);
-  const events = readEvents(since).filter((e) => e.event === "skill_invoked" && e.skill);
+  const events = readEvents(since).filter((e) => (e.event === "skill_invoked" || e.event === "skill_hit") && e.skill);
 
   const counts = new Map<string, { hits: number; last: string }>();
   for (const e of events) {
@@ -72,7 +78,7 @@ export function topSkills(windowDays = 30, limit = 10): TopSkillEntry[] {
  */
 export function zombies(declaredSkills: Set<string>, windowDays = 30): ZombieSkillEntry[] {
   const since = sinceFromDays(windowDays);
-  const events = readEvents(since).filter((e) => e.event === "skill_invoked" && e.skill);
+  const events = readEvents(since).filter((e) => (e.event === "skill_invoked" || e.event === "skill_hit") && e.skill);
 
   const seen = new Map<string, string>(); // skill → most-recent ts
   for (const e of events) {
@@ -113,13 +119,48 @@ export function missLeaderboard(windowDays = 30, limit = 20): MissEntry[] {
     .slice(0, limit);
 }
 
+/**
+ * Promotion candidates: skills that fired in a profile, but the profile
+ * does not declare them. Signal that smart-loader is soft-loading them
+ * repeatedly — promote into the profile so they ship as real `Skill()`
+ * entries instead.
+ *
+ * Caller passes a map of profile-name → declared skills set. Returns
+ * entries sorted by invocation count desc.
+ */
+export function promotionCandidates(
+  declaredByProfile: Map<string, Set<string>>,
+  windowDays = 30,
+  minInvocations = 3,
+): PromotionCandidate[] {
+  const since = sinceFromDays(windowDays);
+  const events = readEvents(since).filter((e) => (e.event === "skill_invoked" || e.event === "skill_hit") && e.skill && e.profile);
+
+  const counts = new Map<string, { skill: string; profile: string; n: number }>();
+  for (const e of events) {
+    const key = `${e.profile}|${e.skill!}`;
+    const cur = counts.get(key) ?? { skill: e.skill!, profile: e.profile!, n: 0 };
+    cur.n++;
+    counts.set(key, cur);
+  }
+
+  const out: PromotionCandidate[] = [];
+  for (const { skill, profile, n } of counts.values()) {
+    if (n < minInvocations) continue;
+    const declared = declaredByProfile.get(profile);
+    if (declared && declared.has(skill)) continue;
+    out.push({ skill, profile, invocations: n });
+  }
+  return out.sort((a, b) => b.invocations - a.invocations);
+}
+
 export function compositeReport(
   declaredSkills: Set<string>,
   windowDays = 30,
 ): ReportSnapshot {
   const since = sinceFromDays(windowDays);
   const events = readEvents(since);
-  const totalInvocations = events.filter((e) => e.event === "skill_invoked").length;
+  const totalInvocations = events.filter((e) => (e.event === "skill_invoked" || e.event === "skill_hit")).length;
   const totalMisses = events.filter((e) => e.event === "skill_miss").length;
 
   return {
