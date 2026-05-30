@@ -186,6 +186,38 @@ describe("resolveLocal — missing", () => {
     ).rejects.toBeInstanceOf(SkillNotFound);
   });
 
+  test("SkillNotFound surfaces category match for a bare ref via allSlugs", () => {
+    const e = new SkillNotFound("review-pr", [], [
+      "github/review-pr",
+      "meta/init",
+    ]);
+    expect(e.categoryMatches).toEqual(["github/review-pr"]);
+    expect(e.message).toContain('Found "github/review-pr" — did you mean that?');
+    expect(e.message).toContain("Skills are referenced as <category>/<name>.");
+  });
+
+  test("SkillNotFound lists every category when a bare slug is duplicated", () => {
+    const e = new SkillNotFound("shared-skill", [], [
+      "github/shared-skill",
+      "medusa/shared-skill",
+    ]);
+    expect(e.categoryMatches).toEqual([
+      "github/shared-skill",
+      "medusa/shared-skill",
+    ]);
+    expect(e.message).toContain(
+      "Found under these categories: github/shared-skill, medusa/shared-skill.",
+    );
+  });
+
+  test("SkillNotFound falls back to Levenshtein hint when no category match", () => {
+    const e = new SkillNotFound("uniqe-skil", ["medusa/unique-skill"], [
+      "medusa/unique-skill",
+    ]);
+    expect(e.categoryMatches).toEqual([]);
+    expect(e.message).toContain("Did you mean: medusa/unique-skill?");
+  });
+
   test("directory without SKILL.md is treated as not found", async () => {
     try {
       await resolveLocal(profile(["medusa/broken-skill"]), { skillsRoot });

@@ -51,15 +51,43 @@ export class AmbiguousSkillRef extends ProfileError {
 }
 
 export class SkillNotFound extends ProfileError {
+  /** Known slugs (`<category>/<slug>`) whose trailing segment equals the ref. */
+  public categoryMatches: string[];
+
   constructor(
     public ref: string,
     public suggestions: string[],
+    /**
+     * Full list of known `<category>/<slug>` ids. When the bare ref matches an
+     * existing slug under a category path, that case is surfaced first — the
+     * common mistake is referencing `roi-estimator` instead of
+     * `meta/roi-estimator`.
+     */
+    allSlugs: string[] = [],
   ) {
-    const hint =
-      suggestions.length > 0
-        ? ` Did you mean: ${suggestions.join(", ")}?`
-        : "";
+    const bare = ref.trim().replace(/\/+$/, "");
+    const categoryMatches =
+      bare === "" || bare.includes("/")
+        ? []
+        : allSlugs.filter(
+            (s) => s.slice(s.lastIndexOf("/") + 1) === bare,
+          );
+
+    let hint = "";
+    if (categoryMatches.length === 1) {
+      hint =
+        ` Found "${categoryMatches[0]}" — did you mean that?` +
+        ` Skills are referenced as <category>/<name>.`;
+    } else if (categoryMatches.length > 1) {
+      hint =
+        ` Found under these categories: ${categoryMatches.join(", ")}.` +
+        ` Skills are referenced as <category>/<name>.`;
+    } else if (suggestions.length > 0) {
+      hint = ` Did you mean: ${suggestions.join(", ")}?`;
+    }
+
     super("SKILL_NOT_FOUND", `Skill "${ref}" not found.${hint}`);
+    this.categoryMatches = categoryMatches;
   }
 }
 
@@ -184,7 +212,7 @@ async function resolveOne(
   // Normalize: trim, drop trailing slash; reject empty, absolute, or `..`.
   const trimmed = ref.trim().replace(/\/+$/, "");
   if (trimmed === "" || trimmed.startsWith("/") || trimmed.includes("..")) {
-    throw new SkillNotFound(ref, []);
+    throw new SkillNotFound(ref, [], allSlugs);
   }
 
   const parts = trimmed.split("/");
@@ -196,7 +224,7 @@ async function resolveOne(
     slug = parts[0]!;
     const hits = slugIndex.get(slug) ?? [];
     if (hits.length === 0) {
-      throw new SkillNotFound(ref, suggest(trimmed, allSlugs));
+      throw new SkillNotFound(ref, suggest(trimmed, allSlugs), allSlugs);
     }
     if (hits.length > 1) {
       throw new AmbiguousSkillRef(
@@ -210,11 +238,11 @@ async function resolveOne(
     slug = parts[1]!;
     const slugs = categoryIndex.get(category);
     if (!slugs || !slugs.includes(slug)) {
-      throw new SkillNotFound(ref, suggest(trimmed, allSlugs));
+      throw new SkillNotFound(ref, suggest(trimmed, allSlugs), allSlugs);
     }
   } else {
     // We don't support nested categories. Treat as not-found with suggestions.
-    throw new SkillNotFound(ref, suggest(trimmed, allSlugs));
+    throw new SkillNotFound(ref, suggest(trimmed, allSlugs), allSlugs);
   }
 
   const skillDir = join(root, category, slug);
@@ -227,7 +255,7 @@ async function resolveOne(
     ok = false;
   }
   if (!ok) {
-    throw new SkillNotFound(ref, suggest(trimmed, allSlugs));
+    throw new SkillNotFound(ref, suggest(trimmed, allSlugs), allSlugs);
   }
 
   return {
