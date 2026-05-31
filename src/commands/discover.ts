@@ -986,6 +986,18 @@ function repoAnchor(repo: string): string {
   return repo.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 }
 
+// Neutralize Liquid delimiters in scraped text so Jekyll (GitHub Pages runs
+// v3 — no per-file render_with_liquid) doesn't choke on `{{ }}` / `{% %}` /
+// stray `{% endraw %}` embedded in third-party README content. A space inside
+// the delimiter stops Liquid recognizing a tag and renders near-identically.
+function escapeLiquid(s: string): string {
+  return s
+    .replace(/\{\{/g, "{ {")
+    .replace(/\}\}/g, "} }")
+    .replace(/\{%/g, "{ %")
+    .replace(/%\}/g, "% }");
+}
+
 function buildProfilePage(profile: string, gems: GemRepo[], updated: string): string {
   const sorted = [...gems].sort((a, b) => b.gem_score - a.gem_score);
   let md = `---
@@ -1009,7 +1021,7 @@ tags: [claude-code, ${profile}, skills, mcp, ai-agents]
     md += `**★ ${gem.stars}** · ${tierLabel(gem.gem_score)} (score ${gem.gem_score})`;
     if (gem.language) md += ` · ${gem.language}`;
     if (gem.topics.length > 0) md += ` · tags: ${gem.topics.slice(0, 5).join(", ")}`;
-    md += `\n\n${gem.description}\n\n`;
+    md += `\n\n${escapeLiquid(gem.description)}\n\n`;
     const evidence: string[] = [];
     if (gem.has_skill_md) evidence.push("✅ SKILL.md");
     if (gem.has_claude_dir) evidence.push("✅ `.claude/` directory");
@@ -1179,7 +1191,7 @@ tags: [claude-code, skill, ${gem.suggested_profiles.join(", ")}]
 
 **★ ${gem.stars}** · ${tierLabel(gem.gem_score)} (score ${gem.gem_score})${gem.language ? ` · ${gem.language}` : ""}${gem.topics.length > 0 ? ` · ${gem.topics.slice(0, 5).join(", ")}` : ""}
 
-> ${gem.description || `A Claude Code skill repository discovered by cue.`}
+> ${escapeLiquid(gem.description || `A Claude Code skill repository discovered by cue.`)}
 
 ## Why cue indexed it
 
@@ -1385,7 +1397,7 @@ cue discover install --min-score 8     # install top gems into profiles
     md += `| | Repo | ★ | Score | What it does |\n|---|------|---|-------|-------------|\n`;
     for (const gem of profileGems) {
       const icon = tierIcon(gem.gem_score);
-      const desc = gem.description.slice(0, 70).replace(/\|/g, "\\|");
+      const desc = escapeLiquid(gem.description).slice(0, 70).replace(/\|/g, "\\|");
       const skillBadge = gem.has_skill_md ? " 📄" : "";
       md += `| ${icon} | [${gem.full_name}](${gem.url})${skillBadge} | ${gem.stars} | ${gem.gem_score} | ${desc} |\n`;
     }

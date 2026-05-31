@@ -5,12 +5,19 @@
  * Run with: `bun test src/lib/dashboard-merge.test.ts`
  */
 
-import { afterAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeEach, describe, expect, test } from "bun:test";
 import { rmSync, existsSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { createHandler } from "./dashboard-server";
+
+// Sibling test files set CUE_PROFILES_DIR / SOUL_PROFILES_DIR to a temp dir;
+// clear any leak so the dashboard resolves the repo's real profiles/ tree.
+beforeEach(() => {
+  delete process.env.CUE_PROFILES_DIR;
+  delete process.env.SOUL_PROFILES_DIR;
+});
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const TEST_PROFILE = "dash-merge-test";

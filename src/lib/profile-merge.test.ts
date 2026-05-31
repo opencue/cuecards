@@ -8,7 +8,7 @@
  * Run with: `bun test src/lib/profile-merge.test.ts`
  */
 
-import { describe, expect, test } from "bun:test";
+import { beforeEach, describe, expect, test } from "bun:test";
 
 import {
   mergeProfiles,
@@ -19,6 +19,14 @@ import {
 } from "./profile-merge";
 import { loadProfile } from "./profile-loader";
 import { parse as parseYaml } from "yaml";
+
+// These tests run against the repo's real profiles/ tree. Sibling test files
+// set CUE_PROFILES_DIR / SOUL_PROFILES_DIR to a temp dir; clear any leak so we
+// always resolve the real profiles (matches eval/debug/cli test guards).
+beforeEach(() => {
+  delete process.env.CUE_PROFILES_DIR;
+  delete process.env.SOUL_PROFILES_DIR;
+});
 
 describe("mergeProfiles", () => {
   test("unions + dedupes skills, excludes core baseline", async () => {
