@@ -2,21 +2,21 @@
 title: "archestra-ai/archestra — Claude Code skill discovered by cue"
 description: "Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator"
 layout: page
-updated: 2026-06-10
+updated: 2026-06-15
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
 
-**★ 3819** · exceptional (score 17) · TypeScript · a2a, a2a-mcp, acp, agent, ai
+**★ 3834** · exceptional (score 17) · TypeScript · a2a, a2a-mcp, acp, agent, ai
 
 > Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 3819 stars
-- 🗓️ Last pushed: 2026-06-10
+- ⭐ 3834 stars
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: a2a, a2a-mcp, acp, agent, ai, chatgpt, chatgpt-api, claude, deepseek, gemini, k8s, mcp, mcp-client, mcp-gateway, mcp-host, mcp-server, mcp-servers, mcp-tools, openai, runtime
 
 ## Best fit cue profiles

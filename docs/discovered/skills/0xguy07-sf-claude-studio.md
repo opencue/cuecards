@@ -2,7 +2,7 @@
 title: "0xguy07/sf-claude-studio — Claude Code skill discovered by cue"
 description: "Turn a single Claude Code session into a Salesforce delivery studio. 10 agents, 15 skills, 7 hooks, 7 path-scoped rule sets — Apex/LWC/flow/integration/data/QA/"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 

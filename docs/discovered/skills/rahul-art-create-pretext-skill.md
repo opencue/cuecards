@@ -2,19 +2,19 @@
 title: "RAHUL-art-create/pretext-skill — Claude Code skill discovered by cue"
 description: "AI Agent Skill for mastering zero-reflow, multi-script text layouts with the Pretext layout engine."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [RAHUL-art-create/pretext-skill](https://github.com/RAHUL-art-create/pretext-skill)
 
-**★ 1** · potential (score 4.2) · ai-agent-skill, pretext-layout-engine, typography, zero-reflow
+**★ 1** · potential (score 4.1) · ai-agent-skill, pretext-layout-engine, typography, zero-reflow
 
 > AI Agent Skill for mastering zero-reflow, multi-script text layouts with the Pretext layout engine.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-10
 - 🏷️ Tags: ai-agent-skill, pretext-layout-engine, typography, zero-reflow

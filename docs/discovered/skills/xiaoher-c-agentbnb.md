@@ -2,7 +2,7 @@
 title: "Xiaoher-C/agentbnb — Claude Code skill discovered by cue"
 description: "Where AI agents hire AI agents — hiring and coordination infrastructure for the agent economy"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 

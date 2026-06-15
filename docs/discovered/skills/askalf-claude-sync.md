@@ -2,21 +2,21 @@
 title: "askalf/claude-sync — Claude Code skill discovered by cue"
 description: "Sync Claude Code sessions across machines. Pack a local CC session into a portable .ccsync file, ship it via Dropbox / iCloud / Syncthing / USB stick, unpack on"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [askalf/claude-sync](https://github.com/askalf/claude-sync)
 
-**★ 1** · strong (score 5.2) · JavaScript · claude-code, cli, developer-tools, sync
+**★ 1** · strong (score 5.3) · JavaScript · claude-code, cli, developer-tools, sync
 
 > Sync Claude Code sessions across machines. Pack a local CC session into a portable .ccsync file, ship it via Dropbox / iCloud / Syncthing / USB stick, unpack on the other side. Path-hash mismatches solved via git-remote-url as canonical project key. Zero runtime deps.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-11
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: claude-code, cli, developer-tools, sync
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="s2mgtvodois2-postgresql-mcp-js"></a>
-## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
+<a id="cobacobaini-vibe"></a>
+## 💎 [COBACOBAINI/vibe](https://github.com/COBACOBAINI/vibe)
 
-**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
+**★ 8** · exceptional (score 9.9) · TypeScript · tags: 3d-human-pose, ai, ai-agents, component-library, cross-platform
 
-🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
+Transcribe audio and video offline with OpenAI Whisper on your device, keeping data private. Supports many languages with fast, fully local, reliable transcription. 🐙
 
 ```bash
-cue skills add s2mgtvodois2/postgresql-mcp-js --profile frontend
+cue skills add COBACOBAINI/vibe --profile frontend
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-09
+updated: 2026-06-15
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 
 ---
 
-<a id="muhdur-plsql-intelligence"></a>
-## ✨ [MuhDur/plsql-intelligence](https://github.com/MuhDur/plsql-intelligence)
+<a id="piiiico-proof-of-commitment"></a>
+## ✨ [piiiico/proof-of-commitment](https://github.com/piiiico/proof-of-commitment)
 
-**★ 1** · strong (score 6.3) · Rust · tags: agent-tools, cargo-workspace, change-impact, code-intelligence, dba-tools
+**★ 5** · strong (score 7) · TypeScript · tags: cargo, cli, dependencies, dependency-audit, devsecops
 
-Offline, package-aware Oracle PL/SQL code intelligence in Rust — change impact, dependency graph, honest uncertainty, self-healing coverage
+Supply chain security risk scorer for npm, PyPI, Cargo, and Go — behavioral signals that can't be faked
 
 ```bash
-cue skills add MuhDur/plsql-intelligence --profile rust
+cue skills add piiiico/proof-of-commitment --profile rust
 ```
 
 ---

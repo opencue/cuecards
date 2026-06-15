@@ -2,7 +2,7 @@
 title: "1Dark134/arxiv-mcp-server — Claude Code skill discovered by cue"
 description: "arXiv MCP Server Client 🐙 enables AI assistants to search, retrieve, analyze, and summarize arXiv papers with features like author/category browsing, trends, a"
 layout: page
-updated: 2026-06-12
+updated: 2026-06-15
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
 - ⭐ 17 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: academic-papers, academic-research, ai, ai-assistant, claude-ai, claude-desktop, cursor-ai, deno, gpt, latex, llm, mcp, mcp-server, model-context-protocol, openalex, paper-search, research-automation, research-tools
 
 ## Best fit cue profiles

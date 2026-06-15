@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,6 +26,19 @@ AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge
 
 ```bash
 cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
+<a id="x-glacier-kali-pentest"></a>
+## 💎 [x-glacier/kali-pentest](https://github.com/x-glacier/kali-pentest)
+
+**★ 50** · exceptional (score 13.2) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
+
+Kali Linux penetration testing skill for AI agents (Claude Code, OpenClaw, Hermes Agent). 200+ CLI tools, 15 scenario playbooks. Autonomously plans attack paths, selects tools, and integrates results across phases to adapt the penetration strategy — with human approval gates for high-risk actions.
+
+```bash
+cue skills add x-glacier/kali-pentest --profile cybersecurity
 ```
 
 ---
@@ -48,25 +61,12 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1675** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
+**★ 1677** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="x-glacier-kali-pentest"></a>
-## 💎 [x-glacier/kali-pentest](https://github.com/x-glacier/kali-pentest)
-
-**★ 49** · exceptional (score 10.2) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
-
-Kali Linux penetration testing skill for AI agents (Claude Code, OpenClaw, Hermes Agent). 200+ CLI tools, 15 scenario playbooks. Autonomously plans attack paths, selects tools, and integrates results across phases to adapt the penetration strategy — with human approval gates for high-risk actions.
-
-```bash
-cue skills add x-glacier/kali-pentest --profile cybersecurity
 ```
 
 ---
@@ -80,6 +80,32 @@ Automate security research workflows with structured tool-driven assessments for
 
 ```bash
 cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+```
+
+---
+
+<a id="piiiico-proof-of-commitment"></a>
+## ✨ [piiiico/proof-of-commitment](https://github.com/piiiico/proof-of-commitment)
+
+**★ 5** · strong (score 7) · TypeScript · tags: cargo, cli, dependencies, dependency-audit, devsecops
+
+Supply chain security risk scorer for npm, PyPI, Cargo, and Go — behavioral signals that can't be faked
+
+```bash
+cue skills add piiiico/proof-of-commitment --profile cybersecurity
+```
+
+---
+
+<a id="qingxuantang-tar-engine"></a>
+## ✨ [qingxuantang/tar-engine](https://github.com/qingxuantang/tar-engine)
+
+**★ 0** · strong (score 6) · Python · tags: ai-agent-safety, ai-safety, ai-skill-audit, ai-skill-safety, aisafety
+
+Audit AI skill safety before you ship. Static + semantic + adversarial audit pipeline for SKILL.md, Codex skill.yaml, Claude Code commands, and OpenCode. Free hosted tier on tarai.dev.
+
+```bash
+cue skills add qingxuantang/tar-engine --profile cybersecurity
 ```
 
 ---

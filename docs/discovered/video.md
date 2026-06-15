@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="cobacobaini-vibe"></a>
+## 💎 [COBACOBAINI/vibe](https://github.com/COBACOBAINI/vibe)
+
+**★ 8** · exceptional (score 9.9) · TypeScript · tags: 3d-human-pose, ai, ai-agents, component-library, cross-platform
+
+Transcribe audio and video offline with OpenAI Whisper on your device, keeping data private. Supports many languages with fast, fully local, reliable transcription. 🐙
+
+```bash
+cue skills add COBACOBAINI/vibe --profile video
+```
 
 ---
 

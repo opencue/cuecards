@@ -2,7 +2,7 @@
 title: "Marcos-Auguusto/superx-agentic-orchestrator — Claude Code skill discovered by cue"
 description: "SuperX Autonomous AI Agent 2026: 14 Specialized Coders, 10x Parallel Execution & Adaptive Skill Learning"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic, automation, autonomous-agent, claude-agent, claude-ai, claude-code, claude-plugin, claude-skill, cli, coding-assistant, developer-tools, devtools, llm-agent, llm-framework, llm-tools, multi-agent
 
 ## Best fit cue profiles

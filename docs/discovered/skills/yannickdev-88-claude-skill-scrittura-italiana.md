@@ -2,7 +2,7 @@
 title: "YannickDev-88/claude-skill-scrittura-italiana — Claude Code skill discovered by cue"
 description: "Migliora la qualità dei testi in italiano rendendoli naturali e corretti tramite una Claude Agent Skill dedicata alla retorica, alla tipografia e allo stile edi"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: agent-skill, aimassist, anthropic, anti-ai, claude, claude-skill, cs2-cheat-wh, editing, gamehacks, humanizer, italiano, prefire-macros, punctuation, ragebot, scrittura, wall-assistant, writing
 
 ## Best fit cue profiles

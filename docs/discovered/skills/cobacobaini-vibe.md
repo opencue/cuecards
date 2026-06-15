@@ -2,7 +2,7 @@
 title: "COBACOBAINI/vibe — Claude Code skill discovered by cue"
 description: "Transcribe audio and video offline with OpenAI Whisper on your device, keeping data private. Supports many languages with fast, fully local, reliable transcript"
 layout: page
-updated: 2026-06-12
+updated: 2026-06-15
 tags: [claude-code, skill, frontend, video]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: 3d-human-pose, ai, ai-agents, component-library, cross-platform, cvpr, cvpr-2020, cvpr2020, desktop, mcp-server, rust, transcribe, ui, ui-components, ui-library, vibe, vibe-coding, video-pose-estimation
 
 ## Best fit cue profiles

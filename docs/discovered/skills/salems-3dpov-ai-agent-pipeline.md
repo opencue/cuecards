@@ -2,7 +2,7 @@
 title: "salems-3Dpov/ai-agent-pipeline — Claude Code skill discovered by cue"
 description: "🐙 AI Agent Pipeline routes queries by intent to docs, weather, or chat, with LangGraph, ChromaDB, and LangSmith for modular, observable workflows across CLI an"
 layout: page
-updated: 2026-06-12
+updated: 2026-06-15
 tags: [claude-code, skill, backend, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: agent, agentic-ai, agents, aws, cicd, docker, fastapi, generative-ai, information-retrieval, large-language-models, llm, mcp-server, nlp, orchestration, pytorch, rag, retrieval-augmented-generation, ruff
 
 ## Best fit cue profiles

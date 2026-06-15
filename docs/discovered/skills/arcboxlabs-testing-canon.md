@@ -2,7 +2,7 @@
 title: "arcboxlabs/testing-canon — Claude Code skill discovered by cue"
 description: "Make AI write tests beyond the happy path — a Claude Code plugin of skills distilled from the canonical software-testing books."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 

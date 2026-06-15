@@ -2,7 +2,7 @@
 title: "jeremiahnyamwezi27/meta-agent — Claude Code skill discovered by cue"
 description: "Optimize AI agent performance automatically with this harness to improve benchmark scores without manual labels."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: agent, benchmark, chatgpt, claude, claude-code-skill, evaluation, harness, harness-engineering, langchain, llm, maml, multi-agent-systems, open-source, persona-chatbot, reinforcement-learning, transformer
 
 ## Best fit cue profiles

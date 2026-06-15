@@ -2,7 +2,7 @@
 title: "silennsong/etsy-listing-helper — Claude Code skill discovered by cue"
 description: "Claude Code Agent Skill: turn POD product specs + photos into copy-paste-ready Etsy listing content (title, 13 SEO tags, description, official category path, at"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 

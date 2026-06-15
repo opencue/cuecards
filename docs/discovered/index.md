@@ -1,30 +1,32 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
-> Last updated: 2026-06-14 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-06-15 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 60 | `context-mode`, `antigravity-workspace-template`, `buildwithclaude` |
-| [**backend**](./backend.md) | 20 | `ops-codegraph-tool`, `brewpage-openapi`, `Vibe-Agent` |
-| [**docs-writer**](./docs-writer.md) | 6 | `brewpage-openapi`, `llm-wiki`, `obsidian-llm-wiki-skill` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `nsauditor-ai-agent-skill`, `slowmist-security-cc`, `Claude-OSINT` |
-| [**creative-media**](./creative-media.md) | 4 | `image-skill-cli`, `social-media-scraper-skill`, `feinschmiede` |
-| [**fleet-control**](./fleet-control.md) | 3 | `heimdall`, `superx-agentic-orchestrator`, `multi-agent-revenue-orchestrator` |
-| [**frontend**](./frontend.md) | 3 | `postgresql-mcp-js`, `lottie-marketplace`, `claude-code-frontend` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-cn-biology`, `grant-thinking-skill` |
-| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
-| [**python**](./python.md) | 1 | `skillz` |
+| [**core**](./core.md) | 62 | `antigravity-workspace-template`, `drawio-skill`, `app-store-connect-skill` |
+| [**backend**](./backend.md) | 18 | `archestra`, `n8n`, `NESTstack` |
+| [**cybersecurity**](./cybersecurity.md) | 7 | `nsauditor-ai-agent-skill`, `kali-pentest`, `slowmist-security-cc` |
+| [**fleet-control**](./fleet-control.md) | 4 | `neo`, `heimdall`, `superx-agentic-orchestrator` |
+| [**frontend**](./frontend.md) | 3 | `vibe`, `lottie-marketplace`, `claude-code-frontend` |
+| [**creative-media**](./creative-media.md) | 3 | `social-media-scraper-skill`, `feinschmiede`, `redesigned-pancake` |
+| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
+| [**video**](./video.md) | 2 | `vibe`, `social-media-scraper-skill` |
+| [**research**](./research.md) | 1 | `arxiv-mcp-server` |
+| [**python**](./python.md) | 1 | `ai-agent-pipeline` |
+| [**marketing**](./marketing.md) | 1 | `zenith-crea-ofertas` |
+| [**rust**](./rust.md) | 1 | `proof-of-commitment` |
 
 ## How scoring works
 

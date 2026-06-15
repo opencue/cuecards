@@ -2,19 +2,19 @@
 title: "alex-jb/bilingual-content-sync-agent — Claude Code skill discovered by cue"
 description: "🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-15
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [alex-jb/bilingual-content-sync-agent](https://github.com/alex-jb/bilingual-content-sync-agent)
 
-**★ 2** · strong (score 6.3) · Python · batch-api, chinese, claude, english, i18n
+**★ 2** · strong (score 6.2) · Python · batch-api, chinese, claude, english, i18n
 
 > 🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-06-08
 - 🏷️ Tags: batch-api, chinese, claude, english, i18n, localization, mcp-server, oss-tools, python, solo-founder, translation

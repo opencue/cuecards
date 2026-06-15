@@ -2,21 +2,21 @@
 title: "asciimoo/hister — Claude Code skill discovered by cue"
 description: "Your own search engine"
 layout: page
-updated: 2026-06-07
+updated: 2026-06-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [asciimoo/hister](https://github.com/asciimoo/hister)
 
-**★ 1166** · exceptional (score 11.9) · Go · browser-history, go, golang, history, index
+**★ 1216** · exceptional (score 11.9) · Go · browser-history, go, golang, history, index
 
 > Your own search engine
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.9 based on:
-- ⭐ 1166 stars
-- 🗓️ Last pushed: 2026-06-07
+- ⭐ 1216 stars
+- 🗓️ Last pushed: 2026-06-15
 - 🏷️ Tags: browser-history, go, golang, history, index, mcp, mcp-server, personal-search, personal-search-engine, privacy, search, search-engine, semantic-search, web
 
 ## Best fit cue profiles
