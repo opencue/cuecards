@@ -154,6 +154,16 @@ export function ProfilesView({ active, setProfile, onOpen }: {
               <div className="pd-parts">
                 {d.parts.map((p) => <span key={p} className="pd-chip"><span className="pdc-e">{partEmoji(p)}</span>{p}</span>)}
               </div>
+              {d.recommends.length > 0 && (
+                <div className="pd-recommends">
+                  <span className="pd-rec-label">Pair with</span>
+                  {d.recommends.map((r) => (
+                    <button key={r} className="pd-rec-chip" onClick={() => setSel(r)} title={`Switch to ${r} profile`}>
+                      <span className="pdc-e">{partEmoji(r)}</span>{r}
+                    </button>
+                  ))}
+                </div>
+              )}
               <div className="pd-stats">
                 <MiniStat n={d.counts.skills} l="SKILLS" accent="violet" />
                 <MiniStat n={d.counts.mcps} l="MCPS" />
