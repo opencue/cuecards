@@ -2,21 +2,21 @@
 title: "TheLunarCompany/lunar — Claude Code skill discovered by cue"
 description: "lunar.dev: Agent native MCP Gateway for governance and security"
 layout: page
-updated: 2026-06-11
+updated: 2026-06-16
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [TheLunarCompany/lunar](https://github.com/TheLunarCompany/lunar)
 
-**★ 453** · exceptional (score 14) · TypeScript · agent-skills, api-proxy, mcp, mcp-client, mcp-gateway
+**★ 455** · exceptional (score 14) · TypeScript · agent-skills, api-proxy, mcp, mcp-client, mcp-gateway
 
 > lunar.dev: Agent native MCP Gateway for governance and security
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 453 stars
-- 🗓️ Last pushed: 2026-06-11
+- ⭐ 455 stars
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: agent-skills, api-proxy, mcp, mcp-client, mcp-gateway, mcp-security, mcp-server, mcp-servers, rate-limit, throttling, visibility
 
 ## Best fit cue profiles

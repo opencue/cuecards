@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="salems-3dpov-ai-agent-pipeline"></a>
-## ✨ [salems-3Dpov/ai-agent-pipeline](https://github.com/salems-3Dpov/ai-agent-pipeline)
+<a id="albinati-home-energy-manager"></a>
+## ✨ [albinati/home-energy-manager](https://github.com/albinati/home-energy-manager)
 
-**★ 1** · strong (score 7.8) · Python · tags: agent, agentic-ai, agents, aws, cicd
+**★ 0** · strong (score 6.5) · Python · tags: anthropic, battery-storage, claude, daikin-altherma, energy-optimization
 
-🐙 AI Agent Pipeline routes queries by intent to docs, weather, or chat, with LangGraph, ChromaDB, and LangSmith for modular, observable workflows across CLI and UI.
+LP-based home-energy planner. Optimises a Fox ESS battery + Daikin Altherma heat pump against Octopus Agile half-hourly tariffs via a PuLP MILP solver — with closed-loop replay, scenario robustness, and an MCP tool surface for OpenClaw / Claude.
 
 ```bash
-cue skills add salems-3Dpov/ai-agent-pipeline --profile python
+cue skills add albinati/home-energy-manager --profile python
 ```
 
 ---

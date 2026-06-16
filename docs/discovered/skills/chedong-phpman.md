@@ -2,7 +2,7 @@
 title: "chedong/phpman — Claude Code skill discovered by cue"
 description: "php manual: Man Page / Perldoc / Info / Pydoc / Ri Page Web Interface  with JSON Markdown & MCP Server"
 layout: page
-updated: 2026-06-10
+updated: 2026-06-16
 tags: [claude-code, skill, backend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, backend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-10
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: json-api, linux-commands, linux-man-pages, markdown, mcp-server, model-context-protocol, perldoc, pydoc, rdoc, ri
 
 ## Best fit cue profiles

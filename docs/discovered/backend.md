@@ -1,37 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "18 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 18 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="archestra-ai-archestra"></a>
-## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
-
-**★ 3834** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
-
-Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
-
-```bash
-cue skills add archestra-ai/archestra --profile backend
-```
-
----
-
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 192588** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 192740** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
@@ -41,67 +28,69 @@ cue skills add n8n-io/n8n --profile backend
 
 ---
 
-<a id="cindiekinzz-coder-neststack"></a>
-## 💎 [cindiekinzz-coder/NESTstack](https://github.com/cindiekinzz-coder/NESTstack)
+<a id="reshaprio-reshapr"></a>
+## 💎 [reshaprio/reshapr](https://github.com/reshaprio/reshapr)
 
-**★ 19** · exceptional (score 13.2) · HTML · tags: ai, ai-agents, ai-companion, claude, claude-code
+**★ 106** · exceptional (score 14.4) · Java · tags: agent-tools, ai-agents, ai-gateway, ai-infrastructure, ai-integration
 
-An emotional operating system for AI companions. Start here. NEST is a modular infrastructure stack that gives AI companions persistent memory, emotional continuity, and autonomous awareness. Built on Cloudflare Workers + D1 + Vectorize. Designed to be forked, extended, and made your own.
+The open source, no-code MCP Server for AI-Native API Access
 
 ```bash
-cue skills add cindiekinzz-coder/NESTstack --profile backend
+cue skills add reshaprio/reshapr --profile backend
 ```
 
 ---
 
-<a id="rmanov-sqlite-memory-mcp"></a>
-## 💎 [RMANOV/sqlite-memory-mcp](https://github.com/RMANOV/sqlite-memory-mcp)
+<a id="thelunarcompany-lunar"></a>
+## 💎 [TheLunarCompany/lunar](https://github.com/TheLunarCompany/lunar)
 
-**★ 11** · exceptional (score 12.5) · Python · tags: ai-memory, claude, claude-code, concurrent, fts5
+**★ 455** · exceptional (score 14) · TypeScript · tags: agent-skills, api-proxy, mcp, mcp-client, mcp-gateway
 
-SQLite-backed MCP Memory Server with WAL concurrent safety, FTS5 search, session tracking, task management, and cross-machine bridge sync
+lunar.dev: Agent native MCP Gateway for governance and security
 
 ```bash
-cue skills add RMANOV/sqlite-memory-mcp --profile backend
+cue skills add TheLunarCompany/lunar --profile backend
 ```
 
 ---
 
-<a id="smartbear-smartbear-mcp"></a>
-## 💎 [SmartBear/smartbear-mcp](https://github.com/SmartBear/smartbear-mcp)
+<a id="lemonade-sdk-lemonade"></a>
+## 💎 [lemonade-sdk/lemonade](https://github.com/lemonade-sdk/lemonade)
 
-**★ 38** · exceptional (score 10.9) · TypeScript · tags: api-hub, bugsnag, mcp, mcp-server, open-source
+**★ 4453** · exceptional (score 13) · C++ · tags: ai, amd, genai, gpu, llama
 
-SmartBear's official MCP Server
+Lemonade helps users discover and run local AI apps by serving optimized LLMs right from their own GPUs and NPUs. Join our discord: https://discord.gg/5xXzkMu8Zk
 
 ```bash
-cue skills add SmartBear/smartbear-mcp --profile backend
+cue skills add lemonade-sdk/lemonade --profile backend
 ```
 
 ---
 
-<a id="musabbozkurt-oauth2-authorization-server"></a>
-## 💎 [musabbozkurt/oauth2-authorization-server](https://github.com/musabbozkurt/oauth2-authorization-server)
+<a id="devantler-tech-ksail"></a>
+## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
 
-**★ 6** · exceptional (score 9.9) · Java · tags: ai-advisor, aot-compilation, archunit-junit5, coordinated-restore-at-checkpoint, docker
+**★ 147** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
 
-OAuth2 Authorization Server with MariaDB, Docker OpenTelemetry LGTM, and Redis Integrations with Spring Boot 4, Java 25 and Docker. Integration Tests with Testcontainers and unit Tests with Junit 5, and Mockito
+All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
 
 ```bash
-cue skills add musabbozkurt/oauth2-authorization-server --profile backend
+cue skills add devantler-tech/ksail --profile backend
 ```
 
 ---
 
-<a id="phamlongh230-lgtm-yana-ai"></a>
-## 💎 [phamlongh230-lgtm/Yana-AI](https://github.com/phamlongh230-lgtm/Yana-AI)
+<a id="chedong-phpman"></a>
+## 💎 [chedong/phpman](https://github.com/chedong/phpman)
 
-**★ 1** · exceptional (score 8.8) · Python · tags: agent-os, agents, agentskills, agi, ai-safety
+**★ 1** · exceptional (score 11.3) · PHP · tags: json-api, linux-commands, linux-man-pages, markdown, mcp-server
 
- Personal Agent OS for Claude Code — 46 hooks, 3501 skills, 97 agents. Blocks rm -rf, prompt injection, pipe-to-shell at runtime. Apache 2.0.
+php manual: Man Page / Perldoc / Info / Pydoc / Ri Page Web Interface  with JSON Markdown & MCP Server
+
+✅ SKILL.md
 
 ```bash
-cue skills add phamlongh230-lgtm/Yana-AI --profile backend
+cue skills add chedong/phpman --profile backend
 ```
 
 ---
@@ -119,67 +108,41 @@ cue skills add usefolklore/folklore --profile backend
 
 ---
 
-<a id="masayukita-m365-copilot-companion-mcp"></a>
-## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+<a id="n2ns-n2n-post2site"></a>
+## 💎 [n2ns/n2n-post2site](https://github.com/n2ns/n2n-post2site)
 
-**★ 2** · exceptional (score 8.5) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+**★ 3** · exceptional (score 8.7) · TypeScript · tags: ai-agent, blogging, claude, cms, content-publishing
 
-Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+MCP bridge for AI-assisted content publishing. Draft, edit, and publish to your blog or CMS through a minimal API contract — draft-by-default, no DB or shell access required.
 
 ```bash
-cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
+cue skills add n2ns/n2n-post2site --profile backend
 ```
 
 ---
 
-<a id="mekoman-planka"></a>
-## 💎 [mekoman/planka](https://github.com/mekoman/planka)
+<a id="jsonbored-metagraphed"></a>
+## ✨ [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed)
 
-**★ 4** · exceptional (score 8.3) · JavaScript · tags: 3d-reconstruction, agile, android, api, app
+**★ 2** · strong (score 6.5) · JavaScript · tags: bittensor, bittensor-cli, bittensor-docs, bittensor-subnet, bittensor-subnets
 
-Planka offers a simple way to manage projects with collaborative Kanban boards. Users can create tasks and organize their workflow effortlessly, making teamwork smooth and efficient. 🛠️✨
+Operational metadata, health, schemas, and public interface discovery for Bittensor subnets.
 
 ```bash
-cue skills add mekoman/planka --profile backend
+cue skills add JSONbored/metagraphed --profile backend
 ```
 
 ---
 
-<a id="jeroenpieksma-claude-computer"></a>
-## 💎 [JeroenPieksma/claude-computer](https://github.com/JeroenPieksma/claude-computer)
+<a id="albinati-home-energy-manager"></a>
+## ✨ [albinati/home-energy-manager](https://github.com/albinati/home-energy-manager)
 
-**★ 2** · exceptional (score 8) · Python · tags: ai-tools, bedrock, beta-testing, claude-ai, computer-use
+**★ 0** · strong (score 6.5) · Python · tags: anthropic, battery-storage, claude, daikin-altherma, energy-optimization
 
-Claude Computer demonstrates AI autonomy in a virtual machine with real-time streaming, research, creation, and exploration. Watch Claude navigate, interact, and learn in real time 🐙
-
-```bash
-cue skills add JeroenPieksma/claude-computer --profile backend
-```
-
----
-
-<a id="ermermermermidk-mcp-ai-memory"></a>
-## ✨ [ermermermermidk/mcp-ai-memory](https://github.com/ermermermermidk/mcp-ai-memory)
-
-**★ 1** · strong (score 7.8) · TypeScript · tags: a2a, ai-agents, ai-assistant, application, chatgpt
-
-🧠 Manage AI context seamlessly with the MCP server for storing and retrieving semantic memory across sessions. Enhance your AI's knowledge retention.
+LP-based home-energy planner. Optimises a Fox ESS battery + Daikin Altherma heat pump against Octopus Agile half-hourly tariffs via a PuLP MILP solver — with closed-loop replay, scenario robustness, and an MCP tool surface for OpenClaw / Claude.
 
 ```bash
-cue skills add ermermermermidk/mcp-ai-memory --profile backend
-```
-
----
-
-<a id="salems-3dpov-ai-agent-pipeline"></a>
-## ✨ [salems-3Dpov/ai-agent-pipeline](https://github.com/salems-3Dpov/ai-agent-pipeline)
-
-**★ 1** · strong (score 7.8) · Python · tags: agent, agentic-ai, agents, aws, cicd
-
-🐙 AI Agent Pipeline routes queries by intent to docs, weather, or chat, with LangGraph, ChromaDB, and LangSmith for modular, observable workflows across CLI and UI.
-
-```bash
-cue skills add salems-3Dpov/ai-agent-pipeline --profile backend
+cue skills add albinati/home-energy-manager --profile backend
 ```
 
 ---
@@ -223,19 +186,6 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="juanspz-agent-ready-index"></a>
-## ✨ [JuanSPZ/agent-ready-index](https://github.com/JuanSPZ/agent-ready-index)
-
-**★ 0** · strong (score 5.5) · HTML · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
-
-Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀
-
-```bash
-cue skills add JuanSPZ/agent-ready-index --profile backend
-```
-
----
-
 <a id="sfedfcv-redesigned-pancake"></a>
 ## 🔹 [Sfedfcv/redesigned-pancake](https://github.com/Sfedfcv/redesigned-pancake)
 
@@ -245,6 +195,19 @@ Skip to content github / docs Code Issues 80 Pull requests 35 Discussions Action
 
 ```bash
 cue skills add Sfedfcv/redesigned-pancake --profile backend
+```
+
+---
+
+<a id="hxrish04-stackgate"></a>
+## 🔹 [hxrish04/stackgate](https://github.com/hxrish04/stackgate)
+
+**★ 1** · potential (score 3.3) · TypeScript · tags: ai, audit-trail, azure, claude, internal-developer-platform
+
+AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning workflows: risk tiers, multi-stage approvals, generated Terraform, Key Vault secret references, and a full audit trail. Simulation-first with a guarded Azure path.
+
+```bash
+cue skills add hxrish04/stackgate --profile backend
 ```
 
 ---

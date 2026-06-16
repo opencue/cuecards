@@ -1,22 +1,22 @@
 ---
 title: "open-metadata/OpenMetadata — Claude Code skill discovered by cue"
-description: "OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth colum"
+description: "The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, "
 layout: page
-updated: 2026-06-03
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
 
-**★ 14095** · exceptional (score 13) · TypeScript · context, context-layer, data-catalog, data-collaboration, data-contracts
+**★ 14210** · exceptional (score 17) · TypeScript · context, context-layer, data-catalog, data-collaboration, data-contracts
 
-> OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column level lineage, and seamless team collaboration.
+> The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 14095 stars
-- 🗓️ Last pushed: 2026-06-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
+- ⭐ 14210 stars
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: context, context-layer, data-catalog, data-collaboration, data-contracts, data-discovery, data-governance, data-lineage, data-observability, data-profiling, data-quality, data-quality-checks, datadiscovery, dataengineering, dataquality, mcp, mcp-server, metadata, metadata-management, semantics
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "xiapuyang/gaokao-adi — Claude Code skill discovered by cue"
 description: "高考志愿专业路径双功能 Skill：按分数推荐专业 + ADI 综合测评。Chinese Gaokao college major recommender & ADI path assessment skill for AI agents."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 

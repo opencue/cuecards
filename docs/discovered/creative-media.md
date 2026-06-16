@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="sponthew-google-ads-custom-affinity-builder"></a>
+## 💎 [sponthew/google-ads-custom-affinity-builder](https://github.com/sponthew/google-ads-custom-affinity-builder)
+
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, custom-affinity, google-ads, media-planning
+
+Claude Code skill: turn product+market+persona into Google Ads Custom Affinity xlsx (multi-tab kws/websites/video/channel/APP, with adversarial sub-agent verification)
+
+✅ SKILL.md
+
+```bash
+cue skills add sponthew/google-ads-custom-affinity-builder --profile creative-media
+```
 
 ---
 

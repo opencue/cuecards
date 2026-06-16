@@ -2,7 +2,7 @@
 title: "usefolklore/folklore — Claude Code skill discovered by cue"
 description: "A decentralized cooperative memory & research layer for AI agents — collectively and cooperatively learning and advancing as a community."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: ai-agents, beir, claude-code, codex, did-key, federated-search, knowledge-graph, libp2p, local-first, mcp, mcp-server, p2p, rag, sqlite-vec, vector-search
 
 ## Best fit cue profiles

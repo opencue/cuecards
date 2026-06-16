@@ -2,22 +2,22 @@
 title: "chrisjianghp/md2mindmap — Claude Code skill discovered by cue"
 description: "A Claude Code Skill that converts local or online Markdown into interactive mindmaps, output as HTML Markmap (with PDF export) or Lark/Feishu documents. It help"
 layout: page
-updated: 2026-06-08
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [chrisjianghp/md2mindmap](https://github.com/chrisjianghp/md2mindmap)
 
-**★ 1** · exceptional (score 12.3) · claude-agent-skills, claude-code, claude-skill, feishu, lark
+**★ 2** · exceptional (score 12.5) · claude-agent-skills, claude-code, claude-skill, feishu, lark
 
 > A Claude Code Skill that converts local or online Markdown into interactive mindmaps, output as HTML Markmap (with PDF export) or Lark/Feishu documents. It helps you quickly grasp important Markdown files in the AI era, such as understanding how others' Skills are designed and implemented.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-08
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: claude-agent-skills, claude-code, claude-skill, feishu, lark, markdown, mermaid, mindmap, whiteboard
 
 ## Best fit cue profiles

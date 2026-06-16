@@ -2,7 +2,7 @@
 title: "RAHUL-art-create/pretext-skill — Claude Code skill discovered by cue"
 description: "AI Agent Skill for mastering zero-reflow, multi-script text layouts with the Pretext layout engine."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 

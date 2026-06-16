@@ -2,21 +2,21 @@
 title: "wanaku-ai/wanaku — Claude Code skill discovered by cue"
 description: "Wanaku MCP Router"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [wanaku-ai/wanaku](https://github.com/wanaku-ai/wanaku)
 
-**★ 117** · exceptional (score 14.6) · Java · agentic, agentic-ai, agents, artificial-intelligence, mcp
+**★ 123** · exceptional (score 14.7) · Java · agentic, agentic-ai, agents, artificial-intelligence, mcp
 
 > Wanaku MCP Router
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.6 based on:
-- ⭐ 117 stars
-- 🗓️ Last pushed: 2026-06-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
+- ⭐ 123 stars
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: agentic, agentic-ai, agents, artificial-intelligence, mcp, mcp-server
 
 ## Best fit cue profiles

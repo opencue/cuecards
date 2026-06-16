@@ -2,7 +2,7 @@
 title: "FrancyJGLisboa/detect-ai-value-mode — Claude Code skill discovered by cue"
 description: "Agent skill that reads any codebase (local path or GitHub URL) and classifies how its AI product creates value — Amplifier, Substitute, Job Creator, or Democrat"
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 

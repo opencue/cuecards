@@ -2,7 +2,7 @@
 title: "decksoftware/csreview — Claude Code skill discovered by cue"
 description: "Development-time local workspace security alignment for AI coding agents"
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 

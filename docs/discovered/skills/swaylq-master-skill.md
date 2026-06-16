@@ -2,22 +2,22 @@
 title: "swaylq/master-skill — Claude Code skill discovered by cue"
 description: "大师.skill — 输入行业，自动调研 6 轨[行业大佬 / 工具地图 / 工作流 / 知识正典 / 信息源 / 术语标准] → 提炼为可运行的行业 Master OS skill；装到任意 Claude Code / OpenClaw / Codex / Hermes agent 即让其进入「这一行的资深人」模式。"
 layout: page
-updated: 2026-06-04
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [swaylq/master-skill](https://github.com/swaylq/master-skill)
 
-**★ 43** · exceptional (score 17.4) · Shell · agent, ai-agent, chinese-nlp, claude-code, claude-skill
+**★ 54** · exceptional (score 20.5) · Shell · agent, ai-agent, chinese-nlp, claude-code, claude-skill
 
 > 大师.skill — 输入行业，自动调研 6 轨[行业大佬 / 工具地图 / 工作流 / 知识正典 / 信息源 / 术语标准] → 提炼为可运行的行业 Master OS skill；装到任意 Claude Code / OpenClaw / Codex / Hermes agent 即让其进入「这一行的资深人」模式。MIT，Python + Shell。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 43 stars
-- 🗓️ Last pushed: 2026-06-04
+- ⭐ 54 stars
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: agent, ai-agent, chinese-nlp, claude-code, claude-skill, industry-knowledge, knowledge-distillation, llm, master-skill, prompt-engineering
 
 ## Best fit cue profiles

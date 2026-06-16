@@ -2,7 +2,7 @@
 title: "boksajang/vibebox — Claude Code skill discovered by cue"
 description: "A local blackbox for AI coding sessions."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 

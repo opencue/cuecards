@@ -2,7 +2,7 @@
 title: "byrobertocumbane-glitch/lottie-marketplace — Claude Code skill discovered by cue"
 description: "Search, fetch, and integrate Lottie animations into React, Vue, Flutter, and other frameworks using two Claude Code commands."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: app, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, design-system, design-systems, flutter, lottie, lottie-animation, react, react-native, ui-components, ui-design, website
 
 ## Best fit cue profiles

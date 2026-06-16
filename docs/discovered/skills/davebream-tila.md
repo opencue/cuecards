@@ -2,7 +2,7 @@
 title: "davebream/tila — Claude Code skill discovered by cue"
 description: "Durable state and artifact storage for multi-machine agentic work. Content-addressed artifacts, schema-validated records, first-writer-wins coordination. Cloudf"
 layout: page
-updated: 2026-06-13
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-13
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: agentic, ai-agents, cli, cloudflare-workers, content-addressed-storage, coordination, durable-objects, mcp, mcp-server, multi-agent, state-management, typescript
 
 ## Best fit cue profiles

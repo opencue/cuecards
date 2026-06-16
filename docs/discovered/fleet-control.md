@@ -1,56 +1,17 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="neomjs-neo"></a>
-## 💎 [neomjs/neo](https://github.com/neomjs/neo)
-
-**★ 3204** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
-
-Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
-
-```bash
-cue skills add neomjs/neo --profile fleet-control
-```
-
----
-
-<a id="randomittin-heimdall"></a>
-## 💎 [randomittin/heimdall](https://github.com/randomittin/heimdall)
-
-**★ 4** · exceptional (score 10.3) · Shell · tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic
-
-Autonomous Claude Code agent — 14 specialized agents, 10-parallel execution, project-specific skill learning, mechanical checkpointing, wave-based planning with acceptance gates, caveman ultra (~75% token savings). One prompt → finished project.
-
-```bash
-cue skills add randomittin/heimdall --profile fleet-control
-```
-
----
-
-<a id="marcos-auguusto-superx-agentic-orchestrator"></a>
-## 💎 [Marcos-Auguusto/superx-agentic-orchestrator](https://github.com/Marcos-Auguusto/superx-agentic-orchestrator)
-
-**★ 0** · exceptional (score 10) · HTML · tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic
-
-SuperX Autonomous AI Agent 2026: 14 Specialized Coders, 10x Parallel Execution & Adaptive Skill Learning
-
-```bash
-cue skills add Marcos-Auguusto/superx-agentic-orchestrator --profile fleet-control
-```
 
 ---
 

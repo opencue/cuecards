@@ -2,19 +2,19 @@
 title: "arcboxlabs/testing-canon — Claude Code skill discovered by cue"
 description: "Make AI write tests beyond the happy path — a Claude Code plugin of skills distilled from the canonical software-testing books."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [arcboxlabs/testing-canon](https://github.com/arcboxlabs/testing-canon)
 
-**★ 1** · potential (score 4.1) · ai, code-review, llm, software-testing, tdd
+**★ 1** · potential (score 4) · ai, code-review, llm, software-testing, tdd
 
 > Make AI write tests beyond the happy path — a Claude Code plugin of skills distilled from the canonical software-testing books.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-09
 - 🏷️ Tags: ai, code-review, llm, software-testing, tdd, test-automation, testing, unit-testing

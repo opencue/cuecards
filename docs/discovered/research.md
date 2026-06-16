@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-15
+updated: 2026-06-16
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="1dark134-arxiv-mcp-server"></a>
-## 💎 [1Dark134/arxiv-mcp-server](https://github.com/1Dark134/arxiv-mcp-server)
+<a id="daizedong-market-intel"></a>
+## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
 
-**★ 17** · exceptional (score 9.4) · Python · tags: academic-papers, academic-research, ai, ai-assistant, claude-ai
+**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
 
-arXiv MCP Server Client 🐙 enables AI assistants to search, retrieve, analyze, and summarize arXiv papers with features like author/category browsing, trends, and citation insights.
+Thin Claude Code skill for commercial/market research: triages topics across 12 data domains, detects & guides installing the right MCP source, delegates heavy retrieval to deep-research. Curated source matrix + quality guardrails.
 
 ```bash
-cue skills add 1Dark134/arxiv-mcp-server --profile research
+cue skills add DaizeDong/market-intel --profile research
 ```
 
 ---
