@@ -54,3 +54,15 @@ skills:
   npx:
     - repo: AgriciDaniel/claude-seo
       skills: [seo, seo-flow, seo-plan, seo-audit, seo-technical, seo-page, seo-sitemap, seo-schema, seo-hreflang, seo-drift, seo-content, seo-content-brief, seo-cluster, seo-sxo, seo-local, seo-maps, seo-geo, seo-images, seo-image-gen, seo-ecommerce, seo-google, seo-programmatic, seo-competitor-pages, seo-backlinks, seo-dataforseo]
+
+plugins:
+  # claude-seo Claude Code plugin: delivers the 25 skills PLUS the 18 specialist
+  # audit agents (the npx skills above only carry the skill prompts; the plugin
+  # adds the parallel sub-agents /seo audit fans out to). cue enables it in the
+  # seo runtime and symlinks the payload from ~/.claude/plugins.
+  # Install once on the machine:
+  #   claude plugin marketplace add AgriciDaniel/claude-seo
+  #   claude plugin install claude-seo@agricidaniel-claude-seo
+  # Python deps for the scripts (SPA render, PDF, Google APIs) live in the venv
+  # at ~/.claude/skills/seo/.venv (per the suite's AGENTS.md convention).
+  - claude-seo@agricidaniel-claude-seo
