@@ -50,6 +50,8 @@ persona: |
     need API keys. Wire them per engagement; the core skills work without keys.
   - Inherits core's defaults (verify before done, minimum-viable change, review
     the diff) and the integrity protocol.
+hooks:
+  - seo-schema-validate.json
 skills:
   npx:
     - repo: AgriciDaniel/claude-seo

@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/seo-schema-validate.sh",
+            "description": "Validate JSON-LD schema markup after file edits — blocks on deprecated types, placeholder text, or broken @context/@type. From claude-seo.",
+            "id": "cue:post:write:seo-schema-validate"
+          }
+        ]
+      }
+    ]
+  }
+}
