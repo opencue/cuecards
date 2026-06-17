@@ -1,44 +1,76 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sponthew-google-ads-custom-affinity-builder"></a>
-## 💎 [sponthew/google-ads-custom-affinity-builder](https://github.com/sponthew/google-ads-custom-affinity-builder)
+<a id="connerkward-lookdev-auto-skill"></a>
+## 💎 [connerkward/lookdev-auto-skill](https://github.com/connerkward/lookdev-auto-skill)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, custom-affinity, google-ads, media-planning
+**★ 0** · exceptional (score 15) · tags: agent-skills, ai-tools, anthropic, automation, claude-code
 
-Claude Code skill: turn product+market+persona into Google Ads Custom Affinity xlsx (multi-tab kws/websites/video/channel/APP, with adversarial sub-agent verification)
+lookdev-auto — a Claude Code skill for automated visual tuning: a vision model rates rendered variants in a loop.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add sponthew/google-ads-custom-affinity-builder --profile creative-media
+cue skills add connerkward/lookdev-auto-skill --profile creative-media
 ```
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="connerkward-web-media-getter-skill"></a>
+## 💎 [connerkward/web-media-getter-skill](https://github.com/connerkward/web-media-getter-skill)
 
-**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 0** · exceptional (score 15) · Python · tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+web-media-getter — a Claude Code skill: one query across free image/video/GIF APIs, license-tagged results.
+
+✅ SKILL.md
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
+cue skills add connerkward/web-media-getter-skill --profile creative-media
+```
+
+---
+
+<a id="connerkward-ckw-design-skill"></a>
+## 💎 [connerkward/ckw-design-skill](https://github.com/connerkward/ckw-design-skill)
+
+**★ 0** · exceptional (score 15) · JavaScript · tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
+
+ckw-design — Conner K. Ward's frontend design skill for Claude Code: direction, design system, visual philosophy.
+
+✅ SKILL.md
+
+```bash
+cue skills add connerkward/ckw-design-skill --profile creative-media
+```
+
+---
+
+<a id="danielgwilson-image-skill-cli"></a>
+## 💎 [danielgwilson/image-skill-cli](https://github.com/danielgwilson/image-skill-cli)
+
+**★ 1** · exceptional (score 13.8) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
+
+Zero-setup creative media for agents — generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
+
+✅ SKILL.md
+
+```bash
+cue skills add danielgwilson/image-skill-cli --profile creative-media
 ```
 
 ---

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,19 @@ Thin Claude Code skill for commercial/market research: triages topics across 12 
 
 ```bash
 cue skills add DaizeDong/market-intel --profile research
+```
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

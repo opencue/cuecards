@@ -2,30 +2,30 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-16 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-06-17 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 71 | `master-skill`, `antigravity-workspace-template`, `jira-skill` |
-| [**backend**](./backend.md) | 15 | `n8n`, `reshapr`, `lunar` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `nsauditor-ai-agent-skill`, `kali-pentest`, `Claude-OSINT` |
-| [**creative-media**](./creative-media.md) | 4 | `google-ads-custom-affinity-builder`, `social-media-scraper-skill`, `feinschmiede` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-cn-biology`, `grant-thinking-skill` |
-| [**frontend**](./frontend.md) | 2 | `lottie-marketplace`, `claude-code-frontend` |
-| [**research**](./research.md) | 1 | `market-intel` |
-| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
-| [**fleet-control**](./fleet-control.md) | 1 | `multi-agent-revenue-orchestrator` |
-| [**python**](./python.md) | 1 | `home-energy-manager` |
-| [**docs-writer**](./docs-writer.md) | 1 | `linkedin-maxxing` |
+| [**core**](./core.md) | 66 | `antigravity-workspace-template`, `paoding-skill`, `pm-claude-skills` |
+| [**backend**](./backend.md) | 12 | `mcp-server-synology`, `orionbelt-semantic-layer`, `precis-mcp` |
+| [**creative-media**](./creative-media.md) | 6 | `lookdev-auto-skill`, `web-media-getter-skill`, `ckw-design-skill` |
+| [**frontend**](./frontend.md) | 5 | `fuck-you-and-stop-charging-for-sloppy-design-agents`, `website-replication-skill`, `ionik-capacitor-flux-patterns` |
+| [**docs-writer**](./docs-writer.md) | 4 | `self-distiller`, `llm-wiki-builder`, `Document-Cloning-Skills` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `kali-pentest`, `Claude-OSINT`, `claude-android-audit-skill` |
+| [**research**](./research.md) | 2 | `market-intel`, `popper-scope` |
+| [**niche**](./niche.md) | 1 | `ultimate-ppt-master-skill` |
+| [**video**](./video.md) | 1 | `screenstudio-alternative-skill` |
+| [**fleet-control**](./fleet-control.md) | 1 | `heimdall` |
+| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
 | [**nextjs**](./nextjs.md) | 1 | `stackgate` |
 
 ## How scoring works

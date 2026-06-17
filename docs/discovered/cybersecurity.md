@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
-
-**★ 3** · exceptional (score 15) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
-
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
-
-✅ SKILL.md
-
-```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
-```
 
 ---
 
@@ -46,7 +31,7 @@ cue skills add x-glacier/kali-pentest --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1681** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1708** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,15 +41,28 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+<a id="felixgraeber-claude-android-audit-skill"></a>
+## 💎 [FelixGraeber/claude-android-audit-skill](https://github.com/FelixGraeber/claude-android-audit-skill)
 
-**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+**★ 2** · exceptional (score 8.5) · Python · tags: accessibility, android, android-performance, android-security, audit
 
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+Android audit skill pack for Claude Code: architecture, security, performance, accessibility, build health, and Play preflight from repo evidence.
 
 ```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+cue skills add FelixGraeber/claude-android-audit-skill --profile cybersecurity
+```
+
+---
+
+<a id="dunkelcloud-toolmesh"></a>
+## ✨ [DunkelCloud/ToolMesh](https://github.com/DunkelCloud/ToolMesh)
+
+**★ 3** · strong (score 6.7) · Go · tags: ai-agents, dadl, enterprise, go, llm
+
+Self-hosted MCP gateway with authorization, credential injection, audit logging, and output policies. Includes DADL — describe REST APIs as MCP tools in YAML.
+
+```bash
+cue skills add DunkelCloud/ToolMesh --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="connerkward-screenstudio-alternative-skill"></a>
+## 💎 [connerkward/screenstudio-alternative-skill](https://github.com/connerkward/screenstudio-alternative-skill)
 
-**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 0** · exceptional (score 15) · Python · tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+screenstudio-alt — an open-source headless Screen Studio alternative (Claude Code skill): auto-zoom, idle speed-up, vertical export.
+
+✅ SKILL.md
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+cue skills add connerkward/screenstudio-alternative-skill --profile video
 ```
 
 ---

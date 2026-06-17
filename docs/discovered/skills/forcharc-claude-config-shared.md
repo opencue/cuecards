@@ -2,7 +2,7 @@
 title: "Forcharc/claude-config-shared — Claude Code skill discovered by cue"
 description: "Shareable Claude Code setup: skills, custom review agents, path-scoped rules, worktree-safety hook."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, skill, core]
 ---
 

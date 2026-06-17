@@ -2,7 +2,7 @@
 title: "hxrish04/stackgate — Claude Code skill discovered by cue"
 description: "AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning w"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, skill, backend, nextjs]
 ---
 

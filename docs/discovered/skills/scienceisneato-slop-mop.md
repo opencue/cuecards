@@ -2,7 +2,7 @@
 title: "ScienceIsNeato/slop-mop — Claude Code skill discovered by cue"
 description: "forcing agentic coder's path of least resistance through long-term maintainable codepaths"
 layout: page
-updated: 2026-06-10
+updated: 2026-06-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-10
-- 🏷️ Tags: ai-tools, claude-code-plugin, claude-code-plugins, claude-skill, code-quality, vibecoding
+- 🗓️ Last pushed: 2026-06-17
+- 🏷️ Tags: ai-tools, claude-code-plugin, claude-code-plugins, claude-skill, code-quality, git-hooks, pre-commit, pre-commit-hook, pre-commit-hooks, vibecoding
 
 ## Best fit cue profiles
 

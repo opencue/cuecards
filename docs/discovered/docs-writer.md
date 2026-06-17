@@ -1,29 +1,76 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="warpirate-linkedin-maxxing"></a>
-## ✨ [warpirate/linkedin-maxxing](https://github.com/warpirate/linkedin-maxxing)
+<a id="ansirstudio-self-distiller"></a>
+## 💎 [AnsirStudio/self-distiller](https://github.com/AnsirStudio/self-distiller)
 
-**★ 0** · strong (score 6) · tags: anti-slop, claude-code-skill, claude-plugin, claude-skills, content-writing
+**★ 0** · exceptional (score 13.5) · tags: agent-skill, claude-skill, distillation, identity, llm
 
-17 Claude Code skills for substance-first LinkedIn growth. Anti-template, anti-slop, paste-based. Includes Wikipedia-based humanizer.
+Distill scattered material into a structured, reusable markdown identity layer + a compact profile card for any agent. Inspired by Karpathy's LLM Wiki & the honcho project.
+
+✅ SKILL.md
 
 ```bash
-cue skills add warpirate/linkedin-maxxing --profile docs-writer
+cue skills add AnsirStudio/self-distiller --profile docs-writer
+```
+
+---
+
+<a id="ansirstudio-llm-wiki-builder"></a>
+## 💎 [AnsirStudio/llm-wiki-builder](https://github.com/AnsirStudio/llm-wiki-builder)
+
+**★ 0** · exceptional (score 13.5) · tags: agent-skill, claude-skill, karpathy, knowledge-base, knowledge-management
+
+Pre-compile raw material into a structured, interlinked, source-traced markdown knowledge wiki — a non-RAG agent skill implementing Karpathy's LLM Wiki pattern.
+
+✅ SKILL.md
+
+```bash
+cue skills add AnsirStudio/llm-wiki-builder --profile docs-writer
+```
+
+---
+
+<a id="skill-mate-document-cloning-skills"></a>
+## 💎 [skill-mate/Document-Cloning-Skills](https://github.com/skill-mate/Document-Cloning-Skills)
+
+**★ 2** · exceptional (score 13.5) · Python · tags: claude-code, claude-skill, docx, government-document, markdown-to-word
+
+Claude Code skill: render Markdown into strictly-formatted Word docs (skeleton + profile modes)
+
+✅ SKILL.md
+
+```bash
+cue skills add skill-mate/Document-Cloning-Skills --profile docs-writer
+```
+
+---
+
+<a id="huasanai-en-study"></a>
+## 💎 [huasanai/en-study](https://github.com/huasanai/en-study)
+
+**★ 0** · exceptional (score 13) · tags: ai-skill, chinese-to-english, claude-code, claude-code-skill, english-learning
+
+A Claude Code skill that turns your Chinese drafts into idiomatic English study material — idiom notes + vocab list.
+
+✅ SKILL.md
+
+```bash
+cue skills add huasanai/en-study --profile docs-writer
 ```
 
 ---

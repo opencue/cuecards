@@ -2,7 +2,7 @@
 title: "samkjsong-bot/OrchestrAI — Claude Code skill discovered by cue"
 description: "Multi-model VSCode extension routing Claude + Codex + Gemini through subscription paths (no API billing) / Claude + Codex + Gemini를 한 사이드바에 통합한 VSCode 멀티모델 오케스트"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, skill, core]
 ---
 

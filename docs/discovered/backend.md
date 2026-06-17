@@ -1,122 +1,94 @@
 ---
 title: "Claude Code Skills for backend"
-description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="atom2ueki-mcp-server-synology"></a>
+## 💎 [atom2ueki/mcp-server-synology](https://github.com/atom2ueki/mcp-server-synology)
 
-**★ 192740** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 121** · exceptional (score 13.6) · Python · tags: mcp, mcp-server, synology
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+💾 Model Context Protocol (MCP) server for Synology NAS - Enables AI assistants (Claude, Cursor, Continue) to manage files, downloads, and system operations through secure API integration. Features Docker deployment, auto-authentication, and comprehensive file system tools.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add atom2ueki/mcp-server-synology --profile backend
 ```
 
 ---
 
-<a id="reshaprio-reshapr"></a>
-## 💎 [reshaprio/reshapr](https://github.com/reshaprio/reshapr)
+<a id="ralfbecher-orionbelt-semantic-layer"></a>
+## 💎 [ralfbecher/orionbelt-semantic-layer](https://github.com/ralfbecher/orionbelt-semantic-layer)
 
-**★ 106** · exceptional (score 14.4) · Java · tags: agent-tools, ai-agents, ai-gateway, ai-infrastructure, ai-integration
+**★ 55** · exceptional (score 11) · Python · tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
 
-The open source, no-code MCP Server for AI-Native API Access
+Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
 
 ```bash
-cue skills add reshaprio/reshapr --profile backend
+cue skills add ralfbecher/orionbelt-semantic-layer --profile backend
 ```
 
 ---
 
-<a id="thelunarcompany-lunar"></a>
-## 💎 [TheLunarCompany/lunar](https://github.com/TheLunarCompany/lunar)
+<a id="retospect-precis-mcp"></a>
+## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
 
-**★ 455** · exceptional (score 14) · TypeScript · tags: agent-skills, api-proxy, mcp, mcp-client, mcp-gateway
+**★ 1** · exceptional (score 9.8) · Python · tags: ai-agent, claude, context-management, cursor, llm
 
-lunar.dev: Agent native MCP Gateway for governance and security
+MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
 
 ```bash
-cue skills add TheLunarCompany/lunar --profile backend
+cue skills add retospect/precis-mcp --profile backend
 ```
 
 ---
 
-<a id="lemonade-sdk-lemonade"></a>
-## 💎 [lemonade-sdk/lemonade](https://github.com/lemonade-sdk/lemonade)
+<a id="zycaskevin-vault-for-llm"></a>
+## 💎 [zycaskevin/Vault-for-LLM](https://github.com/zycaskevin/Vault-for-LLM)
 
-**★ 4453** · exceptional (score 13) · C++ · tags: ai, amd, genai, gpu, llama
+**★ 40** · exceptional (score 9.2) · Python · tags: embeddings, knowledge-base, llm, local-first, mcp-server
 
-Lemonade helps users discover and run local AI apps by serving optimized LLMs right from their own GPUs and NPUs. Join our discord: https://discord.gg/5xXzkMu8Zk
+🧠 Local-first knowledge system for LLM agents — sqlite-vec + ONNX embeddings, no cloud/Docker/PyTorch dependency
 
 ```bash
-cue skills add lemonade-sdk/lemonade --profile backend
+cue skills add zycaskevin/Vault-for-LLM --profile backend
 ```
 
 ---
 
-<a id="devantler-tech-ksail"></a>
-## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
+<a id="vassiliylakhonin-vassiliylakhonin-github-io"></a>
+## ✨ [vassiliylakhonin/vassiliylakhonin.github.io](https://github.com/vassiliylakhonin/vassiliylakhonin.github.io)
 
-**★ 147** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
+**★ 3** · strong (score 7.2) · HTML · tags: a2a, agenda-intelligence, agent-card, agent-discovery, ai-hiring
 
-All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
+Personal site + AI-readable profile of Vassiliy Lakhonin. I build evidence-discipline tooling for strategic-risk AI agents (Agenda Intelligence: open-source skills + deployed A2A workers with live demos), grounded in compliance and cross-border delivery. Reference implementation of an agent-discoverable profile (pages + JSON + MCP).
 
 ```bash
-cue skills add devantler-tech/ksail --profile backend
+cue skills add vassiliylakhonin/vassiliylakhonin.github.io --profile backend
 ```
 
 ---
 
-<a id="chedong-phpman"></a>
-## 💎 [chedong/phpman](https://github.com/chedong/phpman)
+<a id="dunkelcloud-toolmesh"></a>
+## ✨ [DunkelCloud/ToolMesh](https://github.com/DunkelCloud/ToolMesh)
 
-**★ 1** · exceptional (score 11.3) · PHP · tags: json-api, linux-commands, linux-man-pages, markdown, mcp-server
+**★ 3** · strong (score 6.7) · Go · tags: ai-agents, dadl, enterprise, go, llm
 
-php manual: Man Page / Perldoc / Info / Pydoc / Ri Page Web Interface  with JSON Markdown & MCP Server
-
-✅ SKILL.md
+Self-hosted MCP gateway with authorization, credential injection, audit logging, and output policies. Includes DADL — describe REST APIs as MCP tools in YAML.
 
 ```bash
-cue skills add chedong/phpman --profile backend
-```
-
----
-
-<a id="usefolklore-folklore"></a>
-## 💎 [usefolklore/folklore](https://github.com/usefolklore/folklore)
-
-**★ 1** · exceptional (score 8.8) · TypeScript · tags: ai-agents, beir, claude-code, codex, did-key
-
-A decentralized cooperative memory & research layer for AI agents — collectively and cooperatively learning and advancing as a community.
-
-```bash
-cue skills add usefolklore/folklore --profile backend
-```
-
----
-
-<a id="n2ns-n2n-post2site"></a>
-## 💎 [n2ns/n2n-post2site](https://github.com/n2ns/n2n-post2site)
-
-**★ 3** · exceptional (score 8.7) · TypeScript · tags: ai-agent, blogging, claude, cms, content-publishing
-
-MCP bridge for AI-assisted content publishing. Draft, edit, and publish to your blog or CMS through a minimal API contract — draft-by-default, no DB or shell access required.
-
-```bash
-cue skills add n2ns/n2n-post2site --profile backend
+cue skills add DunkelCloud/ToolMesh --profile backend
 ```
 
 ---
@@ -134,19 +106,6 @@ cue skills add JSONbored/metagraphed --profile backend
 
 ---
 
-<a id="albinati-home-energy-manager"></a>
-## ✨ [albinati/home-energy-manager](https://github.com/albinati/home-energy-manager)
-
-**★ 0** · strong (score 6.5) · Python · tags: anthropic, battery-storage, claude, daikin-altherma, energy-optimization
-
-LP-based home-energy planner. Optimises a Fox ESS battery + Daikin Altherma heat pump against Octopus Agile half-hourly tariffs via a PuLP MILP solver — with closed-loop replay, scenario robustness, and an MCP tool surface for OpenClaw / Claude.
-
-```bash
-cue skills add albinati/home-energy-manager --profile backend
-```
-
----
-
 <a id="alex-jb-bilingual-content-sync-agent"></a>
 ## ✨ [alex-jb/bilingual-content-sync-agent](https://github.com/alex-jb/bilingual-content-sync-agent)
 
@@ -160,15 +119,15 @@ cue skills add alex-jb/bilingual-content-sync-agent --profile backend
 
 ---
 
-<a id="orderchlorococcalesdresswhites76-bb-bash"></a>
-## ✨ [Orderchlorococcalesdresswhites76/bb-bash](https://github.com/Orderchlorococcalesdresswhites76/bb-bash)
+<a id="ryosogawa-sf6-sensei"></a>
+## ✨ [RyoSogawa/sf6-sensei](https://github.com/RyoSogawa/sf6-sensei)
 
-**★ 0** · strong (score 6) · Shell · tags: automation, bash, bash-scripting, bbs, bitbucket
+**★ 0** · strong (score 6) · TypeScript · tags: mcp-server, street-fighter-6
 
-Control Bitbucket Cloud via terminal or AI agents with this zero-config, single-file bash script for seamless PR management and automated workflow integration.
+Street Fighter 6 frame data API for GPT Actions / MCP integrations
 
 ```bash
-cue skills add Orderchlorococcalesdresswhites76/bb-bash --profile backend
+cue skills add RyoSogawa/sf6-sensei --profile backend
 ```
 
 ---

@@ -1,29 +1,72 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="byrobertocumbane-glitch-lottie-marketplace"></a>
-## 💎 [byrobertocumbane-glitch/lottie-marketplace](https://github.com/byrobertocumbane-glitch/lottie-marketplace)
+<a id="vb-tyagi-fuck-you-and-stop-charging-for-sloppy-design-agents"></a>
+## 💎 [vb-tyagi/fuck-you-and-stop-charging-for-sloppy-design-agents](https://github.com/vb-tyagi/fuck-you-and-stop-charging-for-sloppy-design-agents)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: app, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills
+**★ 1** · exceptional (score 13.3) · tags: ai-design, claude, claude-code, claude-skill, design-systems
 
-Search, fetch, and integrate Lottie animations into React, Vue, Flutter, and other frameworks using two Claude Code commands.
+A Claude Code skill that actually designs beautiful UI. Extract your design taste → build unlimited production-quality UI from it. No subscriptions. No sloppy output.
+
+✅ SKILL.md
 
 ```bash
-cue skills add byrobertocumbane-glitch/lottie-marketplace --profile frontend
+cue skills add vb-tyagi/fuck-you-and-stop-charging-for-sloppy-design-agents --profile frontend
+```
+
+---
+
+<a id="leosssvip-dot-website-replication-skill"></a>
+## 💎 [leosssvip-dot/website-replication-skill](https://github.com/leosssvip-dot/website-replication-skill)
+
+**★ 8** · exceptional (score 12.1) · JavaScript · tags: browser-automation, claude-agent-skill, claude-code-skill, competitive-analysis, feature-parity
+
+Skill for Claude Code / OpenAI Codex: audit a reference site and produce a differentiated parity plan (UI, interactions, API, data, architecture).
+
+✅ SKILL.md
+
+```bash
+cue skills add leosssvip-dot/website-replication-skill --profile frontend
+```
+
+---
+
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+
+**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
+
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+
+```bash
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---
