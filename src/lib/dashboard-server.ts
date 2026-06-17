@@ -422,6 +422,8 @@ interface ProfileDetail {
   subagents: SubagentRef[];
   /** External CLI tools the profile's skills declare (frontmatter Bash refs). */
   clis: ProfileCli[];
+  /** Companion profiles the active profile recommends pairing with. */
+  recommends: string[];
 }
 
 /** Pull a `uses:` (or `mcps:`) frontmatter list out of a SKILL.md, if present. */
@@ -727,6 +729,7 @@ export async function handleProfileDetail(params: URLSearchParams): Promise<ApiR
     playbooks,
     subagents,
     clis,
+    recommends: profile.recommends ?? [],
   };
 
   profileDetailCache.set(name, { ts: Date.now(), data });

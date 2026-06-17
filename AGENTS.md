@@ -41,10 +41,16 @@ Key paths:
 
 - Preserve user work. Do not revert, reset, or overwrite unrelated changes.
 - Prefer small, source-backed changes over broad rewrites.
+- For repo architecture, feature-flow, or symbol-impact questions, use
+  CodeGraph before broad file reads or grep.
 - For context-heavy files, inspect with `wc`, narrow `rg`, `sed -n`, `head`,
   or `tail` before reading more.
 - Do not paste large fixtures, catalogs, generated files, full logs, or full
   setup manuals into chat.
+- Verify with the smallest check that proves the touched surface. For profile
+  edits, start with `cue validate <profile>` plus targeted tests; run
+  `cue validate --all` only when requested or when a shared loader/materializer
+  change creates real cross-profile risk.
 - For default-profile behavior, source of truth is `src/commands/init.ts` and
   profile resolution tests under `src/lib/cwd-resolver.test.ts`.
 
@@ -55,10 +61,12 @@ Avoid reading these by default:
 - `resources/skills/skills/**/test/fixtures/*`
 - `resources/skills/skills/**/fixtures/*`
 - `docs/assets/*.svg`
-- `dist/`, `node_modules/`, coverage output, package-manager caches
+- `dist/`, `node_modules/`, coverage output, generated output, submodule
+  dependency trees, package-manager caches
 - `~/.config/cue/analytics.jsonl`, `~/.config/cue/session-log.jsonl`
 
-If one is required, sample it first and cap output.
+If one is required, sample it first and cap output. For broad `rg`, use
+explicit `--glob` excludes for these traps.
 
 ## After Bootstrap
 

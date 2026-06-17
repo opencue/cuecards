@@ -172,13 +172,14 @@ export interface UniversalSuggestion {
 /**
  * Profiles offered as a combine companion under *every* primary, independent of
  * the curated featured set, session frequency, the picked profile's
- * `recommends:`, or cwd content. gstack is the engineering-team layer (ship /
- * QA / deploy / review) that pairs with whatever stack you're building, so the
- * picker always offers to stack it on. Emitted as the `pinned` origin by
- * `buildUniversalSuggestions` (the single "offered under every primary" path)
- * and surfaced unchecked — offered, never forced into the pin.
+ * `recommends:`, or cwd content.
+ *
+ * Keep this empty by default. Broad profiles such as `gstack` can add tens of
+ * thousands of always-on tokens when accepted casually; they should surface via
+ * explicit choice, profile `recommends:`, featured suggestions, or real session
+ * frequency instead.
  */
-export const UNIVERSAL_COMPANIONS: readonly string[] = ["gstack"];
+export const UNIVERSAL_COMPANIONS: readonly string[] = [];
 
 export interface BuildUniversalOptions {
   /** Curated featured slugs, in display order (from `_featured.yaml`). */
@@ -187,6 +188,8 @@ export interface BuildUniversalOptions {
   affinity: Map<string, ProfileAffinity>;
   /** Installed profile names — both sources are filtered to these. */
   known: Set<string>;
+  /** Optional global pins. Defaults to `UNIVERSAL_COMPANIONS`. */
+  pinnedCompanions?: readonly string[];
   /** Max curated featured suggestions. Default 5. */
   maxFeatured?: number;
   /** Max session-frequency suggestions. Default 2. */
@@ -232,11 +235,11 @@ export function buildUniversalSuggestions(opts: BuildUniversalOptions): Universa
     out.push({ name, origin: "frequent" });
   }
 
-  // Pinned companions (gstack) close the list: always offered under every
-  // primary, after featured/frequent so those keep their slots. De-duped (a
-  // pinned profile that's also featured keeps the earlier featured origin) and
-  // known-filtered like the rest, so an uninstalled pin silently drops.
-  for (const name of UNIVERSAL_COMPANIONS) {
+  // Pinned companions close the list: always offered under every primary, after
+  // featured/frequent so those keep their slots. De-duped (a pinned profile
+  // that's also featured keeps the earlier featured origin) and known-filtered
+  // like the rest, so an uninstalled pin silently drops.
+  for (const name of (opts.pinnedCompanions ?? UNIVERSAL_COMPANIONS)) {
     if (seen.has(name) || !o.known.has(name)) continue;
     seen.add(name);
     out.push({ name, origin: "pinned" });

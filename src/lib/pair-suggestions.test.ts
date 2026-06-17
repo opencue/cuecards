@@ -219,18 +219,43 @@ describe("buildUniversalSuggestions", () => {
     ]);
   });
 
-  test("pinned companions (gstack) close the list when installed, after featured/frequent", () => {
-    const gstack = UNIVERSAL_COMPANIONS[0]!; // "gstack"
+  test("no heavy companion is pinned globally by default", () => {
+    expect(UNIVERSAL_COMPANIONS).toEqual([]);
     const affinity = computeAffinityMap(lines(...Array(5).fill(row("a"))));
     const out = buildUniversalSuggestions({
       featured: ["f1"],
       affinity,
-      known: known("f1", "a", gstack),
+      known: known("f1", "a", "gstack"),
     });
     expect(out).toEqual([
       { name: "f1", origin: "featured" },
       { name: "a", origin: "frequent" },
-      { name: gstack, origin: "pinned" },
+    ]);
+  });
+
+  test("a featured heavy profile can still be offered explicitly", () => {
+    const gstack = "gstack";
+    const out = buildUniversalSuggestions({
+      featured: [gstack],
+      affinity: new Map(),
+      known: known(gstack),
+    });
+    expect(out).toEqual([{ name: gstack, origin: "featured" }]);
+  });
+
+  test("pinned companions close the list when configured, after featured/frequent", () => {
+    const pinned = "lightweight-helper";
+    const affinity = computeAffinityMap(lines(...Array(5).fill(row("a"))));
+    const out = buildUniversalSuggestions({
+      featured: ["f1"],
+      affinity,
+      known: known("f1", "a", pinned),
+      pinnedCompanions: [pinned],
+    });
+    expect(out).toEqual([
+      { name: "f1", origin: "featured" },
+      { name: "a", origin: "frequent" },
+      { name: pinned, origin: "pinned" },
     ]);
   });
 
@@ -239,16 +264,18 @@ describe("buildUniversalSuggestions", () => {
       featured: ["f1"],
       affinity: new Map(),
       known: known("f1"), // gstack not installed
+      pinnedCompanions: ["lightweight-helper"],
     });
     expect(out).toEqual([{ name: "f1", origin: "featured" }]);
   });
 
   test("a pinned companion already in featured keeps its featured origin (de-duped)", () => {
-    const gstack = UNIVERSAL_COMPANIONS[0]!;
+    const gstack = "gstack";
     const out = buildUniversalSuggestions({
       featured: [gstack],
       affinity: new Map(),
       known: known(gstack),
+      pinnedCompanions: [gstack],
     });
     expect(out).toEqual([{ name: gstack, origin: "featured" }]);
   });

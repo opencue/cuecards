@@ -120,6 +120,8 @@ export interface ProfileDetail {
   subagents: SubagentRef[];
   /** External CLI tools the profile's skills declare (frontmatter Bash refs). */
   clis: ProfileCli[];
+  /** Companion profiles this profile recommends pairing with. */
+  recommends: string[];
 }
 
 export interface PartSummary {
