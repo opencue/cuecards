@@ -880,6 +880,18 @@ describe("formatTokenWarning", () => {
     });
     expect(out).toContain("   💡 Run `cue skills audit` to trim unused skills.");
   });
+
+  test("very heavy profiles get explicit launch guidance", () => {
+    const out = formatTokenWarning({
+      alwaysOn: 66000,
+      maxIfAllActivate: 520000,
+      totalSkills: 102,
+      byProfile: [],
+      heaviestBodies: [],
+    });
+    expect(out.join("\n")).toContain("Very heavy profile:");
+    expect(out.join("\n")).toContain('use `--subset "<task>"`');
+  });
 });
 
 describe("formatDoctorWarnings", () => {

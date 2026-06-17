@@ -445,6 +445,11 @@ export function formatTokenWarning(b: TokenBreakdown): string[] {
   lines.push(
     `${level} Skill overhead: ${c.yellow(`~${alwaysK}`)} always-on (${b.totalSkills} skills)`,
   );
+  if (b.alwaysOn >= 50_000) {
+    lines.push(
+      `   ${c.yellow("Very heavy profile:")} prefer \`core\` or a narrow stack; use \`--subset "<task>"\` before launching broad composites.`,
+    );
+  }
 
   // `byProfile[0]` is the primary (the profile the user actively picked);
   // the rest are companions added via the multiselect. We tag whichever part

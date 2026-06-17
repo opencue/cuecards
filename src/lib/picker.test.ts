@@ -384,76 +384,77 @@ describe("buildCompanionOptions", () => {
     expect(solo.overflowOptions).toEqual([]);
   });
 
-  // gstack is the sole pinned companion: emitted by buildUniversalSuggestions
-  // as the `pinned` origin (tested in pair-suggestions.test) and rendered here
-  // through the one universalSuggestions path — no separate picker injection.
-  const WITH_GSTACK: PickerOption[] = [
+  // Pinned companions, when configured, flow through the same
+  // universalSuggestions path as featured/frequent rows. Production defaults
+  // to no pinned companions so heavy profiles such as gstack are not offered
+  // under every primary.
+  const WITH_PINNED: PickerOption[] = [
     ...OPTS,
-    { value: "gstack", label: "🏭 gstack", hint: "engineering team", conflicts: ["vite"] },
+    { value: "lightweight-helper", label: "helper", hint: "small helper", conflicts: ["vite"] },
     { value: "vite", label: "vite", hint: "spa" },
   ];
-  const PINNED: UniversalSuggestion[] = UNIVERSAL_COMPANIONS.map((name) => ({
-    name,
-    origin: "pinned",
-  }));
+  const PINNED: UniversalSuggestion[] = [{ name: "lightweight-helper", origin: "pinned" }];
 
-  test("a pinned companion is offered (unchecked) under a primary that never names it", () => {
-    expect(UNIVERSAL_COMPANIONS).toContain("gstack");
+  test("gstack is not pinned as a universal companion by default", () => {
+    expect(UNIVERSAL_COMPANIONS).not.toContain("gstack");
+  });
+
+  test("a configured pinned companion is offered (unchecked) under a primary that never names it", () => {
     const { companionOptions, initialValues } = buildCompanionOptions({
       primary: "postizz",
       primaryLabel: "postizz",
-      options: WITH_GSTACK,
+      options: WITH_PINNED,
       recommends: [],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(companionOptions.map((o) => o.value)).toContain("gstack");
-    expect(initialValues).not.toContain("gstack"); // offered, never forced
+    expect(companionOptions.map((o) => o.value)).toContain("lightweight-helper");
+    expect(initialValues).not.toContain("lightweight-helper"); // offered, never forced
     // Pinned-origin rows get the UNIVERSAL_HINT tag, not the verbose profile
     // description — consistent with featured/frequent rows.
-    expect(companionOptions.find((o) => o.value === "gstack")!.hint).toBe(UNIVERSAL_HINT);
+    expect(companionOptions.find((o) => o.value === "lightweight-helper")!.hint).toBe(UNIVERSAL_HINT);
   });
 
   test("the pinned companion is dropped when it is the primary or conflicts with it", () => {
     const asPrimary = buildCompanionOptions({
-      primary: "gstack",
-      primaryLabel: "gstack",
-      options: WITH_GSTACK,
+      primary: "lightweight-helper",
+      primaryLabel: "lightweight-helper",
+      options: WITH_PINNED,
       recommends: [],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(asPrimary.companionOptions.map((o) => o.value)).not.toContain("gstack");
+    expect(asPrimary.companionOptions.map((o) => o.value)).not.toContain("lightweight-helper");
 
     const conflicting = buildCompanionOptions({
       primary: "vite",
       primaryLabel: "vite",
-      options: WITH_GSTACK,
+      options: WITH_PINNED,
       recommends: [],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(conflicting.companionOptions.map((o) => o.value)).not.toContain("gstack");
+    expect(conflicting.companionOptions.map((o) => o.value)).not.toContain("lightweight-helper");
   });
 
   test("an explicit recommend for a pinned companion is not duplicated", () => {
     const { companionOptions } = buildCompanionOptions({
       primary: "postizz",
       primaryLabel: "postizz",
-      options: WITH_GSTACK,
-      recommends: ["gstack"],
+      options: WITH_PINNED,
+      recommends: ["lightweight-helper"],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(companionOptions.filter((o) => o.value === "gstack")).toHaveLength(1);
+    expect(companionOptions.filter((o) => o.value === "lightweight-helper")).toHaveLength(1);
   });
 
   // Featured + frequently-used cross-profile suggestions (buildUniversalSuggestions).

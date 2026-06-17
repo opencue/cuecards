@@ -289,7 +289,7 @@ export const SKIP_COMBINE = "__skip_combine__";
  */
 export const SHOW_ALL = "__show_all__";
 
-// Always-on combine companions (gstack) now flow through the single
+// Optional always-on combine companions flow through the single
 // `buildUniversalSuggestions` path as the `pinned` origin — re-exported here so
 // existing `import { UNIVERSAL_COMPANIONS } from "./picker"` call sites keep
 // resolving. The canonical definition lives in `./pair-suggestions`.
@@ -350,9 +350,8 @@ export interface BuildCompanionArgs {
  * Assemble the combine multiselect's rows + which start checked.
  *
  * Candidates = the primary's `recommends:` ∪ historical pairings ∪ content-
- * detected companions ∪ featured/frequently-used profiles ∪
- * `UNIVERSAL_COMPANIONS` (offered under every primary), de-duped by profile
- * (that order). A candidate is
+ * detected companions ∪ featured/frequently-used profiles ∪ optional
+ * `UNIVERSAL_COMPANIONS` pins, de-duped by profile (that order). A candidate is
  * dropped when it is the primary itself, a profile that conflicts with the
  * primary (either side of the declaration), a divider, a composite (`+`)
  * value, or not a real option. A detected candidate shows its reason as the
@@ -405,7 +404,7 @@ export function buildCompanionOptions(args: BuildCompanionArgs): {
   for (const r of recommends) addCandidate(r, "recommends");
   for (const r of pairSuggested) addCandidate(r, "history");
   for (const c of companions) addCandidate(c.profile, "detected");
-  // Featured + frequent + pinned (gstack) all arrive via the one universal path.
+  // Featured + frequent + optional pinned companions all arrive via one path.
   for (const u of universalSuggestions) addCandidate(u.name, u.origin);
 
   const companionOptions: AsciiMSOption[] = [];

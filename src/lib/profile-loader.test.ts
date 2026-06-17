@@ -9,7 +9,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -543,19 +543,47 @@ describe("loadProfile (composite)", () => {
 describe("core persona_includes fan-out (real profiles)", () => {
   const REAL_PROFILES = join(REPO_ROOT, "profiles");
 
-  test("core carries the headroom-compression include", async () => {
+  test("core carries the compact integrity include", async () => {
     process.env.CUE_PROFILES_DIR = REAL_PROFILES;
     const core = await loadProfile("core");
+    expect(core.personaIncludes).toContain("integrity-protocol-compact");
     expect(core.personaIncludes).toContain("headroom-compression");
   });
 
-  test("headroom-compression fans out to a child that defines its own persona", async () => {
+  test("codegraph auto-loads across every built-in profile", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const entries = await readdir(REAL_PROFILES, { withFileTypes: true });
+    const names: string[] = [];
+    for (const entry of entries) {
+      if (!entry.isDirectory() || entry.name.startsWith("_") || entry.name.startsWith(".")) continue;
+      try {
+        await access(join(REAL_PROFILES, entry.name, "profile.yaml"));
+        names.push(entry.name);
+      } catch {
+        // Reserved or incomplete profile dirs are ignored by the real loader too.
+      }
+    }
+
+    const missingMcp: string[] = [];
+    const missingRouting: string[] = [];
+    for (const name of names.sort()) {
+      const profile = await loadProfile(name);
+      if (!profile.mcps.some((m) => m.id === "codegraph")) missingMcp.push(name);
+      if (!profile.personaIncludes.includes("codegraph-routing")) missingRouting.push(name);
+    }
+
+    expect(missingMcp).toEqual([]);
+    expect(missingRouting).toEqual([]);
+  });
+
+  test("core persona includes fan out to a child that defines its own persona", async () => {
     // gstack overrides persona (leaf-wins), so this proves persona_includes is
     // additive — a child keeping its own persona still inherits core's policy
     // includes. Guards against a core edit silently dropping it everywhere.
     process.env.CUE_PROFILES_DIR = REAL_PROFILES;
     const gstack = await loadProfile("gstack");
     expect(gstack.persona).toBeTruthy(); // gstack has its own persona block
+    expect(gstack.personaIncludes).toContain("integrity-protocol-compact");
     expect(gstack.personaIncludes).toContain("headroom-compression");
   });
 });

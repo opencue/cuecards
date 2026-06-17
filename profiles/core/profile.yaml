@@ -22,6 +22,7 @@ env:
   ANTHROPIC_BASE_URL: "http://127.0.0.1:8787"
 persona_includes:
   - integrity-protocol-compact  # resources/personas/integrity-protocol-compact.md — compact 7-tag system inline; full protocol + examples load on demand (integrity-protocol.md / meta/integrity-tags). Fans out via inheritance.
+  - codegraph-routing    # resources/personas/codegraph-routing.md — compact source-navigation rule: use CodeGraph before broad repo reads/grep so code exploration burns fewer tokens. Fans out via inheritance.
   - skill-evolution        # resources/personas/skill-evolution.md — post-task learning capture via bin/cue-learnings, fans out to every core-inheriting profile
   - headroom-compression   # resources/personas/headroom-compression.md — tells every profile's agent to actively use headroom (proxy wrap is automatic; reach for the MCP on big payloads) to cut tokens. Fans out via inheritance even to profiles with their own persona (persona_includes is additive; inline persona is leaf-wins).
   - fable-5-prompting-compact  # resources/personas/fable-5-prompting-compact.md — Fable 5 / Mythos 5 behavioral deltas (effort, longer turns, grounding, boundaries); full guide on demand at fable-5-prompting.md. Fans out via inheritance.
@@ -193,6 +194,7 @@ skills:
     # github-actions-docs dropped from core 2026-06-01 — CI-docs is not universal
     # baseline. Add it back per-profile (ops, the deploy-touching ones) if needed.
 mcps:
+  - codegraph        # Repo code intelligence MCP — use before broad Read/Grep for architecture, feature, bug-context, symbol, caller/callee, and impact questions. Available to Claude and Codex runtimes via the sanitized registry snapshots.
   - lightpanda       # Fast headless browser MCP — fetch/render/scrape URLs without Chromium. Pairs with browser/lightpanda skill.
   - context7         # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
   - headroom         # Context-compression MCP (headroom_compress/retrieve/stats) — 60–95% fewer tokens, reversible. Pairs with tools/headroom skill. Inert until `pip install "headroom-ai[mcp]"`. The full all-traffic wrap (ANTHROPIC_BASE_URL → local proxy) IS set in core's env above, but health-gated by the materializer — applied only when the proxy answers, so a down proxy falls back to direct Anthropic instead of bricking Claude.
