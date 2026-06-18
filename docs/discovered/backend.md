@@ -1,133 +1,94 @@
 ---
 title: "Claude Code Skills for backend"
-description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="atom2ueki-mcp-server-synology"></a>
-## 💎 [atom2ueki/mcp-server-synology](https://github.com/atom2ueki/mcp-server-synology)
+<a id="zzet-gortex"></a>
+## 💎 [zzet/gortex](https://github.com/zzet/gortex)
 
-**★ 121** · exceptional (score 13.6) · Python · tags: mcp, mcp-server, synology
+**★ 526** · exceptional (score 15.7) · Go · tags: ai-tools, antigravity, claude-code, code-analysis, code-assistant
 
-💾 Model Context Protocol (MCP) server for Synology NAS - Enables AI assistants (Claude, Cursor, Continue) to manage files, downloads, and system operations through secure API integration. Features Docker deployment, auto-authentication, and comprehensive file system tools.
+High-performance code graph and code intelligence engine, supports 257 languages, multi repositories,  with access via CLI, MCP Server, and API.  Built for AI coding agents - expose only needed information, cutting token usage up to 50x. 100% local.
 
 ```bash
-cue skills add atom2ueki/mcp-server-synology --profile backend
+cue skills add zzet/gortex --profile backend
 ```
 
 ---
 
-<a id="ralfbecher-orionbelt-semantic-layer"></a>
-## 💎 [ralfbecher/orionbelt-semantic-layer](https://github.com/ralfbecher/orionbelt-semantic-layer)
+<a id="georgeantonopoulos-basecamp-mcp-server"></a>
+## 💎 [georgeantonopoulos/Basecamp-MCP-Server](https://github.com/georgeantonopoulos/Basecamp-MCP-Server)
 
-**★ 55** · exceptional (score 11) · Python · tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
+**★ 89** · exceptional (score 15.5) · Python · tags: basecamp, basecamp-api, claude-desktop, codex, cursor
 
-Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
+MCP server for Basecamp 3 with OAuth, FastMCP, and 75 tools for projects, todos, messages, card tables, docs, uploads, and search.
 
 ```bash
-cue skills add ralfbecher/orionbelt-semantic-layer --profile backend
+cue skills add georgeantonopoulos/Basecamp-MCP-Server --profile backend
 ```
 
 ---
 
-<a id="retospect-precis-mcp"></a>
-## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 1** · exceptional (score 9.8) · Python · tags: ai-agent, claude, context-management, cursor, llm
+**★ 193000** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add retospect/precis-mcp --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="zycaskevin-vault-for-llm"></a>
-## 💎 [zycaskevin/Vault-for-LLM](https://github.com/zycaskevin/Vault-for-LLM)
+<a id="lyellr88-marm-systems"></a>
+## 💎 [Lyellr88/MARM-Systems](https://github.com/Lyellr88/MARM-Systems)
 
-**★ 40** · exceptional (score 9.2) · Python · tags: embeddings, knowledge-base, llm, local-first, mcp-server
+**★ 305** · exceptional (score 13.9) · Python · tags: agent-swarms, claude, developer-tools, docker-image, embeddings
 
-🧠 Local-first knowledge system for LLM agents — sqlite-vec + ONNX embeddings, no cloud/Docker/PyTorch dependency
+Stop re-explaining yourself to AI. MARM offers persistent memory, cross-agent context sharing, write queues, swarm-ready presets, and compaction for clean recall. Includes a live web dashboard for managing memories, logs, and sessions. MCP connects over HTTP & STDIO and works with major LLMs like Claude, Codex, Grok, Gemini, and other models. 
 
 ```bash
-cue skills add zycaskevin/Vault-for-LLM --profile backend
+cue skills add Lyellr88/MARM-Systems --profile backend
 ```
 
 ---
 
-<a id="vassiliylakhonin-vassiliylakhonin-github-io"></a>
-## ✨ [vassiliylakhonin/vassiliylakhonin.github.io](https://github.com/vassiliylakhonin/vassiliylakhonin.github.io)
+<a id="edheltzel-recall"></a>
+## 💎 [edheltzel/Recall](https://github.com/edheltzel/Recall)
 
-**★ 3** · strong (score 7.2) · HTML · tags: a2a, agenda-intelligence, agent-card, agent-discovery, ai-hiring
+**★ 2** · exceptional (score 9.5) · TypeScript · tags: ai-memory, ai-memory-system, claude, claude-ai, claude-code
 
-Personal site + AI-readable profile of Vassiliy Lakhonin. I build evidence-discipline tooling for strategic-risk AI agents (Agenda Intelligence: open-source skills + deployed A2A workers with live demos), grounded in compliance and cross-border delivery. Reference implementation of an agent-discoverable profile (pages + JSON + MCP).
+A SQLite persistent memory layer for any coding agent. Stop-hook extraction captures sessions, MCP tools expose them mid-session, hybrid search retrieves them, and a tiered L0/L1 recall block injects identity + top-ranked records at session start. Works across any AI harnesses like Claude Code, Opencode, & Pi from one database.
 
 ```bash
-cue skills add vassiliylakhonin/vassiliylakhonin.github.io --profile backend
+cue skills add edheltzel/Recall --profile backend
 ```
 
 ---
 
-<a id="dunkelcloud-toolmesh"></a>
-## ✨ [DunkelCloud/ToolMesh](https://github.com/DunkelCloud/ToolMesh)
+<a id="icoretech-codex-pooler"></a>
+## ✨ [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
 
-**★ 3** · strong (score 6.7) · Go · tags: ai-agents, dadl, enterprise, go, llm
+**★ 26** · strong (score 7.6) · Elixir · tags: aider, api-gateway, cline, codex, continue
 
-Self-hosted MCP gateway with authorization, credential injection, audit logging, and output policies. Includes DADL — describe REST APIs as MCP tools in YAML.
-
-```bash
-cue skills add DunkelCloud/ToolMesh --profile backend
-```
-
----
-
-<a id="jsonbored-metagraphed"></a>
-## ✨ [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed)
-
-**★ 2** · strong (score 6.5) · JavaScript · tags: bittensor, bittensor-cli, bittensor-docs, bittensor-subnet, bittensor-subnets
-
-Operational metadata, health, schemas, and public interface discovery for Bittensor subnets.
+The full featured self-hosted Codex gateway, for teams, agents and you
 
 ```bash
-cue skills add JSONbored/metagraphed --profile backend
-```
-
----
-
-<a id="alex-jb-bilingual-content-sync-agent"></a>
-## ✨ [alex-jb/bilingual-content-sync-agent](https://github.com/alex-jb/bilingual-content-sync-agent)
-
-**★ 2** · strong (score 6.2) · Python · tags: batch-api, chinese, claude, english, i18n
-
-🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT.
-
-```bash
-cue skills add alex-jb/bilingual-content-sync-agent --profile backend
-```
-
----
-
-<a id="ryosogawa-sf6-sensei"></a>
-## ✨ [RyoSogawa/sf6-sensei](https://github.com/RyoSogawa/sf6-sensei)
-
-**★ 0** · strong (score 6) · TypeScript · tags: mcp-server, street-fighter-6
-
-Street Fighter 6 frame data API for GPT Actions / MCP integrations
-
-```bash
-cue skills add RyoSogawa/sf6-sensei --profile backend
+cue skills add icoretech/codex-pooler --profile backend
 ```
 
 ---
@@ -161,7 +122,7 @@ cue skills add Sfedfcv/redesigned-pancake --profile backend
 <a id="hxrish04-stackgate"></a>
 ## 🔹 [hxrish04/stackgate](https://github.com/hxrish04/stackgate)
 
-**★ 1** · potential (score 3.3) · TypeScript · tags: ai, audit-trail, azure, claude, internal-developer-platform
+**★ 1** · potential (score 3.2) · TypeScript · tags: ai, audit-trail, azure, claude, internal-developer-platform
 
 AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning workflows: risk tiers, multi-stage approvals, generated Terraform, Key Vault secret references, and a full audit trail. Simulation-first with a guarded Azure path.
 

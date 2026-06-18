@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="kdnsna-ultimate-ppt-master-skill"></a>
-## 💎 [kdnsna/ultimate-ppt-master-skill](https://github.com/kdnsna/ultimate-ppt-master-skill)
+<a id="dhcnsa-netizen-lecture-builder"></a>
+## 💎 [dhcnsa-netizen/lecture-builder](https://github.com/dhcnsa-netizen/lecture-builder)
 
-**★ 52** · exceptional (score 15) · Python · tags: agent, agent-skill, ai, ai-agent, ai-presentation
+**★ 0** · exceptional (score 10.5) · Python · tags: agent-skills, claude-code-skill, claude-skill, claude-skills, docx
 
-可视化网页工作台 + 本机连接器：把 PDF、Word、PPT、URL 一键整理成本地 AI 助手可接手的 PPT 项目包，输出可编辑 PPTX 或杂志风网页演示
+讲义制作工作流：用知识点+题目一键生成学生版/教师版 Word 讲义（图片与公式逐字节保真）
 
 ✅ SKILL.md
 
 ```bash
-cue skills add kdnsna/ultimate-ppt-master-skill --profile niche
+cue skills add dhcnsa-netizen/lecture-builder --profile niche
 ```
 
 ---

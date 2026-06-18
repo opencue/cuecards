@@ -2,7 +2,7 @@
 title: "bhino50/finder-path — Claude Code skill discovered by cue"
 description: "A lightweight macOS menu bar utility that shows the frontmost Finder path — copy paths, run cd commands, open Terminal or Ghostty, and launch Codex, Claude, or "
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 

@@ -2,31 +2,31 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-17 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-06-18 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 66 | `antigravity-workspace-template`, `paoding-skill`, `pm-claude-skills` |
-| [**backend**](./backend.md) | 12 | `mcp-server-synology`, `orionbelt-semantic-layer`, `precis-mcp` |
-| [**creative-media**](./creative-media.md) | 6 | `lookdev-auto-skill`, `web-media-getter-skill`, `ckw-design-skill` |
-| [**frontend**](./frontend.md) | 5 | `fuck-you-and-stop-charging-for-sloppy-design-agents`, `website-replication-skill`, `ionik-capacitor-flux-patterns` |
-| [**docs-writer**](./docs-writer.md) | 4 | `self-distiller`, `llm-wiki-builder`, `Document-Cloning-Skills` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `kali-pentest`, `Claude-OSINT`, `claude-android-audit-skill` |
-| [**research**](./research.md) | 2 | `market-intel`, `popper-scope` |
-| [**niche**](./niche.md) | 1 | `ultimate-ppt-master-skill` |
-| [**video**](./video.md) | 1 | `screenstudio-alternative-skill` |
-| [**fleet-control**](./fleet-control.md) | 1 | `heimdall` |
+| [**core**](./core.md) | 75 | `nano-banana-pro-prompts-recommend-skill`, `master-skill`, `context-mode` |
+| [**backend**](./backend.md) | 9 | `gortex`, `Basecamp-MCP-Server`, `n8n` |
+| [**frontend**](./frontend.md) | 5 | `sketch-inspector`, `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns` |
+| [**cybersecurity**](./cybersecurity.md) | 3 | `node9-proxy`, `Claude-OSINT`, `argus` |
+| [**creative-media**](./creative-media.md) | 3 | `image-skill-cli`, `feinschmiede`, `redesigned-pancake` |
+| [**nextjs**](./nextjs.md) | 2 | `personal-knowledge-nexus`, `stackgate` |
+| [**video**](./video.md) | 1 | `podcli` |
+| [**niche**](./niche.md) | 1 | `lecture-builder` |
+| [**docs-writer**](./docs-writer.md) | 1 | `aishort-skills` |
+| [**fleet-control**](./fleet-control.md) | 1 | `multi-agent-revenue-orchestrator` |
+| [**research**](./research.md) | 1 | `popper-scope` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
-| [**nextjs**](./nextjs.md) | 1 | `stackgate` |
 
 ## How scoring works
 

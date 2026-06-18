@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="randomittin-heimdall"></a>
-## 💎 [randomittin/heimdall](https://github.com/randomittin/heimdall)
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
 
-**★ 4** · exceptional (score 10.3) · Shell · tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic
+**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
 
-Autonomous Claude Code agent — 14 specialized agents, 10-parallel execution, project-specific skill learning, mechanical checkpointing, wave-based planning with acceptance gates, caveman ultra (~75% token savings). One prompt → finished project.
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
 
 ```bash
-cue skills add randomittin/heimdall --profile fleet-control
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "dhcnsa-netizen/lecture-builder — Claude Code skill discovered by cue"
 description: "讲义制作工作流：用知识点+题目一键生成学生版/教师版 Word 讲义（图片与公式逐字节保真）"
 layout: page
-updated: 2026-06-11
+updated: 2026-06-18
 tags: [claude-code, skill, niche]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, niche]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-11
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: agent-skills, claude-code-skill, claude-skill, claude-skills, docx, education, lecture-generator, physics, word-automation
 
 ## Best fit cue profiles

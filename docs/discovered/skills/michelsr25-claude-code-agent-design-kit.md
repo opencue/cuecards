@@ -2,21 +2,21 @@
 title: "MichelSR25/Claude-Code-Agent-Design-Kit — Claude Code skill discovered by cue"
 description: "Top AI-Powered UI/UX Design Generator & Code Assistant 2026"
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [MichelSR25/Claude-Code-Agent-Design-Kit](https://github.com/MichelSR25/Claude-Code-Agent-Design-Kit)
+# 💎 [MichelSR25/Claude-Code-Agent-Design-Kit](https://github.com/MichelSR25/Claude-Code-Agent-Design-Kit)
 
-**★ 0** · strong (score 7.5) · HTML · claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace
+**★ 50** · exceptional (score 9.5) · HTML · claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace
 
 > Top AI-Powered UI/UX Design Generator & Code Assistant 2026
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-17
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
+- ⭐ 50 stars
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, claude-code-subagents, claude-cowork-free, claude-design, claude-design-ai, claude-design-alternative, claude-design-download, claude-design-install, claude-design-installer
 
 ## Best fit cue profiles

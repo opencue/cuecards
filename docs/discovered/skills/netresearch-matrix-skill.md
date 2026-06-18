@@ -2,7 +2,7 @@
 title: "netresearch/matrix-skill — Claude Code skill discovered by cue"
 description: "Agentic Skill for Matrix chat communication. Send messages to Matrix rooms on behalf of users via access token authentication. Works with any Matrix homeserver."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: agent-skills, agentic-skill, ai-agent, chat, claude-code-skill, communication, element, matrix, open-standard, skill
 
 ## Best fit cue profiles

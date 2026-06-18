@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="daizedong-market-intel"></a>
-## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
-
-**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
-
-Thin Claude Code skill for commercial/market research: triages topics across 12 data domains, detects & guides installing the right MCP source, delegates heavy retrieval to deep-research. Curated source matrix + quality guardrails.
-
-```bash
-cue skills add DaizeDong/market-intel --profile research
-```
 
 ---
 

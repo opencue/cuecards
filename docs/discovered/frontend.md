@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,32 +15,30 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="vb-tyagi-fuck-you-and-stop-charging-for-sloppy-design-agents"></a>
-## 💎 [vb-tyagi/fuck-you-and-stop-charging-for-sloppy-design-agents](https://github.com/vb-tyagi/fuck-you-and-stop-charging-for-sloppy-design-agents)
+<a id="gslvly-sketch-inspector"></a>
+## 💎 [gslvly/sketch-inspector](https://github.com/gslvly/sketch-inspector)
 
-**★ 1** · exceptional (score 13.3) · tags: ai-design, claude, claude-code, claude-skill, design-systems
+**★ 0** · exceptional (score 14.5) · TypeScript · tags: agent-skill, ai-agent, claude-code, claude-skill, cursor
 
-A Claude Code skill that actually designs beautiful UI. Extract your design taste → build unlimited production-quality UI from it. No subscriptions. No sloppy output.
+AI-friendly Sketch design parser. Turn Sketch documents into structured JSON, exported assets and an implementation-ready LayoutIR (flex/grid/absolute/leaf) so any LLM agent can convert Sketch designs into HTML/CSS, React or Vue. Agent skill compatible with Claude Code, Cursor, opencode.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add vb-tyagi/fuck-you-and-stop-charging-for-sloppy-design-agents --profile frontend
+cue skills add gslvly/sketch-inspector --profile frontend
 ```
 
 ---
 
-<a id="leosssvip-dot-website-replication-skill"></a>
-## 💎 [leosssvip-dot/website-replication-skill](https://github.com/leosssvip-dot/website-replication-skill)
+<a id="ezra-y-awesome-claude-ui-armory"></a>
+## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
 
-**★ 8** · exceptional (score 12.1) · JavaScript · tags: browser-automation, claude-agent-skill, claude-code-skill, competitive-analysis, feature-parity
+**★ 0** · exceptional (score 10.5) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
-Skill for Claude Code / OpenAI Codex: audit a reference site and produce a differentiated parity plan (UI, interactions, API, data, architecture).
-
-✅ SKILL.md
+Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
-cue skills add leosssvip-dot/website-replication-skill --profile frontend
+cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 ```
 
 ---
@@ -74,7 +72,7 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.2)
+**★ 1** · potential (score 3.1)
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

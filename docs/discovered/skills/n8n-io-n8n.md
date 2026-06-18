@@ -2,21 +2,21 @@
 title: "n8n-io/n8n — Claude Code skill discovered by cue"
 description: "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-18
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 192740** · exceptional (score 15) · TypeScript · ai, apis, automation, cli, data-flow
+**★ 193000** · exceptional (score 15) · TypeScript · ai, apis, automation, cli, data-flow
 
 > Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 192740 stars
-- 🗓️ Last pushed: 2026-06-16
+- ⭐ 193000 stars
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: ai, apis, automation, cli, data-flow, development, integration-framework, integrations, ipaas, low-code, low-code-platform, mcp, mcp-client, mcp-server, n8n, no-code, self-hosted, typescript, workflow, workflow-automation
 
 ## Best fit cue profiles

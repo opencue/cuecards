@@ -1,29 +1,29 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="x-glacier-kali-pentest"></a>
-## 💎 [x-glacier/kali-pentest](https://github.com/x-glacier/kali-pentest)
+<a id="node9-ai-node9-proxy"></a>
+## 💎 [node9-ai/node9-proxy](https://github.com/node9-ai/node9-proxy)
 
-**★ 50** · exceptional (score 13.1) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
+**★ 205** · exceptional (score 16.1) · TypeScript · tags: ai-safety, ai-security, claude-code, gemini, gemini-cli
 
-Kali Linux penetration testing skill for AI agents (Claude Code, OpenClaw, Hermes Agent). 200+ CLI tools, 15 scenario playbooks. Autonomously plans attack paths, selects tools, and integrates results across phases to adapt the penetration strategy — with human approval gates for high-risk actions.
+The Execution Security Layer for the Agentic Era. Providing deterministic "Sudo" governance and audit logs for autonomous AI agents.
 
 ```bash
-cue skills add x-glacier/kali-pentest --profile cybersecurity
+cue skills add node9-ai/node9-proxy --profile cybersecurity
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add x-glacier/kali-pentest --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1708** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1740** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -41,28 +41,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="felixgraeber-claude-android-audit-skill"></a>
-## 💎 [FelixGraeber/claude-android-audit-skill](https://github.com/FelixGraeber/claude-android-audit-skill)
+<a id="gesh75-argus"></a>
+## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 2** · exceptional (score 8.5) · Python · tags: accessibility, android, android-performance, android-security, audit
+**★ 1** · strong (score 5.3) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
-Android audit skill pack for Claude Code: architecture, security, performance, accessibility, build health, and Play preflight from repo evidence.
-
-```bash
-cue skills add FelixGraeber/claude-android-audit-skill --profile cybersecurity
-```
-
----
-
-<a id="dunkelcloud-toolmesh"></a>
-## ✨ [DunkelCloud/ToolMesh](https://github.com/DunkelCloud/ToolMesh)
-
-**★ 3** · strong (score 6.7) · Go · tags: ai-agents, dadl, enterprise, go, llm
-
-Self-hosted MCP gateway with authorization, credential injection, audit logging, and output policies. Includes DADL — describe REST APIs as MCP tools in YAML.
+Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 
 ```bash
-cue skills add DunkelCloud/ToolMesh --profile cybersecurity
+cue skills add gesh75/argus --profile cybersecurity
 ```
 
 ---

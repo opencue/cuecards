@@ -2,7 +2,7 @@
 title: "IsmaelMartinez/delegate-local — Claude Code skill discovered by cue"
 description: "Claude Code skill that delegates summarisation, log triage, and bulk-text tasks to local models. Saves API tokens, keeps content on-device, hardware-aware model"
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-17
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: agent-skills, apple-silicon, claude-code, claude-skill, llm, local-first, local-llm, mlx, ollama, on-device, privacy
 
 ## Best fit cue profiles

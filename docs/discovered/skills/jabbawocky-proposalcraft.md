@@ -2,22 +2,22 @@
 title: "jabbawocky/proposalcraft — Claude Code skill discovered by cue"
 description: "MCP server for freelancers — draft winning proposals in your voice from a client brief"
 layout: page
-updated: 2026-06-09
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [jabbawocky/proposalcraft](https://github.com/jabbawocky/proposalcraft)
+# 💎 [jabbawocky/proposalcraft](https://github.com/jabbawocky/proposalcraft)
 
-**★ 0** · strong (score 6) · JavaScript · ai-tools, anthropic, claude, claude-desktop, consultant
+**★ 0** · exceptional (score 10.5) · JavaScript · ai-agent, ai-tools, anthropic, business-development, claude
 
 > MCP server for freelancers — draft winning proposals in your voice from a client brief
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-09
-- 🏷️ Tags: ai-tools, anthropic, claude, claude-desktop, consultant, freelance, mcp, mcp-server, model-context-protocol, productivity, proposal-generator, proposal-writing, typescript
+- 🗓️ Last pushed: 2026-06-18
+- 🏷️ Tags: ai-agent, ai-tools, anthropic, business-development, claude, claude-code, claude-desktop, consultant, cursor-ai, freelance, mcp, mcp-server, model-context-protocol, npx, productivity, proposal-generator, proposal-writing, typescript
 
 ## Best fit cue profiles
 

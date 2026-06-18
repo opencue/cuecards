@@ -2,7 +2,7 @@
 title: "marsmike/feinschmiede — Claude Code skill discovered by cue"
 description: "A family of branded-media plugins for Claude Code — decks, images & 2D, video, and audio, coupled by CLI capabilities (never file paths) over one shared engine."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-17
 - 🏷️ Tags: agent-skills, agentic-coding, anthropic, brand-system, claude, claude-code, claude-code-plugins, claude-code-skills, claude-skills, design-system, design-tokens, diagrams, excalidraw, image-generation, powerpoint, pptx, presentation, remotion, text-to-speech, video
 
 ## Best fit cue profiles

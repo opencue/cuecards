@@ -1,62 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="connerkward-lookdev-auto-skill"></a>
-## 💎 [connerkward/lookdev-auto-skill](https://github.com/connerkward/lookdev-auto-skill)
-
-**★ 0** · exceptional (score 15) · tags: agent-skills, ai-tools, anthropic, automation, claude-code
-
-lookdev-auto — a Claude Code skill for automated visual tuning: a vision model rates rendered variants in a loop.
-
-✅ SKILL.md
-
-```bash
-cue skills add connerkward/lookdev-auto-skill --profile creative-media
-```
-
----
-
-<a id="connerkward-web-media-getter-skill"></a>
-## 💎 [connerkward/web-media-getter-skill](https://github.com/connerkward/web-media-getter-skill)
-
-**★ 0** · exceptional (score 15) · Python · tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
-
-web-media-getter — a Claude Code skill: one query across free image/video/GIF APIs, license-tagged results.
-
-✅ SKILL.md
-
-```bash
-cue skills add connerkward/web-media-getter-skill --profile creative-media
-```
-
----
-
-<a id="connerkward-ckw-design-skill"></a>
-## 💎 [connerkward/ckw-design-skill](https://github.com/connerkward/ckw-design-skill)
-
-**★ 0** · exceptional (score 15) · JavaScript · tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
-
-ckw-design — Conner K. Ward's frontend design skill for Claude Code: direction, design system, visual philosophy.
-
-✅ SKILL.md
-
-```bash
-cue skills add connerkward/ckw-design-skill --profile creative-media
-```
 
 ---
 

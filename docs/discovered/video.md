@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-18
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="connerkward-screenstudio-alternative-skill"></a>
-## 💎 [connerkward/screenstudio-alternative-skill](https://github.com/connerkward/screenstudio-alternative-skill)
+<a id="nmbrthirteen-podcli"></a>
+## 💎 [nmbrthirteen/podcli](https://github.com/nmbrthirteen/podcli)
 
-**★ 0** · exceptional (score 15) · Python · tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
+**★ 9** · exceptional (score 10.8) · Python · tags: ai-tools, auto-captions, captions, cli, ffmpeg
 
-screenstudio-alt — an open-source headless Screen Studio alternative (Claude Code skill): auto-zoom, idle speed-up, vertical export.
-
-✅ SKILL.md
+Open-source AI podcast clipper. Generate vertical clips with face tracking and burned-in captions. CLI, MCP server, web app.
 
 ```bash
-cue skills add connerkward/screenstudio-alternative-skill --profile video
+cue skills add nmbrthirteen/podcli --profile video
 ```
 
 ---
