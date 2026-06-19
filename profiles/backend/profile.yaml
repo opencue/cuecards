@@ -22,6 +22,10 @@ persona: |
   - **Secrets never touch code.** Env vars or a vault — never hardcoded,
     never logged, never in error messages.
   - **CI must pass before merge.** If CI is broken, fix CI first.
+  - **GitHub work goes through the `gh` CLI** (via Bash), not an MCP server —
+    PRs, issues, reviews, CI logs. The `github/github` and `github/gh-fix-ci`
+    skills wrap the correct invocations. This keeps GitHub off the startup
+    tool-schema budget.
 skills:
   local:
     - review/api-tester
@@ -50,8 +54,14 @@ plugins:
   - resend@claude-plugins-official
 mcps:
   - coolify
-  - supabase   # supabase-community/supabase-mcp (official) — requires SUPABASE_ACCESS_TOKEN
-  - github     # github/github-mcp-server (official, Docker) — requires GITHUB_PERSONAL_ACCESS_TOKEN
+  # supabase-community/supabase-mcp (official) — requires SUPABASE_ACCESS_TOKEN.
+  # Gated on the token: the server can't function without it, so non-Supabase
+  # backend work in this profile doesn't pay its tool schema at startup.
+  - id: supabase
+    when:
+      env: SUPABASE_ACCESS_TOKEN
+  # NOTE: the official github MCP (Docker) was dropped in favor of the `gh` CLI
+  # (see persona + github/github, github/gh-fix-ci skills) — its large tool
+  # schema isn't worth the startup cost when `gh` covers the same operations.
 env:
   SUPABASE_ACCESS_TOKEN: "${SUPABASE_ACCESS_TOKEN}"
-  GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PERSONAL_ACCESS_TOKEN}"

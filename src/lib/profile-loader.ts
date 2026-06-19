@@ -247,12 +247,15 @@ async function readRawProfile(name: string): Promise<Profile> {
 // ---------------------------------------------------------------------------
 
 /**
- * Normalize a raw MCPRef (string or {id, agents?}) to { id, agents? }.
- * Strings become `{ id: string }` with no agents key.
+ * Normalize a raw MCPRef (string or {id, agents?, when?}) to ResolvedMCP form.
+ * Strings become `{ id: string }` with no agents/when keys.
  */
 function normalizeMCPRef(raw: MCPRef): ResolvedMCP {
   if (typeof raw === "string") return { id: raw };
-  return raw.agents ? { id: raw.id, agents: raw.agents } : { id: raw.id };
+  const result: ResolvedMCP = { id: raw.id };
+  if (raw.agents) result.agents = raw.agents;
+  if (raw.when) result.when = raw.when;
+  return result;
 }
 
 /**
