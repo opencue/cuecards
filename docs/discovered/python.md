@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-19
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="albinati-home-energy-manager"></a>
-## ✨ [albinati/home-energy-manager](https://github.com/albinati/home-energy-manager)
+<a id="openlatch-saferskills"></a>
+## ✨ [OpenLatch/saferskills](https://github.com/OpenLatch/saferskills)
 
-**★ 0** · strong (score 6.5) · Python · tags: anthropic, battery-storage, claude, daikin-altherma, energy-optimization
+**★ 1** · strong (score 6.3) · Python · tags: agent-security, ai-agents, apache-2-0, astro, claude-skills
 
-LP-based home-energy planner. Optimises a Fox ESS battery + Daikin Altherma heat pump against Octopus Agile half-hourly tariffs via a PuLP MILP solver — with closed-loop replay, scenario robustness, and an MCP tool surface for OpenClaw / Claude.
+Every AI skill, independently scanned. Public, open-source trust scoring for skills, MCP servers, hooks, and plugins across every agent platform. Apache-2.0. saferskills.ai
 
 ```bash
-cue skills add albinati/home-energy-manager --profile python
+cue skills add OpenLatch/saferskills --profile python
 ```
 
 ---

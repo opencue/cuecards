@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="node9-ai-node9-proxy"></a>
-## 💎 [node9-ai/node9-proxy](https://github.com/node9-ai/node9-proxy)
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 205** · exceptional (score 16.1) · TypeScript · tags: ai-safety, ai-security, claude-code, gemini, gemini-cli
+**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
-The Execution Security Layer for the Agentic Era. Providing deterministic "Sudo" governance and audit logs for autonomous AI agents.
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
 
 ```bash
-cue skills add node9-ai/node9-proxy --profile cybersecurity
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
+<a id="osias-cloud-security-iam-policy-analyzer"></a>
+## 💎 [Osias-Cloud-Security/iam-policy-analyzer](https://github.com/Osias-Cloud-Security/iam-policy-analyzer)
+
+**★ 0** · exceptional (score 13) · Python · tags: aws-iam, aws-iam-policies, aws-iam-roles, claude-code, claude-code-skill
+
+Catch over-permissioned AWS IAM policies before they ship. A simple Claude Code skill that thinks like a security engineer — across least-privilege, escalation paths, and blast radius.
+
+✅ SKILL.md
+
+```bash
+cue skills add Osias-Cloud-Security/iam-policy-analyzer --profile cybersecurity
 ```
 
 ---
@@ -31,7 +48,7 @@ cue skills add node9-ai/node9-proxy --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1740** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1756** · exceptional (score 11) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 

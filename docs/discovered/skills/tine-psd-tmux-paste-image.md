@@ -2,7 +2,7 @@
 title: "tine-psd/tmux-paste-image — Claude Code skill discovered by cue"
 description: "🐙 tmux-paste-image saves clipboard images as PNGs and pastes the file path into your tmux pane. It auto-detects xclip or wl-paste, and supports Claude Code."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 

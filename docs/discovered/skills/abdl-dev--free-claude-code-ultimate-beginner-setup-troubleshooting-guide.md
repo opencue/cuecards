@@ -2,7 +2,7 @@
 title: "Abdl-Dev/-Free-Claude-Code-Ultimate-Beginner-Setup-Troubleshooting-Guide — Claude Code skill discovered by cue"
 description: "A complete beginner-friendly troubleshooting guide and installation blueprint for running Alishahryar1/free-claude-code. Fixes binary errors, PowerShell syntax "
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 

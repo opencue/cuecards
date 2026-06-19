@@ -1,39 +1,24 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="danielgwilson-image-skill-cli"></a>
-## 💎 [danielgwilson/image-skill-cli](https://github.com/danielgwilson/image-skill-cli)
-
-**★ 1** · exceptional (score 13.8) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
-
-Zero-setup creative media for agents — generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
-
-✅ SKILL.md
-
-```bash
-cue skills add danielgwilson/image-skill-cli --profile creative-media
-```
-
----
-
 <a id="marsmike-feinschmiede"></a>
 ## ✨ [marsmike/feinschmiede](https://github.com/marsmike/feinschmiede)
 
-**★ 3** · strong (score 6.7) · Python · tags: agent-skills, agentic-coding, anthropic, brand-system, claude
+**★ 3** · strong (score 6.6) · Python · tags: agent-skills, agentic-coding, anthropic, brand-system, claude
 
 A family of branded-media plugins for Claude Code — decks, images & 2D, video, and audio, coupled by CLI capabilities (never file paths) over one shared engine.
 

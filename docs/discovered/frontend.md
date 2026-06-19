@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="gslvly-sketch-inspector"></a>
-## 💎 [gslvly/sketch-inspector](https://github.com/gslvly/sketch-inspector)
+<a id="mustbesimo-cinematic-scroll-skill"></a>
+## 💎 [MustBeSimo/cinematic-scroll-skill](https://github.com/MustBeSimo/cinematic-scroll-skill)
 
-**★ 0** · exceptional (score 14.5) · TypeScript · tags: agent-skill, ai-agent, claude-code, claude-skill, cursor
+**★ 5** · exceptional (score 14.4) · TypeScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
-AI-friendly Sketch design parser. Turn Sketch documents into structured JSON, exported assets and an implementation-ready LayoutIR (flex/grid/absolute/leaf) so any LLM agent can convert Sketch designs into HTML/CSS, React or Vue. Agent skill compatible with Claude Code, Cursor, opencode.
+Agent skill for building cinematic, scroll-driven websites from a brief: visual systems, motion storyboards, vanilla/GSAP demos, and Next.js release-page templates.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add gslvly/sketch-inspector --profile frontend
+cue skills add MustBeSimo/cinematic-scroll-skill --profile frontend
+```
+
+---
+
+<a id="rohitjz-elevate-ui"></a>
+## 💎 [rohitjz/elevate-ui](https://github.com/rohitjz/elevate-ui)
+
+**★ 0** · exceptional (score 12) · tags: claude-code, claude-skill, css, frontend, svg
+
+A Claude skill that elevates flat, AI-looking web pages into tasteful designed ones. Light, depth, life: bespoke SVG icons, glass-dome depth, liquid-glass chrome, cursor spotlight, animated hero. Self-contained.
+
+✅ SKILL.md
+
+```bash
+cue skills add rohitjz/elevate-ui --profile frontend
 ```
 
 ---

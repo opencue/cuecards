@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="nmbrthirteen-podcli"></a>
-## 💎 [nmbrthirteen/podcli](https://github.com/nmbrthirteen/podcli)
+<a id="iamvista-video-notes"></a>
+## 💎 [iamvista/video-notes](https://github.com/iamvista/video-notes)
 
-**★ 9** · exceptional (score 10.8) · Python · tags: ai-tools, auto-captions, captions, cli, ffmpeg
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, transcription, whisper, youtube
 
-Open-source AI podcast clipper. Generate vertical clips with face tracking and burned-in captions. CLI, MCP server, web app.
+Claude Code skill: YouTube URL or local video → key-points note + timestamped transcript. Zero pip deps, original-language subtitle de-dup, Whisper fallback.
+
+✅ SKILL.md
 
 ```bash
-cue skills add nmbrthirteen/podcli --profile video
+cue skills add iamvista/video-notes --profile video
 ```
 
 ---

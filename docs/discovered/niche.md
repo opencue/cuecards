@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="dhcnsa-netizen-lecture-builder"></a>
-## 💎 [dhcnsa-netizen/lecture-builder](https://github.com/dhcnsa-netizen/lecture-builder)
+<a id="yun520-1-claude-clarity"></a>
+## 💎 [yun520-1/claude-clarity](https://github.com/yun520-1/claude-clarity)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent-skills, claude-code-skill, claude-skill, claude-skills, docx
+**★ 1** · exceptional (score 8.8) · tags: agent-framework, ai-agents, claude-code-skill, cognitive-engine, emotion-model
 
-讲义制作工作流：用知识点+题目一键生成学生版/教师版 Word 讲义（图片与公式逐字节保真）
+Clarity/心虫 — AI认知与自愈引擎。存在感知、真善美评分、三层记忆、Q-learning自愈、梦境整合、反事实推理
 
 ✅ SKILL.md
 
 ```bash
-cue skills add dhcnsa-netizen/lecture-builder --profile niche
+cue skills add yun520-1/claude-clarity --profile niche
 ```
 
 ---

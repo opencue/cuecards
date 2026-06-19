@@ -2,7 +2,7 @@
 title: "waltercaregivers-app/magdil-rosh — Claude Code skill discovered by cue"
 description: "מגדיל ראש — a Claude Code skill that ships the complete feature, not the happy path. Edge-case checklists per domain + ask-the-right-questions + terse receipts."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 

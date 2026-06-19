@@ -1,94 +1,68 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zzet-gortex"></a>
-## 💎 [zzet/gortex](https://github.com/zzet/gortex)
+<a id="n24q02m-wet-mcp"></a>
+## 💎 [n24q02m/wet-mcp](https://github.com/n24q02m/wet-mcp)
 
-**★ 526** · exceptional (score 15.7) · Go · tags: ai-tools, antigravity, claude-code, code-analysis, code-assistant
+**★ 9** · exceptional (score 13.4) · Python · tags: ai-agents, ai-coding, claude, claude-code, crawl4ai
 
-High-performance code graph and code intelligence engine, supports 257 languages, multi repositories,  with access via CLI, MCP Server, and API.  Built for AI coding agents - expose only needed information, cutting token usage up to 50x. 100% local.
+Open-source MCP server for AI agents: web search, content extraction, and library docs -- 5-strategy scraping, runs without API keys.
 
 ```bash
-cue skills add zzet/gortex --profile backend
+cue skills add n24q02m/wet-mcp --profile backend
 ```
 
 ---
 
-<a id="georgeantonopoulos-basecamp-mcp-server"></a>
-## 💎 [georgeantonopoulos/Basecamp-MCP-Server](https://github.com/georgeantonopoulos/Basecamp-MCP-Server)
+<a id="masayukita-m365-copilot-companion-mcp"></a>
+## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
 
-**★ 89** · exceptional (score 15.5) · Python · tags: basecamp, basecamp-api, claude-desktop, codex, cursor
+**★ 2** · exceptional (score 8.5) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
 
-MCP server for Basecamp 3 with OAuth, FastMCP, and 75 tools for projects, todos, messages, card tables, docs, uploads, and search.
+Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
 
 ```bash
-cue skills add georgeantonopoulos/Basecamp-MCP-Server --profile backend
+cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="revfleet-hscli"></a>
+## 💎 [revfleet/hscli](https://github.com/revfleet/hscli)
 
-**★ 193000** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 2** · exceptional (score 8) · TypeScript · tags: agentic, ai-agents, claude, cli, crm
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Agentic HubSpot CLI + MCP server. 100% public API coverage (1180 endpoints, 55+ command domains). Enterprise safety rails, self-hosted.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add revfleet/hscli --profile backend
 ```
 
 ---
 
-<a id="lyellr88-marm-systems"></a>
-## 💎 [Lyellr88/MARM-Systems](https://github.com/Lyellr88/MARM-Systems)
+<a id="openlatch-saferskills"></a>
+## ✨ [OpenLatch/saferskills](https://github.com/OpenLatch/saferskills)
 
-**★ 305** · exceptional (score 13.9) · Python · tags: agent-swarms, claude, developer-tools, docker-image, embeddings
+**★ 1** · strong (score 6.3) · Python · tags: agent-security, ai-agents, apache-2-0, astro, claude-skills
 
-Stop re-explaining yourself to AI. MARM offers persistent memory, cross-agent context sharing, write queues, swarm-ready presets, and compaction for clean recall. Includes a live web dashboard for managing memories, logs, and sessions. MCP connects over HTTP & STDIO and works with major LLMs like Claude, Codex, Grok, Gemini, and other models. 
-
-```bash
-cue skills add Lyellr88/MARM-Systems --profile backend
-```
-
----
-
-<a id="edheltzel-recall"></a>
-## 💎 [edheltzel/Recall](https://github.com/edheltzel/Recall)
-
-**★ 2** · exceptional (score 9.5) · TypeScript · tags: ai-memory, ai-memory-system, claude, claude-ai, claude-code
-
-A SQLite persistent memory layer for any coding agent. Stop-hook extraction captures sessions, MCP tools expose them mid-session, hybrid search retrieves them, and a tiered L0/L1 recall block injects identity + top-ranked records at session start. Works across any AI harnesses like Claude Code, Opencode, & Pi from one database.
+Every AI skill, independently scanned. Public, open-source trust scoring for skills, MCP servers, hooks, and plugins across every agent platform. Apache-2.0. saferskills.ai
 
 ```bash
-cue skills add edheltzel/Recall --profile backend
-```
-
----
-
-<a id="icoretech-codex-pooler"></a>
-## ✨ [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
-
-**★ 26** · strong (score 7.6) · Elixir · tags: aider, api-gateway, cline, codex, continue
-
-The full featured self-hosted Codex gateway, for teams, agents and you
-
-```bash
-cue skills add icoretech/codex-pooler --profile backend
+cue skills add OpenLatch/saferskills --profile backend
 ```
 
 ---

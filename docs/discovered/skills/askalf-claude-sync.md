@@ -2,7 +2,7 @@
 title: "askalf/claude-sync — Claude Code skill discovered by cue"
 description: "own your sessions — move Claude Code sessions across machines via a shared folder (Dropbox/iCloud/Syncthing) or SSH to a remote host. git-remote-url canonical k"
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-19
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="rockbenben-aishort-skills"></a>
-## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
+<a id="sjmoran-claude-blog-prose"></a>
+## 💎 [sjmoran/claude-blog-prose](https://github.com/sjmoran/claude-blog-prose)
 
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, claude, claude-code
+**★ 0** · exceptional (score 8) · tags: ai-writing, anthropic, blogging, claude, claude-code
 
-Markdown to web page — upload .md files to S3-compatible storage, rendered instantly via Docsify. A skill for sharing long content as readable links.
+Claude Code skill for honest, hype-free blog prose — first-person voice, no AI-slop tells, checkable claims. Blog-facing port of claude-academic-prose.
 
 ```bash
-cue skills add rockbenben/aishort-skills --profile docs-writer
+cue skills add sjmoran/claude-blog-prose --profile docs-writer
 ```
 
 ---
