@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,54 +15,54 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="n24q02m-wet-mcp"></a>
-## 💎 [n24q02m/wet-mcp](https://github.com/n24q02m/wet-mcp)
+<a id="0xzr-freellmpool"></a>
+## 💎 [0xzr/freellmpool](https://github.com/0xzr/freellmpool)
 
-**★ 9** · exceptional (score 13.4) · Python · tags: ai-agents, ai-coding, claude, claude-code, crawl4ai
+**★ 17** · exceptional (score 8.4) · Python · tags: anthropic, claude, codex, cursor, failover
 
-Open-source MCP server for AI agents: web search, content extraction, and library docs -- 5-strategy scraping, runs without API keys.
+Free LLM API pool: 19 LLM providers cataloged, 235 routes, 355 cataloged chat models, keyless start when available.
 
 ```bash
-cue skills add n24q02m/wet-mcp --profile backend
+cue skills add 0xzr/freellmpool --profile backend
 ```
 
 ---
 
-<a id="masayukita-m365-copilot-companion-mcp"></a>
-## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+<a id="fanduzi-deltascope"></a>
+## 💎 [Fanduzi/DeltaScope](https://github.com/Fanduzi/DeltaScope)
 
-**★ 2** · exceptional (score 8.5) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+**★ 2** · exceptional (score 8) · Go · tags: ai-sql-review, ci-cd, cli, database, database-tools
 
-Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+Offline-first SQL audit engine and MCP SQL audit server for MySQL, TiDB, and PostgreSQL DDL/DML changes.
 
 ```bash
-cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
+cue skills add Fanduzi/DeltaScope --profile backend
 ```
 
 ---
 
-<a id="revfleet-hscli"></a>
-## 💎 [revfleet/hscli](https://github.com/revfleet/hscli)
+<a id="n33x0n-actio-marketing-panel"></a>
+## ✨ [n33x0n/actio-marketing-panel](https://github.com/n33x0n/actio-marketing-panel)
 
-**★ 2** · exceptional (score 8) · TypeScript · tags: agentic, ai-agents, claude, cli, crm
+**★ 0** · strong (score 6) · Python · tags: anthropic, chainlit, claude, google-ads, google-analytics
 
-Agentic HubSpot CLI + MCP server. 100% public API coverage (1180 endpoints, 55+ command domains). Enterprise safety rails, self-hosted.
+Marketing Intelligence panel — GA4 / GSC / Google Ads → SQLite → daily LLM CMO report → email + Pushover + Chainlit dashboard
 
 ```bash
-cue skills add revfleet/hscli --profile backend
+cue skills add n33x0n/actio-marketing-panel --profile backend
 ```
 
 ---
 
-<a id="openlatch-saferskills"></a>
-## ✨ [OpenLatch/saferskills](https://github.com/OpenLatch/saferskills)
+<a id="buywhere-buywhere"></a>
+## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
 
-**★ 1** · strong (score 6.3) · Python · tags: agent-security, ai-agents, apache-2-0, astro, claude-skills
+**★ 0** · strong (score 6) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
 
-Every AI skill, independently scanned. Public, open-source trust scoring for skills, MCP servers, hooks, and plugins across every agent platform. Apache-2.0. saferskills.ai
+BuyWhere agent-native product catalog API
 
 ```bash
-cue skills add OpenLatch/saferskills --profile backend
+cue skills add BuyWhere/buywhere --profile backend
 ```
 
 ---
@@ -96,7 +96,7 @@ cue skills add Sfedfcv/redesigned-pancake --profile backend
 <a id="hxrish04-stackgate"></a>
 ## 🔹 [hxrish04/stackgate](https://github.com/hxrish04/stackgate)
 
-**★ 1** · potential (score 3.2) · TypeScript · tags: ai, audit-trail, azure, claude, internal-developer-platform
+**★ 1** · potential (score 3.1) · TypeScript · tags: ai, audit-trail, azure, claude, internal-developer-platform
 
 AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning workflows: risk tiers, multi-stage approvals, generated Terraform, Key Vault secret references, and a full audit trail. Simulation-first with a guarded Azure path.
 

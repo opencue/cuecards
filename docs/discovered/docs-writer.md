@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="sjmoran-claude-blog-prose"></a>
-## 💎 [sjmoran/claude-blog-prose](https://github.com/sjmoran/claude-blog-prose)
+<a id="britniusvzx43-hub-ocr-extractor"></a>
+## 💎 [britniusvzx43-hub/ocr-extractor](https://github.com/britniusvzx43-hub/ocr-extractor)
 
-**★ 0** · exceptional (score 8) · tags: ai-writing, anthropic, blogging, claude, claude-code
+**★ 0** · exceptional (score 11) · Python · tags: chinese-ocr, claude-code-skill, document-digitization, image-to-text, knowledge-management
 
-Claude Code skill for honest, hype-free blog prose — first-person voice, no AI-slop tells, checkable claims. Blog-facing port of claude-academic-prose.
+图片转文字 · Chinese OCR Skill for Claude Code — TIFF/PNG/JPG to clean Markdown with watermark removal, page sorting, auto-correction & self-improving pipeline
+
+✅ SKILL.md
 
 ```bash
-cue skills add sjmoran/claude-blog-prose --profile docs-writer
+cue skills add britniusvzx43-hub/ocr-extractor --profile docs-writer
 ```
 
 ---

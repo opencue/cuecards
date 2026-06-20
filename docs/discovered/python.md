@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="openlatch-saferskills"></a>
-## ✨ [OpenLatch/saferskills](https://github.com/OpenLatch/saferskills)
+<a id="britniusvzx43-hub-ocr-extractor"></a>
+## 💎 [britniusvzx43-hub/ocr-extractor](https://github.com/britniusvzx43-hub/ocr-extractor)
 
-**★ 1** · strong (score 6.3) · Python · tags: agent-security, ai-agents, apache-2-0, astro, claude-skills
+**★ 0** · exceptional (score 11) · Python · tags: chinese-ocr, claude-code-skill, document-digitization, image-to-text, knowledge-management
 
-Every AI skill, independently scanned. Public, open-source trust scoring for skills, MCP servers, hooks, and plugins across every agent platform. Apache-2.0. saferskills.ai
+图片转文字 · Chinese OCR Skill for Claude Code — TIFF/PNG/JPG to clean Markdown with watermark removal, page sorting, auto-correction & self-improving pipeline
+
+✅ SKILL.md
 
 ```bash
-cue skills add OpenLatch/saferskills --profile python
+cue skills add britniusvzx43-hub/ocr-extractor --profile python
 ```
 
 ---

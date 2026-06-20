@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="nsasoft-nsauditor-ai-agent-skill"></a>
 ## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 3** · exceptional (score 15.1) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
 AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
 
@@ -30,25 +30,10 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 
 ---
 
-<a id="osias-cloud-security-iam-policy-analyzer"></a>
-## 💎 [Osias-Cloud-Security/iam-policy-analyzer](https://github.com/Osias-Cloud-Security/iam-policy-analyzer)
-
-**★ 0** · exceptional (score 13) · Python · tags: aws-iam, aws-iam-policies, aws-iam-roles, claude-code, claude-code-skill
-
-Catch over-permissioned AWS IAM policies before they ship. A simple Claude Code skill that thinks like a security engineer — across least-privilege, escalation paths, and blast radius.
-
-✅ SKILL.md
-
-```bash
-cue skills add Osias-Cloud-Security/iam-policy-analyzer --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1756** · exceptional (score 11) · Python · tags: agentskills, claude, skills
+**★ 1770** · exceptional (score 11) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -58,10 +43,23 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
+<a id="saagpatel-mcpaudit"></a>
+## ✨ [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
+
+**★ 3** · strong (score 6.7) · Python · tags: ai-safety, audit, cli, developer-tools, mcp
+
+Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift
+
+```bash
+cue skills add saagpatel/MCPAudit --profile cybersecurity
+```
+
+---
+
 <a id="gesh75-argus"></a>
 ## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 1** · strong (score 5.3) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 1** · strong (score 5.2) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
 Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 

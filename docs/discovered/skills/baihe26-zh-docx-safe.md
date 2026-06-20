@@ -2,7 +2,7 @@
 title: "baihe26/zh-docx-safe — Claude Code skill discovered by cue"
 description: "A Codex/Claude skill for stable Chinese DOCX/Word generation on Windows. Prevents UTF-8/GBK mojibake, PowerShell pipe issues, Chinese path failures, and mixed C"
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 

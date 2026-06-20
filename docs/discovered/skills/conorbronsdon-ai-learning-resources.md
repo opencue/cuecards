@@ -2,7 +2,7 @@
 title: "conorbronsdon/ai-learning-resources — Claude Code skill discovered by cue"
 description: "Curated learning path from 'what is AI?' to building with Claude Code and MCP. Quality over quantity."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 

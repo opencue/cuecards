@@ -2,19 +2,19 @@
 title: "0xguy07/sf-claude-studio — Claude Code skill discovered by cue"
 description: "Turn a single Claude Code session into a Salesforce delivery studio. 10 agents, 15 skills, 7 hooks, 7 path-scoped rule sets — Apex/LWC/flow/integration/data/QA/"
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [0xguy07/sf-claude-studio](https://github.com/0xguy07/sf-claude-studio)
 
-**★ 1** · potential (score 4) · JavaScript
+**★ 1** · potential (score 3.9) · JavaScript
 
 > Turn a single Claude Code session into a Salesforce delivery studio. 10 agents, 15 skills, 7 hooks, 7 path-scoped rule sets — Apex/LWC/flow/integration/data/QA/security/devops best practices baked in.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.9 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-11
 - 🏷️ Tags: (none)

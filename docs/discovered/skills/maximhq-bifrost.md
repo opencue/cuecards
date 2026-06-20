@@ -2,21 +2,21 @@
 title: "maximhq/bifrost — Claude Code skill discovered by cue"
 description: "Fastest enterprise AI gateway (50x faster than LiteLLM) with adaptive load balancer, cluster mode, guardrails, 1000+ models support & <100 µs overhead at 5k RPS"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [maximhq/bifrost](https://github.com/maximhq/bifrost)
 
-**★ 5829** · exceptional (score 14) · Go · ai-gateway, gateway, gateway-services, generative-ai, guardrails
+**★ 5908** · exceptional (score 14) · Go · ai-gateway, gateway, gateway-services, generative-ai, guardrails
 
 > Fastest enterprise AI gateway (50x faster than LiteLLM) with adaptive load balancer, cluster mode, guardrails, 1000+ models support & <100 µs overhead at 5k RPS.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 5829 stars
-- 🗓️ Last pushed: 2026-06-16
+- ⭐ 5908 stars
+- 🗓️ Last pushed: 2026-06-20
 - 🏷️ Tags: ai-gateway, gateway, gateway-services, generative-ai, guardrails, llm, llm-cost, llm-gateway, llm-observability, llmops, load-balancing, mcp-client, mcp-gateway, mcp-server, model-router, token-management
 
 ## Best fit cue profiles

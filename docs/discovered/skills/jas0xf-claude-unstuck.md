@@ -1,23 +1,23 @@
 ---
 title: "jas0xf/claude-unstuck — Claude Code skill discovered by cue"
-description: "Claude Code freezing? It's probably your network's IPv6 path. Diagnose it in 30s and fix it — one static Go binary, no deps, macOS/Linux/Windows."
+description: "Claude Code freezing, hanging, or stuck on 'thinking'? On some networks it's a degraded IPv6 path. Diagnose in 30s and fix by forcing IPv4 — one static Go binar"
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [jas0xf/claude-unstuck](https://github.com/jas0xf/claude-unstuck)
+# ✨ [jas0xf/claude-unstuck](https://github.com/jas0xf/claude-unstuck)
 
-**★ 1** · potential (score 4.3) · Go
+**★ 4** · strong (score 6.8) · Go · anthropic, claude, claude-code, cli, developer-tools
 
-> Claude Code freezing? It's probably your network's IPv6 path. Diagnose it in 30s and fix it — one static Go binary, no deps, macOS/Linux/Windows.
+> Claude Code freezing, hanging, or stuck on 'thinking'? On some networks it's a degraded IPv6 path. Diagnose in 30s and fix by forcing IPv4 — one static Go binary, macOS/Linux/Windows.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-19
-- 🏷️ Tags: (none)
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-06-20
+- 🏷️ Tags: anthropic, claude, claude-code, cli, developer-tools, dns, go, golang, happy-eyeballs, ipv6, linux, macos, networking, troubleshooting, windows
 
 ## Best fit cue profiles
 

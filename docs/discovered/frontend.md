@@ -1,46 +1,31 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mustbesimo-cinematic-scroll-skill"></a>
-## 💎 [MustBeSimo/cinematic-scroll-skill](https://github.com/MustBeSimo/cinematic-scroll-skill)
+<a id="sakuraoxo-clio-sakura-animate-text"></a>
+## 💎 [sakuraoxo-clio/sakura-animate-text](https://github.com/sakuraoxo-clio/sakura-animate-text)
 
-**★ 5** · exceptional (score 14.4) · TypeScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
+**★ 6** · exceptional (score 16.5) · JavaScript · tags: agent-skill, animation, claude-skill, gsap, motion
 
-Agent skill for building cinematic, scroll-driven websites from a brief: visual systems, motion storyboards, vanilla/GSAP demos, and Next.js release-page templates.
-
-✅ SKILL.md
-
-```bash
-cue skills add MustBeSimo/cinematic-scroll-skill --profile frontend
-```
-
----
-
-<a id="rohitjz-elevate-ui"></a>
-## 💎 [rohitjz/elevate-ui](https://github.com/rohitjz/elevate-ui)
-
-**★ 0** · exceptional (score 12) · tags: claude-code, claude-skill, css, frontend, svg
-
-A Claude skill that elevates flat, AI-looking web pages into tasteful designed ones. Light, depth, life: bespoke SVG icons, glass-dome depth, liquid-glass chrome, cursor spotlight, animated hero. Self-contained.
+Curated text-animation catalog skill — exact JSON motion contracts for WAAPI / Motion / GSAP / CSS / Lottie / Rive, with a live demo gallery.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rohitjz/elevate-ui --profile frontend
+cue skills add sakuraoxo-clio/sakura-animate-text --profile frontend
 ```
 
 ---
@@ -58,15 +43,15 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
 
 ```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---
@@ -87,7 +72,7 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.1)
+**★ 1** · potential (score 3)
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

@@ -1,32 +1,31 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-19 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-06-20 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 76 | `nano-banana-pro-prompts-recommend-skill`, `context-mode`, `GodotMaker` |
-| [**backend**](./backend.md) | 7 | `wet-mcp`, `m365-copilot-companion-mcp`, `hscli` |
-| [**frontend**](./frontend.md) | 6 | `cinematic-scroll-skill`, `elevate-ui`, `awesome-claude-ui-armory` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `nsauditor-ai-agent-skill`, `iam-policy-analyzer`, `Claude-OSINT` |
-| [**marketing**](./marketing.md) | 3 | `brand-launchpad`, `sticky-switcher-funnel-playbook`, `zenith-crea-ofertas` |
-| [**nextjs**](./nextjs.md) | 2 | `cinematic-scroll-skill`, `stackgate` |
-| [**creative-media**](./creative-media.md) | 2 | `feinschmiede`, `redesigned-pancake` |
-| [**video**](./video.md) | 1 | `video-notes` |
-| [**niche**](./niche.md) | 1 | `claude-clarity` |
-| [**docs-writer**](./docs-writer.md) | 1 | `claude-blog-prose` |
+| [**core**](./core.md) | 80 | `nano-banana-pro-prompts-recommend-skill`, `antigravity-workspace-template`, `vibe-skill` |
+| [**backend**](./backend.md) | 7 | `freellmpool`, `DeltaScope`, `actio-marketing-panel` |
+| [**frontend**](./frontend.md) | 5 | `sakura-animate-text`, `awesome-claude-ui-armory`, `pixel-mcp-workflow` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `MCPAudit` |
+| [**creative-media**](./creative-media.md) | 4 | `pixel-mcp-workflow`, `comfyui-agent-kit`, `feinschmiede` |
+| [**marketing**](./marketing.md) | 2 | `sticky-switcher-funnel-playbook`, `actio-marketing-panel` |
+| [**docs-writer**](./docs-writer.md) | 1 | `ocr-extractor` |
+| [**python**](./python.md) | 1 | `ocr-extractor` |
 | [**research**](./research.md) | 1 | `popper-scope` |
-| [**python**](./python.md) | 1 | `saferskills` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `buywhere` |
+| [**nextjs**](./nextjs.md) | 1 | `stackgate` |
 
 ## How scoring works
 

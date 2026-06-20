@@ -2,7 +2,7 @@
 title: "marsmike/feinschmiede — Claude Code skill discovered by cue"
 description: "A family of branded-media plugins for Claude Code — decks, images & 2D, video, and audio, coupled by CLI capabilities (never file paths) over one shared engine."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skill, creative-media]
 ---
 

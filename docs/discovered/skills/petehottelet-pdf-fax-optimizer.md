@@ -2,21 +2,21 @@
 title: "petehottelet/pdf-fax-optimizer — Claude Code skill discovered by cue"
 description: "Agent skill (SKILL.md) that maximizes document quality and readability over fax — converts a PDF to a 1-bit CCITT-G4 PDF/TIFF that arrives LEGIBLE after Group-3"
 layout: page
-updated: 2026-06-19
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [petehottelet/pdf-fax-optimizer](https://github.com/petehottelet/pdf-fax-optimizer)
 
-**★ 2** · exceptional (score 8) · Python · agent-skill, anthropic, bilevel, blue-noise, ccitt
+**★ 3** · exceptional (score 8.2) · Python · agent-skill, anthropic, bilevel, blue-noise, ccitt
 
-> Agent skill (SKILL.md) that maximizes document quality and readability over fax — converts a PDF to a 1-bit CCITT-G4 PDF/TIFF that arrives LEGIBLE after Group-3 transmission, with 5 halftone methods and an 'eye tokens' comparison preview. For Claude and OpenAI Codex.
+> Agent skill (SKILL.md) that maximizes document quality and readability over fax — converts a PDF to a 1-bit CCITT-G4 PDF/TIFF that arrives LEGIBLE after Group-3 transmission, with 17 halftone methods and a multi-up comparison preview. For Claude and OpenAI Codex.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-06-20
 - 🏷️ Tags: agent-skill, anthropic, bilevel, blue-noise, ccitt, ccitt-g4, claude-skill, codex, dithering, document-imaging, error-diffusion, fax, halftoning, image-processing, ocr, pdf, pymupdf, python, skill, tiff
 
 ## Best fit cue profiles
