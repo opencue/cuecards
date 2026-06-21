@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="britniusvzx43-hub-ocr-extractor"></a>
-## 💎 [britniusvzx43-hub/ocr-extractor](https://github.com/britniusvzx43-hub/ocr-extractor)
+<a id="shanwije-proven-python"></a>
+## 💎 [shanwije/proven-python](https://github.com/shanwije/proven-python)
 
-**★ 0** · exceptional (score 11) · Python · tags: chinese-ocr, claude-code-skill, document-digitization, image-to-text, knowledge-management
+**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, ai-agents, ai-coding, anthropic, claude-code
 
-图片转文字 · Chinese OCR Skill for Claude Code — TIFF/PNG/JPG to clean Markdown with watermark removal, page sorting, auto-correction & self-improving pipeline
-
-✅ SKILL.md
+Make your AI agent prove its Python before calling it done: TDD, strict typing, clean code, and a green ruff/mypy/pytest toolchain. A Claude Code skill, works with any agent.
 
 ```bash
-cue skills add britniusvzx43-hub/ocr-extractor --profile python
+cue skills add shanwije/proven-python --profile python
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "sdebruyn/fabric-dw-mcp-cli — Claude Code skill discovered by cue"
 description: "Python CLI + MCP server for Microsoft Fabric Data Warehouse administration"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: ai-tools, claude, cli, data-warehouse, fabric, fabric-data-warehouse, mcp, mcp-server, microsoft-fabric, model-context-protocol, pypi, python, uvx
 
 ## Best fit cue profiles

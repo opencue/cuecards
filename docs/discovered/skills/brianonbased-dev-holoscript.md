@@ -2,7 +2,7 @@
 title: "brianonbased-dev/HoloScript — Claude Code skill discovered by cue"
 description: "The semantic layer for spatial computing and AI agents — write once, run as VR, robotics, web, or game."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: 3d, agents, ai-agents, compiler, digital-twin, gaussian-splatting, knowledge-graph, mcp, mcp-server, multi-agent, programming-language, robotics, ros2, semantic, simulation, spatial-computing, typescript, wasm, webgpu, webxr
 
 ## Best fit cue profiles

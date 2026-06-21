@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,21 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
+<a id="shauryalowkeygotaura-brand-launchpad"></a>
+## 💎 [shauryalowkeygotaura/brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)
+
+**★ 1** · exceptional (score 12.3) · HTML · tags: agent-skills, ai, ai-tools, anthropic, brand-strategy
+
+One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. Built on Caleb Ralston, Harry Dry, Oren John & Brier Cochran frameworks.
+
+✅ SKILL.md
+
+```bash
+cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
+```
+
+---
+
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -24,19 +39,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
-```
-
----
-
-<a id="n33x0n-actio-marketing-panel"></a>
-## ✨ [n33x0n/actio-marketing-panel](https://github.com/n33x0n/actio-marketing-panel)
-
-**★ 0** · strong (score 6) · Python · tags: anthropic, chainlit, claude, google-ads, google-analytics
-
-Marketing Intelligence panel — GA4 / GSC / Google Ads → SQLite → daily LLM CMO report → email + Pushover + Chainlit dashboard
-
-```bash
-cue skills add n33x0n/actio-marketing-panel --profile marketing
 ```
 
 ---

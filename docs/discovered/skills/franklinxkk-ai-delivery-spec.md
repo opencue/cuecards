@@ -2,23 +2,23 @@
 title: "franklinxkk/ai-delivery-spec — Claude Code skill discovered by cue"
 description: "Product-side Spec-Driven Development framework — PRD, interactive prototype, DDD handoff, AI runtime governance, acceptance gates. L0-L3 tiers, replaceable doma"
 layout: page
-updated: 2026-06-19
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [franklinxkk/ai-delivery-spec](https://github.com/franklinxkk/ai-delivery-spec)
 
-**★ 3** · exceptional (score 15.2) · Python · agent-governance, agent-skill, agentic-workflow, ai-agent, ai-native
+**★ 3** · exceptional (score 13.2) · Python · agent-skill, ai-native, ai-product-management, claude-code-skill, coding-agent
 
 > Product-side Spec-Driven Development framework — PRD, interactive prototype, DDD handoff, AI runtime governance, acceptance gates. L0-L3 tiers, replaceable domain modules. Works with Claude Code, Cursor, Codex, OpenClaw.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-19
-- 🏷️ Tags: agent-governance, agent-skill, agentic-workflow, ai-agent, ai-native, ai-product-management, ai-product-manager, claude-code-skill, domain-modeling, prd, prd-template, product-delivery, product-engineering, product-management, prompt-engineering, prototype, requirements-engineering, software-delivery, spec-driven-development, testability
+- 🗓️ Last pushed: 2026-06-21
+- 🏷️ Tags: agent-skill, ai-native, ai-product-management, claude-code-skill, coding-agent, crm, domain-modeling, education-it, emr, healthcare-it, his, medical-hospital-it, prd, prd-template, product-delivery, product-management, prototype, spec-driven-development, testability, traffic-safety
 
 ## Best fit cue profiles
 

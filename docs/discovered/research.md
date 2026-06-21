@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,19 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="heidihelena-citevahti"></a>
+## ✨ [heidihelena/citevahti](https://github.com/heidihelena/citevahti)
+
+**★ 1** · strong (score 6.3) · Python · tags: academic-writing, citation-integrity, citations, claim-verification, evidence-synthesis
+
+Run unit tests on your manuscript. Check every manuscript claim against its cited evidence. Human-first, AI-second, Zotero-audited, local-first.
+
+```bash
+cue skills add heidihelena/citevahti --profile research
 ```
 
 ---

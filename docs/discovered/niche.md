@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-21
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="yun520-1-claude-clarity"></a>
-## 💎 [yun520-1/claude-clarity](https://github.com/yun520-1/claude-clarity)
+<a id="li599198347-svg-aham-ppt"></a>
+## 💎 [li599198347-svg/aham-ppt](https://github.com/li599198347-svg/aham-ppt)
 
-**★ 1** · exceptional (score 8.8) · tags: agent-framework, ai-agents, claude-code-skill, cognitive-engine, emotion-model
+**★ 32** · exceptional (score 10.2) · Python · tags: aham, claude-skill, local-first, personal-ai, pptx
 
-Clarity/心虫 — AI认知与自愈引擎。存在感知、真善美评分、三层记忆、Q-learning自愈、梦境整合、反事实推理
+咨询级 AI PPT 制作技能——丢一堆素材，幻灯片出来了。Aham：把灵光一现，做成能用的 AI 工具。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add yun520-1/claude-clarity --profile niche
+cue skills add li599198347-svg/aham-ppt --profile niche
 ```
 
 ---

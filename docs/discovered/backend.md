@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,54 +15,54 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="0xzr-freellmpool"></a>
-## 💎 [0xzr/freellmpool](https://github.com/0xzr/freellmpool)
+<a id="devantler-tech-ksail"></a>
+## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
 
-**★ 17** · exceptional (score 8.4) · Python · tags: anthropic, claude, codex, cursor, failover
+**★ 147** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
 
-Free LLM API pool: 19 LLM providers cataloged, 235 routes, 355 cataloged chat models, keyless start when available.
+All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
 
 ```bash
-cue skills add 0xzr/freellmpool --profile backend
+cue skills add devantler-tech/ksail --profile backend
 ```
 
 ---
 
-<a id="fanduzi-deltascope"></a>
-## 💎 [Fanduzi/DeltaScope](https://github.com/Fanduzi/DeltaScope)
+<a id="patsa2561-art-mneme-ai"></a>
+## 💎 [patsa2561-art/mneme-ai](https://github.com/patsa2561-art/mneme-ai)
 
-**★ 2** · exceptional (score 8) · Go · tags: ai-sql-review, ci-cd, cli, database, database-tools
+**★ 5** · exceptional (score 8.9) · TypeScript · tags: ai-coding-assistant, ai-memory, codebase-memory, developer-tools, ghost-code
 
-Offline-first SQL audit engine and MCP SQL audit server for MySQL, TiDB, and PostgreSQL DDL/DML changes.
+the memory layer of your codebase. Knows the WHY, the WHAT, the WHERE-IT-BREAKS.
 
 ```bash
-cue skills add Fanduzi/DeltaScope --profile backend
+cue skills add patsa2561-art/mneme-ai --profile backend
 ```
 
 ---
 
-<a id="n33x0n-actio-marketing-panel"></a>
-## ✨ [n33x0n/actio-marketing-panel](https://github.com/n33x0n/actio-marketing-panel)
+<a id="sairajbaman-loopspec"></a>
+## 💎 [sairajbaman/loopspec](https://github.com/sairajbaman/loopspec)
 
-**★ 0** · strong (score 6) · Python · tags: anthropic, chainlit, claude, google-ads, google-analytics
+**★ 1** · exceptional (score 8.8) · TypeScript · tags: ai-coding, ai-development, claude-code, code-quality, compound-intelligence
 
-Marketing Intelligence panel — GA4 / GSC / Google Ads → SQLite → daily LLM CMO report → email + Pushover + Chainlit dashboard
+MCP server + CLI that makes AI coding assistants smarter — persistent memory, drift detection, goal tracking, dependency graphs. Zero API calls. 125 tests. 42 tools.
 
 ```bash
-cue skills add n33x0n/actio-marketing-panel --profile backend
+cue skills add sairajbaman/loopspec --profile backend
 ```
 
 ---
 
-<a id="buywhere-buywhere"></a>
-## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
+<a id="olgasafonova-gleif-mcp-server"></a>
+## 💎 [olgasafonova/gleif-mcp-server](https://github.com/olgasafonova/gleif-mcp-server)
 
-**★ 0** · strong (score 6) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
+**★ 4** · exceptional (score 8.3) · Go · tags: anthropic, claude, gleif, go, golang
 
-BuyWhere agent-native product catalog API
+MCP server for GLEIF LEI (Legal Entity Identifier) database access
 
 ```bash
-cue skills add BuyWhere/buywhere --profile backend
+cue skills add olgasafonova/gleif-mcp-server --profile backend
 ```
 
 ---

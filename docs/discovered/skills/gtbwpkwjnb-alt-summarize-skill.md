@@ -2,7 +2,7 @@
 title: "gtbwpkwjnb-alt/summarize-skill — Claude Code skill discovered by cue"
 description: "ZCode/Claude Code skill: session diagnosis, cross-project error tracking with backtest verification, experience harvesting, and self-evolving rules. /总结 — 会话诊断·"
 layout: page
-updated: 2026-06-19
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-19
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: agent-skill, ai-coding, claude-code, claude-code-skill, codex, cursor, developer-tools, diagnostics, productivity, self-evolution, session-management, summarize, windsurf, zcode, zcode-skill
 
 ## Best fit cue profiles

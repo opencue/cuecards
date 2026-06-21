@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sakuraoxo-clio-sakura-animate-text"></a>
-## 💎 [sakuraoxo-clio/sakura-animate-text](https://github.com/sakuraoxo-clio/sakura-animate-text)
+<a id="anaydhawan-components"></a>
+## 💎 [AnayDhawan/Components](https://github.com/AnayDhawan/Components)
 
-**★ 6** · exceptional (score 16.5) · JavaScript · tags: agent-skill, animation, claude-skill, gsap, motion
+**★ 2** · exceptional (score 13.5) · tags: aceternity, animation, claude-code, claude-skill, framer-motion
 
-Curated text-animation catalog skill — exact JSON motion contracts for WAAPI / Motion / GSAP / CSS / Lottie / Rive, with a live demo gallery.
+Skill letting agents fetch proven animated React and Tailwind components live instead of hand-coding buggy UI from scratch.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add sakuraoxo-clio/sakura-animate-text --profile frontend
+cue skills add AnayDhawan/Components --profile frontend
+```
+
+---
+
+<a id="insightflo-im-designer"></a>
+## 💎 [insightflo/im-designer](https://github.com/insightflo/im-designer)
+
+**★ 0** · exceptional (score 13) · tags: accessibility, claude-code, claude-skill, design, design-system
+
+디자인 언어 번역기 (Design Language Translator) — Claude Code skill that translates non-designers' vague design language into executable UI/UX requests.
+
+✅ SKILL.md
+
+```bash
+cue skills add insightflo/im-designer --profile frontend
 ```
 
 ---
@@ -43,15 +58,15 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
 
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "SlavaSexton/comfyui-agent-kit — Claude Code skill discovered by cue"
 description: "One ComfyUI skill for every AI coding agent: Claude Code, Codex, Gemini CLI, Qwen Code. Shared core + per-agent adapters, MCP driver, 65 model prompt recipes, 5"
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, skill, creative-media]
 ---
 
-# ✨ [SlavaSexton/comfyui-agent-kit](https://github.com/SlavaSexton/comfyui-agent-kit)
+# 💎 [SlavaSexton/comfyui-agent-kit](https://github.com/SlavaSexton/comfyui-agent-kit)
 
-**★ 1** · strong (score 7.3) · PowerShell · ai-art, anthropic, claude, claude-code, claude-skill
+**★ 6** · exceptional (score 8) · PowerShell · ai-art, anthropic, claude, claude-code, claude-skill
 
 > One ComfyUI skill for every AI coding agent: Claude Code, Codex, Gemini CLI, Qwen Code. Shared core + per-agent adapters, MCP driver, 65 model prompt recipes, 534 templates, hardware-aware model selection. By AI VFX NEWS.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: ai-art, anthropic, claude, claude-code, claude-skill, codex, comfyui, gemini-cli, glm, image-generation, mcp, qwen, stable-diffusion, video-generation
 
 ## Best fit cue profiles

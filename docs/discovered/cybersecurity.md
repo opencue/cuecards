@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+<a id="matiaspalmac-fivem-security-audit"></a>
+## 💎 [matiaspalmac/fivem-security-audit](https://github.com/matiaspalmac/fivem-security-audit)
 
-**★ 3** · exceptional (score 15.1) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 0** · exceptional (score 13.5) · JavaScript · tags: anticheat, backdoor-detection, claude-code, claude-code-skill, esx
 
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+Claude Code skill for FiveM resource auditing — security, performance, compatibility. Backdoor/RAT detection, SQLi, duplication, NUI exploitation, state bags. Supports ESX, QBCore, QBox, ox_lib, ND_Core.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+cue skills add matiaspalmac/fivem-security-audit --profile cybersecurity
 ```
 
 ---
@@ -33,7 +33,7 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1770** · exceptional (score 11) · Python · tags: agentskills, claude, skills
+**★ 1786** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -43,15 +43,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="saagpatel-mcpaudit"></a>
-## ✨ [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
+<a id="rector-labs-solana-cpi-safety-skill"></a>
+## 💎 [RECTOR-LABS/solana-cpi-safety-skill](https://github.com/RECTOR-LABS/solana-cpi-safety-skill)
 
-**★ 3** · strong (score 6.7) · Python · tags: ai-safety, audit, cli, developer-tools, mcp
+**★ 0** · exceptional (score 8) · TypeScript · tags: anchor, claude-code, claude-skill, cpi, cross-program-invocation
 
-Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift
+Hardening skill for Solana cross-program invocations (CPI), with first-class coverage of the return-data spoofing exploit class. Claude Code / Codex skill for the Solana AI Kit.
 
 ```bash
-cue skills add saagpatel/MCPAudit --profile cybersecurity
+cue skills add RECTOR-LABS/solana-cpi-safety-skill --profile cybersecurity
 ```
 
 ---

@@ -2,19 +2,19 @@
 title: "baihe26/zh-docx-safe — Claude Code skill discovered by cue"
 description: "A Codex/Claude skill for stable Chinese DOCX/Word generation on Windows. Prevents UTF-8/GBK mojibake, PowerShell pipe issues, Chinese path failures, and mixed C"
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [baihe26/zh-docx-safe](https://github.com/baihe26/zh-docx-safe)
+# ✨ [baihe26/zh-docx-safe](https://github.com/baihe26/zh-docx-safe)
 
-**★ 1** · exceptional (score 8) · Python
+**★ 1** · strong (score 7.9) · Python
 
 > A Codex/Claude skill for stable Chinese DOCX/Word generation on Windows. Prevents UTF-8/GBK mojibake, PowerShell pipe issues, Chinese path failures, and mixed Chinese-English table/font problems. Includes a helper script for generating Chinese-friendly .docx reports from UTF-8 JSON specs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-12

@@ -2,7 +2,7 @@
 title: "pathrule/core — Claude Code skill discovered by cue"
 description: "The context layer for AI coding agents. Path-scoped memories, rules, and skills for Claude Code, Cursor, Codex, and Windsurf. Local-first, no account, Apache-2."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 

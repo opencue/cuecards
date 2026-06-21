@@ -2,21 +2,21 @@
 title: "KarmaDevplacer/Mythos-Claude-Orchestrator — Claude Code skill discovered by cue"
 description: "🧿 MythOS 2026: Claude-Powered AI Narrative Engine & Sub-Agent Framework for Epic Storytelling"
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [KarmaDevplacer/Mythos-Claude-Orchestrator](https://github.com/KarmaDevplacer/Mythos-Claude-Orchestrator)
 
-**★ 50** · exceptional (score 12.5) · HTML · claude, claude-ai, claude-code, claude-code-cli, claude-code-hooks
+**★ 51** · exceptional (score 12.5) · HTML · claude, claude-ai, claude-code, claude-code-cli, claude-code-hooks
 
 > 🧿 MythOS 2026: Claude-Powered AI Narrative Engine & Sub-Agent Framework for Epic Storytelling
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
-- ⭐ 50 stars
-- 🗓️ Last pushed: 2026-06-20
+- ⭐ 51 stars
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, claude-code-subagents, claude-cowork-free, claude-design-ai, claude-design-alternative, claude-design-download, claude-design-free, claude-mythos, claude-opus, claude-opus-4-6, mythos
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "devantler-tech/ksail — Claude Code skill discovered by cue"
 description: "All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, a"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-21
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.9 based on:
 - ⭐ 147 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: argocd, chat, cli, cloud-native, developer-tool, devops, docker, flux, github-copilot, gitops, helm, k3s, kind, kubernetes, local-development, mcp-server, provisioner, talos, tui, vcluster
 
 ## Best fit cue profiles

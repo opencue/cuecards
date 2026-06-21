@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-20
+updated: 2026-06-21
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="britniusvzx43-hub-ocr-extractor"></a>
-## 💎 [britniusvzx43-hub/ocr-extractor](https://github.com/britniusvzx43-hub/ocr-extractor)
+<a id="hoangcreative-claude-session-save"></a>
+## 💎 [hoangCreative/claude-session-save](https://github.com/hoangCreative/claude-session-save)
 
-**★ 0** · exceptional (score 11) · Python · tags: chinese-ocr, claude-code-skill, document-digitization, image-to-text, knowledge-management
+**★ 0** · exceptional (score 13) · tags: agent-skills, ai-agents, anthropic, automation, bilingual
 
-图片转文字 · Chinese OCR Skill for Claude Code — TIFF/PNG/JPG to clean Markdown with watermark removal, page sorting, auto-correction & self-improving pipeline
+A verified, safe session-close skill for Claude Code: read-before-write, .bak backup, idempotent append, mtime guard, atomic write. Bilingual VN/EN, Apache-2.0.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add britniusvzx43-hub/ocr-extractor --profile docs-writer
+cue skills add hoangCreative/claude-session-save --profile docs-writer
 ```
 
 ---
