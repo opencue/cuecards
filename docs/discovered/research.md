@@ -1,42 +1,70 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="shinyjay2-papermentor"></a>
+## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 15.5) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add ShinyJay2/PaperMentor --profile research
 ```
 
 ---
 
-<a id="heidihelena-citevahti"></a>
-## ✨ [heidihelena/citevahti](https://github.com/heidihelena/citevahti)
+<a id="oksure-openalex-research-mcp"></a>
+## 💎 [oksure/openalex-research-mcp](https://github.com/oksure/openalex-research-mcp)
 
-**★ 1** · strong (score 6.3) · Python · tags: academic-writing, citation-integrity, citations, claim-verification, evidence-synthesis
+**★ 29** · exceptional (score 10.7) · JavaScript · tags: academic, ai-tools, bibliometrics, citation-analysis, claude
 
-Run unit tests on your manuscript. Check every manuscript claim against its cited evidence. Human-first, AI-second, Zotero-audited, local-first.
+MCP server for the OpenAlex API — search 240M+ scholarly works, analyze citations, track research trends, and map collaboration networks
 
 ```bash
-cue skills add heidihelena/citevahti --profile research
+cue skills add oksure/openalex-research-mcp --profile research
+```
+
+---
+
+<a id="jason-0409-g-scriptorium"></a>
+## ✨ [Jason-0409-G/scriptorium](https://github.com/Jason-0409-G/scriptorium)
+
+**★ 1** · strong (score 7.3) · Python · tags: academic-writing, bioinformatics, citation-verification, claude-code, claude-skill
+
+Self-contained Claude Code / Codex skill that takes a research idea to a submission-ready manuscript: a DOI-verified literature library (with NCBI/UniProt/PDB/AlphaFold resource search), evidence-matched drafting, multi-agent adversarial review, de-AI, and LaTeX/Word/PDF output. Depends on no other skill.
+
+```bash
+cue skills add Jason-0409-G/scriptorium --profile research
+```
+
+---
+
+<a id="sveritg-metis-ph"></a>
+## ✨ [SVerITG/Metis_PH](https://github.com/SVerITG/Metis_PH)
+
+**★ 1** · strong (score 5.3) · Python · tags: ai-assistant, anthropic, claude, epidemiology, knowledge-management
+
+A Research Cortex. A research companion for Claude. Your library, notes & memory stay on your machine; answers cited from your own library; 30+ specialist skills; auto cross-pollination across   papers, meetings, ideas, notes & journal; weekly self-review that drafts improvements for your approval. Reasoning runs on the Claude API.
+
+```bash
+cue skills add SVerITG/Metis_PH --profile research
 ```
 
 ---

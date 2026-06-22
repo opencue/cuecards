@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="shanwije-proven-python"></a>
-## 💎 [shanwije/proven-python](https://github.com/shanwije/proven-python)
+<a id="mugoherick12-boop-skillz"></a>
+## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, ai-agents, ai-coding, anthropic, claude-code
+**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
 
-Make your AI agent prove its Python before calling it done: TDD, strict typing, clean code, and a green ruff/mypy/pytest toolchain. A Claude Code skill, works with any agent.
+🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
 
 ```bash
-cue skills add shanwije/proven-python --profile python
+cue skills add mugoherick12-boop/skillz --profile python
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-05
+updated: 2026-06-22
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="alllyx520-bot-oh-my-web"></a>
-## ✨ [alllyx520-bot/oh-my-web](https://github.com/alllyx520-bot/oh-my-web)
+<a id="wuisabel-gif-roam"></a>
+## 💎 [wuisabel-gif/roam](https://github.com/wuisabel-gif/roam)
 
-**★ 0** · strong (score 6.5) · HTML · tags: anthropic, awwwards, chinese-typography, claude-code, claude-skill
+**★ 0** · exceptional (score 13) · HTML · tags: 3d, aframe, ai-tools, browser, claude
 
-Opinionated frontend craft skill for Claude Code — ship awwwards-tier UI, never AI-default. Drop-in replacement for the official frontend-design skill with deep technique libraries (GLSL shaders, Liquid Glass, scroll choreography, modern CSS 2026, CJK first-class) + 8 portfolio-grade examples.
+🏛️ Roam — a Claude skill for building immersive, walkable 3D worlds (scroll-through corridors & first-person rooms) you explore right in the browser. No build step.
+
+✅ SKILL.md
 
 ```bash
-cue skills add alllyx520-bot/oh-my-web --profile threejs
+cue skills add wuisabel-gif/roam --profile threejs
 ```
 
 ---

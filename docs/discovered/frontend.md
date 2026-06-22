@@ -1,46 +1,31 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="anaydhawan-components"></a>
-## 💎 [AnayDhawan/Components](https://github.com/AnayDhawan/Components)
+<a id="wuisabel-gif-roam"></a>
+## 💎 [wuisabel-gif/roam](https://github.com/wuisabel-gif/roam)
 
-**★ 2** · exceptional (score 13.5) · tags: aceternity, animation, claude-code, claude-skill, framer-motion
+**★ 0** · exceptional (score 13) · HTML · tags: 3d, aframe, ai-tools, browser, claude
 
-Skill letting agents fetch proven animated React and Tailwind components live instead of hand-coding buggy UI from scratch.
-
-✅ SKILL.md
-
-```bash
-cue skills add AnayDhawan/Components --profile frontend
-```
-
----
-
-<a id="insightflo-im-designer"></a>
-## 💎 [insightflo/im-designer](https://github.com/insightflo/im-designer)
-
-**★ 0** · exceptional (score 13) · tags: accessibility, claude-code, claude-skill, design, design-system
-
-디자인 언어 번역기 (Design Language Translator) — Claude Code skill that translates non-designers' vague design language into executable UI/UX requests.
+🏛️ Roam — a Claude skill for building immersive, walkable 3D worlds (scroll-through corridors & first-person rooms) you explore right in the browser. No build step.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add insightflo/im-designer --profile frontend
+cue skills add wuisabel-gif/roam --profile frontend
 ```
 
 ---
@@ -58,28 +43,15 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="s2mgtvodois2-postgresql-mcp-js"></a>
+## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add s2mgtvodois2/postgresql-mcp-js --profile frontend
 ```
 
 ---
@@ -87,7 +59,7 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3)
+**★ 1** · potential (score 3.3)
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

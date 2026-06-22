@@ -2,21 +2,21 @@
 title: "Cloud-Temple/mcp-vault — Claude Code skill discovered by cue"
 description: "🔐 MCP Vault — Gestion sécurisée des secrets pour agents IA (OpenBao embedded). 24 outils MCP, SSH CA, policies, audit, 14 types de secrets style 1Password."
 layout: page
-updated: 2026-06-11
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Cloud-Temple/mcp-vault](https://github.com/Cloud-Temple/mcp-vault)
+# 💎 [Cloud-Temple/mcp-vault](https://github.com/Cloud-Temple/mcp-vault)
 
-**★ 2** · strong (score 6.5) · Python · ai-agents, cloud-temple, mcp, mcp-server, openbao
+**★ 2** · exceptional (score 8) · Python · ai-agents, cloud-temple, mcp, mcp-server, openbao
 
 > 🔐 MCP Vault — Gestion sécurisée des secrets pour agents IA (OpenBao embedded). 24 outils MCP, SSH CA, policies, audit, 14 types de secrets style 1Password.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-11
+- 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: ai-agents, cloud-temple, mcp, mcp-server, openbao, python, secrets, ssh-ca, vault
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "B33pBeeps/trawl — Claude Code skill discovered by cue"
 description: "Trawl the urls, file paths, commands, and plans out of your Claude Code and Codex chats. One fzf menu, plus a global-hotkey popup."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 

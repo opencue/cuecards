@@ -1,31 +1,81 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="hoangcreative-claude-session-save"></a>
-## 💎 [hoangCreative/claude-session-save](https://github.com/hoangCreative/claude-session-save)
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
 
-**★ 0** · exceptional (score 13) · tags: agent-skills, ai-agents, anthropic, automation, bilingual
+**★ 0** · exceptional (score 8.5) · tags: agent-skill, claude-code-skill, cli, codex, gemini
 
-A verified, safe session-close skill for Claude Code: read-before-write, .bak backup, idempotent append, mtime guard, atomic write. Bilingual VN/EN, Apache-2.0.
-
-✅ SKILL.md
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
 
 ```bash
-cue skills add hoangCreative/claude-session-save --profile docs-writer
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
+```
+
+---
+
+<a id="mindgameolympiangames78-llm-knowledge-base"></a>
+## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+
+**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+
+Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+
+```bash
+cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+```
+
+---
+
+<a id="wlsdks-ontology-atlas"></a>
+## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
+
+**★ 2** · strong (score 6.5) · JavaScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
+
+Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
+
+```bash
+cue skills add wlsdks/ontology-atlas --profile docs-writer
+```
+
+---
+
+<a id="amri854-obsidian-mcp-server"></a>
+## ✨ [Amri854/obsidian-mcp-server](https://github.com/Amri854/obsidian-mcp-server)
+
+**★ 0** · strong (score 6.5) · TypeScript · tags: claude, claude-desktop, cursor, knowledge-base, llm
+
+🗂️ Boost your Obsidian experience with a powerful Model Context Protocol server for vault access, knowledge graph analysis, and seamless integrations.
+
+```bash
+cue skills add Amri854/obsidian-mcp-server --profile docs-writer
+```
+
+---
+
+<a id="thegoatpsy-mneme"></a>
+## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
+
+**★ 1** · strong (score 6.3) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
+
+Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
+
+```bash
+cue skills add TheGoatPsy/mneme --profile docs-writer
 ```
 
 ---

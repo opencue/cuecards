@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="li599198347-svg-aham-ppt"></a>
-## 💎 [li599198347-svg/aham-ppt](https://github.com/li599198347-svg/aham-ppt)
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 32** · exceptional (score 10.2) · Python · tags: aham, claude-skill, local-first, personal-ai, pptx
+**★ 0** · exceptional (score 10.5) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
 
-咨询级 AI PPT 制作技能——丢一堆素材，幻灯片出来了。Aham：把灵光一现，做成能用的 AI 工具。
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add li599198347-svg/aham-ppt --profile niche
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+```
+
+---
+
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+
+**★ 0** · exceptional (score 10.5) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
+
+✅ SKILL.md
+
+```bash
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "BanyanOutcomes/well-actually — Claude Code skill discovered by cue"
 description: "A starter layout for keeping Claude Code's context lean as your codebase grows: path-scoped rules that auto-load by file, on-demand system docs, and skills to m"
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 

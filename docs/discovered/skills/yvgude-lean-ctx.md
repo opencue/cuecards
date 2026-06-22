@@ -2,21 +2,21 @@
 title: "yvgude/lean-ctx — Claude Code skill discovered by cue"
 description: "Control what your AI can see. LeanCTX (Lean Context) is the context intelligence layer for AI agents — one local Rust binary that decides what they read, rememb"
 layout: page
-updated: 2026-06-12
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yvgude/lean-ctx](https://github.com/yvgude/lean-ctx)
 
-**★ 2642** · exceptional (score 17) · Rust · agentic-coding, ai, ai-agents, ai-coding, claude-code
+**★ 2849** · exceptional (score 17.5) · Rust · agentic-coding, ai, ai-agents, ai-coding, claude-code
 
 > Control what your AI can see. LeanCTX (Lean Context) is the context intelligence layer for AI agents — one local Rust binary that decides what they read, remembers what they learn, guards what they touch, and proves what they save. 60–90% fewer tokens as the receipt. 76 MCP tools, 30+ agents, local-first.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 2642 stars
-- 🗓️ Last pushed: 2026-06-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
+- ⭐ 2849 stars
+- 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: agentic-coding, ai, ai-agents, ai-coding, claude-code, context-engineering, context-intelligence, context-layer, copilot, cursor, developer-tools, gemini-cli, lean-context, llm, mcp, mcp-server, reduce-token-costs, rust, token-optimization
 
 ## Best fit cue profiles

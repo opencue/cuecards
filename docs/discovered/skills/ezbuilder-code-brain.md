@@ -2,7 +2,7 @@
 title: "ezBuilder/code-brain — Claude Code skill discovered by cue"
 description: "Persistent memory, BM25 code search, MCP tools, and hook guardrails for AI coding agents — Claude Code, Codex CLI & Antigravity. One local-first .ai/ layer per "
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-06-20
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: agent-memory, agentic-ai, ai-agents, ai-tools, anthropic, automation, claude, claude-code, cli, code-search, codex, coding-agent, context-engineering, developer-tools, llm, local-first, mcp, mcp-server, prompt-engineering, rag
 
 ## Best fit cue profiles

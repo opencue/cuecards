@@ -2,19 +2,19 @@
 title: "askalf/claude-sync — Claude Code skill discovered by cue"
 description: "own your sessions — move Claude Code sessions across machines via a shared folder (Dropbox/iCloud/Syncthing) or SSH to a remote host. git-remote-url canonical k"
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [askalf/claude-sync](https://github.com/askalf/claude-sync)
 
-**★ 1** · strong (score 5.3) · JavaScript · automation, claude-code, cli, developer-tools, session
+**★ 1** · strong (score 5.2) · JavaScript · automation, claude-code, cli, developer-tools, session
 
 > own your sessions — move Claude Code sessions across machines via a shared folder (Dropbox/iCloud/Syncthing) or SSH to a remote host. git-remote-url canonical key fixes path-hash mismatches, a watch-mode daemon auto-syncs on change, and per-machine files keep concurrent edits from colliding. Zero runtime deps. Part of Own Your Stack.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: automation, claude-code, cli, developer-tools, session, ssh, sync

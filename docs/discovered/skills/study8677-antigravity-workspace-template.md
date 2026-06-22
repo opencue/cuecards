@@ -2,20 +2,20 @@
 title: "study8677/antigravity-workspace-template — Claude Code skill discovered by cue"
 description: "Give Claude Code, Cursor, Codex CLI a ChatGPT for your codebase. Multi-agent knowledge engine, grounded Q&A with file paths and line numbers. Works in any AI ID"
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [study8677/antigravity-workspace-template](https://github.com/study8677/antigravity-workspace-template)
 
-**★ 1284** · exceptional (score 20.4) · Python · agents-sdk, ai-agent, claude-code, code-intelligence, code-search
+**★ 1286** · exceptional (score 20.4) · Python · agents-sdk, ai-agent, claude-code, code-intelligence, code-search
 
 > Give Claude Code, Cursor, Codex CLI a ChatGPT for your codebase. Multi-agent knowledge engine, grounded Q&A with file paths and line numbers. Works in any AI IDE.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.4 based on:
-- ⭐ 1284 stars
+- ⭐ 1286 stars
 - 🗓️ Last pushed: 2026-06-20
 - 🏷️ Tags: agents-sdk, ai-agent, claude-code, code-intelligence, code-search, codebase-qa, codex-cli, copilot, cursor, developer-tools, ide-plugin, knowledge-graph, llm, mcp, mcp-server, multi-agent, openai, python, rag, windsurf
 
