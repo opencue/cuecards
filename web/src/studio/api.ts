@@ -207,6 +207,35 @@ export interface MarketData {
   counts: Record<string, number>;
 }
 
+/** Result of POST /market/install — the profile.yaml edit that backs "Add to profile". */
+export interface MarketInstallResult {
+  id: string;
+  profile: string;
+  addKind: MarketItem["addKind"];
+  /** True when the profile.yaml was actually edited. */
+  changed: boolean;
+  /** True when the item was already wired into the profile. */
+  alreadyPresent: boolean;
+  detail: string;
+  /** Present for a bare CLI (no profile.yaml home) — the command to run instead. */
+  manual?: { command: string };
+}
+
+/**
+ * Install a marketplace item into one of the user's profiles. Edits the target
+ * profile.yaml server-side (skill → skills.npx, mcp → mcps, plugin → plugins,
+ * profile → inherits, workflow → playbooks). A bare CLI comes back with
+ * `manual` set so the caller can show the command instead.
+ */
+export function installMarketItem(item: Pick<MarketItem, "id" | "addKind" | "add">, profile: string) {
+  return postJson<MarketInstallResult>("/market/install", {
+    id: item.id,
+    addKind: item.addKind,
+    add: item.add,
+    profile,
+  });
+}
+
 export interface SkillUsageRow {
   id: string;
   hits: number;
