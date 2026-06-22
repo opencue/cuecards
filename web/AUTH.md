@@ -9,7 +9,8 @@ functions, same-origin with the SPA.
 cuecards.cc
 ├─ /                     Vite SPA (cue studio) — the "API tokens" rail view
 ├─ /api/auth/*           BetterAuth: sign-up, sign-in, sign-out, session, api-key/*
-└─ /api/v1/me            returns the caller (session cookie OR Bearer token)
+├─ /api/v1/me            returns the caller (session cookie OR Bearer token)
+└─ /api/v1/community     community marketplace: GET (public list) + POST (publish)
 ```
 
 ## Environment
@@ -80,6 +81,44 @@ curl https://cuecards.cc/api/v1/me \
 
 Tokens also accept the `x-api-key` header. Each token is rate limited to 120
 requests/minute by default (configurable in `lib/auth.ts`).
+
+## Publishing to the marketplace
+
+`/api/v1/community` is the "push from your PC" surface. Users mint a token in the
+API view, then publish profiles / skills / MCPs — from the studio's **Publish**
+modal (session cookie) or `cue marketplace publish` (Bearer token).
+
+```bash
+# list the public community catalog (no auth)
+curl https://cuecards.cc/api/v1/community
+
+# your own items, any status (auth)
+curl https://cuecards.cc/api/v1/community?mine=1 -H "Authorization: Bearer <token>"
+
+# publish / re-publish one item (auth)
+curl -X POST https://cuecards.cc/api/v1/community \
+  -H "Authorization: Bearer <token>" -H 'content-type: application/json' \
+  -d '{"type":"profile","name":"ship-fast","description":"…","tags":["build","review"]}'
+```
+
+Server behavior (`web/lib/market.ts`):
+
+- **Auth** via `auth.api.getSession` — same path as `/api/v1/me`, so a session
+  cookie or a Bearer api-key both work.
+- **The install command is derived server-side** (`cue add <handle>/<name>`,
+  `cue marketplace install-mcp <name>`, …) and never read from the request, so a
+  submission can't smuggle a `curl … | bash` into someone's dashboard.
+- Every field is length-clamped; `name`/tags are slugged; `sourceUrl` must be
+  `https://`. The `id` embeds a per-user suffix and `(user_id, type, name)` is
+  unique, so re-publishing updates your own item and no one can overwrite
+  another user's.
+- Items default to `status = 'approved'` (frictionless, matching free signup).
+  The `status` column is the hook to add moderation later without a schema
+  change.
+
+The table (`market_item`) is created lazily on first use, so no extra migration
+step is required beyond BetterAuth's. The CLI defaults to `https://cuecards.cc`;
+point it elsewhere with `CUE_API_URL` (env) or `--api <url>`.
 
 ## Deploy (Vercel + Neon)
 
