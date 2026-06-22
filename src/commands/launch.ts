@@ -20,6 +20,8 @@ import { configDir } from "../lib/config-paths";
 import { debug } from "../lib/debug-log";
 import {
   computeTokenBreakdown,
+  computeContextBudget,
+  formatContextBudgetWarning,
   splitSkillBytes,
   tokenLevelEmoji,
   type SkillTokens,
@@ -1874,6 +1876,22 @@ export async function run(args: string[]): Promise<number> {
       const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
       alwaysOnForBadge = breakdown.alwaysOn;
       const lines = formatTokenWarning(breakdown);
+
+      // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
+      // should stay under 50% of the model's context window so the other half
+      // is free for the conversation. Window precedence: profile
+      // contextWindow/model → env (CUE_CONTEXT_WINDOW/CUE_MODEL) → 256K default.
+      const budget = computeContextBudget({
+        skillTokens: breakdown.alwaysOn,
+        mcpCount: profile.mcps.length,
+        window: profile.contextWindow,
+        model: profile.model,
+      });
+      const bc = colorFns();
+      lines.push(
+        ...formatContextBudgetWarning(budget, { yellow: bc.yellow, bold: bc.bold, dim: bc.dim }),
+      );
+
       if (lines.length > 0) {
         process.stderr.write("\n");
         for (const l of lines) process.stderr.write(`${l}\n`);
