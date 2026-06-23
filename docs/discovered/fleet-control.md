@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="fub05-mcp-agent-starter-kit"></a>
-## 💎 [fub05/MCP---Agent-Starter-Kit](https://github.com/fub05/MCP---Agent-Starter-Kit)
+<a id="nuttaruj-rolepod"></a>
+## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 5** · exceptional (score 8.6) · Python · tags: ai, automation, chatbot, demo, fastapi
+**★ 2** · strong (score 6.5) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
-🚀 Build and explore multi-agent AI workflows with ready-to-use projects for document serving, Q/A bots, and orchestration.
-
-```bash
-cue skills add fub05/MCP---Agent-Starter-Kit --profile fleet-control
-```
-
----
-
-<a id="jasonjarvan-cc-sendbox"></a>
-## 💎 [JasonJarvan/cc-sendbox](https://github.com/JasonJarvan/cc-sendbox)
-
-**★ 1** · exceptional (score 8.3) · tags: agent-orchestration, claude-code, claude-code-skill, multi-agent
-
-Multi-agent coordination via versioned letters — as a Claude Code skill
+Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
-cue skills add JasonJarvan/cc-sendbox --profile fleet-control
+cue skills add nuttaruj/rolepod --profile fleet-control
 ```
 
 ---

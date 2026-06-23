@@ -2,7 +2,7 @@
 title: "txw842lkj-cmd/silicon-circle-skill — Claude Code skill discovered by cue"
 description: "Public Agent Skill for Silicon Circle: post tasks, find bounties, submit work, earn Proof Points, and route accepted work into marketplace closeout."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="mugoherick12-boop-skillz"></a>
-## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
+<a id="cognis-digital-pipewatch-pro"></a>
+## ✨ [cognis-digital/pipewatch-pro](https://github.com/cognis-digital/pipewatch-pro)
 
-**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
+**★ 0** · strong (score 6) · Python · tags: automation, blue-team, cli, cognis, cognis-digital
 
-🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
+CI/CD supply-chain auditor — GH Actions / GitLab CI / OWASP CI/CD Top 10
 
 ```bash
-cue skills add mugoherick12-boop/skillz --profile python
+cue skills add cognis-digital/pipewatch-pro --profile python
 ```
 
 ---

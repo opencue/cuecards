@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="jayden-lg-costing-master"></a>
+## 💎 [jayden-lg/costing-master](https://github.com/jayden-lg/costing-master)
+
+**★ 9** · exceptional (score 10.6) · tags: ai-agent-skill, china, claude-code, construction, cost-estimation
+
+造价大师 — 中国建设工程造价管理全流程AI助手。遵循GB/T 50500-2024，覆盖投资估算到竣工决算，兼容各省定额与广联达。
+
+✅ SKILL.md
+
+```bash
+cue skills add jayden-lg/costing-master --profile niche
+```
 
 ---
 
@@ -41,6 +56,21 @@ Evaluate project fundability and refine grant logic using AI agent skills to ide
 
 ```bash
 cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+```
+
+---
+
+<a id="outmansay-devil-chat-coach"></a>
+## 💎 [OutmanSay/devil-chat-coach](https://github.com/OutmanSay/devil-chat-coach)
+
+**★ 0** · exceptional (score 9.8) · tags: ai-agent, ai-agent-skill, claude-code, openclaw, prompt-engineering
+
+🧠 AI Agent Skill: 实战恋爱聊天教练，贴对方消息按「阶段+温度」给你能用的回复 | AI agent skill for dating-chat coaching
+
+✅ SKILL.md
+
+```bash
+cue skills add OutmanSay/devil-chat-coach --profile niche
 ```
 
 ---

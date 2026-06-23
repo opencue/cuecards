@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "14 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 14 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 193581** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 193704** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
@@ -28,119 +28,56 @@ cue skills add n8n-io/n8n --profile backend
 
 ---
 
-<a id="ralforion-orionbelt-analytics"></a>
-## 💎 [ralforion/orionbelt-analytics](https://github.com/ralforion/orionbelt-analytics)
+<a id="seotoolkit-web-analytics-agent-skill"></a>
+## 💎 [SeoToolkit/web-analytics-agent-skill](https://github.com/SeoToolkit/web-analytics-agent-skill)
 
-**★ 34** · exceptional (score 10.7) · Python · tags: agentic-ai, chromadb, claude-desktop, clickhouse, databricks
+**★ 11** · exceptional (score 13.2) · Python · tags: agent-skill, ai-seo, ga4, google-analytics, google-search-console
 
-Ontology-based MCP server that analyzes database schemas (PostgreSQL, Snowflake, ClickHouse, Dremio) and generates RDF/OWL ontologies with SQL mappings for fan-trap-free Text-to-SQL.
+A powerful Agent Skill and Python Automation Tool for SEO automation, traffic diagnosis, and cross-platform keyword research using GSC, GA4, and Bing Webmaster APIs.
+
+✅ SKILL.md
 
 ```bash
-cue skills add ralforion/orionbelt-analytics --profile backend
+cue skills add SeoToolkit/web-analytics-agent-skill --profile backend
 ```
 
 ---
 
-<a id="oksure-openalex-research-mcp"></a>
-## 💎 [oksure/openalex-research-mcp](https://github.com/oksure/openalex-research-mcp)
+<a id="arrca-ai-arrca-graph"></a>
+## ✨ [arrca-ai/arrca-graph](https://github.com/arrca-ai/arrca-graph)
 
-**★ 29** · exceptional (score 10.7) · JavaScript · tags: academic, ai-tools, bibliometrics, citation-analysis, claude
+**★ 13** · strong (score 7.3) · Go · tags: devops, mcp-server, observability, open-source, opentelemetry
 
-MCP server for the OpenAlex API — search 240M+ scholarly works, analyze citations, track research trends, and map collaboration networks
+A service graph that overlays structure derived from opentelemetry spanmetrics onto kubernetes entities for a more detailed service graph and exposes  apis and an mcp server on top of it
 
 ```bash
-cue skills add oksure/openalex-research-mcp --profile backend
+cue skills add arrca-ai/arrca-graph --profile backend
 ```
 
 ---
 
-<a id="s2mgtvodois2-postgresql-mcp-js"></a>
-## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
 
-**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
+**★ 0** · strong (score 6) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
 
-🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
 
 ```bash
-cue skills add s2mgtvodois2/postgresql-mcp-js --profile backend
+cue skills add shadow400x/claude-sh --profile backend
 ```
 
 ---
 
-<a id="ken-jo-agent-connector"></a>
-## 💎 [ken-jo/agent-connector](https://github.com/ken-jo/agent-connector)
+<a id="alysiadeceptive64-aemet-client"></a>
+## ✨ [Alysiadeceptive64/aemet-client](https://github.com/Alysiadeceptive64/aemet-client)
 
-**★ 1** · exceptional (score 9.8) · TypeScript · tags: ai-agent, ai-agents, claude-code, cli, codex
+**★ 0** · strong (score 6) · TypeScript · tags: aemet, anthropic, bot, cap, claude
 
-Write your MCP server + lifecycle hooks once, deploy to 35 AI-agent platforms — Claude Code, Codex, Cursor, Gemini, Copilot, OpenCode, Warp, Zed & more — from one defineConnector() API. Renders native config for every host (MCP · hooks · commands · skills) with built-in per-tool token telemetry.
-
-```bash
-cue skills add ken-jo/agent-connector --profile backend
-```
-
----
-
-<a id="fub05-mcp-agent-starter-kit"></a>
-## 💎 [fub05/MCP---Agent-Starter-Kit](https://github.com/fub05/MCP---Agent-Starter-Kit)
-
-**★ 5** · exceptional (score 8.6) · Python · tags: ai, automation, chatbot, demo, fastapi
-
-🚀 Build and explore multi-agent AI workflows with ready-to-use projects for document serving, Q/A bots, and orchestration.
+Access Spanish weather data through a TypeScript SDK and Model Context Protocol server for the AEMET OpenData API.
 
 ```bash
-cue skills add fub05/MCP---Agent-Starter-Kit --profile backend
-```
-
----
-
-<a id="mugoherick12-boop-skillz"></a>
-## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
-
-**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
-
-🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
-
-```bash
-cue skills add mugoherick12-boop/skillz --profile backend
-```
-
----
-
-<a id="manojkumarjanapati-expense-tracker-mcp-server"></a>
-## ✨ [manojkumarjanapati/expense-tracker-mcp-server](https://github.com/manojkumarjanapati/expense-tracker-mcp-server)
-
-**★ 0** · strong (score 7.5) · Java · tags: claude-desktop, fastmcp, jsonrpc2, mcp-inspector, mcp-server
-
-💰 Track your expenses efficiently with this Python-based MCP server, enabling AI assistants to manage and summarize your finances through natural conversation.
-
-```bash
-cue skills add manojkumarjanapati/expense-tracker-mcp-server --profile backend
-```
-
----
-
-<a id="myraffy-homelab-mcp"></a>
-## ✨ [myraffy/homelab-mcp](https://github.com/myraffy/homelab-mcp)
-
-**★ 0** · strong (score 7.5) · Python · tags: abac, agentic-ai, ai-gateway, ansible, automation
-
-🔧 Manage and monitor your homelab infrastructure efficiently with Model Context Protocol (MCP) servers through Claude Desktop.
-
-```bash
-cue skills add myraffy/homelab-mcp --profile backend
-```
-
----
-
-<a id="maumanto-jenkins-mcp-server"></a>
-## ✨ [MauManto/jenkins-mcp-server](https://github.com/MauManto/jenkins-mcp-server)
-
-**★ 0** · strong (score 7.5) · Python · tags: ai-agents, business-intelligence, cicd, console-logs, crm
-
-🔍 Fetch and analyze Jenkins build logs effortlessly with the MCP server, supporting multiple instances and automatic detection from job URLs.
-
-```bash
-cue skills add MauManto/jenkins-mcp-server --profile backend
+cue skills add Alysiadeceptive64/aemet-client --profile backend
 ```
 
 ---
@@ -154,19 +91,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="sveritg-metis-ph"></a>
-## ✨ [SVerITG/Metis_PH](https://github.com/SVerITG/Metis_PH)
-
-**★ 1** · strong (score 5.3) · Python · tags: ai-assistant, anthropic, claude, epidemiology, knowledge-management
-
-A Research Cortex. A research companion for Claude. Your library, notes & memory stay on your machine; answers cited from your own library; 30+ specialist skills; auto cross-pollination across   papers, meetings, ideas, notes & journal; weekly self-review that drafts improvements for your approval. Reasoning runs on the Claude API.
-
-```bash
-cue skills add SVerITG/Metis_PH --profile backend
 ```
 
 ---

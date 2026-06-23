@@ -2,7 +2,7 @@
 title: "ayhammouda/mentor — Claude Code skill discovered by cue"
 description: "Claude skill for official-first, dependency-ordered learning paths for technical topics."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "TheGoatPsy/mneme — Claude Code skill discovered by cue"
 description: "Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store"
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, skill, docs-writer]
 ---
 

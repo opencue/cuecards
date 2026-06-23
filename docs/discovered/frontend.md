@@ -1,57 +1,31 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="wuisabel-gif-roam"></a>
-## 💎 [wuisabel-gif/roam](https://github.com/wuisabel-gif/roam)
+<a id="mustbesimo-cinematic-scroll-skill"></a>
+## 💎 [MustBeSimo/cinematic-scroll-skill](https://github.com/MustBeSimo/cinematic-scroll-skill)
 
-**★ 0** · exceptional (score 13) · HTML · tags: 3d, aframe, ai-tools, browser, claude
+**★ 6** · exceptional (score 14.5) · TypeScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
-🏛️ Roam — a Claude skill for building immersive, walkable 3D worlds (scroll-through corridors & first-person rooms) you explore right in the browser. No build step.
+Agent skill for building cinematic, scroll-driven websites from a brief: visual systems, motion storyboards, vanilla/GSAP demos, and Next.js release-page templates.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add wuisabel-gif/roam --profile frontend
-```
-
----
-
-<a id="ezra-y-awesome-claude-ui-armory"></a>
-## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
-
-**★ 0** · exceptional (score 10.5) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
-
-Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
-
-```bash
-cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="s2mgtvodois2-postgresql-mcp-js"></a>
-## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
-
-**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
-
-🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
-
-```bash
-cue skills add s2mgtvodois2/postgresql-mcp-js --profile frontend
+cue skills add MustBeSimo/cinematic-scroll-skill --profile frontend
 ```
 
 ---

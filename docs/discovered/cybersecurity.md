@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+
+**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
 
 ---
 
@@ -33,7 +48,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1790** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
+**★ 1813** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -65,6 +80,32 @@ Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP
 
 ```bash
 cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+```
+
+---
+
+<a id="cognis-digital-pipewatch-pro"></a>
+## ✨ [cognis-digital/pipewatch-pro](https://github.com/cognis-digital/pipewatch-pro)
+
+**★ 0** · strong (score 6) · Python · tags: automation, blue-team, cli, cognis, cognis-digital
+
+CI/CD supply-chain auditor — GH Actions / GitLab CI / OWASP CI/CD Top 10
+
+```bash
+cue skills add cognis-digital/pipewatch-pro --profile cybersecurity
+```
+
+---
+
+<a id="cognis-digital-licenselens"></a>
+## ✨ [cognis-digital/licenselens](https://github.com/cognis-digital/licenselens)
+
+**★ 0** · strong (score 6) · Python · tags: automation, cli, cloud, cognis, cognis-digital
+
+Dependency license + SBOM gate, developer-CLI first
+
+```bash
+cue skills add cognis-digital/licenselens --profile cybersecurity
 ```
 
 ---

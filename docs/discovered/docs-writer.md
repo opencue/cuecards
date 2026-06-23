@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,21 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="woaillr-crypto-code2wiki"></a>
+## 💎 [woaillr-crypto/code2wiki](https://github.com/woaillr-crypto/code2wiki)
+
+**★ 5** · exceptional (score 10.5) · Python · tags: agent-skill, ai-agent-skill, ai-coding, business-context, code-analysis
+
+AI Agent Skill — Auto-generate business context layer (BCL) for large backend codebases. Supports Java, Python, Go, Kotlin, TypeScript. Turn 500K lines into navigable knowledge maps.code2wiki ( code to wiki) 是一项专为复杂项目构建面向业务的“业务语义层”的技能。通过 code2wiki，开发者可以将既有代码库高效地转化为系统化的项目上下文与 Wiki 文档，从而显著提升 LLM 对复杂业务系统的理解深度，赋能代码总结、领域 Skill 构建及自动化文档生成。
+
+✅ SKILL.md
+
+```bash
+cue skills add woaillr-crypto/code2wiki --profile docs-writer
+```
 
 ---
 
@@ -50,19 +65,6 @@ Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: produ
 
 ```bash
 cue skills add wlsdks/ontology-atlas --profile docs-writer
-```
-
----
-
-<a id="amri854-obsidian-mcp-server"></a>
-## ✨ [Amri854/obsidian-mcp-server](https://github.com/Amri854/obsidian-mcp-server)
-
-**★ 0** · strong (score 6.5) · TypeScript · tags: claude, claude-desktop, cursor, knowledge-base, llm
-
-🗂️ Boost your Obsidian experience with a powerful Model Context Protocol server for vault access, knowledge graph analysis, and seamless integrations.
-
-```bash
-cue skills add Amri854/obsidian-mcp-server --profile docs-writer
 ```
 
 ---

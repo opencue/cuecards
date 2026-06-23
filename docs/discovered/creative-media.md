@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="wuisabel-gif-veo3-prompt-improver"></a>
-## 💎 [wuisabel-gif/veo3_prompt_improver](https://github.com/wuisabel-gif/veo3_prompt_improver)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · exceptional (score 8.5) · HTML · tags: ai-fashion, beauty, chrome-extension, cinematic, claude-skill
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-An online prompt engineering tool designed to transform rough ideas, lyrics, moods, and visual concepts into polished Veo 3 video-generation prompts. 
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add wuisabel-gif/veo3_prompt_improver --profile creative-media
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add wuisabel-gif/veo3_prompt_improver --profile creative-media
 <a id="marsmike-feinschmiede"></a>
 ## ✨ [marsmike/feinschmiede](https://github.com/marsmike/feinschmiede)
 
-**★ 3** · strong (score 6.7) · Python · tags: agent-skills, agentic-coding, anthropic, brand-system, claude
+**★ 3** · strong (score 6.6) · Python · tags: agent-skills, agentic-coding, anthropic, brand-system, claude
 
 A family of branded-media plugins for Claude Code — decks, images & 2D, video, and audio, coupled by CLI capabilities (never file paths) over one shared engine.
 

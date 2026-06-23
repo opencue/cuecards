@@ -2,19 +2,19 @@
 title: "Foswift/Foswift — Claude Code skill discovered by cue"
 description: "佛手光 Foswift — 产品摄影一体化智能静物台。15年摄影经验固化，255纯白底一键出图，360度旋转，AI生图前端设备。Product photography skill for AI agents."
 layout: page
-updated: 2026-06-09
+updated: 2026-06-23
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [Foswift/Foswift](https://github.com/Foswift/Foswift)
+# ✨ [Foswift/Foswift](https://github.com/Foswift/Foswift)
 
-**★ 0** · exceptional (score 8.2) · Shell · 3d-scanning, ai-agent-skill, ai-frontend, ecommerce, foswift
+**★ 0** · strong (score 7.7) · Shell · 3d-scanning, ai-agent-skill, ai-frontend, ecommerce, foswift
 
 > 佛手光 Foswift — 产品摄影一体化智能静物台。15年摄影经验固化，255纯白底一键出图，360度旋转，AI生图前端设备。Product photography skill for AI agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-05-21

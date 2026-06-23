@@ -1,32 +1,34 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 14 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-22 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **14 profiles**.
+> Last updated: 2026-06-23 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 66 | `master-skill`, `antigravity-workspace-template`, `activepieces` |
-| [**backend**](./backend.md) | 14 | `n8n`, `orionbelt-analytics`, `openalex-research-mcp` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `slowmist-security-cc`, `Claude-OSINT`, `claude-security-research-skill` |
-| [**docs-writer**](./docs-writer.md) | 5 | `llm-wiki`, `llm-knowledge-base`, `ontology-atlas` |
-| [**research**](./research.md) | 4 | `PaperMentor`, `openalex-research-mcp`, `scriptorium` |
-| [**frontend**](./frontend.md) | 4 | `roam`, `awesome-claude-ui-armory`, `postgresql-mcp-js` |
-| [**creative-media**](./creative-media.md) | 3 | `veo3_prompt_improver`, `feinschmiede`, `redesigned-pancake` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-cn-biology`, `grant-thinking-skill` |
-| [**fleet-control**](./fleet-control.md) | 2 | `MCP---Agent-Starter-Kit`, `cc-sendbox` |
-| [**threejs**](./threejs.md) | 1 | `roam` |
-| [**python**](./python.md) | 1 | `skillz` |
-| [**nextjs**](./nextjs.md) | 1 | `stackgate` |
+| [**core**](./core.md) | 66 | `antigravity-workspace-template`, `hermes-agent`, `pm-claude-skills` |
+| [**cybersecurity**](./cybersecurity.md) | 8 | `nsauditor-ai-agent-skill`, `slowmist-security-cc`, `Claude-OSINT` |
+| [**backend**](./backend.md) | 8 | `n8n`, `web-analytics-agent-skill`, `arrca-graph` |
+| [**docs-writer**](./docs-writer.md) | 5 | `code2wiki`, `llm-wiki`, `llm-knowledge-base` |
+| [**niche**](./niche.md) | 4 | `costing-master`, `grant-thinking-cn-biology`, `grant-thinking-skill` |
+| [**creative-media**](./creative-media.md) | 3 | `social-media-scraper-skill`, `feinschmiede`, `redesigned-pancake` |
+| [**research**](./research.md) | 2 | `PaperMentor`, `venture-analyst` |
+| [**frontend**](./frontend.md) | 2 | `cinematic-scroll-skill`, `claude-code-frontend` |
+| [**nextjs**](./nextjs.md) | 2 | `cinematic-scroll-skill`, `stackgate` |
+| [**marketing**](./marketing.md) | 2 | `web-analytics-agent-skill`, `brand-launchpad` |
+| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
+| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
+| [**threejs**](./threejs.md) | 1 | `webgl-animation-skills` |
+| [**python**](./python.md) | 1 | `pipewatch-pro` |
 
 ## How scoring works
 

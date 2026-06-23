@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -30,41 +30,17 @@ cue skills add ShinyJay2/PaperMentor --profile research
 
 ---
 
-<a id="oksure-openalex-research-mcp"></a>
-## 💎 [oksure/openalex-research-mcp](https://github.com/oksure/openalex-research-mcp)
+<a id="veyralabsgroup-venture-analyst"></a>
+## 💎 [veyralabsgroup/venture-analyst](https://github.com/veyralabsgroup/venture-analyst)
 
-**★ 29** · exceptional (score 10.7) · JavaScript · tags: academic, ai-tools, bibliometrics, citation-analysis, claude
+**★ 1** · exceptional (score 14.9) · Python · tags: agent-skill, ai-agent-skill, ai-agents, anthropic, claude
 
-MCP server for the OpenAlex API — search 240M+ scholarly works, analyze citations, track research trends, and map collaboration networks
+Startup and SaaS idea validation skill for Claude Code. Research market evidence, map competitors, score viability, generate validation experiments.
 
-```bash
-cue skills add oksure/openalex-research-mcp --profile research
-```
-
----
-
-<a id="jason-0409-g-scriptorium"></a>
-## ✨ [Jason-0409-G/scriptorium](https://github.com/Jason-0409-G/scriptorium)
-
-**★ 1** · strong (score 7.3) · Python · tags: academic-writing, bioinformatics, citation-verification, claude-code, claude-skill
-
-Self-contained Claude Code / Codex skill that takes a research idea to a submission-ready manuscript: a DOI-verified literature library (with NCBI/UniProt/PDB/AlphaFold resource search), evidence-matched drafting, multi-agent adversarial review, de-AI, and LaTeX/Word/PDF output. Depends on no other skill.
+✅ SKILL.md
 
 ```bash
-cue skills add Jason-0409-G/scriptorium --profile research
-```
-
----
-
-<a id="sveritg-metis-ph"></a>
-## ✨ [SVerITG/Metis_PH](https://github.com/SVerITG/Metis_PH)
-
-**★ 1** · strong (score 5.3) · Python · tags: ai-assistant, anthropic, claude, epidemiology, knowledge-management
-
-A Research Cortex. A research companion for Claude. Your library, notes & memory stay on your machine; answers cited from your own library; 30+ specialist skills; auto cross-pollination across   papers, meetings, ideas, notes & journal; weekly self-review that drafts improvements for your approval. Reasoning runs on the Claude API.
-
-```bash
-cue skills add SVerITG/Metis_PH --profile research
+cue skills add veyralabsgroup/venture-analyst --profile research
 ```
 
 ---

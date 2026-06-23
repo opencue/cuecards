@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="wuisabel-gif-roam"></a>
-## 💎 [wuisabel-gif/roam](https://github.com/wuisabel-gif/roam)
+<a id="iart-ai-webgl-animation-skills"></a>
+## ✨ [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
 
-**★ 0** · exceptional (score 13) · HTML · tags: 3d, aframe, ai-tools, browser, claude
+**★ 1** · strong (score 6.3) · HTML · tags: 3d-animation, claude-skill, glsl-shaders, motion-graphics, particle-system
 
-🏛️ Roam — a Claude skill for building immersive, walkable 3D worlds (scroll-through corridors & first-person rooms) you explore right in the browser. No build step.
-
-✅ SKILL.md
+3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.
 
 ```bash
-cue skills add wuisabel-gif/roam --profile threejs
+cue skills add iart-ai/webgl-animation-skills --profile threejs
 ```
 
 ---

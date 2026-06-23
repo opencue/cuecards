@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-23
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,21 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="seotoolkit-web-analytics-agent-skill"></a>
+## 💎 [SeoToolkit/web-analytics-agent-skill](https://github.com/SeoToolkit/web-analytics-agent-skill)
+
+**★ 11** · exceptional (score 13.2) · Python · tags: agent-skill, ai-seo, ga4, google-analytics, google-search-console
+
+A powerful Agent Skill and Python Automation Tool for SEO automation, traffic diagnosis, and cross-platform keyword research using GSC, GA4, and Bing Webmaster APIs.
+
+✅ SKILL.md
+
+```bash
+cue skills add SeoToolkit/web-analytics-agent-skill --profile marketing
+```
 
 ---
 
@@ -26,19 +41,6 @@ One Claude Code skill that turns a single project into a complete brand launch �
 
 ```bash
 cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

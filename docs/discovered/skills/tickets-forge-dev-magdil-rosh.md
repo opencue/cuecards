@@ -2,7 +2,7 @@
 title: "tickets-forge-dev/magdil-rosh — Claude Code skill discovered by cue"
 description: "מגדיל ראש — a Claude Code skill that ships the complete feature, not the happy path. Edge-case checklists per domain + the right scoping questions + terse recei"
 layout: page
-updated: 2026-06-22
+updated: 2026-06-23
 tags: [claude-code, skill, core]
 ---
 

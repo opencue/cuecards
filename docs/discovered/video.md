@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-23
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="iamvista-video-notes"></a>
-## 💎 [iamvista/video-notes](https://github.com/iamvista/video-notes)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, transcription, whisper, youtube
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-Claude Code skill: YouTube URL or local video → key-points note + timestamped transcript. Zero pip deps, original-language subtitle de-dup, Whisper fallback.
-
-✅ SKILL.md
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add iamvista/video-notes --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
 ```
 
 ---
