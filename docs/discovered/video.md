@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="vishalguptax-media-context-mcp"></a>
+## ✨ [vishalguptax/media-context-mcp](https://github.com/vishalguptax/media-context-mcp)
 
-**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, audio, claude, cursor, ffmpeg
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Local MCP server to analyze video, audio & images — extract frames, transcribe speech, OCR on-screen text. Give Claude, Cursor & VS Code video context. No API keys, no cloud.
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+cue skills add vishalguptax/media-context-mcp --profile video
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "odere-pro/claude-agentline — Claude Code skill discovered by cue"
 description: "Fast, themeable powerline statusline for Claude Code — git, tokens, context window, rate limits, 38 widgets, and a live TUI editor. Zero network on the hot path"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, skill, core]
 ---
 

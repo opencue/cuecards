@@ -2,19 +2,19 @@
 title: "tickets-forge-dev/magdil-rosh — Claude Code skill discovered by cue"
 description: "מגדיל ראש — a Claude Code skill that ships the complete feature, not the happy path. Edge-case checklists per domain + the right scoping questions + terse recei"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tickets-forge-dev/magdil-rosh](https://github.com/tickets-forge-dev/magdil-rosh)
 
-**★ 1** · exceptional (score 8.1) · HTML · ai-coding, claude-code, claude-code-plugin, claude-skill, code-quality
+**★ 1** · exceptional (score 8) · HTML · ai-coding, claude-code, claude-code-plugin, claude-skill, code-quality
 
 > מגדיל ראש — a Claude Code skill that ships the complete feature, not the happy path. Edge-case checklists per domain + the right scoping questions + terse receipts. 🔥 by Forge
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-17
 - 🏷️ Tags: ai-coding, claude-code, claude-code-plugin, claude-skill, code-quality, developer-tools

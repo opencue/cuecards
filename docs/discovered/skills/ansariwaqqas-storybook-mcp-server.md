@@ -2,7 +2,7 @@
 title: "ansariwaqqas/storybook-mcp-server — Claude Code skill discovered by cue"
 description: "🎨 Enhance Storybook with this TypeScript MCP server for seamless AI interaction, allowing easy access to components, stories, and screenshots."
 layout: page
-updated: 2026-06-08
+updated: 2026-06-24
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-08
+- 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: anthropic, claude, claude-desktop, component-library, component-testing, developer-tools, mcp, mcp-server, model-context-protocol, puppeteer, screenshot-testing, storybook, storybook-addon, typescript, ui-testing, visual-testing
 
 ## Best fit cue profiles

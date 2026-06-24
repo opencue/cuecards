@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "4 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jayden-lg-costing-master"></a>
-## 💎 [jayden-lg/costing-master](https://github.com/jayden-lg/costing-master)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 9** · exceptional (score 10.6) · tags: ai-agent-skill, china, claude-code, construction, cost-estimation
+**★ 0** · exceptional (score 10.5) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-造价大师 — 中国建设工程造价管理全流程AI助手。遵循GB/T 50500-2024，覆盖投资估算到竣工决算，兼容各省定额与广联达。
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jayden-lg/costing-master --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 ```
 
 ---
@@ -45,32 +45,17 @@ cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
 
 ---
 
-<a id="ikramahmadmemon13-grant-thinking-skill"></a>
-## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+<a id="sttfang-x-kline"></a>
+## 💎 [SttFang/x-kline](https://github.com/SttFang/x-kline)
 
-**★ 0** · exceptional (score 10.5) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+**★ 0** · exceptional (score 8.5) · HTML · tags: analytics, candlestick, claude-skill, creator-tools, kline
 
-Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
-
-✅ SKILL.md
-
-```bash
-cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
-```
-
----
-
-<a id="outmansay-devil-chat-coach"></a>
-## 💎 [OutmanSay/devil-chat-coach](https://github.com/OutmanSay/devil-chat-coach)
-
-**★ 0** · exceptional (score 9.8) · tags: ai-agent, ai-agent-skill, claude-code, openclaw, prompt-engineering
-
-🧠 AI Agent Skill: 实战恋爱聊天教练，贴对方消息按「阶段+温度」给你能用的回复 | AI agent skill for dating-chat coaching
+给你的推特号拍个 X 光片：阅读量 K 线 + 人设鉴定（钻石老登/大喷子/出圈狂魔…）
 
 ✅ SKILL.md
 
 ```bash
-cue skills add OutmanSay/devil-chat-coach --profile niche
+cue skills add SttFang/x-kline --profile niche
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="woaillr-crypto-code2wiki"></a>
-## 💎 [woaillr-crypto/code2wiki](https://github.com/woaillr-crypto/code2wiki)
+<a id="openghz-embodied-ai-paper-writer"></a>
+## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
 
-**★ 5** · exceptional (score 10.5) · Python · tags: agent-skill, ai-agent-skill, ai-coding, business-context, code-analysis
+**★ 1** · exceptional (score 12.8) · Shell · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
 
-AI Agent Skill — Auto-generate business context layer (BCL) for large backend codebases. Supports Java, Python, Go, Kotlin, TypeScript. Turn 500K lines into navigable knowledge maps.code2wiki ( code to wiki) 是一项专为复杂项目构建面向业务的“业务语义层”的技能。通过 code2wiki，开发者可以将既有代码库高效地转化为系统化的项目上下文与 Wiki 文档，从而显著提升 LLM 对复杂业务系统的理解深度，赋能代码总结、领域 Skill 构建及自动化文档生成。
+A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add woaillr-crypto/code2wiki --profile docs-writer
+cue skills add OpenGHz/embodied-ai-paper-writer --profile docs-writer
 ```
 
 ---
@@ -72,7 +72,7 @@ cue skills add wlsdks/ontology-atlas --profile docs-writer
 <a id="thegoatpsy-mneme"></a>
 ## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
 
-**★ 1** · strong (score 6.3) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
+**★ 1** · strong (score 6.2) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
 
 Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
 

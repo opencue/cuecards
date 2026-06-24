@@ -2,19 +2,19 @@
 title: "ayhammouda/mentor — Claude Code skill discovered by cue"
 description: "Claude skill for official-first, dependency-ordered learning paths for technical topics."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ayhammouda/mentor](https://github.com/ayhammouda/mentor)
 
-**★ 8** · exceptional (score 14.2) · JavaScript · ai-skill, claude, claude-code, claude-skill, developer-education
+**★ 8** · exceptional (score 14.1) · JavaScript · ai-skill, claude, claude-code, claude-skill, developer-education
 
 > Claude skill for official-first, dependency-ordered learning paths for technical topics.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 8 stars
 - 🗓️ Last pushed: 2026-06-21

@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-24
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
-
-**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
-
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
-
-✅ SKILL.md
-
-```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
-```
 
 ---
 
@@ -48,7 +33,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1813** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
+**★ 1828** · exceptional (score 10.8) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -84,28 +69,15 @@ cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
 
 ---
 
-<a id="cognis-digital-pipewatch-pro"></a>
-## ✨ [cognis-digital/pipewatch-pro](https://github.com/cognis-digital/pipewatch-pro)
+<a id="t25bimmer-mitsuki-mcp-audit"></a>
+## ✨ [T25bimmer/mitsuki-mcp-audit](https://github.com/T25bimmer/mitsuki-mcp-audit)
 
-**★ 0** · strong (score 6) · Python · tags: automation, blue-team, cli, cognis, cognis-digital
+**★ 1** · strong (score 7.8) · tags: docker, ejs, git-api, mcp, mcp-server
 
-CI/CD supply-chain auditor — GH Actions / GitLab CI / OWASP CI/CD Top 10
-
-```bash
-cue skills add cognis-digital/pipewatch-pro --profile cybersecurity
-```
-
----
-
-<a id="cognis-digital-licenselens"></a>
-## ✨ [cognis-digital/licenselens](https://github.com/cognis-digital/licenselens)
-
-**★ 0** · strong (score 6) · Python · tags: automation, cli, cloud, cognis, cognis-digital
-
-Dependency license + SBOM gate, developer-CLI first
+🔍 Enable efficient security audits for npm dependencies with Mitsuki-MCP-audit, offering key insights in standardized formats for local and remote projects.
 
 ```bash
-cue skills add cognis-digital/licenselens --profile cybersecurity
+cue skills add T25bimmer/mitsuki-mcp-audit --profile cybersecurity
 ```
 
 ---
@@ -113,7 +85,7 @@ cue skills add cognis-digital/licenselens --profile cybersecurity
 <a id="gesh75-argus"></a>
 ## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 1** · strong (score 5.1) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 1** · strong (score 5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
 Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 
