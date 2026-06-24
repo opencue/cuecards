@@ -1,46 +1,31 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-24
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="anaydhawan-components"></a>
-## 💎 [AnayDhawan/Components](https://github.com/AnayDhawan/Components)
+<a id="fh-ndiritu-design-psychology-skill"></a>
+## 💎 [Fh-Ndiritu/design-psychology-skill](https://github.com/Fh-Ndiritu/design-psychology-skill)
 
-**★ 2** · exceptional (score 13.5) · tags: aceternity, animation, claude-code, claude-skill, framer-motion
+**★ 0** · exceptional (score 13) · tags: agent-skills, anthropic, claude, claude-code, claude-skill
 
-Skill letting agents fetch proven animated React and Tailwind components live instead of hand-coding buggy UI from scratch.
-
-✅ SKILL.md
-
-```bash
-cue skills add AnayDhawan/Components --profile frontend
-```
-
----
-
-<a id="insightflo-im-designer"></a>
-## 💎 [insightflo/im-designer](https://github.com/insightflo/im-designer)
-
-**★ 0** · exceptional (score 13) · tags: accessibility, claude-code, claude-skill, design, design-system
-
-디자인 언어 번역기 (Design Language Translator) — Claude Code skill that translates non-designers' vague design language into executable UI/UX requests.
+A Claude skill that audits or builds any website/UI against ~60 research-backed conversion & design-psychology principles. Auto-detects live URL vs local code.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add insightflo/im-designer --profile frontend
+cue skills add Fh-Ndiritu/design-psychology-skill --profile frontend
 ```
 
 ---
@@ -58,19 +43,6 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
-
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
-```
-
----
-
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -84,10 +56,23 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 
 ---
 
+<a id="ansariwaqqas-storybook-mcp-server"></a>
+## ✨ [ansariwaqqas/storybook-mcp-server](https://github.com/ansariwaqqas/storybook-mcp-server)
+
+**★ 0** · strong (score 7.5) · C++ · tags: anthropic, claude, claude-desktop, component-library, component-testing
+
+🎨 Enhance Storybook with this TypeScript MCP server for seamless AI interaction, allowing easy access to components, stories, and screenshots.
+
+```bash
+cue skills add ansariwaqqas/storybook-mcp-server --profile frontend
+```
+
+---
+
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3)
+**★ 1** · potential (score 3.2)
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

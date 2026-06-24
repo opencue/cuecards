@@ -2,19 +2,19 @@
 title: "OutmanSay/devil-chat-coach — Claude Code skill discovered by cue"
 description: "🧠 AI Agent Skill: 实战恋爱聊天教练，贴对方消息按「阶段+温度」给你能用的回复 | AI agent skill for dating-chat coaching"
 layout: page
-updated: 2026-06-09
+updated: 2026-06-23
 tags: [claude-code, skill, niche]
 ---
 
 # 💎 [OutmanSay/devil-chat-coach](https://github.com/OutmanSay/devil-chat-coach)
 
-**★ 0** · exceptional (score 10.2) · ai-agent, ai-agent-skill, claude-code, openclaw, prompt-engineering
+**★ 0** · exceptional (score 9.8) · ai-agent, ai-agent-skill, claude-code, openclaw, prompt-engineering
 
 > 🧠 AI Agent Skill: 实战恋爱聊天教练，贴对方消息按「阶段+温度」给你能用的回复 | AI agent skill for dating-chat coaching
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-05-22

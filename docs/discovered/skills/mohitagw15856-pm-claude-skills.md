@@ -1,23 +1,23 @@
 ---
 title: "mohitagw15856/pm-claude-skills — Claude Code skill discovered by cue"
-description: "Professional skills for Claude AI — 167 skills across 17 professions. Save 8-10 hours per week. PM stands for Professional."
+description: "180 professional Agent Skills (SKILL.md) + subagents + slash commands for Claude, ChatGPT, Gemini, Cursor, Codex & Hermes — one source, every AI tool"
 layout: page
-updated: 2026-06-17
+updated: 2026-06-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mohitagw15856/pm-claude-skills](https://github.com/mohitagw15856/pm-claude-skills)
 
-**★ 976** · exceptional (score 15.9) · Shell · ai, claude, claude-ai, claude-skill, claude-skills
+**★ 1012** · exceptional (score 15.9) · JavaScript · agent-skills, chatgpt, claude-ai, claude-code, claude-skills
 
-> Professional skills for Claude AI — 167 skills across 17 professions. Save 8-10 hours per week. PM stands for Professional.
+> 180 professional Agent Skills (SKILL.md) + subagents + slash commands for Claude, ChatGPT, Gemini, Cursor, Codex & Hermes — one source, every AI tool
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
-- ⭐ 976 stars
-- 🗓️ Last pushed: 2026-06-17
-- 🏷️ Tags: ai, claude, claude-ai, claude-skill, claude-skills, product-management, productivity, skills
+- ⭐ 1012 stars
+- 🗓️ Last pushed: 2026-06-23
+- 🏷️ Tags: agent-skills, chatgpt, claude-ai, claude-code, claude-skills, codex, cursor, gemini, hermes-agent, llm-tools, product-management, product-manager, productivity, prompt-engineering, skill-md, skills, slash-commands, subagents
 
 ## Best fit cue profiles
 

@@ -2,19 +2,19 @@
 title: "hxrish04/stackgate — Claude Code skill discovered by cue"
 description: "AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning w"
 layout: page
-updated: 2026-06-21
+updated: 2026-06-23
 tags: [claude-code, skill, backend, nextjs]
 ---
 
 # 🔹 [hxrish04/stackgate](https://github.com/hxrish04/stackgate)
 
-**★ 1** · potential (score 3.1) · TypeScript · ai, audit-trail, azure, claude, internal-developer-platform
+**★ 1** · potential (score 3) · TypeScript · ai, audit-trail, azure, claude, internal-developer-platform
 
 > AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning workflows: risk tiers, multi-stage approvals, generated Terraform, Key Vault secret references, and a full audit trail. Simulation-first with a guarded Azure path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: ai, audit-trail, azure, claude, internal-developer-platform, llm, nextjs, postgresql, prisma, terraform, typescript

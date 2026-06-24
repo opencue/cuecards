@@ -1,17 +1,56 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-24
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="randomittin-heimdall"></a>
+## 💎 [randomittin/heimdall](https://github.com/randomittin/heimdall)
+
+**★ 4** · exceptional (score 10.3) · Shell · tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic
+
+Autonomous Claude Code agent — 14 specialized agents, 10-parallel execution, project-specific skill learning, mechanical checkpointing, wave-based planning with acceptance gates, caveman ultra (~75% token savings). One prompt → finished project.
+
+```bash
+cue skills add randomittin/heimdall --profile fleet-control
+```
+
+---
+
+<a id="fub05-mcp-agent-starter-kit"></a>
+## 💎 [fub05/MCP---Agent-Starter-Kit](https://github.com/fub05/MCP---Agent-Starter-Kit)
+
+**★ 6** · exceptional (score 9.7) · Python · tags: ai, automation, chatbot, demo, fastapi
+
+🚀 Build and explore multi-agent AI workflows with ready-to-use projects for document serving, Q/A bots, and orchestration.
+
+```bash
+cue skills add fub05/MCP---Agent-Starter-Kit --profile fleet-control
+```
+
+---
+
+<a id="escapeboy-agent-fleet-o"></a>
+## 💎 [escapeboy/agent-fleet-o](https://github.com/escapeboy/agent-fleet-o)
+
+**★ 35** · exceptional (score 9.7) · PHP · tags: agent-orchestration, agentic-ai, ai-agents, ai-automation, autonomous-agents
+
+Open-source AI agent orchestration platform — self-hosted mission control for autonomous multi-agent systems. Visual DAG workflows, 450+ MCP tools, human-in-the-loop approvals. Works with Claude, GPT-4o, Gemini, Ollama, Codex.
+
+```bash
+cue skills add escapeboy/agent-fleet-o --profile fleet-control
+```
 
 ---
 
@@ -24,6 +63,19 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ```bash
 cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
+```
+
+---
+
+<a id="nuttaruj-rolepod"></a>
+## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
+
+**★ 2** · strong (score 6.5) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+
+Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
+
+```bash
+cue skills add nuttaruj/rolepod --profile fleet-control
 ```
 
 ---

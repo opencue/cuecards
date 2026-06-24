@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-24
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="shauryalowkeygotaura-brand-launchpad"></a>
-## 💎 [shauryalowkeygotaura/brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)
-
-**★ 1** · exceptional (score 12.3) · HTML · tags: agent-skills, ai, ai-tools, anthropic, brand-strategy
-
-One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. Built on Caleb Ralston, Harry Dry, Oren John & Brier Cochran frameworks.
-
-✅ SKILL.md
-
-```bash
-cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
-```
 
 ---
 

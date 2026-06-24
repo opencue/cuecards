@@ -43,6 +43,20 @@ export interface Profile {
   description: string;
   icon?: string;
   iconImage?: string;
+  /**
+   * Target main-session model id (e.g. "claude-opus-4-8"). Advisory only — cue
+   * can't pin the main session model (that's a per-launch `/model` choice) — but
+   * the model-aware startup budget (lib/token-budget.ts) uses it to resolve the
+   * context window so the over-budget warning knows what window to size against.
+   * Leaf-wins through inheritance. Env `CUE_MODEL` overrides per launch.
+   */
+  model?: string;
+  /**
+   * Explicit context window (tokens) to budget the startup load against, when
+   * the model id alone isn't enough (custom/long-context deployments). Takes
+   * precedence over `model`. Leaf-wins; env `CUE_CONTEXT_WINDOW` overrides.
+   */
+  contextWindow?: number;
   agents?: AgentKind[];
   inherits?: string | string[];
   // Companion profiles surfaced at `cue use` time as suggestions. Activating

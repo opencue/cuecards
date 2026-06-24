@@ -2,7 +2,7 @@
 title: "howdow698-ui/llm-wiki — Claude Code skill discovered by cue"
 description: "Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-24
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: agent-skill, claude-code-skill, cli, codex, gemini, git-based-wiki, knowledge-base, knowledge-compilation, llm-wiki, local-llm, markdown, open-source, personal-knowledge-base, productivity, rag-alternative, rag-local, second-brain, self-hosted-wiki
 
 ## Best fit cue profiles

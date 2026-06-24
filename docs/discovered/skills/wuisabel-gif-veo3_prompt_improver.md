@@ -2,13 +2,13 @@
 title: "wuisabel-gif/veo3_prompt_improver — Claude Code skill discovered by cue"
 description: "An online prompt engineering tool designed to transform rough ideas, lyrics, moods, and visual concepts into polished Veo 3 video-generation prompts. "
 layout: page
-updated: 2026-06-21
+updated: 2026-06-22
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [wuisabel-gif/veo3_prompt_improver](https://github.com/wuisabel-gif/veo3_prompt_improver)
 
-**★ 0** · exceptional (score 8.5) · HTML · ai-video, ai-video-generation, chrome-extension, cinematic, claude-skill
+**★ 0** · exceptional (score 8.5) · HTML · ai-fashion, beauty, chrome-extension, cinematic, claude-skill
 
 > An online prompt engineering tool designed to transform rough ideas, lyrics, moods, and visual concepts into polished Veo 3 video-generation prompts. 
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-21
-- 🏷️ Tags: ai-video, ai-video-generation, chrome-extension, cinematic, claude-skill, fashion-film, gemini, gemini-cli, generative-video, google-veo, mcp-server, music-visualizer, prompt-engineering, prompt-generator, text-to-video, veo-3, veo3
+- 🗓️ Last pushed: 2026-06-22
+- 🏷️ Tags: ai-fashion, beauty, chrome-extension, cinematic, claude-skill, fashion-editorial, fashion-film, fashion-video, gemini, gemini-cli, google-veo, mcp-server, music-video, prompt-engineering, prompt-generator, runway, short-film, text-to-video, veo-3, veo3
 
 ## Best fit cue profiles
 

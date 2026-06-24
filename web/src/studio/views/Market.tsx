@@ -15,6 +15,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useMarket, useProfilesFull, installMarketItem, type MarketItem } from "../api";
+import { useCommunityMarket, publishCommunity } from "../../lib/market-client";
+import { useSession } from "../../lib/auth-client";
 
 // A locally-published draft is a MarketItem with the extra "yours" marker. Kept
 // in localStorage and prepended to the browse list before the live catalog.
@@ -63,6 +65,9 @@ function daysAgo(when: string): number {
 export function MarketView() {
   const qc = useQueryClient();
   const { data } = useMarket();
+  const community = useCommunityMarket();
+  const { data: session } = useSession();
+  const queryClient = useQueryClient();
   const profilesQ = useProfilesFull();
 
   const [q, setQ] = useState("");
@@ -122,12 +127,18 @@ export function MarketView() {
     }
   }
 
-  // Browse list: the user's local drafts on top, then the live catalog. Never
-  // the prototype SEED — a fresh checkout shows exactly what /market returns.
-  const items: LocalMarketItem[] = useMemo(
-    () => [...published, ...(data?.items ?? [])],
-    [published, data],
-  );
+  // Browse list: the user's local drafts on top, then the hosted community
+  // submissions (what everyone pushed), then this checkout's live catalog.
+  // Never the prototype SEED — a fresh checkout shows exactly what the APIs
+  // return. Community items the signed-in user owns are flagged "yours".
+  const myHandle = session?.user?.name || session?.user?.email?.split("@")[0] || null;
+  const items: LocalMarketItem[] = useMemo(() => {
+    const communityItems: LocalMarketItem[] = (community.data ?? []).map((i) => ({
+      ...i,
+      mine: myHandle != null && i.handle === myHandle,
+    }));
+    return [...published, ...communityItems, ...(data?.items ?? [])];
+  }, [published, community.data, data, myHandle]);
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { all: items.length };
@@ -284,8 +295,30 @@ export function MarketView() {
 
       {pubOpen && (
         <PublishModal
+          signedIn={!!session}
           onClose={() => setPubOpen(false)}
-          onPublish={(draft) => {
+          onPublish={async (draft) => {
+            // Signed in → push to the hosted marketplace so everyone sees it.
+            if (session) {
+              try {
+                await publishCommunity({
+                  type: draft.type,
+                  name: draft.name,
+                  description: draft.desc,
+                  tags: draft.tags,
+                });
+                await queryClient.invalidateQueries({ queryKey: ["community-market"] });
+                setPubOpen(false);
+                setType("all");
+                setQ("");
+                setSort("new");
+                flash(draft.name + " published to the marketplace ✓");
+              } catch (err) {
+                flash("Publish failed: " + (err as Error).message);
+              }
+              return;
+            }
+            // Signed out → keep a local-only draft and point them at the API view.
             const item: LocalMarketItem = {
               ...draft,
               id: "u" + Date.now(),
@@ -305,7 +338,7 @@ export function MarketView() {
             setType("all");
             setQ("");
             setSort("new");
-            flash("Published locally ✓ — will open a registry PR");
+            flash("Saved locally — sign in (API view) to publish to everyone");
           }}
         />
       )}
@@ -317,17 +350,29 @@ export function MarketView() {
 // The publish form yields just the editable fields; the view fills the rest.
 type PublishDraft = { type: MarketType; name: string; desc: string; tags: string[] };
 
-function PublishModal({ onClose, onPublish }: { onClose: () => void; onPublish: (draft: PublishDraft) => void }) {
+function PublishModal({ signedIn, onClose, onPublish }: { signedIn: boolean; onClose: () => void; onPublish: (draft: PublishDraft) => void | Promise<void> }) {
   const [type, setType] = useState<MarketType>("profile");
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [tags, setTags] = useState("");
+  const [busy, setBusy] = useState(false);
   const valid = name.trim() && desc.trim();
+  const submit = async () => {
+    if (!valid || busy) return;
+    setBusy(true);
+    try {
+      await onPublish({ type, name: name.trim(), desc: desc.trim(), tags: tags.split(",").map((t) => t.trim()).filter(Boolean).slice(0, 4) });
+    } finally {
+      setBusy(false);
+    }
+  };
   return (
     <div className="mk-modal-bg" onClick={onClose}>
       <div className="mk-modal" onClick={(e) => e.stopPropagation()}>
         <div className="mk-modal-h">Publish to marketplace <span className="mk-modal-x" onClick={onClose}>×</span></div>
-        <div className="mk-modal-sub">Share a profile, workflow, skill or CLI with everyone running cue.</div>
+        <div className="mk-modal-sub">{signedIn
+          ? "Share a profile, workflow, skill or CLI with everyone running cue."
+          : "Sign in from the API view to publish to everyone — otherwise this is saved as a local draft."}</div>
         <label className="mk-field"><span>Type</span>
           <div className="mk-typesel">{TYPE_KEYS.map((t) => (
             <button key={t} className={type === t ? "on" : ""} style={type === t ? { borderColor: TYPE[t].color, color: TYPE[t].color } : undefined} onClick={() => setType(t)}>{TYPE[t].glyph} {TYPE[t].label}</button>
@@ -346,9 +391,9 @@ function PublishModal({ onClose, onPublish }: { onClose: () => void; onPublish: 
           <button className="de-btn" onClick={onClose}>Cancel</button>
           <button
             className="de-btn primary"
-            disabled={!valid}
-            onClick={() => onPublish({ type, name: name.trim(), desc: desc.trim(), tags: tags.split(",").map((t) => t.trim()).filter(Boolean).slice(0, 4) })}
-          >Publish</button>
+            disabled={!valid || busy}
+            onClick={() => void submit()}
+          >{busy ? "Publishing…" : signedIn ? "Publish" : "Save draft"}</button>
         </div>
       </div>
     </div>

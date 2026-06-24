@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-19
+updated: 2026-06-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="iamvista-video-notes"></a>
-## 💎 [iamvista/video-notes](https://github.com/iamvista/video-notes)
+<a id="vishalguptax-media-context-mcp"></a>
+## ✨ [vishalguptax/media-context-mcp](https://github.com/vishalguptax/media-context-mcp)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, transcription, whisper, youtube
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, audio, claude, cursor, ffmpeg
 
-Claude Code skill: YouTube URL or local video → key-points note + timestamped transcript. Zero pip deps, original-language subtitle de-dup, Whisper fallback.
-
-✅ SKILL.md
+Local MCP server to analyze video, audio & images — extract frames, transcribe speech, OCR on-screen text. Give Claude, Cursor & VS Code video context. No API keys, no cloud.
 
 ```bash
-cue skills add iamvista/video-notes --profile video
+cue skills add vishalguptax/media-context-mcp --profile video
 ```
 
 ---

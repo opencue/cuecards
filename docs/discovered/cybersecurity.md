@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-24
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="matiaspalmac-fivem-security-audit"></a>
-## 💎 [matiaspalmac/fivem-security-audit](https://github.com/matiaspalmac/fivem-security-audit)
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
 
-**★ 0** · exceptional (score 13.5) · JavaScript · tags: anticheat, backdoor-detection, claude-code, claude-code-skill, esx
+**★ 0** · exceptional (score 13) · tags: agent-security, aml, audit, blockchain, claude-code
 
-Claude Code skill for FiveM resource auditing — security, performance, compatibility. Backdoor/RAT detection, SQLi, duplication, NUI exploitation, state bags. Supports ESX, QBCore, QBox, ox_lib, ND_Core.
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add matiaspalmac/fivem-security-audit --profile cybersecurity
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 ```
 
 ---
@@ -33,7 +33,7 @@ cue skills add matiaspalmac/fivem-security-audit --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1786** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
+**★ 1828** · exceptional (score 10.8) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -43,15 +43,41 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="rector-labs-solana-cpi-safety-skill"></a>
-## 💎 [RECTOR-LABS/solana-cpi-safety-skill](https://github.com/RECTOR-LABS/solana-cpi-safety-skill)
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
 
-**★ 0** · exceptional (score 8) · TypeScript · tags: anchor, claude-code, claude-skill, cpi, cross-program-invocation
+**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
 
-Hardening skill for Solana cross-program invocations (CPI), with first-class coverage of the return-data spoofing exploit class. Claude Code / Codex skill for the Solana AI Kit.
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
 
 ```bash
-cue skills add RECTOR-LABS/solana-cpi-safety-skill --profile cybersecurity
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+```
+
+---
+
+<a id="elyshafresh21-claude-context-lint"></a>
+## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
+
+**★ 1** · exceptional (score 8.8) · tags: agents, ai, ai-agent, ai-coding, cer
+
+Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
+
+```bash
+cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+```
+
+---
+
+<a id="t25bimmer-mitsuki-mcp-audit"></a>
+## ✨ [T25bimmer/mitsuki-mcp-audit](https://github.com/T25bimmer/mitsuki-mcp-audit)
+
+**★ 1** · strong (score 7.8) · tags: docker, ejs, git-api, mcp, mcp-server
+
+🔍 Enable efficient security audits for npm dependencies with Mitsuki-MCP-audit, offering key insights in standardized formats for local and remote projects.
+
+```bash
+cue skills add T25bimmer/mitsuki-mcp-audit --profile cybersecurity
 ```
 
 ---
@@ -59,7 +85,7 @@ cue skills add RECTOR-LABS/solana-cpi-safety-skill --profile cybersecurity
 <a id="gesh75-argus"></a>
 ## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 1** · strong (score 5.2) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 1** · strong (score 5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
 Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 

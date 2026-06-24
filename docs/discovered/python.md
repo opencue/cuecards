@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-23
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="shanwije-proven-python"></a>
-## 💎 [shanwije/proven-python](https://github.com/shanwije/proven-python)
+<a id="cognis-digital-pipewatch-pro"></a>
+## ✨ [cognis-digital/pipewatch-pro](https://github.com/cognis-digital/pipewatch-pro)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, ai-agents, ai-coding, anthropic, claude-code
+**★ 0** · strong (score 6) · Python · tags: automation, blue-team, cli, cognis, cognis-digital
 
-Make your AI agent prove its Python before calling it done: TDD, strict typing, clean code, and a green ruff/mypy/pytest toolchain. A Claude Code skill, works with any agent.
+CI/CD supply-chain auditor — GH Actions / GitLab CI / OWASP CI/CD Top 10
 
 ```bash
-cue skills add shanwije/proven-python --profile python
+cue skills add cognis-digital/pipewatch-pro --profile python
 ```
 
 ---

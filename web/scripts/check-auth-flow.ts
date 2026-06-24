@@ -7,6 +7,8 @@
  *   2. POST /api/auth/sign-in/email      -> 200, session cookie set
  *   3. POST /api/auth/api-key/create     -> 200, returns key (shown once)
  *   4. GET  /api/v1/me  (Bearer <key>)   -> 200, email matches the new user
+ *   5. POST /api/v1/community (Bearer)   -> 200, publishes a profile
+ *   6. GET  /api/v1/community            -> 200, the new item is listed
  *
  * Env: BASE (default http://localhost:3000).
  * Run:  bun scripts/check-auth-flow.ts
@@ -91,7 +93,32 @@ async function main(): Promise<void> {
   }
   console.log(`ok   ${BURST}× Bearer     -> all 200 (per-key rate limit is generous, not 10/day)`);
 
-  console.log("\nPASS  full auth flow: register -> login -> token -> Bearer /me (+burst)");
+  // 6. Publish a marketplace item with the Bearer token — the "push from your
+  //    PC" path the CLI uses. Then confirm it shows up in the public catalog.
+  const profileName = `check-profile-${Date.now()}`;
+  res = await fetch(`${BASE}/api/v1/community`, {
+    method: "POST",
+    headers: { "content-type": "application/json", authorization: `Bearer ${token}`, origin },
+    body: JSON.stringify({ type: "profile", name: profileName, description: "e2e check profile", tags: ["check", "e2e"] }),
+  });
+  if (res.status !== 200) fail("market/publish", `status ${res.status}: ${await res.text()}`);
+  const pub = (await res.json()) as { ok: boolean; data?: { id?: string; name?: string; add?: string } };
+  if (!pub.ok || !pub.data?.id) fail("market/publish", `unexpected body: ${JSON.stringify(pub)}`);
+  if (pub.data.add?.includes("curl") || pub.data.add?.includes("|")) {
+    fail("market/publish", `install command should be server-derived + safe, got: ${pub.data.add}`);
+  }
+  console.log(`ok   market/publish  -> 200 (${pub.data.name}, add: ${pub.data.add})`);
+
+  // 7. The item is now in the public list.
+  res = await fetch(`${BASE}/api/v1/community`, { headers: { origin } });
+  if (res.status !== 200) fail("market/list", `status ${res.status}: ${await res.text()}`);
+  const list = (await res.json()) as { ok: boolean; data?: { items?: Array<{ id: string }> } };
+  if (!list.ok || !list.data?.items?.some((i) => i.id === pub.data!.id)) {
+    fail("market/list", `published item ${pub.data.id} not found in catalog`);
+  }
+  console.log(`ok   market/list     -> 200 (catalog includes the new item)`);
+
+  console.log("\nPASS  full flow: register -> login -> token -> /me -> publish -> list");
 }
 
 main().catch((err) => fail("uncaught", String(err)));

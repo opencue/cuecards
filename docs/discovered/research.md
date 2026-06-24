@@ -1,17 +1,62 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-21
+updated: 2026-06-24
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="shinyjay2-papermentor"></a>
+## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
+
+**★ 0** · exceptional (score 15.5) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
+
+Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
+
+✅ SKILL.md
+
+```bash
+cue skills add ShinyJay2/PaperMentor --profile research
+```
+
+---
+
+<a id="openghz-embodied-ai-paper-writer"></a>
+## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
+
+**★ 1** · exceptional (score 12.8) · Shell · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
+
+A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
+
+✅ SKILL.md
+
+```bash
+cue skills add OpenGHz/embodied-ai-paper-writer --profile research
+```
+
+---
+
+<a id="hashbulla-deep-research"></a>
+## 💎 [hashbulla/deep-research](https://github.com/hashbulla/deep-research)
+
+**★ 1** · exceptional (score 12.3) · Python · tags: agent-skills, agentic-ai, ai-agents, ai-engineering, anthropic
+
+A human-gated, 7-phase agentic deep-research skill for Claude Code. Fans out across the open web (Tavily), GitHub, academic open-graphs (OpenAlex/arXiv/Semantic Scholar), and live library docs — then grades every source on the NATO Admiralty A–F scale, runs deterministic quality gates, and emits four cited artifacts.
+
+✅ SKILL.md
+
+```bash
+cue skills add hashbulla/deep-research --profile research
+```
 
 ---
 
@@ -24,19 +69,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="heidihelena-citevahti"></a>
-## ✨ [heidihelena/citevahti](https://github.com/heidihelena/citevahti)
-
-**★ 1** · strong (score 6.3) · Python · tags: academic-writing, citation-integrity, citations, claim-verification, evidence-synthesis
-
-Run unit tests on your manuscript. Check every manuscript claim against its cited evidence. Human-first, AI-second, Zotero-audited, local-first.
-
-```bash
-cue skills add heidihelena/citevahti --profile research
 ```
 
 ---
