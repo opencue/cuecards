@@ -186,6 +186,10 @@ cue discover search <query>  # find skills on GitHub
 cue discover install <skill> # install one
 cue lint-skill <path> --fix  # validate a SKILL.md
 
+# Marketplace (push your own to cuecards.cc)
+cue marketplace login --token <t>          # save the API token from the studio → API view
+cue marketplace publish profile ship-fast  # push a profile / skill / mcp for everyone
+
 # Health
 cue doctor --fix             # diff declared vs actual state, auto-repair
 cue optimizer                # dashboard: skills, MCPs, CLIs, usage per profile
@@ -193,6 +197,41 @@ cue failures --propose       # let Claude draft profile improvements from failur
 ```
 
 `cue --help` shows the full ~50-subcommand surface; the set above covers a typical week.
+
+---
+
+## API
+
+cuecards.cc gives every account a free, per-user **API token** and a small HTTP
+API. Mint a token in the studio (`cue dashboard` → **API** view, or
+[cuecards.cc](https://cuecards.cc)), then use it from your own machine to push
+profiles, skills, and MCPs to the community marketplace.
+
+```bash
+# 1. Save the token (verifies it against the server before writing ~/.config/cue/credentials.json)
+cue marketplace login --token cue_sk_…       # or: export CUE_API_TOKEN=cue_sk_…
+cue marketplace whoami                        # confirm which account you're authenticated as
+
+# 2. Push something to the marketplace
+cue marketplace publish profile ship-fast --tags build,review
+cue marketplace publish skill seo-audit --source-url https://github.com/me/skills
+cue marketplace publish mcp my-server --desc "internal tooling MCP"
+```
+
+Authenticate HTTP calls with a Bearer header (the token also works as
+`x-api-key`):
+
+```bash
+curl https://cuecards.cc/api/v1/me            -H "Authorization: Bearer $CUE_API_TOKEN"
+curl https://cuecards.cc/api/v1/community     # public community catalog (no auth)
+curl https://cuecards.cc/api/v1/community     -H "Authorization: Bearer $CUE_API_TOKEN" \
+  -X POST -H 'content-type: application/json' \
+  -d '{"type":"profile","name":"ship-fast","tags":["build"]}'
+```
+
+Install commands are **derived server-side** — a submission can never inject an
+arbitrary `add` string. See [web/AUTH.md](web/AUTH.md) for the auth model,
+self-hosting, and `CUE_API_URL` (point the CLI at a different deployment).
 
 ---
 
@@ -239,7 +278,7 @@ No. Everything cue computes — including the per-skill usage bars in `cue optim
 <summary><b>What does cue NOT do?</b></summary>
 
 - It doesn't modify or repackage the Claude Code / Codex binaries.
-- It doesn't host a remote marketplace — skills live in your repo or come from open source.
+- It doesn't lock you in — skills live in your repo or come from open source; the optional [cuecards.cc marketplace](#api) is just a sharing layer you push to with your own token, never a requirement.
 - It doesn't coordinate multi-agent runs (that's [colony](https://github.com/recodeee/colony) + [gitguardex](https://github.com/recodeee/gitguardex), layered on top via the parallel-agents tier).
 </details>
 
