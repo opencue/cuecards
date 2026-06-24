@@ -14,7 +14,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { useMarket, useProfilesFull, type MarketItem } from "../api";
+import { useMarket, useProfilesFull, installMarketItem, type MarketItem } from "../api";
 import { useCommunityMarket, publishCommunity } from "../../lib/market-client";
 import { useSession } from "../../lib/auth-client";
 
@@ -63,6 +63,7 @@ function daysAgo(when: string): number {
 }
 
 export function MarketView() {
+  const qc = useQueryClient();
   const { data } = useMarket();
   const community = useCommunityMarket();
   const { data: session } = useSession();
@@ -77,6 +78,7 @@ export function MarketView() {
   const [pubOpen, setPubOpen] = useState(false);
   const [toast, setToast] = useState("");
   const [addFor, setAddFor] = useState<string | null>(null);
+  const [installing, setInstalling] = useState<string | null>(null);
   const [sortOpen, setSortOpen] = useState(false);
 
   useEffect(() => { try { localStorage.setItem(STARS_KEY, JSON.stringify(stars)); } catch { /* ignore */ } }, [stars]);
@@ -96,7 +98,34 @@ export function MarketView() {
 
   const starred = new Set(stars);
   const toggleStar = (id: string) => setStars((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
-  const flash = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1800); };
+  const flash = (m: string) => { setToast(m); setTimeout(() => setToast(""), 2600); };
+
+  // Install an item into a real profile (edits profile.yaml server-side). A
+  // bare CLI has no profile.yaml home — its `manual` command is copied instead.
+  async function install(i: LocalMarketItem, profile: string) {
+    if (i.mine) { flash("Local drafts can't be installed yet — publish opens a registry PR"); return; }
+    const key = i.id + "→" + profile;
+    setInstalling(key);
+    try {
+      const r = await installMarketItem(i, profile);
+      if (r.manual) {
+        try { await navigator.clipboard.writeText(r.manual.command); } catch { /* ignore */ }
+        flash(`${i.name}: ${r.manual.command} — copied`);
+      } else if (r.alreadyPresent) {
+        flash(`${i.name} already in ${profile}`);
+      } else {
+        flash(`${i.name} → added to ${profile} · relaunch cue to load`);
+      }
+      // Reflect the new membership across the studio.
+      qc.invalidateQueries({ queryKey: ["profiles-full"] });
+      qc.invalidateQueries({ queryKey: ["profile-detail"] });
+      qc.invalidateQueries({ queryKey: ["market"] });
+    } catch (err) {
+      flash(`Install failed: ${(err as Error).message}`);
+    } finally {
+      setInstalling(null);
+    }
+  }
 
   // Browse list: the user's local drafts on top, then the hosted community
   // submissions (what everyone pushed), then this checkout's live catalog.
@@ -171,17 +200,21 @@ export function MarketView() {
               <div className="mk-addmenu" onClick={(e) => e.stopPropagation()}>
                 <div className="mk-addmenu-h">Add to profile <span className="mk-addmenu-sub">choose one of yours</span></div>
                 <div className="mk-addmenu-list">
-                  {myProfiles.map((p) => (
-                    <button
-                      key={p.name}
-                      className="mk-addmenu-item"
-                      onClick={() => { setAddFor(null); flash(i.name + " → added to " + p.name.split("+")[0]); }}
-                    >
-                      <span className="mk-am-branch">⎇</span>
-                      <span className="mk-am-name">{p.name}</span>
-                      <span className="mk-am-go">add →</span>
-                    </button>
-                  ))}
+                  {myProfiles.map((p) => {
+                    const busy = installing === i.id + "→" + p.name;
+                    return (
+                      <button
+                        key={p.name}
+                        className="mk-addmenu-item"
+                        disabled={!!installing}
+                        onClick={() => { setAddFor(null); void install(i, p.name); }}
+                      >
+                        <span className="mk-am-branch">⎇</span>
+                        <span className="mk-am-name">{p.name}</span>
+                        <span className="mk-am-go">{busy ? "…" : "add →"}</span>
+                      </button>
+                    );
+                  })}
                   {myProfiles.length === 0 && <div className="mk-addmenu-item" style={{ opacity: 0.6 }}>no profiles loaded</div>}
                 </div>
                 <div className="mk-addmenu-foot" onClick={() => {

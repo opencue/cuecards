@@ -5,4 +5,4 @@
 [submodule "resources/skills"]
 	path = resources/skills
 	url = https://github.com/opencue/skills.git
-	branch = soul-main
+	branch = main
