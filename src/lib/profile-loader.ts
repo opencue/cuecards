@@ -444,6 +444,10 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       description: child.description,
       icon: child.icon ?? acc.icon,
       iconImage: child.iconImage ?? acc.iconImage,
+      // Budget hints are leaf-wins: a child that declares its own model /
+      // context window overrides the parent; otherwise it inherits.
+      model: child.model ?? acc.model,
+      contextWindow: child.contextWindow ?? acc.contextWindow,
       // agents: arrays merge by dedupe; if neither parent nor child declares
       // agents we fall back to the default at the end.
       agents: dedupePrimitiveArray(
@@ -504,6 +508,8 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     description: p.description,
     icon: p.icon,
     iconImage: p.iconImage,
+    model: p.model,
+    contextWindow: p.contextWindow,
     agents: p.agents && p.agents.length > 0 ? [...p.agents] : [],
     inherits: p.inherits,
     skills: {
@@ -599,6 +605,9 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
     description: parts.map((p) => p.description).join(" + "),
     icon: parts.find((p) => p.icon)?.icon,
     iconImage: parts.find((p) => p.iconImage)?.iconImage,
+    // First part that declares a budget hint wins for the composite.
+    model: parts.find((p) => p.model)?.model,
+    contextWindow: parts.find((p) => p.contextWindow)?.contextWindow,
     agents: [...head.agents] as ResolvedProfile["agents"],
     inherits: undefined,
     skills: { local: [...head.skills.local], npx: [...head.skills.npx] },
@@ -635,6 +644,8 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
       description: acc.description,
       icon: acc.icon ?? next.icon,
       iconImage: acc.iconImage ?? next.iconImage,
+      model: acc.model ?? next.model,
+      contextWindow: acc.contextWindow ?? next.contextWindow,
       agents: dedupePrimitiveArray(acc.agents, next.agents) as ResolvedProfile["agents"],
       inherits: undefined,
       skills: {

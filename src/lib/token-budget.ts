@@ -109,3 +109,190 @@ export function tokenLevelEmoji(alwaysOn: number): "🔴" | "🟠" | "🟡" | "�
       : alwaysOn > 5000 ? "🟡"
         : "🟢";
 }
+
+// ---------------------------------------------------------------------------
+// Model-aware startup budget
+//
+// The always-on footprint (skill frontmatter + MCP tool schemas) is paid on
+// every single message, before the user has typed anything. The guidance we
+// enforce here: at session start a profile should consume no more than HALF
+// the model's context window, leaving the other half as working headroom for
+// the actual task. For a 256K model that's a ~128K startup ceiling.
+// ---------------------------------------------------------------------------
+
+/** Fallback context window (tokens) when neither the profile nor the env says
+ *  which model is in play. cue can't auto-detect the main-session model (it's a
+ *  per-launch `/model` choice), so 256K is the conservative baseline. */
+export const DEFAULT_CONTEXT_WINDOW = 256_000;
+
+/** Fraction of the window a profile may occupy at startup. Half the window
+ *  keeps the other half free for the conversation. */
+export const DEFAULT_LOAD_FACTOR = 0.5;
+
+/**
+ * Rough always-on cost of one MCP server, in tokens. Every connected server
+ * injects its tool-schema definitions into the system prompt on every message.
+ * Real cost varies widely by server (a 2-tool server vs codegraph's dozens),
+ * so this is a deliberately conservative per-server heuristic; override with
+ * CUE_MCP_TOKENS_PER_SERVER when you have a measured number.
+ */
+export const MCP_TOKENS_PER_SERVER = 1500;
+
+/**
+ * Known model → context-window (tokens). Keyed on the exact model ids cue
+ * surfaces in its `/model` hints. The `[1m]` long-context Opus variant is the
+ * one outlier; everything else defaults to the standard 256K window.
+ */
+export const MODEL_CONTEXT_WINDOWS: Record<string, number> = {
+  "claude-opus-4-8": 256_000,
+  "claude-opus-4-8[1m]": 1_000_000,
+  "claude-opus-4-7": 256_000,
+  "claude-opus-4-6": 256_000,
+  "claude-sonnet-4-6": 256_000,
+  "claude-haiku-4-5": 256_000,
+  "claude-fable-5": 256_000,
+};
+
+/**
+ * Resolve the context window to budget against. Precedence (first hit wins):
+ *   1. explicit `contextWindow` (e.g. the profile's declared field)
+ *   2. `model` looked up in MODEL_CONTEXT_WINDOWS
+ *   3. env `CUE_CONTEXT_WINDOW` (a raw token count)
+ *   4. env `CUE_MODEL` looked up in MODEL_CONTEXT_WINDOWS
+ *   5. DEFAULT_CONTEXT_WINDOW (256K)
+ * Non-positive / unparseable values are ignored so a bad override can't drive
+ * the budget to zero.
+ */
+export function resolveContextWindow(opts: {
+  contextWindow?: number;
+  model?: string;
+  env?: Record<string, string | undefined>;
+} = {}): number {
+  const env = opts.env ?? process.env;
+  if (opts.contextWindow && opts.contextWindow > 0) return opts.contextWindow;
+  if (opts.model && MODEL_CONTEXT_WINDOWS[opts.model]) return MODEL_CONTEXT_WINDOWS[opts.model]!;
+  const envWindow = Number(env.CUE_CONTEXT_WINDOW);
+  if (Number.isFinite(envWindow) && envWindow > 0) return envWindow;
+  const envModel = env.CUE_MODEL;
+  if (envModel && MODEL_CONTEXT_WINDOWS[envModel]) return MODEL_CONTEXT_WINDOWS[envModel]!;
+  return DEFAULT_CONTEXT_WINDOW;
+}
+
+/** Estimate the always-on token cost of `mcpCount` connected MCP servers. */
+export function estimateMcpTokens(
+  mcpCount: number,
+  perServer: number = MCP_TOKENS_PER_SERVER,
+): number {
+  if (mcpCount <= 0) return 0;
+  return mcpCount * perServer;
+}
+
+export interface ContextBudget {
+  /** Model context window in tokens. */
+  window: number;
+  /** Fraction of the window allowed at startup (0..1). */
+  loadFactor: number;
+  /** Token ceiling = window * loadFactor. */
+  budget: number;
+  /** Always-on skill frontmatter tokens. */
+  skillTokens: number;
+  /** Estimated always-on MCP tool-schema tokens. */
+  mcpTokens: number;
+  /** Number of MCP servers counted. */
+  mcpCount: number;
+  /** Total always-on startup load = skillTokens + mcpTokens. */
+  startupLoad: number;
+  /** True when the startup load is at or under the budget. */
+  withinBudget: boolean;
+  /** Tokens over the budget (0 when within). */
+  overBy: number;
+  /** startupLoad / window. */
+  pctOfWindow: number;
+  /** startupLoad / budget. */
+  pctOfBudget: number;
+}
+
+/**
+ * Compute the model-aware startup budget for a profile. Pure: callers pass the
+ * measured skill frontmatter total and the MCP count; the window is resolved
+ * via `resolveContextWindow`.
+ */
+export function computeContextBudget(input: {
+  skillTokens: number;
+  mcpCount: number;
+  window?: number;
+  model?: string;
+  loadFactor?: number;
+  mcpTokensPerServer?: number;
+  env?: Record<string, string | undefined>;
+}): ContextBudget {
+  const window = resolveContextWindow({
+    contextWindow: input.window,
+    model: input.model,
+    env: input.env,
+  });
+  const loadFactor = input.loadFactor && input.loadFactor > 0 ? input.loadFactor : DEFAULT_LOAD_FACTOR;
+  const budget = Math.round(window * loadFactor);
+  const skillTokens = Math.max(0, input.skillTokens);
+  const mcpTokens = estimateMcpTokens(input.mcpCount, input.mcpTokensPerServer);
+  const startupLoad = skillTokens + mcpTokens;
+  const overBy = Math.max(0, startupLoad - budget);
+  return {
+    window,
+    loadFactor,
+    budget,
+    skillTokens,
+    mcpTokens,
+    mcpCount: Math.max(0, input.mcpCount),
+    startupLoad,
+    withinBudget: startupLoad <= budget,
+    overBy,
+    pctOfWindow: window > 0 ? startupLoad / window : 0,
+    pctOfBudget: budget > 0 ? startupLoad / budget : 0,
+  };
+}
+
+const fmtK = (n: number): string => `${(n / 1000).toFixed(n >= 100_000 ? 0 : 1)}K`;
+
+/**
+ * Format the model-aware budget block for the CLI. Returns `[]` when the
+ * profile sits comfortably under the budget (< 80%), a soft 🟡 note when it's
+ * approaching it, and a 🔴 over-budget warning past the ceiling. The `color`
+ * helpers are injected so this stays free of any terminal/ANSI dependency.
+ */
+export function formatContextBudgetWarning(
+  b: ContextBudget,
+  color: { yellow: (s: string) => string; bold: (s: string) => string; dim: (s: string) => string } = {
+    yellow: (s) => s,
+    bold: (s) => s,
+    dim: (s) => s,
+  },
+): string[] {
+  // Quiet until the profile is within striking distance of the ceiling.
+  if (b.pctOfBudget < 0.8) return [];
+
+  const windowK = fmtK(b.window);
+  const budgetK = fmtK(b.budget);
+  const loadK = fmtK(b.startupLoad);
+  const pct = Math.round(b.pctOfWindow * 100);
+  const mcpNote = b.mcpCount > 0 ? ` + ${b.mcpCount} MCP${b.mcpCount > 1 ? "s" : ""}` : "";
+  const lines: string[] = [];
+
+  if (!b.withinBudget) {
+    const overK = fmtK(b.overBy);
+    lines.push(
+      `🔴 Context budget: ${color.yellow(`~${loadK}`)} always-on (skills${mcpNote}) — ` +
+        `${color.bold(`over the ${Math.round(b.loadFactor * 100)}% startup target`)} for a ${windowK} model ` +
+        `(budget ~${budgetK}, over by ~${overK}).`,
+    );
+    lines.push(
+      `   ${color.dim(`You're at ${pct}% of the window before the first message. Trim skills/MCPs, launch a narrower stack, or raise the window (CUE_CONTEXT_WINDOW).`)}`,
+    );
+  } else {
+    lines.push(
+      `🟡 Context budget: ${color.yellow(`~${loadK}`)} always-on (skills${mcpNote}) — ` +
+        `${Math.round(b.pctOfBudget * 100)}% of the ${Math.round(b.loadFactor * 100)}% startup target for a ${windowK} model (budget ~${budgetK}).`,
+    );
+  }
+  return lines;
+}
