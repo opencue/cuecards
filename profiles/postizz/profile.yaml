@@ -27,6 +27,10 @@ skills:
   npx:
     - repo: gitroomhq/postiz-agent
       skills: [postiz-agent]
+    # Native Hermes Agent X/Twitter plugin guidance for read-first social
+    # monitoring and approval-gated account actions beside Postiz scheduling.
+    - repo: Xquik-dev/hermes-tweet
+      skills: [hermes-tweet]
     # Blog/SEO/GEO skills that actually fire in a social-posting flow.
     # Audit-heavy skills (content-quality-auditor, meta-tags-optimizer,
     # entity-optimizer) live on the blog-writer profile — use
