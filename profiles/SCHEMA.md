@@ -37,7 +37,7 @@ env:
 | `skills.local`| array of strings (paths relative to `cue/skills/`)           | no       | `[]`    | E.g. `medusa/building-with-medusa` → resolves to `cue/skills/skills/medusa/building-with-medusa/`. |
 | `skills.npx`  | array of `NpxSkillRef`                                        | no       | `[]`    | See "NpxSkillRef" below.                                                                           |
 | `skills.plugins` | array of strings (Claude Code plugin names)                | no       | `[]`    | Resolved from `~/.claude/plugins/<name>/skills/`. Targets are namespaced as `<plugin>:<skill>`.    |
-| `mcps`        | array of strings (MCP server IDs)                             | no       | `[]`    | Must match a key in `cue/mcps/configs/claude.sanitized.json` (or the codex counterpart).          |
+| `mcps`        | array of strings or `{id, agents?, when?}` objects            | no       | `[]`    | Each id must match a key in `cue/mcps/configs/claude.sanitized.json` (or the codex counterpart). Object form adds optional `agents:` scoping and a `when:` activation gate — see "Conditional activation (`when:`)" below. |
 | `env`         | map<string, string>                                           | no       | `{}`    | Plain string values. Placeholders like `"${HOSTINGER_API_TOKEN}"` are substituted at materialize-time. |
 | `rules`       | array of strings                                              | no       | `[]`    | Markdown rule files under `resources/rules/` (or absolute paths). Symlinked into `<runtime>/rules/` and indexed in CLAUDE.md — Claude reads on demand, no full-body inline. |
 | `commands`    | array of strings                                              | no       | `[]`    | Slash-command markdown files under `resources/commands/`. Symlinked into `<runtime>/commands/` so the user can invoke `/<name>`. Listed in CLAUDE.md's "Available Commands" section. |
@@ -67,6 +67,48 @@ time and reported as `E3` by `cue validate`.
 
 Inheritance merges all three with `concat + dedupe`; a child can't remove a
 parent's entry — fork the parent if you need a smaller set.
+
+## Conditional activation (`when:`)
+
+Both `skills.local` entries and `mcps` entries accept an object form with a
+`when:` gate, so an entry only materializes when its condition holds in the
+launch cwd/env. This keeps an MCP server's tool schema (and a skill's router
+rows) off the startup budget until the integration is actually in play — the
+whole point of cue being per-directory.
+
+```yaml
+mcps:
+  - coolify                      # string form — always active
+  - id: postgres                 # object form — only when a DB is configured
+    when:
+      env: DATABASE_URL
+  - id: obsidian-vault           # only inside an Obsidian vault
+    when:
+      has_dir: .obsidian
+skills:
+  local:
+    - review/security-review     # always
+    - id: pdf/fill-forms         # only when a PDF is in cwd
+      when:
+        has_file: "*.pdf"
+```
+
+`when:` keys (at least one required):
+
+| Key        | Meaning                                                                 |
+|------------|-------------------------------------------------------------------------|
+| `has_file` | string or list; passes if **at least one** exists in cwd. A leading `*.ext` matches by extension. |
+| `has_dir`  | string or list; passes if **at least one** directory exists in cwd.     |
+| `env`      | string or list; passes if **all** named env vars are set.               |
+
+Keys within one `when:` are AND-ed (all must pass). Prefer a single
+unambiguous signal — for a credential-dependent server, gate on the token
+(`env:`) since the server is inert without it.
+
+Evaluation happens at materialize time against the launch cwd, mirroring the
+conditional-skill path. A condition that newly *passes* activates the entry on
+the next launch; like conditional skills, a condition that newly *fails* takes
+full effect on the next rebuild.
 
 ## NpxSkillRef
 

@@ -93,10 +93,10 @@
           "items": {
             "oneOf": [
               { "type": "string", "minLength": 1 },
-              { "$ref": "#/$defs/AgentScopedRef" }
+              { "$ref": "#/$defs/ConditionalRef" }
             ]
           },
-          "description": "Paths relative to cue/skills/ (e.g. 'medusa/building-with-medusa')."
+          "description": "Paths relative to cue/skills/ (e.g. 'medusa/building-with-medusa'). Object form accepts optional `agents` and `when:` (cwd/env gate)."
         },
         "npx": {
           "type": "array",
@@ -109,11 +109,11 @@
       "items": {
         "oneOf": [
           { "type": "string", "minLength": 1 },
-          { "$ref": "#/$defs/AgentScopedRef" }
+          { "$ref": "#/$defs/ConditionalRef" }
         ]
       },
       "default": [],
-      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts plain string or {id, agents} object."
+      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts a plain string or a {id, agents?, when?} object — `when:` gates the server so it only activates when its cwd/env condition holds."
     },
     "plugins": {
       "type": "array",
@@ -207,6 +207,46 @@
           "type": "array",
           "items": { "$ref": "#/$defs/AgentKind" }
         }
+      }
+    },
+    "SkillCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "description": "cwd/env gate. has_file/has_dir: at least one must exist in cwd (has_file supports a leading '*.ext' glob). env: all named vars must be set. Checks are AND-ed.",
+      "properties": {
+        "has_file": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        },
+        "has_dir": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        },
+        "env": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        }
+      }
+    },
+    "ConditionalRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "description": "Agent-scoped ref with an optional `when:` activation gate. Used for skills and MCP servers so an entry only materializes when its cwd/env condition holds.",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        },
+        "when": { "$ref": "#/$defs/SkillCondition" }
       }
     },
     "AgentScopedPluginRef": {

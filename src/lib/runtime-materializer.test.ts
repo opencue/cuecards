@@ -54,6 +54,53 @@ describe("materializeRuntime", () => {
     expect(hash).toMatch(/^[a-f0-9]{64}$/);
   });
 
+  test("when: gate — MCP excluded while its env condition fails, included once it passes", async () => {
+    const ENV_KEY = "CUE_TEST_GATED_MCP_TOKEN";
+    delete process.env[ENV_KEY];
+    const gatedProfile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-gated",
+      mcps: [
+        { id: "claude-mem" },
+        { id: "gated", when: { env: ENV_KEY } },
+      ],
+      inheritanceChain: ["test-gated"],
+    };
+    const registry = {
+      "claude-mem": { command: "claude-mem", args: [] },
+      gated: { command: "gated-server" },
+    };
+    const opts = {
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: registry,
+      userClaudeMd: "# user CLAUDE.md\n",
+    };
+
+    // .claude.json is the file Claude Code reads for mcpServers, and it's
+    // re-synced on every launch (cache hit or rebuild), so it reflects the
+    // current cwd/env gate even when the profile hash is unchanged.
+    const claudeJsonMcps = async (dir: string) =>
+      JSON.parse(await readFile(join(dir, ".claude.json"), "utf8")).mcpServers as Record<string, unknown>;
+
+    // Condition fails (env unset): the gated server is absent.
+    const off = await materializeRuntime({ profile: gatedProfile, ...opts });
+    expect(Object.keys(await claudeJsonMcps(off.runtimeDir))).toEqual(["claude-mem"]);
+    const offSettings = JSON.parse(await readFile(join(off.runtimeDir, "settings.json"), "utf8"));
+    expect(Object.keys(offSettings.mcpServers)).toEqual(["claude-mem"]);
+
+    // Condition passes (env set): the gated server activates on the next launch
+    // — re-collected even though the profile hash is unchanged (cache hit).
+    try {
+      process.env[ENV_KEY] = "1";
+      const on = await materializeRuntime({ profile: gatedProfile, ...opts });
+      expect((await claudeJsonMcps(on.runtimeDir)).gated).toEqual({ command: "gated-server" });
+    } finally {
+      delete process.env[ENV_KEY];
+    }
+  });
+
   test("surfaces allowlisted profile.env (CLAUDE_CODE_SUBAGENT_MODEL) into settings.env", async () => {
     const out = await materializeRuntime({
       profile: {

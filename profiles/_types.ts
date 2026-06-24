@@ -11,14 +11,16 @@ export interface AgentScoped {
   agents?: AgentKind[];
 }
 
-// String form is sugar for { id: string }.
-export type MCPRef = string | (AgentScoped & { id: string });
-
 export interface SkillCondition {
   has_file?: string | string[];
   has_dir?: string | string[];
   env?: string | string[];
 }
+
+// String form is sugar for { id: string }. The object form accepts an optional
+// `when:` condition (same shape as skills) so a server only activates when the
+// cwd/env warrants it — keeping per-profile MCP schema cost off until needed.
+export type MCPRef = string | (AgentScoped & { id: string; when?: SkillCondition });
 
 export type SkillRef = string | (AgentScoped & { id: string; when?: SkillCondition });
 
@@ -149,7 +151,7 @@ export interface PersonaRoutingEntry {
 }
 
 // In the resolved (post-inherit) form every ref is normalized to its object shape.
-export interface ResolvedMCP { id: string; agents?: AgentKind[]; }
+export interface ResolvedMCP { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedSkill { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 
