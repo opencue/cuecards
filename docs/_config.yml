@@ -1,9 +1,8 @@
-title: "cuecards — Agent Profile Manager"
-description: "Per-directory agent profiles for Claude Code, Codex, Cursor, Cline, Gemini, Copilot, and 4 more AI coding agents"
-remote_theme: pages-themes/cayman@v0.2.0
+title: "cue — Agent profile manager for Claude Code & Codex"
+description: "Per-directory profiles select which skills, MCP servers, and plugins load — automatically, before launch. Install: npm install -g cue-ai"
 baseurl: /cuecards
 url: https://opencue.github.io
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-remote-theme
+  - jekyll-sitemap

@@ -1049,6 +1049,8 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 # 🎯 Discovered Claude Code Skills
 
+These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
+
 > **${totalGems} hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **${byProfile.size} profiles**.
 > Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.
 
@@ -1121,6 +1123,7 @@ ${jsonLd}
 </script>
 </head><body>
 <h1>🎯 Discovered Claude Code Skills</h1>
+<p>These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.</p>
 <p><strong>${totalGems} hidden-gem skills</strong> discovered by <a href="https://github.com/opencue/cuecards">cue</a> across <strong>${byProfile.size} profiles</strong>.</p>
 <p><small>Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.</small></p>
 <h2>Browse by profile</h2>
