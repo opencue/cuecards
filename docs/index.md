@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "cue — Discover Claude Code Skills"
-description: "Find hidden gem skills for Claude Code, Codex, and 8 more AI agents. One command to search, score, and install."
-image: https://opencue.github.io/cuecards/assets/hero.svg
+title: "cue — Agent profile manager for Claude Code & Codex"
+description: "Per-directory profiles select which skills, MCP servers, and plugins load — automatically, before launch. Install: npm install -g cue-ai"
+image: https://opencue.github.io/cuecards/assets/og-card.png
 ---
 
 # Discover skills your AI agent is missing
