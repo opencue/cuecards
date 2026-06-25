@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+
+**★ 5** · exceptional (score 18) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
+
+```bash
+cue skills add jakubs2623/notebooklm-skill --profile research
+```
 
 ---
 
@@ -30,45 +45,45 @@ cue skills add ShinyJay2/PaperMentor --profile research
 
 ---
 
-<a id="openghz-embodied-ai-paper-writer"></a>
-## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
+<a id="avatechdir-claude-feature-ux-analyze"></a>
+## 💎 [Avatechdir/claude-feature-ux-analyze](https://github.com/Avatechdir/claude-feature-ux-analyze)
 
-**★ 1** · exceptional (score 12.8) · Shell · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
+**★ 0** · exceptional (score 13) · Python · tags: claude, claude-code, claude-skill, competitive-analysis, product-discovery
 
-A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
-
-✅ SKILL.md
-
-```bash
-cue skills add OpenGHz/embodied-ai-paper-writer --profile research
-```
-
----
-
-<a id="hashbulla-deep-research"></a>
-## 💎 [hashbulla/deep-research](https://github.com/hashbulla/deep-research)
-
-**★ 1** · exceptional (score 12.3) · Python · tags: agent-skills, agentic-ai, ai-agents, ai-engineering, anthropic
-
-A human-gated, 7-phase agentic deep-research skill for Claude Code. Fans out across the open web (Tavily), GitHub, academic open-graphs (OpenAlex/arXiv/Semantic Scholar), and live library docs — then grades every source on the NATO Admiralty A–F scale, runs deterministic quality gates, and emits four cited artifacts.
+Claude Code skill: automate competitor UX teardown of a product feature -> design principles backed by real interface screenshots.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add hashbulla/deep-research --profile research
+cue skills add Avatechdir/claude-feature-ux-analyze --profile research
 ```
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="sgui-sgui-stock-analysis"></a>
+## 💎 [sgui/sgui-stock-analysis](https://github.com/sgui/sgui-stock-analysis)
 
-**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 1** · exceptional (score 11.3) · tags: claude-skill, fundamental-analysis, investing, stock-analysis, thai
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+ช่วยวิเคราะห์หุ้น, ETF, กองทุน และแผน DCA ด้วยกรอบ evidence-based research, valuation, risk, bull/bear, portfolio fit และ decision journal โดยไม่ฟันธงซื้อขาย
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add sgui/sgui-stock-analysis --profile research
+```
+
+---
+
+<a id="jason-0409-g-scriptorium"></a>
+## ✨ [Jason-0409-G/scriptorium](https://github.com/Jason-0409-G/scriptorium)
+
+**★ 1** · strong (score 7.3) · Python · tags: academic-writing, bioinformatics, citation-verification, claude-code, claude-skill
+
+Self-contained Claude Code / Codex skill that takes a research idea to a submission-ready manuscript: a DOI-verified literature library (with NCBI/UniProt/PDB/AlphaFold resource search), evidence-matched drafting, multi-agent adversarial review, de-AI, and LaTeX/Word/PDF output. Depends on no other skill.
+
+```bash
+cue skills add Jason-0409-G/scriptorium --profile research
 ```
 
 ---

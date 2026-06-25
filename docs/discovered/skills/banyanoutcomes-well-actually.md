@@ -2,19 +2,19 @@
 title: "BanyanOutcomes/well-actually — Claude Code skill discovered by cue"
 description: "A starter layout for keeping Claude Code's context lean as your codebase grows: path-scoped rules that auto-load by file, on-demand system docs, and skills to m"
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [BanyanOutcomes/well-actually](https://github.com/BanyanOutcomes/well-actually)
 
-**★ 1** · strong (score 6.1) · ai-coding, claude, claude-code, context-engineering, developer-tools
+**★ 1** · strong (score 6) · ai-coding, claude, claude-code, context-engineering, developer-tools
 
 > A starter layout for keeping Claude Code's context lean as your codebase grows: path-scoped rules that auto-load by file, on-demand system docs, and skills to maintain both.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: ai-coding, claude, claude-code, context-engineering, developer-tools

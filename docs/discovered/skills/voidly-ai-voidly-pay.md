@@ -2,7 +2,7 @@
 title: "voidly-ai/voidly-pay — Claude Code skill discovered by cue"
 description: "Off-chain credit ledger + hire marketplace for AI agents. Ed25519-signed envelopes, atomic settlement, hire-and-release escrow. https://voidly.ai/pay"
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
 - ⭐ 10 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-06-25
 - 🏷️ Tags: a2a, agent-payments, agent-to-agent, ai-agent, autonomous-agents, base-mainnet, claude-code, ed25519, escrow, facilitator, mcp, mcp-server, model-context-protocol, stablecoin, streaming-payments, usdc, voidly, voidly-pay, x402, x402-paywall
 
 ## Best fit cue profiles

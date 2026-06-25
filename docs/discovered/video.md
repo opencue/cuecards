@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vishalguptax-media-context-mcp"></a>
-## ✨ [vishalguptax/media-context-mcp](https://github.com/vishalguptax/media-context-mcp)
+<a id="hanshaoyuyehanshaoyuye-everyones-video"></a>
+## 💎 [hanshaoyuyehanshaoyuye/everyones-video](https://github.com/hanshaoyuyehanshaoyuye/everyones-video)
 
-**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, audio, claude, cursor, ffmpeg
+**★ 3** · exceptional (score 11.7) · Python · tags: asr, bilingual-subtitles, chrome-extension, claude-code-skill, docker
 
-Local MCP server to analyze video, audio & images — extract frames, transcribe speech, OCR on-screen text. Give Claude, Cursor & VS Code video context. No API keys, no cloud.
+Free-first video subtitle pipeline — ASR, translate, TTS dub, burn. MIT. Docker. Claude Code skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add vishalguptax/media-context-mcp --profile video
+cue skills add hanshaoyuyehanshaoyuye/everyones-video --profile video
+```
+
+---
+
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+
+```bash
+cue skills add priyanshu-yadav04/claude-youtube --profile video
 ```
 
 ---

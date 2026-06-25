@@ -2,7 +2,7 @@
 title: "jas0xf/claude-unstuck — Claude Code skill discovered by cue"
 description: "Claude Code freezing, hanging, or stuck on 'thinking'? On some networks it's a degraded IPv6 path. Diagnose in 30s and fix by forcing IPv4 — one static Go binar"
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, skill, core]
 ---
 

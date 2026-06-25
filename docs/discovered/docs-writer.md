@@ -1,57 +1,72 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="openghz-embodied-ai-paper-writer"></a>
-## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
+<a id="datjavaclass-double-diamond-qc"></a>
+## 💎 [DatJavaClass/double-diamond-qc](https://github.com/DatJavaClass/double-diamond-qc)
 
-**★ 1** · exceptional (score 12.8) · Shell · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
+**★ 0** · exceptional (score 13) · tags: ai-agents, anthropic, canyon-notes, claude, claude-code
 
-A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
+A Claude Code skill: two Diamond QC formations in sequence to build study/teaching docs that are both accurate and clearly explained. The engine behind Canyon Notes.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add OpenGHz/embodied-ai-paper-writer --profile docs-writer
+cue skills add DatJavaClass/double-diamond-qc --profile docs-writer
 ```
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="ansirstudio-second-me-wiki-distiller"></a>
+## 💎 [AnsirStudio/second-me-wiki-distiller](https://github.com/AnsirStudio/second-me-wiki-distiller)
 
-**★ 0** · exceptional (score 8.5) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 0** · exceptional (score 12.5) · tags: ai-agent, claude-skill, distillation, knowledge-base, llm
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+An LLM-maintained personal markdown knowledge base — distill scattered material into a structured, interlinked, traceable 'second me'. A standalone, shareable Claude skill with four modes: quick, distill, review, search.
+
+✅ SKILL.md
 
 ```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
+cue skills add AnsirStudio/second-me-wiki-distiller --profile docs-writer
 ```
 
 ---
 
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+<a id="cenmeow-markdown-new-skill"></a>
+## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
 
-**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
 
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
 
 ```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+cue skills add CenMeow/markdown-new-skill --profile docs-writer
+```
+
+---
+
+<a id="nirvaan05-bleu-plugin"></a>
+## 💎 [Nirvaan05/Bleu-Plugin](https://github.com/Nirvaan05/Bleu-Plugin)
+
+**★ 3** · exceptional (score 8.7) · Python · tags: adr, agent-skills, agentic-coding, anthropic, anthropic-claude
+
+Bleu - Claude Code plugin for living blueprints. Turns ideas into a file-backed markdown wiki (vision, architecture, ADRs, action points) that survives /clear and hands off to GSD or Superpowers.
+
+```bash
+cue skills add Nirvaan05/Bleu-Plugin --profile docs-writer
 ```
 
 ---

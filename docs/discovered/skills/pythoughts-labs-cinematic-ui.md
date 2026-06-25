@@ -2,19 +2,19 @@
 title: "Pythoughts-labs/cinematic-ui — Claude Code skill discovered by cue"
 description: "Director-driven web design skill for AI coding agents — research a real film, extract cinematic grammar, build with storyboard-first specs."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Pythoughts-labs/cinematic-ui](https://github.com/Pythoughts-labs/cinematic-ui)
 
-**★ 0** · exceptional (score 10.9) · ai-agent-skill, cinematic-ui, claude-code, codex, copilot
+**★ 0** · exceptional (score 10.8) · ai-agent-skill, cinematic-ui, claude-code, codex, copilot
 
 > Director-driven web design skill for AI coding agents — research a real film, extract cinematic grammar, build with storyboard-first specs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-06-21

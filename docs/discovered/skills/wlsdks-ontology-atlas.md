@@ -2,7 +2,7 @@
 title: "wlsdks/ontology-atlas — Claude Code skill discovered by cue"
 description: "Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, skill, docs-writer]
 ---
 

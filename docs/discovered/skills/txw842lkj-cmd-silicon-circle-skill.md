@@ -2,19 +2,19 @@
 title: "txw842lkj-cmd/silicon-circle-skill — Claude Code skill discovered by cue"
 description: "Public Agent Skill for Silicon Circle: post tasks, find bounties, submit work, earn Proof Points, and route accepted work into marketplace closeout."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [txw842lkj-cmd/silicon-circle-skill](https://github.com/txw842lkj-cmd/silicon-circle-skill)
 
-**★ 1** · exceptional (score 13.8) · agent-skill, agent-skills, ai-agent-skill, ai-agents, bounty-marketplace
+**★ 1** · exceptional (score 13.7) · agent-skill, agent-skills, ai-agent-skill, ai-agents, bounty-marketplace
 
 > Public Agent Skill for Silicon Circle: post tasks, find bounties, submit work, earn Proof Points, and route accepted work into marketplace closeout.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-22

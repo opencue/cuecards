@@ -2,7 +2,7 @@
 title: "Jason-0409-G/scriptorium — Claude Code skill discovered by cue"
 description: "Self-contained Claude Code / Codex skill that takes a research idea to a submission-ready manuscript: a DOI-verified literature library (with NCBI/UniProt/PDB/A"
 layout: page
-updated: 2026-06-22
+updated: 2026-06-25
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-06-25
 - 🏷️ Tags: academic-writing, bioinformatics, citation-verification, claude-code, claude-skill, codex, literature-review, pandoc, research-tools, zotero
 
 ## Best fit cue profiles

@@ -1,44 +1,94 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="fh-ndiritu-design-psychology-skill"></a>
-## 💎 [Fh-Ndiritu/design-psychology-skill](https://github.com/Fh-Ndiritu/design-psychology-skill)
-
-**★ 0** · exceptional (score 13) · tags: agent-skills, anthropic, claude, claude-code, claude-skill
-
-A Claude skill that audits or builds any website/UI against ~60 research-backed conversion & design-psychology principles. Auto-detects live URL vs local code.
-
-✅ SKILL.md
-
-```bash
-cue skills add Fh-Ndiritu/design-psychology-skill --profile frontend
-```
-
----
-
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
+**★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
 Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
 cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="wahmoh-claude-react-kit"></a>
+## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
+
+**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
+
+Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
+
+```bash
+cue skills add wahmoh/claude-react-kit --profile frontend
+```
+
+---
+
+<a id="fredjuel-arc-skill"></a>
+## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+
+**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+
+Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+
+```bash
+cue skills add Fredjuel/arc-skill --profile frontend
+```
+
+---
+
+<a id="riqxa-skills-best-practices"></a>
+## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+
+**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+
+Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+
+```bash
+cue skills add riqxa/skills-best-practices --profile frontend
+```
+
+---
+
+<a id="ystherr-wechat-article-formatter-skill"></a>
+## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+
+**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+
+🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
+
+```bash
+cue skills add ystherr/wechat-article-formatter-skill --profile frontend
+```
+
+---
+
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+
+```bash
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---
@@ -56,23 +106,10 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 
 ---
 
-<a id="ansariwaqqas-storybook-mcp-server"></a>
-## ✨ [ansariwaqqas/storybook-mcp-server](https://github.com/ansariwaqqas/storybook-mcp-server)
-
-**★ 0** · strong (score 7.5) · C++ · tags: anthropic, claude, claude-desktop, component-library, component-testing
-
-🎨 Enhance Storybook with this TypeScript MCP server for seamless AI interaction, allowing easy access to components, stories, and screenshots.
-
-```bash
-cue skills add ansariwaqqas/storybook-mcp-server --profile frontend
-```
-
----
-
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.2)
+**★ 2** · potential (score 3.5) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

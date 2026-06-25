@@ -2,31 +2,31 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-25
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-24 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-06-25 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 60 | `antigravity-workspace-template`, `genesis-architect`, `jira-skill` |
-| [**backend**](./backend.md) | 12 | `second-brain`, `APIbase`, `MCP---Agent-Starter-Kit` |
-| [**cybersecurity**](./cybersecurity.md) | 6 | `slowmist-security-cc`, `Claude-OSINT`, `claude-security-research-skill` |
-| [**frontend**](./frontend.md) | 5 | `design-psychology-skill`, `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
-| [**docs-writer**](./docs-writer.md) | 5 | `embodied-ai-paper-writer`, `llm-wiki`, `llm-knowledge-base` |
-| [**fleet-control**](./fleet-control.md) | 5 | `heimdall`, `MCP---Agent-Starter-Kit`, `agent-fleet-o` |
-| [**research**](./research.md) | 4 | `PaperMentor`, `embodied-ai-paper-writer`, `deep-research` |
-| [**niche**](./niche.md) | 3 | `grant-thinking-skill`, `grant-thinking-cn-biology`, `x-kline` |
-| [**creative-media**](./creative-media.md) | 3 | `feinschmiede`, `media-context-mcp`, `redesigned-pancake` |
-| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**core**](./core.md) | 63 | `context-mode`, `antigravity-workspace-template`, `kimiflow` |
+| [**backend**](./backend.md) | 9 | `notebooklm-skill`, `bilig`, `mcp-terminal-server` |
+| [**frontend**](./frontend.md) | 8 | `awesome-claude-ui-armory`, `claude-react-kit`, `arc-skill` |
+| [**docs-writer**](./docs-writer.md) | 6 | `double-diamond-qc`, `second-me-wiki-distiller`, `markdown-new-skill` |
+| [**research**](./research.md) | 5 | `notebooklm-skill`, `PaperMentor`, `claude-feature-ux-analyze` |
+| [**creative-media**](./creative-media.md) | 3 | `openclaw-master-skills`, `pixel-mcp-workflow`, `redesigned-pancake` |
+| [**cybersecurity**](./cybersecurity.md) | 3 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `argus` |
+| [**marketing**](./marketing.md) | 3 | `brand-launchpad`, `claude-youtube`, `sticky-switcher-funnel-playbook` |
+| [**video**](./video.md) | 2 | `everyones-video`, `claude-youtube` |
+| [**python**](./python.md) | 2 | `everyones-video`, `mcp-terminal-server` |
+| [**fleet-control**](./fleet-control.md) | 2 | `heimdall`, `rolepod` |
 | [**threejs**](./threejs.md) | 1 | `webgl-animation-skills` |
-| [**video**](./video.md) | 1 | `media-context-mcp` |
 
 ## How scoring works
 
