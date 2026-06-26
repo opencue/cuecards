@@ -2,19 +2,19 @@
 title: "Abdl-Dev/-Free-Claude-Code-Ultimate-Beginner-Setup-Troubleshooting-Guide — Claude Code skill discovered by cue"
 description: "A complete beginner-friendly troubleshooting guide and installation blueprint for running Alishahryar1/free-claude-code. Fixes binary errors, PowerShell syntax "
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Abdl-Dev/-Free-Claude-Code-Ultimate-Beginner-Setup-Troubleshooting-Guide](https://github.com/Abdl-Dev/-Free-Claude-Code-Ultimate-Beginner-Setup-Troubleshooting-Guide)
 
-**★ 2** · strong (score 5.4) · claude, claude-code, free, free-claude-code, powershell-fix
+**★ 2** · strong (score 5.3) · claude, claude-code, free, free-claude-code, powershell-fix
 
 > A complete beginner-friendly troubleshooting guide and installation blueprint for running Alishahryar1/free-claude-code. Fixes binary errors, PowerShell syntax bugs, path issues, and details alternative LLM routing.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: claude, claude-code, free, free-claude-code, powershell-fix, troubleshooting

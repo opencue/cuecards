@@ -1,73 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="datjavaclass-double-diamond-qc"></a>
-## 💎 [DatJavaClass/double-diamond-qc](https://github.com/DatJavaClass/double-diamond-qc)
-
-**★ 0** · exceptional (score 13) · tags: ai-agents, anthropic, canyon-notes, claude, claude-code
-
-A Claude Code skill: two Diamond QC formations in sequence to build study/teaching docs that are both accurate and clearly explained. The engine behind Canyon Notes.
-
-✅ SKILL.md
-
-```bash
-cue skills add DatJavaClass/double-diamond-qc --profile docs-writer
-```
-
----
-
-<a id="ansirstudio-second-me-wiki-distiller"></a>
-## 💎 [AnsirStudio/second-me-wiki-distiller](https://github.com/AnsirStudio/second-me-wiki-distiller)
-
-**★ 0** · exceptional (score 12.5) · tags: ai-agent, claude-skill, distillation, knowledge-base, llm
-
-An LLM-maintained personal markdown knowledge base — distill scattered material into a structured, interlinked, traceable 'second me'. A standalone, shareable Claude skill with four modes: quick, distill, review, search.
-
-✅ SKILL.md
-
-```bash
-cue skills add AnsirStudio/second-me-wiki-distiller --profile docs-writer
-```
-
----
-
-<a id="cenmeow-markdown-new-skill"></a>
-## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
-
-**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
-
-Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
-
-```bash
-cue skills add CenMeow/markdown-new-skill --profile docs-writer
-```
-
----
-
-<a id="nirvaan05-bleu-plugin"></a>
-## 💎 [Nirvaan05/Bleu-Plugin](https://github.com/Nirvaan05/Bleu-Plugin)
-
-**★ 3** · exceptional (score 8.7) · Python · tags: adr, agent-skills, agentic-coding, anthropic, anthropic-claude
-
-Bleu - Claude Code plugin for living blueprints. Turns ideas into a file-backed markdown wiki (vision, architecture, ADRs, action points) that survives /clear and hands off to GSD or Superpowers.
-
-```bash
-cue skills add Nirvaan05/Bleu-Plugin --profile docs-writer
-```
 
 ---
 
@@ -87,7 +31,7 @@ cue skills add wlsdks/ontology-atlas --profile docs-writer
 <a id="thegoatpsy-mneme"></a>
 ## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
 
-**★ 1** · strong (score 6.2) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
+**★ 2** · strong (score 6.3) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
 
 Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
 

@@ -2,7 +2,7 @@
 title: "ShinyJay2/PaperMentor — Claude Code skill discovered by cue"
 description: "Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight"
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, skill, research]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-25
+- 🗓️ Last pushed: 2026-06-26
 - 🏷️ Tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code, codex, derivation, equations, latex, paper-reading, research-papers
 
 ## Best fit cue profiles

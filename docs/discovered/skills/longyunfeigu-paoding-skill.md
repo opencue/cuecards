@@ -2,22 +2,22 @@
 title: "longyunfeigu/paoding-skill — Claude Code skill discovered by cue"
 description: "庖丁 — dissect any AI skill into an anatomy handbook: why it works, how it's built, what's worth stealing. 把 skill 解成一本解剖手册的 Claude Code skill"
 layout: page
-updated: 2026-06-17
+updated: 2026-06-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [longyunfeigu/paoding-skill](https://github.com/longyunfeigu/paoding-skill)
 
-**★ 7** · exceptional (score 17.5) · Python · ai-agent, claude-code, claude-code-skill, promt-engineering, reverse-engineering
+**★ 15** · exceptional (score 17.9) · Python · ai-agent, claude-code, claude-code-skill, promt-engineering, reverse-engineering
 
 > 庖丁 — dissect any AI skill into an anatomy handbook: why it works, how it's built, what's worth stealing. 把 skill 解成一本解剖手册的 Claude Code skill
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.9 based on:
 - ✅ Contains SKILL.md
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-06-17
+- ⭐ 15 stars
+- 🗓️ Last pushed: 2026-06-26
 - 🏷️ Tags: ai-agent, claude-code, claude-code-skill, promt-engineering, reverse-engineering
 
 ## Best fit cue profiles

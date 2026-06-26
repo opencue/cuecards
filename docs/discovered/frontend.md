@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "8 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,58 +28,6 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="wahmoh-claude-react-kit"></a>
-## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
-
-**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
-
-Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
-
-```bash
-cue skills add wahmoh/claude-react-kit --profile frontend
-```
-
----
-
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
-
-**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
-
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
-
-```bash
-cue skills add Fredjuel/arc-skill --profile frontend
-```
-
----
-
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
-
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
-
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
-
-```bash
-cue skills add riqxa/skills-best-practices --profile frontend
-```
-
----
-
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
-
-**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
-
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
-
-```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
-```
-
----
-
 <a id="giovannisacca-pixel-mcp-workflow"></a>
 ## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
@@ -89,19 +37,6 @@ cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 
 ```bash
 cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---

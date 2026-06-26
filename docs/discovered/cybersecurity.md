@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+<a id="x-glacier-kali-pentest"></a>
+## 💎 [x-glacier/kali-pentest](https://github.com/x-glacier/kali-pentest)
 
-**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 51** · exceptional (score 13.4) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
 
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
-
-✅ SKILL.md
+Kali Linux penetration testing skill for AI agents (Claude Code, OpenClaw, Hermes Agent). 200+ CLI tools, 15 scenario playbooks. Autonomously plans attack paths, selects tools, and integrates results across phases to adapt the penetration strategy — with human approval gates for high-risk actions.
 
 ```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+cue skills add x-glacier/kali-pentest --profile cybersecurity
 ```
 
 ---
@@ -33,7 +31,7 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1838** · exceptional (score 10.8) · Python · tags: agentskills, claude, skills
+**★ 1843** · exceptional (score 11.6) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -43,15 +41,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="gesh75-argus"></a>
-## ✨ [gesh75/argus](https://github.com/gesh75/argus)
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
 
-**★ 1** · strong (score 5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
 
-Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
 
 ```bash
-cue skills add gesh75/argus --profile cybersecurity
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---

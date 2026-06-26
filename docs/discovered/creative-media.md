@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="pr-e-openclaw-master-skills"></a>
-## 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
+<a id="nolangz-pixel2motion"></a>
+## 💎 [nolangz/pixel2motion](https://github.com/nolangz/pixel2motion)
 
-**★ 2** · exceptional (score 15.5) · Python · tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated
+**★ 1037** · exceptional (score 18.5) · Python · tags: ai-design-tools, animated-logo, brand-motion, claude-skill, codex-skill
 
-Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
+AI logo animation skill: turn raster logos into smooth SVG animation, animated HTML demos, GIF/video previews, and motion QA evidence.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Pr-E/openclaw-master-skills --profile creative-media
+cue skills add nolangz/pixel2motion --profile creative-media
 ```
 
 ---

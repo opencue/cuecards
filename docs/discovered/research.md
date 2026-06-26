@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for research"
-description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="thisislittlesky-waterpaper"></a>
+## 💎 [ThisIsLittleSky/WaterPaper](https://github.com/ThisIsLittleSky/WaterPaper)
 
-**★ 5** · exceptional (score 18) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 107** · exceptional (score 16.3) · Python · tags: academic-writing, anti-ai-detection, claude-code-skill, course-paper, literature-scraper
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+水论文skill一句话出论文：多角度选题、真实文献采集、大纲写作、降低AIGC率、降低重复率、绘制图表、DOCX交付
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
+cue skills add ThisIsLittleSky/WaterPaper --profile research
 ```
 
 ---
@@ -45,45 +45,17 @@ cue skills add ShinyJay2/PaperMentor --profile research
 
 ---
 
-<a id="avatechdir-claude-feature-ux-analyze"></a>
-## 💎 [Avatechdir/claude-feature-ux-analyze](https://github.com/Avatechdir/claude-feature-ux-analyze)
+<a id="petar-nauka-search-science-literature"></a>
+## 💎 [petar-nauka/search-science-literature](https://github.com/petar-nauka/search-science-literature)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude, claude-code, claude-skill, competitive-analysis, product-discovery
+**★ 0** · exceptional (score 10) · Python · tags: arxiv, bibtex, claude-skill, crossref, doi
 
-Claude Code skill: automate competitor UX teardown of a product feature -> design principles backed by real interface screenshots.
-
-✅ SKILL.md
-
-```bash
-cue skills add Avatechdir/claude-feature-ux-analyze --profile research
-```
-
----
-
-<a id="sgui-sgui-stock-analysis"></a>
-## 💎 [sgui/sgui-stock-analysis](https://github.com/sgui/sgui-stock-analysis)
-
-**★ 1** · exceptional (score 11.3) · tags: claude-skill, fundamental-analysis, investing, stock-analysis, thai
-
-ช่วยวิเคราะห์หุ้น, ETF, กองทุน และแผน DCA ด้วยกรอบ evidence-based research, valuation, risk, bull/bear, portfolio fit และ decision journal โดยไม่ฟันธงซื้อขาย
+Multi-source scientific literature search skill for Claude (13 open APIs: OpenAlex, Crossref, PubMed, Europe PMC, Semantic Scholar, arXiv, DOAJ, bioRxiv, CORE, OpenAIRE, DataCite, DBLP, Unpaywall). With dedup, retraction check, BibTeX/RIS/CSV exports.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add sgui/sgui-stock-analysis --profile research
-```
-
----
-
-<a id="jason-0409-g-scriptorium"></a>
-## ✨ [Jason-0409-G/scriptorium](https://github.com/Jason-0409-G/scriptorium)
-
-**★ 1** · strong (score 7.3) · Python · tags: academic-writing, bioinformatics, citation-verification, claude-code, claude-skill
-
-Self-contained Claude Code / Codex skill that takes a research idea to a submission-ready manuscript: a DOI-verified literature library (with NCBI/UniProt/PDB/AlphaFold resource search), evidence-matched drafting, multi-agent adversarial review, de-AI, and LaTeX/Word/PDF output. Depends on no other skill.
-
-```bash
-cue skills add Jason-0409-G/scriptorium --profile research
+cue skills add petar-nauka/search-science-literature --profile research
 ```
 
 ---

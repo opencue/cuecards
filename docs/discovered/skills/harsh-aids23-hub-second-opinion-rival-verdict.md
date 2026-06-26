@@ -2,7 +2,7 @@
 title: "harsh-aids23-hub/second-opinion-rival-verdict — Claude Code skill discovered by cue"
 description: "Best Free AI Code Review Tool 2026 – Catch Flawed Plans Before Deployment"
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-25
+- 🗓️ Last pushed: 2026-06-26
 - 🏷️ Tags: adversarial-review, ai-agents, anthropic, anthropic-skills, claude-code, claude-plugin, claude-skill, code-review, codex, developer-tools, gemini, gpt-5, llm-tools, opencode, plan-review
 
 ## Best fit cue profiles

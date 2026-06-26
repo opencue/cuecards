@@ -1,109 +1,120 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="deusdata-codebase-memory-mcp"></a>
+## 💎 [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
 
-**★ 5** · exceptional (score 18) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 15001** · exceptional (score 17.5) · C · tags: aider, ast, claude-code, code-analysis, code-intelligence
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
+cue skills add DeusData/codebase-memory-mcp --profile backend
 ```
 
 ---
 
-<a id="proompteng-bilig"></a>
-## 💎 [proompteng/bilig](https://github.com/proompteng/bilig)
+<a id="triggerdotdev-trigger-dev"></a>
+## 💎 [triggerdotdev/trigger.dev](https://github.com/triggerdotdev/trigger.dev)
 
-**★ 31** · exceptional (score 11.6) · TypeScript · tags: agent-tools, ai-agents, excel, excel-formulas, formula-engine
+**★ 15478** · exceptional (score 16) · TypeScript · tags: ai, ai-agent-framework, ai-agents, automation, background-jobs
 
-Catch stale XLSX formula values in CI and run verifiable workbook logic from Node/MCP agents.
+Trigger.dev – build and deploy fully‑managed AI agents and workflows
 
 ```bash
-cue skills add proompteng/bilig --profile backend
+cue skills add triggerdotdev/trigger.dev --profile backend
 ```
 
 ---
 
-<a id="unfathomable-siren38-mcp-terminal-server"></a>
-## 💎 [Unfathomable-siren38/mcp-terminal-server](https://github.com/Unfathomable-siren38/mcp-terminal-server)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 0** · exceptional (score 10.5) · TypeScript · tags: ai-agent, ai-agents, claude-code, code-analysis, code-generation
+**★ 194108** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Run an inline MCP terminal server with multi-session PTY support and tabbed xterm.js for Claude Code and Claude Desktop
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add Unfathomable-siren38/mcp-terminal-server --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
+<a id="tsukumohq-wrai-th"></a>
+## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
 
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
+**★ 22** · exceptional (score 13.9) · Go · tags: ai-agents, claude, claude-code, golang, mcp
 
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
 
 ```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
+cue skills add TsukumoHQ/WRAI.TH --profile backend
 ```
 
 ---
 
-<a id="ncmonx-icemage"></a>
-## 💎 [ncmonx/icemage](https://github.com/ncmonx/icemage)
+<a id="kuvasz-uptime-kuvasz"></a>
+## 💎 [kuvasz-uptime/kuvasz](https://github.com/kuvasz-uptime/kuvasz)
 
-**★ 3** · exceptional (score 9.2) · C++ · tags: ai-agents, ai-coding, anthropic, claude-code, cli
+**★ 564** · exceptional (score 12) · Kotlin · tags: cloud-native, containerized, homelab, iac-managed, kotlin
 
-Token-efficient context engine for AI coding agents. v2.9: graph-traversal find (--depends-on/--used-by), Leiden clustering, tree-sitter C++ extraction. 1983 tests, 41 MCP tools, Elastic-2.0.
+Kuvasz (pronounce as [ˈkuvɒs]) is an open-source uptime and SSL monitoring service, with multiple notification channels, status pages, IAC support via YAML, Prometheus integration, a complete REST API and many more!
 
 ```bash
-cue skills add ncmonx/icemage --profile backend
+cue skills add kuvasz-uptime/kuvasz --profile backend
 ```
 
 ---
 
-<a id="e-reitbauer-granum"></a>
-## 💎 [e-reitbauer/granum](https://github.com/e-reitbauer/granum)
+<a id="ayeshaass-clinical-multiagent-cdss"></a>
+## ✨ [AYESHAASS/Clinical-MultiAgent-CDSS](https://github.com/AYESHAASS/Clinical-MultiAgent-CDSS)
 
-**★ 2** · exceptional (score 8) · Python · tags: ai-memory, claude-code, graph, kuzudb, mcp-server
+**★ 0** · strong (score 6) · Python · tags: decision-support-system, diabetes-prediction, gemini-api, google-adk, healthcare-ai
 
-VectorDB Context tool for claude code
+A research backed multi agent clinical decision support system for diabetes risk prediction using Google ADK and MCP protocol.
 
 ```bash
-cue skills add e-reitbauer/granum --profile backend
+cue skills add AYESHAASS/Clinical-MultiAgent-CDSS --profile backend
 ```
 
 ---
 
-<a id="jsonbored-metagraphed"></a>
-## ✨ [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed)
+<a id="cadlens-co-cadlens-mcp"></a>
+## ✨ [cadlens-co/cadlens-mcp](https://github.com/cadlens-co/cadlens-mcp)
 
-**★ 2** · strong (score 6.5) · JavaScript · tags: bittensor, bittensor-cli, bittensor-docs, bittensor-subnet, bittensor-subnets
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, cad, cad-api, claude, dwg
 
-Operational metadata, health, schemas, and public interface discovery for Bittensor subnets.
+MCP server for CADLens — parse DWG/DXF/DWF files with AI agents via Model Context Protocol
 
 ```bash
-cue skills add JSONbored/metagraphed --profile backend
+cue skills add cadlens-co/cadlens-mcp --profile backend
+```
+
+---
+
+<a id="aldok10-zara-privacy-mcp"></a>
+## ✨ [aldok10/zara-privacy-mcp](https://github.com/aldok10/zara-privacy-mcp)
+
+**★ 0** · strong (score 6) · Go · tags: agentic-ai, ai, ai-tools, golang, mcp
+
+Privacy-first MCP gateway for AI agents. 19 tools: privacy layer + database proxy (SQL/MongoDB/Redis) + HTTP API proxy + AI provider proxy — all with automatic data masking.
+
+```bash
+cue skills add aldok10/zara-privacy-mcp --profile backend
 ```
 
 ---

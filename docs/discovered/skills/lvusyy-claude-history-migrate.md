@@ -2,7 +2,7 @@
 title: "lvusyy/claude-history-migrate — Claude Code skill discovered by cue"
 description: "Migrate Claude Code conversation history & memory across machines — fixes the /resume entrypoint filter, project-path encoding, and cwd remapping."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, skill, core]
 ---
 

@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="hanshaoyuyehanshaoyuye-everyones-video"></a>
-## 💎 [hanshaoyuyehanshaoyuye/everyones-video](https://github.com/hanshaoyuyehanshaoyuye/everyones-video)
+<a id="yijiaduan-compose-cinematic-mv"></a>
+## 💎 [YijiaDuan/compose-cinematic-mv](https://github.com/YijiaDuan/compose-cinematic-mv)
 
-**★ 3** · exceptional (score 11.7) · Python · tags: asr, bilingual-subtitles, chrome-extension, claude-code-skill, docker
+**★ 0** · exceptional (score 13) · Shell · tags: ai-video, claude-code, claude-skill, claude-skills, ffmpeg
 
-Free-first video subtitle pipeline — ASR, translate, TTS dub, burn. MIT. Docker. Claude Code skill.
+音乐先行、踩点剪辑的电影感意境短视频生成器(Seedream+Kling)。Music-first, beat-synced cinematic MV generator — a Claude Code skill.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add hanshaoyuyehanshaoyuye/everyones-video --profile video
-```
-
----
-
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
-
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
-
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
-
-```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
+cue skills add YijiaDuan/compose-cinematic-mv --profile video
 ```
 
 ---

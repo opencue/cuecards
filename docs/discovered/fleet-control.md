@@ -1,29 +1,68 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-26
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="randomittin-heimdall"></a>
-## 💎 [randomittin/heimdall](https://github.com/randomittin/heimdall)
+<a id="omnigent-ai-omnigent"></a>
+## 💎 [omnigent-ai/omnigent](https://github.com/omnigent-ai/omnigent)
 
-**★ 4** · exceptional (score 10.3) · Shell · tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic
+**★ 4942** · exceptional (score 16) · Python · tags: agent-framework, agent-governance, agent-orchestration, agents, ai
 
-Autonomous Claude Code agent — 14 specialized agents, 10-parallel execution, project-specific skill learning, mechanical checkpointing, wave-based planning with acceptance gates, caveman ultra (~75% token savings). One prompt → finished project.
+Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents — swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.
 
 ```bash
-cue skills add randomittin/heimdall --profile fleet-control
+cue skills add omnigent-ai/omnigent --profile fleet-control
+```
+
+---
+
+<a id="tsukumohq-wrai-th"></a>
+## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
+
+**★ 22** · exceptional (score 13.9) · Go · tags: ai-agents, claude, claude-code, golang, mcp
+
+Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
+
+```bash
+cue skills add TsukumoHQ/WRAI.TH --profile fleet-control
+```
+
+---
+
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+
+**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+
+```bash
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
+```
+
+---
+
+<a id="aldok10-zara-agent-opc"></a>
+## ✨ [aldok10/zara-agent-opc](https://github.com/aldok10/zara-agent-opc)
+
+**★ 0** · strong (score 7) · JavaScript · tags: agent-orchestration, ai-agent, ai-assistant, ai-engineering, ai-pair-programming
+
+Empathetic AI engineering partner with cognitive memory, multi-agent orchestration (10 agents), 132-signal skill routing, and self-improving reflection loops. Built on Model Context Protocol. By Aldo Karendra.
+
+```bash
+cue skills add aldok10/zara-agent-opc --profile fleet-control
 ```
 
 ---
