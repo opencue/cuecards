@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="thisislittlesky-waterpaper"></a>
-## 💎 [ThisIsLittleSky/WaterPaper](https://github.com/ThisIsLittleSky/WaterPaper)
-
-**★ 107** · exceptional (score 16.3) · Python · tags: academic-writing, anti-ai-detection, claude-code-skill, course-paper, literature-scraper
-
-水论文skill一句话出论文：多角度选题、真实文献采集、大纲写作、降低AIGC率、降低重复率、绘制图表、DOCX交付
-
-✅ SKILL.md
-
-```bash
-cue skills add ThisIsLittleSky/WaterPaper --profile research
-```
 
 ---
 
@@ -45,17 +30,17 @@ cue skills add ShinyJay2/PaperMentor --profile research
 
 ---
 
-<a id="petar-nauka-search-science-literature"></a>
-## 💎 [petar-nauka/search-science-literature](https://github.com/petar-nauka/search-science-literature)
+<a id="veyralabsgroup-venture-analyst"></a>
+## 💎 [veyralabsgroup/venture-analyst](https://github.com/veyralabsgroup/venture-analyst)
 
-**★ 0** · exceptional (score 10) · Python · tags: arxiv, bibtex, claude-skill, crossref, doi
+**★ 1** · exceptional (score 14.8) · Python · tags: agent-skill, ai-agent-skill, ai-agents, anthropic, claude
 
-Multi-source scientific literature search skill for Claude (13 open APIs: OpenAlex, Crossref, PubMed, Europe PMC, Semantic Scholar, arXiv, DOAJ, bioRxiv, CORE, OpenAIRE, DataCite, DBLP, Unpaywall). With dedup, retraction check, BibTeX/RIS/CSV exports.
+Startup and SaaS idea validation skill for Claude Code. Research market evidence, map competitors, score viability, generate validation experiments.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add petar-nauka/search-science-literature --profile research
+cue skills add veyralabsgroup/venture-analyst --profile research
 ```
 
 ---

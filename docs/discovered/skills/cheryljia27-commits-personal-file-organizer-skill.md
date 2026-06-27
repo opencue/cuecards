@@ -2,19 +2,19 @@
 title: "cheryljia27-commits/personal-file-organizer-skill — Claude Code skill discovered by cue"
 description: "AI-agent-ready skill for safe local Desktop, Downloads, and Documents organization with dry-run, rollback, duplicate quarantine, receipt organization, and clean"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [cheryljia27-commits/personal-file-organizer-skill](https://github.com/cheryljia27-commits/personal-file-organizer-skill)
 
-**★ 0** · exceptional (score 9.6) · Python · ai-agent, ai-agent-skill, codex-skill, desktop-cleanup, document-management
+**★ 0** · exceptional (score 9.5) · Python · ai-agent, ai-agent-skill, codex-skill, desktop-cleanup, document-management
 
 > AI-agent-ready skill for safe local Desktop, Downloads, and Documents organization with dry-run, rollback, duplicate quarantine, receipt organization, and cleanup reports.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-05-17

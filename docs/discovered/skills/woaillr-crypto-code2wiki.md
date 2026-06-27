@@ -2,19 +2,19 @@
 title: "woaillr-crypto/code2wiki — Claude Code skill discovered by cue"
 description: "AI Agent Skill — Auto-generate business context layer (BCL) for large backend codebases. Supports Java, Python, Go, Kotlin, TypeScript. Turn 500K lines into nav"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-27
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [woaillr-crypto/code2wiki](https://github.com/woaillr-crypto/code2wiki)
 
-**★ 5** · exceptional (score 10.5) · Python · agent-skill, ai-agent-skill, ai-coding, business-context, code-analysis
+**★ 5** · exceptional (score 10.4) · Python · agent-skill, ai-agent-skill, ai-coding, business-context, code-analysis
 
 > AI Agent Skill — Auto-generate business context layer (BCL) for large backend codebases. Supports Java, Python, Go, Kotlin, TypeScript. Turn 500K lines into navigable knowledge maps.code2wiki ( code to wiki) 是一项专为复杂项目构建面向业务的“业务语义层”的技能。通过 code2wiki，开发者可以将既有代码库高效地转化为系统化的项目上下文与 Wiki 文档，从而显著提升 LLM 对复杂业务系统的理解深度，赋能代码总结、领域 Skill 构建及自动化文档生成。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 5 stars
 - 🗓️ Last pushed: 2026-05-15

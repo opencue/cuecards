@@ -2,19 +2,19 @@
 title: "veyralabsgroup/venture-suite — Claude Code skill discovered by cue"
 description: "Venture Intelligence pack for Claude Code. Includes venture-analyst for idea validation, competitor research, and Bull/Bear/Judge verdict."
 layout: page
-updated: 2026-06-23
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [veyralabsgroup/venture-suite](https://github.com/veyralabsgroup/venture-suite)
 
-**★ 1** · exceptional (score 9.9) · Python · agent-skill, ai-agent, ai-agent-skill, ai-agents, anthropic
+**★ 1** · exceptional (score 9.8) · Python · agent-skill, ai-agent, ai-agent-skill, ai-agents, anthropic
 
 > Venture Intelligence pack for Claude Code. Includes venture-analyst for idea validation, competitor research, and Bull/Bear/Judge verdict.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-02
 - 🏷️ Tags: agent-skill, ai-agent, ai-agent-skill, ai-agents, anthropic, claude, claude-code, claude-code-skills, claude-skill, developer-tools, idea-validation, lean-startup, market-research, saas-validation, skill-md-skillsmp, skills-sh, skillsmp, startup-validation, venture-capital

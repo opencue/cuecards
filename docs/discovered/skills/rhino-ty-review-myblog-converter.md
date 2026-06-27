@@ -2,19 +2,19 @@
 title: "rhino-ty/review-myblog-converter — Claude Code skill discovered by cue"
 description: "AI agent skill: convert Obsidian review notes into your personal blog tone (Naver Blog · Tistory · Velog) — companion to polymedia-review-skill"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rhino-ty/review-myblog-converter](https://github.com/rhino-ty/review-myblog-converter)
 
-**★ 0** · exceptional (score 12.2) · ai-agent-skill, blog-conversion, claude-code, claude-skill, korean-blog
+**★ 0** · exceptional (score 12.1) · ai-agent-skill, blog-conversion, claude-code, claude-skill, korean-blog
 
 > AI agent skill: convert Obsidian review notes into your personal blog tone (Naver Blog · Tistory · Velog) — companion to polymedia-review-skill
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-06-04

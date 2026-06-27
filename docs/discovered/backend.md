@@ -1,120 +1,81 @@
 ---
 title: "Claude Code Skills for backend"
-description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="deusdata-codebase-memory-mcp"></a>
-## 💎 [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)
+<a id="stickerdaniel-linkedin-mcp-server"></a>
+## 💎 [stickerdaniel/linkedin-mcp-server](https://github.com/stickerdaniel/linkedin-mcp-server)
 
-**★ 15001** · exceptional (score 17.5) · C · tags: aider, ast, claude-code, code-analysis, code-intelligence
+**★ 2525** · exceptional (score 19.5) · Python · tags: ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
 
-High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.
+Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages.
 
 ```bash
-cue skills add DeusData/codebase-memory-mcp --profile backend
+cue skills add stickerdaniel/linkedin-mcp-server --profile backend
 ```
 
 ---
 
-<a id="triggerdotdev-trigger-dev"></a>
-## 💎 [triggerdotdev/trigger.dev](https://github.com/triggerdotdev/trigger.dev)
+<a id="ruvnet-ruflo"></a>
+## 💎 [ruvnet/ruflo](https://github.com/ruvnet/ruflo)
 
-**★ 15478** · exceptional (score 16) · TypeScript · tags: ai, ai-agent-framework, ai-agents, automation, background-jobs
+**★ 61661** · exceptional (score 18.5) · TypeScript · tags: agentic-ai, agentic-framework, agentic-rag, agentic-workflow, agents
 
-Trigger.dev – build and deploy fully‑managed AI agents and workflows
+🌊 The leading agent meta-harness for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration
 
 ```bash
-cue skills add triggerdotdev/trigger.dev --profile backend
+cue skills add ruvnet/ruflo --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="oaknational-oak-open-curriculum-ecosystem"></a>
+## 💎 [oaknational/oak-open-curriculum-ecosystem](https://github.com/oaknational/oak-open-curriculum-ecosystem)
 
-**★ 194108** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: curriculum, education, elasticsearch, mcp, mcp-server
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+A collection of tools for working with the Oak Open Curriculum Data, via API, SDK and MCP app
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add oaknational/oak-open-curriculum-ecosystem --profile backend
 ```
 
 ---
 
-<a id="tsukumohq-wrai-th"></a>
-## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
+<a id="vassiliylakhonin-vassiliylakhonin-github-io"></a>
+## ✨ [vassiliylakhonin/vassiliylakhonin.github.io](https://github.com/vassiliylakhonin/vassiliylakhonin.github.io)
 
-**★ 22** · exceptional (score 13.9) · Go · tags: ai-agents, claude, claude-code, golang, mcp
+**★ 3** · strong (score 7.2) · HTML · tags: a2a, agenda-intelligence, agent-card, agent-discovery, ai-hiring
 
-Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
+Personal site + AI-readable profile of Vassiliy Lakhonin. I build evidence-discipline tooling for strategic-risk AI agents (Agenda Intelligence: open-source skills + deployed A2A workers with live demos), grounded in compliance and cross-border delivery. Reference implementation of an agent-discoverable profile (pages + JSON + MCP).
 
 ```bash
-cue skills add TsukumoHQ/WRAI.TH --profile backend
+cue skills add vassiliylakhonin/vassiliylakhonin.github.io --profile backend
 ```
 
 ---
 
-<a id="kuvasz-uptime-kuvasz"></a>
-## 💎 [kuvasz-uptime/kuvasz](https://github.com/kuvasz-uptime/kuvasz)
+<a id="dignite-projects-vault-extract"></a>
+## ✨ [dignite-projects/vault-extract](https://github.com/dignite-projects/vault-extract)
 
-**★ 564** · exceptional (score 12) · Kotlin · tags: cloud-native, containerized, homelab, iac-managed, kotlin
+**★ 6** · strong (score 6.1) · C# · tags: abp, abp-framework, azure-document-intelligence, document-digitization, document-processing
 
-Kuvasz (pronounce as [ˈkuvɒs]) is an open-source uptime and SSL monitoring service, with multiple notification channels, status pages, IAC support via YAML, Prometheus integration, a complete REST API and many more!
-
-```bash
-cue skills add kuvasz-uptime/kuvasz --profile backend
-```
-
----
-
-<a id="ayeshaass-clinical-multiagent-cdss"></a>
-## ✨ [AYESHAASS/Clinical-MultiAgent-CDSS](https://github.com/AYESHAASS/Clinical-MultiAgent-CDSS)
-
-**★ 0** · strong (score 6) · Python · tags: decision-support-system, diabetes-prediction, gemini-api, google-adk, healthcare-ai
-
-A research backed multi agent clinical decision support system for diabetes risk prediction using Google ADK and MCP protocol.
+A channel layer that turns any content requiring IDP — scans, photos, image PDFs, Office files, digital-born docs — into trustworthy structured data: OCR + Markdown + metadata + optional field extraction, exposed via REST / EventBus / MCP (Webhook planned) to downstream RAG platforms, business systems, and AI clients. Built on ABP.
 
 ```bash
-cue skills add AYESHAASS/Clinical-MultiAgent-CDSS --profile backend
-```
-
----
-
-<a id="cadlens-co-cadlens-mcp"></a>
-## ✨ [cadlens-co/cadlens-mcp](https://github.com/cadlens-co/cadlens-mcp)
-
-**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, cad, cad-api, claude, dwg
-
-MCP server for CADLens — parse DWG/DXF/DWF files with AI agents via Model Context Protocol
-
-```bash
-cue skills add cadlens-co/cadlens-mcp --profile backend
-```
-
----
-
-<a id="aldok10-zara-privacy-mcp"></a>
-## ✨ [aldok10/zara-privacy-mcp](https://github.com/aldok10/zara-privacy-mcp)
-
-**★ 0** · strong (score 6) · Go · tags: agentic-ai, ai, ai-tools, golang, mcp
-
-Privacy-first MCP gateway for AI agents. 19 tools: privacy layer + database proxy (SQL/MongoDB/Redis) + HTTP API proxy + AI provider proxy — all with automatic data masking.
-
-```bash
-cue skills add aldok10/zara-privacy-mcp --profile backend
+cue skills add dignite-projects/vault-extract --profile backend
 ```
 
 ---

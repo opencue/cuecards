@@ -1,24 +1,65 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="woaillr-crypto-code2wiki"></a>
+## 💎 [woaillr-crypto/code2wiki](https://github.com/woaillr-crypto/code2wiki)
+
+**★ 5** · exceptional (score 10.4) · Python · tags: agent-skill, ai-agent-skill, ai-coding, business-context, code-analysis
+
+AI Agent Skill — Auto-generate business context layer (BCL) for large backend codebases. Supports Java, Python, Go, Kotlin, TypeScript. Turn 500K lines into navigable knowledge maps.code2wiki ( code to wiki) 是一项专为复杂项目构建面向业务的“业务语义层”的技能。通过 code2wiki，开发者可以将既有代码库高效地转化为系统化的项目上下文与 Wiki 文档，从而显著提升 LLM 对复杂业务系统的理解深度，赋能代码总结、领域 Skill 构建及自动化文档生成。
+
+✅ SKILL.md
+
+```bash
+cue skills add woaillr-crypto/code2wiki --profile docs-writer
+```
+
+---
+
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+
+**★ 0** · exceptional (score 8.5) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+
+```bash
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
+```
+
+---
+
+<a id="mindgameolympiangames78-llm-knowledge-base"></a>
+## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+
+**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+
+Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+
+```bash
+cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+```
+
+---
+
 <a id="wlsdks-ontology-atlas"></a>
 ## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
 
-**★ 2** · strong (score 6.5) · JavaScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
+**★ 2** · strong (score 6.4) · JavaScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
 
 Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
 
@@ -37,6 +78,19 @@ Vault-native, accountable memory for Claude Code and MCP clients. Markdown is th
 
 ```bash
 cue skills add TheGoatPsy/mneme --profile docs-writer
+```
+
+---
+
+<a id="dignite-projects-vault-extract"></a>
+## ✨ [dignite-projects/vault-extract](https://github.com/dignite-projects/vault-extract)
+
+**★ 6** · strong (score 6.1) · C# · tags: abp, abp-framework, azure-document-intelligence, document-digitization, document-processing
+
+A channel layer that turns any content requiring IDP — scans, photos, image PDFs, Office files, digital-born docs — into trustworthy structured data: OCR + Markdown + metadata + optional field extraction, exposed via REST / EventBus / MCP (Webhook planned) to downstream RAG platforms, business systems, and AI clients. Built on ABP.
+
+```bash
+cue skills add dignite-projects/vault-extract --profile docs-writer
 ```
 
 ---

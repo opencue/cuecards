@@ -2,19 +2,19 @@
 title: "fadhil48/code-foundations-agent-kit — Claude Code skill discovered by cue"
 description: "Best First Principles Thinking Framework 2026 for Coding Agents & AI"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [fadhil48/code-foundations-agent-kit](https://github.com/fadhil48/code-foundations-agent-kit)
 
-**★ 0** · potential (score 4.2) · ai-agent-skill, ai-plugin, assumptions, claude-code, codex
+**★ 0** · potential (score 4.1) · ai-agent-skill, ai-plugin, assumptions, claude-code, codex
 
 > Best First Principles Thinking Framework 2026 for Coding Agents & AI
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-05-20
 - 🏷️ Tags: ai-agent-skill, ai-plugin, assumptions, claude-code, codex, coding-agent, critical-thinking, cursor-ide, decision-making, decomposition, developer-tools, engineering, first-principles, first-principles-thinking, ground-truth, problem-solving, reasoning, socratic-method, software-architecture, system-design

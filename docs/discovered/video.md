@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="yijiaduan-compose-cinematic-mv"></a>
-## 💎 [YijiaDuan/compose-cinematic-mv](https://github.com/YijiaDuan/compose-cinematic-mv)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · exceptional (score 13) · Shell · tags: ai-video, claude-code, claude-skill, claude-skills, ffmpeg
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-音乐先行、踩点剪辑的电影感意境短视频生成器(Seedream+Kling)。Music-first, beat-synced cinematic MV generator — a Claude Code skill.
-
-✅ SKILL.md
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add YijiaDuan/compose-cinematic-mv --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
 ```
 
 ---

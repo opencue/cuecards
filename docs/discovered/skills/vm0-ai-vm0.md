@@ -2,21 +2,21 @@
 title: "vm0-ai/vm0 — Claude Code skill discovered by cue"
 description: "Zero, your trustworthy AI teammate for real work. "
 layout: page
-updated: 2026-06-23
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vm0-ai/vm0](https://github.com/vm0-ai/vm0)
 
-**★ 1130** · exceptional (score 15.5) · TypeScript · agentic-workflow, ai-agent, ai-runtime, ai-sandbox, claude-code
+**★ 1133** · exceptional (score 15.5) · TypeScript · agentic-workflow, ai-agent, ai-runtime, ai-sandbox, claude-code
 
 > Zero, your trustworthy AI teammate for real work. 
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 1130 stars
-- 🗓️ Last pushed: 2026-06-23
+- ⭐ 1133 stars
+- 🗓️ Last pushed: 2026-06-27
 - 🏷️ Tags: agentic-workflow, ai-agent, ai-runtime, ai-sandbox, claude-code, dev-tools, sandbox
 
 ## Best fit cue profiles

@@ -1,68 +1,42 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="omnigent-ai-omnigent"></a>
-## 💎 [omnigent-ai/omnigent](https://github.com/omnigent-ai/omnigent)
+<a id="ruvnet-ruflo"></a>
+## 💎 [ruvnet/ruflo](https://github.com/ruvnet/ruflo)
 
-**★ 4942** · exceptional (score 16) · Python · tags: agent-framework, agent-governance, agent-orchestration, agents, ai
+**★ 61661** · exceptional (score 18.5) · TypeScript · tags: agentic-ai, agentic-framework, agentic-rag, agentic-workflow, agents
 
-Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents — swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.
+🌊 The leading agent meta-harness for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration
 
 ```bash
-cue skills add omnigent-ai/omnigent --profile fleet-control
+cue skills add ruvnet/ruflo --profile fleet-control
 ```
 
 ---
 
-<a id="tsukumohq-wrai-th"></a>
-## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
+<a id="neomjs-neo"></a>
+## 💎 [neomjs/neo](https://github.com/neomjs/neo)
 
-**★ 22** · exceptional (score 13.9) · Go · tags: ai-agents, claude, claude-code, golang, mcp
+**★ 3217** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
 
-Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
-
-```bash
-cue skills add TsukumoHQ/WRAI.TH --profile fleet-control
-```
-
----
-
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
-
-**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
-
-2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
 
 ```bash
-cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
-```
-
----
-
-<a id="aldok10-zara-agent-opc"></a>
-## ✨ [aldok10/zara-agent-opc](https://github.com/aldok10/zara-agent-opc)
-
-**★ 0** · strong (score 7) · JavaScript · tags: agent-orchestration, ai-agent, ai-assistant, ai-engineering, ai-pair-programming
-
-Empathetic AI engineering partner with cognitive memory, multi-agent orchestration (10 agents), 132-signal skill routing, and self-improving reflection loops. Built on Model Context Protocol. By Aldo Karendra.
-
-```bash
-cue skills add aldok10/zara-agent-opc --profile fleet-control
+cue skills add neomjs/neo --profile fleet-control
 ```
 
 ---
@@ -76,6 +50,19 @@ Universal AI dev team workflow system for Claude Code — 18 specialist agents, 
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
+```
+
+---
+
+<a id="misakamikotoghr-5205-cost-aware-claim-based-multi-model-ai-orchestrator"></a>
+## 🔹 [misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator](https://github.com/misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator)
+
+**★ 1** · potential (score 3.3) · Python · tags: ai, ai-agents, antigravity, claude, codex
+
+A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Codex & DeepSeek — not always the strongest model.
+
+```bash
+cue skills add misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator --profile fleet-control
 ```
 
 ---

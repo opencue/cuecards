@@ -2,19 +2,19 @@
 title: "lvusyy/claude-history-migrate — Claude Code skill discovered by cue"
 description: "Migrate Claude Code conversation history & memory across machines — fixes the /resume entrypoint filter, project-path encoding, and cwd remapping."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [lvusyy/claude-history-migrate](https://github.com/lvusyy/claude-history-migrate)
 
-**★ 1** · potential (score 4.3) · JavaScript
+**★ 1** · potential (score 4.2) · JavaScript
 
 > Migrate Claude Code conversation history & memory across machines — fixes the /resume entrypoint filter, project-path encoding, and cwd remapping.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: (none)

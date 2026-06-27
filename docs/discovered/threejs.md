@@ -1,37 +1,24 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-27
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="hrayrzh-claude-toolkit"></a>
-## 💎 [hrayrzh/claude-toolkit](https://github.com/hrayrzh/claude-toolkit)
-
-**★ 0** · exceptional (score 8) · Python · tags: 3d, ai-tools, architecture, blueprint, claude-code
-
-Reusable Claude Code plugins — hooks & skills. Install only the pieces you want.
-
-```bash
-cue skills add hrayrzh/claude-toolkit --profile threejs
-```
-
----
-
 <a id="iart-ai-webgl-animation-skills"></a>
 ## ✨ [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
 
-**★ 1** · strong (score 6.2) · HTML · tags: 3d-animation, claude-skill, glsl-shaders, motion-graphics, particle-system
+**★ 1** · strong (score 6.1) · HTML · tags: 3d-animation, claude-skill, glsl-shaders, motion-graphics, particle-system
 
 3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.
 
