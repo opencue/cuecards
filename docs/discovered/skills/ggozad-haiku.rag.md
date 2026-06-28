@@ -2,21 +2,21 @@
 title: "ggozad/haiku.rag — Claude Code skill discovered by cue"
 description: "Opinionated agentic RAG powered by LanceDB, Pydantic AI, and Docling"
 layout: page
-updated: 2026-06-24
+updated: 2026-06-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ggozad/haiku.rag](https://github.com/ggozad/haiku.rag)
 
-**★ 539** · exceptional (score 16) · Python · ai, docling, lancedb, mcp, mcp-server
+**★ 541** · exceptional (score 16) · Python · ai, docling, lancedb, mcp, mcp-server
 
 > Opinionated agentic RAG powered by LanceDB, Pydantic AI, and Docling
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 539 stars
-- 🗓️ Last pushed: 2026-06-24
+- ⭐ 541 stars
+- 🗓️ Last pushed: 2026-06-28
 - 🏷️ Tags: ai, docling, lancedb, mcp, mcp-server, ml, pydantic-ai, rag
 
 ## Best fit cue profiles

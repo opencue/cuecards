@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 14 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-27
+updated: 2026-06-28
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,27 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-06-27 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **14 profiles**.
+> Last updated: 2026-06-28 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 69 | `antigravity-workspace-template`, `github-mcp-server`, `app-store-connect-skill` |
-| [**backend**](./backend.md) | 7 | `linkedin-mcp-server`, `ruflo`, `oak-open-curriculum-ecosystem` |
-| [**cybersecurity**](./cybersecurity.md) | 7 | `nsauditor-ai-agent-skill`, `kali-pentest`, `slowmist-security-cc` |
-| [**docs-writer**](./docs-writer.md) | 6 | `code2wiki`, `llm-wiki`, `llm-knowledge-base` |
-| [**fleet-control**](./fleet-control.md) | 4 | `ruflo`, `neo`, `rolepod` |
-| [**niche**](./niche.md) | 4 | `grant-thinking-skill`, `grant-thinking-cn-biology`, `costing-master` |
-| [**research**](./research.md) | 2 | `PaperMentor`, `venture-analyst` |
-| [**creative-media**](./creative-media.md) | 2 | `social-media-scraper-skill`, `redesigned-pancake` |
-| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
+| [**core**](./core.md) | 62 | `context-mode`, `instant-site`, `haiku.rag` |
+| [**backend**](./backend.md) | 9 | `notebooklm-py`, `x402-payments-skill`, `markapatent-mcp` |
+| [**frontend**](./frontend.md) | 9 | `awesome-claude-ui-armory`, `claude-react-kit`, `arc-skill` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `nsauditor-ai-agent-skill`, `kali-pentest`, `Claude-OSINT` |
+| [**docs-writer**](./docs-writer.md) | 5 | `docs_to_md`, `markdown-new-skill`, `ontology-atlas` |
+| [**creative-media**](./creative-media.md) | 3 | `openclaw-master-skills`, `infographic-mcp`, `redesigned-pancake` |
+| [**research**](./research.md) | 3 | `PaperMentor`, `paper-revision-editor`, `popper-scope` |
+| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
+| [**marketing**](./marketing.md) | 2 | `claude-youtube`, `sticky-switcher-funnel-playbook` |
+| [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `Cost-aware-claim-based-multi-model-AI-orchestrator` |
+| [**python**](./python.md) | 1 | `notebooklm-py` |
+| [**video**](./video.md) | 1 | `claude-youtube` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
 | [**threejs**](./threejs.md) | 1 | `webgl-animation-skills` |
-| [**frontend**](./frontend.md) | 1 | `claude-code-frontend` |
 
 ## How scoring works
 

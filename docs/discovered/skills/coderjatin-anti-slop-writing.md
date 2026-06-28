@@ -2,7 +2,7 @@
 title: "coderjatin/anti-slop-writing — Claude Code skill discovered by cue"
 description: "Improve AI text to sound natural, clear, and human-like by reducing stiffness and enhancing specificity for multiple AI writing tools."
 layout: page
-updated: 2026-06-25
+updated: 2026-06-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-06-25
+- 🗓️ Last pushed: 2026-06-28
 - 🏷️ Tags: agent-skill, ai, ai-detection, anti-slop, authentic-writing, chatgpt, claude, content-writing, copilot, gemini, llm, prompt-engineering, system-prompt, writing, writing-style
 
 ## Best fit cue profiles

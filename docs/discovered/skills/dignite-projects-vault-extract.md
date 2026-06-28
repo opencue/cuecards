@@ -2,7 +2,7 @@
 title: "dignite-projects/vault-extract — Claude Code skill discovered by cue"
 description: "A channel layer that turns any content requiring IDP — scans, photos, image PDFs, Office files, digital-born docs — into trustworthy structured data: OCR + Mark"
 layout: page
-updated: 2026-06-27
+updated: 2026-06-28
 tags: [claude-code, skill, docs-writer, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-06-27
+- 🗓️ Last pushed: 2026-06-28
 - 🏷️ Tags: abp, abp-framework, azure-document-intelligence, document-digitization, document-processing, dotnet, idp, llm, markdown, mcp, mcp-server, multi-tenant, ocr, paddleocr, rag
 
 ## Best fit cue profiles

@@ -1,22 +1,22 @@
 ---
 title: "lambda-alpha-labs/Graphenium — Claude Code skill discovered by cue"
-description: "Provenance-aware structural memory for AI coding agents. Turns your repo into a persistent, queryable graph with confidence on every edge. MCP-native, Rust, MIT"
+description: "Trust-aware codebase memory for AI coding agents. Builds a compact, queryable graph of your repository so AI assistants stop grepping and start querying. MCP-na"
 layout: page
-updated: 2026-06-26
+updated: 2026-06-28
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [lambda-alpha-labs/Graphenium](https://github.com/lambda-alpha-labs/Graphenium)
 
-**★ 11** · strong (score 7.2) · Rust · ai-coding, code-analysis, knowledge-graph, mcp, mcp-server
+**★ 13** · strong (score 7.3) · Rust · ai-coding, code-analysis, knowledge-graph, mcp, mcp-server
 
-> Provenance-aware structural memory for AI coding agents. Turns your repo into a persistent, queryable graph with confidence on every edge. MCP-native, Rust, MIT.
+> Trust-aware codebase memory for AI coding agents. Builds a compact, queryable graph of your repository so AI assistants stop grepping and start querying. MCP-native, Rust, MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
-- ⭐ 11 stars
-- 🗓️ Last pushed: 2026-06-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
+- ⭐ 13 stars
+- 🗓️ Last pushed: 2026-06-28
 - 🏷️ Tags: ai-coding, code-analysis, knowledge-graph, mcp, mcp-server, rust
 
 ## Best fit cue profiles

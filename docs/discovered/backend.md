@@ -1,68 +1,96 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-27
+updated: 2026-06-28
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="stickerdaniel-linkedin-mcp-server"></a>
-## 💎 [stickerdaniel/linkedin-mcp-server](https://github.com/stickerdaniel/linkedin-mcp-server)
+<a id="patriarchal-boothose896-notebooklm-py"></a>
+## 💎 [patriarchal-boothose896/notebooklm-py](https://github.com/patriarchal-boothose896/notebooklm-py)
 
-**★ 2525** · exceptional (score 19.5) · Python · tags: ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
+**★ 3** · exceptional (score 15.7) · Python · tags: agentic-skill, api, claude, claude-code, claude-skills
 
-Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages.
+Provide full Python API access to NotebookLM features, including advanced functions beyond the web interface, via CLI and AI agent integration.
+
+✅ SKILL.md
 
 ```bash
-cue skills add stickerdaniel/linkedin-mcp-server --profile backend
+cue skills add patriarchal-boothose896/notebooklm-py --profile backend
 ```
 
 ---
 
-<a id="ruvnet-ruflo"></a>
-## 💎 [ruvnet/ruflo](https://github.com/ruvnet/ruflo)
+<a id="mistertechie06-x402-payments-skill"></a>
+## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
 
-**★ 61661** · exceptional (score 18.5) · TypeScript · tags: agentic-ai, agentic-framework, agentic-rag, agentic-workflow, agents
+**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
 
-🌊 The leading agent meta-harness for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration
+Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
 
 ```bash
-cue skills add ruvnet/ruflo --profile backend
+cue skills add mistertechie06/x402-payments-skill --profile backend
 ```
 
 ---
 
-<a id="oaknational-oak-open-curriculum-ecosystem"></a>
-## 💎 [oaknational/oak-open-curriculum-ecosystem](https://github.com/oaknational/oak-open-curriculum-ecosystem)
+<a id="andrianagnostic63-markapatent-mcp"></a>
+## 💎 [Andrianagnostic63/markapatent-mcp](https://github.com/Andrianagnostic63/markapatent-mcp)
 
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: curriculum, education, elasticsearch, mcp, mcp-server
+**★ 0** · exceptional (score 9.5) · Python · tags: ai, ai-agent, ai-agent-tools, ai-agents-framework, aws
 
-A collection of tools for working with the Oak Open Curriculum Data, via API, SDK and MCP app
+Provide programmatic access to TÜRKPATENT’s trademark, patent, and design databases through a standardized MCP server for IP research tools.
 
 ```bash
-cue skills add oaknational/oak-open-curriculum-ecosystem --profile backend
+cue skills add Andrianagnostic63/markapatent-mcp --profile backend
 ```
 
 ---
 
-<a id="vassiliylakhonin-vassiliylakhonin-github-io"></a>
-## ✨ [vassiliylakhonin/vassiliylakhonin.github.io](https://github.com/vassiliylakhonin/vassiliylakhonin.github.io)
+<a id="gbh3247872997-del-cuba-memorys"></a>
+## ✨ [gbh3247872997-del/cuba-memorys](https://github.com/gbh3247872997-del/cuba-memorys)
 
-**★ 3** · strong (score 7.2) · HTML · tags: a2a, agenda-intelligence, agent-card, agent-discovery, ai-hiring
+**★ 1** · strong (score 7.8) · Rust · tags: ai-memory, ai-tools, anti-hallucination, asyncio, graph-database
 
-Personal site + AI-readable profile of Vassiliy Lakhonin. I build evidence-discipline tooling for strategic-risk AI agents (Agenda Intelligence: open-source skills + deployed A2A workers with live demos), grounded in compliance and cross-border delivery. Reference implementation of an agent-discoverable profile (pages + JSON + MCP).
+Provide AI agents with long-term memory using a neuroscience-based knowledge graph and Model Context Protocol for improved coding assistance.
 
 ```bash
-cue skills add vassiliylakhonin/vassiliylakhonin.github.io --profile backend
+cue skills add gbh3247872997-del/cuba-memorys --profile backend
+```
+
+---
+
+<a id="haniamkhan5-coder-mcp-servers-hub"></a>
+## ✨ [haniamkhan5-coder/mcp-servers-hub](https://github.com/haniamkhan5-coder/mcp-servers-hub)
+
+**★ 0** · strong (score 7.5) · tags: agentic-ai, argocd, authentication-middleware, devops-tools, docker
+
+Provide access to 50+ verified MCP servers with install guides and config snippets for quick AI agent integration with databases, APIs, and tools.
+
+```bash
+cue skills add haniamkhan5-coder/mcp-servers-hub --profile backend
+```
+
+---
+
+<a id="sshdwzt-infographic-mcp"></a>
+## ✨ [sshdwzt/infographic-mcp](https://github.com/sshdwzt/infographic-mcp)
+
+**★ 0** · strong (score 7.5) · JavaScript · tags: agent, ai, ai-tools, data-visualization, gemini
+
+Provide AI assistants with targeted infographic image search using the Serper API, featuring size, aspect ratio filters, and platform-specific queries.
+
+```bash
+cue skills add sshdwzt/infographic-mcp --profile backend
 ```
 
 ---

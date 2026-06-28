@@ -1,24 +1,24 @@
 ---
 title: "haoyiyin/instant-site — Claude Code skill discovered by cue"
-description: "Agent-operated foreign trade independent site platform — from-zero build, deploy, content ops, SEO, multi-language & inquiry forms. Works with any AI agent."
+description: "Agent skill for building, deploying, and operating foreign trade independent sites — from-zero generation, Cloudflare Pages, content ops, SEO, multi-language. C"
 layout: page
-updated: 2026-06-27
+updated: 2026-06-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [haoyiyin/instant-site](https://github.com/haoyiyin/instant-site)
 
-**★ 6** · exceptional (score 10.8) · JavaScript · ai-agent-skill, ai-agents, automation, cloudflare-workers, content-ops
+**★ 6** · exceptional (score 16.4) · JavaScript · agent-skill, ai-agent-skill, ai-agents, automation, claude-code
 
-> Agent-operated foreign trade independent site platform — from-zero build, deploy, content ops, SEO, multi-language & inquiry forms. Works with any AI agent.
+> Agent skill for building, deploying, and operating foreign trade independent sites — from-zero generation, Cloudflare Pages, content ops, SEO, multi-language. Compatible with any AI agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-05-30
-- 🏷️ Tags: ai-agent-skill, ai-agents, automation, cloudflare-workers, content-ops, deploy, ecommerce, foreign-trade, multilingual, seo
+- 🗓️ Last pushed: 2026-06-27
+- 🏷️ Tags: agent-skill, ai-agent-skill, ai-agents, automation, claude-code, cloudflare-workers, content-ops, deploy, ecommerce, foreign-trade, multilingual, seo, static-site, website-builder
 
 ## Best fit cue profiles
 

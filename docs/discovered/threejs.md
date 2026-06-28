@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-27
+updated: 2026-06-28
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
