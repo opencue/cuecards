@@ -2,7 +2,7 @@
 title: "aarshsharma2803-stack/optimusprime — Claude Code skill discovered by cue"
 description: "The session state protocol for AI coding. Hook-level scope enforcement, cross-session memory, contradiction detection, and predictive context - Claude is statel"
 layout: page
-updated: 2026-06-28
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-28
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: ai-tools, claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-skills, developer-tool, developer-tools, hooks, mcp, mcp-tools, python, python3, session-management
 
 ## Best fit cue profiles

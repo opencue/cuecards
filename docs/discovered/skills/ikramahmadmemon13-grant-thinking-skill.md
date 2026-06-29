@@ -2,7 +2,7 @@
 title: "Ikramahmadmemon13/grant-thinking-skill — Claude Code skill discovered by cue"
 description: "Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks."
 layout: page
-updated: 2026-06-28
+updated: 2026-06-29
 tags: [claude-code, skill, niche]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, niche]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-28
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility, grant-thinking, grant-writing, proposal, research-funding, reviewer-thinking, skill-md, skillsmp
 
 ## Best fit cue profiles

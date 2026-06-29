@@ -2,21 +2,21 @@
 title: "Stewie-pixel/claude-with-leetcode — Claude Code skill discovered by cue"
 description: "Daily Leetcode masterclass with Claude code DSA mentor"
 layout: page
-updated: 2026-06-22
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Stewie-pixel/claude-with-leetcode](https://github.com/Stewie-pixel/claude-with-leetcode)
 
-**★ 26** · exceptional (score 13.6) · C++ · ai-agents, algorithms, claude-code, claude-skill, claude-skills
+**★ 27** · exceptional (score 13.6) · C++ · ai-agents, algorithms, claude-code, claude-skill, claude-skills
 
 > Daily Leetcode masterclass with Claude code DSA mentor
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.6 based on:
-- ⭐ 26 stars
-- 🗓️ Last pushed: 2026-06-22
+- ⭐ 27 stars
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: ai-agents, algorithms, claude-code, claude-skill, claude-skills, coding-interviews, data-structures, dsa, leetcode
 
 ## Best fit cue profiles

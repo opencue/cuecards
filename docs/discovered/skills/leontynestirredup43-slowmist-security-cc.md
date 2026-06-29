@@ -2,7 +2,7 @@
 title: "Leontynestirredup43/slowmist-security-cc — Claude Code skill discovered by cue"
 description: "Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments."
 layout: page
-updated: 2026-06-27
+updated: 2026-06-29
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, cybersecurity]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-27
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: agent-security, aml, audit, blockchain, claude-code, claude-code-skill, prompt-injection, security, social-engineering, supply-chain
 
 ## Best fit cue profiles

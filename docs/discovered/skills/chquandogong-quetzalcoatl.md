@@ -2,7 +2,7 @@
 title: "chquandogong/Quetzalcoatl — Claude Code skill discovered by cue"
 description: "🪶 Quetzalcoatl — Meaning-First AI Project OS. /Quetzalcoatl 한 번으로 의미검증→Office Hours→대안→교차검증→문서·대시보드→배포까지 운영하는 모델 중립형 스킬"
 layout: page
-updated: 2026-06-23
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-23
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: ai-agent, ai-orchestration, claude-code, claude-plugin, claude-skill, korean, llm, meaning-first, model-neutral, project-management, prompt-engineering
 
 ## Best fit cue profiles

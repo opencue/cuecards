@@ -2,21 +2,21 @@
 title: "NimbleBrainInc/nimblebrain — Claude Code skill discovered by cue"
 description: "Self-hosted platform for MCP Apps and agent automations — tools, interactive UIs, scheduled runs, multi-agent delegation."
 layout: page
-updated: 2026-06-26
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [NimbleBrainInc/nimblebrain](https://github.com/NimbleBrainInc/nimblebrain)
 
-**★ 4** · exceptional (score 8.3) · TypeScript · agent, agent-automation, agent-runtime, ai-agents, anthropic
+**★ 5** · exceptional (score 10.5) · TypeScript · agent, agent-automation, agent-runtime, ai-agents, anthropic
 
 > Self-hosted platform for MCP Apps and agent automations — tools, interactive UIs, scheduled runs, multi-agent delegation.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: agent, agent-automation, agent-runtime, ai-agents, anthropic, bun, claude, ext-apps, llm, mcp, mcp-apps, mcp-client, mcp-host, mcp-server, mcpb, model-context-protocol, multi-agent, scheduled-agents, self-hosted, typescript
 
 ## Best fit cue profiles

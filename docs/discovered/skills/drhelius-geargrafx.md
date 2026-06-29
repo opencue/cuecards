@@ -2,7 +2,7 @@
 title: "drhelius/Geargrafx — Claude Code skill discovered by cue"
 description: "PC Engine / TurboGrafx-16 / SuperGrafx / PCE CD-ROM² emulator, debugger, and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
 layout: page
-updated: 2026-06-24
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
 - ⭐ 218 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: bsd, emulator, libretro, linux, macos, mcp, mcp-server, pc-engine, pcengine, raspberry-pi, raspberrypi, retroarch, supergrafx, turbografx, turbografx-16, vgm
 
 ## Best fit cue profiles

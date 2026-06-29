@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "9 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-28
+updated: 2026-06-29
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,84 +24,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="wahmoh-claude-react-kit"></a>
-## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
-
-**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
-
-Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
-
-```bash
-cue skills add wahmoh/claude-react-kit --profile frontend
-```
-
----
-
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
-
-**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
-
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
-
-```bash
-cue skills add Fredjuel/arc-skill --profile frontend
-```
-
----
-
-<a id="yatin-rai-ui-ux-consultant-skill"></a>
-## 💎 [yatin-rai/ui-ux-consultant-skill](https://github.com/yatin-rai/ui-ux-consultant-skill)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: angular, claude-code, claude-skill, design-system, multi-framework
-
-Zero-install multi-framework UI/UX design consultant skill for Claude Code — 16 frameworks, code patterns, design catalog, and checklists.
-
-```bash
-cue skills add yatin-rai/ui-ux-consultant-skill --profile frontend
-```
-
----
-
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
-
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
-
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
-
-```bash
-cue skills add riqxa/skills-best-practices --profile frontend
-```
-
----
-
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
-
-**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
-
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
-
-```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
-```
-
----
-
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
-
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---
@@ -122,7 +44,7 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 2** · potential (score 3.5) · JavaScript
+**★ 2** · potential (score 3.4) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

@@ -2,7 +2,7 @@
 title: "haoyiyin/instant-site — Claude Code skill discovered by cue"
 description: "Agent skill for building, deploying, and operating foreign trade independent sites — from-zero generation, Cloudflare Pages, content ops, SEO, multi-language. C"
 layout: page
-updated: 2026-06-28
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 

@@ -2,20 +2,20 @@
 title: "maludb/salvage-project — Claude Code skill discovered by cue"
 description: "Start over, simpler — recover the real requirements from a project that went down a bad path and rebuild on the simplest maintainable stack. A Claude Code plugi"
 layout: page
-updated: 2026-06-28
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [maludb/salvage-project](https://github.com/maludb/salvage-project)
 
-**★ 28** · strong (score 6.6)
+**★ 29** · strong (score 6.5)
 
 > Start over, simpler — recover the real requirements from a project that went down a bad path and rebuild on the simplest maintainable stack. A Claude Code plugin.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
-- ⭐ 28 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 29 stars
 - 🗓️ Last pushed: 2026-06-25
 - 🏷️ Tags: (none)
 

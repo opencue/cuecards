@@ -2,7 +2,7 @@
 title: "haoyiyin/applescript-skill — Claude Code skill discovered by cue"
 description: "Agent skill for macOS automation via AppleScript — control browsers, files, mail, messages, media, and system settings. Compatible with any AI agent."
 layout: page
-updated: 2026-06-28
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
