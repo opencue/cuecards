@@ -16,6 +16,7 @@ import {
   existsSync,
   readFileSync,
   readdirSync,
+  renameSync,
   statSync,
   writeFileSync,
 } from "node:fs";
@@ -122,10 +123,14 @@ function loadSeen(path: string): SeenTracker {
 }
 
 function saveSeen(path: string, seen: SeenTracker): void {
-  writeFileSync(path, JSON.stringify({
+  // Atomic write (tmp + rename) so a crash mid-write can't corrupt the dedup
+  // tracker and cause every previously-seen event to re-emit on the next ingest.
+  const tmp = `${path}.tmp.${process.pid}`;
+  writeFileSync(tmp, JSON.stringify({
     invocations: [...seen.invocations],
     misses: [...seen.misses],
   }, null, 2) + "\n");
+  renameSync(tmp, path);
 }
 
 interface ParsedTurn {
