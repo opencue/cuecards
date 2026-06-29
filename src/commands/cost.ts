@@ -2,19 +2,32 @@
  * `cue cost [profile]` — estimate token budget for a profile.
  */
 
-import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
-import { repoRoot } from "../lib/repo-root";
 import {
   skillAlwaysOnTokens,
   skillBodyTokens,
   materializedClaudeMdTokens,
   SKILLS_ROOT,
 } from "../lib/profile-metrics";
+import {
+  loadMcpEstimates,
+  sumMcpTokens,
+  budgetExceeded,
+  type McpEstimate,
+} from "../lib/mcp-token-estimate";
 
+/** Parse `--budget N` / `--budget=N`. Returns 0 (gate off) when absent/invalid. */
+function parseBudget(args: string[]): number {
+  const eq = args.find((a) => a.startsWith("--budget="));
+  if (eq) return Math.max(0, Number(eq.slice("--budget=".length)) || 0);
+  const i = args.indexOf("--budget");
+  if (i >= 0 && args[i + 1]) return Math.max(0, Number(args[i + 1]) || 0);
+  return 0;
+}
 
 // Expand wildcard (*/*) to all actual skill IDs on disk.
 function expandSkillIds(ids: string[]): string[] {
@@ -38,30 +51,14 @@ function expandSkillIds(ids: string[]): string[] {
   }
   return result;
 }
-const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
-
 // Baseline always-on CLAUDE.md cost for a profile that hasn't been materialized
 // yet. Dominated by the shared `core` persona + integrity protocol, so it's
 // roughly constant across profiles. Used only as a fallback when the runtime
 // CLAUDE.md can't be measured directly.
 const BASE_CLAUDE_MD_TOKENS = 7000;
 
-function getMcpToolCount(id: string): number {
-  // Each MCP tool description ≈ 50 tokens
-  // We estimate based on the config entry complexity
-  for (const file of ["claude_runtime.sanitized.json", "claude.sanitized.json"]) {
-    try {
-      const raw = JSON.parse(readFileSync(join(MCP_CONFIGS_DIR, file), "utf8"));
-      if (raw.servers?.[id]) {
-        const entry = JSON.stringify(raw.servers[id]);
-        return Math.max(1, Math.ceil(entry.length / 200)); // rough tool count estimate
-      }
-    } catch { /* skip */ }
-  }
-  return 1;
-}
-
-async function runCompare(json: boolean): Promise<number> {
+async function runCompare(json: boolean, budget: number): Promise<number> {
+  const mcpCache: Record<string, McpEstimate> = loadMcpEstimates();
   const profiles = await listProfiles();
   const results: { name: string; skills: number; mcps: number; tokens: number; cost100: string }[] = [];
 
@@ -74,9 +71,9 @@ async function runCompare(json: boolean): Promise<number> {
       // the profile hasn't been launched yet).
       const skillTokens = skillIds.reduce((sum: number, id: string) => sum + skillAlwaysOnTokens(id), 0);
       const mcpIds = profile.mcps.map((m: any) => m.id);
-      const mcpToolCount = mcpIds.reduce((sum: number, id: string) => sum + getMcpToolCount(id), 0);
+      const mcpTokens = sumMcpTokens(mcpIds, mcpCache).total;
       const claudeMd = materializedClaudeMdTokens(name) ?? BASE_CLAUDE_MD_TOKENS;
-      const total = skillTokens + (mcpToolCount * 50) + claudeMd;
+      const total = skillTokens + mcpTokens + claudeMd;
       results.push({
         name,
         skills: skillIds.length,
@@ -89,9 +86,12 @@ async function runCompare(json: boolean): Promise<number> {
 
   results.sort((a, b) => a.tokens - b.tokens);
 
+  // The budget gate applies to both human and --json output so CI can use either.
+  const overBudget = budget > 0 ? results.filter((r) => budgetExceeded(r.tokens, budget)) : [];
+
   if (json) {
     process.stdout.write(JSON.stringify(results, null, 2) + "\n");
-    return 0;
+    return overBudget.length > 0 ? 1 : 0;
   }
 
   const maxTokens = results[results.length - 1]?.tokens ?? 1;
@@ -108,16 +108,30 @@ async function runCompare(json: boolean): Promise<number> {
   }
 
   process.stdout.write(`\n  ${results.length} profiles compared. Cheapest: ${results[0]?.name}, most expensive: ${results[results.length - 1]?.name}\n`);
+
+  if (budget > 0) {
+    if (overBudget.length > 0) {
+      process.stderr.write(
+        `\n  ❌ ${overBudget.length} profile(s) over the ${budget.toLocaleString()}-token budget: ` +
+          `${overBudget.map((r) => `${r.name} (${r.tokens.toLocaleString()})`).join(", ")}\n`,
+      );
+      return 1;
+    }
+    process.stdout.write(`\n  ✅ All ${results.length} profiles within the ${budget.toLocaleString()}-token budget.\n`);
+  }
   return 0;
 }
 
 export async function run(args: string[]): Promise<number> {
   const json = args.includes("--json");
   const compare = args.includes("--compare");
-  let profileName = args.find(a => !a.startsWith("-"));
+  const budget = parseBudget(args);
+  // A bare `--budget N` value must not be mistaken for the profile name.
+  const budgetValue = budget > 0 ? String(budget) : null;
+  let profileName = args.find(a => !a.startsWith("-") && a !== budgetValue);
 
   if (compare) {
-    return runCompare(json);
+    return runCompare(json, budget);
   }
 
   if (!profileName) {
@@ -135,10 +149,13 @@ export async function run(args: string[]): Promise<number> {
   const skillDescTokens = skillIds.reduce((sum, id) => sum + skillAlwaysOnTokens(id), 0);
   const skillLazyTokens = skillIds.reduce((sum, id) => sum + skillBodyTokens(id), 0);
 
-  // MCP cost (tool descriptions, always-on)
+  // MCP cost: tool schemas injected into the system prompt, always-on. Real
+  // sizes live in each server's tools/list, which cue can't read statically, so
+  // this is cache-backed (seed estimates → probed measurements override).
   const mcpIds = profile.mcps.map(m => m.id);
-  const mcpToolCount = mcpIds.reduce((sum, id) => sum + getMcpToolCount(id), 0);
-  const mcpTokens = mcpToolCount * 50; // ~50 tokens per tool description
+  const mcpCache = loadMcpEstimates();
+  const mcp = sumMcpTokens(mcpIds, mcpCache);
+  const mcpTokens = mcp.total;
 
   // CLAUDE.md: the dominant always-on cost. Measure the materialized runtime
   // when present; otherwise fall back to the shared baseline.
@@ -156,13 +173,20 @@ export async function run(args: string[]): Promise<number> {
     },
     lazy: { skill_bodies: skillLazyTokens, skill_count: skillIds.length },
     skills: { count: skillIds.length },
-    mcps: { count: mcpIds.length, tools: mcpToolCount },
+    mcps: {
+      count: mcpIds.length,
+      tokens: mcpTokens,
+      measured: mcp.measured.length,
+      estimated: mcp.estimated.length,
+      unknown: mcp.unknown.length,
+    },
     total_tokens: total,
+    budget: budget > 0 ? { limit: budget, over: budgetExceeded(total, budget) } : undefined,
   };
 
   if (json) {
     process.stdout.write(JSON.stringify(result, null, 2) + "\n");
-    return 0;
+    return budgetExceeded(total, budget) ? 1 : 0;
   }
 
   // Color-coded level (always-on budget)
@@ -174,7 +198,10 @@ export async function run(args: string[]): Promise<number> {
   process.stdout.write(`  Always-on (every message):\n`);
   process.stdout.write(`    CLAUDE.md:        ~${claudeMdTokens.toLocaleString()} tokens\n`);
   process.stdout.write(`    Skill descriptions: ~${skillDescTokens.toLocaleString()} tokens (${skillIds.length} skills)\n`);
-  process.stdout.write(`    MCP tools:        ~${mcpTokens.toLocaleString()} tokens (${mcpToolCount} tools across ${mcpIds.length} servers)\n`);
+  const mcpProvenance = mcp.unknown.length > 0
+    ? ` — ${mcp.unknown.length} unmeasured, run \`cue cost --probe-mcp\``
+    : mcp.measured.length === 0 ? " — estimated" : "";
+  process.stdout.write(`    MCP tools:        ~${mcpTokens.toLocaleString()} tokens (${mcpIds.length} servers${mcpProvenance})\n`);
   process.stdout.write(`    ─────────────────────────────────\n`);
   process.stdout.write(`    Total:            ~${total.toLocaleString()} tokens\n`);
   process.stdout.write(`    Cost:             ~$${costPerMsg}/message, ~$${costPer100}/100 messages\n\n`);
@@ -207,6 +234,14 @@ export async function run(args: string[]): Promise<number> {
     process.stdout.write(`  ℹ️  Moderate always-on overhead, mostly CLAUDE.md. Skill bodies above are lazy and don't count per message.\n`);
   } else {
     process.stdout.write(`  ✅ Lean always-on budget. Skill bodies are lazy-loaded, so the catalog size is essentially free.\n`);
+  }
+
+  if (budget > 0) {
+    if (budgetExceeded(total, budget)) {
+      process.stderr.write(`\n  ❌ Over budget: ${total.toLocaleString()} > ${budget.toLocaleString()} tokens\n`);
+      return 1;
+    }
+    process.stdout.write(`\n  ✅ Within budget: ${total.toLocaleString()} ≤ ${budget.toLocaleString()} tokens\n`);
   }
 
   return 0;
