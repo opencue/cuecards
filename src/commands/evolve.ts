@@ -76,13 +76,26 @@ function parseSessionLines(files: string[]): any[] {
 // Pattern detection
 // ---------------------------------------------------------------------------
 
+// Safely extract searchable text from a session-log line. Claude JSONL stores
+// `message` as an object ({ role, content }), so a naive `l.message ?? ""` yields
+// an object and crashes on `.toLowerCase()`. Mirror detectErrors' JSON.stringify
+// fallback so non-string payloads degrade to text instead of throwing.
+export function lineText(l: any): string {
+  if (typeof l?.content === "string") return l.content;
+  if (typeof l?.message === "string") return l.message;
+  const c = l?.message?.content ?? l?.content;
+  if (typeof c === "string") return c;
+  if (c != null) return JSON.stringify(c);
+  return "";
+}
+
 function detectGaps(lines: any[]): Map<string, number> {
   const topics = new Map<string, number>();
   const gapPatterns = /\b(can you|how do i|how to|help me|is there a way)\b/i;
 
   for (const msg of lines) {
     if (msg.role !== "user" && msg.type !== "human") continue;
-    const text = typeof msg.content === "string" ? msg.content : msg.message ?? "";
+    const text = lineText(msg);
     if (!gapPatterns.test(text)) continue;
     // Extract topic: first 3-4 meaningful words after the pattern
     const match = text.match(gapPatterns);
@@ -105,10 +118,7 @@ function detectErrors(lines: any[]): string[] {
 }
 
 function checkSkillUsage(lines: any[], skills: string[]): { used: string[]; unused: string[] } {
-  const content = lines.map(l => {
-    const t = typeof l.content === "string" ? l.content : l.message ?? "";
-    return t.toLowerCase();
-  }).join("\n");
+  const content = lines.map(l => lineText(l).toLowerCase()).join("\n");
 
   const used: string[] = [];
   const unused: string[] = [];
