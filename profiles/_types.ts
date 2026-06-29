@@ -12,7 +12,9 @@ export interface AgentScoped {
 }
 
 // String form is sugar for { id: string }.
-export type MCPRef = string | (AgentScoped & { id: string });
+// `pin: true` marks an MCP the agent uses directly (not via a skill), so the
+// launcher's smart-prune never drops it and pre-checks it as always-on.
+export type MCPRef = string | (AgentScoped & { id: string; pin?: boolean });
 
 export interface SkillCondition {
   has_file?: string | string[];
@@ -135,7 +137,7 @@ export interface PersonaRoutingEntry {
 }
 
 // In the resolved (post-inherit) form every ref is normalized to its object shape.
-export interface ResolvedMCP { id: string; agents?: AgentKind[]; }
+export interface ResolvedMCP { id: string; agents?: AgentKind[]; pin?: boolean; }
 export interface ResolvedSkill { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 

@@ -100,11 +100,11 @@
       "items": {
         "oneOf": [
           { "type": "string", "minLength": 1 },
-          { "$ref": "#/$defs/AgentScopedRef" }
+          { "$ref": "#/$defs/McpRef" }
         ]
       },
       "default": [],
-      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts plain string or {id, agents} object."
+      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts plain string or {id, agents?, pin?} object."
     },
     "plugins": {
       "type": "array",
@@ -197,6 +197,22 @@
         "agents": {
           "type": "array",
           "items": { "$ref": "#/$defs/AgentKind" }
+        }
+      }
+    },
+    "McpRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        },
+        "pin": {
+          "type": "boolean",
+          "description": "When true, the launcher's smart-prune always keeps this MCP loaded (used by the agent directly, not via a skill)."
         }
       }
     },

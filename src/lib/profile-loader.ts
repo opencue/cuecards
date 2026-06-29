@@ -252,7 +252,10 @@ async function readRawProfile(name: string): Promise<Profile> {
  */
 function normalizeMCPRef(raw: MCPRef): ResolvedMCP {
   if (typeof raw === "string") return { id: raw };
-  return raw.agents ? { id: raw.id, agents: raw.agents } : { id: raw.id };
+  const result: ResolvedMCP = { id: raw.id };
+  if (raw.agents) result.agents = raw.agents;
+  if (raw.pin) result.pin = true;
+  return result;
 }
 
 /**

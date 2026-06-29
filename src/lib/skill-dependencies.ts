@@ -28,9 +28,26 @@ export interface MissingDependency extends SkillDependency {
 function parseExplicitDeps(content: string): string[] {
   const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
   if (!fmMatch) return [];
-  const mcpMatch = fmMatch[1]!.match(/^requires_mcps:\s*\[([^\]]*)\]/m);
-  if (!mcpMatch) return [];
-  return mcpMatch[1]!.split(",").map(t => t.trim().replace(/['"]/g, "")).filter(Boolean);
+  const fm = fmMatch[1]!;
+  // Inline-array form: `requires_mcps: [a, b]`
+  const inline = fm.match(/^requires_mcps:\s*\[([^\]]*)\]/m);
+  if (inline) {
+    return inline[1]!.split(",").map((t) => t.trim().replace(/['"]/g, "")).filter(Boolean);
+  }
+  // Block-sequence form:
+  //   requires_mcps:
+  //     - a
+  //     - b
+  const lines = fm.split("\n");
+  const idx = lines.findIndex((l) => /^requires_mcps:\s*$/.test(l));
+  if (idx === -1) return [];
+  const out: string[] = [];
+  for (let i = idx + 1; i < lines.length; i++) {
+    const m = lines[i]!.match(/^\s+-\s*(.+?)\s*$/);
+    if (!m) break; // first non-item line ends the block sequence
+    out.push(m[1]!.replace(/['"]/g, ""));
+  }
+  return out.filter(Boolean);
 }
 
 /**
@@ -100,6 +117,40 @@ export function getSkillDependencies(skillId: string): SkillDependency[] {
   }
 
   return deps;
+}
+
+/**
+ * Aggregate the MCP servers needed by a set of active skills.
+ *
+ * Inverts {@link getSkillDependencies}: instead of asking "what does one skill
+ * need", it answers "across these skills, which MCPs are referenced and by
+ * whom". Used by the launcher to pre-select (smart-prune) only the MCPs the
+ * chosen skills actually need.
+ *
+ * Keys are lowercased MCP ids (matching {@link detectMissingDependencies}'
+ * case-insensitive convention). `source` is "explicit" if ANY referencing skill
+ * declares it via `requires_mcps:`, else "implicit".
+ */
+export function getNeededMcps(
+  skillIds: string[],
+): Map<string, { skills: string[]; source: "explicit" | "implicit" }> {
+  const needed = new Map<string, { skills: string[]; source: "explicit" | "implicit" }>();
+
+  for (const skillId of skillIds) {
+    for (const dep of getSkillDependencies(skillId)) {
+      const key = dep.mcpId.toLowerCase();
+      const entry = needed.get(key);
+      if (entry === undefined) {
+        needed.set(key, { skills: [skillId], source: dep.source });
+      } else {
+        if (!entry.skills.includes(skillId)) entry.skills.push(skillId);
+        // An explicit declaration anywhere upgrades the aggregate source.
+        if (dep.source === "explicit") entry.source = "explicit";
+      }
+    }
+  }
+
+  return needed;
 }
 
 /**
