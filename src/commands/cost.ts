@@ -17,7 +17,6 @@ import {
   loadMcpEstimates,
   sumMcpTokens,
   budgetExceeded,
-  type McpEstimate,
 } from "../lib/mcp-token-estimate";
 
 /**
