@@ -365,7 +365,9 @@ function ruleR008(content: string): Diagnostic[] {
   }
   const broken: string[] = [];
   for (const m of content.matchAll(/\[([^\]]+)\]\(#([^)]+)\)/g)) {
-    if (!headings.has(m[2]!.toLowerCase())) broken.push(m[2]!);
+    // Slugify the anchor ref the SAME way headings were slugified, else a ref to
+    // a heading containing `&`/`(`/`)` etc. never matches → false-positive error.
+    if (!headings.has(slugify(m[2]!))) broken.push(m[2]!);
   }
   if (broken.length === 0) return [];
   return [{

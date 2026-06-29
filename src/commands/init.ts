@@ -164,9 +164,15 @@ async function offerDiscoverGems(profile: string): Promise<void> {
   let flagged = 0;
   for (const g of gems) {
     p.log.step(`Installing ${g.full_name}...`);
-    spawnSync("npx", ["skills", "add", g.full_name, "-a", "claude-code", "-y"], {
+    const res = spawnSync("npx", ["skills", "add", g.full_name, "-a", "claude-code", "-y"], {
       encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"],
     });
+    // A failed fetch (network/registry error, timeout) must not be treated as a
+    // successful install — skip the gate + registration for a gem that isn't there.
+    if (res.error || res.status !== 0) {
+      p.log.warn(`Could not install ${g.full_name} — skipping.`);
+      continue;
+    }
     // Security gate: flag a just-fetched skill with critical findings and skip
     // its CLI auto-install (the gem is installed to ~/.claude/skills, but the
     // wizard does not auto-register it to a profile).

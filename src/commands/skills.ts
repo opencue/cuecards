@@ -816,7 +816,12 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     if (!p.isCancel(launch) && launch) {
       p.outro(`Launching claude with profile "${name}"…`);
       const { execSync } = await import("node:child_process");
-      execSync("claude", { stdio: "inherit", env: { ...process.env } });
+      // The profile is already created; this launch is a convenience. A non-zero
+      // exit (incl. the user quitting claude) throws from execSync — swallow it so
+      // the wizard ends cleanly instead of dumping a stack trace.
+      try {
+        execSync("claude", { stdio: "inherit", env: { ...process.env } });
+      } catch { /* claude exited non-zero — nothing to recover */ }
     } else {
       p.outro(`Profile "${name}" created with ${selectedSkills.length} skills. Run \`cue use ${name}\` to activate.`);
     }

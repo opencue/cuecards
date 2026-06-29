@@ -7,7 +7,7 @@
  */
 import { readdir, readFile, stat } from "node:fs/promises";
 import { homedir } from "node:os";
-import { basename, join, resolve } from "node:path";
+import { basename, isAbsolute, join, resolve } from "node:path";
 
 import { _internal as pluginResolverInternal } from "./resolver-plugins";
 
@@ -287,10 +287,15 @@ async function readInstalledPlugin(
   const manifest = await readPluginManifest(dir);
   const name = manifest.name ?? basename(dir);
   const id = marketplace ? `${name}@${marketplace}` : name;
-  const skillsPath =
-    typeof manifest.skills === "string"
-      ? resolve(dir, manifest.skills)
-      : join(dir, "skills");
+  // `manifest.skills` is untrusted (from a plugin's plugin.json). Reject an
+  // absolute path or one with a ".." segment so a hostile manifest can't point
+  // the scanner at an arbitrary directory; fall back to the default location.
+  const declaredSkills = typeof manifest.skills === "string" ? manifest.skills : "";
+  const safeSkills =
+    declaredSkills && !isAbsolute(declaredSkills) && !declaredSkills.split(/[\\/]/).includes("..")
+      ? declaredSkills
+      : "";
+  const skillsPath = safeSkills ? resolve(dir, safeSkills) : join(dir, "skills");
 
   if (!(await isDirectory(skillsPath)) && !manifest.name) return null;
 
