@@ -14,11 +14,12 @@
 
 import { readdir, readFile, stat } from "node:fs/promises";
 import type { Dirent } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import Ajv, { type ErrorObject, type ValidateFunction } from "ajv";
 import { parse as parseYaml } from "yaml";
+
+import { profilesDir, repoRoot } from "./repo-root";
 
 import {
   InheritanceCycle,
@@ -47,27 +48,15 @@ const MAX_INHERITANCE_DEPTH = 3;
 /** Pattern a plugin id must match: <plugin>@<marketplace>. */
 const PLUGIN_PATTERN = /^[a-z0-9][a-z0-9-]*@[a-z0-9][a-z0-9_-]*$/;
 
-/** Resolve repo root: env override first, else walk up from this file. */
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(
-  dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-);
-
-const DEFAULT_PROFILES_DIR = join(REPO_ROOT, "profiles");
-
 /**
- * Roots the loader against a profiles/ tree. Honors `CUE_PROFILES_DIR` (or
- * legacy `SOUL_PROFILES_DIR`) so tests can point at a temp directory without
- * monkey-patching. The schema file always comes from the repo's
- * `profiles/schema.json` — it is the canonical contract and does not move
- * with the data root.
+ * The schema file is the canonical contract and does NOT move with the data
+ * root (`CUE_PROFILES_DIR`) — it always lives at `<repoRoot>/profiles/schema.json`.
+ * repoRoot()/profilesDir() are lazy (see ./repo-root) so tests can point at a
+ * temp tree via env without monkey-patching module-level state.
  */
-function profilesDir(): string {
-  return process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? DEFAULT_PROFILES_DIR;
+function schemaPath(): string {
+  return join(repoRoot(), "profiles", "schema.json");
 }
-
-const SCHEMA_PATH = join(DEFAULT_PROFILES_DIR, "schema.json");
 
 // ---------------------------------------------------------------------------
 // Ajv validator (lazy singleton)
@@ -76,8 +65,15 @@ const SCHEMA_PATH = join(DEFAULT_PROFILES_DIR, "schema.json");
 let _validator: ValidateFunction | null = null;
 
 async function getValidator(): Promise<ValidateFunction> {
+  // The compiled validator is pinned at first call. `schemaPath()` is lazy, but
+  // this singleton is NOT invalidated when CUE_REPO_ROOT changes afterward — a
+  // test that points at a fixture tree with a *different* schema.json via
+  // CUE_REPO_ROOT would still validate against the first-compiled schema. The
+  // schema is the canonical contract and does not move with the data dir
+  // (CUE_PROFILES_DIR), so this is intentional; if per-test schemas are ever
+  // needed, store the compiled schema's path and null-reset on mismatch.
   if (_validator) return _validator;
-  const schemaText = await readFile(SCHEMA_PATH, "utf8");
+  const schemaText = await readFile(schemaPath(), "utf8");
   const schema = JSON.parse(schemaText);
   const ajv = new Ajv({ allErrors: true, strict: false, useDefaults: false });
   _validator = ajv.compile(schema);

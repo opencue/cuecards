@@ -15,16 +15,12 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { access } from "node:fs/promises";
 import { join } from "node:path";
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 
 import { loadProfile } from "./profile-loader";
 import { detectConflicts, suggestResolutions, type Conflict, type Resolution } from "./conflict-detector";
 import { scoreSkills } from "./skill-scorer";
+import { profilesDir } from "./repo-root";
 import type { NpxSkillRef } from "../../profiles/_types";
-
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
 
 // Rough token cost per skill / MCP, used only for the size indicator in the
 // preview. Not a real tokenizer — a knob to flag "this profile loads a lot".
@@ -401,7 +397,7 @@ export async function writeMergedProfile(
   yaml: string,
   opts: { force?: boolean; profilesDir?: string } = {},
 ): Promise<string> {
-  const dir = join(opts.profilesDir ?? PROFILES_DIR, name);
+  const dir = join(opts.profilesDir ?? profilesDir(), name);
   const path = join(dir, "profile.yaml");
   if (!opts.force && (await pathExists(path))) {
     throw new MergedProfileExists(path);
