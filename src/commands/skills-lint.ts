@@ -12,13 +12,12 @@
  */
 
 import { readFileSync, existsSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { listAllSkillIds } from "../lib/resolver-local";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 interface LintIssue {
   code: string;

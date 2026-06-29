@@ -3,19 +3,18 @@
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot as cueRepoRoot } from "./repo-root";
 
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 function getSkillsRoot(): string {
-  const root = process.env.CUE_REPO_ROOT ?? REPO_ROOT;
+  const root = process.env.CUE_REPO_ROOT ?? cueRepoRoot();
   return join(root, "resources", "skills", "skills");
 }
 
 function getRepoRoot(): string {
-  return process.env.CUE_REPO_ROOT ?? REPO_ROOT;
+  return process.env.CUE_REPO_ROOT ?? cueRepoRoot();
 }
 
 interface ScoreBreakdown {

@@ -14,16 +14,15 @@
  */
 
 import { readFileSync, } from "node:fs";
-import { join, resolve, dirname, isAbsolute } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join, isAbsolute } from "node:path";
 import { homedir } from "node:os";
 
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import type { ResolvedProfile } from "../../profiles/_types";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const EVALS_ROOT = join(REPO_ROOT, "resources", "evals");
+const EVALS_ROOT = join(repoRoot(), "resources", "evals");
 
 const bold = (s: string) => `\x1b[1m${s}\x1b[0m`;
 const green = (s: string) => `\x1b[32m${s}\x1b[0m`;

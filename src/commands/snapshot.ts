@@ -4,13 +4,12 @@
  */
 
 import { writeFileSync, readFileSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 export async function run(args: string[]): Promise<number> {
   const sub = args[0];
@@ -79,7 +78,7 @@ async function cmdRestore(args: string[]): Promise<number> {
     return 1;
   }
 
-  const profileDir = join(REPO_ROOT, "profiles", snapshot.profile.name);
+  const profileDir = join(repoRoot(), "profiles", snapshot.profile.name);
   const { mkdirSync } = require("node:fs");
   mkdirSync(profileDir, { recursive: true });
 

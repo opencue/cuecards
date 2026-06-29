@@ -15,21 +15,15 @@ import {
 } from "node:fs/promises";
 import type { Dirent } from "node:fs";
 import { homedir } from "node:os";
-import {
-  dirname,
-  join,
-  relative,
-  resolve,
-  sep,
-} from "node:path";
+import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { parse as parseYaml } from "yaml";
 
 import type { NpxSkillRef, Profile } from "../../profiles/_types";
+import { repoRoot as cueRepoRoot } from "./repo-root";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(HERE, "..", "..");
 
 export type SkillOrigin = "local" | "npx" | "plugin";
 
@@ -317,11 +311,11 @@ const STOP_WORDS = new Set([
   "with",
 ]);
 
-export function defaultProfilesDir(repoRoot = REPO_ROOT): string {
+export function defaultProfilesDir(repoRoot = cueRepoRoot()): string {
   return process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(repoRoot, "profiles");
 }
 
-export function defaultSkillsRoot(repoRoot = REPO_ROOT): string {
+export function defaultSkillsRoot(repoRoot = cueRepoRoot()): string {
   return join(repoRoot, "resources", "skills", "skills");
 }
 
@@ -332,7 +326,7 @@ export function validateProfileName(name: string): boolean {
 export async function scanInstalledSkills(
   options: ScanOptions = {},
 ): Promise<ScanResult> {
-  const repoRoot = options.repoRoot ?? REPO_ROOT;
+  const repoRoot = options.repoRoot ?? cueRepoRoot();
   const diagnostics: string[] = [];
   const skills: DiscoveredSkill[] = [];
 

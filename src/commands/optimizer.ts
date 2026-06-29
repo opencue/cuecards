@@ -8,18 +8,17 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 
 import { listProfiles } from "../lib/profile-loader";
 import { isKittyTerminal, transmitKittyImage, kittyPlaceholderLabel } from "../lib/kitty-image";
 import { getSkillIcon, getMcpIcon, getRepoIcon, getCliIcon } from "../lib/brand-icons";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const HOME_SKILLS = join(homedir(), ".claude", "skills");
 
 // ---------------------------------------------------------------------------
