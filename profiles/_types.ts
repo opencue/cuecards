@@ -20,7 +20,10 @@ export interface SkillCondition {
 // String form is sugar for { id: string }. The object form accepts an optional
 // `when:` condition (same shape as skills) so a server only activates when the
 // cwd/env warrants it — keeping per-profile MCP schema cost off until needed.
-export type MCPRef = string | (AgentScoped & { id: string; when?: SkillCondition });
+// `pin: true` marks an MCP the agent uses directly (not via a skill), so the
+// launcher's smart-prune never drops it. `when:` gates activation on a cwd/env
+// condition. Both are independent and may combine.
+export type MCPRef = string | (AgentScoped & { id: string; pin?: boolean; when?: SkillCondition });
 
 export type SkillRef = string | (AgentScoped & { id: string; when?: SkillCondition });
 
@@ -151,7 +154,7 @@ export interface PersonaRoutingEntry {
 }
 
 // In the resolved (post-inherit) form every ref is normalized to its object shape.
-export interface ResolvedMCP { id: string; agents?: AgentKind[]; when?: SkillCondition; }
+export interface ResolvedMCP { id: string; agents?: AgentKind[]; pin?: boolean; when?: SkillCondition; }
 export interface ResolvedSkill { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 

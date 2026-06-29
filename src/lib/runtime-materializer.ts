@@ -8,7 +8,8 @@
  */
 
 import { createHash } from "node:crypto";
-import net from "node:net";
+import http from "node:http";
+import https from "node:https";
 import { mkdir, rename, rm, symlink, writeFile, readFile, mkdtemp, readdir, lstat } from "node:fs/promises";
 import { dirname, join, resolve as resolvePath, basename, isAbsolute } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -55,6 +56,10 @@ export interface MaterializeInput {
   userClaudeMd: string;
   /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
   credentialsSource?: string;
+  /** Lazy-MCP: ids the launcher disabled — removed from the runtime .claude.json
+   *  even though the rebuild preserves the old file. Profile.mcps is already
+   *  pruned to the kept set; this just evicts the stale keys. */
+  disabledMcpIds?: string[];
 }
 
 export interface MaterializeOutput {
@@ -219,7 +224,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
         await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
       }
       if (agent === "claude-code") {
-        await syncMcpsIntoClaudeJson(runtimeDir, mcpServers);
+        await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
       }
       return { runtimeDir, rebuilt: false, hash };
     }
@@ -798,7 +803,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   await rename(tmpDir, runtimeDir);
 
   if (agent === "claude-code") {
-    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers);
+    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
   }
 
   return { runtimeDir, rebuilt: true, hash };
@@ -866,6 +871,7 @@ function collectProfileMcps(
 async function syncMcpsIntoClaudeJson(
   runtimeDir: string,
   mcpServers: Record<string, McpServerConfig>,
+  disabledIds: string[] = [],
 ): Promise<void> {
   const target = join(runtimeDir, ".claude.json");
   let parsed: Record<string, unknown> = {};
@@ -882,7 +888,24 @@ async function syncMcpsIntoClaudeJson(
     if (code !== undefined && code !== "ENOENT") return;
   }
   const existing = (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
-  parsed.mcpServers = { ...existing, ...mcpServers };
+  const merged: Record<string, unknown> = { ...existing, ...mcpServers };
+
+  // Lazy-MCP removal: the rebuild preserves the OLD runtime's .claude.json
+  // (session/auth state) and we merge additively onto it — so an MCP the user
+  // disabled would otherwise linger across launches. Delete exactly the ids the
+  // launcher disabled (case-insensitive), and only those, so user-added MCPs
+  // are never touched.
+  if (disabledIds.length > 0) {
+    const drop = new Set(disabledIds.map((id) => id.toLowerCase()));
+    // Never evict a key that's part of the current (kept) set — a kept MCP can't
+    // also be disabled. Keeps removal strictly to dropped ids.
+    const kept = new Set(Object.keys(mcpServers).map((k) => k.toLowerCase()));
+    for (const key of Object.keys(merged)) {
+      const lower = key.toLowerCase();
+      if (drop.has(lower) && !kept.has(lower)) delete merged[key];
+    }
+  }
+  parsed.mcpServers = merged;
 
   // Replace whatever's there (symlink or stale file) with a real file copy.
   await rm(target, { force: true });
@@ -1079,18 +1102,17 @@ export async function linkPluginCache(targetDir: string, sourceDir: string): Pro
 }
 
 /**
- * Parse a loopback proxy target from a URL. Returns {host, port} only for
- * loopback hosts (127.0.0.1 / ::1 / localhost) — those are the ones we
- * health-gate; any other host is treated as a managed remote and left alone.
+ * Parse a loopback proxy URL. Returns a URL only for loopback hosts
+ * (127.0.0.1 / ::1 / localhost) — those are the ones we health-gate; any other
+ * host is treated as a managed remote and left alone.
  */
-function parseLoopbackHostPort(rawUrl: string): { host: string; port: number } | null {
+function parseLoopbackProxyUrl(rawUrl: string): URL | null {
   try {
     const u = new URL(rawUrl);
     const host = u.hostname;
     if (host !== "127.0.0.1" && host !== "::1" && host !== "localhost") return null;
-    const port = u.port ? Number(u.port) : u.protocol === "https:" ? 443 : 80;
-    if (!Number.isFinite(port) || port <= 0) return null;
-    return { host, port };
+    if (u.protocol !== "http:" && u.protocol !== "https:") return null;
+    return u;
   } catch {
     return null;
   }
@@ -1099,28 +1121,31 @@ function parseLoopbackHostPort(rawUrl: string): { host: string; port: number } |
 /**
  * Whether a proxy base URL should be applied to settings.json. Non-loopback
  * URLs are always "reachable" (not gated — assumed deliberately managed). A
- * loopback URL is reachable only if a TCP connect to its host:port succeeds
- * within `timeoutMs` — a fast, dependency-free liveness probe so the
- * materializer never writes a base URL that would brick Claude when the local
- * proxy (e.g. the headroom compression wrap) is down.
+ * loopback URL is reachable only if its HTTP `/health` endpoint returns 2xx
+ * within `timeoutMs`. A raw TCP connect is not enough: a saturated proxy may
+ * accept sockets while timing out or returning 503 to Claude traffic.
  */
 async function isProxyReachable(rawUrl: string, timeoutMs = 400): Promise<boolean> {
-  const target = parseLoopbackHostPort(rawUrl);
-  if (!target) return true;
+  const baseUrl = parseLoopbackProxyUrl(rawUrl);
+  if (!baseUrl) return true;
+  const healthUrl = new URL("/health", baseUrl);
   return await new Promise<boolean>((resolveProbe) => {
-    const socket = new net.Socket();
+    const client = healthUrl.protocol === "https:" ? https : http;
     let settled = false;
     const finish = (ok: boolean): void => {
       if (settled) return;
       settled = true;
-      socket.destroy();
       resolveProbe(ok);
     };
-    socket.setTimeout(timeoutMs);
-    socket.once("connect", () => finish(true));
-    socket.once("timeout", () => finish(false));
-    socket.once("error", () => finish(false));
-    socket.connect(target.port, target.host);
+    const req = client.get(healthUrl, (res) => {
+      res.resume();
+      finish((res.statusCode ?? 0) >= 200 && (res.statusCode ?? 0) < 300);
+    });
+    req.setTimeout(timeoutMs, () => {
+      req.destroy();
+      finish(false);
+    });
+    req.once("error", () => finish(false));
   });
 }
 

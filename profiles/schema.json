@@ -109,11 +109,11 @@
       "items": {
         "oneOf": [
           { "type": "string", "minLength": 1 },
-          { "$ref": "#/$defs/ConditionalRef" }
+          { "$ref": "#/$defs/McpRef" }
         ]
       },
       "default": [],
-      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts a plain string or a {id, agents?, when?} object — `when:` gates the server so it only activates when its cwd/env condition holds."
+      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts a plain string or a {id, agents?, when?, pin?} object — `when:` gates activation on a cwd/env condition; `pin: true` keeps the server through smart-prune (used directly by the agent, not via a skill)."
     },
     "plugins": {
       "type": "array",
@@ -239,7 +239,7 @@
       "type": "object",
       "required": ["id"],
       "additionalProperties": false,
-      "description": "Agent-scoped ref with an optional `when:` activation gate. Used for skills and MCP servers so an entry only materializes when its cwd/env condition holds.",
+      "description": "Agent-scoped ref with an optional `when:` activation gate. Used for skills so an entry only materializes when its cwd/env condition holds.",
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "agents": {
@@ -247,6 +247,24 @@
           "items": { "$ref": "#/$defs/AgentKind" }
         },
         "when": { "$ref": "#/$defs/SkillCondition" }
+      }
+    },
+    "McpRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "description": "MCP server ref: optional `when:` activation gate plus `pin:` (smart-prune always keeps it).",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        },
+        "when": { "$ref": "#/$defs/SkillCondition" },
+        "pin": {
+          "type": "boolean",
+          "description": "When true, the launcher's smart-prune always keeps this MCP loaded (used by the agent directly, not via a skill)."
+        }
       }
     },
     "AgentScopedPluginRef": {
