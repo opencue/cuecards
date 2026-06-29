@@ -6,15 +6,14 @@
  */
 
 import { watch, existsSync, } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {
@@ -84,7 +83,7 @@ Press Ctrl+C to stop.
   let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   const rematerialize = async (changedPath: string) => {
-    const rel = changedPath.replace(REPO_ROOT + "/", "");
+    const rel = changedPath.replace(repoRoot() + "/", "");
     process.stdout.write(`[watch] Detected change in ${rel} → rematerializing...\n`);
     try {
       const { materializeRuntime } = await import("../lib/runtime-materializer");

@@ -3,16 +3,15 @@
  */
 
 import { readFile, writeFile } from "node:fs/promises";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import * as p from "@clack/prompts";
 
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { loadProfile } from "../lib/profile-loader";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 const ICONS = [
   "🐻", "🦋", "🦜", "🦉", "🐺", "🦚", "🐝", "🐆", "🐢", "🦄",
@@ -28,7 +27,7 @@ export async function run(args: string[]): Promise<number> {
     return 1;
   }
 
-  const profilesDir = process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
+  const profilesDir = process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(repoRoot(), "profiles");
   const yamlPath = join(profilesDir, profileName, "profile.yaml");
 
   let text: string;

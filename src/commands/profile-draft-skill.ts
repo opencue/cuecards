@@ -21,15 +21,14 @@
 
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { clusterByKeywords, type ClusterItem } from "../lib/cluster-skills";
 import { readEvents, } from "../lib/analytics";
 import { findRealClaudeBin } from "../lib/claude-binary";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const FIRST_PROMPTS_DIR = join(
   process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
   "cue", "first-prompts",
@@ -210,7 +209,7 @@ Output: draft SKILL.md files under .cue-skill-drafts/<slug>/ for manual review.
   const minSize = minSizeIdx >= 0 ? parseInt(args[minSizeIdx + 1] ?? "3", 10) : 3;
   const outIdx = args.indexOf("--out");
   const outDir = outIdx >= 0 && args[outIdx + 1] ? args[outIdx + 1]!
-    : join(REPO_ROOT, ".cue-skill-drafts");
+    : join(repoRoot(), ".cue-skill-drafts");
   const dryRun = args.includes("--dry-run");
   const noClaude = args.includes("--no-claude");
 

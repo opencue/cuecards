@@ -15,21 +15,20 @@
  * cost-per-message and the score now use perMessage so they reflect reality.
  */
 
-import { resolve, join, dirname, isAbsolute } from "node:path";
+import { join, isAbsolute } from "node:path";
 import { readFileSync, } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { homedir } from "node:os";
 
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { computeStats } from "../lib/analytics";
 import type { ResolvedProfile } from "../../profiles/_types";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const RULES_ROOT = join(REPO_ROOT, "resources", "rules");
-const COMMANDS_ROOT = join(REPO_ROOT, "resources", "commands");
-const HOOKS_ROOT = join(REPO_ROOT, "resources", "hooks");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const RULES_ROOT = join(repoRoot(), "resources", "rules");
+const COMMANDS_ROOT = join(repoRoot(), "resources", "commands");
+const HOOKS_ROOT = join(repoRoot(), "resources", "hooks");
 
 // Approximate fixed per-message cost of one hook entry in settings.json
 // (matcher + command path + description). Hook scripts themselves never enter

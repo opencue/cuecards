@@ -6,13 +6,12 @@
  */
 
 import { readFileSync, existsSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot } from "./repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 function getSkillsRoot(): string {
-  const root = process.env.CUE_REPO_ROOT ?? REPO_ROOT;
+  const root = process.env.CUE_REPO_ROOT ?? repoRoot();
   return join(root, "resources", "skills", "skills");
 }
 

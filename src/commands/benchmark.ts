@@ -12,13 +12,11 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { homedir } from "node:os";
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import { parse as parseYaml } from "yaml";
 
 import { resolveActiveProfile } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 interface BenchmarkResult {
   profile: string;
@@ -154,7 +152,7 @@ function scanSessions(profileName: string): BenchmarkResult {
 
   // Load profile to find unused skills
   try {
-    const profilePath = join(REPO_ROOT, "profiles", profileName, "profile.yaml");
+    const profilePath = join(repoRoot(), "profiles", profileName, "profile.yaml");
     if (existsSync(profilePath)) {
       const prof = parseYaml(readFileSync(profilePath, "utf8"));
       const declared = (prof.skills?.local ?? []).map((s: string | { id: string }) =>
@@ -226,7 +224,7 @@ Metrics:
   }
 
   if (all) {
-    const profilesDir = join(REPO_ROOT, "profiles");
+    const profilesDir = join(repoRoot(), "profiles");
     const profiles = readdirSync(profilesDir)
       .filter(d => !d.startsWith("_") && existsSync(join(profilesDir, d, "profile.yaml")));
 

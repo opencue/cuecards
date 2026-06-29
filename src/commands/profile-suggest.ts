@@ -10,8 +10,7 @@
  */
 
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { parse as parseYaml } from "yaml";
@@ -23,15 +22,15 @@ import {
   type ClusterItem,
 } from "../lib/cluster-skills";
 import { loadProfile } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
 import {
   computeContextBudget,
   resolveContextWindow,
   splitSkillBytes,
 } from "../lib/token-budget";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = join(REPO_ROOT, "profiles");
-const SKILLS_DIR = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = join(repoRoot(), "profiles");
+const SKILLS_DIR = join(repoRoot(), "resources", "skills", "skills");
 const DISCOVER_CACHE = join(
   process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
   "cue", "discover", "gems.json",

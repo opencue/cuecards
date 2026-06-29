@@ -11,15 +11,14 @@
 
 import { resolve, join, dirname } from "node:path";
 import { existsSync, readFileSync, lstatSync, readlinkSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { homedir } from "node:os";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
 const RUNTIME_ROOT = join(homedir(), ".config", "cue", "runtime");
 
 export async function run(args: string[]): Promise<number> {
@@ -119,7 +118,7 @@ export async function run(args: string[]): Promise<number> {
   }
 
   // 4b. Rules / Commands / Hooks
-  const RESOURCES_ROOT = join(REPO_ROOT, "resources");
+  const RESOURCES_ROOT = join(repoRoot(), "resources");
   let resourceIssues = 0;
   for (const [kind, refs, base] of [
     ["Rules", profile.rules, join(RESOURCES_ROOT, "rules")],

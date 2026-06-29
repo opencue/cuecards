@@ -18,7 +18,6 @@
 import { readFileSync, existsSync, lstatSync, readlinkSync, readdirSync } from "node:fs";
 import { readFile, writeFile, rm } from "node:fs/promises";
 import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 import { listProfiles, loadProfile } from "../lib/profile-loader";
@@ -28,12 +27,12 @@ import { detectMissingDependencies } from "../lib/skill-dependencies";
 import { shimInstalled, runInstall } from "./shell";
 import { findRealClaudeBin } from "../lib/claude-binary";
 import { homedir } from "node:os";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
-const QUALITY_GATES_DIR = join(REPO_ROOT, "resources", "quality-gates");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
+const QUALITY_GATES_DIR = join(repoRoot(), "resources", "quality-gates");
 const RUNTIME_ROOT = join(process.env.HOME ?? "~", ".config", "cue", "runtime");
 
 interface Issue {
@@ -555,7 +554,7 @@ async function runCliDoctor(profileName: string | null, json: boolean): Promise<
   }
 
   // Load the optimizer's CLI extraction logic
-  const SKILLS_ROOT_PATH = join(REPO_ROOT, "resources", "skills", "skills");
+  const SKILLS_ROOT_PATH = join(repoRoot(), "resources", "skills", "skills");
   const HOME_SKILLS_PATH = join(process.env.HOME ?? "~", ".claude", "skills");
 
   // Load profile to get skills

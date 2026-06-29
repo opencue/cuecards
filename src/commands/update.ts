@@ -4,10 +4,9 @@
 
 import { spawnSync } from "node:child_process";
 import { existsSync, } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 interface UpdateResult {
   repo: string;
@@ -16,7 +15,7 @@ interface UpdateResult {
 }
 
 function gitPull(dir: string): UpdateResult {
-  const name = dir === REPO_ROOT ? "cue" : dir.split("/").pop()!;
+  const name = dir === repoRoot() ? "cue" : dir.split("/").pop()!;
 
   if (!existsSync(join(dir, ".git"))) {
     return { repo: name, updated: false, changes: "not a git repo" };
@@ -51,16 +50,16 @@ export async function run(args: string[]): Promise<number> {
 
   const repos: string[] = [];
 
-  if (!skillsOnly) repos.push(REPO_ROOT);
-  repos.push(join(REPO_ROOT, "resources", "skills"));
-  repos.push(join(REPO_ROOT, "resources", "mcps"));
+  if (!skillsOnly) repos.push(repoRoot());
+  repos.push(join(repoRoot(), "resources", "skills"));
+  repos.push(join(repoRoot(), "resources", "mcps"));
 
   if (check) {
     // Just show what would change
     process.stdout.write("Checking for updates...\n\n");
     for (const dir of repos) {
       if (!existsSync(join(dir, ".git"))) continue;
-      const name = dir === REPO_ROOT ? "cue" : dir.split("/").pop()!;
+      const name = dir === repoRoot() ? "cue" : dir.split("/").pop()!;
       const res = spawnSync("git", ["log", "HEAD..@{u}", "--oneline"], { cwd: dir, encoding: "utf8" });
       spawnSync("git", ["fetch", "--quiet"], { cwd: dir, encoding: "utf8", timeout: 15000 });
       const pending = res.stdout.trim();
@@ -91,7 +90,7 @@ export async function run(args: string[]): Promise<number> {
   // Run bun install if package.json changed
   if (!skillsOnly && results[0]?.updated) {
     process.stdout.write("\n  Running bun install...\n");
-    const bunRes = spawnSync("bun", ["install"], { cwd: REPO_ROOT, encoding: "utf8", timeout: 30000 });
+    const bunRes = spawnSync("bun", ["install"], { cwd: repoRoot(), encoding: "utf8", timeout: 30000 });
     if (bunRes.status === 0) {
       process.stdout.write("  ✅ Dependencies updated\n");
     } else {

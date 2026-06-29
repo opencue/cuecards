@@ -31,10 +31,10 @@
  */
 
 import { readFile } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { ProfileError, type ResolvedProfile } from "../../profiles/_types";
+import { repoRoot } from "./repo-root";
 
 // ---------------------------------------------------------------------------
 // Errors
@@ -72,13 +72,8 @@ export class UnresolvedEnvPlaceholder extends ProfileError {
 // ---------------------------------------------------------------------------
 
 /** Resolve repo root: env override first, else walk up from this file. */
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(
-  dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-);
 
-const DEFAULT_CONFIGS_ROOT = join(REPO_ROOT, "resources", "mcps", "configs");
+const DEFAULT_CONFIGS_ROOT = join(repoRoot(), "resources", "mcps", "configs");
 
 export interface MaterializeOptions {
   /**

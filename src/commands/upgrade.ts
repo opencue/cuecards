@@ -7,13 +7,12 @@
 
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join, dirname } from "node:path";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const REGISTRY_PATH = join(REPO_ROOT, "docs", "registry", "index.json");
+const REGISTRY_PATH = join(repoRoot(), "docs", "registry", "index.json");
 const REGISTRY_URL = "https://opencue.github.io/cue/registry/index.json";
-const UPGRADE_STATE = join(REPO_ROOT, "profiles", "_cache", "last-upgrade.json");
+const UPGRADE_STATE = join(repoRoot(), "profiles", "_cache", "last-upgrade.json");
 
 interface RegistrySkill {
   id: string; name: string; description: string;

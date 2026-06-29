@@ -30,6 +30,7 @@ import {
 } from "../lib/runtime-install";
 import { resolveLocalSkill } from "../lib/resolver-local";
 import { run as cliRun } from "./cli";
+import { repoRoot } from "../lib/repo-root";
 
 type AnyAgent = AgentKind;
 
@@ -73,9 +74,8 @@ interface RepoArgs {
   force: boolean;
 }
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(import.meta.dirname, "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const BYTE_CEILING = 160_000;
 
 function bold(s: string): string { return `\x1b[1m${s}\x1b[0m`; }
