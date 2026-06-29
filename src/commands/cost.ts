@@ -20,13 +20,26 @@ import {
   type McpEstimate,
 } from "../lib/mcp-token-estimate";
 
-/** Parse `--budget N` / `--budget=N`. Returns 0 (gate off) when absent/invalid. */
-function parseBudget(args: string[]): number {
+/**
+ * Parse `--budget N` / `--budget=N`. Returns the value (0 = gate off when
+ * absent/invalid) and the arg index the value was consumed from (-1 for the
+ * `=` form or none), so the caller can exclude a space-separated value from
+ * profile-name detection — `Number("0")||0` is falsy, so matching by string
+ * would misread `--budget 0 myprofile` as profile "0".
+ */
+function parseBudget(args: string[]): { value: number; valueIdx: number } {
+  const toNum = (raw: string): number => {
+    const n = Number(raw);
+    return Number.isFinite(n) ? Math.max(0, n) : 0;
+  };
   const eq = args.find((a) => a.startsWith("--budget="));
-  if (eq) return Math.max(0, Number(eq.slice("--budget=".length)) || 0);
+  if (eq) return { value: toNum(eq.slice("--budget=".length)), valueIdx: -1 };
   const i = args.indexOf("--budget");
-  if (i >= 0 && args[i + 1]) return Math.max(0, Number(args[i + 1]) || 0);
-  return 0;
+  // The value must be a number; a following flag (e.g. `--budget --json`) is not.
+  if (i >= 0 && i + 1 < args.length && !args[i + 1].startsWith("-")) {
+    return { value: toNum(args[i + 1]), valueIdx: i + 1 };
+  }
+  return { value: 0, valueIdx: -1 };
 }
 
 // Expand wildcard (*/*) to all actual skill IDs on disk.
@@ -58,9 +71,9 @@ function expandSkillIds(ids: string[]): string[] {
 const BASE_CLAUDE_MD_TOKENS = 7000;
 
 async function runCompare(json: boolean, budget: number): Promise<number> {
-  const mcpCache: Record<string, McpEstimate> = loadMcpEstimates();
+  const mcpCache = loadMcpEstimates();
   const profiles = await listProfiles();
-  const results: { name: string; skills: number; mcps: number; tokens: number; cost100: string }[] = [];
+  const results: { name: string; skills: number; mcps: number; tokens: number; cost100: string; over_budget?: boolean }[] = [];
 
   for (const name of profiles) {
     try {
@@ -87,7 +100,12 @@ async function runCompare(json: boolean, budget: number): Promise<number> {
   results.sort((a, b) => a.tokens - b.tokens);
 
   // The budget gate applies to both human and --json output so CI can use either.
-  const overBudget = budget > 0 ? results.filter((r) => budgetExceeded(r.tokens, budget)) : [];
+  // Annotate each row with over_budget (when a budget is set) so a --json consumer
+  // can identify which profiles tripped the gate, not just read the exit code.
+  if (budget > 0) {
+    for (const r of results) r.over_budget = budgetExceeded(r.tokens, budget);
+  }
+  const overBudget = results.filter((r) => r.over_budget);
 
   if (json) {
     process.stdout.write(JSON.stringify(results, null, 2) + "\n");
@@ -125,10 +143,10 @@ async function runCompare(json: boolean, budget: number): Promise<number> {
 export async function run(args: string[]): Promise<number> {
   const json = args.includes("--json");
   const compare = args.includes("--compare");
-  const budget = parseBudget(args);
-  // A bare `--budget N` value must not be mistaken for the profile name.
-  const budgetValue = budget > 0 ? String(budget) : null;
-  let profileName = args.find(a => !a.startsWith("-") && a !== budgetValue);
+  // A space-separated `--budget N` consumes args[valueIdx]; exclude that exact
+  // index from profile-name detection (string-matching breaks when N is "0").
+  const { value: budget, valueIdx: budgetValueIdx } = parseBudget(args);
+  let profileName = args.find((a, idx) => !a.startsWith("-") && idx !== budgetValueIdx);
 
   if (compare) {
     return runCompare(json, budget);

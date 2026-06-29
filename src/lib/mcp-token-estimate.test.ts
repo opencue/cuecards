@@ -87,3 +87,19 @@ describe("loadMcpEstimates", () => {
     }
   });
 });
+
+describe("mcpServerTokens malformed-entry guard (L2)", () => {
+  test("non-numeric tools/tokens fall through to flagged unknown, never NaN", () => {
+    const bad = {
+      strTools: { tools: "x" as unknown as number, source: "estimate" as const },
+      strTokens: { tokens: "y" as unknown as number, source: "probed" as const },
+    };
+    for (const id of Object.keys(bad)) {
+      const r = mcpServerTokens(id, bad);
+      expect(Number.isFinite(r.tokens), id).toBe(true);
+      expect(r.source, id).toBe("unknown");
+    }
+    // and a sum stays finite
+    expect(Number.isFinite(sumMcpTokens(Object.keys(bad), bad).total)).toBe(true);
+  });
+});
