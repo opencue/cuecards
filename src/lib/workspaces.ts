@@ -11,6 +11,8 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync, } from "node:fs";
 import { join, dirname } from "node:path";
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
 
+import { profilesDir } from "./repo-root";
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -33,15 +35,12 @@ export interface WorkspacesConfig {
 // Paths
 // ---------------------------------------------------------------------------
 
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ??
-  join(process.env.CUE_REPO_ROOT ?? join(import.meta.dir, "..", ".."), "profiles");
-
 function configBase(): string {
   return process.env.XDG_CONFIG_HOME ?? join(process.env.HOME ?? "~", ".config");
 }
 
 function workspacesPath(profileName: string): string {
-  return join(PROFILES_DIR, profileName, "workspaces.yaml");
+  return join(profilesDir(), profileName, "workspaces.yaml");
 }
 
 function activeWorkspacePath(profileName: string): string {

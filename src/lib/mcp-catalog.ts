@@ -16,19 +16,10 @@
 
 import { readFileSync } from "node:fs";
 import { readFile, writeFile, access } from "node:fs/promises";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolve, join } from "node:path";
 
-function repoRoot(): string {
-  return (
-    process.env.CUE_REPO_ROOT ??
-    process.env.SOUL_REPO_ROOT ??
-    resolve(dirname(fileURLToPath(import.meta.url)), "..", "..")
-  );
-}
-function profilesDir(): string {
-  return process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
-}
+import { profilesDir, repoRoot } from "./repo-root";
+
 function configsDir(): string {
   return join(repoRoot(), "resources", "mcps", "configs");
 }
