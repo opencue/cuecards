@@ -1,0 +1,13 @@
+{
+  "$comment": "Always-on token-cost estimates per MCP server, consumed by `cue cost`. Tool counts here are ESTIMATES observed from a live session's tool registry, not measured schema bytes — they end the old ~50x undercount but are not authoritative. Run `cue cost --probe-mcp` to write measured numbers to $CUE_CONFIG/mcp-token-estimates.json (which overrides this seed per id, source: probed). Servers with no entry fall back to a flagged `unknown` default. This file lives in the parent repo, NOT the resources/mcps submodule.",
+  "codegraph": { "tools": 9, "source": "estimate" },
+  "context7": { "tools": 2, "source": "estimate" },
+  "headroom": { "tools": 3, "source": "estimate" },
+  "cue-dashboard": { "tools": 14, "source": "estimate" },
+  "lightpanda": { "tools": 21, "source": "estimate" },
+  "colony": { "tools": 24, "source": "estimate" },
+  "dataforseo": { "tools": 22, "source": "estimate" },
+  "gbrain": { "tools": 57, "source": "estimate" },
+  "cue-tty-watch": { "tools": 10, "source": "estimate" },
+  "higgsfield": { "tools": 70, "source": "estimate", "note": "http transport — --probe-mcp cannot measure without live auth; count is session-observed" }
+}
