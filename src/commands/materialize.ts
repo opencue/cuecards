@@ -13,16 +13,15 @@
  */
 
 import { readFileSync, existsSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { getAdapter, AGENT_IDS, } from "../lib/agent-adapters";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
 
 function loadSkillContent(id: string): { id: string; content: string } | null {
   const path = join(SKILLS_ROOT, id, "SKILL.md");

@@ -6,14 +6,13 @@
  */
 
 import { writeFileSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { homedir } from "node:os";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {
@@ -67,7 +66,7 @@ Options:
 }
 
 function extractCliDeps(profile: { skills: { local: { id: string }[] } }): string[] {
-  const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+  const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
   const { readFileSync } = require("node:fs");
   const clis = new Set<string>();
 

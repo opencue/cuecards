@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-29
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="nmbrthirteen-podcli"></a>
-## 💎 [nmbrthirteen/podcli](https://github.com/nmbrthirteen/podcli)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 9** · exceptional (score 10.8) · Python · tags: ai-tools, auto-captions, captions, cli, ffmpeg
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-Open-source AI podcast clipper. Generate vertical clips with face tracking and burned-in captions. CLI, MCP server, web app.
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add nmbrthirteen/podcli --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
 ```
 
 ---

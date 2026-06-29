@@ -2,21 +2,21 @@
 title: "kerbelp/metatron — Claude Code skill discovered by cue"
 description: "Metatron is a self-hosted system that captures a codebase's real implementation decisions — preferred patterns, rejected approaches, edge cases, internal conven"
 layout: page
-updated: 2026-06-06
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kerbelp/metatron](https://github.com/kerbelp/metatron)
 
-**★ 13** · exceptional (score 10.8) · Python · agentic-ai, agentic-workflow, ai-agent, ai-coding-assistant, ai-tools
+**★ 16** · exceptional (score 10.9) · Python · agentic-ai, agentic-workflow, ai-agent, ai-coding-assistant, ai-tools
 
 > Metatron is a self-hosted system that captures a codebase's real implementation decisions — preferred patterns, rejected approaches, edge cases, internal conventions — as structured priors, and serves them to coding agents over MCP (Model Context Protocol). The goal: an agent writes code like a senior engineer who already knows the codebase
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-06-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 16 stars
+- 🗓️ Last pushed: 2026-06-27
 - 🏷️ Tags: agentic-ai, agentic-workflow, ai-agent, ai-coding-assistant, ai-tools, claude-code, cursor-editor, devtools, llm-tools, mcp, mcp-server, mcp-tools, model-context-protocol, tree-sitter
 
 ## Best fit cue profiles

@@ -12,17 +12,15 @@
  *   2  internal error (uncaught exception, missing dep)
  */
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import { resolve } from "node:path";
 import { COMMANDS, type CommandName } from "./commands/_index";
+import { repoRoot } from "./lib/repo-root";
 
-const HERE = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(HERE, "..");
 
 function readVersion(): string {
   try {
     const pkg = JSON.parse(
-      readFileSync(resolve(REPO_ROOT, "package.json"), "utf8"),
+      readFileSync(resolve(repoRoot(), "package.json"), "utf8"),
     ) as { version?: string };
     return pkg.version ?? "0.0.0";
   } catch {

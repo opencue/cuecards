@@ -2,7 +2,7 @@
 title: "manojkumarjanapati/expense-tracker-mcp-server — Claude Code skill discovered by cue"
 description: "💰 Track your expenses efficiently with this Python-based MCP server, enabling AI assistants to manage and summarize your finances through natural conversation."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-22
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: claude-desktop, fastmcp, jsonrpc2, mcp-inspector, mcp-server, sqlite, uv
 
 ## Best fit cue profiles

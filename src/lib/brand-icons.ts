@@ -9,12 +9,11 @@
  */
 
 import { existsSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot } from "./repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const ICONS_DIR = join(REPO_ROOT, "resources", "icons");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const ICONS_DIR = join(repoRoot(), "resources", "icons");
 
 // Known brand → asset file mappings (skill slug or MCP id → relative icon path)
 const BRAND_ICONS: Record<string, string> = {
@@ -118,12 +117,12 @@ export function getSkillIcon(skillSlug: string): string | null {
 export function getMcpIcon(mcpId: string): string | null {
   // 1. Check MCP_ICONS map
   if (MCP_ICONS[mcpId]) {
-    const p = join(REPO_ROOT, MCP_ICONS[mcpId]!);
+    const p = join(repoRoot(), MCP_ICONS[mcpId]!);
     if (existsSync(p)) return p;
   }
 
   // 2. Check resources/mcps/mcps/<id>/ for any icon
-  const mcpDir = join(REPO_ROOT, "resources", "mcps", "mcps", mcpId);
+  const mcpDir = join(repoRoot(), "resources", "mcps", "mcps", mcpId);
   if (existsSync(mcpDir)) {
     try {
       const { readdirSync } = require("node:fs");

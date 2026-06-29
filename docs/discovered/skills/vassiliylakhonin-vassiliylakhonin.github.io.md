@@ -2,7 +2,7 @@
 title: "vassiliylakhonin/vassiliylakhonin.github.io — Claude Code skill discovered by cue"
 description: "Personal site + AI-readable profile of Vassiliy Lakhonin. I build evidence-discipline tooling for strategic-risk AI agents (Agenda Intelligence: open-source ski"
 layout: page
-updated: 2026-06-17
+updated: 2026-06-27
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-17
+- 🗓️ Last pushed: 2026-06-27
 - 🏷️ Tags: a2a, agenda-intelligence, agent-card, agent-discovery, ai-hiring, github-pages, jekyll, json-resume, llms-txt, mcp-server, personal-website, portfolio, recruiter-agents, sanctions, self-preference-aware, strategic-risk
 
 ## Best fit cue profiles

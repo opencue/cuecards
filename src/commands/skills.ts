@@ -13,8 +13,7 @@
 import { spawnSync } from "node:child_process";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { styleText } from "node:util";
 
 import { parse as parseYaml } from "yaml";
@@ -25,9 +24,8 @@ import { listAllSkillIds } from "../lib/resolver-local";
 import { fetchCompanionFiles, readSourceFile, findIncompleteSkills } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 // ---------------------------------------------------------------------------
 // Skill metadata parsing
@@ -338,6 +336,7 @@ async function cmdRemoveFromProfile(id: string): Promise<number> {
 import * as p from "@clack/prompts";
 import { copyFileSync } from "node:fs";
 import { homedir } from "node:os";
+import { repoRoot } from "../lib/repo-root";
 
 const INSTALL_DIRS = [
   join(homedir(), ".claude", "skills"),
@@ -817,7 +816,12 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     if (!p.isCancel(launch) && launch) {
       p.outro(`Launching claude with profile "${name}"…`);
       const { execSync } = await import("node:child_process");
-      execSync("claude", { stdio: "inherit", env: { ...process.env } });
+      // The profile is already created; this launch is a convenience. A non-zero
+      // exit (incl. the user quitting claude) throws from execSync — swallow it so
+      // the wizard ends cleanly instead of dumping a stack trace.
+      try {
+        execSync("claude", { stdio: "inherit", env: { ...process.env } });
+      } catch { /* claude exited non-zero — nothing to recover */ }
     } else {
       p.outro(`Profile "${name}" created with ${selectedSkills.length} skills. Run \`cue use ${name}\` to activate.`);
     }

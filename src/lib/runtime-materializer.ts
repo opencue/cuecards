@@ -846,6 +846,10 @@ function collectProfileMcps(
   const out: Record<string, McpServerConfig> = {};
   for (const m of profile.mcps) {
     if (!appliesToAgent(m, agent)) continue;
+    // cwd/env gate — a `when:`-conditioned server only activates when its
+    // condition holds, so gated MCPs cost zero schema tokens elsewhere.
+    // Mirrors the conditional-skill guard above.
+    if (m.when && !evaluateCondition(m.when, process.cwd())) continue;
     const reg = registry[m.id];
     if (reg !== undefined) out[m.id] = reg;
   }
@@ -868,10 +872,14 @@ async function syncMcpsIntoClaudeJson(
   try {
     const raw = await readFile(target, "utf8"); // follows symlink
     parsed = JSON.parse(raw);
-  } catch {
-    // missing or unreadable — start with an empty doc; claude will fill the
-    // rest on next startup. If the file isn't valid JSON we'd lose state, but
-    // claude itself would also fail to read it, so a clean rewrite is fine.
+  } catch (err) {
+    // A missing file (ENOENT) or invalid JSON is fine to start fresh from —
+    // claude would also fail to read a corrupt file, so a clean rewrite loses
+    // nothing. But a TRANSIENT read error (EMFILE/EACCES on an existing, valid
+    // file) must NOT trigger a stub rewrite that wipes session/auth state — bail
+    // and leave .claude.json untouched this launch.
+    const code = (err as NodeJS.ErrnoException)?.code;
+    if (code !== undefined && code !== "ENOENT") return;
   }
   const existing = (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
   parsed.mcpServers = { ...existing, ...mcpServers };

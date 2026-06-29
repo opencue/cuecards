@@ -1,20 +1,36 @@
+<div align="center">
+
 # cuecards
 
 **Give your AI coding agent the right context for every project — and nothing else.**
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/hero.svg" alt="cuecards — agent profile manager for Claude Code and Codex" width="820">
+</p>
+
+<p align="center">
+  <a href="https://github.com/opencue/cuecards/stargazers"><img src="https://img.shields.io/github/stars/opencue/cuecards?style=for-the-badge&logo=github&label=%E2%AD%90%20Star%20this%20repo&color=yellow" alt="Star cuecards on GitHub"></a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/v/cue-ai?style=for-the-badge&logo=npm&logoColor=white&label=npm&color=cb3837" alt="npm version"></a>
+  &nbsp;
+  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/dw/cue-ai?style=for-the-badge&label=downloads&color=2b3137" alt="npm downloads"></a>
+  &nbsp;
+  <a href="https://github.com/opencue/cuecards/blob/main/LICENSE"><img src="https://img.shields.io/github/license/opencue/cuecards?style=for-the-badge&label=license&color=4c1" alt="MIT license"></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/node-%E2%89%A520-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node 20+">
+  &nbsp;
+  <img src="https://img.shields.io/badge/telemetry-none-success?style=for-the-badge" alt="zero telemetry">
+</p>
+
+[Install](#install) · [How it works](#how-it-works) · [Profiles](#69-ready-made-cuecards) · [Multi-agent](#one-cuecard-ten-agents) · [FAQ](#faq) · [Contributing](#contributing)
+
+</div>
+
+---
+
 cue is a profile manager for AI coding agents like [Claude Code](https://github.com/anthropics/claude-code) and [Codex](https://github.com/openai/codex). You pick (or auto-detect) a *cuecard* for each project directory, and when you launch your agent, cue loads only the skills, MCP servers, persona, and quality gates that project actually needs — instead of your entire library.
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/hero.svg" alt="cuecards — Agent Profile Manager for AI coding agents" width="820">
-</p>
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/v/cue-ai?style=flat-square&label=npm&color=1d1d1f&labelColor=f5f5f7" alt="npm"></a>&nbsp;
-  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/dw/cue-ai?style=flat-square&label=downloads&color=1d1d1f&labelColor=f5f5f7" alt="downloads"></a>&nbsp;
-  <a href="https://github.com/opencue/cuecards/stargazers"><img src="https://img.shields.io/github/stars/opencue/cuecards?style=flat-square&label=stars&color=1d1d1f&labelColor=f5f5f7" alt="stars"></a>&nbsp;
-  <a href="https://github.com/opencue/cuecards/blob/main/LICENSE"><img src="https://img.shields.io/github/license/opencue/cuecards?style=flat-square&label=license&color=1d1d1f&labelColor=f5f5f7" alt="MIT"></a>&nbsp;
-  <img src="https://img.shields.io/badge/telemetry-none-1d1d1f?style=flat-square&labelColor=f5f5f7" alt="zero telemetry">
-</p>
 
 ```bash
 npm install -g cue-ai
@@ -26,7 +42,7 @@ npm install -g cue-ai
 
 ---
 
-## Why does this exist?
+## Why this exists
 
 If you've been using AI coding agents for a while, you've probably collected a pile of skills, MCP servers, and custom instructions. Maybe hundreds. Here's the problem:
 
@@ -39,7 +55,7 @@ That hurts twice:
 
 cue fixes this by scoping everything per directory. Your Medusa shop loads the Medusa cuecard. Your Rust CLI loads the Rust cuecard. Nothing else comes along for the ride.
 
-### What that saves, in numbers
+### Before vs after — in numbers
 
 | Loadout | Always-on context | Cost / 100 msgs (Sonnet input) |
 |---|---|---|
@@ -47,7 +63,7 @@ cue fixes this by scoping everything per directory. Your Medusa shop loads the M
 | `backend` cuecard | ~9k tokens | ~$2.70 |
 | `caveman-quick` cuecard | ~6.8k tokens | ~$2.00 |
 
-That's **9–16× less always-on context**, compounding on every message. You can reproduce these numbers yourself:
+That's **9–16× less always-on context**, compounding on every message. Reproduce the numbers yourself:
 
 ```bash
 cue cost              # token budget for your active profile
@@ -73,7 +89,42 @@ One cuecard per project. Your agent reads the right one the moment you launch it
 
 ---
 
-## Quickstart
+## How it works
+
+No daemon, no background process. cue intercepts the *call* to your agent, resolves the directory's cuecard, materializes it once, then hands off to the real binary:
+
+```
+you type `claude`
+       │
+       ▼
+ ~/.local/bin/claude shim ──► cue launch
+       │
+       ▼
+ resolve  ──►  which cuecard owns this directory?  (.cue.profile / auto-detect)
+       │
+       ▼
+ materialize ──►  build the runtime (skills + MCPs + persona + gates)
+       │           sha256-cached — rebuilds only when something changed
+       ▼
+ exec  ──►  the real Claude Code / Codex, scoped to this project
+```
+
+Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow: [docs/launch.md](https://github.com/opencue/cuecards/blob/main/docs/launch.md).
+
+---
+
+## Install
+
+| Path | Command |
+|---|---|
+| npm (recommended) | `npm install -g cue-ai` |
+| One-line script | `curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh \| bash` |
+| Manual clone | `git clone https://github.com/opencue/cuecards.git && ./cuecards/install.sh` |
+| Guided (paste into Claude Code) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
+
+All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`, `--codex`, `--uninstall`.
+
+### Quickstart
 
 Five commands from zero to a profile-aware agent:
 
@@ -87,7 +138,7 @@ claude                                    # 5. launch — your cuecard is loaded
 
 Step 2 is the magic: it installs a tiny `~/.local/bin/claude` shim that hands off to `cue launch`. From then on, typing `claude` in any directory loads that directory's cuecard first, then starts the real Claude Code. Skip step 2 and `claude` just runs vanilla.
 
-To pin a project to a profile:
+Pin a project to a profile:
 
 ```bash
 cd ~/projects/my-shop
@@ -186,6 +237,10 @@ cue discover search <query>  # find skills on GitHub
 cue discover install <skill> # install one
 cue lint-skill <path> --fix  # validate a SKILL.md
 
+# Marketplace (push your own to cuecards.cc)
+cue marketplace login --token <t>          # save the API token from the studio → API view
+cue marketplace publish profile ship-fast  # push a profile / skill / mcp for everyone
+
 # Health
 cue doctor --fix             # diff declared vs actual state, auto-repair
 cue optimizer                # dashboard: skills, MCPs, CLIs, usage per profile
@@ -196,16 +251,127 @@ cue failures --propose       # let Claude draft profile improvements from failur
 
 ---
 
-## Install options
+## API
 
-| Path | Command |
-|---|---|
-| npm (recommended) | `npm install -g cue-ai` |
-| One-line script | `curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh \| bash` |
-| Manual clone | `git clone https://github.com/opencue/cuecards.git && ./cuecards/install.sh` |
-| Guided (paste into Claude Code) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
+cuecards.cc gives every account a free, per-user **API token** and a small HTTP
+API. Mint a token in the studio (`cue dashboard` → **API** view, or
+[cuecards.cc](https://cuecards.cc)), then use it from your own machine to push
+profiles, skills, and MCPs to the community marketplace.
 
-All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`, `--codex`, `--uninstall`.
+```bash
+# 1. Save the token (verifies it against the server before writing ~/.config/cue/credentials.json)
+cue marketplace login --token cue_sk_…       # or: export CUE_API_TOKEN=cue_sk_…
+cue marketplace whoami                        # confirm which account you're authenticated as
+
+# 2. Push something to the marketplace
+cue marketplace publish profile ship-fast --tags build,review
+cue marketplace publish skill seo-audit --source-url https://github.com/me/skills
+cue marketplace publish mcp my-server --desc "internal tooling MCP"
+```
+
+Authenticate HTTP calls with a Bearer header (the token also works as
+`x-api-key`):
+
+```bash
+curl https://cuecards.cc/api/v1/me            -H "Authorization: Bearer $CUE_API_TOKEN"
+curl https://cuecards.cc/api/v1/community     # public community catalog (no auth)
+curl https://cuecards.cc/api/v1/community     -H "Authorization: Bearer $CUE_API_TOKEN" \
+  -X POST -H 'content-type: application/json' \
+  -d '{"type":"profile","name":"ship-fast","tags":["build"]}'
+```
+
+Install commands are **derived server-side** — a submission can never inject an
+arbitrary `add` string. See [web/AUTH.md](https://github.com/opencue/cuecards/blob/main/web/AUTH.md) for the auth model,
+self-hosting, and `CUE_API_URL` (point the CLI at a different deployment).
+
+---
+
+## Shell setup
+
+`cue shell install` (Quickstart step 2) writes the `~/.local/bin/claude` shim. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
+
+```bash
+eval "$(cue shell hook)"   # auto-switch profile when you cd into a project (bash/zsh/fish, auto-detected)
+export CUE_KITTY=1          # inline profile-picker images in Kitty (CUE_DISABLE_KITTY_IMAGES=1 to opt out)
+```
+
+<details>
+<summary><b>A real <code>.bashrc</code>, for reference</b> — agent wrappers, gitignored MCP secrets, parallel Claude accounts, and a per-session cost readout. Lift what's useful.</summary>
+
+```bash
+# --- cue -------------------------------------------------------------
+eval "$(cue shell hook)"        # auto-switch profile on cd
+export CUE_KITTY=1              # inline picker images in Kitty
+
+# Source local MCP/API tokens so servers cue launches inherit them.
+# Keep these files chmod 600 and out of git — never commit secrets.
+[ -f "$HOME/.config/cue/secrets.env" ] && . "$HOME/.config/cue/secrets.env"
+if [ -f "$HOME/.config/cue/runtime/<profile>/secrets.env" ]; then
+  set -a; . "$HOME/.config/cue/runtime/<profile>/secrets.env"; set +a
+fi
+
+# Launch Codex through cue, inheriting GitHub auth from the gh keyring
+# (token pulled at runtime, never written to the rc file).
+codex() {
+  local tok; command -v gh >/dev/null && tok="$(gh auth token 2>/dev/null)"
+  local prof="${CUE_CODEX_PROFILE:-core}"
+  if command -v cue >/dev/null && [ -z "${CUE_SKIP_LAUNCH:-}" ]; then
+    GH_TOKEN="$tok" GITHUB_TOKEN="$tok" cue launch codex --cue-profile "$prof" "$@"
+  else
+    GH_TOKEN="$tok" GITHUB_TOKEN="$tok" command codex "$@"
+  fi
+}
+
+# Parallel Claude accounts — each gets its own CLAUDE_CONFIG_DIR + profile.
+# Usage: claude-acct work pick   |   claude-acct personal backend
+claude-acct() {
+  local dir="$HOME/.claude-accounts/$1" prof="${2:-pick}"; shift 2 2>/dev/null
+  if [ "$prof" = "pick" ]; then
+    CLAUDE_CONFIG_DIR="$dir" cue launch claude --cue-pick "$@"
+  else
+    CLAUDE_CONFIG_DIR="$dir" cue launch claude --cue-profile "$prof" "$@"
+  fi
+}
+
+# Open Claude in a fresh detached Kitty window (sidesteps tmux repaint contention).
+kcc() { kitty --detach --title "claude${1:+ ($1)}" -- bash -lc "cd ${1:-$PWD} && exec claude" & disown; }
+
+# Per-session token + cost readout from the live Claude transcript.
+cc-tokens() {
+  local f; f=$(ls -t ~/.claude/projects/*/*.jsonl 2>/dev/null | head -1)
+  [ -z "$f" ] && { echo "No session log found"; return 1; }
+  python3 - "$f" <<'PY'
+import sys, json, re
+totals, turns = {}, 0
+for line in open(sys.argv[1]):
+    try: e = json.loads(line)
+    except Exception: continue
+    if e.get("type") != "assistant": continue
+    u = e.get("message", {}).get("usage") or {}
+    if not u: continue
+    turns += 1
+    m = re.sub(r"^[a-z]{2}\.", "", e["message"].get("model", "?"))
+    t = totals.setdefault(m, {"in": 0, "out": 0, "cr": 0, "cc": 0})
+    t["in"] += u.get("input_tokens", 0);  t["out"] += u.get("output_tokens", 0)
+    t["cr"] += u.get("cache_read_input_tokens", 0); t["cc"] += u.get("cache_creation_input_tokens", 0)
+PRICE = {  # $/Mtok: input, cache-read, cache-write, output
+    "claude-opus-4-8": (15, 1.5, 18.75, 75), "claude-sonnet-4-6": (3, .3, 3.75, 15),
+    "claude-haiku-4-5": (.8, .08, 1, 4)}
+DEF = (3, .3, 3.75, 15)
+print(f"\n{'Model':<20}{'In':>9}{'Out':>8}{'CacheR':>9}{'Cost$':>9}")
+for m, t in totals.items():
+    p = PRICE.get(m, DEF)
+    cost = t['in']*p[0]/1e6 + t['cr']*p[1]/1e6 + t['cc']*p[2]/1e6 + t['out']*p[3]/1e6
+    print(f"{m:<20}{t['in']:>9,}{t['out']:>8,}{t['cr']:>9,}${cost:>8.4f}")
+print(f"\n{turns} turns this session")
+PY
+}
+# --- /cue ------------------------------------------------------------
+```
+
+> Secrets are sourced from gitignored files (`chmod 600`), never hardcoded, and the GitHub token is read from `gh` at runtime — nothing sensitive lives in your rc. `cue cost` gives the per-profile budget; `cc-tokens` above is the live per-session spend.
+
+</details>
 
 ---
 
@@ -239,7 +405,7 @@ No. Everything cue computes — including the per-skill usage bars in `cue optim
 <summary><b>What does cue NOT do?</b></summary>
 
 - It doesn't modify or repackage the Claude Code / Codex binaries.
-- It doesn't host a remote marketplace — skills live in your repo or come from open source.
+- It doesn't lock you in — skills live in your repo or come from open source; the optional [cuecards.cc marketplace](#api) is just a sharing layer you push to with your own token, never a requirement.
 - It doesn't coordinate multi-agent runs (that's [colony](https://github.com/recodeee/colony) + [gitguardex](https://github.com/recodeee/gitguardex), layered on top via the parallel-agents tier).
 </details>
 
@@ -289,4 +455,16 @@ bun run src/index.ts --help       # run locally
 | Share your profile | `cue share publish --profile <name>` |
 | Report a bug | [Open an issue](https://github.com/opencue/cuecards/issues) |
 
+---
+
+<div align="center">
+
+Built by [Viktor Nagy](https://github.com/NagyVikt) at [opencue](https://github.com/opencue) · [opencue.github.io/cuecards](https://opencue.github.io/cuecards/)
+
+**If cue saves you tokens, star it — that's how other people find it.**
+
+<a href="https://github.com/opencue/cuecards/stargazers"><img src="https://img.shields.io/github/stars/opencue/cuecards?style=for-the-badge&logo=github&label=%E2%AD%90%20Star%20this%20repo&color=yellow" alt="Star cuecards on GitHub"></a>
+
 License: [MIT](https://github.com/opencue/cuecards/blob/main/LICENSE) · zero telemetry · no daemon
+
+</div>

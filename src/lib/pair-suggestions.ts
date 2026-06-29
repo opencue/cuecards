@@ -198,11 +198,8 @@ export interface BuildUniversalOptions {
   minFrequentPicks?: number;
 }
 
-// `pinnedCompanions` is applied at its use site (`opts.pinnedCompanions ??
-// UNIVERSAL_COMPANIONS`), not merged from these defaults, so it's omitted here
-// rather than forced into the Required<> shape.
-const UNIVERSAL_DEFAULTS: Required<Omit<BuildUniversalOptions, "featured" | "affinity" | "known" | "pinnedCompanions">> =
-  { maxFeatured: 5, maxFrequent: 2, minFrequentPicks: 3 };
+const UNIVERSAL_DEFAULTS: Required<Omit<BuildUniversalOptions, "featured" | "affinity" | "known">> =
+  { pinnedCompanions: UNIVERSAL_COMPANIONS, maxFeatured: 5, maxFrequent: 2, minFrequentPicks: 3 };
 
 /**
  * Cross-profile combine suggestions surfaced under *every* primary: the curated

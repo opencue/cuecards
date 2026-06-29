@@ -160,6 +160,32 @@ describe("loadProfile", () => {
     expect(resolved.agents).toEqual(["claude-code"]);
   });
 
+  test("mcps: when: gate is parsed and survives the inheritance merge", async () => {
+    await writeProfile(
+      "mcp-when",
+      [
+        "name: mcp-when",
+        "description: profile with a conditional MCP",
+        "mcps:",
+        "  - always-on", // string form — no gate
+        "  - id: gated", // object form with a when: condition
+        "    when:",
+        "      env: SOME_TOKEN",
+        "  - id: cwd-gated",
+        "    when:",
+        "      has_dir: .obsidian",
+        "",
+      ].join("\n"),
+    );
+
+    const resolved = await loadProfile("mcp-when");
+    expect(resolved.mcps).toEqual([
+      { id: "always-on" },
+      { id: "gated", when: { env: "SOME_TOKEN" } },
+      { id: "cwd-gated", when: { has_dir: ".obsidian" } },
+    ]);
+  });
+
   test("subagents fold through inheritance: parent first, child appended, deduped", async () => {
     await writeProfile(
       "sa-parent",

@@ -1,23 +1,23 @@
 ---
 title: "hermes-labs-ai/fidelis — Claude Code skill discovered by cue"
-description: "Agent memory without the retrieval tax. Fidelity-preserving memory for Claude Code and AI agents — local-first, fast, and with no LLM in the default retrieval p"
+description: "fidelis is zero-LLM agent memory for Claude Code and AI agents: a local-first memory layer whose default retrieval path uses BM25, dense vectors, and reciprocal"
 layout: page
-updated: 2026-06-04
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [hermes-labs-ai/fidelis](https://github.com/hermes-labs-ai/fidelis)
+# ✨ [hermes-labs-ai/fidelis](https://github.com/hermes-labs-ai/fidelis)
 
-**★ 20** · exceptional (score 8.9) · Python · agent-memory, ai-agents, chromadb, claude-code, fidelity
+**★ 1** · strong (score 6.5) · Python · agent-memory, ai-agents, ai-reliability, bm25, claude-code
 
-> Agent memory without the retrieval tax. Fidelity-preserving memory for Claude Code and AI agents — local-first, fast, and with no LLM in the default retrieval path. 83.2% R@1 on LongMemEval-S, $0/query retrieval.
+> fidelis is zero-LLM agent memory for Claude Code and AI agents: a local-first memory layer whose default retrieval path uses BM25, dense vectors, and reciprocal rank fusion with no LLM call. It returns your original passages verbatim instead of paraphrasing and runs fully local. Benchmarked on LongMemEval-S. MIT, by Hermes Labs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
-- ⭐ 20 stars
-- 🗓️ Last pushed: 2026-05-28
-- 🏷️ Tags: agent-memory, ai-agents, chromadb, claude-code, fidelity, hermes-labs, integer-pointer, llm, llm-memory, local-first, longmemeval, mcp, mcp-server, mem0, memory, ollama, rag, retrieval, vector-store, zero-llm
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-06-22
+- 🏷️ Tags: agent-memory, ai-agents, ai-reliability, bm25, claude-code, fidelity, hermes-labs, llm, llm-memory, local-first, longmemeval, mcp, rag, retrieval, zero-llm
 
 ## Best fit cue profiles
 

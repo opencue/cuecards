@@ -2,7 +2,7 @@
 title: "randomittin/heimdall — Claude Code skill discovered by cue"
 description: "Autonomous Claude Code agent — 14 specialized agents, 10-parallel execution, project-specific skill learning, mechanical checkpointing, wave-based planning with"
 layout: page
-updated: 2026-06-17
+updated: 2026-06-25
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-17
+- 🗓️ Last pushed: 2026-06-25
 - 🏷️ Tags: agent-orchestration, ai-agent, ai-coding, ai-orchestration, anthropic, automation, autonomous-agent, claude-agent, claude-ai, claude-code, claude-plugin, claude-skill, cli, coding-assistant, developer-tools, devtools, llm-agent, llm-framework, llm-tools, multi-agent
 
 ## Best fit cue profiles

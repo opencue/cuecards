@@ -2,7 +2,7 @@
 title: "connerkward/Muser — Claude Code skill discovered by cue"
 description: "Index, vectorize, and search a folder of images by natural language with on-device CLIP. CLI + MCP UI app."
 layout: page
-updated: 2026-06-17
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-17
+- 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: agent-skills, anthropic, claude-code, claude-code-skill, claude-skill, clip, image-search, lancedb, mcp, mcp-server, model-context-protocol, offline, on-device, semantic-search, siglip
 
 ## Best fit cue profiles

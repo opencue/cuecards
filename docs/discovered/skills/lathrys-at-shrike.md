@@ -2,7 +2,7 @@
 title: "lathrys-at/shrike — Claude Code skill discovered by cue"
 description: "Manage your Anki collection from the command line or an LLM agent, without opening Anki."
 layout: page
-updated: 2026-06-12
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-06-20
 - 🏷️ Tags: anki, cli, flashcards, llm, mcp, mcp-server, model-context-protocol, semantic-search, spaced-repetition
 
 ## Best fit cue profiles

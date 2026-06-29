@@ -6,15 +6,14 @@
  */
 
 import { mkdtempSync, rmSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join, } from "node:path";
 import { execSync, spawn } from "node:child_process";
 import { tmpdir } from "node:os";
 
 import { loadProfile } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help") || !args[0] || args[0].startsWith("-")) {

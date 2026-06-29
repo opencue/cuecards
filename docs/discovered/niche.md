@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-29
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="dhcnsa-netizen-lecture-builder"></a>
-## 💎 [dhcnsa-netizen/lecture-builder](https://github.com/dhcnsa-netizen/lecture-builder)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent-skills, claude-code-skill, claude-skill, claude-skills, docx
+**★ 0** · exceptional (score 10.5) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-讲义制作工作流：用知识点+题目一键生成学生版/教师版 Word 讲义（图片与公式逐字节保真）
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add dhcnsa-netizen/lecture-builder --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+```
+
+---
+
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+
+**★ 0** · exceptional (score 10.5) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+
+✅ SKILL.md
+
+```bash
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
 ```
 
 ---

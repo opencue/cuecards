@@ -3,11 +3,10 @@
  */
 
 import { readFileSync, existsSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot } from "./repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const RULES_PATH = join(REPO_ROOT, "resources", "colony-profiles.yaml");
+const RULES_PATH = join(repoRoot(), "resources", "colony-profiles.yaml");
 
 interface Rule {
   match: string[];

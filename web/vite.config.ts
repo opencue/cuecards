@@ -22,6 +22,14 @@ export default defineConfig({
         target: process.env.AUTH_TARGET ?? "http://127.0.0.1:3000",
         changeOrigin: true,
       },
+      // The community marketplace (publish + community catalog) lives on the
+      // auth server too — it shares BetterAuth's session/token + Postgres.
+      // Kept distinct from /api/v1/market (the local dashboard's browse
+      // catalog), so both coexist.
+      "/api/v1/community": {
+        target: process.env.AUTH_TARGET ?? "http://127.0.0.1:3000",
+        changeOrigin: true,
+      },
       "/api": {
         target: "http://127.0.0.1:7891",
         changeOrigin: true,

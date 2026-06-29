@@ -10,15 +10,14 @@
  */
 
 import { existsSync, readdirSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { loadProfile } from "./profile-loader";
 import { extractCLIsFromSkill } from "../commands/optimizer";
+import { repoRoot } from "./repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const HOME_SKILLS = join(homedir(), ".claude", "skills");
 
 export interface CliRequirement {

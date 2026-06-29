@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-29
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="shinyjay2-papermentor"></a>
+## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 15.5) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add ShinyJay2/PaperMentor --profile research
 ```
 
 ---

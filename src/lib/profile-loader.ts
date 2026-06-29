@@ -14,11 +14,12 @@
 
 import { readdir, readFile, stat } from "node:fs/promises";
 import type { Dirent } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import Ajv, { type ErrorObject, type ValidateFunction } from "ajv";
 import { parse as parseYaml } from "yaml";
+
+import { profilesDir, repoRoot } from "./repo-root";
 
 import {
   InheritanceCycle,
@@ -47,27 +48,15 @@ const MAX_INHERITANCE_DEPTH = 3;
 /** Pattern a plugin id must match: <plugin>@<marketplace>. */
 const PLUGIN_PATTERN = /^[a-z0-9][a-z0-9-]*@[a-z0-9][a-z0-9_-]*$/;
 
-/** Resolve repo root: env override first, else walk up from this file. */
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(
-  dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-);
-
-const DEFAULT_PROFILES_DIR = join(REPO_ROOT, "profiles");
-
 /**
- * Roots the loader against a profiles/ tree. Honors `CUE_PROFILES_DIR` (or
- * legacy `SOUL_PROFILES_DIR`) so tests can point at a temp directory without
- * monkey-patching. The schema file always comes from the repo's
- * `profiles/schema.json` — it is the canonical contract and does not move
- * with the data root.
+ * The schema file is the canonical contract and does NOT move with the data
+ * root (`CUE_PROFILES_DIR`) — it always lives at `<repoRoot>/profiles/schema.json`.
+ * repoRoot()/profilesDir() are lazy (see ./repo-root) so tests can point at a
+ * temp tree via env without monkey-patching module-level state.
  */
-function profilesDir(): string {
-  return process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? DEFAULT_PROFILES_DIR;
+function schemaPath(): string {
+  return join(repoRoot(), "profiles", "schema.json");
 }
-
-const SCHEMA_PATH = join(DEFAULT_PROFILES_DIR, "schema.json");
 
 // ---------------------------------------------------------------------------
 // Ajv validator (lazy singleton)
@@ -76,8 +65,15 @@ const SCHEMA_PATH = join(DEFAULT_PROFILES_DIR, "schema.json");
 let _validator: ValidateFunction | null = null;
 
 async function getValidator(): Promise<ValidateFunction> {
+  // The compiled validator is pinned at first call. `schemaPath()` is lazy, but
+  // this singleton is NOT invalidated when CUE_REPO_ROOT changes afterward — a
+  // test that points at a fixture tree with a *different* schema.json via
+  // CUE_REPO_ROOT would still validate against the first-compiled schema. The
+  // schema is the canonical contract and does not move with the data dir
+  // (CUE_PROFILES_DIR), so this is intentional; if per-test schemas are ever
+  // needed, store the compiled schema's path and null-reset on mismatch.
   if (_validator) return _validator;
-  const schemaText = await readFile(SCHEMA_PATH, "utf8");
+  const schemaText = await readFile(schemaPath(), "utf8");
   const schema = JSON.parse(schemaText);
   const ajv = new Ajv({ allErrors: true, strict: false, useDefaults: false });
   _validator = ajv.compile(schema);
@@ -247,12 +243,15 @@ async function readRawProfile(name: string): Promise<Profile> {
 // ---------------------------------------------------------------------------
 
 /**
- * Normalize a raw MCPRef (string or {id, agents?}) to { id, agents? }.
- * Strings become `{ id: string }` with no agents key.
+ * Normalize a raw MCPRef (string or {id, agents?, when?}) to ResolvedMCP form.
+ * Strings become `{ id: string }` with no agents/when keys.
  */
 function normalizeMCPRef(raw: MCPRef): ResolvedMCP {
   if (typeof raw === "string") return { id: raw };
-  return raw.agents ? { id: raw.id, agents: raw.agents } : { id: raw.id };
+  const result: ResolvedMCP = { id: raw.id };
+  if (raw.agents) result.agents = raw.agents;
+  if (raw.when) result.when = raw.when;
+  return result;
 }
 
 /**
@@ -444,6 +443,10 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       description: child.description,
       icon: child.icon ?? acc.icon,
       iconImage: child.iconImage ?? acc.iconImage,
+      // Budget hints are leaf-wins: a child that declares its own model /
+      // context window overrides the parent; otherwise it inherits.
+      model: child.model ?? acc.model,
+      contextWindow: child.contextWindow ?? acc.contextWindow,
       // agents: arrays merge by dedupe; if neither parent nor child declares
       // agents we fall back to the default at the end.
       agents: dedupePrimitiveArray(
@@ -504,6 +507,8 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     description: p.description,
     icon: p.icon,
     iconImage: p.iconImage,
+    model: p.model,
+    contextWindow: p.contextWindow,
     agents: p.agents && p.agents.length > 0 ? [...p.agents] : [],
     inherits: p.inherits,
     skills: {
@@ -599,6 +604,9 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
     description: parts.map((p) => p.description).join(" + "),
     icon: parts.find((p) => p.icon)?.icon,
     iconImage: parts.find((p) => p.iconImage)?.iconImage,
+    // First part that declares a budget hint wins for the composite.
+    model: parts.find((p) => p.model)?.model,
+    contextWindow: parts.find((p) => p.contextWindow)?.contextWindow,
     agents: [...head.agents] as ResolvedProfile["agents"],
     inherits: undefined,
     skills: { local: [...head.skills.local], npx: [...head.skills.npx] },
@@ -635,6 +643,8 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
       description: acc.description,
       icon: acc.icon ?? next.icon,
       iconImage: acc.iconImage ?? next.iconImage,
+      model: acc.model ?? next.model,
+      contextWindow: acc.contextWindow ?? next.contextWindow,
       agents: dedupePrimitiveArray(acc.agents, next.agents) as ResolvedProfile["agents"],
       inherits: undefined,
       skills: {

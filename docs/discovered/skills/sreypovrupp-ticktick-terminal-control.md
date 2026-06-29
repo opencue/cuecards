@@ -2,7 +2,7 @@
 title: "sreypovrupp/ticktick-terminal-control — Claude Code skill discovered by cue"
 description: "TickTick CLI Mastery 2026 - Ultimate Task Manager, MCP & Skill Hub"
 layout: page
-updated: 2026-06-09
+updated: 2026-06-24
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-09
+- 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: ai-assistant, claude-code, claude-code-plugin, claude-desktop, claude-mcp, claude-plugin, mcp, mcp-server, model-context-protocol, ollama, qdrant, semantic-search, task-management, ticktick, ticktick-api, ticktick-mcp, vector-search
 
 ## Best fit cue profiles

@@ -9,13 +9,12 @@
 
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { loadProfile, listProfiles } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const SKILLS_LOCK = join(homedir(), "skills-lock.json");
 
 interface LockEntry {
@@ -62,7 +61,7 @@ function cmdList(json: boolean): number {
   }
 
   // Local cue skills
-  const localSkillsRoot = join(REPO_ROOT, "resources", "skills", "skills");
+  const localSkillsRoot = join(repoRoot(), "resources", "skills", "skills");
   if (existsSync(localSkillsRoot)) {
     let count = 0;
     try {

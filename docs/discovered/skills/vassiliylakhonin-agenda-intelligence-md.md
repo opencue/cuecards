@@ -1,23 +1,23 @@
 ---
 title: "vassiliylakhonin/agenda-intelligence-md — Claude Code skill discovered by cue"
-description: "Agenda Intelligence — product runtime + evidence-discipline layer for strategic-intelligence agents. One core service layer behind four surfaces (MCP, HTTP, A2A"
+description: "Evidence-readiness and trust-routing runtime for high-stakes AI-assisted decisions. Turns source packs, RFPs, vendor docs, and risk files into human-review pack"
 layout: page
-updated: 2026-06-07
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
 
-**★ 4** · strong (score 5.8) · Python · a2a, a2a-protocol, agenda-intelligence, agent-infrastructure, agentic-workflow
+**★ 4** · strong (score 5.8) · Python · a2a, a2a-protocol, agenda-intelligence, ai-agents, ai-assurance
 
-> Agenda Intelligence — product runtime + evidence-discipline layer for strategic-intelligence agents. One core service layer behind four surfaces (MCP, HTTP, A2A, Cloudflare Worker). Four live vertical workers: deal-risk, secondary-sanctions, agentic-trust, Gulf maritime exposure. No live retrieval, no factual verification.
+> Evidence-readiness and trust-routing runtime for high-stakes AI-assisted decisions. Turns source packs, RFPs, vendor docs, and risk files into human-review packets with evidence gaps, weak claims, owner actions, and decision-readiness routing.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-07
-- 🏷️ Tags: a2a, a2a-protocol, agenda-intelligence, agent-infrastructure, agentic-workflow, ai-agents, cloudflare-workers, deal-risk-gate, geopolitical-intelligence, geopolitical-risk, json-schema, maritime-sanctions, mcp, mcp-server, middle-corridor, policy-analysis, regulatory-compliance, risk-analysis, sanctions, strategic-intelligence
+- 🗓️ Last pushed: 2026-06-29
+- 🏷️ Tags: a2a, a2a-protocol, agenda-intelligence, ai-agents, ai-assurance, ai-governance, cloudflare-workers, decision-readiness, evidence-readiness, human-review, json-schema, mcp, mcp-server, procurement, risk-analysis, risk-intelligence, trust-routing, vendor-risk
 
 ## Best fit cue profiles
 

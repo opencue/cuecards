@@ -7,7 +7,7 @@
 
 import { describe, expect, test } from "bun:test";
 
-import { handleProfileDetail, handleMcpCatalog, handleMcpAdd, handleMarket, createHandler, semverGt, computeVersionInfo, buildTimeline, handleHooks, handleHookSource } from "./dashboard-server";
+import { handleProfileDetail, handleMcpCatalog, handleMcpAdd, handleMarket, handleMarketInstall, createHandler, semverGt, computeVersionInfo, buildTimeline, handleHooks, handleHookSource } from "./dashboard-server";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
@@ -289,6 +289,36 @@ describe("handleMcpAdd validation", () => {
     const res = await handleMcpAdd({ id: "not-a-real-mcp-xyz", profile: "core" });
     expect(res.ok).toBe(false);
     if (!res.ok) expect(res.error).toMatch(/unknown-mcp/);
+  });
+});
+
+describe("handleMarketInstall validation", () => {
+  test("rejects a missing id", async () => {
+    const res = await handleMarketInstall({ addKind: "skill", profile: "core" });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.error).toBe("missing-id");
+  });
+
+  test("rejects an unknown add kind", async () => {
+    const res = await handleMarketInstall({ id: "skill:x", addKind: "bogus", profile: "core" });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.error).toBe("invalid-add-kind");
+  });
+
+  test("rejects a missing profile", async () => {
+    const res = await handleMarketInstall({ id: "skill:x", addKind: "skill" });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.error).toBe("missing-profile");
+  });
+
+  test("returns a manual command for a CLI without touching a profile", async () => {
+    const res = await handleMarketInstall({ id: "cli:ripgrep", addKind: "cli", profile: "core" });
+    expect(res.ok).toBe(true);
+    if (res.ok) {
+      const data = res.data as { manual?: { command: string }; changed: boolean };
+      expect(data.changed).toBe(false);
+      expect(data.manual?.command).toBeTruthy();
+    }
   });
 });
 

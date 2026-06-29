@@ -2,19 +2,19 @@
 title: "rhino-ty/polymedia-review-skill — Claude Code skill discovered by cue"
 description: "AI agent skill: deep, Socratic-maieutic review notes for books / games / movies / music in Obsidian format"
 layout: page
-updated: 2026-06-15
+updated: 2026-06-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rhino-ty/polymedia-review-skill](https://github.com/rhino-ty/polymedia-review-skill)
 
-**★ 0** · exceptional (score 12.5) · ai-agent-skill, book-review, claude-code, claude-skill, game-review
+**★ 0** · exceptional (score 12.1) · ai-agent-skill, book-review, claude-code, claude-skill, game-review
 
 > AI agent skill: deep, Socratic-maieutic review notes for books / games / movies / music in Obsidian format
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-06-05

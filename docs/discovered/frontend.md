@@ -1,57 +1,29 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-29
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="gslvly-sketch-inspector"></a>
-## 💎 [gslvly/sketch-inspector](https://github.com/gslvly/sketch-inspector)
-
-**★ 0** · exceptional (score 14.5) · TypeScript · tags: agent-skill, ai-agent, claude-code, claude-skill, cursor
-
-AI-friendly Sketch design parser. Turn Sketch documents into structured JSON, exported assets and an implementation-ready LayoutIR (flex/grid/absolute/leaf) so any LLM agent can convert Sketch designs into HTML/CSS, React or Vue. Agent skill compatible with Claude Code, Cursor, opencode.
-
-✅ SKILL.md
-
-```bash
-cue skills add gslvly/sketch-inspector --profile frontend
-```
-
----
-
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
+**★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
 Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
 cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
-
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---
@@ -72,7 +44,7 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.1)
+**★ 2** · potential (score 3.4) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

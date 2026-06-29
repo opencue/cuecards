@@ -2,7 +2,7 @@
 title: "manee1112/yachtsy-mcp-server — Claude Code skill discovered by cue"
 description: "🚤 Access AI-driven yacht marketplace insights with Yachtsy MCP Server. Explore 25,000+ listings and get expert sailing advice effortlessly."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: agents, deep-research-agent, listings, marine, mcp, mcp-server, mcp-tools, openai, sailboats, smithery-ai, yachts
 
 ## Best fit cue profiles

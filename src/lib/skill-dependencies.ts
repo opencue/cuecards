@@ -23,14 +23,33 @@ export interface MissingDependency extends SkillDependency {
 }
 
 /**
- * Parse explicit requires_mcps from skill frontmatter.
+ * Parse explicit requires_mcps from skill frontmatter. Handles both the inline
+ * array (`requires_mcps: [a, b]`) and YAML block-sequence forms. Exported for
+ * unit testing.
  */
-function parseExplicitDeps(content: string): string[] {
+export function parseExplicitDeps(content: string): string[] {
   const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
   if (!fmMatch) return [];
-  const mcpMatch = fmMatch[1]!.match(/^requires_mcps:\s*\[([^\]]*)\]/m);
-  if (!mcpMatch) return [];
-  return mcpMatch[1]!.split(",").map(t => t.trim().replace(/['"]/g, "")).filter(Boolean);
+  const fm = fmMatch[1]!;
+  // Inline-array form: `requires_mcps: [a, b]`
+  const inline = fm.match(/^requires_mcps:\s*\[([^\]]*)\]/m);
+  if (inline) {
+    return inline[1]!.split(",").map((t) => t.trim().replace(/['"]/g, "")).filter(Boolean);
+  }
+  // Block-sequence form:
+  //   requires_mcps:
+  //     - a
+  //     - b
+  const lines = fm.split("\n");
+  const idx = lines.findIndex((l) => /^requires_mcps:\s*$/.test(l));
+  if (idx === -1) return [];
+  const out: string[] = [];
+  for (let i = idx + 1; i < lines.length; i++) {
+    const m = lines[i]!.match(/^\s+-\s*(.+?)\s*$/);
+    if (!m) break; // first non-item line ends the block sequence
+    out.push(m[1]!.replace(/['"]/g, ""));
+  }
+  return out.filter(Boolean);
 }
 
 /**

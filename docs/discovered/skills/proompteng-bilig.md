@@ -1,23 +1,23 @@
 ---
 title: "proompteng/bilig — Claude Code skill discovered by cue"
-description: "Bilig WorkPaper: headless spreadsheet formula engine and MCP server for Node agents: complete spreadsheet work autonomously"
+description: "Catch stale XLSX formula values in CI and run verifiable workbook logic from Node/MCP agents."
 layout: page
-updated: 2026-06-12
+updated: 2026-06-25
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [proompteng/bilig](https://github.com/proompteng/bilig)
 
-**★ 30** · exceptional (score 11.5) · TypeScript · agent-tools, ai-agents, excel, excel-formulas, formula-engine
+**★ 31** · exceptional (score 11.6) · TypeScript · agent-tools, ai-agents, excel, excel-formulas, formula-engine
 
-> Bilig WorkPaper: headless spreadsheet formula engine and MCP server for Node agents: complete spreadsheet work autonomously
+> Catch stale XLSX formula values in CI and run verifiable workbook logic from Node/MCP agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
-- ⭐ 30 stars
-- 🗓️ Last pushed: 2026-06-12
-- 🏷️ Tags: agent-tools, ai-agents, excel, excel-formulas, formula-engine, formula-recalculation, headless-spreadsheet, mcp, mcp-server, model-context-protocol, spreadsheet, spreadsheet-api, spreadsheet-automation, spreadsheet-engine, spreadsheet-formulas, typescript, workbook-api, xlsx, xlsx-formulas, xlsx-recalculation
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
+- ⭐ 31 stars
+- 🗓️ Last pushed: 2026-06-25
+- 🏷️ Tags: agent-tools, ai-agents, excel, excel-formulas, formula-engine, formula-recalculation, github-actions, headless-spreadsheet, mcp, mcp-server, model-context-protocol, nodejs, spreadsheet, spreadsheet-api, spreadsheet-automation, typescript, workbook-api, xlsx, xlsx-cache, xlsx-recalculation
 
 ## Best fit cue profiles
 

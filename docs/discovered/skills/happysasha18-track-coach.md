@@ -2,7 +2,7 @@
 title: "happysasha18/track-coach — Claude Code skill discovered by cue"
 description: "Measurement-first compositional coach for electronic music — librosa + Demucs diagnostics as a Claude Code skill. Reports only what it measures."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-18
+- 🗓️ Last pushed: 2026-06-23
 - 🏷️ Tags: ableton, ableton-live, audio-analysis, claude-code-skill, claude-skill, demucs, dsp, electronic-music, idm, librosa, mixing, music-production, stem-separation
 
 ## Best fit cue profiles

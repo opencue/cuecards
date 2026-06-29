@@ -1,29 +1,96 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-29
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rockbenben-aishort-skills"></a>
-## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
+<a id="frostyume-dev-forge"></a>
+## 💎 [Frostyume/dev-forge](https://github.com/Frostyume/dev-forge)
 
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, claude, claude-code
+**★ 0** · exceptional (score 15) · tags: bug-tracking, claude, claude-code, claude-code-skill, claude-plugin
 
-Markdown to web page — upload .md files to S3-compatible storage, rendered instantly via Docsify. A skill for sharing long content as readable links.
+Local-first root-cause knowledge base for Claude Code: log a bug once, forge weekly reports and resume bullets. Never debug the same bug twice.
+
+✅ SKILL.md
 
 ```bash
-cue skills add rockbenben/aishort-skills --profile docs-writer
+cue skills add Frostyume/dev-forge --profile docs-writer
+```
+
+---
+
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+
+**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+
+```bash
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
+```
+
+---
+
+<a id="mindgameolympiangames78-llm-knowledge-base"></a>
+## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+
+**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+
+Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+
+```bash
+cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+```
+
+---
+
+<a id="anakior-atlas-mind"></a>
+## ✨ [Anakior/atlas-mind](https://github.com/Anakior/atlas-mind)
+
+**★ 2** · strong (score 6.5) · Python · tags: ai, claude, digital-garden, git, knowledge-base
+
+Self-hostable, git-native knowledge base & AI memory (MCP) — your notes stay plain Markdown files in your own git repo. Pure-stdlib Python, no database. AGPL-3.0.
+
+```bash
+cue skills add Anakior/atlas-mind --profile docs-writer
+```
+
+---
+
+<a id="wlsdks-ontology-atlas"></a>
+## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
+
+**★ 2** · strong (score 6.3) · JavaScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
+
+Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
+
+```bash
+cue skills add wlsdks/ontology-atlas --profile docs-writer
+```
+
+---
+
+<a id="thegoatpsy-mneme"></a>
+## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
+
+**★ 2** · strong (score 6.2) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
+
+Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
+
+```bash
+cue skills add TheGoatPsy/mneme --profile docs-writer
 ```
 
 ---

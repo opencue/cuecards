@@ -3,11 +3,11 @@
  */
 
 import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 import {
   skillAlwaysOnTokens,
   skillBodyTokens,
@@ -15,7 +15,6 @@ import {
   SKILLS_ROOT,
 } from "../lib/profile-metrics";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 // Expand wildcard (*/*) to all actual skill IDs on disk.
 function expandSkillIds(ids: string[]): string[] {
@@ -39,7 +38,7 @@ function expandSkillIds(ids: string[]): string[] {
   }
   return result;
 }
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
+const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
 
 // Baseline always-on CLAUDE.md cost for a profile that hasn't been materialized
 // yet. Dominated by the shared `core` persona + integrity protocol, so it's

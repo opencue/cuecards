@@ -8,13 +8,12 @@
  */
 
 import { mkdirSync, writeFileSync, existsSync, cpSync, readFileSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { lint } from "../lib/skill-linter";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 function getArg(args: string[], flag: string): string | undefined {
   const idx = args.indexOf(flag);

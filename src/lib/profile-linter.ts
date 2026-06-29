@@ -20,8 +20,7 @@
 import { mkdir, mkdtemp, readdir, readFile, rm } from "node:fs/promises";
 import { existsSync, type Dirent } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 
 import { parse as parseYaml } from "yaml";
 
@@ -45,16 +44,15 @@ import {
 } from "./resolver-npx";
 import { PluginNotInstalled, resolvePlugins } from "./resolver-plugins";
 import { parseSkillFromPath } from "./skill-router";
+import { repoRoot as cueRepoRoot } from "./repo-root";
 
-const HERE = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(HERE, "..", "..");
-const DEFAULT_PROFILES_DIR = join(REPO_ROOT, "profiles");
-const DEFAULT_SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const DEFAULT_CONFIGS_ROOT = join(REPO_ROOT, "resources", "mcps", "configs");
-const DEFAULT_RULES_ROOT = join(REPO_ROOT, "resources", "rules");
-const DEFAULT_COMMANDS_ROOT = join(REPO_ROOT, "resources", "commands");
-const DEFAULT_HOOKS_ROOT = join(REPO_ROOT, "resources", "hooks");
-const DEFAULT_SUBAGENTS_ROOT = join(REPO_ROOT, "resources", "subagents");
+const DEFAULT_PROFILES_DIR = join(cueRepoRoot(), "profiles");
+const DEFAULT_SKILLS_ROOT = join(cueRepoRoot(), "resources", "skills", "skills");
+const DEFAULT_CONFIGS_ROOT = join(cueRepoRoot(), "resources", "mcps", "configs");
+const DEFAULT_RULES_ROOT = join(cueRepoRoot(), "resources", "rules");
+const DEFAULT_COMMANDS_ROOT = join(cueRepoRoot(), "resources", "commands");
+const DEFAULT_HOOKS_ROOT = join(cueRepoRoot(), "resources", "hooks");
+const DEFAULT_SUBAGENTS_ROOT = join(cueRepoRoot(), "resources", "subagents");
 
 export type LintRuleId =
   | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8" | "W9"
@@ -172,7 +170,7 @@ function profilesDir(opts: ProfileLinterOptions): string {
 }
 
 function repoRoot(opts: ProfileLinterOptions): string {
-  return opts.repoRoot ?? process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? REPO_ROOT;
+  return opts.repoRoot ?? process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? cueRepoRoot();
 }
 
 function addIssue(

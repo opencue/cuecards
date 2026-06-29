@@ -194,10 +194,16 @@ export async function syncFreshestToSource(
 
   if (freshest.expiresAt <= sourceExpiresAt) return { synced: false };
 
+  // Write atomically (tmp + rename, same dir → same filesystem) so a crash or a
+  // concurrent reader never observes a half-written credentials file. Mirrors
+  // the tmp+rename pattern used by rescueRuntimeCredentials.
+  const tmp = `${sourcePath}.cue-sync.${process.pid}`;
   try {
-    await copyFile(freshest.path, sourcePath);
+    await copyFile(freshest.path, tmp);
+    await rename(tmp, sourcePath);
     return { synced: true, from: freshest.path, expiresAt: freshest.expiresAt };
   } catch {
+    try { await rm(tmp, { force: true }); } catch { /* best-effort cleanup */ }
     return { synced: false };
   }
 }

@@ -3,11 +3,10 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot } from "./repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PACKS_DIR = join(REPO_ROOT, "resources", "skill-packs");
+const PACKS_DIR = join(repoRoot(), "resources", "skill-packs");
 
 export interface SkillPack {
   name: string;

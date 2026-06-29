@@ -2,31 +2,33 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-29
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
+These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
+
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-18 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-06-29 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 75 | `nano-banana-pro-prompts-recommend-skill`, `master-skill`, `context-mode` |
-| [**backend**](./backend.md) | 9 | `gortex`, `Basecamp-MCP-Server`, `n8n` |
-| [**frontend**](./frontend.md) | 5 | `sketch-inspector`, `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns` |
-| [**cybersecurity**](./cybersecurity.md) | 3 | `node9-proxy`, `Claude-OSINT`, `argus` |
-| [**creative-media**](./creative-media.md) | 3 | `image-skill-cli`, `feinschmiede`, `redesigned-pancake` |
-| [**nextjs**](./nextjs.md) | 2 | `personal-knowledge-nexus`, `stackgate` |
-| [**video**](./video.md) | 1 | `podcli` |
-| [**niche**](./niche.md) | 1 | `lecture-builder` |
-| [**docs-writer**](./docs-writer.md) | 1 | `aishort-skills` |
-| [**fleet-control**](./fleet-control.md) | 1 | `multi-agent-revenue-orchestrator` |
-| [**research**](./research.md) | 1 | `popper-scope` |
+| [**core**](./core.md) | 65 | `skill-memory-bank`, `MaxKB`, `Gearboy` |
+| [**backend**](./backend.md) | 13 | `apify-mcp-server`, `n8n`, `better-telegram-mcp` |
+| [**cybersecurity**](./cybersecurity.md) | 7 | `nsauditor-ai-agent-skill`, `kali-pentest`, `slowmist-security-cc` |
+| [**docs-writer**](./docs-writer.md) | 6 | `dev-forge`, `llm-wiki`, `llm-knowledge-base` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook`, `claude-code-frontend` |
+| [**creative-media**](./creative-media.md) | 3 | `imagine-mcp`, `social-media-scraper-skill`, `redesigned-pancake` |
+| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
+| [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `Cost-aware-claim-based-multi-model-AI-orchestrator` |
+| [**research**](./research.md) | 1 | `PaperMentor` |
+| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**threejs**](./threejs.md) | 1 | `webgl-animation-skills` |
 
 ## How scoring works
 

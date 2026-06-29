@@ -2,21 +2,21 @@
 title: "B33pBeeps/trawl — Claude Code skill discovered by cue"
 description: "Trawl the urls, file paths, commands, and plans out of your Claude Code and Codex chats. One fzf menu, plus a global-hotkey popup."
 layout: page
-updated: 2026-06-18
+updated: 2026-06-25
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [B33pBeeps/trawl](https://github.com/B33pBeeps/trawl)
 
-**★ 1** · strong (score 6.3) · JavaScript · ai, claude-code, cli, codex, command-line
+**★ 1** · strong (score 6) · JavaScript · ai, claude-code, cli, codex, command-line
 
 > Trawl the urls, file paths, commands, and plans out of your Claude Code and Codex chats. One fzf menu, plus a global-hotkey popup.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-17
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: ai, claude-code, cli, codex, command-line, developer-tools, fuzzy-finder, fzf, llm, productivity, terminal, tui
 
 ## Best fit cue profiles
