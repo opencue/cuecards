@@ -132,7 +132,7 @@ export interface PickerInput {
   universalSuggestions?: UniversalSuggestion[];
   /**
    * Optional resolver for a single profile value's own resources, used to drive
-   * the combine multiselect's per-row "+N skills" hints and the live combined-
+   * the combine multiselect's per-row "N skills" hints and the live combined-
    * total preview. Called once per offered profile (primary + companions)
    * before the multiselect opens; failures degrade gracefully (that row simply
    * shows no counts). Omitted in tests → no preview, identical prior behavior.
@@ -544,13 +544,13 @@ export interface TallyCounts {
 const EMPTY_TALLY: ProfileTally = { skills: [], mcps: [], plugins: [], commands: [] };
 
 /**
- * "+17 skills · +1 mcp" — the per-row hint showing what a companion adds.
+ * "17 skills · 1 mcp" — the per-row hint showing what a companion adds.
  * Omits zero categories; returns "" for a profile that adds nothing. Pure.
  */
 export function formatTallyDelta(t: ProfileTally): string {
   const parts: string[] = [];
   const add = (n: number, one: string, many: string) => {
-    if (n > 0) parts.push(`+${n} ${n === 1 ? one : many}`);
+    if (n > 0) parts.push(`${n} ${n === 1 ? one : many}`);
   };
   add(t.skills.length, "skill", "skills");
   add(t.mcps.length, "mcp", "mcps");
@@ -756,7 +756,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
   const skipping = effective.has(SKIP_COMBINE);
   const ascii = state.ascii ?? asciiIconsEnabled();
   const icon = (s: string) => stripIconIfAscii(s, ascii);
-  // Column where every companion's "+N skills" delta starts. Measured across
+  // Column where every companion's "N skills" delta starts. Measured across
   // the full companion set (not just the visible window) so the deltas line up
   // in a stable column as the list scrolls. Capped so one long name can't push
   // the whole table off a narrow terminal.
@@ -850,15 +850,15 @@ export function renderCombineFrame(state: CombineFrameState): string {
     const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
     const rawLabel = icon(o.label);
     const labelStyled = isSel || isCursor ? rawLabel : styleText("dim", rawLabel);
-    // Contribution at a glance: every row shows just the headline "+N skills"
+    // Contribution at a glance: every row shows just the headline "N skills"
     // (one token, never wraps); the focused row expands to the full
-    // "+N skills · +M mcps · …" breakdown so detail is one keystroke away.
+    // "N skills · M mcps · …" breakdown so detail is one keystroke away.
     const tally = state.preview ? state.preview.tallies.get(o.value) ?? EMPTY_TALLY : null;
     const delta = tally
       ? isCursor
         ? formatTallyDelta(tally)
         : tally.skills.length > 0
-          ? `+${tally.skills.length} skills`
+          ? `${tally.skills.length} skills`
           : ""
       : "";
     // The verbose reason / description (detection signal, profile blurb)
@@ -867,7 +867,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
     // A dim trailing tag labels the `→` marker, so it reads "recommended" even
     // when the cursor sits on the row (gutter shows `›`, not `→`).
     const recTag = isRecommended ? styleText("dim", "  recommended") : "";
-    // Pad the label out to the shared delta column so every "+N skills" lines
+    // Pad the label out to the shared delta column so every "N skills" lines
     // up in a clean table (≥2-space gap even for an over-long name). Skip the
     // pad entirely when there's no trailer, so bare rows carry no trailing
     // whitespace.
@@ -1028,7 +1028,7 @@ async function asciiMultiselect(opts: {
   initialValues?: string[];
   required?: boolean;
   /**
-   * When provided, render per-row "+N skills" hints and a live combined-total
+   * When provided, render per-row "N skills" hints and a live combined-total
    * preview line. `primary` is the always-present base profile; `tallies` maps
    * each profile value (primary + every companion) to its own resources.
    */
@@ -1401,7 +1401,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
   });
   if (companionOptions.length > 0) {
     // Precompute each offered profile's resources (primary + companions, small
-    // N) so the live render stays synchronous: per-row "+N skills" hints and
+    // N) so the live render stays synchronous: per-row "N skills" hints and
     // the combined-total preview both read from this map. Absent resolver (or a
     // failing load) just means no preview — the multiselect works regardless.
     const tallies = new Map<string, ProfileTally>();
@@ -1444,7 +1444,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
           ? {
               options: overflowOptions,
               // Fill in the revealed profiles' resource counts so their rows
-              // and the live preview show "+N skills" once shown.
+              // and the live preview show "N skills" once shown.
               onReveal: () => loadTallies(overflowOptions.map((o) => o.value)),
             }
           : undefined,

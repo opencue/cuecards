@@ -89,7 +89,6 @@ Options:
 
   process.stdout.write(`\n  💡 Based on your last ${days} days of sessions, these skills would help:\n\n`);
   for (const s of suggestions.slice(0, 10)) {
-    const conf = (s.confidence * 100).toFixed(0);
     process.stdout.write(`  \x1b[1m${s.skillId}\x1b[0m — ${s.reason} (confidence: ${(s.confidence).toFixed(2)})\n`);
   }
   process.stdout.write(`\n  Install with: cue skills add-to-profile <skill-id>\n\n`);

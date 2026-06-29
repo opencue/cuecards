@@ -13,8 +13,6 @@
  */
 
 import { writeFileSync } from "node:fs";
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
@@ -23,8 +21,6 @@ import {
   materializedClaudeMdTokens,
   firedSkills,
 } from "../lib/profile-metrics";
-
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 // Baseline always-on CLAUDE.md tokens for an un-materialized profile (shared
 // core persona + integrity protocol dominate). Mirrors cost.ts.

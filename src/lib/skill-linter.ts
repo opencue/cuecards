@@ -677,7 +677,6 @@ function ruleR013(content: string): Diagnostic[] {
   const desc = fmField(fm.yaml, "description");
   if (!desc) return [];
 
-  const body = bodyAfterFrontmatter(content);
   // Strip code blocks from body before extracting words — code identifiers
   // shouldn't count toward conceptual coherence.
   const bodyProse = stripCodeAndFrontmatter(content).slice(fm.end);
@@ -974,7 +973,6 @@ function renderInlineDiff(path: string, before: string, after: string): string {
   // Show a small context window before/after
   const ctx = 2;
   const ctxStart = Math.max(0, firstDiff - ctx);
-  const ctxEndBefore = Math.min(beforeLines.length, lastDiffBefore + 1 + ctx);
   const ctxEndAfter = Math.min(afterLines.length, lastDiffAfter + 1 + ctx);
 
   const lines: string[] = [];

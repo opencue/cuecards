@@ -18,7 +18,6 @@ import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
 
 const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PROFILES_DIR = join(REPO_ROOT, "profiles");
-const REGISTRY_PATH = join(REPO_ROOT, "docs", "registry", "index.json");
 
 interface MatchedProfile {
   name: string;
