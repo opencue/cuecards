@@ -5,7 +5,15 @@
  */
 
 import { describe, expect, test, beforeEach } from "bun:test";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { run as cliRun } from "./cli";
+
+// `resources/skills` is a git submodule and the CLI catalog is derived from
+// skill frontmatter, so without it checked out (`git submodule update --init`)
+// the catalog-backed assertions see an empty set. Skip rather than fail
+// spuriously; the pure-unit blocks below (parseCLIs, usage) always run.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 beforeEach(() => {
   delete process.env.CUE_PROFILES_DIR;
@@ -24,7 +32,7 @@ async function capture<T>(fn: () => Promise<T>): Promise<{ stdout: string; value
   }
 }
 
-describe("cue cli list", () => {
+describe.skipIf(!SKILLS_PRESENT)("cue cli list", () => {
   test("--json shape: rows with cli + installed + plan", async () => {
     const { stdout, value } = await capture(() => cliRun(["list", "full", "--json"]));
     expect(value).toBe(0);
@@ -67,7 +75,7 @@ describe("cue cli list", () => {
   });
 });
 
-describe("cue cli install", () => {
+describe.skipIf(!SKILLS_PRESENT)("cue cli install", () => {
   test("dry-run --all is the default (no execution) and produces a plan", async () => {
     const { stdout, value } = await capture(() => cliRun(["install", "--all", "full", "--json"]));
     expect(value).toBe(0);
@@ -126,7 +134,7 @@ describe("cue cli install", () => {
   });
 });
 
-describe("cue cli list --all-profiles", () => {
+describe.skipIf(!SKILLS_PRESENT)("cue cli list --all-profiles", () => {
   test("--json returns flat array with profileCount across all profiles", async () => {
     const { stdout, value } = await capture(() => cliRun(["list", "--all-profiles", "--json"]));
     expect(value).toBe(0);

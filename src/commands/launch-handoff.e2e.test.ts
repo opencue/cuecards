@@ -9,12 +9,18 @@
  */
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
 import { chmod, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
+// `resources/skills` is a git submodule; even `--dry-run` materializes a runtime
+// that symlinks skills, so the exec-handoff probes exit non-zero without it
+// checked out (`git submodule update --init`). Skip rather than fail spuriously.
+// The help/recursion probes below don't materialize, so they stay on.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 function cue(args: string[], env: Record<string, string> = {}): { status: number; stdout: string; stderr: string } {
   const cleanEnv = { ...process.env, ...env };
@@ -28,7 +34,7 @@ function plan(stdout: string): any {
   return JSON.parse(stdout.match(/\{[\s\S]*\}/)![0]);
 }
 
-describe.skipIf(!BUN_SPAWNABLE)("cue launch --dry-run exec handoff", () => {
+describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec handoff", () => {
   let xdg: string;
   beforeEach(async () => {
     xdg = await mkdtemp(join(tmpdir(), "cue-handoff-"));

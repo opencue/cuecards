@@ -8,6 +8,13 @@
 import { describe, expect, test } from "bun:test";
 
 import { handleProfileDetail, handleMcpCatalog, handleMcpAdd, handleMarket, handleMarketInstall, createHandler, semverGt, computeVersionInfo, buildTimeline, handleHooks, handleHookSource } from "./dashboard-server";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
+// `resources/skills` is a git submodule. The catalogue test below asserts real
+// on-disk skill bodies (e.g. meta/analyze), so skip it when the submodule isn't
+// checked out (`git submodule update --init`) — a setup gap, not a regression.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 function detail(profile: string) {
   return handleProfileDetail(new URLSearchParams({ profile }));
@@ -47,7 +54,7 @@ describe("version banner logic", () => {
 });
 
 describe("handleProfileDetail", () => {
-  test("returns a real, grouped skill catalogue for gstack", async () => {
+  test.skipIf(!SKILLS_PRESENT)("returns a real, grouped skill catalogue for gstack", async () => {
     const res = await detail("gstack");
     expect(res.ok).toBe(true);
     if (!res.ok) return;
