@@ -11,4 +11,5 @@ skills:
       skills: [fireworks-tech-graph]
     - repo: cathrynlavery/diagram-design
       skills: [diagram-design]
-mcps: []   # cue-tty-watch comes from core via inheritance
+mcps:
+  - cue-tty-watch   # design/headless-gif-demo records terminal GIFs via the TTY-watch MCP (not in core)

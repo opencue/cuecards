@@ -88,5 +88,6 @@ mcps:
   - mapi-devdocs
   - Higgsfield
   - trendradar
+  - cue-tty-watch   # marketing/cue-rec records terminal demos via the TTY-watch MCP
 plugins:
   - marketing-skills@claude-code-skills
