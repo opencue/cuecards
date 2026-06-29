@@ -4,6 +4,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { summon, detectActiveProfile, REEXEC_CMD } from "./summon";
+import { existsSync } from "node:fs";
+
+// `resources/skills` is a git submodule. The mcp_status assertion below reads a
+// skill's `requires_mcps` from disk; without it checked out (`git submodule
+// update --init`) the deps come back empty and every skill reads "ok". Skip
+// rather than fail spuriously.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 let dir: string;
 beforeEach(async () => { dir = await mkdtemp(join(tmpdir(), "cue-summon-")); });
@@ -102,7 +109,7 @@ describe("summon", () => {
     expect((await readFile(join(dir, ".cue.profile"), "utf8")).trim()).toBe("vercel");
   });
 
-  test("mcp_status reflects the active session's loaded MCPs", async () => {
+  test.skipIf(!SKILLS_PRESENT)("mcp_status reflects the active session's loaded MCPs", async () => {
     // browser/lightpanda needs the `lightpanda` MCP; core loads it.
     const lp = (skills: { id: string; mcp_status: string }[]) =>
       skills.find((s) => s.id === "browser/lightpanda");
