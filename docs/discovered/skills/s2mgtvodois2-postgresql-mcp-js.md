@@ -2,7 +2,7 @@
 title: "s2mgtvodois2/postgresql-mcp-js — Claude Code skill discovered by cue"
 description: "🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-30
 tags: [claude-code, skill, backend, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: agent-framework, ai, ai-agent, bun, database, langchain, langgraph, llm, mcp, mcp-server, model-context-protocol, nextjs, openai, postgresql, prisma, react, typescript
 
 ## Best fit cue profiles

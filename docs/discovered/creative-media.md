@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="n24q02m-imagine-mcp"></a>
-## 💎 [n24q02m/imagine-mcp](https://github.com/n24q02m/imagine-mcp)
-
-**★ 3** · exceptional (score 9.2) · Python · tags: ai-agents, antigravity, claude, claude-code, codex
-
-Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok.
-
-```bash
-cue skills add n24q02m/imagine-mcp --profile creative-media
-```
-
----
-
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
-
-**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
-
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
-
-```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
-```
 
 ---
 

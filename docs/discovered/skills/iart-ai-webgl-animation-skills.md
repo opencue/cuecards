@@ -2,7 +2,7 @@
 title: "iart-ai/webgl-animation-skills — Claude Code skill discovered by cue"
 description: "3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie "
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, skill, threejs]
 ---
 

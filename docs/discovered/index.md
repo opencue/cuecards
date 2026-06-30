@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-29 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-06-30 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 65 | `skill-memory-bank`, `MaxKB`, `Gearboy` |
-| [**backend**](./backend.md) | 13 | `apify-mcp-server`, `n8n`, `better-telegram-mcp` |
-| [**cybersecurity**](./cybersecurity.md) | 7 | `nsauditor-ai-agent-skill`, `kali-pentest`, `slowmist-security-cc` |
-| [**docs-writer**](./docs-writer.md) | 6 | `dev-forge`, `llm-wiki`, `llm-knowledge-base` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook`, `claude-code-frontend` |
-| [**creative-media**](./creative-media.md) | 3 | `imagine-mcp`, `social-media-scraper-skill`, `redesigned-pancake` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
+| [**core**](./core.md) | 61 | `humanizer-de`, `context-mode`, `activepieces` |
+| [**backend**](./backend.md) | 16 | `mcp-ssh-manager`, `FunASR`, `caura-memclaw` |
+| [**cybersecurity**](./cybersecurity.md) | 8 | `cti-expert`, `hydra`, `kali-pentest` |
+| [**frontend**](./frontend.md) | 6 | `awesome-claude-ui-armory`, `Web-Algebra`, `postgresql-mcp-js` |
+| [**docs-writer**](./docs-writer.md) | 4 | `llm-wiki`, `llm-knowledge-base`, `mneme` |
+| [**niche**](./niche.md) | 2 | `grant-thinking-cn-biology`, `grant-thinking-skill` |
 | [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `Cost-aware-claim-based-multi-model-AI-orchestrator` |
 | [**research**](./research.md) | 1 | `PaperMentor` |
-| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
+| [**video**](./video.md) | 1 | `FunASR` |
+| [**python**](./python.md) | 1 | `skillz` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
 | [**threejs**](./threejs.md) | 1 | `webgl-animation-skills` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="nuttaruj-rolepod"></a>
 ## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 2** · strong (score 6.3) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 2** · strong (score 6.5) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
@@ -31,7 +31,7 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 <a id="misakamikotoghr-5205-cost-aware-claim-based-multi-model-ai-orchestrator"></a>
 ## 🔹 [misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator](https://github.com/misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator)
 
-**★ 1** · potential (score 3.2) · Python · tags: ai, ai-agents, antigravity, claude, codex
+**★ 1** · potential (score 3.1) · Python · tags: ai, ai-agents, antigravity, claude, codex
 
 A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Codex & DeepSeek — not always the strongest model.
 

@@ -2,7 +2,7 @@
 title: "jpoindexter/verified-done — Claude Code skill discovered by cue"
 description: "Always-on skill pack that stops AI coding agents from claiming work is done when only the code path (not the real behavior) was verified. Portable SKILL.md for "
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 

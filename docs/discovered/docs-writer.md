@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="frostyume-dev-forge"></a>
-## 💎 [Frostyume/dev-forge](https://github.com/Frostyume/dev-forge)
-
-**★ 0** · exceptional (score 15) · tags: bug-tracking, claude, claude-code, claude-code-skill, claude-plugin
-
-Local-first root-cause knowledge base for Claude Code: log a bug once, forge weekly reports and resume bullets. Never debug the same bug twice.
-
-✅ SKILL.md
-
-```bash
-cue skills add Frostyume/dev-forge --profile docs-writer
-```
 
 ---
 
@@ -56,41 +41,28 @@ cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
 
 ---
 
-<a id="anakior-atlas-mind"></a>
-## ✨ [Anakior/atlas-mind](https://github.com/Anakior/atlas-mind)
-
-**★ 2** · strong (score 6.5) · Python · tags: ai, claude, digital-garden, git, knowledge-base
-
-Self-hostable, git-native knowledge base & AI memory (MCP) — your notes stay plain Markdown files in your own git repo. Pure-stdlib Python, no database. AGPL-3.0.
-
-```bash
-cue skills add Anakior/atlas-mind --profile docs-writer
-```
-
----
-
-<a id="wlsdks-ontology-atlas"></a>
-## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
-
-**★ 2** · strong (score 6.3) · JavaScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
-
-Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
-
-```bash
-cue skills add wlsdks/ontology-atlas --profile docs-writer
-```
-
----
-
 <a id="thegoatpsy-mneme"></a>
 ## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
 
-**★ 2** · strong (score 6.2) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
+**★ 2** · strong (score 6.5) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
 
 Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
 
 ```bash
 cue skills add TheGoatPsy/mneme --profile docs-writer
+```
+
+---
+
+<a id="amri854-obsidian-mcp-server"></a>
+## ✨ [Amri854/obsidian-mcp-server](https://github.com/Amri854/obsidian-mcp-server)
+
+**★ 0** · strong (score 6.5) · TypeScript · tags: claude, claude-desktop, cursor, knowledge-base, llm
+
+🗂️ Boost your Obsidian experience with a powerful Model Context Protocol server for vault access, knowledge graph analysis, and seamless integrations.
+
+```bash
+cue skills add Amri854/obsidian-mcp-server --profile docs-writer
 ```
 
 ---

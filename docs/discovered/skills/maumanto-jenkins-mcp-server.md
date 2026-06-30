@@ -2,7 +2,7 @@
 title: "MauManto/jenkins-mcp-server — Claude Code skill discovered by cue"
 description: "🔍 Fetch and analyze Jenkins build logs effortlessly with the MCP server, supporting multiple instances and automatic detection from job URLs."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-30
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: ai-agents, business-intelligence, cicd, console-logs, crm, debugging, deployment, devops, error-reporting, genai, jenkins, mcp, mcp-server, model-context-protocol, modelcontextprotocol, multi-instance, nodejs, open-webui
 
 ## Best fit cue profiles

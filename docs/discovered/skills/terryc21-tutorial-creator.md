@@ -2,7 +2,7 @@
 title: "Terryc21/tutorial-creator — Claude Code skill discovered by cue"
 description: "Generate personalized coding lessons from your own codebase. A Claude Code skill: three surfaces (tutorial / vocab / status), six writing-to-learn entries, audi"
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 

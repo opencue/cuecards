@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-28
+updated: 2026-06-30
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="patriarchal-boothose896-notebooklm-py"></a>
-## 💎 [patriarchal-boothose896/notebooklm-py](https://github.com/patriarchal-boothose896/notebooklm-py)
+<a id="mugoherick12-boop-skillz"></a>
+## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
 
-**★ 3** · exceptional (score 15.7) · Python · tags: agentic-skill, api, claude, claude-code, claude-skills
+**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
 
-Provide full Python API access to NotebookLM features, including advanced functions beyond the web interface, via CLI and AI agent integration.
-
-✅ SKILL.md
+🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
 
 ```bash
-cue skills add patriarchal-boothose896/notebooklm-py --profile python
+cue skills add mugoherick12-boop/skillz --profile python
 ```
 
 ---

@@ -1,24 +1,24 @@
 ---
 title: "marmbiz/humanizer-de — Claude Code skill discovered by cue"
-description: "Beliebt und kostenlos Humanizer für deutsche Texte – erkennt und entfernt KI-Schreibmuster (65 Muster in 10 Kategorien). Deterministische Linter, 5-Pass-Workflo"
+description: "German AI Text Humanizer / deutscher Humanizer Skill for Claude Code and Codex: audits German AI-writing patterns with 66 patterns, deterministic linters, and e"
 layout: page
-updated: 2026-06-20
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [marmbiz/humanizer-de](https://github.com/marmbiz/humanizer-de)
 
-**★ 43** · exceptional (score 15.8) · Python · ai-detection, ai-writing, claude-code, claude-code-plugin, claude-skill
+**★ 50** · exceptional (score 21.9) · Python · agent-skills, ai-detection, ai-humanizer, ai-writing, claude-code
 
-> Beliebt und kostenlos Humanizer für deutsche Texte – erkennt und entfernt KI-Schreibmuster (65 Muster in 10 Kategorien). Deterministische Linter, 5-Pass-Workflow, als Claude-Code-Plugin installierbar. Hervorgegangen aus blader/humanizer.
+> German AI Text Humanizer / deutscher Humanizer Skill for Claude Code and Codex: audits German AI-writing patterns with 66 patterns, deterministic linters, and evidence-safe rewrites.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.9 based on:
 - ✅ Contains SKILL.md
-- ⭐ 43 stars
-- 🗓️ Last pushed: 2026-06-20
-- 🏷️ Tags: ai-detection, ai-writing, claude-code, claude-code-plugin, claude-skill, german, german-language, humanizer, humanizer-de, llm, nlp, text-humanizer, writing-tools
+- ⭐ 50 stars
+- 🗓️ Last pushed: 2026-06-30
+- 🏷️ Tags: agent-skills, ai-detection, ai-humanizer, ai-writing, claude-code, claude-code-plugin, claude-skill, codex, codex-plugin, codex-skill, deutsch, german, german-language, germanizer, humanizer, humanizer-de, ki-text, ki-texte-humanisieren, prompt-engineering, writing-tools
 
 ## Best fit cue profiles
 

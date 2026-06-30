@@ -2,7 +2,7 @@
 title: "Nikil11/stacks-clarity-mcp — Claude Code skill discovered by cue"
 description: "🚀 Build robust Clarity smart contracts with the Stacks Clarity MCP server, offering 30+ tools for security, compliance, and performance optimization."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: blockchain, clarity, mcp, mcp-server, nft, sip-009, sip-010, smart-contracts, stacks, stacks-blockchain
 
 ## Best fit cue profiles

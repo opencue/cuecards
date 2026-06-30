@@ -2,7 +2,7 @@
 title: "abhinav503/flutter-agentic — Claude Code skill discovered by cue"
 description: "Flutter Clean Architecture template optimised for AI coding agents — BLoC, Freezed, Dio, fpdart, GoRouter. Native rules for Claude Code, Cursor, Gemini, Codex &"
 layout: page
-updated: 2026-06-18
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-06-18
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: amazonq, boilerplate-template, claude-code, claude-code-skill, clean-architecture, clean-architecture-template, codex, codexskills, copilot-coding-agent, cursor, cursor-ai, dart, dio, flutter, flutter-template, flutter-templates, flutterbloc, freezed-flutter-api, gorouter, starter-kit
 
 ## Best fit cue profiles

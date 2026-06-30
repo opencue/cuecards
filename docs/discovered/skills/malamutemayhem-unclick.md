@@ -2,7 +2,7 @@
 title: "malamutemayhem/unclick — Claude Code skill discovered by cue"
 description: "The universal remote for AI: one MCP install gives agents 450+ callable endpoints across 60+ integrations, plus persistent cross-session memory. Works with Clau"
 layout: page
-updated: 2026-06-12
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: agent-tools, ai-agents, ai-memory, claude, integrations, llm, mcp, mcp-server, model-context-protocol, typescript
 
 ## Best fit cue profiles

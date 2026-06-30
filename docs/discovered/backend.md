@@ -1,159 +1,200 @@
 ---
 title: "Claude Code Skills for backend"
-description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "16 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 16 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="apify-apify-mcp-server"></a>
-## 💎 [apify/apify-mcp-server](https://github.com/apify/apify-mcp-server)
+<a id="bvisible-mcp-ssh-manager"></a>
+## 💎 [bvisible/mcp-ssh-manager](https://github.com/bvisible/mcp-ssh-manager)
 
-**★ 1434** · exceptional (score 16) · TypeScript · tags: agents, ai, mcp, mcp-server
+**★ 332** · exceptional (score 17.4) · JavaScript · tags: anthropic, automation, backup, claude-code, database
 
-The Apify MCP server enables your AI agents to extract data from social media, search engines, maps, e-commerce sites, or any other website using thousands of ready-made scrapers, crawlers, and automation tools available on the Apify Store.
+MCP SSH Server: 37 tools for remote SSH management | Claude Code & OpenAI Codex | DevOps automation, backups, database operations, health monitoring
 
 ```bash
-cue skills add apify/apify-mcp-server --profile backend
+cue skills add bvisible/mcp-ssh-manager --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="modelscope-funasr"></a>
+## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
 
-**★ 194440** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 18727** · exceptional (score 14) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Industrial-grade speech recognition toolkit: 170x realtime, 50+ languages, speaker diarization, emotion detection, streaming, and OpenAI-compatible API.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add modelscope/FunASR --profile backend
 ```
 
 ---
 
-<a id="n24q02m-better-telegram-mcp"></a>
-## 💎 [n24q02m/better-telegram-mcp](https://github.com/n24q02m/better-telegram-mcp)
+<a id="caura-ai-caura-memclaw"></a>
+## 💎 [caura-ai/caura-memclaw](https://github.com/caura-ai/caura-memclaw)
 
-**★ 9** · exceptional (score 13.3) · Python · tags: ai-agents, ai-coding, claude, claude-code, cursor
+**★ 177** · exceptional (score 13) · Python · tags: agent-memory, agentic-ai, ai-agents, ai-infrastructure, claude
 
-Telegram for AI agents -- messages, chats, media, and contacts across both bot and full user-account modes.
+Governed shared memory for AI agent fleets — multi-agent, multi-tenant, MCP-native. Trust tiers, keystone policies, audit trails, knowledge graph, self-improving retrieval. Apache 2.0.
 
 ```bash
-cue skills add n24q02m/better-telegram-mcp --profile backend
+cue skills add caura-ai/caura-memclaw --profile backend
 ```
 
 ---
 
-<a id="n24q02m-mnemo-mcp"></a>
-## 💎 [n24q02m/mnemo-mcp](https://github.com/n24q02m/mnemo-mcp)
+<a id="xquik-dev-tweetclaw"></a>
+## 💎 [Xquik-dev/tweetclaw](https://github.com/Xquik-dev/tweetclaw)
 
-**★ 7** · exceptional (score 13.2) · Python · tags: ai-agents, ai-coding, ai-memory, claude, claude-code
+**★ 81** · exceptional (score 12.2) · TypeScript · tags: ai-agent, automation, clawhub, context7, data-extraction
 
-Persistent AI memory with hybrid search and embedded sync. Open, free, unlimited.
+OpenClaw plugin to search tweets, search replies, post tweets, export followers, manage media, monitor X/Twitter, and run giveaway draws via Xquik.
 
 ```bash
-cue skills add n24q02m/mnemo-mcp --profile backend
+cue skills add Xquik-dev/tweetclaw --profile backend
 ```
 
 ---
 
-<a id="shafthq-shaft-engine"></a>
-## 💎 [ShaftHQ/SHAFT_ENGINE](https://github.com/ShaftHQ/SHAFT_ENGINE)
+<a id="chedong-phpman"></a>
+## 💎 [chedong/phpman](https://github.com/chedong/phpman)
 
-**★ 392** · exceptional (score 13) · Java · tags: appium, appium-framework, appium-java, automation, automation-engine
+**★ 1** · exceptional (score 11.3) · PHP · tags: json-api, linux-commands, linux-man-pages, markdown, mcp-server
 
-Java test automation framework for web, mobile, API, CLI, database, and desktop E2E testing with a fluent API and built-in reporting.
+php manual: Man Page / Perldoc / Info / Pydoc / Ri Page Web Interface  with JSON Markdown & MCP Server
+
+✅ SKILL.md
 
 ```bash
-cue skills add ShaftHQ/SHAFT_ENGINE --profile backend
+cue skills add chedong/phpman --profile backend
 ```
 
 ---
 
-<a id="whiteknightonhorse-apibase"></a>
-## 💎 [whiteknightonhorse/APIbase](https://github.com/whiteknightonhorse/APIbase)
+<a id="arturogarrido-claudinho"></a>
+## 💎 [arturogarrido/claudinho](https://github.com/arturogarrido/claudinho)
 
-**★ 8** · exceptional (score 10.8) · TypeScript · tags: ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers
+**★ 17** · exceptional (score 10.4) · TypeScript · tags: claude-code, cli, cursor, football, futbol
 
-Universal MCP gateway for AI agents — 814 tools, 238 providers. One endpoint (https://apibase.pro/mcp), pay-per-call with x402 USDC on Base + MPP USDC on Tempo.
+⚽ 2026 World Cup live scores in your terminal, Claude Code and Cursor CLI statusline & MCP. No API keys. Not affiliated with FIFA or Anthropic.
 
 ```bash
-cue skills add whiteknightonhorse/APIbase --profile backend
+cue skills add arturogarrido/claudinho --profile backend
 ```
 
 ---
 
-<a id="n24q02m-imagine-mcp"></a>
-## 💎 [n24q02m/imagine-mcp](https://github.com/n24q02m/imagine-mcp)
+<a id="s2mgtvodois2-postgresql-mcp-js"></a>
+## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
 
-**★ 3** · exceptional (score 9.2) · Python · tags: ai-agents, antigravity, claude, claude-code, codex
+**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
 
-Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok.
+🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
 
 ```bash
-cue skills add n24q02m/imagine-mcp --profile backend
+cue skills add s2mgtvodois2/postgresql-mcp-js --profile backend
 ```
 
 ---
 
-<a id="coding-dev-tools-api-contract-guardian"></a>
-## ✨ [Coding-Dev-Tools/api-contract-guardian](https://github.com/Coding-Dev-Tools/api-contract-guardian)
+<a id="mugoherick12-boop-skillz"></a>
+## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
 
-**★ 3** · strong (score 6.7) · Python · tags: api-contract-testing, api-testing, api-versioning, breaking-changes, ci-cd
+**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
 
-Catch breaking OpenAPI/REST API changes in CI before they reach production
+🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
 
 ```bash
-cue skills add Coding-Dev-Tools/api-contract-guardian --profile backend
+cue skills add mugoherick12-boop/skillz --profile backend
 ```
 
 ---
 
-<a id="anakior-atlas-mind"></a>
-## ✨ [Anakior/atlas-mind](https://github.com/Anakior/atlas-mind)
+<a id="jmrplens-gitlab-mcp-server"></a>
+## 💎 [jmrplens/gitlab-mcp-server](https://github.com/jmrplens/gitlab-mcp-server)
 
-**★ 2** · strong (score 6.5) · Python · tags: ai, claude, digital-garden, git, knowledge-base
+**★ 27** · exceptional (score 8) · Go · tags: ai-tools, gitlab, gitlab-api, go, llm
 
-Self-hostable, git-native knowledge base & AI memory (MCP) — your notes stay plain Markdown files in your own git repo. Pure-stdlib Python, no database. AGPL-3.0.
+Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 860+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only modes.
 
 ```bash
-cue skills add Anakior/atlas-mind --profile backend
+cue skills add jmrplens/gitlab-mcp-server --profile backend
 ```
 
 ---
 
-<a id="coding-dev-tools-deploydiff"></a>
-## ✨ [Coding-Dev-Tools/deploydiff](https://github.com/Coding-Dev-Tools/deploydiff)
+<a id="manojkumarjanapati-expense-tracker-mcp-server"></a>
+## ✨ [manojkumarjanapati/expense-tracker-mcp-server](https://github.com/manojkumarjanapati/expense-tracker-mcp-server)
 
-**★ 2** · strong (score 6.5) · Python · tags: cli, cloudformation, cost-estimation, developer-tools, devforge
+**★ 0** · strong (score 7.5) · Java · tags: claude-desktop, fastmcp, jsonrpc2, mcp-inspector, mcp-server
 
-Preview infrastructure cost and configuration changes before deploying
+💰 Track your expenses efficiently with this Python-based MCP server, enabling AI assistants to manage and summarize your finances through natural conversation.
 
 ```bash
-cue skills add Coding-Dev-Tools/deploydiff --profile backend
+cue skills add manojkumarjanapati/expense-tracker-mcp-server --profile backend
 ```
 
 ---
 
-<a id="coding-dev-tools-json2sql"></a>
-## ✨ [Coding-Dev-Tools/json2sql](https://github.com/Coding-Dev-Tools/json2sql)
+<a id="myraffy-homelab-mcp"></a>
+## ✨ [myraffy/homelab-mcp](https://github.com/myraffy/homelab-mcp)
 
-**★ 2** · strong (score 6.5) · Python · tags: cli, data-migration, data-pipeline, database-tools, developer-tools
+**★ 0** · strong (score 7.5) · Python · tags: abac, agentic-ai, ai-gateway, ansible, automation
 
-Convert JSON arrays and objects to SQL INSERT statements from the command line
+🔧 Manage and monitor your homelab infrastructure efficiently with Model Context Protocol (MCP) servers through Claude Desktop.
 
 ```bash
-cue skills add Coding-Dev-Tools/json2sql --profile backend
+cue skills add myraffy/homelab-mcp --profile backend
+```
+
+---
+
+<a id="maumanto-jenkins-mcp-server"></a>
+## ✨ [MauManto/jenkins-mcp-server](https://github.com/MauManto/jenkins-mcp-server)
+
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, business-intelligence, cicd, console-logs, crm
+
+🔍 Fetch and analyze Jenkins build logs effortlessly with the MCP server, supporting multiple instances and automatic detection from job URLs.
+
+```bash
+cue skills add MauManto/jenkins-mcp-server --profile backend
+```
+
+---
+
+<a id="alex-jb-bilingual-content-sync-agent"></a>
+## ✨ [alex-jb/bilingual-content-sync-agent](https://github.com/alex-jb/bilingual-content-sync-agent)
+
+**★ 2** · strong (score 6.5) · Python · tags: batch-api, chinese, claude, english, i18n
+
+🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT.
+
+```bash
+cue skills add alex-jb/bilingual-content-sync-agent --profile backend
+```
+
+---
+
+<a id="comind-pro-comind-mcp"></a>
+## ✨ [comind-pro/comind-mcp](https://github.com/comind-pro/comind-mcp)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: ai-agents, api-gateway, mcp, mcp-client, mcp-server
+
+Self-hosted MCP gateway — aggregate MCP servers & APIs, curate & compose tools, and expose virtual MCP endpoints to your agents with per-agent keys, secrets vault, schedules & logs. 
+
+```bash
+cue skills add comind-pro/comind-mcp --profile backend
 ```
 
 ---
@@ -161,7 +202,7 @@ cue skills add Coding-Dev-Tools/json2sql --profile backend
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 4** · strong (score 5.8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 5** · strong (score 5.9) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
 Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 

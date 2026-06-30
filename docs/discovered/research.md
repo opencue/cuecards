@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-29
+updated: 2026-06-30
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 <a id="shinyjay2-papermentor"></a>
 ## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 0** · exceptional (score 15.5) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
+**★ 1** · exceptional (score 15.8) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
 Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
 

@@ -2,7 +2,7 @@
 title: "Amri854/obsidian-mcp-server — Claude Code skill discovered by cue"
 description: "🗂️ Boost your Obsidian experience with a powerful Model Context Protocol server for vault access, knowledge graph analysis, and seamless integrations."
 layout: page
-updated: 2026-06-22
+updated: 2026-06-30
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: claude, claude-desktop, cursor, knowledge-base, llm, llm-agent, mcp, mcp-server, model-context-protocol, model-context-protocol-server, note-taking, notes, omnisearch, openai, secondbrain, swift, swift-package, windsurf
 
 ## Best fit cue profiles

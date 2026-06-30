@@ -2,21 +2,21 @@
 title: "activepieces/activepieces — Claude Code skill discovered by cue"
 description: "AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agent"
 layout: page
-updated: 2026-06-22
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [activepieces/activepieces](https://github.com/activepieces/activepieces)
 
-**★ 22918** · exceptional (score 19) · TypeScript · ai-agent, ai-agent-tools, ai-agents, ai-agents-framework, mcp
+**★ 23058** · exceptional (score 19) · TypeScript · ai-agent, ai-agent-tools, ai-agents, ai-agents-framework, mcp
 
 > AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19 based on:
-- ⭐ 22918 stars
-- 🗓️ Last pushed: 2026-06-22
+- ⭐ 23058 stars
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: ai-agent, ai-agent-tools, ai-agents, ai-agents-framework, mcp, mcp-server, mcp-tools, mcps, n8n-alternative, no-code-automation, workflow, workflow-automation, workflows
 
 ## Best fit cue profiles
