@@ -1633,7 +1633,7 @@ export async function run(args: string[]): Promise<number> {
   if (agentKind === "claude-code" && profile.mcps.length > 0) {
     try {
       const { getNeededMcps } = await import("../lib/skill-dependencies");
-      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
+      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, isRecognizedPruneEnv, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
 
       const allMcpIds = profile.mcps.map((m) => m.id);
       const fingerprint = mcpFingerprint(allMcpIds);
@@ -1652,12 +1652,20 @@ export async function run(args: string[]): Promise<number> {
       let kept: Set<string> | null = null;
       let reviewed = false;
 
-      // Effective non-interactive prune mode: an explicit `CUE_PRUNE_MCPS` env
-      // (even if it parses to "off") overrides the profile's declared default;
-      // otherwise the profile's `mcpPrune:` applies. This is what makes a heavy
-      // profile auto-prune with no env var set.
+      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
+      // (including an explicit `off`) overrides the profile's declared default;
+      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
+      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
+      // (e.g. a typo like `profil`) must NOT silently suppress the profile
+      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
       const pruneEnv = process.env.CUE_PRUNE_MCPS;
-      const pruneFromEnv = pruneEnv != null && pruneEnv !== "";
+      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
+      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
+      if (pruneEnvSet && !pruneFromEnv) {
+        process.stderr.write(
+          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
+        );
+      }
       const pruneMode = pruneFromEnv ? mcpPruneMode(pruneEnv) : (profile.mcpPrune ?? "off");
       const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
 

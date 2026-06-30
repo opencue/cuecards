@@ -11,6 +11,7 @@ import {
   autoPrunableMcps,
   autoPruneEnabled,
   mcpPruneMode,
+  isRecognizedPruneEnv,
   readRuntimeMcpServerIds,
 } from "./mcp-overrides";
 import { writeFile as writeFileAsync } from "node:fs/promises";
@@ -186,3 +187,16 @@ describe("readRuntimeMcpServerIds", () => {
     expect(readRuntimeMcpServerIds(p)).toEqual([]);
   });
 })
+
+describe("isRecognizedPruneEnv", () => {
+  test("recognizes every valid token (all/profile/off spellings)", () => {
+    for (const v of ["off","0","false","no","","auto","unused","profile","1","true","on","all","global","aggressive","  ALL  "]) {
+      expect(isRecognizedPruneEnv(v), v).toBe(true);
+    }
+  });
+  test("rejects typos / garbage so the caller can fall through", () => {
+    for (const v of ["profil","prof","aggresive","yes","2","none","disable"]) {
+      expect(isRecognizedPruneEnv(v), v).toBe(false);
+    }
+  });
+});

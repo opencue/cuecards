@@ -132,11 +132,30 @@ export function autoPrunableMcps(
  *     .claude.json (heavy servers a coding profile never calls). A louder
  *     opt-in because it deletes config the user set globally.
  */
+const PRUNE_ALL_TOKENS = ["all", "global", "aggressive"];
+const PRUNE_PROFILE_TOKENS = ["auto", "unused", "profile", "1", "true", "on"];
+const PRUNE_OFF_TOKENS = ["off", "0", "false", "no", ""];
+
 export function mcpPruneMode(value: string | undefined): McpPruneMode {
   const v = (value ?? "").trim().toLowerCase();
-  if (["all", "global", "aggressive"].includes(v)) return "all";
-  if (["auto", "unused", "profile", "1", "true", "on"].includes(v)) return "profile";
+  if (PRUNE_ALL_TOKENS.includes(v)) return "all";
+  if (PRUNE_PROFILE_TOKENS.includes(v)) return "profile";
   return "off";
+}
+
+/**
+ * Whether `value` is a token `mcpPruneMode` recognizes (any of all/profile/off
+ * spellings). A non-empty, unrecognized value (a typo like `profil`) returns
+ * false so the caller can warn and fall through to the profile default instead
+ * of silently parsing it to "off" and suppressing that default.
+ */
+export function isRecognizedPruneEnv(value: string): boolean {
+  const v = value.trim().toLowerCase();
+  return (
+    PRUNE_ALL_TOKENS.includes(v) ||
+    PRUNE_PROFILE_TOKENS.includes(v) ||
+    PRUNE_OFF_TOKENS.includes(v)
+  );
 }
 
 /** Back-compat predicate: any prune mode at all (profile or all). */
