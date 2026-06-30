@@ -88,6 +88,18 @@ function localBinPath(binary: string): string {
   return join(homedir(), ".local", "bin", binary);
 }
 
+/**
+ * True when `uv tool install` aborted because one of the package's entrypoint
+ * names already exists in ~/.local/bin. This happens when the uv tool dir was
+ * wiped but the `~/.local/bin/<script>` symlinks were left behind (now
+ * dangling): `existsSync` reports our binary missing, so we reinstall, but uv
+ * refuses to overwrite the leftover symlink unless `--force` is passed. uv
+ * names the escape hatch in the message, so match on it.
+ */
+export function isExecutableCollision(stderr: string): boolean {
+  return /Executable already exists|`--force` to overwrite/i.test(stderr);
+}
+
 function installBinaryDefault(
   gitUrl: string,
   _binary: string,
@@ -97,11 +109,19 @@ function installBinaryDefault(
   // do NOT pass `--from <url> <bin>` — uv enforces install-name == package-name
   // in that mode, which breaks when the binary name (e.g. `trendradar-mcp`)
   // differs from the package name (`trendradar`).
-  const res = spawnSync(
-    "uv",
-    ["tool", "install", gitUrl],
-    { stdio: ["ignore", "pipe", "pipe"], encoding: "utf8", timeout: 180_000 },
-  );
+  const run = (force: boolean) =>
+    spawnSync(
+      "uv",
+      ["tool", "install", ...(force ? ["--force"] : []), gitUrl],
+      { stdio: ["ignore", "pipe", "pipe"], encoding: "utf8", timeout: 180_000 },
+    );
+  let res = run(false);
+  // A leftover dangling entrypoint symlink blocks the link step; uv aborts and
+  // points at --force. Overwrite the stale links once instead of looping every
+  // launch.
+  if (res.status !== 0 && isExecutableCollision((res.stderr ?? "").toString())) {
+    res = run(true);
+  }
   if (res.status === 0) return { ok: true, stderr: "" };
   return { ok: false, stderr: (res.stderr ?? "").toString().trim() };
 }

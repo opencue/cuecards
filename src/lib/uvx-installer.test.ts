@@ -2,7 +2,11 @@ import { describe, expect, test } from "bun:test";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-import { normalizeUvxGitServers, salientInstallError } from "./uvx-installer";
+import {
+  isExecutableCollision,
+  normalizeUvxGitServers,
+  salientInstallError,
+} from "./uvx-installer";
 import type { McpServerConfig } from "./runtime-materializer";
 
 const localBin = (b: string) => join(homedir(), ".local", "bin", b);
@@ -155,6 +159,16 @@ describe("normalizeUvxGitServers", () => {
     expect(warnings[0]).not.toContain("aiohttp");
     expect(warnings[0]).not.toContain("Resolved 99 packages");
     expect(warnings[0]).not.toContain("Installed 99 packages");
+  });
+
+  test("isExecutableCollision detects uv's stale-entrypoint abort", () => {
+    expect(
+      isExecutableCollision(
+        "error: Executable already exists: trendradar (use `--force` to overwrite)",
+      ),
+    ).toBe(true);
+    expect(isExecutableCollision("fatal: repository not found")).toBe(false);
+    expect(isExecutableCollision("")).toBe(false);
   });
 
   test("salientInstallError keeps a lone non-noise line and handles empty", () => {
