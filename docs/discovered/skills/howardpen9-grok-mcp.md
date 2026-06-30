@@ -2,21 +2,21 @@
 title: "howardpen9/grok-mcp — Claude Code skill discovered by cue"
 description: "MCP server that wraps the xAI Grok CLI. Lets Claude Code, Cursor, Cline, and any MCP host use Grok as a peer code reviewer, adversary, and second-opinion consul"
 layout: page
-updated: 2026-06-10
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [howardpen9/grok-mcp](https://github.com/howardpen9/grok-mcp)
 
-**★ 5** · exceptional (score 12.4) · TypeScript · adversarial-testing, agent-tools, ai-agent, ai-tools, claude-code
+**★ 6** · exceptional (score 12.5) · TypeScript · adversarial-testing, agent-tools, ai-agent, ai-tools, claude-code
 
 > MCP server that wraps the xAI Grok CLI. Lets Claude Code, Cursor, Cline, and any MCP host use Grok as a peer code reviewer, adversary, and second-opinion consultant.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-10
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: adversarial-testing, agent-tools, ai-agent, ai-tools, claude-code, cline, code-review, cursor, grok, llm-tools, mcp, mcp-server, model-context-protocol, peer-review, second-opinion, typescript, xai
 
 ## Best fit cue profiles

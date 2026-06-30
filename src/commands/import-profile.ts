@@ -4,13 +4,12 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { resolve, dirname, join, } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 
 export async function run(args: string[]): Promise<number> {
   const sub = args[0];
@@ -104,7 +103,7 @@ async function cmdExport(args: string[]): Promise<number> {
   const profile = await loadProfile(profileName);
   const yaml = require("yaml");
 
-  const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+  const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
   const base: Record<string, unknown> = {
     name: profile.name,

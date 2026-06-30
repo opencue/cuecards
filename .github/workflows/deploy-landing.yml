@@ -3,6 +3,11 @@ on:
   push:
     branches: [main]
     paths: ['docs/**', 'profiles/*/profile.yaml']
+  # Re-deploy the full Jekyll site after discover-publish overwrites Pages
+  # with its docs/discovered-only artifact.
+  workflow_run:
+    workflows: ["Discover & Publish Skills"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -15,6 +20,9 @@ concurrency:
 
 jobs:
   build:
+    # On a workflow_run trigger, only deploy if discover-publish succeeded;
+    # always run for direct pushes (where github.event.workflow_run is null).
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

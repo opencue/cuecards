@@ -1,32 +1,35 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-30
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
 # 🎯 Discovered Claude Code Skills
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-06-16 · refreshed nightly via GitHub Code Search.
+These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
+
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-06-30 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 71 | `master-skill`, `antigravity-workspace-template`, `jira-skill` |
-| [**backend**](./backend.md) | 15 | `n8n`, `reshapr`, `lunar` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `nsauditor-ai-agent-skill`, `kali-pentest`, `Claude-OSINT` |
-| [**creative-media**](./creative-media.md) | 4 | `google-ads-custom-affinity-builder`, `social-media-scraper-skill`, `feinschmiede` |
+| [**core**](./core.md) | 61 | `humanizer-de`, `context-mode`, `activepieces` |
+| [**backend**](./backend.md) | 16 | `mcp-ssh-manager`, `FunASR`, `caura-memclaw` |
+| [**cybersecurity**](./cybersecurity.md) | 8 | `cti-expert`, `hydra`, `kali-pentest` |
+| [**frontend**](./frontend.md) | 6 | `awesome-claude-ui-armory`, `Web-Algebra`, `postgresql-mcp-js` |
+| [**docs-writer**](./docs-writer.md) | 4 | `llm-wiki`, `llm-knowledge-base`, `mneme` |
 | [**niche**](./niche.md) | 2 | `grant-thinking-cn-biology`, `grant-thinking-skill` |
-| [**frontend**](./frontend.md) | 2 | `lottie-marketplace`, `claude-code-frontend` |
-| [**research**](./research.md) | 1 | `market-intel` |
-| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
-| [**fleet-control**](./fleet-control.md) | 1 | `multi-agent-revenue-orchestrator` |
-| [**python**](./python.md) | 1 | `home-energy-manager` |
-| [**docs-writer**](./docs-writer.md) | 1 | `linkedin-maxxing` |
-| [**nextjs**](./nextjs.md) | 1 | `stackgate` |
+| [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `Cost-aware-claim-based-multi-model-AI-orchestrator` |
+| [**research**](./research.md) | 1 | `PaperMentor` |
+| [**video**](./video.md) | 1 | `FunASR` |
+| [**python**](./python.md) | 1 | `skillz` |
+| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**threejs**](./threejs.md) | 1 | `webgl-animation-skills` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

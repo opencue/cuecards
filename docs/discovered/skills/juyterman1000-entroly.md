@@ -2,21 +2,21 @@
 title: "juyterman1000/entroly — Claude Code skill discovered by cue"
 description: "Cut your Claude / OpenAI / Gemini bill 70–95% on AI coding. Local proxy that compresses context, keeps provider caches hot, and verifies LLM output ($0 hallucin"
 layout: page
-updated: 2026-06-06
+updated: 2026-06-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [juyterman1000/entroly](https://github.com/juyterman1000/entroly)
 
-**★ 409** · exceptional (score 15.2) · Python · ai, ai-agents, ai-hallucination, anthropic, chatgpt
+**★ 417** · exceptional (score 15.2) · Python · ai, ai-agents, ai-hallucination, anthropic, chatgpt
 
 > Cut your Claude / OpenAI / Gemini bill 70–95% on AI coding. Local proxy that compresses context, keeps provider caches hot, and verifies LLM output ($0 hallucination guard). Drop-in for Cursor, Claude Code, Codex, Aider + 34 more and custom providers — 30s, no code changes
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
-- ⭐ 409 stars
-- 🗓️ Last pushed: 2026-06-06
+- ⭐ 417 stars
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: ai, ai-agents, ai-hallucination, anthropic, chatgpt, claude, claude-code, context-compression, cursor, hallucination-detection, llm, llm-grounding, mcp, mcp-server, open-source, productivity, rag, rust, token-optimization
 
 ## Best fit cue profiles

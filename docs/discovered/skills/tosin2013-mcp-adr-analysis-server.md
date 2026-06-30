@@ -2,7 +2,7 @@
 title: "tosin2013/mcp-adr-analysis-server — Claude Code skill discovered by cue"
 description: "A sophisticated Model Context Protocol (MCP) server for analyzing Architectural Decision Records (ADRs) and providing deep architectural insights to AI agents."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
 - ⭐ 29 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: adr, ai-agents, architectural-decision-records, architecture, claude, cursor, mcp-server, typescript
 
 ## Best fit cue profiles

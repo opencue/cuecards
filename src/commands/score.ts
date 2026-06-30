@@ -22,6 +22,7 @@ import {
   firedSkills,
 } from "../lib/profile-metrics";
 
+
 // Baseline always-on CLAUDE.md tokens for an un-materialized profile (shared
 // core persona + integrity protocol dominate). Mirrors cost.ts.
 const BASE_CLAUDE_MD_TOKENS = 7000;

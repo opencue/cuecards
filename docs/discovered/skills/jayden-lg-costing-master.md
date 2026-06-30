@@ -2,21 +2,21 @@
 title: "jayden-lg/costing-master — Claude Code skill discovered by cue"
 description: "造价大师 — 中国建设工程造价管理全流程AI助手。遵循GB/T 50500-2024，覆盖投资估算到竣工决算，兼容各省定额与广联达。"
 layout: page
-updated: 2026-06-13
+updated: 2026-06-27
 tags: [claude-code, skill, niche]
 ---
 
 # 💎 [jayden-lg/costing-master](https://github.com/jayden-lg/costing-master)
 
-**★ 5** · exceptional (score 10.7) · ai-agent-skill, china, claude-code, construction, cost-estimation
+**★ 9** · exceptional (score 10.4) · ai-agent-skill, china, claude-code, construction, cost-estimation
 
 > 造价大师 — 中国建设工程造价管理全流程AI助手。遵循GB/T 50500-2024，覆盖投资估算到竣工决算，兼容各省定额与广联达。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
 - ✅ Contains SKILL.md
-- ⭐ 5 stars
+- ⭐ 9 stars
 - 🗓️ Last pushed: 2026-05-27
 - 🏷️ Tags: ai-agent-skill, china, claude-code, construction, cost-estimation, zaojia, zh-cn
 

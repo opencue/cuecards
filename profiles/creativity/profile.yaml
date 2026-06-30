@@ -32,6 +32,7 @@ skills:
         - seo-content-writer
 mcps:
   - trendradar
+  - Higgsfield   # content/trend-to-thread generates visual assets via Higgsfield
 plugins: []
 persona: |
   You are a creative content specialist. The user came here because the

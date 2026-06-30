@@ -119,7 +119,11 @@ mcps:
   - gbrain
   - hostinger-api
   - secret-mcp
-  - postgres
+  # postgres MCP needs a connection string to do anything — gate on it so the
+  # server (and its query tool schema) only loads when a DB is configured.
+  - id: postgres
+    when:
+      env: DATABASE_URL
 env:
   RESEND_API_KEY: "${RESEND_API_KEY}"
   STRIPE_API_KEY: "${STRIPE_API_KEY}"

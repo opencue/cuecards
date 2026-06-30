@@ -5,6 +5,7 @@
 
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
 import { mkdtemp, writeFile, rm, readFile, readdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -17,6 +18,11 @@ const CUE_BIN = join(import.meta.dir, "../index.ts");
 // Skip the whole describe when a child `bun` can't be spawned. CI installs bun
 // via setup-bun, so this only skips in constrained local/sandbox runs.
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
+// `resources/skills` is a git submodule. On a fresh clone without
+// `git submodule update --init --recursive` it's an empty tree, so the
+// materializer has no skills to symlink and `cue launch` exits non-zero — a
+// setup gap, not a regression. Skip rather than fail spuriously.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> } = {}): { status: number; stdout: string; stderr: string } {
   // Strip env vars set when the test runner itself is running inside a cue
@@ -36,7 +42,7 @@ function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> 
   return { status: res.status ?? 1, stdout: res.stdout ?? "", stderr: res.stderr ?? "" };
 }
 
-describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
+describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
   let tmpDir: string;
   let oldXdgConfigHome: string | undefined;
 

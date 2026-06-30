@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-30
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+<a id="nuttaruj-rolepod"></a>
+## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+**★ 2** · strong (score 6.5) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
-2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
-cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
+cue skills add nuttaruj/rolepod --profile fleet-control
+```
+
+---
+
+<a id="misakamikotoghr-5205-cost-aware-claim-based-multi-model-ai-orchestrator"></a>
+## 🔹 [misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator](https://github.com/misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator)
+
+**★ 1** · potential (score 3.1) · Python · tags: ai, ai-agents, antigravity, claude, codex
+
+A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Codex & DeepSeek — not always the strongest model.
+
+```bash
+cue skills add misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator --profile fleet-control
 ```
 
 ---

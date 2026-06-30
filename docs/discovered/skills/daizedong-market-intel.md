@@ -2,7 +2,7 @@
 title: "DaizeDong/market-intel — Claude Code skill discovered by cue"
 description: "Thin Claude Code skill for commercial/market research: triages topics across 12 data domains, detects & guides installing the right MCP source, delegates heavy "
 layout: page
-updated: 2026-06-16
+updated: 2026-06-17
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-17
 - 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, competitor-analysis, data-sources, deep-research, llm, market-intelligence, market-research, mcp, osint, skill, web-scraping
 
 ## Best fit cue profiles

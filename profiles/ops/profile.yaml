@@ -68,9 +68,17 @@ mcps:
   - coolify
   - gbrain
   - hostinger-api
-  - google-drive-mcp
-  - slack
-  - linear
+  # Credential-gated SaaS servers: each is inert without its token, so they
+  # only load (and only cost tool schema) when that integration is configured.
+  - id: google-drive-mcp
+    when:
+      env: GOOGLE_DRIVE_OAUTH_CREDENTIALS
+  - id: slack
+    when:
+      env: SLACK_BOT_TOKEN
+  - id: linear
+    when:
+      env: LINEAR_API_KEY
 env:
   AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
   AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"

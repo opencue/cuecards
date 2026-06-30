@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #1a1a2e;
+      background: #fff;
+    }
+    .site-header {
+      background: linear-gradient(135deg, #157efb 0%, #0a5dc4 100%);
+      padding: 2.5rem 1.5rem;
+      color: #fff;
+    }
+    .site-header-inner { max-width: 800px; margin: 0 auto; }
+    .site-header a { color: #fff; text-decoration: none; }
+    .site-header h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.01em; }
+    .site-header p { margin-top: 0.5rem; opacity: 0.88; font-size: 0.97rem; }
+    .content {
+      max-width: 800px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 5rem;
+    }
+    h1, h2, h3, h4 { line-height: 1.3; margin-top: 2rem; margin-bottom: 0.6rem; color: #0f172a; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.35rem; border-bottom: 1px solid #e1e4e8; padding-bottom: 0.35rem; }
+    h3 { font-size: 1.1rem; }
+    p { margin-top: 0.75rem; }
+    ul, ol { margin-top: 0.65rem; padding-left: 1.5rem; }
+    li { margin-top: 0.3rem; }
+    a { color: #157efb; text-underline-offset: 2px; }
+    a:hover { text-decoration: none; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, "Cascadia Code", monospace;
+      font-size: 0.875em;
+      background: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+    }
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin-top: 0.75rem;
+    }
+    pre code { background: none; border: none; padding: 0; font-size: 0.9em; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; font-size: 0.93rem; }
+    th, td { text-align: left; padding: 0.5rem 0.75rem; border: 1px solid #d0d7de; }
+    th { background: #f6f8fa; font-weight: 600; }
+    hr { border: none; border-top: 1px solid #e1e4e8; margin: 2rem 0; }
+    blockquote {
+      border-left: 4px solid #157efb;
+      padding: 0.5rem 1rem;
+      color: #444;
+      background: #f0f7ff;
+      border-radius: 0 4px 4px 0;
+      margin-top: 0.75rem;
+    }
+    img { max-width: 100%; height: auto; border-radius: 6px; }
+    .site-footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #6e7781;
+      border-top: 1px solid #e1e4e8;
+    }
+    .site-footer a { color: #6e7781; }
+    @media (max-width: 640px) {
+      .site-header { padding: 1.75rem 1rem; }
+      .site-header h1 { font-size: 1.5rem; }
+      .content { padding: 0 1rem 3rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "cue",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://www.npmjs.com/package/cue-ai",
+    "url": "https://opencue.github.io/cuecards",
+    "codeRepository": "https://github.com/opencue/cuecards",
+    "description": "Per-directory profiles select which skills, MCP servers, and plugins load — automatically, before launch."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+      {% if site.description %}<p>{{ site.description }}</p>{% endif %}
+    </div>
+  </header>
+
+  <main class="content">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <a href="https://github.com/opencue/cuecards">GitHub</a> ·
+    <a href="https://www.npmjs.com/package/cue-ai">npm</a> ·
+    <a href="{{ site.baseurl }}/discovered/">Discovered Skills</a>
+  </footer>
+</body>
+</html>

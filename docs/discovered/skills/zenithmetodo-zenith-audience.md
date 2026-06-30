@@ -2,7 +2,7 @@
 title: "zenithmetodo/zenith-audience — Claude Code skill discovered by cue"
 description: "Sistema diario para crear contenido viral · 29 agentes · 15 commands · 32 knowledge files · 12 estructuras virales · 7 gatillos · 8 elementos notable · adaptado"
 layout: page
-updated: 2026-06-15
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: anthropic, apify, claude-code, claude-code-plugin, claude-skill, content-creator, content-marketing, creator-economy, elias-mama, instagram-reels, joseph-moreno, marconi-romulo, mcp, metricool, social-media-management, tiktok, viral-content, whisper, youtube-shorts, zenith
 
 ## Best fit cue profiles

@@ -11,16 +11,19 @@ export interface AgentScoped {
   agents?: AgentKind[];
 }
 
-// String form is sugar for { id: string }.
-// `pin: true` marks an MCP the agent uses directly (not via a skill), so the
-// launcher's smart-prune never drops it and pre-checks it as always-on.
-export type MCPRef = string | (AgentScoped & { id: string; pin?: boolean });
-
 export interface SkillCondition {
   has_file?: string | string[];
   has_dir?: string | string[];
   env?: string | string[];
 }
+
+// String form is sugar for { id: string }. The object form accepts an optional
+// `when:` condition (same shape as skills) so a server only activates when the
+// cwd/env warrants it — keeping per-profile MCP schema cost off until needed.
+// `pin: true` marks an MCP the agent uses directly (not via a skill), so the
+// launcher's smart-prune never drops it. `when:` gates activation on a cwd/env
+// condition. Both are independent and may combine.
+export type MCPRef = string | (AgentScoped & { id: string; pin?: boolean; when?: SkillCondition });
 
 export type SkillRef = string | (AgentScoped & { id: string; when?: SkillCondition });
 
@@ -40,11 +43,37 @@ export interface ProfileSkills {
   // Using it will throw a SchemaViolation.
 }
 
+/**
+ * Default MCP prune mode applied at launch when no `CUE_PRUNE_MCPS` env override
+ * is set. `off` keeps all MCPs (fail-open, the global default); `profile` drops
+ * unused profile-declared MCPs; `all` also drops unused global servers from the
+ * runtime .claude.json. Leaf-wins through single inheritance; most-aggressive
+ * wins across composite parts (off < profile < all). Pruning only ever drops
+ * MCPs no active skill needs and that aren't pinned, so a higher mode is safe.
+ */
+export type McpPruneMode = "off" | "profile" | "all";
+
 export interface Profile {
   name: string;
   description: string;
   icon?: string;
   iconImage?: string;
+  /** Default non-interactive prune mode; `CUE_PRUNE_MCPS` overrides per launch. */
+  mcpPrune?: McpPruneMode;
+  /**
+   * Target main-session model id (e.g. "claude-opus-4-8"). Advisory only — cue
+   * can't pin the main session model (that's a per-launch `/model` choice) — but
+   * the model-aware startup budget (lib/token-budget.ts) uses it to resolve the
+   * context window so the over-budget warning knows what window to size against.
+   * Leaf-wins through inheritance. Env `CUE_MODEL` overrides per launch.
+   */
+  model?: string;
+  /**
+   * Explicit context window (tokens) to budget the startup load against, when
+   * the model id alone isn't enough (custom/long-context deployments). Takes
+   * precedence over `model`. Leaf-wins; env `CUE_CONTEXT_WINDOW` overrides.
+   */
+  contextWindow?: number;
   agents?: AgentKind[];
   inherits?: string | string[];
   // Companion profiles surfaced at `cue use` time as suggestions. Activating
@@ -137,7 +166,7 @@ export interface PersonaRoutingEntry {
 }
 
 // In the resolved (post-inherit) form every ref is normalized to its object shape.
-export interface ResolvedMCP { id: string; agents?: AgentKind[]; pin?: boolean; }
+export interface ResolvedMCP { id: string; agents?: AgentKind[]; pin?: boolean; when?: SkillCondition; }
 export interface ResolvedSkill { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 

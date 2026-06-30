@@ -2,7 +2,7 @@
 title: "mugoherick12-boop/skillz — Claude Code skill discovered by cue"
 description: "🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-30
 tags: [claude-code, skill, python, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, python, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: agent, ai, basketball, coding-challenge, django, internal, machine-learning, mcp, mcp-server, python, quiz-game, react, skills, skillz, swift, tensorflow, webkit, webkit-browser
 
 ## Best fit cue profiles

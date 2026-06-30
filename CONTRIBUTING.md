@@ -5,9 +5,11 @@ Thanks for your interest in contributing! cue is an open-source CLI that manages
 ## Quick Start
 
 ```bash
-# Clone
-git clone https://github.com/opencue/cuecards.git ~/Documents/cue
+# Clone with submodules — the skill library and MCP configs live in git submodules
+git clone --recurse-submodules https://github.com/opencue/cuecards.git ~/Documents/cue
 cd ~/Documents/cue
+# Already cloned without --recurse-submodules? Pull them in:
+git submodule update --init --recursive
 
 # Install deps (requires bun >= 1.0)
 bun install
@@ -36,8 +38,8 @@ cue/
 │   └── lib/                # Shared libraries (resolver, materializer, etc.)
 ├── profiles/               # Profile definitions (YAML)
 ├── resources/
-│   ├── skills/skills/      # Skill library (SKILL.md + assets per skill)
-│   ├── mcps/               # MCP server configs
+│   ├── skills/             # Skill library — git submodule (SKILL.md per skill)
+│   ├── mcps/               # MCP server configs — git submodule
 │   └── icons/              # Brand icons for TUI (64x64 PNG)
 ├── plugins/cue/            # Claude Code plugin (/cue slash commands)
 ├── bin/cue                 # Shell launcher (resolves bun + runs src/index.ts)
@@ -75,6 +77,8 @@ bun test --filter "loadProfile"
 ```
 
 Tests live alongside their source files (`foo.ts` → `foo.test.ts`). We use Bun's built-in test runner.
+
+Some suites read the `resources/skills` / `resources/mcps` submodules (skill resolution, the CLI/MCP catalogs, launch e2e). They **skip automatically** when those submodules aren't checked out, so a fresh clone stays green — run `git submodule update --init --recursive` to enable full coverage.
 
 ### Adding a new command
 
@@ -117,7 +121,7 @@ Icons are 64x64 RGBA PNGs rendered from Simple Icons SVGs.
 
 1. **One concern per PR** — don't mix features with refactors
 2. **Tests required** for new commands and library functions
-3. **Run `bun test`** before submitting — all 149+ tests must pass
+3. **Run `bun test`** before submitting — the full suite must pass (1,300+ tests)
 4. **Keep the README updated** if you add user-facing features
 5. **Profile changes** — if you modify `profiles/`, run `cue validate --all`
 
@@ -127,7 +131,7 @@ Icons are 64x64 RGBA PNGs rendered from Simple Icons SVGs.
 
 ```
 claude (shim) → cue launch claude
-  → resolveProfileForCwd()     # .cue-profile lookup
+  → resolveProfileForCwd()     # .cue.profile lookup
   → loadProfile()              # YAML parse + inheritance
   → materializeRuntime()       # hash check → symlink skills + write settings
   → exec(real claude binary)   # hand off to the real agent
@@ -138,8 +142,8 @@ The materializer uses content-addressed hashing — if the profile hasn't change
 ### Profile resolution order
 
 1. `--cue-profile X` flag (explicit)
-2. `.cue-profile` file in cwd (walk up to $HOME)
-3. Repo-level default (`.cue-profile` at git root)
+2. `.cue.profile` file in cwd (walk up to $HOME)
+3. Repo-level default (`.cue.profile` at git root)
 4. Global default (`~/.config/cue/default-profile`)
 5. TUI picker (interactive fallback)
 

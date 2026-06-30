@@ -1,22 +1,22 @@
 ---
 title: "whiteknightonhorse/APIbase — Claude Code skill discovered by cue"
-description: "Universal MCP gateway for AI agents — 618 tools, 191 providers. Bloomberg FIGI, SEC XBRL, npm, PyPI, climate, US Census, Congress, FEMA, SAM.gov, EPA, USNO, exe"
+description: "Universal MCP gateway for AI agents — 814 tools, 238 providers. One endpoint (https://apibase.pro/mcp), pay-per-call with x402 USDC on Base + MPP USDC on Tempo."
 layout: page
-updated: 2026-06-06
+updated: 2026-06-29
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [whiteknightonhorse/APIbase](https://github.com/whiteknightonhorse/APIbase)
 
-**★ 6** · exceptional (score 8.1) · TypeScript · ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers
+**★ 8** · exceptional (score 10.8) · TypeScript · ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers
 
-> Universal MCP gateway for AI agents — 618 tools, 191 providers. Bloomberg FIGI, SEC XBRL, npm, PyPI, climate, US Census, Congress, FEMA, SAM.gov, EPA, USNO, exercises, email verification. Pay per call with x402 USDC on Base + MPP Tempo.
+> Universal MCP gateway for AI agents — 814 tools, 238 providers. One endpoint (https://apibase.pro/mcp), pay-per-call with x402 USDC on Base + MPP USDC on Tempo.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-06-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers, base-network, docker, mcp, mcp-server, micropayments, model-context-protocol, mpp, tempo, typescript, usdc, x402
 
 ## Best fit cue profiles

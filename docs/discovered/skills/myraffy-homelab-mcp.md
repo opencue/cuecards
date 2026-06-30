@@ -2,7 +2,7 @@
 title: "myraffy/homelab-mcp — Claude Code skill discovered by cue"
 description: "🔧 Manage and monitor your homelab infrastructure efficiently with Model Context Protocol (MCP) servers through Claude Desktop."
 layout: page
-updated: 2026-06-14
+updated: 2026-06-30
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: abac, agentic-ai, ai-gateway, ansible, automation, beyondcorp, flask, homelab, infrastructure-management, mcp-gateway, mcp-server, opentelemetry, paas, pihole, rag, sso, wireguard, zero-trust
 
 ## Best fit cue profiles

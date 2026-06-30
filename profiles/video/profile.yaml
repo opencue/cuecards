@@ -40,3 +40,4 @@ plugins:
   - claude-video-vision@jordanrendric
 mcps:
   - Higgsfield
+  - cue-tty-watch   # design/headless-gif-demo records terminal GIFs via the TTY-watch MCP

@@ -2,7 +2,7 @@
 title: "hello-123123/canva-mcp-secure-proxy — Claude Code skill discovered by cue"
 description: "🔒 Secure Canva AI Tools 2026 - MCP Server & API Hardening Suite"
 layout: page
-updated: 2026-06-09
+updated: 2026-06-24
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-09
+- 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: canva, claude-mcp, design, mcp-server, oauth2, python
 
 ## Best fit cue profiles

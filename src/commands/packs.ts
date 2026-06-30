@@ -8,13 +8,12 @@
  */
 
 import { writeFileSync, mkdirSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { listPacks, loadPack } from "../lib/pack-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PACKS_DIR = join(REPO_ROOT, "resources", "skill-packs");
+const PACKS_DIR = join(repoRoot(), "resources", "skill-packs");
 
 export async function run(args: string[]): Promise<number> {
   const sub = args[0] ?? "list";

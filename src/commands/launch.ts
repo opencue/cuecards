@@ -20,9 +20,12 @@ import { configDir } from "../lib/config-paths";
 import { debug } from "../lib/debug-log";
 import {
   computeTokenBreakdown,
+  computeContextBudget,
+  formatContextBudgetWarning,
   splitSkillBytes,
   tokenLevelEmoji,
   type SkillTokens,
+  type TokenBreakdown,
 } from "../lib/token-budget";
 
 import { loadProfile, listProfiles, listFeaturedProfiles, parseProfileSelector } from "../lib/profile-loader";
@@ -55,9 +58,11 @@ interface ParsedArgs {
   subset: string | null;
   /** `--cue-pick-mcps` — always re-open the MCP toggle, ignoring a remembered choice. */
   forcePickMcps: boolean;
-  /** `--disable-mcp <id>` (repeatable) — non-interactive: drop these MCPs (pinned ones excepted). */
+  /** `--disable-mcp <id>` (repeatable) — drop these MCPs for THIS launch only
+   *  (pinned ones excepted); session-scoped, not written as a remembered
+   *  override. Persist a choice via the interactive picker / `--cue-pick-mcps`. */
   disableMcp: string[];
-  // Env `CUE_PRUNE_MCPS=auto|unused|1|true|on` — non-interactive auto-prune: drop
+  // Env `CUE_PRUNE_MCPS=auto|unused|profile|all|1|true|on` — non-interactive auto-prune: drop
   // every MCP no active skill references (pinned excepted). Read inline at launch,
   // not a parsed flag. A remembered picker override or `--disable-mcp` takes
   // precedence; default (unset) stays fail-open and keeps all MCPs.
@@ -448,6 +453,70 @@ export {
   type SkillTokens,
   type TokenBreakdown,
 } from "../lib/token-budget";
+/** Format the token-overhead block. Returns `[]` under the 2K always-on floor. */
+export function formatTokenWarning(b: TokenBreakdown): string[] {
+  if (b.alwaysOn < 2000) return [];
+  const c = colorFns();
+  const lines: string[] = [];
+  const level = tokenLevelEmoji(b.alwaysOn);
+  const alwaysK = `${(b.alwaysOn / 1000).toFixed(1)}K`;
+  lines.push(
+    `${level} Skill overhead: ${c.yellow(`~${alwaysK}`)} always-on (${b.totalSkills} skills)`,
+  );
+  if (b.alwaysOn >= 50_000) {
+    lines.push(
+      `   ${c.yellow("Very heavy profile:")} prefer \`core\` or a narrow stack; use \`--subset "<task>"\` before launching broad composites.`,
+    );
+  }
+
+  // `byProfile[0]` is the primary (the profile the user actively picked);
+  // the rest are companions added via the multiselect. We tag whichever part
+  // weighs the most as "← heaviest" purely for info, but only consider
+  // *companions* as candidates for the "Drop X" hint below — telling the
+  // user to drop their primary is never the right advice.
+  let heaviestPart: { name: string; tokens: number } | undefined;
+  let heaviestDroppable: { name: string; tokens: number } | undefined;
+  if (b.byProfile.length > 1) {
+    heaviestPart = [...b.byProfile].sort((a, x) => x.tokens - a.tokens)[0];
+    heaviestDroppable = [...b.byProfile.slice(1)].sort((a, x) => x.tokens - a.tokens)[0];
+    const heaviestName = heaviestPart!.name;
+    const segments = b.byProfile.map((p) => {
+      const kStr = `${(p.tokens / 1000).toFixed(1)}K`;
+      const iconPart = p.icon ? `${p.icon} ` : "";
+      const label = `${iconPart}${p.name} ${kStr}`;
+      return p.name === heaviestName
+        ? `${c.bold(label)} ${c.dim("← heaviest")}`
+        : c.dim(label);
+    });
+    lines.push(`   By profile:  ${segments.join(c.dim("  ·  "))}`);
+  }
+
+  if (b.maxIfAllActivate > 0) {
+    const maxK = `${(b.maxIfAllActivate / 1000).toFixed(0)}K`;
+    lines.push(
+      `   ${c.dim(`~${maxK} max if every skill activates (bodies load on demand)`)}`,
+    );
+  }
+
+  const top3 = b.heaviestBodies.slice(0, 3);
+  if (top3.length > 0) {
+    const items = top3
+      .map((s) => `${s.id.split("/").pop()} (${(s.tokens / 1000).toFixed(1)}K)`)
+      .join(", ");
+    lines.push(`   ${c.dim(`Heaviest bodies:  ${items}`)}`);
+  }
+
+  if (heaviestDroppable && heaviestDroppable.tokens > 3000) {
+    const saveK = `${(heaviestDroppable.tokens / 1000).toFixed(1)}K`;
+    lines.push(
+      `   💡 Drop ${c.bold(`"${heaviestDroppable.name}"`)} to save ~${saveK} always-on`,
+    );
+  } else if (b.alwaysOn > 10000) {
+    lines.push(`   💡 Run \`cue skills audit\` to trim unused skills.`);
+  }
+
+  return lines;
+}
 
 /**
  * Format the single-line startup identity banner shown on every warm launch.
@@ -1593,7 +1662,7 @@ export async function run(args: string[]): Promise<number> {
   if (agentKind === "claude-code" && profile.mcps.length > 0) {
     try {
       const { getNeededMcps } = await import("../lib/skill-dependencies");
-      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
+      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, isRecognizedPruneEnv, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
 
       const allMcpIds = profile.mcps.map((m) => m.id);
       const fingerprint = mcpFingerprint(allMcpIds);
@@ -1612,10 +1681,30 @@ export async function run(args: string[]): Promise<number> {
       let kept: Set<string> | null = null;
       let reviewed = false;
 
+      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
+      // (including an explicit `off`) overrides the profile's declared default;
+      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
+      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
+      // (e.g. a typo like `profil`) must NOT silently suppress the profile
+      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
+      const pruneEnv = process.env.CUE_PRUNE_MCPS;
+      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
+      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
+      if (pruneEnvSet && !pruneFromEnv) {
+        process.stderr.write(
+          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
+        );
+      }
+      const pruneMode = pruneFromEnv ? mcpPruneMode(pruneEnv) : (profile.mcpPrune ?? "off");
+      const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
+
       if (parsed.disableMcp.length > 0) {
-        // Non-interactive flag path: drop named ids (pinned ones excepted).
+        // Non-interactive flag path: drop named ids (pinned ones excepted) for
+        // THIS launch only. `reviewed` stays false so the choice is NOT written
+        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
+        // run or a debug session must not silently stick on later launches. Use
+        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
         kept = keepNonPinned(new Set(parsed.disableMcp.map((s) => s.toLowerCase())));
-        reviewed = true;
       } else {
         const override = readMcpOverride(pinDir);
         const overrideValid = override !== undefined && override.fingerprint === fingerprint;
@@ -1638,34 +1727,33 @@ export async function run(args: string[]): Promise<number> {
             );
           }
           kept = keepNonPinned(new Set(keepDisabled));
-        } else if (mcpPruneMode(process.env.CUE_PRUNE_MCPS) !== "off") {
-          // Opt-in non-interactive prune (CUE_PRUNE_MCPS). Self-contained: it
-          // sets mcpDisabledIds directly (so it can drop GLOBAL servers that
-          // aren't in profile.mcps and thus invisible to the shared block below)
-          // and leaves `kept` null to skip that block. Recomputed each launch;
-          // never persisted, so the picker's remembered overrides stay intact.
+        } else if (pruneMode !== "off") {
+          // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
+          // default. Self-contained: it sets mcpDisabledIds directly (so it can
+          // drop GLOBAL servers that aren't in profile.mcps and thus invisible to
+          // the shared block below) and leaves `kept` null to skip that block.
+          // Recomputed each launch; never persisted, so the picker's remembered
+          // overrides stay intact.
           //
           //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
           //                  user-global servers are never touched holds).
           //   all mode     → also drop unused GLOBAL servers present in the
           //                  runtime .claude.json (the heavy ones a coding
-          //                  profile never calls). Louder opt-in: it removes
-          //                  config the user set globally.
-          const mode = mcpPruneMode(process.env.CUE_PRUNE_MCPS);
+          //                  profile never calls). Removes config set globally.
           const universe = [...allMcpIds];
-          if (mode === "all") {
+          if (pruneMode === "all") {
             const rtClaudeJson = join(configDir(), "runtime", profileName, "claude", ".claude.json");
             for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
               if (!universe.some((p) => p.toLowerCase() === id.toLowerCase())) universe.push(id);
             }
           }
           const drop = new Set(autoPrunableMcps(universe, pinned, needed.keys()));
-          debug("launch:mcp-prune", { mode, universe, pinned: [...pinned], needed: [...needed.keys()], drop: [...drop] });
+          debug("launch:mcp-prune", { mode: pruneMode, source: pruneSource, universe, pinned: [...pinned], needed: [...needed.keys()], drop: [...drop] });
           if (drop.size > 0) {
             profile = { ...profile, mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())) };
             mcpDisabledIds = [...drop];
             process.stderr.write(
-              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · CUE_PRUNE_MCPS=${mode} · --cue-pick-mcps to keep\n`,
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
             );
           }
         }
@@ -2007,6 +2095,28 @@ export async function run(args: string[]): Promise<number> {
 
       const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
       alwaysOnForBadge = breakdown.alwaysOn;
+      const lines = formatTokenWarning(breakdown);
+
+      // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
+      // should stay under 50% of the model's context window so the other half
+      // is free for the conversation. Window precedence: profile
+      // contextWindow/model → env (CUE_CONTEXT_WINDOW/CUE_MODEL) → 256K default.
+      const budget = computeContextBudget({
+        skillTokens: breakdown.alwaysOn,
+        mcpCount: profile.mcps.length,
+        window: profile.contextWindow,
+        model: profile.model,
+      });
+      const bc = colorFns();
+      lines.push(
+        ...formatContextBudgetWarning(budget, { yellow: bc.yellow, bold: bc.bold, dim: bc.dim }),
+      );
+
+      if (lines.length > 0) {
+        process.stderr.write("\n");
+        for (const l of lines) process.stderr.write(`${l}\n`);
+        process.stderr.write("\n");
+      }
     } catch { /* non-fatal */ }
   }
 

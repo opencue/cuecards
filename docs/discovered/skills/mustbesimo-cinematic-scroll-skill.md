@@ -2,22 +2,22 @@
 title: "MustBeSimo/cinematic-scroll-skill — Claude Code skill discovered by cue"
 description: "Agent skill for building cinematic, scroll-driven websites from a brief: visual systems, motion storyboards, vanilla/GSAP demos, and Next.js release-page templa"
 layout: page
-updated: 2026-06-12
+updated: 2026-06-23
 tags: [claude-code, skill, frontend, nextjs]
 ---
 
 # 💎 [MustBeSimo/cinematic-scroll-skill](https://github.com/MustBeSimo/cinematic-scroll-skill)
 
-**★ 5** · exceptional (score 14.4) · TypeScript · agent-skill, agent-skills, claude-skill, creative-coding, cursor
+**★ 6** · exceptional (score 14.5) · TypeScript · agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
 > Agent skill for building cinematic, scroll-driven websites from a brief: visual systems, motion storyboards, vanilla/GSAP demos, and Next.js release-page templates.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-12
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-06-23
 - 🏷️ Tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor, fal-ai, framer-motion, generative-ui, gsap, hermes-agent, landing-page, nextjs, openclaw, parallax, scroll-animation, scroll-driven-animation, web-animation
 
 ## Best fit cue profiles

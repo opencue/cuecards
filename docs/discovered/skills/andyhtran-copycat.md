@@ -2,7 +2,7 @@
 title: "andyhtran/CopyCat — Claude Code skill discovered by cue"
 description: "Press ⌘V to paste screenshots into your terminal — CopyCat saves the image and types the file path so Claude Code or Codex CLI can read it. Works locally and ov"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-13
+- 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: claude-code, clipboard, codex, codex-cli, developer-tools, macos, menu-bar, paste, screenshot, ssh, swift, swiftui, tailscale, terminal
 
 ## Best fit cue profiles

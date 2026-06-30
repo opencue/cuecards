@@ -23,9 +23,11 @@ export interface MissingDependency extends SkillDependency {
 }
 
 /**
- * Parse explicit requires_mcps from skill frontmatter.
+ * Parse explicit requires_mcps from skill frontmatter. Handles both the inline
+ * array (`requires_mcps: [a, b]`) and YAML block-sequence forms. Exported for
+ * unit testing.
  */
-function parseExplicitDeps(content: string): string[] {
+export function parseExplicitDeps(content: string): string[] {
   const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
   if (!fmMatch) return [];
   const fm = fmMatch[1]!;
@@ -76,19 +78,19 @@ function parseImplicitDeps(content: string): string[] {
  * Resolve the SKILL.md path for a skill ID.
  * Handles both "category/slug" and bare "slug" formats.
  */
-function findSkillContent(skillId: string): string | null {
+function findSkillContent(skillId: string, skillsRoot: string = SKILLS_ROOT): string | null {
   // Try direct path (category/slug)
-  const direct = join(SKILLS_ROOT, skillId, "SKILL.md");
+  const direct = join(skillsRoot, skillId, "SKILL.md");
   if (existsSync(direct)) {
     return readFileSync(direct, "utf8");
   }
 
   // Search all categories for the slug
   try {
-    const cats = readdirSync(SKILLS_ROOT, { withFileTypes: true });
+    const cats = readdirSync(skillsRoot, { withFileTypes: true });
     for (const cat of cats) {
       if (!cat.isDirectory() || cat.name.startsWith("_")) continue;
-      const p = join(SKILLS_ROOT, cat.name, skillId, "SKILL.md");
+      const p = join(skillsRoot, cat.name, skillId, "SKILL.md");
       if (existsSync(p)) return readFileSync(p, "utf8");
     }
   } catch { /* skip */ }
@@ -99,8 +101,8 @@ function findSkillContent(skillId: string): string | null {
 /**
  * Get all MCP dependencies for a skill (explicit + implicit).
  */
-export function getSkillDependencies(skillId: string): SkillDependency[] {
-  const content = findSkillContent(skillId);
+export function getSkillDependencies(skillId: string, skillsRoot: string = SKILLS_ROOT): SkillDependency[] {
+  const content = findSkillContent(skillId, skillsRoot);
   if (!content) return [];
 
   const deps: SkillDependency[] = [];
@@ -133,11 +135,12 @@ export function getSkillDependencies(skillId: string): SkillDependency[] {
  */
 export function getNeededMcps(
   skillIds: string[],
+  skillsRoot: string = SKILLS_ROOT,
 ): Map<string, { skills: string[]; source: "explicit" | "implicit" }> {
   const needed = new Map<string, { skills: string[]; source: "explicit" | "implicit" }>();
 
   for (const skillId of skillIds) {
-    for (const dep of getSkillDependencies(skillId)) {
+    for (const dep of getSkillDependencies(skillId, skillsRoot)) {
       const key = dep.mcpId.toLowerCase();
       const entry = needed.get(key);
       if (entry === undefined) {

@@ -2,19 +2,19 @@
 title: "cyanyux/windows-terminal-ssh-image-paste — Claude Code skill discovered by cue"
 description: "Paste clipboard images into SSH sessions from Windows Terminal. Ctrl+V inserts a remote file path and uploads via scp — works with Claude Code, Codex CLI, and o"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-21
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [cyanyux/windows-terminal-ssh-image-paste](https://github.com/cyanyux/windows-terminal-ssh-image-paste)
 
-**★ 2** · strong (score 6.4) · PowerShell · autohotkey, claude-code, clipboard, image-paste, powershell
+**★ 2** · strong (score 6.1) · PowerShell · autohotkey, claude-code, clipboard, image-paste, powershell
 
 > Paste clipboard images into SSH sessions from Windows Terminal. Ctrl+V inserts a remote file path and uploads via scp — works with Claude Code, Codex CLI, and other terminal AI tools.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-06-12
 - 🏷️ Tags: autohotkey, claude-code, clipboard, image-paste, powershell, remote-development, scp, ssh, windows-terminal, wsl

@@ -2,7 +2,7 @@
 title: "KyleNesium/upkeep — Claude Code skill discovered by cue"
 description: "macOS system cleanup and updater Skill for Claude Code"
 layout: page
-updated: 2026-06-10
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-10
+- 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: cache-cleanup, claude-code, claude-skill, disk-cleanup, homebrew, macos, orphan-detection, system-maintenance
 
 ## Best fit cue profiles

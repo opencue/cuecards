@@ -165,7 +165,9 @@ skills:
     # ── GitHub / worktree safety ───────────────────────────────────────────────
     - github/gitguardex
 
-# MCPs: cue-tty-watch + lightpanda inherited from core.
+# lightpanda is inherited from core; cue-tty-watch is NOT (core ships lightpanda only).
+mcps:
+  - gbrain   # gstack/setup-gbrain + gstack/sync-gbrain drive the gbrain MCP
 rules:
   - common/code-review
   - common/coding-style

@@ -27,6 +27,20 @@
       "type": "string",
       "description": "Path to a PNG/JPG logo, relative to the profile dir. Rendered inline in Kitty terminals via the graphics protocol; falls back to `icon` emoji elsewhere."
     },
+    "model": {
+      "type": "string",
+      "description": "Advisory target main-session model id (e.g. 'claude-opus-4-8'). cue can't pin the main session model (per-launch /model choice); the model-aware startup budget uses it to resolve the context window for the over-budget warning. Leaf-wins; env CUE_MODEL overrides."
+    },
+    "mcpPrune": {
+      "type": "string",
+      "enum": ["off", "profile", "all"],
+      "description": "Default non-interactive MCP prune mode at launch. off (default): keep all MCPs. profile: drop unused profile-declared MCPs. all: also drop unused global servers from the runtime .claude.json. Only ever drops MCPs no active skill needs and that aren't pinned. Leaf-wins through inheritance; most-aggressive wins across composite parts; env CUE_PRUNE_MCPS overrides."
+    },
+    "contextWindow": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Explicit context window (tokens) to budget the startup load against, when the model id alone isn't enough. Takes precedence over `model`. Leaf-wins; env CUE_CONTEXT_WINDOW overrides."
+    },
     "bundles": {
       "type": "array",
       "items": { "type": "string" },
@@ -84,10 +98,10 @@
           "items": {
             "oneOf": [
               { "type": "string", "minLength": 1 },
-              { "$ref": "#/$defs/AgentScopedRef" }
+              { "$ref": "#/$defs/ConditionalRef" }
             ]
           },
-          "description": "Paths relative to cue/skills/ (e.g. 'medusa/building-with-medusa')."
+          "description": "Paths relative to cue/skills/ (e.g. 'medusa/building-with-medusa'). Object form accepts optional `agents` and `when:` (cwd/env gate)."
         },
         "npx": {
           "type": "array",
@@ -104,7 +118,7 @@
         ]
       },
       "default": [],
-      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts plain string or {id, agents?, pin?} object."
+      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts a plain string or a {id, agents?, when?, pin?} object — `when:` gates activation on a cwd/env condition; `pin: true` keeps the server through smart-prune (used directly by the agent, not via a skill)."
     },
     "plugins": {
       "type": "array",
@@ -200,16 +214,58 @@
         }
       }
     },
-    "McpRef": {
+    "SkillCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "description": "cwd/env gate. has_file/has_dir: at least one must exist in cwd (has_file supports a leading '*.ext' glob). env: all named vars must be set. Checks are AND-ed.",
+      "properties": {
+        "has_file": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        },
+        "has_dir": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        },
+        "env": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        }
+      }
+    },
+    "ConditionalRef": {
       "type": "object",
       "required": ["id"],
       "additionalProperties": false,
+      "description": "Agent-scoped ref with an optional `when:` activation gate. Used for skills so an entry only materializes when its cwd/env condition holds.",
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "agents": {
           "type": "array",
           "items": { "$ref": "#/$defs/AgentKind" }
         },
+        "when": { "$ref": "#/$defs/SkillCondition" }
+      }
+    },
+    "McpRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "description": "MCP server ref: optional `when:` activation gate plus `pin:` (smart-prune always keeps it).",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        },
+        "when": { "$ref": "#/$defs/SkillCondition" },
         "pin": {
           "type": "boolean",
           "description": "When true, the launcher's smart-prune always keeps this MCP loaded (used by the agent directly, not via a skill)."

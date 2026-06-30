@@ -2,21 +2,21 @@
 title: "Agents365-ai/drawio-skill — Claude Code skill discovered by cue"
 description: "Generate draw.io diagrams from natural language — 6 presets, vision self-check + up to 5-round refinement, codebase-to-diagram, 10,000+ official shapes & 321 AI"
 layout: page
-updated: 2026-06-15
+updated: 2026-06-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Agents365-ai/drawio-skill](https://github.com/Agents365-ai/drawio-skill)
 
-**★ 3437** · exceptional (score 16.5) · Python · agent-skill, agent-skills, architecture-diagram, claude-code, claude-code-skill
+**★ 4202** · exceptional (score 16.5) · Python · agent-skill, agent-skills, architecture-diagram, claude-code, claude-code-skill
 
 > Generate draw.io diagrams from natural language — 6 presets, vision self-check + up to 5-round refinement, codebase-to-diagram, 10,000+ official shapes & 321 AI/LLM brand logos. Exports PNG/SVG/PDF/JPG.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
-- ⭐ 3437 stars
-- 🗓️ Last pushed: 2026-06-15
+- ⭐ 4202 stars
+- 🗓️ Last pushed: 2026-06-20
 - 🏷️ Tags: agent-skill, agent-skills, architecture-diagram, claude-code, claude-code-skill, claude-skills, diagram, drawio, erd, flowchart, openclaw, openclaw-skills, skill-md, skillsmp, uml
 
 ## Best fit cue profiles

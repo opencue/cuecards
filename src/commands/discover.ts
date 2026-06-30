@@ -12,8 +12,7 @@
 
 import { spawnSync } from "node:child_process";
 import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
@@ -21,8 +20,8 @@ import { clusterByKeywords, clusterByEmbeddings, unclustered, type Cluster, type
 import { findRealClaudeBin } from "../lib/claude-binary";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 // Cache path resolved lazily so tests can redirect via XDG_CONFIG_HOME without
 // re-importing the module. (Bun shares module state across test files; const
 // values captured at import time wouldn't see runtime env changes.)
@@ -30,7 +29,7 @@ function cacheDir(): string {
   return join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "discover");
 }
 function cacheFile(): string { return join(cacheDir(), "gems.json"); }
-const DEFAULT_EXPORT = join(REPO_ROOT, "docs", "discovered.md");
+const DEFAULT_EXPORT = join(repoRoot(), "docs", "discovered.md");
 
 // ---------------------------------------------------------------------------
 // Types
@@ -438,7 +437,7 @@ export function tierColorFor(score: number): string {
  * Cheap enough to call per-gem (cached once per session via the closure pattern
  * in renderers).
  */
-export function getInstalledIn(gem: GemRepo, profilesDir = join(REPO_ROOT, "profiles")): string[] {
+export function getInstalledIn(gem: GemRepo, profilesDir = join(repoRoot(), "profiles")): string[] {
   if (!existsSync(profilesDir)) return [];
   const hits: string[] = [];
   const slugs = [gem.name.toLowerCase(), gem.full_name.toLowerCase()];
@@ -1043,6 +1042,8 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 # 🎯 Discovered Claude Code Skills
 
+These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
+
 > **${totalGems} hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **${byProfile.size} profiles**.
 > Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.
 
@@ -1115,6 +1116,7 @@ ${jsonLd}
 </script>
 </head><body>
 <h1>🎯 Discovered Claude Code Skills</h1>
+<p>These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.</p>
 <p><strong>${totalGems} hidden-gem skills</strong> discovered by <a href="https://github.com/opencue/cuecards">cue</a> across <strong>${byProfile.size} profiles</strong>.</p>
 <p><small>Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.</small></p>
 <h2>Browse by profile</h2>
@@ -2170,7 +2172,7 @@ async function cmdInstall(opts: { profile?: string; minScore: number; minQuality
     autoInstallClis(gem.name, { yes: opts.yes });
 
     // Add to profile.yaml
-    const profileYaml = join(REPO_ROOT, "profiles", targetProfile, "profile.yaml");
+    const profileYaml = join(repoRoot(), "profiles", targetProfile, "profile.yaml");
     if (existsSync(profileYaml)) {
       const content = readFileSync(profileYaml, "utf8");
       // Find the skill ID (use repo name as fallback)
@@ -2589,7 +2591,7 @@ async function cmdDiscoverMcps(opts: { limit: number; minScore: number; json: bo
 
   if (opts.install) {
     const targetProfile = opts.profile ?? getActiveProfile() ?? "core";
-    const profileYaml = join(REPO_ROOT, "profiles", targetProfile, "profile.yaml");
+    const profileYaml = join(repoRoot(), "profiles", targetProfile, "profile.yaml");
     if (!existsSync(profileYaml)) {
       process.stderr.write(`  ⚠️  Profile "${targetProfile}" not found at ${profileYaml}\n`);
       return 1;
@@ -2845,7 +2847,7 @@ Examples:
     const minSize = minSizeIdx >= 0 ? parseInt(args[minSizeIdx + 1] ?? "3", 10) : 3;
     const outIdx = args.indexOf("--out");
     const outDir = outIdx >= 0 && args[outIdx + 1] ? args[outIdx + 1]!
-      : join(REPO_ROOT, ".cue-suggestions");
+      : join(repoRoot(), ".cue-suggestions");
     const dryRun = args.includes("--dry-run");
     const noClaude = args.includes("--no-claude");
     const embeddings = args.includes("--embeddings");

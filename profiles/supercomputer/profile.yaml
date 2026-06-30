@@ -56,5 +56,6 @@ mcps:
   - marva-blog
   - secret-mcp
   - trendradar
+  - cue-tty-watch   # design/headless-gif-demo records terminal GIFs via the TTY-watch MCP
 plugins:
   - claude-video-vision@jordanrendric

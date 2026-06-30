@@ -23,8 +23,9 @@ on:
 
 permissions:
   contents: write          # commit generated pages back to docs/discovered/
-  pages: write             # deploy to Pages
-  id-token: write          # OIDC for Pages deploy
+  # No pages/id-token here: Pages deployment is owned solely by deploy-landing.yml,
+  # which re-runs via workflow_run after this workflow completes. Deploying a
+  # docs/discovered-only artifact here would clobber the full site at the root.
 
 concurrency:
   group: discover-publish
@@ -65,17 +66,7 @@ jobs:
             git push
           fi
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/discovered
-
-  deploy:
-    needs: discover
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # Deployment is intentionally NOT done here. The git push above updates
+      # docs/discovered, and deploy-landing.yml re-runs on workflow_run after
+      # this workflow completes, rebuilding and deploying the FULL Jekyll site
+      # (homepage + discovered + assets) as a single, race-free Pages deploy.

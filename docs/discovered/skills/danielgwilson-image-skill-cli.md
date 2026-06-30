@@ -2,7 +2,7 @@
 title: "danielgwilson/image-skill-cli — Claude Code skill discovered by cue"
 description: "Zero-setup creative media for agents — generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jo"
 layout: page
-updated: 2026-06-14
+updated: 2026-06-18
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, creative-media]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-06-18
 - 🏷️ Tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation, claude-skill, creative-tools, generative-ai, generative-media, image-generation, image-to-3d, music-generation, text-to-audio, text-to-image, text-to-video, video-generation, zero-setup
 
 ## Best fit cue profiles

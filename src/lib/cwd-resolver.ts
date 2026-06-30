@@ -91,9 +91,11 @@ export async function resolveProfileForCwd(opts: ResolveOptions): Promise<Resolv
   if (repoRoot) {
     const repoDefaultsPath = join(opts.configDir, "repo-defaults.json");
     if (await exists(repoDefaultsPath)) {
-      const map = JSON.parse(await readFile(repoDefaultsPath, "utf8")) as Record<string, string>;
-      const profile = map[repoRoot];
-      if (profile) return { source: "repo-default", profile };
+      try {
+        const map = JSON.parse(await readFile(repoDefaultsPath, "utf8")) as Record<string, string>;
+        const profile = map[repoRoot];
+        if (profile) return { source: "repo-default", profile };
+      } catch { /* malformed repo-defaults.json — skip to the next resolution step */ }
     }
   }
 

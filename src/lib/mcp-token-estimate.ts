@@ -109,8 +109,13 @@ export function loadMcpEstimates(deps?: {
 /** Always-on tokens for one server, with provenance. */
 export function mcpServerTokens(id: string, cache: Record<string, McpEstimate>): McpTokenResult {
   const e = cache[id];
-  if (e?.tokens != null) return { tokens: e.tokens, source: e.source ?? "estimate" };
-  if (e?.tools != null) return { tokens: e.tools * TOKENS_PER_TOOL, source: e.source ?? "estimate" };
+  // Guard against malformed cache entries (e.g. tools: "x") whose product would
+  // be NaN and silently corrupt totals — fall through to the flagged default.
+  const num = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
+  const tokens = num(e?.tokens);
+  if (tokens != null) return { tokens, source: e?.source ?? "estimate" };
+  const tools = num(e?.tools);
+  if (tools != null) return { tokens: tools * TOKENS_PER_TOOL, source: e?.source ?? "estimate" };
   return { tokens: UNKNOWN_MCP_TOOLS * TOKENS_PER_TOOL, source: "unknown" };
 }
 

@@ -2,7 +2,7 @@
 title: "zenithmetodo/zenith-crea-ofertas — Claude Code skill discovered by cue"
 description: "Zenith Crea Ofertas™ v2.0.0 · Mega-skill TOP 1% para Claude Code. 41 agentes especializados + 17 commands + 18 HTML templates + 20 knowledge files. Avatar deep "
 layout: page
-updated: 2026-06-15
+updated: 2026-06-19
 tags: [claude-code, skill, marketing]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: ai-agents, anthropic, avatar-deep, bencivenga, claude-code, claude-skill, copywriting, direct-response, drive-friendly, evaldo-albuquerque, html-to-pdf, joseph-moreno, marketing, metodo-zenith, ofertas, one-belief, plugin, schwartz, spanish, zenith
 
 ## Best fit cue profiles

@@ -3,15 +3,14 @@
  */
 
 import { existsSync, readdirSync, rmSync, statSync, readFileSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RUNTIME_ROOT = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "runtime");
-const CACHE_ROOT = join(REPO_ROOT, "profiles", "_cache", "npx");
+const CACHE_ROOT = join(repoRoot(), "profiles", "_cache", "npx");
 
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {

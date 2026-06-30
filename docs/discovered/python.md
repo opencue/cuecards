@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-30
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="albinati-home-energy-manager"></a>
-## ✨ [albinati/home-energy-manager](https://github.com/albinati/home-energy-manager)
+<a id="mugoherick12-boop-skillz"></a>
+## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
 
-**★ 0** · strong (score 6.5) · Python · tags: anthropic, battery-storage, claude, daikin-altherma, energy-optimization
+**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
 
-LP-based home-energy planner. Optimises a Fox ESS battery + Daikin Altherma heat pump against Octopus Agile half-hourly tariffs via a PuLP MILP solver — with closed-loop replay, scenario robustness, and an MCP tool surface for OpenClaw / Claude.
+🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
 
 ```bash
-cue skills add albinati/home-energy-manager --profile python
+cue skills add mugoherick12-boop/skillz --profile python
 ```
 
 ---

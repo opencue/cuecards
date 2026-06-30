@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-28
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="hxrish04-stackgate"></a>
-## 🔹 [hxrish04/stackgate](https://github.com/hxrish04/stackgate)
+<a id="ditakebede1-personal-knowledge-nexus"></a>
+## ✨ [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
 
-**★ 1** · potential (score 3.3) · TypeScript · tags: ai, audit-trail, azure, claude, internal-developer-platform
+**★ 0** · strong (score 7.5) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
 
-AI-assisted internal developer platform (Next.js 15 · Prisma · Claude) that turns plain-English PostgreSQL requests into policy-routed, auditable provisioning workflows: risk tiers, multi-stage approvals, generated Terraform, Key Vault secret references, and a full audit trail. Simulation-first with a guarded Azure path.
+Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
 
 ```bash
-cue skills add hxrish04/stackgate --profile nextjs
+cue skills add ditakebede1/personal-knowledge-nexus --profile nextjs
 ```
 
 ---

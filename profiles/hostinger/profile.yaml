@@ -28,3 +28,4 @@ skills:
 mcps:
   - hostinger-api
   - gbrain
+  - coolify   # deployment/coolify skill drives the Coolify MCP

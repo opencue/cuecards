@@ -10,8 +10,7 @@
  */
 
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { parse as parseYaml } from "yaml";
@@ -22,9 +21,16 @@ import {
   skillFrequency,
   type ClusterItem,
 } from "../lib/cluster-skills";
+import { loadProfile } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
+import {
+  computeContextBudget,
+  resolveContextWindow,
+  splitSkillBytes,
+} from "../lib/token-budget";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = join(REPO_ROOT, "profiles");
+const PROFILES_DIR = join(repoRoot(), "profiles");
+const SKILLS_DIR = join(repoRoot(), "resources", "skills", "skills");
 const DISCOVER_CACHE = join(
   process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
   "cue", "discover", "gems.json",
@@ -161,6 +167,105 @@ function reportUnfitGems(minSize: number): void {
 }
 
 // ---------------------------------------------------------------------------
+// Context-budget audit (model-aware)
+//
+// Resolve each profile (so inherited core skills/MCPs count) and estimate its
+// always-on startup load: skill frontmatter tokens + MCP tool-schema tokens.
+// Flag profiles whose load exceeds the 50% startup target for the chosen
+// model's context window (default 256K → ~128K budget).
+// ---------------------------------------------------------------------------
+
+interface BudgetOpts {
+  model?: string;
+  window?: number;
+  loadFactor?: number;
+}
+
+const skillTokenCache = new Map<string, number>();
+
+/** Always-on frontmatter tokens for one local skill id, estimated from bytes. */
+function skillFrontmatterTokens(id: string): number {
+  const cached = skillTokenCache.get(id);
+  if (cached !== undefined) return cached;
+  let tokens = 0;
+  try {
+    const src = readFileSync(join(SKILLS_DIR, id, "SKILL.md"), "utf8");
+    tokens = Math.ceil(splitSkillBytes(src).frontmatter / 4);
+  } catch {
+    // Skill not on disk (npx-only or moved) — counts as 0; the resolved
+    // profile may still list it, but we can't measure what we can't read.
+  }
+  skillTokenCache.set(id, tokens);
+  return tokens;
+}
+
+async function reportContextBudget(profileNames: string[], opts: BudgetOpts): Promise<void> {
+  const window = resolveContextWindow({ contextWindow: opts.window, model: opts.model });
+  const rows: Array<{ name: string; load: number; over: boolean; pct: number; mcps: number }> = [];
+
+  for (const name of profileNames) {
+    let resolved;
+    try {
+      resolved = await loadProfile(name);
+    } catch {
+      continue; // malformed / unresolvable — `cue validate` is the right tool.
+    }
+    let skillTokens = 0;
+    for (const s of resolved.skills.local) skillTokens += skillFrontmatterTokens(s.id);
+    const budget = computeContextBudget({
+      skillTokens,
+      mcpCount: resolved.mcps.length,
+      window: opts.window ?? resolved.contextWindow,
+      model: opts.model ?? resolved.model,
+      loadFactor: opts.loadFactor,
+    });
+    rows.push({
+      name,
+      load: budget.startupLoad,
+      over: !budget.withinBudget,
+      pct: budget.pctOfBudget,
+      mcps: budget.mcpCount,
+    });
+  }
+
+  if (rows.length === 0) {
+    process.stdout.write(`  ${dim("no resolvable profiles to budget")}\n\n`);
+    return;
+  }
+
+  const loadFactor = opts.loadFactor && opts.loadFactor > 0 ? opts.loadFactor : 0.5;
+  const budgetTokens = Math.round(window * loadFactor);
+  const windowK = `${(window / 1000).toFixed(0)}K`;
+  const budgetK = `${(budgetTokens / 1000).toFixed(0)}K`;
+  process.stdout.write(
+    `  ${dim(`window ${windowK} · ${Math.round(loadFactor * 100)}% startup target → budget ~${budgetK} always-on`)}\n\n`,
+  );
+
+  const over = rows.filter(r => r.over).sort((a, b) => b.load - a.load);
+  if (over.length === 0) {
+    process.stdout.write(`  ${dim(`all ${rows.length} profiles fit the ${budgetK} startup budget`)}\n`);
+  } else {
+    process.stdout.write(`  ${bold(`${over.length} profile(s) over the ${budgetK} startup budget:`)}\n\n`);
+    for (const r of over) {
+      const loadK = `${(r.load / 1000).toFixed(1)}K`;
+      const mcpNote = r.mcps > 0 ? `, ${r.mcps} MCP${r.mcps > 1 ? "s" : ""}` : "";
+      process.stdout.write(
+        `    🔴 ${r.name}  ${dim(`~${loadK} always-on${mcpNote} — ${Math.round(r.pct * 100)}% of budget`)}\n`,
+      );
+    }
+  }
+
+  // Always show the 3 heaviest so a near-miss is visible before it tips over.
+  const heaviest = [...rows].sort((a, b) => b.load - a.load).slice(0, 3);
+  process.stdout.write(`\n  ${dim("Heaviest profiles:")}\n`);
+  for (const r of heaviest) {
+    const loadK = `${(r.load / 1000).toFixed(1)}K`;
+    process.stdout.write(`    • ${r.name} ${dim(`(~${loadK}, ${Math.round(r.pct * 100)}% of budget)`)}\n`);
+  }
+  process.stdout.write(`\n`);
+}
+
+// ---------------------------------------------------------------------------
 // Tiny ANSI helpers (no dependency)
 // ---------------------------------------------------------------------------
 
@@ -177,13 +282,17 @@ export async function run(args: string[]): Promise<number> {
     process.stdout.write(`cue profile suggest — audit profiles/ and propose regroupings
 
 Usage:
-  cue profile suggest                Run all three signals (default)
+  cue profile suggest                Run all signals (default)
   cue profile suggest --no-cluster   Skip the discover-cache clustering section
+  cue profile suggest --no-budget    Skip the model-aware context-budget audit
 
 Options:
   --min-profiles <n>    Promote-to-core threshold (default: 3)
   --jaccard <0..1>      Merge-candidate threshold (default: 0.5)
   --min-size <n>        Cluster size threshold for unfit gems (default: 3)
+  --model <id>          Model id for the context-budget audit (e.g. claude-opus-4-8)
+  --context <tokens>    Explicit context window for the budget (overrides --model)
+  --load-factor <0..1>  Fraction of the window allowed at startup (default: 0.5)
 
 Output: report only. Nothing is written.
 `);
@@ -197,6 +306,13 @@ Output: report only. Nothing is written.
   const minSizeIdx = args.indexOf("--min-size");
   const minSize = minSizeIdx >= 0 ? parseInt(args[minSizeIdx + 1] ?? "3", 10) : 3;
   const skipCluster = args.includes("--no-cluster");
+  const skipBudget = args.includes("--no-budget");
+  const modelIdx = args.indexOf("--model");
+  const model = modelIdx >= 0 ? args[modelIdx + 1] : undefined;
+  const contextIdx = args.indexOf("--context");
+  const contextWindow = contextIdx >= 0 ? parseInt(args[contextIdx + 1] ?? "", 10) : undefined;
+  const loadFactorIdx = args.indexOf("--load-factor");
+  const loadFactor = loadFactorIdx >= 0 ? parseFloat(args[loadFactorIdx + 1] ?? "") : undefined;
 
   const profileSkills = readProfileSkills();
   const total = Object.keys(profileSkills).length;
@@ -216,6 +332,15 @@ Output: report only. Nothing is written.
   if (!skipCluster) {
     process.stdout.write(`${bold("3. New-profile clusters from discover cache")}\n\n`);
     reportUnfitGems(minSize);
+  }
+
+  if (!skipBudget) {
+    process.stdout.write(`${bold("4. Context budget (model-aware)")}\n\n`);
+    await reportContextBudget(Object.keys(profileSkills), {
+      model,
+      window: Number.isFinite(contextWindow) ? contextWindow : undefined,
+      loadFactor: Number.isFinite(loadFactor) ? loadFactor : undefined,
+    });
   }
 
   process.stdout.write(`${dim("(report-only — review and edit profiles/*/profile.yaml by hand)")}\n`);

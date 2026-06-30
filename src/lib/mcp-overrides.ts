@@ -19,6 +19,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { configDir } from "./config-paths.ts";
+import type { McpPruneMode } from "../../profiles/_types.ts";
+
+export type { McpPruneMode };
 
 /** One directory's MCP override. */
 export interface McpOverride {
@@ -121,20 +124,38 @@ export function autoPrunableMcps(
 }
 
 /**
- * Non-interactive prune mode parsed from `CUE_PRUNE_MCPS`:
- *   - "off"     — default; keep all (fail-open).
+ * Parse a `CUE_PRUNE_MCPS` value into an {@link McpPruneMode}:
+ *   - "off"     — keep all (fail-open).
  *   - "profile" — drop unused PROFILE-declared MCPs only. Preserves cue's
  *     invariant that user-global MCPs are never touched.
  *   - "all"     — also drop unused GLOBAL MCPs present in the runtime
- *     .claude.json (heavy servers a coding profile never calls). A louder,
- *     explicit opt-in because it deletes config the user set globally.
+ *     .claude.json (heavy servers a coding profile never calls). A louder
+ *     opt-in because it deletes config the user set globally.
  */
-export type McpPruneMode = "off" | "profile" | "all";
+const PRUNE_ALL_TOKENS = ["all", "global", "aggressive"];
+const PRUNE_PROFILE_TOKENS = ["auto", "unused", "profile", "1", "true", "on"];
+const PRUNE_OFF_TOKENS = ["off", "0", "false", "no", ""];
+
 export function mcpPruneMode(value: string | undefined): McpPruneMode {
   const v = (value ?? "").trim().toLowerCase();
-  if (["all", "global", "aggressive"].includes(v)) return "all";
-  if (["auto", "unused", "profile", "1", "true", "on"].includes(v)) return "profile";
+  if (PRUNE_ALL_TOKENS.includes(v)) return "all";
+  if (PRUNE_PROFILE_TOKENS.includes(v)) return "profile";
   return "off";
+}
+
+/**
+ * Whether `value` is a token `mcpPruneMode` recognizes (any of all/profile/off
+ * spellings). A non-empty, unrecognized value (a typo like `profil`) returns
+ * false so the caller can warn and fall through to the profile default instead
+ * of silently parsing it to "off" and suppressing that default.
+ */
+export function isRecognizedPruneEnv(value: string): boolean {
+  const v = value.trim().toLowerCase();
+  return (
+    PRUNE_ALL_TOKENS.includes(v) ||
+    PRUNE_PROFILE_TOKENS.includes(v) ||
+    PRUNE_OFF_TOKENS.includes(v)
+  );
 }
 
 /** Back-compat predicate: any prune mode at all (profile or all). */

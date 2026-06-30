@@ -2,19 +2,19 @@
 title: "AjaySaini15/tana-ai-context-hub — Claude Code skill discovered by cue"
 description: "Three Claude Code skills (ai-memory-setup, ai-memory-sync, skill-improve) that create a self-improving AI skill system with Tana as the source of truth. Skills "
 layout: page
-updated: 2026-06-16
+updated: 2026-06-22
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [AjaySaini15/tana-ai-context-hub](https://github.com/AjaySaini15/tana-ai-context-hub)
 
-**★ 1** · potential (score 4.7) · Python
+**★ 1** · potential (score 4.4) · Python
 
 > Three Claude Code skills (ai-memory-setup, ai-memory-sync, skill-improve) that create a self-improving AI skill system with Tana as the source of truth. Skills compound over time — every correction is captured, versioned, and propagated to all configured LLM tool paths automatically.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.4 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-13
 - 🏷️ Tags: (none)

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-30
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-market-intel"></a>
-## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
+<a id="shinyjay2-papermentor"></a>
+## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
+**★ 1** · exceptional (score 15.8) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
-Thin Claude Code skill for commercial/market research: triages topics across 12 data domains, detects & guides installing the right MCP source, delegates heavy retrieval to deep-research. Curated source matrix + quality guardrails.
+Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/market-intel --profile research
+cue skills add ShinyJay2/PaperMentor --profile research
 ```
 
 ---

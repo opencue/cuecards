@@ -2,21 +2,21 @@
 title: "leeguooooo/paypay-securities — Claude Code skill discovered by cue"
 description: "Read-only CLI & agent skill for a PayPay証券 (PayPay Securities / ペイペイ証券) account — portfolio, holdings, 投資信託/米国株, transaction history, fee & FX-spread, and a rev"
 layout: page
-updated: 2026-06-04
+updated: 2026-06-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [leeguooooo/paypay-securities](https://github.com/leeguooooo/paypay-securities)
 
-**★ 0** · exceptional (score 9.5) · Python · agent-skill, claude-code, claude-skill, cli, fintech
+**★ 1** · exceptional (score 9.8) · Python · agent-skill, claude-code, claude-skill, cli, fintech
 
 > Read-only CLI & agent skill for a PayPay証券 (PayPay Securities / ペイペイ証券) account — portfolio, holdings, 投資信託/米国株, transaction history, fee & FX-spread, and a review (復盘) with realized/unrealized P&L. Data display only. npx skills add.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-04
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: agent-skill, claude-code, claude-skill, cli, fintech, investment, japan, nisa, paypay, paypay-securities, portfolio, python, skills-sh, stock-portfolio
 
 ## Best fit cue profiles

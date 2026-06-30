@@ -2,6 +2,15 @@ name: core
 icon: "🧠"
 iconImage: "logo.png"
 description: Baseline shared by every cue profile — essentials only
+# Startup context budget baseline, fans out to every inheriting profile.
+# cue can't pin the main-session model (that's a per-launch /model choice), so
+# this just tells the model-aware budget (lib/token-budget.ts) which window to
+# size against: the always-on load (skill frontmatter + MCP tool schemas) should
+# stay under 50% of it, leaving the other half free for the conversation. At
+# 256K that's a ~128K startup ceiling; `cue launch` and `cue profile suggest`
+# warn when a profile blows past it. Override per-profile by redeclaring
+# `contextWindow`/`model`, or per-launch via CUE_CONTEXT_WINDOW / CUE_MODEL.
+contextWindow: 256000
 # Cost knob, fans out to every inheriting profile. Surfaced into the runtime
 # settings.json `env` block by buildClaudeSettings (allowlisted). Pins Task/Agent
 # subagents (code-reviewer, Explore, file-read/grep/summarize) to Sonnet —

@@ -37,6 +37,7 @@ import {
 } from "./profile-merge";
 import { validateProfileName } from "./profile-generator";
 import { loadMcpCatalog, addMcpToProfile } from "./mcp-catalog";
+import { installMarketItem, type MarketAddKind } from "./market-install";
 import { aggregateProfileClis, type ProfileCli } from "./skill-clis";
 import { collectPermissions } from "./permissions";
 import { reposForProfile, resolveRepoStars } from "./repos";
@@ -1653,6 +1654,34 @@ export async function handleMarket(): Promise<ApiResult<unknown>> {
   return { ok: true, data };
 }
 
+const MARKET_ADD_KINDS = new Set<MarketAddKind>(["mcp", "skill", "profile", "cli", "workflow", "plugin"]);
+
+/**
+ * Install a marketplace item into a profile (the studio's "Add to profile"
+ * picker). Validates the body, edits the target profile.yaml via
+ * installMarketItem, and busts the market cache so the next browse reflects any
+ * new profile membership. Returns `manual` for kinds with no profile.yaml home
+ * (a bare CLI) so the studio can show the command instead of claiming success.
+ */
+export async function handleMarketInstall(
+  body: { id?: unknown; addKind?: unknown; profile?: unknown; add?: unknown } | null,
+): Promise<ApiResult<unknown>> {
+  const id = typeof body?.id === "string" ? body.id : "";
+  const addKind = typeof body?.addKind === "string" ? (body.addKind as MarketAddKind) : "";
+  const profile = typeof body?.profile === "string" ? body.profile : "";
+  const add = typeof body?.add === "string" ? body.add : undefined;
+  if (!id) return { ok: false, error: "missing-id" };
+  if (!addKind || !MARKET_ADD_KINDS.has(addKind as MarketAddKind)) return { ok: false, error: "invalid-add-kind" };
+  if (!profile) return { ok: false, error: "missing-profile" };
+  try {
+    const result = await installMarketItem({ id, addKind: addKind as MarketAddKind, profile, add });
+    if (result.changed) marketCache = null; // counts/membership may have shifted
+    return { ok: true, data: result };
+  } catch (err) {
+    return { ok: false, error: (err as Error).message };
+  }
+}
+
 // ── Workflows: the n8n-style canvas's saved DAGs (resources/workflows/*.json) ──
 export async function handleWorkflows(): Promise<ApiResult<unknown>> {
   return { ok: true, data: listWorkflows() };
@@ -1868,6 +1897,13 @@ export function createHandler(): (req: Request) => Promise<Response> {
       let body: unknown = null;
       try { body = await req.json(); } catch { /* malformed */ }
       const result = await handleMcpAdd(body as Parameters<typeof handleMcpAdd>[0]);
+      return Response.json(result, { status: result.ok ? 200 : 400 });
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/v1/market/install") {
+      let body: unknown = null;
+      try { body = await req.json(); } catch { /* malformed */ }
+      const result = await handleMarketInstall(body as Parameters<typeof handleMarketInstall>[0]);
       return Response.json(result, { status: result.ok ? 200 : 400 });
     }
 

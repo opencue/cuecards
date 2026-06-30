@@ -851,6 +851,10 @@ function collectProfileMcps(
   const out: Record<string, McpServerConfig> = {};
   for (const m of profile.mcps) {
     if (!appliesToAgent(m, agent)) continue;
+    // cwd/env gate — a `when:`-conditioned server only activates when its
+    // condition holds, so gated MCPs cost zero schema tokens elsewhere.
+    // Mirrors the conditional-skill guard above.
+    if (m.when && !evaluateCondition(m.when, process.cwd())) continue;
     const reg = registry[m.id];
     if (reg !== undefined) out[m.id] = reg;
   }

@@ -2,7 +2,7 @@
 title: "patsa2561-art/mneme-ai — Claude Code skill discovered by cue"
 description: "the memory layer of your codebase. Knows the WHY, the WHAT, the WHERE-IT-BREAKS."
 layout: page
-updated: 2026-06-09
+updated: 2026-06-21
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-09
+- 🗓️ Last pushed: 2026-06-21
 - 🏷️ Tags: ai-coding-assistant, ai-memory, codebase-memory, developer-tools, ghost-code, git-archaeology, knowledge-preservation, local-first, mcp, mcp-server, model-context-protocol, premortem, rag, retrieval-augmented-generation, sqlite, time-machine, typescript
 
 ## Best fit cue profiles

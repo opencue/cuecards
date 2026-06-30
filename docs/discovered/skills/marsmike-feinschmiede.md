@@ -2,21 +2,21 @@
 title: "marsmike/feinschmiede — Claude Code skill discovered by cue"
 description: "A family of branded-media plugins for Claude Code — decks, images & 2D, video, and audio, coupled by CLI capabilities (never file paths) over one shared engine."
 layout: page
-updated: 2026-06-16
+updated: 2026-06-24
 tags: [claude-code, skill, creative-media]
 ---
 
 # ✨ [marsmike/feinschmiede](https://github.com/marsmike/feinschmiede)
 
-**★ 3** · strong (score 6.7) · Python · agent-skills, agentic-coding, anthropic, brand-system, claude
+**★ 3** · strong (score 6.6) · Python · agent-skills, agentic-coding, anthropic, brand-system, claude
 
 > A family of branded-media plugins for Claude Code — decks, images & 2D, video, and audio, coupled by CLI capabilities (never file paths) over one shared engine.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-16
+- 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: agent-skills, agentic-coding, anthropic, brand-system, claude, claude-code, claude-code-plugins, claude-code-skills, claude-skills, design-system, design-tokens, diagrams, excalidraw, image-generation, powerpoint, pptx, presentation, remotion, text-to-speech, video
 
 ## Best fit cue profiles

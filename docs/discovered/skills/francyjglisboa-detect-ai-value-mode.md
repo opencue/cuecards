@@ -2,19 +2,19 @@
 title: "FrancyJGLisboa/detect-ai-value-mode — Claude Code skill discovered by cue"
 description: "Agent skill that reads any codebase (local path or GitHub URL) and classifies how its AI product creates value — Amplifier, Substitute, Job Creator, or Democrat"
 layout: page
-updated: 2026-06-16
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [FrancyJGLisboa/detect-ai-value-mode](https://github.com/FrancyJGLisboa/detect-ai-value-mode)
 
-**★ 2** · strong (score 5.3) · Python · agent-skills, ai-strategy, claude-code, codebase-analysis, skill-md
+**★ 2** · strong (score 5.2) · Python · agent-skills, ai-strategy, claude-code, codebase-analysis, skill-md
 
 > Agent skill that reads any codebase (local path or GitHub URL) and classifies how its AI product creates value — Amplifier, Substitute, Job Creator, or Democratiser — returning an evidence-cited verdict report. Works in Claude Code, Copilot, Cursor, Codex.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-06-10
 - 🏷️ Tags: agent-skills, ai-strategy, claude-code, codebase-analysis, skill-md

@@ -160,6 +160,32 @@ describe("loadProfile", () => {
     expect(resolved.agents).toEqual(["claude-code"]);
   });
 
+  test("mcps: when: gate is parsed and survives the inheritance merge", async () => {
+    await writeProfile(
+      "mcp-when",
+      [
+        "name: mcp-when",
+        "description: profile with a conditional MCP",
+        "mcps:",
+        "  - always-on", // string form — no gate
+        "  - id: gated", // object form with a when: condition
+        "    when:",
+        "      env: SOME_TOKEN",
+        "  - id: cwd-gated",
+        "    when:",
+        "      has_dir: .obsidian",
+        "",
+      ].join("\n"),
+    );
+
+    const resolved = await loadProfile("mcp-when");
+    expect(resolved.mcps).toEqual([
+      { id: "always-on" },
+      { id: "gated", when: { env: "SOME_TOKEN" } },
+      { id: "cwd-gated", when: { has_dir: ".obsidian" } },
+    ]);
+  });
+
   test("subagents fold through inheritance: parent first, child appended, deduped", async () => {
     await writeProfile(
       "sa-parent",
@@ -594,5 +620,43 @@ describe("core persona_includes fan-out (real profiles)", () => {
     expect(gstack.personaIncludes).toContain("integrity-protocol-compact");
     expect(gstack.personaIncludes).not.toContain("headroom-compression");
     expect(gstack.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+  });
+});
+
+describe("mcpPrune resolution", () => {
+  test("unset by default", async () => {
+    await writeProfile("np", "name: np\ndescription: no prune declared\n");
+    const r = await loadProfile("np");
+    expect(r.mcpPrune).toBeUndefined();
+  });
+
+  test("parsed from a single profile", async () => {
+    await writeProfile("pp", "name: pp\ndescription: prune all\nmcpPrune: all\n");
+    const r = await loadProfile("pp");
+    expect(r.mcpPrune).toBe("all");
+  });
+
+  test("leaf wins through single inheritance", async () => {
+    await writeProfile("base-prune", "name: base-prune\ndescription: base\nmcpPrune: profile\n");
+    await writeProfile(
+      "leaf-prune",
+      "name: leaf-prune\ndescription: leaf\ninherits: base-prune\nmcpPrune: all\n",
+    );
+    expect((await loadProfile("leaf-prune")).mcpPrune).toBe("all");
+    // Child without its own setting inherits the parent's.
+    await writeProfile("leaf-inherit", "name: leaf-inherit\ndescription: leaf2\ninherits: base-prune\n");
+    expect((await loadProfile("leaf-inherit")).mcpPrune).toBe("profile");
+  });
+
+  test("most-aggressive wins across a composite (off < profile < all)", async () => {
+    await writeProfile("cp-off", "name: cp-off\ndescription: off\n");
+    await writeProfile("cp-prof", "name: cp-prof\ndescription: profile\nmcpPrune: profile\n");
+    await writeProfile("cp-all", "name: cp-all\ndescription: all\nmcpPrune: all\n");
+    expect((await loadProfile("cp-off+cp-prof")).mcpPrune).toBe("profile");
+    expect((await loadProfile("cp-prof+cp-all")).mcpPrune).toBe("all");
+    expect((await loadProfile("cp-off+cp-all")).mcpPrune).toBe("all");
+    // No part declares one → undefined.
+    await writeProfile("cp-off2", "name: cp-off2\ndescription: off2\n");
+    expect((await loadProfile("cp-off+cp-off2")).mcpPrune).toBeUndefined();
   });
 });

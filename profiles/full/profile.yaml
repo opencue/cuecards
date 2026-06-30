@@ -19,7 +19,12 @@ mcps:
   - headroom
   - hostinger-api
   - letsfg
-  - obsidian-vault
+  # The Obsidian server is only useful inside a vault — gate on its marker dir
+  # so the kitchen-sink `full` profile doesn't load it (or its schema) outside
+  # one. `.obsidian/` is created at a vault's root.
+  - id: obsidian-vault
+    when:
+      has_dir: .obsidian
   - polymarket-live
   - recodee
   - ruflo
