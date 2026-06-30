@@ -58,9 +58,11 @@ interface ParsedArgs {
   subset: string | null;
   /** `--cue-pick-mcps` — always re-open the MCP toggle, ignoring a remembered choice. */
   forcePickMcps: boolean;
-  /** `--disable-mcp <id>` (repeatable) — non-interactive: drop these MCPs (pinned ones excepted). */
+  /** `--disable-mcp <id>` (repeatable) — drop these MCPs for THIS launch only
+   *  (pinned ones excepted); session-scoped, not written as a remembered
+   *  override. Persist a choice via the interactive picker / `--cue-pick-mcps`. */
   disableMcp: string[];
-  // Env `CUE_PRUNE_MCPS=auto|unused|1|true|on` — non-interactive auto-prune: drop
+  // Env `CUE_PRUNE_MCPS=auto|unused|profile|all|1|true|on` — non-interactive auto-prune: drop
   // every MCP no active skill references (pinned excepted). Read inline at launch,
   // not a parsed flag. A remembered picker override or `--disable-mcp` takes
   // precedence; default (unset) stays fail-open and keeps all MCPs.
@@ -1651,9 +1653,12 @@ export async function run(args: string[]): Promise<number> {
       let reviewed = false;
 
       if (parsed.disableMcp.length > 0) {
-        // Non-interactive flag path: drop named ids (pinned ones excepted).
+        // Non-interactive flag path: drop named ids (pinned ones excepted) for
+        // THIS launch only. `reviewed` stays false so the choice is NOT written
+        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
+        // run or a debug session must not silently stick on later launches. Use
+        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
         kept = keepNonPinned(new Set(parsed.disableMcp.map((s) => s.toLowerCase())));
-        reviewed = true;
       } else {
         const override = readMcpOverride(pinDir);
         const overrideValid = override !== undefined && override.fingerprint === fingerprint;
