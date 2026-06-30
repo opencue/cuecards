@@ -26,6 +26,7 @@ import {
   InheritanceDepthExceeded,
   type MCPRef,
   type NpxSkillRef,
+  type McpPruneMode,
   type PluginRef,
   type Profile,
   ProfileError,
@@ -278,6 +279,21 @@ function normalizePluginRef(raw: PluginRef): ResolvedPlugin {
 // Deep-merge helpers
 // ---------------------------------------------------------------------------
 
+const PRUNE_RANK: Record<McpPruneMode, number> = { off: 0, profile: 1, all: 2 };
+
+/**
+ * Most-aggressive prune mode across composite parts (off < profile < all).
+ * Returns undefined when no part declares one, so the resolved profile keeps
+ * `mcpPrune` unset (launcher treats unset as "off" unless env overrides).
+ */
+function mostAggressivePrune(modes: (McpPruneMode | undefined)[]): McpPruneMode | undefined {
+  let best: McpPruneMode | undefined;
+  for (const m of modes) {
+    if (m && (best === undefined || PRUNE_RANK[m] > PRUNE_RANK[best])) best = m;
+  }
+  return best;
+}
+
 /** Concat then dedupe primitives, preserving order (parent first, child last). */
 function dedupePrimitiveArray<T extends string>(
   parent: T[] | undefined,
@@ -448,6 +464,8 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       // context window overrides the parent; otherwise it inherits.
       model: child.model ?? acc.model,
       contextWindow: child.contextWindow ?? acc.contextWindow,
+      // Prune mode is leaf-wins through single inheritance, same as model.
+      mcpPrune: child.mcpPrune ?? acc.mcpPrune,
       // agents: arrays merge by dedupe; if neither parent nor child declares
       // agents we fall back to the default at the end.
       agents: dedupePrimitiveArray(
@@ -510,6 +528,7 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     iconImage: p.iconImage,
     model: p.model,
     contextWindow: p.contextWindow,
+    mcpPrune: p.mcpPrune,
     agents: p.agents && p.agents.length > 0 ? [...p.agents] : [],
     inherits: p.inherits,
     skills: {
@@ -608,6 +627,10 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
     // First part that declares a budget hint wins for the composite.
     model: parts.find((p) => p.model)?.model,
     contextWindow: parts.find((p) => p.contextWindow)?.contextWindow,
+    // Most-aggressive prune mode across parts wins (off < profile < all): adding
+    // a part that opts into pruning enables it. Safe — prune only drops unused,
+    // non-pinned MCPs, so a higher mode can never starve a part's skill.
+    mcpPrune: mostAggressivePrune(parts.map((p) => p.mcpPrune)),
     agents: [...head.agents] as ResolvedProfile["agents"],
     inherits: undefined,
     skills: { local: [...head.skills.local], npx: [...head.skills.npx] },
@@ -646,6 +669,9 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
       iconImage: acc.iconImage ?? next.iconImage,
       model: acc.model ?? next.model,
       contextWindow: acc.contextWindow ?? next.contextWindow,
+      // Already the most-aggressive across all parts (computed in the initial
+      // acc); preserve it rather than recomputing per fold step.
+      mcpPrune: acc.mcpPrune,
       agents: dedupePrimitiveArray(acc.agents, next.agents) as ResolvedProfile["agents"],
       inherits: undefined,
       skills: {

@@ -1633,7 +1633,7 @@ export async function run(args: string[]): Promise<number> {
   if (agentKind === "claude-code" && profile.mcps.length > 0) {
     try {
       const { getNeededMcps } = await import("../lib/skill-dependencies");
-      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
+      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, isRecognizedPruneEnv, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
 
       const allMcpIds = profile.mcps.map((m) => m.id);
       const fingerprint = mcpFingerprint(allMcpIds);
@@ -1651,6 +1651,23 @@ export async function run(args: string[]): Promise<number> {
 
       let kept: Set<string> | null = null;
       let reviewed = false;
+
+      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
+      // (including an explicit `off`) overrides the profile's declared default;
+      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
+      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
+      // (e.g. a typo like `profil`) must NOT silently suppress the profile
+      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
+      const pruneEnv = process.env.CUE_PRUNE_MCPS;
+      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
+      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
+      if (pruneEnvSet && !pruneFromEnv) {
+        process.stderr.write(
+          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
+        );
+      }
+      const pruneMode = pruneFromEnv ? mcpPruneMode(pruneEnv) : (profile.mcpPrune ?? "off");
+      const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
 
       if (parsed.disableMcp.length > 0) {
         // Non-interactive flag path: drop named ids (pinned ones excepted) for
@@ -1681,34 +1698,33 @@ export async function run(args: string[]): Promise<number> {
             );
           }
           kept = keepNonPinned(new Set(keepDisabled));
-        } else if (mcpPruneMode(process.env.CUE_PRUNE_MCPS) !== "off") {
-          // Opt-in non-interactive prune (CUE_PRUNE_MCPS). Self-contained: it
-          // sets mcpDisabledIds directly (so it can drop GLOBAL servers that
-          // aren't in profile.mcps and thus invisible to the shared block below)
-          // and leaves `kept` null to skip that block. Recomputed each launch;
-          // never persisted, so the picker's remembered overrides stay intact.
+        } else if (pruneMode !== "off") {
+          // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
+          // default. Self-contained: it sets mcpDisabledIds directly (so it can
+          // drop GLOBAL servers that aren't in profile.mcps and thus invisible to
+          // the shared block below) and leaves `kept` null to skip that block.
+          // Recomputed each launch; never persisted, so the picker's remembered
+          // overrides stay intact.
           //
           //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
           //                  user-global servers are never touched holds).
           //   all mode     → also drop unused GLOBAL servers present in the
           //                  runtime .claude.json (the heavy ones a coding
-          //                  profile never calls). Louder opt-in: it removes
-          //                  config the user set globally.
-          const mode = mcpPruneMode(process.env.CUE_PRUNE_MCPS);
+          //                  profile never calls). Removes config set globally.
           const universe = [...allMcpIds];
-          if (mode === "all") {
+          if (pruneMode === "all") {
             const rtClaudeJson = join(configDir(), "runtime", profileName, "claude", ".claude.json");
             for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
               if (!universe.some((p) => p.toLowerCase() === id.toLowerCase())) universe.push(id);
             }
           }
           const drop = new Set(autoPrunableMcps(universe, pinned, needed.keys()));
-          debug("launch:mcp-prune", { mode, universe, pinned: [...pinned], needed: [...needed.keys()], drop: [...drop] });
+          debug("launch:mcp-prune", { mode: pruneMode, source: pruneSource, universe, pinned: [...pinned], needed: [...needed.keys()], drop: [...drop] });
           if (drop.size > 0) {
             profile = { ...profile, mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())) };
             mcpDisabledIds = [...drop];
             process.stderr.write(
-              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · CUE_PRUNE_MCPS=${mode} · --cue-pick-mcps to keep\n`,
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
             );
           }
         }

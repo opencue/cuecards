@@ -43,11 +43,23 @@ export interface ProfileSkills {
   // Using it will throw a SchemaViolation.
 }
 
+/**
+ * Default MCP prune mode applied at launch when no `CUE_PRUNE_MCPS` env override
+ * is set. `off` keeps all MCPs (fail-open, the global default); `profile` drops
+ * unused profile-declared MCPs; `all` also drops unused global servers from the
+ * runtime .claude.json. Leaf-wins through single inheritance; most-aggressive
+ * wins across composite parts (off < profile < all). Pruning only ever drops
+ * MCPs no active skill needs and that aren't pinned, so a higher mode is safe.
+ */
+export type McpPruneMode = "off" | "profile" | "all";
+
 export interface Profile {
   name: string;
   description: string;
   icon?: string;
   iconImage?: string;
+  /** Default non-interactive prune mode; `CUE_PRUNE_MCPS` overrides per launch. */
+  mcpPrune?: McpPruneMode;
   /**
    * Target main-session model id (e.g. "claude-opus-4-8"). Advisory only — cue
    * can't pin the main session model (that's a per-launch `/model` choice) — but
