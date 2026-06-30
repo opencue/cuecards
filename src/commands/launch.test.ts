@@ -798,7 +798,7 @@ describe("formatTokenWarning", () => {
     expect(out).toEqual([]);
   });
 
-  test("composite: emits always-on header, By profile, max-if-active, heaviest, and Drop hint", () => {
+  test("compact: 2-line summary with skills, always-on, peak, and a cue cost pointer", () => {
     const out = formatTokenWarning({
       alwaysOn: 8000,
       maxIfAllActivate: 230000,
@@ -808,80 +808,22 @@ describe("formatTokenWarning", () => {
         { name: "core", tokens: 1800, skillCount: 12 },
         { name: "ecc", tokens: 4700, skillCount: 33 },
       ],
-      heaviestBodies: [
-        { id: "meta/skill-reviewer", tokens: 18000 },
-        { id: "review/code-review-deep", tokens: 12000 },
-        { id: "plan/autoplan", tokens: 9000 },
-      ],
+      heaviestBodies: [{ id: "meta/skill-reviewer", tokens: 18000 }],
     });
     expect(out).toEqual([
-      "🟡 Skill overhead: ~8.0K always-on (53 skills)",
-      "   By profile:  skill-writer 1.5K  ·  core 1.8K  ·  ecc 4.7K ← heaviest",
-      "   ~230K max if every skill activates (bodies load on demand)",
-      "   Heaviest bodies:  skill-reviewer (18.0K), code-review-deep (12.0K), autoplan (9.0K)",
-      `   💡 Drop "ecc" to save ~4.7K always-on`,
+      "🟡 53 skills · ~8K always-on · 230K peak",
+      "   → `cue cost` for the full breakdown",
     ]);
   });
 
-  test("By profile line prefixes each part with its icon when set", () => {
+  test("omits the peak segment when maxIfAllActivate is 0", () => {
     const out = formatTokenWarning({
-      alwaysOn: 6000,
-      maxIfAllActivate: 80000,
-      totalSkills: 20,
-      byProfile: [
-        { name: "writer", icon: "🧬", tokens: 1500, skillCount: 6 },
-        { name: "core", icon: "🐢", tokens: 1500, skillCount: 6 },
-        { name: "ecc", icon: "🦅", tokens: 3000, skillCount: 8 },
-      ],
-      heaviestBodies: [],
+      alwaysOn: 6000, maxIfAllActivate: 0, totalSkills: 20, byProfile: [], heaviestBodies: [],
     });
-    expect(out[1]).toBe(
-      "   By profile:  🧬 writer 1.5K  ·  🐢 core 1.5K  ·  🦅 ecc 3.0K ← heaviest",
-    );
+    expect(out[0]).toBe("🟡 20 skills · ~6K always-on");
   });
 
-  test("primary is heaviest: never suggests dropping it, falls back to audit hint when warranted", () => {
-    // Scenario: user picked `postizz` (heaviest) and combined with blog-writer
-    // + trendradar. Suggesting "Drop postizz" would be nonsensical.
-    const out = formatTokenWarning({
-      alwaysOn: 11000,
-      maxIfAllActivate: 49000,
-      totalSkills: 39,
-      byProfile: [
-        { name: "postizz", icon: "📮", tokens: 3700, skillCount: 12 },
-        { name: "blog-writer", icon: "✍️", tokens: 0, skillCount: 0 },
-        { name: "trendradar", icon: "📡", tokens: 1000, skillCount: 4 },
-      ],
-      heaviestBodies: [{ id: "meta/skill-reviewer", tokens: 4000 }],
-    });
-    expect(out.join("\n")).not.toContain(`Drop "postizz"`);
-    expect(out).toContain("   💡 Run `cue skills audit` to trim unused skills.");
-  });
-
-  test("primary is heaviest but a companion is also above 3K: suggests dropping the companion", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 12000,
-      maxIfAllActivate: 80000,
-      totalSkills: 40,
-      byProfile: [
-        { name: "primary", tokens: 6000, skillCount: 20 },
-        { name: "companion", tokens: 4000, skillCount: 15 },
-      ],
-      heaviestBodies: [],
-    });
-    expect(out).toContain(`   💡 Drop "companion" to save ~4.0K always-on`);
-    expect(out.join("\n")).not.toContain(`Drop "primary"`);
-  });
-
-  test("single profile above 10K always-on: shows audit hint, not Drop hint", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 12000, maxIfAllActivate: 200000, totalSkills: 80, byProfile: [],
-      heaviestBodies: [{ id: "x/y", tokens: 5000 }],
-    });
-    expect(out).toContain("   💡 Run `cue skills audit` to trim unused skills.");
-  });
-
-  test("very heavy profiles get explicit launch guidance", () => {
+  test("very heavy profiles (>=50K) tag the line and use the red level", () => {
     const out = formatTokenWarning({
       alwaysOn: 66000,
       maxIfAllActivate: 520000,
@@ -889,8 +831,8 @@ describe("formatTokenWarning", () => {
       byProfile: [],
       heaviestBodies: [],
     });
-    expect(out.join("\n")).toContain("Very heavy profile:");
-    expect(out.join("\n")).toContain('use `--subset "<task>"`');
+    expect(out[0]).toBe("🔴 102 skills · ~66K always-on · 520K peak · very heavy");
+    expect(out[1]).toBe("   → `cue cost` for the full breakdown");
   });
 });
 
@@ -899,16 +841,12 @@ describe("formatDoctorWarnings", () => {
     expect(formatDoctorWarnings([])).toEqual([]);
   });
 
-  test("singular 'warning' for exactly one", () => {
+  test("single compact line, singular 'warning' for exactly one", () => {
     const out = formatDoctorWarnings([{ code: "D1", message: `skill "meta/foo" not found on disk` }]);
-    expect(out).toEqual([
-      "⚠ cue doctor (1 warning):",
-      `   D1  skill "meta/foo" not found on disk`,
-      "   → cue doctor --fix",
-    ]);
+    expect(out).toEqual(["⚠ 1 cue-doctor warning → cue doctor --fix"]);
   });
 
-  test("shows top 3 inline plus a '…and N more' footer when over 3", () => {
+  test("single compact line, plural for more than one", () => {
     const out = formatDoctorWarnings([
       { code: "D1", message: `skill "meta/foo" not found on disk` },
       { code: "D2", message: `MCP "obsidian" not in registry` },
@@ -916,14 +854,7 @@ describe("formatDoctorWarnings", () => {
       { code: "D2", message: `MCP "extra" not in registry` },
       { code: "D5", message: `runtime missing hash (may be stale)` },
     ]);
-    expect(out).toEqual([
-      "⚠ cue doctor (5 warnings):",
-      `   D1  skill "meta/foo" not found on disk`,
-      `   D2  MCP "obsidian" not in registry`,
-      `   D4  skill "vps" needs MCP "hostinger" (from profile)`,
-      "   …and 2 more",
-      "   → cue doctor --fix",
-    ]);
+    expect(out).toEqual(["⚠ 5 cue-doctor warnings → cue doctor --fix"]);
   });
 });
 

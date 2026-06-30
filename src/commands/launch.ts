@@ -450,69 +450,28 @@ export {
   type TokenBreakdown,
 } from "../lib/token-budget";
 
-/** Format the token-overhead block. Returns `[]` under the 2K always-on floor. */
+/**
+ * Format the token-overhead block as a compact 2-line summary. Returns `[]`
+ * under the 2K always-on floor. The full breakdown — per-profile attribution,
+ * heaviest bodies, drop hints — lives in `cue cost`, so a normal launch stays
+ * quiet instead of dumping six lines before the agent starts.
+ */
 export function formatTokenWarning(b: TokenBreakdown): string[] {
   if (b.alwaysOn < 2000) return [];
   const c = colorFns();
-  const lines: string[] = [];
   const level = tokenLevelEmoji(b.alwaysOn);
-  const alwaysK = `${(b.alwaysOn / 1000).toFixed(1)}K`;
-  lines.push(
-    `${level} Skill overhead: ${c.yellow(`~${alwaysK}`)} always-on (${b.totalSkills} skills)`,
-  );
-  if (b.alwaysOn >= 50_000) {
-    lines.push(
-      `   ${c.yellow("Very heavy profile:")} prefer \`core\` or a narrow stack; use \`--subset "<task>"\` before launching broad composites.`,
-    );
-  }
-
-  // `byProfile[0]` is the primary (the profile the user actively picked);
-  // the rest are companions added via the multiselect. We tag whichever part
-  // weighs the most as "← heaviest" purely for info, but only consider
-  // *companions* as candidates for the "Drop X" hint below — telling the
-  // user to drop their primary is never the right advice.
-  let heaviestPart: { name: string; tokens: number } | undefined;
-  let heaviestDroppable: { name: string; tokens: number } | undefined;
-  if (b.byProfile.length > 1) {
-    heaviestPart = [...b.byProfile].sort((a, x) => x.tokens - a.tokens)[0];
-    heaviestDroppable = [...b.byProfile.slice(1)].sort((a, x) => x.tokens - a.tokens)[0];
-    const heaviestName = heaviestPart!.name;
-    const segments = b.byProfile.map((p) => {
-      const kStr = `${(p.tokens / 1000).toFixed(1)}K`;
-      const iconPart = p.icon ? `${p.icon} ` : "";
-      const label = `${iconPart}${p.name} ${kStr}`;
-      return p.name === heaviestName
-        ? `${c.bold(label)} ${c.dim("← heaviest")}`
-        : c.dim(label);
-    });
-    lines.push(`   By profile:  ${segments.join(c.dim("  ·  "))}`);
-  }
-
+  const segs = [
+    `${b.totalSkills} skills`,
+    `${c.yellow(`~${Math.round(b.alwaysOn / 1000)}K`)} always-on`,
+  ];
   if (b.maxIfAllActivate > 0) {
-    const maxK = `${(b.maxIfAllActivate / 1000).toFixed(0)}K`;
-    lines.push(
-      `   ${c.dim(`~${maxK} max if every skill activates (bodies load on demand)`)}`,
-    );
+    segs.push(`${Math.round(b.maxIfAllActivate / 1000)}K peak`);
   }
-
-  const top3 = b.heaviestBodies.slice(0, 3);
-  if (top3.length > 0) {
-    const items = top3
-      .map((s) => `${s.id.split("/").pop()} (${(s.tokens / 1000).toFixed(1)}K)`)
-      .join(", ");
-    lines.push(`   ${c.dim(`Heaviest bodies:  ${items}`)}`);
-  }
-
-  if (heaviestDroppable && heaviestDroppable.tokens > 3000) {
-    const saveK = `${(heaviestDroppable.tokens / 1000).toFixed(1)}K`;
-    lines.push(
-      `   💡 Drop ${c.bold(`"${heaviestDroppable.name}"`)} to save ~${saveK} always-on`,
-    );
-  } else if (b.alwaysOn > 10000) {
-    lines.push(`   💡 Run \`cue skills audit\` to trim unused skills.`);
-  }
-
-  return lines;
+  if (b.alwaysOn >= 50_000) segs.push(c.yellow("very heavy"));
+  return [
+    `${level} ${segs.join(c.dim(" · "))}`,
+    `   ${c.dim("→ `cue cost` for the full breakdown")}`,
+  ];
 }
 
 // ---------------------------------------------------------------------------
@@ -526,26 +485,17 @@ export interface DoctorWarning {
 }
 
 /**
- * Format the top doctor warnings as a small block. Returns `[]` when there
- * are no warnings so callers can skip the leading blank line.
- *
- * Top-3 inline, with a "…and N more" footer and a `→ cue doctor --fix`
- * pointer when there's anything to fix.
+ * Format doctor warnings as a single compact line. Returns `[]` when there are
+ * none. The per-warning detail lives in `cue doctor --fix`; launch only signals
+ * that there's something to look at.
  */
 export function formatDoctorWarnings(warnings: DoctorWarning[]): string[] {
   if (warnings.length === 0) return [];
   const c = colorFns();
-  const lines: string[] = [];
   const n = warnings.length;
-  lines.push(c.yellow(`⚠ cue doctor (${n} warning${n > 1 ? "s" : ""}):`));
-  for (const w of warnings.slice(0, 3)) {
-    lines.push(`   ${c.yellow(w.code)}  ${w.message}`);
-  }
-  if (n > 3) {
-    lines.push(`   ${c.dim(`…and ${n - 3} more`)}`);
-  }
-  lines.push(`   ${c.dim("→ cue doctor --fix")}`);
-  return lines;
+  return [
+    `${c.yellow(`⚠ ${n} cue-doctor warning${n > 1 ? "s" : ""}`)} ${c.dim("→ cue doctor --fix")}`,
+  ];
 }
 
 /**
@@ -1911,16 +1861,11 @@ export async function run(args: string[]): Promise<number> {
         (i) => i.rule === "W6" || i.rule === "W7",
       );
       if (descIssues.length > 0) {
+        const c = colorFns();
+        const n = descIssues.length;
         process.stderr.write(
-          `\n  ⚠️  ${descIssues.length} skill description issue(s) — run \`cue validate ${profileName}\` for full list:\n`,
+          `${c.yellow(`⚠ ${n} skill description issue${n > 1 ? "s" : ""}`)} ${c.dim(`→ cue validate ${profileName}`)}\n`,
         );
-        for (const i of descIssues.slice(0, 5)) {
-          process.stderr.write(`     • ${i.message}\n`);
-        }
-        if (descIssues.length > 5) {
-          process.stderr.write(`     … +${descIssues.length - 5} more\n`);
-        }
-        process.stderr.write("\n");
       }
     } catch { /* non-fatal — lint is observability, not a gate */ }
   }
@@ -2002,12 +1947,10 @@ export async function run(args: string[]): Promise<number> {
     const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
     if (missing.length > 0) {
       const unique = [...new Set(missing.map(m => m.mcpId))];
-      process.stderr.write(`\n⚠️  Missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}\n`);
-      for (const m of missing.slice(0, 3)) {
-        process.stderr.write(`   ${m.skillId} → needs "${m.mcpId}" (${m.source})\n`);
-      }
-      if (missing.length > 3) process.stderr.write(`   …and ${missing.length - 3} more\n`);
-      process.stderr.write(`   Fix: cue mcps add ${unique[0]} --profile ${profileName}\n\n`);
+      const c = colorFns();
+      process.stderr.write(
+        `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
+      );
     }
   } catch { /* non-fatal */ }
 
