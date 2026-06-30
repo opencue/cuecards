@@ -19,6 +19,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { configDir } from "./config-paths.ts";
+import type { McpPruneMode } from "../../profiles/_types.ts";
+
+export type { McpPruneMode };
 
 /** One directory's MCP override. */
 export interface McpOverride {
@@ -121,15 +124,14 @@ export function autoPrunableMcps(
 }
 
 /**
- * Non-interactive prune mode parsed from `CUE_PRUNE_MCPS`:
- *   - "off"     — default; keep all (fail-open).
+ * Parse a `CUE_PRUNE_MCPS` value into an {@link McpPruneMode}:
+ *   - "off"     — keep all (fail-open).
  *   - "profile" — drop unused PROFILE-declared MCPs only. Preserves cue's
  *     invariant that user-global MCPs are never touched.
  *   - "all"     — also drop unused GLOBAL MCPs present in the runtime
- *     .claude.json (heavy servers a coding profile never calls). A louder,
- *     explicit opt-in because it deletes config the user set globally.
+ *     .claude.json (heavy servers a coding profile never calls). A louder
+ *     opt-in because it deletes config the user set globally.
  */
-export type McpPruneMode = "off" | "profile" | "all";
 export function mcpPruneMode(value: string | undefined): McpPruneMode {
   const v = (value ?? "").trim().toLowerCase();
   if (["all", "global", "aggressive"].includes(v)) return "all";

@@ -31,6 +31,11 @@
       "type": "string",
       "description": "Advisory target main-session model id (e.g. 'claude-opus-4-8'). cue can't pin the main session model (per-launch /model choice); the model-aware startup budget uses it to resolve the context window for the over-budget warning. Leaf-wins; env CUE_MODEL overrides."
     },
+    "mcpPrune": {
+      "type": "string",
+      "enum": ["off", "profile", "all"],
+      "description": "Default non-interactive MCP prune mode at launch. off (default): keep all MCPs. profile: drop unused profile-declared MCPs. all: also drop unused global servers from the runtime .claude.json. Only ever drops MCPs no active skill needs and that aren't pinned. Leaf-wins through inheritance; most-aggressive wins across composite parts; env CUE_PRUNE_MCPS overrides."
+    },
     "contextWindow": {
       "type": "integer",
       "minimum": 1,
