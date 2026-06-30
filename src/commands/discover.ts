@@ -708,12 +708,6 @@ function visualLen(s: string): number {
   return s.replace(/\x1b\[[0-9;]*m/g, "").length;
 }
 
-/** Pad a string to a visual width, accounting for ANSI codes. */
-function padVisual(s: string, width: number): string {
-  const len = visualLen(s);
-  return len >= width ? s : s + " ".repeat(width - len);
-}
-
 /**
  * Format a gem as a tight, readable card. ~4 lines per gem:
  *   1. header   — icon · bold name · ✓installed-tag · right-aligned metrics

@@ -10,6 +10,27 @@ target and a check that closes it — and replaces "stop when done" with "prove
 it, then propose the next goal and continue." Each passing check is a
 checkpoint, not the exit.
 
+**TL;DR:** restate the ask as outcome + a runnable check → reach it by the
+highest-ROI path → loop (smallest change, then run the check) until it passes →
+commit → propose the next checkable goal and continue. Interactive asks before
+each new goal; `auto` self-picks. Three fails on one check is a hard stop.
+
+## Arguments
+
+`/goal [topic] [auto] [cap=N]` — all optional.
+
+- **topic** (free text) — the request to pursue. Omitted → use the current task
+  in context.
+- **auto** — run unattended: each round, pick the top-ROI next goal yourself and
+  continue without asking. Also implied when the user says "keep going", "work
+  longer", or "until I say stop". Absent → **interactive** (the default): ask
+  before starting each new goal.
+- **cap=N** — max continuation rounds before pausing to confirm (default 5).
+  `cap=1` runs one goal and stops at Step 5; "until I say stop" lifts the cap.
+
+The chosen mode (interactive vs auto) and cap are set here once and govern the
+Step 6 fork for the whole run.
+
 ## Step 1 — Restate as a measurable goal + a runnable check
 
 Rewrite the ask as **outcome + a success criterion you can run.**
@@ -67,13 +88,14 @@ ending the session.
    - **upside** — a sharper, more precise version of what you just shipped
 3. **Rank by ROI.** Run `/roi-estimator` when there are 3+ so each carries a
    `dimension +N% 🟢/🟡/🟠` tag.
-4. **Fork on the next goal:**
-   - **Interactive:** ask via `AskUserQuestion` — "what to implement next?" with
-     the top-ROI goal first (recommended) and **"Stop here"** as the last
-     option. Name the check in each option so the user picks a provable goal.
-   - **Auto mode:** take the top-ROI goal yourself, log one line (`picked X
-     because Y`), and continue. Pause to ask only when the best remaining ROI is
-     🟠 or lower, or you're out of checkable ideas.
+4. **Fork on the next goal** (per the mode set in Arguments):
+   - **Interactive** (default): ask via `AskUserQuestion` — "what to implement
+     next?" with the top-ROI goal first (recommended) and **"Stop here"** as the
+     last option. Name the check in each option so the user picks a provable goal.
+   - **Auto** (`/goal auto`, or "keep going" / "work longer"): take the top-ROI
+     goal yourself, log one line (`picked X because Y`), and continue. Pause to
+     ask only when the best remaining ROI is 🟠 or lower, or you're out of
+     checkable ideas.
 5. **Restart at Step 1** with the chosen goal as the new measurable goal. One
    goal in flight at a time — chain them, never braid two into one diff.
 
@@ -84,10 +106,10 @@ ending the session.
 - **3-strike rule is a hard stop**, not a suggestion. A wall *ends the
   marathon*; it never gets auto-picked around — escalate to `/investigate` or
   the user.
-- **Continuation is bounded and consensual.** Default cap is **5 rounds**, then
-  summarize and ask whether to keep going (a yes resets the cap). User can set
-  it: `/goal cap=N` or "until I say stop." Stop immediately on "stop", or when
-  two rounds in a row produce no checkable idea.
+- **Continuation is bounded and consensual.** At the `cap` (see Arguments,
+  default 5 rounds), summarize and ask whether to keep going — a yes resets the
+  cap. Stop immediately on "stop", or when two rounds in a row produce no
+  checkable idea.
 - **One goal in flight, atomic commit per round.** Chain goals; keep the loop
   bisectable.
 - A goal you "verified" by reading code instead of running the check is

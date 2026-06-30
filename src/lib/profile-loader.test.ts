@@ -573,7 +573,15 @@ describe("core persona_includes fan-out (real profiles)", () => {
     process.env.CUE_PROFILES_DIR = REAL_PROFILES;
     const core = await loadProfile("core");
     expect(core.personaIncludes).toContain("integrity-protocol-compact");
-    expect(core.personaIncludes).toContain("headroom-compression");
+    expect(core.personaIncludes).not.toContain("headroom-compression");
+    expect(core.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+  });
+
+  test("headroom profile opts into the proxy wrap include", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const headroom = await loadProfile("headroom");
+    expect(headroom.personaIncludes).toContain("headroom-compression");
+    expect(headroom.env?.ANTHROPIC_BASE_URL).toBe("http://127.0.0.1:8787");
   });
 
   test("codegraph auto-loads across every built-in profile", async () => {
@@ -610,7 +618,8 @@ describe("core persona_includes fan-out (real profiles)", () => {
     const gstack = await loadProfile("gstack");
     expect(gstack.persona).toBeTruthy(); // gstack has its own persona block
     expect(gstack.personaIncludes).toContain("integrity-protocol-compact");
-    expect(gstack.personaIncludes).toContain("headroom-compression");
+    expect(gstack.personaIncludes).not.toContain("headroom-compression");
+    expect(gstack.env?.ANTHROPIC_BASE_URL).toBeUndefined();
   });
 });
 

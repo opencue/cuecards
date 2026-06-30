@@ -97,6 +97,15 @@ __cue_check_profile
 `;
 }
 
+export type HookShell = "bash" | "zsh" | "fish";
+
+export function resolveHookShell(requested?: string, envShell = process.env.SHELL ?? "/bin/bash"): HookShell {
+  const shell = (requested || envShell || "/bin/bash").toLowerCase();
+  if (shell.includes("zsh")) return "zsh";
+  if (shell.includes("fish")) return "fish";
+  return "bash";
+}
+
 export interface ShimOptions {
   homeDir?: string;
   pathDirs?: string[];
@@ -202,10 +211,10 @@ export async function run(args: string[]): Promise<number> {
   const sub = args[0];
 
   if (sub === "hook") {
-    const shell = process.env.SHELL ?? "/bin/bash";
-    if (shell.includes("zsh")) {
+    const shell = resolveHookShell(args[1]);
+    if (shell === "zsh") {
       process.stdout.write(hookZsh());
-    } else if (shell.includes("fish")) {
+    } else if (shell === "fish") {
       process.stdout.write(hookFish());
     } else {
       process.stdout.write(hookBash());

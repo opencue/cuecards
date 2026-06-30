@@ -132,7 +132,7 @@ export interface PickerInput {
   universalSuggestions?: UniversalSuggestion[];
   /**
    * Optional resolver for a single profile value's own resources, used to drive
-   * the combine multiselect's per-row "+N skills" hints and the live combined-
+   * the combine multiselect's per-row "N skills" hints and the live combined-
    * total preview. Called once per offered profile (primary + companions)
    * before the multiselect opens; failures degrade gracefully (that row simply
    * shows no counts). Omitted in tests → no preview, identical prior behavior.
@@ -448,7 +448,15 @@ export function buildCompanionOptions(args: BuildCompanionArgs): {
     // History partners (a remembered combo) are *offered unchecked* — a
     // recommendation surfaced with the HISTORY_HINT, never silently re-pinned.
     const checkByFrequent = origin === "frequent" && frequentChecked < MAX_FREQUENT_AUTOCHECK;
-    if (checkByAutoSelect || checkByPreselect || checkByDetect || checkByFrequent) {
+    // Don't pre-check a companion that conflicts with one already checked: the
+    // final selection runs through resolveConflicts, which would silently drop
+    // it at confirm. Leaving the row checked here lies about the outcome — so
+    // surface it unchecked and let the user choose. Conflicts are symmetric, so
+    // check both directions (this candidate's list and the already-checked's).
+    const conflictsWithChecked = initialValues.some(
+      (v) => (opt.conflicts ?? []).includes(v) || (options.find((o) => o.value === v)?.conflicts ?? []).includes(name),
+    );
+    if ((checkByAutoSelect || checkByPreselect || checkByDetect || checkByFrequent) && !conflictsWithChecked) {
       initialValues.push(name);
       if (checkByFrequent) frequentChecked += 1;
     }
@@ -544,13 +552,13 @@ export interface TallyCounts {
 const EMPTY_TALLY: ProfileTally = { skills: [], mcps: [], plugins: [], commands: [] };
 
 /**
- * "+17 skills · +1 mcp" — the per-row hint showing what a companion adds.
+ * "17 skills · 1 mcp" — the per-row hint showing what a companion adds.
  * Omits zero categories; returns "" for a profile that adds nothing. Pure.
  */
 export function formatTallyDelta(t: ProfileTally): string {
   const parts: string[] = [];
   const add = (n: number, one: string, many: string) => {
-    if (n > 0) parts.push(`+${n} ${n === 1 ? one : many}`);
+    if (n > 0) parts.push(`${n} ${n === 1 ? one : many}`);
   };
   add(t.skills.length, "skill", "skills");
   add(t.mcps.length, "mcp", "mcps");
@@ -756,7 +764,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
   const skipping = effective.has(SKIP_COMBINE);
   const ascii = state.ascii ?? asciiIconsEnabled();
   const icon = (s: string) => stripIconIfAscii(s, ascii);
-  // Column where every companion's "+N skills" delta starts. Measured across
+  // Column where every companion's "N skills" delta starts. Measured across
   // the full companion set (not just the visible window) so the deltas line up
   // in a stable column as the list scrolls. Capped so one long name can't push
   // the whole table off a narrow terminal.
@@ -850,15 +858,15 @@ export function renderCombineFrame(state: CombineFrameState): string {
     const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
     const rawLabel = icon(o.label);
     const labelStyled = isSel || isCursor ? rawLabel : styleText("dim", rawLabel);
-    // Contribution at a glance: every row shows just the headline "+N skills"
+    // Contribution at a glance: every row shows just the headline "N skills"
     // (one token, never wraps); the focused row expands to the full
-    // "+N skills · +M mcps · …" breakdown so detail is one keystroke away.
+    // "N skills · M mcps · …" breakdown so detail is one keystroke away.
     const tally = state.preview ? state.preview.tallies.get(o.value) ?? EMPTY_TALLY : null;
     const delta = tally
       ? isCursor
         ? formatTallyDelta(tally)
         : tally.skills.length > 0
-          ? `+${tally.skills.length} skills`
+          ? `${tally.skills.length} skills`
           : ""
       : "";
     // The verbose reason / description (detection signal, profile blurb)
@@ -867,7 +875,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
     // A dim trailing tag labels the `→` marker, so it reads "recommended" even
     // when the cursor sits on the row (gutter shows `›`, not `→`).
     const recTag = isRecommended ? styleText("dim", "  recommended") : "";
-    // Pad the label out to the shared delta column so every "+N skills" lines
+    // Pad the label out to the shared delta column so every "N skills" lines
     // up in a clean table (≥2-space gap even for an over-long name). Skip the
     // pad entirely when there's no trailer, so bare rows carry no trailing
     // whitespace.
@@ -1028,7 +1036,7 @@ async function asciiMultiselect(opts: {
   initialValues?: string[];
   required?: boolean;
   /**
-   * When provided, render per-row "+N skills" hints and a live combined-total
+   * When provided, render per-row "N skills" hints and a live combined-total
    * preview line. `primary` is the always-present base profile; `tallies` maps
    * each profile value (primary + every companion) to its own resources.
    */
@@ -1242,12 +1250,13 @@ export class FilterSelectPrompt extends Prompt<string> {
 
   // Rows available for option rows, derived from terminal height. Reserve space
   // for the intro line, our 2-line header, the footer, and the pin-confirm +
-  // outro clack draws below — plus the two scroll indicators. Floor at 5 so a
+  // outro clack draws below — plus the two scroll indicators and a few blank
+  // spacer lines now drawn above each in-window group header. Floor at 5 so a
   // short terminal still shows a usable window.
   private visibleRows(): number {
     const rows =
       (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
-    return Math.max(5, rows - 10);
+    return Math.max(5, rows - 13);
   }
 
   // Block submit on an empty result set so enter can't return undefined.
@@ -1293,16 +1302,37 @@ export class FilterSelectPrompt extends Prompt<string> {
     if (win.hiddenAbove > 0) {
       lines.push(`${BAR}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
     }
+    // Terminal width, used to clip an over-long cursor hint to one line so a
+    // verbose profile blurb (e.g. seo's 25-skill description) never wraps across
+    // the whole screen and shoves the rest of the list down.
+    const cols =
+      (this.output as { columns?: number } | undefined)?.columns ?? process.stdout.columns ?? 80;
+    let rendered = false;
     for (const o of win.items) {
       if (o.divider === true) {
-        lines.push(`${BAR}  ${styleText("dim", icon(o.label))}`);
+        // Blank spacer above each section header (never as the window's first
+        // line) so groups read as distinct blocks instead of one running wall —
+        // mirrors the combine frame's grouped layout. Bold + bright-blue header
+        // pops above the dim option rows.
+        if (rendered) lines.push(`${BAR}`);
+        lines.push(`${BAR}  ${styleText("bold", styleText("blueBright", icon(o.label).trimStart()))}`);
+        rendered = true;
         continue;
       }
       const isCursor = o === active;
       const bullet = isCursor ? styleText("green", "●") : styleText("dim", "○");
       const label = isCursor ? icon(o.label) : styleText("dim", icon(o.label));
-      const hint = isCursor && o.hint ? styleText("dim", `  ${o.hint}`) : "";
+      let hint = "";
+      if (isCursor && o.hint) {
+        // Prefix = bar + 2 pad + bullet + space + label + 2-space gap. Clip the
+        // hint to whatever's left so the row stays on one line.
+        const prefix = 2 + 2 + displayWidth(icon(o.label)) + 2;
+        const avail = Math.max(20, cols - prefix - 1);
+        const text = o.hint.length > avail ? `${o.hint.slice(0, avail - 1)}…` : o.hint;
+        hint = styleText("dim", `  ${text}`);
+      }
       lines.push(`${BAR}  ${bullet} ${label}${hint}`);
+      rendered = true;
     }
     if (win.hiddenBelow > 0) {
       lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
@@ -1401,7 +1431,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
   });
   if (companionOptions.length > 0) {
     // Precompute each offered profile's resources (primary + companions, small
-    // N) so the live render stays synchronous: per-row "+N skills" hints and
+    // N) so the live render stays synchronous: per-row "N skills" hints and
     // the combined-total preview both read from this map. Absent resolver (or a
     // failing load) just means no preview — the multiselect works regardless.
     const tallies = new Map<string, ProfileTally>();
@@ -1444,7 +1474,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
           ? {
               options: overflowOptions,
               // Fill in the revealed profiles' resource counts so their rows
-              // and the live preview show "+N skills" once shown.
+              // and the live preview show "N skills" once shown.
               onReveal: () => loadTallies(overflowOptions.map((o) => o.value)),
             }
           : undefined,

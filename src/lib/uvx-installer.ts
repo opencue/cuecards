@@ -88,6 +88,18 @@ function localBinPath(binary: string): string {
   return join(homedir(), ".local", "bin", binary);
 }
 
+/**
+ * True when `uv tool install` aborted because one of the package's entrypoint
+ * names already exists in ~/.local/bin. This happens when the uv tool dir was
+ * wiped but the `~/.local/bin/<script>` symlinks were left behind (now
+ * dangling): `existsSync` reports our binary missing, so we reinstall, but uv
+ * refuses to overwrite the leftover symlink unless `--force` is passed. uv
+ * names the escape hatch in the message, so match on it.
+ */
+export function isExecutableCollision(stderr: string): boolean {
+  return /Executable already exists|`--force` to overwrite/i.test(stderr);
+}
+
 function installBinaryDefault(
   gitUrl: string,
   _binary: string,
@@ -97,13 +109,46 @@ function installBinaryDefault(
   // do NOT pass `--from <url> <bin>` — uv enforces install-name == package-name
   // in that mode, which breaks when the binary name (e.g. `trendradar-mcp`)
   // differs from the package name (`trendradar`).
-  const res = spawnSync(
-    "uv",
-    ["tool", "install", gitUrl],
-    { stdio: ["ignore", "pipe", "pipe"], encoding: "utf8", timeout: 180_000 },
-  );
+  const run = (force: boolean) =>
+    spawnSync(
+      "uv",
+      ["tool", "install", ...(force ? ["--force"] : []), gitUrl],
+      { stdio: ["ignore", "pipe", "pipe"], encoding: "utf8", timeout: 180_000 },
+    );
+  let res = run(false);
+  // A leftover dangling entrypoint symlink blocks the link step; uv aborts and
+  // points at --force. Overwrite the stale links once instead of looping every
+  // launch.
+  if (res.status !== 0 && isExecutableCollision((res.stderr ?? "").toString())) {
+    res = run(true);
+  }
   if (res.status === 0) return { ok: true, stderr: "" };
   return { ok: false, stderr: (res.stderr ?? "").toString().trim() };
+}
+
+/**
+ * Collapse `uv tool install` stderr to its salient line(s).
+ *
+ * On failure uv dumps a package-resolution firehose (`Resolved N packages`,
+ * `Installed N packages`, and one ` + pkg==ver` line per dependency) followed
+ * by the actual `error:`. Logging all of it on every launch/profile-switch
+ * buries the one useful line under ~100 lines of noise. Keep the non-progress
+ * lines (capped to the last 3), falling back to the first line when uv emitted
+ * only progress.
+ */
+export function salientInstallError(stderr: string): string {
+  const lines = stderr
+    .split("\n")
+    .map((l) => l.trimEnd())
+    .filter((l) => l.trim() !== "");
+  if (lines.length === 0) return "(no stderr)";
+  // Drop uv's progress chatter and per-package add/remove/update lines.
+  const progress =
+    /^(Resolved|Installed|Prepared|Audited|Downloading|Building|Built|Updating|Bytecode) /;
+  const pkgLine = /^\s*[+\-~]\s/; // " + pkg==1.0" / " - pkg" / " ~ pkg" (uv indents)
+  const salient = lines.filter((l) => !progress.test(l) && !pkgLine.test(l));
+  const pick = salient.length > 0 ? salient.slice(-3) : [lines[0]];
+  return pick.join("\n  ");
 }
 
 /**
@@ -261,7 +306,7 @@ export function normalizeUvxGitServers(
     if (!ok) {
       warn(
         `MCP "${id}": \`uv tool install ${gitUrl}\` failed (looking for binary "${binary}").\n  ${
-          stderr || "(no stderr)"
+          salientInstallError(stderr)
         }\nLeaving entry as raw \`uvx --from git+...\`.`,
       );
       report.skipped.push({ id, reason: "install-failed" });

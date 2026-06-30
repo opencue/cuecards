@@ -40,40 +40,7 @@ persona: |
 
   ## Medusa JS SDK setup with TanStack
 
-  Create one SDK instance for the app:
-
-  ```ts
-  // src/lib/medusa.ts
-  import Medusa from "@medusajs/js-sdk"
-  export const sdk = new Medusa({
-    baseUrl: import.meta.env.VITE_MEDUSA_BACKEND_URL,
-    publishableKey: import.meta.env.VITE_MEDUSA_PUBLISHABLE_KEY,
-  })
-  ```
-
-  In a router loader:
-
-  ```ts
-  // src/routes/products.$handle.tsx
-  export const Route = createFileRoute("/products/$handle")({
-    loader: ({ params }) => sdk.store.product.retrieve(params.handle),
-    component: ProductDetail,
-  })
-  function ProductDetail() {
-    const product = Route.useLoaderData()
-    return <ProductCard product={product} />
-  }
-  ```
-
-  In a mutation component (TanStack Query):
-
-  ```ts
-  const addLine = useMutation({
-    mutationFn: (variantId: string) =>
-      sdk.store.cart.createLineItem(cartId, { variant_id: variantId, quantity: 1 }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] }),
-  })
-  ```
+  See `playbooks/medusa-dev-workflow.md` for the SDK instance, router loader, and mutation examples.
 
   ## Region resolution
 

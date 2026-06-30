@@ -453,7 +453,6 @@ export {
   type SkillTokens,
   type TokenBreakdown,
 } from "../lib/token-budget";
-
 /** Format the token-overhead block. Returns `[]` under the 2K always-on floor. */
 export function formatTokenWarning(b: TokenBreakdown): string[] {
   if (b.alwaysOn < 2000) return [];
@@ -519,6 +518,45 @@ export function formatTokenWarning(b: TokenBreakdown): string[] {
   return lines;
 }
 
+/**
+ * Format the single-line startup identity banner shown on every warm launch.
+ * Confirms what you landed in: agent · icon+profile (collapsed to `primary +N`
+ * for composites, via formatTmuxTitle) · skill and MCP counts · the always-on
+ * token cost. The token segment is omitted under the 2K floor; a `→ cue cost`
+ * pointer is appended only for genuinely heavy profiles. The full breakdown —
+ * per-profile attribution, heaviest bodies — lives in `cue cost`.
+ */
+const BANNER_TOKEN_FLOOR = 2000;
+const BANNER_HEAVY = 10_000;
+
+export interface StartupBannerInfo {
+  /** Pre-collapsed title from formatTmuxTitle, e.g. "claude · 🏭 gstack +4". */
+  title: string;
+  /** Total skills (local + npx). */
+  skills: number;
+  /** MCP server count. */
+  mcps: number;
+  /** Always-on token estimate, or undefined when not computed (light profile). */
+  alwaysOn?: number;
+}
+
+export function formatStartupBanner(info: StartupBannerInfo): string {
+  const c = colorFns();
+  const segs: string[] = [`${c.cyan("▸")} ${info.title}`];
+  segs.push(`${info.skills} skill${info.skills === 1 ? "" : "s"}`);
+  if (info.mcps > 0) segs.push(`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`);
+  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_TOKEN_FLOOR) {
+    segs.push(
+      `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`,
+    );
+  }
+  let line = segs.join(c.dim(" · "));
+  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_HEAVY) {
+    line += c.dim(" · → cue cost");
+  }
+  return line;
+}
+
 // ---------------------------------------------------------------------------
 // Doctor warnings — inline summary of diagnostics on first build after a
 // rebuild. Replaces the older "run cue doctor to see" generic message.
@@ -530,26 +568,17 @@ export interface DoctorWarning {
 }
 
 /**
- * Format the top doctor warnings as a small block. Returns `[]` when there
- * are no warnings so callers can skip the leading blank line.
- *
- * Top-3 inline, with a "…and N more" footer and a `→ cue doctor --fix`
- * pointer when there's anything to fix.
+ * Format doctor warnings as a single compact line. Returns `[]` when there are
+ * none. The per-warning detail lives in `cue doctor --fix`; launch only signals
+ * that there's something to look at.
  */
 export function formatDoctorWarnings(warnings: DoctorWarning[]): string[] {
   if (warnings.length === 0) return [];
   const c = colorFns();
-  const lines: string[] = [];
   const n = warnings.length;
-  lines.push(c.yellow(`⚠ cue doctor (${n} warning${n > 1 ? "s" : ""}):`));
-  for (const w of warnings.slice(0, 3)) {
-    lines.push(`   ${c.yellow(w.code)}  ${w.message}`);
-  }
-  if (n > 3) {
-    lines.push(`   ${c.dim(`…and ${n - 3} more`)}`);
-  }
-  lines.push(`   ${c.dim("→ cue doctor --fix")}`);
-  return lines;
+  return [
+    `${c.yellow(`⚠ ${n} cue-doctor warning${n > 1 ? "s" : ""}`)} ${c.dim("→ cue doctor --fix")}`,
+  ];
 }
 
 /**
@@ -1934,16 +1963,11 @@ export async function run(args: string[]): Promise<number> {
         (i) => i.rule === "W6" || i.rule === "W7",
       );
       if (descIssues.length > 0) {
+        const c = colorFns();
+        const n = descIssues.length;
         process.stderr.write(
-          `\n  ⚠️  ${descIssues.length} skill description issue(s) — run \`cue validate ${profileName}\` for full list:\n`,
+          `${c.yellow(`⚠ ${n} skill description issue${n > 1 ? "s" : ""}`)} ${c.dim(`→ cue validate ${profileName}`)}\n`,
         );
-        for (const i of descIssues.slice(0, 5)) {
-          process.stderr.write(`     • ${i.message}\n`);
-        }
-        if (descIssues.length > 5) {
-          process.stderr.write(`     … +${descIssues.length - 5} more\n`);
-        }
-        process.stderr.write("\n");
       }
     } catch { /* non-fatal — lint is observability, not a gate */ }
   }
@@ -2025,12 +2049,10 @@ export async function run(args: string[]): Promise<number> {
     const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
     if (missing.length > 0) {
       const unique = [...new Set(missing.map(m => m.mcpId))];
-      process.stderr.write(`\n⚠️  Missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}\n`);
-      for (const m of missing.slice(0, 3)) {
-        process.stderr.write(`   ${m.skillId} → needs "${m.mcpId}" (${m.source})\n`);
-      }
-      if (missing.length > 3) process.stderr.write(`   …and ${missing.length - 3} more\n`);
-      process.stderr.write(`   Fix: cue mcps add ${unique[0]} --profile ${profileName}\n\n`);
+      const c = colorFns();
+      process.stderr.write(
+        `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
+      );
     }
   } catch { /* non-fatal */ }
 
@@ -2164,6 +2186,22 @@ export async function run(args: string[]): Promise<number> {
       );
     }
   } catch { /* best-effort */ }
+
+  // One-line startup identity banner (stderr). Always prints on a real launch
+  // so you can see what you landed in — agent, profile (collapsed to `primary
+  // +N` for composites), skill/MCP counts, and always-on token cost. dry-run
+  // and --rematerialize return earlier, so this never pollutes their JSON.
+  {
+    const friendly = agentKind === "claude-code" ? "claude" : agentKind;
+    process.stderr.write(
+      `${formatStartupBanner({
+        title: formatTmuxTitle(friendly, profileName, profileIcons),
+        skills: profile.skills.local.length + profile.skills.npx.length,
+        mcps: profile.mcps.length,
+        alwaysOn: alwaysOnForBadge,
+      })}\n`,
+    );
+  }
 
   const overhead = alwaysOnForBadge !== undefined && alwaysOnForBadge >= 2000
     ? {

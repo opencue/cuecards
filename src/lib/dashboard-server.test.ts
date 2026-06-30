@@ -355,8 +355,12 @@ describe("GET /api/v1/hook-source", () => {
     const hk = await handleHooks(new URLSearchParams());
     if (!hk.ok) return; // telemetry/profile unresolved in this env — security cases still cover it
     const events = (hk.data as { events: { hooks: { scriptPath: string | null }[] }[] }).events;
-    const withScript = events.flatMap((e) => e.hooks).find((h) => h.scriptPath);
-    if (!withScript?.scriptPath) return; // no resolvable hook scripts here
+    // A hook can be declared in settings.json with a scriptPath that points at a
+    // file not materialized on disk (e.g. a pruned/planned hook). handleHookSource
+    // correctly refuses to serve a missing file, so pick a hook whose script
+    // actually exists — that's the real-source case this test is asserting.
+    const withScript = events.flatMap((e) => e.hooks).find((h) => h.scriptPath && existsSync(h.scriptPath));
+    if (!withScript?.scriptPath) return; // no materialized hook scripts here
     const r = await handleHookSource(new URLSearchParams({ path: withScript.scriptPath }));
     expect(r.ok).toBe(true);
     if (r.ok) {

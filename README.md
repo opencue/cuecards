@@ -42,6 +42,10 @@ npm install -g cue-ai
 
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="cue picking a cuecard and launching the agent" width="820">
+</p>
+
 ## Why this exists
 
 If you've been using AI coding agents for a while, you've probably collected a pile of skills, MCP servers, and custom instructions. Maybe hundreds. Here's the problem:
@@ -56,6 +60,10 @@ That hurts twice:
 cue fixes this by scoping everything per directory. Your Medusa shop loads the Medusa cuecard. Your Rust CLI loads the Rust cuecard. Nothing else comes along for the ride.
 
 ### Before vs after — in numbers
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/isolation-comparison.svg" alt="Everything-loaded vs a scoped cuecard — always-on context compared" width="820">
+</p>
 
 | Loadout | Always-on context | Cost / 100 msgs (Sonnet input) |
 |---|---|---|
@@ -92,6 +100,10 @@ One cuecard per project. Your agent reads the right one the moment you launch it
 ## How it works
 
 No daemon, no background process. cue intercepts the *call* to your agent, resolves the directory's cuecard, materializes it once, then hands off to the real binary:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/architecture.svg" alt="cue resolve to materialize to exec flow" width="820">
+</p>
 
 ```
 you type `claude`
@@ -248,6 +260,10 @@ cue failures --propose       # let Claude draft profile improvements from failur
 ```
 
 `cue --help` shows the full ~50-subcommand surface; the set above covers a typical week.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/optimizer-dashboard.svg" alt="cue optimizer dashboard — skills, MCPs, CLIs, and usage per profile" width="820">
+</p>
 
 ---
 

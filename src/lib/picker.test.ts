@@ -245,6 +245,29 @@ describe("buildCompanionOptions", () => {
     expect(companionOptions.find((o) => o.value === "higgsfield")!.recommended).toBeFalsy();
   });
 
+  test("two mutually-conflicting companions don't both start checked (A1: WYSIWYG pre-check)", () => {
+    const { companionOptions, initialValues } = build({
+      // both detected above threshold, but they conflict with each other
+      companions: [sig("medusa-next", 0.9), sig("medusa-vite", 0.9)],
+    });
+    const values = companionOptions.map((o) => o.value);
+    expect(values).toContain("medusa-next"); // both still offered as rows
+    expect(values).toContain("medusa-vite");
+    expect(initialValues).toContain("medusa-next"); // first-seen wins the check
+    expect(initialValues).not.toContain("medusa-vite"); // conflicts with checked → unchecked
+  });
+
+  test("two autoSelect entries that conflict: first checked, second offered unchecked (A1)", () => {
+    const { companionOptions, initialValues } = build({
+      autoSelect: ["medusa-next", "medusa-vite"], // both declared, but mutually exclusive
+    });
+    const values = companionOptions.map((o) => o.value);
+    expect(values).toContain("medusa-next");
+    expect(values).toContain("medusa-vite");
+    expect(initialValues).toContain("medusa-next"); // first autoSelect wins the slot
+    expect(initialValues).not.toContain("medusa-vite"); // suppressed — would be pruned at confirm anyway
+  });
+
   test("autoSelect companions start checked with no detection signal", () => {
     const { companionOptions, initialValues } = build({
       autoSelect: ["blog-writer", "trendradar"],
@@ -676,13 +699,13 @@ describe("combine-preview tallies", () => {
     test("renders only non-empty categories, with singular/plural", () => {
       expect(
         formatTallyDelta(tally({ skills: ["a", "b"], mcps: ["m"] })),
-      ).toBe("+2 skills · +1 mcp");
+      ).toBe("2 skills · 1 mcp");
     });
 
     test("one of each reads singular", () => {
       expect(
         formatTallyDelta(tally({ skills: ["a"], mcps: ["m"], plugins: ["p"], commands: ["c"] })),
-      ).toBe("+1 skill · +1 mcp · +1 plugin · +1 cmd");
+      ).toBe("1 skill · 1 mcp · 1 plugin · 1 cmd");
     });
 
     test("a profile that adds nothing is the empty string", () => {
@@ -792,7 +815,7 @@ describe("renderCombineFrame", () => {
   test("a checked companion shows its always-on contribution delta", () => {
     const out = frame({ selected: ["vercel"], cursor: 0 });
     expect(out).toContain("[x] 🔺 vercel");
-    expect(out).toContain("+17 skills · +1 mcp · +1 plugin");
+    expect(out).toContain("17 skills · 1 mcp · 1 plugin");
   });
 
   test("staged combo: action row mirrors the combination + points at enter", () => {
@@ -923,15 +946,15 @@ describe("renderCombineFrame · density + compression", () => {
   ]);
   const preview = { primary: "gstack", tallies };
 
-  test("an unfocused row shows only the '+N skills' headline (no wrap)", () => {
+  test("an unfocused row shows only the 'N skills' headline (no wrap)", () => {
     const options: AsciiMSOption[] = [
       { value: "commerce", label: "🛒 commerce", hint: "shop" },
       { value: SKIP_COMBINE, label: "use gstack alone", hint: "", kind: "action", primaryLabel: "🏭 gstack" },
     ];
     // cursor on the action row (idx 1), so the commerce row is unfocused.
     const out = strip(renderCombineFrame({ message: "m", options, cursor: 1, selected: ["commerce"], preview, ascii: false }));
-    expect(out).toContain("+96 skills");
-    expect(out).not.toContain("+2 mcps"); // breakdown hidden when unfocused
+    expect(out).toContain("96 skills");
+    expect(out).not.toContain("2 mcps"); // breakdown hidden when unfocused
   });
 
   test("the focused row expands to the full breakdown", () => {
@@ -940,7 +963,7 @@ describe("renderCombineFrame · density + compression", () => {
       { value: SKIP_COMBINE, label: "use gstack alone", hint: "", kind: "action", primaryLabel: "🏭 gstack" },
     ];
     const out = strip(renderCombineFrame({ message: "m", options, cursor: 0, selected: ["commerce"], preview, ascii: false }));
-    expect(out).toContain("+96 skills · +2 mcps · +1 plugin · +1 cmd");
+    expect(out).toContain("96 skills · 2 mcps · 1 plugin · 1 cmd");
   });
 
   test("a long combo collapses the confirm row to 'first +N more'", () => {

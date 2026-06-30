@@ -44,6 +44,18 @@ export function quickDiagnose(profileName: string, profile: any): Warning[] {
         if (existsSync(join(SKILLS_ROOT, cat.name, id, "SKILL.md"))) { found = true; break; }
       }
     } catch { /* skip */ }
+    // Also check plugin marketplace paths (for npx-promoted skills).
+    if (!found) {
+      const mpDir = join(homedir(), ".claude", "plugins", "marketplaces");
+      if (existsSync(mpDir)) {
+        try {
+          for (const mp of readdirSync(mpDir, { withFileTypes: true })) {
+            if (!mp.isDirectory()) continue;
+            if (existsSync(join(mpDir, mp.name, "skills", id, "SKILL.md"))) { found = true; break; }
+          }
+        } catch { /* skip */ }
+      }
+    }
     if (!found) {
       warnings.push({ code: "D1", message: `skill "${id}" not found on disk` });
     }
