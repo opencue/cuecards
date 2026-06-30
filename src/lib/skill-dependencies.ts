@@ -78,19 +78,19 @@ function parseImplicitDeps(content: string): string[] {
  * Resolve the SKILL.md path for a skill ID.
  * Handles both "category/slug" and bare "slug" formats.
  */
-function findSkillContent(skillId: string): string | null {
+function findSkillContent(skillId: string, skillsRoot: string = SKILLS_ROOT): string | null {
   // Try direct path (category/slug)
-  const direct = join(SKILLS_ROOT, skillId, "SKILL.md");
+  const direct = join(skillsRoot, skillId, "SKILL.md");
   if (existsSync(direct)) {
     return readFileSync(direct, "utf8");
   }
 
   // Search all categories for the slug
   try {
-    const cats = readdirSync(SKILLS_ROOT, { withFileTypes: true });
+    const cats = readdirSync(skillsRoot, { withFileTypes: true });
     for (const cat of cats) {
       if (!cat.isDirectory() || cat.name.startsWith("_")) continue;
-      const p = join(SKILLS_ROOT, cat.name, skillId, "SKILL.md");
+      const p = join(skillsRoot, cat.name, skillId, "SKILL.md");
       if (existsSync(p)) return readFileSync(p, "utf8");
     }
   } catch { /* skip */ }
@@ -101,8 +101,8 @@ function findSkillContent(skillId: string): string | null {
 /**
  * Get all MCP dependencies for a skill (explicit + implicit).
  */
-export function getSkillDependencies(skillId: string): SkillDependency[] {
-  const content = findSkillContent(skillId);
+export function getSkillDependencies(skillId: string, skillsRoot: string = SKILLS_ROOT): SkillDependency[] {
+  const content = findSkillContent(skillId, skillsRoot);
   if (!content) return [];
 
   const deps: SkillDependency[] = [];
@@ -119,6 +119,41 @@ export function getSkillDependencies(skillId: string): SkillDependency[] {
   }
 
   return deps;
+}
+
+/**
+ * Aggregate the MCP servers needed by a set of active skills.
+ *
+ * Inverts {@link getSkillDependencies}: instead of asking "what does one skill
+ * need", it answers "across these skills, which MCPs are referenced and by
+ * whom". Used by the launcher to pre-select (smart-prune) only the MCPs the
+ * chosen skills actually need.
+ *
+ * Keys are lowercased MCP ids (matching {@link detectMissingDependencies}'
+ * case-insensitive convention). `source` is "explicit" if ANY referencing skill
+ * declares it via `requires_mcps:`, else "implicit".
+ */
+export function getNeededMcps(
+  skillIds: string[],
+  skillsRoot: string = SKILLS_ROOT,
+): Map<string, { skills: string[]; source: "explicit" | "implicit" }> {
+  const needed = new Map<string, { skills: string[]; source: "explicit" | "implicit" }>();
+
+  for (const skillId of skillIds) {
+    for (const dep of getSkillDependencies(skillId, skillsRoot)) {
+      const key = dep.mcpId.toLowerCase();
+      const entry = needed.get(key);
+      if (entry === undefined) {
+        needed.set(key, { skills: [skillId], source: dep.source });
+      } else {
+        if (!entry.skills.includes(skillId)) entry.skills.push(skillId);
+        // An explicit declaration anywhere upgrades the aggregate source.
+        if (dep.source === "explicit") entry.source = "explicit";
+      }
+    }
+  }
+
+  return needed;
 }
 
 /**

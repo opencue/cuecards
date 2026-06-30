@@ -55,6 +55,10 @@ export interface MaterializeInput {
   userClaudeMd: string;
   /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
   credentialsSource?: string;
+  /** Lazy-MCP: ids the launcher disabled — removed from the runtime .claude.json
+   *  even though the rebuild preserves the old file. Profile.mcps is already
+   *  pruned to the kept set; this just evicts the stale keys. */
+  disabledMcpIds?: string[];
 }
 
 export interface MaterializeOutput {
@@ -219,7 +223,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
         await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
       }
       if (agent === "claude-code") {
-        await syncMcpsIntoClaudeJson(runtimeDir, mcpServers);
+        await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
       }
       return { runtimeDir, rebuilt: false, hash };
     }
@@ -798,7 +802,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   await rename(tmpDir, runtimeDir);
 
   if (agent === "claude-code") {
-    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers);
+    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
   }
 
   return { runtimeDir, rebuilt: true, hash };
@@ -866,6 +870,7 @@ function collectProfileMcps(
 async function syncMcpsIntoClaudeJson(
   runtimeDir: string,
   mcpServers: Record<string, McpServerConfig>,
+  disabledIds: string[] = [],
 ): Promise<void> {
   const target = join(runtimeDir, ".claude.json");
   let parsed: Record<string, unknown> = {};
@@ -882,7 +887,24 @@ async function syncMcpsIntoClaudeJson(
     if (code !== undefined && code !== "ENOENT") return;
   }
   const existing = (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
-  parsed.mcpServers = { ...existing, ...mcpServers };
+  const merged: Record<string, unknown> = { ...existing, ...mcpServers };
+
+  // Lazy-MCP removal: the rebuild preserves the OLD runtime's .claude.json
+  // (session/auth state) and we merge additively onto it — so an MCP the user
+  // disabled would otherwise linger across launches. Delete exactly the ids the
+  // launcher disabled (case-insensitive), and only those, so user-added MCPs
+  // are never touched.
+  if (disabledIds.length > 0) {
+    const drop = new Set(disabledIds.map((id) => id.toLowerCase()));
+    // Never evict a key that's part of the current (kept) set — a kept MCP can't
+    // also be disabled. Keeps removal strictly to dropped ids.
+    const kept = new Set(Object.keys(mcpServers).map((k) => k.toLowerCase()));
+    for (const key of Object.keys(merged)) {
+      const lower = key.toLowerCase();
+      if (drop.has(lower) && !kept.has(lower)) delete merged[key];
+    }
+  }
+  parsed.mcpServers = merged;
 
   // Replace whatever's there (symlink or stale file) with a real file copy.
   await rm(target, { force: true });
@@ -1079,9 +1101,9 @@ export async function linkPluginCache(targetDir: string, sourceDir: string): Pro
 }
 
 /**
- * Parse a loopback proxy target from a URL. Returns {host, port} only for
- * loopback hosts (127.0.0.1 / ::1 / localhost) — those are the ones we
- * health-gate; any other host is treated as a managed remote and left alone.
+ * Parse a loopback proxy URL. Returns a URL only for loopback hosts
+ * (127.0.0.1 / ::1 / localhost) — those are the ones we health-gate; any other
+ * host is treated as a managed remote and left alone.
  */
 function parseLoopbackHostPort(rawUrl: string): { host: string; port: number } | null {
   try {

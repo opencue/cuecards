@@ -14,7 +14,7 @@
 import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { basename, join, resolve, sep } from "node:path";
+import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
 import { debug } from "../lib/debug-log";
@@ -56,6 +56,16 @@ interface ParsedArgs {
   rematerialize: boolean;
   /** `--subset "<prompt>"` — filter skills to those relevant to the prompt before materializing. */
   subset: string | null;
+  /** `--cue-pick-mcps` — always re-open the MCP toggle, ignoring a remembered choice. */
+  forcePickMcps: boolean;
+  /** `--disable-mcp <id>` (repeatable) — drop these MCPs for THIS launch only
+   *  (pinned ones excepted); session-scoped, not written as a remembered
+   *  override. Persist a choice via the interactive picker / `--cue-pick-mcps`. */
+  disableMcp: string[];
+  // Env `CUE_PRUNE_MCPS=auto|unused|profile|all|1|true|on` — non-interactive auto-prune: drop
+  // every MCP no active skill references (pinned excepted). Read inline at launch,
+  // not a parsed flag. A remembered picker override or `--disable-mcp` takes
+  // precedence; default (unset) stays fail-open and keeps all MCPs.
   passthrough: string[];
 }
 
@@ -66,6 +76,8 @@ function parse(args: string[]): ParsedArgs {
   let dryRun = false;
   let rematerialize = false;
   let subset: string | null = null;
+  let forcePickMcps = false;
+  const disableMcp: string[] = [];
   const passthrough: string[] = [];
 
   for (let i = 0; i < args.length; i++) {
@@ -76,6 +88,11 @@ function parse(args: string[]): ParsedArgs {
       override = args[++i] ?? null;
     } else if (a === "--cue-pick") {
       forcePick = true;
+    } else if (a === "--cue-pick-mcps") {
+      forcePickMcps = true;
+    } else if (a === "--disable-mcp") {
+      const id = args[++i];
+      if (id) disableMcp.push(id);
     } else if (a === "--dry-run") {
       dryRun = true;
     } else if (a === "--rematerialize") {
@@ -90,7 +107,7 @@ function parse(args: string[]): ParsedArgs {
   if (!subset && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
   }
-  return { agent, override, forcePick, dryRun, rematerialize, subset, passthrough };
+  return { agent, override, forcePick, forcePickMcps, disableMcp, dryRun, rematerialize, subset, passthrough };
 }
 
 // ---------------------------------------------------------------------------
@@ -1599,6 +1616,129 @@ export async function run(args: string[]): Promise<number> {
     } catch (err) { debug("launch:staleness", err); /* fail-open — never blocks launch */ }
   }
 
+  // Lazy-MCP: ids the user disabled, forwarded to the materializer so the stale
+  // keys are evicted from the runtime .claude.json (which the rebuild preserves).
+  let mcpDisabledIds: string[] = [];
+  // ── Lazy MCP loading ──────────────────────────────────────────────────
+  // Prune the profile's MCP servers to what the chosen skills actually need
+  // (smart-prune) and let the user disable individual servers interactively.
+  // The choice is remembered per pinned directory; later launches apply it
+  // silently until the profile's MCP set changes (fingerprint mismatch).
+  //
+  // Runs BEFORE the loader so the interactive toggle owns a clean TTY, and
+  // BEFORE smart-subset — so `needed` reflects the pre-subset skill set. That
+  // only ever over-keeps an MCP (safe); subset's copy-on-write preserves the
+  // pruned `mcps`. Pruning `profile.mcps` changes the materializer content
+  // hash, so the smaller `.claude.json` rebuilds automatically.
+  if (agentKind === "claude-code" && profile.mcps.length > 0) {
+    try {
+      const { getNeededMcps } = await import("../lib/skill-dependencies");
+      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
+
+      const allMcpIds = profile.mcps.map((m) => m.id);
+      const fingerprint = mcpFingerprint(allMcpIds);
+      const pinned = new Set(profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()));
+      const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
+
+      // Pin dir: the directory holding the resolving `.cue.profile`, else cwd
+      // (a freshly-picked profile was just pinned to cwd).
+      const pinDir =
+        existingResolved.source === "pin-file"
+          ? dirname((existingResolved as { pinPath: string }).pinPath)
+          : cwd;
+      const keepNonPinned = (drop: Set<string>): Set<string> =>
+        new Set(allMcpIds.filter((id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase())));
+
+      let kept: Set<string> | null = null;
+      let reviewed = false;
+
+      if (parsed.disableMcp.length > 0) {
+        // Non-interactive flag path: drop named ids (pinned ones excepted) for
+        // THIS launch only. `reviewed` stays false so the choice is NOT written
+        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
+        // run or a debug session must not silently stick on later launches. Use
+        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
+        kept = keepNonPinned(new Set(parsed.disableMcp.map((s) => s.toLowerCase())));
+      } else {
+        const override = readMcpOverride(pinDir);
+        const overrideValid = override !== undefined && override.fingerprint === fingerprint;
+        const interactive = process.stdin.isTTY === true && !parsed.dryRun;
+
+        if (interactive && (parsed.forcePickMcps || !overrideValid)) {
+          const { pickMcps } = await import("../lib/mcp-picker");
+          kept = await pickMcps({ profileMcpIds: allMcpIds, pinned, needed });
+          reviewed = kept !== null; // null = user cancelled → keep all, persist nothing
+        } else if (overrideValid) {
+          // Cross-check the remembered disable-list against what active skills
+          // now need: a skill added since the override was captured may need an
+          // MCP the user disabled. Re-enable those (honor the dependency) and
+          // say so, rather than silently starving the skill. The override is
+          // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
+          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(override!.disabled, needed.keys());
+          if (reEnabled.length > 0) {
+            process.stderr.write(
+              `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
+            );
+          }
+          kept = keepNonPinned(new Set(keepDisabled));
+        } else if (mcpPruneMode(process.env.CUE_PRUNE_MCPS) !== "off") {
+          // Opt-in non-interactive prune (CUE_PRUNE_MCPS). Self-contained: it
+          // sets mcpDisabledIds directly (so it can drop GLOBAL servers that
+          // aren't in profile.mcps and thus invisible to the shared block below)
+          // and leaves `kept` null to skip that block. Recomputed each launch;
+          // never persisted, so the picker's remembered overrides stay intact.
+          //
+          //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
+          //                  user-global servers are never touched holds).
+          //   all mode     → also drop unused GLOBAL servers present in the
+          //                  runtime .claude.json (the heavy ones a coding
+          //                  profile never calls). Louder opt-in: it removes
+          //                  config the user set globally.
+          const mode = mcpPruneMode(process.env.CUE_PRUNE_MCPS);
+          const universe = [...allMcpIds];
+          if (mode === "all") {
+            const rtClaudeJson = join(configDir(), "runtime", profileName, "claude", ".claude.json");
+            for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
+              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase())) universe.push(id);
+            }
+          }
+          const drop = new Set(autoPrunableMcps(universe, pinned, needed.keys()));
+          debug("launch:mcp-prune", { mode, universe, pinned: [...pinned], needed: [...needed.keys()], drop: [...drop] });
+          if (drop.size > 0) {
+            profile = { ...profile, mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())) };
+            mcpDisabledIds = [...drop];
+            process.stderr.write(
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · CUE_PRUNE_MCPS=${mode} · --cue-pick-mcps to keep\n`,
+            );
+          }
+        }
+        // else: non-interactive with no valid override → keep all (kept stays null).
+      }
+
+      debug("launch:mcp-prune", {
+        all: allMcpIds, pinned: [...pinned], needed: [...needed.keys()], reviewed, kept: kept ? [...kept] : null,
+      });
+      if (kept !== null) {
+        const keptSet = kept;
+        const disabled = allMcpIds.filter((id) => !keptSet.has(id)).map((id) => id.toLowerCase());
+        if (disabled.length > 0) {
+          profile = { ...profile, mcps: profile.mcps.filter((m) => keptSet.has(m.id)) };
+          mcpDisabledIds = disabled;
+          process.stderr.write(
+            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · --cue-pick-mcps to change\n`,
+          );
+        }
+        // Persist whenever the user actively reviewed (keeps the remembered set
+        // fresh, and clears a stale override when they re-enable everything).
+        // `disabled` may be [] here — that's intentional: it records "reviewed,
+        // nothing disabled" so a later launch doesn't re-prompt.
+        if (reviewed) writeMcpOverride(pinDir, { profile: profileName, fingerprint, disabled });
+      }
+    } catch (err) {
+      debug("launch:mcp-prune", err); // fail-open — never blocks a launch
+    }
+  }
+
   // ── Launch loader ─────────────────────────────────────────────────────
   // Animate the two genuinely slow steps of the handoff — smart-subset LLM
   // classification (cold miss ~2s) and runtime materialization — then fully
@@ -1674,15 +1814,57 @@ export async function run(args: string[]): Promise<number> {
     // about to discard them — return them to their owning account dir first.
     if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(profileName);
 
+    // Promote npx skills to local via installed plugin marketplaces.
+    // The materializer only symlinks profile.skills.local; npx refs are
+    // metadata that never reach the runtime unless resolved here. We probe
+    // ~/.claude/plugins/marketplaces/*/skills/<name>/ — the path where
+    // `claude plugin marketplace add` installs skills — so a profile that
+    // lists skills.npx works without a network fetch on every launch.
+    const npxSkillMap = new Map<string, string>(); // skill id → dir path
+    if (profile.skills.npx.length > 0) {
+      const pluginMarketplacesDir = join(homedir(), ".claude", "plugins", "marketplaces");
+      if (existsSync(pluginMarketplacesDir)) {
+        const mpSkillsDirs = readdirSync(pluginMarketplacesDir, { withFileTypes: true })
+          .filter((d) => d.isDirectory())
+          .map((d) => join(pluginMarketplacesDir, d.name, "skills"));
+        for (const npxRef of profile.skills.npx) {
+          for (const skillName of (npxRef.skills ?? [])) {
+            if (npxSkillMap.has(skillName)) continue;
+            for (const skillsDir of mpSkillsDirs) {
+              const skillDir = join(skillsDir, skillName);
+              if (existsSync(join(skillDir, "SKILL.md"))) {
+                npxSkillMap.set(skillName, skillDir);
+                break;
+              }
+            }
+          }
+        }
+      }
+      if (npxSkillMap.size > 0) {
+        const existingIds = new Set(profile.skills.local.map((s) => s.id));
+        const newSkills = [...npxSkillMap.keys()]
+          .filter((id) => !existingIds.has(id))
+          .map((id) => ({ id }));
+        if (newSkills.length > 0) {
+          profile = { ...profile, skills: { ...profile.skills, local: [...profile.skills.local, ...newSkills] } };
+        }
+      }
+    }
+
     progress("Preparing runtime…", "");
     runtime = await materializeRuntime({
       profile: await applyWorkspaceOverrides(profile),
       agent: agentKind,
       runtimeRoot: join(configDir(), "runtime"),
-      skillSourceLookup: (id) => resolveLocalSkill(id),
+      skillSourceLookup: (id) => {
+        const npxPath = npxSkillMap.get(id);
+        if (npxPath) return Promise.resolve(npxPath);
+        return resolveLocalSkill(id);
+      },
       mcpRegistry: await loadMcpRegistry(agentKind),
       userClaudeMd: await buildUserClaudeMd(profile, agentKind),
       credentialsSource,
+      disabledMcpIds: mcpDisabledIds,
     });
   } finally {
     // Always restore the terminal before the warning block / exec, even if
