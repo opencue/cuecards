@@ -107,6 +107,31 @@ function installBinaryDefault(
 }
 
 /**
+ * Collapse `uv tool install` stderr to its salient line(s).
+ *
+ * On failure uv dumps a package-resolution firehose (`Resolved N packages`,
+ * `Installed N packages`, and one ` + pkg==ver` line per dependency) followed
+ * by the actual `error:`. Logging all of it on every launch/profile-switch
+ * buries the one useful line under ~100 lines of noise. Keep the non-progress
+ * lines (capped to the last 3), falling back to the first line when uv emitted
+ * only progress.
+ */
+export function salientInstallError(stderr: string): string {
+  const lines = stderr
+    .split("\n")
+    .map((l) => l.trimEnd())
+    .filter((l) => l.trim() !== "");
+  if (lines.length === 0) return "(no stderr)";
+  // Drop uv's progress chatter and per-package add/remove/update lines.
+  const progress =
+    /^(Resolved|Installed|Prepared|Audited|Downloading|Building|Built|Updating|Bytecode) /;
+  const pkgLine = /^\s*[+\-~]\s/; // " + pkg==1.0" / " - pkg" / " ~ pkg" (uv indents)
+  const salient = lines.filter((l) => !progress.test(l) && !pkgLine.test(l));
+  const pick = salient.length > 0 ? salient.slice(-3) : [lines[0]];
+  return pick.join("\n  ");
+}
+
+/**
  * Default seeder: sparse-clones `gitUrl` and copies each repo-root `asset` dir
  * into the site-packages of the venv that owns `binary`. No-op for any asset
  * already present. Returns the list of asset names actually copied.
@@ -261,7 +286,7 @@ export function normalizeUvxGitServers(
     if (!ok) {
       warn(
         `MCP "${id}": \`uv tool install ${gitUrl}\` failed (looking for binary "${binary}").\n  ${
-          stderr || "(no stderr)"
+          salientInstallError(stderr)
         }\nLeaving entry as raw \`uvx --from git+...\`.`,
       );
       report.skipped.push({ id, reason: "install-failed" });

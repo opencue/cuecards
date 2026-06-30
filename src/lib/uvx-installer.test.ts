@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-import { normalizeUvxGitServers } from "./uvx-installer";
+import { normalizeUvxGitServers, salientInstallError } from "./uvx-installer";
 import type { McpServerConfig } from "./runtime-materializer";
 
 const localBin = (b: string) => join(homedir(), ".local", "bin", b);
@@ -126,6 +126,45 @@ describe("normalizeUvxGitServers", () => {
     expect(normalized.bad).toEqual(servers.bad);
     expect(report.skipped).toEqual([{ id: "bad", reason: "install-failed" }]);
     expect(warnings[0]).toContain("repository not found");
+  });
+
+  test("collapses uv install firehose to the salient error line", () => {
+    const firehose = [
+      "Resolved 99 packages in 45ms",
+      "Installed 99 packages in 61ms",
+      " + aiohappyeyeballs==2.6.2",
+      " + aiohttp==3.14.1",
+      " + trendradar==6.10.0 (from git+https://example.invalid/x.git)",
+      "error: Executable already exists: trendradar (use `--force` to overwrite)",
+    ].join("\n");
+    const servers: Record<string, McpServerConfig> = {
+      trendradar: {
+        command: "uvx",
+        args: ["--from", "git+https://example.invalid/x.git", "trendradar-mcp"],
+      },
+    };
+    const warnings: string[] = [];
+    normalizeUvxGitServers(servers, {
+      binExists: () => false,
+      uvOnPath: () => true,
+      install: () => ({ ok: false, stderr: firehose }),
+      warn: (m) => warnings.push(m),
+    });
+    expect(warnings[0]).toContain("Executable already exists");
+    expect(warnings[0]).not.toContain("aiohappyeyeballs");
+    expect(warnings[0]).not.toContain("aiohttp");
+    expect(warnings[0]).not.toContain("Resolved 99 packages");
+    expect(warnings[0]).not.toContain("Installed 99 packages");
+  });
+
+  test("salientInstallError keeps a lone non-noise line and handles empty", () => {
+    expect(salientInstallError("fatal: repository not found")).toBe(
+      "fatal: repository not found",
+    );
+    expect(salientInstallError("")).toBe("(no stderr)");
+    expect(salientInstallError("Resolved 1 package in 2ms\n + foo==1.0")).toBe(
+      "Resolved 1 package in 2ms",
+    );
   });
 
   test("preserves extra uvx args around --from", () => {
