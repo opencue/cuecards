@@ -114,6 +114,10 @@ Notes:
   Whole-file write: an existing rule file is backed up to <file>.bak on first
   write. --revert restores it. Use --dry-run first when a target file (e.g. a
   hand-written CLAUDE.md) already exists.
+
+  Auto-on-launch: set CUE_RULER_AUTO=1 to sync the profile's rules on every
+  \`cue launch\` (safe mode — never overwrites a hand-written file, no-ops when
+  already current).
 `);
     return 0;
   }

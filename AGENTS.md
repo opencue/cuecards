@@ -17,6 +17,8 @@ Key paths:
 - `resources/mcps/` - MCP server configs.
 - `resources/rules/` - shared rule library; `cue ruler` distributes a profile's
   `rules[]` into every agent's native rule file (CLAUDE.md, AGENTS.md, .cursorrules, …).
+  Set `CUE_RULER_AUTO=1` to sync them on every `cue launch` (safe mode: never
+  overwrites a hand-written file).
 - `setup/` - per-OS install prompts.
 - `docs/launch.md` - resolve -> materialize -> exec flow.
 

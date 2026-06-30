@@ -11,6 +11,8 @@ import {
   revertRuler,
   updateGitignore,
   revertGitignore,
+  runAutoRuler,
+  isRulerAutoEnabled,
   RULER_MARKER,
 } from "./ruler";
 import type { AgentAdapter } from "./agent-adapters";
@@ -123,6 +125,99 @@ describe("applyRuler", () => {
     const noFile: AgentAdapter = { ...fakeAdapter("x", "y"), rulesFile: () => null };
     const actions = applyRuler({ adapters: [noFile], content: "X", targetDir: work });
     expect(actions[0]!.kind).toBe("skip-no-file");
+  });
+});
+
+describe("applyRuler — safe mode", () => {
+  const marked = (body: string) => `${RULER_MARKER}\n${body}`;
+
+  test("writes when the file is absent (no .bak)", () => {
+    const adapters = [fakeAdapter("cursor", ".cursorrules")];
+    const actions = applyRuler({ adapters, content: marked("X"), targetDir: work, mode: "safe" });
+    expect(actions[0]!.kind).toBe("write");
+    expect(existsSync(join(work, ".cursorrules"))).toBe(true);
+    expect(existsSync(join(work, ".cursorrules.bak"))).toBe(false);
+  });
+
+  test("never clobbers a hand-written (foreign) file", async () => {
+    await writeFile(join(work, "AGENTS.md"), "HAND-WRITTEN, no marker");
+    const adapters = [fakeAdapter("codex", "AGENTS.md")];
+    const actions = applyRuler({ adapters, content: marked("X"), targetDir: work, mode: "safe" });
+    expect(actions[0]!.kind).toBe("skip-foreign-safe");
+    expect(await readFile(join(work, "AGENTS.md"), "utf8")).toBe("HAND-WRITTEN, no marker");
+    expect(existsSync(join(work, "AGENTS.md.bak"))).toBe(false);
+  });
+
+  test("treats a hand-written file that merely quotes the marker as foreign", async () => {
+    // M1: marker must be at the START to count as ours; a doc snippet that
+    // mentions `<!-- cue:ruler -->` mid-file must NOT be overwritten.
+    await writeFile(join(work, ".cursorrules"), `# My notes\nThe header is ${RULER_MARKER} fyi\n`);
+    const adapters = [fakeAdapter("cursor", ".cursorrules")];
+    const before = await readFile(join(work, ".cursorrules"), "utf8");
+    const actions = applyRuler({ adapters, content: marked("X"), targetDir: work, mode: "safe" });
+    expect(actions[0]!.kind).toBe("skip-foreign-safe");
+    expect(await readFile(join(work, ".cursorrules"), "utf8")).toBe(before); // untouched
+  });
+
+  test("no-ops when our file is already current", async () => {
+    const adapters = [fakeAdapter("cursor", ".cursorrules")];
+    const content = marked("SAME");
+    await writeFile(join(work, ".cursorrules"), content);
+    const actions = applyRuler({ adapters, content, targetDir: work, mode: "safe" });
+    expect(actions[0]!.kind).toBe("skip-current");
+  });
+
+  test("refreshes our file when content drifted", async () => {
+    const adapters = [fakeAdapter("cursor", ".cursorrules")];
+    await writeFile(join(work, ".cursorrules"), marked("OLD"));
+    const actions = applyRuler({ adapters, content: marked("NEW"), targetDir: work, mode: "safe" });
+    expect(actions[0]!.kind).toBe("write");
+    expect(await readFile(join(work, ".cursorrules"), "utf8")).toBe(marked("NEW"));
+  });
+
+  test("dry-run writes nothing", () => {
+    const adapters = [fakeAdapter("cursor", ".cursorrules")];
+    const actions = applyRuler({ adapters, content: marked("X"), targetDir: work, mode: "safe", dryRun: true });
+    expect(actions[0]!.kind).toBe("dry-write");
+    expect(existsSync(join(work, ".cursorrules"))).toBe(false);
+  });
+});
+
+describe("runAutoRuler", () => {
+  test("writes the profile's agents' files in safe mode", () => {
+    const actions = runAutoRuler({
+      profile: { rules: ["common/a"], agents: ["cursor", "codex"] },
+      targetDir: work,
+    });
+    expect(actions.map((a) => a.kind)).toEqual(["write", "write"]);
+    expect(existsSync(join(work, ".cursorrules"))).toBe(true);
+    expect(existsSync(join(work, "AGENTS.md"))).toBe(true);
+    expect(existsSync(join(work, ".cursorrules.bak"))).toBe(false);
+  });
+
+  test("returns [] when the profile has no rules", () => {
+    expect(runAutoRuler({ profile: { rules: [], agents: ["cursor"] }, targetDir: work })).toEqual([]);
+  });
+
+  test("returns [] when no agents resolve", () => {
+    expect(runAutoRuler({ profile: { rules: ["common/a"], agents: ["nope"] }, targetDir: work })).toEqual([]);
+  });
+
+  test("dry-run previews without writing", () => {
+    const actions = runAutoRuler({
+      profile: { rules: ["common/a"], agents: ["cursor"] },
+      targetDir: work,
+      dryRun: true,
+    });
+    expect(actions[0]!.kind).toBe("dry-write");
+    expect(existsSync(join(work, ".cursorrules"))).toBe(false);
+  });
+});
+
+describe("isRulerAutoEnabled", () => {
+  test("true for enabling values, false otherwise", () => {
+    for (const v of ["1", "true", "on", "auto", "AUTO", " On "]) expect(isRulerAutoEnabled(v)).toBe(true);
+    for (const v of [undefined, "", "0", "off", "no", "false"]) expect(isRulerAutoEnabled(v)).toBe(false);
   });
 });
 

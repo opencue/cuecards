@@ -1963,6 +1963,29 @@ export async function run(args: string[]): Promise<number> {
     return 0;
   }
 
+  // Auto-ruler: when CUE_RULER_AUTO is on, mirror the profile's rules into the
+  // project's agent rule files (CLAUDE.md, AGENTS.md, .cursorrules, …) in SAFE
+  // mode — it never clobbers a hand-written file and no-ops when already current.
+  // Fail-open: a ruler error must never block the launch.
+  try {
+    const { isRulerAutoEnabled, runAutoRuler } = await import("../lib/ruler");
+    if (isRulerAutoEnabled(process.env.CUE_RULER_AUTO)) {
+      const actions = runAutoRuler({ profile, targetDir: cwd, dryRun: parsed.dryRun });
+      // dry-run yields "dry-write"; a real run yields "write" (mutually exclusive).
+      const wrote = actions.filter((a) => a.kind === "write" || a.kind === "dry-write").length;
+      const skipped = actions.filter((a) => a.kind === "skip-foreign-safe").length;
+      if (wrote || skipped) {
+        process.stderr.write(
+          `[cue] ruler: ${parsed.dryRun ? "would sync" : "synced"} rules → ${wrote} agent file(s)` +
+            (skipped ? `; left ${skipped} hand-written file(s) untouched` : "") +
+            "\n",
+        );
+      }
+    }
+  } catch (err) {
+    debug("launch:auto-ruler", err); /* fail-open — never blocks launch */
+  }
+
   const envKey = agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
