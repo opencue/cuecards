@@ -65,6 +65,10 @@ export const COMMANDS = {
     summary: "Write skills + MCPs for any agent (cursor, cline, gemini, copilot, etc.)",
     load: () => import("./materialize"),
   },
+  ruler: {
+    summary: "Distribute the active profile's rules into every agent's native rule file (--revert undoes)",
+    load: () => import("./ruler"),
+  },
   summon: {
     summary: "Bind a profile into the LIVE session (soft-load + pin), no cold restart",
     load: () => import("./summon"),
