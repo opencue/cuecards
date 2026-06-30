@@ -23,7 +23,6 @@ import {
   splitSkillBytes,
   tokenLevelEmoji,
   type SkillTokens,
-  type TokenBreakdown,
 } from "../lib/token-budget";
 
 import { loadProfile, listProfiles, listFeaturedProfiles, parseProfileSelector } from "../lib/profile-loader";
@@ -451,27 +450,42 @@ export {
 } from "../lib/token-budget";
 
 /**
- * Format the token-overhead block as a compact 2-line summary. Returns `[]`
- * under the 2K always-on floor. The full breakdown — per-profile attribution,
- * heaviest bodies, drop hints — lives in `cue cost`, so a normal launch stays
- * quiet instead of dumping six lines before the agent starts.
+ * Format the single-line startup identity banner shown on every warm launch.
+ * Confirms what you landed in: agent · icon+profile (collapsed to `primary +N`
+ * for composites, via formatTmuxTitle) · skill and MCP counts · the always-on
+ * token cost. The token segment is omitted under the 2K floor; a `→ cue cost`
+ * pointer is appended only for genuinely heavy profiles. The full breakdown —
+ * per-profile attribution, heaviest bodies — lives in `cue cost`.
  */
-export function formatTokenWarning(b: TokenBreakdown): string[] {
-  if (b.alwaysOn < 2000) return [];
+const BANNER_TOKEN_FLOOR = 2000;
+const BANNER_HEAVY = 10_000;
+
+export interface StartupBannerInfo {
+  /** Pre-collapsed title from formatTmuxTitle, e.g. "claude · 🏭 gstack +4". */
+  title: string;
+  /** Total skills (local + npx). */
+  skills: number;
+  /** MCP server count. */
+  mcps: number;
+  /** Always-on token estimate, or undefined when not computed (light profile). */
+  alwaysOn?: number;
+}
+
+export function formatStartupBanner(info: StartupBannerInfo): string {
   const c = colorFns();
-  const level = tokenLevelEmoji(b.alwaysOn);
-  const segs = [
-    `${b.totalSkills} skills`,
-    `${c.yellow(`~${Math.round(b.alwaysOn / 1000)}K`)} always-on`,
-  ];
-  if (b.maxIfAllActivate > 0) {
-    segs.push(`${Math.round(b.maxIfAllActivate / 1000)}K peak`);
+  const segs: string[] = [`${c.cyan("▸")} ${info.title}`];
+  segs.push(`${info.skills} skill${info.skills === 1 ? "" : "s"}`);
+  if (info.mcps > 0) segs.push(`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`);
+  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_TOKEN_FLOOR) {
+    segs.push(
+      `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`,
+    );
   }
-  if (b.alwaysOn >= 50_000) segs.push(c.yellow("very heavy"));
-  return [
-    `${level} ${segs.join(c.dim(" · "))}`,
-    `   ${c.dim("→ `cue cost` for the full breakdown")}`,
-  ];
+  let line = segs.join(c.dim(" · "));
+  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_HEAVY) {
+    line += c.dim(" · → cue cost");
+  }
+  return line;
 }
 
 // ---------------------------------------------------------------------------
@@ -1993,12 +2007,6 @@ export async function run(args: string[]): Promise<number> {
 
       const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
       alwaysOnForBadge = breakdown.alwaysOn;
-      const lines = formatTokenWarning(breakdown);
-      if (lines.length > 0) {
-        process.stderr.write("\n");
-        for (const l of lines) process.stderr.write(`${l}\n`);
-        process.stderr.write("\n");
-      }
     } catch { /* non-fatal */ }
   }
 
@@ -2068,6 +2076,22 @@ export async function run(args: string[]): Promise<number> {
       );
     }
   } catch { /* best-effort */ }
+
+  // One-line startup identity banner (stderr). Always prints on a real launch
+  // so you can see what you landed in — agent, profile (collapsed to `primary
+  // +N` for composites), skill/MCP counts, and always-on token cost. dry-run
+  // and --rematerialize return earlier, so this never pollutes their JSON.
+  {
+    const friendly = agentKind === "claude-code" ? "claude" : agentKind;
+    process.stderr.write(
+      `${formatStartupBanner({
+        title: formatTmuxTitle(friendly, profileName, profileIcons),
+        skills: profile.skills.local.length + profile.skills.npx.length,
+        mcps: profile.mcps.length,
+        alwaysOn: alwaysOnForBadge,
+      })}\n`,
+    );
+  }
 
   const overhead = alwaysOnForBadge !== undefined && alwaysOnForBadge >= 2000
     ? {

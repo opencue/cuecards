@@ -5,8 +5,8 @@ import {
   computeTokenBreakdown,
   formatDoctorWarnings,
   formatProfileSummary,
+  formatStartupBanner,
   formatTmuxTitle,
-  formatTokenWarning,
   getDefaultSelector,
   relativeTime,
   shouldAppendUserClaudeMd,
@@ -777,62 +777,44 @@ describe("tokenLevelEmoji", () => {
     expect(tokenLevelEmoji(50000)).toBe("🔴");
   });
 
-  test("matches the dot used by formatTokenWarning's header", () => {
-    // Cross-check: if the helper and formatTokenWarning ever drift, this fails.
-    const out = formatTokenWarning({
-      alwaysOn: 12000,
-      maxIfAllActivate: 80000,
-      totalSkills: 30,
-      byProfile: [],
-      heaviestBodies: [],
-    });
-    expect(out[0]).toContain(tokenLevelEmoji(12000));
+  test("matches the dot used by formatStartupBanner's token segment", () => {
+    // Cross-check: if the helper and the banner ever drift, this fails.
+    const out = formatStartupBanner({ title: "x", skills: 30, mcps: 0, alwaysOn: 12000 });
+    expect(out).toContain(tokenLevelEmoji(12000));
   });
 });
 
-describe("formatTokenWarning", () => {
-  test("returns no lines below the 2K always-on floor", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 1500, maxIfAllActivate: 50000, totalSkills: 20, byProfile: [], heaviestBodies: [],
-    });
-    expect(out).toEqual([]);
+describe("formatStartupBanner", () => {
+  // colorFns() disables ANSI when stdout isn't a TTY (the test env), so these
+  // assertions are plain text.
+  test("identity-only line for a light profile (no token info)", () => {
+    expect(formatStartupBanner({ title: "claude · 🦊 core", skills: 3, mcps: 0 })).toBe(
+      "▸ claude · 🦊 core · 3 skills",
+    );
   });
 
-  test("compact: 2-line summary with skills, always-on, peak, and a cue cost pointer", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 8000,
-      maxIfAllActivate: 230000,
-      totalSkills: 53,
-      byProfile: [
-        { name: "skill-writer", tokens: 1500, skillCount: 8 },
-        { name: "core", tokens: 1800, skillCount: 12 },
-        { name: "ecc", tokens: 4700, skillCount: 33 },
-      ],
-      heaviestBodies: [{ id: "meta/skill-reviewer", tokens: 18000 }],
-    });
-    expect(out).toEqual([
-      "🟡 53 skills · ~8K always-on · 230K peak",
-      "   → `cue cost` for the full breakdown",
-    ]);
+  test("singular skill/MCP words and an MCP segment when present", () => {
+    expect(formatStartupBanner({ title: "codex · 🧪 x", skills: 1, mcps: 1 })).toBe(
+      "▸ codex · 🧪 x · 1 skill · 1 MCP",
+    );
   });
 
-  test("omits the peak segment when maxIfAllActivate is 0", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 6000, maxIfAllActivate: 0, totalSkills: 20, byProfile: [], heaviestBodies: [],
-    });
-    expect(out[0]).toBe("🟡 20 skills · ~6K always-on");
+  test("omits the token segment under the 2K always-on floor", () => {
+    expect(
+      formatStartupBanner({ title: "claude · core", skills: 20, mcps: 0, alwaysOn: 1500 }),
+    ).toBe("▸ claude · core · 20 skills");
   });
 
-  test("very heavy profiles (>=50K) tag the line and use the red level", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 66000,
-      maxIfAllActivate: 520000,
-      totalSkills: 102,
-      byProfile: [],
-      heaviestBodies: [],
-    });
-    expect(out[0]).toBe("🔴 102 skills · ~66K always-on · 520K peak · very heavy");
-    expect(out[1]).toBe("   → `cue cost` for the full breakdown");
+  test("shows the level dot and ~NK, but no pointer below the 10K heavy mark", () => {
+    expect(
+      formatStartupBanner({ title: "claude · core", skills: 53, mcps: 7, alwaysOn: 8000 }),
+    ).toBe("▸ claude · core · 53 skills · 7 MCPs · 🟡 ~8K always-on");
+  });
+
+  test("appends → cue cost for heavy profiles (>=10K always-on)", () => {
+    expect(
+      formatStartupBanner({ title: "claude · 🏭 gstack +4", skills: 96, mcps: 7, alwaysOn: 22845 }),
+    ).toBe("▸ claude · 🏭 gstack +4 · 96 skills · 7 MCPs · 🔴 ~23K always-on · → cue cost");
   });
 });
 
