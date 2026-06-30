@@ -448,7 +448,15 @@ export function buildCompanionOptions(args: BuildCompanionArgs): {
     // History partners (a remembered combo) are *offered unchecked* — a
     // recommendation surfaced with the HISTORY_HINT, never silently re-pinned.
     const checkByFrequent = origin === "frequent" && frequentChecked < MAX_FREQUENT_AUTOCHECK;
-    if (checkByAutoSelect || checkByPreselect || checkByDetect || checkByFrequent) {
+    // Don't pre-check a companion that conflicts with one already checked: the
+    // final selection runs through resolveConflicts, which would silently drop
+    // it at confirm. Leaving the row checked here lies about the outcome — so
+    // surface it unchecked and let the user choose. Conflicts are symmetric, so
+    // check both directions (this candidate's list and the already-checked's).
+    const conflictsWithChecked = initialValues.some(
+      (v) => (opt.conflicts ?? []).includes(v) || (options.find((o) => o.value === v)?.conflicts ?? []).includes(name),
+    );
+    if ((checkByAutoSelect || checkByPreselect || checkByDetect || checkByFrequent) && !conflictsWithChecked) {
       initialValues.push(name);
       if (checkByFrequent) frequentChecked += 1;
     }
@@ -1242,12 +1250,13 @@ export class FilterSelectPrompt extends Prompt<string> {
 
   // Rows available for option rows, derived from terminal height. Reserve space
   // for the intro line, our 2-line header, the footer, and the pin-confirm +
-  // outro clack draws below — plus the two scroll indicators. Floor at 5 so a
+  // outro clack draws below — plus the two scroll indicators and a few blank
+  // spacer lines now drawn above each in-window group header. Floor at 5 so a
   // short terminal still shows a usable window.
   private visibleRows(): number {
     const rows =
       (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
-    return Math.max(5, rows - 10);
+    return Math.max(5, rows - 13);
   }
 
   // Block submit on an empty result set so enter can't return undefined.
@@ -1293,16 +1302,37 @@ export class FilterSelectPrompt extends Prompt<string> {
     if (win.hiddenAbove > 0) {
       lines.push(`${BAR}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
     }
+    // Terminal width, used to clip an over-long cursor hint to one line so a
+    // verbose profile blurb (e.g. seo's 25-skill description) never wraps across
+    // the whole screen and shoves the rest of the list down.
+    const cols =
+      (this.output as { columns?: number } | undefined)?.columns ?? process.stdout.columns ?? 80;
+    let rendered = false;
     for (const o of win.items) {
       if (o.divider === true) {
-        lines.push(`${BAR}  ${styleText("dim", icon(o.label))}`);
+        // Blank spacer above each section header (never as the window's first
+        // line) so groups read as distinct blocks instead of one running wall —
+        // mirrors the combine frame's grouped layout. Bold + bright-blue header
+        // pops above the dim option rows.
+        if (rendered) lines.push(`${BAR}`);
+        lines.push(`${BAR}  ${styleText("bold", styleText("blueBright", icon(o.label).trimStart()))}`);
+        rendered = true;
         continue;
       }
       const isCursor = o === active;
       const bullet = isCursor ? styleText("green", "●") : styleText("dim", "○");
       const label = isCursor ? icon(o.label) : styleText("dim", icon(o.label));
-      const hint = isCursor && o.hint ? styleText("dim", `  ${o.hint}`) : "";
+      let hint = "";
+      if (isCursor && o.hint) {
+        // Prefix = bar + 2 pad + bullet + space + label + 2-space gap. Clip the
+        // hint to whatever's left so the row stays on one line.
+        const prefix = 2 + 2 + displayWidth(icon(o.label)) + 2;
+        const avail = Math.max(20, cols - prefix - 1);
+        const text = o.hint.length > avail ? `${o.hint.slice(0, avail - 1)}…` : o.hint;
+        hint = styleText("dim", `  ${text}`);
+      }
       lines.push(`${BAR}  ${bullet} ${label}${hint}`);
+      rendered = true;
     }
     if (win.hiddenBelow > 0) {
       lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);

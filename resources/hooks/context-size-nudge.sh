@@ -33,8 +33,8 @@ sid="$(printf '%s' "$input" | jq -r '.session_id // empty' 2>/dev/null)" || exit
 bytes="$(stat -c %s "$transcript" 2>/dev/null || stat -f %z "$transcript" 2>/dev/null)" || exit 0
 [ -n "$bytes" ] || exit 0
 
-mb1="${CUE_CONTEXT_NUDGE_MB:-3}"
-mb2="${CUE_CONTEXT_NUDGE_MB2:-8}"
+mb1="${CUE_CONTEXT_NUDGE_MB:-2}"
+mb2="${CUE_CONTEXT_NUDGE_MB2:-5}"
 t1=$(( mb1 * 1024 * 1024 ))
 t2=$(( mb2 * 1024 * 1024 ))
 

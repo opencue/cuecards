@@ -10,21 +10,10 @@ description: Baseline shared by every cue profile — essentials only
 # "Model selection" persona block below for when to reach for Opus vs Sonnet.
 env:
   CLAUDE_CODE_SUBAGENT_MODEL: claude-sonnet-4-6
-  # Full-traffic wrap (global): route every cue-launched Claude session through
-  # the local headroom compression proxy (60–95% fewer tokens, reversible).
-  # Surfaced into settings.json via the runtime allowlist (claude-code only;
-  # codex uses OPENAI_BASE_URL and is unaffected). HEALTH-GATED by the
-  # materializer: this URL is only written when 127.0.0.1:8787 actually answers,
-  # so a down/absent proxy falls back to talking to Anthropic directly (no
-  # compression) instead of bricking Claude. Run the proxy as the always-on
-  # `headroom-proxy` user service (`systemctl --user status headroom-proxy`,
-  # linger enabled) so compression is actually on. Unset to opt a launch out.
-  ANTHROPIC_BASE_URL: "http://127.0.0.1:8787"
 persona_includes:
   - integrity-protocol-compact  # resources/personas/integrity-protocol-compact.md — compact 7-tag system inline; full protocol + examples load on demand (integrity-protocol.md / meta/integrity-tags). Fans out via inheritance.
   - codegraph-routing    # resources/personas/codegraph-routing.md — compact source-navigation rule: use CodeGraph before broad repo reads/grep so code exploration burns fewer tokens. Fans out via inheritance.
   - skill-evolution        # resources/personas/skill-evolution.md — post-task learning capture via bin/cue-learnings, fans out to every core-inheriting profile
-  - headroom-compression   # resources/personas/headroom-compression.md — tells every profile's agent to actively use headroom (proxy wrap is automatic; reach for the MCP on big payloads) to cut tokens. Fans out via inheritance even to profiles with their own persona (persona_includes is additive; inline persona is leaf-wins).
   - fable-5-prompting-compact  # resources/personas/fable-5-prompting-compact.md — Fable 5 / Mythos 5 behavioral deltas (effort, longer turns, grounding, boundaries); full guide on demand at fable-5-prompting.md. Fans out via inheritance.
 persona: |
   You're a careful, experienced collaborator. You operate by these defaults
@@ -65,6 +54,7 @@ persona: |
     incrementally. Don't accumulate a 400-line patch you can't bisect.
   - **Voice: terse and specific.** Drop filler. Lead sentences with the verb
     or the answer. Don't summarize what's visible in the diff.
+  - **Prefer /compact over /clear.** `/compact` preserves the prompt cache; `/clear` cold-starts it and loses the cache that saves ~$7K/session. Compact at natural task boundaries instead of clearing.
 
   ## Model routing — route by task hardness, delegate the cheap work
 
@@ -84,16 +74,7 @@ persona: |
   | 🔍 **EASY / SEARCH** | web/internet search, "find/look up/what is", reading docs, scraping, summarizing, listing files, locating code | **Delegate to a Sonnet subagent** (`Agent`/`Explore`) — return the conclusion, not the file dumps. |
   | ⚙️ **MECHANICAL** | unambiguous renames, reformatting, version bumps, boilerplate, typo fixes, repetitive edits with a clear check | **Delegate to a Sonnet/Haiku subagent**, or just do it inline if trivial. |
 
-  - **Delegate, don't grind.** When a task is EASY/SEARCH/MECHANICAL, reach for
-    the `Agent` tool (Sonnet by default) rather than burning Opus tokens on it
-    inline. The expensive model's value is the hard reasoning, not the lookup.
-  - **Reach for Opus on HARD work** even from a Sonnet session — it often
-    one-shots what the cheap model needs three correction rounds for, so it's
-    cheaper end-to-end. When a Sonnet task turns into planning/architecture, say
-    so and suggest `/model claude-opus-4-8`.
-  - **Steer the main session, don't flip it mid-task.** Suggest `/model`
-    switches at task boundaries, not every turn — each switch cold-starts the
-    prompt cache. Batch model-appropriate work, then switch.
+  - HARD → main session / Opus. EASY/SEARCH/MECHANICAL → delegate to `Agent` (Sonnet). `/model` switches cold-start the prompt cache — batch model-appropriate work, then switch.
 
   ## The cue sprint
 
@@ -194,10 +175,13 @@ skills:
     # github-actions-docs dropped from core 2026-06-01 — CI-docs is not universal
     # baseline. Add it back per-profile (ops, the deploy-touching ones) if needed.
 mcps:
-  - codegraph        # Repo code intelligence MCP — use before broad Read/Grep for architecture, feature, bug-context, symbol, caller/callee, and impact questions. Available to Claude and Codex runtimes via the sanitized registry snapshots.
-  - lightpanda       # Fast headless browser MCP — fetch/render/scrape URLs without Chromium. Pairs with browser/lightpanda skill.
-  - context7         # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
-  - headroom         # Context-compression MCP (headroom_compress/retrieve/stats) — 60–95% fewer tokens, reversible. Pairs with tools/headroom skill. Inert until `pip install "headroom-ai[mcp]"`. The full all-traffic wrap (ANTHROPIC_BASE_URL → local proxy) IS set in core's env above, but health-gated by the materializer — applied only when the proxy answers, so a down proxy falls back to direct Anthropic instead of bricking Claude.
+  - dataforseo
+  # pin: true marks an MCP the agent uses directly (not via a skill), so the
+  # launcher's smart-prune keeps it always-on instead of dropping it.
+  - { id: codegraph, pin: true }   # Repo code intelligence MCP — use before broad Read/Grep for architecture, feature, bug-context, symbol, caller/callee, and impact questions. Available to Claude and Codex runtimes via the sanitized registry snapshots.
+  - lightpanda                     # Fast headless browser MCP — fetch/render/scrape URLs without Chromium. Pairs with browser/lightpanda skill (prunable when that skill is inactive).
+  - { id: context7, pin: true }    # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
+  - { id: headroom, pin: true }    # Context-compression MCP (headroom_compress/retrieve/stats) — reversible targeted compression for large payloads. The full all-traffic proxy wrap is opt-in via the `headroom` profile, not inherited by core.
 plugins:
   - claude-mem@thedotmack
   # Disabled 2026-05-30: OMC's PreToolUse auto-mode classifier was intermittently

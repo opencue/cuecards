@@ -1,12 +1,10 @@
 /**
  * Subcommand registry.
  *
- * Each entry declares a one-line summary (for `cue --help`) and a lazy
- * loader that returns the command module. Lazy loading keeps cold start
- * fast — only the command actually invoked is imported.
- *
- * Owning agent for each subcommand is noted alongside; stubs live here until
- * those agents land their real implementations.
+ * Each entry declares a one-line summary (shown in shell tab-completion and
+ * `cue --help`) and a lazy loader that returns the command module. Lazy
+ * loading keeps cold start fast — only the command actually invoked is
+ * imported. Keep summaries user-facing: no internal owner/agent IDs.
  */
 
 export interface Command {
@@ -18,19 +16,19 @@ export interface Command {
 
 export const COMMANDS = {
   use: {
-    summary: "Materialize a profile into CWD or ~/.claude (owned by A14)",
+    summary: "Materialize a profile into the current directory or ~/.claude",
     load: () => import("./use"),
   },
   list: {
-    summary: "List available profiles with counts and active marker (A14)",
+    summary: "List available profiles with counts and the active marker",
     load: () => import("./list"),
   },
   new: {
-    summary: "Scaffold a new profile; --from-scan buckets discovered skills (A12)",
+    summary: "Scaffold a new profile; --from-scan buckets discovered skills",
     load: () => import("./new"),
   },
   scan: {
-    summary: "Print a tree of installed skills/plugins grouped by domain (A10/A11)",
+    summary: "Print a tree of installed skills/plugins grouped by domain",
     load: () => import("./scan"),
   },
   score: {
@@ -38,11 +36,11 @@ export const COMMANDS = {
     load: () => import("./score"),
   },
   doctor: {
-    summary: "Diff declared profile vs actual disk state; --fix repairs (A15)",
+    summary: "Diff declared profile vs actual disk state; --fix repairs",
     load: () => import("./doctor"),
   },
   validate: {
-    summary: "Schema + lint checks for a profile (or --all) (A13)",
+    summary: "Schema + lint checks for a profile (or --all)",
     load: () => import("./validate"),
   },
   router: {
@@ -387,7 +385,7 @@ export const COMMANDS = {
     load: () => import("./trigger-gaps"),
   },
   dashboard: {
-    summary: "Boot the local read-only dashboard server (JSON endpoints; React UI in next turn)",
+    summary: "Boot the local read-only dashboard server (JSON endpoints)",
     load: () => import("./dashboard"),
   },
   dash: {

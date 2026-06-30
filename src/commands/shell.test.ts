@@ -3,7 +3,7 @@ import { mkdtemp, readFile, writeFile, rm, mkdir, stat, chmod } from "node:fs/pr
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { runInstall, runUninstall, shimInstalled, resolveCueInvocation } from "./shell";
+import { runInstall, runUninstall, shimInstalled, resolveCueInvocation, resolveHookShell } from "./shell";
 
 let fakeHome: string;
 beforeEach(async () => {
@@ -112,5 +112,15 @@ describe("resolveCueInvocation", () => {
     expect(out).toBe(`"${join(repoRoot, "bin", "cue")}"`);
     // Either form must keep the `launch claude` substring intact downstream.
     expect(`exec ${out} launch claude "$@"`).toContain("launch claude");
+  });
+});
+
+describe("resolveHookShell", () => {
+  test("honors an explicit shell argument over the login shell", () => {
+    expect(resolveHookShell("bash", "/usr/bin/fish")).toBe("bash");
+  });
+
+  test("falls back to the login shell when no explicit shell is provided", () => {
+    expect(resolveHookShell(undefined, "/usr/bin/fish")).toBe("fish");
   });
 });

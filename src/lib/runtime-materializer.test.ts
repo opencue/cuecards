@@ -1,4 +1,5 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
+import http from "node:http";
 import { mkdtemp, mkdir, writeFile, readFile, stat, lstat, rm, readlink, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -77,9 +78,12 @@ describe("materializeRuntime", () => {
     expect(settings.env.AWS_SECRET_ACCESS_KEY).toBeUndefined();
   });
 
-  test("surfaces ANTHROPIC_BASE_URL when the proxy is reachable (health-gate pass)", async () => {
-    // Stand up a throwaway loopback listener so the proxy liveness probe passes.
-    const server = net.createServer();
+  test("surfaces ANTHROPIC_BASE_URL when the proxy health endpoint responds (health-gate pass)", async () => {
+    // Stand up a throwaway loopback HTTP server so the proxy health probe passes.
+    const server = http.createServer((req, res) => {
+      res.statusCode = req.url === "/health" ? 200 : 404;
+      res.end("ok");
+    });
     await new Promise<void>((res) => server.listen(0, "127.0.0.1", () => res()));
     const port = (server.address() as { port: number }).port;
     try {
@@ -93,6 +97,27 @@ describe("materializeRuntime", () => {
       });
       const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
       expect(settings.env).toEqual({ ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` });
+    } finally {
+      await new Promise<void>((res) => server.close(() => res()));
+    }
+  });
+
+  test("drops ANTHROPIC_BASE_URL when the port is open but health does not answer", async () => {
+    // Regression for saturated local gateways: TCP accepts while /health hangs.
+    const server = net.createServer();
+    await new Promise<void>((res) => server.listen(0, "127.0.0.1", () => res()));
+    const port = (server.address() as { port: number }).port;
+    try {
+      const out = await materializeRuntime({
+        profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` } },
+        agent: "claude-code",
+        runtimeRoot: join(root, "runtime"),
+        skillSourceLookup: async (id) => `/fake/skills/${id}`,
+        mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+        userClaudeMd: "# user CLAUDE.md\n",
+      });
+      const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+      expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
     } finally {
       await new Promise<void>((res) => server.close(() => res()));
     }

@@ -2,10 +2,11 @@ name: headroom
 icon: "🪶"
 description: "Context-compression loadout — wraps all Claude traffic through the local headroom proxy (60–95% fewer tokens, reversible) and exposes the headroom_compress/retrieve/stats MCP tools. Inherits core."
 inherits: core
+persona_includes:
+  - headroom-compression
 
-# MCP + skill are also in core (so every profile has the tools); listed here too
-# so this profile is self-contained even before the core change lands. Merge is
-# union-by-id, so the duplication dedupes.
+# MCP + skill are also in core for targeted compression; listed here too so this
+# profile is self-contained. Merge is union-by-id, so the duplication dedupes.
 mcps:
   - headroom         # headroom_compress / headroom_retrieve / headroom_stats (stdio: `headroom mcp serve`)
 
@@ -18,9 +19,10 @@ skills:
 # machine. ANTHROPIC_BASE_URL is surfaced into the materialized settings.json
 # `env` via cue's runtime allowlist.
 #
-# REQUIRES the proxy to be up: `headroom proxy --port 8787` (or `headroom wrap
-# claude`, which starts it for you). If the proxy is down, Claude cannot reach
-# Anthropic at all — for everyday use, run the proxy as a persistent service.
+# REQUIRES a healthy proxy: `headroom proxy --port 8787` (or `headroom wrap
+# claude`, which starts it for you). Cue health-gates this URL before writing it
+# into Claude settings; if the proxy is down or not answering `/health`, the
+# wrapper is dropped and Claude talks to Anthropic directly.
 env:
   ANTHROPIC_BASE_URL: "http://127.0.0.1:8787"
 

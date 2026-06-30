@@ -21,16 +21,23 @@ import { fileURLToPath } from "node:url";
 import { loadProfile } from "./profile-loader";
 import { detectConflicts, suggestResolutions, type Conflict, type Resolution } from "./conflict-detector";
 import { scoreSkills } from "./skill-scorer";
+import { skillAlwaysOnTokens } from "./profile-metrics";
+import { loadMcpEstimates, sumMcpTokens } from "./mcp-token-estimate";
 import type { NpxSkillRef } from "../../profiles/_types";
 
 const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
 
-// Rough token cost per skill / MCP, used only for the size indicator in the
-// preview. Not a real tokenizer — a knob to flag "this profile loads a lot".
-const TOKENS_PER_SKILL = 1200;
-const TOKENS_PER_MCP = 150;
 const DEFAULT_BUDGET = 60;
+
+/**
+ * Always-on token cost of a skill set — sums each skill's frontmatter cost via
+ * the shared honest estimator (the same one `cue` uses elsewhere), instead of a
+ * flat per-skill guess. Fail-soft: a missing/npx skill contributes 0.
+ */
+function skillSetTokens(ids: string[]): number {
+  return ids.reduce((sum, id) => sum + skillAlwaysOnTokens(id), 0);
+}
 
 // Skills that prune/budget must never drop, regardless of usage (commit prep,
 // skill discovery — they bootstrap the rest). Matched by slug suffix.
@@ -68,8 +75,8 @@ export interface MergePreview {
   description: string;
   /** Non-core skill ids that will be inlined in static mode (post-optimize). */
   skills: string[];
-  /** Skills dropped by prune/budget, with the reason. */
-  dropped: { id: string; reason: "prune" | "budget" }[];
+  /** Skills dropped by prune/budget/dedupe, with the reason. */
+  dropped: { id: string; reason: "prune" | "budget" | "dedupe" }[];
   npx: NpxSkillRef[];
   mcps: string[];
   plugins: string[];
@@ -85,6 +92,8 @@ export interface MergePreview {
   /** Suggested resolution per skill conflict. */
   resolutions: Resolution[];
   usage: SkillUsageRow[];
+  /** Honest always-on MCP token total (probed-or-estimate), constant across optimize. */
+  mcpTokens: number;
   estTokens: number;
   appliedOptimizations: OptimizeAction[];
 }
@@ -154,6 +163,9 @@ export async function mergeProfiles(names: string[], opts: MergeOptions = {}): P
   const usageRaw = scoreSkills(nonCore, opts.sessionLimit ?? 20);
   const usage: SkillUsageRow[] = usageRaw.map((u) => ({ id: u.id, references: u.references, lastSeen: u.lastSeen }));
 
+  const mcpIds = merged.mcps.map((m) => m.id);
+  const mcpTokens = sumMcpTokens(mcpIds, loadMcpEstimates()).total;
+
   const name = opts.name ?? selector;
   const description =
     opts.description ??
@@ -167,7 +179,7 @@ export async function mergeProfiles(names: string[], opts: MergeOptions = {}): P
     skills: nonCore,
     dropped: [],
     npx: merged.skills.npx,
-    mcps: merged.mcps.map((m) => m.id),
+    mcps: mcpIds,
     plugins: merged.plugins.map((p) => p.id),
     env: merged.env,
     rules: merged.rules.filter((r) => !core.rules.includes(r)),
@@ -178,7 +190,8 @@ export async function mergeProfiles(names: string[], opts: MergeOptions = {}): P
     skillConflicts,
     resolutions,
     usage,
-    estTokens: nonCore.length * TOKENS_PER_SKILL + merged.mcps.length * TOKENS_PER_MCP,
+    mcpTokens,
+    estTokens: skillSetTokens(nonCore) + mcpTokens,
     appliedOptimizations: [],
   };
 
@@ -241,10 +254,22 @@ export function optimizeMerge(
         }
         skills = next;
       }
+    } else if (action === "dedupe") {
+      // foldComposite dedupes by full id, but skills link FLAT by leaf slug at
+      // runtime (runtime-materializer) with LAST-WINS. So two ids sharing a slug
+      // (plan/investigate vs gstack/investigate) both survive here yet collapse
+      // to one at materialize — overstating the count and emitting a dead id.
+      // Collapse to the last per slug, matching the runtime's override rule.
+      const lastIdxBySlug = new Map<string, number>();
+      skills.forEach((id, i) => lastIdxBySlug.set(slugOf(id), i));
+      const kept: string[] = [];
+      skills.forEach((id, i) => {
+        if (lastIdxBySlug.get(slugOf(id)) === i) kept.push(id);
+        else dropped.push({ id, reason: "dedupe" });
+      });
+      skills = kept;
     }
-    // `dedupe` and `router` don't change the skill set — handled below /
-    // foldComposite already deduped ids. dedupe just surfaces the conflict
-    // report already on the preview.
+    // `router` doesn't change the skill set — it only rewrites the persona below.
   }
 
   const persona = actions.includes("router")
@@ -256,7 +281,7 @@ export function optimizeMerge(
     skills,
     dropped,
     persona,
-    estTokens: skills.length * TOKENS_PER_SKILL + preview.mcps.length * TOKENS_PER_MCP,
+    estTokens: skillSetTokens(skills) + (preview.mcpTokens ?? 0),
     appliedOptimizations: uniq([...preview.appliedOptimizations, ...actions]) as OptimizeAction[],
   };
 }
@@ -373,6 +398,21 @@ export function renderMerged(preview: MergePreview, mode: MergeMode): string {
     for (const [k, v] of Object.entries(preview.env)) {
       lines.push(`  ${k}: ${JSON.stringify(v)}`);
     }
+  }
+  // Non-core rules/commands/hooks the sources declared. static mode inherits
+  // core, so these are the *extra* ones (already filtered against core in
+  // mergeProfiles); omitting them silently dropped source behavior.
+  if (preview.rules.length > 0) {
+    lines.push(`rules:`);
+    lines.push(yamlList(preview.rules, "  "));
+  }
+  if (preview.commands.length > 0) {
+    lines.push(`commands:`);
+    lines.push(yamlList(preview.commands, "  "));
+  }
+  if (preview.hooks.length > 0) {
+    lines.push(`hooks:`);
+    lines.push(yamlList(preview.hooks, "  "));
   }
   if (preview.persona && preview.persona.trim().length > 0) {
     lines.push(`persona: |`);

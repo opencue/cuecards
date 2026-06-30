@@ -245,6 +245,29 @@ describe("buildCompanionOptions", () => {
     expect(companionOptions.find((o) => o.value === "higgsfield")!.recommended).toBeFalsy();
   });
 
+  test("two mutually-conflicting companions don't both start checked (A1: WYSIWYG pre-check)", () => {
+    const { companionOptions, initialValues } = build({
+      // both detected above threshold, but they conflict with each other
+      companions: [sig("medusa-next", 0.9), sig("medusa-vite", 0.9)],
+    });
+    const values = companionOptions.map((o) => o.value);
+    expect(values).toContain("medusa-next"); // both still offered as rows
+    expect(values).toContain("medusa-vite");
+    expect(initialValues).toContain("medusa-next"); // first-seen wins the check
+    expect(initialValues).not.toContain("medusa-vite"); // conflicts with checked → unchecked
+  });
+
+  test("two autoSelect entries that conflict: first checked, second offered unchecked (A1)", () => {
+    const { companionOptions, initialValues } = build({
+      autoSelect: ["medusa-next", "medusa-vite"], // both declared, but mutually exclusive
+    });
+    const values = companionOptions.map((o) => o.value);
+    expect(values).toContain("medusa-next");
+    expect(values).toContain("medusa-vite");
+    expect(initialValues).toContain("medusa-next"); // first autoSelect wins the slot
+    expect(initialValues).not.toContain("medusa-vite"); // suppressed — would be pruned at confirm anyway
+  });
+
   test("autoSelect companions start checked with no detection signal", () => {
     const { companionOptions, initialValues } = build({
       autoSelect: ["blog-writer", "trendradar"],

@@ -198,8 +198,9 @@ export interface BuildUniversalOptions {
   minFrequentPicks?: number;
 }
 
-const UNIVERSAL_DEFAULTS: Required<Omit<BuildUniversalOptions, "featured" | "affinity" | "known">> =
-  { maxFeatured: 5, maxFrequent: 2, minFrequentPicks: 3 };
+const UNIVERSAL_DEFAULTS: Required<
+  Omit<BuildUniversalOptions, "featured" | "affinity" | "known" | "pinnedCompanions">
+> = { maxFeatured: 5, maxFrequent: 2, minFrequentPicks: 3 };
 
 /**
  * Cross-profile combine suggestions surfaced under *every* primary: the curated
