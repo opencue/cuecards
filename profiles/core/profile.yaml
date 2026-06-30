@@ -11,6 +11,12 @@ description: Baseline shared by every cue profile — essentials only
 # warn when a profile blows past it. Override per-profile by redeclaring
 # `contextWindow`/`model`, or per-launch via CUE_CONTEXT_WINDOW / CUE_MODEL.
 contextWindow: 256000
+# Auto-prune unused MCP tool schemas at launch — fans out to every inheriting
+# profile (leaf-wins, so any profile can redeclare off/all). `profile` mode drops
+# only profile-declared MCPs that no loaded skill references and that aren't
+# pinned; it never touches user-global MCPs. Pinned servers (codegraph/context7/
+# headroom below) always stay. Env CUE_PRUNE_MCPS overrides per launch.
+mcpPrune: profile
 # Cost knob, fans out to every inheriting profile. Surfaced into the runtime
 # settings.json `env` block by buildClaudeSettings (allowlisted). Pins Task/Agent
 # subagents (code-reviewer, Explore, file-read/grep/summarize) to Sonnet —
