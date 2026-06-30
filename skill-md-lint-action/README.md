@@ -69,6 +69,7 @@ That's it. On every PR you'll get a comment with the lint report; on push to mai
 | R011 missing example block | info | no |
 | R012 possible duplicate skill (needs `check-overlap: true`) | warning | no |
 | R013 description/body word-overlap mismatch | info | no |
+| R015 security: dangerous markdown (`javascript:`/raw `<script>`) in prose, or invisible/bidi characters | error | yes for invisible chars (removed); dangerous URLs/HTML need judgment |
 
 ## Outputs
 

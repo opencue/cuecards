@@ -728,10 +728,76 @@ function ruleR011(content: string): Diagnostic[] {
 }
 
 // ---------------------------------------------------------------------------
+// R015 — security: dangerous markdown constructs + invisible characters
+// ---------------------------------------------------------------------------
+
+/** Invisible / bidirectional control chars: zero-width (200B-200F), bidi
+ *  overrides/embeds (202A-202E), word-joiner + invisible math (2060-2064),
+ *  isolates (2066-2069), BOM (FEFF), soft hyphen (00AD). No legitimate use in
+ *  a SKILL.md, so detection runs over the whole file (code blocks included). */
+const INVISIBLE_CHARS = /[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff\u00ad]/;
+const INVISIBLE_CHARS_G = /[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff\u00ad]/g;
+
+/** Live data-exfiltration vectors, checked in PROSE only (fenced/inline code is
+ *  documentation, not a live vector — same prose/code split R009 uses). */
+const DANGEROUS_PROSE: { re: RegExp; what: string }[] = [
+  { re: /\]\(\s*(?:javascript|vbscript|data:text\/html|data:application|data:image\/svg)/i, what: "dangerous URL scheme in a markdown link/image" },
+  { re: /<\s*(?:javascript|vbscript):/i, what: "dangerous URL scheme in an autolink" },
+  { re: /(?:href|src|action)\s*=\s*["']?\s*(?:javascript|vbscript|data:text\/html)/i, what: "dangerous URL scheme in a raw href/src/action" },
+  { re: /<\s*(?:script|iframe|object|embed|base|form|portal|template)\b/i, what: "raw HTML element that enables script execution or exfiltration" },
+  // Event handler must sit inside an HTML tag (`<… on*=`), so prose like
+  // `once = 'daily'` or `online = 'false'` does NOT false-positive. The quote
+  // is optional, which also catches unquoted `<img onerror=fn()>`. The lazy
+  // `[^>]*?` keeps this linear (no `>` crossing, no catastrophic backtracking).
+  { re: /<[^>]*?\son[a-z]+\s*=/i, what: "inline event handler (on*=) in raw HTML" },
+];
+
+/**
+ * R015 — security. A SKILL.md is untrusted content (skills come from many
+ * marketplaces) that gets loaded into the model's context, so it carries the
+ * same markdown->exfiltration risk that vercel-labs/markdown-sanitizers hardens
+ * against. Flags, as errors:
+ *   - dangerous URL schemes (javascript:/vbscript:/data:text-html) and raw
+ *     <script>/<iframe>/<object>/on*= handlers in PROSE (code examples exempt);
+ *   - invisible / bidirectional control characters ANYWHERE (zero-width space,
+ *     word-joiner, RLO/LRO, BOM, soft hyphen) — a prompt-injection obfuscation
+ *     vector the markdown sanitizer itself does not strip.
+ * Invisible chars are auto-fixable (removed); dangerous URLs/HTML are not —
+ * deleting them changes meaning, so a human decides (fence it or drop it).
+ */
+function ruleR015(content: string): Diagnostic[] {
+  const out: Diagnostic[] = [];
+  const prose = stripCodeAndFrontmatter(content);
+  for (const { re, what } of DANGEROUS_PROSE) {
+    const m = prose.match(re);
+    if (m && typeof m.index === "number") {
+      out.push({
+        rule: "R015",
+        severity: "error",
+        line: lineOf(content, m.index),
+        message: `Security: ${what} outside a code block — a live data-exfiltration vector. Remove it, or move the example into a fenced code block.`,
+      });
+    }
+  }
+  const inv = INVISIBLE_CHARS.exec(content);
+  if (inv) {
+    const cp = content.codePointAt(inv.index)!.toString(16).toUpperCase().padStart(4, "0");
+    out.push({
+      rule: "R015",
+      severity: "error",
+      line: lineOf(content, inv.index),
+      message: `Security: invisible/bidirectional character U+${cp} — a prompt-injection obfuscation with no legitimate use in a SKILL.md. Auto-fixable (removed).`,
+      fix: (c) => c.replace(INVISIBLE_CHARS_G, ""),
+    });
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
 
-const ALL_RULES = [ruleR001, ruleR002, ruleR003, ruleR004, ruleR005, ruleR006, ruleR007, ruleR008, ruleR009, ruleR010, ruleR011, ruleR013];
+const ALL_RULES = [ruleR001, ruleR002, ruleR003, ruleR004, ruleR005, ruleR006, ruleR007, ruleR008, ruleR009, ruleR010, ruleR011, ruleR013, ruleR015];
 
 /** Run every rule against the SKILL.md content. */
 export function lint(content: string): LintResult {
@@ -911,6 +977,7 @@ const RULE_SUMMARIES: Record<string, string> = {
   R012: "Flagged possible duplicate skill (high keyword overlap with another skill)",
   R013: "Flagged description/body word-overlap mismatch (possible stale description)",
   R014: "Flagged zombie skill (0 invocations in telemetry window)",
+  R015: "Flagged security risk (dangerous markdown construct or invisible/bidi character)",
 };
 
 const RULE_TITLE_PHRASES: Record<string, string> = {
@@ -928,6 +995,7 @@ const RULE_TITLE_PHRASES: Record<string, string> = {
   R012: "flag possible duplicate skills",
   R013: "flag stale description (low body overlap)",
   R014: "flag zombie skill (no telemetry invocations)",
+  R015: "flag security risk (dangerous markdown / invisible chars)",
 };
 
 /**
