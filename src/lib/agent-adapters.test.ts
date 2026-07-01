@@ -14,7 +14,16 @@ describe("agent-adapters registry contract", () => {
       expect(typeof a.configDir, key).toBe("function");
       expect(typeof a.writeSkills, key).toBe("function");
       expect(typeof a.writeMcps, key).toBe("function");
+      expect(typeof a.rulesFile, key).toBe("function");
       expect(typeof a.detectBinary, key).toBe("function");
+    }
+  });
+
+  test("every adapter maps to a native rules file (for `cue ruler`)", () => {
+    for (const [key, a] of Object.entries(ADAPTERS)) {
+      const p = a.rulesFile("/tmp/project");
+      expect(p, key).toBeTruthy();
+      expect(p!.startsWith("/tmp/project"), key).toBe(true);
     }
   });
 

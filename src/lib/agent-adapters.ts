@@ -25,6 +25,13 @@ export interface AgentAdapter {
   writeSkills(skills: { id: string; content: string }[], targetDir: string): void;
   /** Write MCP server configs in the agent's format */
   writeMcps(mcps: Record<string, unknown>, targetDir: string): void;
+  /**
+   * Absolute path of this agent's NATIVE rules/instructions file under
+   * targetDir, or null if the agent has no single rules file. Used by
+   * `cue ruler` to fan a profile's rules out to every agent. The path mirrors
+   * each adapter's `writeSkills` target so cue stays internally consistent.
+   */
+  rulesFile(targetDir: string): string | null;
   /** Try to find the agent binary on PATH */
   detectBinary(): string | null;
 }
@@ -64,6 +71,7 @@ export const claudeCode: AgentAdapter = {
     settings.mcpServers = { ...(settings.mcpServers as Record<string, unknown> ?? {}), ...mcps };
     writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, "CLAUDE.md"),
   detectBinary: () => findBinary("claude"),
 };
 
@@ -91,6 +99,7 @@ export const codex: AgentAdapter = {
     }
     writeFileSync(join(targetDir, "config.toml"), lines.join("\n"));
   },
+  rulesFile: (targetDir) => join(targetDir, "AGENTS.md"),
   detectBinary: () => findBinary("codex"),
 };
 
@@ -113,6 +122,7 @@ export const cursor: AgentAdapter = {
     mkdirSync(cursorDir, { recursive: true });
     writeFileSync(join(cursorDir, "mcp.json"), JSON.stringify({ mcpServers: mcps }, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, ".cursorrules"),
   detectBinary: () => findBinary("cursor"),
 };
 
@@ -133,6 +143,7 @@ export const cline: AgentAdapter = {
     // Cline reads cline_mcp_settings.json in project root
     writeFileSync(join(targetDir, "cline_mcp_settings.json"), JSON.stringify({ mcpServers: mcps }, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, ".clinerules"),
   detectBinary: () => null, // VS Code extension, no binary
 };
 
@@ -154,6 +165,7 @@ export const windsurf: AgentAdapter = {
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, "mcp.json"), JSON.stringify({ mcpServers: mcps }, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, ".windsurfrules"),
   detectBinary: () => findBinary("windsurf"),
 };
 
@@ -184,6 +196,7 @@ export const gemini: AgentAdapter = {
     settings.mcpServers = mcps;
     writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, "GEMINI.md"),
   detectBinary: () => findBinary("gemini"),
 };
 
@@ -208,6 +221,7 @@ export const copilot: AgentAdapter = {
     mkdirSync(ghDir, { recursive: true });
     writeFileSync(join(ghDir, "mcp.json"), JSON.stringify({ servers: mcps }, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, ".github", "copilot-instructions.md"),
   detectBinary: () => null, // VS Code extension
 };
 
@@ -234,6 +248,7 @@ export const roo: AgentAdapter = {
     mkdirSync(rooDir, { recursive: true });
     writeFileSync(join(rooDir, "mcp.json"), JSON.stringify({ mcpServers: mcps }, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, ".roo", "rules", "cue-rules.md"),
   detectBinary: () => null, // VS Code extension
 };
 
@@ -256,6 +271,7 @@ export const amp: AgentAdapter = {
     mkdirSync(ampDir, { recursive: true });
     writeFileSync(join(ampDir, "mcp.json"), JSON.stringify({ mcpServers: mcps }, null, 2));
   },
+  rulesFile: (targetDir) => join(targetDir, "AGENTS.md"),
   detectBinary: () => findBinary("amp"),
 };
 
@@ -275,6 +291,7 @@ export const aider: AgentAdapter = {
   writeMcps(_mcps, _targetDir) {
     // Aider doesn't support MCP
   },
+  rulesFile: (targetDir) => join(targetDir, ".aider.conventions.md"),
   detectBinary: () => findBinary("aider"),
 };
 
