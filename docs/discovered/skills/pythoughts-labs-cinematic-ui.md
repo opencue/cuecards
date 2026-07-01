@@ -2,7 +2,7 @@
 title: "Pythoughts-labs/cinematic-ui — Claude Code skill discovered by cue"
 description: "Director-driven web design skill for AI coding agents — research a real film, extract cinematic grammar, build with storyboard-first specs."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 

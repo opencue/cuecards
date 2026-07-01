@@ -2,7 +2,7 @@
 title: "lapietrajp/vsync-agent — Claude Code skill discovered by cue"
 description: "V Sync AI Hub 2026: One Config for All Powerful AI Tools"
 layout: page
-updated: 2026-06-12
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: ai, ai-coding, automation, c64, codex, commodore, cursor, devtools, display, game, javascipt, mcp, mcp-server, patcher, provider, sync, tickerprovider, timecode, unlocker, vsync
 
 ## Best fit cue profiles

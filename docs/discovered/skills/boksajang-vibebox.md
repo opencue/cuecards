@@ -2,21 +2,21 @@
 title: "boksajang/vibebox — Claude Code skill discovered by cue"
 description: "A local blackbox for AI coding sessions."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [boksajang/vibebox](https://github.com/boksajang/vibebox)
 
-**★ 0** · strong (score 7.5) · JavaScript · ai-agent, ai-agent-plugin, ai-agent-skill, automation, codex-plugin
+**★ 0** · strong (score 7.9) · JavaScript · ai-agent, ai-agent-plugin, ai-agent-skill, automation, codex-plugin
 
 > A local blackbox for AI coding sessions.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-19
+- 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: ai-agent, ai-agent-plugin, ai-agent-skill, automation, codex-plugin, coding-assistant, context-management, llm, local-first, memory-middleware, obsidian-integration, session-sync, vibecoding
 
 ## Best fit cue profiles

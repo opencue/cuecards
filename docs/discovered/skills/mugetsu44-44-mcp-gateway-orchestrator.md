@@ -2,7 +2,7 @@
 title: "Mugetsu44-44/mcp-gateway-orchestrator — Claude Code skill discovered by cue"
 description: "Enterprise AI Guardrails 2026 🛡️ - MCP Security & Orchestration Toolkit"
 layout: page
-updated: 2026-06-03
+updated: 2026-07-01
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: a2a, a2a-mcp, acp, agent, ai, chatgpt, chatgpt-api, claude, deepseek, gemini, k8s, mcp, mcp-client, mcp-gateway, mcp-host, mcp-server, mcp-servers, mcp-tools, openai, runtime
 
 ## Best fit cue profiles

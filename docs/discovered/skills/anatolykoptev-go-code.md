@@ -2,7 +2,7 @@
 title: "anatolykoptev/go-code — Claude Code skill discovered by cue"
 description: "MCP server providing code intelligence tools for AI agents: AST parsing, semantic search, call graphs, dead-code detection."
 layout: page
-updated: 2026-06-27
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-27
+- 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: claude-code, code-intelligence, golang, mcp, mcp-server, tree-sitter
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "SihyeonJeon/why-was-fable-banned — Claude Code skill discovered by cue"
 description: "Fable-style spec + evidence gate for Claude Code + Codex. Makes Opus/Codex work under Fable-like discipline: blocks every edit until a deterministic spec passes"
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 

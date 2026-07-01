@@ -2,19 +2,19 @@
 title: "lilyMaung/PlanB-Agent — Claude Code skill discovered by cue"
 description: "Plan B is a two-agent system that helps people find a real, verified path forward when a plan falls through. One agent (built on Fetch.ai) understands the situa"
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [lilyMaung/PlanB-Agent](https://github.com/lilyMaung/PlanB-Agent)
 
-**★ 1** · potential (score 3.1) · Python
+**★ 1** · potential (score 3) · Python
 
 > Plan B is a two-agent system that helps people find a real, verified path forward when a plan falls through. One agent (built on Fetch.ai) understands the situation using Claude; the other searches the live web through, verifies a real way to act exists via Browserbase, and drafts a ready-to-send outreach message.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: (none)

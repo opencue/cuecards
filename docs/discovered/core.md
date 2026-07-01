@@ -1,87 +1,74 @@
 ---
 title: "Claude Code Skills for core"
-description: "61 community Claude Code skills curated by cue for the core profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "60 community Claude Code skills curated by cue for the core profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, core, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `core`
 
-> 61 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **core** profile.
+> 60 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **core** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="marmbiz-humanizer-de"></a>
-## 💎 [marmbiz/humanizer-de](https://github.com/marmbiz/humanizer-de)
+<a id="zhizhuodemao-js-reverse-mcp"></a>
+## 💎 [zhizhuodemao/js-reverse-mcp](https://github.com/zhizhuodemao/js-reverse-mcp)
 
-**★ 50** · exceptional (score 21.9) · Python · tags: agent-skills, ai-detection, ai-humanizer, ai-writing, claude-code
+**★ 2062** · exceptional (score 17) · TypeScript · tags: anti-detection, browser-automation, cdp, chrome-devtools, debugging
 
-German AI Text Humanizer / deutscher Humanizer Skill for Claude Code and Codex: audits German AI-writing patterns with 66 patterns, deterministic linters, and evidence-safe rewrites.
+AI Agent-first JS 逆向 MCP Server：有头 Chrome 调试、断点、网络/WebSocket 分析、Patchright 反检测，可选 CloakBrowser。
+
+```bash
+cue skills add zhizhuodemao/js-reverse-mcp --profile core
+```
+
+---
+
+<a id="24601-agent-deep-research"></a>
+## 💎 [24601/agent-deep-research](https://github.com/24601/agent-deep-research)
+
+**★ 4** · exceptional (score 16.4) · Python · tags: agent-skill, ai-agent, ai-agent-skill, autonomous-agent, claude-code
+
+Deep research (CLI and agent skill) via the Gemini Interactions API. Automatic RAG grounding from local files (optional), cost estimation (--dry-run), adaptive polling, structured output, and agent onboarding. No Gemini CLI dependency. Universal AI agent skill for Claude Code, Amp, Codex, Clawdbot, and 30+ agents.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add marmbiz/humanizer-de --profile core
+cue skills add 24601/agent-deep-research --profile core
 ```
 
 ---
 
-<a id="mksglu-context-mode"></a>
-## 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
+<a id="haoyiyin-instant-site"></a>
+## 💎 [haoyiyin/instant-site](https://github.com/haoyiyin/instant-site)
 
-**★ 18365** · exceptional (score 20.5) · TypeScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
+**★ 6** · exceptional (score 16.3) · JavaScript · tags: agent-skill, ai-agent-skill, ai-agents, automation, claude-code
 
-Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and   enforces routing across 17 platforms via MCP + hooks.
-
-```bash
-cue skills add mksglu/context-mode --profile core
-```
-
----
-
-<a id="activepieces-activepieces"></a>
-## 💎 [activepieces/activepieces](https://github.com/activepieces/activepieces)
-
-**★ 23058** · exceptional (score 19) · TypeScript · tags: ai-agent, ai-agent-tools, ai-agents, ai-agents-framework, mcp
-
-AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents
-
-```bash
-cue skills add activepieces/activepieces --profile core
-```
-
----
-
-<a id="kimikonapps-kimiflow"></a>
-## 💎 [kimikonapps/kimiflow](https://github.com/kimikonapps/kimiflow)
-
-**★ 2** · exceptional (score 15.5) · Python · tags: ai-agents, claude-code, claude-skill, codebase-analysis, codex
-
-kimiflow — Claude Code + Codex plugin for codebase mapping, gated feature/fix flows, token-cheap learning memory, and Obsidian Vault MCP setup.
+Agent skill for building, deploying, and operating foreign trade independent sites — from-zero generation, Cloudflare Pages, content ops, SEO, multi-language. Compatible with any AI agent.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add kimikonapps/kimiflow --profile core
+cue skills add haoyiyin/instant-site --profile core
 ```
 
 ---
 
-<a id="wihatn-vault-crystallize"></a>
-## 💎 [WIHATN/vault-crystallize](https://github.com/WIHATN/vault-crystallize)
+<a id="riffkit-skill"></a>
+## 💎 [riffkit/skill](https://github.com/riffkit/skill)
 
-**★ 0** · exceptional (score 15.5) · tags: agent-skills, ai-agent, claude-code, claude-skill, knowledge-base
+**★ 1** · exceptional (score 15.8) · tags: agent-skill, ai-video, claude-code, claude-skill, mcp
 
-Claude/agent skill for checkpointing progress into Handoff.md and distilling sources into a cited, confidence-rated evidence log inside an agent-managed knowledge vault.
+Official Riffkit skill — riff a winning TikTok into your own short video from your AI agent (Claude Code, Cursor) or the browser. Riff the formula, not the video.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add WIHATN/vault-crystallize --profile core
+cue skills add riffkit/skill --profile core
 ```
 
 ---
@@ -101,30 +88,118 @@ cue skills add sosteam65/app-store-connect-skill --profile core
 
 ---
 
-<a id="voidly-ai-voidly-pay"></a>
-## 💎 [voidly-ai/voidly-pay](https://github.com/voidly-ai/voidly-pay)
+<a id="haoyiyin-applescript-skill"></a>
+## 💎 [haoyiyin/applescript-skill](https://github.com/haoyiyin/applescript-skill)
 
-**★ 10** · exceptional (score 13.9) · JavaScript · tags: a2a, agent-payments, agent-to-agent, ai-agent, autonomous-agents
+**★ 1** · exceptional (score 15.2) · AppleScript · tags: agent-skill, ai-agent-skill, ai-agents, applescript, automation
 
-Off-chain credit ledger + hire marketplace for AI agents. Ed25519-signed envelopes, atomic settlement, hire-and-release escrow. https://voidly.ai/pay
-
-```bash
-cue skills add voidly-ai/voidly-pay --profile core
-```
-
----
-
-<a id="isatimur-harness-humanizer-skill"></a>
-## 💎 [isatimur/harness-humanizer-skill](https://github.com/isatimur/harness-humanizer-skill)
-
-**★ 2** · exceptional (score 13.5) · Python · tags: agent-skills, ai-slop, ai-writing, anthropic-claude, claude-code
-
-Portable Claude Code skill that de-slops AI prose — detect, rewrite to a real point of view, self-score, iterate. Fidelity-first; flags hollow spans instead of faking them.
+Agent skill for macOS automation via AppleScript — control browsers, files, mail, messages, media, and system settings. Compatible with any AI agent.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add isatimur/harness-humanizer-skill --profile core
+cue skills add haoyiyin/applescript-skill --profile core
+```
+
+---
+
+<a id="aalzubidy-spotify-to-tidal"></a>
+## 💎 [aalzubidy/spotify-to-tidal](https://github.com/aalzubidy/spotify-to-tidal)
+
+**★ 0** · exceptional (score 14.5) · Python · tags: ai-agent, ai-tools, claude-code, claude-code-skill, claude-code-skills
+
+Migrate your entire Spotify library to Tidal — playlists, liked songs, albums & followed artists — using an AI coding assistant (Claude Code, Cursor, Cline). ISRC-accurate matching, resumable, append-only/idempotent. No web service.
+
+✅ SKILL.md
+
+```bash
+cue skills add aalzubidy/spotify-to-tidal --profile core
+```
+
+---
+
+<a id="haoyiyin-vision-framework-skill"></a>
+## 💎 [haoyiyin/vision-framework-skill](https://github.com/haoyiyin/vision-framework-skill)
+
+**★ 0** · exceptional (score 14.3) · Swift · tags: agent-skill, ai-agent, ai-agent-skill, claude-code, computer-vision
+
+macOS Vision Framework agent skill — on-device OCR, face/human/animal detection, image classification, barcode reading, body pose estimation. Compatible with Claude Code, OpenClaw, Hermes, Codex, Antigravity, and any agent framework.
+
+✅ SKILL.md
+
+```bash
+cue skills add haoyiyin/vision-framework-skill --profile core
+```
+
+---
+
+<a id="stewie-pixel-claude-with-leetcode"></a>
+## 💎 [Stewie-pixel/claude-with-leetcode](https://github.com/Stewie-pixel/claude-with-leetcode)
+
+**★ 40** · exceptional (score 13.9) · C++ · tags: ai-agents, algorithms, claude-code, claude-skill, claude-skills
+
+Daily Leetcode masterclass with Claude code DSA mentor
+
+```bash
+cue skills add Stewie-pixel/claude-with-leetcode --profile core
+```
+
+---
+
+<a id="cbcoutinho-nextcloud-mcp-server"></a>
+## 💎 [cbcoutinho/nextcloud-mcp-server](https://github.com/cbcoutinho/nextcloud-mcp-server)
+
+**★ 288** · exceptional (score 13.9) · Python · tags: mcp-server, model-context-protocol, nextcloud, nextcloud-deck, nextcloud-notes
+
+Nextcloud MCP Server
+
+```bash
+cue skills add cbcoutinho/nextcloud-mcp-server --profile core
+```
+
+---
+
+<a id="txw842lkj-cmd-silicon-circle-skill"></a>
+## 💎 [txw842lkj-cmd/silicon-circle-skill](https://github.com/txw842lkj-cmd/silicon-circle-skill)
+
+**★ 1** · exceptional (score 13.4) · tags: agent-skill, agent-skills, ai-agent-skill, ai-agents, bounty-marketplace
+
+Public Agent Skill for Silicon Circle: post tasks, find bounties, submit work, earn Proof Points, and route accepted work into marketplace closeout.
+
+✅ SKILL.md
+
+```bash
+cue skills add txw842lkj-cmd/silicon-circle-skill --profile core
+```
+
+---
+
+<a id="dolevhayut-saasify"></a>
+## 💎 [dolevhayut/saasify](https://github.com/dolevhayut/saasify)
+
+**★ 0** · exceptional (score 13) · PLpgSQL · tags: ai-agents, boilerplate, claude-code, claude-skill, multi-tenant
+
+Claude Code skill that converts any project into a multi-tenant SaaS — auth, organizations/teams, RBAC, plans & billing (Stripe/HYP), invites.
+
+✅ SKILL.md
+
+```bash
+cue skills add dolevhayut/saasify --profile core
+```
+
+---
+
+<a id="vadalinux-framework360-skill"></a>
+## 💎 [VadaLinux/framework360-skill](https://github.com/VadaLinux/framework360-skill)
+
+**★ 0** · exceptional (score 13) · tags: claude-code, claude-code-skill, cli, framework360, mcp
+
+🤖 Skill Claude Code per usare la CLI di framework360-mcp-server senza indovinare comandi o parametri
+
+✅ SKILL.md
+
+```bash
+cue skills add VadaLinux/framework360-skill --profile core
 ```
 
 ---
@@ -132,7 +207,7 @@ cue skills add isatimur/harness-humanizer-skill --profile core
 <a id="fallow-rs-fallow-skills"></a>
 ## 💎 [fallow-rs/fallow-skills](https://github.com/fallow-rs/fallow-skills)
 
-**★ 99** · exceptional (score 12.3) · Shell · tags: agent-skills, amp, claude, claude-code, code-duplication
+**★ 100** · exceptional (score 12.3) · Shell · tags: agent-skills, amp, claude, claude-code, code-duplication
 
 Agent skills for fallow, codebase intelligence for JavaScript and TypeScript. Teaches AI agents how to find unused code, duplication, circular deps, complexity hotspots, architecture drift, and (with Fallow Runtime) hot-path and cold-path evidence. Works with Claude Code, Cursor, Codex, Gemini CLI, and 30+ agents.
 
@@ -142,199 +217,125 @@ cue skills add fallow-rs/fallow-skills --profile core
 
 ---
 
-<a id="deployhq-deployhq-cli"></a>
-## 💎 [deployhq/deployhq-cli](https://github.com/deployhq/deployhq-cli)
+<a id="lainxxx-blog-auto-poster-skill"></a>
+## 💎 [lainXXX/blog-auto-poster-skill](https://github.com/lainXXX/blog-auto-poster-skill)
 
-**★ 0** · exceptional (score 12) · Go · tags: agent-skill, ai-agent, automation, ci-cd, claude-code-plugin
+**★ 12** · exceptional (score 12.3) · Python · tags: 51cto, automation, blog-poster, claude-code-skill, cnblogs
 
-DeployHQ CLI — deploy from your terminal, for humans and agents
-
-```bash
-cue skills add deployhq/deployhq-cli --profile core
-```
-
----
-
-<a id="zhixuli0406-duduclaw"></a>
-## 💎 [zhixuli0406/DuDuClaw](https://github.com/zhixuli0406/DuDuClaw)
-
-**★ 44** · exceptional (score 11.8) · Rust · tags: agent-platform, agentic-ai, ai-agent, claude, gemini
-
-Open-source AI Agent platform — 80+ MCP tools, 7 channels (Slack/Discord/LINE/Telegram), Rust + Python. Self-hostable Claude/GPT alternative for production multi-LLM systems.
-
-```bash
-cue skills add zhixuli0406/DuDuClaw --profile core
-```
-
----
-
-<a id="opencue-cuecards"></a>
-## 💎 [opencue/cuecards](https://github.com/opencue/cuecards)
-
-**★ 3** · exceptional (score 11.2) · TypeScript · tags: agent-framework, agent-skill, ai-agents, ai-coding, anthropic
-
-Agent profile manager for Claude Code & Codex. Per-directory profiles select which skills, MCP servers, and plugins load — automatically, before launch. Install: npm install -g cue-ai
-
-```bash
-cue skills add opencue/cuecards --profile core
-```
-
----
-
-<a id="clowlove-hermes-house"></a>
-## 💎 [clowlove/Hermes-House](https://github.com/clowlove/Hermes-House)
-
-**★ 9** · exceptional (score 11.2) · HTML · tags: ai-agent, automation, claude, code-review, github-actions
-
-🤖 Self-Evolving Multi-Agent AI System | 116+ Skills | TrendRadar · Reviewer | Learn, Build & Evolve
-
-```bash
-cue skills add clowlove/Hermes-House --profile core
-```
-
----
-
-<a id="962753401-cloud-ai-project-architect"></a>
-## 💎 [962753401-cloud/AI-Project-Architect](https://github.com/962753401-cloud/AI-Project-Architect)
-
-**★ 0** · exceptional (score 11) · tags: ai, claude-skill, codex-skill, llm, machine-learning
-
-A methodology for turning any AI project into a verifiable, quantifiable, iterative, and stoppable stage-gated development plan. Validate the largest unknown first, then build the largest system.
+多平台文章统一发布 Skill — 支持 CSDN、51CTO、博客园、掘金一键分发
 
 ✅ SKILL.md
 
 ```bash
-cue skills add 962753401-cloud/AI-Project-Architect --profile core
+cue skills add lainXXX/blog-auto-poster-skill --profile core
 ```
 
 ---
 
-<a id="memtomem-memtomem"></a>
-## 💎 [memtomem/memtomem](https://github.com/memtomem/memtomem)
+<a id="falkordb-falkordb-mcpserver"></a>
+## 💎 [FalkorDB/FalkorDB-MCPServer](https://github.com/FalkorDB/FalkorDB-MCPServer)
 
-**★ 10** · exceptional (score 10.9) · Python · tags: agent, agent-harness, agent-memory, ai, bm25
+**★ 36** · exceptional (score 11.9) · TypeScript · tags: falkordb, graphdatabase, mcp-server
 
-Markdown-first, long-term memory infrastructure for AI agents. Hybrid BM25 + semantic search across markdown/code files via MCP.
+FalkorDB-MCPServer is an MCP (Model Context Protocol) server that connects LLMs to FalkorDB
 
 ```bash
-cue skills add memtomem/memtomem --profile core
+cue skills add FalkorDB/FalkorDB-MCPServer --profile core
 ```
 
 ---
 
-<a id="aigengame-godot-agent"></a>
-## 💎 [aigengame/godot-agent](https://github.com/aigengame/godot-agent)
+<a id="xiapuyang-gaokao-adi"></a>
+## 💎 [xiapuyang/gaokao-adi](https://github.com/xiapuyang/gaokao-adi)
 
-**★ 23** · exceptional (score 10.6) · Python · tags: agent-skill, agent-tools, ai-agent, automation, cli
+**★ 2** · exceptional (score 11.4) · Python · tags: ai-agent-skill, china-education, claude-code, college-admissions, college-entrance-exam
 
-Godot AI agent CLI, Skill, and MCP server with structured JSON/schema output — headless scene/script/export automation plus live runtime control.
+高考志愿专业路径双功能 Skill：按分数推荐专业 + ADI 综合测评。Chinese Gaokao college major recommender & ADI path assessment skill for AI agents.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aigengame/godot-agent --profile core
+cue skills add xiapuyang/gaokao-adi --profile core
 ```
 
 ---
 
-<a id="gangchen-epiage-skill"></a>
-## 💎 [gangchen/epiage-skill](https://github.com/gangchen/epiage-skill)
+<a id="aezizhu-mcp-captcha-solver"></a>
+## 💎 [aezizhu/mcp-captcha-solver](https://github.com/aezizhu/mcp-captcha-solver)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent-skill, aging, biological-age, claude-code, claude-skill
+**★ 6** · exceptional (score 10.7) · JavaScript · tags: 2captcha, anticaptcha, arkose-labs, audio-captcha, automation
 
-24 epigenetic aging clocks (GrimAge V1/V2, Horvath, Hannum, PhenoAge, Ying, DunedinPoAm, DNAmTL…) as an installable, offline agent skill — pandas+numpy only.
+Captcha solver MCP server with 99% success rate. Supports reCAPTCHA v2/v3, hCaptcha, FunCaptcha, GeeTest, Cloudflare Turnstile, slider, rotate, audio captcha. Multi-service fallback.
 
 ```bash
-cue skills add gangchen/epiage-skill --profile core
+cue skills add aezizhu/mcp-captcha-solver --profile core
 ```
 
 ---
 
-<a id="maxkle1nz-m1nd"></a>
-## 💎 [maxkle1nz/m1nd](https://github.com/maxkle1nz/m1nd)
+<a id="pythoughts-labs-cinematic-ui"></a>
+## 💎 [Pythoughts-labs/cinematic-ui](https://github.com/Pythoughts-labs/cinematic-ui)
 
-**★ 20** · exceptional (score 10.3) · Rust · tags: agent-tools, ai-agents, code-analysis, code-graph, code-intelligence
+**★ 0** · exceptional (score 10.6) · tags: ai-agent-skill, cinematic-ui, claude-code, codex, copilot
 
-A local code graph engine for MCP agents: proof-aware state, guided next steps, continuity, and safer edits.
+Director-driven web design skill for AI coding agents — research a real film, extract cinematic grammar, build with storyboard-first specs.
+
+✅ SKILL.md
 
 ```bash
-cue skills add maxkle1nz/m1nd --profile core
+cue skills add Pythoughts-labs/cinematic-ui --profile core
 ```
 
 ---
 
-<a id="kenny27lokku-prompt-integrity-validator"></a>
-## 💎 [Kenny27lokku/prompt-integrity-validator](https://github.com/Kenny27lokku/prompt-integrity-validator)
+<a id="anatolykoptev-go-code"></a>
+## 💎 [anatolykoptev/go-code](https://github.com/anatolykoptev/go-code)
 
-**★ 0** · exceptional (score 10) · HTML · tags: agent-skills, ai-agent, ai-tools, anthropic, anti-bloat
+**★ 2** · exceptional (score 10.5) · Go · tags: claude-code, code-intelligence, golang, mcp, mcp-server
 
-Lint Your Prompts, Ship Better Agents – Prompt Refiner 2026 Rule Engine
+MCP server providing code intelligence tools for AI agents: AST parsing, semantic search, call graphs, dead-code detection.
 
 ```bash
-cue skills add Kenny27lokku/prompt-integrity-validator --profile core
+cue skills add anatolykoptev/go-code --profile core
 ```
 
 ---
 
-<a id="leeguooooo-paypay-securities"></a>
-## 💎 [leeguooooo/paypay-securities](https://github.com/leeguooooo/paypay-securities)
+<a id="allyjuma1-easel-js-cpu-render-kit"></a>
+## 💎 [AllyJuma1/easel-js-cpu-render-kit](https://github.com/AllyJuma1/easel-js-cpu-render-kit)
 
-**★ 1** · exceptional (score 9.8) · Python · tags: agent-skill, claude-code, claude-skill, cli, fintech
+**★ 0** · exceptional (score 10) · HTML · tags: agent-skill, agent-skills, claude, claude-plugin, claude-skill
 
-Read-only CLI & agent skill for a PayPay証券 (PayPay Securities / ペイペイ証券) account — portfolio, holdings, 投資信託/米国株, transaction history, fee & FX-spread, and a review (復盘) with realized/unrealized P&L. Data display only. npx skills add.
+🚀 WebGPU Agent Skill 2026: Build GPU Apps with Easel.js & AI Coding Agents
 
 ```bash
-cue skills add leeguooooo/paypay-securities --profile core
+cue skills add AllyJuma1/easel-js-cpu-render-kit --profile core
 ```
 
 ---
 
-<a id="bautiroalt-mcp-server"></a>
-## 💎 [bautiroalt/MCP-Server](https://github.com/bautiroalt/MCP-Server)
+<a id="chainstack-dev-portal"></a>
+## 💎 [chainstack/dev-portal](https://github.com/chainstack/dev-portal)
 
-**★ 1** · exceptional (score 9.8) · HTML · tags: agents, ai-agent, ai-agent-tools, ai-agents, batch-processing
+**★ 9** · exceptional (score 10) · MDX · tags: llm, mcp, mcp-server, web3
 
-🚀 Launch a local server with ease using MCP Server for instant backend and interface setup, all with a single double-click.
+Chainstack Developer Portal
 
 ```bash
-cue skills add bautiroalt/MCP-Server --profile core
+cue skills add chainstack/dev-portal --profile core
 ```
 
 ---
 
-<a id="dohyun468-claw-hwp"></a>
-## 💎 [DoHyun468/claw-hwp](https://github.com/DoHyun468/claw-hwp)
+<a id="kulaxyz-self-learning-skills"></a>
+## 💎 [Kulaxyz/self-learning-skills](https://github.com/Kulaxyz/self-learning-skills)
 
-**★ 30** · exceptional (score 9.7) · JavaScript · tags: anthropic, claude-code, claude-cowork, claude-plugin, claude-skill
+**★ 329** · exceptional (score 9.5)
 
-Read, create & edit Korean Hangul Word Processor (.hwp / .hwpx) documents in Claude — Agent Skill built on rhwp WASM, with built-in browser preview. Runs locally, no Hancom Office, no cloud.
-
-```bash
-cue skills add DoHyun468/claw-hwp --profile core
-```
-
----
-
-<a id="hivemindoverlord-poe2-mcp"></a>
-## 💎 [HivemindOverlord/poe2-mcp](https://github.com/HivemindOverlord/poe2-mcp)
-
-**★ 47** · exceptional (score 9.6) · Python
-
-This is a locally-run MCP attempt to make AI like Claude for Desktop or others better understand questions about Path of Exile 2. Good luck to me I guess?
+A self-improving skill for AI coding agents (Claude Code, Cursor, AGENTS.md): recognize a hard-won golden path in a session and harvest it into a reusable skill/rule for next time.
 
 ```bash
-cue skills add HivemindOverlord/poe2-mcp --profile core
-```
-
----
-
-<a id="michelsr25-claude-code-agent-design-kit"></a>
-## 💎 [MichelSR25/Claude-Code-Agent-Design-Kit](https://github.com/MichelSR25/Claude-Code-Agent-Design-Kit)
-
-**★ 50** · exceptional (score 9.5) · HTML · tags: claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace
-
-Top AI-Powered UI/UX Design Generator & Code Assistant 2026
-
-```bash
-cue skills add MichelSR25/Claude-Code-Agent-Design-Kit --profile core
+cue skills add Kulaxyz/self-learning-skills --profile core
 ```
 
 ---
@@ -342,7 +343,7 @@ cue skills add MichelSR25/Claude-Code-Agent-Design-Kit --profile core
 <a id="terryc21-tutorial-creator"></a>
 ## 💎 [Terryc21/tutorial-creator](https://github.com/Terryc21/tutorial-creator)
 
-**★ 22** · exceptional (score 9.1) · tags: claude-code, claude-code-skill, code-reading, developer-education, learning
+**★ 22** · exceptional (score 9) · tags: claude-code, claude-code-skill, code-reading, developer-education, learning
 
 Generate personalized coding lessons from your own codebase. A Claude Code skill: three surfaces (tutorial / vocab / status), six writing-to-learn entries, audience-facing path with six venue templates. v2.0.0 released 2026-05-10.
 
@@ -352,28 +353,28 @@ cue skills add Terryc21/tutorial-creator --profile core
 
 ---
 
-<a id="abhinav503-flutter-agentic"></a>
-## 💎 [abhinav503/flutter-agentic](https://github.com/abhinav503/flutter-agentic)
+<a id="megamen32-gptadmin-opensource"></a>
+## 💎 [megamen32/gptadmin_opensource](https://github.com/megamen32/gptadmin_opensource)
 
-**★ 7** · exceptional (score 9) · Dart · tags: amazonq, boilerplate-template, claude-code, claude-code-skill, clean-architecture
+**★ 6** · exceptional (score 9) · Python · tags: ai-agent, chatgpt, claude, mcp, mcp-server
 
-Flutter Clean Architecture template optimised for AI coding agents — BLoC, Freezed, Dio, fpdart, GoRouter. Native rules for Claude Code, Cursor, Gemini, Codex & Amazon Q
+One MCP hub — any AI controls any infrastructure. Self-hosted, works with ChatGPT, Claude, Codex, DeepSeek, Qwen, Alice, GigaChat.
 
 ```bash
-cue skills add abhinav503/flutter-agentic --profile core
+cue skills add megamen32/gptadmin_opensource --profile core
 ```
 
 ---
 
-<a id="pdgit12-knitbrain"></a>
-## 💎 [PDgit12/knitbrain](https://github.com/PDgit12/knitbrain)
+<a id="berkayturk-appstore-precheck"></a>
+## 💎 [berkayturk/appstore-precheck](https://github.com/berkayturk/appstore-precheck)
 
-**★ 1** · exceptional (score 8.8) · TypeScript · tags: ai-agents, claude, claude-code, context-compression, cursor
+**★ 2** · exceptional (score 9) · Shell · tags: agent-skill, agent-skills, app-review, app-store, app-store-connect
 
-The local-first brain for coding agents: project memory + workflow intelligence + lossless ~50% context savings. MCP server + LLM proxy, zero cloud.
+Read-only iOS App Store pre-submission check: scans 20 rejection vectors, wraps Apple's fastlane precheck, watches guideline drift, and runs an adversarial reviewer pass before you submit.
 
 ```bash
-cue skills add PDgit12/knitbrain --profile core
+cue skills add berkayturk/appstore-precheck --profile core
 ```
 
 ---
@@ -391,28 +392,30 @@ cue skills add linny006/trending-claude-skills --profile core
 
 ---
 
-<a id="jonny-1812-demo-video-factory"></a>
-## 💎 [jonny-1812/demo-video-factory](https://github.com/jonny-1812/demo-video-factory)
+<a id="netresearch-jujutsu-workflow-skill"></a>
+## 💎 [netresearch/jujutsu-workflow-skill](https://github.com/netresearch/jujutsu-workflow-skill)
 
-**★ 1** · exceptional (score 8.3) · TypeScript · tags: claude-code, claude-code-plugin, claude-plugin, claude-skill, demo-video
+**★ 1** · exceptional (score 8.5) · Shell · tags: agent-skill, ai-agent-skill, claude-code, coding-agents, git
 
-AI-powered SaaS demo video generator — drop a URL, get a custom product demo in minutes
+Agent-safe version control with Jujutsu (jj) — jj for local change management, Git as the canonical remote/PR/CI/audit interface. Netresearch agent skill.
 
 ```bash
-cue skills add jonny-1812/demo-video-factory --profile core
+cue skills add netresearch/jujutsu-workflow-skill --profile core
 ```
 
 ---
 
-<a id="qiaeru-skill-claudemd"></a>
-## 💎 [qiaeru/skill-claudemd](https://github.com/qiaeru/skill-claudemd)
+<a id="ynwelc-ppt-resume-skill"></a>
+## 💎 [ynwelc/ppt-resume-skill](https://github.com/ynwelc/ppt-resume-skill)
 
-**★ 1** · exceptional (score 8.3) · tags: agent-skills, anthropic, claude, claude-code, claude-md
+**★ 0** · exceptional (score 8.5) · HTML · tags: ai-agent-skill, custom-skills, interactive-cv, portfolio-website, presentation-resume
 
-A Claude Code skill that trims a project's CLAUDE.md to what is strictly necessary, replacing derivable or duplicated content with on-demand references to save context tokens.
+🌌 An AI-agent Skill for generating stunning, high-fidelity, interactive space-themed presentation resumes and  portfolio websites (single-file HTML) from scratch.
+
+✅ SKILL.md
 
 ```bash
-cue skills add qiaeru/skill-claudemd --profile core
+cue skills add ynwelc/ppt-resume-skill --profile core
 ```
 
 ---
@@ -426,19 +429,6 @@ cue skills add qiaeru/skill-claudemd --profile core
 
 ```bash
 cue skills add tine-psd/tmux-paste-image --profile core
-```
-
----
-
-<a id="lanluyu-research-reports"></a>
-## 💎 [lanluyu/research-reports](https://github.com/lanluyu/research-reports)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude-code, claude-skill, due-diligence, fact-checking
-
-Discipline system for writing professional, multi-source, cited, fact-checked research reports - a Claude Code plugin.
-
-```bash
-cue skills add lanluyu/research-reports --profile core
 ```
 
 ---
@@ -469,6 +459,19 @@ cue skills add SihyeonJeon/why-was-fable-banned --profile core
 
 ---
 
+<a id="boksajang-vibebox"></a>
+## ✨ [boksajang/vibebox](https://github.com/boksajang/vibebox)
+
+**★ 0** · strong (score 7.9) · JavaScript · tags: ai-agent, ai-agent-plugin, ai-agent-skill, automation, codex-plugin
+
+A local blackbox for AI coding sessions.
+
+```bash
+cue skills add boksajang/vibebox --profile core
+```
+
+---
+
 <a id="harsh-aids23-hub-second-opinion-rival-verdict"></a>
 ## ✨ [harsh-aids23-hub/second-opinion-rival-verdict](https://github.com/harsh-aids23-hub/second-opinion-rival-verdict)
 
@@ -478,19 +481,6 @@ Best Free AI Code Review Tool 2026 – Catch Flawed Plans Before Deployment
 
 ```bash
 cue skills add harsh-aids23-hub/second-opinion-rival-verdict --profile core
-```
-
----
-
-<a id="kaydevi-trigger-flare"></a>
-## ✨ [Kaydevi/trigger-flare](https://github.com/Kaydevi/trigger-flare)
-
-**★ 0** · strong (score 7.5) · HTML · tags: ai-tools, anthropic, claude-code, claude-plugin, claude-skill
-
-Skill Radar 2026: AI-Powered Smart Signal Triage for Claude Code
-
-```bash
-cue skills add Kaydevi/trigger-flare --profile core
 ```
 
 ---
@@ -508,15 +498,15 @@ cue skills add gerrict/ghost-token-hunter --profile core
 
 ---
 
-<a id="nikil11-stacks-clarity-mcp"></a>
-## ✨ [Nikil11/stacks-clarity-mcp](https://github.com/Nikil11/stacks-clarity-mcp)
+<a id="netresearch-typo3-typoscript-ref-skill"></a>
+## ✨ [netresearch/typo3-typoscript-ref-skill](https://github.com/netresearch/typo3-typoscript-ref-skill)
 
-**★ 0** · strong (score 7.5) · tags: blockchain, clarity, mcp, mcp-server, nft
+**★ 2** · strong (score 7.2) · Shell · tags: ai-agent-skill, claude-code, fluid, typo3, typoscript
 
-🚀 Build robust Clarity smart contracts with the Stacks Clarity MCP server, offering 30+ tools for security, compliance, and performance optimization.
+TYPO3 TypoScript, TSconfig and Fluid reference lookup for AI agents
 
 ```bash
-cue skills add Nikil11/stacks-clarity-mcp --profile core
+cue skills add netresearch/typo3-typoscript-ref-skill --profile core
 ```
 
 ---
@@ -536,15 +526,15 @@ cue skills add JulienMicrofacto/deep-clean-skill --profile core
 
 ---
 
-<a id="malamutemayhem-unclick"></a>
-## ✨ [malamutemayhem/unclick](https://github.com/malamutemayhem/unclick)
+<a id="gowtham-sai-yadav-claude-teleport"></a>
+## ✨ [gowtham-sai-yadav/claude-teleport](https://github.com/gowtham-sai-yadav/claude-teleport)
 
-**★ 4** · strong (score 6.8) · TypeScript · tags: agent-tools, ai-agents, ai-memory, claude, integrations
+**★ 6** · strong (score 7) · Go · tags: ai-coding, anthropic, backup, claude, claude-code
 
-The universal remote for AI: one MCP install gives agents 450+ callable endpoints across 60+ integrations, plus persistent cross-session memory. Works with Claude, ChatGPT, Cursor, and any MCP client.
+Move your Claude Code history, memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically.
 
 ```bash
-cue skills add malamutemayhem/unclick --profile core
+cue skills add gowtham-sai-yadav/claude-teleport --profile core
 ```
 
 ---
@@ -552,7 +542,7 @@ cue skills add malamutemayhem/unclick --profile core
 <a id="andyhtran-copycat"></a>
 ## ✨ [andyhtran/CopyCat](https://github.com/andyhtran/CopyCat)
 
-**★ 5** · strong (score 6.7) · Swift · tags: claude-code, clipboard, codex, codex-cli, developer-tools
+**★ 6** · strong (score 6.8) · Swift · tags: claude-code, clipboard, codex, codex-cli, developer-tools
 
 Press ⌘V to paste screenshots into your terminal — CopyCat saves the image and types the file path so Claude Code or Codex CLI can read it. Works locally and over SSH.
 
@@ -588,19 +578,6 @@ cue skills add funkadelic/claude-nomad --profile core
 
 ---
 
-<a id="maludb-salvage-project"></a>
-## ✨ [maludb/salvage-project](https://github.com/maludb/salvage-project)
-
-**★ 29** · strong (score 6.5)
-
-Start over, simpler — recover the real requirements from a project that went down a bad path and rebuild on the simplest maintainable stack. A Claude Code plugin.
-
-```bash
-cue skills add maludb/salvage-project --profile core
-```
-
----
-
 <a id="hermes-labs-ai-fidelis"></a>
 ## ✨ [hermes-labs-ai/fidelis](https://github.com/hermes-labs-ai/fidelis)
 
@@ -614,28 +591,15 @@ cue skills add hermes-labs-ai/fidelis --profile core
 
 ---
 
-<a id="jongcheol-pak-claude-harness-pjc"></a>
-## ✨ [jongcheol-pak/claude-harness-pjc](https://github.com/jongcheol-pak/claude-harness-pjc)
+<a id="maludb-salvage-project"></a>
+## ✨ [maludb/salvage-project](https://github.com/maludb/salvage-project)
 
-**★ 2** · strong (score 6.5) · PowerShell · tags: claude-code-skill
+**★ 29** · strong (score 6.4)
 
-Claude Code가 "계획 없이 추측하고 a 파일 수정하면서 b·c 파일을 빠뜨리고 검증 없이 완료 선언"하는 것을 막기 위한 도구입니다. 모든 코드 변경은 계획 → 구현 → 다층 검증 → 완료의 자율 루프를 거칩니다.
-
-```bash
-cue skills add jongcheol-pak/claude-harness-pjc --profile core
-```
-
----
-
-<a id="odere-pro-claude-agentline"></a>
-## ✨ [odere-pro/claude-agentline](https://github.com/odere-pro/claude-agentline)
-
-**★ 1** · strong (score 6.3) · TypeScript · tags: agentic, ai-tooling, ansi, claude-code, cli
-
-Fast, themeable powerline statusline for Claude Code — git, tokens, context window, rate limits, 38 widgets, and a live TUI editor. Zero network on the hot path.
+Start over, simpler — recover the real requirements from a project that went down a bad path and rebuild on the simplest maintainable stack. A Claude Code plugin.
 
 ```bash
-cue skills add odere-pro/claude-agentline --profile core
+cue skills add maludb/salvage-project --profile core
 ```
 
 ---
@@ -653,6 +617,19 @@ cue skills add MercurieVV/ScalaSemantic --profile core
 
 ---
 
+<a id="odere-pro-claude-agentline"></a>
+## ✨ [odere-pro/claude-agentline](https://github.com/odere-pro/claude-agentline)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: agentic, ai-tooling, ansi, claude-code, cli
+
+Fast, themeable powerline statusline for Claude Code — git, tokens, context window, rate limits, 38 widgets, and a live TUI editor. Zero network on the hot path.
+
+```bash
+cue skills add odere-pro/claude-agentline --profile core
+```
+
+---
+
 <a id="caiyo-slim-higgs-v3-tts-comfyui"></a>
 ## ✨ [caiyo-slim/Higgs_v3-TTS-ComfyUI](https://github.com/caiyo-slim/Higgs_v3-TTS-ComfyUI)
 
@@ -662,6 +639,32 @@ Integrate Higgs v3 TTS into ComfyUI for multilingual speech synthesis, zero-shot
 
 ```bash
 cue skills add caiyo-slim/Higgs_v3-TTS-ComfyUI --profile core
+```
+
+---
+
+<a id="cheeringsoul-bodhi"></a>
+## ✨ [cheeringsoul/bodhi](https://github.com/cheeringsoul/bodhi)
+
+**★ 1** · strong (score 5.8) · Python
+
+AI-native semantic DSL that makes Claude Code capture developer intent, data flows, service topology, and error paths as structured annotations — while writing code.
+
+```bash
+cue skills add cheeringsoul/bodhi --profile core
+```
+
+---
+
+<a id="lapietrajp-vsync-agent"></a>
+## ✨ [lapietrajp/vsync-agent](https://github.com/lapietrajp/vsync-agent)
+
+**★ 0** · strong (score 5.5) · HTML · tags: ai, ai-coding, automation, c64, codex
+
+V Sync AI Hub 2026: One Config for All Powerful AI Tools
+
+```bash
+cue skills add lapietrajp/vsync-agent --profile core
 ```
 
 ---
@@ -734,25 +737,12 @@ cue skills add foudhilriahi/DepGuard --profile core
 <a id="lastnpcalex-a-shadow-loom"></a>
 ## 🔹 [lastnpcalex/a-shadow-loom](https://github.com/lastnpcalex/a-shadow-loom)
 
-**★ 1** · potential (score 4.8) · Python
+**★ 1** · potential (score 4.7) · Python
 
 A self-hosted web interface for branching AI conversations across Claude Code, Gemini CLI, and local Ollama models — and for handing off between them mid-conversation. Every conversation is a tree — branch, fork, regenerate, and full-text search across every path without losing anything.
 
 ```bash
 cue skills add lastnpcalex/a-shadow-loom --profile core
-```
-
----
-
-<a id="kulaxyz-self-learning-skills"></a>
-## 🔹 [Kulaxyz/self-learning-skills](https://github.com/Kulaxyz/self-learning-skills)
-
-**★ 3** · potential (score 4.6)
-
-A self-improving skill for AI coding agents (Claude Code, Cursor, AGENTS.md): recognize a hard-won golden path in a session and harvest it into a reusable skill/rule for next time.
-
-```bash
-cue skills add Kulaxyz/self-learning-skills --profile core
 ```
 
 ---
@@ -766,6 +756,19 @@ SkillSpec is a DSL that adds types, contracts, composition, and tests around age
 
 ```bash
 cue skills add e01n0/skillspec --profile core
+```
+
+---
+
+<a id="decksoftware-csreview"></a>
+## 🔹 [decksoftware/csreview](https://github.com/decksoftware/csreview)
+
+**★ 4** · potential (score 4.4) · JavaScript · tags: ai-agent-skill, code-review, sast, security, semgrep
+
+Development-time local workspace security alignment for AI coding agents
+
+```bash
+cue skills add decksoftware/csreview --profile core
 ```
 
 ---
@@ -786,25 +789,12 @@ cue skills add kirinchen/porthole --profile core
 <a id="lvusyy-claude-history-migrate"></a>
 ## 🔹 [lvusyy/claude-history-migrate](https://github.com/lvusyy/claude-history-migrate)
 
-**★ 1** · potential (score 4.1) · JavaScript
+**★ 1** · potential (score 4) · JavaScript
 
 Migrate Claude Code conversation history & memory across machines — fixes the /resume entrypoint filter, project-path encoding, and cwd remapping.
 
 ```bash
 cue skills add lvusyy/claude-history-migrate --profile core
-```
-
----
-
-<a id="lilymaung-planb-agent"></a>
-## 🔹 [lilyMaung/PlanB-Agent](https://github.com/lilyMaung/PlanB-Agent)
-
-**★ 1** · potential (score 3.1) · Python
-
-Plan B is a two-agent system that helps people find a real, verified path forward when a plan falls through. One agent (built on Fetch.ai) understands the situation using Claude; the other searches the live web through, verifies a real way to act exists via Browserbase, and drafts a ready-to-send outreach message.
-
-```bash
-cue skills add lilyMaung/PlanB-Agent --profile core
 ```
 
 ---
@@ -818,6 +808,19 @@ cue skills add lilyMaung/PlanB-Agent --profile core
 
 ```bash
 cue skills add ckanthony/Chisel --profile core
+```
+
+---
+
+<a id="lilymaung-planb-agent"></a>
+## 🔹 [lilyMaung/PlanB-Agent](https://github.com/lilyMaung/PlanB-Agent)
+
+**★ 1** · potential (score 3) · Python
+
+Plan B is a two-agent system that helps people find a real, verified path forward when a plan falls through. One agent (built on Fetch.ai) understands the situation using Claude; the other searches the live web through, verifies a real way to act exists via Browserbase, and drafts a ready-to-send outreach message.
+
+```bash
+cue skills add lilyMaung/PlanB-Agent --profile core
 ```
 
 ---

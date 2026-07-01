@@ -2,7 +2,7 @@
 title: "e01n0/skillspec — Claude Code skill discovered by cue"
 description: "SkillSpec is a DSL that adds types, contracts, composition, and tests around agent skills, then compiles back down to the same SKILL.md that existing runtimes a"
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 

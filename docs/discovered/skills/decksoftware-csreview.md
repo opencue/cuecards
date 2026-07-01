@@ -2,19 +2,19 @@
 title: "decksoftware/csreview — Claude Code skill discovered by cue"
 description: "Development-time local workspace security alignment for AI coding agents"
 layout: page
-updated: 2026-06-29
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [decksoftware/csreview](https://github.com/decksoftware/csreview)
 
-**★ 4** · potential (score 4.5) · JavaScript · ai-agent-skill, code-review, sast, security, semgrep
+**★ 4** · potential (score 4.4) · JavaScript · ai-agent-skill, code-review, sast, security, semgrep
 
 > Development-time local workspace security alignment for AI coding agents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.4 based on:
 - ⭐ 4 stars
 - 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: ai-agent-skill, code-review, sast, security, semgrep

@@ -2,21 +2,21 @@
 title: "cbcoutinho/nextcloud-mcp-server — Claude Code skill discovered by cue"
 description: "Nextcloud MCP Server"
 layout: page
-updated: 2026-06-22
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [cbcoutinho/nextcloud-mcp-server](https://github.com/cbcoutinho/nextcloud-mcp-server)
 
-**★ 277** · exceptional (score 13.9) · Python · mcp-server, model-context-protocol, nextcloud, nextcloud-deck, nextcloud-notes
+**★ 288** · exceptional (score 13.9) · Python · mcp-server, model-context-protocol, nextcloud, nextcloud-deck, nextcloud-notes
 
 > Nextcloud MCP Server
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
-- ⭐ 277 stars
-- 🗓️ Last pushed: 2026-06-22
+- ⭐ 288 stars
+- 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: mcp-server, model-context-protocol, nextcloud, nextcloud-deck, nextcloud-notes, rag
 
 ## Best fit cue profiles

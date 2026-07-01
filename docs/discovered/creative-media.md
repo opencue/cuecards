@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
+
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+
+```bash
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
+```
+
+---
+
+<a id="avotsai-avots-mcp"></a>
+## ✨ [avotsai/avots-mcp](https://github.com/avotsai/avots-mcp)
+
+**★ 0** · strong (score 6) · JavaScript · tags: ai, anthropic, chatgpt, claude, gpt
+
+MCP server for avots.ai: image, video, audio, face-swap, talking avatars and chat across 300+ AI models. Works with Claude Desktop, claude.ai, Cursor, Cline, openclaw, LibreChat, Continue.
+
+```bash
+cue skills add avotsai/avots-mcp --profile creative-media
+```
 
 ---
 

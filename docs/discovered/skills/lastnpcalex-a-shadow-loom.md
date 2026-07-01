@@ -2,19 +2,19 @@
 title: "lastnpcalex/a-shadow-loom — Claude Code skill discovered by cue"
 description: "A self-hosted web interface for branching AI conversations across Claude Code, Gemini CLI, and local Ollama models — and for handing off between them mid-conver"
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [lastnpcalex/a-shadow-loom](https://github.com/lastnpcalex/a-shadow-loom)
 
-**★ 1** · potential (score 4.8) · Python
+**★ 1** · potential (score 4.7) · Python
 
 > A self-hosted web interface for branching AI conversations across Claude Code, Gemini CLI, and local Ollama models — and for handing off between them mid-conversation. Every conversation is a tree — branch, fork, regenerate, and full-text search across every path without losing anything.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-29
 - 🏷️ Tags: (none)

@@ -2,19 +2,19 @@
 title: "ynwelc/ppt-resume-skill — Claude Code skill discovered by cue"
 description: "🌌 An AI-agent Skill for generating stunning, high-fidelity, interactive space-themed presentation resumes and  portfolio websites (single-file HTML) from scrat"
 layout: page
-updated: 2026-06-29
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ynwelc/ppt-resume-skill](https://github.com/ynwelc/ppt-resume-skill)
 
-**★ 0** · exceptional (score 8.6) · HTML · ai-agent-skill, custom-skills, interactive-cv, portfolio-website, presentation-resume
+**★ 0** · exceptional (score 8.5) · HTML · ai-agent-skill, custom-skills, interactive-cv, portfolio-website, presentation-resume
 
 > 🌌 An AI-agent Skill for generating stunning, high-fidelity, interactive space-themed presentation resumes and  portfolio websites (single-file HTML) from scratch.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-06-20

@@ -1,23 +1,23 @@
 ---
 title: "ken-jo/agent-connector — Claude Code skill discovered by cue"
-description: "Write your MCP server + lifecycle hooks once, deploy to 35 AI-agent platforms — Claude Code, Codex, Cursor, Gemini, Copilot, OpenCode, Warp, Zed & more — from o"
+description: "Deploy one MCP to every agent CLI. Write your server + hooks once with defineConnector() → native config, plugin & marketplace across 42 agent CLIs (Claude Code"
 layout: page
-updated: 2026-06-22
+updated: 2026-07-01
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [ken-jo/agent-connector](https://github.com/ken-jo/agent-connector)
 
-**★ 1** · exceptional (score 9.8) · TypeScript · ai-agent, ai-agents, claude-code, cli, codex
+**★ 5** · exceptional (score 8.4) · TypeScript · agent-cli, ai-agents, claude-code, cli, codex
 
-> Write your MCP server + lifecycle hooks once, deploy to 35 AI-agent platforms — Claude Code, Codex, Cursor, Gemini, Copilot, OpenCode, Warp, Zed & more — from one defineConnector() API. Renders native config for every host (MCP · hooks · commands · skills) with built-in per-tool token telemetry.
+> Deploy one MCP to every agent CLI. Write your server + hooks once with defineConnector() → native config, plugin & marketplace across 42 agent CLIs (Claude Code, Codex, Cursor, Copilot, Gemini, OpenCode, Warp, Zed…). Built-in per-tool token telemetry. Apache-2.0.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-22
-- 🏷️ Tags: ai-agent, ai-agents, claude-code, cli, codex, cursor, developer-tools, gemini-cli, github-copilot, hooks, llm, llm-tools, mcp, mcp-server, middleware, model-context-protocol, opencode, telemetry, token-usage, typescript
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-07-01
+- 🏷️ Tags: agent-cli, ai-agents, claude-code, cli, codex, cursor, developer-tools, gemini-cli, github-copilot, hooks, llm, llm-tools, mcp, mcp-server, middleware, model-context-protocol, opencode, telemetry, token-usage, typescript
 
 ## Best fit cue profiles
 

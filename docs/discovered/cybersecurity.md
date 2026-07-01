@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="7onez-cti-expert"></a>
-## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
-
-**★ 225** · exceptional (score 20.1) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
-
-CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required.
-
-✅ SKILL.md
-
-```bash
-cue skills add 7onez/cti-expert --profile cybersecurity
-```
 
 ---
 
@@ -45,10 +30,25 @@ cue skills add Zandereins/hydra --profile cybersecurity
 
 ---
 
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+
+**★ 3** · exceptional (score 15.1) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
 <a id="x-glacier-kali-pentest"></a>
 ## 💎 [x-glacier/kali-pentest](https://github.com/x-glacier/kali-pentest)
 
-**★ 55** · exceptional (score 13.3) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
+**★ 56** · exceptional (score 13.2) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
 
 Kali Linux penetration testing skill for AI agents (Claude Code, OpenClaw, Hermes Agent). 200+ CLI tools, 15 scenario playbooks. Autonomously plans attack paths, selects tools, and integrates results across phases to adapt the penetration strategy — with human approval gates for high-risk actions.
 
@@ -73,25 +73,10 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 
 ---
 
-<a id="myusufyilmaz-gatekept"></a>
-## 💎 [myusufyilmaz/gatekept](https://github.com/myusufyilmaz/gatekept)
-
-**★ 0** · exceptional (score 12) · Shell · tags: amos-stealer, antivirus, bash, claude-code, claude-skill
-
-Free macOS security audit & malware scanner — catches fake, cracked & tampered apps signature antivirus misses (codesign/spctl). Detects AMOS/Atomic Stealer, ClickFix & BTM persistence. CLI + Claude Code & OpenAI Codex skill. MIT.
-
-✅ SKILL.md
-
-```bash
-cue skills add myusufyilmaz/gatekept --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1863** · exceptional (score 11.5) · Python · tags: agentskills, claude, skills
+**★ 1867** · exceptional (score 11.4) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -114,10 +99,23 @@ cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 
 ---
 
+<a id="gabrielcoghi-rgb-spectre-graph"></a>
+## ✨ [gabrielcoghi-rgb/spectre-graph](https://github.com/gabrielcoghi-rgb/spectre-graph)
+
+**★ 1** · strong (score 5.8) · HTML · tags: ai-agents, ai-plugin, automation, mcp, mcp-server
+
+Spectre AI 2026: Next-Gen OSINT Engine & Autonomous Graph Disambiguation Toolkit
+
+```bash
+cue skills add gabrielcoghi-rgb/spectre-graph --profile cybersecurity
+```
+
+---
+
 <a id="gesh75-argus"></a>
 ## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 1** · strong (score 5.3) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 1** · strong (score 5.2) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
 Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 

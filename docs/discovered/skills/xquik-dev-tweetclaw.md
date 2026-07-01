@@ -2,21 +2,21 @@
 title: "Xquik-dev/tweetclaw — Claude Code skill discovered by cue"
 description: "OpenClaw plugin to search tweets, search replies, post tweets, export followers, manage media, monitor X/Twitter, and run giveaway draws via Xquik."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [Xquik-dev/tweetclaw](https://github.com/Xquik-dev/tweetclaw)
 
-**★ 81** · exceptional (score 12.2) · TypeScript · ai-agent, automation, clawhub, context7, data-extraction
+**★ 82** · exceptional (score 12.2) · TypeScript · ai-agent, automation, clawhub, context7, data-extraction
 
 > OpenClaw plugin to search tweets, search replies, post tweets, export followers, manage media, monitor X/Twitter, and run giveaway draws via Xquik.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
-- ⭐ 81 stars
-- 🗓️ Last pushed: 2026-06-30
+- ⭐ 82 stars
+- 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: ai-agent, automation, clawhub, context7, data-extraction, giveaway, mcp, mcp-server, openclaw, openclaw-plugin, pay-per-use, skills, social-media, tweetclaw, twitter, twitter-api, twitter-automation, x, x-api, xquik
 
 ## Best fit cue profiles

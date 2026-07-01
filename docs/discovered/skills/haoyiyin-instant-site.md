@@ -2,19 +2,19 @@
 title: "haoyiyin/instant-site — Claude Code skill discovered by cue"
 description: "Agent skill for building, deploying, and operating foreign trade independent sites — from-zero generation, Cloudflare Pages, content ops, SEO, multi-language. C"
 layout: page
-updated: 2026-06-29
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [haoyiyin/instant-site](https://github.com/haoyiyin/instant-site)
 
-**★ 6** · exceptional (score 16.4) · JavaScript · agent-skill, ai-agent-skill, ai-agents, automation, claude-code
+**★ 6** · exceptional (score 16.3) · JavaScript · agent-skill, ai-agent-skill, ai-agents, automation, claude-code
 
 > Agent skill for building, deploying, and operating foreign trade independent sites — from-zero generation, Cloudflare Pages, content ops, SEO, multi-language. Compatible with any AI agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 6 stars
 - 🗓️ Last pushed: 2026-06-27

@@ -2,19 +2,19 @@
 title: "haoyiyin/vision-framework-skill — Claude Code skill discovered by cue"
 description: "macOS Vision Framework agent skill — on-device OCR, face/human/animal detection, image classification, barcode reading, body pose estimation. Compatible with Cl"
 layout: page
-updated: 2026-06-29
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [haoyiyin/vision-framework-skill](https://github.com/haoyiyin/vision-framework-skill)
 
-**★ 0** · exceptional (score 14.4) · Swift · agent-skill, ai-agent, ai-agent-skill, claude-code, computer-vision
+**★ 0** · exceptional (score 14.3) · Swift · agent-skill, ai-agent, ai-agent-skill, claude-code, computer-vision
 
 > macOS Vision Framework agent skill — on-device OCR, face/human/animal detection, image classification, barcode reading, body pose estimation. Compatible with Claude Code, OpenClaw, Hermes, Codex, Antigravity, and any agent framework.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-06-27

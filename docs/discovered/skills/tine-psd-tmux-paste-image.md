@@ -2,7 +2,7 @@
 title: "tine-psd/tmux-paste-image — Claude Code skill discovered by cue"
 description: "🐙 tmux-paste-image saves clipboard images as PNGs and pastes the file path into your tmux pane. It auto-detects xclip or wl-paste, and supports Claude Code."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-01
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-30
+- 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: alacritty, claude-code, cli-tools, clipboard, image-management, image-paste, screenshot, terminal-emulator, tmux, tmux-plugin, tmux-plugins, tpm, wayland, wl-paste, x11, xclip
 
 ## Best fit cue profiles
