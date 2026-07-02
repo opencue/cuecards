@@ -2,7 +2,7 @@
 title: "maludb/salvage-project — Claude Code skill discovered by cue"
 description: "Start over, simpler — recover the real requirements from a project that went down a bad path and rebuild on the simplest maintainable stack. A Claude Code plugi"
 layout: page
-updated: 2026-07-01
+updated: 2026-07-02
 tags: [claude-code, skill, core]
 ---
 

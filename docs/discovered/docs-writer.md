@@ -1,42 +1,57 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-01
+updated: 2026-07-02
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="ansirstudio-llm-wiki-distiller"></a>
+## 💎 [AnsirStudio/llm-wiki-distiller](https://github.com/AnsirStudio/llm-wiki-distiller)
 
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 0** · exceptional (score 12.5) · tags: ai-agent, claude-skill, distillation, knowledge-base, llm
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+An LLM-maintained personal markdown knowledge base — distill scattered material into a structured, interlinked, traceable 'second me'. A standalone, shareable Claude skill with four modes: quick, distill, review, search.
+
+✅ SKILL.md
 
 ```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
+cue skills add AnsirStudio/llm-wiki-distiller --profile docs-writer
 ```
 
 ---
 
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+<a id="cenmeow-markdown-new-skill"></a>
+## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
 
-**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
 
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
 
 ```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+cue skills add CenMeow/markdown-new-skill --profile docs-writer
+```
+
+---
+
+<a id="trip2g-trip2g"></a>
+## 💎 [trip2g/trip2g](https://github.com/trip2g/trip2g)
+
+**★ 18** · exceptional (score 9.3) · Go · tags: ai-agent-memory, cms, digital-garden, golang, knowledge-base
+
+Open-source MCP knowledge mesh - self-host your second brain, expose it to AI agents, federate with peers.
+
+```bash
+cue skills add trip2g/trip2g --profile docs-writer
 ```
 
 ---
@@ -50,6 +65,19 @@ Vault-native, accountable memory for Claude Code and MCP clients. Markdown is th
 
 ```bash
 cue skills add TheGoatPsy/mneme --profile docs-writer
+```
+
+---
+
+<a id="wlsdks-ontology-atlas"></a>
+## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
+
+**★ 4** · strong (score 6.4) · JavaScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
+
+Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
+
+```bash
+cue skills add wlsdks/ontology-atlas --profile docs-writer
 ```
 
 ---

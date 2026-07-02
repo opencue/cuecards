@@ -2,22 +2,22 @@
 title: "mars-tw/tower-defense-skill — Claude Code skill discovered by cue"
 description: "純原生（零依賴）Canvas 2D 無盡塔防遊戲的 Claude Code Skill：守護女神核心、多種砲塔升級、元素克制、Boss 波次，整合 Grok 生成美術。"
 layout: page
-updated: 2026-06-26
+updated: 2026-07-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mars-tw/tower-defense-skill](https://github.com/mars-tw/tower-defense-skill)
 
-**★ 0** · exceptional (score 13) · JavaScript · canvas-game, claude-code, claude-skill, game, html5-game
+**★ 1** · exceptional (score 13.3) · JavaScript · canvas-game, claude-code, claude-skill, game, html5-game
 
 > 純原生（零依賴）Canvas 2D 無盡塔防遊戲的 Claude Code Skill：守護女神核心、多種砲塔升級、元素克制、Boss 波次，整合 Grok 生成美術。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-26
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-02
 - 🏷️ Tags: canvas-game, claude-code, claude-skill, game, html5-game, tower-defense, vanilla-js, zero-dependency
 
 ## Best fit cue profiles

@@ -2,20 +2,20 @@
 title: "wlsdks/ontology-atlas — Claude Code skill discovered by cue"
 description: "Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-02
 tags: [claude-code, skill, docs-writer]
 ---
 
 # ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
 
-**★ 2** · strong (score 6.3) · JavaScript · ai-agents, claude-code, codebase, cursor, frontmatter
+**★ 4** · strong (score 6.4) · JavaScript · ai-agents, claude-code, codebase, cursor, frontmatter
 
 > Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
+- ⭐ 4 stars
 - 🗓️ Last pushed: 2026-06-24
 - 🏷️ Tags: ai-agents, claude-code, codebase, cursor, frontmatter, knowledge-graph, local-first, markdown, mcp, model-context-protocol, nextjs, obsidian, ontology, vault
 

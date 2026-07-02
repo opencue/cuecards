@@ -2,7 +2,7 @@
 title: "lilyMaung/PlanB-Agent — Claude Code skill discovered by cue"
 description: "Plan B is a two-agent system that helps people find a real, verified path forward when a plan falls through. One agent (built on Fetch.ai) understands the situa"
 layout: page
-updated: 2026-07-01
+updated: 2026-07-02
 tags: [claude-code, skill, core]
 ---
 

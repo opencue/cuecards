@@ -2,22 +2,22 @@
 title: "googlarz/health-skill — Claude Code skill discovered by cue"
 description: "A health workspace and longevity companion for Claude — connects your labs, training, sleep, and family history so every conversation builds on the last."
 layout: page
-updated: 2026-06-05
+updated: 2026-07-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [googlarz/health-skill](https://github.com/googlarz/health-skill)
 
-**★ 5** · exceptional (score 14) · Python · anthropic, care-navigation, claude, claude-code, claude-code-skill
+**★ 6** · exceptional (score 15.6) · Python · anthropic, care-navigation, claude, claude-code, claude-code-skill
 
 > A health workspace and longevity companion for Claude — connects your labs, training, sleep, and family history so every conversation builds on the last.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-05
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-07-02
 - 🏷️ Tags: anthropic, care-navigation, claude, claude-code, claude-code-skill, family-health, health, local-first, longevity, productivity, wearables
 
 ## Best fit cue profiles

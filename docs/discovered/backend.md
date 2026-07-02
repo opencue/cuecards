@@ -1,161 +1,81 @@
 ---
 title: "Claude Code Skills for backend"
-description: "16 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-01
+updated: 2026-07-02
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 16 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="mistertechie06-x402-payments-skill"></a>
+## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
 
-**★ 194733** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add mistertechie06/x402-payments-skill --profile backend
 ```
 
 ---
 
-<a id="crbnos-carbon"></a>
-## 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
+<a id="ken12ken-claw-recall"></a>
+## 💎 [ken12ken/claw-recall](https://github.com/ken12ken/claw-recall)
 
-**★ 2236** · exceptional (score 14) · TypeScript · tags: agentic-platform, assemblyline, business, erp, lean
+**★ 0** · exceptional (score 10) · tags: ai-agents, claude-code, conversation-history, fts5, mcp
 
-Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, and configure to order manufacturing.
+Store and search AI agent conversations to recover lost context and improve memory persistence in multi-agent workflows.
 
 ```bash
-cue skills add crbnos/carbon --profile backend
+cue skills add ken12ken/claw-recall --profile backend
 ```
 
 ---
 
-<a id="rheosoph-flow-like"></a>
-## 💎 [Rheosoph/flow-like](https://github.com/Rheosoph/flow-like)
+<a id="harindukavishka-agentify"></a>
+## 💎 [harindukavishka/agentify](https://github.com/harindukavishka/agentify)
 
-**★ 907** · exceptional (score 13) · TypeScript · tags: agents, ai, apis, automation, data-flow
+**★ 4** · exceptional (score 8.3) · TypeScript · tags: agentic-framework, agentify, ai, ai-agents, aistudio
 
-Flow-Like: Strongly Typed Enterprise Scale Workflows. Built for scalability, speed, seamless AI integration and rich customization.
+Convert OpenAPI specs into nine standard AI agent interfaces to integrate your API with various agent frameworks efficiently.
 
 ```bash
-cue skills add Rheosoph/flow-like --profile backend
+cue skills add harindukavishka/agentify --profile backend
 ```
 
 ---
 
-<a id="devantler-tech-ksail"></a>
-## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
+<a id="moep90-agent-toolkit-for-kapitan"></a>
+## 💎 [Moep90/agent-toolkit-for-kapitan](https://github.com/Moep90/agent-toolkit-for-kapitan)
 
-**★ 149** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
+**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agent, claude, configuration-management, devops
 
-All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
+AI agent toolkit for Kapitan: an MCP server, agent skills, and rules that let LLM coding agents inspect, compile, and diff Kapitan projects safely.
 
 ```bash
-cue skills add devantler-tech/ksail --profile backend
+cue skills add Moep90/agent-toolkit-for-kapitan --profile backend
 ```
 
 ---
 
-<a id="xquik-dev-tweetclaw"></a>
-## 💎 [Xquik-dev/tweetclaw](https://github.com/Xquik-dev/tweetclaw)
+<a id="phaja-semantic-search-project"></a>
+## ✨ [Phaja/semantic-search-project](https://github.com/Phaja/semantic-search-project)
 
-**★ 82** · exceptional (score 12.2) · TypeScript · tags: ai-agent, automation, clawhub, context7, data-extraction
+**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, cli-tool, coding-agent, confluence-integration
 
-OpenClaw plugin to search tweets, search replies, post tweets, export followers, manage media, monitor X/Twitter, and run giveaway draws via Xquik.
-
-```bash
-cue skills add Xquik-dev/tweetclaw --profile backend
-```
-
----
-
-<a id="chronoaiproject-nyxid"></a>
-## 💎 [ChronoAIProject/NyxID](https://github.com/ChronoAIProject/NyxID)
-
-**★ 31** · exceptional (score 12.1) · Rust · tags: ai-agents, api-gateway, claude-code, codex, credential-management
-
-Connect AI agents to any API, anywhere. Securely. Open-source gateway that proxies requests, injects credentials automatically, punches through NAT to reach localhost services, and wraps REST APIs as MCP tools. Per-agent isolation. Never expose a raw key.
+Deliver fast, scalable semantic search using vector embeddings and cluster-aware caching for efficient, context-based text retrieval.
 
 ```bash
-cue skills add ChronoAIProject/NyxID --profile backend
-```
-
----
-
-<a id="sendmux-sendmux-sdk"></a>
-## 💎 [Sendmux/sendmux-sdk](https://github.com/Sendmux/sendmux-sdk)
-
-**★ 109** · exceptional (score 11.4) · PHP · tags: cli, cli-tool, email, email-automation, email-marketing
-
-Official monorepo of SDKs, CLI, and MCP servers for Sendmux email APIs across TypeScript, Python, Go, PHP, Rust, and Ruby.
-
-```bash
-cue skills add Sendmux/sendmux-sdk --profile backend
-```
-
----
-
-<a id="chedong-phpman"></a>
-## 💎 [chedong/phpman](https://github.com/chedong/phpman)
-
-**★ 1** · exceptional (score 11.3) · PHP · tags: json-api, linux-commands, linux-man-pages, markdown, mcp-server
-
-php manual: Man Page / Perldoc / Info / Pydoc / Ri Page Web Interface  with JSON Markdown & MCP Server
-
-✅ SKILL.md
-
-```bash
-cue skills add chedong/phpman --profile backend
-```
-
----
-
-<a id="ken-jo-agent-connector"></a>
-## 💎 [ken-jo/agent-connector](https://github.com/ken-jo/agent-connector)
-
-**★ 5** · exceptional (score 8.4) · TypeScript · tags: agent-cli, ai-agents, claude-code, cli, codex
-
-Deploy one MCP to every agent CLI. Write your server + hooks once with defineConnector() → native config, plugin & marketplace across 42 agent CLIs (Claude Code, Codex, Cursor, Copilot, Gemini, OpenCode, Warp, Zed…). Built-in per-tool token telemetry. Apache-2.0.
-
-```bash
-cue skills add ken-jo/agent-connector --profile backend
-```
-
----
-
-<a id="lh8ppl-claude-memory-kit"></a>
-## 💎 [LH8PPL/claude-memory-kit](https://github.com/LH8PPL/claude-memory-kit)
-
-**★ 2** · exceptional (score 8) · JavaScript · tags: agent-memory, ai-agents, ai-memory, anthropic, claude
-
-Persistent per-project memory for Claude Code & Kiro — plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled by meaning (local semantic search, zero API). Cross-project persona, cited recall, searchable session history.
-
-```bash
-cue skills add LH8PPL/claude-memory-kit --profile backend
-```
-
----
-
-<a id="cammac-creator-ibanforge"></a>
-## ✨ [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
-
-**★ 0** · strong (score 7.5) · TypeScript · tags: ai-agents, api, banking, bic, compliance
-
-IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents
-
-```bash
-cue skills add cammac-creator/ibanforge --profile backend
+cue skills add Phaja/semantic-search-project --profile backend
 ```
 
 ---
@@ -163,25 +83,12 @@ cue skills add cammac-creator/ibanforge --profile backend
 <a id="alex-jb-bilingual-content-sync-agent"></a>
 ## ✨ [alex-jb/bilingual-content-sync-agent](https://github.com/alex-jb/bilingual-content-sync-agent)
 
-**★ 2** · strong (score 6.5) · Python · tags: batch-api, chinese, claude, english, i18n
+**★ 2** · strong (score 6.4) · Python · tags: batch-api, chinese, claude, english, i18n
 
 🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT.
 
 ```bash
 cue skills add alex-jb/bilingual-content-sync-agent --profile backend
-```
-
----
-
-<a id="secure-ssid-centralmcp"></a>
-## ✨ [secure-ssid/centralmcp](https://github.com/secure-ssid/centralmcp)
-
-**★ 1** · strong (score 6.3) · Python · tags: ai-for-networking, apstra, aruba-api, aruba-central, aruba-networking
-
-Low-token HPE Networking MCP server: Aruba Central, HPE GreenLake, 286 FastMCP tools, setup wizard, embedded RAG/OpenAPI, optional ClearPass/Mist/Apstra/AOS8/EdgeConnect.
-
-```bash
-cue skills add secure-ssid/centralmcp --profile backend
 ```
 
 ---
@@ -195,19 +102,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="mugetsu44-44-mcp-gateway-orchestrator"></a>
-## ✨ [Mugetsu44-44/mcp-gateway-orchestrator](https://github.com/Mugetsu44-44/mcp-gateway-orchestrator)
-
-**★ 0** · strong (score 5.5) · HTML · tags: a2a, a2a-mcp, acp, agent, ai
-
-Enterprise AI Guardrails 2026 🛡️ - MCP Security & Orchestration Toolkit
-
-```bash
-cue skills add Mugetsu44-44/mcp-gateway-orchestrator --profile backend
 ```
 
 ---

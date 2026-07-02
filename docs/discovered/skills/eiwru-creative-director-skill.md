@@ -2,7 +2,7 @@
 title: "eiwru/creative-director-skill — Claude Code skill discovered by cue"
 description: "Generate advertising concepts, score them with industry criteria, and refine ideas using proven creative director methods."
 layout: page
-updated: 2026-06-28
+updated: 2026-07-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-28
+- 🗓️ Last pushed: 2026-07-02
 - 🏷️ Tags: advertising, agent-skill, ai-agent, ai-creative, brainstorming, cannes-lions, claude-code, claude-skill, creative-director, cursor, gemini-cli, ideation, marketing, prompt-engineering, triz
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "riffkit/skill — Claude Code skill discovered by cue"
 description: "Official Riffkit skill — riff a winning TikTok into your own short video from your AI agent (Claude Code, Cursor) or the browser. Riff the formula, not the vide"
 layout: page
-updated: 2026-07-01
+updated: 2026-07-02
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-01
+- 🗓️ Last pushed: 2026-07-02
 - 🏷️ Tags: agent-skill, ai-video, claude-code, claude-skill, mcp, riffkit, tiktok, ugc, video-generation
 
 ## Best fit cue profiles
