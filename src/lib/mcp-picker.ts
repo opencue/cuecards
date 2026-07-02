@@ -33,6 +33,14 @@ export interface McpPickInput {
   pinned: Set<string>;
   /** Lowercased mcpId -> who needs it. From getNeededMcps(). */
   needed: Map<string, { skills: string[]; source: "explicit" | "implicit" }>;
+  /**
+   * Lowercased ids to render UNCHECKED initially — the remembered disable-list
+   * from a previous review. When provided it takes over the initial checkbox
+   * state entirely (both the default-on rule and DEFAULT_OFF_MCPS), so
+   * re-opening the picker shows the user's last choice instead of resetting to
+   * defaults. Groups/hints are unaffected.
+   */
+  initialDisabled?: Set<string>;
 }
 
 const MESSAGE = "MCP servers to load";
@@ -144,19 +152,24 @@ export function buildMcpRows(input: McpPickInput): { prunable: McpRow[]; pinnedI
     }
     const need = input.needed.get(key);
     const group: McpRow["group"] = need !== undefined ? "used" : "unused";
+    // A remembered disable-list (re-review flow) owns the initial state; the
+    // defaults below only apply on a first, un-remembered review.
+    const remembered = input.initialDisabled;
     // Curated default-off MCPs start unchecked regardless of group; their reason
     // becomes "off by default" so the empty box reads as intentional, not a bug.
     if (DEFAULT_OFF_MCPS.has(key)) {
-      prunable.push({ id, preselect: false, group, hint: "off by default" });
+      const preselect = remembered !== undefined && !remembered.has(key);
+      prunable.push({ id, preselect, group, hint: "off by default" });
       continue;
     }
+    const preselect = remembered === undefined || !remembered.has(key);
     if (need !== undefined) {
       // Compact reason: lead skill + "+N" so it never wraps the aligned column.
       const [first, ...rest] = need.skills;
       const hint = rest.length > 0 ? `${first} +${rest.length}` : (first ?? "");
-      prunable.push({ id, preselect: true, group: "used", hint });
+      prunable.push({ id, preselect, group: "used", hint });
     } else {
-      prunable.push({ id, preselect: true, group: "unused", hint: "no active skill references it" });
+      prunable.push({ id, preselect, group: "unused", hint: "no active skill references it" });
     }
   }
 

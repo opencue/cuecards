@@ -1,7 +1,8 @@
 /**
  * credentials-sync — heal OAuth refresh-token rotation desync between an
  * authmux account snapshot (`~/.claude-accounts/<name>/.credentials.json`)
- * and the per-profile cue runtimes (`~/.config/cue/runtime/<profile>/claude/`).
+ * and the cue runtimes (`~/.config/cue/runtime/<key>/claude/`, where `<key>` is
+ * `<profile>` or, for an authmux account launch, `<profile>@<account>`).
  *
  * The problem
  * -----------
@@ -16,9 +17,10 @@
  * The fix
  * -------
  * Before materialization, scan the source dir + every existing runtime
- * `<profile>/claude/.credentials.json` belonging to the same `accountUuid`,
- * pick the one with the highest `expiresAt`, and copy it back to the source
- * so the materializer's overlay step sees fresh tokens.
+ * `<key>/claude/.credentials.json` (`<key>` = `<profile>` or `<profile>@<account>`)
+ * belonging to the same `accountUuid`, pick the one with the highest `expiresAt`,
+ * and copy it back to the source so the materializer's overlay step sees fresh
+ * tokens.
  *
  * Pure surface — caller injects fs-rooted paths so this is testable without
  * touching `~/`.
@@ -87,7 +89,8 @@ async function readCredentials(dir: string): Promise<FreshestCandidate | undefin
 }
 
 /**
- * Walk `<runtimeRoot>/<profile>/claude/` for every existing profile and
+ * Walk `<runtimeRoot>/<key>/claude/` for every existing runtime entry (`<key>`
+ * is `<profile>` or, for an authmux account launch, `<profile>@<account>`) and
  * collect candidates whose `accountUuid` matches `targetUuid`.
  *
  * Strictness rules (keep these — they prevent cross-account contamination):

@@ -55,6 +55,10 @@ export const COMMANDS = {
     summary: "Resolve+materialize a profile then exec claude/codex (hot path)",
     load: () => import("./launch"),
   },
+  loadout: {
+    summary: "Inspect/edit the project's skill loadout (keep/defer/on/off/reset)",
+    load: () => import("./loadout"),
+  },
   install: {
     summary: "Prepare profile runtimes and optionally install required CLIs",
     load: () => import("./install"),
