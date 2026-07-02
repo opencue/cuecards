@@ -181,6 +181,25 @@ The detection compares `realpath(CLAUDE_CONFIG_DIR)` against
 `realpath($HOME/.claude)` — so trailing slashes and symlinks don't accidentally
 trigger account-alias mode.
 
+## Project loadout (skill filtering)
+
+On profiles with ≥ 25 local skills, launch classifies each skill against the
+project's signals (nested `package.json` dependencies, framework/tool markers
+from `project-scanner`, plus the skill ref's `when:` condition) and
+materializes only the matching **full** set. The rest are **deferred**:
+excluded from the skills dir — which removes their always-on frontmatter
+cost — but listed in one generated `cue-deferred-skills` index skill the agent
+can consult to Read any deferred skill's real SKILL.md on demand.
+
+The split persists per project in `~/.config/cue/loadouts.json` and is
+recomputed when the profile's skill set or the project's signals change.
+Because the MCP step runs after the loadout, skill→MCP `needed` sets — and
+the interactive MCP toggle's initial suggestion — become project-aware too.
+
+Controls: `--cue-full` (this launch loads everything), `CUE_LOADOUT=off`
+(disable globally), `cue loadout` (show), `cue loadout keep|defer <id…>`,
+`cue loadout on|off`, `cue loadout reset`.
+
 ## Bypass paths
 
 - `claude --cue-profile frontend` — skip resolve, use `frontend` directly.

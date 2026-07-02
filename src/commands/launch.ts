@@ -58,6 +58,8 @@ interface ParsedArgs {
   subset: string | null;
   /** `--cue-pick-mcps` — always re-open the MCP toggle, ignoring a remembered choice. */
   forcePickMcps: boolean;
+  /** `--cue-full` — skip the project loadout for this launch (materialize every skill). */
+  fullLoad: boolean;
   /** `--disable-mcp <id>` (repeatable) — drop these MCPs for THIS launch only
    *  (pinned ones excepted); session-scoped, not written as a remembered
    *  override. Persist a choice via the interactive picker / `--cue-pick-mcps`. */
@@ -77,6 +79,7 @@ function parse(args: string[]): ParsedArgs {
   let rematerialize = false;
   let subset: string | null = null;
   let forcePickMcps = false;
+  let fullLoad = false;
   const disableMcp: string[] = [];
   const passthrough: string[] = [];
 
@@ -90,6 +93,8 @@ function parse(args: string[]): ParsedArgs {
       forcePick = true;
     } else if (a === "--cue-pick-mcps") {
       forcePickMcps = true;
+    } else if (a === "--cue-full") {
+      fullLoad = true;
     } else if (a === "--disable-mcp") {
       const id = args[++i];
       if (id) disableMcp.push(id);
@@ -107,7 +112,7 @@ function parse(args: string[]): ParsedArgs {
   if (!subset && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
   }
-  return { agent, override, forcePick, forcePickMcps, disableMcp, dryRun, rematerialize, subset, passthrough };
+  return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, passthrough };
 }
 
 // ---------------------------------------------------------------------------
@@ -1266,21 +1271,19 @@ async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string>
   }
 }
 
+/**
+ * Find the real agent binary on PATH. Shims are detected by CONTENT (small
+ * script containing `cue launch`), never by skipping a directory wholesale:
+ * the native Claude installer puts the REAL binary in ~/.local/bin — the same
+ * dir cue's shim lives in — and the npm package no longer ships a `claude`
+ * bin, so a directory skip can leave zero candidates on a healthy machine.
+ * Pure PATH walk — launch deliberately ignores $CLAUDE_CODE_EXECPATH /
+ * $CUE_REAL_CLAUDE (those serve in-session helpers like `cue quick`), so the
+ * binary the user's PATH points at is the one that execs.
+ */
 async function findRealBinary(name: string): Promise<string | null> {
-  const shimDir = join(homedir(), ".local", "bin");
-  const pathEnv = process.env.PATH ?? "";
-  for (const dir of pathEnv.split(":")) {
-    if (resolve(dir) === resolve(shimDir)) continue;
-    const candidate = join(dir, name);
-    try {
-      const { stat } = await import("node:fs/promises");
-      const st = await stat(candidate);
-      if (st.isFile() && (st.mode & 0o111) !== 0) return candidate;
-    } catch {
-      // not in this dir
-    }
-  }
-  return null;
+  const { findRealAgentBin } = await import("../lib/claude-binary");
+  return findRealAgentBin(name);
 }
 
 /**
@@ -1317,12 +1320,12 @@ async function resolveClaudeCredentialsSource(): Promise<string> {
  * session lands in the account's CLAUDE_CONFIG_DIR immediately instead of
  * waiting for that account's next launch. Best-effort: never blocks launch.
  */
-async function rescueRuntimeCredsToOwner(profileName: string): Promise<void> {
+async function rescueRuntimeCredsToOwner(runtimeKey: string): Promise<void> {
   try {
     const { listKnownAccountDirs, rescueRuntimeCredentials } = await import("../lib/credentials-sync");
     // basename() pins the path inside the runtime tree — this helper WRITES
-    // token files, so a profile name with a path separator must not escape.
-    const runtimeClaudeDir = join(configDir(), "runtime", basename(profileName), "claude");
+    // token files, so a runtime key with a path separator must not escape.
+    const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
     const result = await rescueRuntimeCredentials(runtimeClaudeDir, await listKnownAccountDirs(homedir()));
     if (result.rescued) {
       process.stderr.write(`▸ cue: wrote login-fresh credentials back to ${result.to}\n`);
@@ -1330,6 +1333,38 @@ async function rescueRuntimeCredsToOwner(profileName: string): Promise<void> {
   } catch (err) {
     debug("launch:cred-rescue", err);
   }
+}
+
+/**
+ * When cue launches under an authmux parallel account, CLAUDE_CONFIG_DIR points
+ * at that account's dir (`~/.claude-accounts/<name>`) or its per-run session
+ * copy (`~/.claude-accounts-sessions/<name>/<ts>-<pid>`). Derive a stable
+ * per-account tag so the runtime dir can be keyed by profile + account. Without
+ * it, two accounts sharing a cue profile share ONE runtime `.credentials.json` /
+ * `.claude.json` and collapse into a single Anthropic login (the credential is
+ * copied, not symlinked, so the shared runtime is the source of truth). Returns
+ * undefined for the default `~/.claude` and any non-authmux config dir, which
+ * preserves the plain per-profile runtime.
+ */
+export function authmuxAccountTag(configDirEnv: string | undefined, homeDir: string): string | undefined {
+  if (!configDirEnv) return undefined;
+  const resolved = resolve(configDirEnv);
+  for (const root of [
+    join(homeDir, ".claude-accounts-sessions"),
+    join(homeDir, ".claude-accounts"),
+  ]) {
+    const prefix = root + sep;
+    if (resolved.startsWith(prefix)) {
+      const name = resolved.slice(prefix.length).split(sep)[0];
+      // Filesystem-safe, and can't inject the `profile@tag` separator or a path
+      // separator into the runtime dir name. LIMITATION: names differing only in
+      // non-`[A-Za-z0-9._-]` characters (e.g. `a@b` vs `a_b`) sanitize to the same
+      // tag and would share a runtime. authmux account names are simple, user-chosen
+      // ids (`parallel --add <name>`), so this is a theoretical edge, not a live risk.
+      if (name) return name.replace(/[^A-Za-z0-9._-]/g, "_");
+    }
+  }
+  return undefined;
 }
 
 // ---------------------------------------------------------------------------
@@ -1393,6 +1428,10 @@ export async function run(args: string[]): Promise<number> {
   // shown summary matches reality. We stash it here so the post-picker path
   // can reuse it instead of re-loading from disk.
   let cachedProfile: ResolvedProfile | undefined;
+  // True when the profile came from the interactive picker THIS launch. The
+  // MCP toggle re-opens in that flow (seeded with the remembered choice) so a
+  // pick-at-startup launch always offers MCP selection too.
+  let pickedProfileInteractively = false;
   if (resolved.source === "none") {
     if (!process.stdin.isTTY) {
       process.stderr.write(
@@ -1547,6 +1586,7 @@ export async function run(args: string[]): Promise<number> {
       },
     });
     profileName = picked.profile;
+    pickedProfileInteractively = true;
   } else {
     profileName = (resolved as { source: string; profile: string }).profile;
   }
@@ -1618,6 +1658,78 @@ export async function run(args: string[]): Promise<number> {
     ? await resolveClaudeCredentialsSource()
     : undefined;
 
+  // Per-account runtime isolation. When launched under an authmux parallel
+  // account, key the runtime dir by profile + account so account1/account2
+  // never share one `.credentials.json` and collapse into a single login.
+  // `profileName` still drives profile source, pins, MCP overrides, and
+  // telemetry — only the physical runtime path switches to `runtimeKey`.
+  const accountTag = agentKind === "claude-code"
+    ? authmuxAccountTag(ccd, homedir())
+    : undefined;
+  const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
+  if (accountTag) debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
+
+  // Pin dir: the directory holding the resolving `.cue.profile`, else cwd
+  // (a freshly-picked profile was just pinned to cwd). Keys both the project
+  // loadout and the remembered MCP override below.
+  const pinDir =
+    existingResolved.source === "pin-file"
+      ? dirname((existingResolved as { pinPath: string }).pinPath)
+      : cwd;
+
+  // ── Project loadout ───────────────────────────────────────────────────
+  // Project-aware skill loading: classify each local skill as full (project
+  // signals match — materialized as today) or deferred (excluded from the
+  // skills dir, which is what removes its always-on frontmatter cost, but
+  // listed in one generated index skill so it stays loadable on demand).
+  // Deterministic + remembered per pinDir; recomputed when the profile's
+  // skill set or the project's signals change. Runs BEFORE the MCP block so
+  // `needed` (skill→MCP dependencies) reflects only full skills, and before
+  // materialization so the runtime hash covers the filtered profile.
+  // Fail-open: any error keeps the full profile. Escapes: `--cue-full`
+  // (once), CUE_LOADOUT=off (globally), `cue loadout off` (this project).
+  let loadoutActive = false;
+  const loadoutEnvOff = ["off", "0", "false"].includes(
+    (process.env.CUE_LOADOUT ?? "").trim().toLowerCase(),
+  );
+  if (agentKind === "claude-code" && !parsed.fullLoad && !loadoutEnvOff) {
+    try {
+      const { applyProjectLoadout } = await import("../lib/project-loadout");
+      const { parseMetadataFromContent } = await import("./optimizer");
+      const { readFile: readSkillFile } = await import("node:fs/promises");
+      // Direct-path read (skills live at <root>/<category>/<slug>/SKILL.md);
+      // fuzzy-resolved ids just yield empty metadata — classification then
+      // falls back to id-token matching, and the index row omits the path.
+      const skillsRoot = join(
+        process.env.CUE_REPO_ROOT ?? resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+        "resources", "skills", "skills",
+      );
+      const result = await applyProjectLoadout({
+        profile,
+        cwd,
+        pinDir,
+        readSkill: async (id) => {
+          const path = join(skillsRoot, id, "SKILL.md");
+          const content = await readSkillFile(path, "utf8").catch(() => "");
+          if (!content) return { description: "", path: "" };
+          return { description: parseMetadataFromContent(content).description, path };
+        },
+      });
+      if (result) {
+        profile = result.profile;
+        loadoutActive = true;
+        const top = result.signals.slice(0, 4).join(", ");
+        process.stderr.write(
+          `[cue] loadout: ${result.full.length} skills full · ${result.deferred.length} deferred` +
+          (top ? ` (${top}${result.signals.length > 4 ? ", …" : ""})` : "") +
+          ` · --cue-full loads all · cue loadout to edit\n`,
+        );
+      }
+    } catch (err) {
+      debug("launch:loadout", err); // fail-open — full profile on any error
+    }
+  }
+
   // Skill conflict detection is opt-in via `cue skills conflicts` — the
   // regex-based detector produces too many false positives on natural-language
   // SKILL.md prose to be useful as an inline launch-time warning.
@@ -1625,7 +1737,7 @@ export async function run(args: string[]): Promise<number> {
   // --rematerialize: force rebuild by deleting the hash file first
   if (parsed.rematerialize) {
     const { rm: rmFile } = await import("node:fs/promises");
-    const hashPath = join(configDir(), "runtime", profileName, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
+    const hashPath = join(configDir(), "runtime", runtimeKey, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
     try { await rmFile(hashPath, { force: true }); } catch { /* ok */ }
   } else {
     // Auto-rematerialize on staleness: if profile.yaml is newer than the stored
@@ -1636,9 +1748,9 @@ export async function run(args: string[]): Promise<number> {
     // rebuild writes a fresh .cue-hash with a current mtime, so it won't loop.
     try {
       const { isRuntimeStale } = await import("../lib/runtime-materializer");
-      if (await isRuntimeStale(profileName, agentKind, join(configDir(), "runtime"))) {
+      if (await isRuntimeStale(profileName, agentKind, join(configDir(), "runtime"), runtimeKey)) {
         const { rm: rmFile } = await import("node:fs/promises");
-        const hashPath = join(configDir(), "runtime", profileName, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
+        const hashPath = join(configDir(), "runtime", runtimeKey, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
         try { await rmFile(hashPath, { force: true }); } catch { /* ok */ }
         process.stderr.write(`[cue] profile changed, rebuilding runtime...\n`);
       }
@@ -1669,12 +1781,6 @@ export async function run(args: string[]): Promise<number> {
       const pinned = new Set(profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()));
       const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
 
-      // Pin dir: the directory holding the resolving `.cue.profile`, else cwd
-      // (a freshly-picked profile was just pinned to cwd).
-      const pinDir =
-        existingResolved.source === "pin-file"
-          ? dirname((existingResolved as { pinPath: string }).pinPath)
-          : cwd;
       const keepNonPinned = (drop: Set<string>): Set<string> =>
         new Set(allMcpIds.filter((id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase())));
 
@@ -1710,23 +1816,49 @@ export async function run(args: string[]): Promise<number> {
         const overrideValid = override !== undefined && override.fingerprint === fingerprint;
         const interactive = process.stdin.isTTY === true && !parsed.dryRun;
 
-        if (interactive && (parsed.forcePickMcps || !overrideValid)) {
-          const { pickMcps } = await import("../lib/mcp-picker");
-          kept = await pickMcps({ profileMcpIds: allMcpIds, pinned, needed });
-          reviewed = kept !== null; // null = user cancelled → keep all, persist nothing
-        } else if (overrideValid) {
-          // Cross-check the remembered disable-list against what active skills
-          // now need: a skill added since the override was captured may need an
-          // MCP the user disabled. Re-enable those (honor the dependency) and
-          // say so, rather than silently starving the skill. The override is
-          // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
+        // Replay a remembered disable-list, cross-checked against what active
+        // skills now need: a skill added since the override was captured may
+        // need an MCP the user disabled. Re-enable those (honor the dependency)
+        // and say so, rather than silently starving the skill. The override is
+        // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
+        const applyRememberedOverride = (): Set<string> => {
           const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(override!.disabled, needed.keys());
           if (reEnabled.length > 0) {
             process.stderr.write(
               `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
             );
           }
-          kept = keepNonPinned(new Set(keepDisabled));
+          return keepNonPinned(new Set(keepDisabled));
+        };
+
+        // The toggle opens on --cue-pick-mcps, on any launch where the profile
+        // was just chosen in the interactive picker (so pick-at-startup flows
+        // always offer MCP selection), and when there's no valid remembered
+        // choice. A valid override seeds the checkboxes so this is a review of
+        // the last choice, not a reset to defaults.
+        if (interactive && (parsed.forcePickMcps || pickedProfileInteractively || !overrideValid)) {
+          const { pickMcps } = await import("../lib/mcp-picker");
+          // Initial checkbox state, best first: the remembered override (this
+          // is a re-review), else — when a loadout is active — the project-
+          // aware suggestion (unpinned MCPs no full skill needs start
+          // unchecked; Enter persists it as the normal override), else the
+          // picker's built-in defaults.
+          kept = await pickMcps({
+            profileMcpIds: allMcpIds,
+            pinned,
+            needed,
+            initialDisabled: overrideValid
+              ? new Set(override!.disabled.map((s) => s.toLowerCase()))
+              : loadoutActive
+                ? new Set(autoPrunableMcps(allMcpIds, pinned, needed.keys()))
+                : undefined,
+          });
+          reviewed = kept !== null; // null = user cancelled → persist nothing
+          // Cancelling the review must not silently re-enable everything when a
+          // remembered choice exists — fall back to it, same as a non-picking launch.
+          if (kept === null && overrideValid) kept = applyRememberedOverride();
+        } else if (overrideValid) {
+          kept = applyRememberedOverride();
         } else if (pruneMode !== "off") {
           // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
           // default. Self-contained: it sets mcpDisabledIds directly (so it can
@@ -1742,7 +1874,7 @@ export async function run(args: string[]): Promise<number> {
           //                  profile never calls). Removes config set globally.
           const universe = [...allMcpIds];
           if (pruneMode === "all") {
-            const rtClaudeJson = join(configDir(), "runtime", profileName, "claude", ".claude.json");
+            const rtClaudeJson = join(configDir(), "runtime", runtimeKey, "claude", ".claude.json");
             for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
               if (!universe.some((p) => p.toLowerCase() === id.toLowerCase())) universe.push(id);
             }
@@ -1846,7 +1978,7 @@ export async function run(args: string[]): Promise<number> {
           profile = { ...profile, skills: { ...profile.skills, local: profile.skills.local.filter((s) => keep.has(s.id)) } };
           // Force a rebuild so the smaller skill set actually lands on disk.
           const { rm: rmFile } = await import("node:fs/promises");
-          const hashPath = join(configDir(), "runtime", profileName, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
+          const hashPath = join(configDir(), "runtime", runtimeKey, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
           try { await rmFile(hashPath, { force: true }); } catch { /* ok */ }
         }
       } catch (err) {
@@ -1857,7 +1989,7 @@ export async function run(args: string[]): Promise<number> {
     // Rescue-before-wipe: if this runtime's credentials belong to a different
     // account than credentialsSource, the materializer's identity guard is
     // about to discard them — return them to their owning account dir first.
-    if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(profileName);
+    if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);
 
     // Promote npx skills to local via installed plugin marketplaces.
     // The materializer only symlinks profile.skills.local; npx refs are
@@ -1901,6 +2033,7 @@ export async function run(args: string[]): Promise<number> {
       profile: await applyWorkspaceOverrides(profile),
       agent: agentKind,
       runtimeRoot: join(configDir(), "runtime"),
+      runtimeKey,
       skillSourceLookup: (id) => {
         const npxPath = npxSkillMap.get(id);
         if (npxPath) return Promise.resolve(npxPath);
@@ -1930,7 +2063,7 @@ export async function run(args: string[]): Promise<number> {
     if (runtime.rebuilt) {
       try {
         const { existsSync, writeFileSync } = await import("node:fs");
-        const doctorFlag = join(configDir(), "runtime", profileName, ".doctor-done");
+        const doctorFlag = join(configDir(), "runtime", runtimeKey, ".doctor-done");
         if (!existsSync(doctorFlag)) {
           const lines = formatDoctorWarnings(warnings);
           if (lines.length > 0) {
@@ -2021,6 +2154,14 @@ export async function run(args: string[]): Promise<number> {
   // an isolated, SQLite-only store + its own worker/server ports so one profile's
   // memory never bleeds into another's. Best-effort — a failure here must never
   // block the launch. Opt out with CUE_CLAUDE_MEM_ISOLATE=0. See lib/claude-mem-env.ts.
+  //
+  // SCOPE NOTE: keyed by `profileName`, NOT `runtimeKey` — deliberately. The
+  // per-account runtime isolation above only splits credential/session state so
+  // authmux accounts don't collapse into one login. claude-mem memory stays
+  // shared across accounts on the same profile (re-keying it here would silently
+  // relocate every existing per-profile memory store). Two accounts running the
+  // SAME profile concurrently therefore still share one memory data dir + port
+  // slot; making memory per-account is a separate follow-up.
   try {
     const { resolveClaudeMemEnv } = await import("../lib/claude-mem-env");
     const memEnv = resolveClaudeMemEnv(profileName, { existingEnv: process.env });
@@ -2240,7 +2381,7 @@ export async function run(args: string[]): Promise<number> {
 
   const exitCode = await execAgent(realBin, parsed.passthrough, childEnv);
   // Persist any /login done inside the session to its account dir now —
-  // don't leave the only live rotated token stranded in the shared runtime.
-  if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(profileName);
+  // don't leave the only live rotated token stranded in the per-account runtime.
+  if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);
   return exitCode;
 }

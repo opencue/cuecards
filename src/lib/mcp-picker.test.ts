@@ -83,6 +83,34 @@ describe("buildMcpRows", () => {
     expect(hf.preselect).toBe(true);
     expect(hf.group).toBe("used");
   });
+
+  test("initialDisabled (remembered review) owns the initial state over all defaults", () => {
+    const { prunable } = buildMcpRows({
+      profileMcpIds: ["gbrain", "hostinger-api", "cue-tty-watch"],
+      pinned: new Set(),
+      needed,
+      initialDisabled: new Set(["gbrain"]),
+    });
+    // Remembered-off → unchecked, even though the default is on.
+    expect(prunable.find((r) => r.id === "gbrain")!.preselect).toBe(false);
+    // Not in the remembered disable-list → checked, even for a curated
+    // DEFAULT_OFF MCP (the user explicitly kept it in the last review).
+    expect(prunable.find((r) => r.id === "cue-tty-watch")!.preselect).toBe(true);
+    // Untouched default-on row stays on; hint/group unchanged.
+    const ha = prunable.find((r) => r.id === "hostinger-api")!;
+    expect(ha.preselect).toBe(true);
+    expect(ha.group).toBe("used");
+  });
+
+  test("initialDisabled matches case-insensitively", () => {
+    const { prunable } = buildMcpRows({
+      profileMcpIds: ["Higgsfield"],
+      pinned: new Set(),
+      needed: new Map(),
+      initialDisabled: new Set(["higgsfield"]),
+    });
+    expect(prunable[0].preselect).toBe(false);
+  });
 });
 
 describe("renderMcpFrame", () => {

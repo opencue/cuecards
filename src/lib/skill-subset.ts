@@ -31,8 +31,9 @@ import { parseMetadataFromContent } from "../commands/optimizer";
 
 // Skills that survive every subset filter. They're operational, not domain-
 // specific, and pruning them changes how the agent behaves more than it
-// changes what it can do.
-const ALWAYS_KEEP = new Set([
+// changes what it can do. Shared with project-loadout, which applies the
+// same "never defer the operational primitives" rule.
+export const ALWAYS_KEEP = new Set([
   "meta/analyze",
   "meta/cue-usage",
   "meta/acpx",

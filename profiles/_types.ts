@@ -170,6 +170,14 @@ export interface ResolvedMCP { id: string; agents?: AgentKind[]; pin?: boolean; 
 export interface ResolvedSkill { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 
+/**
+ * A skill the project loadout excluded from the runtime skills dir. The
+ * materializer renders these into one generated index skill
+ * (`cue-deferred-skills`) so the agent can still discover and load them on
+ * demand — deferral is "defer, not drop".
+ */
+export interface DeferredSkillEntry { id: string; description: string; path: string; }
+
 export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plugins"> {
   agents: AgentKind[];
   skills: {
@@ -193,6 +201,9 @@ export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plug
   conflicts: string[];
   inheritanceChain: string[];
   personaRouting: PersonaRoutingEntry[];
+  /** Set at launch by the project loadout; absent on a full load. Part of the
+   *  materializer content hash, so a loadout change rebuilds the runtime. */
+  deferredSkills?: DeferredSkillEntry[];
 }
 
 export interface LinkPlan {

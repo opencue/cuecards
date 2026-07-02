@@ -48,6 +48,12 @@ export interface MaterializeInput {
   profile: ResolvedProfile;
   agent: AgentKind;
   runtimeRoot: string;
+  /** Runtime dir key — defaults to `profile.name`. Set to `<profile>@<accountTag>`
+   *  so two authmux parallel accounts sharing a cue profile get isolated runtimes
+   *  (separate `.credentials.json`/`.claude.json`) instead of collapsing into one
+   *  Anthropic login. Only the physical runtime path changes; profile identity is
+   *  still `profile.name`. */
+  runtimeKey?: string;
   /** Map skill id → source dir on disk (caller resolves local/npx/plugin paths). */
   skillSourceLookup: (id: string) => Promise<string>;
   /** Pre-resolved sanitized MCP registry for this agent. */
@@ -100,8 +106,9 @@ export async function isRuntimeStale(
   profileName: string,
   agent: AgentKind,
   runtimeRoot: string,
+  runtimeKey: string = profileName,
 ): Promise<boolean> {
-  const runtimeDir = join(runtimeRoot, profileName, agentSubdir(agent));
+  const runtimeDir = join(runtimeRoot, runtimeKey, agentSubdir(agent));
   const hashFile = join(runtimeDir, ".cue-hash");
   let hashMtime: number;
   try {
@@ -182,7 +189,7 @@ export function shouldIncludeSessionTelemetry(env: Record<string, string | undef
 
 export async function materializeRuntime(input: MaterializeInput): Promise<MaterializeOutput> {
   const { profile, agent, runtimeRoot } = input;
-  const runtimeDir = join(runtimeRoot, profile.name, agentSubdir(agent));
+  const runtimeDir = join(runtimeRoot, input.runtimeKey ?? profile.name, agentSubdir(agent));
 
   // Normalize any `uvx --from git+<repo> <bin>` MCP entries: install the
   // package locally with `uv tool install` and rewrite the entry to call the
@@ -281,6 +288,18 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   }
   for (const [slug, src] of slugToSrc) {
     await symlink(src, join(skillsDir, slug));
+  }
+  // Project-loadout deferred index: one generated (written, not symlinked)
+  // skill standing in for every skill the loadout deferred. Costs a single
+  // frontmatter line always-on; the agent invokes it to discover and Read a
+  // deferred skill's real SKILL.md. Present in the content hash via
+  // profile.deferredSkills, so loadout changes rebuild this file.
+  const deferredSkills = profile.deferredSkills ?? [];
+  if (deferredSkills.length > 0) {
+    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } = await import("./lazy-skills");
+    const indexDir = join(skillsDir, DEFERRED_INDEX_SLUG);
+    await mkdir(indexDir, { recursive: true });
+    await writeFile(join(indexDir, "SKILL.md"), generateDeferredIndexSkill(deferredSkills));
   }
   if (overridden.length > 0) {
     process.stderr.write(

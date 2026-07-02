@@ -55,6 +55,39 @@ describe("materializeRuntime", () => {
     expect(hash).toMatch(/^[a-f0-9]{64}$/);
   });
 
+  test("project-loadout deferred index: generated skill written, hashed, absent without", async () => {
+    const opts = {
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+      userClaudeMd: "",
+    };
+    const withDeferred: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-loadout",
+      inheritanceChain: ["test-loadout"],
+      deferredSkills: [
+        { id: "gstack/browse", description: "Headless browser QA", path: "/skills/gstack/browse/SKILL.md" },
+      ],
+    };
+    const out = await materializeRuntime({ ...opts, profile: withDeferred });
+    const indexPath = join(out.runtimeDir, "skills", "cue-deferred-skills", "SKILL.md");
+    const index = await readFile(indexPath, "utf8");
+    expect(index).toContain("gstack/browse");
+    expect(index).toContain("Headless browser QA");
+    expect(index).toContain("/skills/gstack/browse/SKILL.md");
+    // The generated index is a real file, not a symlink into resources.
+    expect((await lstat(join(out.runtimeDir, "skills", "cue-deferred-skills"))).isSymbolicLink()).toBe(false);
+
+    // Same profile without deferredSkills → different hash (rebuild) and no index.
+    const bare: ResolvedProfile = { ...withDeferred };
+    delete (bare as { deferredSkills?: unknown }).deferredSkills;
+    const out2 = await materializeRuntime({ ...opts, profile: bare });
+    expect(out2.hash).not.toBe(out.hash);
+    await expect(stat(join(out2.runtimeDir, "skills", "cue-deferred-skills"))).rejects.toThrow();
+  });
+
   test("when: gate — MCP excluded while its env condition fails, included once it passes", async () => {
     const ENV_KEY = "CUE_TEST_GATED_MCP_TOKEN";
     delete process.env[ENV_KEY];
