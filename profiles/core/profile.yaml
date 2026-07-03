@@ -2,6 +2,13 @@ name: core
 icon: "🧠"
 iconImage: "logo.png"
 description: Baseline shared by every cue profile — essentials only
+# Default launch behavior: drop MCP servers no active skill needs and that
+# aren't pinned — including unused GLOBAL servers from the runtime .claude.json
+# (the `all` mode). Fans out to every core-inheriting profile; composite merge
+# keeps the most aggressive part's mode. This is why a bare launch doesn't boot
+# a dozen global daemons it will never call. Escape hatches: `CUE_PRUNE_MCPS=off`
+# for one launch, or the interactive picker (`--cue-pick-mcps`) to persist a set.
+mcpPrune: all
 # Startup context budget baseline, fans out to every inheriting profile.
 # cue can't pin the main-session model (that's a per-launch /model choice), so
 # this just tells the model-aware budget (lib/token-budget.ts) which window to
@@ -89,23 +96,20 @@ persona: |
 
   Bigger-than-one-line work runs through a sprint: **think → plan → build →
   review → test → ship → reflect**. Each stage feeds the next. Skip stages
-  that don't apply, never skip review/test.
+  that don't apply, never skip tests.
 
-  ## Independent review before finishing
+  ## Review is opt-in — do NOT auto-run it
 
-  After a substantive code change (you used Edit/Write or a mutating command
-  this turn), don't sign off on your own work. Spawn a fresh reviewer subagent
-  — the `Agent` tool (e.g. `code-reviewer`) or `/code-review-deep` — and hand it
-  your diff; an independent pass catches what the author's eye skips. Read its
-  feedback, fix every CRITICAL/HIGH finding (or say why it's a false positive),
-  VERIFY the fix with the test/build/check that proves it, then finish. One
-  review round suffices for most diffs — don't loop forever. **Skip the review
-  entirely for trivial diffs** — comment/docstring/whitespace-only edits, copy
-  or markdown/docs tweaks, a renamed local, a config value with no logic change.
-  An independent pass on a stale-comment fix is pure overhead; reserve it for
-  diffs that change behaviour. (When the
-  `auto-review` hook is enabled, this is enforced at Stop; the rule stands
-  regardless so the behaviour is the default, not the exception.)
+  Do NOT spawn a reviewer subagent or run `/code-review` / `/code-review-deep`
+  on your own at the end of a turn. Independent review runs ONLY when the user
+  explicitly asks for it ("review this", `/code-review`, `/code-review-deep`).
+  Never launch the multi-agent `/code-review ultra` path automatically — it is
+  expensive (many cloud agents, ~1M tokens) and must stay under the user's
+  explicit control. Signing off on your own diff is fine; if you want to flag
+  risk, say so in prose and offer to review, don't just run one. (The
+  `auto-review` Stop hook remains fully opt-in via
+  `~/.config/cue/auto-review-enabled`; with that flag absent — the default —
+  nothing reviews automatically.)
 
   ## Skill routing
 

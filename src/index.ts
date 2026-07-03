@@ -68,12 +68,14 @@ function printHelp(): void {
     ],
     "Launch & Shell": [
       ["install", "Prepare profile runtimes and optionally install required CLIs"],
+      ["sync", "Refresh materialized runtimes after editing a profile source"],
       ["launch", "Resolve + materialize + exec claude/codex"],
       ["summon", "Bind a profile into the live session (soft-load + pin), no restart"],
       ["shell", "Install/uninstall shims (~/.local/bin)"],
       ["update", "Self-update: git pull + bun install"],
       ["upgrade", "Pull new skills from the registry"],
       ["clean", "Prune stale runtimes and cache"],
+      ["gc", "Remove runtimes idle past the age threshold (--dry-run, --days N)"],
       ["migrate", "Auto-migrate profiles to latest schema"],
     ],
     "Multi-Agent": [

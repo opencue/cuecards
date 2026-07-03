@@ -17,6 +17,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
+import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
 import {
   computeTokenBreakdown,
@@ -56,6 +57,11 @@ interface ParsedArgs {
   rematerialize: boolean;
   /** `--subset "<prompt>"` — filter skills to those relevant to the prompt before materializing. */
   subset: string | null;
+  /** True only when `subset` came from an explicit `--subset` flag (not the
+   *  CUE_SMART_SUBSET env fold of a `-p` prompt). Explicit intent bypasses the
+   *  keep-set cache so the user gets a fresh classification; the env-folded
+   *  path uses the cache so repeat `-p` launches don't re-call the classifier. */
+  subsetExplicit: boolean;
   /** `--cue-pick-mcps` — always re-open the MCP toggle, ignoring a remembered choice. */
   forcePickMcps: boolean;
   /** `--cue-full` — skip the project loadout for this launch (materialize every skill). */
@@ -85,6 +91,14 @@ function parse(args: string[]): ParsedArgs {
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
+    if (a === "--") {
+      // Conventional separator: everything after it belongs to the agent,
+      // verbatim. The `--` itself must NOT reach the agent — `claude -- --version`
+      // makes claude treat "--version" as a PROMPT and open an interactive
+      // session, which hangs forever when stdin isn't a terminal.
+      passthrough.push(...args.slice(i + 1).map((s) => s!));
+      break;
+    }
     if (i === 0 && (a === "claude" || a === "codex")) {
       agent = a;
     } else if (a === "--cue-profile") {
@@ -108,12 +122,19 @@ function parse(args: string[]): ParsedArgs {
       passthrough.push(a!);
     }
   }
+  const subsetExplicit = subset !== null;
   // Env var fallback for users who want subset on every launch without retyping.
+  // Folds a real passthrough prompt (`claude -p "…"`) into `subset` so it drives
+  // classification, but leaves `subsetExplicit` false so it uses the keep-set
+  // cache — repeat identical `-p` launches don't re-call the classifier.
   if (!subset && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
   }
-  return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, passthrough };
+  return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit, passthrough };
 }
+
+/** Test-only surface. */
+export const __test = { parse, shouldOpenMcpPicker };
 
 // ---------------------------------------------------------------------------
 // Workspace overrides — merge active workspace env into profile
@@ -169,6 +190,20 @@ function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise
     child.on("exit", (code) => res(code ?? 0));
     child.on("error", () => res(127));
   });
+}
+
+/**
+ * Whether the interactive MCP toggle should open this launch. Only when stdin
+ * is a TTY, AND either the user forced it (`--cue-pick-mcps`) or there's no
+ * valid remembered choice to honor. A remembered override alone keeps the
+ * toggle closed — picking a profile interactively no longer re-forces it.
+ */
+export function shouldOpenMcpPicker(opts: {
+  interactive: boolean;
+  forcePickMcps: boolean;
+  overrideValid: boolean;
+}): boolean {
+  return opts.interactive && (opts.forcePickMcps || !opts.overrideValid);
 }
 
 function isAgentHelpPassthrough(parsed: ParsedArgs): boolean {
@@ -1428,10 +1463,6 @@ export async function run(args: string[]): Promise<number> {
   // shown summary matches reality. We stash it here so the post-picker path
   // can reuse it instead of re-loading from disk.
   let cachedProfile: ResolvedProfile | undefined;
-  // True when the profile came from the interactive picker THIS launch. The
-  // MCP toggle re-opens in that flow (seeded with the remembered choice) so a
-  // pick-at-startup launch always offers MCP selection too.
-  let pickedProfileInteractively = false;
   if (resolved.source === "none") {
     if (!process.stdin.isTTY) {
       process.stderr.write(
@@ -1586,7 +1617,6 @@ export async function run(args: string[]): Promise<number> {
       },
     });
     profileName = picked.profile;
-    pickedProfileInteractively = true;
   } else {
     profileName = (resolved as { source: string; profile: string }).profile;
   }
@@ -1831,12 +1861,14 @@ export async function run(args: string[]): Promise<number> {
           return keepNonPinned(new Set(keepDisabled));
         };
 
-        // The toggle opens on --cue-pick-mcps, on any launch where the profile
-        // was just chosen in the interactive picker (so pick-at-startup flows
-        // always offer MCP selection), and when there's no valid remembered
-        // choice. A valid override seeds the checkboxes so this is a review of
-        // the last choice, not a reset to defaults.
-        if (interactive && (parsed.forcePickMcps || pickedProfileInteractively || !overrideValid)) {
+        // The toggle opens on --cue-pick-mcps and when there's no valid
+        // remembered choice (first launch of this MCP set, or the set changed —
+        // the fingerprint invalidates the override). It does NOT re-open just
+        // because the profile was picked interactively this launch: a remembered
+        // choice is honored, so picking `core` from the startup menu no longer
+        // forces an MCP dialog every time. Re-review explicitly with
+        // --cue-pick-mcps. A valid override seeds the checkboxes when it does open.
+        if (shouldOpenMcpPicker({ interactive, forcePickMcps: parsed.forcePickMcps, overrideValid })) {
           const { pickMcps } = await import("../lib/mcp-picker");
           // Initial checkbox state, best first: the remembered override (this
           // is a re-review), else — when a loadout is active — the project-
@@ -1937,39 +1969,28 @@ export async function run(args: string[]): Promise<number> {
 
   let runtime!: Awaited<ReturnType<typeof materializeRuntime>>;
   try {
-    // --subset / CUE_SMART_SUBSET: ask claude --print which skills are relevant
-    // to the prompt and prune profile.skills.local before materialization. Fails
-    // open — any error keeps the full skill set.
-    //
-    // Auto-mode: if CUE_SMART_SUBSET=1 and no explicit --subset, look up the most
-    // recent first prompt captured by resources/hooks/first-prompt-capture.sh for
-    // this cwd. Cycle is: first launch loads full set → first prompt gets captured
-    // → second+ launch in same cwd auto-subsets using the historical prompt.
-    let subsetPrompt: string | null = parsed.subset;
-    if (!subsetPrompt && process.env.CUE_SMART_SUBSET) {
-      try {
-        const { createHash } = await import("node:crypto");
-        const cwdAbs = process.cwd();
-        const cwdHash = createHash("sha1").update(cwdAbs).digest("hex").slice(0, 16);
-        const captured = join(configDir(), "first-prompts", `${cwdHash}.json`);
-        const { existsSync, readFileSync } = await import("node:fs");
-        if (existsSync(captured)) {
-          const { prompt } = JSON.parse(readFileSync(captured, "utf8")) as { prompt?: string };
-          if (prompt && prompt.trim().length >= 8) {
-            subsetPrompt = prompt;
-            progress("Selecting skills…", `  💡 smart-subset using captured first prompt from prior session\n`);
-          }
-        }
-      } catch { /* fail-open — no captured prompt, run full set */ }
-    }
+    // Skill subsetting runs ONLY when this launch carries a real prompt:
+    //   - explicit `--subset "<text>"`, or
+    //   - `CUE_SMART_SUBSET=1` + a passthrough prompt (`claude -p "…"`), which
+    //     parse() folds into `parsed.subset`.
+    // A bare TUI launch (no prompt) classifies NOTHING — it keeps the full skill
+    // set with zero LLM call and zero wait. Lazy skill loading already keeps the
+    // always-on cost low (~3K for 21 skills), so there's nothing to gain by
+    // guessing relevance from a stale prompt. This deliberately drops the old
+    // "reuse the first prompt captured in a prior session for this cwd" path:
+    // it made every TUI start depend on a background `claude --print` and could
+    // reuse an unrelated prompt (e.g. a one-off `--version` run) as the classifier
+    // input. Fails open — any error below keeps the full skill set.
+    const subsetPrompt: string | null = parsed.subset;
 
     if (subsetPrompt && profile.skills.local.length > 4) {
       try {
         const { selectRelevantSkills } = await import("../lib/skill-subset");
         const ids = profile.skills.local.map((s) => s.id);
         // Explicit --subset bypasses the keep-set cache (the user is overriding
-        // deliberately); the auto-captured prompt path uses it.
-        const result = await selectRelevantSkills(ids, subsetPrompt, { noCache: !!parsed.subset });
+        // deliberately); an env-folded `-p` prompt uses the cache so repeat
+        // launches don't re-call the classifier.
+        const result = await selectRelevantSkills(ids, subsetPrompt, { noCache: parsed.subsetExplicit });
         progress(`Skills: ${result.reason}`, `  🎯 smart-subset: ${result.reason}\n`);
         if (result.classified && result.selected.length < ids.length) {
           const keep = new Set(result.selected);
@@ -2049,6 +2070,11 @@ export async function run(args: string[]): Promise<number> {
     // materialize threw. stop() is idempotent and a no-op when loader is null.
     loader?.stop();
   }
+
+  // Stamp the runtime as used NOW so the GC age signal is accurate even for a
+  // long-lived session (a warm launch may not otherwise write anything). Marker
+  // lives in the key dir, next to the `claude/`/`codex/` subdirs GC scans.
+  touchRuntime(join(configDir(), "runtime", runtimeKey), Date.now());
 
   // Run quickDiagnose on every launch — it's cheap (filesystem checks) and
   // the result feeds both the first-build inline print AND the tmux health
@@ -2360,5 +2386,8 @@ export async function run(args: string[]): Promise<number> {
   // Persist any /login done inside the session to its account dir now —
   // don't leave the only live rotated token stranded in the per-account runtime.
   if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);
+  // Post-session runtime GC: the child has exited, so this costs zero launch
+  // latency. Throttled (~once/day) and never touches the runtime we just used.
+  try { await maybeAutoGc(runtimeKey); } catch { /* GC is best-effort */ }
   return exitCode;
 }

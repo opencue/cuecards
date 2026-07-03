@@ -21,7 +21,7 @@
 
 import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { findRealClaudeBin } from "./claude-binary";
@@ -93,13 +93,112 @@ Rules:
 }
 
 /**
+ * CLI args for the classifier spawn. The call must be LIGHTWEIGHT:
+ *   - `--strict-mcp-config` — without it the spawned claude boots every MCP
+ *     server in the user's config (a dozen npm/python daemons) just to answer
+ *     one KEEP: line. Observed to blow the 30s budget and freeze launches on
+ *     configs with many global servers.
+ *   - a fast model — the account default may be a heavyweight reasoning model;
+ *     skill classification is a trivial pick-list task. Override with
+ *     CUE_SMART_SUBSET_MODEL if the alias isn't available on the account.
+ * NOT `--bare`: it skips credential/settings loading and comes back
+ * "Not logged in".
+ */
+export function classifierSpawnArgs(prompt: string): string[] {
+  const model = process.env.CUE_SMART_SUBSET_MODEL?.trim() || "haiku";
+  return ["--print", "--strict-mcp-config", "--model", model, "-p", prompt];
+}
+
+// ---------------------------------------------------------------------------
+// Classifier isolation — an ephemeral CLAUDE_CONFIG_DIR for the spawn
+// ---------------------------------------------------------------------------
+
+interface ClassifierHome {
+  /** The ephemeral config dir to point CLAUDE_CONFIG_DIR at. */
+  home: string;
+  /** The real `.credentials.json` we copied from, for the rotation copy-back. */
+  credSrc: string | null;
+}
+
+/** OAuth token expiry (epoch ms) from a `.credentials.json`, or 0 if unreadable. */
+function credExpiresAt(p: string): number {
+  try {
+    const v = (JSON.parse(readFileSync(p, "utf8")) as { claudeAiOauth?: { expiresAt?: unknown } })
+      ?.claudeAiOauth?.expiresAt;
+    return typeof v === "number" ? v : 0;
+  } catch {
+    return 0;
+  }
+}
+
+/**
+ * Whether to carry the classifier home's credentials back to the source: only
+ * when the home token is strictly newer (higher expiresAt). Anthropic rotates
+ * the refresh token on every refresh, so a stale copy must never clobber a live
+ * source token. Pure so it can be unit-tested. Mirrors the launch.ts rescue guard.
+ */
+export function shouldCopyBackCreds(homeExpiresAt: number, srcExpiresAt: number): boolean {
+  return homeExpiresAt > srcExpiresAt;
+}
+
+/**
+ * Build an ephemeral CLAUDE_CONFIG_DIR for the classifier spawn so it does NOT
+ * load the user's plugins (claude-mem spawns a worker daemon per call), fire
+ * their hooks, or append phantom sessions to their logs. Copies the live OAuth
+ * credentials from the launch's real config dir in so the call still auths.
+ * Returns null when there's nothing to isolate (no CLAUDE_CONFIG_DIR set) — the
+ * caller then inherits the parent env, the pre-isolation behavior.
+ */
+function setupClassifierHome(): ClassifierHome | null {
+  const src = process.env.CLAUDE_CONFIG_DIR;
+  if (!src) return null;
+  try {
+    const base = join(cacheDir(), "classifier-home");
+    mkdirSync(base, { recursive: true });
+    const home = mkdtempSync(join(base, "run-"));
+    // Minimal config: no enabledPlugins, no hooks, no mcpServers.
+    writeFileSync(join(home, "settings.json"), "{}\n");
+    writeFileSync(join(home, ".claude.json"), `${JSON.stringify({ hasCompletedOnboarding: true })}\n`);
+    const credSrcFile = join(src, ".credentials.json");
+    let credSrc: string | null = null;
+    if (existsSync(credSrcFile)) {
+      copyFileSync(credSrcFile, join(home, ".credentials.json"));
+      credSrc = credSrcFile;
+    }
+    return { home, credSrc };
+  } catch {
+    return null;
+  }
+}
+
+/** Copy back a rotated token if newer, then remove the ephemeral home. Best-effort. */
+function teardownClassifierHome(h: ClassifierHome): void {
+  try {
+    if (h.credSrc) {
+      const homeCred = join(h.home, ".credentials.json");
+      if (existsSync(homeCred) && shouldCopyBackCreds(credExpiresAt(homeCred), credExpiresAt(h.credSrc))) {
+        copyFileSync(homeCred, h.credSrc);
+      }
+    }
+  } catch {
+    /* best-effort */
+  }
+  try {
+    rmSync(h.home, { recursive: true, force: true });
+  } catch {
+    /* best-effort */
+  }
+}
+
+/**
  * Spawn `claude --print` ASYNC and resolve with its trimmed stdout. Never
  * rejects: on spawn error, non-zero exit, or timeout it resolves
  * `{ status: non-zero }` so the caller fail-opens. The timeout kills the child
  * (SIGTERM, then SIGKILL backstop) and resolves immediately so the Promise
- * always settles even if the child ignores the signal.
+ * always settles even if the child ignores the signal. `configDirOverride`,
+ * when set, points the child at an ephemeral CLAUDE_CONFIG_DIR (see setupClassifierHome).
  */
-function spawnClaude(bin: string, prompt: string, timeoutMs: number): Promise<{ status: number; stdout: string }> {
+function spawnClaude(bin: string, prompt: string, timeoutMs: number, configDirOverride?: string): Promise<{ status: number; stdout: string }> {
   return new Promise((resolve) => {
     let stdout = "";
     let settled = false;
@@ -110,10 +209,13 @@ function spawnClaude(bin: string, prompt: string, timeoutMs: number): Promise<{ 
       resolve({ status, stdout });
     };
 
+    const env: NodeJS.ProcessEnv = { ...process.env, CUE_BYPASS: "1" };
+    if (configDirOverride) env.CLAUDE_CONFIG_DIR = configDirOverride;
+
     let child: ReturnType<typeof spawn>;
     try {
-      child = spawn(bin, ["--print", "-p", prompt], {
-        env: { ...process.env, CUE_BYPASS: "1" },
+      child = spawn(bin, classifierSpawnArgs(prompt), {
+        env,
         stdio: ["ignore", "pipe", "ignore"],
       });
     } catch {
@@ -149,18 +251,24 @@ function spawnClaude(bin: string, prompt: string, timeoutMs: number): Promise<{ 
 
 async function callClaudeAsync(prompt: string, timeoutMs: number): Promise<{ ok: boolean; output: string }> {
   const startedAt = Date.now();
-  let res = await spawnClaude("claude", prompt, timeoutMs);
-  if (res.status !== 0 || !res.stdout.trim()) {
-    const fallback = findRealClaudeBin();
-    // Share the budget: the fallback gets what's left of timeoutMs (min 2s), so a
-    // double-timeout can't stack to ~2x the stated tolerance and freeze the launch.
-    if (fallback) {
-      const remaining = Math.max(2_000, timeoutMs - (Date.now() - startedAt));
-      res = await spawnClaude(fallback, prompt, remaining);
+  const home = setupClassifierHome();
+  const configDir = home?.home;
+  try {
+    let res = await spawnClaude("claude", prompt, timeoutMs, configDir);
+    if (res.status !== 0 || !res.stdout.trim()) {
+      const fallback = findRealClaudeBin();
+      // Share the budget: the fallback gets what's left of timeoutMs (min 2s), so a
+      // double-timeout can't stack to ~2x the stated tolerance and freeze the launch.
+      if (fallback) {
+        const remaining = Math.max(2_000, timeoutMs - (Date.now() - startedAt));
+        res = await spawnClaude(fallback, prompt, remaining, configDir);
+      }
     }
+    if (res.status !== 0 || !res.stdout.trim()) return { ok: false, output: "" };
+    return { ok: true, output: res.stdout.trim() };
+  } finally {
+    if (home) teardownClassifierHome(home);
   }
-  if (res.status !== 0 || !res.stdout.trim()) return { ok: false, output: "" };
-  return { ok: true, output: res.stdout.trim() };
 }
 
 function parseClaudeKeep(output: string, allSkillIds: string[]): string[] | null {
@@ -363,4 +471,7 @@ export const __test = {
   finalizeSelection,
   CACHE_VERSION,
   CACHE_TTL_MS,
+  setupClassifierHome,
+  teardownClassifierHome,
+  credExpiresAt,
 };

@@ -63,6 +63,14 @@ export const COMMANDS = {
     summary: "Prepare profile runtimes and optionally install required CLIs",
     load: () => import("./install"),
   },
+  sync: {
+    summary: "Refresh materialized runtimes after editing a profile source (--dry-run to preview)",
+    load: () => import("./sync"),
+  },
+  gc: {
+    summary: "Remove materialized runtimes idle past the age threshold (--dry-run, --days N)",
+    load: () => import("./gc"),
+  },
   materialize: {
     summary: "Write skills + MCPs for any agent (cursor, cline, gemini, copilot, etc.)",
     load: () => import("./materialize"),
