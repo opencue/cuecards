@@ -3,7 +3,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "no
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { __test, selectRelevantSkills } from "./skill-subset";
+import { __test, classifierSpawnArgs, selectRelevantSkills } from "./skill-subset";
 
 const {
   subsetCacheKey,
@@ -139,5 +139,34 @@ describe("selectRelevantSkills — warm cache hit (no LLM call)", () => {
     expect(result.classified).toBe(true);
     expect(result.selected).toEqual(["s/a", "s/b", "s/c"]);
     expect(result.reason).toContain("(cached)");
+  });
+});
+
+// --- classifier spawn args: the launch-freeze guard -------------------------
+// The classifier claude must NOT boot the user's MCP servers (observed: a
+// dozen npm/python daemons per call, blowing the 30s budget and freezing
+// `cue launch`), and must use a fast model instead of the account default.
+describe("classifierSpawnArgs", () => {
+  test("always passes --strict-mcp-config and a --print prompt", () => {
+    const args = classifierSpawnArgs("pick skills");
+    expect(args).toContain("--strict-mcp-config");
+    expect(args).toContain("--print");
+    expect(args.slice(-2)).toEqual(["-p", "pick skills"]);
+  });
+
+  test("defaults the model to haiku, overridable via CUE_SMART_SUBSET_MODEL", () => {
+    const prev = process.env.CUE_SMART_SUBSET_MODEL;
+    delete process.env.CUE_SMART_SUBSET_MODEL;
+    try {
+      let args = classifierSpawnArgs("x");
+      expect(args[args.indexOf("--model") + 1]).toBe("haiku");
+
+      process.env.CUE_SMART_SUBSET_MODEL = "claude-sonnet-5";
+      args = classifierSpawnArgs("x");
+      expect(args[args.indexOf("--model") + 1]).toBe("claude-sonnet-5");
+    } finally {
+      if (prev === undefined) delete process.env.CUE_SMART_SUBSET_MODEL;
+      else process.env.CUE_SMART_SUBSET_MODEL = prev;
+    }
   });
 });

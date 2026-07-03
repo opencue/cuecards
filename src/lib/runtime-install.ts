@@ -151,6 +151,12 @@ export interface PrepareRuntimeOptions {
   agent: RuntimeAgent;
   userMemory?: string;
   credentialsSource?: string;
+  /**
+   * Write the runtime under this on-disk key instead of `profile.name`. Lets a
+   * caller (e.g. `cue sync`) rebuild a composite/aliased runtime dir whose key
+   * differs from the resolved profile's own name. Defaults to `profile.name`.
+   */
+  runtimeKey?: string;
 }
 
 export async function prepareRuntime(options: PrepareRuntimeOptions): Promise<MaterializeOutput> {
@@ -158,6 +164,7 @@ export async function prepareRuntime(options: PrepareRuntimeOptions): Promise<Ma
     profile: options.profile,
     agent: options.agent,
     runtimeRoot: join(configDir(), "runtime"),
+    runtimeKey: options.runtimeKey,
     skillSourceLookup: (id) => resolveLocalSkill(id),
     mcpRegistry: await loadMcpRegistry(options.agent),
     userClaudeMd: options.userMemory ?? await readUserAgentMemory(options.agent),
