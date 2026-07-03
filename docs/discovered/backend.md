@@ -1,81 +1,172 @@
 ---
 title: "Claude Code Skills for backend"
-description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "16 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 16 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
+<a id="archestra-ai-archestra"></a>
+## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
 
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
+**★ 3923** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
 
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
 
 ```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
+cue skills add archestra-ai/archestra --profile backend
 ```
 
 ---
 
-<a id="ken12ken-claw-recall"></a>
-## 💎 [ken12ken/claw-recall](https://github.com/ken12ken/claw-recall)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 0** · exceptional (score 10) · tags: ai-agents, claude-code, conversation-history, fts5, mcp
+**★ 194983** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Store and search AI agent conversations to recover lost context and improve memory persistence in multi-agent workflows.
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add ken12ken/claw-recall --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="harindukavishka-agentify"></a>
-## 💎 [harindukavishka/agentify](https://github.com/harindukavishka/agentify)
+<a id="jungjaehoon-lifegamez-mama"></a>
+## 💎 [jungjaehoon-lifegamez/MAMA](https://github.com/jungjaehoon-lifegamez/MAMA)
 
-**★ 4** · exceptional (score 8.3) · TypeScript · tags: agentic-framework, agentify, ai, ai-agents, aistudio
+**★ 7** · exceptional (score 13.3) · TypeScript · tags: claude-code, claude-code-plugins, cot-few-shot, decision-tracking, embeddings
 
-Convert OpenAPI specs into nine standard AI agent interfaces to integrate your API with various agent frameworks efficiently.
+Always-on companion for Claude that remembers your decisions and their evolution. Local-first memory       using SQLite + transformers.js embeddings.
 
 ```bash
-cue skills add harindukavishka/agentify --profile backend
+cue skills add jungjaehoon-lifegamez/MAMA --profile backend
 ```
 
 ---
 
-<a id="moep90-agent-toolkit-for-kapitan"></a>
-## 💎 [Moep90/agent-toolkit-for-kapitan](https://github.com/Moep90/agent-toolkit-for-kapitan)
+<a id="majiayu000-remem"></a>
+## 💎 [majiayu000/remem](https://github.com/majiayu000/remem)
 
-**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agent, claude, configuration-management, devops
+**★ 18** · exceptional (score 11.8) · Rust · tags: agent-memory, ai-coding-agent, ai-memory, claude-code, claude-code-memory
 
-AI agent toolkit for Kapitan: an MCP server, agent skills, and rules that let LLM coding agents inspect, compile, and diff Kapitan projects safely.
+Local-first persistent memory for Claude Code & Codex CLI - Rust CLI, hooks, MCP server, SQLite/SQLCipher, auditable recall for long-running coding work.
 
 ```bash
-cue skills add Moep90/agent-toolkit-for-kapitan --profile backend
+cue skills add majiayu000/remem --profile backend
 ```
 
 ---
 
-<a id="phaja-semantic-search-project"></a>
-## ✨ [Phaja/semantic-search-project](https://github.com/Phaja/semantic-search-project)
+<a id="gabrielcostalopes16-claude-code-hooks"></a>
+## 💎 [GabrielCostaLopes16/claude-code-hooks](https://github.com/GabrielCostaLopes16/claude-code-hooks)
 
-**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, cli-tool, coding-agent, confluence-integration
+**★ 2** · exceptional (score 10.5) · JavaScript · tags: agent-skills, agentic-ai, agentic-code, agentic-coding, ai-agents
 
-Deliver fast, scalable semantic search using vector embeddings and cluster-aware caching for efficient, context-based text retrieval.
+🪝 Customize and deploy ready-to-use hooks for Claude Code, enhancing safety, automation, and notifications in your projects.
 
 ```bash
-cue skills add Phaja/semantic-search-project --profile backend
+cue skills add GabrielCostaLopes16/claude-code-hooks --profile backend
+```
+
+---
+
+<a id="elsakkk-mnemos-mcp"></a>
+## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
+
+**★ 4** · exceptional (score 8.3) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
+
+🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
+
+```bash
+cue skills add ELSAKKK/mnemos-mcp --profile backend
+```
+
+---
+
+<a id="monuro-github-ai-assistant"></a>
+## ✨ [monuro/github-ai-assistant](https://github.com/monuro/github-ai-assistant)
+
+**★ 1** · strong (score 7.8) · Java · tags: ai-tools, aiagent, chatgpt, chatgpt-api, code-generation
+
+🤖 Boost your development workflow with this AI-powered GitHub command-line assistant for quicker and smarter coding.
+
+```bash
+cue skills add monuro/github-ai-assistant --profile backend
+```
+
+---
+
+<a id="strewerwer-agentic-rag-framework"></a>
+## ✨ [strewerwer/agentic-rag-framework](https://github.com/strewerwer/agentic-rag-framework)
+
+**★ 1** · strong (score 7.8) · HTML · tags: agent, agentic, agentic-framework, agentic-rag, ai
+
+🔍 Enhance retrieval with the Agentic RAG Framework for hybrid search, query classification, and answer fusion in production-grade systems.
+
+```bash
+cue skills add strewerwer/agentic-rag-framework --profile backend
+```
+
+---
+
+<a id="nitishreddy26-n8n-oracle-cloud-selfhost"></a>
+## ✨ [NitishReddy26/n8n-oracle-cloud-selfhost](https://github.com/NitishReddy26/n8n-oracle-cloud-selfhost)
+
+**★ 1** · strong (score 7.8) · Python · tags: agents, cdn, cloudflare, data-flow, gemini-pro
+
+🚀 Host n8n on Oracle Cloud Free Tier using Docker, secure it with Nginx and HTTPS, and connect via a custom domain with this straightforward guide.
+
+```bash
+cue skills add NitishReddy26/n8n-oracle-cloud-selfhost --profile backend
+```
+
+---
+
+<a id="ninjacazul-hono-mcp-server"></a>
+## ✨ [ninjacazul/hono-mcp-server](https://github.com/ninjacazul/hono-mcp-server)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: aws, browser-extension, collaboration, deno, eclipseiot
+
+🔧 Expose Hono API endpoints as MCP tools, simplifying integration and enhancing your API's functionality.
+
+```bash
+cue skills add ninjacazul/hono-mcp-server --profile backend
+```
+
+---
+
+<a id="mohitgitai-postgrest-mcp"></a>
+## ✨ [MOHITGITAI/postgrest-mcp](https://github.com/MOHITGITAI/postgrest-mcp)
+
+**★ 0** · strong (score 7.5) · TypeScript · tags: ai, deno-deploy, honojs, mcp, mcp-server
+
+🚀 Build a PostgREST MCP server with OAuth2 authentication, supporting NEON and Supabase, for seamless API integration and deployment.
+
+```bash
+cue skills add MOHITGITAI/postgrest-mcp --profile backend
+```
+
+---
+
+<a id="ozkrnrike-homelab-infrastructure-monitor"></a>
+## ✨ [Ozkrnrike/homelab-infrastructure-monitor](https://github.com/Ozkrnrike/homelab-infrastructure-monitor)
+
+**★ 0** · strong (score 7.5) · Python · tags: ai-gateway, cert-manager, grafana, helm, homelab
+
+🚀 Monitor your home lab infrastructure in real-time with this production-ready dashboard for optimal performance and management.
+
+```bash
+cue skills add Ozkrnrike/homelab-infrastructure-monitor --profile backend
 ```
 
 ---
@@ -102,6 +193,19 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="laszlopere-mcp-gnu-units"></a>
+## ✨ [laszlopere/mcp-gnu-units](https://github.com/laszlopere/mcp-gnu-units)
+
+**★ 0** · strong (score 5) · Python · tags: gnu-units, mcp, mcp-server, measurement, model-context-protocol
+
+Unit converter for AI agents, powered by the GNU units database — convert 3000+ units of measurement, evaluate compound unit expressions, reduce to SI base units, dimensional analysis. Offline, deterministic.
+
+```bash
+cue skills add laszlopere/mcp-gnu-units --profile backend
 ```
 
 ---

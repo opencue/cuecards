@@ -1,27 +1,27 @@
 ---
 title: "dimitrilaouanis-tech/onyx-mcp — Claude Code skill discovered by cue"
-description: "Paid MCP server — 33 agent tools across Base + Solana on-chain primitives, captcha OCR, browser automation, and web utility. USDC settlement via x402. No API ke"
+description: "Proof of Agent Execution — the neutral trust layer issuing portable, signed execution credentials for AI agents (x402 · MCP · ERC-8004)."
 layout: page
-updated: 2026-06-24
-tags: [claude-code, skill, backend]
+updated: 2026-07-03
+tags: [claude-code, skill, core]
 ---
 
 # ✨ [dimitrilaouanis-tech/onyx-mcp](https://github.com/dimitrilaouanis-tech/onyx-mcp)
 
-**★ 1** · strong (score 6.3) · Python · agent-economy, agent-payments, agentic-commerce, agentic-payments, ai-agents
+**★ 1** · strong (score 6.3) · Python · agent-economy, agent-payments, agent-verification, agentic-commerce, agentic-payments
 
-> Paid MCP server — 33 agent tools across Base + Solana on-chain primitives, captcha OCR, browser automation, and web utility. USDC settlement via x402. No API keys, no signup, agents pay per call.
+> Proof of Agent Execution — the neutral trust layer issuing portable, signed execution credentials for AI agents (x402 · MCP · ERC-8004).
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-24
-- 🏷️ Tags: agent-economy, agent-payments, agentic-commerce, agentic-payments, ai-agents, base, browser-automation, captcha, fastapi, jupiter, mcp, mcp-server, model-context-protocol, paid-mcp, rug-scanner, solana, token-risk-scan, tx-explainer, usdc, x402
+- 🗓️ Last pushed: 2026-07-03
+- 🏷️ Tags: agent-economy, agent-payments, agent-verification, agentic-commerce, agentic-payments, ai-agents, base, erc-8004, mcp, mcp-server, model-context-protocol, paid-mcp, proof-of-execution, rug-scanner, signed-receipts, solana, token-risk-scan, tx-explainer, usdc, x402
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add dimitrilaouanis-tech/onyx-mcp --profile backend
+cue skills add dimitrilaouanis-tech/onyx-mcp --profile core
 ```
 
 ## About

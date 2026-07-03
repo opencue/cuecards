@@ -2,7 +2,7 @@
 title: "sosteam65/app-store-connect-skill — Claude Code skill discovered by cue"
 description: "Manage iOS app metadata, TestFlight builds, and releases directly from your terminal using this Claude Code skill."
 layout: page
-updated: 2026-07-01
+updated: 2026-07-03
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-01
+- 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: agent-skill, ai-skills, android, android-studio, app-reviews, apple, claude-code-skill, claude-skill, crud-operation, in-app-purchases, ios-development, phased-release, screenshots, storekit, subscriptions, testflight, tvos, visionos
 
 ## Best fit cue profiles

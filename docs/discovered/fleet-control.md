@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="neomjs-neo"></a>
 ## 💎 [neomjs/neo](https://github.com/neomjs/neo)
 
-**★ 3224** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
+**★ 3225** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
 
 Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
 
@@ -31,12 +31,25 @@ cue skills add neomjs/neo --profile fleet-control
 <a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
 ## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 152** · exceptional (score 13) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 153** · exceptional (score 13) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
 Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
 cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="yandatini-mcp-agent-framework"></a>
+## 💎 [Yandatini/mcp-agent-framework](https://github.com/Yandatini/mcp-agent-framework)
+
+**★ 2** · exceptional (score 10) · Python · tags: agentic-rag, ai, ai-agent, ai-agents, ai-assistant
+
+🤖 Orchestrate AI agents at scale using the MCP framework, enabling seamless context sharing, communication, and integration for enhanced collaboration.
+
+```bash
+cue skills add Yandatini/mcp-agent-framework --profile fleet-control
 ```
 
 ---
@@ -70,7 +83,7 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 <a id="misakamikotoghr-5205-cost-aware-claim-based-multi-model-ai-orchestrator"></a>
 ## 🔹 [misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator](https://github.com/misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator)
 
-**★ 1** · potential (score 3.1) · Python · tags: ai, ai-agents, antigravity, claude, codex
+**★ 1** · potential (score 3) · Python · tags: ai, ai-agents, antigravity, claude, codex
 
 A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Codex & DeepSeek — not always the strongest model.
 

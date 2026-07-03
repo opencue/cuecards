@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "8 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,45 +28,6 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="wahmoh-claude-react-kit"></a>
-## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
-
-**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
-
-Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
-
-```bash
-cue skills add wahmoh/claude-react-kit --profile frontend
-```
-
----
-
-<a id="suvarnabhangare-screenhand"></a>
-## 💎 [SuvarnaBhangare/Screenhand](https://github.com/SuvarnaBhangare/Screenhand)
-
-**★ 0** · exceptional (score 9.5) · Python · tags: ai-agent, browser-automation, chrome-devtools-protocol, claude, computer-use
-
-Enable fast native desktop control on macOS and Windows for MCP agents using Accessibility, OCR, and Chrome CDP integration.
-
-```bash
-cue skills add SuvarnaBhangare/Screenhand --profile frontend
-```
-
----
-
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
-
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
-
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
-
-```bash
-cue skills add riqxa/skills-best-practices --profile frontend
-```
-
----
-
 <a id="ystherr-wechat-article-formatter-skill"></a>
 ## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
 
@@ -80,23 +41,10 @@ cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
 <a id="taewooopark-uiforge"></a>
 ## ✨ [TaewoooPark/UIForge](https://github.com/TaewoooPark/UIForge)
 
-**★ 0** · strong (score 7) · JavaScript · tags: animation, anti-slop, art-direction, claude-code, claude-code-plugin
+**★ 1** · strong (score 7.3) · JavaScript · tags: animation, anti-slop, art-direction, claude-code, claude-code-plugin
 
 Forge masterpiece UI, not AI slop — a design art-director plugin for Claude Code. Forces a deliberate choice on every design axis (type, color, space, motion), sources components from vetted registries, and gates output on forced-subtraction + critique.
 
@@ -109,7 +57,7 @@ cue skills add TaewoooPark/UIForge --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 2** · potential (score 3.3) · JavaScript
+**★ 1** · potential (score 3.3) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

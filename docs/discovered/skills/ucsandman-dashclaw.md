@@ -2,21 +2,21 @@
 title: "ucsandman/DashClaw — Claude Code skill discovered by cue"
 description: "🛡️The governance runtime for AI agents. Intercept actions, enforce guard policies, require approvals, and produce audit-ready decision trails."
 layout: page
-updated: 2026-06-11
+updated: 2026-07-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ucsandman/DashClaw](https://github.com/ucsandman/DashClaw)
 
-**★ 274** · exceptional (score 17.2) · TypeScript · agent-framework, agent-governance, agent-runtime, ai-agents, ai-governance
+**★ 280** · exceptional (score 17.2) · TypeScript · agent-framework, agent-governance, agent-runtime, ai-agents, ai-governance
 
 > 🛡️The governance runtime for AI agents. Intercept actions, enforce guard policies, require approvals, and produce audit-ready decision trails.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.2 based on:
-- ⭐ 274 stars
-- 🗓️ Last pushed: 2026-06-11
+- ⭐ 280 stars
+- 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: agent-framework, agent-governance, agent-runtime, ai-agents, ai-governance, ai-infrastructure, ai-ops, autogen, claude-code, crew-ai, decision-engine, developer-tools, hermes, langchain, mcp, mcp-server, model-context-protocol, openclaw
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "TaewoooPark/UIForge — Claude Code skill discovered by cue"
 description: "Forge masterpiece UI, not AI slop — a design art-director plugin for Claude Code. Forces a deliberate choice on every design axis (type, color, space, motion), "
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, skill, frontend]
 ---
 
 # ✨ [TaewoooPark/UIForge](https://github.com/TaewoooPark/UIForge)
 
-**★ 0** · strong (score 7) · JavaScript · animation, anti-slop, art-direction, claude-code, claude-code-plugin
+**★ 1** · strong (score 7.3) · JavaScript · animation, anti-slop, art-direction, claude-code, claude-code-plugin
 
 > Forge masterpiece UI, not AI slop — a design art-director plugin for Claude Code. Forces a deliberate choice on every design axis (type, color, space, motion), sources components from vetted registries, and gates output on forced-subtraction + critique.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: animation, anti-slop, art-direction, claude-code, claude-code-plugin, claude-code-skill, design, design-system, design-tokens, frontend, mcp, motion, nextjs, react, shadcn, tailwindcss, ui, ux
 
 ## Best fit cue profiles

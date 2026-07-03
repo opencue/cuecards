@@ -2,21 +2,21 @@
 title: "TarasTsavolyk/claude-code-frontend — Claude Code skill discovered by cue"
 description: "Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeS"
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, skill, frontend]
 ---
 
 # 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 2** · potential (score 3.3) · JavaScript
+**★ 1** · potential (score 3.3) · JavaScript
 
 > Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-26
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

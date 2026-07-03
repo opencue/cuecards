@@ -2,7 +2,7 @@
 title: "alex-jb/bilingual-content-sync-agent — Claude Code skill discovered by cue"
 description: "🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, skill, backend]
 ---
 

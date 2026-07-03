@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="pr-e-openclaw-master-skills"></a>
-## 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
-
-**★ 2** · exceptional (score 15.5) · Python · tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated
-
-Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
-
-✅ SKILL.md
-
-```bash
-cue skills add Pr-E/openclaw-master-skills --profile creative-media
-```
 
 ---
 

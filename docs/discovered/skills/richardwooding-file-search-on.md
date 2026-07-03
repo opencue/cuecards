@@ -2,21 +2,21 @@
 title: "richardwooding/file-search-on — Claude Code skill discovered by cue"
 description: "File content type aware search with attribute and cel support"
 layout: page
-updated: 2026-06-04
+updated: 2026-07-03
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [richardwooding/file-search-on](https://github.com/richardwooding/file-search-on)
 
-**★ 5** · strong (score 6.9) · Go · cel, cli, content-detection, file-search, go
+**★ 5** · strong (score 7) · Go · cel, cli, content-detection, file-search, go
 
 > File content type aware search with attribute and cel support
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-04
+- 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: cel, cli, content-detection, file-search, go, mcp, mcp-server
 
 ## Best fit cue profiles

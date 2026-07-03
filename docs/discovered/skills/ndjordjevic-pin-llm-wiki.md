@@ -2,21 +2,21 @@
 title: "ndjordjevic/pin-llm-wiki — Claude Code skill discovered by cue"
 description: "Skill for Claude, Cursor & Copilot that automates the Karpathy LLM Wiki workflow: ingest web, GitHub, and YouTube URLs into a well-structured, citable, cross-re"
 layout: page
-updated: 2026-06-06
+updated: 2026-07-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ndjordjevic/pin-llm-wiki](https://github.com/ndjordjevic/pin-llm-wiki)
 
-**★ 73** · exceptional (score 13.7) · Python · agent-skill, claude-skill, cursor-skill, llm-wiki
+**★ 75** · exceptional (score 14.1) · Python · agent-skill, claude-skill, cursor-skill, llm-wiki
 
 > Skill for Claude, Cursor & Copilot that automates the Karpathy LLM Wiki workflow: ingest web, GitHub, and YouTube URLs into a well-structured, citable, cross-referenced knowledge base with automatic linting.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.7 based on:
-- ⭐ 73 stars
-- 🗓️ Last pushed: 2026-06-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
+- ⭐ 75 stars
+- 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: agent-skill, claude-skill, cursor-skill, llm-wiki
 
 ## Best fit cue profiles

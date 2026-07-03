@@ -2,7 +2,7 @@
 title: "nvk/agentnoise — Claude Code skill discovered by cue"
 description: "Chat with local coding agents through White Noise. agentnoise is a native desktop helper for using a phone running White Noise as the control surface for local "
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, skill, core]
 ---
 

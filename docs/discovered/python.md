@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-03
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mugoherick12-boop-skillz"></a>
-## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
+<a id="elsakkk-mnemos-mcp"></a>
+## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
 
-**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
+**★ 4** · exceptional (score 8.3) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
 
-🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
+🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
 
 ```bash
-cue skills add mugoherick12-boop/skillz --profile python
+cue skills add ELSAKKK/mnemos-mcp --profile python
+```
+
+---
+
+<a id="ozkrnrike-homelab-infrastructure-monitor"></a>
+## ✨ [Ozkrnrike/homelab-infrastructure-monitor](https://github.com/Ozkrnrike/homelab-infrastructure-monitor)
+
+**★ 0** · strong (score 7.5) · Python · tags: ai-gateway, cert-manager, grafana, helm, homelab
+
+🚀 Monitor your home lab infrastructure in real-time with this production-ready dashboard for optimal performance and management.
+
+```bash
+cue skills add Ozkrnrike/homelab-infrastructure-monitor --profile python
 ```
 
 ---

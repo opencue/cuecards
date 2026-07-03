@@ -2,7 +2,7 @@
 title: "ShinyJay2/PaperMentor — Claude Code skill discovered by cue"
 description: "Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight"
 layout: page
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [claude-code, skill, research]
 ---
 
