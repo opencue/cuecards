@@ -25,6 +25,10 @@ claude-plugins-official/
 # Generated runtime (lives at ~/.config/cue/ but excluded if symlinked in for inspection)
 .cue-hash
 
+# Local git worktrees (scratch checkouts with their own .git; committing them as
+# bare gitlinks with no .gitmodules URL breaks `git submodule update` in CI).
+.claude/worktrees/
+
 # OMX / OMC agent state (per-session traces + mission state, not source-controlled)
 .omx/
 .omc/
