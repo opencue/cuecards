@@ -2,7 +2,7 @@
 title: "misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator — Claude Code skill discovered by cue"
 description: "A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Code"
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, skill, fleet-control]
 ---
 

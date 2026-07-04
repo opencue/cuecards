@@ -1,23 +1,23 @@
 ---
 title: "rikhinkavuru/calma — Claude Code skill discovered by cue"
-description: "Verify a computational result by re-running it and recomputing the number from the raw outputs. An open-source Claude Code skill."
+description: "Re-run the work, recompute the number, block the wrong one before it ships — a deterministic guardrail for AI-computed results. CLI · Claude Code hook · MCP."
 layout: page
-updated: 2026-06-17
+updated: 2026-07-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rikhinkavuru/calma](https://github.com/rikhinkavuru/calma)
 
-**★ 1** · exceptional (score 8.3) · Python · backtesting, claude-code, claude-skill, data-science, machine-learning
+**★ 1** · exceptional (score 10.8) · Python · ai-agents, backtesting, claude, claude-code, claude-skill
 
-> Verify a computational result by re-running it and recomputing the number from the raw outputs. An open-source Claude Code skill.
+> Re-run the work, recompute the number, block the wrong one before it ships — a deterministic guardrail for AI-computed results. CLI · Claude Code hook · MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-17
-- 🏷️ Tags: backtesting, claude-code, claude-skill, data-science, machine-learning, python, reproducibility, verification
+- 🗓️ Last pushed: 2026-07-04
+- 🏷️ Tags: ai-agents, backtesting, claude, claude-code, claude-skill, cli, data-science, developer-tools, llm-evaluation, machine-learning, mcp, mcp-server, python, reproducibility, verification
 
 ## Best fit cue profiles
 

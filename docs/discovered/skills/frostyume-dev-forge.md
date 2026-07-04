@@ -2,7 +2,7 @@
 title: "Frostyume/dev-forge — Claude Code skill discovered by cue"
 description: "Local-first root-cause knowledge base for Claude Code: log a bug once, forge weekly reports and resume bullets. Never debug the same bug twice."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-04
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, docs-writer]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-29
+- 🗓️ Last pushed: 2026-07-04
 - 🏷️ Tags: bug-tracking, claude, claude-code, claude-code-skill, claude-plugin, claude-skill, claude-skills, developer-tools, devlog, knowledge-base, markdown, productivity, resume, retrospective, root-cause-analysis, weekly-report
 
 ## Best fit cue profiles

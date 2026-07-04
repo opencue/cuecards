@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="denniswei9898-social-cards-engine"></a>
+## 💎 [DennisWei9898/social-cards-engine](https://github.com/DennisWei9898/social-cards-engine)
+
+**★ 25** · exceptional (score 18.1) · Python · tags: ai-agent, brand-design, claude-code, claude-skill, content-automation
+
+The Claude Design for IG carousels — one engine, swap a brand pack, get a whole new style, with a built-in AI reviewer. ｜ IG 圖卡版的 Claude Design — 一套引擎，換一份 brand pack 就換一種風格，內建 AI 審稿員。
+
+✅ SKILL.md
+
+```bash
+cue skills add DennisWei9898/social-cards-engine --profile creative-media
+```
+
+---
+
+<a id="huangcvs-meigen-ai-design-mcp"></a>
+## 💎 [HUANGcvs/MeiGen-AI-Design-MCP](https://github.com/HUANGcvs/MeiGen-AI-Design-MCP)
+
+**★ 7** · exceptional (score 12.4) · TypeScript · tags: ai-image-generation, claude, claude-code, comfyui, lovart
+
+🎨 Turn Claude Code and OpenClaw into a powerful design assistant with local ComfyUI, API integration, and a large pro prompt library.
+
+```bash
+cue skills add HUANGcvs/MeiGen-AI-Design-MCP --profile creative-media
+```
 
 ---
 

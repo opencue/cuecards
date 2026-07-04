@@ -2,19 +2,19 @@
 title: "SihyeonJeon/why-was-fable-banned — Claude Code skill discovered by cue"
 description: "Fable-style spec + evidence gate for Claude Code + Codex. Makes Opus/Codex work under Fable-like discipline: blocks every edit until a deterministic spec passes"
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [SihyeonJeon/why-was-fable-banned](https://github.com/SihyeonJeon/why-was-fable-banned)
 
-**★ 45** · strong (score 7.8) · Python · agent-harness, ai-agent-guardrails, ai-coding, claude-code, claude-fable
+**★ 45** · strong (score 7.7) · Python · agent-harness, ai-agent-guardrails, ai-coding, claude-code, claude-fable
 
 > Fable-style spec + evidence gate for Claude Code + Codex. Makes Opus/Codex work under Fable-like discipline: blocks every edit until a deterministic spec passes, and there is no "done" without live acceptance evidence. Spec-first, verification-gated, forbidden-paths enforced.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
 - ⭐ 45 stars
 - 🗓️ Last pushed: 2026-06-30
 - 🏷️ Tags: agent-harness, ai-agent-guardrails, ai-coding, claude-code, claude-fable, claude-fable-5, codex, evidence-gate, fable, fable-5, guardrails, hooks, llm, llm-harness, opus, opus-4-8, spec-driven-development, spec-first, swe-bench, verification-gate

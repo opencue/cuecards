@@ -1,24 +1,24 @@
 ---
 title: "gtbwpkwjnb-alt/summarize-skill — Claude Code skill discovered by cue"
-description: "ZCode/Claude Code skill: session diagnosis, cross-project error tracking with backtest verification, experience harvesting, and self-evolving rules. /总结 — 会话诊断·"
+description: "会话级全维总结 — 项目·进度·建议·错误，一个命令全清 | Session-level summary for project/progress/suggestion/error"
 layout: page
-updated: 2026-06-21
+updated: 2026-07-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [gtbwpkwjnb-alt/summarize-skill](https://github.com/gtbwpkwjnb-alt/summarize-skill)
 
-**★ 0** · exceptional (score 15.5) · PowerShell · agent-skill, ai-coding, claude-code, claude-code-skill, codex
+**★ 1** · exceptional (score 15.8) · PowerShell · agent-memory, agent-skill, ai-coding, claude-code, claude-code-skill
 
-> ZCode/Claude Code skill: session diagnosis, cross-project error tracking with backtest verification, experience harvesting, and self-evolving rules. /总结 — 会话诊断·错误追踪·自进化技能
+> 会话级全维总结 — 项目·进度·建议·错误，一个命令全清 | Session-level summary for project/progress/suggestion/error
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-21
-- 🏷️ Tags: agent-skill, ai-coding, claude-code, claude-code-skill, codex, cursor, developer-tools, diagnostics, productivity, self-evolution, session-management, summarize, windsurf, zcode, zcode-skill
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-04
+- 🏷️ Tags: agent-memory, agent-skill, ai-coding, claude-code, claude-code-skill, codex, context-compression, cursor, developer-tools, diagnostics, error-harvesting, error-prevention, productivity, self-evolution, self-evolving, session-management, summarize, windsurf, zcode, zcode-skill
 
 ## Best fit cue profiles
 

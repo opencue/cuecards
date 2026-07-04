@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-04
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="0x61a-fullstack-pro-max"></a>
+## 💎 [0x61A/fullstack-pro-max](https://github.com/0x61A/fullstack-pro-max)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 1** · exceptional (score 13.3) · Python · tags: claude-code, claude-skill, devops, fullstack, security
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+13-module Claude Code skill for shipping a full web product: backend, security, SEO, ads, AI integration, analytics, email, i18n & more — stdlib-only, self-contained
+
+✅ SKILL.md
 
 ```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile marketing
+cue skills add 0x61A/fullstack-pro-max --profile marketing
 ```
 
 ---

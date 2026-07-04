@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for python"
-description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="elsakkk-mnemos-mcp"></a>
-## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
+<a id="mahiler1909-claudepath"></a>
+## 💎 [Mahiler1909/claudepath](https://github.com/Mahiler1909/claudepath)
 
-**★ 4** · exceptional (score 8.3) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
+**★ 15** · exceptional (score 10.1) · Python · tags: anthropic, claude, claude-code, cli, developer-tools
 
-🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
-
-```bash
-cue skills add ELSAKKK/mnemos-mcp --profile python
-```
-
----
-
-<a id="ozkrnrike-homelab-infrastructure-monitor"></a>
-## ✨ [Ozkrnrike/homelab-infrastructure-monitor](https://github.com/Ozkrnrike/homelab-infrastructure-monitor)
-
-**★ 0** · strong (score 7.5) · Python · tags: ai-gateway, cert-manager, grafana, helm, homelab
-
-🚀 Monitor your home lab infrastructure in real-time with this production-ready dashboard for optimal performance and management.
+Move Claude Code projects without losing session history — CLI tool to update all path references after renaming or relocating a project directory
 
 ```bash
-cue skills add Ozkrnrike/homelab-infrastructure-monitor --profile python
+cue skills add Mahiler1909/claudepath --profile python
 ```
 
 ---

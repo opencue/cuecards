@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="frostyume-dev-forge"></a>
+## 💎 [Frostyume/dev-forge](https://github.com/Frostyume/dev-forge)
 
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 0** · exceptional (score 15) · tags: bug-tracking, claude, claude-code, claude-code-skill, claude-plugin
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+Local-first root-cause knowledge base for Claude Code: log a bug once, forge weekly reports and resume bullets. Never debug the same bug twice.
 
-```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
-```
-
----
-
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
-
-**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
-
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+✅ SKILL.md
 
 ```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+cue skills add Frostyume/dev-forge --profile docs-writer
 ```
 
 ---
@@ -44,7 +33,7 @@ cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
 <a id="wlsdks-ontology-atlas"></a>
 ## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
 
-**★ 5** · strong (score 7) · TypeScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
+**★ 5** · strong (score 6.9) · TypeScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
 
 Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
 
@@ -57,12 +46,25 @@ cue skills add wlsdks/ontology-atlas --profile docs-writer
 <a id="thegoatpsy-mneme"></a>
 ## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
 
-**★ 2** · strong (score 6.4) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
+**★ 2** · strong (score 6.5) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
 
 Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
 
 ```bash
 cue skills add TheGoatPsy/mneme --profile docs-writer
+```
+
+---
+
+<a id="freema-vellum"></a>
+## ✨ [freema/vellum](https://github.com/freema/vellum)
+
+**★ 0** · strong (score 6) · Go · tags: claude, docker, golang, knowledge-base, markdown
+
+Lightweight self-hosted MCP server over a folder of markdown files. One Go binary, embedded React SPA, no DB.
+
+```bash
+cue skills add freema/vellum --profile docs-writer
 ```
 
 ---

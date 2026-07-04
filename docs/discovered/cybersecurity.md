@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "9 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 3** · exceptional (score 16.1) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 3** · exceptional (score 16.2) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -33,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="nsasoft-nsauditor-ai-agent-skill"></a>
 ## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 3** · exceptional (score 15.1) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
 AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
 
@@ -45,38 +45,10 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 
 ---
 
-<a id="x-glacier-kali-pentest"></a>
-## 💎 [x-glacier/kali-pentest](https://github.com/x-glacier/kali-pentest)
-
-**★ 56** · exceptional (score 13.1) · tags: ai-agent, claude-code-skill, cybersecurity, ethical-hacking, hermes-agent
-
-Kali Linux penetration testing skill for AI agents (Claude Code, OpenClaw, Hermes Agent). 200+ CLI tools, 15 scenario playbooks. Autonomously plans attack paths, selects tools, and integrates results across phases to adapt the penetration strategy — with human approval gates for high-risk actions.
-
-```bash
-cue skills add x-glacier/kali-pentest --profile cybersecurity
-```
-
----
-
-<a id="leontynestirredup43-slowmist-security-cc"></a>
-## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
-
-**★ 0** · exceptional (score 13) · tags: agent-security, aml, audit, blockchain, claude-code
-
-Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
-
-✅ SKILL.md
-
-```bash
-cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1877** · exceptional (score 11.4) · Python · tags: agentskills, claude, skills
+**★ 1887** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -86,41 +58,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+<a id="shrav89-skill-scanner"></a>
+## 💎 [shrav89/skill-scanner](https://github.com/shrav89/skill-scanner)
 
-**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+**★ 1** · exceptional (score 10.3) · Python · tags: agent, agent-skills, ai, ai-agents, anthropic
 
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
-
-```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
-```
-
----
-
-<a id="aihxp-godaudits"></a>
-## ✨ [aihxp/godaudits](https://github.com/aihxp/godaudits)
-
-**★ 0** · strong (score 7) · Shell · tags: agent-skills, ai-agents, audit, audit-report, claude-code
-
-Audit everything after anything. Single-command AI agent skill that audits a codebase end to end and emits a scored, evidence-backed audit report (AUDIT.mdx) with an agent-executable remediation plan. Claude Code, Codex, Cursor, OpenCode, and every Agent Skills client.
+🔍 Discover and analyze AI skills in your projects with Skill Scanner to enhance development and improve security.
 
 ```bash
-cue skills add aihxp/godaudits --profile cybersecurity
-```
-
----
-
-<a id="aihxp-godplans"></a>
-## ✨ [aihxp/godplans](https://github.com/aihxp/godplans)
-
-**★ 0** · strong (score 7) · Shell · tags: agent-skills, ai-agents, architecture, claude-code, claude-skill
-
-Plan everything before anything. Single-command AI agent skill that emits a complete, audit-proof, agent-executable master plan (PLAN.mdx) before any code is written. Claude Code, Codex, Cursor, OpenCode, and every Agent Skills client.
-
-```bash
-cue skills add aihxp/godplans --profile cybersecurity
+cue skills add shrav89/skill-scanner --profile cybersecurity
 ```
 
 ---

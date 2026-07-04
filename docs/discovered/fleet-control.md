@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "6 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="neomjs-neo"></a>
 ## 💎 [neomjs/neo](https://github.com/neomjs/neo)
 
-**★ 3225** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
+**★ 3226** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
 
 Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
 
@@ -37,32 +37,6 @@ Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
 cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="yandatini-mcp-agent-framework"></a>
-## 💎 [Yandatini/mcp-agent-framework](https://github.com/Yandatini/mcp-agent-framework)
-
-**★ 2** · exceptional (score 10) · Python · tags: agentic-rag, ai, ai-agent, ai-agents, ai-assistant
-
-🤖 Orchestrate AI agents at scale using the MCP framework, enabling seamless context sharing, communication, and integration for enhanced collaboration.
-
-```bash
-cue skills add Yandatini/mcp-agent-framework --profile fleet-control
-```
-
----
-
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
-
-**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
-
-2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
-
-```bash
-cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---

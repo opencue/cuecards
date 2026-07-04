@@ -2,7 +2,7 @@
 title: "monuro/github-ai-assistant — Claude Code skill discovered by cue"
 description: "🤖 Boost your development workflow with this AI-powered GitHub command-line assistant for quicker and smarter coding."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-04
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-04
 - 🏷️ Tags: ai-tools, aiagent, chatgpt, chatgpt-api, code-generation, code-review, collaboration-tools, developer-experience, genai, genai-usecase, generative-ai, github, langchain, llm, mcp, mcp-server, model-context-protocol, nextjs, prompt-collections, prompt-management
 
 ## Best fit cue profiles
