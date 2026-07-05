@@ -35,7 +35,7 @@ import {
   SchemaViolation,
 } from "../../profiles/_types";
 import { listProfiles, loadProfile } from "./profile-loader";
-import { materializeMcp, McpNotFound, type MaterializeOptions } from "./mcp-materializer";
+import { materializeMcp, McpNotFound, UnresolvedEnvPlaceholder, type MaterializeOptions } from "./mcp-materializer";
 import { resolveLocal } from "./resolver-local";
 import {
   NpxFetchFailed,
@@ -55,7 +55,7 @@ const DEFAULT_HOOKS_ROOT = join(cueRepoRoot(), "resources", "hooks");
 const DEFAULT_SUBAGENTS_ROOT = join(cueRepoRoot(), "resources", "subagents");
 
 export type LintRuleId =
-  | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8" | "W9"
+  | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8" | "W9" | "W10"
   | "E1" | "E2" | "E3";
 export type DiagnosticRuleId = LintRuleId | "SCHEMA" | "LOAD";
 export type LintSeverity = "warning" | "error";
@@ -111,6 +111,11 @@ export const PROFILE_LINT_RULES: Record<LintRuleId, RuleDoc> = {
     severity: "warning",
     title: "local-only MCP",
     description: "Profile references an MCP that has a source dir but isn't in the sanitized public registry — a private/local server the user wires into their own ~/.claude.json. Not a profile bug, so it's a warning, not E3.",
+  },
+  W10: {
+    severity: "warning",
+    title: "unresolved MCP env secret",
+    description: "An MCP config references a `${VAR}` env placeholder (typically an API key/username) that isn't set in this environment. Secrets are supplied at launch, not at validate time — so this is environmental state, not a profile bug. Declare it in profile.env or export it before `cue launch`.",
   },
   E1: {
     severity: "error",
@@ -774,6 +779,22 @@ function addResolverIssue(
       "W5",
       "warning",
       `plugin "${ref}" is not installed locally — run /plugin marketplace add ${ref.split("@")[0]}`,
+      { subject: ref },
+    );
+    return;
+  }
+  // An unresolved `${VAR}` secret is environmental state, not a profile defect:
+  // the MCP config correctly declares the placeholder, and the secret is
+  // supplied at launch (or exported in the shell), not at validate time. Demote
+  // to W10 — same reasoning as PluginNotInstalled/local-only MCP above. Without
+  // this, ANY profile referencing a secret-bearing MCP fails `cue validate` in a
+  // bare environment (CI, a fresh checkout, before the user exports the key).
+  if (err instanceof UnresolvedEnvPlaceholder) {
+    addIssue(
+      result,
+      "W10",
+      "warning",
+      `MCP "${ref}" needs env secret \${${err.varName}} — set it in profile.env or export it before \`cue launch\``,
       { subject: ref },
     );
     return;
