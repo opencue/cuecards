@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="0x61a-fullstack-pro-max"></a>
-## 💎 [0x61A/fullstack-pro-max](https://github.com/0x61A/fullstack-pro-max)
-
-**★ 1** · exceptional (score 13.3) · Python · tags: claude-code, claude-skill, devops, fullstack, security
-
-13-module Claude Code skill for shipping a full web product: backend, security, SEO, ads, AI integration, analytics, email, i18n & more — stdlib-only, self-contained
-
-✅ SKILL.md
-
-```bash
-cue skills add 0x61A/fullstack-pro-max --profile frontend
-```
 
 ---
 
@@ -43,15 +28,41 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+<a id="astroicers-visual-web-stack"></a>
+## 💎 [astroicers/visual-web-stack](https://github.com/astroicers/visual-web-stack)
 
-**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+**★ 1** · exceptional (score 8.3) · Shell · tags: animejs, claude-code, claude-code-skill, frontend, gsap
 
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
+Claude Code skill — React 19 + R3F + Anime.js + GSAP + Lenis + Zustand cross-package integration rules and recipes
 
 ```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
+cue skills add astroicers/visual-web-stack --profile frontend
+```
+
+---
+
+<a id="nikolas-sapa-branch-ai"></a>
+## 💎 [nikolas-sapa/branch-ai](https://github.com/nikolas-sapa/branch-ai)
+
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: ai-agents, ai-tools, anthropic, chain-of-thought, claude
+
+Reasoning canvas for AI CLIs. Branch captures the extended thinking from Claude Code, OpenAI Codex, Gemini CLI, and Factory Droid as a navigable, forkable tree — rewind any step, fork from any node to explore an alternative path, or inject a fact mid-thought and watch the conclusion change. Local-first, MCP server included.
+
+```bash
+cue skills add nikolas-sapa/branch-ai --profile frontend
+```
+
+---
+
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+
+```bash
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---

@@ -1,44 +1,70 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="denniswei9898-social-cards-engine"></a>
-## 💎 [DennisWei9898/social-cards-engine](https://github.com/DennisWei9898/social-cards-engine)
+<a id="498as-linkedin-profile-optimizer"></a>
+## 💎 [498AS/linkedin-profile-optimizer](https://github.com/498AS/linkedin-profile-optimizer)
 
-**★ 25** · exceptional (score 18.1) · Python · tags: ai-agent, brand-design, claude-code, claude-skill, content-automation
+**★ 0** · exceptional (score 12) · tags: 498as, claude-code, claude-skill, geo, linkedin
 
-The Claude Design for IG carousels — one engine, swap a brand pack, get a whole new style, with a built-in AI reviewer. ｜ IG 圖卡版的 Claude Design — 一套引擎，換一份 brand pack 就換一種風格，內建 AI 審稿員。
+Dual-mode LinkedIn optimization skill for Claude Code — audits and rewrites personal profiles and company Pages with the 2026 algorithm (360Brew) and full platform-guideline compliance. System prompt v3.0 + 10 references + 16 fill-in templates.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add DennisWei9898/social-cards-engine --profile creative-media
+cue skills add 498AS/linkedin-profile-optimizer --profile creative-media
 ```
 
 ---
 
-<a id="huangcvs-meigen-ai-design-mcp"></a>
-## 💎 [HUANGcvs/MeiGen-AI-Design-MCP](https://github.com/HUANGcvs/MeiGen-AI-Design-MCP)
+<a id="n24q02m-imagine-mcp"></a>
+## 💎 [n24q02m/imagine-mcp](https://github.com/n24q02m/imagine-mcp)
 
-**★ 7** · exceptional (score 12.4) · TypeScript · tags: ai-image-generation, claude, claude-code, comfyui, lovart
+**★ 4** · exceptional (score 9.3) · Python · tags: ai-agents, antigravity, claude, claude-code, codex
 
-🎨 Turn Claude Code and OpenClaw into a powerful design assistant with local ComfyUI, API integration, and a large pro prompt library.
+Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok.
 
 ```bash
-cue skills add HUANGcvs/MeiGen-AI-Design-MCP --profile creative-media
+cue skills add n24q02m/imagine-mcp --profile creative-media
+```
+
+---
+
+<a id="nikolas-sapa-branch-ai"></a>
+## 💎 [nikolas-sapa/branch-ai](https://github.com/nikolas-sapa/branch-ai)
+
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: ai-agents, ai-tools, anthropic, chain-of-thought, claude
+
+Reasoning canvas for AI CLIs. Branch captures the extended thinking from Claude Code, OpenAI Codex, Gemini CLI, and Factory Droid as a navigable, forkable tree — rewind any step, fork from any node to explore an alternative path, or inject a fact mid-thought and watch the conclusion change. Local-first, MCP server included.
+
+```bash
+cue skills add nikolas-sapa/branch-ai --profile creative-media
+```
+
+---
+
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+
+```bash
+cue skills add giovannisacca/pixel-mcp-workflow --profile creative-media
 ```
 
 ---

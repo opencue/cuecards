@@ -2,21 +2,21 @@
 title: "n24q02m/imagine-mcp — Claude Code skill discovered by cue"
 description: "Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-05
 tags: [claude-code, skill, creative-media, backend]
 ---
 
 # 💎 [n24q02m/imagine-mcp](https://github.com/n24q02m/imagine-mcp)
 
-**★ 3** · exceptional (score 9.2) · Python · ai-agents, antigravity, claude, claude-code, codex
+**★ 4** · exceptional (score 9.3) · Python · ai-agents, antigravity, claude, claude-code, codex
 
 > Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: ai-agents, antigravity, claude, claude-code, codex, copilot, cursor, docker, gemini, gemini-cli, grok, image-generation, image-understanding, mcp, mcp-server, model-context-protocol, openai, opencode, python, video-generation
 
 ## Best fit cue profiles

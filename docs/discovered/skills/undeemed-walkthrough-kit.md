@@ -2,19 +2,19 @@
 title: "undeemed/walkthrough-kit — Claude Code skill discovered by cue"
 description: "Claude Code plugin: spoken walkthrough kits for code demos inside isolated grader sandboxes. Code pointers + portable commands, no diagrams, no local paths."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [undeemed/walkthrough-kit](https://github.com/undeemed/walkthrough-kit)
 
-**★ 1** · exceptional (score 8.3) · anthropic, claude, claude-code, claude-code-plugin, claude-code-skill
+**★ 1** · exceptional (score 8.2) · anthropic, claude, claude-code, claude-code-plugin, claude-code-skill
 
 > Claude Code plugin: spoken walkthrough kits for code demos inside isolated grader sandboxes. Code pointers + portable commands, no diagrams, no local paths.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-02
 - 🏷️ Tags: anthropic, claude, claude-code, claude-code-plugin, claude-code-skill, code-walkthrough, demo-script, developer-tools, presentation

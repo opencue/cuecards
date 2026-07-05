@@ -2,7 +2,7 @@
 title: "aduhappy/multi-agent-project-skill — Claude Code skill discovered by cue"
 description: "Cross-agent, cross-tool resumable project skeleton (AGENTS.md + thin pointers + self-contained task cards + data provenance). Core principle: trust-but-verify —"
 layout: page
-updated: 2026-06-20
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-20
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: agent-skills, agents-md, claude-code-skill, context-engineering, cursor, multi-agent, project-scaffolding, research, zcode
 
 ## Best fit cue profiles

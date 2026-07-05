@@ -2,7 +2,7 @@
 title: "Siddhant-Goswami/Crucible — Claude Code skill discovered by cue"
 description: "Harness-first agent research: a bounded act→verify loop runner with one-line adapters for 10 lean harnesses (Pi, Hermes, aider, Codex, Goose, Claude, Ollama…) +"
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 

@@ -2,21 +2,21 @@
 title: "n24q02m/mnemo-mcp — Claude Code skill discovered by cue"
 description: "Persistent AI memory with hybrid search and embedded sync. Open, free, unlimited."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-05
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [n24q02m/mnemo-mcp](https://github.com/n24q02m/mnemo-mcp)
 
-**★ 7** · exceptional (score 13.2) · Python · ai-agents, ai-coding, ai-memory, claude, claude-code
+**★ 8** · exceptional (score 13.3) · Python · ai-agents, ai-coding, ai-memory, claude, claude-code
 
 > Persistent AI memory with hybrid search and embedded sync. Open, free, unlimited.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-06-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: ai-agents, ai-coding, ai-memory, claude, claude-code, cursor, docker, hybrid-search, mcp, mcp-server, model-context-protocol, open-source, python, sqlite
 
 ## Best fit cue profiles

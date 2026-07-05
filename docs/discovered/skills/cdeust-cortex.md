@@ -1,22 +1,22 @@
 ---
 title: "cdeust/Cortex — Claude Code skill discovered by cue"
-description: "Persistent memory for Claude Code — 41 neuroscience papers, 26 biological mechanisms with paper-bearing per-mechanism ablation evidence (E1 v3). LongMemEval R@1"
+description: "Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCo"
 layout: page
-updated: 2026-06-09
+updated: 2026-07-05
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [cdeust/Cortex](https://github.com/cdeust/Cortex)
 
-**★ 48** · exceptional (score 10.8) · Python · agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
+**★ 65** · exceptional (score 15.5) · Python · agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
 
-> Persistent memory for Claude Code — 41 neuroscience papers, 26 biological mechanisms with paper-bearing per-mechanism ablation evidence (E1 v3). LongMemEval R@10 98.4% / MRR 0.9124 (n=500). LoCoMo R@10 94.2% / MRR 0.8278 (n=1986). BEAM-10M +33.4% over flat retrieval. PostgreSQL + pgvector. Verified via 31-row two-benchmark ablation campaign.
+> Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCoMo R@10 91.5% / MRR 0.805 (n=1982), BEAM-100K retrieval-proxy MRR 0.55. Clean-DB, single-process, production recall path. PostgreSQL + pgvector.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 48 stars
-- 🗓️ Last pushed: 2026-06-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+- ⭐ 65 stars
+- 🗓️ Last pushed: 2026-07-04
 - 🏷️ Tags: agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude, claude-code, claude-code-plugin, cognitive-architecture, cognitive-science, episodic-memory, hopfield-network, llm-memory, long-term-memory, mcp-server, model-context-protocol, neuroscience, persistent-memory, predictive-coding, retrieval-augmented-generation, vector-search
 
 ## Best fit cue profiles

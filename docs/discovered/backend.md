@@ -1,70 +1,146 @@
 ---
 title: "Claude Code Skills for backend"
-description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "18 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 18 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="louishin-claude-api-cost-optimization"></a>
-## 💎 [Louishin/claude-api-cost-optimization](https://github.com/Louishin/claude-api-cost-optimization)
+<a id="cdeust-cortex"></a>
+## 💎 [cdeust/Cortex](https://github.com/cdeust/Cortex)
 
-**★ 4** · exceptional (score 15.8) · Python · tags: ai-agents, ai-gateway, anthropic, api, api-optimization
+**★ 65** · exceptional (score 15.5) · Python · tags: agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
 
-💰 Optimize your Claude API usage to save 50-90% on costs with batching techniques and efficient request management.
-
-✅ SKILL.md
+Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCoMo R@10 91.5% / MRR 0.805 (n=1982), BEAM-100K retrieval-proxy MRR 0.55. Clean-DB, single-process, production recall path. PostgreSQL + pgvector.
 
 ```bash
-cue skills add Louishin/claude-api-cost-optimization --profile backend
+cue skills add cdeust/Cortex --profile backend
 ```
 
 ---
 
-<a id="brhiza-mingyu"></a>
-## 💎 [Brhiza/mingyu](https://github.com/Brhiza/mingyu)
+<a id="n24q02m-better-notion-mcp"></a>
+## 💎 [n24q02m/better-notion-mcp](https://github.com/n24q02m/better-notion-mcp)
 
-**★ 176** · exceptional (score 14.6) · TypeScript · tags: ai, bazi, da-liuren, divination, fortune-telling
+**★ 34** · exceptional (score 14.2) · TypeScript · tags: ai-agents, ai-coding, claude, claude-code, cursor
 
-八字、紫微、星盘、六爻、梅花、奇门、大六壬、小六壬、塔罗、雷诺曼、灵签、择日一站式排盘，输出结构化提示词与数据。提供公开 API、MCP Server 与 skill。
+Markdown-first Notion for AI agents -- pages, databases, blocks, and comments in one call.
 
 ```bash
-cue skills add Brhiza/mingyu --profile backend
+cue skills add n24q02m/better-notion-mcp --profile backend
 ```
 
 ---
 
-<a id="huangcvs-meigen-ai-design-mcp"></a>
-## 💎 [HUANGcvs/MeiGen-AI-Design-MCP](https://github.com/HUANGcvs/MeiGen-AI-Design-MCP)
+<a id="n24q02m-better-email-mcp"></a>
+## 💎 [n24q02m/better-email-mcp](https://github.com/n24q02m/better-email-mcp)
 
-**★ 7** · exceptional (score 12.4) · TypeScript · tags: ai-image-generation, claude, claude-code, comfyui, lovart
+**★ 24** · exceptional (score 13.9) · TypeScript · tags: ai-agents, ai-coding, claude, claude-code, cursor
 
-🎨 Turn Claude Code and OpenClaw into a powerful design assistant with local ComfyUI, API integration, and a large pro prompt library.
+IMAP/SMTP email for AI agents -- read, send, organize folders, and manage attachments across multiple accounts, with auto-discovery.
 
 ```bash
-cue skills add HUANGcvs/MeiGen-AI-Design-MCP --profile backend
+cue skills add n24q02m/better-email-mcp --profile backend
 ```
 
 ---
 
-<a id="robotrocketscience-aelfrice"></a>
-## 💎 [robotrocketscience/aelfrice](https://github.com/robotrocketscience/aelfrice)
+<a id="n24q02m-better-code-review-graph"></a>
+## 💎 [n24q02m/better-code-review-graph](https://github.com/n24q02m/better-code-review-graph)
 
-**★ 6** · exceptional (score 11.6) · Python · tags: agent-memory, ai-agents, anthropic, bayesian, bayesian-inference
+**★ 58** · exceptional (score 13.5) · Python · tags: ai-agents, ai-coding, antigravity, claude, claude-code
 
-Bayesian memory that learns from feedback for LLM agents
+Knowledge graph for token-efficient code reviews -- semantic search and call-graph resolution across your codebase.
 
 ```bash
-cue skills add robotrocketscience/aelfrice --profile backend
+cue skills add n24q02m/better-code-review-graph --profile backend
+```
+
+---
+
+<a id="n24q02m-better-telegram-mcp"></a>
+## 💎 [n24q02m/better-telegram-mcp](https://github.com/n24q02m/better-telegram-mcp)
+
+**★ 9** · exceptional (score 13.4) · Python · tags: ai-agents, ai-coding, claude, claude-code, cursor
+
+Telegram for AI agents -- messages, chats, media, and contacts across both bot and full user-account modes.
+
+```bash
+cue skills add n24q02m/better-telegram-mcp --profile backend
+```
+
+---
+
+<a id="n24q02m-mnemo-mcp"></a>
+## 💎 [n24q02m/mnemo-mcp](https://github.com/n24q02m/mnemo-mcp)
+
+**★ 8** · exceptional (score 13.3) · Python · tags: ai-agents, ai-coding, ai-memory, claude, claude-code
+
+Persistent AI memory with hybrid search and embedded sync. Open, free, unlimited.
+
+```bash
+cue skills add n24q02m/mnemo-mcp --profile backend
+```
+
+---
+
+<a id="n24q02m-better-godot-mcp"></a>
+## 💎 [n24q02m/better-godot-mcp](https://github.com/n24q02m/better-godot-mcp)
+
+**★ 27** · exceptional (score 13) · TypeScript · tags: ai-agents, ai-coding, claude, claude-code, cursor
+
+Composite MCP server for Godot Engine -- 17 composite tools for AI-assisted game development.
+
+```bash
+cue skills add n24q02m/better-godot-mcp --profile backend
+```
+
+---
+
+<a id="devantler-tech-ksail"></a>
+## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
+
+**★ 149** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
+
+All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
+
+```bash
+cue skills add devantler-tech/ksail --profile backend
+```
+
+---
+
+<a id="n24q02m-wet-mcp"></a>
+## 💎 [n24q02m/wet-mcp](https://github.com/n24q02m/wet-mcp)
+
+**★ 13** · exceptional (score 12.6) · Python · tags: ai-agents, ai-coding, claude, claude-code, crawl4ai
+
+Open-source MCP server for AI agents: web search, content extraction, and library docs -- 5-strategy scraping, runs without API keys.
+
+```bash
+cue skills add n24q02m/wet-mcp --profile backend
+```
+
+---
+
+<a id="sdsrss-claude-mem-lite"></a>
+## 💎 [sdsrss/claude-mem-lite](https://github.com/sdsrss/claude-mem-lite)
+
+**★ 48** · exceptional (score 11.4) · JavaScript · tags: agent-memory, ai-coding-assistant, ai-memory, anthropic, claude
+
+Persistent long-term memory for Claude Code via MCP — captures coding decisions, bugfixes, and context across sessions. Hybrid FTS5 + TF-IDF search with episode batching. Single SQLite DB, no external services. Alternative to claude-mem with 600x lower cost.
+
+```bash
+cue skills add sdsrss/claude-mem-lite --profile backend
 ```
 
 ---
@@ -72,7 +148,7 @@ cue skills add robotrocketscience/aelfrice --profile backend
 <a id="madeonsol-mcp-server-madeonsol"></a>
 ## 💎 [MadeOnSol/mcp-server-madeonsol](https://github.com/MadeOnSol/mcp-server-madeonsol)
 
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: ai-agent, claude, crypto-api, cursor, kol
+**★ 1** · exceptional (score 9.8) · JavaScript · tags: ai-agent, claude, crypto-api, cursor, kol
 
 MCP server for MadeOnSol Solana KOL intelligence — use from Claude, Cursor, or any MCP client
 
@@ -82,28 +158,54 @@ cue skills add MadeOnSol/mcp-server-madeonsol --profile backend
 
 ---
 
-<a id="jsonbored-metagraphed"></a>
-## 💎 [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed)
+<a id="n24q02m-imagine-mcp"></a>
+## 💎 [n24q02m/imagine-mcp](https://github.com/n24q02m/imagine-mcp)
 
-**★ 9** · exceptional (score 9.2) · JavaScript · tags: bittensor, bittensor-cli, bittensor-docs, bittensor-subnet, bittensor-subnets
+**★ 4** · exceptional (score 9.3) · Python · tags: ai-agents, antigravity, claude, claude-code, codex
 
-Operational metadata, health, schemas, and public interface discovery for Bittensor subnets.
+Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok.
 
 ```bash
-cue skills add JSONbored/metagraphed --profile backend
+cue skills add n24q02m/imagine-mcp --profile backend
 ```
 
 ---
 
-<a id="monuro-github-ai-assistant"></a>
-## ✨ [monuro/github-ai-assistant](https://github.com/monuro/github-ai-assistant)
+<a id="cachly-dev-cachly-mcp"></a>
+## 💎 [cachly-dev/cachly-mcp](https://github.com/cachly-dev/cachly-mcp)
 
-**★ 1** · strong (score 7.8) · Java · tags: ai-tools, aiagent, chatgpt, chatgpt-api, code-generation
+**★ 2** · exceptional (score 9) · TypeScript · tags: ai-memory, causal-trace, claude-code, cursor, developer-tools
 
-🤖 Boost your development workflow with this AI-powered GitHub command-line assistant for quicker and smarter coding.
+AI memory brain for Claude Code, Cursor, Copilot & Windsurf — 120+ MCP tools. Persistent sessions, lessons learned, semantic search, Team Brain, managed Valkey/Redis. Free tier.
 
 ```bash
-cue skills add monuro/github-ai-assistant --profile backend
+cue skills add cachly-dev/cachly-mcp --profile backend
+```
+
+---
+
+<a id="tahahussein-dotcom-mcp-encrypted-sqlite"></a>
+## ✨ [TahaHussein-dotcom/mcp-encrypted-sqlite](https://github.com/TahaHussein-dotcom/mcp-encrypted-sqlite)
+
+**★ 1** · strong (score 7.8) · tags: crud, database, database-tools, encryption, gradle
+
+🔒 Access and manage encrypted SQLite databases effortlessly with this MCP server, designed for seamless integration with SQLCipher and various clients.
+
+```bash
+cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
+```
+
+---
+
+<a id="ej-locked-flowcore"></a>
+## ✨ [Ej-Locked/FlowCore](https://github.com/Ej-Locked/FlowCore)
+
+**★ 0** · strong (score 7.5) · Rust · tags: automation, bpm, business-process, flowcore, mcp
+
+🚀 Build a minimal Flink-like streaming engine in Rust and React to process events with tumbling windows, late-event detection, and a simple web interface.
+
+```bash
+cue skills add Ej-Locked/FlowCore --profile backend
 ```
 
 ---
@@ -121,19 +223,6 @@ cue skills add alex-jb/bilingual-content-sync-agent --profile backend
 
 ---
 
-<a id="freema-vellum"></a>
-## ✨ [freema/vellum](https://github.com/freema/vellum)
-
-**★ 0** · strong (score 6) · Go · tags: claude, docker, golang, knowledge-base, markdown
-
-Lightweight self-hosted MCP server over a folder of markdown files. One Go binary, embedded React SPA, no DB.
-
-```bash
-cue skills add freema/vellum --profile backend
-```
-
----
-
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
@@ -143,19 +232,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="thedivine1-gst-hsn-api"></a>
-## ✨ [thedivine1/gst-hsn-api](https://github.com/thedivine1/gst-hsn-api)
-
-**★ 0** · strong (score 5) · HTML · tags: cgst, fastapi, gst-2-0, gst-api, hsn
-
-For Indian Developers
-
-```bash
-cue skills add thedivine1/gst-hsn-api --profile backend
 ```
 
 ---

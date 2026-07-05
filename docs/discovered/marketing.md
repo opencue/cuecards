@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="0x61a-fullstack-pro-max"></a>
-## 💎 [0x61A/fullstack-pro-max](https://github.com/0x61A/fullstack-pro-max)
+<a id="shauryalowkeygotaura-brand-launchpad"></a>
+## 💎 [shauryalowkeygotaura/brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)
 
-**★ 1** · exceptional (score 13.3) · Python · tags: claude-code, claude-skill, devops, fullstack, security
+**★ 1** · exceptional (score 12.3) · HTML · tags: agent-skills, ai, ai-tools, anthropic, brand-strategy
 
-13-module Claude Code skill for shipping a full web product: backend, security, SEO, ads, AI integration, analytics, email, i18n & more — stdlib-only, self-contained
+One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. Built on Caleb Ralston, Harry Dry, Oren John & Brier Cochran frameworks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add 0x61A/fullstack-pro-max --profile marketing
+cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
 ```
 
 ---

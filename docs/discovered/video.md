@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-05
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="legenxxx-video-digest"></a>
+## 💎 [legenxxx/video-digest](https://github.com/legenxxx/video-digest)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 1** · exceptional (score 13.8) · Shell · tags: agent-skill, claude-skill, cli, faster-whisper, ffmpeg
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+Turn any video into a searchable text digest — transcript, on-screen text & links, and contact-sheet montages. 100% local, no cloud.
+
+✅ SKILL.md
 
 ```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
+cue skills add legenxxx/video-digest --profile video
 ```
 
 ---

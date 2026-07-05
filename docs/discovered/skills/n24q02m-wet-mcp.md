@@ -2,21 +2,21 @@
 title: "n24q02m/wet-mcp — Claude Code skill discovered by cue"
 description: "Open-source MCP server for AI agents: web search, content extraction, and library docs -- 5-strategy scraping, runs without API keys."
 layout: page
-updated: 2026-06-19
+updated: 2026-07-05
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [n24q02m/wet-mcp](https://github.com/n24q02m/wet-mcp)
 
-**★ 9** · exceptional (score 13.4) · Python · ai-agents, ai-coding, claude, claude-code, crawl4ai
+**★ 13** · exceptional (score 12.6) · Python · ai-agents, ai-coding, claude, claude-code, crawl4ai
 
 > Open-source MCP server for AI agents: web search, content extraction, and library docs -- 5-strategy scraping, runs without API keys.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.4 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-06-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
+- ⭐ 13 stars
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: ai-agents, ai-coding, claude, claude-code, crawl4ai, cursor, docker, mcp, mcp-server, model-context-protocol, open-source, python, searxng, web-scraping, web-search
 
 ## Best fit cue profiles

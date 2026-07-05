@@ -2,7 +2,7 @@
 title: "sungjunlee/beopsuny-skill — Claude Code skill discovered by cue"
 description: "한국 법무 실무를 위한 Claude Code skill — 법령·판례 조사, 계약서 검토, 컴플라이언스. Korean legal research skill for Claude Code (statute, case law, contract review, compliance)."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, compliance, contract-review, korea, korean-law, law, legal-research, legal-tech, legalize-kr
 
 ## Best fit cue profiles

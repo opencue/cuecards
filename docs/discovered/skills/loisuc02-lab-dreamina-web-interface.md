@@ -2,7 +2,7 @@
 title: "loisuc02-lab/dreamina-web-interface — Claude Code skill discovered by cue"
 description: "Dreamina AI Image Generator 2026 🖼️ - Free Web & CLI Tool"
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: agent-skill, ai-images, browser-automation, claude-code, codex, dreamina, image-generation, jimeng, opencode, workbuddy
 
 ## Best fit cue profiles

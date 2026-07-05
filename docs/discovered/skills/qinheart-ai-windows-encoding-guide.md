@@ -2,7 +2,7 @@
 title: "QinHeart/ai-windows-encoding-guide — Claude Code skill discovered by cue"
 description: "Rules and scripts to stop Claude Code / Codex from mangling Chinese file paths on Windows"
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 

@@ -1,57 +1,29 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="o0000-code-paper-search-pro"></a>
-## 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
+<a id="socialpranker-interview-mapper"></a>
+## ✨ [Socialpranker/interview-mapper](https://github.com/Socialpranker/interview-mapper)
 
-**★ 83** · exceptional (score 18.7) · HTML · tags: academic-research, agent-skill, arxiv, claude-code-skill, codex
+**★ 0** · strong (score 6) · Python · tags: claude-skill, custdev, interview-analysis, jtbd, llm
 
-Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
-
-✅ SKILL.md
+Evidence-grounded interview analysis skill for Claude — verbatim-checked quotes, reliability council, cross-interview insights. RU + EN.
 
 ```bash
-cue skills add O0000-code/paper-search-pro --profile research
-```
-
----
-
-<a id="haiyunsky-hpsilab-quant-finance-mcp"></a>
-## 💎 [haiyunsky/hpsilab-quant-finance-mcp](https://github.com/haiyunsky/hpsilab-quant-finance-mcp)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: ai-agent, backtesting, claude-mcp, cursor-mcp, financial-research
-
-Quant finance MCP server for stock analysis, options analytics, implied volatility, Monte Carlo simulation, AI prediction, and backtesting.
-
-```bash
-cue skills add haiyunsky/hpsilab-quant-finance-mcp --profile research
-```
-
----
-
-<a id="aemro-motors-popper-scope"></a>
-## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
-
-**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
-
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
-
-```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add Socialpranker/interview-mapper --profile research
 ```
 
 ---

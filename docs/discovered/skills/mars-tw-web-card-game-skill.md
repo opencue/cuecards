@@ -2,22 +2,22 @@
 title: "mars-tw/web-card-game-skill — Claude Code skill discovered by cue"
 description: "純原生（零依賴）網頁卡牌遊戲的 Claude Code Skill：關鍵字技能對戰、開卡包、星級閃卡、主題切換，整合 Grok/GPT 生成卡牌美術。"
 layout: page
-updated: 2026-07-02
+updated: 2026-07-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mars-tw/web-card-game-skill](https://github.com/mars-tw/web-card-game-skill)
 
-**★ 5** · exceptional (score 13.9) · JavaScript · card-game, claude-code, claude-skill, game-template, html5-game
+**★ 6** · exceptional (score 14) · JavaScript · card-game, claude-code, claude-skill, game-template, html5-game
 
 > 純原生（零依賴）網頁卡牌遊戲的 Claude Code Skill：關鍵字技能對戰、開卡包、星級閃卡、主題切換，整合 Grok/GPT 生成卡牌美術。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
 - ✅ Contains SKILL.md
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-02
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: card-game, claude-code, claude-skill, game-template, html5-game, tcg, vanilla-js, zero-dependency
 
 ## Best fit cue profiles

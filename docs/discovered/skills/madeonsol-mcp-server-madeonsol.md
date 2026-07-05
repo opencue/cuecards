@@ -2,21 +2,21 @@
 title: "MadeOnSol/mcp-server-madeonsol — Claude Code skill discovered by cue"
 description: "MCP server for MadeOnSol Solana KOL intelligence — use from Claude, Cursor, or any MCP client"
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [MadeOnSol/mcp-server-madeonsol](https://github.com/MadeOnSol/mcp-server-madeonsol)
 
-**★ 0** · exceptional (score 9.5) · JavaScript · ai-agent, claude, crypto-api, cursor, kol
+**★ 1** · exceptional (score 9.8) · JavaScript · ai-agent, claude, crypto-api, cursor, kol
 
 > MCP server for MadeOnSol Solana KOL intelligence — use from Claude, Cursor, or any MCP client
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-04
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-05
 - 🏷️ Tags: ai-agent, claude, crypto-api, cursor, kol, mcp, mcp-server, memecoin, model-context-protocol, solana, solana-api, trading-bot, webhooks
 
 ## Best fit cue profiles

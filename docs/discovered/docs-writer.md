@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="frostyume-dev-forge"></a>
-## 💎 [Frostyume/dev-forge](https://github.com/Frostyume/dev-forge)
-
-**★ 0** · exceptional (score 15) · tags: bug-tracking, claude, claude-code, claude-code-skill, claude-plugin
-
-Local-first root-cause knowledge base for Claude Code: log a bug once, forge weekly reports and resume bullets. Never debug the same bug twice.
-
-✅ SKILL.md
-
-```bash
-cue skills add Frostyume/dev-forge --profile docs-writer
-```
 
 ---
 
@@ -39,32 +24,6 @@ Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: produ
 
 ```bash
 cue skills add wlsdks/ontology-atlas --profile docs-writer
-```
-
----
-
-<a id="thegoatpsy-mneme"></a>
-## ✨ [TheGoatPsy/mneme](https://github.com/TheGoatPsy/mneme)
-
-**★ 2** · strong (score 6.5) · Python · tags: ai-memory, claude-code, codex, fts5, knowledge-graph
-
-Vault-native, accountable memory for Claude Code and MCP clients. Markdown is the source of truth, no LLM on the Stop path, redaction before every derived store.
-
-```bash
-cue skills add TheGoatPsy/mneme --profile docs-writer
-```
-
----
-
-<a id="freema-vellum"></a>
-## ✨ [freema/vellum](https://github.com/freema/vellum)
-
-**★ 0** · strong (score 6) · Go · tags: claude, docker, golang, knowledge-base, markdown
-
-Lightweight self-hosted MCP server over a folder of markdown files. One Go binary, embedded React SPA, no DB.
-
-```bash
-cue skills add freema/vellum --profile docs-writer
 ```
 
 ---

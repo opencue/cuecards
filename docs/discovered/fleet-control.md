@@ -1,68 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-05
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="neomjs-neo"></a>
-## 💎 [neomjs/neo](https://github.com/neomjs/neo)
-
-**★ 3226** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
-
-Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
-
-```bash
-cue skills add neomjs/neo --profile fleet-control
-```
-
----
-
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
-
-**★ 153** · exceptional (score 13) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
-
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
 <a id="nuttaruj-rolepod"></a>
 ## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 2** · strong (score 6.5) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 2** · strong (score 6.4) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
-```
-
----
-
-<a id="misakamikotoghr-5205-cost-aware-claim-based-multi-model-ai-orchestrator"></a>
-## 🔹 [misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator](https://github.com/misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator)
-
-**★ 1** · potential (score 3) · Python · tags: ai, ai-agents, antigravity, claude, codex
-
-A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Codex & DeepSeek — not always the strongest model.
-
-```bash
-cue skills add misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator --profile fleet-control
 ```
 
 ---
