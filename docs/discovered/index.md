@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-07-05 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-07-06 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 64 | `context-mode`, `looper`, `antigravity-workspace-template` |
-| [**backend**](./backend.md) | 18 | `Cortex`, `better-notion-mcp`, `better-email-mcp` |
-| [**frontend**](./frontend.md) | 6 | `awesome-claude-ui-armory`, `visual-web-stack`, `branch-ai` |
-| [**creative-media**](./creative-media.md) | 5 | `linkedin-profile-optimizer`, `imagine-mcp`, `branch-ai` |
-| [**cybersecurity**](./cybersecurity.md) | 3 | `hydra`, `Claude-OSINT`, `claude-security-research-skill` |
-| [**marketing**](./marketing.md) | 2 | `brand-launchpad`, `sticky-switcher-funnel-playbook` |
+| [**core**](./core.md) | 67 | `humanizer-de`, `context-mode`, `antigravity-workspace-template` |
+| [**backend**](./backend.md) | 9 | `Cortex`, `n8n`, `whatsapp-claude-plugin` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `hydra`, `lighthouse-mcp-server`, `Claude-OSINT` |
+| [**frontend**](./frontend.md) | 5 | `skybridge`, `visual-cook`, `awesome-claude-ui-armory` |
+| [**creative-media**](./creative-media.md) | 5 | `visual-cook`, `calliope`, `linkedin-profile-optimizer` |
+| [**fleet-control**](./fleet-control.md) | 4 | `opencouncil-contract-inspector`, `orbiqd-briefkit`, `rolepod` |
+| [**python**](./python.md) | 3 | `claudepath`, `AgentShield`, `cortex-board` |
+| [**research**](./research.md) | 2 | `PaperMentor`, `demand-mining` |
 | [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
-| [**video**](./video.md) | 1 | `video-digest` |
-| [**python**](./python.md) | 1 | `claudepath` |
+| [**video**](./video.md) | 1 | `youtube-to-article` |
 | [**docs-writer**](./docs-writer.md) | 1 | `ontology-atlas` |
-| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
-| [**research**](./research.md) | 1 | `interview-mapper` |
 
 ## How scoring works
 

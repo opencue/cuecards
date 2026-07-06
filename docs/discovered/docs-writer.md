@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 <a id="wlsdks-ontology-atlas"></a>
 ## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
 
-**★ 5** · strong (score 6.9) · TypeScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
+**★ 5** · strong (score 6.8) · TypeScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
 
 Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
 

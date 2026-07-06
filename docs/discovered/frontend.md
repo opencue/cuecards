@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="alpic-ai-skybridge"></a>
+## 💎 [alpic-ai/skybridge](https://github.com/alpic-ai/skybridge)
+
+**★ 1914** · exceptional (score 18.5) · TypeScript · tags: agent, ai, apps-sdk, chatgpt, claude
+
+Skybridge is a full-stack TypeScript framework for MCP Apps and ChatGPT Apps. Type-safe. React-powered. Platform-agnostic.
+
+```bash
+cue skills add alpic-ai/skybridge --profile frontend
+```
+
+---
+
+<a id="ideel-1-visual-cook"></a>
+## 💎 [ideel-1/visual-cook](https://github.com/ideel-1/visual-cook)
+
+**★ 0** · exceptional (score 13) · tags: claude-code, claude-skill, design-system, ui-ux
+
+A Claude Code skill for grilling visual work — pins fuzzy design language to concrete decisions in real renders, and leaves a self-documenting keeper harness as the durable spec.
+
+✅ SKILL.md
+
+```bash
+cue skills add ideel-1/visual-cook --profile frontend
+```
 
 ---
 
@@ -28,54 +56,15 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="astroicers-visual-web-stack"></a>
-## 💎 [astroicers/visual-web-stack](https://github.com/astroicers/visual-web-stack)
+<a id="sanggio-ai-driven-multimodal-analytics"></a>
+## ✨ [sanggio/ai-driven-multimodal-analytics](https://github.com/sanggio/ai-driven-multimodal-analytics)
 
-**★ 1** · exceptional (score 8.3) · Shell · tags: animejs, claude-code, claude-code-skill, frontend, gsap
+**★ 1** · strong (score 7.8) · Python · tags: architectural-patterns, autogen, best-practices, design-patterns, domain-driven-design
 
-Claude Code skill — React 19 + R3F + Anime.js + GSAP + Lenis + Zustand cross-package integration rules and recipes
-
-```bash
-cue skills add astroicers/visual-web-stack --profile frontend
-```
-
----
-
-<a id="nikolas-sapa-branch-ai"></a>
-## 💎 [nikolas-sapa/branch-ai](https://github.com/nikolas-sapa/branch-ai)
-
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: ai-agents, ai-tools, anthropic, chain-of-thought, claude
-
-Reasoning canvas for AI CLIs. Branch captures the extended thinking from Claude Code, OpenAI Codex, Gemini CLI, and Factory Droid as a navigable, forkable tree — rewind any step, fork from any node to explore an alternative path, or inject a fact mid-thought and watch the conclusion change. Local-first, MCP server included.
+🚀 Drive insights with an AI-powered Multimodal Analytics Gateway, utilizing FastAPI and OpenAI APIs for fast and efficient data processing.
 
 ```bash
-cue skills add nikolas-sapa/branch-ai --profile frontend
-```
-
----
-
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
-
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
-
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
-
-```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add sanggio/ai-driven-multimodal-analytics --profile frontend
 ```
 
 ---

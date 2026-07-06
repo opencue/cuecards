@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="socialpranker-interview-mapper"></a>
-## ✨ [Socialpranker/interview-mapper](https://github.com/Socialpranker/interview-mapper)
+<a id="shinyjay2-papermentor"></a>
+## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 0** · strong (score 6) · Python · tags: claude-skill, custdev, interview-analysis, jtbd, llm
+**★ 1** · exceptional (score 15.8) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
-Evidence-grounded interview analysis skill for Claude — verbatim-checked quotes, reliability council, cross-interview insights. RU + EN.
+Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
+
+✅ SKILL.md
 
 ```bash
-cue skills add Socialpranker/interview-mapper --profile research
+cue skills add ShinyJay2/PaperMentor --profile research
+```
+
+---
+
+<a id="daizedong-demand-mining"></a>
+## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
+
+**★ 0** · exceptional (score 8) · Python · tags: agent, ai, ai-agent, automation, claude
+
+已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
+
+```bash
+cue skills add DaizeDong/demand-mining --profile research
 ```
 
 ---

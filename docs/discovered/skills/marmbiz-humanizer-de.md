@@ -2,23 +2,23 @@
 title: "marmbiz/humanizer-de — Claude Code skill discovered by cue"
 description: "German AI Text Humanizer / deutscher Humanizer Skill for Claude Code and Codex: audits German AI-writing patterns with 66 patterns, deterministic linters, and e"
 layout: page
-updated: 2026-06-30
+updated: 2026-07-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [marmbiz/humanizer-de](https://github.com/marmbiz/humanizer-de)
 
-**★ 50** · exceptional (score 21.9) · Python · agent-skills, ai-detection, ai-humanizer, ai-writing, claude-code
+**★ 52** · exceptional (score 22) · Python · agent-skills, ai-humanizer, ai-writing, claude-code, claude-code-plugin
 
 > German AI Text Humanizer / deutscher Humanizer Skill for Claude Code and Codex: audits German AI-writing patterns with 66 patterns, deterministic linters, and evidence-safe rewrites.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 22 based on:
 - ✅ Contains SKILL.md
-- ⭐ 50 stars
-- 🗓️ Last pushed: 2026-06-30
-- 🏷️ Tags: agent-skills, ai-detection, ai-humanizer, ai-writing, claude-code, claude-code-plugin, claude-skill, codex, codex-plugin, codex-skill, deutsch, german, german-language, germanizer, humanizer, humanizer-de, ki-text, ki-texte-humanisieren, prompt-engineering, writing-tools
+- ⭐ 52 stars
+- 🗓️ Last pushed: 2026-07-06
+- 🏷️ Tags: agent-skills, ai-humanizer, ai-writing, claude-code, claude-code-plugin, claude-skill, codex, codex-plugin, codex-skill, deutsch, german, germanizer, humanizer, ki-text, ki-texte-humanisieren, prompt-engineering, stil-editor, style-editor, text-editing, writing-tools
 
 ## Best fit cue profiles
 

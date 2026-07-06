@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "18 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 18 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,197 +28,80 @@ cue skills add cdeust/Cortex --profile backend
 
 ---
 
-<a id="n24q02m-better-notion-mcp"></a>
-## 💎 [n24q02m/better-notion-mcp](https://github.com/n24q02m/better-notion-mcp)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 34** · exceptional (score 14.2) · TypeScript · tags: ai-agents, ai-coding, claude, claude-code, cursor
+**★ 195357** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Markdown-first Notion for AI agents -- pages, databases, blocks, and comments in one call.
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add n24q02m/better-notion-mcp --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="n24q02m-better-email-mcp"></a>
-## 💎 [n24q02m/better-email-mcp](https://github.com/n24q02m/better-email-mcp)
+<a id="rich627-whatsapp-claude-plugin"></a>
+## 💎 [Rich627/whatsapp-claude-plugin](https://github.com/Rich627/whatsapp-claude-plugin)
 
-**★ 24** · exceptional (score 13.9) · TypeScript · tags: ai-agents, ai-coding, claude, claude-code, cursor
+**★ 35** · exceptional (score 12.2) · TypeScript · tags: ai-assistant, ai-automation, anthropic, baileys, channel
 
-IMAP/SMTP email for AI agents -- read, send, organize folders, and manage attachments across multiple accounts, with auto-discovery.
+Claude Code WhatsApp channel plugin — run AI directly from WhatsApp, voice transcription, remote tool approval, access control. No API keys, no Docker, just a linked device.
 
 ```bash
-cue skills add n24q02m/better-email-mcp --profile backend
+cue skills add Rich627/whatsapp-claude-plugin --profile backend
 ```
 
 ---
 
-<a id="n24q02m-better-code-review-graph"></a>
-## 💎 [n24q02m/better-code-review-graph](https://github.com/n24q02m/better-code-review-graph)
+<a id="sanggio-ai-driven-multimodal-analytics"></a>
+## ✨ [sanggio/ai-driven-multimodal-analytics](https://github.com/sanggio/ai-driven-multimodal-analytics)
 
-**★ 58** · exceptional (score 13.5) · Python · tags: ai-agents, ai-coding, antigravity, claude, claude-code
+**★ 1** · strong (score 7.8) · Python · tags: architectural-patterns, autogen, best-practices, design-patterns, domain-driven-design
 
-Knowledge graph for token-efficient code reviews -- semantic search and call-graph resolution across your codebase.
+🚀 Drive insights with an AI-powered Multimodal Analytics Gateway, utilizing FastAPI and OpenAI APIs for fast and efficient data processing.
 
 ```bash
-cue skills add n24q02m/better-code-review-graph --profile backend
+cue skills add sanggio/ai-driven-multimodal-analytics --profile backend
 ```
 
 ---
 
-<a id="n24q02m-better-telegram-mcp"></a>
-## 💎 [n24q02m/better-telegram-mcp](https://github.com/n24q02m/better-telegram-mcp)
+<a id="imnumb1-terraform-guardrail"></a>
+## ✨ [imnumb1/terraform-guardrail](https://github.com/imnumb1/terraform-guardrail)
 
-**★ 9** · exceptional (score 13.4) · Python · tags: ai-agents, ai-coding, claude, claude-code, cursor
+**★ 0** · strong (score 7.5) · Python · tags: aks, aws, aws-organizations, azurerm, baseline
 
-Telegram for AI agents -- messages, chats, media, and contacts across both bot and full user-account modes.
+🔒 Enhance Terraform governance with a Python-based MCP server and CLI, ensuring faster workflows and stronger compliance for safer infrastructure deployments.
 
 ```bash
-cue skills add n24q02m/better-telegram-mcp --profile backend
+cue skills add imnumb1/terraform-guardrail --profile backend
 ```
 
 ---
 
-<a id="n24q02m-mnemo-mcp"></a>
-## 💎 [n24q02m/mnemo-mcp](https://github.com/n24q02m/mnemo-mcp)
+<a id="bernardpacis-create-mcp-server-kit"></a>
+## ✨ [bernardpacis/create-mcp-server-kit](https://github.com/bernardpacis/create-mcp-server-kit)
 
-**★ 8** · exceptional (score 13.3) · Python · tags: ai-agents, ai-coding, ai-memory, claude, claude-code
+**★ 0** · strong (score 7.5) · JavaScript · tags: ai, aiot, anthropic, api, claude
 
-Persistent AI memory with hybrid search and embedded sync. Open, free, unlimited.
+🚀 Scaffold a production-ready Model Context Protocol (MCP) server in seconds, complete with TypeScript, validation, and CI-ready templates.
 
 ```bash
-cue skills add n24q02m/mnemo-mcp --profile backend
+cue skills add bernardpacis/create-mcp-server-kit --profile backend
 ```
 
 ---
 
-<a id="n24q02m-better-godot-mcp"></a>
-## 💎 [n24q02m/better-godot-mcp](https://github.com/n24q02m/better-godot-mcp)
+<a id="ng-bullseye-cortex-board"></a>
+## ✨ [NG-Bullseye/cortex-board](https://github.com/NG-Bullseye/cortex-board)
 
-**★ 27** · exceptional (score 13) · TypeScript · tags: ai-agents, ai-coding, claude, claude-code, cursor
+**★ 0** · strong (score 6) · Python · tags: fastapi, ionic, kanban, markdown, mcp-server
 
-Composite MCP server for Godot Engine -- 17 composite tools for AI-assisted game development.
-
-```bash
-cue skills add n24q02m/better-godot-mcp --profile backend
-```
-
----
-
-<a id="devantler-tech-ksail"></a>
-## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
-
-**★ 149** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
-
-All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
+Kanban Board live from Markdown files — FastMCP server + FastAPI + Ionic app. Zero-config, md-native.
 
 ```bash
-cue skills add devantler-tech/ksail --profile backend
-```
-
----
-
-<a id="n24q02m-wet-mcp"></a>
-## 💎 [n24q02m/wet-mcp](https://github.com/n24q02m/wet-mcp)
-
-**★ 13** · exceptional (score 12.6) · Python · tags: ai-agents, ai-coding, claude, claude-code, crawl4ai
-
-Open-source MCP server for AI agents: web search, content extraction, and library docs -- 5-strategy scraping, runs without API keys.
-
-```bash
-cue skills add n24q02m/wet-mcp --profile backend
-```
-
----
-
-<a id="sdsrss-claude-mem-lite"></a>
-## 💎 [sdsrss/claude-mem-lite](https://github.com/sdsrss/claude-mem-lite)
-
-**★ 48** · exceptional (score 11.4) · JavaScript · tags: agent-memory, ai-coding-assistant, ai-memory, anthropic, claude
-
-Persistent long-term memory for Claude Code via MCP — captures coding decisions, bugfixes, and context across sessions. Hybrid FTS5 + TF-IDF search with episode batching. Single SQLite DB, no external services. Alternative to claude-mem with 600x lower cost.
-
-```bash
-cue skills add sdsrss/claude-mem-lite --profile backend
-```
-
----
-
-<a id="madeonsol-mcp-server-madeonsol"></a>
-## 💎 [MadeOnSol/mcp-server-madeonsol](https://github.com/MadeOnSol/mcp-server-madeonsol)
-
-**★ 1** · exceptional (score 9.8) · JavaScript · tags: ai-agent, claude, crypto-api, cursor, kol
-
-MCP server for MadeOnSol Solana KOL intelligence — use from Claude, Cursor, or any MCP client
-
-```bash
-cue skills add MadeOnSol/mcp-server-madeonsol --profile backend
-```
-
----
-
-<a id="n24q02m-imagine-mcp"></a>
-## 💎 [n24q02m/imagine-mcp](https://github.com/n24q02m/imagine-mcp)
-
-**★ 4** · exceptional (score 9.3) · Python · tags: ai-agents, antigravity, claude, claude-code, codex
-
-Image and video understanding + generation for AI agents -- across Gemini, OpenAI, and Grok.
-
-```bash
-cue skills add n24q02m/imagine-mcp --profile backend
-```
-
----
-
-<a id="cachly-dev-cachly-mcp"></a>
-## 💎 [cachly-dev/cachly-mcp](https://github.com/cachly-dev/cachly-mcp)
-
-**★ 2** · exceptional (score 9) · TypeScript · tags: ai-memory, causal-trace, claude-code, cursor, developer-tools
-
-AI memory brain for Claude Code, Cursor, Copilot & Windsurf — 120+ MCP tools. Persistent sessions, lessons learned, semantic search, Team Brain, managed Valkey/Redis. Free tier.
-
-```bash
-cue skills add cachly-dev/cachly-mcp --profile backend
-```
-
----
-
-<a id="tahahussein-dotcom-mcp-encrypted-sqlite"></a>
-## ✨ [TahaHussein-dotcom/mcp-encrypted-sqlite](https://github.com/TahaHussein-dotcom/mcp-encrypted-sqlite)
-
-**★ 1** · strong (score 7.8) · tags: crud, database, database-tools, encryption, gradle
-
-🔒 Access and manage encrypted SQLite databases effortlessly with this MCP server, designed for seamless integration with SQLCipher and various clients.
-
-```bash
-cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
-```
-
----
-
-<a id="ej-locked-flowcore"></a>
-## ✨ [Ej-Locked/FlowCore](https://github.com/Ej-Locked/FlowCore)
-
-**★ 0** · strong (score 7.5) · Rust · tags: automation, bpm, business-process, flowcore, mcp
-
-🚀 Build a minimal Flink-like streaming engine in Rust and React to process events with tumbling windows, late-event detection, and a simple web interface.
-
-```bash
-cue skills add Ej-Locked/FlowCore --profile backend
-```
-
----
-
-<a id="alex-jb-bilingual-content-sync-agent"></a>
-## ✨ [alex-jb/bilingual-content-sync-agent](https://github.com/alex-jb/bilingual-content-sync-agent)
-
-**★ 2** · strong (score 6.3) · Python · tags: batch-api, chinese, claude, english, i18n
-
-🌏 EN ↔ 中文 i18n diff + Claude translate + HITL apply. Batch API path @ 50% off. MIT.
-
-```bash
-cue skills add alex-jb/bilingual-content-sync-agent --profile backend
+cue skills add NG-Bullseye/cortex-board --profile backend
 ```
 
 ---

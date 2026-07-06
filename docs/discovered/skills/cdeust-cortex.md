@@ -2,7 +2,7 @@
 title: "cdeust/Cortex — Claude Code skill discovered by cue"
 description: "Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCo"
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, skill, backend]
 ---
 

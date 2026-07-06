@@ -2,19 +2,19 @@
 title: "Siddhant-Goswami/Crucible — Claude Code skill discovered by cue"
 description: "Harness-first agent research: a bounded act→verify loop runner with one-line adapters for 10 lean harnesses (Pi, Hermes, aider, Codex, Goose, Claude, Ollama…) +"
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Siddhant-Goswami/Crucible](https://github.com/Siddhant-Goswami/Crucible)
 
-**★ 1** · potential (score 3.3) · JavaScript · agent-harness, ai-agents, claude, control-panel, cost-optimization
+**★ 1** · potential (score 3.2) · JavaScript · agent-harness, ai-agents, claude, control-panel, cost-optimization
 
 > Harness-first agent research: a bounded act→verify loop runner with one-line adapters for 10 lean harnesses (Pi, Hermes, aider, Codex, Goose, Claude, Ollama…) + Crucible, a portable benchmark that scores the harness, not the model — gated Safety×Completion/Path/State Goodput, factorial harness×model×seed, cost & local-vs-cloud routing.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: agent-harness, ai-agents, claude, control-panel, cost-optimization, hermes-agent, llm, loop-engineering, ollama, telegram-bot

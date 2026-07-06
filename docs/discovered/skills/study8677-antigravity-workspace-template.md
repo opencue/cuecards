@@ -2,7 +2,7 @@
 title: "study8677/antigravity-workspace-template — Claude Code skill discovered by cue"
 description: "Give Claude Code, Cursor, Codex CLI a ChatGPT for your codebase. Multi-agent knowledge engine, grounded Q&A with file paths and line numbers. Works in any AI ID"
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, skill, core]
 ---
 

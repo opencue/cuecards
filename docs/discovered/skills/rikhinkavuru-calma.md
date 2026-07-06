@@ -2,21 +2,21 @@
 title: "rikhinkavuru/calma — Claude Code skill discovered by cue"
 description: "Re-run the work, recompute the number, block the wrong one before it ships — a deterministic guardrail for AI-computed results. CLI · Claude Code hook · MCP."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rikhinkavuru/calma](https://github.com/rikhinkavuru/calma)
 
-**★ 1** · exceptional (score 10.8) · Python · ai-agents, backtesting, claude, claude-code, claude-skill
+**★ 0** · exceptional (score 10.5) · Python · ai-agents, backtesting, claude, claude-code, claude-skill
 
 > Re-run the work, recompute the number, block the wrong one before it ships — a deterministic guardrail for AI-computed results. CLI · Claude Code hook · MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-04
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 0 stars
+- 🗓️ Last pushed: 2026-07-06
 - 🏷️ Tags: ai-agents, backtesting, claude, claude-code, claude-skill, cli, data-science, developer-tools, llm-evaluation, machine-learning, mcp, mcp-server, python, reproducibility, verification
 
 ## Best fit cue profiles

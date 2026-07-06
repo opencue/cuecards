@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-06
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="legenxxx-video-digest"></a>
-## 💎 [legenxxx/video-digest](https://github.com/legenxxx/video-digest)
+<a id="final90006-sketch-youtube-to-article"></a>
+## 💎 [final90006-sketch/youtube-to-article](https://github.com/final90006-sketch/youtube-to-article)
 
-**★ 1** · exceptional (score 13.8) · Shell · tags: agent-skill, claude-skill, cli, faster-whisper, ffmpeg
+**★ 0** · exceptional (score 13) · Python · tags: article-generator, claude-code, claude-skill, podcast, traditional-chinese
 
-Turn any video into a searchable text digest — transcript, on-screen text & links, and contact-sheet montages. 100% local, no cloud.
+把 YouTube 影片／Podcast 轉成繁中精讀長文的 Claude Code 技能（本機、離線、不需 API 金鑰；含章節對齊切塊＋品質自檢＋心智圖/精華卡/自測卡衍生格式）
 
 ✅ SKILL.md
 
 ```bash
-cue skills add legenxxx/video-digest --profile video
+cue skills add final90006-sketch/youtube-to-article --profile video
 ```
 
 ---
