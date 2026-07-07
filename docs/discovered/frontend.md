@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,17 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="alpic-ai-skybridge"></a>
-## 💎 [alpic-ai/skybridge](https://github.com/alpic-ai/skybridge)
+<a id="insightflo-im-designer"></a>
+## 💎 [insightflo/im-designer](https://github.com/insightflo/im-designer)
 
-**★ 1914** · exceptional (score 18.5) · TypeScript · tags: agent, ai, apps-sdk, chatgpt, claude
+**★ 0** · exceptional (score 13) · tags: accessibility, claude-code, claude-skill, design, design-system
 
-Skybridge is a full-stack TypeScript framework for MCP Apps and ChatGPT Apps. Type-safe. React-powered. Platform-agnostic.
-
-```bash
-cue skills add alpic-ai/skybridge --profile frontend
-```
-
----
-
-<a id="ideel-1-visual-cook"></a>
-## 💎 [ideel-1/visual-cook](https://github.com/ideel-1/visual-cook)
-
-**★ 0** · exceptional (score 13) · tags: claude-code, claude-skill, design-system, ui-ux
-
-A Claude Code skill for grilling visual work — pins fuzzy design language to concrete decisions in real renders, and leaves a self-documenting keeper harness as the durable spec.
+디자인 언어 번역기 (Design Language Translator) — Claude Code skill that translates non-designers' vague design language into executable UI/UX requests.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add ideel-1/visual-cook --profile frontend
+cue skills add insightflo/im-designer --profile frontend
 ```
 
 ---
@@ -56,15 +43,28 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="sanggio-ai-driven-multimodal-analytics"></a>
-## ✨ [sanggio/ai-driven-multimodal-analytics](https://github.com/sanggio/ai-driven-multimodal-analytics)
+<a id="s2mgtvodois2-postgresql-mcp-js"></a>
+## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
 
-**★ 1** · strong (score 7.8) · Python · tags: architectural-patterns, autogen, best-practices, design-patterns, domain-driven-design
+**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
 
-🚀 Drive insights with an AI-powered Multimodal Analytics Gateway, utilizing FastAPI and OpenAI APIs for fast and efficient data processing.
+🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
 
 ```bash
-cue skills add sanggio/ai-driven-multimodal-analytics --profile frontend
+cue skills add s2mgtvodois2/postgresql-mcp-js --profile frontend
+```
+
+---
+
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+
+```bash
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---

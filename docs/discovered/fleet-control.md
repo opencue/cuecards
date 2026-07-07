@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
+<a id="jnmetacode-agency-orchestrator"></a>
+## 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
 
-**★ 153** · exceptional (score 13) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 1673** · exceptional (score 15.9) · TypeScript · tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
 
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="manuelgonzalessalas-orbiqd-briefkit"></a>
-## 💎 [ManuelGonzalessalas/orbiqd-briefkit](https://github.com/ManuelGonzalessalas/orbiqd-briefkit)
-
-**★ 1** · exceptional (score 10.3) · Go · tags: agent-orchestration, automation, claude-code, cli-automation, codex
-
-🚀 OrbiqD BriefKit simplifies local orchestration by running coding agents directly in your workspace, enhancing productivity without complex setups.
+🚀 One sentence → multi-AI-role collaboration → complete plan in minutes. Built on the agency-agents role library (216+ experts), zero-code YAML, web Studio + desktop app, 10 LLM providers (7 free). 基于 agency-agents 专家库，一句话调度多个 AI 专家自动协作，几分钟交付完整方案。
 
 ```bash
-cue skills add ManuelGonzalessalas/orbiqd-briefkit --profile fleet-control
+cue skills add jnMetaCode/agency-orchestrator --profile fleet-control
 ```
 
 ---

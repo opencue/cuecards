@@ -2,21 +2,21 @@
 title: "JSONbored/awesome-claude — Claude Code skill discovered by cue"
 description: "HeyClaude is a curated registry and distribution surface for Claude and AI-workflow assets: agents, MCP servers, skills, commands, hooks, rules, guides, tools, "
 layout: page
-updated: 2026-06-04
+updated: 2026-07-07
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [JSONbored/awesome-claude](https://github.com/JSONbored/awesome-claude)
 
-**★ 257** · exceptional (score 13.8) · MDX · agent-skills, ai-agents, ai-directory, ai-tools, anthropic
+**★ 279** · exceptional (score 14.8) · MDX · agent-skills, ai-agents, ai-directory, ai-tools, anthropic
 
 > HeyClaude is a curated registry and distribution surface for Claude and AI-workflow assets: agents, MCP servers, skills, commands, hooks, rules, guides, tools, jobs, Raycast feeds, static data exports, and an npm MCP package.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
-- ⭐ 257 stars
-- 🗓️ Last pushed: 2026-06-04
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
+- ⭐ 279 stars
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: agent-skills, ai-agents, ai-directory, ai-tools, anthropic, artificial-intelligence, awesome-list, claude, claude-ai, claude-api, claude-code, claude-desktop, claude-skills, claudecode, developer-tools, gittensor, llm, mcp-servers, open-source, openclaw-skills
 
 ## Best fit cue profiles

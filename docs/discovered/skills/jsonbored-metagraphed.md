@@ -2,13 +2,13 @@
 title: "JSONbored/metagraphed — Claude Code skill discovered by cue"
 description: "Operational metadata, health, schemas, and public interface discovery for Bittensor subnets."
 layout: page
-updated: 2026-07-04
-tags: [claude-code, skill, backend]
+updated: 2026-07-07
+tags: [claude-code, skill, core]
 ---
 
 # 💎 [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed)
 
-**★ 9** · exceptional (score 9.2) · JavaScript · bittensor, bittensor-cli, bittensor-docs, bittensor-subnet, bittensor-subnets
+**★ 9** · exceptional (score 9.2) · JavaScript · bittensor, bittensor-cli, bittensor-docs, bittensor-metagraph, bittensor-subnet
 
 > Operational metadata, health, schemas, and public interface discovery for Bittensor subnets.
 
@@ -16,12 +16,12 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-07-04
-- 🏷️ Tags: bittensor, bittensor-cli, bittensor-docs, bittensor-subnet, bittensor-subnets, endpoint-monitoring, mcp, mcp-server, metagraph, metagrapho-api, openapi, public-infrastructure, registry, schema-registry, status-page, subtensor
+- 🗓️ Last pushed: 2026-07-07
+- 🏷️ Tags: bittensor, bittensor-cli, bittensor-docs, bittensor-metagraph, bittensor-subnet, bittensor-subnets, endpoint-monitoring, mcp, mcp-server, metagraph, openapi, public-infrastructure, registry, schema-registry, status-page, subtensor
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add JSONbored/metagraphed --profile backend
+cue skills add JSONbored/metagraphed --profile core
 ```
 
 ## About

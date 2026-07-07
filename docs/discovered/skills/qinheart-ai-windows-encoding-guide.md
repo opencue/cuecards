@@ -2,19 +2,19 @@
 title: "QinHeart/ai-windows-encoding-guide — Claude Code skill discovered by cue"
 description: "Rules and scripts to stop Claude Code / Codex from mangling Chinese file paths on Windows"
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [QinHeart/ai-windows-encoding-guide](https://github.com/QinHeart/ai-windows-encoding-guide)
 
-**★ 1** · strong (score 6.2) · PowerShell · chinese, claude-code, codex, encoding, powershell
+**★ 1** · strong (score 6.1) · PowerShell · chinese, claude-code, codex, encoding, powershell
 
 > Rules and scripts to stop Claude Code / Codex from mangling Chinese file paths on Windows
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-02
 - 🏷️ Tags: chinese, claude-code, codex, encoding, powershell, utf-8, windows

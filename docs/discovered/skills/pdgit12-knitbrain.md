@@ -2,13 +2,13 @@
 title: "PDgit12/knitbrain — Claude Code skill discovered by cue"
 description: "The local-first brain for coding agents: project memory + workflow intelligence + lossless ~50% context savings. MCP server + LLM proxy, zero cloud."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [PDgit12/knitbrain](https://github.com/PDgit12/knitbrain)
 
-**★ 1** · exceptional (score 8.8) · TypeScript · ai-agents, claude, claude-code, context-compression, cursor
+**★ 1** · exceptional (score 8.8) · TypeScript · agent-memory, ai-agents, claude-code, coding-agent, context-compression
 
 > The local-first brain for coding agents: project memory + workflow intelligence + lossless ~50% context savings. MCP server + LLM proxy, zero cloud.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-30
-- 🏷️ Tags: ai-agents, claude, claude-code, context-compression, cursor, developer-tools, llm, local-first, mcp, mcp-server, memory, model-context-protocol, token-optimization, typescript
+- 🗓️ Last pushed: 2026-07-07
+- 🏷️ Tags: agent-memory, ai-agents, claude-code, coding-agent, context-compression, context-engineering, cursor, developer-tools, github-copilot, knowledge-graph, local-first, mcp, mcp-server, model-context-protocol, prompt-compression, token-optimization, typescript
 
 ## Best fit cue profiles
 

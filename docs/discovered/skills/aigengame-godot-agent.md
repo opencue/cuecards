@@ -2,7 +2,7 @@
 title: "aigengame/godot-agent — Claude Code skill discovered by cue"
 description: "Godot AI agent CLI, Skill, and MCP server with structured JSON/schema output — headless scene/script/export automation plus live runtime control."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
 - ⭐ 26 stars
-- 🗓️ Last pushed: 2026-07-06
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: agent-skill, agent-tools, ai-agent, automation, cli, coding-agent, game-development, gamedev, godot, godot-ai, godot-engine, godot-mcp, headless, llm, mcp, model-context-protocol, skill, structured-output
 
 ## Best fit cue profiles

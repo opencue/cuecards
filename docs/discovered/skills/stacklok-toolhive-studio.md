@@ -2,7 +2,7 @@
 title: "stacklok/toolhive-studio — Claude Code skill discovered by cue"
 description: "ToolHive is an application that allows you to install, manage and run MCP servers and connect them to AI agents"
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
 - ⭐ 139 stars
-- 🗓️ Last pushed: 2026-07-06
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: agents, ai, ai-security, claude, continue, copilot, cursor, developer-tools, linux, macos, mcp, mcp-client, mcp-server, mcp-tools, model-context-protocol, security, typescript, windows
 
 ## Best fit cue profiles

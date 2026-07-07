@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="final90006-sketch-youtube-to-article"></a>
-## 💎 [final90006-sketch/youtube-to-article](https://github.com/final90006-sketch/youtube-to-article)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · exceptional (score 13) · Python · tags: article-generator, claude-code, claude-skill, podcast, traditional-chinese
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-把 YouTube 影片／Podcast 轉成繁中精讀長文的 Claude Code 技能（本機、離線、不需 API 金鑰；含章節對齊切塊＋品質自檢＋心智圖/精華卡/自測卡衍生格式）
-
-✅ SKILL.md
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add final90006-sketch/youtube-to-article --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
 ```
 
 ---

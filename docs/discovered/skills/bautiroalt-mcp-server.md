@@ -2,7 +2,7 @@
 title: "bautiroalt/MCP-Server — Claude Code skill discovered by cue"
 description: "🚀 Launch a local server with ease using MCP Server for instant backend and interface setup, all with a single double-click."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-30
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: agents, ai-agent, ai-agent-tools, ai-agents, batch-processing, claude, claude-mcp, deepseek, deepseek-mcp, firecrawl, github, mcp-clients, mcp-server, model-context-protocol, no-code-automation, playwright, whatsapp, workflow-automation
 
 ## Best fit cue profiles

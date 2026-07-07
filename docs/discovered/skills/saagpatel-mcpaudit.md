@@ -2,21 +2,21 @@
 title: "saagpatel/MCPAudit — Claude Code skill discovered by cue"
 description: "Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift"
 layout: page
-updated: 2026-06-20
+updated: 2026-07-07
 tags: [claude-code, skill, cybersecurity]
 ---
 
-# ✨ [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
+# 💎 [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
 
-**★ 3** · strong (score 6.7) · Python · ai-safety, audit, cli, developer-tools, mcp
+**★ 4** · exceptional (score 8.3) · Python · ai-safety, audit, cli, developer-tools, mcp
 
 > Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: ai-safety, audit, cli, developer-tools, mcp, mcp-client, mcp-server, model-context-protocol, pypi, python, security
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -30,15 +30,28 @@ cue skills add ShinyJay2/PaperMentor --profile research
 
 ---
 
-<a id="daizedong-demand-mining"></a>
-## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
+<a id="aemro-motors-popper-scope"></a>
+## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 0** · exceptional (score 8) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add DaizeDong/demand-mining --profile research
+cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
+## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+
+**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+
+AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+
+```bash
+cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
 ```
 
 ---

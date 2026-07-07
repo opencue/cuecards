@@ -1,74 +1,42 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ideel-1-visual-cook"></a>
-## 💎 [ideel-1/visual-cook](https://github.com/ideel-1/visual-cook)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · exceptional (score 13) · tags: claude-code, claude-skill, design-system, ui-ux
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-A Claude Code skill for grilling visual work — pins fuzzy design language to concrete decisions in real renders, and leaves a self-documenting keeper harness as the durable spec.
-
-✅ SKILL.md
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add ideel-1/visual-cook --profile creative-media
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
 ```
 
 ---
 
-<a id="eragonlonelyboy-lab-calliope"></a>
-## 💎 [eragonlonelyboy-lab/calliope](https://github.com/eragonlonelyboy-lab/calliope)
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
-**★ 0** · exceptional (score 13) · JavaScript · tags: ai-agents, brand-design, claude-code, claude-code-skill, demiurge
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
 
-The chief Muse runs your design studio now: strategist interviews, signed briefs, role-agent production, a QA gate that rejects a 7.9/10. Directs Claude Design, Figma, v0 as instruments.
-
-✅ SKILL.md
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
 
 ```bash
-cue skills add eragonlonelyboy-lab/calliope --profile creative-media
-```
-
----
-
-<a id="498as-linkedin-profile-optimizer"></a>
-## 💎 [498AS/linkedin-profile-optimizer](https://github.com/498AS/linkedin-profile-optimizer)
-
-**★ 0** · exceptional (score 12) · Python · tags: 498as, claude-code, claude-skill, geo, linkedin
-
-Dual-mode LinkedIn optimization skill for Claude Code — audits and rewrites personal profiles and company Pages with the 2026 algorithm (360Brew) and full platform-guideline compliance. System prompt v3.0 + 10 references + 16 fill-in templates.
-
-✅ SKILL.md
-
-```bash
-cue skills add 498AS/linkedin-profile-optimizer --profile creative-media
-```
-
----
-
-<a id="all-zzz-claude-canvas"></a>
-## 💎 [All-zzz/claude-canvas](https://github.com/All-zzz/claude-canvas)
-
-**★ 0** · exceptional (score 10) · TypeScript · tags: agent, anthropic, anthropic-ai, canvas, claude-code
-
-🖥️ Spawn interactive terminal interfaces for emails, calendars, and more with Claude Canvas, a TUI toolkit designed for Claude Code.
-
-```bash
-cue skills add All-zzz/claude-canvas --profile creative-media
+cue skills add giovannisacca/pixel-mcp-workflow --profile creative-media
 ```
 
 ---

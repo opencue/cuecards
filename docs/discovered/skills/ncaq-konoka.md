@@ -2,21 +2,21 @@
 title: "ncaq/konoka — Claude Code skill discovered by cue"
 description: "AI prompts, agents, and skills as loadable plugins."
 layout: page
-updated: 2026-06-21
+updated: 2026-07-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ncaq/konoka](https://github.com/ncaq/konoka)
 
-**★ 3** · exceptional (score 8.7) · TypeScript · claude-code, claude-code-plugin, claude-code-skill, prompt
+**★ 3** · exceptional (score 10.2) · TypeScript · claude-code, claude-code-plugin, claude-code-skill, prompt
 
 > AI prompts, agents, and skills as loadable plugins.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-21
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, prompt
 
 ## Best fit cue profiles

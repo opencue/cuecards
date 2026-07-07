@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 3** · exceptional (score 16.1) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 3** · exceptional (score 16) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -30,15 +30,32 @@ cue skills add Zandereins/hydra --profile cybersecurity
 
 ---
 
-<a id="danielsogl-lighthouse-mcp-server"></a>
-## 💎 [danielsogl/lighthouse-mcp-server](https://github.com/danielsogl/lighthouse-mcp-server)
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 61** · exceptional (score 14.2) · TypeScript · tags: lighthouse, lighthouse-audits, lighthouse-score, mcp, mcp-server
+**★ 3** · exceptional (score 15.1) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
-MCP server that enables AI agents to perform comprehensive web audits using Google Lighthouse with 13+ tools for performance, accessibility, SEO, and security analysis.
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
 
 ```bash
-cue skills add danielsogl/lighthouse-mcp-server --profile cybersecurity
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+
+**★ 0** · exceptional (score 13) · tags: agent-security, aml, audit, blockchain, claude-code
+
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+
+✅ SKILL.md
+
+```bash
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 ```
 
 ---
@@ -46,7 +63,7 @@ cue skills add danielsogl/lighthouse-mcp-server --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1895** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
+**★ 1907** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -69,6 +86,19 @@ cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 
 ---
 
+<a id="saagpatel-mcpaudit"></a>
+## 💎 [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
+
+**★ 4** · exceptional (score 8.3) · Python · tags: ai-safety, audit, cli, developer-tools, mcp
+
+Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift
+
+```bash
+cue skills add saagpatel/MCPAudit --profile cybersecurity
+```
+
+---
+
 <a id="mkarvan-agentshield"></a>
 ## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
 
@@ -78,19 +108,6 @@ Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go ins
 
 ```bash
 cue skills add mkarvan/AgentShield --profile cybersecurity
-```
-
----
-
-<a id="robert-auger-safer-dependencies"></a>
-## ✨ [robert-auger/safer-dependencies](https://github.com/robert-auger/safer-dependencies)
-
-**★ 20** · strong (score 6.5) · Python · tags: claude-code-hooks, claude-code-skill, dependencies, security-tools, supply-chain-risk
-
-safer-dependencies is a security layer for Claude Code that audits packages before they’re added to your project. It detects and fixes risky dependencies, including CVEs, typosquats, abandoned packages, version-age issues, and adds package-cooldown violations across npm, PyPI, RubyGems, Maven, Go, and Rust.
-
-```bash
-cue skills add robert-auger/safer-dependencies --profile cybersecurity
 ```
 
 ---

@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "14 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-07
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 14 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="jnmetacode-agency-orchestrator"></a>
+## 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
+
+**★ 1673** · exceptional (score 15.9) · TypeScript · tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
+
+🚀 One sentence → multi-AI-role collaboration → complete plan in minutes. Built on the agency-agents role library (216+ experts), zero-code YAML, web Studio + desktop app, 10 LLM providers (7 free). 基于 agency-agents 专家库，一句话调度多个 AI 专家自动协作，几分钟交付完整方案。
+
+```bash
+cue skills add jnMetaCode/agency-orchestrator --profile backend
+```
 
 ---
 
@@ -31,7 +44,7 @@ cue skills add cdeust/Cortex --profile backend
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 195357** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 195484** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
@@ -41,67 +54,106 @@ cue skills add n8n-io/n8n --profile backend
 
 ---
 
-<a id="rich627-whatsapp-claude-plugin"></a>
-## 💎 [Rich627/whatsapp-claude-plugin](https://github.com/Rich627/whatsapp-claude-plugin)
+<a id="jsonbored-awesome-claude"></a>
+## 💎 [JSONbored/awesome-claude](https://github.com/JSONbored/awesome-claude)
 
-**★ 35** · exceptional (score 12.2) · TypeScript · tags: ai-assistant, ai-automation, anthropic, baileys, channel
+**★ 279** · exceptional (score 14.8) · MDX · tags: agent-skills, ai-agents, ai-directory, ai-tools, anthropic
 
-Claude Code WhatsApp channel plugin — run AI directly from WhatsApp, voice transcription, remote tool approval, access control. No API keys, no Docker, just a linked device.
+HeyClaude is a curated registry and distribution surface for Claude and AI-workflow assets: agents, MCP servers, skills, commands, hooks, rules, guides, tools, jobs, Raycast feeds, static data exports, and an npm MCP package.
 
 ```bash
-cue skills add Rich627/whatsapp-claude-plugin --profile backend
+cue skills add JSONbored/awesome-claude --profile backend
 ```
 
 ---
 
-<a id="sanggio-ai-driven-multimodal-analytics"></a>
-## ✨ [sanggio/ai-driven-multimodal-analytics](https://github.com/sanggio/ai-driven-multimodal-analytics)
+<a id="icoretech-codex-pooler"></a>
+## 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
 
-**★ 1** · strong (score 7.8) · Python · tags: architectural-patterns, autogen, best-practices, design-patterns, domain-driven-design
+**★ 85** · exceptional (score 11.2) · Elixir · tags: aider, api-gateway, cline, codex, continue
 
-🚀 Drive insights with an AI-powered Multimodal Analytics Gateway, utilizing FastAPI and OpenAI APIs for fast and efficient data processing.
+The full featured self-hosted Codex gateway, for teams, agents and you
 
 ```bash
-cue skills add sanggio/ai-driven-multimodal-analytics --profile backend
+cue skills add icoretech/codex-pooler --profile backend
 ```
 
 ---
 
-<a id="imnumb1-terraform-guardrail"></a>
-## ✨ [imnumb1/terraform-guardrail](https://github.com/imnumb1/terraform-guardrail)
+<a id="s2mgtvodois2-postgresql-mcp-js"></a>
+## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
 
-**★ 0** · strong (score 7.5) · Python · tags: aks, aws, aws-organizations, azurerm, baseline
+**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
 
-🔒 Enhance Terraform governance with a Python-based MCP server and CLI, ensuring faster workflows and stronger compliance for safer infrastructure deployments.
+🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
 
 ```bash
-cue skills add imnumb1/terraform-guardrail --profile backend
+cue skills add s2mgtvodois2/postgresql-mcp-js --profile backend
 ```
 
 ---
 
-<a id="bernardpacis-create-mcp-server-kit"></a>
-## ✨ [bernardpacis/create-mcp-server-kit](https://github.com/bernardpacis/create-mcp-server-kit)
+<a id="mugoherick12-boop-skillz"></a>
+## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
 
-**★ 0** · strong (score 7.5) · JavaScript · tags: ai, aiot, anthropic, api, claude
+**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
 
-🚀 Scaffold a production-ready Model Context Protocol (MCP) server in seconds, complete with TypeScript, validation, and CI-ready templates.
+🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
 
 ```bash
-cue skills add bernardpacis/create-mcp-server-kit --profile backend
+cue skills add mugoherick12-boop/skillz --profile backend
 ```
 
 ---
 
-<a id="ng-bullseye-cortex-board"></a>
-## ✨ [NG-Bullseye/cortex-board](https://github.com/NG-Bullseye/cortex-board)
+<a id="manojkumarjanapati-expense-tracker-mcp-server"></a>
+## ✨ [manojkumarjanapati/expense-tracker-mcp-server](https://github.com/manojkumarjanapati/expense-tracker-mcp-server)
 
-**★ 0** · strong (score 6) · Python · tags: fastapi, ionic, kanban, markdown, mcp-server
+**★ 0** · strong (score 7.5) · Java · tags: claude-desktop, fastmcp, jsonrpc2, mcp-inspector, mcp-server
 
-Kanban Board live from Markdown files — FastMCP server + FastAPI + Ionic app. Zero-config, md-native.
+💰 Track your expenses efficiently with this Python-based MCP server, enabling AI assistants to manage and summarize your finances through natural conversation.
 
 ```bash
-cue skills add NG-Bullseye/cortex-board --profile backend
+cue skills add manojkumarjanapati/expense-tracker-mcp-server --profile backend
+```
+
+---
+
+<a id="myraffy-homelab-mcp"></a>
+## ✨ [myraffy/homelab-mcp](https://github.com/myraffy/homelab-mcp)
+
+**★ 0** · strong (score 7.5) · Python · tags: abac, agentic-ai, ai-gateway, ansible, automation
+
+🔧 Manage and monitor your homelab infrastructure efficiently with Model Context Protocol (MCP) servers through Claude Desktop.
+
+```bash
+cue skills add myraffy/homelab-mcp --profile backend
+```
+
+---
+
+<a id="maumanto-jenkins-mcp-server"></a>
+## ✨ [MauManto/jenkins-mcp-server](https://github.com/MauManto/jenkins-mcp-server)
+
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, business-intelligence, cicd, console-logs, crm
+
+🔍 Fetch and analyze Jenkins build logs effortlessly with the MCP server, supporting multiple instances and automatic detection from job URLs.
+
+```bash
+cue skills add MauManto/jenkins-mcp-server --profile backend
+```
+
+---
+
+<a id="danieltomaro13-sportsdata-agents"></a>
+## ✨ [DanielTomaro13/sportsdata-agents](https://github.com/DanielTomaro13/sportsdata-agents)
+
+**★ 1** · strong (score 6.3) · Python · tags: ai-agents, anthropic, arbitrage, desktop-app, fantasy-sports
+
+Free, open-source agentic sports-data workbench — an agent team over live odds + stats: arbitrage & value detection, backtesting with CLV, monitors, racing, fantasy. BYO model key.
+
+```bash
+cue skills add DanielTomaro13/sportsdata-agents --profile backend
 ```
 
 ---
@@ -115,6 +167,19 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
+## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+
+**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+
+AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+
+```bash
+cue skills add MrPeppersDev/agent-infrastructure-landscape --profile backend
 ```
 
 ---

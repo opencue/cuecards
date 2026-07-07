@@ -2,7 +2,7 @@
 title: "insightflo/im-designer — Claude Code skill discovered by cue"
 description: "디자인 언어 번역기 (Design Language Translator) — Claude Code skill that translates non-designers' vague design language into executable UI/UX requests."
 layout: page
-updated: 2026-06-21
+updated: 2026-07-07
 tags: [claude-code, skill, frontend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, frontend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-21
+- 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: accessibility, claude-code, claude-skill, design, design-system, ui-ux
 
 ## Best fit cue profiles
