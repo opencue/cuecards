@@ -2,21 +2,21 @@
 title: "modelscope/FunASR — Claude Code skill discovered by cue"
 description: "Industrial-grade speech recognition toolkit: 170x realtime, 50+ languages, speaker diarization, emotion detection, streaming, and OpenAI-compatible API."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-08
 tags: [claude-code, skill, backend, video]
 ---
 
 # 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
 
-**★ 18727** · exceptional (score 14) · Python · asr, audio, chinese, emotion-recognition, funasr
+**★ 19037** · exceptional (score 14) · Python · asr, audio, chinese, emotion-recognition, funasr
 
 > Industrial-grade speech recognition toolkit: 170x realtime, 50+ languages, speaker diarization, emotion detection, streaming, and OpenAI-compatible API.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 18727 stars
-- 🗓️ Last pushed: 2026-06-30
+- ⭐ 19037 stars
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: asr, audio, chinese, emotion-recognition, funasr, mcp-server, multilingual-asr, openai-compatible-api, paraformer, punctuation, pytorch, real-time-asr, speaker-diarization, speech-recognition, speech-to-text, streaming-asr, transcription, vllm, voice-activity-detection, whisper-alternative
 
 ## Best fit cue profiles

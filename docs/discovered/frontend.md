@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="insightflo-im-designer"></a>
-## 💎 [insightflo/im-designer](https://github.com/insightflo/im-designer)
-
-**★ 0** · exceptional (score 13) · tags: accessibility, claude-code, claude-skill, design, design-system
-
-디자인 언어 번역기 (Design Language Translator) — Claude Code skill that translates non-designers' vague design language into executable UI/UX requests.
-
-✅ SKILL.md
-
-```bash
-cue skills add insightflo/im-designer --profile frontend
-```
 
 ---
 
@@ -39,19 +24,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="s2mgtvodois2-postgresql-mcp-js"></a>
-## 💎 [s2mgtvodois2/postgresql-mcp-js](https://github.com/s2mgtvodois2/postgresql-mcp-js)
-
-**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-framework, ai, ai-agent, bun, database
-
-🔌 Simplify PostgreSQL interactions with a secure MCP server for LLMs, enabling efficient access to schemas, tables, and query execution.
-
-```bash
-cue skills add s2mgtvodois2/postgresql-mcp-js --profile frontend
 ```
 
 ---
@@ -72,7 +44,7 @@ cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.3) · JavaScript
+**★ 1** · potential (score 3.2) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

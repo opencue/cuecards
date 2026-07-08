@@ -2,7 +2,7 @@
 title: "maxanatsko/mcp-engine-public — Claude Code skill discovered by cue"
 description: "The SemanticOps MCP (formerly MCP Engine) is a Power BI tool that lets AI assistants like Claude interact with your Power BI models programmatically: read your "
 layout: page
-updated: 2026-07-03
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ⭐ 252 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: dax, mcp, mcp-engine, mcp-enterprise, mcp-server, powerbi, powerbi-desktop, powerbi-reports, powerquery, tabular
 
 ## Best fit cue profiles

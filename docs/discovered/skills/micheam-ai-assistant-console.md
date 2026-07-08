@@ -2,7 +2,7 @@
 title: "micheam/ai-assistant-console — Claude Code skill discovered by cue"
 description: "A Unix-friendly CLI for LLM chat and text generation. One interface for Anthropic Claude, OpenAI, Groq, and Cerebras — pipe stdin, reference files with `@path`,"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 

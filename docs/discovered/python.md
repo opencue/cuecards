@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for python"
-description: "5 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="chenxi-bot21-daily-job-matcher"></a>
-## 💎 [chenxi-bot21/daily-job-matcher](https://github.com/chenxi-bot21/daily-job-matcher)
-
-**★ 1** · exceptional (score 10.3) · Python · tags: ats, automation, claude, claude-skill, job-search
-
-Daily AI job-matching pipeline & Claude Agent Skill: scrape postings (Apify), ATS-style knockout gate + explainable CV-fit scoring, curated shortlist to a Notion tracker, and application-status sync from Gmail. 43 tests, CI.
-
-✅ SKILL.md
-
-```bash
-cue skills add chenxi-bot21/daily-job-matcher --profile python
-```
 
 ---
 
@@ -39,19 +24,6 @@ Move Claude Code projects without losing session history — CLI tool to update 
 
 ```bash
 cue skills add Mahiler1909/claudepath --profile python
-```
-
----
-
-<a id="mugoherick12-boop-skillz"></a>
-## 💎 [mugoherick12-boop/skillz](https://github.com/mugoherick12-boop/skillz)
-
-**★ 4** · exceptional (score 8.3) · Python · tags: agent, ai, basketball, coding-challenge, django
-
-🛠️ Enable skills in any MCP client with Skillz, a server converting Claude-style skills into callable tools for seamless integration.
-
-```bash
-cue skills add mugoherick12-boop/skillz --profile python
 ```
 
 ---
@@ -69,15 +41,15 @@ cue skills add mkarvan/AgentShield --profile python
 
 ---
 
-<a id="danieltomaro13-sportsdata-agents"></a>
-## ✨ [DanielTomaro13/sportsdata-agents](https://github.com/DanielTomaro13/sportsdata-agents)
+<a id="smartyjohnway-tw-market-live-data-intelligence"></a>
+## ✨ [SmartyJohnway/tw-market-live-data-intelligence](https://github.com/SmartyJohnway/tw-market-live-data-intelligence)
 
-**★ 1** · strong (score 6.3) · Python · tags: ai-agents, anthropic, arbitrage, desktop-app, fantasy-sports
+**★ 0** · strong (score 6) · Python · tags: fastapi, financial-data, local-first, market-data-ai-context, mcp-server
 
-Free, open-source agentic sports-data workbench — an agent team over live odds + stats: arbitrage & value detection, backtesting with CLV, monitors, racing, fantasy. BYO model key.
+Local-first Taiwan market context workbench for AI-assisted discussion, bounded live observation, source contracts, FastAPI, frontend, and MCP.
 
 ```bash
-cue skills add DanielTomaro13/sportsdata-agents --profile python
+cue skills add SmartyJohnway/tw-market-live-data-intelligence --profile python
 ```
 
 ---

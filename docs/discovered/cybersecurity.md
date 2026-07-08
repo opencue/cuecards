@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 3** · exceptional (score 16) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 4** · exceptional (score 16.1) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -33,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="nsasoft-nsauditor-ai-agent-skill"></a>
 ## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 3** · exceptional (score 15.1) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 3** · exceptional (score 15.2) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
 AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
 
@@ -63,7 +63,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1907** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
+**★ 1912** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -86,19 +86,6 @@ cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 
 ---
 
-<a id="saagpatel-mcpaudit"></a>
-## 💎 [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
-
-**★ 4** · exceptional (score 8.3) · Python · tags: ai-safety, audit, cli, developer-tools, mcp
-
-Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift
-
-```bash
-cue skills add saagpatel/MCPAudit --profile cybersecurity
-```
-
----
-
 <a id="mkarvan-agentshield"></a>
 ## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
 
@@ -108,6 +95,19 @@ Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go ins
 
 ```bash
 cue skills add mkarvan/AgentShield --profile cybersecurity
+```
+
+---
+
+<a id="sosintops-claudii-exploratores"></a>
+## ✨ [SOsintOps/claudii-exploratores](https://github.com/SOsintOps/claudii-exploratores)
+
+**★ 0** · strong (score 6) · Python · tags: ai-agents, claude, claude-skill, iban, investigation
+
+OSINT suite for Claude — 898 curated OSINT tools as an Agent Skill + MCP server (indicator classifier, URL builder, IBAN check, PII redactor). ALPHA.
+
+```bash
+cue skills add SOsintOps/claudii-exploratores --profile cybersecurity
 ```
 
 ---

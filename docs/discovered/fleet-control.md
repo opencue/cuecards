@@ -1,29 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jnmetacode-agency-orchestrator"></a>
-## 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
+<a id="flirnz-adk-web"></a>
+## 💎 [Flirnz/adk-web](https://github.com/Flirnz/adk-web)
 
-**★ 1673** · exceptional (score 15.9) · TypeScript · tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: adk, agent-hierarchy, agents, ai, ai-agents
 
-🚀 One sentence → multi-AI-role collaboration → complete plan in minutes. Built on the agency-agents role library (216+ experts), zero-code YAML, web Studio + desktop app, 10 LLM providers (7 free). 基于 agency-agents 专家库，一句话调度多个 AI 专家自动协作，几分钟交付完整方案。
+🛠️ Streamline agent development and debugging with the Agent Development Kit Web UI for a seamless Google ecosystem experience.
 
 ```bash
-cue skills add jnMetaCode/agency-orchestrator --profile fleet-control
+cue skills add Flirnz/adk-web --profile fleet-control
 ```
 
 ---
@@ -31,25 +31,12 @@ cue skills add jnMetaCode/agency-orchestrator --profile fleet-control
 <a id="nuttaruj-rolepod"></a>
 ## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 2** · strong (score 6.5) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 2** · strong (score 6.4) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
-```
-
----
-
-<a id="itsribbz-godspeed"></a>
-## ✨ [itsribbZ/Godspeed](https://github.com/itsribbZ/Godspeed)
-
-**★ 1** · strong (score 5.3) · Python · tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin
-
-Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory with vector search, 35-test suite + eval harness. Stdlib Python + SQLite. MIT.
-
-```bash
-cue skills add itsribbZ/Godspeed --profile fleet-control
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "yuzhaopeng-up/soe-compliant-office — Claude Code skill discovered by cue"
 description: "17 SOE-Compliant Office Skills - Built-in Compliance, Audit Trail, National Standards Ready"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 

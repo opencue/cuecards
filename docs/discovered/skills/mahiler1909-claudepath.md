@@ -2,7 +2,7 @@
 title: "Mahiler1909/claudepath — Claude Code skill discovered by cue"
 description: "Move Claude Code projects without losing session history — CLI tool to update all path references after renaming or relocating a project directory"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, skill, python]
 ---
 

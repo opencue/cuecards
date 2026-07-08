@@ -2,22 +2,22 @@
 title: "molnify/molnify-app-builder-skill — Claude Code skill discovered by cue"
 description: "Official Agent Skill for building Molnify apps - turn Excel/Google Sheets formulas into spreadsheet-driven web apps. Create from scratch, convert existing sprea"
 layout: page
-updated: 2026-06-17
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [molnify/molnify-app-builder-skill](https://github.com/molnify/molnify-app-builder-skill)
 
-**★ 2** · exceptional (score 13) · Python · agent-skill, ai, claude, claude-skill, excel
+**★ 3** · exceptional (score 13.2) · Python · agent-skill, ai, claude, claude-skill, excel
 
 > Official Agent Skill for building Molnify apps - turn Excel/Google Sheets formulas into spreadsheet-driven web apps. Create from scratch, convert existing spreadsheets, validate and style. Works with Claude Code, Claude.ai, and any skills-compatible AI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-17
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: agent-skill, ai, claude, claude-skill, excel, google-sheets, low-code, molnify, spreadsheet
 
 ## Best fit cue profiles

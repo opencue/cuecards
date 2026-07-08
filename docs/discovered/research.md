@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 <a id="shinyjay2-papermentor"></a>
 ## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 1** · exceptional (score 15.8) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
+**★ 2** · exceptional (score 16) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
 Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
 
@@ -39,19 +39,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
-
-**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
-
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
-
-```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
 ```
 
 ---

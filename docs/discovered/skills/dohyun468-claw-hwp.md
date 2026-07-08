@@ -2,21 +2,21 @@
 title: "DoHyun468/claw-hwp — Claude Code skill discovered by cue"
 description: "Read, create & edit Korean Hangul Word Processor (.hwp / .hwpx) documents in Claude — Agent Skill built on rhwp WASM, with built-in browser preview. Runs locall"
 layout: page
-updated: 2026-07-02
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DoHyun468/claw-hwp](https://github.com/DoHyun468/claw-hwp)
 
-**★ 30** · exceptional (score 9.7) · JavaScript · anthropic, claude-code, claude-cowork, claude-plugin, claude-skill
+**★ 32** · exceptional (score 10) · JavaScript · anthropic, claude-code, claude-cowork, claude-plugin, claude-skill
 
 > Read, create & edit Korean Hangul Word Processor (.hwp / .hwpx) documents in Claude — Agent Skill built on rhwp WASM, with built-in browser preview. Runs locally, no Hancom Office, no cloud.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
-- ⭐ 30 stars
-- 🗓️ Last pushed: 2026-07-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+- ⭐ 32 stars
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: anthropic, claude-code, claude-cowork, claude-plugin, claude-skill, hancom, hwp, hwpx, korean, rhwp
 
 ## Best fit cue profiles

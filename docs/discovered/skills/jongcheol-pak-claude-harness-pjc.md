@@ -2,21 +2,21 @@
 title: "jongcheol-pak/claude-harness-pjc — Claude Code skill discovered by cue"
 description: "Claude Code가 \"계획 없이 추측하고 a 파일 수정하면서 b·c 파일을 빠뜨리고 검증 없이 완료 선언\"하는 것을 막기 위한 도구입니다. 모든 코드 변경은 계획 → 구현 → 다층 검증 → 완료의 자율 루프를 거칩니다."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [jongcheol-pak/claude-harness-pjc](https://github.com/jongcheol-pak/claude-harness-pjc)
 
-**★ 2** · strong (score 6.5) · PowerShell · claude-code-skill
+**★ 3** · strong (score 6.7) · PowerShell · claude-code-skill
 
 > Claude Code가 "계획 없이 추측하고 a 파일 수정하면서 b·c 파일을 빠뜨리고 검증 없이 완료 선언"하는 것을 막기 위한 도구입니다. 모든 코드 변경은 계획 → 구현 → 다층 검증 → 완료의 자율 루프를 거칩니다.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: claude-code-skill
 
 ## Best fit cue profiles

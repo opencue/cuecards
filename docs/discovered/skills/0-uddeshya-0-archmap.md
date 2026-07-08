@@ -2,22 +2,22 @@
 title: "0-uddeshya-0/archmap — Claude Code skill discovered by cue"
 description: "See any codebase as a map, not a maze — client-side interactive architecture maps. GitHub URL or local folder in, dependency graph + critical path + dead code o"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-08
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [0-uddeshya-0/archmap](https://github.com/0-uddeshya-0/archmap)
 
-**★ 1** · potential (score 4.2) · JavaScript
+**★ 1** · potential (score 4.3) · JavaScript · architecture-diagram, code-map, code-visualization, codebase, dependency-graph
 
 > See any codebase as a map, not a maze — client-side interactive architecture maps. GitHub URL or local folder in, dependency graph + critical path + dead code out. Optional Claude enrichment.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-04
-- 🏷️ Tags: (none)
+- 🗓️ Last pushed: 2026-07-07
+- 🏷️ Tags: architecture-diagram, code-map, code-visualization, codebase, dependency-graph, developer-tools, javascript, static-analysis
 
 ## Best fit cue profiles
 
