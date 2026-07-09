@@ -2,7 +2,7 @@
 title: "sanjusathian/ai-specs — Claude Code skill discovered by cue"
 description: "📁 Streamline AI development with comprehensive rules and configurations for consistent, high-quality coding across multiple AI copilots."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-08
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: agents, ai, ai-agent, ai-agents, aiagent, api, cursor, developer-tools, github-copilot, llm, mcp-server, openapi-to-mcp, qa-automation, spec-driven-development, specification-generation, technical-documentation, webtesting, windsurf
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "netresearch/jujutsu-workflow-skill — Claude Code skill discovered by cue"
 description: "Agent-safe version control with Jujutsu (jj) — jj for local change management, Git as the canonical remote/PR/CI/audit interface. Netresearch agent skill."
 layout: page
-updated: 2026-07-01
+updated: 2026-07-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/jujutsu-workflow-skill](https://github.com/netresearch/jujutsu-workflow-skill)
 
-**★ 1** · exceptional (score 8.5) · Shell · agent-skill, ai-agent-skill, claude-code, coding-agents, git
+**★ 1** · exceptional (score 8.8) · Shell · agent-skill, ai-agent-skill, claude-code, coding-agents, git
 
 > Agent-safe version control with Jujutsu (jj) — jj for local change management, Git as the canonical remote/PR/CI/audit interface. Netresearch agent skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: agent-skill, ai-agent-skill, claude-code, coding-agents, git, jj, jujutsu, version-control
 
 ## Best fit cue profiles

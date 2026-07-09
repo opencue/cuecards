@@ -2,7 +2,7 @@
 title: "Pintaro/mem0 — Claude Code skill discovered by cue"
 description: "Claude Code skill from Pintaro/mem0"
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-08
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: ai-agents, application, chatbot, chatbots, chatgpt, claude-ai, database, full-stack, genai, grok, hacktoberfest, mcp-server, memory-management, model-context-protocol, perplexity, persistent-memory, rag, storage
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "DaniiN2/idea-anvil — Claude Code skill discovered by cue"
 description: "Best AI Coding Agent Pipeline Builder 2026 – Plan-Forge Drift-Proof Execution Contracts"
 layout: page
-updated: 2026-06-24
+updated: 2026-07-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: ai-agents, ai-coding, ai-guardrails, code-quality, copilot, developer-tools, dotnet, guardrails, mcp-server, plan-hardening, saas, software-planning, template, typescript, vscode
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for python"
-description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 <a id="mahiler1909-claudepath"></a>
 ## 💎 [Mahiler1909/claudepath](https://github.com/Mahiler1909/claudepath)
 
-**★ 16** · exceptional (score 10) · Python · tags: anthropic, claude, claude-code, cli, developer-tools
+**★ 17** · exceptional (score 9) · Python · tags: anthropic, claude, claude-code, cli, developer-tools
 
 Move Claude Code projects without losing session history — CLI tool to update all path references after renaming or relocating a project directory
 
@@ -29,27 +29,14 @@ cue skills add Mahiler1909/claudepath --profile python
 ---
 
 <a id="mkarvan-agentshield"></a>
-## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
+## ✨ [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
 
-**★ 2** · exceptional (score 8) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
+**★ 2** · strong (score 7.9) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
 
 Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
 
 ```bash
 cue skills add mkarvan/AgentShield --profile python
-```
-
----
-
-<a id="smartyjohnway-tw-market-live-data-intelligence"></a>
-## ✨ [SmartyJohnway/tw-market-live-data-intelligence](https://github.com/SmartyJohnway/tw-market-live-data-intelligence)
-
-**★ 0** · strong (score 6) · Python · tags: fastapi, financial-data, local-first, market-data-ai-context, mcp-server
-
-Local-first Taiwan market context workbench for AI-assisted discussion, bounded live observation, source contracts, FastAPI, frontend, and MCP.
-
-```bash
-cue skills add SmartyJohnway/tw-market-live-data-intelligence --profile python
 ```
 
 ---

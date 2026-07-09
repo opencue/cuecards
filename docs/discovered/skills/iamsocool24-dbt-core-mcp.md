@@ -2,7 +2,7 @@
 title: "iamsocool24/dbt-core-mcp — Claude Code skill discovered by cue"
 description: "🤖 Enhance your dbt experience with the dbt-core-mcp server, your reliable partner for smooth development in Python and data transformation tasks."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-08
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: ai, analytics, dbt, dbt-core, developer-tools, github-copilot, mcp, mcp-server, model-context-protocol, productivity, vibe, vibe-coding
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "cdeust/Cortex — Claude Code skill discovered by cue"
 description: "Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCo"
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [cdeust/Cortex](https://github.com/cdeust/Cortex)
 
-**★ 65** · exceptional (score 15.5) · Python · agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
+**★ 66** · exceptional (score 15.5) · Python · agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
 
 > Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCoMo R@10 91.5% / MRR 0.805 (n=1982), BEAM-100K retrieval-proxy MRR 0.55. Clean-DB, single-process, production recall path. PostgreSQL + pgvector.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 65 stars
-- 🗓️ Last pushed: 2026-07-07
+- ⭐ 66 stars
+- 🗓️ Last pushed: 2026-07-08
 - 🏷️ Tags: agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude, claude-code, claude-code-plugin, cognitive-architecture, cognitive-science, episodic-memory, hopfield-network, llm-memory, long-term-memory, mcp-server, model-context-protocol, neuroscience, persistent-memory, predictive-coding, retrieval-augmented-generation, vector-search
 
 ## Best fit cue profiles

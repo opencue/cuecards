@@ -2,7 +2,7 @@
 title: "MrPeppersDev/agent-infrastructure-landscape — Claude Code skill discovered by cue"
 description: "AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, "
 layout: page
-updated: 2026-07-07
+updated: 2026-07-09
 tags: [claude-code, skill, backend, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-07
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems, ai-research, catalog, knowledge-graph, langchain, letta, llm, llm-memory, mcp, mcp-server, mem0, rag, sveltekit, vector-database, zep
 
 ## Best fit cue profiles

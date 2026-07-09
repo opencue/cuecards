@@ -2,7 +2,7 @@
 title: "n33x0n/actio-marketing-panel — Claude Code skill discovered by cue"
 description: "Marketing Intelligence panel — GA4 / GSC / Google Ads → SQLite → daily LLM CMO report → email + Pushover + Chainlit dashboard"
 layout: page
-updated: 2026-06-20
+updated: 2026-07-09
 tags: [claude-code, skill, marketing, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-20
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: anthropic, chainlit, claude, google-ads, google-analytics, marketing-intelligence, mcp-server, polish, search-console, voip
 
 ## Best fit cue profiles

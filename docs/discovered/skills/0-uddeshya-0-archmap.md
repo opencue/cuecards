@@ -2,7 +2,7 @@
 title: "0-uddeshya-0/archmap — Claude Code skill discovered by cue"
 description: "See any codebase as a map, not a maze — client-side interactive architecture maps. GitHub URL or local folder in, dependency graph + critical path + dead code o"
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "bclement14/claude-roam — Claude Code skill discovered by cue"
 description: "Move Claude Code sessions between machines over ssh - path translation, explicit handoff, no third-party infrastructure"
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, core]
 ---
 

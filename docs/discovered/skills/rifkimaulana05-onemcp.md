@@ -2,7 +2,7 @@
 title: "rifkimaulana05/onemcp — Claude Code skill discovered by cue"
 description: "🤖 Streamline AI integration with OneMCP, the open-source runtime that simplifies API usage through a natural-language interface."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-08
+- 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: ai, claude-code, claude-desktop, codex-cli, copilot, desktop-app, go, llm, mcp, mcp-client, mcp-server, mcp-servers, mcp-tools
 
 ## Best fit cue profiles

@@ -1,24 +1,24 @@
 ---
 title: "HeiGeAi/HeiGe-SuanMing — Claude Code skill discovered by cue"
-description: "八字命理排盘推演 + 易卦占卜（梅花易数 · 六爻纳甲）的术数引擎 · 排盘起卦装卦交脚本算准，推演按方法论逐层展开，每条结论标注依据 | Bazi, Meihua & Liu Yao divination engines for Claude Code that compute first, then reason"
+description: "八字/紫微命理排盘推演 + 占测引擎（梅花易数 · 六爻纳甲 · 奇门遁甲）· 排盘安星起卦排局交脚本算准，推演按方法论逐层展开，每条结论标注依据 | Bazi & Zi Wei Dou Shu destiny engines plus Meihua, Liu Yao & Qi Men Dun Jia divinati"
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [HeiGeAi/HeiGe-SuanMing](https://github.com/HeiGeAi/HeiGe-SuanMing)
 
-**★ 4** · exceptional (score 13.8) · Python · bazi, chinese-astrology, chinese-metaphysics, claude-code, claude-skill
+**★ 4** · exceptional (score 12.8) · Python · bazi, chinese-astrology, chinese-metaphysics, claude-code, claude-skill
 
-> 八字命理排盘推演 + 易卦占卜（梅花易数 · 六爻纳甲）的术数引擎 · 排盘起卦装卦交脚本算准，推演按方法论逐层展开，每条结论标注依据 | Bazi, Meihua & Liu Yao divination engines for Claude Code that compute first, then reason
+> 八字/紫微命理排盘推演 + 占测引擎（梅花易数 · 六爻纳甲 · 奇门遁甲）· 排盘安星起卦排局交脚本算准，推演按方法论逐层展开，每条结论标注依据 | Bazi & Zi Wei Dou Shu destiny engines plus Meihua, Liu Yao & Qi Men Dun Jia divination engines that compute first, then reason
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-07-08
-- 🏷️ Tags: bazi, chinese-astrology, chinese-metaphysics, claude-code, claude-skill, divination, fortune-telling, four-pillars, i-ching, liuyao, meihua, python
+- 🗓️ Last pushed: 2026-07-09
+- 🏷️ Tags: bazi, chinese-astrology, chinese-metaphysics, claude-code, claude-skill, divination, fortune-telling, four-pillars, i-ching, liuyao, meihua, python, qimen-dunjia, ziwei-doushu
 
 ## Best fit cue profiles
 

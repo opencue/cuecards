@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-09
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="lostsunset-report-writing-skill"></a>
+## 💎 [LostSunset/report-writing-skill](https://github.com/LostSunset/report-writing-skill)
+
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, codex, docx, linter
+
+正式技術報告 docx 交付技能(Claude Code / Codex Skill)——繁中政府/招標交付:全流程方法庫 + 台灣語料實證寫作標準 + 大陸用語 linter + 英文去 AI 味 linter
+
+✅ SKILL.md
+
+```bash
+cue skills add LostSunset/report-writing-skill --profile docs-writer
+```
+
+---
+
+<a id="crate-cratedb-mcp"></a>
+## 💎 [crate/cratedb-mcp](https://github.com/crate/cratedb-mcp)
+
+**★ 7** · exceptional (score 10.9) · Python · tags: ai-sql-assistant, cratedb, cratedb-driver, documentation-as-code, human-computer-interface
+
+CrateDB MCP Server for natural-language Text-to-SQL and documentation retrieval.
+
+```bash
+cue skills add crate/cratedb-mcp --profile docs-writer
+```
 
 ---
 
