@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="lostsunset-report-writing-skill"></a>
-## 💎 [LostSunset/report-writing-skill](https://github.com/LostSunset/report-writing-skill)
+<a id="eugeniughelbur-obsidian-second-brain"></a>
+## 💎 [eugeniughelbur/obsidian-second-brain](https://github.com/eugeniughelbur/obsidian-second-brain)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, codex, docx, linter
+**★ 3072** · exceptional (score 25.5) · Python · tags: ai-agent, ai-agents, ai-automation, ai-research, ai-tools
 
-正式技術報告 docx 交付技能(Claude Code / Codex Skill)——繁中政府/招標交付:全流程方法庫 + 台灣語料實證寫作標準 + 大陸用語 linter + 英文去 AI 味 linter
+Cross-CLI skill for Obsidian: turn your vault into a living AI-first second brain across Claude Code, Codex, Gemini, OpenCode, Hermes, and Pi. 44 commands - self-rewriting notes, local+hybrid semantic search, key-less web research, /obsidian-architect codebase docs, and scheduled agents that maintain the vault while you sleep.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add LostSunset/report-writing-skill --profile docs-writer
+cue skills add eugeniughelbur/obsidian-second-brain --profile docs-writer
 ```
 
 ---
 
-<a id="crate-cratedb-mcp"></a>
-## 💎 [crate/cratedb-mcp](https://github.com/crate/cratedb-mcp)
+<a id="prem676-cloudscape-docs-mcp"></a>
+## ✨ [prem676/cloudscape-docs-mcp](https://github.com/prem676/cloudscape-docs-mcp)
 
-**★ 7** · exceptional (score 10.9) · Python · tags: ai-sql-assistant, cratedb, cratedb-driver, documentation-as-code, human-computer-interface
+**★ 1** · strong (score 6.8) · Python · tags: ai-agents, cloudscape-design, documentation, embeddings, jina-embeddings
 
-CrateDB MCP Server for natural-language Text-to-SQL and documentation retrieval.
-
-```bash
-cue skills add crate/cratedb-mcp --profile docs-writer
-```
-
----
-
-<a id="wlsdks-ontology-atlas"></a>
-## ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
-
-**★ 5** · strong (score 6.7) · TypeScript · tags: ai-agents, claude-code, codebase, cursor, frontmatter
-
-Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
+🌐 Enable seamless semantic search over AWS Cloudscape documentation for AI agents and coding assistants with this efficient MCP server.
 
 ```bash
-cue skills add wlsdks/ontology-atlas --profile docs-writer
+cue skills add prem676/cloudscape-docs-mcp --profile docs-writer
 ```
 
 ---

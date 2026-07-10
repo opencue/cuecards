@@ -2,21 +2,21 @@
 title: "bejranonda/ExternalBrain — Claude Code skill discovered by cue"
 description: "Self-improving, self-hosted memory across every AI coding tool, project, and team (Claude Code, Cursor, Copilot, any MCP client). Autoskill proposes new skills "
 layout: page
-updated: 2026-06-28
+updated: 2026-07-10
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [bejranonda/ExternalBrain](https://github.com/bejranonda/ExternalBrain)
+# 💎 [bejranonda/ExternalBrain](https://github.com/bejranonda/ExternalBrain)
 
-**★ 1** · strong (score 7.8) · TypeScript · ai-agents, ai-coding, ai-memory, ai-pair-programming, claude-code
+**★ 2** · exceptional (score 8) · TypeScript · ai-agents, ai-coding, ai-memory, ai-pair-programming, claude-code
 
 > Self-improving, self-hosted memory across every AI coding tool, project, and team (Claude Code, Cursor, Copilot, any MCP client). Autoskill proposes new skills from your sessions, so each project improves automatically. Inspectable, grounded, and yours. Built for teams and enterprise. Open source, MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: ai-agents, ai-coding, ai-memory, ai-pair-programming, claude-code, cursor, developer-tools, enterprise, github-copilot, knowledge-base, knowledge-management, mcp, mcp-server, model-context-protocol, open-source, pgvector, rag, self-hosted, vibe-coding, windsurf
 
 ## Best fit cue profiles

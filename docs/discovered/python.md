@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 <a id="mahiler1909-claudepath"></a>
 ## 💎 [Mahiler1909/claudepath](https://github.com/Mahiler1909/claudepath)
 
-**★ 17** · exceptional (score 9) · Python · tags: anthropic, claude, claude-code, cli, developer-tools
+**★ 17** · exceptional (score 8.9) · Python · tags: anthropic, claude, claude-code, cli, developer-tools
 
 Move Claude Code projects without losing session history — CLI tool to update all path references after renaming or relocating a project directory
 

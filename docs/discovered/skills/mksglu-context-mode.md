@@ -2,21 +2,21 @@
 title: "mksglu/context-mode — Claude Code skill discovered by cue"
 description: "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and   enforces routing across 17 platforms via"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
 
-**★ 18658** · exceptional (score 20.5) · TypeScript · antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
+**★ 18781** · exceptional (score 20.5) · TypeScript · antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
 
 > Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and   enforces routing across 17 platforms via MCP + hooks.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.5 based on:
-- ⭐ 18658 stars
-- 🗓️ Last pushed: 2026-07-07
+- ⭐ 18781 stars
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins, claude-code-skill, codex, codex-cli, context-mode, copilot, cursor-plugin, kiro, mcp, mcp-server, mcp-tools, openclaw, opencode, pi-agent, skills, zed-extension
 
 ## Best fit cue profiles

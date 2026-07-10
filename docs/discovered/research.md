@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+<a id="aemro-motors-popper-scope"></a>
+## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

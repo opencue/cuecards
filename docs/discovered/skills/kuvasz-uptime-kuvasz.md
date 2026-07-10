@@ -2,21 +2,21 @@
 title: "kuvasz-uptime/kuvasz — Claude Code skill discovered by cue"
 description: "Kuvasz (pronounce as [ˈkuvɒs]) is an open-source uptime and SSL monitoring service, with multiple notification channels, status pages, IAC support via YAML, Pro"
 layout: page
-updated: 2026-06-26
+updated: 2026-07-10
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [kuvasz-uptime/kuvasz](https://github.com/kuvasz-uptime/kuvasz)
 
-**★ 564** · exceptional (score 12) · Kotlin · cloud-native, containerized, homelab, iac-managed, kotlin
+**★ 567** · exceptional (score 12) · Kotlin · cloud-native, containerized, homelab, iac-managed, kotlin
 
 > Kuvasz (pronounce as [ˈkuvɒs]) is an open-source uptime and SSL monitoring service, with multiple notification channels, status pages, IAC support via YAML, Prometheus integration, a complete REST API and many more!
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 564 stars
-- 🗓️ Last pushed: 2026-06-26
+- ⭐ 567 stars
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: cloud-native, containerized, homelab, iac-managed, kotlin, mcp-server, metrics-exporter, micronaut, monitoring, observability, self-hosted, ssl-checker, ssl-monitor, status-page, uptime, uptime-checker, uptime-monitor, uptime-monitoring
 
 ## Best fit cue profiles

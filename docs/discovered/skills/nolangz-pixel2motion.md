@@ -2,13 +2,13 @@
 title: "nolangz/pixel2motion — Claude Code skill discovered by cue"
 description: "AI logo animation skill: turn raster logos into smooth SVG animation, animated HTML demos, GIF/video previews, and motion QA evidence."
 layout: page
-updated: 2026-06-26
+updated: 2026-07-10
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [nolangz/pixel2motion](https://github.com/nolangz/pixel2motion)
 
-**★ 1037** · exceptional (score 18.5) · Python · ai-design-tools, animated-logo, brand-motion, claude-skill, codex-skill
+**★ 1585** · exceptional (score 18.5) · Python · ai-design-tools, animated-logo, brand-motion, claude-skill, codex-skill
 
 > AI logo animation skill: turn raster logos into smooth SVG animation, animated HTML demos, GIF/video previews, and motion QA evidence.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1037 stars
-- 🗓️ Last pushed: 2026-06-26
+- ⭐ 1585 stars
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: ai-design-tools, animated-logo, brand-motion, claude-skill, codex-skill, html-animation, logo-animation, logo-motion, logo-reveal, motion-design, pixel-to-svg, raster-to-svg, svg-animation, svg-motion, vector-animation
 
 ## Best fit cue profiles

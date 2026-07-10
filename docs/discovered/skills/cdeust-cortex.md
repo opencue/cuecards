@@ -1,27 +1,27 @@
 ---
 title: "cdeust/Cortex — Claude Code skill discovered by cue"
-description: "Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCo"
+description: "Accountable memory for AI agents — it forgets on purpose, says \"I don't know\" when unsure, and flags its own contradictions. Local-first · MCP · MIT."
 layout: page
-updated: 2026-07-09
-tags: [claude-code, skill, backend]
+updated: 2026-07-10
+tags: [claude-code, skill, core]
 ---
 
 # 💎 [cdeust/Cortex](https://github.com/cdeust/Cortex)
 
-**★ 66** · exceptional (score 15.5) · Python · agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
+**★ 66** · exceptional (score 16.6) · Python · agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
 
-> Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCoMo R@10 91.5% / MRR 0.805 (n=1982), BEAM-100K retrieval-proxy MRR 0.55. Clean-DB, single-process, production recall path. PostgreSQL + pgvector.
+> Accountable memory for AI agents — it forgets on purpose, says "I don't know" when unsure, and flags its own contradictions. Local-first · MCP · MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.6 based on:
 - ⭐ 66 stars
-- 🗓️ Last pushed: 2026-07-08
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude, claude-code, claude-code-plugin, cognitive-architecture, cognitive-science, episodic-memory, hopfield-network, llm-memory, long-term-memory, mcp-server, model-context-protocol, neuroscience, persistent-memory, predictive-coding, retrieval-augmented-generation, vector-search
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add cdeust/Cortex --profile backend
+cue skills add cdeust/Cortex --profile core
 ```
 
 ## About

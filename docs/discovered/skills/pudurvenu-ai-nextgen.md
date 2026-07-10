@@ -2,21 +2,21 @@
 title: "pudurvenu/AI-NextGen — Claude Code skill discovered by cue"
 description: "🤖 Transform AI development with powerful tools and frameworks designed for the next generation of intelligent applications and solutions."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [pudurvenu/AI-NextGen](https://github.com/pudurvenu/AI-NextGen)
 
-**★ 0** · exceptional (score 9.5) · ai, ai-agent, aiml, android, antispam
+**★ 1** · exceptional (score 9.8) · ai, ai-agent, aiml, android, antispam
 
 > 🤖 Transform AI development with powerful tools and frameworks designed for the next generation of intelligent applications and solutions.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: ai, ai-agent, aiml, android, antispam, crypto, discord, disnake, documentation, hacktoberfest, kali, langgraph, m5stack, mcp-server, python, ransomware, secure-llm, windows
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "CarolMonroe22/lovable-cloud-to-supabase-migration — Claude Code skill discovered by cue"
 description: "Migrate from Lovable Cloud to your own Supabase. Official export path, 33 steps, every trap documented. Claude Code skill."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, skill, core]
 ---
 

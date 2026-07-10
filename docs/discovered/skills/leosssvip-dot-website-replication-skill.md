@@ -2,22 +2,22 @@
 title: "leosssvip-dot/website-replication-skill — Claude Code skill discovered by cue"
 description: "Skill for Claude Code / OpenAI Codex: audit a reference site and produce a differentiated parity plan (UI, interactions, API, data, architecture)."
 layout: page
-updated: 2026-06-17
+updated: 2026-07-10
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [leosssvip-dot/website-replication-skill](https://github.com/leosssvip-dot/website-replication-skill)
 
-**★ 8** · exceptional (score 12.1) · JavaScript · browser-automation, claude-agent-skill, claude-code-skill, competitive-analysis, feature-parity
+**★ 10** · exceptional (score 12.2) · JavaScript · browser-automation, claude-agent-skill, claude-code-skill, competitive-analysis, feature-parity
 
 > Skill for Claude Code / OpenAI Codex: audit a reference site and produce a differentiated parity plan (UI, interactions, API, data, architecture).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-06-17
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: browser-automation, claude-agent-skill, claude-code-skill, competitive-analysis, feature-parity, openai-codex-skill, ui-replication, web-audit
 
 ## Best fit cue profiles

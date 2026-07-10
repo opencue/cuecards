@@ -1,172 +1,81 @@
 ---
 title: "Claude Code Skills for backend"
-description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="archestra-ai-archestra"></a>
-## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
+<a id="crbnos-carbon"></a>
+## 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
 
-**★ 3952** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
+**★ 2248** · exceptional (score 14) · TypeScript · tags: agentic-platform, assemblyline, business, erp, lean
 
-Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
+Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, and configure to order manufacturing.
 
 ```bash
-cue skills add archestra-ai/archestra --profile backend
+cue skills add crbnos/carbon --profile backend
 ```
 
 ---
 
-<a id="cdeust-cortex"></a>
-## 💎 [cdeust/Cortex](https://github.com/cdeust/Cortex)
+<a id="kuvasz-uptime-kuvasz"></a>
+## 💎 [kuvasz-uptime/kuvasz](https://github.com/kuvasz-uptime/kuvasz)
 
-**★ 66** · exceptional (score 15.5) · Python · tags: agent-memory-system, anthropic, artificial-intelligence, causal-inference, claude
+**★ 567** · exceptional (score 12) · Kotlin · tags: cloud-native, containerized, homelab, iac-managed, kotlin
 
-Persistent memory for Claude Code — 36 neuroscience mechanisms, 97 papers. Reproducible via `make reproduce`: LongMemEval-S R@10 98.2% / MRR 0.915 (n=500), LoCoMo R@10 91.5% / MRR 0.805 (n=1982), BEAM-100K retrieval-proxy MRR 0.55. Clean-DB, single-process, production recall path. PostgreSQL + pgvector.
+Kuvasz (pronounce as [ˈkuvɒs]) is an open-source uptime and SSL monitoring service, with multiple notification channels, status pages, IAC support via YAML, Prometheus integration, a complete REST API and many more!
 
 ```bash
-cue skills add cdeust/Cortex --profile backend
+cue skills add kuvasz-uptime/kuvasz --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="tahahussein-dotcom-mcp-encrypted-sqlite"></a>
+## ✨ [TahaHussein-dotcom/mcp-encrypted-sqlite](https://github.com/TahaHussein-dotcom/mcp-encrypted-sqlite)
 
-**★ 195763** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 1** · strong (score 7.8) · tags: crud, database, database-tools, encryption, gradle
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+🔒 Access and manage encrypted SQLite databases effortlessly with this MCP server, designed for seamless integration with SQLCipher and various clients.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
 ```
 
 ---
 
-<a id="ralforion-orionbelt-semantic-layer"></a>
-## 💎 [ralforion/orionbelt-semantic-layer](https://github.com/ralforion/orionbelt-semantic-layer)
+<a id="ej-locked-flowcore"></a>
+## ✨ [Ej-Locked/FlowCore](https://github.com/Ej-Locked/FlowCore)
 
-**★ 64** · exceptional (score 11.1) · Python · tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
+**★ 0** · strong (score 7.5) · Rust · tags: automation, bpm, business-process, flowcore, mcp
 
-Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
+🚀 Build a minimal Flink-like streaming engine in Rust and React to process events with tumbling windows, late-event detection, and a simple web interface.
 
 ```bash
-cue skills add ralforion/orionbelt-semantic-layer --profile backend
+cue skills add Ej-Locked/FlowCore --profile backend
 ```
 
 ---
 
-<a id="crate-cratedb-mcp"></a>
-## 💎 [crate/cratedb-mcp](https://github.com/crate/cratedb-mcp)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 7** · exceptional (score 10.9) · Python · tags: ai-sql-assistant, cratedb, cratedb-driver, documentation-as-code, human-computer-interface
+**★ 5** · strong (score 5.9) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-CrateDB MCP Server for natural-language Text-to-SQL and documentation retrieval.
-
-```bash
-cue skills add crate/cratedb-mcp --profile backend
-```
-
----
-
-<a id="rifkimaulana05-onemcp"></a>
-## 💎 [rifkimaulana05/onemcp](https://github.com/rifkimaulana05/onemcp)
-
-**★ 0** · exceptional (score 10) · Java · tags: ai, claude-code, claude-desktop, codex-cli, copilot
-
-🤖 Streamline AI integration with OneMCP, the open-source runtime that simplifies API usage through a natural-language interface.
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add rifkimaulana05/onemcp --profile backend
-```
-
----
-
-<a id="sanjusathian-ai-specs"></a>
-## 💎 [sanjusathian/ai-specs](https://github.com/sanjusathian/ai-specs)
-
-**★ 1** · exceptional (score 9.8) · tags: agents, ai, ai-agent, ai-agents, aiagent
-
-📁 Streamline AI development with comprehensive rules and configurations for consistent, high-quality coding across multiple AI copilots.
-
-```bash
-cue skills add sanjusathian/ai-specs --profile backend
-```
-
----
-
-<a id="flirnz-adk-web"></a>
-## 💎 [Flirnz/adk-web](https://github.com/Flirnz/adk-web)
-
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: adk, agent-hierarchy, agents, ai, ai-agents
-
-🛠️ Streamline agent development and debugging with the Agent Development Kit Web UI for a seamless Google ecosystem experience.
-
-```bash
-cue skills add Flirnz/adk-web --profile backend
-```
-
----
-
-<a id="akbfar-zomato-mcp-demo"></a>
-## ✨ [akbfar/Zomato-MCP-Demo](https://github.com/akbfar/Zomato-MCP-Demo)
-
-**★ 0** · strong (score 7.5) · tags: mcp-server, mcp-tools, mcp-zomato, model-context-protocol, model-context-protocol-server-zomoto
-
-🍴 Explore Zomato's MCP Server for AI chat assistants. Set up Claude Desktop to interact seamlessly with real-world food ordering systems.
-
-```bash
-cue skills add akbfar/Zomato-MCP-Demo --profile backend
-```
-
----
-
-<a id="pintaro-mem0"></a>
-## ✨ [Pintaro/mem0](https://github.com/Pintaro/mem0)
-
-**★ 1** · strong (score 6.8) · Python · tags: ai-agents, application, chatbot, chatbots, chatgpt
-
-
-
-```bash
-cue skills add Pintaro/mem0 --profile backend
-```
-
----
-
-<a id="n33x0n-actio-marketing-panel"></a>
-## ✨ [n33x0n/actio-marketing-panel](https://github.com/n33x0n/actio-marketing-panel)
-
-**★ 0** · strong (score 6) · Python · tags: anthropic, chainlit, claude, google-ads, google-analytics
-
-Marketing Intelligence panel — GA4 / GSC / Google Ads → SQLite → daily LLM CMO report → email + Pushover + Chainlit dashboard
-
-```bash
-cue skills add n33x0n/actio-marketing-panel --profile backend
-```
-
----
-
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
-
-**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
-
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
-
-```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 ```
 
 ---

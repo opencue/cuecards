@@ -1,57 +1,31 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="brandonvant-claude-skill-whiteboard-explainer"></a>
-## 💎 [brandonvant/claude-skill-whiteboard-explainer](https://github.com/brandonvant/claude-skill-whiteboard-explainer)
+<a id="nolangz-pixel2motion"></a>
+## 💎 [nolangz/pixel2motion](https://github.com/nolangz/pixel2motion)
 
-**★ 0** · exceptional (score 13) · JavaScript · tags: claude-code, claude-skill, explainer-video, hyperframes, whiteboard-animation
+**★ 1585** · exceptional (score 18.5) · Python · tags: ai-design-tools, animated-logo, brand-motion, claude-skill, codex-skill
 
-Claude Code skill: VideoScribe-quality whiteboard explainer videos in HyperFrames — photo-hand mask reveals, Whisper word-sync, hard QA gates
+AI logo animation skill: turn raster logos into smooth SVG animation, animated HTML demos, GIF/video previews, and motion QA evidence.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add brandonvant/claude-skill-whiteboard-explainer --profile creative-media
-```
-
----
-
-<a id="verycooltimo-imagegen-skills"></a>
-## 💎 [veryCoolTimo/imagegen-skills](https://github.com/veryCoolTimo/imagegen-skills)
-
-**★ 2** · exceptional (score 8.5) · tags: ai-agents, ai-art, anthropic, awesome-claude, claude-code
-
-Turn a one-line idea into a production-grade, copy-paste-ready AI image prompt for posters, landing and UI mockups, ads, game art, and logos. A Claude Code skill optimized for gpt-image-2. MIT.
-
-```bash
-cue skills add veryCoolTimo/imagegen-skills --profile creative-media
-```
-
----
-
-<a id="norahe0304-art-30x-image"></a>
-## ✨ [norahe0304-art/30x-image](https://github.com/norahe0304-art/30x-image)
-
-**★ 11** · strong (score 7.4) · JavaScript · tags: ai-agent-skill, claude-code, codex, gpt-image, image-generation
-
-Generates on-brand marketing imagery (ad creatives, logos, slides, carousels) from a brand DESIGN.md via gpt-image-2 — a Codex / Claude Code skill.
-
-```bash
-cue skills add norahe0304-art/30x-image --profile creative-media
+cue skills add nolangz/pixel2motion --profile creative-media
 ```
 
 ---

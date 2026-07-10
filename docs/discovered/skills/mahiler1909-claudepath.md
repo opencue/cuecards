@@ -2,19 +2,19 @@
 title: "Mahiler1909/claudepath — Claude Code skill discovered by cue"
 description: "Move Claude Code projects without losing session history — CLI tool to update all path references after renaming or relocating a project directory"
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, skill, python]
 ---
 
 # 💎 [Mahiler1909/claudepath](https://github.com/Mahiler1909/claudepath)
 
-**★ 17** · exceptional (score 9) · Python · anthropic, claude, claude-code, cli, developer-tools
+**★ 17** · exceptional (score 8.9) · Python · anthropic, claude, claude-code, cli, developer-tools
 
 > Move Claude Code projects without losing session history — CLI tool to update all path references after renaming or relocating a project directory
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ⭐ 17 stars
 - 🗓️ Last pushed: 2026-07-03
 - 🏷️ Tags: anthropic, claude, claude-code, cli, developer-tools, homebrew, pipx, project-management, python, session-history

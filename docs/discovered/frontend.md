@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-10
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="leosssvip-dot-website-replication-skill"></a>
+## 💎 [leosssvip-dot/website-replication-skill](https://github.com/leosssvip-dot/website-replication-skill)
+
+**★ 10** · exceptional (score 12.2) · JavaScript · tags: browser-automation, claude-agent-skill, claude-code-skill, competitive-analysis, feature-parity
+
+Skill for Claude Code / OpenAI Codex: audit a reference site and produce a differentiated parity plan (UI, interactions, API, data, architecture).
+
+✅ SKILL.md
+
+```bash
+cue skills add leosssvip-dot/website-replication-skill --profile frontend
+```
 
 ---
 
@@ -31,7 +46,7 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.2) · JavaScript
+**★ 1** · potential (score 3.1) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 
