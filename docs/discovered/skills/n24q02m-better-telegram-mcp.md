@@ -2,7 +2,7 @@
 title: "n24q02m/better-telegram-mcp — Claude Code skill discovered by cue"
 description: "Telegram for AI agents -- messages, chats, media, and contacts across both bot and full user-account modes."
 layout: page
-updated: 2026-07-05
+updated: 2026-07-11
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.4 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-07-05
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: ai-agents, ai-coding, claude, claude-code, cursor, docker, mcp, mcp-server, model-context-protocol, open-source, python, telegram, telegram-bot, telethon
 
 ## Best fit cue profiles

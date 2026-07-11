@@ -2,7 +2,7 @@
 title: "69IR/OpenSem — Claude Code skill discovered by cue"
 description: "🚀 Boost your coding efficiency with OpenSem, a bootstrapping template for Serena and Superpowers, enabling quick setup without scripts."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: agent-programming, ai-coding, ai-language-server, claude, claude-code, mcp-server, serena, serena-superpowers-template, superpowers, vibe-coding
 
 ## Best fit cue profiles

@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="modelscope-funasr"></a>
-## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
+<a id="verycooltimo-youtube-summary-skill"></a>
+## 💎 [veryCoolTimo/youtube-summary-skill](https://github.com/veryCoolTimo/youtube-summary-skill)
 
-**★ 19037** · exceptional (score 14) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
+**★ 0** · exceptional (score 14) · Python · tags: agent-skills, ai-agents, anthropic, claude-code, claude-code-plugin
 
-Industrial-grade speech recognition toolkit: 170x realtime, 50+ languages, speaker diarization, emotion detection, streaming, and OpenAI-compatible API.
+Claude Code skill that turns YouTube links into a searchable knowledge base: captions or local Whisper, LLM-distilled summary cards with timecoded links and screenshots, topical auto-filing, hybrid RAG search, optional git sync. MIT.
+
+✅ SKILL.md
 
 ```bash
-cue skills add modelscope/FunASR --profile video
+cue skills add veryCoolTimo/youtube-summary-skill --profile video
+```
+
+---
+
+<a id="imhzm-edit-reels-like-pro-claude-skill"></a>
+## ✨ [imhzm/EDIT-REELS-LIKE-PRO-Claude-Skill](https://github.com/imhzm/EDIT-REELS-LIKE-PRO-Claude-Skill)
+
+**★ 0** · strong (score 7) · TypeScript · tags: ai-agents, arabic, claude, claude-code, claude-skill
+
+🎬 EDIT REELS LIKE PRO — a Claude Code skill that edits viral 9:16 reels end-to-end: 881 pro techniques, 7 niche style wheels, word-synced karaoke captions, 3-pass sound design, Remotion engine + full agent pipeline
+
+```bash
+cue skills add imhzm/EDIT-REELS-LIKE-PRO-Claude-Skill --profile video
 ```
 
 ---

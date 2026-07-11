@@ -2,19 +2,19 @@
 title: "sarveshtalele/claude-architect-exam-guide — Claude Code skill discovered by cue"
 description: "The CCA-F prep guide built for non-technical learners and engineers alike. Curated resources, Claude skills, and a learning path that goes beyond the exam."
 layout: page
-updated: 2026-07-10
+updated: 2026-07-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [sarveshtalele/claude-architect-exam-guide](https://github.com/sarveshtalele/claude-architect-exam-guide)
 
-**★ 14** · exceptional (score 8.1) · ai-projects
+**★ 14** · exceptional (score 8) · ai-projects
 
 > The CCA-F prep guide built for non-technical learners and engineers alike. Curated resources, Claude skills, and a learning path that goes beyond the exam.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 14 stars
 - 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: ai-projects

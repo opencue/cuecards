@@ -2,7 +2,7 @@
 title: "oceantruong/farcaster-agent — Claude Code skill discovered by cue"
 description: "🤖 Automate Farcaster account creation and casting without intervention, using a toolkit that handles everything programmatically."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: agentic-ai, ai-agents, base, defi, elizaos-plugin, erc20, ethereum, fair-launch, farcaster, farcaster-frames, langgraph, lilnouns, mcp, mcp-server, model-context-protocol, openclaw, social-network, solidity, uniswap-v4
 
 ## Best fit cue profiles

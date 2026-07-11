@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-10
+updated: 2026-07-11
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 

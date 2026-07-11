@@ -2,21 +2,21 @@
 title: "trip2g/trip2g — Claude Code skill discovered by cue"
 description: "Open-source MCP knowledge mesh - self-host your second brain, expose it to AI agents, federate with peers."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-11
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [trip2g/trip2g](https://github.com/trip2g/trip2g)
 
-**★ 18** · exceptional (score 9.3) · Go · ai-agent-memory, cms, digital-garden, golang, knowledge-base
+**★ 23** · exceptional (score 9.4) · Go · ai-agent-memory, cms, digital-garden, golang, knowledge-base
 
 > Open-source MCP knowledge mesh - self-host your second brain, expose it to AI agents, federate with peers.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
-- ⭐ 18 stars
-- 🗓️ Last pushed: 2026-07-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
+- ⭐ 23 stars
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: ai-agent-memory, cms, digital-garden, golang, knowledge-base, markdown, mcp-server, obsidian, obsidian-publish, self-hosted, static-site-generator
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-10
+updated: 2026-07-11
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="eugeniughelbur-obsidian-second-brain"></a>
-## 💎 [eugeniughelbur/obsidian-second-brain](https://github.com/eugeniughelbur/obsidian-second-brain)
+<a id="trip2g-trip2g"></a>
+## 💎 [trip2g/trip2g](https://github.com/trip2g/trip2g)
 
-**★ 3072** · exceptional (score 25.5) · Python · tags: ai-agent, ai-agents, ai-automation, ai-research, ai-tools
+**★ 23** · exceptional (score 9.4) · Go · tags: ai-agent-memory, cms, digital-garden, golang, knowledge-base
 
-Cross-CLI skill for Obsidian: turn your vault into a living AI-first second brain across Claude Code, Codex, Gemini, OpenCode, Hermes, and Pi. 44 commands - self-rewriting notes, local+hybrid semantic search, key-less web research, /obsidian-architect codebase docs, and scheduled agents that maintain the vault while you sleep.
-
-✅ SKILL.md
+Open-source MCP knowledge mesh - self-host your second brain, expose it to AI agents, federate with peers.
 
 ```bash
-cue skills add eugeniughelbur/obsidian-second-brain --profile docs-writer
+cue skills add trip2g/trip2g --profile docs-writer
 ```
 
 ---
 
-<a id="prem676-cloudscape-docs-mcp"></a>
-## ✨ [prem676/cloudscape-docs-mcp](https://github.com/prem676/cloudscape-docs-mcp)
+<a id="kevinv92-somedaywriter"></a>
+## ✨ [kevinv92/SomedayWriter](https://github.com/kevinv92/SomedayWriter)
 
-**★ 1** · strong (score 6.8) · Python · tags: ai-agents, cloudscape-design, documentation, embeddings, jina-embeddings
+**★ 0** · strong (score 6) · TypeScript · tags: codemirror, desktop-app, electron, local-first, macos
 
-🌐 Enable seamless semantic search over AWS Cloudscape documentation for AI agents and coding assistants with this efficient MCP server.
+A calm desktop Markdown writing app for long-form prose — Electron + React + CodeMirror, with a story index, threads, and manuscript export.
 
 ```bash
-cue skills add prem676/cloudscape-docs-mcp --profile docs-writer
+cue skills add kevinv92/SomedayWriter --profile docs-writer
 ```
 
 ---

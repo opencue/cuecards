@@ -2,7 +2,7 @@
 title: "HUANGcvs/MeiGen-AI-Design-MCP — Claude Code skill discovered by cue"
 description: "🎨 Turn Claude Code and OpenClaw into a powerful design assistant with local ComfyUI, API integration, and a large pro prompt library."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-11
 tags: [claude-code, skill, creative-media, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: ai-image-generation, claude, claude-code, comfyui, lovart, mcp, mcp-server, model-context-protocol, openclaw, prompt-engineering
 
 ## Best fit cue profiles

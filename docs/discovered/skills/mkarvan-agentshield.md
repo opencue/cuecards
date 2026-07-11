@@ -2,19 +2,19 @@
 title: "mkarvan/AgentShield — Claude Code skill discovered by cue"
 description: "Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, "
 layout: page
-updated: 2026-07-10
+updated: 2026-07-11
 tags: [claude-code, skill, cybersecurity, python]
 ---
 
 # ✨ [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
 
-**★ 2** · strong (score 7.9) · Python · agent-security, ai-agents, claude-code, cve, llm-security
+**★ 2** · strong (score 7.8) · Python · agent-security, ai-agents, claude-code, cve, llm-security
 
 > Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-07-06
 - 🏷️ Tags: agent-security, ai-agents, claude-code, cve, llm-security, mcp, mcp-server, npm, package-security, pip, python, sarif, sbom, security-tools, supply-chain-security, typosquatting, vulnerability-scanning

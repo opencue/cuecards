@@ -2,7 +2,7 @@
 title: "zykooooooooo/SeekMoney-ai — Claude Code skill discovered by cue"
 description: "🔍 Discover user pain points on social media with AI-driven clustering and analysis for targeted business opportunities and product ideas."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: agent, altitude, ast-parser, autonomous-agents, claude-ai, claude-skills, code-analysis, conflict-detection, documentation, mcp, mcp-server, ocr, pdf, php, reconnaissance, shortvideo, typescript, voice-assistant, web-scraping
 
 ## Best fit cue profiles

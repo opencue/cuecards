@@ -2,7 +2,7 @@
 title: "Junhanliu-dev/espalier-engineering — Claude Code skill discovered by cue"
 description: "Train your AI coders the way you'd train a vine — discover your codebase's actual patterns, then encode them as Claude Code rules, skills, agents, hooks, and a "
 layout: page
-updated: 2026-07-04
+updated: 2026-07-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.1 based on:
 - ⭐ 71 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-11
 - 🏷️ Tags: agent-orchestration, ai-agents, ai-coding, claude-code, claude-code-plugin, claude-code-skill, code-generation, code-quality, developer-tools, llm-tooling, llm-workflow
 
 ## Best fit cue profiles
