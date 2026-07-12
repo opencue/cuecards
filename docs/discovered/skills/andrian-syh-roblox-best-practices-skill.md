@@ -2,7 +2,7 @@
 title: "andrian-syh/roblox-best-practices-skill — Claude Code skill discovered by cue"
 description: "A framework-agnostic Roblox/Luau coding standards & best practices skill for AI agents. Features an interactive CLI installer supporting version selection, auto"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 

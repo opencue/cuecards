@@ -2,7 +2,7 @@
 title: "strewerwer/agentic-rag-framework — Claude Code skill discovered by cue"
 description: "🔍 Enhance retrieval with the Agentic RAG Framework for hybrid search, query classification, and answer fusion in production-grade systems."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-12
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: agent, agentic, agentic-framework, agentic-rag, ai, claude-code-skills, codex, gpt, huggingface, mcp-server, multi-agent, openai, openai-api, question-answering, rag
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "limeflash/antigravity-plugin-cc — Claude Code skill discovered by cue"
 description: "Use the Google Antigravity CLI (agy) from Claude Code — ask, review, delegate, scrape, doc→Markdown. Real read-only guarantee + secret/SSRF/path guards, backgro"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 

@@ -2,21 +2,21 @@
 title: "Belkins/ai-dive-deep — Claude Code skill discovered by cue"
 description: "Vlad's Playbook — the operator's field manual where every artifact is live, clickable, and forwardable. 39 chapters · 25 interactive widgets · 3 embedded case s"
 layout: page
-updated: 2026-06-27
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Belkins/ai-dive-deep](https://github.com/Belkins/ai-dive-deep)
+# 💎 [Belkins/ai-dive-deep](https://github.com/Belkins/ai-dive-deep)
 
-**★ 471** · strong (score 7.5) · Astro · agent-orchestration, ai-agents, anthropic, astro, claude
+**★ 467** · exceptional (score 8.2) · Astro · agent-orchestration, ai-agents, anthropic, astro, claude
 
 > Vlad's Playbook — the operator's field manual where every artifact is live, clickable, and forwardable. 39 chapters · 25 interactive widgets · 3 embedded case studies (AFC pitch + sanitized client audit). Read it → dive.vladyslavpodoliako.com
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 471 stars
-- 🗓️ Last pushed: 2026-06-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 467 stars
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: agent-orchestration, ai-agents, anthropic, astro, claude, claude-code, field-manual, htmlization, interactive-book, mcp, mdx, static-site
 
 ## Best fit cue profiles

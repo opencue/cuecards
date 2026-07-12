@@ -2,7 +2,7 @@
 title: "GabrielCostaLopes16/claude-code-hooks — Claude Code skill discovered by cue"
 description: "🪝 Customize and deploy ready-to-use hooks for Claude Code, enhancing safety, automation, and notifications in your projects."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-12
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: agent-skills, agentic-ai, agentic-code, agentic-coding, ai-agents, ai-workflow-optimization, claude, claude-ai, claude-code, claude-code-commands, claude-code-mcp, cli-tool, coding-agent, dotfiles, llm, mcp, mcp-server, subagents
 
 ## Best fit cue profiles

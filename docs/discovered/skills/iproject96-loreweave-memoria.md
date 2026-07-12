@@ -2,7 +2,7 @@
 title: "iproject96/loreweave-memoria — Claude Code skill discovered by cue"
 description: "🧠 LoreConvo 2026: Claude Session Memory Mesh – Persistent Cross-Surface AI Conversations"
 layout: page
-updated: 2026-07-10
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-10
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: ai-tools, claude, claude-plugin, mcp, mcp-server, memory
 
 ## Best fit cue profiles

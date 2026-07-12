@@ -2,19 +2,19 @@
 title: "odere-pro/claude-agentline — Claude Code skill discovered by cue"
 description: "Fast, themeable powerline statusline for Claude Code — git, tokens, context window, rate limits, 38 widgets, and a live TUI editor. Zero network on the hot path"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [odere-pro/claude-agentline](https://github.com/odere-pro/claude-agentline)
 
-**★ 2** · strong (score 6.5) · TypeScript · agentic, ai-tooling, ansi, claude-code, cli
+**★ 2** · strong (score 6.4) · TypeScript · agentic, ai-tooling, ansi, claude-code, cli
 
 > Fast, themeable powerline statusline for Claude Code — git, tokens, context window, rate limits, 38 widgets, and a live TUI editor. Zero network on the hot path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: agentic, ai-tooling, ansi, claude-code, cli, developer-tools, git, nerd-font, nodejs, npm-package, powerline, prompt, statusline, terminal, theme, tokens, tui, typescript

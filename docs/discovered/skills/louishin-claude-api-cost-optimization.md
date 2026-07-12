@@ -2,7 +2,7 @@
 title: "Louishin/claude-api-cost-optimization — Claude Code skill discovered by cue"
 description: "💰 Optimize your Claude API usage to save 50-90% on costs with batching techniques and efficient request management."
 layout: page
-updated: 2026-07-04
+updated: 2026-07-12
 tags: [claude-code, skill, backend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, backend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: ai-agents, ai-gateway, anthropic, api, api-optimization, awesome, batch-api, claude, claude-code, claude-skills, cost-saving, llm, mcp, mcp-gateway, mcp-server, openai, python, streamlit
 
 ## Best fit cue profiles

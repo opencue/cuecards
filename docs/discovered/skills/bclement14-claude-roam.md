@@ -2,19 +2,19 @@
 title: "bclement14/claude-roam — Claude Code skill discovered by cue"
 description: "Move Claude Code sessions between machines over ssh - path translation, explicit handoff, no third-party infrastructure"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [bclement14/claude-roam](https://github.com/bclement14/claude-roam)
 
-**★ 1** · potential (score 4.2) · Shell
+**★ 1** · potential (score 4.1) · Shell
 
 > Move Claude Code sessions between machines over ssh - path translation, explicit handoff, no third-party infrastructure
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-07
 - 🏷️ Tags: (none)

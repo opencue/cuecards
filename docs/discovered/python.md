@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="pipulate-pipulate"></a>
+## 💎 [pipulate/pipulate](https://github.com/pipulate/pipulate)
+
+**★ 13** · exceptional (score 10.3) · Python · tags: ai, fasthtml, htmx, machine-learning, mcp
+
+Local First AI SEO Software on Nix, FastHTML & HTMX
+
+```bash
+cue skills add pipulate/pipulate --profile python
+```
+
+---
+
+<a id="rasinmuhammed-misata"></a>
+## 💎 [rasinmuhammed/misata](https://github.com/rasinmuhammed/misata)
+
+**★ 62** · exceptional (score 10.1) · Python · tags: data-engineering, data-generation, database-seeding, dbt, developer-tools
+
+High-performance open-source synthetic data engine. Uses LLMs for schema design and vectorized NumPy for deterministic, scalable generation.
+
+```bash
+cue skills add rasinmuhammed/misata --profile python
+```
 
 ---
 
@@ -24,6 +50,19 @@ Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go ins
 
 ```bash
 cue skills add mkarvan/AgentShield --profile python
+```
+
+---
+
+<a id="manhquydev-flow-skill"></a>
+## ✨ [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
+
+**★ 0** · strong (score 7) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
+
+/flow - gated build harness skill: idea -> real done-evidence via honest gates, a durable knowledge loop, and a mechanical usage log closed into a feedback loop (recall + propose + prune). Cross-vendor agent ladder (ck: + bmad + Codex + Antigravity/Gemini-3). Portable: Claude Code, Codex CLI, Antigravity. bash+python3. MIT.
+
+```bash
+cue skills add manhquydev/flow-skill --profile python
 ```
 
 ---

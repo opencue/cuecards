@@ -2,7 +2,7 @@
 title: "ystherr/wechat-article-formatter-skill — Claude Code skill discovered by cue"
 description: "🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-11
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: claude, claude-skill, crawler, data-science, demo, machine-learning, omil, python, tutorial, vue, weapp-demo, wechat, wechat-article, wechat-download, wechat-weapp, wepy, wxapp
 
 ## Best fit cue profiles

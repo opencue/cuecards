@@ -2,7 +2,7 @@
 title: "NitishReddy26/n8n-oracle-cloud-selfhost — Claude Code skill discovered by cue"
 description: "🚀 Host n8n on Oracle Cloud Free Tier using Docker, secure it with Nginx and HTTPS, and connect via a custom domain with this straightforward guide."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-12
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: agents, cdn, cloudflare, data-flow, gemini-pro, javascript, low-code, low-code-platform, mcp, mcp-server, n8n, openai, opus, oracle-database, sonnet, sql
 
 ## Best fit cue profiles

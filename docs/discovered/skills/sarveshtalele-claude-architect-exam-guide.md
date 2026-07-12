@@ -2,7 +2,7 @@
 title: "sarveshtalele/claude-architect-exam-guide — Claude Code skill discovered by cue"
 description: "The CCA-F prep guide built for non-technical learners and engineers alike. Curated resources, Claude skills, and a learning path that goes beyond the exam."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, skill, core]
 ---
 

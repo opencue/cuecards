@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="zandereins-hydra"></a>
-## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
-
-**★ 4** · exceptional (score 16) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
-
-Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
-
-✅ SKILL.md
-
-```bash
-cue skills add Zandereins/hydra --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1923** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1928** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="shrav89-skill-scanner"></a>
+## 💎 [shrav89/skill-scanner](https://github.com/shrav89/skill-scanner)
+
+**★ 1** · exceptional (score 10.3) · Python · tags: agent, agent-skills, ai, ai-agents, anthropic
+
+🔍 Discover and analyze AI skills in your projects with Skill Scanner to enhance development and improve security.
+
+```bash
+cue skills add shrav89/skill-scanner --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Yandatini/mcp-agent-framework — Claude Code skill discovered by cue"
 description: "🤖 Orchestrate AI agents at scale using the MCP framework, enabling seamless context sharing, communication, and integration for enhanced collaboration."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-12
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: agentic-rag, ai, ai-agent, ai-agents, ai-assistant, ai-tools, authentication, authorization, autonomous-agents, codex, java, llamaindex, mcp-server, model-context-protocol, multi-agent, ollama, pydantic-ai
 
 ## Best fit cue profiles

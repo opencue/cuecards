@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-12
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 
 ---
 
-<a id="zihao-wu06-claude-code-orchestrate"></a>
-## 💎 [Zihao-Wu06/claude-code-orchestrate](https://github.com/Zihao-Wu06/claude-code-orchestrate)
+<a id="yandatini-mcp-agent-framework"></a>
+## 💎 [Yandatini/mcp-agent-framework](https://github.com/Yandatini/mcp-agent-framework)
 
-**★ 3** · exceptional (score 8.7) · Shell · tags: agent-orchestration, agent-skills, agentic-coding, ai-agents, claude-code
+**★ 2** · exceptional (score 10) · Python · tags: agentic-rag, ai, ai-agent, ai-agents, ai-assistant
 
-A Claude Code skill for orchestrating Opus/Sonnet/Haiku subagents plus a cross-vendor Codex peer
+🤖 Orchestrate AI agents at scale using the MCP framework, enabling seamless context sharing, communication, and integration for enhanced collaboration.
 
 ```bash
-cue skills add Zihao-Wu06/claude-code-orchestrate --profile fleet-control
+cue skills add Yandatini/mcp-agent-framework --profile fleet-control
 ```
 
 ---
@@ -57,7 +57,7 @@ cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 <a id="nuttaruj-rolepod"></a>
 ## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 2** · strong (score 6.3) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 2** · strong (score 6.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
@@ -70,7 +70,7 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 <a id="itsribbz-godspeed"></a>
 ## ✨ [itsribbZ/Godspeed](https://github.com/itsribbZ/Godspeed)
 
-**★ 1** · strong (score 5.1) · Python · tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin
+**★ 1** · strong (score 5) · Python · tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin
 
 Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory with vector search, 35-test suite + eval harness. Stdlib Python + SQLite. MIT.
 
