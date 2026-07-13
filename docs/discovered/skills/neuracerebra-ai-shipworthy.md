@@ -2,7 +2,7 @@
 title: "NeuraCerebra-AI/Shipworthy — Claude Code skill discovered by cue"
 description: "Autonomous product-readiness audits for apps & AI agents — a Claude Code and Codex skill suite that safely walks your user paths, finds where they break for rea"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 

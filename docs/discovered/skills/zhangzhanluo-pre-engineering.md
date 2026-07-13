@@ -2,22 +2,21 @@
 title: "zhangzhanluo/pre-engineering — Claude Code skill discovered by cue"
 description: "Claude Code skill from zhangzhanluo/pre-engineering"
 layout: page
-updated: 2026-06-26
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [zhangzhanluo/pre-engineering](https://github.com/zhangzhanluo/pre-engineering)
+# ✨ [zhangzhanluo/pre-engineering](https://github.com/zhangzhanluo/pre-engineering)
 
-**★ 2** · exceptional (score 10.5) · claude-code-skill, openclaw-skill
+**★ 2** · strong (score 5.5) · claude-code-skill, openclaw-skill
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-26
+- 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: claude-code-skill, openclaw-skill
 
 ## Best fit cue profiles

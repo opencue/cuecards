@@ -1,22 +1,22 @@
 ---
 title: "zzet/gortex — Claude Code skill discovered by cue"
-description: "High-performance code graph and code intelligence engine, supports 257 languages, multi repositories,  with access via CLI, MCP Server, and API.  Built for AI c"
+description: "High-performance code-intelligence engine for AI agents and IDE, supports 257 languages, multi repositories, based on graph, with access via CLI, MCP Server, an"
 layout: page
-updated: 2026-06-18
+updated: 2026-07-13
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [zzet/gortex](https://github.com/zzet/gortex)
 
-**★ 526** · exceptional (score 15.7) · Go · ai-tools, antigravity, claude-code, code-analysis, code-assistant
+**★ 847** · exceptional (score 17.3) · Go · ai-tools, antigravity, claude-code, code-analysis, code-assistant
 
-> High-performance code graph and code intelligence engine, supports 257 languages, multi repositories,  with access via CLI, MCP Server, and API.  Built for AI coding agents - expose only needed information, cutting token usage up to 50x. 100% local.
+> High-performance code-intelligence engine for AI agents and IDE, supports 257 languages, multi repositories, based on graph, with access via CLI, MCP Server, and API. AI coding agents teammate - expose only needed information, cutting token usage up to 50x. 100% local. Discord: https://discord.gg/ysC2prTGD
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
-- ⭐ 526 stars
-- 🗓️ Last pushed: 2026-06-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
+- ⭐ 847 stars
+- 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: ai-tools, antigravity, claude-code, code-analysis, code-assistant, context-window, context-window-optimization, context-window-optimizer, copilot, cursor, developer-tools, graphrag, kiro, knowledge-graph, local-first, mcp-server, prompts, skills, tokens, windsurf
 
 ## Best fit cue profiles

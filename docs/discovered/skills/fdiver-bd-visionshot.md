@@ -2,7 +2,7 @@
 title: "FDiver/BD-VisionShot — Claude Code skill discovered by cue"
 description: "Lightweight Windows screenshot tool for Claude Desktop / Claude Code + agent-vision-mcp (MCP). Capture a region -> copy local PNG path + prompt to clipboard -> "
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 

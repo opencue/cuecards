@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1928** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1933** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,28 +28,67 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="shrav89-skill-scanner"></a>
-## 💎 [shrav89/skill-scanner](https://github.com/shrav89/skill-scanner)
+<a id="eriknewton-sanctuary-framework"></a>
+## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 1** · exceptional (score 10.3) · Python · tags: agent, agent-skills, ai, ai-agents, anthropic
+**★ 5** · exceptional (score 10) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
-🔍 Discover and analyze AI skills in your projects with Skill Scanner to enhance development and improve security.
+Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
 ```bash
-cue skills add shrav89/skill-scanner --profile cybersecurity
+cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 ```
 
 ---
 
-<a id="mkarvan-agentshield"></a>
-## ✨ [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
 
-**★ 2** · strong (score 7.8) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
+**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
 
-Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
 
 ```bash
-cue skills add mkarvan/AgentShield --profile cybersecurity
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+```
+
+---
+
+<a id="hannsxpeter-godplans"></a>
+## ✨ [hannsxpeter/godplans](https://github.com/hannsxpeter/godplans)
+
+**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, ai-agents, architecture, claude-code, claude-skill
+
+Plan everything before anything. Single-command AI agent skill that emits a complete, audit-proof, agent-executable master plan (PLAN.mdx) before any code is written. Claude Code, Codex, Cursor, OpenCode, and every Agent Skills client.
+
+```bash
+cue skills add hannsxpeter/godplans --profile cybersecurity
+```
+
+---
+
+<a id="philpaz-recusal"></a>
+## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
+
+**★ 3** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+
+Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
+
+```bash
+cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="studiomeyer-io-mcp-server-attestation"></a>
+## 🔹 [studiomeyer-io/mcp-server-attestation](https://github.com/studiomeyer-io/mcp-server-attestation)
+
+**★ 0** · potential (score 4.5) · TypeScript · tags: anthropic, attestation, built-in-mallorca, cli, cve-2025-61591
+
+Layer-2 supply-chain hardening for MCP servers — Ed25519-signed tool manifests, runtime spawn-attestation, default-deny argument sanitizer. Defends against marketplace-poisoning + CVE-2025-69256 + CVE-2025-61591.
+
+```bash
+cue skills add studiomeyer-io/mcp-server-attestation --profile cybersecurity
 ```
 
 ---

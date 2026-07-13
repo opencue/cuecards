@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="uehlingeric-yt-pull"></a>
-## 💎 [uehlingeric/yt-pull](https://github.com/uehlingeric/yt-pull)
+<a id="sergebulaev-youtube-skills"></a>
+## 💎 [sergebulaev/youtube-skills](https://github.com/sergebulaev/youtube-skills)
 
-**★ 0** · exceptional (score 13) · Python · tags: ai, claude-code, claude-code-skill, python, summarization
+**★ 4** · exceptional (score 14.3) · Python · tags: agent-skill, ai-agents, ai-marketing, claude-code, claude-skills
 
-YouTube transcript extraction and analysis skill for Claude Code; single video or channel batch, 3 depth levels
+YouTube and YouTube Shorts marketing skills for Claude Code and Codex: high-CTR titles, SEO descriptions, retention hooks, thumbnails, and a content plan. Publish via Publora. MIT.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add uehlingeric/yt-pull --profile video
+cue skills add sergebulaev/youtube-skills --profile video
+```
+
+---
+
+<a id="studiomeyer-io-mcp-video"></a>
+## 💎 [studiomeyer-io/mcp-video](https://github.com/studiomeyer-io/mcp-video)
+
+**★ 4** · exceptional (score 8.3) · TypeScript · tags: ai, anthropic, built-in-mallorca, claude, content-creation
+
+Cinema-grade video production MCP server — 8 tools for recording, editing, effects, captions, TTS, and smart screenshots. Built on ffmpeg + Playwright.
+
+```bash
+cue skills add studiomeyer-io/mcp-video --profile video
 ```
 
 ---

@@ -2,22 +2,22 @@
 title: "nicolasrosado/team-maturity-self-locator — Claude Code skill discovered by cue"
 description: "An interactive, non-judgmental Claude skill that locates a software team on the Bounded-Rationality Maturity Scale and suggests the single next move. A free gif"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [nicolasrosado/team-maturity-self-locator](https://github.com/nicolasrosado/team-maturity-self-locator)
 
-**★ 0** · exceptional (score 13) · ai-agents, bounded-rationality, claude, claude-code, claude-skill
+**★ 1** · exceptional (score 13.3) · ai-agents, bounded-rationality, claude, claude-code, claude-skill
 
 > An interactive, non-judgmental Claude skill that locates a software team on the Bounded-Rationality Maturity Scale and suggests the single next move. A free gift to the community (CC BY-NC-SA 4.0).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-11
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: ai-agents, bounded-rationality, claude, claude-code, claude-skill, engineering-culture, psychological-safety, software-craftsmanship, team-maturity
 
 ## Best fit cue profiles

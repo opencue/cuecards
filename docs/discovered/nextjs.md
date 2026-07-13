@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for nextjs"
-description: "2 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-10
+updated: 2026-07-13
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `nextjs`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **nextjs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **nextjs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="myind-ai-fullstack-ts-scaffold"></a>
-## 💎 [myind-ai/fullstack-ts-scaffold](https://github.com/myind-ai/fullstack-ts-scaffold)
+<a id="syo-m-fable-frontend-skills"></a>
+## ✨ [Syo-M/fable-frontend-skills](https://github.com/Syo-M/fable-frontend-skills)
 
-**★ 0** · exceptional (score 13) · TypeScript · tags: boilerplate, claude-code, claude-skill, express, fullstack
+**★ 3** · strong (score 5.7) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
 
-Claude Code skill: regenerate a production-shaped full-stack TypeScript boilerplate (Next.js 15 + Express, 3 swappable DBs, JWT rotating refresh, PWA, tests, CI) and verify it green in ~1-3 min.
-
-✅ SKILL.md
+Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plugin. Every claim backed by committed eval reports.
 
 ```bash
-cue skills add myind-ai/fullstack-ts-scaffold --profile nextjs
-```
-
----
-
-<a id="shaantanu9-fullstack-ts-scaffold"></a>
-## 💎 [shaantanu9/fullstack-ts-scaffold](https://github.com/shaantanu9/fullstack-ts-scaffold)
-
-**★ 0** · exceptional (score 13) · TypeScript · tags: boilerplate, claude-code, claude-skill, express, fullstack
-
-Claude Code skill: regenerate a production-shaped full-stack TypeScript boilerplate (Next.js 15 + Express, 3 swappable DBs, JWT rotating refresh, PWA, tests, CI) and verify it green in ~1-3 min.
-
-✅ SKILL.md
-
-```bash
-cue skills add shaantanu9/fullstack-ts-scaffold --profile nextjs
+cue skills add Syo-M/fable-frontend-skills --profile nextjs
 ```
 
 ---

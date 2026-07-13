@@ -2,19 +2,19 @@
 title: "limeflash/antigravity-plugin-cc — Claude Code skill discovered by cue"
 description: "Use the Google Antigravity CLI (agy) from Claude Code — ask, review, delegate, scrape, doc→Markdown. Real read-only guarantee + secret/SSRF/path guards, backgro"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [limeflash/antigravity-plugin-cc](https://github.com/limeflash/antigravity-plugin-cc)
 
-**★ 1** · potential (score 3.3) · JavaScript
+**★ 1** · potential (score 3.2) · JavaScript
 
 > Use the Google Antigravity CLI (agy) from Claude Code — ask, review, delegate, scrape, doc→Markdown. Real read-only guarantee + secret/SSRF/path guards, background job control, cross-platform (Windows / macOS / Linux / WSL).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: (none)

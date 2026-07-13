@@ -2,13 +2,13 @@
 title: "codevalley/sandpaper — Claude Code skill discovered by cue"
 description: "A living project brain + refine-in-place toolbar for Claude Code projects"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [codevalley/sandpaper](https://github.com/codevalley/sandpaper)
 
-**★ 3** · exceptional (score 8.7) · HTML · claude-code, claude-code-skill, claudecode, repository, skills
+**★ 3** · exceptional (score 8.7) · JavaScript · claude-code, claude-code-skill, claudecode, repository, skills
 
 > A living project brain + refine-in-place toolbar for Claude Code projects
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-11
+- 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: claude-code, claude-code-skill, claudecode, repository, skills
 
 ## Best fit cue profiles

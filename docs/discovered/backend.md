@@ -1,161 +1,120 @@
 ---
 title: "Claude Code Skills for backend"
-description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="archestra-ai-archestra"></a>
-## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
+<a id="zzet-gortex"></a>
+## 💎 [zzet/gortex](https://github.com/zzet/gortex)
 
-**★ 3962** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
+**★ 847** · exceptional (score 17.3) · Go · tags: ai-tools, antigravity, claude-code, code-analysis, code-assistant
 
-Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
+High-performance code-intelligence engine for AI agents and IDE, supports 257 languages, multi repositories, based on graph, with access via CLI, MCP Server, and API. AI coding agents teammate - expose only needed information, cutting token usage up to 50x. 100% local. Discord: https://discord.gg/ysC2prTGD
 
 ```bash
-cue skills add archestra-ai/archestra --profile backend
+cue skills add zzet/gortex --profile backend
 ```
 
 ---
 
-<a id="glitternetwork-pinme"></a>
-## 💎 [glitternetwork/pinme](https://github.com/glitternetwork/pinme)
+<a id="tabularisdb-tabularis"></a>
+## 💎 [TabularisDB/tabularis](https://github.com/TabularisDB/tabularis)
 
-**★ 3707** · exceptional (score 16) · TypeScript · tags: ai-tools, claude-code-skill, claude-skills, deployment, deployment-tools
+**★ 3692** · exceptional (score 17) · TypeScript · tags: ai-agent, ai-assistant, cross-platform, database-client, database-gui
 
-Deploy Your Frontend in a Single Command. Claude Code Skills supported.
+Open-source desktop SQL workspace for PostgreSQL, MySQL/MariaDB, SQLite and 13+ more databases like DuckDB, ClickHouse, Redis and Firestore. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
 
 ```bash
-cue skills add glitternetwork/pinme --profile backend
+cue skills add TabularisDB/tabularis --profile backend
 ```
 
 ---
 
-<a id="louishin-claude-api-cost-optimization"></a>
-## 💎 [Louishin/claude-api-cost-optimization](https://github.com/Louishin/claude-api-cost-optimization)
+<a id="thorsten-phpmyfaq"></a>
+## 💎 [thorsten/phpMyFAQ](https://github.com/thorsten/phpMyFAQ)
 
-**★ 4** · exceptional (score 15.8) · Python · tags: ai-agents, ai-gateway, anthropic, api, api-optimization
+**★ 616** · exceptional (score 15) · PHP · tags: database, docker, docker-compose, elasticsearch, faq
 
-💰 Optimize your Claude API usage to save 50-90% on costs with batching techniques and efficient request management.
-
-✅ SKILL.md
+phpMyFAQ - Open Source FAQ web application for PHP 8.3+ and MySQL, PostgreSQL and other databases
 
 ```bash
-cue skills add Louishin/claude-api-cost-optimization --profile backend
+cue skills add thorsten/phpMyFAQ --profile backend
 ```
 
 ---
 
-<a id="gabrielcostalopes16-claude-code-hooks"></a>
-## 💎 [GabrielCostaLopes16/claude-code-hooks](https://github.com/GabrielCostaLopes16/claude-code-hooks)
+<a id="sanjusathian-ai-specs"></a>
+## 💎 [sanjusathian/ai-specs](https://github.com/sanjusathian/ai-specs)
 
-**★ 2** · exceptional (score 10.5) · JavaScript · tags: agent-skills, agentic-ai, agentic-code, agentic-coding, ai-agents
+**★ 1** · exceptional (score 9.8) · tags: agents, ai, ai-agent, ai-agents, aiagent
 
-🪝 Customize and deploy ready-to-use hooks for Claude Code, enhancing safety, automation, and notifications in your projects.
+📁 Streamline AI development with comprehensive rules and configurations for consistent, high-quality coding across multiple AI copilots.
 
 ```bash
-cue skills add GabrielCostaLopes16/claude-code-hooks --profile backend
+cue skills add sanjusathian/ai-specs --profile backend
 ```
 
 ---
 
-<a id="rasinmuhammed-misata"></a>
-## 💎 [rasinmuhammed/misata](https://github.com/rasinmuhammed/misata)
+<a id="flirnz-adk-web"></a>
+## 💎 [Flirnz/adk-web](https://github.com/Flirnz/adk-web)
 
-**★ 62** · exceptional (score 10.1) · Python · tags: data-engineering, data-generation, database-seeding, dbt, developer-tools
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: adk, agent-hierarchy, agents, ai, ai-agents
 
-High-performance open-source synthetic data engine. Uses LLMs for schema design and vectorized NumPy for deterministic, scalable generation.
+🛠️ Streamline agent development and debugging with the Agent Development Kit Web UI for a seamless Google ecosystem experience.
 
 ```bash
-cue skills add rasinmuhammed/misata --profile backend
+cue skills add Flirnz/adk-web --profile backend
 ```
 
 ---
 
-<a id="tuantranute-it-icm-graph-context-flow"></a>
-## 💎 [tuantranute-it/icm-graph-context-flow](https://github.com/tuantranute-it/icm-graph-context-flow)
+<a id="mclaut-ariadne"></a>
+## 💎 [mclaut/ariadne](https://github.com/mclaut/ariadne)
 
-**★ 0** · exceptional (score 8) · HTML · tags: ai-agents, ai-coding, anthropic, claude-code, cli
+**★ 2** · exceptional (score 8) · Go · tags: ai-agents, bge-m3, claude-code, codex, developer-tools
 
-Best Token-Efficient AI Coding Tools 2026 – Reduce Costs 90% with Local Memory & MCP
+Local-first multilingual MCP memory for Codex and Claude Code: Qdrant + Ollama bge-m3 hybrid search, curation tools, auto-recall/capture, import/export, backups, and a cross-platform tray. No Docker or cloud.
 
 ```bash
-cue skills add tuantranute-it/icm-graph-context-flow --profile backend
+cue skills add mclaut/ariadne --profile backend
 ```
 
 ---
 
-<a id="monuro-github-ai-assistant"></a>
-## ✨ [monuro/github-ai-assistant](https://github.com/monuro/github-ai-assistant)
+<a id="tahahussein-dotcom-mcp-encrypted-sqlite"></a>
+## ✨ [TahaHussein-dotcom/mcp-encrypted-sqlite](https://github.com/TahaHussein-dotcom/mcp-encrypted-sqlite)
 
-**★ 1** · strong (score 7.8) · Java · tags: ai-tools, aiagent, chatgpt, chatgpt-api, code-generation
+**★ 1** · strong (score 7.8) · tags: crud, database, database-tools, encryption, gradle
 
-🤖 Boost your development workflow with this AI-powered GitHub command-line assistant for quicker and smarter coding.
+🔒 Access and manage encrypted SQLite databases effortlessly with this MCP server, designed for seamless integration with SQLCipher and various clients.
 
 ```bash
-cue skills add monuro/github-ai-assistant --profile backend
+cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
 ```
 
 ---
 
-<a id="nitishreddy26-n8n-oracle-cloud-selfhost"></a>
-## ✨ [NitishReddy26/n8n-oracle-cloud-selfhost](https://github.com/NitishReddy26/n8n-oracle-cloud-selfhost)
+<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
+## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
 
-**★ 1** · strong (score 7.8) · Python · tags: agents, cdn, cloudflare, data-flow, gemini-pro
+**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
 
-🚀 Host n8n on Oracle Cloud Free Tier using Docker, secure it with Nginx and HTTPS, and connect via a custom domain with this straightforward guide.
-
-```bash
-cue skills add NitishReddy26/n8n-oracle-cloud-selfhost --profile backend
-```
-
----
-
-<a id="strewerwer-agentic-rag-framework"></a>
-## ✨ [strewerwer/agentic-rag-framework](https://github.com/strewerwer/agentic-rag-framework)
-
-**★ 1** · strong (score 7.8) · HTML · tags: agent, agentic, agentic-framework, agentic-rag, ai
-
-🔍 Enhance retrieval with the Agentic RAG Framework for hybrid search, query classification, and answer fusion in production-grade systems.
+AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
 
 ```bash
-cue skills add strewerwer/agentic-rag-framework --profile backend
-```
-
----
-
-<a id="sbroenne-mcp-server-powerpoint"></a>
-## ✨ [sbroenne/mcp-server-powerpoint](https://github.com/sbroenne/mcp-server-powerpoint)
-
-**★ 2** · strong (score 6.5) · C# · tags: ai-automation, claude-ai, com-automation, dotnet, github-copilot
-
-PowerPoint MCP Server & CLI - 18 tools, ~98 operations for AI-powered PowerPoint automation via COM API
-
-```bash
-cue skills add sbroenne/mcp-server-powerpoint --profile backend
-```
-
----
-
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
-
-**★ 5** · strong (score 5.9) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
-
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
-
-```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+cue skills add MrPeppersDev/agent-infrastructure-landscape --profile backend
 ```
 
 ---

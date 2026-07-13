@@ -2,7 +2,7 @@
 title: "Paul-hengChen/agent-governance-mcp — Claude Code skill discovered by cue"
 description: "MCP server for multi-IDE AI agents — server-side gates for shared state, rule drift, and lost updates that AI can't bypass"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-12
+- 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: ai-agents, claude-code, cursor, governance, mcp, mcp-server, multi-agent, spec-driven-development, typescript
 
 ## Best fit cue profiles

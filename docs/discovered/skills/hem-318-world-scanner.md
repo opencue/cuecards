@@ -2,19 +2,19 @@
 title: "hem-318/world-scanner — Claude Code skill discovered by cue"
 description: "Turn drone & phone videos into explorable 3D worlds on a Mac — LingBot-Map streaming 3D reconstruction, Gaussian splats, flight-path viewer, local dashboard + C"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-13
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [hem-318/world-scanner](https://github.com/hem-318/world-scanner)
 
-**★ 1** · potential (score 4.3) · Python
+**★ 1** · potential (score 4.2) · Python
 
 > Turn drone & phone videos into explorable 3D worlds on a Mac — LingBot-Map streaming 3D reconstruction, Gaussian splats, flight-path viewer, local dashboard + Claude MCP integration
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-10
 - 🏷️ Tags: (none)
