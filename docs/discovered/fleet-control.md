@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,19 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
+<a id="neomjs-neo"></a>
+## 💎 [neomjs/neo](https://github.com/neomjs/neo)
+
+**★ 3231** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
+
+Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
+
+```bash
+cue skills add neomjs/neo --profile fleet-control
+```
+
+---
+
 <a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
 ## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
@@ -24,19 +37,6 @@ Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
 cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="flirnz-adk-web"></a>
-## 💎 [Flirnz/adk-web](https://github.com/Flirnz/adk-web)
-
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: adk, agent-hierarchy, agents, ai, ai-agents
-
-🛠️ Streamline agent development and debugging with the Agent Development Kit Web UI for a seamless Google ecosystem experience.
-
-```bash
-cue skills add Flirnz/adk-web --profile fleet-control
 ```
 
 ---

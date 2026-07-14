@@ -1,17 +1,60 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="o0000-code-paper-search-pro"></a>
+## 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
+
+**★ 101** · exceptional (score 18.8) · HTML · tags: academic-research, agent-skill, arxiv, claude-code-skill, codex
+
+Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
+
+✅ SKILL.md
+
+```bash
+cue skills add O0000-code/paper-search-pro --profile research
+```
+
+---
+
+<a id="ipeirotis-paper-revision-editor"></a>
+## 💎 [ipeirotis/paper-revision-editor](https://github.com/ipeirotis/paper-revision-editor)
+
+**★ 2** · exceptional (score 12.5) · Shell · tags: academic-writing, claude-code, claude-skill, copyediting, latex
+
+
+
+✅ SKILL.md
+
+```bash
+cue skills add ipeirotis/paper-revision-editor --profile research
+```
+
+---
+
+<a id="daizedong-market-intel"></a>
+## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
+
+**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, claude, claude-code
+
+Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
+
+```bash
+cue skills add DaizeDong/market-intel --profile research
+```
 
 ---
 
@@ -24,19 +67,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
-
-**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
-
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
-
-```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
 ```
 
 ---

@@ -1,23 +1,23 @@
 ---
 title: "DaizeDong/market-intel — Claude Code skill discovered by cue"
-description: "Thin Claude Code skill for commercial/market research: triages topics across 12 data domains, detects & guides installing the right MCP source, delegates heavy "
+description: "Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy ret"
 layout: page
-updated: 2026-06-17
+updated: 2026-07-14
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
 
-**★ 0** · exceptional (score 9.5) · Python · agent, ai, ai-agent, claude, claude-code
+**★ 1** · exceptional (score 9.8) · Python · agent, ai, ai-agent, claude, claude-code
 
-> Thin Claude Code skill for commercial/market research: triages topics across 12 data domains, detects & guides installing the right MCP source, delegates heavy retrieval to deep-research. Curated source matrix + quality guardrails.
+> Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-17
-- 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, competitor-analysis, data-sources, deep-research, llm, market-intelligence, market-research, mcp, osint, skill, web-scraping
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-14
+- 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, competitor-analysis, data-sources, deep-research, finance, llm, market-intelligence, market-research, mcp, osint, skill, trends, web-scraping
 
 ## Best fit cue profiles
 

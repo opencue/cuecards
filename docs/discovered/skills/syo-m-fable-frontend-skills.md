@@ -2,19 +2,19 @@
 title: "Syo-M/fable-frontend-skills — Claude Code skill discovered by cue"
 description: "Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plug"
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, skill, frontend, nextjs]
 ---
 
 # ✨ [Syo-M/fable-frontend-skills](https://github.com/Syo-M/fable-frontend-skills)
 
-**★ 3** · strong (score 5.7) · JavaScript · accessibility, agent-skills, ai-coding, astro, claude
+**★ 3** · strong (score 5.6) · JavaScript · accessibility, agent-skills, ai-coding, astro, claude
 
 > Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plugin. Every claim backed by committed eval reports.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.6 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: accessibility, agent-skills, ai-coding, astro, claude, claude-code, frontend, nextjs, playwright, react, security, storybook, testing, typescript, vite

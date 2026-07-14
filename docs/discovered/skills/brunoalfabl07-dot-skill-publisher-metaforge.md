@@ -2,7 +2,7 @@
 title: "brunoalfabl07-dot/skill-publisher-metaforge — Claude Code skill discovered by cue"
 description: "Best Free GitHub Skill Publisher Tool 2026 - Auto Deploy Local Skills to ClawHub"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-12
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: ai-agent, claude-code, claude-plugin, claude-skill, clawhub, developer-tools, github-cli, meta-skill, publishing, workflow-automation
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "hem-318/world-scanner — Claude Code skill discovered by cue"
 description: "Turn drone & phone videos into explorable 3D worlds on a Mac — LingBot-Map streaming 3D reconstruction, Gaussian splats, flight-path viewer, local dashboard + C"
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, skill, core]
 ---
 

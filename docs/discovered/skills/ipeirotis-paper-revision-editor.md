@@ -2,22 +2,22 @@
 title: "ipeirotis/paper-revision-editor — Claude Code skill discovered by cue"
 description: "Claude Code skill from ipeirotis/paper-revision-editor"
 layout: page
-updated: 2026-06-28
+updated: 2026-07-14
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [ipeirotis/paper-revision-editor](https://github.com/ipeirotis/paper-revision-editor)
 
-**★ 0** · exceptional (score 12) · Shell · academic-writing, claude-code, claude-skill, copyediting, latex
+**★ 2** · exceptional (score 12.5) · Shell · academic-writing, claude-code, claude-skill, copyediting, latex
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-28
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: academic-writing, claude-code, claude-skill, copyediting, latex
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "SaberMaple1/renfe_mcp_server — Claude Code skill discovered by cue"
 description: "🚄 Query Renfe train schedules with ease using an MCP server that integrates GTFS data and supports real-time pricing and flexible date formats."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-07-13
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: claude-code, claude-desktop, dwr, fastmcp, httpx, mcp, mcp-server, railways, renfe, spain, trains, travel
 
 ## Best fit cue profiles

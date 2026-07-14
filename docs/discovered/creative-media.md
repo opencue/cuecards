@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="sergebulaev-youtube-skills"></a>
-## 💎 [sergebulaev/youtube-skills](https://github.com/sergebulaev/youtube-skills)
-
-**★ 4** · exceptional (score 14.3) · Python · tags: agent-skill, ai-agents, ai-marketing, claude-code, claude-skills
-
-YouTube and YouTube Shorts marketing skills for Claude Code and Codex: high-CTR titles, SEO descriptions, retention hooks, thumbnails, and a content plan. Publish via Publora. MIT.
-
-✅ SKILL.md
-
-```bash
-cue skills add sergebulaev/youtube-skills --profile creative-media
-```
 
 ---
 

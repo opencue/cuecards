@@ -2,21 +2,21 @@
 title: "ChromeDevTools/chrome-devtools-mcp — Claude Code skill discovered by cue"
 description: "Chrome DevTools for coding agents"
 layout: page
-updated: 2026-06-08
+updated: 2026-07-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)
 
-**★ 43104** · exceptional (score 15) · TypeScript · browser, chrome, chrome-devtools, debugging, devtools
+**★ 46883** · exceptional (score 15) · TypeScript · browser, chrome, chrome-devtools, debugging, devtools
 
 > Chrome DevTools for coding agents
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 43104 stars
-- 🗓️ Last pushed: 2026-06-08
+- ⭐ 46883 stars
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: browser, chrome, chrome-devtools, debugging, devtools, mcp, mcp-server, puppeteer
 
 ## Best fit cue profiles

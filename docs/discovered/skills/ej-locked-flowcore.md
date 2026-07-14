@@ -2,7 +2,7 @@
 title: "Ej-Locked/FlowCore — Claude Code skill discovered by cue"
 description: "🚀 Build a minimal Flink-like streaming engine in Rust and React to process events with tumbling windows, late-event detection, and a simple web interface."
 layout: page
-updated: 2026-07-10
+updated: 2026-07-14
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-10
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: automation, bpm, business-process, flowcore, mcp, mcp-server, microservice, nestjs, petri-net, php, phpoop, rails-engine, ruby, typescript, workflow-engine
 
 ## Best fit cue profiles

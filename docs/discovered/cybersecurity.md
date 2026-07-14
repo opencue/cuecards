@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+
+**★ 3** · exceptional (score 16.7) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1933** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1940** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="arian-gogani-nobulex"></a>
+## 💎 [arian-gogani/nobulex](https://github.com/arian-gogani/nobulex)
+
+**★ 35** · exceptional (score 10.7) · TypeScript · tags: accountability, agent-audit, agent-governance, ai-agents, ai-security
+
+The trust economy for autonomous AI agents. Credit scores for machines. Agents earn Trust Capital through verified behavior, gating what they are allowed to do. Autonomy earned, not granted.
+
+```bash
+cue skills add arian-gogani/nobulex --profile cybersecurity
 ```
 
 ---
@@ -41,32 +69,6 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
-
-**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
-
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
-
-```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
-```
-
----
-
-<a id="hannsxpeter-godplans"></a>
-## ✨ [hannsxpeter/godplans](https://github.com/hannsxpeter/godplans)
-
-**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, ai-agents, architecture, claude-code, claude-skill
-
-Plan everything before anything. Single-command AI agent skill that emits a complete, audit-proof, agent-executable master plan (PLAN.mdx) before any code is written. Claude Code, Codex, Cursor, OpenCode, and every Agent Skills client.
-
-```bash
-cue skills add hannsxpeter/godplans --profile cybersecurity
-```
-
----
-
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
@@ -76,19 +78,6 @@ Deterministic governance for Claude and MCP tool calls. Pin approved capabilitie
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="studiomeyer-io-mcp-server-attestation"></a>
-## 🔹 [studiomeyer-io/mcp-server-attestation](https://github.com/studiomeyer-io/mcp-server-attestation)
-
-**★ 0** · potential (score 4.5) · TypeScript · tags: anthropic, attestation, built-in-mallorca, cli, cve-2025-61591
-
-Layer-2 supply-chain hardening for MCP servers — Ed25519-signed tool manifests, runtime spawn-attestation, default-deny argument sanitizer. Defends against marketplace-poisoning + CVE-2025-69256 + CVE-2025-61591.
-
-```bash
-cue skills add studiomeyer-io/mcp-server-attestation --profile cybersecurity
 ```
 
 ---

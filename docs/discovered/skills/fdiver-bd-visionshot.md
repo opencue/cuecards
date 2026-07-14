@@ -2,19 +2,19 @@
 title: "FDiver/BD-VisionShot — Claude Code skill discovered by cue"
 description: "Lightweight Windows screenshot tool for Claude Desktop / Claude Code + agent-vision-mcp (MCP). Capture a region -> copy local PNG path + prompt to clipboard -> "
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [FDiver/BD-VisionShot](https://github.com/FDiver/BD-VisionShot)
 
-**★ 1** · potential (score 3.2) · C# · cc, claude, claude-desktop, codex, dotnet
+**★ 1** · potential (score 3.1) · C# · cc, claude, claude-desktop, codex, dotnet
 
 > Lightweight Windows screenshot tool for Claude Desktop / Claude Code + agent-vision-mcp (MCP). Capture a region -> copy local PNG path + prompt to clipboard -> paste into Claude -> MCP reads and analyzes the local image. Global hotkey, tray, single-file EXE, fully local, no uploads. 截图 识图 剪贴板 工具.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: cc, claude, claude-desktop, codex, dotnet, mcp, screen-capture, screenshot, switch, zocde

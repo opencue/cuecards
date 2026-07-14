@@ -1,22 +1,22 @@
 ---
 title: "hanyeol/model-compose — Claude Code skill discovered by cue"
-description: "Portable AI runtime inspired by docker-compose. Compose agents, RAG pipelines, and MCP servers in one YAML file and run them anywhere."
+description: "Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose."
 layout: page
-updated: 2026-06-11
+updated: 2026-07-14
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
 
-**★ 73** · exceptional (score 13.3) · Python · agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
+**★ 75** · exceptional (score 13.3) · Python · agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
 
-> Portable AI runtime inspired by docker-compose. Compose agents, RAG pipelines, and MCP servers in one YAML file and run them anywhere.
+> Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
-- ⭐ 73 stars
-- 🗓️ Last pushed: 2026-06-11
+- ⭐ 75 stars
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic, declarative, huggingface, langchain-alternative, llm, llm-framework, llm-orchestration, llmops, mcp, mcp-server, model-context-protocol, openai, rag, vector-database, workflow-orchestration, yaml
 
 ## Best fit cue profiles

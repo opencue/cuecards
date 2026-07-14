@@ -1,8 +1,8 @@
 ---
 title: "LH8PPL/claude-memory-kit — Claude Code skill discovered by cue"
-description: "Persistent per-project memory for Claude Code & Kiro — plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled b"
+description: "Persistent per-project memory for Claude Code, Kiro & Cursor - plain markdown committed with your code, captured prompt-free, auto-injected at session start, re"
 layout: page
-updated: 2026-07-01
+updated: 2026-07-14
 tags: [claude-code, skill, backend]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, backend]
 
 **★ 2** · exceptional (score 8) · JavaScript · agent-memory, ai-agents, ai-memory, anthropic, claude
 
-> Persistent per-project memory for Claude Code & Kiro — plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled by meaning (local semantic search, zero API). Cross-project persona, cited recall, searchable session history.
+> Persistent per-project memory for Claude Code, Kiro & Cursor - plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled by meaning (local semantic search, zero API). Cross-project persona, cited recall, searchable session history.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-01
-- 🏷️ Tags: agent-memory, ai-agents, ai-memory, anthropic, claude, claude-code, claude-code-plugin, claudecode, cli, developer-tools, kiro, kiro-cli, kiro-ide, llm-memory, local-first, mcp, mcp-server, npm-package, persistent-memory, semantic-search
+- 🗓️ Last pushed: 2026-07-14
+- 🏷️ Tags: agent-memory, ai-agents, ai-memory, anthropic, claude, claude-code, claude-code-plugin, cli, cursor, developer-tools, kiro, kiro-cli, kiro-ide, llm-memory, local-first, mcp, mcp-server, npm-package, persistent-memory, semantic-search
 
 ## Best fit cue profiles
 

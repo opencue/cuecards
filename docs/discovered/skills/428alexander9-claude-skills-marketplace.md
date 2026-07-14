@@ -2,21 +2,21 @@
 title: "428alexander9/claude-skills-marketplace — Claude Code skill discovered by cue"
 description: "🛠️ Transform Claude into a System Architect, generating detailed project documentation for AI-assisted software development with clear boundaries and traceable"
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [428alexander9/claude-skills-marketplace](https://github.com/428alexander9/claude-skills-marketplace)
 
-**★ 1** · exceptional (score 9.8) · Python · ai, ai-agents, anthropic, automation, claude
+**★ 2** · exceptional (score 10) · Python · ai, ai-agents, anthropic, automation, claude
 
 > 🛠️ Transform Claude into a System Architect, generating detailed project documentation for AI-assisted software development with clear boundaries and traceable requirements.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-13
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: ai, ai-agents, anthropic, automation, claude, claude-code, claude-skill, claude-skills, claude-skills-creator, claude-skills-hub, developer-tools, marketplace, mcp, skills, subagents
 
 ## Best fit cue profiles

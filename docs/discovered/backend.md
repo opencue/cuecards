@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-14
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,41 +15,28 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="zzet-gortex"></a>
-## 💎 [zzet/gortex](https://github.com/zzet/gortex)
+<a id="sbroenne-mcp-server-excel"></a>
+## 💎 [sbroenne/mcp-server-excel](https://github.com/sbroenne/mcp-server-excel)
 
-**★ 847** · exceptional (score 17.3) · Go · tags: ai-tools, antigravity, claude-code, code-analysis, code-assistant
+**★ 330** · exceptional (score 14.8) · C# · tags: ai-automation, claude-ai, com-automation, conditional-formatting, data-connections
 
-High-performance code-intelligence engine for AI agents and IDE, supports 257 languages, multi repositories, based on graph, with access via CLI, MCP Server, and API. AI coding agents teammate - expose only needed information, cutting token usage up to 50x. 100% local. Discord: https://discord.gg/ysC2prTGD
+Excel MCP Server & CLI - 23 tools, 214 operations for AI-powered Excel automation via COM API
 
 ```bash
-cue skills add zzet/gortex --profile backend
+cue skills add sbroenne/mcp-server-excel --profile backend
 ```
 
 ---
 
-<a id="tabularisdb-tabularis"></a>
-## 💎 [TabularisDB/tabularis](https://github.com/TabularisDB/tabularis)
+<a id="hanyeol-model-compose"></a>
+## 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
 
-**★ 3692** · exceptional (score 17) · TypeScript · tags: ai-agent, ai-assistant, cross-platform, database-client, database-gui
+**★ 75** · exceptional (score 13.3) · Python · tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
 
-Open-source desktop SQL workspace for PostgreSQL, MySQL/MariaDB, SQLite and 13+ more databases like DuckDB, ClickHouse, Redis and Firestore. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
-
-```bash
-cue skills add TabularisDB/tabularis --profile backend
-```
-
----
-
-<a id="thorsten-phpmyfaq"></a>
-## 💎 [thorsten/phpMyFAQ](https://github.com/thorsten/phpMyFAQ)
-
-**★ 616** · exceptional (score 15) · PHP · tags: database, docker, docker-compose, elasticsearch, faq
-
-phpMyFAQ - Open Source FAQ web application for PHP 8.3+ and MySQL, PostgreSQL and other databases
+Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
 
 ```bash
-cue skills add thorsten/phpMyFAQ --profile backend
+cue skills add hanyeol/model-compose --profile backend
 ```
 
 ---
@@ -67,28 +54,15 @@ cue skills add sanjusathian/ai-specs --profile backend
 
 ---
 
-<a id="flirnz-adk-web"></a>
-## 💎 [Flirnz/adk-web](https://github.com/Flirnz/adk-web)
+<a id="lh8ppl-claude-memory-kit"></a>
+## 💎 [LH8PPL/claude-memory-kit](https://github.com/LH8PPL/claude-memory-kit)
 
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: adk, agent-hierarchy, agents, ai, ai-agents
+**★ 2** · exceptional (score 8) · JavaScript · tags: agent-memory, ai-agents, ai-memory, anthropic, claude
 
-🛠️ Streamline agent development and debugging with the Agent Development Kit Web UI for a seamless Google ecosystem experience.
-
-```bash
-cue skills add Flirnz/adk-web --profile backend
-```
-
----
-
-<a id="mclaut-ariadne"></a>
-## 💎 [mclaut/ariadne](https://github.com/mclaut/ariadne)
-
-**★ 2** · exceptional (score 8) · Go · tags: ai-agents, bge-m3, claude-code, codex, developer-tools
-
-Local-first multilingual MCP memory for Codex and Claude Code: Qdrant + Ollama bge-m3 hybrid search, curation tools, auto-recall/capture, import/export, backups, and a cross-platform tray. No Docker or cloud.
+Persistent per-project memory for Claude Code, Kiro & Cursor - plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled by meaning (local semantic search, zero API). Cross-project persona, cited recall, searchable session history.
 
 ```bash
-cue skills add mclaut/ariadne --profile backend
+cue skills add LH8PPL/claude-memory-kit --profile backend
 ```
 
 ---
@@ -106,15 +80,41 @@ cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
 
 ---
 
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+<a id="ej-locked-flowcore"></a>
+## ✨ [Ej-Locked/FlowCore](https://github.com/Ej-Locked/FlowCore)
 
-**★ 1** · strong (score 5.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+**★ 0** · strong (score 7.5) · Rust · tags: automation, bpm, business-process, flowcore, mcp
 
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+🚀 Build a minimal Flink-like streaming engine in Rust and React to process events with tumbling windows, late-event detection, and a simple web interface.
 
 ```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile backend
+cue skills add Ej-Locked/FlowCore --profile backend
+```
+
+---
+
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+
+**★ 5** · strong (score 6) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
+
+```bash
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="anirudhlath-alfred"></a>
+## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+
+**★ 1** · potential (score 4.8) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+
+```bash
+cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---
