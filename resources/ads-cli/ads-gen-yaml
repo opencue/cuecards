@@ -19,7 +19,10 @@ def main() -> None:
     slug = args[0]
     login_id = ""
     if "--login-customer-id" in args:
-        login_id = args[args.index("--login-customer-id") + 1].replace("-", "")
+        idx = args.index("--login-customer-id")
+        if idx == len(args) - 1:
+            fail("--login-customer-id requires a value")
+        login_id = args[idx + 1].replace("-", "")
     dev_token = os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN", "")
     if not dev_token:
         fail("GOOGLE_ADS_DEVELOPER_TOKEN is not set — add it to ~/.env.cue and re-source your shell")

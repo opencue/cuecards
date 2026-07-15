@@ -53,5 +53,7 @@ t "gen-yaml login id"      "login_customer_id: '111'" \
   bash -c "ADS_SECRETS_DIR='$FIX' '$CLI/ads-gen-yaml' testlogin --login-customer-id 111 >/dev/null && cat '$FIX/testlogin.google-ads.yaml'"
 t "gen-yaml missing adc"   "no ADC file" \
   env ADS_SECRETS_DIR="$FIX" "$CLI/ads-gen-yaml" ghost
+t "gen-yaml login flag needs value" "requires a value" \
+  env ADS_SECRETS_DIR="$FIX" "$CLI/ads-gen-yaml" testlogin --login-customer-id
 
 echo "----"; echo "pass=$PASS fail=$FAIL"; [ "$FAIL" -eq 0 ]
