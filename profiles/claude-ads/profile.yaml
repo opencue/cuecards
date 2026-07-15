@@ -60,7 +60,8 @@ mcps:
   # claude-ads ships NO MCP of its own — it works on manual data (exports,
   # screenshots, pasted metrics) by default. For LIVE Google Ads data we pair it
   # with the official Google Ads MCP (read-only GAQL), already in cue's registry.
-  - google-ads-mcp
+  - google-ads-mcp             # Official Google Ads MCP (GAQL search, metadata, resources)
+  - facebook-ads-mcp           # Meta Graph API reads (gomarble clone, BM system-user token)
 
 env:
   # Application Default Credentials for google-ads-mcp. Set up via:

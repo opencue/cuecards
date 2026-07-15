@@ -1,15 +1,14 @@
-# Workspaces — per-website/client configurations for the google-ads profile.
+# Workspaces — per-client configurations for the google-ads profile.
 #
-# Each workspace pre-configures the Google Ads customer ID, website URL,
-# and any context the agent needs for that specific client/site.
+# Each workspace switches BOTH platforms at once:
+#   GOOGLE_ADS_CUSTOMER_ID          client's Google Ads account (${VAR} from ~/.env.cue)
+#   GOOGLE_ADS_LOGIN_CUSTOMER_ID    ${AGENCY_MCC_ID} for MCC-linked clients, "" otherwise
+#   GOOGLE_APPLICATION_CREDENTIALS  absolute path to the Google login's ADC file
+#                                   (~/.config/cue/secrets/ads/google/<login>-adc.json)
+#   FB_AD_ACCOUNT_ID                client's Meta ad account (act_..., ${VAR} from ~/.env.cue)
 #
-# Usage:
-#   cue workspace                    — pick a workspace interactively
-#   cue workspace teherguminet       — switch directly
-#   cue workspace --list             — show all workspaces
-#
-# The selected workspace's env vars override the profile's defaults,
-# and its `context:` block is injected into the persona.
+# Switch:  cue workspace <client>     Status:  cue workspace --status
+# CLI:     gads <client> "<GAQL>"     fbads <client> insights date_preset=last_30d
 
 workspaces:
   teherguminet:
@@ -18,6 +17,9 @@ workspaces:
     description: "Tehergumi webshop — teherautó, kisteherautó, mezőgazdasági gumik"
     env:
       GOOGLE_ADS_CUSTOMER_ID: "${TEHERGUMINET_GOOGLE_ADS_CUSTOMER_ID}"
+      GOOGLE_ADS_LOGIN_CUSTOMER_ID: "${AGENCY_MCC_ID}"
+      GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/agency-adc.json"
+      FB_AD_ACCOUNT_ID: "${TEHERGUMINET_FB_AD_ACCOUNT_ID}"
     context: |
       Active workspace: teherguminet.hu
       Industry: E-commerce / Automotive parts (truck tires)
@@ -27,13 +29,24 @@ workspaces:
       Key products: tehergumi, kisteherautó gumi, mezőgazdasági gumi, munkagép gumi
       Seasonality: peak in spring (March-May) and autumn (Sept-Nov)
 
-  # --- Add more workspaces below ---
-  # example:
-  #   name: "Example.com"
-  #   url: "https://example.com"
-  #   description: "Example site description"
+  # --- Template: MCC-linked client (shares the agency ADC) ---
+  # acme:
+  #   name: "Acme Kft."
   #   env:
-  #     GOOGLE_ADS_CUSTOMER_ID: "123-456-7890"
+  #     GOOGLE_ADS_CUSTOMER_ID: "${ACME_GOOGLE_ADS_CUSTOMER_ID}"
+  #     GOOGLE_ADS_LOGIN_CUSTOMER_ID: "${AGENCY_MCC_ID}"
+  #     GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/agency-adc.json"
+  #     FB_AD_ACCOUNT_ID: "${ACME_FB_AD_ACCOUNT_ID}"
   #   context: |
-  #     Industry: ...
-  #     Market: ...
+  #     Industry / market / currency / seasonality ...
+
+  # --- Template: separate-login client (own ADC file, no MCC in the chain) ---
+  # legacyclient:
+  #   name: "Legacy Client"
+  #   env:
+  #     GOOGLE_ADS_CUSTOMER_ID: "${LEGACYCLIENT_GOOGLE_ADS_CUSTOMER_ID}"
+  #     GOOGLE_ADS_LOGIN_CUSTOMER_ID: ""
+  #     GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/legacyclient-adc.json"
+  #     FB_AD_ACCOUNT_ID: "${LEGACYCLIENT_FB_AD_ACCOUNT_ID}"
+  #   context: |
+  #     Industry / market / currency ...
