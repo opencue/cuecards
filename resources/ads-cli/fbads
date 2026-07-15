@@ -52,7 +52,10 @@ def main() -> None:
         if not c["fb_ad_account_id"]:
             fail(f"client '{client}' has no FB_AD_ACCOUNT_ID (check ~/.env.cue)")
         path = f"{c['fb_ad_account_id']}/{endpoint}"
-    kv = dict(p.split("=", 1) for p in params if "=" in p)
+    bad = [p for p in params if "=" not in p]
+    if bad:
+        fail(f"malformed param(s): {' '.join(bad)} — expected key=value")
+    kv = dict(p.split("=", 1) for p in params)
     url = f"https://graph.facebook.com/{META_API_VERSION}/{path}"
     if "--dry-run" in flags:
         qs = urllib.parse.urlencode({**kv, "access_token": "***"})

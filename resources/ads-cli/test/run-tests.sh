@@ -70,5 +70,7 @@ t "fbads no act id" "FB_AD_ACCOUNT_ID" \
   bash -c "unset ACME_FB_AD_ACCOUNT_ID; '$CLI/fbads' acme insights --dry-run"
 t "fbads method needs value" "requires a value" \
   "$CLI/fbads" acme insights --method
+t "fbads rejects bare param" "expected key=value" \
+  "$CLI/fbads" acme insights level --dry-run
 
 echo "----"; echo "pass=$PASS fail=$FAIL"; [ "$FAIL" -eq 0 ]

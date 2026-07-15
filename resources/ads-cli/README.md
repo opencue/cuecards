@@ -28,7 +28,9 @@ Spec: `docs/superpowers/specs/2026-07-15-ads-multi-client-design.md`
 ## Daily use
 
 - Claude session: `cue workspace <client>` then launch with the `google-ads`
-  (or `claude-ads`) profile — both MCPs pick up the client automatically.
+  profile — both MCPs pick up the client automatically. (Workspaces are
+  per-profile: `claude-ads` also has both MCPs but no workspaces.yaml, so it
+  reads the global values from `~/.env.cue` instead of switching per client.)
 - Terminal: `gads <client> "SELECT campaign.name, metrics.cost_micros FROM campaign WHERE segments.date DURING LAST_30_DAYS"`
 - Terminal: `fbads <client> insights date_preset=last_30d level=campaign`
 - Mutations: Meta only, explicit: `fbads <client> ... --method POST --write`.
