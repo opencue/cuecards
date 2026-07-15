@@ -2,7 +2,7 @@
 title: "riqxa/skills-best-practices — Claude Code skill discovered by cue"
 description: "Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management."
 layout: page
-updated: 2026-07-02
+updated: 2026-07-15
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-02
+- 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: agentic-commerce, ai-skill, android, claude-skill, clean-code, commerce, cross-framework-principles, ios, java, mcp, nextjs, playwright-typescript, react-native, software-engineering-concepts, spring-boot, swift
 
 ## Best fit cue profiles

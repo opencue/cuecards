@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-15
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="unfathomable-siren38-mcp-terminal-server"></a>
+## 💎 [Unfathomable-siren38/mcp-terminal-server](https://github.com/Unfathomable-siren38/mcp-terminal-server)
+
+**★ 0** · exceptional (score 12) · TypeScript · tags: ai-agent, ai-agents, claude-code, code-analysis, code-generation
+
+Run an inline MCP terminal server with multi-session PTY support and tabbed xterm.js for Claude Code and Claude Desktop
+
+```bash
+cue skills add Unfathomable-siren38/mcp-terminal-server --profile python
+```
+
+---
+
+<a id="dwgx-smartcli"></a>
+## ✨ [dwgx/SmartCLI](https://github.com/dwgx/SmartCLI)
+
+**★ 2** · strong (score 6.5) · Python · tags: agent-skills, ansi, ascii-art, claude-skill, cli
+
+Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit
+
+```bash
+cue skills add dwgx/SmartCLI --profile python
+```
 
 ---
 

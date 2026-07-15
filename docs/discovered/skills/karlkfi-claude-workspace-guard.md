@@ -2,7 +2,7 @@
 title: "karlkfi/claude-workspace-guard — Claude Code skill discovered by cue"
 description: "Path-aware bash permissions for Claude Code."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-15
 tags: [claude-code, skill, core]
 ---
 

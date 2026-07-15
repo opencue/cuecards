@@ -2,7 +2,7 @@
 title: "majiayu000/remem — Claude Code skill discovered by cue"
 description: "Local-first persistent memory for Claude Code & Codex CLI - Rust CLI, hooks, MCP server, SQLite/SQLCipher, auditable recall for long-running coding work."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-15
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ⭐ 18 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: agent-memory, ai-coding-agent, ai-memory, claude-code, claude-code-memory, cli, codex, codex-cli, codex-memory, coding-agents, developer-tools, knowledge-management, local-first, mcp, mcp-server, model-context-protocol, persistent-memory, rust, sqlcipher, sqlite
 
 ## Best fit cue profiles

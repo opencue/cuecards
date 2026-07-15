@@ -2,7 +2,7 @@
 title: "dwgx/SmartCLI — Claude Code skill discovered by cue"
 description: "Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit"
 layout: page
-updated: 2026-07-13
+updated: 2026-07-15
 tags: [claude-code, skill, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-13
+- 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: agent-skills, ansi, ascii-art, claude-skill, cli, pty, pyte, python, terminal, tui
 
 ## Best fit cue profiles

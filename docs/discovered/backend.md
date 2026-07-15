@@ -1,94 +1,109 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-15
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sbroenne-mcp-server-excel"></a>
-## 💎 [sbroenne/mcp-server-excel](https://github.com/sbroenne/mcp-server-excel)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 330** · exceptional (score 14.8) · C# · tags: ai-automation, claude-ai, com-automation, conditional-formatting, data-connections
+**★ 5** · exceptional (score 17) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Excel MCP Server & CLI - 23 tools, 214 operations for AI-powered Excel automation via COM API
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
 
 ```bash
-cue skills add sbroenne/mcp-server-excel --profile backend
+cue skills add jakubs2623/notebooklm-skill --profile backend
 ```
 
 ---
 
-<a id="hanyeol-model-compose"></a>
-## 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
+<a id="unfathomable-siren38-mcp-terminal-server"></a>
+## 💎 [Unfathomable-siren38/mcp-terminal-server](https://github.com/Unfathomable-siren38/mcp-terminal-server)
 
-**★ 75** · exceptional (score 13.3) · Python · tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
+**★ 0** · exceptional (score 12) · TypeScript · tags: ai-agent, ai-agents, claude-code, code-analysis, code-generation
 
-Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
+Run an inline MCP terminal server with multi-session PTY support and tabbed xterm.js for Claude Code and Claude Desktop
 
 ```bash
-cue skills add hanyeol/model-compose --profile backend
+cue skills add Unfathomable-siren38/mcp-terminal-server --profile backend
 ```
 
 ---
 
-<a id="sanjusathian-ai-specs"></a>
-## 💎 [sanjusathian/ai-specs](https://github.com/sanjusathian/ai-specs)
+<a id="majiayu000-remem"></a>
+## 💎 [majiayu000/remem](https://github.com/majiayu000/remem)
 
-**★ 1** · exceptional (score 9.8) · tags: agents, ai, ai-agent, ai-agents, aiagent
+**★ 18** · exceptional (score 11.8) · Rust · tags: agent-memory, ai-coding-agent, ai-memory, claude-code, claude-code-memory
 
-📁 Streamline AI development with comprehensive rules and configurations for consistent, high-quality coding across multiple AI copilots.
+Local-first persistent memory for Claude Code & Codex CLI - Rust CLI, hooks, MCP server, SQLite/SQLCipher, auditable recall for long-running coding work.
 
 ```bash
-cue skills add sanjusathian/ai-specs --profile backend
+cue skills add majiayu000/remem --profile backend
 ```
 
 ---
 
-<a id="lh8ppl-claude-memory-kit"></a>
-## 💎 [LH8PPL/claude-memory-kit](https://github.com/LH8PPL/claude-memory-kit)
+<a id="blockdancez-previewship"></a>
+## 💎 [blockdancez/PreviewShip](https://github.com/blockdancez/PreviewShip)
 
-**★ 2** · exceptional (score 8) · JavaScript · tags: agent-memory, ai-agents, ai-memory, anthropic, claude
+**★ 2** · exceptional (score 10.5) · Python · tags: agent-skills, ai-agents, chat-export, claude-code, claude-code-skills
 
-Persistent per-project memory for Claude Code, Kiro & Cursor - plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled by meaning (local semantic search, zero API). Cross-project persona, cited recall, searchable session history.
+Deploy frontend builds, HTML, Markdown, and AI coding agent chat transcripts to public PreviewShip URLs.
 
 ```bash
-cue skills add LH8PPL/claude-memory-kit --profile backend
+cue skills add blockdancez/PreviewShip --profile backend
 ```
 
 ---
 
-<a id="tahahussein-dotcom-mcp-encrypted-sqlite"></a>
-## ✨ [TahaHussein-dotcom/mcp-encrypted-sqlite](https://github.com/TahaHussein-dotcom/mcp-encrypted-sqlite)
+<a id="mistertechie06-x402-payments-skill"></a>
+## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
 
-**★ 1** · strong (score 7.8) · tags: crud, database, database-tools, encryption, gradle
+**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
 
-🔒 Access and manage encrypted SQLite databases effortlessly with this MCP server, designed for seamless integration with SQLCipher and various clients.
+Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
 
 ```bash
-cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
+cue skills add mistertechie06/x402-payments-skill --profile backend
 ```
 
 ---
 
-<a id="ej-locked-flowcore"></a>
-## ✨ [Ej-Locked/FlowCore](https://github.com/Ej-Locked/FlowCore)
+<a id="0xserachu-claude-shortcuts"></a>
+## ✨ [0xSerachu/claude-shortcuts](https://github.com/0xSerachu/claude-shortcuts)
 
-**★ 0** · strong (score 7.5) · Rust · tags: automation, bpm, business-process, flowcore, mcp
+**★ 0** · strong (score 7.5) · TypeScript · tags: ai-assistant, anthropic, api, automation, browser-extension
 
-🚀 Build a minimal Flink-like streaming engine in Rust and React to process events with tumbling windows, late-event detection, and a simple web interface.
+Explore and quiz yourself on all Claude Code shortcuts with categorized, searchable cards and interactive tests for faster learning.
 
 ```bash
-cue skills add Ej-Locked/FlowCore --profile backend
+cue skills add 0xSerachu/claude-shortcuts --profile backend
+```
+
+---
+
+<a id="jmagar-soma"></a>
+## ✨ [jmagar/soma](https://github.com/jmagar/soma)
+
+**★ 1** · strong (score 6.3) · Rust · tags: agent-tools, ai-agents, automation, cli, developer-tools
+
+Batteries-included RMCP runtime and scaffold for shipping Rust MCP servers with CLI/REST/HTTP MCP, auth, providers, plugins, and generated contracts.
+
+```bash
+cue skills add jmagar/soma --profile backend
 ```
 
 ---

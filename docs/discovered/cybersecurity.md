@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-15
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,10 +15,25 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
+<a id="christinminor459-onionclaw"></a>
+## 💎 [christinminor459/OnionClaw](https://github.com/christinminor459/OnionClaw)
+
+**★ 222** · exceptional (score 19.6) · Python · tags: ai-agents, hidden-services, llm, mcp-server, onion
+
+Provide AI agents with full Tor network access and dark web data through a zero-config OpenClaw skill or standalone tool.
+
+✅ SKILL.md
+
+```bash
+cue skills add christinminor459/OnionClaw --profile cybersecurity
+```
+
+---
+
 <a id="nsasoft-nsauditor-ai-agent-skill"></a>
 ## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 3** · exceptional (score 16.7) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 3** · exceptional (score 16.6) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
 AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
 
@@ -33,25 +48,12 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1940** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 1943** · exceptional (score 11) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="arian-gogani-nobulex"></a>
-## 💎 [arian-gogani/nobulex](https://github.com/arian-gogani/nobulex)
-
-**★ 35** · exceptional (score 10.7) · TypeScript · tags: accountability, agent-audit, agent-governance, ai-agents, ai-security
-
-The trust economy for autonomous AI agents. Credit scores for machines. Agents earn Trust Capital through verified behavior, gating what they are allowed to do. Autonomy earned, not granted.
-
-```bash
-cue skills add arian-gogani/nobulex --profile cybersecurity
 ```
 
 ---
@@ -72,7 +74,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 3** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 3** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 

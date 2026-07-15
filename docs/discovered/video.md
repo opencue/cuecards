@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-15
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sergebulaev-youtube-skills"></a>
-## 💎 [sergebulaev/youtube-skills](https://github.com/sergebulaev/youtube-skills)
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
 
-**★ 4** · exceptional (score 14.3) · Python · tags: agent-skill, ai-agents, ai-marketing, claude-code, claude-skills
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
 
-YouTube and YouTube Shorts marketing skills for Claude Code and Codex: high-CTR titles, SEO descriptions, retention hooks, thumbnails, and a content plan. Publish via Publora. MIT.
-
-✅ SKILL.md
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
 
 ```bash
-cue skills add sergebulaev/youtube-skills --profile video
-```
-
----
-
-<a id="studiomeyer-io-mcp-video"></a>
-## 💎 [studiomeyer-io/mcp-video](https://github.com/studiomeyer-io/mcp-video)
-
-**★ 4** · exceptional (score 8.3) · TypeScript · tags: ai, anthropic, built-in-mallorca, claude, content-creation
-
-Cinema-grade video production MCP server — 8 tools for recording, editing, effects, captions, TTS, and smart screenshots. Built on ffmpeg + Playwright.
-
-```bash
-cue skills add studiomeyer-io/mcp-video --profile video
+cue skills add priyanshu-yadav04/claude-youtube --profile video
 ```
 
 ---

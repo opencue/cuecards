@@ -2,20 +2,20 @@
 title: "it-bens/cc-port — Claude Code skill discovered by cue"
 description: "CLI to move, transfer, and sync Claude Code project state across paths, archives, and remote storage."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-15
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [it-bens/cc-port](https://github.com/it-bens/cc-port)
 
-**★ 3** · strong (score 6.7) · Go · anthropic, backup, claude, claude-code, cli
+**★ 4** · strong (score 6.7) · Go · anthropic, backup, claude, claude-code, cli
 
 > CLI to move, transfer, and sync Claude Code project state across paths, archives, and remote storage.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 3 stars
+- ⭐ 4 stars
 - 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: anthropic, backup, claude, claude-code, cli, developer-tools, go, golang, homebrew, homebrew-cask, migration, portability
 

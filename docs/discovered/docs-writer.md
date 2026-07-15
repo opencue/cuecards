@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-15
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="trip2g-trip2g"></a>
-## 💎 [trip2g/trip2g](https://github.com/trip2g/trip2g)
+<a id="cenmeow-markdown-new-skill"></a>
+## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
 
-**★ 23** · exceptional (score 9.4) · Go · tags: ai-agent-memory, cms, digital-garden, golang, knowledge-base
+**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
 
-Open-source MCP knowledge mesh - self-host your second brain, expose it to AI agents, federate with peers.
-
-```bash
-cue skills add trip2g/trip2g --profile docs-writer
-```
-
----
-
-<a id="kevinv92-somedaywriter"></a>
-## ✨ [kevinv92/SomedayWriter](https://github.com/kevinv92/SomedayWriter)
-
-**★ 0** · strong (score 6) · TypeScript · tags: codemirror, desktop-app, electron, local-first, macos
-
-A calm desktop Markdown writing app for long-form prose — Electron + React + CodeMirror, with a story index, threads, and manuscript export.
+Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
 
 ```bash
-cue skills add kevinv92/SomedayWriter --profile docs-writer
+cue skills add CenMeow/markdown-new-skill --profile docs-writer
 ```
 
 ---
