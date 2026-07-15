@@ -56,4 +56,17 @@ t "gen-yaml missing adc"   "no ADC file" \
 t "gen-yaml login flag needs value" "requires a value" \
   env ADS_SECRETS_DIR="$FIX" "$CLI/ads-gen-yaml" testlogin --login-customer-id
 
+# --- gads / fbads dry-run ---
+t "gads dry-run shows account" "account=1234567890" \
+  "$CLI/gads" acme "SELECT campaign.name FROM campaign" --dry-run
+t "gads dry-run shows config" "agency.google-ads.yaml" \
+  "$CLI/gads" acme "SELECT campaign.name FROM campaign" --dry-run
+t "gads unknown client" "unknown client" "$CLI/gads" nope "SELECT 1" --dry-run
+t "fbads dry-run url" "graph.facebook.com/v23.0/act_42/insights" \
+  "$CLI/fbads" acme insights date_preset=last_30d --dry-run
+t "fbads refuses write" "requires --write" \
+  "$CLI/fbads" acme campaigns name=X --method POST --dry-run
+t "fbads no act id" "FB_AD_ACCOUNT_ID" \
+  bash -c "unset ACME_FB_AD_ACCOUNT_ID; '$CLI/fbads' acme insights --dry-run"
+
 echo "----"; echo "pass=$PASS fail=$FAIL"; [ "$FAIL" -eq 0 ]

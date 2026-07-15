@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+"""fbads — Meta Graph API calls for a client's ad account.
+
+Usage: fbads <client> <endpoint> [key=value ...] [--method POST] [--write] [--dry-run]
+
+Endpoint is relative to the client's act_<id> (e.g. insights, campaigns,
+adsets). An endpoint starting with '/' is absolute (e.g. /me/adaccounts).
+GET by default; POST requires BOTH --method POST and --write.
+"""
+import json
+import os
+import sys
+import urllib.parse
+import urllib.request
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+from _adslib import META_API_VERSION, SECRETS, fail, resolve_client  # noqa: E402
+
+TOKEN_FILE = os.path.join(SECRETS, "meta", "system-user.token")
+
+
+def read_token() -> str:
+    try:
+        with open(TOKEN_FILE) as f:
+            token = f.read().strip()
+    except FileNotFoundError:
+        fail(f"missing {TOKEN_FILE} — run ads-secrets-init, then paste the BM system-user token into it")
+    if not token:
+        fail(f"{TOKEN_FILE} is empty — paste the BM system-user token into it (single line)")
+    return token
+
+
+def main() -> None:
+    args = sys.argv[1:]
+    method = "GET"
+    if "--method" in args:
+        i = args.index("--method")
+        method = args[i + 1].upper()
+        del args[i:i + 2]
+    flags = {a for a in args if a.startswith("--")}
+    pos = [a for a in args if not a.startswith("--")]
+    if len(pos) < 2:
+        fail("usage: fbads <client> <endpoint> [key=value ...] [--method POST] [--write] [--dry-run]")
+    client, endpoint, params = pos[0], pos[1], pos[2:]
+    if method != "GET" and "--write" not in flags:
+        fail(f"{method} requires --write (fbads is read-only by default)")
+    c = resolve_client(client)
+    if endpoint.startswith("/"):
+        path = endpoint.lstrip("/")
+    else:
+        if not c["fb_ad_account_id"]:
+            fail(f"client '{client}' has no FB_AD_ACCOUNT_ID (check ~/.env.cue)")
+        path = f"{c['fb_ad_account_id']}/{endpoint}"
+    kv = dict(p.split("=", 1) for p in params if "=" in p)
+    url = f"https://graph.facebook.com/{META_API_VERSION}/{path}"
+    if "--dry-run" in flags:
+        qs = urllib.parse.urlencode({**kv, "access_token": "***"})
+        print(f"client={client} name={c['name']} {method} {url}?{qs}")
+        return
+    kv["access_token"] = read_token()
+    data = None
+    if method == "GET":
+        url += "?" + urllib.parse.urlencode(kv)
+    else:
+        data = urllib.parse.urlencode(kv).encode()
+    req = urllib.request.Request(url, data=data, method=method)
+    try:
+        with urllib.request.urlopen(req) as resp:
+            body = json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        try:
+            err = json.loads(e.read()).get("error", {})
+            fail(f"Graph API {e.code}: {err.get('message', e.reason)}")
+        except (ValueError, AttributeError):
+            fail(f"Graph API {e.code}: {e.reason}")
+    print(json.dumps(body, indent=2, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
