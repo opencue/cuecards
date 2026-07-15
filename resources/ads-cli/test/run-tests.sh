@@ -40,4 +40,18 @@ t "yaml path derived" "agency.google-ads.yaml" \
 t "unknown client lists available" "acme" \
   python3 -c "import sys; sys.path.insert(0,'$CLI'); import _adslib; _adslib.resolve_client('nope')"
 
+# --- ads-gen-yaml ---
+export GOOGLE_ADS_DEVELOPER_TOKEN="devtok-TEST"
+cat > "$FIX/testlogin-adc.json" <<'JSON'
+{"client_id":"cid.apps.googleusercontent.com","client_secret":"csec","refresh_token":"rtok","type":"authorized_user"}
+JSON
+t "gen-yaml writes config" "wrote" \
+  env ADS_SECRETS_DIR="$FIX" "$CLI/ads-gen-yaml" testlogin
+t "gen-yaml has dev token" "devtok-TEST" cat "$FIX/testlogin.google-ads.yaml"
+t "gen-yaml has refresh"   "rtok"        cat "$FIX/testlogin.google-ads.yaml"
+t "gen-yaml login id"      "login_customer_id: '111'" \
+  bash -c "ADS_SECRETS_DIR='$FIX' '$CLI/ads-gen-yaml' testlogin --login-customer-id 111 >/dev/null && cat '$FIX/testlogin.google-ads.yaml'"
+t "gen-yaml missing adc"   "no ADC file" \
+  env ADS_SECRETS_DIR="$FIX" "$CLI/ads-gen-yaml" ghost
+
 echo "----"; echo "pass=$PASS fail=$FAIL"; [ "$FAIL" -eq 0 ]
