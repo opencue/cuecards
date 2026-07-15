@@ -34,6 +34,8 @@ def main() -> None:
     method = "GET"
     if "--method" in args:
         i = args.index("--method")
+        if i == len(args) - 1:
+            fail("--method requires a value")
         method = args[i + 1].upper()
         del args[i:i + 2]
     flags = {a for a in args if a.startswith("--")}
@@ -72,6 +74,8 @@ def main() -> None:
             fail(f"Graph API {e.code}: {err.get('message', e.reason)}")
         except (ValueError, AttributeError):
             fail(f"Graph API {e.code}: {e.reason}")
+    except OSError as e:
+        fail(f"network error: {e}")
     print(json.dumps(body, indent=2, ensure_ascii=False))
 
 

@@ -68,5 +68,7 @@ t "fbads refuses write" "requires --write" \
   "$CLI/fbads" acme campaigns name=X --method POST --dry-run
 t "fbads no act id" "FB_AD_ACCOUNT_ID" \
   bash -c "unset ACME_FB_AD_ACCOUNT_ID; '$CLI/fbads' acme insights --dry-run"
+t "fbads method needs value" "requires a value" \
+  "$CLI/fbads" acme insights --method
 
 echo "----"; echo "pass=$PASS fail=$FAIL"; [ "$FAIL" -eq 0 ]
