@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-07-15 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-07-16 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 73 | `skill-memory-bank`, `vm0`, `imap-mcp-server` |
-| [**backend**](./backend.md) | 10 | `notebooklm-skill`, `mcp-terminal-server`, `remem` |
-| [**frontend**](./frontend.md) | 8 | `awesome-claude-ui-armory`, `claude-react-kit`, `arc-skill` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `OnionClaw`, `nsauditor-ai-agent-skill`, `Claude-OSINT` |
-| [**python**](./python.md) | 3 | `mcp-terminal-server`, `SmartCLI`, `alfred` |
-| [**research**](./research.md) | 2 | `notebooklm-skill`, `popper-scope` |
-| [**creative-media**](./creative-media.md) | 2 | `openclaw-master-skills`, `redesigned-pancake` |
+| [**core**](./core.md) | 66 | `lean-ctx`, `brilliant-directories-mcp`, `multi-agent-architecture-advisor` |
+| [**backend**](./backend.md) | 11 | `githits-cli`, `x402-payments-skill`, `rss-feeds-mcp` |
+| [**frontend**](./frontend.md) | 9 | `ux-audit-skill`, `awesome-claude-ui-armory`, `claude-react-kit` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `nsauditor-ai-agent-skill`, `marketnow`, `Claude-OSINT` |
+| [**research**](./research.md) | 4 | `universal-examprep-skill`, `ai-research-writing-skill`, `market-intel` |
+| [**creative-media**](./creative-media.md) | 4 | `openclaw-master-skills`, `claude-promo-video`, `pixel-mcp-workflow` |
 | [**docs-writer**](./docs-writer.md) | 1 | `markdown-new-skill` |
-| [**marketing**](./marketing.md) | 1 | `claude-youtube` |
-| [**video**](./video.md) | 1 | `claude-youtube` |
+| [**fleet-control**](./fleet-control.md) | 1 | `multi-agent-revenue-orchestrator` |
+| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
 | [**nextjs**](./nextjs.md) | 1 | `fable-frontend-skills` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `Receiz-commerce` |
+| [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works
 

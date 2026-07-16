@@ -2,21 +2,21 @@
 title: "yanouyuan-bit/bazi-roundtable — Claude Code skill discovered by cue"
 description: "命理圆桌会 · A multi-school Chinese BaZi (Four Pillars) roundtable reading skill for Claude"
 layout: page
-updated: 2026-07-05
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [yanouyuan-bit/bazi-roundtable](https://github.com/yanouyuan-bit/bazi-roundtable)
 
-**★ 0** · strong (score 6) · ai-agents, bazi, chinese-astrology, claude-skill, divination
+**★ 4** · strong (score 6.8) · Python · ai-agents, bazi, chinese-astrology, claude-skill, divination
 
 > 命理圆桌会 · A multi-school Chinese BaZi (Four Pillars) roundtable reading skill for Claude
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-07-16
 - 🏷️ Tags: ai-agents, bazi, chinese-astrology, claude-skill, divination, fortune-telling, four-pillars
 
 ## Best fit cue profiles

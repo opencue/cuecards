@@ -2,7 +2,7 @@
 title: "Singe-dore/Debugging-Kit-Godot — Claude Code skill discovered by cue"
 description: "Automated live testing CLI for Godot projects.  Systematically execute every input path and monitor all numeric properties in real-time. Identify invariant viol"
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-14
-- 🏷️ Tags: ai, automated-testing, automation, claude, claude-code, cli, debugging, developer-tools, game-development, game-testing, godot, godot-tools, live-testing, quality-assurance, slash-commands, testing
+- 🗓️ Last pushed: 2026-07-15
+- 🏷️ Tags: ai, automated-testing, automation, claude, claude-code, cli, debugging, developer-tools, game-development, game-testing, gdscript, godot, godot-tools, live-testing, quality-assurance, slash-commands, testing
 
 ## Best fit cue profiles
 

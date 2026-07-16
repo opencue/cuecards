@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-16
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="neomjs-neo"></a>
-## 💎 [neomjs/neo](https://github.com/neomjs/neo)
-
-**★ 3231** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
-
-Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
-
-```bash
-cue skills add neomjs/neo --profile fleet-control
-```
-
----
-
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
-
-**★ 152** · exceptional (score 13) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
-
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
 
 ---
 

@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "8 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="malkreide-ux-audit-skill"></a>
+## 💎 [malkreide/ux-audit-skill](https://github.com/malkreide/ux-audit-skill)
+
+**★ 0** · exceptional (score 11) · tags: accessibility, anthropic, claude, claude-skill, core-web-vitals
+
+Reproducible UX audits for web solutions with Claude — versioned catalog (Nielsen, WCAG 2.2 AA, Core Web Vitals), hybrid browser+code verification
+
+✅ SKILL.md
+
+```bash
+cue skills add malkreide/ux-audit-skill --profile frontend
+```
 
 ---
 
@@ -37,19 +52,6 @@ Enforce clean architecture and prevent technical debt in React projects with a d
 
 ```bash
 cue skills add wahmoh/claude-react-kit --profile frontend
-```
-
----
-
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
-
-**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
-
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
-
-```bash
-cue skills add Fredjuel/arc-skill --profile frontend
 ```
 
 ---
@@ -80,15 +82,28 @@ cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 
 ---
 
-<a id="0xserachu-claude-shortcuts"></a>
-## ✨ [0xSerachu/claude-shortcuts](https://github.com/0xSerachu/claude-shortcuts)
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: ai-assistant, anthropic, api, automation, browser-extension
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
 
-Explore and quiz yourself on all Claude Code shortcuts with categorized, searchable cards and interactive tests for faster learning.
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
 
 ```bash
-cue skills add 0xSerachu/claude-shortcuts --profile frontend
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---
@@ -96,7 +111,7 @@ cue skills add 0xSerachu/claude-shortcuts --profile frontend
 <a id="syo-m-fable-frontend-skills"></a>
 ## ✨ [Syo-M/fable-frontend-skills](https://github.com/Syo-M/fable-frontend-skills)
 
-**★ 3** · strong (score 5.7) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
+**★ 3** · strong (score 5.6) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
 
 Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plugin. Every claim backed by committed eval reports.
 

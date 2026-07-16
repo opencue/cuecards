@@ -2,19 +2,19 @@
 title: "deltaguita/elegant-paste-image-to-cli — Claude Code skill discovered by cue"
 description: "Paste a clipboard image straight into your macOS terminal and get a real file path — for AI coding CLIs like Claude Code and Kiro CLI that can't accept raw imag"
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [deltaguita/elegant-paste-image-to-cli](https://github.com/deltaguita/elegant-paste-image-to-cli)
 
-**★ 3** · potential (score 4.6) · Lua
+**★ 3** · potential (score 4.5) · Lua
 
 > Paste a clipboard image straight into your macOS terminal and get a real file path — for AI coding CLIs like Claude Code and Kiro CLI that can't accept raw image paste.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: (none)

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-16
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="buywhere-buywhere"></a>
-## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
+<a id="kojibai-receiz-commerce"></a>
+## ✨ [kojibai/Receiz-commerce](https://github.com/kojibai/Receiz-commerce)
 
-**★ 0** · strong (score 6) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
+**★ 0** · strong (score 5) · TypeScript · tags: agent-commerce, digital-ownership, ecommerce, marketplace, mcp
 
-BuyWhere agent-native product catalog API
+Open-source, no-code ecommerce launcher and developer kernel for proof-native artifacts. Clone, configure, and launch your own storefront powered by the Receiz SDK, MCP server, offline verification, ownership receipts, and programmable commerce objects.
 
 ```bash
-cue skills add BuyWhere/buywhere --profile medusa-dev
+cue skills add kojibai/Receiz-commerce --profile medusa-dev
 ```
 
 ---

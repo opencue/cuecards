@@ -2,19 +2,19 @@
 title: "ziablitsev/ziablitsev-core — Claude Code skill discovered by cue"
 description: "File-based framework that gives AI coding agents (Claude Code, Cursor, local models) persistent rules, a token-efficient path map, and a multi-agent task handof"
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [ziablitsev/ziablitsev-core](https://github.com/ziablitsev/ziablitsev-core)
 
-**★ 1** · potential (score 3.3)
+**★ 1** · potential (score 3.2)
 
 > File-based framework that gives AI coding agents (Claude Code, Cursor, local models) persistent rules, a token-efficient path map, and a multi-agent task handoff protocol, instead of re-explaining context in every chat.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: (none)

@@ -2,21 +2,21 @@
 title: "eriknewton/sanctuary-framework — Claude Code skill discovered by cue"
 description: "Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects "
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 5** · exceptional (score 10) · TypeScript · agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 6** · exceptional (score 10.1) · TypeScript · agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 > Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-15
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-07-16
 - 🏷️ Tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity, egress-control, endpoint-security, mcp, mcp-server, open-standard, privacy
 
 ## Best fit cue profiles

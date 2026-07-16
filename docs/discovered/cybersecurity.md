@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="christinminor459-onionclaw"></a>
-## 💎 [christinminor459/OnionClaw](https://github.com/christinminor459/OnionClaw)
-
-**★ 222** · exceptional (score 19.6) · Python · tags: ai-agents, hidden-services, llm, mcp-server, onion
-
-Provide AI agents with full Tor network access and dark web data through a zero-config OpenClaw skill or standalone tool.
-
-✅ SKILL.md
-
-```bash
-cue skills add christinminor459/OnionClaw --profile cybersecurity
-```
 
 ---
 
@@ -45,10 +30,25 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 
 ---
 
+<a id="edgarfloresguerra2011-a11y-marketnow"></a>
+## 💎 [edgarfloresguerra2011-a11y/marketnow](https://github.com/edgarfloresguerra2011-a11y/marketnow)
+
+**★ 1** · exceptional (score 11.3) · JavaScript · tags: a2a, agent-commerce, agent-protocol, ai-agents, claude
+
+Trust layer for agent commerce. 8,764 MCP servers, Sentinel L2.5 gVisor sandbox audits, AP2 mandates, x402 payments. AliceLabs LLC Proprietary.
+
+✅ SKILL.md
+
+```bash
+cue skills add edgarfloresguerra2011-a11y/marketnow --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1943** · exceptional (score 11) · Python · tags: agentskills, claude, skills
+**★ 1945** · exceptional (score 11) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -61,7 +61,7 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 <a id="eriknewton-sanctuary-framework"></a>
 ## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 5** · exceptional (score 10) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 6** · exceptional (score 10.1) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
@@ -74,7 +74,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 3** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 3** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 

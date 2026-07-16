@@ -2,7 +2,7 @@
 title: "Softer-delta-999/pear-plugin — Claude Code skill discovered by cue"
 description: "🍐 Connect Claude AI to iCloud to manage your Calendar, Reminders, and Contacts using natural language commands."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-15
+- 🗓️ Last pushed: 2026-07-16
 - 🏷️ Tags: anthropic, apple, calendar, carddav, claude-code, claude-skill, contacts, developer-tools, expo, hacktoberfest, icloud, mcp, openclaw, password-manager, pear, phpenv, productivity, reminders, sodium-native
 
 ## Best fit cue profiles

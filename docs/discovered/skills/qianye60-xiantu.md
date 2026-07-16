@@ -2,20 +2,20 @@
 title: "qianye60/XianTu — Claude Code skill discovered by cue"
 description: "\"Immortal Path\" AI-driven immersive cultivation text adventure game, based on Vue 3 + TypeScript + Fastapi, supports multiple AI models such as Gemini/Claude/Op"
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [qianye60/XianTu](https://github.com/qianye60/XianTu)
 
-**★ 345** · exceptional (score 12.8) · Vue · ai-game, claude, gemini, openai, rpg
+**★ 346** · exceptional (score 12.8) · Vue · ai-game, claude, gemini, openai, rpg
 
 > "Immortal Path" AI-driven immersive cultivation text adventure game, based on Vue 3 + TypeScript + Fastapi, supports multiple AI models such as Gemini/Claude/OpenAI
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
-- ⭐ 345 stars
+- ⭐ 346 stars
 - 🗓️ Last pushed: 2026-07-14
 - 🏷️ Tags: ai-game, claude, gemini, openai, rpg, sillytavern, text-adventure, typescript, vue3, vue3-typescript
 

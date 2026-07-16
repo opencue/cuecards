@@ -2,7 +2,7 @@
 title: "wei-wei-hu/life-designer-pro — Claude Code skill discovered by cue"
 description: "AI life-design coach for Claude Code and Codex. Find the question under your career and life goal, map your future paths, and start an experiment now."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-14
+- 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: agent-skills, ai, ai-agent, ai-coach, anthropic, career, claude-code, coaching, codex, design, development, growth, leadership, life, openai, strategy, work
 
 ## Best fit cue profiles

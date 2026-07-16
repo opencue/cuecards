@@ -2,7 +2,7 @@
 title: "undeemed/walkthrough-kit — Claude Code skill discovered by cue"
 description: "Claude Code plugin: spoken walkthrough kits for code demos inside isolated grader sandboxes. Code pointers + portable commands, no diagrams, no local paths."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
