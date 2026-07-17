@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-17
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 

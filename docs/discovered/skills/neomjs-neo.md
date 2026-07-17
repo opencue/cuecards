@@ -2,21 +2,21 @@
 title: "neomjs/neo — Claude Code skill discovered by cue"
 description: "Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active H"
 layout: page
-updated: 2026-07-14
+updated: 2026-07-17
 tags: [claude-code, skill, fleet-control]
 ---
 
 # 💎 [neomjs/neo](https://github.com/neomjs/neo)
 
-**★ 3231** · exceptional (score 14) · JavaScript · agent-memory, ai, ai-agent, ai-memory, context-engineering
+**★ 3236** · exceptional (score 14) · JavaScript · agent-memory, ai, ai-agent, ai-memory, context-engineering
 
 > Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 3231 stars
-- 🗓️ Last pushed: 2026-07-14
+- ⭐ 3236 stars
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: agent-memory, ai, ai-agent, ai-memory, context-engineering, frontend, frontend-runtime, graph-rag, javascript, json, knowledge-graph, llm, long-term-memory, mcp, mcp-server, multi-agent-systems, rag, scene-graph, semantic-search, web-workers
 
 ## Best fit cue profiles

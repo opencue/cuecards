@@ -2,21 +2,21 @@
 title: "24601/agent-deep-research — Claude Code skill discovered by cue"
 description: "Deep research (CLI and agent skill) via the Gemini Interactions API. Automatic RAG grounding from local files (optional), cost estimation (--dry-run), adaptive "
 layout: page
-updated: 2026-07-01
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [24601/agent-deep-research](https://github.com/24601/agent-deep-research)
 
-**★ 4** · exceptional (score 16.4) · Python · agent-skill, ai-agent, ai-agent-skill, autonomous-agent, claude-code
+**★ 6** · exceptional (score 18.2) · Python · agent-skill, ai-agent, ai-agent-skill, autonomous-agent, claude-code
 
 > Deep research (CLI and agent skill) via the Gemini Interactions API. Automatic RAG grounding from local files (optional), cost estimation (--dry-run), adaptive polling, structured output, and agent onboarding. No Gemini CLI dependency. Universal AI agent skill for Claude Code, Amp, Codex, Clawdbot, and 30+ agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 4 stars
+- ⭐ 6 stars
 - 🗓️ Last pushed: 2026-06-22
 - 🏷️ Tags: agent-skill, ai-agent, ai-agent-skill, autonomous-agent, claude-code, claude-code-skill, clawdbot, clawdbot-skill, clawdhub, coding-agent, deep-research, deep-research-agent, gemini, gemini-api, gemini-interactions-api, google-gemini, openclaw-skill, python, rag, uv
 

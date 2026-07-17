@@ -2,20 +2,20 @@
 title: "norahe0304-art/30x-image — Claude Code skill discovered by cue"
 description: "Generates on-brand marketing imagery (ad creatives, logos, slides, carousels) from a brand DESIGN.md via gpt-image-2 — a Codex / Claude Code skill."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-17
 tags: [claude-code, skill, creative-media]
 ---
 
-# ✨ [norahe0304-art/30x-image](https://github.com/norahe0304-art/30x-image)
+# 💎 [norahe0304-art/30x-image](https://github.com/norahe0304-art/30x-image)
 
-**★ 11** · strong (score 7.4) · JavaScript · ai-agent-skill, claude-code, codex, gpt-image, image-generation
+**★ 15** · exceptional (score 8.2) · JavaScript · ai-agent-skill, claude-code, codex, gpt-image, image-generation
 
 > Generates on-brand marketing imagery (ad creatives, logos, slides, carousels) from a brand DESIGN.md via gpt-image-2 — a Codex / Claude Code skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.4 based on:
-- ⭐ 11 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 15 stars
 - 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: ai-agent-skill, claude-code, codex, gpt-image, image-generation, marketing
 

@@ -1,59 +1,46 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-17
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zekainie-universal-examprep-skill"></a>
-## 💎 [ZeKaiNie/universal-examprep-skill](https://github.com/ZeKaiNie/universal-examprep-skill)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 255** · exceptional (score 20) · Python · tags: agent-skill, ai-tutor, anthropic, anti-hallucination, claude
+**★ 5** · exceptional (score 17) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Last-night exam-cram coach as a Claude Agent Skill: turns your slides, notes and past papers into a chaptered knowledge base + quiz bank, teaches only what's in your materials, and never fabricates (measured 100% out-of-scope abstention). Bilingual EN/中文 — the 期末极速备考 skill.
-
-✅ SKILL.md
-
-```bash
-cue skills add ZeKaiNie/universal-examprep-skill --profile research
-```
-
----
-
-<a id="jin-s13-ai-research-writing-skill"></a>
-## 💎 [jin-s13/ai-research-writing-skill](https://github.com/jin-s13/ai-research-writing-skill)
-
-**★ 7** · exceptional (score 13.5) · Python · tags: academic-writing, ai-agent, ai-writing, claude-code-skill, claude-skills
-
-AI Research Writing Skill (AI论文写作技能) is an agent skill for ML / AI / CV / NLP researchers. Point your coding agent at code, experiment logs, notes, and a venue template; it helps you produce an auditable, evidence-backed LaTeX draft and submission package — not a polished fiction.
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jin-s13/ai-research-writing-skill --profile research
+cue skills add jakubs2623/notebooklm-skill --profile research
 ```
 
 ---
 
-<a id="daizedong-market-intel"></a>
-## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
+<a id="shinyjay2-papermentor"></a>
+## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
 
-**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, claude, claude-code
+**★ 2** · exceptional (score 15.6) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
 
-Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
+Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/market-intel --profile research
+cue skills add ShinyJay2/PaperMentor --profile research
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "norahe0304-art/30x-growth-marketing-panel — Claude Code skill discovered by cue"
 description: "AI Growth Marketing Expert Panel — 12 world-class experts distilled from 4,000+ YouTube videos into one Claude Code / Cursor / Codex skill."
 layout: page
-updated: 2026-07-09
+updated: 2026-07-17
 tags: [claude-code, skill, marketing]
 ---
 
 # 💎 [norahe0304-art/30x-growth-marketing-panel](https://github.com/norahe0304-art/30x-growth-marketing-panel)
 
-**★ 29** · exceptional (score 16.5) · Shell · ai-agent-skill, ai-skills, claude-code, growth-marketing, marketing
+**★ 30** · exceptional (score 16.2) · Shell · ai-agent-skill, ai-skills, claude-code, growth-marketing, marketing
 
 > AI Growth Marketing Expert Panel — 12 world-class experts distilled from 4,000+ YouTube videos into one Claude Code / Cursor / Codex skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 29 stars
+- ⭐ 30 stars
 - 🗓️ Last pushed: 2026-07-09
 - 🏷️ Tags: ai-agent-skill, ai-skills, claude-code, growth-marketing, marketing, notebooklm
 

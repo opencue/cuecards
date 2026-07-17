@@ -2,7 +2,7 @@
 title: "tranminhductt/bulkcut-coach — Claude Code skill discovered by cue"
 description: "Track meals and workouts with AI-powered analysis to get personalized fitness and diet plans through natural conversation."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-16
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: ai, calorie-tracker, claude-code, claude-skill, diet, fitness, gemini, health, openrouter, workout
 
 ## Best fit cue profiles

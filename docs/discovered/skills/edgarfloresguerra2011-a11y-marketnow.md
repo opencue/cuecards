@@ -2,7 +2,7 @@
 title: "edgarfloresguerra2011-a11y/marketnow — Claude Code skill discovered by cue"
 description: "Trust layer for agent commerce. 8,764 MCP servers, Sentinel L2.5 gVisor sandbox audits, AP2 mandates, x402 payments. AliceLabs LLC Proprietary."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-17
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, cybersecurity]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-16
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: a2a, agent-commerce, agent-protocol, ai-agents, claude, cline, cursor, devtools, gvisor, llm, marketplace, mcp, mcp-marketplace, mcp-server, model-context-protocol, security-audit, sentinel, supply-chain, trust-layer, x402
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "ziablitsev/ziablitsev-core — Claude Code skill discovered by cue"
 description: "File-based framework that gives AI coding agents (Claude Code, Cursor, local models) persistent rules, a token-efficient path map, and a multi-agent task handof"
 layout: page
-updated: 2026-07-16
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 

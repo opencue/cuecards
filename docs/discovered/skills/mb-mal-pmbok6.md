@@ -2,19 +2,19 @@
 title: "mb-mal/pmbok6 — Claude Code skill discovered by cue"
 description: "PMBOK 6th Edition — Project Management skill for AI agents. 49 процессов, EVM, Agile, контракты, шаблоны."
 layout: page
-updated: 2026-07-15
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [mb-mal/pmbok6](https://github.com/mb-mal/pmbok6)
 
-**★ 4** · potential (score 4.7) · Shell · ai-agent-skill, hermes-agent, pmbok, pmp, project-management
+**★ 4** · potential (score 4.6) · Shell · ai-agent-skill, hermes-agent, pmbok, pmp, project-management
 
 > PMBOK 6th Edition — Project Management skill for AI agents. 49 процессов, EVM, Agile, контракты, шаблоны.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.6 based on:
 - ⭐ 4 stars
 - 🗓️ Last pushed: 2026-07-13
 - 🏷️ Tags: ai-agent-skill, hermes-agent, pmbok, pmp, project-management

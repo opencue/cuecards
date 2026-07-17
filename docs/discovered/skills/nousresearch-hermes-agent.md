@@ -2,21 +2,21 @@
 title: "NousResearch/hermes-agent — Claude Code skill discovered by cue"
 description: "The agent that grows with you"
 layout: page
-updated: 2026-06-23
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
 
-**★ 200249** · exceptional (score 18.5) · Python · ai, ai-agent, ai-agents, anthropic, chatgpt
+**★ 216105** · exceptional (score 18.5) · Python · ai, ai-agent, ai-agents, anthropic, chatgpt
 
 > The agent that grows with you
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.5 based on:
-- ⭐ 200249 stars
-- 🗓️ Last pushed: 2026-06-23
+- ⭐ 216105 stars
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: ai, ai-agent, ai-agents, anthropic, chatgpt, claude, claude-code, clawdbot, codex, hermes, hermes-agent, llm, moltbot, nous-research, openai, openclaw
 
 ## Best fit cue profiles

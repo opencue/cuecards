@@ -2,7 +2,7 @@
 title: "Syo-M/fable-frontend-skills — Claude Code skill discovered by cue"
 description: "Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plug"
 layout: page
-updated: 2026-07-16
+updated: 2026-07-17
 tags: [claude-code, skill, frontend, nextjs]
 ---
 

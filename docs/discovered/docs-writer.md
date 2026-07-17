@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-17
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="cenmeow-markdown-new-skill"></a>
-## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
+<a id="raintree-technology-docpull"></a>
+## 💎 [raintree-technology/docpull](https://github.com/raintree-technology/docpull)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
+**★ 24** · exceptional (score 9.5) · Python · tags: ai-agents, ai-context, ai-training-data, cli, context-engineering
 
-Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
+Local-first context dependency manager: sync docs, diff changes, lock sources, and export cited packs for AI agents.
 
 ```bash
-cue skills add CenMeow/markdown-new-skill --profile docs-writer
+cue skills add raintree-technology/docpull --profile docs-writer
 ```
 
 ---
