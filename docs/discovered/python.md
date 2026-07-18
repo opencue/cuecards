@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="salems-3dpov-ai-agent-pipeline"></a>
+## 💎 [salems-3Dpov/ai-agent-pipeline](https://github.com/salems-3Dpov/ai-agent-pipeline)
+
+**★ 2** · exceptional (score 8) · Python · tags: agent, agentic-ai, agents, aws, cicd
+
+🐙 AI Agent Pipeline routes queries by intent to docs, weather, or chat, with LangGraph, ChromaDB, and LangSmith for modular, observable workflows across CLI and UI.
+
+```bash
+cue skills add salems-3Dpov/ai-agent-pipeline --profile python
+```
+
+---
+
+<a id="manhquydev-flow-skill"></a>
+## ✨ [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
+
+**★ 1** · strong (score 7.3) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
+
+/flow - gated build harness skill: idea -> real done-evidence via honest gates, a durable knowledge loop, and a mechanical usage log closed into a feedback loop (recall + propose + prune). Cross-vendor agent ladder (ck: + bmad + Codex + Antigravity/Gemini-3). Portable: Claude Code, Codex CLI, Antigravity. bash+python3. MIT.
+
+```bash
+cue skills add manhquydev/flow-skill --profile python
+```
 
 ---
 

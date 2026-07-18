@@ -2,21 +2,21 @@
 title: "hermes-labs-ai/fidelis — Claude Code skill discovered by cue"
 description: "fidelis is zero-LLM agent memory for Claude Code and AI agents: a local-first memory layer whose default retrieval path uses BM25, dense vectors, and reciprocal"
 layout: page
-updated: 2026-07-01
+updated: 2026-07-18
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [hermes-labs-ai/fidelis](https://github.com/hermes-labs-ai/fidelis)
 
-**★ 1** · strong (score 6.5) · Python · agent-memory, ai-agents, ai-reliability, bm25, claude-code
+**★ 1** · strong (score 6.8) · Python · agent-memory, ai-agents, ai-reliability, bm25, claude-code
 
 > fidelis is zero-LLM agent memory for Claude Code and AI agents: a local-first memory layer whose default retrieval path uses BM25, dense vectors, and reciprocal rank fusion with no LLM call. It returns your original passages verbatim instead of paraphrasing and runs fully local. Benchmarked on LongMemEval-S. MIT, by Hermes Labs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: agent-memory, ai-agents, ai-reliability, bm25, claude-code, fidelity, hermes-labs, llm, llm-memory, local-first, longmemeval, mcp, rag, retrieval, zero-llm
 
 ## Best fit cue profiles

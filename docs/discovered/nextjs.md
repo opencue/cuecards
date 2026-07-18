@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 <a id="syo-m-fable-frontend-skills"></a>
 ## ✨ [Syo-M/fable-frontend-skills](https://github.com/Syo-M/fable-frontend-skills)
 
-**★ 3** · strong (score 5.6) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
+**★ 3** · strong (score 5.5) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
 
 Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plugin. Every claim backed by committed eval reports.
 

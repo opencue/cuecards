@@ -2,7 +2,7 @@
 title: "nsasoft/nsauditor-ai-agent-skill — Claude Code skill discovered by cue"
 description: "AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works w"
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, skill, cybersecurity]
 ---
 

@@ -2,7 +2,7 @@
 title: "JeroenPieksma/claude-computer — Claude Code skill discovered by cue"
 description: "Claude Computer demonstrates AI autonomy in a virtual machine with real-time streaming, research, creation, and exploration. Watch Claude navigate, interact, an"
 layout: page
-updated: 2026-06-15
+updated: 2026-07-18
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: ai-tools, bedrock, beta-testing, claude-ai, computer-use, computer-vision, control-systems, docker, docker-vnc, factifai, gpt-4o, llm, mcp-server, model-context-protocol, sonnet, testing, typescript, windows
 
 ## Best fit cue profiles

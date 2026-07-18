@@ -1,45 +1,17 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
-
-**★ 5** · exceptional (score 17) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
-
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
-
-```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
-```
-
----
-
-<a id="jungjaehoon-lifegamez-mama"></a>
-## 💎 [jungjaehoon-lifegamez/MAMA](https://github.com/jungjaehoon-lifegamez/MAMA)
-
-**★ 11** · exceptional (score 13.6) · TypeScript · tags: agent-memory, ai-agents, claude-code, claude-code-plugins, codex
-
-Local-first operating memory for AI coding agents - Claude Code, Codex, and any MCP client. Tracks decisions and their evolution. SQLite + on-device embeddings, no cloud.
-
-```bash
-cue skills add jungjaehoon-lifegamez/MAMA --profile backend
-```
 
 ---
 
@@ -56,6 +28,149 @@ cue skills add ShaftHQ/SHAFT_ENGINE --profile backend
 
 ---
 
+<a id="devantler-tech-ksail"></a>
+## 💎 [devantler-tech/ksail](https://github.com/devantler-tech/ksail)
+
+**★ 155** · exceptional (score 12.9) · Go · tags: argocd, chat, cli, cloud-native, developer-tool
+
+All-in-one Kubernetes SDK: create, manage, and operate clusters across distributions (Kind, K3d, Talos, VCluster) with built-in GitOps, secrets, AI assistant, and MCP server. Only requires Docker or a Cloud Provider.
+
+```bash
+cue skills add devantler-tech/ksail --profile backend
+```
+
+---
+
+<a id="unitedideas-nothumansearch"></a>
+## 💎 [unitedideas/nothumansearch](https://github.com/unitedideas/nothumansearch)
+
+**★ 9** · exceptional (score 9.8) · Go · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
+
+Search engine for AI agents — ranks sites by agentic readiness (llms.txt, OpenAPI, MCP, ai-plugin). MCP server, REST API, full-text search. 8,000+ indexed sites.
+
+```bash
+cue skills add unitedideas/nothumansearch --profile backend
+```
+
+---
+
+<a id="eduair94-cambio-uruguay"></a>
+## 💎 [eduair94/cambio-uruguay](https://github.com/eduair94/cambio-uruguay)
+
+**★ 4** · exceptional (score 8.3) · TypeScript · tags: ai-tools, api, casas-de-cambio, claude, currency
+
+Source code of https://cambio-uruguay.com
+
+```bash
+cue skills add eduair94/cambio-uruguay --profile backend
+```
+
+---
+
+<a id="omkarjamadar-mcp-server-client-computer-use-ai-sdk"></a>
+## 💎 [Omkarjamadar/MCP-server-client-computer-use-ai-sdk](https://github.com/Omkarjamadar/MCP-server-client-computer-use-ai-sdk)
+
+**★ 3** · exceptional (score 8.2) · Rust · tags: ai-sdk, api-development, application-integration, backend-development, client-app
+
+🖥️ Control your computer effortlessly with our AI SDK, enabling seamless interaction with apps and websites without virtual machines or pixel-based issues.
+
+```bash
+cue skills add Omkarjamadar/MCP-server-client-computer-use-ai-sdk --profile backend
+```
+
+---
+
+<a id="ravenqueen03-btp-sap-odata-to-mcp-server"></a>
+## 💎 [RavenQueen03/btp-sap-odata-to-mcp-server](https://github.com/RavenQueen03/btp-sap-odata-to-mcp-server)
+
+**★ 2** · exceptional (score 8) · tags: api, btp, cloud, data-modeling, enterprise-integration
+
+🌐 Expose SAP OData services as dynamic MCP tools, enabling natural language interactions with your ERP data for enhanced conversational AI capabilities.
+
+```bash
+cue skills add RavenQueen03/btp-sap-odata-to-mcp-server --profile backend
+```
+
+---
+
+<a id="salems-3dpov-ai-agent-pipeline"></a>
+## 💎 [salems-3Dpov/ai-agent-pipeline](https://github.com/salems-3Dpov/ai-agent-pipeline)
+
+**★ 2** · exceptional (score 8) · Python · tags: agent, agentic-ai, agents, aws, cicd
+
+🐙 AI Agent Pipeline routes queries by intent to docs, weather, or chat, with LangGraph, ChromaDB, and LangSmith for modular, observable workflows across CLI and UI.
+
+```bash
+cue skills add salems-3Dpov/ai-agent-pipeline --profile backend
+```
+
+---
+
+<a id="jeroenpieksma-claude-computer"></a>
+## 💎 [JeroenPieksma/claude-computer](https://github.com/JeroenPieksma/claude-computer)
+
+**★ 2** · exceptional (score 8) · Python · tags: ai-tools, bedrock, beta-testing, claude-ai, computer-use
+
+Claude Computer demonstrates AI autonomy in a virtual machine with real-time streaming, research, creation, and exploration. Watch Claude navigate, interact, and learn in real time 🐙
+
+```bash
+cue skills add JeroenPieksma/claude-computer --profile backend
+```
+
+---
+
+<a id="ermermermermidk-mcp-ai-memory"></a>
+## ✨ [ermermermermidk/mcp-ai-memory](https://github.com/ermermermermidk/mcp-ai-memory)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: a2a, ai-agents, ai-assistant, application, chatgpt
+
+🧠 Manage AI context seamlessly with the MCP server for storing and retrieving semantic memory across sessions. Enhance your AI's knowledge retention.
+
+```bash
+cue skills add ermermermermidk/mcp-ai-memory --profile backend
+```
+
+---
+
+<a id="rudi193-cmd-willow-mcp"></a>
+## ✨ [rudi193-cmd/willow-mcp](https://github.com/rudi193-cmd/willow-mcp)
+
+**★ 1** · strong (score 7.8) · Python · tags: agent, authorization, knowledge-base, mcp, mcp-server
+
+Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client.
+
+```bash
+cue skills add rudi193-cmd/willow-mcp --profile backend
+```
+
+---
+
+<a id="fezarecool-mcp-claude-hackernews"></a>
+## ✨ [FezAreCool/mcp-claude-hackernews](https://github.com/FezAreCool/mcp-claude-hackernews)
+
+**★ 0** · strong (score 7.5) · tags: ai, anthropic, api, claude, claude-desktop
+
+🚀 Connect Claude Desktop with Hacker News through the Model Context Protocol (MCP) for seamless interactions and enhanced information flow.
+
+```bash
+cue skills add FezAreCool/mcp-claude-hackernews --profile backend
+```
+
+---
+
+<a id="pseudogiant-xr-pseudolife-mcp"></a>
+## ✨ [Pseudogiant-xr/Pseudolife-MCP](https://github.com/Pseudogiant-xr/Pseudolife-MCP)
+
+**★ 4** · strong (score 6.8) · Python · tags: agent-memory, claude, long-term-memory, mcp, mcp-server
+
+Persistent long-term memory for Claude — an MCP server with an associative memory bank, a canonical-fact cortex, sleep-like dream consolidation, and a web console. Not quite alive.
+
+```bash
+cue skills add Pseudogiant-xr/Pseudolife-MCP --profile backend
+```
+
+---
+
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
@@ -65,19 +180,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="unabused-wichita77-lazy-tool"></a>
-## ✨ [unabused-wichita77/lazy-tool](https://github.com/unabused-wichita77/lazy-tool)
-
-**★ 0** · strong (score 6) · Go · tags: crawling-framework, developer-experience, linux-security, llm-tools, local-first
-
-Reduce MCP tool overload with a single Go binary that indexes tools locally and serves search-before-invoke via SQLite
-
-```bash
-cue skills add unabused-wichita77/lazy-tool --profile backend
 ```
 
 ---

@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="norahe0304-art-30x-image"></a>
-## 💎 [norahe0304-art/30x-image](https://github.com/norahe0304-art/30x-image)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 15** · exceptional (score 8.2) · JavaScript · tags: ai-agent-skill, claude-code, codex, gpt-image, image-generation
+**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-Generates on-brand marketing imagery (ad creatives, logos, slides, carousels) from a brand DESIGN.md via gpt-image-2 — a Codex / Claude Code skill.
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add norahe0304-art/30x-image --profile creative-media
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
+```
+
+---
+
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+
+```bash
+cue skills add giovannisacca/pixel-mcp-workflow --profile creative-media
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -30,17 +30,17 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 
 ---
 
-<a id="edgarfloresguerra2011-a11y-marketnow"></a>
-## 💎 [edgarfloresguerra2011-a11y/marketnow](https://github.com/edgarfloresguerra2011-a11y/marketnow)
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
 
-**★ 1** · exceptional (score 11.3) · JavaScript · tags: a2a, agent-commerce, agent-protocol, ai-agents, claude
+**★ 0** · exceptional (score 13) · tags: agent-security, aml, audit, blockchain, claude-code
 
-Trust layer for agent commerce. 8,764 MCP servers, Sentinel L2.5 gVisor sandbox audits, AP2 mandates, x402 payments. AliceLabs LLC Proprietary.
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add edgarfloresguerra2011-a11y/marketnow --profile cybersecurity
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 ```
 
 ---
@@ -48,7 +48,7 @@ cue skills add edgarfloresguerra2011-a11y/marketnow --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1949** · exceptional (score 11) · Python · tags: agentskills, claude, skills
+**★ 1953** · exceptional (score 11) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -71,6 +71,19 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+
+**★ 0** · exceptional (score 10) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+
+```bash
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+```
+
+---
+
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
@@ -80,19 +93,6 @@ Deterministic governance for Claude and MCP tool calls. Pin approved capabilitie
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="unabused-wichita77-lazy-tool"></a>
-## ✨ [unabused-wichita77/lazy-tool](https://github.com/unabused-wichita77/lazy-tool)
-
-**★ 0** · strong (score 6) · Go · tags: crawling-framework, developer-experience, linux-security, llm-tools, local-first
-
-Reduce MCP tool overload with a single Go binary that indexes tools locally and serves search-before-invoke via SQLite
-
-```bash
-cue skills add unabused-wichita77/lazy-tool --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,43 +15,41 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="amohavarshansankar-google-fonts-skill"></a>
-## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
+<a id="ezra-y-awesome-claude-ui-armory"></a>
+## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
 
-**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
+**★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
-Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
-
-✅ SKILL.md
+Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
-cue skills add amohavarshansankar/google-fonts-skill --profile frontend
+cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 ```
 
 ---
 
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+<a id="cobacobaini-vibe"></a>
+## 💎 [COBACOBAINI/vibe](https://github.com/COBACOBAINI/vibe)
 
-**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+**★ 9** · exceptional (score 10) · TypeScript · tags: 3d-human-pose, ai, ai-agents, component-library, cross-platform
 
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+Transcribe audio and video offline with OpenAI Whisper on your device, keeping data private. Supports many languages with fast, fully local, reliable transcription. 🐙
 
 ```bash
-cue skills add Fredjuel/arc-skill --profile frontend
+cue skills add COBACOBAINI/vibe --profile frontend
 ```
 
 ---
 
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
 
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
 
 ```bash
-cue skills add riqxa/skills-best-practices --profile frontend
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---
@@ -59,7 +57,7 @@ cue skills add riqxa/skills-best-practices --profile frontend
 <a id="syo-m-fable-frontend-skills"></a>
 ## ✨ [Syo-M/fable-frontend-skills](https://github.com/Syo-M/fable-frontend-skills)
 
-**★ 3** · strong (score 5.6) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
+**★ 3** · strong (score 5.5) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
 
 Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plugin. Every claim backed by committed eval reports.
 

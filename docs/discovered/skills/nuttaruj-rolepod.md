@@ -2,7 +2,7 @@
 title: "nuttaruj/rolepod — Claude Code skill discovered by cue"
 description: "Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership"
 layout: page
-updated: 2026-07-17
+updated: 2026-07-18
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-17
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering, workflow
 
 ## Best fit cue profiles

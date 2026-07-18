@@ -2,7 +2,7 @@
 title: "WP2-Danikusuma/AgentX — Claude Code skill discovered by cue"
 description: "🤖 Build personalized intelligent agents easily with AgentX, a platform that simplifies creation using natural language and integrated tools."
 layout: page
-updated: 2026-06-12
+updated: 2026-07-18
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: agentx, android, application, autonomous-agents, flutter, git, gpg, ios, jetpack-compose, kmm-mvvm, llm, llm-agent, mcp-server, model-context-protocol, netty, shadowsocks, ssh-agent, swiftui
 
 ## Best fit cue profiles
