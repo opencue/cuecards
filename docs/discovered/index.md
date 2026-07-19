@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,22 +11,22 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-07-18 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-07-19 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 64 | `claude-with-leetcode`, `app-store-connect-skill`, `TWSEMCPServer` |
-| [**backend**](./backend.md) | 15 | `SHAFT_ENGINE`, `ksail`, `nothumansearch` |
-| [**cybersecurity**](./cybersecurity.md) | 6 | `nsauditor-ai-agent-skill`, `slowmist-security-cc`, `Claude-OSINT` |
-| [**frontend**](./frontend.md) | 5 | `awesome-claude-ui-armory`, `vibe`, `pixel-mcp-workflow` |
-| [**video**](./video.md) | 3 | `vibe`, `social-media-scraper-skill`, `agent-skills` |
-| [**creative-media**](./creative-media.md) | 3 | `social-media-scraper-skill`, `pixel-mcp-workflow`, `redesigned-pancake` |
-| [**python**](./python.md) | 3 | `ai-agent-pipeline`, `flow-skill`, `alfred` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
-| [**docs-writer**](./docs-writer.md) | 2 | `llm-wiki`, `llm-knowledge-base` |
-| [**marketing**](./marketing.md) | 2 | `page-foundry`, `skills-marketing` |
+| [**core**](./core.md) | 72 | `brilliant-directories-mcp`, `claude-with-leetcode`, `dsers-mcp-product-py` |
+| [**backend**](./backend.md) | 11 | `notebooklm-skill`, `orionbelt-semantic-layer`, `x402-payments-skill` |
+| [**frontend**](./frontend.md) | 8 | `google-fonts-skill`, `apple-mail`, `awesome-claude-ui-armory` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `sanctuary-framework` |
+| [**creative-media**](./creative-media.md) | 2 | `openclaw-master-skills`, `redesigned-pancake` |
+| [**marketing**](./marketing.md) | 2 | `brand-launchpad`, `claude-youtube` |
+| [**python**](./python.md) | 2 | `TaskFlow`, `alfred` |
+| [**research**](./research.md) | 1 | `notebooklm-skill` |
+| [**docs-writer**](./docs-writer.md) | 1 | `markdown-new-skill` |
+| [**video**](./video.md) | 1 | `claude-youtube` |
 | [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
 | [**nextjs**](./nextjs.md) | 1 | `fable-frontend-skills` |
 

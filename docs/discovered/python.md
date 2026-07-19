@@ -1,50 +1,37 @@
 ---
 title: "Claude Code Skills for python"
-description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="salems-3dpov-ai-agent-pipeline"></a>
-## 💎 [salems-3Dpov/ai-agent-pipeline](https://github.com/salems-3Dpov/ai-agent-pipeline)
+<a id="mrredstoney-taskflow"></a>
+## ✨ [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow)
 
-**★ 2** · exceptional (score 8) · Python · tags: agent, agentic-ai, agents, aws, cicd
+**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, dag, dependencies-manager, fastapi
 
-🐙 AI Agent Pipeline routes queries by intent to docs, weather, or chat, with LangGraph, ChromaDB, and LangSmith for modular, observable workflows across CLI and UI.
-
-```bash
-cue skills add salems-3Dpov/ai-agent-pipeline --profile python
-```
-
----
-
-<a id="manhquydev-flow-skill"></a>
-## ✨ [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
-
-**★ 1** · strong (score 7.3) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
-
-/flow - gated build harness skill: idea -> real done-evidence via honest gates, a durable knowledge loop, and a mechanical usage log closed into a feedback loop (recall + propose + prune). Cross-vendor agent ladder (ck: + bmad + Codex + Antigravity/Gemini-3). Portable: Claude Code, Codex CLI, Antigravity. bash+python3. MIT.
+Build a collaborative task management backend with Django, REST, WebSockets, and RabbitMQ for realtime updates and async notifications
 
 ```bash
-cue skills add manhquydev/flow-skill --profile python
+cue skills add MrRedstoneY/TaskFlow --profile python
 ```
 
 ---
 
 <a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 1** · potential (score 4.8) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

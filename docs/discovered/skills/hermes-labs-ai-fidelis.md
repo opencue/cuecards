@@ -2,7 +2,7 @@
 title: "hermes-labs-ai/fidelis — Claude Code skill discovered by cue"
 description: "fidelis is zero-LLM agent memory for Claude Code and AI agents: a local-first memory layer whose default retrieval path uses BM25, dense vectors, and reciprocal"
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, skill, core]
 ---
 

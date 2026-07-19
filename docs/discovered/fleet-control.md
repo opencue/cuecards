@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 

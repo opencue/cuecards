@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,30 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="taylorbanks-page-foundry"></a>
-## 💎 [taylorbanks/page-foundry](https://github.com/taylorbanks/page-foundry)
+<a id="shauryalowkeygotaura-brand-launchpad"></a>
+## 💎 [shauryalowkeygotaura/brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)
 
-**★ 2** · exceptional (score 8.5) · Python · tags: agent-skills, claude-code, claude-skill, conversion-rate-optimization, copywriting
+**★ 1** · exceptional (score 12.3) · HTML · tags: agent-skills, ai, ai-tools, anthropic, brand-strategy
 
-Turn one brief into a finished homepage, landing page, or sales page: high-converting, written in your voice, fast, accessible, and built so it never reads or looks AI-made.
+One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. Built on Caleb Ralston, Harry Dry, Oren John & Brier Cochran frameworks.
+
+✅ SKILL.md
 
 ```bash
-cue skills add taylorbanks/page-foundry --profile marketing
+cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
 ```
 
 ---
 
-<a id="prvthmpcypher-skills-marketing"></a>
-## ✨ [prvthmpcypher/skills-marketing](https://github.com/prvthmpcypher/skills-marketing)
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
 
-**★ 0** · strong (score 6) · tags: ai-tools, anthropic, claude, claude-code-skill, content-creation
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
 
-56 Claude skills for marketers. SEO, social media, email strategy, content creation, paid ads, podcast, and platform-specific skills.
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
 
 ```bash
-cue skills add prvthmpcypher/skills-marketing --profile marketing
+cue skills add priyanshu-yadav04/claude-youtube --profile marketing
 ```
 
 ---

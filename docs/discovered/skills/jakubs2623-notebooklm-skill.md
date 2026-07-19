@@ -2,7 +2,7 @@
 title: "jakubs2623/notebooklm-skill — Claude Code skill discovered by cue"
 description: "Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-19
 tags: [claude-code, skill, research, backend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research, backend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
 - ✅ Contains SKILL.md
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-17
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: agentic-skill, ai-agents, ai-research, antigravity, api, automation, claude-code-skill, claude-skills, code-extraction, interactive-notebooks, mcp-server, notebooklm, notebooklm-api, podcast-generation, python, python-api, sdk, text-analysis, user-guidance
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "netresearch/typo3-typoscript-ref-skill — Claude Code skill discovered by cue"
 description: "TYPO3 TypoScript, TSconfig and Fluid reference lookup for AI agents"
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, skill, core]
 ---
 

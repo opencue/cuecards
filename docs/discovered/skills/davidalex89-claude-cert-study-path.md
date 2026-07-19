@@ -2,7 +2,7 @@
 title: "davidalex89/claude-cert-study-path — Claude Code skill discovered by cue"
 description: "Interactive, local-first study path for Anthropic's four Claude Certification exams — lessons, quizzes, practice exams, and flashcards. Unofficial."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, skill, core]
 ---
 

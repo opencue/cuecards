@@ -1,17 +1,47 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="amohavarshansankar-google-fonts-skill"></a>
+## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
+
+**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
+
+Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
+
+✅ SKILL.md
+
+```bash
+cue skills add amohavarshansankar/google-fonts-skill --profile frontend
+```
+
+---
+
+<a id="ridzkyyyyy-apple-mail"></a>
+## 💎 [ridzkyyyyy/apple-mail](https://github.com/ridzkyyyyy/apple-mail)
+
+**★ 0** · exceptional (score 12.5) · Python · tags: ai, alert, animation, app, claude
+
+Control macOS Mail.app with AI to triage inboxes, draft replies, search, move, delete, and label email using natural language
+
+✅ SKILL.md
+
+```bash
+cue skills add ridzkyyyyy/apple-mail --profile frontend
+```
 
 ---
 
@@ -28,28 +58,41 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cobacobaini-vibe"></a>
-## 💎 [COBACOBAINI/vibe](https://github.com/COBACOBAINI/vibe)
+<a id="wahmoh-claude-react-kit"></a>
+## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
 
-**★ 9** · exceptional (score 10) · TypeScript · tags: 3d-human-pose, ai, ai-agents, component-library, cross-platform
+**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
 
-Transcribe audio and video offline with OpenAI Whisper on your device, keeping data private. Supports many languages with fast, fully local, reliable transcription. 🐙
+Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
 
 ```bash
-cue skills add COBACOBAINI/vibe --profile frontend
+cue skills add wahmoh/claude-react-kit --profile frontend
 ```
 
 ---
 
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+<a id="fredjuel-arc-skill"></a>
+## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
 
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
 
 ```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
+cue skills add Fredjuel/arc-skill --profile frontend
+```
+
+---
+
+<a id="riqxa-skills-best-practices"></a>
+## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+
+**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+
+Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+
+```bash
+cue skills add riqxa/skills-best-practices --profile frontend
 ```
 
 ---
@@ -70,7 +113,7 @@ cue skills add Syo-M/fable-frontend-skills --profile frontend
 <a id="tarastsavolyk-claude-code-frontend"></a>
 ## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
 
-**★ 1** · potential (score 3.2) · JavaScript
+**★ 1** · potential (score 3.1) · JavaScript
 
 Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
 

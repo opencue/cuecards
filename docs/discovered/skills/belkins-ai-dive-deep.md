@@ -2,7 +2,7 @@
 title: "Belkins/ai-dive-deep — Claude Code skill discovered by cue"
 description: "Vlad's Playbook — the operator's field manual where every artifact is live, clickable, and forwardable. 39 chapters · 25 interactive widgets · 3 embedded case s"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 467 stars
-- 🗓️ Last pushed: 2026-07-12
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: agent-orchestration, ai-agents, anthropic, astro, claude, claude-code, field-manual, htmlization, interactive-book, mcp, mdx, static-site
 
 ## Best fit cue profiles

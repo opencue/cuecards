@@ -1,55 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="cobacobaini-vibe"></a>
-## 💎 [COBACOBAINI/vibe](https://github.com/COBACOBAINI/vibe)
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
 
-**★ 9** · exceptional (score 10) · TypeScript · tags: 3d-human-pose, ai, ai-agents, component-library, cross-platform
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
 
-Transcribe audio and video offline with OpenAI Whisper on your device, keeping data private. Supports many languages with fast, fully local, reliable transcription. 🐙
-
-```bash
-cue skills add COBACOBAINI/vibe --profile video
-```
-
----
-
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
-
-**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
-
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
-```
-
----
-
-<a id="parthganatra-agent-skills"></a>
-## 💎 [ParthGanatra/agent-skills](https://github.com/ParthGanatra/agent-skills)
-
-**★ 2** · exceptional (score 8.5) · Shell · tags: agent-skills, ai, claude, claude-code, claude-skill
-
-Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide extraction.
-
-```bash
-cue skills add ParthGanatra/agent-skills --profile video
+cue skills add priyanshu-yadav04/claude-youtube --profile video
 ```
 
 ---

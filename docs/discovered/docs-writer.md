@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="cenmeow-markdown-new-skill"></a>
+## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
 
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
-
-```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
-```
-
----
-
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
-
-**★ 0** · exceptional (score 8) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
-
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
 
 ```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+cue skills add CenMeow/markdown-new-skill --profile docs-writer
 ```
 
 ---

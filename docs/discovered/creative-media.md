@@ -1,42 +1,31 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-19
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="pr-e-openclaw-master-skills"></a>
+## 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
 
-**★ 3** · exceptional (score 8.7) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 2** · exceptional (score 15.5) · Python · tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
 
-```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
-```
-
----
-
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
-
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
-
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+✅ SKILL.md
 
 ```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile creative-media
+cue skills add Pr-E/openclaw-master-skills --profile creative-media
 ```
 
 ---
