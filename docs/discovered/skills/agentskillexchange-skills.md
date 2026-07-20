@@ -2,21 +2,21 @@
 title: "agentskillexchange/skills — Claude Code skill discovered by cue"
 description: "Curated, trusted open catalog of AI agent skills for OpenClaw, Claude Code, Codex, GitHub Copilot, Gemini, Cursor, MCP, LangChain, and more. Browse, install, an"
 layout: page
-updated: 2026-06-27
+updated: 2026-07-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [agentskillexchange/skills](https://github.com/agentskillexchange/skills)
 
-**★ 14** · exceptional (score 13.6) · Shell · agent-marketplace, agent-skills, agent-tools, ai-agents, ai-tools
+**★ 19** · exceptional (score 13.8) · Python · agent-marketplace, agent-skills, agent-tools, ai-agents, ai-tools
 
 > Curated, trusted open catalog of AI agent skills for OpenClaw, Claude Code, Codex, GitHub Copilot, Gemini, Cursor, MCP, LangChain, and more. Browse, install, and verify reusable agent workflows.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.6 based on:
-- ⭐ 14 stars
-- 🗓️ Last pushed: 2026-06-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+- ⭐ 19 stars
+- 🗓️ Last pushed: 2026-07-20
 - 🏷️ Tags: agent-marketplace, agent-skills, agent-tools, ai-agents, ai-tools, awesome-list, claude-agents, claude-code, codex, coding-agents, cursor, gemini-cli, github-copilot, mcp, mcp-server, npx-skills, openai-codex, openclaw, skill-library, skills-catalog
 
 ## Best fit cue profiles

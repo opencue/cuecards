@@ -2,7 +2,7 @@
 title: "afloy011-spec/seedance-shotlist-director — Claude Code skill discovered by cue"
 description: "Claude skill: script → Seedance 2.0 production board in one prompt | Клод-скилл: сценарий → продакшн-борд для Seedance 2.0 — режиссёрские промпты, ENDS ON склей"
 layout: page
-updated: 2026-07-15
+updated: 2026-07-20
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-15
+- 🗓️ Last pushed: 2026-07-20
 - 🏷️ Tags: ai-video, claude-code, claude-skill, higgsfield, prompt-engineering, seedance, video-generation
 
 ## Best fit cue profiles

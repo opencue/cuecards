@@ -1,122 +1,94 @@
 ---
 title: "Claude Code Skills for backend"
-description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-19
+updated: 2026-07-20
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="jjang-ai-vmlx"></a>
+## 💎 [jjang-ai/vmlx](https://github.com/jjang-ai/vmlx)
 
-**★ 5** · exceptional (score 17) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 775** · exceptional (score 13.9) · Python · tags: anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives restart) + L1 Paged (super fast ttft) + Hybrid SSM Scheduler  + Cont Batching + etc!
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
+cue skills add jjang-ai/vmlx --profile backend
 ```
 
 ---
 
-<a id="ralforion-orionbelt-semantic-layer"></a>
-## 💎 [ralforion/orionbelt-semantic-layer](https://github.com/ralforion/orionbelt-semantic-layer)
+<a id="hanyeol-model-compose"></a>
+## 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
 
-**★ 68** · exceptional (score 11.1) · Python · tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
+**★ 75** · exceptional (score 13.3) · Python · tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
 
-Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
+Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
 
 ```bash
-cue skills add ralforion/orionbelt-semantic-layer --profile backend
+cue skills add hanyeol/model-compose --profile backend
 ```
 
 ---
 
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
+<a id="optave-ops-codegraph-tool"></a>
+## 💎 [optave/ops-codegraph-tool](https://github.com/optave/ops-codegraph-tool)
 
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
+**★ 80** · exceptional (score 13.2) · TypeScript · tags: ai-agents, architecture, ci-cd, cli, code-analysis
 
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+Code intelligence CLI — function-level dependency graph across 34 languages, 34-tool MCP server for AI agents, complexity metrics, architecture boundary enforcement, CI quality gates, git diff impact with co-change analysis, hybrid semantic search. Fully local, zero API keys required.
 
 ```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
+cue skills add optave/ops-codegraph-tool --profile backend
 ```
 
 ---
 
-<a id="tobocop2-lilbee"></a>
-## 💎 [tobocop2/lilbee](https://github.com/tobocop2/lilbee)
+<a id="zycaskevin-vault-agent-memory"></a>
+## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
 
-**★ 38** · exceptional (score 9.7) · Python · tags: ai-search-engine, chat-with-documents, gguf, llama-cpp, lm-studio
+**★ 43** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
 
-The whole local AI stack in one executable: it runs and manages local AI models across every GPU, and it's a search engine you can talk to, with cited answers from your files, code, and the web. MCP server for coding agents, web crawler, TUI, CLI, REST API, Python library. No Ollama or LM Studio needed, works with both.
+Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
 
 ```bash
-cue skills add tobocop2/lilbee --profile backend
+cue skills add zycaskevin/Vault-Agent-Memory --profile backend
 ```
 
 ---
 
-<a id="lh8ppl-core-memory-kit"></a>
-## 💎 [LH8PPL/core-memory-kit](https://github.com/LH8PPL/core-memory-kit)
+<a id="retospect-precis-mcp"></a>
+## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
 
-**★ 2** · exceptional (score 8) · JavaScript · tags: agent-memory, ai-agents, ai-memory, anthropic, claude
+**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, claude, context-management, cursor, llm
 
-Persistent per-project memory for Claude Code, Kiro, Cursor & Codex - plain markdown committed with your code, captured prompt-free, auto-injected at session start, recalled by meaning (local semantic search, zero API). Cross-project persona, cited recall, searchable session history.
+MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
 
 ```bash
-cue skills add LH8PPL/core-memory-kit --profile backend
+cue skills add retospect/precis-mcp --profile backend
 ```
 
 ---
 
-<a id="tuantranute-it-icm-graph-context-flow"></a>
-## 💎 [tuantranute-it/icm-graph-context-flow](https://github.com/tuantranute-it/icm-graph-context-flow)
+<a id="777genius-infinity-context"></a>
+## ✨ [777genius/infinity-context](https://github.com/777genius/infinity-context)
 
-**★ 0** · exceptional (score 8) · HTML · tags: ai-agents, ai-coding, anthropic, claude-code, cli
+**★ 1** · strong (score 6.3) · Python · tags: agent-memory, ai, ai-agents, coding-agents, context-engineering
 
-Best Token-Efficient AI Coding Tools 2026 – Reduce Costs 90% with Local Memory & MCP
-
-```bash
-cue skills add tuantranute-it/icm-graph-context-flow --profile backend
-```
-
----
-
-<a id="unpolished-tagusriver58-uefn-toolbelt"></a>
-## ✨ [Unpolished-tagusriver58/UEFN-TOOLBELT](https://github.com/Unpolished-tagusriver58/UEFN-TOOLBELT)
-
-**★ 1** · strong (score 7.8) · Python · tags: 3d-world-mapping, api, automation, editor-extension, framework
-
-Build UEFN Python tools for asset registry, device cataloging, and workflow automation with 355 utility functions
+Reliable memory and context infrastructure for AI coding agents: source-backed facts, review-gated learning, MCP/SDK/UI, and replaceable Qdrant/Graphiti retrieval.
 
 ```bash
-cue skills add Unpolished-tagusriver58/UEFN-TOOLBELT --profile backend
-```
-
----
-
-<a id="mrredstoney-taskflow"></a>
-## ✨ [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow)
-
-**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, dag, dependencies-manager, fastapi
-
-Build a collaborative task management backend with Django, REST, WebSockets, and RabbitMQ for realtime updates and async notifications
-
-```bash
-cue skills add MrRedstoneY/TaskFlow --profile backend
+cue skills add 777genius/infinity-context --profile backend
 ```
 
 ---
@@ -130,6 +102,19 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="cliwant-mcp-sam-gov"></a>
+## ✨ [cliwant/mcp-sam-gov](https://github.com/cliwant/mcp-sam-gov)
+
+**★ 4** · strong (score 5.8) · JavaScript · tags: ai-agents, anthropic, claude, federal-government, govcon
+
+Keyless-first MCP server — 150 tools for US federal + state/local (SLED) government contracting, spending, regulation & partner vetting. SAM.gov, USAspending, Grants.gov, OFAC, FDIC, EPA, CourtListener + 45 more. No API key. Honesty-hardened.
+
+```bash
+cue skills add cliwant/mcp-sam-gov --profile backend
 ```
 
 ---

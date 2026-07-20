@@ -2,21 +2,21 @@
 title: "optave/ops-codegraph-tool — Claude Code skill discovered by cue"
 description: "Code intelligence CLI — function-level dependency graph across 34 languages, 34-tool MCP server for AI agents, complexity metrics, architecture boundary enforce"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-20
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [optave/ops-codegraph-tool](https://github.com/optave/ops-codegraph-tool)
 
-**★ 76** · exceptional (score 13.2) · TypeScript · ai-agents, architecture, ci-cd, cli, code-analysis
+**★ 80** · exceptional (score 13.2) · TypeScript · ai-agents, architecture, ci-cd, cli, code-analysis
 
 > Code intelligence CLI — function-level dependency graph across 34 languages, 34-tool MCP server for AI agents, complexity metrics, architecture boundary enforcement, CI quality gates, git diff impact with co-change analysis, hybrid semantic search. Fully local, zero API keys required.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
-- ⭐ 76 stars
-- 🗓️ Last pushed: 2026-07-11
+- ⭐ 80 stars
+- 🗓️ Last pushed: 2026-07-20
 - 🏷️ Tags: ai-agents, architecture, ci-cd, cli, code-analysis, code-quality, codeowners, complexity-metrics, dependency-graph, impact-analysis, incremental-builds, mcp-server, semantic-search, sqlite, static-analysis, tree-sitter
 
 ## Best fit cue profiles

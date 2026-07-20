@@ -2,7 +2,7 @@
 title: "Singe-dore/Debugging-Kit-Godot — Claude Code skill discovered by cue"
 description: "Automated live testing CLI for Godot projects.  Systematically execute every input path and monitor all numeric properties in real-time. Identify invariant viol"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-20
 tags: [claude-code, skill, core]
 ---
 

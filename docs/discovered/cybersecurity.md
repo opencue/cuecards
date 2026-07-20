@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-19
+updated: 2026-07-20
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -33,7 +33,7 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1954** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
+**★ 1957** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -52,6 +52,19 @@ Open-source security for AI agents: kernel-enforced egress control on macOS and 
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
+```
+
+---
+
+<a id="saagpatel-mcpaudit"></a>
+## 💎 [saagpatel/MCPAudit](https://github.com/saagpatel/MCPAudit)
+
+**★ 4** · exceptional (score 8.3) · Python · tags: ai-safety, audit, cli, developer-tools, mcp
+
+Audit all locally configured MCP servers for permission risks, prompt injection threats, and schema drift
+
+```bash
+cue skills add saagpatel/MCPAudit --profile cybersecurity
 ```
 
 ---

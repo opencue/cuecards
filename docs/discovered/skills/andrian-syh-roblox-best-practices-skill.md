@@ -2,7 +2,7 @@
 title: "andrian-syh/roblox-best-practices-skill — Claude Code skill discovered by cue"
 description: "A framework-agnostic Roblox/Luau coding standards & best practices skill for AI agents. Features an interactive CLI installer supporting version selection, auto"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-18
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: agent-skills, ai-agents, antigravity-skills, best-practices, claude-skills, codex, codex-skills, cursor-skills, luau, roblox
 
 ## Best fit cue profiles

@@ -2,19 +2,19 @@
 title: "serhii-chernenko/herdr-worktreeinclude — Claude Code skill discovered by cue"
 description: "Allow custom path for new worktrees and respects `.worktreeinclude` file like Claude CLI does"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-20
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [serhii-chernenko/herdr-worktreeinclude](https://github.com/serhii-chernenko/herdr-worktreeinclude)
 
-**★ 1** · potential (score 4.2) · Shell · herdr, herdr-plugin, worktree
+**★ 1** · potential (score 4.1) · Shell · herdr, herdr-plugin, worktree
 
 > Allow custom path for new worktrees and respects `.worktreeinclude` file like Claude CLI does
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: herdr, herdr-plugin, worktree
