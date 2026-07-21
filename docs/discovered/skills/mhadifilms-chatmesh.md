@@ -2,7 +2,7 @@
 title: "mhadifilms/chatmesh — Claude Code skill discovered by cue"
 description: "Multi-way sync of agentic chat history (Cursor IDE/CLI, Claude Code, Codex) between Macs, with per-machine username/path rewriting."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 

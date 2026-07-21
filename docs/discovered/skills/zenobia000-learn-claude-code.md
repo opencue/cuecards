@@ -2,20 +2,20 @@
 title: "Zenobia000/learn-claude-code — Claude Code skill discovered by cue"
 description: "Learn Claude Code -- Harness Engineering for Real Agents (forked with learning path guides)"
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Zenobia000/learn-claude-code](https://github.com/Zenobia000/learn-claude-code)
 
-**★ 9** · potential (score 4.2) · TypeScript
+**★ 10** · potential (score 4.2) · TypeScript
 
 > Learn Claude Code -- Harness Engineering for Real Agents (forked with learning path guides)
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
-- ⭐ 9 stars
+- ⭐ 10 stars
 - 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: (none)
 

@@ -2,7 +2,7 @@
 title: "JSONbored/metagraphed — Claude Code skill discovered by cue"
 description: "Operational metadata, health, schemas, and public interface discovery for Bittensor subnets."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-07-20
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: bittensor, bittensor-cli, bittensor-docs, bittensor-metagraph, bittensor-subnet, bittensor-subnets, endpoint-monitoring, mcp, mcp-server, metagraph, openapi, public-infrastructure, registry, schema-registry, status-page, subtensor
 
 ## Best fit cue profiles

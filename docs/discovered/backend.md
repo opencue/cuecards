@@ -1,94 +1,55 @@
 ---
 title: "Claude Code Skills for backend"
-description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jjang-ai-vmlx"></a>
-## 💎 [jjang-ai/vmlx](https://github.com/jjang-ai/vmlx)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 775** · exceptional (score 13.9) · Python · tags: anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm
+**★ 197279** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives restart) + L1 Paged (super fast ttft) + Hybrid SSM Scheduler  + Cont Batching + etc!
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add jjang-ai/vmlx --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="hanyeol-model-compose"></a>
-## 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
+<a id="code-rabi-interactive-brokers-mcp"></a>
+## 💎 [code-rabi/interactive-brokers-mcp](https://github.com/code-rabi/interactive-brokers-mcp)
 
-**★ 75** · exceptional (score 13.3) · Python · tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
+**★ 200** · exceptional (score 13.8) · JavaScript · tags: ibkr, ibkr-api, interactive-brokers, mcp, mcp-server
 
-Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
+Interactive Brokers MCP Server
 
 ```bash
-cue skills add hanyeol/model-compose --profile backend
+cue skills add code-rabi/interactive-brokers-mcp --profile backend
 ```
 
 ---
 
-<a id="optave-ops-codegraph-tool"></a>
-## 💎 [optave/ops-codegraph-tool](https://github.com/optave/ops-codegraph-tool)
+<a id="zipstack-unstract"></a>
+## 💎 [Zipstack/unstract](https://github.com/Zipstack/unstract)
 
-**★ 80** · exceptional (score 13.2) · TypeScript · tags: ai-agents, architecture, ci-cd, cli, code-analysis
+**★ 6711** · exceptional (score 13) · Python · tags: ai-agents, data-engineering, document-ai, generative-ai, idp
 
-Code intelligence CLI — function-level dependency graph across 34 languages, 34-tool MCP server for AI agents, complexity metrics, architecture boundary enforcement, CI quality gates, git diff impact with co-change analysis, hybrid semantic search. Fully local, zero API keys required.
-
-```bash
-cue skills add optave/ops-codegraph-tool --profile backend
-```
-
----
-
-<a id="zycaskevin-vault-agent-memory"></a>
-## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
-
-**★ 43** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
-
-Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
+LLM-Driven Extraction of Unstructured Data — Built for API Deployments & ETL Pipeline Workflows
 
 ```bash
-cue skills add zycaskevin/Vault-Agent-Memory --profile backend
-```
-
----
-
-<a id="retospect-precis-mcp"></a>
-## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
-
-**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, claude, context-management, cursor, llm
-
-MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
-
-```bash
-cue skills add retospect/precis-mcp --profile backend
-```
-
----
-
-<a id="777genius-infinity-context"></a>
-## ✨ [777genius/infinity-context](https://github.com/777genius/infinity-context)
-
-**★ 1** · strong (score 6.3) · Python · tags: agent-memory, ai, ai-agents, coding-agents, context-engineering
-
-Reliable memory and context infrastructure for AI coding agents: source-backed facts, review-gated learning, MCP/SDK/UI, and replaceable Qdrant/Graphiti retrieval.
-
-```bash
-cue skills add 777genius/infinity-context --profile backend
+cue skills add Zipstack/unstract --profile backend
 ```
 
 ---
@@ -102,19 +63,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="cliwant-mcp-sam-gov"></a>
-## ✨ [cliwant/mcp-sam-gov](https://github.com/cliwant/mcp-sam-gov)
-
-**★ 4** · strong (score 5.8) · JavaScript · tags: ai-agents, anthropic, claude, federal-government, govcon
-
-Keyless-first MCP server — 150 tools for US federal + state/local (SLED) government contracting, spending, regulation & partner vetting. SAM.gov, USAspending, Grants.gov, OFAC, FDIC, EPA, CourtListener + 45 more. No API key. Honesty-hardened.
-
-```bash
-cue skills add cliwant/mcp-sam-gov --profile backend
 ```
 
 ---

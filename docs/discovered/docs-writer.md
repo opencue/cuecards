@@ -1,57 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="makinotes-makino-content-to-html"></a>
-## 💎 [makinotes/makino-content-to-html](https://github.com/makinotes/makino-content-to-html)
+<a id="benjsmith-curiosity-engine"></a>
+## 💎 [benjsmith/curiosity-engine](https://github.com/benjsmith/curiosity-engine)
 
-**★ 0** · exceptional (score 14.5) · HTML · tags: ai-writing, claude-code, claude-code-skill, html-generator, markdown-to-html
+**★ 0** · exceptional (score 12) · Python · tags: agent-skill, claude-code, claude-skill, knowledge-base, knowledge-management
 
-Content to HTML — Turn articles into slides, pages, decks, and posters. 6 formats, 15 slide types, 8 presets, JSON→Engine architecture.
-
-✅ SKILL.md
+Self-improving knowledge wiki as a coding-agent skill. Project-aware curation: drop sources in, run curate, occasionally archive. Companion skill curiosity-merge to merge in another wiki.
 
 ```bash
-cue skills add makinotes/makino-content-to-html --profile docs-writer
-```
-
----
-
-<a id="praneybehl-llm-wiki-plugin"></a>
-## 💎 [praneybehl/llm-wiki-plugin](https://github.com/praneybehl/llm-wiki-plugin)
-
-**★ 64** · exceptional (score 14) · TypeScript · tags: ai-tools, claude-code-plugin, claude-code-skill, codex-skill, cursor
-
-Andrej Karpathy's LLM Wiki pattern as a Claude Code plugin — turn accumulated sources into a self-maintaining, scalable markdown knowledge base.
-
-```bash
-cue skills add praneybehl/llm-wiki-plugin --profile docs-writer
-```
-
----
-
-<a id="zycaskevin-vault-agent-memory"></a>
-## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
-
-**★ 43** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
-
-Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
-
-```bash
-cue skills add zycaskevin/Vault-Agent-Memory --profile docs-writer
+cue skills add benjsmith/curiosity-engine --profile docs-writer
 ```
 
 ---

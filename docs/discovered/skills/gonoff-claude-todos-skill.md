@@ -2,7 +2,7 @@
 title: "gonoff/claude-todos-skill — Claude Code skill discovered by cue"
 description: "Per-project todo tracking + project brain + autonomous plan-then-build, with a local broadsheet dashboard for Claude Code"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: agentic-tools, ai-developer-tools, bun, claude-code, claude-code-skill, claude-skill, dashboard, knowledge-management, mermaid, productivity, project-management, second-brain, sqlite, todo, workflow-automation
 
 ## Best fit cue profiles

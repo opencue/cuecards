@@ -2,7 +2,7 @@
 title: "leaf76/lazy-media-mcp — Claude Code skill discovered by cue"
 description: "Local MCP server: compress images/videos and prepare media for AI vision agents (paths only, no base64). Claude, Codex, and other MCP clients."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, creative-media, video]
 ---
 

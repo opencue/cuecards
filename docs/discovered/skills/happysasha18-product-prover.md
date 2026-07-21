@@ -2,7 +2,7 @@
 title: "happysasha18/product-prover — Claude Code skill discovered by cue"
 description: "Review a PRD / spec and catch structural defects before code — formal-verification thinking as a Claude Code skill, every finding traced to the source."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-18
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: claude-code, claude-skill, code-review, formal-verification, prd, prd-review, product-management, specification, system-design
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "netresearch/agent-rules-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for generating AGENTS.md files following the agents.md convention | Claude Code compatible"
 layout: page
-updated: 2026-06-18
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/agent-rules-skill](https://github.com/netresearch/agent-rules-skill)
 
-**★ 51** · exceptional (score 15.5) · Shell · agent-skills, agents-md, ai-agent, ai-agents, claude-code-skill
+**★ 62** · exceptional (score 15.6) · Shell · agent-skills, agents-md, ai-agent, ai-agents, claude-code-skill
 
 > Agent Skill for generating AGENTS.md files following the agents.md convention | Claude Code compatible
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 51 stars
-- 🗓️ Last pushed: 2026-06-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
+- ⭐ 62 stars
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: agent-skills, agents-md, ai-agent, ai-agents, claude-code-skill, convention, documentation, open-standard, skill
 
 ## Best fit cue profiles

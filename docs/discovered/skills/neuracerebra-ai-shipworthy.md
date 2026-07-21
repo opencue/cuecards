@@ -2,7 +2,7 @@
 title: "NeuraCerebra-AI/Shipworthy — Claude Code skill discovered by cue"
 description: "Autonomous product-readiness audits for apps & AI agents — a Claude Code and Codex skill suite that safely walks your user paths, finds where they break for rea"
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-18
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

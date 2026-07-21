@@ -2,21 +2,21 @@
 title: "ariffazil/arifos — Claude Code skill discovered by cue"
 description: "arifOS — Constitutional MCP kernel for governed AI execution. AAA trinity: AGI (Mind) · ASI (Heart) · APEX (Judge). Built for the sovereign agentic era."
 layout: page
-updated: 2026-07-03
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ariffazil/arifos](https://github.com/ariffazil/arifos)
 
-**★ 48** · exceptional (score 13.5) · Python · agentic-ai, agi, ai, ai-agents, ai-governance
+**★ 49** · exceptional (score 13.5) · Python · agentic-ai, agi, ai, ai-agents, ai-governance
 
 > arifOS — Constitutional MCP kernel for governed AI execution. AAA trinity: AGI (Mind) · ASI (Heart) · APEX (Judge). Built for the sovereign agentic era.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
-- ⭐ 48 stars
-- 🗓️ Last pushed: 2026-07-03
+- ⭐ 49 stars
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: agentic-ai, agi, ai, ai-agents, ai-governance, ai-safety, claude-code, constitutional-ai, fastmcp, governance, guardrails, llm, malaysia, mcp, mcp-client, mcp-server, model-context-protocol, multi-agent, prompt-engineering, python
 
 ## Best fit cue profiles

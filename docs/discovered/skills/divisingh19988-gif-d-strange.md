@@ -2,21 +2,21 @@
 title: "divisingh19988-gif/d-strange — Claude Code skill discovered by cue"
 description: "Stop burning tokens on trial-and-error: make your AI agent find the path that actually works, name what is impossible, and stress-test it before you build. Cros"
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [divisingh19988-gif/d-strange](https://github.com/divisingh19988-gif/d-strange)
 
-**★ 3** · potential (score 3.6) · JavaScript
+**★ 3** · potential (score 3.7) · JavaScript
 
 > Stop burning tokens on trial-and-error: make your AI agent find the path that actually works, name what is impossible, and stress-test it before you build. Cross-LLM skill suite (Claude Code, Codex, Cursor, Windsurf, Cline, Gemini, OpenCode).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-17
+- 🗓️ Last pushed: 2026-07-20
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="ciroautuori-r3f-production"></a>
-## 💎 [ciroautuori/r3f-production](https://github.com/ciroautuori/r3f-production)
-
-**★ 0** · exceptional (score 12.5) · Python · tags: 3d-web, accessibility, agent-skill, awwwards, best-practices
-
-Production governance skill for React Three Fiber (r3f v9 + three r183 + Zustand + Next.js): 13 hard rules, three-speed state, polish chain, 88/100 audit scorecard, headless Blender->GLB, self-hosted CI on one VPS. MIT, EN-only.
-
-✅ SKILL.md
-
-```bash
-cue skills add ciroautuori/r3f-production --profile frontend
-```
 
 ---
 
@@ -65,19 +50,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="syo-m-fable-frontend-skills"></a>
-## ✨ [Syo-M/fable-frontend-skills](https://github.com/Syo-M/fable-frontend-skills)
-
-**★ 3** · strong (score 5.4) · JavaScript · tags: accessibility, agent-skills, ai-coding, astro, claude
-
-Measured, opinionated Claude Code rules for frontend work (React / Next.js / Vite / Astro) — skills, path rules, review agents, sign-off hooks, installer & plugin. Every claim backed by committed eval reports.
-
-```bash
-cue skills add Syo-M/fable-frontend-skills --profile frontend
 ```
 
 ---

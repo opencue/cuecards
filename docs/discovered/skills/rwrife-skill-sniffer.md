@@ -2,19 +2,19 @@
 title: "rwrife/skill-sniffer — Claude Code skill discovered by cue"
 description: "An ESLint for the Skills era: a paranoid, offline CLI that lints, audits, and scores your SKILL.md / agent-skill files for secrets, prompt-injection bait, token"
 layout: page
-updated: 2026-07-20
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [rwrife/skill-sniffer](https://github.com/rwrife/skill-sniffer)
 
-**★ 1** · potential (score 3.2) · TypeScript · auto-tool-lab
+**★ 1** · potential (score 3.1) · TypeScript · auto-tool-lab
 
 > An ESLint for the Skills era: a paranoid, offline CLI that lints, audits, and scores your SKILL.md / agent-skill files for secrets, prompt-injection bait, token bloat, broken paths, and over-broad tool grants.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-16
 - 🏷️ Tags: auto-tool-lab
