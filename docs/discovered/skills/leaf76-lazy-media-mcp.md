@@ -2,19 +2,19 @@
 title: "leaf76/lazy-media-mcp — Claude Code skill discovered by cue"
 description: "Local MCP server: compress images/videos and prepare media for AI vision agents (paths only, no base64). Claude, Codex, and other MCP clients."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, skill, creative-media, video]
 ---
 
 # ✨ [leaf76/lazy-media-mcp](https://github.com/leaf76/lazy-media-mcp)
 
-**★ 1** · strong (score 6.3) · TypeScript · ai-vision, claude, codex, ffmpeg, image-compression
+**★ 1** · strong (score 6.2) · TypeScript · ai-vision, claude, codex, ffmpeg, image-compression
 
 > Local MCP server: compress images/videos and prepare media for AI vision agents (paths only, no base64). Claude, Codex, and other MCP clients.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: ai-vision, claude, codex, ffmpeg, image-compression, mcp, mcp-server, model-context-protocol, sharp, stdio, typescript, video-compression

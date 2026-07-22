@@ -2,20 +2,20 @@
 title: "zarpay/rails-template — Claude Code skill discovered by cue"
 description: "Opinionated, agent-native Rails template — the production Rails starter ZAR uses internally, packaged with a CLAUDE.md operating manual, 32 Claude skills, and 1"
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [zarpay/rails-template](https://github.com/zarpay/rails-template)
 
-**★ 4** · potential (score 4.5) · Ruby
+**★ 5** · potential (score 4.6) · Ruby
 
 > Opinionated, agent-native Rails template — the production Rails starter ZAR uses internally, packaged with a CLAUDE.md operating manual, 32 Claude skills, and 17 path-scoped coding rules.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
-- ⭐ 4 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.6 based on:
+- ⭐ 5 stars
 - 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: (none)
 

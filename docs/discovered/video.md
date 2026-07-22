@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
 Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
@@ -31,7 +31,7 @@ cue skills add TanaTTV/lyt --profile video
 <a id="leaf76-lazy-media-mcp"></a>
 ## ✨ [leaf76/lazy-media-mcp](https://github.com/leaf76/lazy-media-mcp)
 
-**★ 1** · strong (score 6.3) · TypeScript · tags: ai-vision, claude, codex, ffmpeg, image-compression
+**★ 1** · strong (score 6.2) · TypeScript · tags: ai-vision, claude, codex, ffmpeg, image-compression
 
 Local MCP server: compress images/videos and prepare media for AI vision agents (paths only, no base64). Claude, Codex, and other MCP clients.
 

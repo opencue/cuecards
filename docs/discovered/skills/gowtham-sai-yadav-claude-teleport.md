@@ -2,7 +2,7 @@
 title: "gowtham-sai-yadav/claude-teleport — Claude Code skill discovered by cue"
 description: "Move your Claude Code history, memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 19 stars
-- 🗓️ Last pushed: 2026-07-20
+- 🗓️ Last pushed: 2026-07-22
 - 🏷️ Tags: ai-coding, anthropic, backup, claude, claude-code, cli, cross-platform, developer-tools, devtools, golang, migration
 
 ## Best fit cue profiles

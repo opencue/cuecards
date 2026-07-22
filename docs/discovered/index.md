@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,23 +11,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-07-21 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-07-22 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 77 | `nano-banana-pro-prompts-recommend-skill`, `creative-director-skill`, `blockrun-mcp` |
-| [**backend**](./backend.md) | 6 | `n8n`, `interactive-brokers-mcp`, `unstract` |
-| [**creative-media**](./creative-media.md) | 6 | `design-system-builder`, `netresearch-branding-skill`, `pixel-mcp-workflow` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `pixel-mcp-workflow`, `sticky-switcher-funnel-playbook` |
-| [**fleet-control**](./fleet-control.md) | 2 | `multi-agent-revenue-orchestrator`, `rolepod` |
-| [**research**](./research.md) | 2 | `popper-scope`, `chain-of-density` |
+| [**core**](./core.md) | 72 | `trace-mcp`, `brilliant-directories-mcp`, `claude-with-leetcode` |
+| [**backend**](./backend.md) | 7 | `superlocalmemory`, `GoodMemory`, `Vault-Agent-Memory` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `nsauditor-ai-agent-skill`, `hydra`, `Claude-OSINT` |
+| [**frontend**](./frontend.md) | 4 | `typescript-react-nextjs-patterns`, `awesome-claude-ui-armory`, `pixel-mcp-workflow` |
+| [**research**](./research.md) | 4 | `cli-anything-zotero`, `thesis-figure-skill`, `popper-scope` |
+| [**creative-media**](./creative-media.md) | 4 | `pixel-mcp-workflow`, `lyt`, `lazy-media-mcp` |
+| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**docs-writer**](./docs-writer.md) | 2 | `onboard`, `Vault-Agent-Memory` |
+| [**marketing**](./marketing.md) | 2 | `promotion-assistant`, `sticky-switcher-funnel-playbook` |
 | [**video**](./video.md) | 2 | `lyt`, `lazy-media-mcp` |
-| [**niche**](./niche.md) | 1 | `xiaozhi-esp32-server` |
-| [**docs-writer**](./docs-writer.md) | 1 | `curiosity-engine` |
-| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**nextjs**](./nextjs.md) | 1 | `typescript-react-nextjs-patterns` |
 | [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works

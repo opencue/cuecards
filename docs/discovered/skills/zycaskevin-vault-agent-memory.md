@@ -2,21 +2,21 @@
 title: "zycaskevin/Vault-Agent-Memory — Claude Code skill discovered by cue"
 description: "Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-22
 tags: [claude-code, skill, backend, docs-writer]
 ---
 
 # 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
 
-**★ 43** · exceptional (score 10.8) · Python · agent-memory, ai-agents, knowledge-base, llm, local-first
+**★ 45** · exceptional (score 10.8) · Python · agent-memory, ai-agents, knowledge-base, llm, local-first
 
 > Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 43 stars
-- 🗓️ Last pushed: 2026-07-20
+- ⭐ 45 stars
+- 🗓️ Last pushed: 2026-07-22
 - 🏷️ Tags: agent-memory, ai-agents, knowledge-base, llm, local-first, mcp, mcp-server, memory-governance, multi-agent, obsidian, rag, sqlite, sqlite-vec, trust-scoring
 
 ## Best fit cue profiles

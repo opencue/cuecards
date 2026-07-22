@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="benjsmith-curiosity-engine"></a>
-## 💎 [benjsmith/curiosity-engine](https://github.com/benjsmith/curiosity-engine)
+<a id="tokyubevoxelverse-onboard"></a>
+## 💎 [tokyubevoxelverse/onboard](https://github.com/tokyubevoxelverse/onboard)
 
-**★ 0** · exceptional (score 12) · Python · tags: agent-skill, claude-code, claude-skill, knowledge-base, knowledge-management
+**★ 1** · exceptional (score 13.3) · tags: agent-skills, ai, ai-agents, automation, claude
 
-Self-improving knowledge wiki as a coding-agent skill. Project-aware curation: drop sources in, run curate, occasionally archive. Companion skill curiosity-merge to merge in another wiki.
+Claude Code skill that catches your README lying — it follows your setup docs literally in a clean environment and reports every step that's wrong, missing, or silently assumed. 👻
+
+✅ SKILL.md
 
 ```bash
-cue skills add benjsmith/curiosity-engine --profile docs-writer
+cue skills add tokyubevoxelverse/onboard --profile docs-writer
+```
+
+---
+
+<a id="zycaskevin-vault-agent-memory"></a>
+## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
+
+**★ 45** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
+
+Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
+
+```bash
+cue skills add zycaskevin/Vault-Agent-Memory --profile docs-writer
 ```
 
 ---

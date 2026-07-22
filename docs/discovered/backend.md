@@ -1,55 +1,70 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="qualixar-superlocalmemory"></a>
+## 💎 [qualixar/superlocalmemory](https://github.com/qualixar/superlocalmemory)
 
-**★ 197279** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 197** · exceptional (score 18.2) · Python · tags: agent-memory, agent-reliability, ai-agents, claude-code, cursor
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+World's first local-only AI memory to break 74% retrieval and 60% zero-LLM on LoCoMo. No cloud, no APIs, no data leaves your machine. Additionally, mode C (LLM/Cloud) - 87.7% LoCoMo. Research-backed. arXiv: 2603.14588
+
+✅ SKILL.md
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add qualixar/superlocalmemory --profile backend
 ```
 
 ---
 
-<a id="code-rabi-interactive-brokers-mcp"></a>
-## 💎 [code-rabi/interactive-brokers-mcp](https://github.com/code-rabi/interactive-brokers-mcp)
+<a id="hjqcan-goodmemory"></a>
+## 💎 [hjqcan/GoodMemory](https://github.com/hjqcan/GoodMemory)
 
-**★ 200** · exceptional (score 13.8) · JavaScript · tags: ibkr, ibkr-api, interactive-brokers, mcp, mcp-server
+**★ 8** · exceptional (score 12.3) · TypeScript · tags: agent-memory, ai-agents, claude-code, codex, coding-agents
 
-Interactive Brokers MCP Server
+Local-first, auditable memory layer for AI apps and coding agents — Codex, Claude Code, MCP, HTTP, TypeScript, and Python.
 
 ```bash
-cue skills add code-rabi/interactive-brokers-mcp --profile backend
+cue skills add hjqcan/GoodMemory --profile backend
 ```
 
 ---
 
-<a id="zipstack-unstract"></a>
-## 💎 [Zipstack/unstract](https://github.com/Zipstack/unstract)
+<a id="zycaskevin-vault-agent-memory"></a>
+## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
 
-**★ 6711** · exceptional (score 13) · Python · tags: ai-agents, data-engineering, document-ai, generative-ai, idp
+**★ 45** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
 
-LLM-Driven Extraction of Unstructured Data — Built for API Deployments & ETL Pipeline Workflows
+Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
 
 ```bash
-cue skills add Zipstack/unstract --profile backend
+cue skills add zycaskevin/Vault-Agent-Memory --profile backend
+```
+
+---
+
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+
+**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
+
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
+
+```bash
+cue skills add DaizeDong/schedule-reminder --profile backend
 ```
 
 ---
@@ -68,9 +83,9 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 ---
 
 <a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

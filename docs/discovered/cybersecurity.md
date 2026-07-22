@@ -1,24 +1,54 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-22
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+
+**★ 3** · exceptional (score 16.7) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
+<a id="zandereins-hydra"></a>
+## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
+
+**★ 4** · exceptional (score 16.3) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+
+Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
+
+✅ SKILL.md
+
+```bash
+cue skills add Zandereins/hydra --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1962** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
+**★ 1964** · exceptional (score 10.9) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
