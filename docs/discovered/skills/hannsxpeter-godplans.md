@@ -2,13 +2,13 @@
 title: "hannsxpeter/godplans — Claude Code skill discovered by cue"
 description: "Plan everything before anything. Single-command AI agent skill that emits a complete, audit-proof, agent-executable master plan (PLAN.mdx) before any code is wr"
 layout: page
-updated: 2026-07-13
+updated: 2026-07-23
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # ✨ [hannsxpeter/godplans](https://github.com/hannsxpeter/godplans)
 
-**★ 1** · strong (score 7.3) · Shell · agent-skills, ai-agents, architecture, claude-code, claude-skill
+**★ 1** · strong (score 7.3) · MDX · agent-skills, ai-agents, architecture, claude-code, claude-skill
 
 > Plan everything before anything. Single-command AI agent skill that emits a complete, audit-proof, agent-executable master plan (PLAN.mdx) before any code is written. Claude Code, Codex, Cursor, OpenCode, and every Agent Skills client.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-13
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: agent-skills, ai-agents, architecture, claude-code, claude-skill, codex, cursor, developer-tools, llm, master-plan, mdx, opencode, plan-first, planning, prd, project-planning, roadmap, security-by-design, spec-driven-development, windsurf
 
 ## Best fit cue profiles

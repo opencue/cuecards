@@ -2,19 +2,19 @@
 title: "dungnotnull/speedrun-route-optimization-agent-skill — Claude Code skill discovered by cue"
 description: "⏱️🎮 Speedrun Route Optimization & Sequence-Break Analysis Engine | Production-grade Claude Code harness (v2.1.0). Features Microkernel Event Bus, DAG critical-"
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [dungnotnull/speedrun-route-optimization-agent-skill](https://github.com/dungnotnull/speedrun-route-optimization-agent-skill)
 
-**★ 1** · exceptional (score 8.3) · Python
+**★ 1** · exceptional (score 8.2) · Python
 
 > ⏱️🎮 Speedrun Route Optimization & Sequence-Break Analysis Engine | Production-grade Claude Code harness (v2.1.0). Features Microkernel Event Bus, DAG critical-path solver, frame-math heuristics, and live speedrun.com / TASVideos API integrations.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-21

@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="daizedong-promotion-assistant"></a>
-## 💎 [DaizeDong/promotion-assistant](https://github.com/DaizeDong/promotion-assistant)
-
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, analytics, bandit
-
-Automate multi-channel product promotion (email/posts/forum/DM), track conversion funnel, self-tune via feedback.
-
-```bash
-cue skills add DaizeDong/promotion-assistant --profile marketing
-```
 
 ---
 

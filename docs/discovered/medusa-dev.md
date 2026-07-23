@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-23
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="kojibai-receiz-commerce"></a>
-## ✨ [kojibai/Receiz-commerce](https://github.com/kojibai/Receiz-commerce)
+<a id="daizedong-shopping-aggregator"></a>
+## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
 
-**★ 0** · strong (score 5) · TypeScript · tags: agent-commerce, digital-ownership, ecommerce, marketplace, mcp
+**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, amazon, claude
 
-Open-source, no-code ecommerce launcher and developer kernel for proof-native artifacts. Clone, configure, and launch your own storefront powered by the Receiz SDK, MCP server, offline verification, ownership receipts, and programmable commerce objects.
+Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
 
 ```bash
-cue skills add kojibai/Receiz-commerce --profile medusa-dev
+cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
 ```
 
 ---

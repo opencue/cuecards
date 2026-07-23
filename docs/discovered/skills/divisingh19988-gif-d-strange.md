@@ -2,7 +2,7 @@
 title: "divisingh19988-gif/d-strange — Claude Code skill discovered by cue"
 description: "Stop burning tokens on trial-and-error: make your AI agent find the path that actually works, name what is impossible, and stress-test it before you build. Cros"
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "giovannisacca/pixel-mcp-workflow — Claude Code skill discovered by cue"
 description: "🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow"
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, skill, creative-media, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-22
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma, figma-to-code, ios, objective-c, pencil-mcp, ui-generation
 
 ## Best fit cue profiles

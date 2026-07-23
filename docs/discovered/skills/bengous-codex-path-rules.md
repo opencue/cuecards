@@ -2,21 +2,21 @@
 title: "bengous/codex-path-rules — Claude Code skill discovered by cue"
 description: "Path-scoped Codex hook that loads .claude/rules only when matching files are touched"
 layout: page
-updated: 2026-07-18
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [bengous/codex-path-rules](https://github.com/bengous/codex-path-rules)
 
-**★ 1** · potential (score 4.2) · Rust · cli, codex, hooks, rust
+**★ 1** · potential (score 4.3) · Rust · cli, codex, hooks, rust
 
 > Path-scoped Codex hook that loads .claude/rules only when matching files are touched
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-14
+- 🗓️ Last pushed: 2026-07-22
 - 🏷️ Tags: cli, codex, hooks, rust
 
 ## Best fit cue profiles

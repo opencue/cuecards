@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="tokyubevoxelverse-onboard"></a>
-## 💎 [tokyubevoxelverse/onboard](https://github.com/tokyubevoxelverse/onboard)
+<a id="sumeetmi2-architecture-debt-visualizer"></a>
+## ✨ [sumeetmi2/architecture-debt-visualizer](https://github.com/sumeetmi2/architecture-debt-visualizer)
 
-**★ 1** · exceptional (score 13.3) · tags: agent-skills, ai, ai-agents, automation, claude
+**★ 0** · strong (score 7) · Python · tags: architecture-review, claude-code, claude-plugin, claude-skill, developer-tools
 
-Claude Code skill that catches your README lying — it follows your setup docs literally in a clean environment and reports every step that's wrong, missing, or silently assumed. 👻
-
-✅ SKILL.md
+Claude Code skill for architecture reviews, docs-to-code drift detection, and evidence-based technical debt analysis across 12 dimensions — scalability, extensibility, reliability, security, change safety, data architecture, observability, and more.
 
 ```bash
-cue skills add tokyubevoxelverse/onboard --profile docs-writer
-```
-
----
-
-<a id="zycaskevin-vault-agent-memory"></a>
-## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
-
-**★ 45** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
-
-Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
-
-```bash
-cue skills add zycaskevin/Vault-Agent-Memory --profile docs-writer
+cue skills add sumeetmi2/architecture-debt-visualizer --profile docs-writer
 ```
 
 ---

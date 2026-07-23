@@ -2,7 +2,7 @@
 title: "mario-montanari/italiano-scrittura-anti-ai — Claude Code skill discovered by cue"
 description: "Skill Claude per scrivere in italiano corretto: grammatica normativa (articoli, accenti, congiuntivo, punteggiatura), lessico e pattern tipici della prosa AI da"
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 11 stars
-- 🗓️ Last pushed: 2026-07-22
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: ai-writing, anthropic-claude, anti-ai-detection, claude-code, claude-skill, humanize-ai, italian, italian-language, italian-nlp, writing-tools
 
 ## Best fit cue profiles

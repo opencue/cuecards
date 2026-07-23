@@ -1,70 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="qualixar-superlocalmemory"></a>
-## 💎 [qualixar/superlocalmemory](https://github.com/qualixar/superlocalmemory)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 197** · exceptional (score 18.2) · Python · tags: agent-memory, agent-reliability, ai-agents, claude-code, cursor
+**★ 197562** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-World's first local-only AI memory to break 74% retrieval and 60% zero-LLM on LoCoMo. No cloud, no APIs, no data leaves your machine. Additionally, mode C (LLM/Cloud) - 87.7% LoCoMo. Research-backed. arXiv: 2603.14588
-
-✅ SKILL.md
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add qualixar/superlocalmemory --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="hjqcan-goodmemory"></a>
-## 💎 [hjqcan/GoodMemory](https://github.com/hjqcan/GoodMemory)
+<a id="khamel83-argus"></a>
+## 💎 [Khamel83/argus](https://github.com/Khamel83/argus)
 
-**★ 8** · exceptional (score 12.3) · TypeScript · tags: agent-memory, ai-agents, claude-code, codex, coding-agents
+**★ 3** · exceptional (score 8.2) · Python · tags: ai-agents, brave-search, cli, content-extraction, duckduckgo
 
-Local-first, auditable memory layer for AI apps and coding agents — Codex, Claude Code, MCP, HTTP, TypeScript, and Python.
-
-```bash
-cue skills add hjqcan/GoodMemory --profile backend
-```
-
----
-
-<a id="zycaskevin-vault-agent-memory"></a>
-## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
-
-**★ 45** · exceptional (score 10.8) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
-
-Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
+Multi-provider web search broker for AI agents. 14 providers, budget-aware routing, content extraction — one API.
 
 ```bash
-cue skills add zycaskevin/Vault-Agent-Memory --profile backend
-```
-
----
-
-<a id="daizedong-schedule-reminder"></a>
-## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
-
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
-
-Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
-
-```bash
-cue skills add DaizeDong/schedule-reminder --profile backend
+cue skills add Khamel83/argus --profile backend
 ```
 
 ---
@@ -78,19 +50,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
-
-**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
-
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
-
-```bash
-cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---

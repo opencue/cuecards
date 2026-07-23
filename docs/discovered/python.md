@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+<a id="khamel83-argus"></a>
+## 💎 [Khamel83/argus](https://github.com/Khamel83/argus)
 
-**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 3** · exceptional (score 8.2) · Python · tags: ai-agents, brave-search, cli, content-extraction, duckduckgo
 
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+Multi-provider web search broker for AI agents. 14 providers, budget-aware routing, content extraction — one API.
 
 ```bash
-cue skills add anirudhlath/alfred --profile python
+cue skills add Khamel83/argus --profile python
 ```
 
 ---

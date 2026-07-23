@@ -2,7 +2,7 @@
 title: "nicolasmelo1/logion — Claude Code skill discovered by cue"
 description: "Agent-native course marketplace and skill registry for executable AI-agent curricula"
 layout: page
-updated: 2026-07-21
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 32 stars
-- 🗓️ Last pushed: 2026-07-21
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: agents, ai, ai-agent, ai-agents, claude-code, claude-code-skill, clawhub, directory, hermes, hermes-skill, llm, llm-tools, logion, network, openai, openclaw, skill, skill-development, skills, skills-course
 
 ## Best fit cue profiles

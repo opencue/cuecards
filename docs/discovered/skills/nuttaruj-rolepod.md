@@ -2,7 +2,7 @@
 title: "nuttaruj/rolepod — Claude Code skill discovered by cue"
 description: "Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership"
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, skill, fleet-control]
 ---
 

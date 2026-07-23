@@ -2,7 +2,7 @@
 title: "tokyubevoxelverse/handoff — Claude Code skill discovered by cue"
 description: "Claude Code skill that writes the end-of-session note your future self needs — what changed and why, the half-done state, the landmines, rejected paths, and nex"
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 

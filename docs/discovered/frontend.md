@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="leejpsd-typescript-react-nextjs-patterns"></a>
-## 💎 [leejpsd/typescript-react-nextjs-patterns](https://github.com/leejpsd/typescript-react-nextjs-patterns)
-
-**★ 15** · exceptional (score 16.1) · tags: agent-skills, claude-code, claude-code-skill, claude-code-skills, codex-cli
-
-Production-grade TypeScript patterns for React & Next.js — Agent Skill for Claude Code, Cursor, Codex. 17 modules, 4K+ lines covering typing, debugging, code review, and architecture decisions.
-
-✅ SKILL.md
-
-```bash
-cue skills add leejpsd/typescript-react-nextjs-patterns --profile frontend
-```
 
 ---
 

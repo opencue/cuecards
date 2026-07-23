@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-23
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="partyfly-guhwoo"></a>
+## 💎 [partyfly/guhwoo](https://github.com/partyfly/guhwoo)
+
+**★ 0** · exceptional (score 13) · JavaScript · tags: agent-skills, ai-generated, ai-slop, anti-slop, claude
+
+Claude Code skill + CLI to remove AI slop from generated web pages: push HTML to a visual editor, refine by hand, pull the changes back. 39 detectable AI-slop fingerprints.
+
+✅ SKILL.md
+
+```bash
+cue skills add partyfly/guhwoo --profile creative-media
+```
+
+---
+
+<a id="atlascloudai-awesome-seedance-2-5-prompts-skills"></a>
+## 💎 [AtlasCloudAI/awesome-seedance-2.5-prompts-skills](https://github.com/AtlasCloudAI/awesome-seedance-2.5-prompts-skills)
+
+**★ 2** · exceptional (score 8.5) · TypeScript · tags: ai-video, atlas-cloud, awesome-list, claude-code, claude-skill
+
+Curated Seedance 2.5 video prompts (100+ full 30s storyboards, 20 languages) + an installable Agent Skill for controllable storyboard/reference-driven video. Real previews via Atlas Cloud.
+
+```bash
+cue skills add AtlasCloudAI/awesome-seedance-2.5-prompts-skills --profile creative-media
+```
 
 ---
 
@@ -37,19 +65,6 @@ Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file path
 
 ```bash
 cue skills add TanaTTV/lyt --profile creative-media
-```
-
----
-
-<a id="leaf76-lazy-media-mcp"></a>
-## ✨ [leaf76/lazy-media-mcp](https://github.com/leaf76/lazy-media-mcp)
-
-**★ 1** · strong (score 6.2) · TypeScript · tags: ai-vision, claude, codex, ffmpeg, image-compression
-
-Local MCP server: compress images/videos and prepare media for AI vision agents (paths only, no base64). Claude, Codex, and other MCP clients.
-
-```bash
-cue skills add leaf76/lazy-media-mcp --profile creative-media
 ```
 
 ---

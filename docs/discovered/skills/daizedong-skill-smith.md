@@ -2,7 +2,7 @@
 title: "DaizeDong/skill-smith — Claude Code skill discovered by cue"
 description: "Research-first meta-skill that creates other Claude Code skills to an industry-leading, tested-real bar: scaffold to Skill-Repo-Spec, gate on evals/budget/dedup"
 layout: page
-updated: 2026-07-14
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-14
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, evals, llm, meta-skill, scaffolding, skill, skill-authoring, skill-generator
 
 ## Best fit cue profiles
