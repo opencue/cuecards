@@ -1,22 +1,22 @@
 ---
 title: "intutic/intutic — Claude Code skill discovered by cue"
-description: "The open source circuit breaker for AI coding agents. Real-time security, secret DLP, and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, "
+description: "The open source circuit breaker for AI agents. Real-time security, secret DLP, and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, skill, rust]
 ---
 
 # ✨ [intutic/intutic](https://github.com/intutic/intutic)
 
-**★ 0** · strong (score 6) · TypeScript · agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 3** · strong (score 6.7) · TypeScript · agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
 
-> The open source circuit breaker for AI coding agents. Real-time security, secret DLP, and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
+> The open source circuit breaker for AI agents. Real-time security, secret DLP, and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-07-24
 - 🏷️ Tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool, circuit-breaker, claude, claude-code-skill, cursor-ai, devsecops-pipeline, finops-mcp, firewall, llm-security-probe, llm-security-proxy, mcp, model-context-protocol-server, rust-lang, security, wasm4, webassemby
 
 ## Best fit cue profiles

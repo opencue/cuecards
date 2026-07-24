@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-22
+updated: 2026-07-24
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="leejpsd-typescript-react-nextjs-patterns"></a>
-## 💎 [leejpsd/typescript-react-nextjs-patterns](https://github.com/leejpsd/typescript-react-nextjs-patterns)
+<a id="ditakebede1-personal-knowledge-nexus"></a>
+## ✨ [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
 
-**★ 15** · exceptional (score 16.1) · tags: agent-skills, claude-code, claude-code-skill, claude-code-skills, codex-cli
+**★ 0** · strong (score 7.5) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
 
-Production-grade TypeScript patterns for React & Next.js — Agent Skill for Claude Code, Cursor, Codex. 17 modules, 4K+ lines covering typing, debugging, code review, and architecture decisions.
-
-✅ SKILL.md
+Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
 
 ```bash
-cue skills add leejpsd/typescript-react-nextjs-patterns --profile nextjs
+cue skills add ditakebede1/personal-knowledge-nexus --profile nextjs
 ```
 
 ---

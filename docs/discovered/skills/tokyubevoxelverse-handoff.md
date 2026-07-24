@@ -2,19 +2,19 @@
 title: "tokyubevoxelverse/handoff — Claude Code skill discovered by cue"
 description: "Claude Code skill that writes the end-of-session note your future self needs — what changed and why, the half-done state, the landmines, rejected paths, and nex"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tokyubevoxelverse/handoff](https://github.com/tokyubevoxelverse/handoff)
 
-**★ 1** · exceptional (score 12.3) · agent-skills, ai, ai-agents, claude, claude-code
+**★ 1** · exceptional (score 12.2) · agent-skills, ai, ai-agents, claude, claude-code
 
 > Claude Code skill that writes the end-of-session note your future self needs — what changed and why, the half-done state, the landmines, rejected paths, and next steps precise enough to run without archaeology. 🤝
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-22

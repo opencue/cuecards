@@ -1,71 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="partyfly-guhwoo"></a>
-## 💎 [partyfly/guhwoo](https://github.com/partyfly/guhwoo)
-
-**★ 0** · exceptional (score 13) · JavaScript · tags: agent-skills, ai-generated, ai-slop, anti-slop, claude
-
-Claude Code skill + CLI to remove AI slop from generated web pages: push HTML to a visual editor, refine by hand, pull the changes back. 39 detectable AI-slop fingerprints.
-
-✅ SKILL.md
-
-```bash
-cue skills add partyfly/guhwoo --profile creative-media
-```
-
----
-
-<a id="atlascloudai-awesome-seedance-2-5-prompts-skills"></a>
-## 💎 [AtlasCloudAI/awesome-seedance-2.5-prompts-skills](https://github.com/AtlasCloudAI/awesome-seedance-2.5-prompts-skills)
-
-**★ 2** · exceptional (score 8.5) · TypeScript · tags: ai-video, atlas-cloud, awesome-list, claude-code, claude-skill
-
-Curated Seedance 2.5 video prompts (100+ full 30s storyboards, 20 languages) + an installable Agent Skill for controllable storyboard/reference-driven video. Real previews via Atlas Cloud.
-
-```bash
-cue skills add AtlasCloudAI/awesome-seedance-2.5-prompts-skills --profile creative-media
-```
-
----
-
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
-
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
-
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
-
-```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile creative-media
-```
-
----
-
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
-
-**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
-
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
-
-```bash
-cue skills add TanaTTV/lyt --profile creative-media
-```
 
 ---
 

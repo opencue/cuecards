@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="sumeetmi2-architecture-debt-visualizer"></a>
-## ✨ [sumeetmi2/architecture-debt-visualizer](https://github.com/sumeetmi2/architecture-debt-visualizer)
+<a id="maxonliu-karpathy-html-wiki"></a>
+## 💎 [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki)
 
-**★ 0** · strong (score 7) · Python · tags: architecture-review, claude-code, claude-plugin, claude-skill, developer-tools
+**★ 0** · exceptional (score 9) · tags: ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
 
-Claude Code skill for architecture reviews, docs-to-code drift detection, and evidence-based technical debt analysis across 12 dimensions — scalability, extensibility, reliability, security, change safety, data architecture, observability, and more.
+HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)
+
+✅ SKILL.md
 
 ```bash
-cue skills add sumeetmi2/architecture-debt-visualizer --profile docs-writer
+cue skills add maxonliu/karpathy-html-wiki --profile docs-writer
 ```
 
 ---

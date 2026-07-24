@@ -2,7 +2,7 @@
 title: "dungnotnull/speedrun-route-optimization-agent-skill — Claude Code skill discovered by cue"
 description: "⏱️🎮 Speedrun Route Optimization & Sequence-Break Analysis Engine | Production-grade Claude Code harness (v2.1.0). Features Microkernel Event Bus, DAG critical-"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, skill, core]
 ---
 

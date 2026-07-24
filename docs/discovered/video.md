@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
+<a id="xixihhhh-hotclip"></a>
+## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
 
-**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 35** · exceptional (score 10.3) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
 
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频——AI 找高光金句、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts. No credits, no watermark, no uploads. Win/macOS.
 
 ```bash
-cue skills add TanaTTV/lyt --profile video
+cue skills add xixihhhh/hotclip --profile video
 ```
 
 ---

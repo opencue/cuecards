@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+<a id="kterfan-ui-pro-forge"></a>
+## 💎 [kterfan/ui-pro-forge](https://github.com/kterfan/ui-pro-forge)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+**★ 0** · exceptional (score 10.5) · Python · tags: accessibility, ai-agent, ai-coding-assistant, claude-code, claude-skill
 
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+Design-intelligence skill for Claude Code, Cursor & AI coding agents — 85 UI styles, 193 color palettes, 74 font pairings & stack rules for 21 frameworks. Offline search + CLI.
 
 ```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
+cue skills add kterfan/ui-pro-forge --profile frontend
 ```
 
 ---

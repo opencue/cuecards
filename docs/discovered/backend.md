@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,15 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
 
-**★ 197562** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
-
-```bash
-cue skills add n8n-io/n8n --profile backend
-```
-
----
-
-<a id="khamel83-argus"></a>
-## 💎 [Khamel83/argus](https://github.com/Khamel83/argus)
-
-**★ 3** · exceptional (score 8.2) · Python · tags: ai-agents, brave-search, cli, content-extraction, duckduckgo
-
-Multi-provider web search broker for AI agents. 14 providers, budget-aware routing, content extraction — one API.
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
 
 ```bash
-cue skills add Khamel83/argus --profile backend
+cue skills add DaizeDong/schedule-reminder --profile backend
 ```
 
 ---
@@ -50,6 +37,19 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="anirudhlath-alfred"></a>
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+
+```bash
+cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---

@@ -1,45 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="daizedong-small-cap-deepdive"></a>
-## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
-
-**★ 0** · exceptional (score 14.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
-
-Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
-
-✅ SKILL.md
-
-```bash
-cue skills add DaizeDong/small-cap-deepdive --profile research
-```
-
----
-
-<a id="daizedong-market-intel"></a>
-## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
-
-**★ 2** · exceptional (score 10) · Python · tags: agent, ai, ai-agent, claude, claude-code
-
-Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
-
-```bash
-cue skills add DaizeDong/market-intel --profile research
-```
 
 ---
 
@@ -52,6 +24,19 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="oryxintel-oryxflow-claude-plugin"></a>
+## ✨ [oryxintel/oryxflow-claude-plugin](https://github.com/oryxintel/oryxflow-claude-plugin)
+
+**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-agents, ai-data-analysis, claude-code, claude-code-marketplace
+
+Claude Code plugin for reproducible AI data analysis. A skill + slash commands that teach Claude Code to build analysis as a cached, reproducible oryxflow pipeline — so AI-written data analysis is   trustworthy and reproducible by default.
+
+```bash
+cue skills add oryxintel/oryxflow-claude-plugin --profile research
 ```
 
 ---

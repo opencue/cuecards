@@ -2,7 +2,7 @@
 title: "lxhcn/ai-home-migration — Claude Code skill discovered by cue"
 description: "Organize Codex, Claude Code, MCP, skills, plugins, and AI-agent tools into one clean local home with safe migration rules and legacy path support. 整理 Codex、Clau"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, skill, core]
 ---
 

@@ -2,22 +2,22 @@
 title: "PhoenixNest/AGENT-GLOBAL-BASE — Claude Code skill discovered by cue"
 description: "You are an AGENT now. Welcome to the TEAM."
 layout: page
-updated: 2026-06-27
+updated: 2026-07-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [PhoenixNest/AGENT-GLOBAL-BASE](https://github.com/PhoenixNest/AGENT-GLOBAL-BASE)
 
-**★ 1** · exceptional (score 8.8) · Python · agent-engineering, ai-agents, claude-code, gemini, llm
+**★ 2** · exceptional (score 9) · Python · agent-engineering, ai-agents, claude-code, gemini, llm
 
 > You are an AGENT now. Welcome to the TEAM.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-27
-- 🏷️ Tags: agent-engineering, ai-agents, claude-code, gemini, llm, mcp, mcp-server, multi-agent-framework, python
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-24
+- 🏷️ Tags: agent-engineering, ai-agents, claude-code, gemini, llm, mcp, mcp-server, multi-agent-framework, powershell, python, windows
 
 ## Best fit cue profiles
 

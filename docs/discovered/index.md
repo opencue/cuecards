@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-24
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,25 +11,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-07-23 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-07-24 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 76 | `nano-banana-pro-prompts-recommend-skill`, `humanizer-de`, `senior-engineering-partner` |
-| [**cybersecurity**](./cybersecurity.md) | 7 | `nsauditor-ai-agent-skill`, `hydra`, `Claude-OSINT` |
-| [**creative-media**](./creative-media.md) | 5 | `guhwoo`, `awesome-seedance-2.5-prompts-skills`, `pixel-mcp-workflow` |
-| [**backend**](./backend.md) | 4 | `n8n`, `argus`, `adaptive-llm-gateway` |
-| [**research**](./research.md) | 3 | `small-cap-deepdive`, `market-intel`, `popper-scope` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `pixel-mcp-workflow`, `sticky-switcher-funnel-playbook` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `shopping-aggregator` |
-| [**python**](./python.md) | 1 | `argus` |
-| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
-| [**docs-writer**](./docs-writer.md) | 1 | `architecture-debt-visualizer` |
-| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
-| [**video**](./video.md) | 1 | `lyt` |
+| [**core**](./core.md) | 77 | `nano-banana-pro-prompts-recommend-skill`, `ir-search`, `GodotMaker` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `hydra`, `Claude-OSINT`, `sanctuary-framework` |
+| [**fleet-control**](./fleet-control.md) | 4 | `opencouncil-contract-inspector`, `neko-gundan`, `multi-agent-revenue-orchestrator` |
+| [**backend**](./backend.md) | 4 | `schedule-reminder`, `adaptive-llm-gateway`, `alfred` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ui-pro-forge`, `sticky-switcher-funnel-playbook` |
+| [**marketing**](./marketing.md) | 2 | `promotion-assistant`, `sticky-switcher-funnel-playbook` |
+| [**research**](./research.md) | 2 | `popper-scope`, `oryxflow-claude-plugin` |
+| [**video**](./video.md) | 1 | `hotclip` |
+| [**docs-writer**](./docs-writer.md) | 1 | `karpathy-html-wiki` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
 | [**rust**](./rust.md) | 1 | `intutic` |
+| [**python**](./python.md) | 1 | `alfred` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 
