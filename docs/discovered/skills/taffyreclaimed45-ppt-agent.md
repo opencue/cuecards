@@ -2,7 +2,7 @@
 title: "Taffyreclaimed45/ppt-agent — Claude Code skill discovered by cue"
 description: "Generate cross-platform PPT slides with multi-agent LLM workflows, Gemini review, and 1280×720 SVG Bento Grid output"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: academic, agent, agent-skill, ai-skill, ai-skills, aicode, claude-code, claude-skill, design-system, html-to-pptx, mckinsey, multi-agent, no-code, powerpoint, ppt, presentation-design, presentation-generator, slides
 
 ## Best fit cue profiles

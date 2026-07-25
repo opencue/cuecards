@@ -2,21 +2,21 @@
 title: "Cdplayerjumpingoffplace65/compass-mcp — Claude Code skill discovered by cue"
 description: "Sync Claude Chat, Cowork, and Code with an MCP server that shares tasks, context, and project state across all three."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Cdplayerjumpingoffplace65/compass-mcp](https://github.com/Cdplayerjumpingoffplace65/compass-mcp)
 
-**★ 0** · strong (score 6) · TypeScript · affective-neuroscience, ai-ethics, automated-reasoning, career, cognitive-science
+**★ 0** · strong (score 7.5) · TypeScript · affective-neuroscience, ai-ethics, automated-reasoning, career, cognitive-science
 
 > Sync Claude Chat, Cowork, and Code with an MCP server that shares tasks, context, and project state across all three.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-17
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: affective-neuroscience, ai-ethics, automated-reasoning, career, cognitive-science, conflict-analysis, evolutionary-psychology, federal-jobs, government, mcp-server, model-context-protocol, nodejs, panksepp, sociology, typescript, usajobs
 
 ## Best fit cue profiles

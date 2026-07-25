@@ -2,19 +2,19 @@
 title: "lxhcn/ai-home-migration — Claude Code skill discovered by cue"
 description: "Organize Codex, Claude Code, MCP, skills, plugins, and AI-agent tools into one clean local home with safe migration rules and legacy path support. 整理 Codex、Clau"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [lxhcn/ai-home-migration](https://github.com/lxhcn/ai-home-migration)
 
-**★ 2** · exceptional (score 11.5) · agent-tools, ai-agent, claude, codex, dotfiles
+**★ 2** · exceptional (score 11.4) · agent-tools, ai-agent, claude, codex, dotfiles
 
 > Organize Codex, Claude Code, MCP, skills, plugins, and AI-agent tools into one clean local home with safe migration rules and legacy path support. 整理 Codex、Claude、MCP、skills 和插件到统一 AI home。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-07-22

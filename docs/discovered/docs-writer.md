@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 <a id="maxonliu-karpathy-html-wiki"></a>
 ## 💎 [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki)
 
-**★ 0** · exceptional (score 9) · tags: ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
+**★ 0** · exceptional (score 8.9) · tags: ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
 
 HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)
 

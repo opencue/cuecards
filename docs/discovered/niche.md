@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-21
+updated: 2026-07-25
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="xinnan-tech-xiaozhi-esp32-server"></a>
-## 💎 [xinnan-tech/xiaozhi-esp32-server](https://github.com/xinnan-tech/xiaozhi-esp32-server)
+<a id="limingnanyue-novel-creation-omnibus"></a>
+## 💎 [limingnanyue/novel-creation-omnibus](https://github.com/limingnanyue/novel-creation-omnibus)
 
-**★ 10097** · exceptional (score 15) · JavaScript · tags: dify, esp32, mcp-server, xiaozhi, xiaozhi-ai
+**★ 5** · exceptional (score 12.9) · Python · tags: agent-skill, ai-writing, chinese-novel, claude-skill, novel-creation
 
-本项目为xiaozhi-esp32提供后端服务，帮助您快速搭建ESP32设备控制服务器。Backend service for xiaozhi-esp32, helps you quickly build an ESP32 device control server.
+🖋️ 小说创作全能工坊 —— 从网文长篇到短篇故事，从番茄爆文到白描克制，从发刀虐心到通感痛觉，一站式搞定。25套创作工具，按需加载。
+
+✅ SKILL.md
 
 ```bash
-cue skills add xinnan-tech/xiaozhi-esp32-server --profile niche
+cue skills add limingnanyue/novel-creation-omnibus --profile niche
 ```
 
 ---

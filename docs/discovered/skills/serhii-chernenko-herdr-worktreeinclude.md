@@ -2,7 +2,7 @@
 title: "serhii-chernenko/herdr-worktreeinclude — Claude Code skill discovered by cue"
 description: "Allow custom path for new worktrees and respects `.worktreeinclude` file like Claude CLI does"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "anirudhlath/alfred — Claude Code skill discovered by cue"
 description: "Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation trigge"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, skill, python, backend]
 ---
 

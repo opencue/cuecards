@@ -2,22 +2,22 @@
 title: "SaltGardenia/research-code-skill — Claude Code skill discovered by cue"
 description: "AI coding-standard skill for ML/DL research repos — keeps a fixed architecture intact and enforces uniform structure, naming, configs, FAIR data, and review via"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [SaltGardenia/research-code-skill](https://github.com/SaltGardenia/research-code-skill)
 
-**★ 0** · exceptional (score 9) · Python · ai-agent-skill, ai-agents, claude-skills, codex-skills, coding-standards
+**★ 1** · exceptional (score 9.1) · Python · ai-agent-skill, ai-agents, claude-skills, codex-skills, coding-standards
 
 > AI coding-standard skill for ML/DL research repos — keeps a fixed architecture intact and enforces uniform structure, naming, configs, FAIR data, and review via machine-executable Rule Cards.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-18
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: ai-agent-skill, ai-agents, claude-skills, codex-skills, coding-standards, skills
 
 ## Best fit cue profiles

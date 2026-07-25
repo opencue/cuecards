@@ -2,7 +2,7 @@
 title: "robertnowell/marketing-pipeline — Claude Code skill discovered by cue"
 description: "Problem-first automated marketing pipeline for open source projects."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-16
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: anthropic, claude-code, claude-skill, developer-tools, marketing, open-source
 
 ## Best fit cue profiles

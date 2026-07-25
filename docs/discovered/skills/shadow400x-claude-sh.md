@@ -2,21 +2,21 @@
 title: "shadow400x/claude-sh — Claude Code skill discovered by cue"
 description: "Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume"
 layout: page
-updated: 2026-06-23
+updated: 2026-07-25
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
 
-**★ 0** · strong (score 6) · Shell · ai-content, automation, aws-s3, chatgpt, claude-ai
+**★ 0** · strong (score 7.5) · Shell · ai-content, automation, aws-s3, chatgpt, claude-ai
 
 > Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-23
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: ai-content, automation, aws-s3, chatgpt, claude-ai, claude-code-skill, content-creation, google-sheets, hacktoberfest, model-context-protocol, openai-api, postgresql, preview, saas-template, typesafe
 
 ## Best fit cue profiles

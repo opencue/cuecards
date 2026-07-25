@@ -2,7 +2,7 @@
 title: "cyberchitta/cad-khana — Claude Code skill discovered by cue"
 description: "Claude Code skill and diagnostics-first Build123d wrapper for LLM-driven CAD iteration."
 layout: page
-updated: 2026-07-20
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-07-20
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: 3d-printing, build123d, cad, claude-code, claude-skill, parametric-cad
 
 ## Best fit cue profiles

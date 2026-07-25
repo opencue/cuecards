@@ -2,21 +2,21 @@
 title: "rudi193-cmd/willow-mcp — Claude Code skill discovered by cue"
 description: "Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client."
 layout: page
-updated: 2026-07-18
+updated: 2026-07-25
 tags: [claude-code, skill, backend]
 ---
 
-# ✨ [rudi193-cmd/willow-mcp](https://github.com/rudi193-cmd/willow-mcp)
+# 💎 [rudi193-cmd/willow-mcp](https://github.com/rudi193-cmd/willow-mcp)
 
-**★ 1** · strong (score 7.8) · Python · agent, authorization, knowledge-base, mcp, mcp-server
+**★ 2** · exceptional (score 8) · Python · agent, authorization, knowledge-base, mcp, mcp-server
 
 > Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: agent, authorization, knowledge-base, mcp, mcp-server, postgres, python, task-queue
 
 ## Best fit cue profiles

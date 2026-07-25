@@ -2,21 +2,21 @@
 title: "unabused-wichita77/lazy-tool — Claude Code skill discovered by cue"
 description: "Reduce MCP tool overload with a single Go binary that indexes tools locally and serves search-before-invoke via SQLite"
 layout: page
-updated: 2026-07-17
+updated: 2026-07-25
 tags: [claude-code, skill, cybersecurity, backend]
 ---
 
 # ✨ [unabused-wichita77/lazy-tool](https://github.com/unabused-wichita77/lazy-tool)
 
-**★ 0** · strong (score 6) · Go · crawling-framework, developer-experience, linux-security, llm-tools, local-first
+**★ 0** · strong (score 7.5) · Go · crawling-framework, developer-experience, linux-security, llm-tools, local-first
 
 > Reduce MCP tool overload with a single Go binary that indexes tools locally and serves search-before-invoke via SQLite
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-17
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: crawling-framework, developer-experience, linux-security, llm-tools, local-first, mcp-server, model-context-protocol, oscp, oscp-tools, package, pentesters, scanner-web, security-automation, security-tool, spider, sqlite, thycotic, tool-routing, tui, web-vulnerability-scanner
 
 ## Best fit cue profiles

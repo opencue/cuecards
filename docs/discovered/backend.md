@@ -1,29 +1,83 @@
 ---
 title: "Claude Code Skills for backend"
-description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="daizedong-schedule-reminder"></a>
-## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 5** · exceptional (score 17) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/schedule-reminder --profile backend
+cue skills add jakubs2623/notebooklm-skill --profile backend
+```
+
+---
+
+<a id="jayasukuv11-beep-agenthelm"></a>
+## 💎 [jayasukuv11-beep/agenthelm](https://github.com/jayasukuv11-beep/agenthelm)
+
+**★ 4** · exceptional (score 10.8) · TypeScript · tags: agent, agentic-ai, agentmemory, ai, ai-agents
+
+Shared, versioned memory for AI coding agents — MCP server with git-style history (log/diff/blame) for Claude Code, Cursor & Claude Desktop
+
+```bash
+cue skills add jayasukuv11-beep/agenthelm --profile backend
+```
+
+---
+
+<a id="rudi193-cmd-willow-mcp"></a>
+## 💎 [rudi193-cmd/willow-mcp](https://github.com/rudi193-cmd/willow-mcp)
+
+**★ 2** · exceptional (score 8) · Python · tags: agent, authorization, knowledge-base, mcp, mcp-server
+
+Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client.
+
+```bash
+cue skills add rudi193-cmd/willow-mcp --profile backend
+```
+
+---
+
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+
+**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
+
+```bash
+cue skills add shadow400x/claude-sh --profile backend
+```
+
+---
+
+<a id="unabused-wichita77-lazy-tool"></a>
+## ✨ [unabused-wichita77/lazy-tool](https://github.com/unabused-wichita77/lazy-tool)
+
+**★ 0** · strong (score 7.5) · Go · tags: crawling-framework, developer-experience, linux-security, llm-tools, local-first
+
+Reduce MCP tool overload with a single Go binary that indexes tools locally and serves search-before-invoke via SQLite
+
+```bash
+cue skills add unabused-wichita77/lazy-tool --profile backend
 ```
 
 ---
@@ -37,6 +91,19 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="aleprieto790-alt-gtm-mcp"></a>
+## ✨ [aleprieto790-alt/gtm-mcp](https://github.com/aleprieto790-alt/gtm-mcp)
+
+**★ 0** · strong (score 6) · Python · tags: ai, chatgpt, data-layer, enablement, ga4
+
+Run B2B cold outreach in Claude Code: find companies, verify fit, extract contacts, write sequences, and launch campaigns locally
+
+```bash
+cue skills add aleprieto790-alt/gtm-mcp --profile backend
 ```
 
 ---

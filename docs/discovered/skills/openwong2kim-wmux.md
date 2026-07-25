@@ -1,23 +1,23 @@
 ---
 title: "openwong2kim/wmux — Claude Code skill discovered by cue"
-description: "Windows tmux alternative for AI agents — split terminals for Claude Code, Codex, Gemini CLI with MCP browser automation. No WSL required."
+description: "Workspace multiplexer for AI coding agent"
 layout: page
-updated: 2026-06-09
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [openwong2kim/wmux](https://github.com/openwong2kim/wmux)
 
-**★ 136** · exceptional (score 17.5) · TypeScript · agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation
+**★ 273** · exceptional (score 19.2) · TypeScript · agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation
 
-> Windows tmux alternative for AI agents — split terminals for Claude Code, Codex, Gemini CLI with MCP browser automation. No WSL required.
+> Workspace multiplexer for AI coding agent
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
-- ⭐ 136 stars
-- 🗓️ Last pushed: 2026-06-09
-- 🏷️ Tags: agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation, claude, claude-code, coding-agent, developer-tools, electron, gemini, mcp-server, multi-agent, powershell, terminal-multiplexer, tmux, tmux-alternative, windows
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.2 based on:
+- ⭐ 273 stars
+- 🗓️ Last pushed: 2026-07-25
+- 🏷️ Tags: agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation, claude, claude-code, coding-agent, developer-tools, electron, gemini, mcp-server, multi-agent, powershell, terminal-multiplexer, tmux, windows, workspace-multiplexer
 
 ## Best fit cue profiles
 

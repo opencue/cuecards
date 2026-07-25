@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,30 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-promotion-assistant"></a>
-## 💎 [DaizeDong/promotion-assistant](https://github.com/DaizeDong/promotion-assistant)
+<a id="norahe0304-art-30x-growth-marketing-panel"></a>
+## 💎 [norahe0304-art/30x-growth-marketing-panel](https://github.com/norahe0304-art/30x-growth-marketing-panel)
 
-**★ 1** · exceptional (score 10.8) · Python · tags: agent, ai, ai-agent, analytics, bandit
+**★ 30** · exceptional (score 15.9) · Shell · tags: ai-agent-skill, ai-skills, claude-code, growth-marketing, marketing
 
-Automate multi-channel product promotion (email/posts/forum/DM), track conversion funnel, self-tune via feedback.
+AI Growth Marketing Expert Panel — 12 world-class experts distilled from 4,000+ YouTube videos into one Claude Code / Cursor / Codex skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/promotion-assistant --profile marketing
+cue skills add norahe0304-art/30x-growth-marketing-panel --profile marketing
 ```
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="aleprieto790-alt-gtm-mcp"></a>
+## ✨ [aleprieto790-alt/gtm-mcp](https://github.com/aleprieto790-alt/gtm-mcp)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · strong (score 6) · Python · tags: ai, chatgpt, data-layer, enablement, ga4
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Run B2B cold outreach in Claude Code: find companies, verify fit, extract contacts, write sequences, and launch campaigns locally
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add aleprieto790-alt/gtm-mcp --profile marketing
 ```
 
 ---

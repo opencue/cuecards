@@ -2,7 +2,7 @@
 title: "jturuc/n8n-rag-workflow-example — Claude Code skill discovered by cue"
 description: "n8n + Claude API workflow for conversational knowledge capture and retrieval. Chat-based ADD and RETRIEVE paths with Notion storage. Plug-and-play starting poin"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Ahbrvntie/java-jacoco-coverage-backfill — Claude Code skill discovered by cue"
 description: "Backfill Java test coverage with JaCoCo by detecting projects, analyzing branch coverage, and targeting low-branch classes for better tests."
 layout: page
-updated: 2026-07-19
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: branch-coverage, claude-code, claude-skill, codex-skill, gradle, jacoco, java, junit, maven, quality-assurance, test-coverage
 
 ## Best fit cue profiles

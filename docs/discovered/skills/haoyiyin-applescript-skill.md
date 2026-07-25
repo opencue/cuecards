@@ -2,19 +2,19 @@
 title: "haoyiyin/applescript-skill — Claude Code skill discovered by cue"
 description: "Agent skill for macOS automation via AppleScript — control browsers, files, mail, messages, media, and system settings. Compatible with any AI agent."
 layout: page
-updated: 2026-07-17
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [haoyiyin/applescript-skill](https://github.com/haoyiyin/applescript-skill)
 
-**★ 2** · exceptional (score 14.9) · AppleScript · agent-skill, ai-agent-skill, ai-agents, applescript, automation
+**★ 2** · exceptional (score 14.6) · AppleScript · agent-skill, ai-agent-skill, ai-agents, applescript, automation
 
 > Agent skill for macOS automation via AppleScript — control browsers, files, mail, messages, media, and system settings. Compatible with any AI agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.6 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-07-02

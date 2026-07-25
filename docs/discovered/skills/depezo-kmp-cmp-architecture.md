@@ -2,19 +2,19 @@
 title: "depezo/kmp-cmp-architecture — Claude Code skill discovered by cue"
 description: "A Claude Skill for Kotlin Multiplatform (KMP) and Compose Multiplatform (CMP) development: project/module structure, Clean Architecture + MVI, dependency inject"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [depezo/kmp-cmp-architecture](https://github.com/depezo/kmp-cmp-architecture)
 
-**★ 0** · potential (score 4.8) · ai-agent-skill, claude-skill, compose-multiplatform, kotlin-multiplatform
+**★ 0** · potential (score 4.7) · ai-agent-skill, claude-skill, compose-multiplatform, kotlin-multiplatform
 
 > A Claude Skill for Kotlin Multiplatform (KMP) and Compose Multiplatform (CMP) development: project/module structure, Clean Architecture + MVI, dependency injection (Koin vs Hilt), local persistence (SQLDelight vs Room), Gradle version catalogs, and Android Gradle Plugin (AGP) 9.x migration for KMP
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: ai-agent-skill, claude-skill, compose-multiplatform, kotlin-multiplatform

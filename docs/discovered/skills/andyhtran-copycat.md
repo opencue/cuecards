@@ -2,7 +2,7 @@
 title: "andyhtran/CopyCat — Claude Code skill discovered by cue"
 description: "Press ⌘V to paste screenshots into your terminal — CopyCat saves the image and types the file path so Claude Code or Codex CLI can read it. Works locally and ov"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 

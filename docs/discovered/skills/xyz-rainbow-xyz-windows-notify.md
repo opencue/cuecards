@@ -2,19 +2,19 @@
 title: "xyz-rainbow/xyz-windows-notify — Claude Code skill discovered by cue"
 description: "Universal AI Agent Toast Notification Skill for Windows 11 with custom icon (-AppLogo) & percentage progress updates"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xyz-rainbow/xyz-windows-notify](https://github.com/xyz-rainbow/xyz-windows-notify)
 
-**★ 1** · exceptional (score 9.3) · ai-agent-skill, antigravity, burnttoast, powershell, toast-notifications
+**★ 1** · exceptional (score 9.2) · ai-agent-skill, antigravity, burnttoast, powershell, toast-notifications
 
 > Universal AI Agent Toast Notification Skill for Windows 11 with custom icon (-AppLogo) & percentage progress updates
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-22

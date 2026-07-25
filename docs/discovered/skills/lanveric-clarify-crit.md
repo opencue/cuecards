@@ -2,20 +2,20 @@
 title: "lanveric/clarify-crit — Claude Code skill discovered by cue"
 description: "Clarify (CRIT): a portable AI-skill package for request refinement"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [lanveric/clarify-crit](https://github.com/lanveric/clarify-crit)
+# ✨ [lanveric/clarify-crit](https://github.com/lanveric/clarify-crit)
 
-**★ 1** · potential (score 4.3) · ai-agent-skill, claude, llm, prompt-engineering
+**★ 8** · strong (score 5.8) · ai-agent-skill, claude, llm, prompt-engineering
 
 > Clarify (CRIT): a portable AI-skill package for request refinement
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
-- ⭐ 1 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
+- ⭐ 8 stars
 - 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: ai-agent-skill, claude, llm, prompt-engineering
 

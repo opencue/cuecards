@@ -2,19 +2,19 @@
 title: "maxonliu/karpathy-html-wiki — Claude Code skill discovered by cue"
 description: "HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-25
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki)
 
-**★ 0** · exceptional (score 9) · ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
+**★ 0** · exceptional (score 8.9) · ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
 
 > HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-07-24

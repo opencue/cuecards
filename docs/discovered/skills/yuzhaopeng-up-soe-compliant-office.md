@@ -2,19 +2,19 @@
 title: "yuzhaopeng-up/soe-compliant-office — Claude Code skill discovered by cue"
 description: "17 SOE-Compliant Office Skills - Built-in Compliance, Audit Trail, National Standards Ready"
 layout: page
-updated: 2026-07-17
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [yuzhaopeng-up/soe-compliant-office](https://github.com/yuzhaopeng-up/soe-compliant-office)
 
-**★ 0** · potential (score 3.4) · Python · ai-agent-skill, audit-trail, built-in-compliance, chinese-state-enterprise, contract-review
+**★ 0** · potential (score 3.1) · Python · ai-agent-skill, audit-trail, built-in-compliance, chinese-state-enterprise, contract-review
 
 > 17 SOE-Compliant Office Skills - Built-in Compliance, Audit Trail, National Standards Ready
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-07-04
 - 🏷️ Tags: ai-agent-skill, audit-trail, built-in-compliance, chinese-state-enterprise, contract-review, gb-t-9704, office-automation, ooxml, python, soe-compliance
