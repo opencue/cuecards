@@ -94,6 +94,7 @@ skills:
 
 mcps:
   - google-ads-mcp             # Official Google Ads MCP (GAQL search, metadata, resources)
+  - facebook-ads-mcp           # Meta Graph API reads (gomarble clone, BM system-user token)
 
 plugins:
   - claude-ads@agricidaniel-claude-ads   # Claude Code plugin (auto-updates, namespace isolation)
@@ -129,6 +130,10 @@ persona: |
   - list_accessible_customers — list customer IDs the auth principal can reach
   - discovery-document — full Google Ads API surface
   - metrics / segments / release-notes — reporting metadata
+
+  Meta side (facebook-ads-mcp, read-only): list_ad_accounts, campaign/adset/ad
+  listing and insights for the active workspace's FB_AD_ACCOUNT_ID. State which
+  ad account you are reading at session start.
 
   ## /ads Commands (audit & strategy)
 
