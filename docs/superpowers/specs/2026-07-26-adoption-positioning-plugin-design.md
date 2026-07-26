@@ -179,6 +179,35 @@ suggests cue ("you have 40 skills loaded, this could be scoped"). That is the
 nagging pattern users resent, and it is new content to write. It can be added
 later if wanted.
 
+## Agent-paste install (amendment, 2026-07-26)
+
+cue's target user is already sitting in front of an agent. The primary install
+instruction is therefore a **copy-pasteable prompt**, not a shell command: the
+user drops it into Claude Code, Codex, or Cursor and the agent performs the
+install, relaying prompts and asking before it touches anything.
+
+This path already exists in the repo as `setup/macos.md`, `setup/linux.md`, and
+`setup/windows.md`, surfaced as the fourth row of a four-row install table. It
+is promoted to the top and reduced to one OS-agnostic block.
+
+The canonical text lives at `setup/agent-prompt.md` and is inlined verbatim in
+the README. It is deliberately the same flow as the plugin's `/cue-setup` slash
+command, so there is one description of the install, not three.
+
+Constraints on the prompt:
+
+- **It never installs without asking.** The final line is an explicit
+  instruction to that effect, and step 3 asks before `npm install -g cue-ai`.
+- **No `curl | bash`.** The agent runs named commands the user can read.
+- **Agent-agnostic.** No Claude-specific or Codex-specific syntax, so the same
+  block works wherever it is pasted.
+- **It delegates to `cue setup`** rather than restating the steps `cue setup`
+  performs, for the same reason `/cue-setup` does.
+
+The README's Install section leads with this block, followed by the manual
+`npm install -g cue-ai && cue setup` for people who would rather type it
+themselves. The four-path table stays behind the `<details>` block as before.
+
 ## README restructure
 
 The problem is order, not length: roughly 80 lines of argument precede the first

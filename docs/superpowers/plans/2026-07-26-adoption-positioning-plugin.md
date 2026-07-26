@@ -11,7 +11,9 @@ copy surfaces. Phase 2 adds a `setup` alias and moves the cost proof ahead of th
 shim prompt inside the existing `cue init` flow. Phase 3 packages the existing
 `plugins/cue/` plugin behind a repo-root `.claude-plugin/marketplace.json`.
 Phase 1 gates the other two because the plugin description and the awesome-list
-entry are both derived from the canonical strings.
+entry are both derived from the canonical strings. Phase 3 also promotes the
+agent-paste install — a copy-pasteable prompt the user drops into their agent —
+from the fourth row of an install table to the README's primary path.
 
 **Tech Stack:** TypeScript on Bun (`bun test`), Biome for lint, `@clack/prompts`
 for interactive CLI flows, JSON manifests for Claude Code plugin/marketplace.
@@ -270,7 +272,7 @@ the plugin exists but nobody can install it.
 **Interfaces:**
 - Consumes: `plugins/cue/.claude-plugin/plugin.json` from Task 2.
 - Produces: `.claude-plugin/marketplace.json` declaring marketplace `cuecards`
-  with one plugin, `cue`. Task 12's manual check installs via `cue@cuecards` —
+  with one plugin, `cue`. Task 13's manual check installs via `cue@cuecards` —
   that name pair comes from this file.
 
 - [ ] **Step 1: Write the failing test**
@@ -489,7 +491,7 @@ REPO="${REPO:-opencue/cuecards}"
 
 Also update the two usage comments above it that name `opencue/claude-code-skills`.
 
-- [ ] **Step 6: Fix the README counts (partial — full restructure is Task 10)**
+- [ ] **Step 6: Fix the README counts (partial — full restructure is Task 11)**
 
 In `README.md`:
 - Line 165: `## 69 ready-made cuecards` → `## 85 ready-made cuecards`
@@ -661,7 +663,7 @@ Confirm these still pass at Step 5 rather than adding duplicates.
 - Consumes: `COMMANDS` from `src/commands/_index.ts`, whose entries have shape
   `{ summary: string; load: () => Promise<{ run: (args: string[]) => Promise<number> }> }`.
 - Produces: the `setup` command name, referenced by Task 9's `/cue-setup` slash
-  command and by Task 10's README.
+  command, Task 10's paste prompt, and Task 11's README.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -899,8 +901,8 @@ for discovery than no entry — it is the first impression.
 
 **Interfaces:**
 - Consumes: the `cue setup` command name from Task 7.
-- Produces: nothing later tasks depend on in code. Task 12 checks `/cue-setup`
-  appears in a live session.
+- Produces: the `/cue-setup` step list, which Task 10's paste prompt must stay
+  in sync with. Task 13 checks `/cue-setup` appears in a live session.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -997,7 +999,148 @@ git commit -m "feat(plugin): /cue-setup entry point + CLI preconditions"
 
 ---
 
-### Task 10: README restructure
+### Task 10: The agent-paste install prompt
+
+cue's target user is already sitting in front of an agent. This path exists today
+as `setup/macos.md` / `setup/linux.md` / `setup/windows.md`, surfaced as the
+fourth row of a four-row install table. This task reduces it to one OS-agnostic
+block and makes it the canonical text the README inlines.
+
+The prompt delegates to `cue setup` rather than restating what `cue setup` does —
+the same reason `/cue-setup` delegates. One description of the install, not three.
+
+**Files:**
+- Create: `setup/agent-prompt.md`
+- Create: `src/commands/agent-prompt.test.ts`
+
+**Interfaces:**
+- Consumes: the `cue setup` command name from Task 7; the `/cue-setup` step list
+  from Task 9, which this must stay in sync with.
+- Produces: `setup/agent-prompt.md`, whose fenced block Task 11 inlines verbatim
+  into the README.
+
+- [ ] **Step 1: Write the failing test**
+
+Create `src/commands/agent-prompt.test.ts`:
+
+```typescript
+import { describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+const REPO_ROOT = join(import.meta.dir, "..", "..");
+
+function promptBlock(): string {
+  const md = readFileSync(join(REPO_ROOT, "setup/agent-prompt.md"), "utf8");
+  const m = md.match(/```text\n([\s\S]*?)```/);
+  if (!m) throw new Error("setup/agent-prompt.md has no ```text fenced block");
+  return m[1]!;
+}
+
+describe("agent-paste install prompt", () => {
+  test("delegates to cue setup instead of restating its steps", () => {
+    const block = promptBlock();
+    expect(block).toContain("npm install -g cue-ai");
+    expect(block).toContain("cue setup");
+    // `cue shell install` / `cue init` appearing here would mean a second,
+    // drifting description of the install flow.
+    expect(block).not.toContain("cue shell install");
+    expect(block).not.toContain("cue init");
+  });
+
+  test("never installs without asking, and never pipes a script to a shell", () => {
+    const block = promptBlock();
+    expect(block).toContain("Do not install anything without asking me first.");
+    expect(block).not.toContain("curl");
+    expect(block).not.toContain("| bash");
+  });
+
+  test("is agent-agnostic — no vendor-specific syntax", () => {
+    const block = promptBlock();
+    for (const vendorism of ["/plugin", "CLAUDE.md", "AGENTS.md", "@codex", "Cursor:"]) {
+      expect(block).not.toContain(vendorism);
+    }
+  });
+
+  test("README inlines the block verbatim", () => {
+    const readme = readFileSync(join(REPO_ROOT, "README.md"), "utf8");
+    expect(readme).toContain(promptBlock().trim());
+  });
+});
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+Run: `bun test src/commands/agent-prompt.test.ts`
+Expected: FAIL — ENOENT on `setup/agent-prompt.md`.
+
+The fourth test ("README inlines the block verbatim") stays red until Task 11.
+That is intentional: it is the guard that keeps the two copies identical, and it
+is the reason Task 10 must land before Task 11.
+
+- [ ] **Step 3: Create the canonical prompt**
+
+Create `setup/agent-prompt.md`:
+
+````markdown
+# The agent-paste install
+
+The install path for people who already have an agent open. Paste the block
+below into Claude Code, Codex, Cursor, or any other coding agent and it performs
+the install, asking before it touches anything.
+
+This block is inlined verbatim in the README, and
+`src/commands/agent-prompt.test.ts` asserts the two copies stay identical. Edit
+it here, never there.
+
+```text
+Install cue (https://github.com/opencue/cuecards) on this machine and set it up
+for this project.
+
+1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
+2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
+3. Ask me before installing anything, then run: `npm install -g cue-ai`
+4. Run `cue setup`. It's interactive — relay its prompts to me and pass my answers
+   back. It scans this project, suggests a profile, shows what that profile costs
+   in tokens versus loading everything, then asks before installing the shim that
+   makes `claude`/`codex` load profiles.
+5. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+   line is added.
+6. Report which profile got pinned and whether the shim is active. Mention that
+   `install.sh --uninstall` undoes it.
+
+Do not install anything without asking me first.
+```
+
+## Why it delegates
+
+Step 4 hands off to `cue setup` rather than listing the steps `cue setup`
+performs. The plugin's `/cue-setup` slash command delegates for the same reason:
+one description of the install flow, not three that drift apart.
+
+## Per-OS notes
+
+`setup/macos.md`, `setup/linux.md`, and `setup/windows.md` remain for the cases
+this block does not cover — Homebrew specifics, WSL2, and PowerShell PATH
+handling. The block above is OS-agnostic on purpose and is what the README shows.
+````
+
+- [ ] **Step 4: Run the test to verify three of four pass**
+
+Run: `bun test src/commands/agent-prompt.test.ts`
+Expected: 3 PASS, 1 FAIL — "README inlines the block verbatim" stays red until
+Task 11 inlines it.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add setup/agent-prompt.md src/commands/agent-prompt.test.ts
+git commit -m "feat(setup): canonical agent-paste install prompt"
+```
+
+---
+
+### Task 11: README restructure
 
 The problem is order, not length: roughly 80 lines of argument precede the first
 command, Install offers four paths in a table, and the marketplace API section —
@@ -1007,7 +1150,9 @@ a power-user topic — sits above the shell setup.
 - Modify: `README.md`
 
 **Interfaces:**
-- Consumes: `CLAIM` from Task 1, the `cue setup` command from Task 7.
+- Consumes: `CLAIM` from Task 1, the `cue setup` command from Task 7, and the
+  fenced `text` block of `setup/agent-prompt.md` from Task 10 — inlined verbatim,
+  which `agent-prompt.test.ts` asserts.
 - Produces: nothing later tasks depend on.
 
 - [ ] **Step 1: Replace the hero block**
@@ -1021,18 +1166,48 @@ with:
 **Your agent reads every skill you own, on every message. cue loads only the ones that project needs.**
 ```
 
-- [ ] **Step 2: Move the install command above the argument**
+- [ ] **Step 2: Move the install above the argument, agent-paste first**
 
 Immediately after the badge block and the nav line — before `## Why this exists` —
-insert:
+insert the block below. The fenced `text` prompt must be copied **verbatim** from
+`setup/agent-prompt.md` (Task 10); `agent-prompt.test.ts` fails on any drift.
 
-```markdown
+````markdown
 ## Install
+
+**Already have an agent open?** Paste this into Claude Code, Codex, Cursor, or
+whatever you use — it installs cue and sets up this project, asking before it
+touches anything:
+
+```text
+Install cue (https://github.com/opencue/cuecards) on this machine and set it up
+for this project.
+
+1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
+2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
+3. Ask me before installing anything, then run: `npm install -g cue-ai`
+4. Run `cue setup`. It's interactive — relay its prompts to me and pass my answers
+   back. It scans this project, suggests a profile, shows what that profile costs
+   in tokens versus loading everything, then asks before installing the shim that
+   makes `claude`/`codex` load profiles.
+5. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+   line is added.
+6. Report which profile got pinned and whether the shim is active. Mention that
+   `install.sh --uninstall` undoes it.
+
+Do not install anything without asking me first.
+```
+
+**Rather type it yourself?**
 
 ```bash
 npm install -g cue-ai && cue setup
 ```
+````
 
+Then, still inside the Install section, the explanation:
+
+```markdown
 `cue setup` installs the `claude`/`codex` shim, scans this project, shows what
 the matching profile costs against loading everything, and pins it. Requires
 Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code)
@@ -1052,7 +1227,7 @@ Three things happen when you type `claude` afterwards:
 |---|---|
 | One-line script | `curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh \| bash` |
 | Manual clone | `git clone https://github.com/opencue/cuecards.git && ./cuecards/install.sh` |
-| Guided (paste into Claude Code) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
+| Per-OS notes (Homebrew, WSL2, PowerShell PATH) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
 
 All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`,
 `--codex`, `--uninstall`.
@@ -1092,21 +1267,23 @@ cuecard?`, `How it works`, `85 ready-made cuecards`, `One cuecard, ten agents`,
 compares`, `Deep dives`, `Contributing`.
 Confirm exactly one `## Install` and no `### Quickstart`.
 
-- [ ] **Step 5: Run the fact test**
+- [ ] **Step 5: Run the fact test and the paste-prompt test**
 
-Run: `bun test src/commands/docs-facts.test.ts`
-Expected: PASS — the README is one of the surfaces it guards.
+Run: `bun test src/commands/docs-facts.test.ts src/commands/agent-prompt.test.ts`
+Expected: PASS on both, 4 tests in `agent-prompt.test.ts` — including "README
+inlines the block verbatim", which was the one left red by Task 10. If it fails,
+the README copy drifted from `setup/agent-prompt.md`; fix the README, not the test.
 
 - [ ] **Step 6: Commit**
 
 ```bash
 git add README.md
-git commit -m "docs(readme): one install command above the fold"
+git commit -m "docs(readme): agent-paste install above the fold"
 ```
 
 ---
 
-### Task 11: Move power-user sections out of the README
+### Task 12: Move power-user sections out of the README
 
 **Files:**
 - Create: `docs/marketplace-api.md`
@@ -1114,7 +1291,7 @@ git commit -m "docs(readme): one install command above the fold"
 - Modify: `README.md`
 
 **Interfaces:**
-- Consumes: the README structure from Task 10.
+- Consumes: the README structure from Task 11.
 - Produces: nothing later tasks depend on.
 
 - [ ] **Step 1: Move the API section**
@@ -1173,7 +1350,7 @@ git commit -m "docs(readme): move API and shell internals to docs/"
 
 ---
 
-### Task 12: Manual verification and the two out-of-band surfaces
+### Task 13: Manual verification and the two out-of-band surfaces
 
 Two things in this plan cannot be verified by a test: whether Claude Code
 actually accepts the marketplace manifest, and the two surfaces that live
@@ -1221,7 +1398,21 @@ after all — restore it in `plugins/cue/.claude-plugin/plugin.json` and update
 the assertion in `src/commands/positioning.test.ts` that requires
 `manifest.commands` to be undefined.
 
-- [ ] **Step 4: Update the GitHub About and topics**
+- [ ] **Step 4: Run the agent-paste prompt end to end**
+
+Open a **fresh** agent session in a directory that is not this repo and has no
+`.cue.profile`, paste the block from `setup/agent-prompt.md`, and follow it
+through. This is the primary install path in the README — nobody has run it yet.
+
+Confirm the agent: asks before `npm install -g cue-ai`; reaches `cue setup`;
+relays its interactive prompts rather than answering them for you; surfaces PATH
+guidance verbatim if it appears; and reports the pinned profile at the end.
+
+If it skips the permission ask or answers `cue setup`'s prompts on the user's
+behalf, the prompt wording is at fault — fix `setup/agent-prompt.md` and re-run
+Task 11's inline step so the README copy follows.
+
+- [ ] **Step 5: Update the GitHub About and topics**
 
 Set the repo About field to the descriptor:
 
@@ -1236,7 +1427,7 @@ DRY_RUN=1 bash scripts/update-repo-topics.sh   # review first
 bash scripts/update-repo-topics.sh
 ```
 
-- [ ] **Step 5: Regenerate the OG card**
+- [ ] **Step 6: Regenerate the OG card**
 
 `docs/assets/og-card.png` is a binary asset with no generator script in
 `scripts/`, so this step needs an image tool. The card must carry the claim:
@@ -1249,10 +1440,10 @@ cue loads only the ones that project needs.
 Keep the filename `og-card.png` — `docs/index.md` front matter references it by
 that exact name.
 
-- [ ] **Step 6: Report**
+- [ ] **Step 7: Report**
 
 Write a short summary of what passed, what failed, and any defect filed against
-Tasks 2 or 3. Nothing is announced on any channel until Steps 1-3 pass.
+Tasks 2, 3, or 10. Nothing is announced on any channel until Steps 1-4 pass.
 
 ---
 

@@ -108,7 +108,7 @@ export const COMMANDS = {
     load: () => import("./cloud"),
   },
   shell: {
-    summary: "Install/uninstall ~/.local/bin/{claude,codex} shims",
+    summary: "Install/uninstall the {claude,codex} shims",
     load: () => import("./shell"),
   },
   current: {

@@ -1410,7 +1410,7 @@ export async function run(args: string[]): Promise<number> {
   // Recursion guard
   if (process.env.CUE_LAUNCHING === "1") {
     process.stderr.write(
-      "cue: shim recursion detected — check PATH ordering (~/.local/bin must precede the real claude/codex location)\n",
+      "cue: shim recursion detected — check PATH ordering (cue's shim dir must precede the real claude/codex location)\n",
     );
     return 2;
   }
