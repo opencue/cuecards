@@ -69,13 +69,29 @@ export interface SuggestInput {
   /** Historical partners per primary, from session-log pair mining. */
   pairSuggestions?: Map<string, string[]>;
   featured?: string[];
+  /**
+   * Generic repo→profile matches (see `profile-match`). The other sources are
+   * hand-maintained and between them cover 19 of 85 profiles; this one scores
+   * every profile's own vocabulary against the directory, so the suggestion
+   * list keeps going after curation runs out.
+   */
+  matched?: SuggestMatch[];
   /** Resolved Default selector (e.g. `"core"`), the last-resort suggestion. */
   defaultSelector?: string;
   /** Max suggestions returned. Default 3. */
   limit?: number;
 }
 
-export type SuggestionOrigin = "detected" | "combo" | "recent" | "featured" | "default";
+/** A profile matched generically against the directory's own evidence. */
+export interface SuggestMatch {
+  name: string;
+  /** 0..1 absolute match strength. */
+  strength: number;
+  /** One-line explanation, already human-readable. */
+  reason: string;
+}
+
+export type SuggestionOrigin = "detected" | "combo" | "recent" | "featured" | "matched" | "default";
 
 export interface StackSuggestion {
   /** Conflict-free, deduped profile names. Always at least one. */
@@ -105,13 +121,26 @@ export const SCORE_RECENT_GLOBAL = 25;
 export const SCORE_FEATURED = 15;
 export const SCORE_DEFAULT = 5;
 
+/**
+ * Band for generic matches, scaled by match strength.
+ *
+ * Placed so curation still leads but a strong match isn't buried: above the
+ * default always, past `SCORE_FEATURED` from ~0.32 strength, past a global
+ * recent from ~0.77. It can never outrank a real detection, a confirmed combo,
+ * or something the user launched in this very directory — those describe this
+ * project or this user, while a match only describes a resemblance.
+ */
+export const SCORE_MATCHED_MIN = 8;
+export const SCORE_MATCHED_MAX = 30;
+
 /** Origin ordering used as a deterministic tie-break when scores match. */
 const ORIGIN_RANK: Record<SuggestionOrigin, number> = {
   detected: 0,
   combo: 1,
   recent: 2,
   featured: 3,
-  default: 4,
+  matched: 4,
+  default: 5,
 };
 
 /**
@@ -227,7 +256,17 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
     record(parts, SCORE_FEATURED, "featured", ["featured pick"]);
   }
 
-  // 5. Default — the answer when the directory says nothing. Recorded last so
+  // 5. Generic matches — every profile scored against the directory's own
+  //    evidence. Strongest first, so cycling past the curated answers keeps
+  //    landing on something relevant instead of running out.
+  for (const m of [...(input.matched ?? [])].sort((a, b) => b.strength - a.strength)) {
+    if (!known.has(m.name)) continue;
+    const strength = Math.max(0, Math.min(1, m.strength));
+    const score = Math.round(SCORE_MATCHED_MIN + strength * (SCORE_MATCHED_MAX - SCORE_MATCHED_MIN));
+    record([m.name], score, "matched", [m.reason]);
+  }
+
+  // 6. Default — the answer when the directory says nothing. Recorded last so
   //    it only surfaces if it isn't already covered above.
   if (input.defaultSelector) {
     const parts = input.defaultSelector.split("+").filter((p) => known.has(p));

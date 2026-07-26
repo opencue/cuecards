@@ -11,11 +11,13 @@ import * as p from "@clack/prompts";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { recordCombo } from "../combo-history";
+import { matchProfilesForCwd } from "../profile-match";
 import {
   mergeSignals,
   pathSignals,
   suggestStacks,
   type StackSuggestion,
+  type SuggestMatch,
   type SuggestSignal,
 } from "../stack-suggest";
 import { CardPrompt, type CardSuggestion } from "./card";
@@ -28,6 +30,16 @@ import {
   type ProfileTally,
 } from "./tally";
 import type { PickerInput, PickerOption, PickerOutput } from "./types";
+
+/**
+ * How many suggestions the card can cycle through.
+ *
+ * The engine's own default is 3, which was right when every suggestion came
+ * from a hand-curated source and the fourth would have been padding. With
+ * generic matching behind them there is a real ranked tail, so pressing Tab
+ * keeps landing on something the directory actually justifies.
+ */
+const SUGGESTION_LIMIT = 8;
 
 /**
  * Whether the suggestion-first picker is active. On by default; `CUE_PICKER=
@@ -78,6 +90,19 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
   }
   detected = detected.filter((d) => known.has(d.name));
 
+  // Generic repo→profile matches. The curated sources cover 19 of 85 profiles;
+  // this scores every profile's own vocabulary against the directory so
+  // cycling through suggestions keeps finding relevant stacks instead of
+  // running out. Best-effort — no matches just means a shorter list.
+  let matched: SuggestMatch[] = [];
+  try {
+    matched = matchProfilesForCwd(input.cwd, { limit: SUGGESTION_LIMIT })
+      .filter((m) => known.has(m.name))
+      .map((m) => ({ name: m.name, strength: m.strength, reason: m.reason }));
+  } catch {
+    /* a directory we can't read yields no matches, not an error */
+  }
+
   const suggestions = suggestStacks({
     profiles,
     detected,
@@ -87,7 +112,9 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
     combos: input.combos,
     pairSuggestions: input.pairSuggestions,
     featured: input.featured,
+    matched,
     defaultSelector: input.defaultSelector,
+    limit: SUGGESTION_LIMIT,
   });
   // Belt and braces: the engine only returns nothing when it was handed
   // nothing, but the card must always have something to show.
