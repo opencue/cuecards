@@ -1,0 +1,33 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cuecards",
+  "owner": {
+    "name": "NagyVikt"
+  },
+  "metadata": {
+    "description": "Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory."
+  },
+  "plugins": [
+    {
+      "name": "cue",
+      "source": "./plugins/cue",
+      "description": "Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory.",
+      "author": {
+        "name": "NagyVikt",
+        "url": "https://github.com/NagyVikt"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/opencue/cuecards",
+      "license": "MIT",
+      "keywords": [
+        "profile-manager",
+        "skills",
+        "mcp",
+        "context",
+        "token-budget",
+        "codex",
+        "claude-code"
+      ]
+    }
+  ]
+}

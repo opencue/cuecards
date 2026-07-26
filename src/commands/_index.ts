@@ -83,6 +83,10 @@ export const COMMANDS = {
     summary: "Bind a profile into the LIVE session (soft-load + pin), no cold restart",
     load: () => import("./summon"),
   },
+  resolve: {
+    summary: "Find library skills matching a query, loaded or not; --deep for an LLM pass",
+    load: () => import("./resolve"),
+  },
   quick: {
     summary: "One-shot bare launch — no profile, no skills, fastest cold start",
     load: () => import("./quick"),
@@ -108,7 +112,7 @@ export const COMMANDS = {
     load: () => import("./cloud"),
   },
   shell: {
-    summary: "Install/uninstall ~/.local/bin/{claude,codex} shims",
+    summary: "Install/uninstall the {claude,codex} shims",
     load: () => import("./shell"),
   },
   current: {

@@ -294,10 +294,31 @@ function parseClaudeKeep(output: string, allSkillIds: string[]): string[] | null
   const raw = m[1]!.trim();
   if (/^none$/i.test(raw)) return [];
   const known = new Set(allSkillIds);
-  const picked = raw.split(",").map(s => s.trim()).filter(s => s && known.has(s));
+
+  // Accept BOTH forms the classifier actually produces: skill ids, and the
+  // 1-based list positions from the numbered prompt. `buildPrompt` renders
+  // "1. <id> — <desc>", which reliably invites "KEEP: 1, 3, 10" — observed
+  // live. Rejecting that answer made the whole classification fail open to
+  // "kept all skills", silently, which looks identical to the classifier
+  // being unavailable.
+  const picked: string[] = [];
+  for (const token of raw.split(",")) {
+    const t = token.trim();
+    if (!t) continue;
+    if (known.has(t)) {
+      picked.push(t);
+      continue;
+    }
+    if (/^\d+$/.test(t)) {
+      const id = allSkillIds[Number(t) - 1];
+      if (id !== undefined) picked.push(id);
+    }
+  }
+
   // Sanity check: if Claude returned nothing usable, signal a parse failure
   // rather than an empty selection.
-  return picked.length === 0 ? null : picked;
+  if (picked.length === 0) return null;
+  return [...new Set(picked)];
 }
 
 // ---------------------------------------------------------------------------

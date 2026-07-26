@@ -8,6 +8,7 @@ import { findRealAgentBin } from "./claude-binary";
 describe("findRealAgentBin", () => {
   let root: string;
   let savedPath: string | undefined;
+  let savedXdg: string | undefined;
 
   const dir = (name: string): string => {
     const d = join(root, name);
@@ -25,9 +26,12 @@ describe("findRealAgentBin", () => {
   beforeEach(() => {
     root = mkdtempSync(join(tmpdir(), "cue-binfind-"));
     savedPath = process.env.PATH;
+    savedXdg = process.env.XDG_CONFIG_HOME;
   });
   afterEach(() => {
     process.env.PATH = savedPath;
+    if (savedXdg === undefined) delete process.env.XDG_CONFIG_HOME;
+    else process.env.XDG_CONFIG_HOME = savedXdg;
     rmSync(root, { recursive: true, force: true });
   });
 
@@ -84,5 +88,35 @@ describe("findRealAgentBin", () => {
     const real = writeExec(realDir, "codex", "#!/bin/sh\n" + "x".repeat(600));
     process.env.PATH = `${shimDir}:${realDir}`;
     expect(findRealAgentBin("codex")).toBe(real);
+  });
+
+  // cue owns its shim dir outright, so the directory guard stands on its own —
+  // it must hold even when the content heuristic would pass the file through.
+  test("skips cue's own shim dir even for a large file", () => {
+    process.env.XDG_CONFIG_HOME = root;
+    const cueShims = dir(join("cue", "shims"));
+    writeExec(cueShims, "claude", "\x7fELF" + "x".repeat(1000));
+    const realDir = dir("real-behind");
+    const real = writeExec(realDir, "claude", "\x7fELF" + "x".repeat(1000));
+    process.env.PATH = `${cueShims}:${realDir}`;
+    expect(findRealAgentBin("claude")).toBe(real);
+  });
+
+  test("returns null when cue's shim dir is the only entry", () => {
+    process.env.XDG_CONFIG_HOME = root;
+    const cueShims = dir(join("cue", "shims"));
+    writeExec(cueShims, "claude", shimContent);
+    process.env.PATH = cueShims;
+    expect(findRealAgentBin("claude")).toBeNull();
+  });
+
+  // Regression: the old inline /cue\s+launch/i missed this form, because the
+  // quote between `cue` and `launch` isn't whitespace — so a source-clone
+  // user's legacy shim was returned as the real binary and cue recursed.
+  test("skips a legacy shim written in the quoted-absolute-path form", () => {
+    const localBin = dir("legacy-abs");
+    writeExec(localBin, "claude", '#!/usr/bin/env bash\nexec "/home/u/Documents/cue/bin/cue" launch claude "$@"\n');
+    process.env.PATH = localBin;
+    expect(findRealAgentBin("claude")).toBeNull();
   });
 });

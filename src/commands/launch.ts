@@ -6,6 +6,8 @@
  * Bypass paths:
  *   --cue-profile <name>   force this profile
  *   --cue-pick             always open picker (ignore pins)
+ *                          (CUE_ALWAYS_PICK=1 makes this the default for a
+ *                           bare, interactive launch)
  *   --dry-run              everything except the final exec; prints env
  *
  * Recursion guard via CUE_LAUNCHING=1 in child env.
@@ -32,6 +34,7 @@ import {
 import { loadProfile, listProfiles, listFeaturedProfiles, parseProfileSelector } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { DIVIDER_PREFIX, dedupeSelectorParts, runPicker, type PickerOption, type ProfileTally } from "../lib/picker";
+import type { ComboUsage } from "../lib/combo-history";
 import { materializeRuntime } from "../lib/runtime-materializer";
 import { startLoader } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
@@ -1031,7 +1034,21 @@ export function getDefaultSelector(
   return parts.join("+");
 }
 
-async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[]> {
+/**
+ * Everything the picker needs about this directory: the option rows plus the
+ * raw signals behind them. v1 only ever needed the rows (the sections baked
+ * the signals into hint strings); v2's suggestion engine ranks stacks from the
+ * signals themselves, so they're returned alongside instead of re-derived.
+ */
+interface ProfileOptionSet {
+  options: PickerOption[];
+  recents: RecentEntry[];
+  recentsAreCwdScoped: boolean;
+  featured: string[];
+  defaultSelector?: string;
+}
+
+async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOptionSet> {
   const names = await listProfiles();
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
@@ -1164,7 +1181,13 @@ async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[
   const featured = (await listFeaturedProfiles()).filter((n) =>
     n.split("+").every((part) => knownProfileNames.has(part)),
   );
-  return buildPickerSections(defaultOpt, sorted, recent, 3, Date.now(), suggested, featured);
+  return {
+    options: buildPickerSections(defaultOpt, sorted, recent, 3, Date.now(), suggested, featured),
+    recents: recent,
+    recentsAreCwdScoped: recentCwd.length > 0,
+    featured,
+    defaultSelector: defaultOpt?.value,
+  };
 }
 
 async function readSharedClaudeMd(profile?: { name: string; inheritanceChain?: string[] }): Promise<string> {
@@ -1307,11 +1330,12 @@ async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string>
 }
 
 /**
- * Find the real agent binary on PATH. Shims are detected by CONTENT (small
- * script containing `cue launch`), never by skipping a directory wholesale:
- * the native Claude installer puts the REAL binary in ~/.local/bin — the same
- * dir cue's shim lives in — and the npm package no longer ships a `claude`
- * bin, so a directory skip can leave zero candidates on a healthy machine.
+ * Find the real agent binary on PATH. cue's own shim dir is skipped wholesale;
+ * everywhere else shims are detected by CONTENT (small script containing a cue
+ * `launch` call), never by skipping a directory: the native Claude installer
+ * puts the REAL binary in ~/.local/bin — where cue's legacy shim also lived —
+ * and the npm package no longer ships a `claude` bin, so a directory skip there
+ * can leave zero candidates on a healthy machine.
  * Pure PATH walk — launch deliberately ignores $CLAUDE_CODE_EXECPATH /
  * $CUE_REAL_CLAUDE (those serve in-session helpers like `cue quick`), so the
  * binary the user's PATH points at is the one that execs.
@@ -1402,6 +1426,15 @@ export function authmuxAccountTag(configDirEnv: string | undefined, homeDir: str
   return undefined;
 }
 
+/**
+ * True iff `CUE_ALWAYS_PICK` is set to an enabling value (1|true|on).
+ * Mirrors `isRulerAutoEnabled`'s convention so the two env flags parse alike.
+ */
+export function isAlwaysPickEnabled(envVal: string | undefined): boolean {
+  if (!envVal) return false;
+  return ["1", "true", "on"].includes(envVal.trim().toLowerCase());
+}
+
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
@@ -1410,7 +1443,7 @@ export async function run(args: string[]): Promise<number> {
   // Recursion guard
   if (process.env.CUE_LAUNCHING === "1") {
     process.stderr.write(
-      "cue: shim recursion detected — check PATH ordering (~/.local/bin must precede the real claude/codex location)\n",
+      "cue: shim recursion detected — check PATH ordering (cue's shim dir must precede the real claude/codex location)\n",
     );
     return 2;
   }
@@ -1452,7 +1485,20 @@ export async function run(args: string[]): Promise<number> {
   });
   // Force picker if --cue-pick OR (account alias AND no explicit --cue-profile).
   // Explicit --cue-profile always wins.
-  const forcePicker = parsed.forcePick || (isAccountAlias && !parsed.override);
+  //
+  // `CUE_ALWAYS_PICK=1` makes a bare `claude` offer the picker instead of
+  // silently honoring whatever .cue.profile resolves to. The resolved profile
+  // still sorts to the top of the list, so Enter reproduces the pinned
+  // behavior — this trades one keystroke for the ability to choose.
+  //
+  // Two guards, both load-bearing: an explicit --cue-profile opts out (that IS
+  // the choice), and it only applies on a TTY. Without the TTY guard a
+  // non-interactive `claude -p "…"` would resolve to "none" and die on "no
+  // profile resolved and stdin is not a TTY" instead of using its pin.
+  const alwaysPick = isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK)
+    && !parsed.override
+    && process.stdin.isTTY === true;
+  const forcePicker = parsed.forcePick || alwaysPick || (isAccountAlias && !parsed.override);
   const resolved = forcePicker ? { source: "none" as const } : existingResolved;
   const existingProfile = existingResolved.source !== "none"
     ? (existingResolved as { source: string; profile: string }).profile
@@ -1494,7 +1540,8 @@ export async function run(args: string[]): Promise<number> {
       }
     } catch { /* never block launch on onboarding failure */ }
 
-    const options = await listProfileOptions(existingProfile);
+    const optionSet = await listProfileOptions(existingProfile);
+    const options = optionSet.options;
     // Mine local session history for "you usually pair X with Y" suggestions.
     // The picker pre-checks empirical partners in the combine multiselect.
     // Best-effort: any failure (missing log, malformed lines) yields empty.
@@ -1595,6 +1642,13 @@ export async function run(args: string[]): Promise<number> {
       tallyCache.set(value, tally);
       return tally;
     };
+    // Stacks the user confirmed here before. Feeds the v2 suggestion engine
+    // ("you launched this stack 4×"); best-effort like every other signal.
+    let combos: ComboUsage[] = [];
+    try {
+      const { readCombos } = await import("../lib/combo-history");
+      combos = readCombos();
+    } catch (err) { debug("launch:combo-history", err); }
     const picked = await runPicker({
       cwd,
       options,
@@ -1604,6 +1658,11 @@ export async function run(args: string[]): Promise<number> {
       companions,
       universalSuggestions,
       resourceTally,
+      recents: optionSet.recents,
+      recentsAreCwdScoped: optionSet.recentsAreCwdScoped,
+      combos,
+      featured: optionSet.featured,
+      defaultSelector: optionSet.defaultSelector,
       details: async (name) => {
         const loaded = await loadProfile(name);
         await expandWildcards(loaded);

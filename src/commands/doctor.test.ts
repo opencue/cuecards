@@ -8,12 +8,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { checkActivation } from "./doctor";
+import { shimDir } from "../lib/shim-dir";
 
 let home: string;
 let binDir: string;
 beforeEach(() => {
   home = mkdtempSync(join(tmpdir(), "cue-doctor-"));
-  binDir = join(home, ".local", "bin");
+  binDir = shimDir(home);
   mkdirSync(binDir, { recursive: true });
 });
 afterEach(() => rmSync(home, { recursive: true, force: true }));
@@ -32,7 +33,7 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.fix).toBe("cue shell install");
   });
 
-  test("shim + real bin + ~/.local/bin first on PATH → healthy", () => {
+  test("shim + real bin + shim dir first on PATH → healthy", () => {
     writeShim();
     const issues = checkActivation({ homeDir: home, realBin: "/usr/bin/claude", pathDirs: [binDir, "/usr/bin"] });
     expect(issues).toHaveLength(0);
@@ -45,6 +46,17 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.code).toBe("D9");
     expect(issues[0]!.severity).toBe("error");
     expect(issues[0]!.message).toContain("shadowed");
+  });
+
+  test("shim installed but the shim dir is not on PATH → D9 error", () => {
+    // New failure mode: cue's shim dir is a directory nothing else puts on
+    // PATH, so "installed but never runs" is a real state to catch.
+    writeShim();
+    const issues = checkActivation({ homeDir: home, realBin: "/usr/bin/claude", pathDirs: ["/usr/bin"] });
+    expect(issues).toHaveLength(1);
+    expect(issues[0]!.code).toBe("D9");
+    expect(issues[0]!.severity).toBe("error");
+    expect(issues[0]!.message).toContain("not on PATH");
   });
 
   test("shim but no real claude binary → D9 warning", () => {
