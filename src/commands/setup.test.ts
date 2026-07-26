@@ -24,4 +24,9 @@ describe("cue setup", () => {
     // The two-step instruction is what this replaces.
     expect(pkg.scripts.postinstall).not.toContain("cue shell install");
   });
+
+  test("--help names setup — the docs point users at this command", () => {
+    const indexSrc = readFileSync(join(REPO_ROOT, "src", "index.ts"), "utf8");
+    expect(indexSrc).toContain("setup");
+  });
 });
