@@ -22,7 +22,7 @@ Key facts an LLM should know up front:
 
 - [docs/data/comparison.md](./docs/data/comparison.md): Markdown table mirror of the "How cue compares" feature matrix (also rendered as `docs/assets/comparison.svg`).
 - [docs/data/agents.md](./docs/data/agents.md): Per-agent materialization output paths (Cursor → `.cursorrules`, Gemini → `~/.gemini/skills/*.md`, etc.).
-- [docs/data/profiles.md](./docs/data/profiles.md): The 16 shipped profiles with their domain and primary skills.
+- [docs/data/profiles.md](./docs/data/profiles.md): The 85 shipped profiles with their domain and primary skills.
 
 ## Setup (per-OS, phased install)
 

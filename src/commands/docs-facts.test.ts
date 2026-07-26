@@ -42,6 +42,10 @@ describe("documented facts match reality", () => {
       for (const stale of ["16 profiles", "69 ready-made", "see all 69"]) {
         expect(text).not.toContain(stale);
       }
+      // Broader net: catch any "16 ... profiles" phrasing (e.g. "16 shipped
+      // profiles"), not just the exact strings above, so a future rewording
+      // of the stale count can't slip past the literal-string checks.
+      expect(/\b16\b(?:\s+\S+){0,3}\s+profiles\b/i.test(text)).toBe(false);
       if (/\bprofiles ship by default\b/.test(text)) {
         expect(text).toContain(`${actual} profiles ship by default`);
       }
