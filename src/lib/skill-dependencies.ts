@@ -99,12 +99,12 @@ function findSkillContent(skillId: string, skillsRoot: string = SKILLS_ROOT): st
 }
 
 /**
- * Get all MCP dependencies for a skill (explicit + implicit).
+ * Get all MCP dependencies for a skill whose SKILL.md content is already in
+ * hand. Callers that walk every skill (the catalog index builder) have the
+ * content already; making them go through {@link getSkillDependencies} would
+ * re-read all ~450 files off disk for nothing.
  */
-export function getSkillDependencies(skillId: string, skillsRoot: string = SKILLS_ROOT): SkillDependency[] {
-  const content = findSkillContent(skillId, skillsRoot);
-  if (!content) return [];
-
+export function depsFromContent(skillId: string, content: string): SkillDependency[] {
   const deps: SkillDependency[] = [];
 
   for (const mcp of parseExplicitDeps(content)) {
@@ -119,6 +119,15 @@ export function getSkillDependencies(skillId: string, skillsRoot: string = SKILL
   }
 
   return deps;
+}
+
+/**
+ * Get all MCP dependencies for a skill (explicit + implicit).
+ */
+export function getSkillDependencies(skillId: string, skillsRoot: string = SKILLS_ROOT): SkillDependency[] {
+  const content = findSkillContent(skillId, skillsRoot);
+  if (!content) return [];
+  return depsFromContent(skillId, content);
 }
 
 /**
