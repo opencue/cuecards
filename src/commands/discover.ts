@@ -1775,56 +1775,6 @@ export function buildGemHeroBadges(gem: GemRepo, profile: string): string {
 </p>`;
 }
 
-/**
- * Standalone SVG card mimicking tokscale — dark gradient bg, three stat cards
- * (Score · Stars · Profile) with bold colored numbers. Self-contained, no
- * external font deps. Embed via raw URL or inline.
- */
-export function buildGemBadgeSvg(gem: GemRepo, profile: string): string {
-  const t = tierPalette(gem.gem_score);
-  const s = starsPalette(gem.stars);
-  const esc = (str: string) => str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const W = 720, H = 220;
-  const cardW = 220, cardH = 100, gap = 20, padX = 20, cardY = 95;
-  const cards = [
-    { label: "Score", value: `${gem.gem_score}`, sub: t.tier, color: `#${t.primary}`, bg: `#${t.label}` },
-    { label: "Stars", value: s.display, sub: "github", color: `#${s.primary}`, bg: "#1f3a1d" },
-    { label: "Profile", value: profile, sub: gem.has_skill_md ? "SKILL.md" : "matched", color: "#c084fc", bg: "#3a1d3a" },
-  ];
-  const updated = new Date().toISOString().split("T")[0];
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="cue hidden gem: ${esc(gem.full_name)}">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0a14"/>
-      <stop offset="100%" stop-color="#1e1b4b"/>
-    </linearGradient>
-    <style>
-      .title { font: bold 18px -apple-system, system-ui, sans-serif; fill: #fff; }
-      .sub { font: 13px -apple-system, system-ui, sans-serif; fill: #9ca3af; }
-      .card-label { font: bold 12px -apple-system, system-ui, sans-serif; letter-spacing: .5px; text-transform: uppercase; }
-      .card-value { font: bold 32px -apple-system, system-ui, sans-serif; }
-      .card-sub { font: 11px -apple-system, system-ui, sans-serif; fill: #6b7280; }
-      .footer { font: 11px -apple-system, system-ui, sans-serif; fill: #4b5563; }
-    </style>
-  </defs>
-  <rect width="${W}" height="${H}" rx="14" fill="url(#bg)"/>
-  <text class="title" x="${padX}" y="36">💎 cue · hidden gem</text>
-  <text class="sub" x="${padX}" y="58">@${esc(gem.full_name)}</text>
-${cards.map((c, i) => {
-  const x = padX + i * (cardW + gap);
-  return `  <g transform="translate(${x}, ${cardY})">
-    <rect width="${cardW}" height="${cardH}" rx="10" fill="${c.bg}" stroke="${c.color}" stroke-opacity="0.4" stroke-width="1"/>
-    <text class="card-label" x="14" y="22" fill="${c.color}">${esc(c.label)}</text>
-    <text class="card-value" x="14" y="62" fill="${c.color}">${esc(c.value)}</text>
-    <text class="card-sub" x="14" y="84">${esc(c.sub)}</text>
-  </g>`;
-}).join("\n")}
-  <text class="footer" x="${padX}" y="${H - 14}">cue discovery engine · scored ${updated}</text>
-  <text class="footer" x="${W - padX}" y="${H - 14}" text-anchor="end">github.com/opencue/cuecards</text>
-</svg>`;
-}
-
 function notifyOwner(gem: GemRepo, profile: string, opts: { dryRun?: boolean; force?: boolean } = {}): void {
   const log = loadNotifyLog();
   if (log.notified[gem.full_name] && !opts.force) {

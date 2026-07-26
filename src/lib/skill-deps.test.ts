@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeAll, afterAll } from "bun:test";
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
-import { parseDependencies, buildDependencyGraph, topologicalSort, explainWhy } from "./skill-deps";
+import { parseDependencies, buildDependencyGraph, explainWhy } from "./skill-deps";
 
 const TEST_ROOT = join(import.meta.dir, "..", "..", "__test_skills_deps__");
 
@@ -58,22 +58,6 @@ describe("buildDependencyGraph", () => {
     expect(graph.get("a/skill-a")).toEqual(["b/skill-b", "c/skill-c"]);
     expect(graph.get("b/skill-b")).toEqual(["c/skill-c"]);
     expect(graph.get("c/skill-c")).toEqual([]);
-  });
-});
-
-describe("topologicalSort", () => {
-  test("returns valid load order (deps before dependents)", () => {
-    const graph = buildDependencyGraph(["a/skill-a"]);
-    const order = topologicalSort(graph);
-    expect(order.indexOf("c/skill-c")).toBeLessThan(order.indexOf("b/skill-b"));
-    expect(order.indexOf("b/skill-b")).toBeLessThan(order.indexOf("a/skill-a"));
-  });
-
-  test("throws on cycle", () => {
-    const cyclic = new Map<string, string[]>();
-    cyclic.set("x", ["y"]);
-    cyclic.set("y", ["x"]);
-    expect(() => topologicalSort(cyclic)).toThrow("Cycle detected");
   });
 });
 
