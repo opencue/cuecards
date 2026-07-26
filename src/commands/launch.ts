@@ -6,6 +6,8 @@
  * Bypass paths:
  *   --cue-profile <name>   force this profile
  *   --cue-pick             always open picker (ignore pins)
+ *                          (CUE_ALWAYS_PICK=1 makes this the default for a
+ *                           bare, interactive launch)
  *   --dry-run              everything except the final exec; prints env
  *
  * Recursion guard via CUE_LAUNCHING=1 in child env.
@@ -1424,6 +1426,15 @@ export function authmuxAccountTag(configDirEnv: string | undefined, homeDir: str
   return undefined;
 }
 
+/**
+ * True iff `CUE_ALWAYS_PICK` is set to an enabling value (1|true|on).
+ * Mirrors `isRulerAutoEnabled`'s convention so the two env flags parse alike.
+ */
+export function isAlwaysPickEnabled(envVal: string | undefined): boolean {
+  if (!envVal) return false;
+  return ["1", "true", "on"].includes(envVal.trim().toLowerCase());
+}
+
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
@@ -1474,7 +1485,20 @@ export async function run(args: string[]): Promise<number> {
   });
   // Force picker if --cue-pick OR (account alias AND no explicit --cue-profile).
   // Explicit --cue-profile always wins.
-  const forcePicker = parsed.forcePick || (isAccountAlias && !parsed.override);
+  //
+  // `CUE_ALWAYS_PICK=1` makes a bare `claude` offer the picker instead of
+  // silently honoring whatever .cue.profile resolves to. The resolved profile
+  // still sorts to the top of the list, so Enter reproduces the pinned
+  // behavior — this trades one keystroke for the ability to choose.
+  //
+  // Two guards, both load-bearing: an explicit --cue-profile opts out (that IS
+  // the choice), and it only applies on a TTY. Without the TTY guard a
+  // non-interactive `claude -p "…"` would resolve to "none" and die on "no
+  // profile resolved and stdin is not a TTY" instead of using its pin.
+  const alwaysPick = isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK)
+    && !parsed.override
+    && process.stdin.isTTY === true;
+  const forcePicker = parsed.forcePick || alwaysPick || (isAccountAlias && !parsed.override);
   const resolved = forcePicker ? { source: "none" as const } : existingResolved;
   const existingProfile = existingResolved.source !== "none"
     ? (existingResolved as { source: string; profile: string }).profile

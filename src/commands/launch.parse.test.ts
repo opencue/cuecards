@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "bun:test";
 
-import { __test } from "./launch";
+import { __test, isAlwaysPickEnabled } from "./launch";
 
 const { parse } = __test;
 
@@ -83,5 +83,19 @@ describe("parse: subset origin", () => {
     const p = parse(["claude"]);
     expect(p.subset).toBeNull();
     expect(p.subsetExplicit).toBe(false);
+  });
+});
+
+describe("isAlwaysPickEnabled", () => {
+  test("accepts the documented enabling values", () => {
+    for (const v of ["1", "true", "on", "TRUE", " On "]) {
+      expect(isAlwaysPickEnabled(v)).toBe(true);
+    }
+  });
+
+  test("rejects unset, empty, and negative values", () => {
+    for (const v of [undefined, "", "0", "false", "off", "no"]) {
+      expect(isAlwaysPickEnabled(v)).toBe(false);
+    }
   });
 });
