@@ -2,7 +2,7 @@
 
 # cuecards
 
-**Give your AI coding agent the right context for every project — and nothing else.**
+**Your agent reads every skill you own, on every message. cue loads only the ones that project needs.**
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/hero.svg" alt="cuecards — agent profile manager for Claude Code and Codex" width="820">
@@ -30,21 +30,76 @@
 
 ---
 
-cue is a profile manager for AI coding agents like [Claude Code](https://github.com/anthropics/claude-code) and [Codex](https://github.com/openai/codex). You pick (or auto-detect) a *cuecard* for each project directory, and when you launch your agent, cue loads only the skills, MCP servers, persona, and quality gates that project actually needs — instead of your entire library.
+## Install
 
-```bash
-npm install -g cue-ai
+**Already have an agent open?** Paste this into Claude Code, Codex, Cursor, or
+whatever you use — it installs cue and sets up this project, asking before it
+touches anything:
+
+```text
+Install cue (https://github.com/opencue/cuecards) on this machine and set it up
+for this project.
+
+1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
+2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
+3. Ask me before installing anything, then run: `npm install -g cue-ai`
+4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
+   each one is for, and let me pick one — don't choose for me.
+5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile and
+   installs the shim that makes `claude`/`codex` load it. It will not enable
+   telemetry and will not install third-party skills.
+6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+   line is added.
+7. Report which profile got pinned and whether the shim is active. Mention that
+   `install.sh --uninstall` undoes it.
+
+Do not install anything without asking me first.
 ```
 
-> Requires Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code) or [Codex](https://github.com/openai/codex) install. cue is a thin shim that hands off to your real agent — not a replacement for it.
->
-> package `cue-ai` · command `cue` · repo [opencue/cuecards](https://github.com/opencue/cuecards)
+**Rather type it yourself?**
+
+```bash
+npm install -g cue-ai && cue setup
+```
+
+`cue setup` installs the `claude`/`codex` shim, scans this project, shows what
+the matching profile costs against loading everything, and pins it. Requires
+Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code)
+or [Codex](https://github.com/openai/codex) install — cue is a thin shim that
+hands off to your real agent, not a replacement for it.
+
+Three things happen when you type `claude` afterwards:
+
+1. The shim resolves this directory's `.cue.profile`.
+2. cue materializes only that profile's skills, MCPs, and persona into a runtime.
+3. The real Claude Code binary starts against it.
+
+Pin a different project to a different profile:
+
+```bash
+cd ~/projects/my-shop
+cue use medusa-dev      # writes .cue.profile in this directory
+claude                  # launches with the medusa-dev loadout
+```
+
+Not sure which fits? `cue auto-detect` reads your project (package.json,
+pyproject.toml, Cargo.toml, …) and suggests one.
+
+<details>
+<summary>Other install paths (script, clone, guided)</summary>
+
+| Path | Command |
+|---|---|
+| One-line script | `curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh \| bash` |
+| Manual clone | `git clone https://github.com/opencue/cuecards.git && ./cuecards/install.sh` |
+| Per-OS notes (Homebrew, WSL2, PowerShell PATH) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
+
+All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`,
+`--codex`, `--uninstall`.
+
+</details>
 
 ---
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="cue picking a cuecard and launching the agent" width="820">
-</p>
 
 ## Why this exists
 
@@ -122,43 +177,6 @@ you type `claude`
 ```
 
 Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow: [docs/launch.md](https://github.com/opencue/cuecards/blob/main/docs/launch.md).
-
----
-
-## Install
-
-| Path | Command |
-|---|---|
-| npm (recommended) | `npm install -g cue-ai` |
-| One-line script | `curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh \| bash` |
-| Manual clone | `git clone https://github.com/opencue/cuecards.git && ./cuecards/install.sh` |
-| Guided (paste into Claude Code) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
-
-All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`, `--codex`, `--uninstall`.
-
-### Quickstart
-
-Five commands from zero to a profile-aware agent:
-
-```bash
-npm install -g cue-ai                     # 1. install
-cue shell install                         # 2. activate the claude/codex shims (one-time)
-cue discover search "code review"         # 3. find a skill you want
-cue discover install review/code-review   # 4. add it to your cuecard
-claude                                    # 5. launch — your cuecard is loaded
-```
-
-Step 2 is the magic: it installs a tiny `~/.config/cue/shims/claude` shim that hands off to `cue launch`, and puts that dir at the front of your PATH. From then on, typing `claude` in any directory loads that directory's cuecard first, then starts the real Claude Code. Skip step 2 and `claude` just runs vanilla.
-
-Pin a project to a profile:
-
-```bash
-cd ~/projects/my-shop
-cue use medusa-dev      # writes .cue.profile in this directory
-claude                  # launches with the medusa-dev loadout
-```
-
-Not sure which profile fits? `cue auto-detect` reads your project (package.json, pyproject.toml, Cargo.toml, …) and suggests one.
 
 ---
 
