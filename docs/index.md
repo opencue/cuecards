@@ -1,16 +1,18 @@
 ---
 layout: default
-title: "cue — Agent profile manager for Claude Code & Codex"
-description: "Per-directory profiles select which skills, MCP servers, and plugins load — automatically, before launch. Install: npm install -g cue-ai"
+title: "cue — Per-project profile manager for Claude Code & Codex"
+description: "Your agent reads every skill you own, on every message. cue loads only the ones that project needs. Install: npm install -g cue-ai"
 image: https://opencue.github.io/cuecards/assets/og-card.png
 ---
 
-# Discover skills your AI agent is missing
+# Your agent reads every skill you own, on every message
 
-**cue** scans GitHub for skill-compatible repos, scores them, and installs the best ones into your agent profile — Claude Code, Codex, Cursor, Cline, Gemini, Copilot, Windsurf, Roo Code, Amp, and Aider.
+**cue loads only the ones that project needs.** Per-project profiles scope which
+skills, MCP servers, and persona load — automatically, before Claude Code or
+Codex launches. Ten agents supported from one profile.
 
 ```bash
-npm install -g cue-ai && cue discover search
+npm install -g cue-ai && cue setup
 ```
 
 ---
