@@ -12,22 +12,24 @@
  * Isolation: every test runs with cwd chdir'd into a fresh temp dir AND
  * XDG_CONFIG_HOME/XDG_CACHE_HOME/HOME repointed at a fresh temp tree, so
  * nothing touches the real home directory or repo root. A valid shim is
- * pre-seeded so `ensureShim()` short-circuits before ever calling
- * `runInstall()` — the shim-install mechanics themselves are covered by
- * shell.test.ts and by the manual stdin-closed verification, so exercising
- * them again here would just add flakiness (real PATH / real agent binary
- * dependent) without adding coverage of THIS task's behavior.
+ * pre-seeded in beforeEach so `ensureShim()` short-circuits before ever
+ * calling `runInstall()` for MOST tests — those aren't about the shim, and
+ * exercising the full install machinery in each of them would add
+ * PATH/binary-dependent flakiness without adding coverage. The one test that
+ * IS about the shim ("actually installs the shim...") deliberately skips
+ * that pre-seed and instead injects `deps.shim` (the same fields
+ * `shell.test.ts` already drives `runInstall()` with) so the real install
+ * path runs hermetically, still without touching the real $HOME.
  */
 
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 
-import { run } from "./init";
+import { run, type RunDeps } from "./init";
 import { shimContent, shimDir } from "../lib/shim-dir";
-import { cacheDir } from "../lib/config-paths";
-import type { GemRepo } from "./discover";
+import { cacheFile as gemsCacheFile, type GemRepo } from "./discover";
 
 let tmpCwd: string;
 let tmpXdg: string;
@@ -70,8 +72,11 @@ afterEach(() => {
   rmSync(tmpXdg, { recursive: true, force: true });
 });
 
-/** Run `run(args)` capturing stdout/stderr instead of printing them. */
-async function capture(args: string[]): Promise<{ stdout: string; stderr: string; code: number }> {
+/** Run `run(args, deps)` capturing stdout/stderr instead of printing them. */
+async function capture(
+  args: string[],
+  deps: RunDeps = {},
+): Promise<{ stdout: string; stderr: string; code: number }> {
   const origOut = process.stdout.write.bind(process.stdout);
   const origErr = process.stderr.write.bind(process.stderr);
   let stdout = "";
@@ -85,7 +90,7 @@ async function capture(args: string[]): Promise<{ stdout: string; stderr: string
     return true;
   };
   try {
-    const code = await run(args);
+    const code = await run(args, deps);
     return { stdout, stderr, code };
   } finally {
     (process.stdout as unknown as { write: typeof origOut }).write = origOut;
@@ -93,8 +98,18 @@ async function capture(args: string[]): Promise<{ stdout: string; stderr: string
   }
 }
 
+// Seeds the gems cache at the EXACT path `getCachedGemsForProfile()` reads
+// (`discover.ts`'s own `cacheFile()`, exported for this reason) rather than
+// hand-deriving a parallel path. discover.ts's cache dir is
+// `<XDG_CONFIG_HOME>/cue/discover/` — a different directory, with an extra
+// `discover/` segment, from `../lib/config-paths`'s `cacheDir()`
+// (`<XDG_CACHE_HOME>/cue/`). Seeding the wrong one is exactly the bug this
+// comment exists to prevent from recurring: the test would silently pass
+// with `getCachedGemsForProfile()` always returning `[]`, proving nothing
+// about the "--yes must not install gems" prohibition it's named after.
 function seedGem(overrides: Partial<GemRepo> = {}): void {
-  mkdirSync(cacheDir(), { recursive: true });
+  const file = gemsCacheFile();
+  mkdirSync(dirname(file), { recursive: true });
   const gem: GemRepo = {
     full_name: "acme/example-skill",
     owner: "acme",
@@ -117,10 +132,7 @@ function seedGem(overrides: Partial<GemRepo> = {}): void {
     url: "https://github.com/acme/example-skill",
     ...overrides,
   };
-  writeFileSync(
-    join(cacheDir(), "gems.json"),
-    JSON.stringify({ updated: new Date().toISOString(), gems: [gem] }),
-  );
+  writeFileSync(file, JSON.stringify({ updated: new Date().toISOString(), gems: [gem] }));
 }
 
 describe("cue init --profile / --yes (non-interactive)", () => {
@@ -142,6 +154,20 @@ describe("cue init --profile / --yes (non-interactive)", () => {
     const { code, stderr } = await capture(["--profile", "still-not-real"]);
     expect(code).not.toBe(0);
     expect(stderr).toContain("still-not-real");
+    expect(existsSync(join(tmpCwd, ".cue.profile"))).toBe(false);
+  });
+
+  test("--profile with no trailing value is an error, not silently ignored", async () => {
+    const { code, stderr } = await capture(["--profile"]);
+    expect(code).not.toBe(0);
+    expect(stderr).toContain("--profile");
+    expect(existsSync(join(tmpCwd, ".cue.profile"))).toBe(false);
+  });
+
+  test("--profile immediately followed by another flag is an error, not a swallowed value", async () => {
+    const { code, stderr } = await capture(["--profile", "--yes"]);
+    expect(code).not.toBe(0);
+    expect(stderr).toContain("--profile");
     expect(existsSync(join(tmpCwd, ".cue.profile"))).toBe(false);
   });
 
@@ -197,5 +223,45 @@ describe("cue init --profile / --yes (non-interactive)", () => {
     // would hang until bun test's own timeout instead of returning quickly.
     const { code } = await capture(["--profile", "core", "--yes"]);
     expect(code).toBe(0);
+  });
+
+  test("--yes actually installs the shim when one isn't already present (hermetic)", async () => {
+    // Every other test in this file pre-seeds a shim in beforeEach, so
+    // ensureShim()'s `shimInstalled()` guard short-circuits before ever
+    // reaching runInstall() — that's deliberate isolation for THOSE tests,
+    // but it means the one thing `--yes` actually DOES (install the shim,
+    // vs. every other prohibition it skips) was previously exercised only by
+    // the manual stdin-closed check, not by the unit suite. This test uses
+    // the `deps.shim` injection seam (mirroring shell.test.ts's own
+    // `runInstall()` injection pattern) to point `ensureShim()` at a SEPARATE
+    // fake home that has no pre-seeded shim, forcing the real install branch
+    // to run — still fully hermetic, still never touching the real $HOME.
+    const fakeAgentHome = mkdtempSync(join(tmpdir(), "cue-init-agenthome-"));
+    let shimOut = "";
+    let shimErr = "";
+    try {
+      const { code, stdout } = await capture(["--profile", "core", "--yes"], {
+        shim: {
+          homeDir: fakeAgentHome,
+          realClaude: "/usr/bin/claude", // fake path — runInstall only needs truthiness, not a real binary (see shell.test.ts)
+          realCodex: null,
+          pathDirs: [join(fakeAgentHome, ".config", "cue", "shims")],
+          out: (s) => { shimOut += s; },
+          err: (s) => { shimErr += s; },
+        },
+      });
+      expect(code).toBe(0);
+
+      const shimPath = join(fakeAgentHome, ".config", "cue", "shims", "claude");
+      expect(existsSync(shimPath)).toBe(true);
+      expect(readFileSync(shimPath, "utf8")).toContain("launch claude");
+      // Both cue init's own log (via clack, captured through stdout) and
+      // runInstall()'s injected `out` sink should report the install.
+      expect(stdout).toContain("Shim installed to");
+      expect(shimOut).toContain("Installed claude shim");
+      expect(shimErr).toBe("");
+    } finally {
+      rmSync(fakeAgentHome, { recursive: true, force: true });
+    }
   });
 });

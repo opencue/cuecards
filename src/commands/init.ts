@@ -31,7 +31,7 @@ import { detectProfileV2 } from "../lib/auto-detect";
 import { scanProject } from "../lib/project-scanner";
 import { listProfiles } from "../lib/profile-loader";
 import { getCachedGemsForProfile, autoInstallClis } from "./discover";
-import { shimInstalled, runInstall } from "./shell";
+import { shimInstalled, runInstall, type ShimOptions } from "./shell";
 import { shimDir } from "../lib/shim-dir";
 import { gateFreshSkill } from "./security";
 import {
@@ -279,6 +279,18 @@ export async function showCostProof(
 }
 
 /**
+ * Test-injection escape hatch into `ensureShim()`'s `runInstall()` call —
+ * mirrors the fields `shell.test.ts` already drives `runInstall()` with
+ * (`homeDir`, `realClaude`/`realCodex`, `pathDirs`, `out`/`err`). Production
+ * callers pass nothing: `ensureShim()` resolves the real home directory and
+ * real agent binaries itself.
+ */
+export type ShimInjectOptions = Pick<
+  ShimOptions,
+  "homeDir" | "realClaude" | "realCodex" | "pathDirs" | "out" | "err"
+>;
+
+/**
  * Offer to install the shell shims if they're missing. Without the shim,
  * typing `claude` runs vanilla Claude Code and the pinned profile is never
  * loaded — the #1 "I followed the docs and nothing happened" failure. Detect
@@ -289,9 +301,19 @@ export async function showCostProof(
  * `--yes` (the plugin command, the paste prompt) are required to have asked
  * the user before running it at all.
  */
-async function ensureShim(opts: { nonInteractive?: boolean } = {}): Promise<void> {
-  if (shimInstalled()) return;
-  const dir = shimDir();
+async function ensureShim(
+  opts: { nonInteractive?: boolean } & ShimInjectOptions = {},
+): Promise<void> {
+  if (shimInstalled(opts.homeDir)) return;
+  const dir = shimDir(opts.homeDir);
+  const injected: ShimInjectOptions = {
+    homeDir: opts.homeDir,
+    realClaude: opts.realClaude,
+    realCodex: opts.realCodex,
+    pathDirs: opts.pathDirs,
+    out: opts.out,
+    err: opts.err,
+  };
 
   if (opts.nonInteractive) {
     p.log.step(`Installing the claude/codex shim (non-interactive) → ${dir}/claude...`);
@@ -300,7 +322,7 @@ async function ensureShim(opts: { nonInteractive?: boolean } = {}): Promise<void
       // line when the shim dir isn't on PATH yet. `yes: true` lets it also
       // append that PATH line non-interactively — the whole run must not
       // touch a single clack widget.
-      const code = await runInstall({ yes: true });
+      const code = await runInstall({ ...injected, yes: true });
       if (code === 0) {
         p.log.success(`Shim installed to ${dir}.`);
       } else {
@@ -325,7 +347,7 @@ async function ensureShim(opts: { nonInteractive?: boolean } = {}): Promise<void
   try {
     // runInstall() prints its own PATH guidance, including the exact rc line
     // when the shim dir isn't on PATH yet.
-    const code = await runInstall();
+    const code = await runInstall(injected);
     if (code === 0) {
       p.log.success(`Shim installed to ${dir}.`);
     } else {
@@ -336,19 +358,37 @@ async function ensureShim(opts: { nonInteractive?: boolean } = {}): Promise<void
   }
 }
 
-export async function run(args: string[]): Promise<number> {
+export interface RunDeps {
+  /** See {@link ShimInjectOptions} — forwarded to `ensureShim()`. */
+  shim?: ShimInjectOptions;
+}
+
+export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
   const cwd = process.cwd();
   const reOnboard = args.includes("--re-onboard");
   const skipOnboarding = args.includes("--no-onboarding");
   const yes = args.includes("--yes") || args.includes("-y");
   const profileFlagIdx = args.indexOf("--profile");
-  const pinnedProfile = profileFlagIdx >= 0 ? args[profileFlagIdx + 1] : undefined;
+  const profileFlagPresent = profileFlagIdx >= 0;
+  const profileRawValue = profileFlagPresent ? args[profileFlagIdx + 1] : undefined;
+  // A following flag (e.g. `--profile --yes`, or `--profile` as the last
+  // arg) is NOT a value — treat it the same as a missing value rather than
+  // silently swallowing the next flag as a profile name.
+  const pinnedProfile =
+    profileRawValue !== undefined && !profileRawValue.startsWith("-") ? profileRawValue : undefined;
 
   // Validate `--profile <name>` BEFORE anything else runs — including before
-  // `p.intro()` and the onboarding phase. A typo must fail fast and exit
-  // non-zero, never fall back to a guess, and never risk tripping a prompt
-  // on the way to reporting the error (applies whether or not `--yes` is
-  // also passed — this is a distinct check from the non-interactive flow).
+  // `p.intro()` and the onboarding phase. A typo (or a missing value) must
+  // fail fast and exit non-zero, never fall back to a guess, and never risk
+  // tripping a prompt on the way to reporting the error (applies whether or
+  // not `--yes` is also passed — this is a distinct check from the
+  // non-interactive flow).
+  if (profileFlagPresent && pinnedProfile === undefined) {
+    process.stderr.write(
+      "❌ --profile requires a profile name (e.g. `--profile core`) — run `cue list` to see available profiles.\n",
+    );
+    return 1;
+  }
   if (pinnedProfile !== undefined) {
     const known = await listProfiles();
     if (!known.includes(pinnedProfile)) {
@@ -460,9 +500,12 @@ export async function run(args: string[]): Promise<number> {
       await createProfile([name as string, "--description", desc as string, "--icon", "🔧"]);
 
       writeFileSync(join(cwd, ".cue.profile"), (name as string) + "\n");
-      await offerDiscoverGems(name as string);
+      // Unreachable under `--yes` today (this whole branch is inside the
+      // interactive-only `else`), but threading `nonInteractive`/`deps.shim`
+      // here too means it can't quietly become a trap if that ever changes.
+      await offerDiscoverGems(name as string, { nonInteractive: yes });
       await showCostProof(name as string);
-      await ensureShim();
+      await ensureShim({ nonInteractive: yes, ...deps.shim });
       p.outro(`✅ Created profile "${name}" and pinned to this directory.`);
       return 0;
     }
@@ -474,7 +517,7 @@ export async function run(args: string[]): Promise<number> {
   writeFileSync(join(cwd, ".cue.profile"), choice + "\n");
   await offerDiscoverGems(choice, { nonInteractive: yes });
   await showCostProof(choice);
-  await ensureShim({ nonInteractive: yes });
+  await ensureShim({ nonInteractive: yes, ...deps.shim });
   p.outro(`✅ Pinned "${choice}" to this directory. Next \`claude\` launch will use it.`);
   return 0;
 }

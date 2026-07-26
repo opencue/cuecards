@@ -1,8 +1,9 @@
 /**
  * Tests for src/commands/init.ts — only the exported pure helper
- * `onboardedMarkerPath()`. The interactive `run()` / `runGlobalOnboarding()`
- * are skipped: they drive @clack/prompts interactively and have no
- * hermetically testable surface.
+ * `onboardedMarkerPath()`. The fully interactive path (no `--profile`, no
+ * `--yes`) is still skipped here: it drives @clack/prompts interactively and
+ * has no hermetically testable surface. The non-interactive `--profile`/
+ * `--yes` path DOES have one now — see `init-noninteractive.test.ts`.
  */
 
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
