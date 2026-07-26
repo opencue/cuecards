@@ -2,7 +2,7 @@
 title: "RavenQueen03/btp-sap-odata-to-mcp-server — Claude Code skill discovered by cue"
 description: "🌐 Expose SAP OData services as dynamic MCP tools, enabling natural language interactions with your ERP data for enhanced conversational AI capabilities."
 layout: page
-updated: 2026-06-12
+updated: 2026-07-18
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: api, btp, cloud, data-modeling, enterprise-integration, integration, java, mcp-server, microservices, nodejs, odata, real-time-data, rest-api, sap, web-services
 
 ## Best fit cue profiles

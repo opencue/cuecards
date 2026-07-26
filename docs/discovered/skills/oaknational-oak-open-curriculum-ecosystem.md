@@ -2,21 +2,21 @@
 title: "oaknational/oak-open-curriculum-ecosystem — Claude Code skill discovered by cue"
 description: "A collection of tools for working with the Oak Open Curriculum Data, via API, SDK and MCP app"
 layout: page
-updated: 2026-06-27
+updated: 2026-07-26
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [oaknational/oak-open-curriculum-ecosystem](https://github.com/oaknational/oak-open-curriculum-ecosystem)
 
-**★ 3** · exceptional (score 8.2) · TypeScript · curriculum, education, elasticsearch, mcp, mcp-server
+**★ 7** · exceptional (score 10.9) · TypeScript · curriculum, education, elasticsearch, mcp, mcp-server
 
 > A collection of tools for working with the Oak Open Curriculum Data, via API, SDK and MCP app
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-07-26
 - 🏷️ Tags: curriculum, education, elasticsearch, mcp, mcp-server, open-data, openapi, sdk
 
 ## Best fit cue profiles

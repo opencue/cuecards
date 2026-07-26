@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-26
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="sergebulaev-youtube-skills"></a>
-## 💎 [sergebulaev/youtube-skills](https://github.com/sergebulaev/youtube-skills)
+<a id="cassette-editor-oh-my-cassette"></a>
+## 💎 [Cassette-Editor/oh-my-cassette](https://github.com/Cassette-Editor/oh-my-cassette)
 
-**★ 4** · exceptional (score 14.3) · Python · tags: agent-skill, ai-agents, ai-marketing, claude-code, claude-skills
+**★ 143** · exceptional (score 16) · Python · tags: agent, agent-skills, ai-agent, ai-video-editing, chat-to-edit
 
-YouTube and YouTube Shorts marketing skills for Claude Code and Codex: high-CTR titles, SEO descriptions, retention hooks, thumbnails, and a content plan. Publish via Publora. MIT.
-
-✅ SKILL.md
+你的随身 AI 剪辑搭档 | Pocket AI co-editor for video montage — AI video editing plugin & MCP server for Claude Code, Codex, Hermes & OpenCode
 
 ```bash
-cue skills add sergebulaev/youtube-skills --profile video
+cue skills add Cassette-Editor/oh-my-cassette --profile video
 ```
 
 ---
 
-<a id="studiomeyer-io-mcp-video"></a>
-## 💎 [studiomeyer-io/mcp-video](https://github.com/studiomeyer-io/mcp-video)
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 4** · exceptional (score 8.3) · TypeScript · tags: ai, anthropic, built-in-mallorca, claude, content-creation
+**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
-Cinema-grade video production MCP server — 8 tools for recording, editing, effects, captions, TTS, and smart screenshots. Built on ffmpeg + Playwright.
+Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
 ```bash
-cue skills add studiomeyer-io/mcp-video --profile video
+cue skills add TanaTTV/lyt --profile video
 ```
 
 ---

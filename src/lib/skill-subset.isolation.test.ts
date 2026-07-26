@@ -76,6 +76,10 @@ describe("classifier home isolation", () => {
 
     expect(credExpiresAt(srcCred)).toBe(999);
     expect(JSON.parse(readFileSync(srcCred, "utf8")).claudeAiOauth.accessToken).toBe("new");
+    // Atomic copy-back must leave no tmp file behind next to the source.
+    const srcDir = join(src);
+    const stray = require("node:fs").readdirSync(srcDir).filter((f: string) => f.includes(".tmp"));
+    expect(stray).toEqual([]);
   });
 
   test("teardown never clobbers a live source token with a stale home copy", () => {

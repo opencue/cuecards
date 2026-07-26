@@ -2,7 +2,7 @@
 title: "kimikonapps/kimiflow — Claude Code skill discovered by cue"
 description: "kimiflow — Claude Code + Codex plugin for codebase mapping, gated feature/fix flows, token-cheap learning memory, and Obsidian Vault MCP setup."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-30
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: ai-agents, claude-code, claude-skill, codebase-analysis, codex, codex-plugin, developer-tools, learning-loop, learning-quality, memory, memory-router, openai-codex, project-intelligence, project-memory, quality-gates, source-freshness, tdd
 
 ## Best fit cue profiles

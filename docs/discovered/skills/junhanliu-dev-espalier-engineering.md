@@ -2,21 +2,21 @@
 title: "Junhanliu-dev/espalier-engineering — Claude Code skill discovered by cue"
 description: "Train your AI coders the way you'd train a vine — discover your codebase's actual patterns, then encode them as Claude Code rules, skills, agents, hooks, and a "
 layout: page
-updated: 2026-07-11
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Junhanliu-dev/espalier-engineering](https://github.com/Junhanliu-dev/espalier-engineering)
 
-**★ 71** · exceptional (score 13.1) · Shell · agent-orchestration, ai-agents, ai-coding, claude-code, claude-code-plugin
+**★ 72** · exceptional (score 13.5) · Shell · agent-orchestration, ai-agents, ai-coding, claude-code, claude-code-plugin
 
 > Train your AI coders the way you'd train a vine — discover your codebase's actual patterns, then encode them as Claude Code rules, skills, agents, hooks, and a guided pipeline so generated code lands inside your conventions on the first try, not the fifth.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.1 based on:
-- ⭐ 71 stars
-- 🗓️ Last pushed: 2026-07-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+- ⭐ 72 stars
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: agent-orchestration, ai-agents, ai-coding, claude-code, claude-code-plugin, claude-code-skill, code-generation, code-quality, developer-tools, llm-tooling, llm-workflow
 
 ## Best fit cue profiles

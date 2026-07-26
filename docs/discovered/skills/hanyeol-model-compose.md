@@ -2,7 +2,7 @@
 title: "hanyeol/model-compose — Claude Code skill discovered by cue"
 description: "Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-20
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ⭐ 75 stars
-- 🗓️ Last pushed: 2026-07-14
+- 🗓️ Last pushed: 2026-07-20
 - 🏷️ Tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic, declarative, huggingface, langchain-alternative, llm, llm-framework, llm-orchestration, llmops, mcp, mcp-server, model-context-protocol, openai, rag, vector-database, workflow-orchestration, yaml
 
 ## Best fit cue profiles

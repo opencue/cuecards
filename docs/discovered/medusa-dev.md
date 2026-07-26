@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-08
+updated: 2026-07-23
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="buywhere-buywhere"></a>
-## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
+<a id="daizedong-shopping-aggregator"></a>
+## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
 
-**★ 0** · strong (score 6) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
+**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, amazon, claude
 
-BuyWhere agent-native product catalog API
+Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
 
 ```bash
-cue skills add BuyWhere/buywhere --profile medusa-dev
+cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
 ```
 
 ---

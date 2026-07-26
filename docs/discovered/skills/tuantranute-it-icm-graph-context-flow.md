@@ -2,7 +2,7 @@
 title: "tuantranute-it/icm-graph-context-flow — Claude Code skill discovered by cue"
 description: "Best Token-Efficient AI Coding Tools 2026 – Reduce Costs 90% with Local Memory & MCP"
 layout: page
-updated: 2026-07-12
+updated: 2026-07-19
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-12
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: ai-agents, ai-coding, anthropic, claude-code, cli, cline, context-engineering, cpp17, cursor, developer-tools, knowledge-graph, llm-tools, local-first, mcp, mcp-server, prompt-engineering, semantic-search, sqlite, token-optimization
 
 ## Best fit cue profiles

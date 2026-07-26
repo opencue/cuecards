@@ -1,23 +1,23 @@
 ---
 title: "Rul1an/assay — Claude Code skill discovered by cue"
-description: "CI-native evidence compiler for agent systems: MCP policy enforcement, evidence receipts, Trust Basis claims, coverage-aware side-effect verification, and revie"
+description: "Policy-as-code for MCP agents: deny risky tool calls before they run, prove what ran with verifiable evidence, and enforce egress in the kernel (eBPF/LSM, Linux"
 layout: page
-updated: 2026-06-09
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Rul1an/assay](https://github.com/Rul1an/assay)
 
-**★ 5** · exceptional (score 10.6) · Rust · agent-security, ai-agents, ai-security, ci, cyclonedx
+**★ 10** · exceptional (score 9) · Rust · agent-security, ai-agents, ai-security, ci, cyclonedx
 
-> CI-native evidence compiler for agent systems: MCP policy enforcement, evidence receipts, Trust Basis claims, coverage-aware side-effect verification, and reviewable artifacts.
+> Policy-as-code for MCP agents: deny risky tool calls before they run, prove what ran with verifiable evidence, and enforce egress in the kernel (eBPF/LSM, Linux). Deterministic, offline-first, bounded claims.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-09
-- 🏷️ Tags: agent-security, ai-agents, ai-security, ci, cyclonedx, evidence, evidence-bundles, evidence-receipts, github-actions, mcp, mcp-server, openfeature, policy-as-code, policy-enforcement, promptfoo, provenance, rust, sbom, supply-chain-security, trust-basis
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-07-26
+- 🏷️ Tags: agent-security, ai-agents, ai-security, ci, cyclonedx, ebpf, evidence-bundles, github-actions, llm-security, mcp, mcp-security, mcp-server, openfeature, policy-as-code, policy-enforcement, promptfoo, provenance, rust, sbom, supply-chain-security
 
 ## Best fit cue profiles
 

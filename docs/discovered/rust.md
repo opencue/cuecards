@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-15
+updated: 2026-07-24
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 
 ---
 
-<a id="piiiico-proof-of-commitment"></a>
-## ✨ [piiiico/proof-of-commitment](https://github.com/piiiico/proof-of-commitment)
+<a id="intutic-intutic"></a>
+## ✨ [intutic/intutic](https://github.com/intutic/intutic)
 
-**★ 5** · strong (score 7) · TypeScript · tags: cargo, cli, dependencies, dependency-audit, devsecops
+**★ 3** · strong (score 6.7) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
 
-Supply chain security risk scorer for npm, PyPI, Cargo, and Go — behavioral signals that can't be faked
+The open source circuit breaker for AI agents. Real-time security, secret DLP, and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
 
 ```bash
-cue skills add piiiico/proof-of-commitment --profile rust
+cue skills add intutic/intutic --profile rust
 ```
 
 ---

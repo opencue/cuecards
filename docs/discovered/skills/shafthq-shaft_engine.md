@@ -2,21 +2,21 @@
 title: "ShaftHQ/SHAFT_ENGINE — Claude Code skill discovered by cue"
 description: "Java test automation framework for web, mobile, API, CLI, database, and desktop E2E testing with a fluent API and built-in reporting."
 layout: page
-updated: 2026-06-29
+updated: 2026-07-18
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [ShaftHQ/SHAFT_ENGINE](https://github.com/ShaftHQ/SHAFT_ENGINE)
 
-**★ 392** · exceptional (score 13) · Java · appium, appium-framework, appium-java, automation, automation-engine
+**★ 397** · exceptional (score 13) · Java · appium, appium-framework, appium-java, automation, automation-engine
 
 > Java test automation framework for web, mobile, API, CLI, database, and desktop E2E testing with a fluent API and built-in reporting.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 392 stars
-- 🗓️ Last pushed: 2026-06-29
+- ⭐ 397 stars
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: appium, appium-framework, appium-java, automation, automation-engine, e2e-testing, end-to-end-testing, java, mcp-server, playwright-java, restassured, restassured-framework, selenium, selenium-grid, selenium-webdriver, test-automation, test-automation-framework, testing-framework, testing-tools
 
 ## Best fit cue profiles

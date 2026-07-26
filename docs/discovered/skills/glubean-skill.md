@@ -2,21 +2,21 @@
 title: "glubean/skill — Claude Code skill discovered by cue"
 description: "Agent skill for Glubean — teaches AI agents to write, run, and fix API verification in TypeScript"
 layout: page
-updated: 2026-06-24
+updated: 2026-07-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [glubean/skill](https://github.com/glubean/skill)
 
-**★ 1** · exceptional (score 10.8) · MDX · agent-skill, ai-testing, api-testing, claude-code, claude-code-skill
+**★ 1** · exceptional (score 12.3) · JavaScript · agent-skill, ai-testing, api-testing, claude-code, claude-code-skill
 
 > Agent skill for Glubean — teaches AI agents to write, run, and fix API verification in TypeScript
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: agent-skill, ai-testing, api-testing, claude-code, claude-code-skill, claude-skill, codex, cursor, mcp, test-automation, typescript
 
 ## Best fit cue profiles

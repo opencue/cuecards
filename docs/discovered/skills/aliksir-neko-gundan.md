@@ -2,13 +2,13 @@
 title: "aliksir/neko-gundan — Claude Code skill discovered by cue"
 description: "Multi-agent orchestration framework for Claude Code with hierarchical team structure, quality gates, and bidirectional feedback protocols"
 layout: page
-updated: 2026-06-06
+updated: 2026-07-24
 tags: [claude-code, skill, fleet-control]
 ---
 
 # 💎 [aliksir/neko-gundan](https://github.com/aliksir/neko-gundan)
 
-**★ 1** · exceptional (score 12.3) · Shell · ai-agent, claude-code, claude-code-skill, multi-agent, orchestration
+**★ 1** · exceptional (score 12.3) · JavaScript · ai-agent, claude-code, claude-code-skill, multi-agent, orchestration
 
 > Multi-agent orchestration framework for Claude Code with hierarchical team structure, quality gates, and bidirectional feedback protocols
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-06
+- 🗓️ Last pushed: 2026-07-24
 - 🏷️ Tags: ai-agent, claude-code, claude-code-skill, multi-agent, orchestration
 
 ## Best fit cue profiles

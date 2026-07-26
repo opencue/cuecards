@@ -2,21 +2,21 @@
 title: "phenomenoner/neoapi-skill — Claude Code skill discovered by cue"
 description: "富邦新一代（Fubon Neo）Python 技能包：交易與行情工作流、測試環境整合測試、多代理（Codex/Claude/Gemini）適配。"
 layout: page
-updated: 2026-06-27
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [phenomenoner/neoapi-skill](https://github.com/phenomenoner/neoapi-skill)
+# 💎 [phenomenoner/neoapi-skill](https://github.com/phenomenoner/neoapi-skill)
 
-**★ 17** · strong (score 7) · PowerShell · ai-agent-skill, claude-code, codex, fubon-neo, gemini
+**★ 18** · exceptional (score 9.9) · Python · ai-agent-skill, claude-code, codex, fubon-neo, gemini
 
 > 富邦新一代（Fubon Neo）Python 技能包：交易與行情工作流、測試環境整合測試、多代理（Codex/Claude/Gemini）適配。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 17 stars
-- 🗓️ Last pushed: 2026-05-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: ai-agent-skill, claude-code, codex, fubon-neo, gemini, neoapi, python-sdk
 
 ## Best fit cue profiles

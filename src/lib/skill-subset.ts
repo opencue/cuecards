@@ -176,8 +176,25 @@ function teardownClassifierHome(h: ClassifierHome): void {
   try {
     if (h.credSrc) {
       const homeCred = join(h.home, ".credentials.json");
+      // The source may be a SHARED account `.credentials.json` (authmux parallel
+      // accounts point CLAUDE_CONFIG_DIR there), read live by other sessions. So
+      // this must be atomic: copy into a sibling tmp, re-check freshness (a
+      // concurrent launch may have rotated the source since we forked), then
+      // rename — a same-dir rename is atomic, so a reader never sees a torn file.
+      // Mirrors credentials-sync.ts's writer.
       if (existsSync(homeCred) && shouldCopyBackCreds(credExpiresAt(homeCred), credExpiresAt(h.credSrc))) {
-        copyFileSync(homeCred, h.credSrc);
+        const tmp = `${h.credSrc}.cue-classifier.${process.pid}.tmp`;
+        try {
+          copyFileSync(homeCred, tmp);
+          // Re-check under the freshest source state before committing the swap.
+          if (shouldCopyBackCreds(credExpiresAt(homeCred), credExpiresAt(h.credSrc))) {
+            renameSync(tmp, h.credSrc);
+          } else {
+            rmSync(tmp, { force: true });
+          }
+        } catch {
+          try { rmSync(tmp, { force: true }); } catch { /* best-effort */ }
+        }
       }
     }
   } catch {

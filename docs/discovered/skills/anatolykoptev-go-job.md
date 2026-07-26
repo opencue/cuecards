@@ -2,21 +2,21 @@
 title: "anatolykoptev/go-job — Claude Code skill discovered by cue"
 description: "Job, Remote & Freelance Search MCP server"
 layout: page
-updated: 2026-06-24
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [anatolykoptev/go-job](https://github.com/anatolykoptev/go-job)
 
-**★ 2** · exceptional (score 8) · Go · career, freelance, go, job-search, mcp
+**★ 4** · exceptional (score 8.3) · Go · career, freelance, go, job-search, mcp
 
 > Job, Remote & Freelance Search MCP server
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: career, freelance, go, job-search, mcp, mcp-server, resume
 
 ## Best fit cue profiles

@@ -2,19 +2,19 @@
 title: "xiapuyang/gaokao-adi — Claude Code skill discovered by cue"
 description: "高考志愿专业路径双功能 Skill：按分数推荐专业 + ADI 综合测评。Chinese Gaokao college major recommender & ADI path assessment skill for AI agents."
 layout: page
-updated: 2026-07-01
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xiapuyang/gaokao-adi](https://github.com/xiapuyang/gaokao-adi)
 
-**★ 2** · exceptional (score 11.4) · Python · ai-agent-skill, china-education, claude-code, college-admissions, college-entrance-exam
+**★ 2** · exceptional (score 10.4) · Python · ai-agent-skill, china-education, claude-code, college-admissions, college-entrance-exam
 
 > 高考志愿专业路径双功能 Skill：按分数推荐专业 + ADI 综合测评。Chinese Gaokao college major recommender & ADI path assessment skill for AI agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-06-27

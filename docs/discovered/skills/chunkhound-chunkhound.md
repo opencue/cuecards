@@ -2,21 +2,21 @@
 title: "chunkhound/chunkhound — Claude Code skill discovered by cue"
 description: "Local first codebase intelligence"
 layout: page
-updated: 2026-06-04
+updated: 2026-07-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [chunkhound/chunkhound](https://github.com/chunkhound/chunkhound)
 
-**★ 1292** · exceptional (score 12) · Python · agent, ai, duckdb, mcp-server, rag
+**★ 1363** · exceptional (score 12) · Python · agent, ai, duckdb, mcp-server, rag
 
 > Local first codebase intelligence
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 1292 stars
-- 🗓️ Last pushed: 2026-06-04
+- ⭐ 1363 stars
+- 🗓️ Last pushed: 2026-07-21
 - 🏷️ Tags: agent, ai, duckdb, mcp-server, rag, semantic-search, tree-sitter
 
 ## Best fit cue profiles

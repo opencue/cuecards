@@ -2,21 +2,21 @@
 title: "Unfathomable-siren38/mcp-terminal-server — Claude Code skill discovered by cue"
 description: "Run an inline MCP terminal server with multi-session PTY support and tabbed xterm.js for Claude Code and Claude Desktop"
 layout: page
-updated: 2026-06-25
+updated: 2026-07-15
 tags: [claude-code, skill, backend, python]
 ---
 
 # 💎 [Unfathomable-siren38/mcp-terminal-server](https://github.com/Unfathomable-siren38/mcp-terminal-server)
 
-**★ 0** · exceptional (score 10.5) · TypeScript · ai-agent, ai-agents, claude-code, code-analysis, code-generation
+**★ 0** · exceptional (score 12) · TypeScript · ai-agent, ai-agents, claude-code, code-analysis, code-generation
 
 > Run an inline MCP terminal server with multi-session PTY support and tabbed xterm.js for Claude Code and Claude Desktop
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-25
+- 🗓️ Last pushed: 2026-07-15
 - 🏷️ Tags: ai-agent, ai-agents, claude-code, code-analysis, code-generation, comfyui, fastapi, image-generation, mcp, mcp-server, muapi, python, react, stable-diffusion, terminal-ai, terminal-automation, tmux, vibe-coding
 
 ## Best fit cue profiles

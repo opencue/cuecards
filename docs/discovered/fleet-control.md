@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-26
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="neomjs-neo"></a>
 ## 💎 [neomjs/neo](https://github.com/neomjs/neo)
 
-**★ 3231** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
+**★ 3243** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
 
 Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
 
@@ -41,6 +41,19 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 
 ---
 
+<a id="fmarzochi-egc"></a>
+## 💎 [Fmarzochi/EGC](https://github.com/Fmarzochi/EGC)
+
+**★ 38** · exceptional (score 11.7) · JavaScript · tags: agent-memory, agentic-workflows, ai-agents, ai-memory, aider
+
+EGC gives every AI coding agent the same brain. Shared memory, skills, and live context across Cursor, Claude Code, Copilot, Aider, and 20+ AI coding tools with zero configuration. Every tab, terminal, and AI stays automatically synchronized. One brain. Everywhere.
+
+```bash
+cue skills add Fmarzochi/EGC --profile fleet-control
+```
+
+---
+
 <a id="aadiieee-multi-agent-revenue-orchestrator"></a>
 ## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
 
@@ -50,6 +63,19 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 
 ```bash
 cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
+```
+
+---
+
+<a id="nuttaruj-rolepod"></a>
+## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
+
+**★ 2** · strong (score 6.4) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+
+Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
+
+```bash
+cue skills add nuttaruj/rolepod --profile fleet-control
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "EximAgent/cli — Claude Code skill discovered by cue"
 description: "Trade-intelligence CLI for coding agents"
 layout: page
-updated: 2026-06-14
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-14
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: agent-skill, b2b, claude-code, cli, codex, coding-agent, cold-outreach, cursor, customs, hs-code, import-export, lead-generation, ofac, prospect-discovery, sanctions-screening, tariff, trade-data, trade-intelligence
 
 ## Best fit cue profiles

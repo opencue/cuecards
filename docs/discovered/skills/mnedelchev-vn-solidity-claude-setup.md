@@ -2,7 +2,7 @@
 title: "mnedelchev-vn/solidity-claude-setup — Claude Code skill discovered by cue"
 description: "Claude Code skills purpose-built for Solidity security auditing and protocol research."
 layout: page
-updated: 2026-07-06
+updated: 2026-07-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-06
+- 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: agent-skills, ai, ai-agents, ai-tools, anthropic, claude, claude-code, claude-code-skill, promt-engineering, skill
 
 ## Best fit cue profiles

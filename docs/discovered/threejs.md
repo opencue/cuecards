@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-30
+updated: 2026-07-20
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="iart-ai-webgl-animation-skills"></a>
-## ✨ [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
+<a id="ciroautuori-r3f-production"></a>
+## 💎 [ciroautuori/r3f-production](https://github.com/ciroautuori/r3f-production)
 
-**★ 1** · strong (score 6) · HTML · tags: 3d-animation, claude-skill, glsl-shaders, motion-graphics, particle-system
+**★ 0** · exceptional (score 12.5) · Python · tags: 3d-web, accessibility, agent-skill, awwwards, best-practices
 
-3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.
+Production governance skill for React Three Fiber (r3f v9 + three r183 + Zustand + Next.js): 13 hard rules, three-speed state, polish chain, 88/100 audit scorecard, headless Blender->GLB, self-hosted CI on one VPS. MIT, EN-only.
+
+✅ SKILL.md
 
 ```bash
-cue skills add iart-ai/webgl-animation-skills --profile threejs
+cue skills add ciroautuori/r3f-production --profile threejs
 ```
 
 ---

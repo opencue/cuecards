@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-25
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="norahe0304-art-30x-growth-marketing-panel"></a>
+## 💎 [norahe0304-art/30x-growth-marketing-panel](https://github.com/norahe0304-art/30x-growth-marketing-panel)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 30** · exceptional (score 15.9) · Shell · tags: ai-agent-skill, ai-skills, claude-code, growth-marketing, marketing
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+AI Growth Marketing Expert Panel — 12 world-class experts distilled from 4,000+ YouTube videos into one Claude Code / Cursor / Codex skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add norahe0304-art/30x-growth-marketing-panel --profile marketing
+```
+
+---
+
+<a id="aleprieto790-alt-gtm-mcp"></a>
+## ✨ [aleprieto790-alt/gtm-mcp](https://github.com/aleprieto790-alt/gtm-mcp)
+
+**★ 0** · strong (score 6) · Python · tags: ai, chatgpt, data-layer, enablement, ga4
+
+Run B2B cold outreach in Claude Code: find companies, verify fit, extract contacts, write sequences, and launch campaigns locally
+
+```bash
+cue skills add aleprieto790-alt/gtm-mcp --profile marketing
 ```
 
 ---

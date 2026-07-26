@@ -1,23 +1,23 @@
 ---
 title: "jungjaehoon-lifegamez/MAMA — Claude Code skill discovered by cue"
-description: "Always-on companion for Claude that remembers your decisions and their evolution. Local-first memory       using SQLite + transformers.js embeddings."
+description: "Local-first operating memory for AI coding agents - Claude Code, Codex, and any MCP client. Tracks decisions and their evolution. SQLite + on-device embeddings,"
 layout: page
-updated: 2026-07-03
+updated: 2026-07-17
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [jungjaehoon-lifegamez/MAMA](https://github.com/jungjaehoon-lifegamez/MAMA)
 
-**★ 7** · exceptional (score 13.3) · TypeScript · claude-code, claude-code-plugins, cot-few-shot, decision-tracking, embeddings
+**★ 11** · exceptional (score 13.6) · TypeScript · agent-memory, ai-agents, claude-code, claude-code-plugins, codex
 
-> Always-on companion for Claude that remembers your decisions and their evolution. Local-first memory       using SQLite + transformers.js embeddings.
+> Local-first operating memory for AI coding agents - Claude Code, Codex, and any MCP client. Tracks decisions and their evolution. SQLite + on-device embeddings, no cloud.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-07-03
-- 🏷️ Tags: claude-code, claude-code-plugins, cot-few-shot, decision-tracking, embeddings, mcp-server, memory-management, reasoning-graph, session-continuity, sqlite, transformers-js
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.6 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-07-17
+- 🏷️ Tags: agent-memory, ai-agents, claude-code, claude-code-plugins, codex, cot-few-shot, decision-tracking, embeddings, mcp-server, memory-management, reasoning-graph, session-continuity, sqlite, transformers-js
 
 ## Best fit cue profiles
 

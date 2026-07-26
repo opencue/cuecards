@@ -2,13 +2,13 @@
 title: "gtbwpkwjnb-alt/summarize-skill — Claude Code skill discovered by cue"
 description: "会话级全维总结 — 项目·进度·建议·错误，一个命令全清 | Session-level summary for project/progress/suggestion/error"
 layout: page
-updated: 2026-07-04
+updated: 2026-07-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [gtbwpkwjnb-alt/summarize-skill](https://github.com/gtbwpkwjnb-alt/summarize-skill)
 
-**★ 1** · exceptional (score 15.8) · PowerShell · agent-memory, agent-skill, ai-coding, claude-code, claude-code-skill
+**★ 1** · exceptional (score 15.8) · Python · agent-memory, agent-skill, ai-coding, claude-code, claude-code-skill
 
 > 会话级全维总结 — 项目·进度·建议·错误，一个命令全清 | Session-level summary for project/progress/suggestion/error
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-04
+- 🗓️ Last pushed: 2026-07-24
 - 🏷️ Tags: agent-memory, agent-skill, ai-coding, claude-code, claude-code-skill, codex, context-compression, cursor, developer-tools, diagnostics, error-harvesting, error-prevention, productivity, self-evolution, self-evolving, session-management, summarize, windsurf, zcode, zcode-skill
 
 ## Best fit cue profiles

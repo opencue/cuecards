@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-26
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,32 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="trip2g-trip2g"></a>
-## 💎 [trip2g/trip2g](https://github.com/trip2g/trip2g)
+<a id="dmitrax-second-brain-setup"></a>
+## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
 
-**★ 23** · exceptional (score 9.4) · Go · tags: ai-agent-memory, cms, digital-garden, golang, knowledge-base
+**★ 0** · exceptional (score 14) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
 
-Open-source MCP knowledge mesh - self-host your second brain, expose it to AI agents, federate with peers.
+Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
+
+✅ SKILL.md
 
 ```bash
-cue skills add trip2g/trip2g --profile docs-writer
+cue skills add dmitrax/second-brain-setup --profile docs-writer
 ```
 
 ---
 
-<a id="kevinv92-somedaywriter"></a>
-## ✨ [kevinv92/SomedayWriter](https://github.com/kevinv92/SomedayWriter)
+<a id="maxonliu-karpathy-html-wiki"></a>
+## 💎 [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki)
 
-**★ 0** · strong (score 6) · TypeScript · tags: codemirror, desktop-app, electron, local-first, macos
+**★ 0** · exceptional (score 8.9) · tags: ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
 
-A calm desktop Markdown writing app for long-form prose — Electron + React + CodeMirror, with a story index, threads, and manuscript export.
+HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)
+
+✅ SKILL.md
 
 ```bash
-cue skills add kevinv92/SomedayWriter --profile docs-writer
+cue skills add maxonliu/karpathy-html-wiki --profile docs-writer
 ```
 
 ---

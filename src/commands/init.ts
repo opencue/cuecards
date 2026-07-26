@@ -206,12 +206,12 @@ export async function showCostProof(
   profile: string,
   deps: { costRun?: (args: string[]) => Promise<number> } = {},
 ): Promise<void> {
+  p.log.info(`Token budget for "${profile}" vs loading everything:`);
   try {
     const costRun = deps.costRun ?? (await import("./cost")).run;
-    p.log.info(`Token budget for "${profile}" vs loading everything:`);
     await costRun([profile, "--compare"]);
   } catch {
-    // Non-fatal by design — see the docstring.
+    p.log.warn("Couldn't measure the token budget — skipping the comparison.");
   }
 }
 

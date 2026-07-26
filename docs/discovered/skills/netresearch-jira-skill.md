@@ -2,21 +2,21 @@
 title: "netresearch/jira-skill — Claude Code skill discovered by cue"
 description: "AI agent plugin for Jira — CLI tools for issues, worklogs, sprints, and more | Server/DC & Cloud"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/jira-skill](https://github.com/netresearch/jira-skill)
 
-**★ 70** · exceptional (score 16.7) · Python · agent-skills, ai-agent, atlassian, claude-code-skill, jira
+**★ 72** · exceptional (score 16.7) · Python · agent-skills, ai-agent, atlassian, claude-code-skill, jira
 
 > AI agent plugin for Jira — CLI tools for issues, worklogs, sprints, and more | Server/DC & Cloud
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
-- ⭐ 70 stars
-- 🗓️ Last pushed: 2026-07-07
+- ⭐ 72 stars
+- 🗓️ Last pushed: 2026-07-25
 - 🏷️ Tags: agent-skills, ai-agent, atlassian, claude-code-skill, jira, mcp, open-standard, project-management, skill
 
 ## Best fit cue profiles

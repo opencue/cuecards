@@ -2,21 +2,21 @@
 title: "ericvoltolin/xc-mcp — Claude Code skill discovered by cue"
 description: "XC-MCP delivers an intelligent MCP server for Xcode tooling with progressive disclosure and caching to prevent token overflow. It speeds workflows and boosts re"
 layout: page
-updated: 2026-06-15
+updated: 2026-07-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ericvoltolin/xc-mcp](https://github.com/ericvoltolin/xc-mcp)
 
-**★ 5** · exceptional (score 9.6) · TypeScript · automation, claude, cli-mcp, developer-tools, i18n
+**★ 5** · exceptional (score 8.7) · TypeScript · automation, claude, cli-mcp, developer-tools, i18n
 
 > XC-MCP delivers an intelligent MCP server for Xcode tooling with progressive disclosure and caching to prevent token overflow. It speeds workflows and boosts reliability in development 🐙
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: automation, claude, cli-mcp, developer-tools, i18n, ios, ios-mcp, macos, mcp-server, mcp-xcode, model-context-protocol, model-context-protocol-servers, original-xbox, swift, typescript, xbox, xcode-mcp, xcode-tools
 
 ## Best fit cue profiles

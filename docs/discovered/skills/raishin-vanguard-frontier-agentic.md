@@ -2,21 +2,21 @@
 title: "Raishin/vanguard-frontier-agentic — Claude Code skill discovered by cue"
 description: "Curated marketplace of AI skills, agents, and rules for cloud, zero-trust, and compliance-aware engineering - works with Claude Code, Codex, Cursor, Copilot, an"
 layout: page
-updated: 2026-07-11
+updated: 2026-07-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Raishin/vanguard-frontier-agentic](https://github.com/Raishin/vanguard-frontier-agentic)
 
-**★ 16** · exceptional (score 10.6) · Rust · agent-skills, ai-agents-framework, asia-cloud-provider, azure, claude-code-skill
+**★ 17** · exceptional (score 10.7) · Rust · agent-skills, ai-agents-framework, asia-cloud-provider, azure, claude-code-skill
 
 > Curated marketplace of AI skills, agents, and rules for cloud, zero-trust, and compliance-aware engineering - works with Claude Code, Codex, Cursor, Copilot, and more.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
-- ⭐ 16 stars
-- 🗓️ Last pushed: 2026-07-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+- ⭐ 17 stars
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: agent-skills, ai-agents-framework, asia-cloud-provider, azure, claude-code-skill, claude-skill, cloud-security, codex-skill, cursor-skill, eu-cloud-provider, finops, istio, kubernetes, kyverno, nvidia, oci, opencode-skill, terraform, zero-trust-architecture
 
 ## Best fit cue profiles

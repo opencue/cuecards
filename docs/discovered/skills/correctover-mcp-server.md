@@ -1,23 +1,23 @@
 ---
 title: "Correctover/mcp-server — Claude Code skill discovered by cue"
-description: "Correctover MCP Server — The MCP Reliability Layer for AI. Real-time 6-dimension output quality inspection, automatic self-healing for LLM calls. Zero-dependenc"
+description: "Correctover MCP Server — LLM Reliability Engineering for AI tools. Real-time 6-dimension output validation, self-healing failover, drift detection. Zero-dep, BY"
 layout: page
-updated: 2026-06-27
+updated: 2026-07-18
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Correctover/mcp-server](https://github.com/Correctover/mcp-server)
 
-**★ 2** · strong (score 6.5) · Python · ai-reliability, byok, claude-desktop, contract-validation, cursor
+**★ 1** · strong (score 6.3) · Python · agent-security, ai-reliability, byok, claude-desktop, contract-validation
 
-> Correctover MCP Server — The MCP Reliability Layer for AI. Real-time 6-dimension output quality inspection, automatic self-healing for LLM calls. Zero-dependency, BYOK, one-line JSON config.
+> Correctover MCP Server — LLM Reliability Engineering for AI tools. Real-time 6-dimension output validation, self-healing failover, drift detection. Zero-dep, BYOK.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-27
-- 🏷️ Tags: ai-reliability, byok, claude-desktop, contract-validation, cursor, failover, llm-validation, mcp-server, multi-provider, output-validation
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-18
+- 🏷️ Tags: agent-security, ai-reliability, byok, claude-desktop, contract-validation, cursor, failover, llm-validation, mcp, mcp-server, multi-provider, output-validation, runtime-security
 
 ## Best fit cue profiles
 

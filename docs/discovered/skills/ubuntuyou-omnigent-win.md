@@ -2,19 +2,19 @@
 title: "ubuntuyou/omnigent-win — Claude Code skill discovered by cue"
 description: "Windows fork of Omnigent: additive native ConPTY (pywinpty) terminal backend for the Claude Code harness. The POSIX tmux path is left untouched."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-16
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [ubuntuyou/omnigent-win](https://github.com/ubuntuyou/omnigent-win)
 
-**★ 1** · potential (score 4.3) · Python
+**★ 1** · potential (score 4.2) · Python
 
 > Windows fork of Omnigent: additive native ConPTY (pywinpty) terminal backend for the Claude Code harness. The POSIX tmux path is left untouched.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-12
 - 🏷️ Tags: (none)

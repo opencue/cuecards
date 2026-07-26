@@ -2,21 +2,21 @@
 title: "round-comfortfood117/codex-workflows — Claude Code skill discovered by cue"
 description: "Automate Codex CLI workflows with subagents for requirements, design, implementation, tests, and traceable commits"
 layout: page
-updated: 2026-06-25
+updated: 2026-07-19
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [round-comfortfood117/codex-workflows](https://github.com/round-comfortfood117/codex-workflows)
 
-**★ 0** · strong (score 5) · JavaScript · agentic-framework, agentic-skills, ai-agents, ai-workflows, antigravity
+**★ 0** · strong (score 6.5) · JavaScript · agentic-framework, agentic-skills, ai-agents, ai-workflows, antigravity
 
 > Automate Codex CLI workflows with subagents for requirements, design, implementation, tests, and traceable commits
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-25
+- 🗓️ Last pushed: 2026-07-19
 - 🏷️ Tags: agentic-framework, agentic-skills, ai-agents, ai-workflows, antigravity, antigravity-skills, autonomous-agents, codex, codex-cli, codex-skills, cursor, gemini-cli, mcp, mcp-server, opencode, skill-library, skills
 
 ## Best fit cue profiles

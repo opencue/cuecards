@@ -2,7 +2,7 @@
 title: "karlkfi/claude-workspace-guard — Claude Code skill discovered by cue"
 description: "Path-aware bash permissions for Claude Code."
 layout: page
-updated: 2026-07-14
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-13
+- 🗓️ Last pushed: 2026-07-24
 - 🏷️ Tags: bash, claude-code, claude-code-plugin, guardrail, hooks, sandbox, security
 
 ## Best fit cue profiles

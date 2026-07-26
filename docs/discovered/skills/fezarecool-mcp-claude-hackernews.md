@@ -2,7 +2,7 @@
 title: "FezAreCool/mcp-claude-hackernews — Claude Code skill discovered by cue"
 description: "🚀 Connect Claude Desktop with Hacker News through the Model Context Protocol (MCP) for seamless interactions and enhanced information flow."
 layout: page
-updated: 2026-06-12
+updated: 2026-07-18
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-12
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: ai, anthropic, api, claude, claude-desktop, hacker-news, hackernews, hackernews-api, hn, integration, llm, mcp, mcp-server, model-context-protocol, server
 
 ## Best fit cue profiles

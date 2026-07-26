@@ -2,7 +2,7 @@
 title: "sator-imaging/suggest-skills — Claude Code skill discovered by cue"
 description: "MCP server that suggests repository-specific AI agent skills."
 layout: page
-updated: 2026-06-20
+updated: 2026-07-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-20
+- 🗓️ Last pushed: 2026-07-17
 - 🏷️ Tags: ai-agents, ai-skills, ai-skills-manager, claude-skills, codex-skills, copilot-skills, gemini-skills, mcp-server
 
 ## Best fit cue profiles

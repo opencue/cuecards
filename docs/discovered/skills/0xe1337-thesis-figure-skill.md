@@ -2,21 +2,21 @@
 title: "0xE1337/thesis-figure-skill — Claude Code skill discovered by cue"
 description: "🎓 Claude Skill: Paste your paper text, auto-generate publication-ready LaTeX/TikZ diagrams. 粘贴论文文案，自动生成学术级配图。"
 layout: page
-updated: 2026-06-07
+updated: 2026-07-22
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [0xE1337/thesis-figure-skill](https://github.com/0xE1337/thesis-figure-skill)
 
-**★ 88** · exceptional (score 10.7) · TeX · academic-paper, ai-tools, claude-skill, diagram, figure-generation
+**★ 118** · exceptional (score 12.4) · TeX · academic-paper, ai-tools, claude-skill, diagram, figure-generation
 
 > 🎓 Claude Skill: Paste your paper text, auto-generate publication-ready LaTeX/TikZ diagrams. 粘贴论文文案，自动生成学术级配图。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
-- ⭐ 88 stars
-- 🗓️ Last pushed: 2026-06-07
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
+- ⭐ 118 stars
+- 🗓️ Last pushed: 2026-07-22
 - 🏷️ Tags: academic-paper, ai-tools, claude-skill, diagram, figure-generation, latex, thesis, tikz
 
 ## Best fit cue profiles

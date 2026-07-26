@@ -2,7 +2,7 @@
 title: "ermermermermidk/mcp-ai-memory — Claude Code skill discovered by cue"
 description: "🧠 Manage AI context seamlessly with the MCP server for storing and retrieving semantic memory across sessions. Enhance your AI's knowledge retention."
 layout: page
-updated: 2026-06-15
+updated: 2026-07-18
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-15
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: a2a, ai-agents, ai-assistant, application, chatgpt, claude-desktop, cursor, dapr-pub-sub, dapr-sidecar, kubernetes, langmem, llm, long-term-memory, mcp-server, memory-management, python, state-management, vector-database
 
 ## Best fit cue profiles

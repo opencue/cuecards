@@ -2,7 +2,7 @@
 title: "mission69b/t2000 — Claude Code skill discovered by cue"
 description: "Agentic finance infrastructure."
 layout: page
-updated: 2026-07-10
+updated: 2026-07-18
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
 - ⭐ 22 stars
-- 🗓️ Last pushed: 2026-07-10
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: agent, agent-payments, agentic-finance, agentic-infrastructure, ai, crypto, mcp, mcp-server, mpp, sui, typescript, x402
 
 ## Best fit cue profiles

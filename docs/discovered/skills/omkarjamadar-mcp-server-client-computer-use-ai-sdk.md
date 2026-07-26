@@ -2,21 +2,21 @@
 title: "Omkarjamadar/MCP-server-client-computer-use-ai-sdk — Claude Code skill discovered by cue"
 description: "🖥️ Control your computer effortlessly with our AI SDK, enabling seamless interaction with apps and websites without virtual machines or pixel-based issues."
 layout: page
-updated: 2026-06-12
+updated: 2026-07-18
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [Omkarjamadar/MCP-server-client-computer-use-ai-sdk](https://github.com/Omkarjamadar/MCP-server-client-computer-use-ai-sdk)
 
-**★ 2** · exceptional (score 8) · Rust · ai-sdk, api-development, application-integration, backend-development, client-app
+**★ 3** · exceptional (score 8.2) · Rust · ai-sdk, api-development, application-integration, backend-development, client-app
 
 > 🖥️ Control your computer effortlessly with our AI SDK, enabling seamless interaction with apps and websites without virtual machines or pixel-based issues.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-07-18
 - 🏷️ Tags: ai-sdk, api-development, application-integration, backend-development, client-app, computer-vision, cross-platform, data-processing, frontend-development, machine-learning, mcp-server, programming-tools, real-time-communication, software-development, user-interface
 
 ## Best fit cue profiles
