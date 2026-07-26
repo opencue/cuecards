@@ -19,7 +19,8 @@ for this project.
    each one is for, and let me pick one — don't choose for me.
 5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile and
    installs the shim that makes `claude`/`codex` load it. It will not enable
-   telemetry and will not install third-party skills.
+   telemetry and will not install third-party skills. If it exits non-zero,
+   stop and show me the output instead of continuing to step 6.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
 7. Report which profile got pinned and whether the shim is active. Mention that

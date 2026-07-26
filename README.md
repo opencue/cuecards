@@ -47,7 +47,8 @@ for this project.
    each one is for, and let me pick one — don't choose for me.
 5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile and
    installs the shim that makes `claude`/`codex` load it. It will not enable
-   telemetry and will not install third-party skills.
+   telemetry and will not install third-party skills. If it exits non-zero,
+   stop and show me the output instead of continuing to step 6.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
 7. Report which profile got pinned and whether the shim is active. Mention that
@@ -67,6 +68,8 @@ the matching profile costs against loading everything, and pins it. Requires
 Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code)
 or [Codex](https://github.com/openai/codex) install — cue is a thin shim that
 hands off to your real agent, not a replacement for it.
+
+> package `cue-ai` · command `cue` · repo [opencue/cuecards](https://github.com/opencue/cuecards)
 
 Three things happen when you type `claude` afterwards:
 
@@ -100,6 +103,10 @@ All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`,
 </details>
 
 ---
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="cue picking a cuecard and launching the agent" width="820">
+</p>
 
 ## Why this exists
 
@@ -322,7 +329,7 @@ self-hosting, and `CUE_API_URL` (point the CLI at a different deployment).
 
 ## Shell setup
 
-`cue shell install` (Quickstart step 2) writes the `~/.config/cue/shims/claude` shim and the PATH line for it. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
+`cue setup` (or `cue shell install` on its own) writes the `~/.config/cue/shims/claude` shim and the PATH line for it. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
 
 ```bash
 eval "$(cue shell hook)"   # auto-switch profile when you cd into a project (bash/zsh/fish, auto-detected)
