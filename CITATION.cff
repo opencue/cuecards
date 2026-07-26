@@ -35,8 +35,8 @@ keywords:
   - token-optimization
   - llm-tooling
 license: MIT
-repository-code: "https://github.com/opencue/claude-code-skills"
-url: "https://github.com/opencue/claude-code-skills"
+repository-code: "https://github.com/opencue/cuecards"
+url: "https://github.com/opencue/cuecards"
 version: "0.5.0"
 date-released: "2026-05-24"
 preferred-citation:
@@ -47,5 +47,5 @@ preferred-citation:
       family-names: "Nagy"
       alias: "NagyVikt"
   year: 2026
-  url: "https://github.com/opencue/claude-code-skills"
+  url: "https://github.com/opencue/cuecards"
   license: MIT

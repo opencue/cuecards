@@ -40,7 +40,7 @@ command -v git >/dev/null || { echo "install git first"; exit 1; }
 export PATH="$HOME/.bun/bin:$HOME/.local/bin:$PATH"
 
 # 1b. Install the cue CLI (clone + symlink claude shim through cue)
-curl -fsSL https://raw.githubusercontent.com/opencue/claude-code-skills/main/get.sh | bash -s -- --yes
+curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh | bash -s -- --yes
 
 # 1c. RTK — Rust Token Killer
 if ! command -v rtk >/dev/null; then
@@ -66,7 +66,7 @@ brew install git bun rtk
 export PATH="$HOME/.local/bin:$PATH"
 
 # 2b. Install the cue CLI
-curl -fsSL https://raw.githubusercontent.com/opencue/claude-code-skills/main/get.sh | bash -s -- --yes
+curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh | bash -s -- --yes
 
 # 2c. RTK hook (binary already installed via brew above)
 rtk init -g

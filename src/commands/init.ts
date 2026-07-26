@@ -7,6 +7,19 @@
  *      `.onboarded` so subsequent `cue init` calls skip straight to phase 2.
  *   2. **Per-directory pinning** (always): scan cwd, suggest the best
  *      profile, write `.cue.profile`, offer to install discovered gems.
+ *
+ * Non-interactive path (`--profile <name>` / `--yes`, `-y`):
+ *
+ * An agent driving this command through a one-shot Bash tool cannot answer
+ * a `p.select`/`p.confirm`/`p.text` prompt — the call just hangs (or, with
+ * stdin closed, crashes on EOF). `--yes` exists so the whole flow can run
+ * with NO clack widget ever invoked. That guarantee is deliberately narrow:
+ * `--yes` only skips questions the interactive wizard would have asked and
+ * already has a safe default for (which profile, whether to install the
+ * shim). It must NOT silently say "yes" on the user's behalf to the two
+ * prompts that grant something beyond this run — analytics consent and
+ * third-party gem installs — because the user never saw those asked. See
+ * `runGlobalOnboarding()` and `offerDiscoverGems()` below.
  */
 
 import { spawnSync } from "node:child_process";
@@ -18,7 +31,7 @@ import { detectProfileV2 } from "../lib/auto-detect";
 import { scanProject } from "../lib/project-scanner";
 import { listProfiles } from "../lib/profile-loader";
 import { getCachedGemsForProfile, autoInstallClis } from "./discover";
-import { shimInstalled, runInstall } from "./shell";
+import { shimInstalled, runInstall, type ShimOptions } from "./shell";
 import { shimDir } from "../lib/shim-dir";
 import { gateFreshSkill } from "./security";
 import {
@@ -46,19 +59,50 @@ function defaultProfilePath(): string {
   return join(configDir(), "default-profile");
 }
 
+export interface GlobalOnboardingOptions {
+  /**
+   * Run with no `p.select`/`p.confirm`/`p.text` calls. Pins the
+   * default-profile to `core` (the same value the interactive prompt marks
+   * "recommended") and leaves analytics OFF — consent that was never asked
+   * for is not consent. Never throws, never blocks on stdin.
+   */
+  nonInteractive?: boolean;
+}
+
 /**
  * First-run setup: default-profile composition + analytics opt-in. Returns
  * `false` when the user cancels mid-wizard so the caller can short-circuit.
  *
  * Writes:
- *   - `<configDir>/default-profile` (when a composite was chosen)
- *   - `<configDir>/.telemetry-consent` (when user opts in)
+ *   - `<configDir>/default-profile` (when a composite was chosen, or always
+ *     `core` under `nonInteractive`)
+ *   - `<configDir>/.telemetry-consent` (when user opts in — NEVER under
+ *     `nonInteractive`)
  *   - `<configDir>/.onboarded` (marker — written by the caller post-success)
  */
-export async function runGlobalOnboarding(): Promise<boolean> {
+export async function runGlobalOnboarding(
+  opts: GlobalOnboardingOptions = {},
+): Promise<boolean> {
   p.log.info(
     "👋 Welcome to cue. Quick 30-second setup before we pin a profile to this directory.",
   );
+
+  if (opts.nonInteractive) {
+    // No prompts reachable below this line. Pin the recommended default
+    // (`core`) — identical to what the interactive prompt's initial value
+    // would have produced — and leave analytics untouched (opted out unless
+    // some earlier run already opted in).
+    const path = defaultProfilePath();
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, "core\n");
+    p.log.success("Default profile: core (non-interactive — change anytime with `cue use --set-default`).");
+    if (!telemetryEnabled()) {
+      p.log.message(
+        "Local analytics left OFF (non-interactive — this was never asked). Opt in anytime: `cue telemetry enable`.",
+      );
+    }
+    return true;
+  }
 
   // Step 1: default-profile composite.
   const defaultPick = await p.select<string>({
@@ -150,7 +194,26 @@ export async function runGlobalOnboarding(): Promise<boolean> {
   return true;
 }
 
-async function offerDiscoverGems(profile: string): Promise<void> {
+/**
+ * Offer to install third-party "gem" skills discovered for `profile`.
+ *
+ * Under `nonInteractive`, this is skipped ENTIRELY — no cache lookup, no
+ * `p.confirm`, no `npx skills add` process. Installing third-party code
+ * pulled from GitHub is not something a convenience flag gets to say "yes"
+ * to on the user's behalf; the user never saw the list of what would be
+ * installed. One line is printed so the user knows how to run it later.
+ */
+async function offerDiscoverGems(
+  profile: string,
+  opts: { nonInteractive?: boolean } = {},
+): Promise<void> {
+  if (opts.nonInteractive) {
+    p.log.message(
+      `Skipped gem discovery for "${profile}" (non-interactive) — run \`cue discover\` then \`cue init\` later to review and install third-party skills.`,
+    );
+    return;
+  }
+
   const gems = getCachedGemsForProfile(profile, 8).slice(0, 3);
   if (!gems.length) return;
 
@@ -216,14 +279,73 @@ export async function showCostProof(
 }
 
 /**
+ * Test-injection escape hatch into `ensureShim()`'s `runInstall()` call —
+ * mirrors the fields `shell.test.ts` already drives `runInstall()` with
+ * (`homeDir`, `realClaude`/`realCodex`, `pathDirs`, `out`/`err`). Production
+ * callers pass nothing: `ensureShim()` resolves the real home directory and
+ * real agent binaries itself.
+ */
+export type ShimInjectOptions = Pick<
+  ShimOptions,
+  "homeDir" | "realClaude" | "realCodex" | "pathDirs" | "out" | "err"
+>;
+
+/**
  * Offer to install the shell shims if they're missing. Without the shim,
  * typing `claude` runs vanilla Claude Code and the pinned profile is never
  * loaded — the #1 "I followed the docs and nothing happened" failure. Detect
  * it here and offer the one-time fix.
+ *
+ * Under `nonInteractive`, the shim IS installed — unlike telemetry consent
+ * and gem installs, this is the flag's whole point, and callers that invoke
+ * `--yes` (the plugin command, the paste prompt) are required to have asked
+ * the user before running it at all.
+ *
+ * Returns whether a working shim is confirmed in place when this call
+ * returns (already installed, or just installed successfully) — `false`
+ * covers both "declined" (interactive) and "install failed" (either mode).
+ * The caller decides what that means for its own exit code: `run()` only
+ * treats `false` as a failure in the non-interactive case, because declining
+ * the interactive prompt is not a failure.
  */
-async function ensureShim(): Promise<void> {
-  if (shimInstalled()) return;
-  const dir = shimDir();
+async function ensureShim(
+  opts: { nonInteractive?: boolean } & ShimInjectOptions = {},
+): Promise<boolean> {
+  if (shimInstalled(opts.homeDir)) return true;
+  const dir = shimDir(opts.homeDir);
+  const injected: ShimInjectOptions = {
+    homeDir: opts.homeDir,
+    realClaude: opts.realClaude,
+    realCodex: opts.realCodex,
+    pathDirs: opts.pathDirs,
+    out: opts.out,
+    err: opts.err,
+  };
+
+  if (opts.nonInteractive) {
+    p.log.step(`Installing the claude/codex shim (non-interactive) → ${dir}/claude...`);
+    try {
+      // runInstall() prints its own PATH guidance, including the exact rc
+      // line when the shim dir isn't on PATH yet. `yes: true` lets it also
+      // append that PATH line non-interactively — the whole run must not
+      // touch a single clack widget.
+      const code = await runInstall({ ...injected, yes: true });
+      if (code === 0) {
+        p.log.success(`Shim installed to ${dir}.`);
+        return true;
+      }
+      // A non-zero runInstall() means no working shim exists — most often
+      // "no real claude/codex binary found on PATH". Under --yes this MUST
+      // surface as a command failure (see run()'s caller), not a swallowed
+      // warning that still reports success.
+      p.log.error("Shim install failed — run `cue shell install` manually for details.");
+      return false;
+    } catch {
+      p.log.error("Couldn't install the shim automatically — run `cue shell install` manually.");
+      return false;
+    }
+  }
+
   p.log.warn(
     "The `claude`/`codex` shim isn't installed yet — without it, launching `claude` runs vanilla Claude Code and won't load this profile.",
   );
@@ -232,33 +354,71 @@ async function ensureShim(): Promise<void> {
   });
   if (p.isCancel(install) || !install) {
     p.log.message("Skipped — run `cue shell install` later to activate profile loading.");
-    return;
+    return false;
   }
   try {
     // runInstall() prints its own PATH guidance, including the exact rc line
     // when the shim dir isn't on PATH yet.
-    const code = await runInstall();
+    const code = await runInstall(injected);
     if (code === 0) {
       p.log.success(`Shim installed to ${dir}.`);
-    } else {
-      p.log.warn("Shim install reported an issue — run `cue shell install` manually for details.");
+      return true;
     }
+    p.log.warn("Shim install reported an issue — run `cue shell install` manually for details.");
+    return false;
   } catch {
     p.log.warn("Couldn't install the shim automatically — run `cue shell install` manually.");
+    return false;
   }
 }
 
-export async function run(args: string[]): Promise<number> {
+export interface RunDeps {
+  /** See {@link ShimInjectOptions} — forwarded to `ensureShim()`. */
+  shim?: ShimInjectOptions;
+}
+
+export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
   const cwd = process.cwd();
   const reOnboard = args.includes("--re-onboard");
   const skipOnboarding = args.includes("--no-onboarding");
+  const yes = args.includes("--yes") || args.includes("-y");
+  const profileFlagIdx = args.indexOf("--profile");
+  const profileFlagPresent = profileFlagIdx >= 0;
+  const profileRawValue = profileFlagPresent ? args[profileFlagIdx + 1] : undefined;
+  // A following flag (e.g. `--profile --yes`, or `--profile` as the last
+  // arg) is NOT a value — treat it the same as a missing value rather than
+  // silently swallowing the next flag as a profile name.
+  const pinnedProfile =
+    profileRawValue !== undefined && !profileRawValue.startsWith("-") ? profileRawValue : undefined;
+
+  // Validate `--profile <name>` BEFORE anything else runs — including before
+  // `p.intro()` and the onboarding phase. A typo (or a missing value) must
+  // fail fast and exit non-zero, never fall back to a guess, and never risk
+  // tripping a prompt on the way to reporting the error (applies whether or
+  // not `--yes` is also passed — this is a distinct check from the
+  // non-interactive flow).
+  if (profileFlagPresent && pinnedProfile === undefined) {
+    process.stderr.write(
+      "❌ --profile requires a profile name (e.g. `--profile core`) — run `cue list` to see available profiles.\n",
+    );
+    return 1;
+  }
+  if (pinnedProfile !== undefined) {
+    const known = await listProfiles();
+    if (!known.includes(pinnedProfile)) {
+      process.stderr.write(
+        `❌ Unknown profile "${pinnedProfile}" — run \`cue list\` to see available profiles.\n`,
+      );
+      return 1;
+    }
+  }
 
   p.intro("🎯 cue init — set up profile for this project");
 
   // Global onboarding (first run only, or explicit --re-onboard).
   const marker = onboardedMarkerPath();
   if (!skipOnboarding && (!existsSync(marker) || reOnboard)) {
-    const ok = await runGlobalOnboarding();
+    const ok = await runGlobalOnboarding({ nonInteractive: yes });
     if (!ok) {
       p.cancel("Onboarding cancelled. Run `cue init` again anytime.");
       return 130;
@@ -282,77 +442,115 @@ export async function run(args: string[]): Promise<number> {
 
   // Score
   const suggestions = detectProfileV2(cwd);
-  const allProfiles = await listProfiles();
 
-  // Present options
-  const options: { value: string; label: string; hint?: string }[] = [];
+  // Resolve which profile to pin WITHOUT ever reaching `p.select` when either
+  // `--profile` or `--yes` is set.
+  let choice: string;
+  if (pinnedProfile !== undefined) {
+    // Already validated above — skips only the selection menu; every
+    // remaining prompt below (gems, shim) still runs interactively unless
+    // `--yes` is ALSO set.
+    choice = pinnedProfile;
+  } else if (yes) {
+    // Top detectProfileV2() match, or `core` when nothing matched.
+    choice = suggestions[0]?.profile ?? "core";
+  } else {
+    const allProfiles = await listProfiles();
 
-  for (let i = 0; i < Math.min(suggestions.length, 3); i++) {
-    const s = suggestions[i]!;
-    options.push({
-      value: s.profile,
-      label: s.profile,
-      hint: `${Math.round(s.confidence * 100)}% match — ${s.reasons.join(", ")}`,
+    // Present options
+    const options: { value: string; label: string; hint?: string }[] = [];
+
+    for (let i = 0; i < Math.min(suggestions.length, 3); i++) {
+      const s = suggestions[i]!;
+      options.push({
+        value: s.profile,
+        label: s.profile,
+        hint: `${Math.round(s.confidence * 100)}% match — ${s.reasons.join(", ")}`,
+      });
+    }
+
+    // Add remaining profiles not in suggestions
+    const suggestedNames = new Set(suggestions.map(s => s.profile));
+    for (const name of allProfiles) {
+      if (suggestedNames.has(name)) continue;
+      if (name.startsWith("_")) continue;
+      options.push({ value: name, label: name });
+    }
+
+    options.push({ value: "__new", label: "Create a new profile", hint: "interactive wizard" });
+    options.push({ value: "__skip", label: "Skip — don't pin a profile" });
+
+    const picked = await p.select({
+      message: "Which profile for this directory?",
+      options,
     });
-  }
 
-  // Add remaining profiles not in suggestions
-  const suggestedNames = new Set(suggestions.map(s => s.profile));
-  for (const name of allProfiles) {
-    if (suggestedNames.has(name)) continue;
-    if (name.startsWith("_")) continue;
-    options.push({ value: name, label: name });
-  }
+    if (p.isCancel(picked)) {
+      p.cancel("Cancelled.");
+      return 130;
+    }
 
-  options.push({ value: "__new", label: "Create a new profile", hint: "interactive wizard" });
-  options.push({ value: "__skip", label: "Skip — don't pin a profile" });
+    if (picked === "__skip") {
+      p.outro("No profile pinned. Run `cue init` again anytime.");
+      return 0;
+    }
 
-  const choice = await p.select({
-    message: "Which profile for this directory?",
-    options,
-  });
+    if (picked === "__new") {
+      const name = await p.text({
+        message: "Profile name",
+        placeholder: "my-project",
+        validate: v => !/^[a-z][a-z0-9-]{1,63}$/.test(v ?? "") ? "Must be kebab-case" : undefined,
+      });
+      if (p.isCancel(name)) { p.cancel("Cancelled."); return 130; }
 
-  if (p.isCancel(choice)) {
-    p.cancel("Cancelled.");
-    return 130;
-  }
+      const desc = await p.text({
+        message: "Description",
+        placeholder: `Profile for ${cwd.split("/").pop()}`,
+      });
+      if (p.isCancel(desc)) { p.cancel("Cancelled."); return 130; }
 
-  if (choice === "__skip") {
-    p.outro("No profile pinned. Run `cue init` again anytime.");
-    return 0;
-  }
+      // Create minimal profile
+      const { run: createProfile } = await import("./create-profile");
+      await createProfile([name as string, "--description", desc as string, "--icon", "🔧"]);
 
-  if (choice === "__new") {
-    const name = await p.text({
-      message: "Profile name",
-      placeholder: "my-project",
-      validate: v => !/^[a-z][a-z0-9-]{1,63}$/.test(v ?? "") ? "Must be kebab-case" : undefined,
-    });
-    if (p.isCancel(name)) { p.cancel("Cancelled."); return 130; }
+      writeFileSync(join(cwd, ".cue.profile"), (name as string) + "\n");
+      // Unreachable under `--yes` today (this whole branch is inside the
+      // interactive-only `else`), but threading `nonInteractive`/`deps.shim`
+      // here too means it can't quietly become a trap if that ever changes.
+      await offerDiscoverGems(name as string, { nonInteractive: yes });
+      await showCostProof(name as string);
+      const shimActiveNew = await ensureShim({ nonInteractive: yes, ...deps.shim });
+      p.outro(
+        shimActiveNew
+          ? `✅ Created profile "${name}" and pinned to this directory. Next \`claude\` launch will use it.`
+          : `✅ Created profile "${name}" and pinned to this directory. Shim not active yet — run \`cue shell install\` to finish.`,
+      );
+      // Same non-interactive-only gate as the main pin path below — see the
+      // comment there. `yes` is always false on this branch today (it's
+      // reachable only from the interactive `p.select` menu), so this is
+      // belt-and-suspenders, not a behavior change.
+      return yes && !shimActiveNew ? 1 : 0;
+    }
 
-    const desc = await p.text({
-      message: "Description",
-      placeholder: `Profile for ${cwd.split("/").pop()}`,
-    });
-    if (p.isCancel(desc)) { p.cancel("Cancelled."); return 130; }
-
-    // Create minimal profile
-    const { run: createProfile } = await import("./create-profile");
-    await createProfile([name as string, "--description", desc as string, "--icon", "🔧"]);
-
-    writeFileSync(join(cwd, ".cue.profile"), (name as string) + "\n");
-    await offerDiscoverGems(name as string);
-    await showCostProof(name as string);
-    await ensureShim();
-    p.outro(`✅ Created profile "${name}" and pinned to this directory.`);
-    return 0;
+    choice = picked as string;
   }
 
   // Pin the chosen profile
-  writeFileSync(join(cwd, ".cue.profile"), (choice as string) + "\n");
-  await offerDiscoverGems(choice as string);
-  await showCostProof(choice as string);
-  await ensureShim();
-  p.outro(`✅ Pinned "${choice}" to this directory. Next \`claude\` launch will use it.`);
-  return 0;
+  writeFileSync(join(cwd, ".cue.profile"), choice + "\n");
+  await offerDiscoverGems(choice, { nonInteractive: yes });
+  await showCostProof(choice);
+  const shimActive = await ensureShim({ nonInteractive: yes, ...deps.shim });
+  p.outro(
+    shimActive
+      ? `✅ Pinned "${choice}" to this directory. Next \`claude\` launch will use it.`
+      : `✅ Pinned "${choice}" to this directory. Shim not active yet — run \`cue shell install\` to finish.`,
+  );
+  // Only the non-interactive path treats "shim didn't end up installed" as a
+  // command failure. A user who declined the interactive shim prompt made an
+  // informed choice, not an error — `yes` is false there, so this stays 0.
+  // Under `--yes`, though, a failed shim install (most commonly: no real
+  // claude/codex binary on PATH) means the pinned profile will never load,
+  // which is exactly the failure the paste prompt's "if it exits non-zero,
+  // stop" step (setup/agent-prompt.md) exists to catch.
+  return yes && !shimActive ? 1 : 0;
 }

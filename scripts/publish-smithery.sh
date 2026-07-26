@@ -21,12 +21,12 @@ if ! smithery auth whoami >/dev/null 2>&1; then
 fi
 
 # Add the skill
-smithery skill add opencue/claude-code-skills --agent claude-code
+smithery skill add opencue/cuecards --agent claude-code
 
 echo ""
 echo "✅ Published to Smithery!"
-echo "   View: https://smithery.ai/skills/opencue/claude-code-skills"
+echo "   View: https://smithery.ai/skills/opencue/cuecards"
 echo ""
 echo "Users can now install with:"
-echo "   smithery skill add opencue/claude-code-skills --agent claude-code"
-echo "   npx skills add opencue/claude-code-skills -a claude-code -y"
+echo "   smithery skill add opencue/cuecards --agent claude-code"
+echo "   npx skills add opencue/cuecards -a claude-code -y"

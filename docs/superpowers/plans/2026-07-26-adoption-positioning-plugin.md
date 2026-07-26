@@ -1100,13 +1100,14 @@ for this project.
 1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
 2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
 3. Ask me before installing anything, then run: `npm install -g cue-ai`
-4. Run `cue setup`. It's interactive — relay its prompts to me and pass my answers
-   back. It scans this project, suggests a profile, shows what that profile costs
-   in tokens versus loading everything, then asks before installing the shim that
-   makes `claude`/`codex` load profiles.
-5. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
+   each one is for, and let me pick one — don't choose for me.
+5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile and
+   installs the shim that makes `claude`/`codex` load it. It will not enable
+   telemetry and will not install third-party skills.
+6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
-6. Report which profile got pinned and whether the shim is active. Mention that
+7. Report which profile got pinned and whether the shim is active. Mention that
    `install.sh --uninstall` undoes it.
 
 Do not install anything without asking me first.
@@ -1186,13 +1187,14 @@ for this project.
 1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
 2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
 3. Ask me before installing anything, then run: `npm install -g cue-ai`
-4. Run `cue setup`. It's interactive — relay its prompts to me and pass my answers
-   back. It scans this project, suggests a profile, shows what that profile costs
-   in tokens versus loading everything, then asks before installing the shim that
-   makes `claude`/`codex` load profiles.
-5. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
+   each one is for, and let me pick one — don't choose for me.
+5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile and
+   installs the shim that makes `claude`/`codex` load it. It will not enable
+   telemetry and will not install third-party skills.
+6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
-6. Report which profile got pinned and whether the shim is active. Mention that
+7. Report which profile got pinned and whether the shim is active. Mention that
    `install.sh --uninstall` undoes it.
 
 Do not install anything without asking me first.
