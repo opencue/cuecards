@@ -957,8 +957,8 @@ order, and stop to report if any step fails.
 
 2. Once `cue` resolves, run `cue setup` via Bash. It is interactive: it scans the
    project, suggests a profile, shows the token budget for that profile against
-   loading everything, then asks before installing the `~/.local/bin` shim that
-   makes `claude` load profiles. Relay its prompts to the user and pass their
+   loading everything, then asks before installing the `~/.config/cue/shims/`
+   shim that makes `claude` load profiles. Relay its prompts to the user and pass their
    answers back.
 
 3. `cue setup` prints its own PATH guidance when the shim directory is not on
