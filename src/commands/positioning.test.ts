@@ -26,4 +26,21 @@ describe("canonical positioning", () => {
     const pkg = JSON.parse(readFileSync(join(REPO_ROOT, "package.json"), "utf8"));
     expect(pkg.description).toBe(DESCRIPTOR);
   });
+
+  test("plugin manifest is at the path Claude Code reads, with the descriptor", () => {
+    const manifest = JSON.parse(
+      readFileSync(join(REPO_ROOT, "plugins/cue/.claude-plugin/plugin.json"), "utf8"),
+    );
+    expect(manifest.description).toBe(DESCRIPTOR);
+    expect(manifest.name).toBe("cue");
+    // Discovery metadata — these feed `/plugin search`, which is the entire
+    // point of packaging the plugin.
+    expect(manifest.homepage).toBe("https://github.com/opencue/cuecards");
+    expect(manifest.repository).toBe("https://github.com/opencue/cuecards");
+    expect(manifest.license).toBe("MIT");
+    expect(Array.isArray(manifest.keywords)).toBe(true);
+    expect(manifest.keywords.length).toBeGreaterThan(0);
+    // No working plugin on disk declares commands[]; they come from commands/.
+    expect(manifest.commands).toBeUndefined();
+  });
 });

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "cue",
+  "description": "Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory.",
+  "version": "0.3.0",
+  "author": { "name": "NagyVikt" },
+  "homepage": "https://github.com/opencue/cuecards",
+  "repository": "https://github.com/opencue/cuecards",
+  "license": "MIT",
+  "keywords": [
+    "profile-manager",
+    "skills",
+    "mcp",
+    "context",
+    "token-budget",
+    "codex",
+    "claude-code"
+  ]
+}
