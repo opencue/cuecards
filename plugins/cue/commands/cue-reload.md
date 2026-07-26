@@ -10,3 +10,7 @@ Steps:
 If `~/.local/bin/claude` does not exist, print: "shim not installed; run `cue shell install` in a terminal first."
 
 Note: MCP server connection changes require the full restart. Skill and CLAUDE.md changes take effect immediately after rematerialization without restart, but restarting ensures a clean state.
+
+Before running any `cue` command, check `command -v cue`. If it exits non-zero,
+stop and tell the user: "cue isn't installed yet — run `/cue-setup` first." Do
+not surface a raw `command not found`.
