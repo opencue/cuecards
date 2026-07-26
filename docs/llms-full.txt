@@ -1,25 +1,25 @@
-cue — Agent Profile Manager for Claude Code, Codex, and 8 more agents.
+cue — Your agent reads every skill you own, on every message. cue loads only the ones that project needs.
 
 == WHAT IT IS ==
 cue is a thin CLI shim that intercepts `claude` / `codex` (and via materialize-on-disk, 8 more AI coding agents). On every launch it:
-  1. Resolves which profile applies to the current working directory (walks up from `pwd` to `$HOME` looking for `.cue-profile`, then falls back to a repo-level default, then a global default, then opens a TUI picker).
+  1. Resolves which profile applies to the current working directory (walks up from `pwd` to `$HOME` looking for `.cue.profile`, then falls back to a repo-level default, then a global default, then opens a TUI picker).
   2. Materializes `~/.config/cue/runtime/<profile>/{claude,codex}/` with only that profile's skills, MCP servers, and Claude Code plugins. Hash-cached (sha256) so unchanged profiles are a no-op rebuild.
   3. Execs the real `claude` or `codex` binary with `CLAUDE_CONFIG_DIR` (or `CODEX_HOME`) pointing at the materialized tree.
 Result: each project sees only its own loadout instead of the global `~/.claude/` with every skill / MCP / plugin ever installed.
 
 == THE PROBLEM CUE SOLVES ==
 Without cue: a single global `~/.claude/` directory contains every skill, MCP, and plugin you've ever installed. Every `claude` session loads all of them. The model wastes tokens scanning irrelevant skills, frequently picks the wrong tool, and routes work into mismatched agents. A user's library can grow to 1,927+ skills across categories that have nothing to do with the current repo (e.g. cybersecurity skills loaded into a marketing project).
-With cue: per-directory `.cue-profile` pins a profile to a repo. The materialized runtime contains only that profile's resources. Marketing work doesn't see frontend MCPs; backend doesn't see design skills.
+With cue: per-directory `.cue.profile` pins a profile to a repo. The materialized runtime contains only that profile's resources. Marketing work doesn't see frontend MCPs; backend doesn't see design skills.
 
 == INSTALL ==
 Primary:    npm install -g cue-ai
-One-line:   curl -fsSL https://raw.githubusercontent.com/opencue/claude-code-skills/main/get.sh | bash
-Manual:     git clone https://github.com/opencue/claude-code-skills.git ~/Documents/cue && ~/Documents/cue/install.sh
+One-line:   curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh | bash
+Manual:     git clone https://github.com/opencue/cuecards.git ~/Documents/cue && ~/Documents/cue/install.sh
 Per-OS phased (agent-driven): paste setup/macos.md, setup/linux.md, or setup/windows.md into Claude Code; the agent walks the user through Phases 1–8 with verification checkpoints.
 Flags: `install.sh --help` lists `--yes`, `--codex`, `--uninstall`. Idempotent.
 
 == USAGE ==
-Pin a profile to a repo:    cd <repo> && echo <profile> > .cue-profile
+Pin a profile to a repo:    cd <repo> && echo <profile> > .cue.profile
 Launch:                     claude        (or `codex`) — boots with the pinned profile
 Pre-launch picker:          shows on first launch in a fresh directory if no profile is pinned
 Global default:             cue use <profile> --global
@@ -28,7 +28,7 @@ List profiles:              cue list
 
 == ARCHITECTURE ==
 Three phases per launch:
-  1. resolve     — read .cue-profile from cwd, parents, or fallbacks. Source: src/commands/launch.ts.
+  1. resolve     — read .cue.profile from cwd, parents, or fallbacks. Source: src/commands/launch.ts.
   2. materialize — build ~/.config/cue/runtime/<profile>/{claude,codex}/. Skipped if sha256 of resolved profile matches cached marker. Source: src/lib/runtime-materializer.ts.
   3. exec        — replace process with real `claude` / `codex` binary, with CLAUDE_CONFIG_DIR or CODEX_HOME pointing at the materialized tree.
 Cold start: typically 50–200 ms (writes symlinks + manifest). Warm start: <5 ms (stat + sha256 + exec).
@@ -48,7 +48,7 @@ add-skills                | ✅     | —    | —       | —        | —     
 Kiro Powers               | ✅     | ✅   | —       | —        | ◐       | —         | —       | Context-aware MCPs inside Kiro IDE only.
 
 Where cue is unique:
-  - `.cue-profile` per-directory pinning that auto-resolves on cd.
+  - `.cue.profile` per-directory pinning that auto-resolves on cd.
   - Materialized isolation: builds a real CLAUDE_CONFIG_DIR per profile, not just a config swap.
   - Hash-cached rebuilds: content-addressed sha256, <5 ms when unchanged.
   - Three dimensions as one unit: skills + MCPs + plugins composed together.
@@ -72,7 +72,8 @@ Materialized adapters (run `cue materialize <agent>` to emit each agent's native
   - Aider              → .aider.conventions.md
 Common flags: --all, --profile <name>, --dir <path>, --dry-run. Source: src/commands/materialize.ts.
 
-== PROFILES (16 ship by default) ==
+== PROFILES (85 ship by default) ==
+A sample — run `cue list` or see docs/data/profiles.md for the full catalog.
 core              Baseline shared by every profile — claude-mem, caveman, RTK, gbrain.
 backend           APIs, webhooks, security review, CI, packaging, databases.
 frontend          UI implementation, redesign, screenshots, browser testing.
@@ -140,7 +141,7 @@ llms.txt                  llms.txt-format index for AI search and ingestion.
 - cue does NOT modify or repackage the Claude Code / Codex binary.
 - cue does NOT host a remote skill marketplace.
 - cue does NOT coordinate multi-agent runs by itself (that's Colony + gitguardex, optional tier).
-- cue does NOT auto-pick a profile from repo contents (manual `echo <name> > .cue-profile`; scan-to-profile is on the roadmap).
+- cue does NOT auto-pick a profile from repo contents (manual `echo <name> > .cue.profile`; scan-to-profile is on the roadmap).
 - cue does NOT break Claude Code's auto-update — it shims the call, never the binary.
 - cue does NOT send telemetry. All usage stats come from local ~/.claude/projects/**/*.jsonl.
 - cue is NOT a daemon. The shim runs cue launch on each call, then exec's the real binary.
@@ -158,6 +159,6 @@ Python deps:       astral-sh/uv (uvx for Excel/Word MCPs).
 
 == LICENSE & LINKS ==
 License:   MIT.
-Repo:      https://github.com/opencue/claude-code-skills
+Repo:      https://github.com/opencue/cuecards
 npm:       https://www.npmjs.com/package/cue-ai
 Author:    @recodeee.

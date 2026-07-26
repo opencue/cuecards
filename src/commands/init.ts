@@ -300,11 +300,18 @@ export type ShimInjectOptions = Pick<
  * and gem installs, this is the flag's whole point, and callers that invoke
  * `--yes` (the plugin command, the paste prompt) are required to have asked
  * the user before running it at all.
+ *
+ * Returns whether a working shim is confirmed in place when this call
+ * returns (already installed, or just installed successfully) — `false`
+ * covers both "declined" (interactive) and "install failed" (either mode).
+ * The caller decides what that means for its own exit code: `run()` only
+ * treats `false` as a failure in the non-interactive case, because declining
+ * the interactive prompt is not a failure.
  */
 async function ensureShim(
   opts: { nonInteractive?: boolean } & ShimInjectOptions = {},
-): Promise<void> {
-  if (shimInstalled(opts.homeDir)) return;
+): Promise<boolean> {
+  if (shimInstalled(opts.homeDir)) return true;
   const dir = shimDir(opts.homeDir);
   const injected: ShimInjectOptions = {
     homeDir: opts.homeDir,
@@ -325,13 +332,18 @@ async function ensureShim(
       const code = await runInstall({ ...injected, yes: true });
       if (code === 0) {
         p.log.success(`Shim installed to ${dir}.`);
-      } else {
-        p.log.warn("Shim install reported an issue — run `cue shell install` manually for details.");
+        return true;
       }
+      // A non-zero runInstall() means no working shim exists — most often
+      // "no real claude/codex binary found on PATH". Under --yes this MUST
+      // surface as a command failure (see run()'s caller), not a swallowed
+      // warning that still reports success.
+      p.log.error("Shim install failed — run `cue shell install` manually for details.");
+      return false;
     } catch {
-      p.log.warn("Couldn't install the shim automatically — run `cue shell install` manually.");
+      p.log.error("Couldn't install the shim automatically — run `cue shell install` manually.");
+      return false;
     }
-    return;
   }
 
   p.log.warn(
@@ -342,7 +354,7 @@ async function ensureShim(
   });
   if (p.isCancel(install) || !install) {
     p.log.message("Skipped — run `cue shell install` later to activate profile loading.");
-    return;
+    return false;
   }
   try {
     // runInstall() prints its own PATH guidance, including the exact rc line
@@ -350,11 +362,13 @@ async function ensureShim(
     const code = await runInstall(injected);
     if (code === 0) {
       p.log.success(`Shim installed to ${dir}.`);
-    } else {
-      p.log.warn("Shim install reported an issue — run `cue shell install` manually for details.");
+      return true;
     }
+    p.log.warn("Shim install reported an issue — run `cue shell install` manually for details.");
+    return false;
   } catch {
     p.log.warn("Couldn't install the shim automatically — run `cue shell install` manually.");
+    return false;
   }
 }
 
@@ -505,9 +519,17 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
       // here too means it can't quietly become a trap if that ever changes.
       await offerDiscoverGems(name as string, { nonInteractive: yes });
       await showCostProof(name as string);
-      await ensureShim({ nonInteractive: yes, ...deps.shim });
-      p.outro(`✅ Created profile "${name}" and pinned to this directory.`);
-      return 0;
+      const shimActiveNew = await ensureShim({ nonInteractive: yes, ...deps.shim });
+      p.outro(
+        shimActiveNew
+          ? `✅ Created profile "${name}" and pinned to this directory. Next \`claude\` launch will use it.`
+          : `✅ Created profile "${name}" and pinned to this directory. Shim not active yet — run \`cue shell install\` to finish.`,
+      );
+      // Same non-interactive-only gate as the main pin path below — see the
+      // comment there. `yes` is always false on this branch today (it's
+      // reachable only from the interactive `p.select` menu), so this is
+      // belt-and-suspenders, not a behavior change.
+      return yes && !shimActiveNew ? 1 : 0;
     }
 
     choice = picked as string;
@@ -517,7 +539,18 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
   writeFileSync(join(cwd, ".cue.profile"), choice + "\n");
   await offerDiscoverGems(choice, { nonInteractive: yes });
   await showCostProof(choice);
-  await ensureShim({ nonInteractive: yes, ...deps.shim });
-  p.outro(`✅ Pinned "${choice}" to this directory. Next \`claude\` launch will use it.`);
-  return 0;
+  const shimActive = await ensureShim({ nonInteractive: yes, ...deps.shim });
+  p.outro(
+    shimActive
+      ? `✅ Pinned "${choice}" to this directory. Next \`claude\` launch will use it.`
+      : `✅ Pinned "${choice}" to this directory. Shim not active yet — run \`cue shell install\` to finish.`,
+  );
+  // Only the non-interactive path treats "shim didn't end up installed" as a
+  // command failure. A user who declined the interactive shim prompt made an
+  // informed choice, not an error — `yes` is false there, so this stays 0.
+  // Under `--yes`, though, a failed shim install (most commonly: no real
+  // claude/codex binary on PATH) means the pinned profile will never load,
+  // which is exactly the failure the paste prompt's "if it exits non-zero,
+  // stop" step (setup/agent-prompt.md) exists to catch.
+  return yes && !shimActive ? 1 : 0;
 }

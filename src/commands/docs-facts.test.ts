@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 const REPO_ROOT = join(import.meta.dir, "..", "..");
 
 /** Tracked text surfaces that make factual claims about cue. */
-const FACT_FILES = ["llms.txt", "docs/llms.txt", "README.md", "docs/index.md"];
+const FACT_FILES = ["llms.txt", "docs/llms.txt", "README.md", "docs/index.md", "docs/llms-full.txt"];
 
 function read(rel: string): string {
   return readFileSync(join(REPO_ROOT, rel), "utf8");

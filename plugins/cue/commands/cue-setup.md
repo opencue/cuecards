@@ -22,10 +22,11 @@ order, and stop to report if any step fails.
    just happens here in chat instead of at that menu.
 
 4. Run `cue setup --profile <chosen> --yes` via Bash. `--yes` runs the rest of
-   the flow with no prompts at all: it pins the profile and installs the
-   `~/.config/cue/shims/` shim, but it does NOT enable telemetry and does NOT
-   install any discovered third-party gems — both stay off until the user
-   asks for them separately.
+   the flow with no prompts at all: it pins the profile, installs the
+   `~/.config/cue/shims/` shim, and — if needed — appends a PATH line to the
+   user's shell rc file (~/.bashrc, ~/.zshrc, or fish config) so the shim takes
+   effect. It does NOT enable telemetry and does NOT install any discovered
+   third-party gems — both stay off until the user asks for them separately.
 
 5. `cue setup` prints its own PATH guidance when the shim directory is not on
    PATH, including the exact line to add. Surface that verbatim — the shims do

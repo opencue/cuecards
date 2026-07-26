@@ -264,4 +264,40 @@ describe("cue init --profile / --yes (non-interactive)", () => {
       rmSync(fakeAgentHome, { recursive: true, force: true });
     }
   });
+
+  test("--yes exits non-zero when no real claude/codex binary is found (shim install fails)", async () => {
+    // Regression guard: `ensureShim()`'s non-interactive branch used to
+    // swallow a failed `runInstall()` into a `p.log.warn` and return
+    // normally, so `run()` printed "✅ Pinned ..." and exited 0 even though
+    // no shim exists — cue would never load. Inject a fake home with NO
+    // pre-seeded shim and tell `runInstall()` both real binaries are known
+    // absent (`null`, not `undefined` — see `ShimInjectOptions`), forcing the
+    // exact "no real claude or codex binary found on PATH" failure this
+    // guards against.
+    const fakeAgentHome = mkdtempSync(join(tmpdir(), "cue-init-agenthome-nobin-"));
+    let shimErr = "";
+    try {
+      const { code, stdout } = await capture(["--profile", "core", "--yes"], {
+        shim: {
+          homeDir: fakeAgentHome,
+          realClaude: null,
+          realCodex: null,
+          pathDirs: [join(fakeAgentHome, ".config", "cue", "shims")],
+          out: () => {},
+          err: (s) => { shimErr += s; },
+        },
+      });
+
+      expect(code).not.toBe(0);
+      expect(existsSync(join(fakeAgentHome, ".config", "cue", "shims", "claude"))).toBe(false);
+      // The pinned profile still gets written — the fix is about the exit
+      // code and the outro message, not about un-pinning on shim failure.
+      expect(readFileSync(join(tmpCwd, ".cue.profile"), "utf8").trim()).toBe("core");
+      // The success sentence must not appear when the shim isn't in place.
+      expect(stdout).not.toContain("Next `claude` launch will use it.");
+      expect(shimErr).toContain("No real claude or codex binary found");
+    } finally {
+      rmSync(fakeAgentHome, { recursive: true, force: true });
+    }
+  });
 });
