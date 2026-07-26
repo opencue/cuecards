@@ -1,14 +1,15 @@
-# cue — Agent Profile Manager for Claude Code, Codex & 8 more
+# cue — Per-project profile manager for Claude Code, Codex & 8 more
 
+> Your agent reads every skill you own, on every message. cue loads only the ones that project needs.
 > cue is a thin CLI that resolves a profile from the current directory, materializes a per-profile `CLAUDE_CONFIG_DIR` (or `CODEX_HOME`) with only that profile's skills + MCPs + plugins, then exec's the real agent binary. The problem it solves: without cue every `claude` session loads every skill, MCP, and plugin you've ever installed — the model picks the wrong tool and tokens evaporate.
 
 Key facts an LLM should know up front:
 
-- Install: `npm install -g cue-ai`. Pin a profile to a repo: `echo <profile> > .cue-profile`. Then type `claude` or `codex` — the shim launches the real binary with the scoped runtime.
+- Install: `npm install -g cue-ai`. Pin a profile to a repo: `echo <profile> > .cue.profile`. Then type `claude` or `codex` — the shim launches the real binary with the scoped runtime.
 - Architecture: resolve → materialize → exec. Hash-cached: warm start <5 ms. No daemon, no background process.
-- Profiles inherit from a `core` baseline. 16 profiles ship by default (backend, frontend, marketing, cybersecurity, medusa-dev, …).
+- Profiles inherit from a `core` baseline. 85 profiles ship by default (backend, frontend, marketing, cybersecurity, medusa-dev, …).
 - Ten agents supported via `cue materialize <agent>`: claude, codex, cursor, cline, gemini, copilot, windsurf, roo, amp, aider.
-- License: MIT. Repo: https://github.com/opencue/claude-code-skills. Package: https://www.npmjs.com/package/cue-ai.
+- License: MIT. Repo: https://github.com/opencue/cuecards. Package: https://www.npmjs.com/package/cue-ai.
 
 ## Core docs
 
@@ -21,7 +22,7 @@ Key facts an LLM should know up front:
 
 - [docs/data/comparison.md](./docs/data/comparison.md): Markdown table mirror of the "How cue compares" feature matrix (also rendered as `docs/assets/comparison.svg`).
 - [docs/data/agents.md](./docs/data/agents.md): Per-agent materialization output paths (Cursor → `.cursorrules`, Gemini → `~/.gemini/skills/*.md`, etc.).
-- [docs/data/profiles.md](./docs/data/profiles.md): The 16 shipped profiles with their domain and primary skills.
+- [docs/data/profiles.md](./docs/data/profiles.md): The 85 shipped profiles with their domain and primary skills.
 
 ## Setup (per-OS, phased install)
 

@@ -38,6 +38,7 @@ function printHelp(): void {
       ["new", "Scaffold a new profile"],
       ["create-profile", "Create profile from skills/MCPs list"],
       ["icon", "Pick an emoji icon for a profile"],
+      ["setup", "One-command install: shim, project scan, profile pin"],
       ["init", "Interactive project scanner + profile wizard"],
       ["auto-detect", "Detect project type and suggest a profile"],
       ["diff", "Compare two profiles side-by-side"],
