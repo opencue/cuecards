@@ -137,7 +137,7 @@ function parse(args: string[]): ParsedArgs {
 }
 
 /** Test-only surface. */
-export const __test = { parse, shouldOpenMcpPicker };
+export const __test = { parse, shouldOpenMcpPicker, listProfileOptions };
 
 // ---------------------------------------------------------------------------
 // Workspace overrides — merge active workspace env into profile
@@ -816,14 +816,18 @@ const STACK_SECTIONS: ReadonlyArray<{ key: string; label: string; match: (value:
 const PICKER_HIDDEN_PROFILES = new Set<string>(["fleet-control"]);
 
 /**
- * Warning banners injected next to specific profiles in the picker. Used to
- * flag profiles that exist for completeness but should rarely be picked
- * interactively (e.g. `full` loads every skill — slow and expensive).
+ * Replacement hints for profiles that exist for completeness but should rarely
+ * be picked interactively (e.g. `full` loads every skill — slow and expensive).
+ *
+ * The "don't pick this" part is said ONCE, by the red danger tag the picker
+ * attaches to these rows (see `danger` in lib/picker). This hint carries only
+ * the reason. The row used to state it three times over — a yellow
+ * `⚠ NEVER USE THIS` label suffix, the red tag, and a hint that repeated "do
+ * not pick interactively" — which read as noise and crowded out the reason.
  */
-const PICKER_WARNINGS: Record<string, { labelSuffix: string; hint: string }> = {
+const PICKER_WARNINGS: Record<string, { hint: string }> = {
   full: {
-    labelSuffix: "  ⚠ NEVER USE THIS",
-    hint: "⚠ kitchen sink — loads every skill; slow, expensive, do not pick interactively",
+    hint: "kitchen sink — loads every skill; slow and expensive",
   },
 };
 
@@ -1096,12 +1100,11 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
       // in the post-pick details, not crammed into every label.
       const nameLabel = iconLabel ? `${iconLabel} ${name}` : name;
       const warning = PICKER_WARNINGS[name];
-      const label = warning ? `${nameLabel}${warning.labelSuffix}` : nameLabel;
       const hint = warning ? warning.hint : p.description;
       const recommends = p.recommends.filter((r) => r !== name && knownNames.has(r));
       const autoSelect = p.autoSelect.filter((r) => r !== name && knownNames.has(r));
       const conflicts = p.conflicts.filter((c) => c !== name && knownNames.has(c));
-      opts.push({ value: name, label, hint, recommends, autoSelect, conflicts });
+      opts.push({ value: name, label: nameLabel, hint, recommends, autoSelect, conflicts });
     } catch {
       opts.push({ value: name, label: name, hint: "" });
     }

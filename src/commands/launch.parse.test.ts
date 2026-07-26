@@ -99,3 +99,23 @@ describe("isAlwaysPickEnabled", () => {
     }
   });
 });
+
+// The `full` row used to shout three times over: a yellow `⚠ NEVER USE THIS`
+// suffix welded onto the label, the red danger tag the picker adds, and a hint
+// that closed with "do not pick interactively". One warning, in red, is the
+// contract — the label carries the name, the hint carries the reason.
+describe("picker row for the `full` profile", () => {
+  test("states the warning once and leaves the label clean", async () => {
+    const { options } = await __test.listProfileOptions();
+    const full = options.find((o: { value: string }) => o.value === "full");
+    expect(full).toBeDefined();
+
+    expect(full!.label).not.toContain("NEVER USE THIS");
+    expect(full!.label.toLowerCase()).not.toContain("never use this");
+
+    // The hint explains WHY, without restating the prohibition.
+    expect(full!.hint).toContain("loads every skill");
+    expect(full!.hint!.toLowerCase()).not.toContain("never use this");
+    expect(full!.hint!.toLowerCase()).not.toContain("do not pick");
+  });
+});
