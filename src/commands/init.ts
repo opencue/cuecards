@@ -193,6 +193,29 @@ async function offerDiscoverGems(profile: string): Promise<void> {
 }
 
 /**
+ * Print the token budget for the freshly pinned profile against the `full`
+ * baseline, right before `ensureShim()` asks to intercept the user's `claude`
+ * command. The whole pitch is "your agent loads less" — this is the only point
+ * in the flow where that is demonstrable with the user's own numbers, and it
+ * has to land before the biggest permission ask, not after.
+ *
+ * Never throws: a broken cost run must not abort an install whose profile is
+ * already pinned.
+ */
+export async function showCostProof(
+  profile: string,
+  deps: { costRun?: (args: string[]) => Promise<number> } = {},
+): Promise<void> {
+  try {
+    const costRun = deps.costRun ?? (await import("./cost")).run;
+    p.log.info(`Token budget for "${profile}" vs loading everything:`);
+    await costRun([profile, "--compare"]);
+  } catch {
+    // Non-fatal by design — see the docstring.
+  }
+}
+
+/**
  * Offer to install the shell shims if they're missing. Without the shim,
  * typing `claude` runs vanilla Claude Code and the pinned profile is never
  * loaded — the #1 "I followed the docs and nothing happened" failure. Detect
@@ -319,6 +342,7 @@ export async function run(args: string[]): Promise<number> {
 
     writeFileSync(join(cwd, ".cue.profile"), (name as string) + "\n");
     await offerDiscoverGems(name as string);
+    await showCostProof(name as string);
     await ensureShim();
     p.outro(`✅ Created profile "${name}" and pinned to this directory.`);
     return 0;
@@ -327,6 +351,7 @@ export async function run(args: string[]): Promise<number> {
   // Pin the chosen profile
   writeFileSync(join(cwd, ".cue.profile"), (choice as string) + "\n");
   await offerDiscoverGems(choice as string);
+  await showCostProof(choice as string);
   await ensureShim();
   p.outro(`✅ Pinned "${choice}" to this directory. Next \`claude\` launch will use it.`);
   return 0;
