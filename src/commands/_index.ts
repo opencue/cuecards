@@ -231,6 +231,10 @@ export const COMMANDS = {
     summary: "Project scanner + profile wizard. First run also walks default-profile and telemetry opt-in (replay with --re-onboard)",
     load: () => import("./init"),
   },
+  setup: {
+    summary: "One-command install: shim, project scan, and profile pin (alias of init)",
+    load: () => import("./init"),
+  },
   import: {
     summary: "Import a profile from URL, file, or org/repo",
     load: () => import("./import-profile"),

@@ -17,7 +17,7 @@
     "build": "bun build src/index.ts --no-bundle",
     "build:bundle": "bun build src/index.ts --target=node --outfile=dist/cue.js",
     "prepack": "bash scripts/prepack-check.sh && bun run build:bundle",
-    "postinstall": "echo '' && echo '  ✅ cue installed.' && echo '  Next: run `cue shell install`  (activates the claude/codex shim — required to load profiles)' && echo '        then `cue init`        (pin a profile to this directory)' && echo '  Docs: https://github.com/opencue/cuecards' && echo ''"
+    "postinstall": "echo '' && echo '  ✅ cue installed.' && echo '  Next: run `cue setup`  — installs the shim, scans this project, pins a profile' && echo '  Docs: https://github.com/opencue/cuecards' && echo ''"
   },
   "keywords": [
     "claude-code",
