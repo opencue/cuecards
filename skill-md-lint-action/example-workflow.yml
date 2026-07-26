@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: opencue/claude-code-skills/skill-md-lint-action@main
+      - uses: opencue/cuecards/skill-md-lint-action@main
         with:
           # Optional. Defaults shown.
           path: '.'                # lint everything; set to 'skills/marketing' to scope

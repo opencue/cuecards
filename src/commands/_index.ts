@@ -381,7 +381,7 @@ export const COMMANDS = {
     load: () => import("./feedback"),
   },
   "submit-profile": {
-    summary: "Fork opencue/claude-code-skills, branch, commit your profile.yaml, open PR (community contribution)",
+    summary: "Fork opencue/cuecards, branch, commit your profile.yaml, open PR (community contribution)",
     load: () => import("./submit-profile"),
   },
   telemetry: {

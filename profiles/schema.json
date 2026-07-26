@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/opencue/claude-code-skills/profiles/schema.json",
+  "$id": "https://github.com/opencue/cuecards/profiles/schema.json",
   "title": "Soul Profile",
   "description": "Schema for profiles/<name>/profile.yaml — bundles skills, MCPs, and env for a Claude Code or Codex session.",
   "type": "object",

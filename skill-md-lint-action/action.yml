@@ -52,7 +52,7 @@ runs:
       run: |
         # Clone a shallow copy of cue into a sibling dir, install deps once.
         if [ ! -d "${RUNNER_TEMP}/cue" ]; then
-          git clone --depth 1 https://github.com/opencue/claude-code-skills "${RUNNER_TEMP}/cue"
+          git clone --depth 1 https://github.com/opencue/cuecards "${RUNNER_TEMP}/cue"
           (cd "${RUNNER_TEMP}/cue" && bun install --frozen-lockfile)
         fi
         echo "CUE_DIR=${RUNNER_TEMP}/cue" >> "$GITHUB_ENV"
@@ -131,7 +131,7 @@ runs:
           }
           const errCount = report.flatMap(r => r.diagnostics).filter(d => d.severity === 'error').length;
           const lines = [];
-          lines.push('## 🔍 SKILL.md lint report (via [cue](https://github.com/opencue/claude-code-skills))');
+          lines.push('## 🔍 SKILL.md lint report (via [cue](https://github.com/opencue/cuecards))');
           lines.push('');
           lines.push(`**${errCount} errors**, **${total - errCount} warnings/info** across ${report.length} SKILL.md file(s).`);
           lines.push('');

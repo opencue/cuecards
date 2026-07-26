@@ -41,7 +41,7 @@ cat <<'EOF'
   ░ ░         ░        ░  ░
 
   Profile manager + skill discovery for Claude Code, Codex, Cursor, and 10+ AI agents
-  https://github.com/opencue/claude-code-skills · MIT
+  https://github.com/opencue/cuecards · MIT
 
 EOF
 
@@ -86,8 +86,8 @@ case "$METHOD" in
       git -C "$DIR" fetch origin "$REF"
       git -C "$DIR" reset --hard "origin/$REF"
     else
-      info "Cloning opencue/claude-code-skills@$REF to $DIR"
-      git clone --depth 1 --branch "$REF" https://github.com/opencue/claude-code-skills "$DIR"
+      info "Cloning opencue/cuecards@$REF to $DIR"
+      git clone --depth 1 --branch "$REF" https://github.com/opencue/cuecards "$DIR"
     fi
     info "Initializing submodules (skills, mcps)"
     git -C "$DIR" submodule update --init --recursive --depth 1 2>/dev/null || \
@@ -139,7 +139,7 @@ if [ "${CUE_NO_POST_INSTALL:-0}" != "1" ]; then
     ${C_GREEN}4.${C_RESET} ${C_BOLD}claude${C_RESET}          ${C_DIM}# cue auto-resolves the right profile for this cwd${C_RESET}
 
   Docs:    ${C_CYAN}https://opencue.github.io/cue/${C_RESET}
-  Issues:  ${C_CYAN}https://github.com/opencue/claude-code-skills/issues${C_RESET}
+  Issues:  ${C_CYAN}https://github.com/opencue/cuecards/issues${C_RESET}
 
 EOF
 fi

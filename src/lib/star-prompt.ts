@@ -11,7 +11,7 @@ import { spawnSync } from "node:child_process";
 const CONFIG_DIR = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue");
 const FLAG_FILE = join(CONFIG_DIR, ".star-prompted");
 const ANALYTICS_FILE = join(CONFIG_DIR, "analytics.jsonl");
-const REPO = "opencue/claude-code-skills";
+const REPO = "opencue/cuecards";
 const SESSION_THRESHOLD = 10;
 
 export async function maybePromptStar(): Promise<void> {

@@ -26,7 +26,7 @@ allowed-tools: [Read, Write]
 `);
   writeFileSync(join(skillsRoot, "review", "full-skill", "scripts", "run.sh"), "#!/bin/bash\n");
   writeFileSync(join(skillsRoot, "review", "full-skill", "full-skill.test.ts"), "test('x', () => {});\n");
-  writeFileSync(join(skillsRoot, "review", "full-skill", ".source"), "opencue/claude-code-skills::resources/skills/skills/review/full-skill\n");
+  writeFileSync(join(skillsRoot, "review", "full-skill", ".source"), "opencue/cuecards::resources/skills/skills/review/full-skill\n");
 
   // Minimal skill
   mkdirSync(join(skillsRoot, "meta", "minimal"), { recursive: true });
