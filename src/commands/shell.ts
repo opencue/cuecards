@@ -7,8 +7,23 @@
  */
 
 import { existsSync, readFileSync, statSync, accessSync, constants } from "node:fs";
-import { join, resolve } from "node:path";
+import { join, resolve, dirname } from "node:path";
 import { homedir } from "node:os";
+
+import { findRealAgentBin } from "../lib/claude-binary";
+import {
+  FISH_DROPIN_MARKER,
+  SHIM_AGENTS,
+  fishDropIn,
+  fishDropInPath,
+  isCueShimContent,
+  rcSnippet,
+  shimContent,
+  shimDir,
+  shimDirPosition,
+  type ShimAgent,
+  type ShimShell,
+} from "../lib/shim-dir";
 
 /** True when `p` is an executable regular file (mirrors how the shell resolves
  * a command on PATH — skips directories and non-executable files). */
@@ -109,25 +124,95 @@ export function resolveHookShell(requested?: string, envShell = process.env.SHEL
 export interface ShimOptions {
   homeDir?: string;
   pathDirs?: string[];
-  realClaude?: string;
-  realCodex?: string;
+  /**
+   * Explicit real-binary paths. `null` means "known absent", `undefined` means
+   * "resolve it yourself via findRealAgentBin()". Injection point for tests.
+   */
+  realClaude?: string | null;
+  realCodex?: string | null;
+  /** Agents to consider. Each one with a real binary behind it gets a shim. */
+  agents?: readonly ShimAgent[];
+  /** Shell whose rc receives the PATH line. Defaults to $SHELL. */
+  shell?: ShimShell;
+  /** false → print the PATH line but write nothing (`--no-rc`). */
+  writeRc?: boolean;
+  /** Skip the confirmation before appending to an existing bash/zsh rc. */
+  yes?: boolean;
+  /** Confirmation hook. Returning false leaves the rc untouched. */
+  confirm?: (message: string) => Promise<boolean>;
+  out?: (s: string) => void;
+  err?: (s: string) => void;
 }
 
 /**
- * True when the `claude` shim is already installed in ~/.local/bin and is a
- * cue launch shim. Matches both shim formats cue writes: the user-facing
- * `cue shell install` form (`exec "<abs-path>/cue" launch claude "$@"`) and the
- * runInstall() helper form (`exec cue launch claude "$@"`) — both contain the
- * literal `launch claude`. Used by `cue init` to detect that profile loading
- * hasn't been activated yet. Conservative: any read error → false.
+ * Put cue's shim dir on PATH.
+ *
+ * fish gets a brand-new conf.d drop-in, which is undone by deleting one file —
+ * safe enough to create without asking. bash/zsh require appending to an rc the
+ * user already owns, so that path asks first (`--yes` skips the prompt).
+ * Idempotent in both cases: a second install finds the dir already referenced
+ * and writes nothing.
+ *
+ * Returns true when the PATH line is in place.
  */
-export function shimInstalled(homeDir?: string): boolean {
-  const shimPath = join(homeDir ?? homedir(), ".local", "bin", "claude");
-  try {
-    return existsSync(shimPath) && readFileSync(shimPath, "utf8").includes("launch claude");
-  } catch {
-    return false;
+async function ensureRcPath(a: {
+  shell: ShimShell;
+  dir: string;
+  line: string;
+  home: string;
+  homeDir?: string;
+  writeRc?: boolean;
+  yes?: boolean;
+  confirm?: (message: string) => Promise<boolean>;
+  out: (s: string) => void;
+  err: (s: string) => void;
+}): Promise<boolean> {
+  if (a.writeRc === false) return false;
+  const { mkdirSync, writeFileSync, appendFileSync } = await import("node:fs");
+
+  if (a.shell === "fish") {
+    const target = fishDropInPath(a.homeDir);
+    if (existsSync(target)) {
+      // Never clobber a file we can't prove we wrote.
+      if (readFileSync(target, "utf8").includes(a.dir)) return true;
+      a.err(`⚠️  ${target} exists and doesn't reference ${a.dir} — leaving it alone.\n`);
+      return false;
+    }
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, fishDropIn(a.dir));
+    a.out(`✅ PATH configured → ${target}\n`);
+    return true;
   }
+
+  const rcPath = join(a.home, a.shell === "zsh" ? ".zshrc" : ".bashrc");
+  if (existsSync(rcPath) && readFileSync(rcPath, "utf8").includes(a.dir)) return true;
+  const approved = a.yes === true || (a.confirm ? await a.confirm(`Append the cue PATH line to ${rcPath}?`) : false);
+  if (!approved) return false;
+  appendFileSync(rcPath, `\n# cue: agent shims (claude/codex) ahead of the real binaries\n${a.line}\n`);
+  a.out(`✅ PATH configured → ${rcPath}\n`);
+  return true;
+}
+
+/**
+ * True when the `<agent>` shim is installed and is a cue launch shim. Matches
+ * both formats cue writes — `exec cue launch claude "$@"` and
+ * `exec "<abs-path>/cue" launch claude "$@"`.
+ *
+ * Checks cue's own shim dir first, then falls back to the legacy
+ * `~/.local/bin/<agent>` path so `cue init`'s "profile loading isn't activated
+ * yet" hint stays correct for anyone who installed before the shim dir moved.
+ * Conservative: any read error → false.
+ */
+export function shimInstalled(homeDir?: string, agent: ShimAgent = "claude"): boolean {
+  const candidates = [join(shimDir(homeDir), agent), join(homeDir ?? homedir(), ".local", "bin", agent)];
+  for (const candidate of candidates) {
+    try {
+      if (existsSync(candidate) && isCueShimContent(readFileSync(candidate, "utf8"), agent)) return true;
+    } catch {
+      // Unreadable — fall through and try the other location.
+    }
+  }
+  return false;
 }
 
 /**
@@ -159,51 +244,139 @@ export function resolveCueInvocation(opts: { repoRoot?: string; pathDirs?: strin
   return `"${process.argv[1] ?? "cue"}"`;
 }
 
+/**
+ * Install the `claude` / `codex` shims into cue's own shim dir and put that dir
+ * on PATH.
+ *
+ * Ordering is the safety property: resolve the real binaries and pass the
+ * "refuse if none" gate BEFORE writing anything, then write the new shims, then
+ * clean up legacy ones. A run that fails must never leave the user with fewer
+ * working entry points than it started with — the previous version of this
+ * function overwrote `~/.local/bin/claude`, which on a native install is the
+ * real binary's symlink, and left nothing for `findRealAgentBin()` to exec.
+ */
 export async function runInstall(opts: ShimOptions = {}): Promise<number> {
+  const out = opts.out ?? ((s: string) => process.stdout.write(s));
+  const err = opts.err ?? ((s: string) => process.stderr.write(s));
   const home = opts.homeDir ?? homedir();
-  const shimDir = join(home, ".local", "bin");
-  const pathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(":");
-  const { mkdirSync, writeFileSync, chmodSync } = await import("node:fs");
+  const dir = shimDir(opts.homeDir);
+  const pathDirs = (opts.pathDirs ?? (process.env.PATH ?? "").split(":")).filter(Boolean);
+  const agents = opts.agents ?? SHIM_AGENTS;
+  const { mkdirSync, writeFileSync, chmodSync, unlinkSync } = await import("node:fs");
 
-  // Check PATH ordering — shimDir must come before the real binary
-  const shimIdx = pathDirs.indexOf(shimDir);
-  const realClaude = opts.realClaude ?? "/usr/bin/claude";
-  const realDir = realClaude ? resolve(realClaude, "..") : null;
-  if (realDir) {
-    const realIdx = pathDirs.indexOf(realDir);
-    if (shimIdx >= 0 && realIdx >= 0 && shimIdx > realIdx) {
-      process.stderr.write(`❌ ${shimDir} must appear before ${realDir} on PATH\n`);
-      return 1;
+  // 1. Resolve real binaries first — see the ordering note above.
+  const injected: Record<ShimAgent, string | null | undefined> = {
+    claude: opts.realClaude,
+    codex: opts.realCodex,
+  };
+  const real = new Map<ShimAgent, string>();
+  for (const agent of agents) {
+    const bin = injected[agent] !== undefined ? injected[agent] : findRealAgentBin(agent);
+    if (bin) real.set(agent, bin);
+  }
+  if (real.size === 0) {
+    err(`❌ No real ${agents.join(" or ")} binary found on PATH — refusing to install a shim with nothing behind it.\n`);
+    err(`   Install the agent first, or point CUE_REAL_CLAUDE at its path.\n`);
+    return 1;
+  }
+
+  // 2. Write the shims.
+  mkdirSync(dir, { recursive: true });
+  const cueInvoke = resolveCueInvocation();
+  for (const agent of real.keys()) {
+    const target = join(dir, agent);
+    writeFileSync(target, shimContent(cueInvoke, agent));
+    chmodSync(target, 0o755);
+    out(`✅ Installed ${agent} shim → ${target}\n`);
+  }
+
+  // 3. Migrate off the legacy ~/.local/bin location. A stale cue shim there
+  //    would shadow the very binary the new shim needs to exec. Only remove a
+  //    file whose CONTENT proves cue wrote it: on a native Claude install this
+  //    same path is the real binary's symlink.
+  for (const agent of real.keys()) {
+    const legacy = join(home, ".local", "bin", agent);
+    try {
+      if (existsSync(legacy) && isCueShimContent(readFileSync(legacy, "utf8"), agent)) {
+        unlinkSync(legacy);
+        out(`🧹 Removed legacy cue shim → ${legacy}\n`);
+      }
+    } catch {
+      // Unreadable, or not ours — leave it strictly alone.
     }
   }
 
-  mkdirSync(shimDir, { recursive: true });
-  const cueInvoke = resolveCueInvocation();
+  // 4. PATH. The shims are inert until the dir is on PATH, so a PATH that isn't
+  //    set up yet is a warning, never a failure — this run may well be the one
+  //    adding the line.
+  const firstReal = real.values().next().value as string;
+  const shell = opts.shell ?? resolveHookShell();
+  const line = rcSnippet(shell, dir);
+  const position = shimDirPosition(pathDirs, firstReal, dir);
 
-  const claudeShim = `#!/usr/bin/env bash\nexec ${cueInvoke} launch claude "$@"\n`;
-  writeFileSync(join(shimDir, "claude"), claudeShim);
-  chmodSync(join(shimDir, "claude"), 0o755);
-
-  if (opts.realCodex) {
-    const codexShim = `#!/usr/bin/env bash\nexec ${cueInvoke} launch codex "$@"\n`;
-    writeFileSync(join(shimDir, "codex"), codexShim);
-    chmodSync(join(shimDir, "codex"), 0o755);
+  if (position === "absent") {
+    const configured = await ensureRcPath({ ...opts, shell, dir, line, home, out, err });
+    if (configured) {
+      out(`\n▸ Open a new terminal (or re-source your config) to pick it up.\n`);
+    } else {
+      err(`\n⚠️  ${dir} is not on PATH — the shims are inert until it is.\n`);
+      err(`   Add this line, then open a new terminal:\n     ${line}\n`);
+    }
+  } else if (position === "after") {
+    err(`\n⚠️  ${resolve(firstReal, "..")} precedes ${dir} on PATH — the real binary shadows the shim.\n`);
+    err(`   Move ${dir} earlier on PATH, then open a new terminal.\n`);
   }
 
   return 0;
 }
 
-export async function runUninstall(opts: { homeDir?: string } = {}): Promise<number> {
+/**
+ * Remove the shims and the fish drop-in cue created.
+ *
+ * Deliberately never touches `~/.local/bin`: on a native Claude install that
+ * path IS the real binary. A legacy cue shim found there is reported, not
+ * deleted — the blast radius of a wrong guess is the user's whole Claude
+ * install, and `runInstall()` already migrates it away on the next install.
+ */
+export async function runUninstall(
+  opts: { homeDir?: string; out?: (s: string) => void; err?: (s: string) => void } = {},
+): Promise<number> {
+  const out = opts.out ?? ((s: string) => process.stdout.write(s));
+  const err = opts.err ?? ((s: string) => process.stderr.write(s));
   const home = opts.homeDir ?? homedir();
-  const shimDir = join(home, ".local", "bin");
+  const dir = shimDir(opts.homeDir);
   const { unlinkSync } = await import("node:fs");
 
-  for (const name of ["claude", "codex"]) {
-    const p = join(shimDir, name);
-    if (existsSync(p)) {
-      unlinkSync(p);
+  for (const agent of SHIM_AGENTS) {
+    const target = join(dir, agent);
+    if (existsSync(target)) {
+      unlinkSync(target);
+      out(`🗑️  Removed ${target}\n`);
     }
   }
+
+  const fishTarget = fishDropInPath(opts.homeDir);
+  try {
+    if (existsSync(fishTarget) && readFileSync(fishTarget, "utf8").includes(FISH_DROPIN_MARKER)) {
+      unlinkSync(fishTarget);
+      out(`🗑️  Removed ${fishTarget}\n`);
+    }
+  } catch {
+    // Unreadable or hand-edited — leave it for the user.
+  }
+
+  for (const agent of SHIM_AGENTS) {
+    const legacy = join(home, ".local", "bin", agent);
+    try {
+      if (existsSync(legacy) && isCueShimContent(readFileSync(legacy, "utf8"), agent)) {
+        err(`⚠️  A legacy cue shim remains at ${legacy} — remove it by hand to fully deactivate.\n`);
+      }
+    } catch {
+      // Not readable — nothing useful to report.
+    }
+  }
+
+  out(`\nbash/zsh: remove the cue PATH line from your rc if you added one.\n`);
   return 0;
 }
 
@@ -223,56 +396,52 @@ export async function run(args: string[]): Promise<number> {
   }
 
   if (sub === "install") {
-    // Existing shim install logic
-    const shimDir = join(homedir(), ".local", "bin");
-    const { mkdirSync, writeFileSync, chmodSync } = await import("node:fs");
-    mkdirSync(shimDir, { recursive: true });
-
-    // Portable invocation token: bare `cue` when on PATH (npm-global), else
-    // an absolute path to the cue entrypoint. See resolveCueInvocation.
-    const cueInvoke = resolveCueInvocation();
-
-    // Claude shim
-    const claudeShim = `#!/usr/bin/env bash
-exec ${cueInvoke} launch claude "$@"
-`;
-    writeFileSync(join(shimDir, "claude"), claudeShim);
-    chmodSync(join(shimDir, "claude"), 0o755);
-    process.stdout.write(`✅ Installed claude shim → ${shimDir}/claude\n`);
-
-    // Codex shim (optional)
-    if (args.includes("--codex")) {
-      const codexShim = `#!/usr/bin/env bash
-exec ${cueInvoke} launch codex "$@"
-`;
-      writeFileSync(join(shimDir, "codex"), codexShim);
-      chmodSync(join(shimDir, "codex"), 0o755);
-      process.stdout.write(`✅ Installed codex shim → ${shimDir}/codex\n`);
-    }
+    // One code path only. This branch used to carry its own copy of the
+    // install logic, which is how it drifted out of sync with runInstall().
+    // `--codex` is accepted as a no-op: both agents are shimmed by default now,
+    // whichever ones actually resolve to a real binary.
+    const rc = await runInstall({
+      writeRc: !args.includes("--no-rc"),
+      yes: args.includes("--yes") || args.includes("-y"),
+      confirm: async (message) => {
+        if (!process.stdin.isTTY) return false;
+        const p = await import("@clack/prompts");
+        const answer = await p.confirm({ message });
+        return !p.isCancel(answer) && answer === true;
+      },
+    });
+    if (rc !== 0) return rc;
 
     process.stdout.write(`\nAdd the shell hook to auto-switch profiles on cd:\n`);
-    process.stdout.write(`  echo 'eval "$(cue shell hook)"' >> ~/.bashrc\n`);
+    process.stdout.write(`  eval "$(cue shell hook)"\n`);
 
-    // Auto-install completions
-    const shell = process.env.SHELL ?? "/bin/bash";
-    const { completionScript } = await import("./completions");
-    if (shell.includes("zsh")) {
-      const compDir = join(homedir(), ".zsh", "completions");
-      mkdirSync(compDir, { recursive: true });
-      writeFileSync(join(compDir, "_cue"), completionScript("zsh"));
-      process.stdout.write(`✅ Installed zsh completions → ${compDir}/_cue\n`);
-      process.stdout.write(`   Add to .zshrc: fpath=(~/.zsh/completions $fpath); autoload -Uz compinit && compinit\n`);
-    } else if (shell.includes("bash")) {
-      const compDir = join(homedir(), ".local", "share", "bash-completion", "completions");
-      mkdirSync(compDir, { recursive: true });
-      writeFileSync(join(compDir, "cue"), completionScript("bash"));
-      process.stdout.write(`✅ Installed bash completions → ${compDir}/cue\n`);
-    }
-
+    await installCompletions();
     return 0;
   }
 
-  process.stderr.write("Usage: cue shell hook    — output shell hook for eval\n");
-  process.stderr.write("       cue shell install — install claude/codex shims\n");
+  if (sub === "uninstall") return runUninstall();
+
+  process.stderr.write("Usage: cue shell hook      — output shell hook for eval\n");
+  process.stderr.write("       cue shell install   — install claude/codex shims [--yes] [--no-rc]\n");
+  process.stderr.write("       cue shell uninstall — remove the shims and the PATH drop-in\n");
   return 1;
+}
+
+/** Best-effort completion install for the current shell. Never fails install. */
+async function installCompletions(): Promise<void> {
+  const { mkdirSync, writeFileSync } = await import("node:fs");
+  const shell = process.env.SHELL ?? "/bin/bash";
+  const { completionScript } = await import("./completions");
+  if (shell.includes("zsh")) {
+    const compDir = join(homedir(), ".zsh", "completions");
+    mkdirSync(compDir, { recursive: true });
+    writeFileSync(join(compDir, "_cue"), completionScript("zsh"));
+    process.stdout.write(`✅ Installed zsh completions → ${compDir}/_cue\n`);
+    process.stdout.write(`   Add to .zshrc: fpath=(~/.zsh/completions $fpath); autoload -Uz compinit && compinit\n`);
+  } else if (shell.includes("bash")) {
+    const compDir = join(homedir(), ".local", "share", "bash-completion", "completions");
+    mkdirSync(compDir, { recursive: true });
+    writeFileSync(join(compDir, "cue"), completionScript("bash"));
+    process.stdout.write(`✅ Installed bash completions → ${compDir}/cue\n`);
+  }
 }

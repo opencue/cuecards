@@ -1,40 +1,62 @@
 # cue shell install
 
-`cue shell install` drops two shim scripts into `~/.local/bin/`:
+`cue shell install` drops a shim script into cue's own shim directory for every
+agent it can find a real binary for:
 
 ```
-~/.local/bin/claude   →   exec cue launch claude "$@"
-~/.local/bin/codex    →   exec cue launch codex  "$@"
+~/.config/cue/shims/claude   →   exec cue launch claude "$@"
+~/.config/cue/shims/codex    →   exec cue launch codex  "$@"
 ```
 
-From then on every `claude` and `codex` invocation on your PATH goes through
-cue's resolve → materialize → exec flow.
+and puts that directory at the **front** of your PATH. From then on every
+`claude` and `codex` invocation goes through cue's resolve → materialize → exec
+flow.
 
-## PATH ordering
+The directory is cue's alone. Nothing else writes to it, which is the point:
+`~/.local/bin` — where these shims used to live — is owned by the native Claude
+Code installer, so the two kept overwriting each other.
 
-`~/.local/bin` must appear **before** the directories containing the real
-`claude` and `codex` binaries. If it doesn't, `cue shell install` refuses to
-write the shims and prints the fix:
+## PATH
 
-```
-cue shell install: ~/.local/bin must appear earlier in PATH than the real claude/codex.
-Add this to your shell rc and re-run:
-  export PATH="$HOME/.local/bin:$PATH"
-```
+The shims are inert until `~/.config/cue/shims` is on PATH ahead of the real
+binaries. `cue shell install` handles that for you:
 
-Add that line to `~/.bashrc`, `~/.zshrc`, or equivalent, open a new terminal,
-then re-run `cue shell install`.
+| Shell | What it does |
+|---|---|
+| fish | Creates `~/.config/fish/conf.d/cue-shims.fish`. A new file, so no prompt — delete it to undo. |
+| bash / zsh | Asks before appending the `export PATH=…` line to your `.bashrc` / `.zshrc`. |
+
+Flags:
+
+| Flag | Effect |
+|---|---|
+| `--yes` / `-y` | Skip the bash/zsh confirmation |
+| `--no-rc` | Print the PATH line, change no config files |
+
+Open a new terminal afterwards, or re-source your config.
 
 ## Verify
 
 ```bash
-which claude   # should print /home/<you>/.local/bin/claude
-which codex    # should print /home/<you>/.local/bin/codex
+which claude   # should print ~/.config/cue/shims/claude
+which codex    # should print ~/.config/cue/shims/codex
+cue doctor     # D9 covers shim presence, PATH order, and the real binary
 ```
 
 Run `cue launch claude --dry-run` in any directory that has a `.cue.profile` to
 confirm the full resolve → materialize path works without launching an actual
 Claude session.
+
+## What it will not do
+
+`cue shell install` refuses, and writes nothing, when it can't find a real
+`claude` or `codex` on PATH. A shim with no binary behind it is worse than no
+shim: `claude` stops working entirely.
+
+It also never touches a `~/.local/bin/<agent>` it didn't write — on a native
+Claude install that path is a symlink to the real binary. The one exception is
+a **legacy cue shim** left there by an older `cue shell install`, which is
+removed because it would shadow the very binary the new shim needs to exec.
 
 ## Uninstall
 
@@ -42,9 +64,9 @@ Claude session.
 cue shell uninstall
 ```
 
-Removes `~/.local/bin/claude` and `~/.local/bin/codex`. The `~/.local/bin`
-directory itself is left in place. After uninstall, `claude` and `codex` resolve
-to the real binaries again.
+Removes the shims and the fish drop-in. bash/zsh users should delete the PATH
+line from their rc by hand. After that, `claude` and `codex` resolve to the real
+binaries again.
 
 ## Bypass paths
 
@@ -55,7 +77,7 @@ You can bypass the shims without uninstalling:
 | Skip cue entirely | `CUE_BYPASS=1 claude <args>` |
 | Force a specific profile | `claude --cue-profile <name> <args>` |
 | Always open the picker | `claude --cue-pick <args>` |
-| Bypass via absolute path | `/usr/local/bin/claude <args>` (or wherever the real binary lives) |
+| Bypass via absolute path | `~/.local/bin/claude <args>` (or wherever the real binary lives) |
 
 `CUE_BYPASS=1` makes cue exec the real binary directly without touching the
 profile, materializer, or config dir. Use it when you need a raw claude session

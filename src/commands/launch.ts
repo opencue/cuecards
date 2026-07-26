@@ -1307,11 +1307,12 @@ async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string>
 }
 
 /**
- * Find the real agent binary on PATH. Shims are detected by CONTENT (small
- * script containing `cue launch`), never by skipping a directory wholesale:
- * the native Claude installer puts the REAL binary in ~/.local/bin — the same
- * dir cue's shim lives in — and the npm package no longer ships a `claude`
- * bin, so a directory skip can leave zero candidates on a healthy machine.
+ * Find the real agent binary on PATH. cue's own shim dir is skipped wholesale;
+ * everywhere else shims are detected by CONTENT (small script containing a cue
+ * `launch` call), never by skipping a directory: the native Claude installer
+ * puts the REAL binary in ~/.local/bin — where cue's legacy shim also lived —
+ * and the npm package no longer ships a `claude` bin, so a directory skip there
+ * can leave zero candidates on a healthy machine.
  * Pure PATH walk — launch deliberately ignores $CLAUDE_CODE_EXECPATH /
  * $CUE_REAL_CLAUDE (those serve in-session helpers like `cue quick`), so the
  * binary the user's PATH points at is the one that execs.

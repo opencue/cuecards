@@ -109,7 +109,7 @@ No daemon, no background process. cue intercepts the *call* to your agent, resol
 you type `claude`
        │
        ▼
- ~/.local/bin/claude shim ──► cue launch
+ ~/.config/cue/shims/claude ──► cue launch
        │
        ▼
  resolve  ──►  which cuecard owns this directory?  (.cue.profile / auto-detect)
@@ -142,13 +142,13 @@ Five commands from zero to a profile-aware agent:
 
 ```bash
 npm install -g cue-ai                     # 1. install
-cue shell install                         # 2. activate the claude shim (one-time; add --codex for codex)
+cue shell install                         # 2. activate the claude/codex shims (one-time)
 cue discover search "code review"         # 3. find a skill you want
 cue discover install review/code-review   # 4. add it to your cuecard
 claude                                    # 5. launch — your cuecard is loaded
 ```
 
-Step 2 is the magic: it installs a tiny `~/.local/bin/claude` shim that hands off to `cue launch`. From then on, typing `claude` in any directory loads that directory's cuecard first, then starts the real Claude Code. Skip step 2 and `claude` just runs vanilla.
+Step 2 is the magic: it installs a tiny `~/.config/cue/shims/claude` shim that hands off to `cue launch`, and puts that dir at the front of your PATH. From then on, typing `claude` in any directory loads that directory's cuecard first, then starts the real Claude Code. Skip step 2 and `claude` just runs vanilla.
 
 Pin a project to a profile:
 
@@ -304,7 +304,7 @@ self-hosting, and `CUE_API_URL` (point the CLI at a different deployment).
 
 ## Shell setup
 
-`cue shell install` (Quickstart step 2) writes the `~/.local/bin/claude` shim. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
+`cue shell install` (Quickstart step 2) writes the `~/.config/cue/shims/claude` shim and the PATH line for it. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
 
 ```bash
 eval "$(cue shell hook)"   # auto-switch profile when you cd into a project (bash/zsh/fish, auto-detected)
@@ -396,7 +396,7 @@ PY
 <details>
 <summary><b>Does this break Claude Code's auto-update?</b></summary>
 
-No. cue never touches the `claude` binary — it intercepts the *call* via a one-line bash shim in `~/.local/bin/claude`, sets `CLAUDE_CONFIG_DIR`, and `exec`s the real binary. Updates work exactly as before.
+No. cue never touches the `claude` binary, and never writes to `~/.local/bin` where the native installer keeps it. It intercepts the *call* via a one-line bash shim in its own `~/.config/cue/shims/`, sets `CLAUDE_CONFIG_DIR`, and `exec`s the real binary. Updates work exactly as before — the installer rewrites its symlink, the shim is untouched, and the next launch picks up the new version.
 </details>
 
 <details>

@@ -25,8 +25,8 @@ import { listAllSkillIds } from "../lib/resolver-local";
 import { findIncompleteSkills, fetchCompanionFiles, readSourceFile } from "../lib/companion-fetch";
 import { detectMissingDependencies } from "../lib/skill-dependencies";
 import { shimInstalled, runInstall } from "./shell";
+import { shimDir, shimDirPosition } from "../lib/shim-dir";
 import { findRealClaudeBin } from "../lib/claude-binary";
-import { homedir } from "node:os";
 import { repoRoot } from "../lib/repo-root";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
@@ -205,8 +205,8 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
 
 /**
  * D9 — Activation health (environment-scoped, runs once, not per profile).
- * Verifies the claude shim is installed, the real binary resolves, and
- * ~/.local/bin precedes it on PATH. Injectable for testing.
+ * Verifies the claude shim is installed, the real binary resolves, and cue's
+ * shim dir precedes it on PATH. Injectable for testing.
  */
 export function checkActivation(
   opts: { homeDir?: string; pathDirs?: string[]; realBin?: string | null } = {},
@@ -224,7 +224,7 @@ export function checkActivation(
       code: "D9",
       severity: "warning",
       profile: PROF,
-      message: "~/.local/bin/claude shim missing or not a cue shim — `claude` won't load profiles (run `cue shell install`)",
+      message: "claude shim missing or not a cue shim — `claude` won't load profiles (run `cue shell install`)",
       fix: "cue shell install",
     });
     return issues;
@@ -243,21 +243,27 @@ export function checkActivation(
     return issues;
   }
 
-  // 3. ~/.local/bin must precede the real binary's dir on PATH (else the real
-  //    binary shadows the shim). Only meaningful when both dirs are on PATH.
-  const home = opts.homeDir ?? homedir();
-  const shimDir = join(home, ".local", "bin");
+  // 3. cue's shim dir must be on PATH, ahead of the real binary's dir.
+  //    "Absent" is its own failure now that the shims live in a directory
+  //    nothing else puts on PATH: the shim exists but never runs.
+  const dir = shimDir(opts.homeDir);
   const pathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(":");
-  const shimIdx = pathDirs.indexOf(shimDir);
-  const realDir = resolve(realBin, "..");
-  const realIdx = pathDirs.indexOf(realDir);
-  if (shimIdx >= 0 && realIdx >= 0 && shimIdx > realIdx) {
+  const position = shimDirPosition(pathDirs, realBin, dir);
+  if (position === "absent") {
     issues.push({
       code: "D9",
       severity: "error",
       profile: PROF,
-      message: `Real binary dir ${realDir} precedes ${shimDir} on PATH — the shim is shadowed`,
-      fix: "Reorder PATH so ~/.local/bin comes before the real claude/codex",
+      message: `${dir} is not on PATH — the shim is installed but never runs`,
+      fix: `Add ${dir} to the front of PATH (cue shell install writes the line for you)`,
+    });
+  } else if (position === "after") {
+    issues.push({
+      code: "D9",
+      severity: "error",
+      profile: PROF,
+      message: `Real binary dir ${resolve(realBin, "..")} precedes ${dir} on PATH — the shim is shadowed`,
+      fix: `Reorder PATH so ${dir} comes before the real claude/codex`,
     });
   }
 
@@ -381,7 +387,7 @@ Checks:
   D6  Broken symlink in runtime
   D7  Incomplete skill (companions declared but missing)
   D8  Quality gate declared but the .sh under resources/quality-gates/ is missing
-  D9  Activation: claude shim installed, real claude resolves, ~/.local/bin precedes it
+  D9  Activation: claude shim installed, real claude resolves, shim dir precedes it on PATH
 
 Flags:
   --fix             Auto-repair issues

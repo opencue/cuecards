@@ -105,30 +105,47 @@ fi
 # Step 4: Set up PATH + shims
 step "Step 4/4 — setting up PATH"
 
-SHIM_DIR="$HOME/.local/bin"
-mkdir -p "$SHIM_DIR"
+BIN_DIR="$HOME/.local/bin"
+CUE_SHIMS="${XDG_CONFIG_HOME:-$HOME/.config}/cue/shims"
+mkdir -p "$BIN_DIR" "$CUE_SHIMS"
 
-# Symlink cue
-if [ -L "$SHIM_DIR/cue" ] || [ -f "$SHIM_DIR/cue" ]; then
-  rm -f "$SHIM_DIR/cue"
+# Symlink cue. ~/.local/bin is fine for cue's OWN binary — nothing else claims
+# that name.
+if [ -L "$BIN_DIR/cue" ] || [ -f "$BIN_DIR/cue" ]; then
+  rm -f "$BIN_DIR/cue"
 fi
-ln -s "$CUE_DIR/bin/cue" "$SHIM_DIR/cue"
-ok "cue → $SHIM_DIR/cue"
+ln -s "$CUE_DIR/bin/cue" "$BIN_DIR/cue"
+ok "cue → $BIN_DIR/cue"
 
-# Claude shim
-cat > "$SHIM_DIR/claude" << 'SHIM'
+# Agent shims go in cue's OWN dir, never ~/.local/bin. The native Claude
+# installer owns ~/.local/bin/claude — it's a symlink to the real binary and is
+# often the only claude on PATH, so writing a shim there destroys the very
+# binary the shim needs to exec, and every Claude update wipes the shim anyway.
+cat > "$CUE_SHIMS/claude" <<EOF
 #!/usr/bin/env bash
-exec "$(dirname "$(readlink -f "$0")")/cue" launch claude "$@"
-SHIM
-chmod +x "$SHIM_DIR/claude"
-ok "claude shim → $SHIM_DIR/claude"
+exec "$CUE_DIR/bin/cue" launch claude "\$@"
+EOF
+chmod +x "$CUE_SHIMS/claude"
+ok "claude shim → $CUE_SHIMS/claude"
 
-# Check PATH
-if echo "$PATH" | tr ':' '\n' | grep -qx "$SHIM_DIR"; then
-  ok "$SHIM_DIR is on PATH"
+# Migrate: an older get.sh wrote its shim into ~/.local/bin. Left there it
+# shadows the real binary. Only remove what is provably ours.
+if grep -q "launch claude" "$BIN_DIR/claude" 2>/dev/null && grep -qi "cue" "$BIN_DIR/claude" 2>/dev/null; then
+  rm -f "$BIN_DIR/claude"
+  ok "removed legacy cue shim at $BIN_DIR/claude"
+fi
+
+# Check PATH — the shim dir must lead, or the real binary shadows it.
+if echo "$PATH" | tr ':' '\n' | grep -qx "$CUE_SHIMS"; then
+  ok "$CUE_SHIMS is on PATH"
 else
-  warn "$SHIM_DIR is NOT on PATH"
+  warn "$CUE_SHIMS is NOT on PATH — the claude shim is inert until it is"
   say "    ${DIM}Add to your shell rc:${RESET}"
+  say "    ${CYAN}export PATH=\"$CUE_SHIMS:\$PATH\"${RESET}"
+  say "    ${DIM}fish:${RESET} ${CYAN}fish_add_path -g -p $CUE_SHIMS${RESET}"
+fi
+if ! echo "$PATH" | tr ':' '\n' | grep -qx "$BIN_DIR"; then
+  warn "$BIN_DIR is NOT on PATH — the \`cue\` command won't resolve"
   say "    ${CYAN}export PATH=\"\$HOME/.local/bin:\$PATH\"${RESET}"
 fi
 

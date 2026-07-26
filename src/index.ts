@@ -71,7 +71,7 @@ function printHelp(): void {
       ["sync", "Refresh materialized runtimes after editing a profile source"],
       ["launch", "Resolve + materialize + exec claude/codex"],
       ["summon", "Bind a profile into the live session (soft-load + pin), no restart"],
-      ["shell", "Install/uninstall shims (~/.local/bin)"],
+      ["shell", "Install/uninstall the claude/codex shims"],
       ["update", "Self-update: git pull + bun install"],
       ["upgrade", "Pull new skills from the registry"],
       ["clean", "Prune stale runtimes and cache"],

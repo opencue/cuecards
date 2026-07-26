@@ -19,6 +19,7 @@ import { scanProject } from "../lib/project-scanner";
 import { listProfiles } from "../lib/profile-loader";
 import { getCachedGemsForProfile, autoInstallClis } from "./discover";
 import { shimInstalled, runInstall } from "./shell";
+import { shimDir } from "../lib/shim-dir";
 import { gateFreshSkill } from "./security";
 import {
   configDir,
@@ -192,27 +193,30 @@ async function offerDiscoverGems(profile: string): Promise<void> {
 }
 
 /**
- * Offer to install the shell shims if they're missing. Without the
- * `~/.local/bin/claude` shim, typing `claude` runs vanilla Claude Code and
- * the pinned profile is never loaded — the #1 "I followed the docs and
- * nothing happened" failure. Detect it here and offer the one-time fix.
+ * Offer to install the shell shims if they're missing. Without the shim,
+ * typing `claude` runs vanilla Claude Code and the pinned profile is never
+ * loaded — the #1 "I followed the docs and nothing happened" failure. Detect
+ * it here and offer the one-time fix.
  */
 async function ensureShim(): Promise<void> {
   if (shimInstalled()) return;
+  const dir = shimDir();
   p.log.warn(
     "The `claude`/`codex` shim isn't installed yet — without it, launching `claude` runs vanilla Claude Code and won't load this profile.",
   );
   const install = await p.confirm({
-    message: "Install the shell shim now? (writes ~/.local/bin/claude)",
+    message: `Install the shell shim now? (writes ${dir}/claude)`,
   });
   if (p.isCancel(install) || !install) {
     p.log.message("Skipped — run `cue shell install` later to activate profile loading.");
     return;
   }
   try {
+    // runInstall() prints its own PATH guidance, including the exact rc line
+    // when the shim dir isn't on PATH yet.
     const code = await runInstall();
     if (code === 0) {
-      p.log.success("Shim installed to ~/.local/bin. Make sure it's earlier on your PATH than the real claude/codex.");
+      p.log.success(`Shim installed to ${dir}.`);
     } else {
       p.log.warn("Shim install reported an issue — run `cue shell install` manually for details.");
     }
