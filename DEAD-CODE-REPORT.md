@@ -1,6 +1,36 @@
-# Dead-code report (generated, report only — nothing deleted)
+# Dead-code report (generated — SUPERSEDED, see status below)
 
 Total findings: 85 — estimated 2587 lines.
+
+> **Status (2026-07-27): acted on. Do not delete from this report unverified.**
+>
+> The findings below are raw agent output. They were independently re-verified
+> before anything was removed, and **28 of the 76 non-picker findings turned out
+> to be false positives** — deleting them as written would have broken the build.
+>
+> - **Deleted (733 lines):** commit `36e50756`. See that message for the itemized
+>   list and the reasoning for each exclusion.
+> - **Left in place:** everything else, including the whole picker block
+>   (~1057 lines) while that migration is in flight.
+>
+> ### Why the raw findings can't be trusted directly
+>
+> | Finding | Reality |
+> |---|---|
+> | `analytics.ts recordSkillUsage` | called by `resources/hooks/skill-fire-tracker.sh` |
+> | `bin/cue-slug` | called by `bin/cue-learnings` — the report's own grep passed `--include='*.sh'`, so the extensionless caller never matched |
+> | `runtime-gc.ts` | imported by `commands/gc.ts` and `launch.ts`; deleting it breaks `cue gc` |
+> | `handoff.ts` (all 4 exports) | imported by `commands/handoff.ts` |
+> | `kitty-image` probes, `skill-deps parseDependencies`, `skill-router` types | used within their own file — only the `export` keyword is redundant, which is churn, not dead code |
+> | `cloud.ts:255` "dead branch" | reachable: `cue cloud push x` gives `argv[2]="cloud"` and falls to the default arm |
+>
+> The recurring failure mode is **indirection the grep didn't model**: shell
+> hooks, extensionless scripts, dynamic `await import()`, and string-keyed
+> command dispatch. A `high` confidence rating in this report means the agent's
+> grep came back empty — not that the symbol is unused.
+>
+> If you resume this sweep, re-verify each finding against the *whole* repo
+> (no `--include` filters) and check within-file usage before removing anything.
 
 ## Area: commands
 
