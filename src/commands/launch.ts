@@ -32,6 +32,7 @@ import {
 import { loadProfile, listProfiles, listFeaturedProfiles, parseProfileSelector } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { DIVIDER_PREFIX, dedupeSelectorParts, runPicker, type PickerOption, type ProfileTally } from "../lib/picker";
+import type { ComboUsage } from "../lib/combo-history";
 import { materializeRuntime } from "../lib/runtime-materializer";
 import { startLoader } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
@@ -1031,7 +1032,21 @@ export function getDefaultSelector(
   return parts.join("+");
 }
 
-async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[]> {
+/**
+ * Everything the picker needs about this directory: the option rows plus the
+ * raw signals behind them. v1 only ever needed the rows (the sections baked
+ * the signals into hint strings); v2's suggestion engine ranks stacks from the
+ * signals themselves, so they're returned alongside instead of re-derived.
+ */
+interface ProfileOptionSet {
+  options: PickerOption[];
+  recents: RecentEntry[];
+  recentsAreCwdScoped: boolean;
+  featured: string[];
+  defaultSelector?: string;
+}
+
+async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOptionSet> {
   const names = await listProfiles();
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
@@ -1164,7 +1179,13 @@ async function listProfileOptions(pinnedProfile?: string): Promise<PickerOption[
   const featured = (await listFeaturedProfiles()).filter((n) =>
     n.split("+").every((part) => knownProfileNames.has(part)),
   );
-  return buildPickerSections(defaultOpt, sorted, recent, 3, Date.now(), suggested, featured);
+  return {
+    options: buildPickerSections(defaultOpt, sorted, recent, 3, Date.now(), suggested, featured),
+    recents: recent,
+    recentsAreCwdScoped: recentCwd.length > 0,
+    featured,
+    defaultSelector: defaultOpt?.value,
+  };
 }
 
 async function readSharedClaudeMd(profile?: { name: string; inheritanceChain?: string[] }): Promise<string> {
@@ -1495,7 +1516,8 @@ export async function run(args: string[]): Promise<number> {
       }
     } catch { /* never block launch on onboarding failure */ }
 
-    const options = await listProfileOptions(existingProfile);
+    const optionSet = await listProfileOptions(existingProfile);
+    const options = optionSet.options;
     // Mine local session history for "you usually pair X with Y" suggestions.
     // The picker pre-checks empirical partners in the combine multiselect.
     // Best-effort: any failure (missing log, malformed lines) yields empty.
@@ -1596,6 +1618,13 @@ export async function run(args: string[]): Promise<number> {
       tallyCache.set(value, tally);
       return tally;
     };
+    // Stacks the user confirmed here before. Feeds the v2 suggestion engine
+    // ("you launched this stack 4×"); best-effort like every other signal.
+    let combos: ComboUsage[] = [];
+    try {
+      const { readCombos } = await import("../lib/combo-history");
+      combos = readCombos();
+    } catch (err) { debug("launch:combo-history", err); }
     const picked = await runPicker({
       cwd,
       options,
@@ -1605,6 +1634,11 @@ export async function run(args: string[]): Promise<number> {
       companions,
       universalSuggestions,
       resourceTally,
+      recents: optionSet.recents,
+      recentsAreCwdScoped: optionSet.recentsAreCwdScoped,
+      combos,
+      featured: optionSet.featured,
+      defaultSelector: optionSet.defaultSelector,
       details: async (name) => {
         const loaded = await loadProfile(name);
         await expandWildcards(loaded);

@@ -76,6 +76,47 @@ export function readComboHistoryLines(path: string = comboHistoryPath()): string
   }
 }
 
+/** One previously-confirmed stack, aggregated across the history log. */
+export interface ComboUsage {
+  parts: string[];
+  count: number;
+  lastUsed?: string;
+}
+
+/**
+ * Aggregate the combo log into distinct stacks with a use count and the most
+ * recent timestamp, newest-and-most-used first. Feeds the v2 picker's
+ * suggestion engine ("you launched this stack 4×"). Malformed lines are
+ * skipped; a missing log yields []. Never throws.
+ */
+export function readCombos(path: string = comboHistoryPath()): ComboUsage[] {
+  const byProfile = new Map<string, ComboUsage>();
+  for (const line of readComboHistoryLines(path)) {
+    const trimmed = line.trim();
+    if (trimmed.length === 0) continue;
+    let record: Partial<ComboRecord>;
+    try {
+      record = JSON.parse(trimmed) as Partial<ComboRecord>;
+    } catch {
+      continue;
+    }
+    const selector = typeof record.profile === "string" ? record.profile : "";
+    const parts = selector.split("+").filter((p) => p.length > 0);
+    if (parts.length < 2) continue;
+    const existing = byProfile.get(selector);
+    const ts = typeof record.ts === "string" ? record.ts : undefined;
+    if (existing) {
+      existing.count += 1;
+      if (ts && (existing.lastUsed ?? "") < ts) existing.lastUsed = ts;
+    } else {
+      byProfile.set(selector, { parts, count: 1, lastUsed: ts });
+    }
+  }
+  return [...byProfile.values()].sort(
+    (a, b) => b.count - a.count || (b.lastUsed ?? "").localeCompare(a.lastUsed ?? ""),
+  );
+}
+
 function defaultAppend(line: string): void {
   const path = comboHistoryPath();
   mkdirSync(dirname(path), { recursive: true });
