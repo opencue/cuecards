@@ -2,7 +2,7 @@
 title: "cy117Hub/dhx-tech-electronic-components-sourcing-skill — Claude Code skill discovered by cue"
 description: "🚀 Official AI Sourcing & BOM Matcher Agent for DHX Tech. Instantly find million-level in-stock IC components (TI, ST, NXP, Microchip, Xilinx), request cost-sav"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 

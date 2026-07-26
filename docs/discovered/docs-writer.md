@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="dmitrax-second-brain-setup"></a>
+## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
+
+**★ 0** · exceptional (score 14) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
+
+Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
+
+✅ SKILL.md
+
+```bash
+cue skills add dmitrax/second-brain-setup --profile docs-writer
+```
 
 ---
 

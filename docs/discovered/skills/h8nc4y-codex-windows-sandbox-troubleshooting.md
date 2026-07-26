@@ -2,7 +2,7 @@
 title: "h8nc4y/codex-windows-sandbox-troubleshooting — Claude Code skill discovered by cue"
 description: "Agent skill for Codex on Windows (installable for Claude Code too): triage sandbox startup failures by layer - CreateProcessAsUserW error 5 on the agent executi"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 

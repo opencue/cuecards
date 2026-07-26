@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="limingnanyue-novel-creation-omnibus"></a>
-## 💎 [limingnanyue/novel-creation-omnibus](https://github.com/limingnanyue/novel-creation-omnibus)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 5** · exceptional (score 12.9) · Python · tags: agent-skill, ai-writing, chinese-novel, claude-skill, novel-creation
+**★ 0** · exceptional (score 10.5) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-🖋️ 小说创作全能工坊 —— 从网文长篇到短篇故事，从番茄爆文到白描克制，从发刀虐心到通感痛觉，一站式搞定。25套创作工具，按需加载。
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add limingnanyue/novel-creation-omnibus --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+```
+
+---
+
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+
+**★ 0** · exceptional (score 10.5) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+
+✅ SKILL.md
+
+```bash
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
 ```
 
 ---

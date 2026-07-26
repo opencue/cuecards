@@ -2,7 +2,7 @@
 title: "maxonliu/karpathy-html-wiki — Claude Code skill discovered by cue"
 description: "HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, docs-writer]
 ---
 

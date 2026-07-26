@@ -2,20 +2,20 @@
 title: "botnick/clipwarp — Claude Code skill discovered by cue"
 description: "Paste clipboard images into Claude Code on Windows - fixes the broken Ctrl+V image paste. Converts any screenshot or clipboard image into a file path Claude Cod"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [botnick/clipwarp](https://github.com/botnick/clipwarp)
 
-**★ 6** · exceptional (score 8.9) · PowerShell · ai-tools, anthropic, claude, claude-ai, claude-code
+**★ 7** · exceptional (score 8.9) · PowerShell · ai-tools, anthropic, claude, claude-ai, claude-code
 
 > Paste clipboard images into Claude Code on Windows - fixes the broken Ctrl+V image paste. Converts any screenshot or clipboard image into a file path Claude Code auto-attaches.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
-- ⭐ 6 stars
+- ⭐ 7 stars
 - 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: ai-tools, anthropic, claude, claude-ai, claude-code, cli, clipboard, developer-tools, paste-image, powershell, screenshot, snipping-tool, terminal, windows, windows-terminal
 

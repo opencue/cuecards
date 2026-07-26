@@ -2,7 +2,7 @@
 title: "gowtham-sai-yadav/claude-teleport — Claude Code skill discovered by cue"
 description: "Move your Claude Code history, memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically."
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 

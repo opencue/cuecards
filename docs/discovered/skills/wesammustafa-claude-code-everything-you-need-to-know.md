@@ -2,20 +2,20 @@
 title: "wesammustafa/Claude-Code-Everything-You-Need-to-Know — Claude Code skill discovered by cue"
 description: "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent team"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [wesammustafa/Claude-Code-Everything-You-Need-to-Know](https://github.com/wesammustafa/Claude-Code-Everything-You-Need-to-Know)
 
-**★ 2375** · exceptional (score 15.9) · Python · agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude
+**★ 2380** · exceptional (score 15.8) · Python · agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude
 
 > A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featured in Awesome Claude Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
-- ⭐ 2375 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+- ⭐ 2380 stars
 - 🗓️ Last pushed: 2026-07-22
 - 🏷️ Tags: agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude, best-practices, claude, claude-ai, claude-code, claude-code-guide, claude-code-hooks, claude-code-skills, claude-code-tutorial, claude-skills, guide, mcp, mcp-servers, prompt-engineering, subagents, tutorial
 

@@ -2,7 +2,7 @@
 title: "qianye60/XianTu — Claude Code skill discovered by cue"
 description: "\"Immortal Path\" AI-driven immersive cultivation text adventure game, based on Vue 3 + TypeScript + Fastapi, supports multiple AI models such as Gemini/Claude/Op"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 

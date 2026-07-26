@@ -2,21 +2,21 @@
 title: "achiya-automation/safari-mcp — Claude Code skill discovered by cue"
 description: "Native Safari browser automation for AI agents. 80 tools via AppleScript — zero overhead, keeps logins, runs silently in background. Drop-in alternative to Chro"
 layout: page
-updated: 2026-07-21
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [achiya-automation/safari-mcp](https://github.com/achiya-automation/safari-mcp)
 
-**★ 153** · exceptional (score 16.1) · JavaScript · ai-agents, ai-tools, apple-silicon, applescript, automation
+**★ 159** · exceptional (score 16.1) · JavaScript · ai-agents, ai-tools, apple-silicon, applescript, automation
 
 > Native Safari browser automation for AI agents. 80 tools via AppleScript — zero overhead, keeps logins, runs silently in background. Drop-in alternative to Chrome DevTools MCP with 40-60% less CPU/heat on Apple Silicon.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
-- ⭐ 153 stars
-- 🗓️ Last pushed: 2026-07-21
+- ⭐ 159 stars
+- 🗓️ Last pushed: 2026-07-26
 - 🏷️ Tags: ai-agents, ai-tools, apple-silicon, applescript, automation, browser-automation, claude, claude-code, cursor, devtools, llm-tools, macos, mcp, mcp-server, model-context-protocol, safari, safari-mcp, web-automation, webkit, windsurf
 
 ## Best fit cue profiles

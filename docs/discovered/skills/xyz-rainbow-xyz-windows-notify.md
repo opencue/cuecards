@@ -2,7 +2,7 @@
 title: "xyz-rainbow/xyz-windows-notify — Claude Code skill discovered by cue"
 description: "Universal AI Agent Toast Notification Skill for Windows 11 with custom icon (-AppLogo) & percentage progress updates"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 

@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-24
+updated: 2026-07-26
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="xixihhhh-hotclip"></a>
-## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
+<a id="cassette-editor-oh-my-cassette"></a>
+## 💎 [Cassette-Editor/oh-my-cassette](https://github.com/Cassette-Editor/oh-my-cassette)
 
-**★ 35** · exceptional (score 10.3) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
+**★ 143** · exceptional (score 16) · Python · tags: agent, agent-skills, ai-agent, ai-video-editing, chat-to-edit
 
-免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频——AI 找高光金句、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts. No credits, no watermark, no uploads. Win/macOS.
+你的随身 AI 剪辑搭档 | Pocket AI co-editor for video montage — AI video editing plugin & MCP server for Claude Code, Codex, Hermes & OpenCode
 
 ```bash
-cue skills add xixihhhh/hotclip --profile video
+cue skills add Cassette-Editor/oh-my-cassette --profile video
+```
+
+---
+
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
+
+**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+
+Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+
+```bash
+cue skills add TanaTTV/lyt --profile video
 ```
 
 ---

@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="aemro-motors-popper-scope"></a>
+## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 5** · exceptional (score 17) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
-```
-
----
-
-<a id="shinyjay2-papermentor"></a>
-## 💎 [ShinyJay2/PaperMentor](https://github.com/ShinyJay2/PaperMentor)
-
-**★ 2** · exceptional (score 15.3) · JavaScript · tags: academic-research, agent-skill, ai-agent, ai-agent-skill, claude-code
-
-Paper understanding AI Agent Skill for equations, derivations, dependencies, and final insight
-
-✅ SKILL.md
-
-```bash
-cue skills add ShinyJay2/PaperMentor --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

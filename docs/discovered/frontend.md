@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="amohavarshansankar-google-fonts-skill"></a>
-## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
+<a id="ezra-y-awesome-claude-ui-armory"></a>
+## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
 
-**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
+**★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
-Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
-
-✅ SKILL.md
+Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
-cue skills add amohavarshansankar/google-fonts-skill --profile frontend
+cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
 ```
 
 ---
 
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
-**★ 1** · exceptional (score 9.8) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
 
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
 
 ```bash
-cue skills add Fredjuel/arc-skill --profile frontend
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "bengous/codex-path-rules — Claude Code skill discovered by cue"
 description: "Path-scoped Codex hook that loads .claude/rules only when matching files are touched"
 layout: page
-updated: 2026-07-25
+updated: 2026-07-26
 tags: [claude-code, skill, core]
 ---
 
