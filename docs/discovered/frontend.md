@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -16,27 +16,53 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 <a id="ezra-y-awesome-claude-ui-armory"></a>
-## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
+## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
 **★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
 Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
-cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
+cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 ```
 
 ---
 
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+<a id="ystherr-wechat-article-formatter-skill"></a>
+## 💎 [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+**★ 2** · exceptional (score 8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
 
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
 
 ```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
+cue skills add ystherr/wechat-article-formatter-skill --profile frontend
+```
+
+---
+
+<a id="taewooopark-uiforge"></a>
+## 💎 [TaewoooPark/UIForge](https://github.com/TaewoooPark/UIForge)
+
+**★ 6** · exceptional (score 8) · JavaScript · tags: animation, anti-slop, art-direction, claude-code, claude-code-plugin
+
+Forge masterpiece UI, not AI slop — a design art-director plugin for Claude Code. Forces a deliberate choice on every design axis (type, color, space, motion), sources components from vetted registries, and gates output on forced-subtraction + critique.
+
+```bash
+cue skills add TaewoooPark/UIForge --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---

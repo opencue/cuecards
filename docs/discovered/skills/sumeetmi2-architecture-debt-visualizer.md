@@ -2,7 +2,7 @@
 title: "sumeetmi2/architecture-debt-visualizer — Claude Code skill discovered by cue"
 description: "Claude Code skill for architecture reviews, docs-to-code drift detection, and evidence-based technical debt analysis across 12 dimensions — scalability, extensi"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-27
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: architecture-review, claude-code, claude-plugin, claude-skill, developer-tools, documentation-drift, software-architecture, technical-debt
 
 ## Best fit cue profiles

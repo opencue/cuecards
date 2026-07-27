@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for python"
-description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,19 +24,6 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile python
-```
-
----
-
-<a id="amin-ale-mcp-crm"></a>
-## ✨ [amin-ale/mcp-crm](https://github.com/amin-ale/mcp-crm)
-
-**★ 0** · strong (score 5) · Python · tags: audit-log, claude, crm, crm-integration, fastmcp
-
-HubSpot MCP server for contacts, deals and pipelines: idempotent writes, a full PII-redacted audit trail, scope-aware errors instead of raw 403s, rate-limit retries, local read cache, cursor pagination. Private-app token or OAuth. Works with Claude Desktop or any MCP client.
-
-```bash
-cue skills add amin-ale/mcp-crm --profile python
 ```
 
 ---

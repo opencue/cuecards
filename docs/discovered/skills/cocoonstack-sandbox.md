@@ -2,21 +2,21 @@
 title: "cocoonstack/sandbox — Claude Code skill discovered by cue"
 description: "Fast cold-boot MicroVM sandboxes for AI agents on cocoon"
 layout: page
-updated: 2026-07-13
+updated: 2026-07-27
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [cocoonstack/sandbox](https://github.com/cocoonstack/sandbox)
 
-**★ 20** · strong (score 7.5) · Go · ai, ai-agents, fast, mcp-server, microvm
+**★ 41** · strong (score 7.9) · Go · ai, ai-agents, fast, mcp-server, microvm
 
 > Fast cold-boot MicroVM sandboxes for AI agents on cocoon
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 20 stars
-- 🗓️ Last pushed: 2026-07-13
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
+- ⭐ 41 stars
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: ai, ai-agents, fast, mcp-server, microvm, openai, sandbox, virtualization
 
 ## Best fit cue profiles

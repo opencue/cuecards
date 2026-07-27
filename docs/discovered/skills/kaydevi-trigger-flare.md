@@ -2,21 +2,21 @@
 title: "Kaydevi/trigger-flare — Claude Code skill discovered by cue"
 description: "Skill Radar 2026: AI-Powered Smart Signal Triage for Claude Code"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-27
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Kaydevi/trigger-flare](https://github.com/Kaydevi/trigger-flare)
 
-**★ 0** · strong (score 7.5) · HTML · ai-tools, anthropic, claude-code, claude-plugin, claude-skill
+**★ 1** · strong (score 7.8) · HTML · ai-tools, anthropic, claude-code, claude-plugin, claude-skill
 
 > Skill Radar 2026: AI-Powered Smart Signal Triage for Claude Code
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: ai-tools, anthropic, claude-code, claude-plugin, claude-skill, context-engineering, skill-router, skills
 
 ## Best fit cue profiles

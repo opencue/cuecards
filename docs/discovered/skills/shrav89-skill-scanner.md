@@ -2,21 +2,21 @@
 title: "shrav89/skill-scanner — Claude Code skill discovered by cue"
 description: "🔍 Discover and analyze AI skills in your projects with Skill Scanner to enhance development and improve security."
 layout: page
-updated: 2026-07-12
+updated: 2026-07-27
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [shrav89/skill-scanner](https://github.com/shrav89/skill-scanner)
 
-**★ 1** · exceptional (score 10.3) · Python · agent, agent-skills, ai, ai-agents, anthropic
+**★ 2** · exceptional (score 10.5) · Python · agent, agent-skills, ai, ai-agents, anthropic
 
 > 🔍 Discover and analyze AI skills in your projects with Skill Scanner to enhance development and improve security.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: agent, agent-skills, ai, ai-agents, anthropic, atomist-skill, chrome-extension, claude-code, hooks, mcp, mcp-server, modelcontextprotocol, openclaw, rust, scanner, security-analysis, static-analysis, vulnerability-scanner
 
 ## Best fit cue profiles

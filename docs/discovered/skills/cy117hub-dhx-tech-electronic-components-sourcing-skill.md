@@ -2,22 +2,22 @@
 title: "cy117Hub/dhx-tech-electronic-components-sourcing-skill — Claude Code skill discovered by cue"
 description: "🚀 Official AI Sourcing & BOM Matcher Agent for DHX Tech. Instantly find million-level in-stock IC components (TI, ST, NXP, Microchip, Xilinx), request cost-sav"
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [cy117Hub/dhx-tech-electronic-components-sourcing-skill](https://github.com/cy117Hub/dhx-tech-electronic-components-sourcing-skill)
 
-**★ 0** · exceptional (score 9.9) · ai-agent, ai-agent-skill, altium-designer, bom-matching, cursor-rules
+**★ 0** · exceptional (score 10) · ai-agent, ai-agent-skill, altium-designer, bom-matching, cursor-rules
 
 > 🚀 Official AI Sourcing & BOM Matcher Agent for DHX Tech. Instantly find million-level in-stock IC components (TI, ST, NXP, Microchip, Xilinx), request cost-saving alternatives, and source verified China PCB/PCBA turnkey assembly factories directly inside Cursor, Windsurf, and custom GPTs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+- 🗓️ Last pushed: 2026-07-26
 - 🏷️ Tags: ai-agent, ai-agent-skill, altium-designer, bom-matching, cursor-rules, cursorrules, electronic-components, hardware-sourcing, kicad, next-intl, pcb-assembly
 
 ## Best fit cue profiles

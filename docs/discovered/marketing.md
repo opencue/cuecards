@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-25
+updated: 2026-07-27
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="norahe0304-art-30x-growth-marketing-panel"></a>
-## 💎 [norahe0304-art/30x-growth-marketing-panel](https://github.com/norahe0304-art/30x-growth-marketing-panel)
+<a id="agricidaniel-claude-seo"></a>
+## 💎 [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
 
-**★ 30** · exceptional (score 15.9) · Shell · tags: ai-agent-skill, ai-skills, claude-code, growth-marketing, marketing
+**★ 12431** · exceptional (score 18) · Python · tags: ai, ai-seo, claude-code, claude-code-skill, marketing-automation
 
-AI Growth Marketing Expert Panel — 12 world-class experts distilled from 4,000+ YouTube videos into one Claude Code / Cursor / Codex skill.
-
-✅ SKILL.md
+Universal SEO skill for Claude Code. 25 sub-skills + 18 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, backlinks, local SEO, maps intelligence, semantic clustering, e-commerce SEO, international SEO, Google APIs, and PDF/Excel reporting. Optional DataForSEO, Firecrawl, and Banana extensions.
 
 ```bash
-cue skills add norahe0304-art/30x-growth-marketing-panel --profile marketing
+cue skills add AgriciDaniel/claude-seo --profile marketing
 ```
 
 ---
 
-<a id="aleprieto790-alt-gtm-mcp"></a>
-## ✨ [aleprieto790-alt/gtm-mcp](https://github.com/aleprieto790-alt/gtm-mcp)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 0** · strong (score 6) · Python · tags: ai, chatgpt, data-layer, enablement, ga4
+**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Run B2B cold outreach in Claude Code: find companies, verify fit, extract contacts, write sequences, and launch campaigns locally
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add aleprieto790-alt/gtm-mcp --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

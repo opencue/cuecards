@@ -2,7 +2,7 @@
 title: "forrestrae/stridesmith — Claude Code skill discovered by cue"
 description: "Claude Code plugin that runs threat-model-driven security reviews, turning scoped STRIDE models into validated attack paths, prioritized manual review, actionab"
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, skill, cybersecurity]
 ---
 

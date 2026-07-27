@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="cassette-editor-oh-my-cassette"></a>
-## 💎 [Cassette-Editor/oh-my-cassette](https://github.com/Cassette-Editor/oh-my-cassette)
+<a id="abubakrchan-product-launch-motion"></a>
+## 💎 [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion)
 
-**★ 143** · exceptional (score 16) · Python · tags: agent, agent-skills, ai-agent, ai-video-editing, chat-to-edit
+**★ 0** · exceptional (score 14.5) · JavaScript · tags: agent-skill, agent-skills, ai-agents, anthropic, claude
 
-你的随身 AI 剪辑搭档 | Pocket AI co-editor for video montage — AI video editing plugin & MCP server for Claude Code, Codex, Hermes & OpenCode
+Claude Code skill for product launch motion design — make launch videos, promos and demo reels from code. HTML/CSS/GSAP compositions, word-locked voiceover sync, real camera moves, film grade, broadcast-loudness mastering. A director's discipline, not a template.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Cassette-Editor/oh-my-cassette --profile video
+cue skills add AbubakrChan/product-launch-motion --profile video
+```
+
+---
+
+<a id="jimliu-baocut"></a>
+## 💎 [JimLiu/baocut](https://github.com/JimLiu/baocut)
+
+**★ 292** · exceptional (score 14) · Shell · tags: agent-skill, claude-code, codex, macos, skills
+
+Open-source Agent Skill that drives the BaoCut macOS app CLI (transcribe · subtitle · translate · cut) from Claude Code, Codex, and other agents
+
+```bash
+cue skills add JimLiu/baocut --profile video
 ```
 
 ---

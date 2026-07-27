@@ -1,46 +1,55 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="dmitrax-second-brain-setup"></a>
-## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
+<a id="onourimpram-mneme"></a>
+## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 0** · exceptional (score 14) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
+**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
-Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
-
-✅ SKILL.md
+Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ```bash
-cue skills add dmitrax/second-brain-setup --profile docs-writer
+cue skills add OnourImpram/mneme --profile docs-writer
 ```
 
 ---
 
-<a id="maxonliu-karpathy-html-wiki"></a>
-## 💎 [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki)
+<a id="sumeetmi2-architecture-debt-visualizer"></a>
+## ✨ [sumeetmi2/architecture-debt-visualizer](https://github.com/sumeetmi2/architecture-debt-visualizer)
 
-**★ 0** · exceptional (score 8.9) · tags: ai-agent-skill, hermes-agent, karpathy, knowledge-base, llm
+**★ 0** · strong (score 7) · Python · tags: architecture-review, claude-code, claude-plugin, claude-skill, developer-tools
 
-HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill)
-
-✅ SKILL.md
+Claude Code skill for architecture reviews, docs-to-code drift detection, and evidence-based technical debt analysis across 12 dimensions — scalability, extensibility, reliability, security, change safety, data architecture, observability, and more.
 
 ```bash
-cue skills add maxonliu/karpathy-html-wiki --profile docs-writer
+cue skills add sumeetmi2/architecture-debt-visualizer --profile docs-writer
+```
+
+---
+
+<a id="edrc-shawn-lingtai-mcp"></a>
+## ✨ [edrc-shawn/lingtai-mcp](https://github.com/edrc-shawn/lingtai-mcp)
+
+**★ 0** · strong (score 7) · Python · tags: agent-framework, ai-agent, automation, knowledge-base, knowledge-management
+
+Self-evolving knowledge management system: Obsidian vault + a zero-dependency MCP server (86 tools). Refines raw materials into structured knowledge, evolves its own rules, and runs 24/7 patrol automation
+
+```bash
+cue skills add edrc-shawn/lingtai-mcp --profile docs-writer
 ```
 
 ---

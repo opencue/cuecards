@@ -2,21 +2,21 @@
 title: "oceantruong/farcaster-agent — Claude Code skill discovered by cue"
 description: "🤖 Automate Farcaster account creation and casting without intervention, using a toolkit that handles everything programmatically."
 layout: page
-updated: 2026-07-11
+updated: 2026-07-27
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [oceantruong/farcaster-agent](https://github.com/oceantruong/farcaster-agent)
+# 💎 [oceantruong/farcaster-agent](https://github.com/oceantruong/farcaster-agent)
 
-**★ 1** · strong (score 7.8) · JavaScript · agentic-ai, ai-agents, base, defi, elizaos-plugin
+**★ 2** · exceptional (score 8) · JavaScript · agentic-ai, ai-agents, base, defi, elizaos-plugin
 
 > 🤖 Automate Farcaster account creation and casting without intervention, using a toolkit that handles everything programmatically.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: agentic-ai, ai-agents, base, defi, elizaos-plugin, erc20, ethereum, fair-launch, farcaster, farcaster-frames, langgraph, lilnouns, mcp, mcp-server, model-context-protocol, openclaw, social-network, solidity, uniswap-v4
 
 ## Best fit cue profiles

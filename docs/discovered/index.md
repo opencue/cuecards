@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-07-26 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-07-27 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 68 | `GodotMaker`, `safari-mcp`, `xiaohongshu-mcp` |
-| [**cybersecurity**](./cybersecurity.md) | 9 | `nsauditor-ai-agent-skill`, `slowmist-security-cc`, `Claude-OSINT` |
-| [**backend**](./backend.md) | 8 | `firecrawl-mcp-server`, `line-summary`, `oak-open-curriculum-ecosystem` |
-| [**fleet-control**](./fleet-control.md) | 5 | `neo`, `opencouncil-contract-inspector`, `EGC` |
-| [**creative-media**](./creative-media.md) | 4 | `ComfyUI-Agent-Kit`, `pixel-mcp-workflow`, `lyt` |
-| [**video**](./video.md) | 2 | `oh-my-cassette`, `lyt` |
-| [**docs-writer**](./docs-writer.md) | 2 | `second-brain-setup`, `karpathy-html-wiki` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `pixel-mcp-workflow` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
-| [**python**](./python.md) | 2 | `alfred`, `mcp-crm` |
-| [**research**](./research.md) | 1 | `popper-scope` |
+| [**core**](./core.md) | 68 | `context-mode`, `GodotMaker`, `brilliant-directories-mcp` |
+| [**backend**](./backend.md) | 9 | `bernstein`, `claude-api-cost-optimization`, `engram-mcp` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `Claude-OSINT`, `skill-scanner`, `sanctuary-framework` |
+| [**creative-media**](./creative-media.md) | 4 | `product-launch-motion`, `WSL-Image-Clipboard-Helper`, `lyt` |
+| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `wechat-article-formatter-skill`, `UIForge` |
+| [**fleet-control**](./fleet-control.md) | 3 | `bernstein`, `opencouncil-contract-inspector`, `rolepod` |
+| [**video**](./video.md) | 3 | `product-launch-motion`, `baocut`, `lyt` |
+| [**docs-writer**](./docs-writer.md) | 3 | `mneme`, `architecture-debt-visualizer`, `lingtai-mcp` |
+| [**marketing**](./marketing.md) | 2 | `claude-seo`, `sticky-switcher-funnel-playbook` |
+| [**research**](./research.md) | 2 | `arxiv-mcp-server`, `popper-scope` |
+| [**rust**](./rust.md) | 1 | `intutic` |
+| [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works
 

@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-07-27
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="cyanheads-arxiv-mcp-server"></a>
+## ✨ [cyanheads/arxiv-mcp-server](https://github.com/cyanheads/arxiv-mcp-server)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: academic-papers, arxiv, cyanheads, mcp, mcp-server
+
+Search arXiv, fetch paper metadata, and read full-text content via MCP. STDIO & Streamable HTTP.
+
+```bash
+cue skills add cyanheads/arxiv-mcp-server --profile research
+```
 
 ---
 
