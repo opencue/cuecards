@@ -19,6 +19,7 @@ import { normalizeUvxGitServers } from "./uvx-installer";
 import { evaluateCondition } from "./conditional-skills";
 import { hasWorkspaces, getActiveWorkspace, computeOverrides } from "./workspaces";
 import { parseSkillFromDir, renderRouter, type ParsedSkill } from "./skill-router";
+import { CODEX_BRIEF_POINTER } from "./project-brief";
 
 const REPO_ROOT = resolvePath(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RESOURCES_RULES = join(REPO_ROOT, "resources", "rules");
@@ -719,6 +720,15 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     stamp += `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
       profileGatesForStamp.map((g: string) => `- \`${basename(g)}\``).join("\n") + "\n\n" +
       `Don't claim "done" if you haven't met them — they'll fail you publicly.\n\n`;
+  }
+
+  // Codex has no `--append-system-prompt`, so the per-directory project brief
+  // reaches it through a file named by CUE_PROJECT_BRIEF. This pointer must stay
+  // STATIC: the runtime memory file is shared by every directory using this
+  // profile, so anything directory-specific here would leak across projects and
+  // churn the materialization hash. claude-code gets the brief inline instead.
+  if (agent === "codex") {
+    stamp += `## Project brief\n\n${CODEX_BRIEF_POINTER}\n\n`;
   }
 
   stamp += `---\n*generated ${new Date().toISOString()} — do not hand-edit*\n\n`;

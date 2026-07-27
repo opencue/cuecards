@@ -2467,7 +2467,37 @@ export async function run(args: string[]): Promise<number> {
     health: healthBadge,
   });
 
-  const exitCode = await execAgent(realBin, parsed.passthrough, childEnv);
+  // Project brief — verified facts about THIS directory (package manager, the
+  // real test/build commands, layout). Delivered per process, never through the
+  // materialized memory file: that file is keyed by profile and shared by every
+  // directory and parallel session using it, so repo-specific text there would
+  // leak across projects. Best-effort in every step — a launch never fails
+  // because a scan did. `CUE_BRIEF=0` opts out.
+  let briefArgs: string[] = [];
+  if (process.env.CUE_BRIEF !== "0") {
+    try {
+      const { scanBrief, renderBrief, buildBriefInjection } = await import("../lib/project-brief");
+      const scanned = scanBrief(cwd);
+      const rendered = scanned ? renderBrief(scanned) : "";
+      if (rendered) {
+        const injection = buildBriefInjection({
+          agent: agentKind,
+          brief: rendered,
+          briefDir: join(configDir(), "briefs"),
+          cwd,
+        });
+        if (injection.file) {
+          const { mkdir, writeFile } = await import("node:fs/promises");
+          await mkdir(dirname(injection.file.path), { recursive: true });
+          await writeFile(injection.file.path, injection.file.content);
+        }
+        Object.assign(childEnv, injection.env);
+        briefArgs = injection.args;
+      }
+    } catch (err) { debug("launch:brief", err); }
+  }
+
+  const exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
   // Persist any /login done inside the session to its account dir now —
   // don't leave the only live rotated token stranded in the per-account runtime.
   if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);
