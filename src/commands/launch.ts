@@ -1141,7 +1141,7 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
     // Second pass scoped to this cwd subtree. When the user opens a project
     // directory, this filters out the ambient career/skill-writer sessions
     // racked up in $HOME so Recent reflects what's been picked *here*.
-    for (const s of computeStats({ cwdPrefix: cwd })) {
+    for (const s of computeStats({ cwd })) {
       recentCwd.push({ name: s.profile, sessions: s.sessions, lastUsed: s.last_used });
     }
   } catch {

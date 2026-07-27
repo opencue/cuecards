@@ -188,7 +188,7 @@ describe("suggestStacks", () => {
       recents: [{ name: "python", sessions: 2, lastUsed: "2026-07-26T00:00:00Z" }],
     });
     expect(cwdScoped[0]!.score).toBeGreaterThan(global[0]!.score);
-    expect(cwdScoped[0]?.reasons[0]).toContain("last used in this directory");
+    expect(cwdScoped[0]?.reasons[0]).toContain("last used in this repo");
     expect(global[0]?.reasons[0]).toContain("you use this often");
   });
 });

@@ -260,7 +260,7 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
   // 3. recents — most-recent first, so "what I did here last" wins over
   //    "what I've done here most".
   const recentBase = input.recentsAreCwdScoped ? SCORE_RECENT_CWD : SCORE_RECENT_GLOBAL;
-  const recentWhy = input.recentsAreCwdScoped ? "last used in this directory" : "you use this often";
+  const recentWhy = input.recentsAreCwdScoped ? "last used in this repo" : "you use this often";
   for (const r of [...(input.recents ?? [])].sort(byRecency)) {
     const parts = r.name.split("+").filter((p) => known.has(p));
     if (parts.length === 0) continue;
