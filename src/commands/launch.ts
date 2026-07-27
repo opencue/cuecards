@@ -1374,6 +1374,50 @@ async function resolveClaudeCredentialsSource(): Promise<string> {
 }
 
 /**
+ * How often a live session checks whether its OAuth token still matches the
+ * account's. Token lifetimes are hours and rotation is rare, so a minute of
+ * lag costs nothing; polling (rather than watching) is deliberate, since the
+ * atomic tmp→rename rewrite that replaces the file also breaks an inode watch.
+ */
+const CREDENTIAL_RECONCILE_MS = 60_000;
+
+/**
+ * Keep a running session's tokens in step with every other session on the same
+ * account, for as long as it runs.
+ *
+ * Concurrent sessions on different profiles hold separate copies of one refresh
+ * token, and Anthropic rotates that token on each refresh — so whichever
+ * session refreshes first silently revokes the others, and they hit a login
+ * prompt mid-session. Rescue-on-exit was too late to help: by then the other
+ * session has already been dropped. Each session now republishes its own
+ * rotation and adopts anyone else's within a minute.
+ *
+ * Best-effort throughout, and unref'd so it can never hold the process open.
+ * Returns a stop function.
+ */
+function startCredentialReconciler(runtimeKey: string): () => void {
+  let running = false;
+  const tick = async (): Promise<void> => {
+    if (running) return; // a slow disk must not stack overlapping reconciles
+    running = true;
+    try {
+      const { listKnownAccountDirs, reconcileCredentials } = await import("../lib/credentials-sync");
+      // basename() pins the path inside the runtime tree — this writes token
+      // files, so a runtime key carrying a separator must not escape it.
+      const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
+      await reconcileCredentials(runtimeClaudeDir, await listKnownAccountDirs(homedir()));
+    } catch (err) {
+      debug("launch:cred-reconcile", err);
+    } finally {
+      running = false;
+    }
+  };
+  const timer = setInterval(() => void tick(), CREDENTIAL_RECONCILE_MS);
+  timer.unref();
+  return () => clearInterval(timer);
+}
+
+/**
  * Write the runtime's login-fresh `.credentials.json` back to the account
  * dir that owns it (matched by accountUuid). Runs (a) before materialization
  * — so the account-identity guard can't destroy the only live copy of the
@@ -2505,7 +2549,17 @@ export async function run(args: string[]): Promise<number> {
     } catch (err) { debug("launch:brief", err); }
   }
 
-  const exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
+  // Keep tokens in step with sibling sessions *while* this one runs — a
+  // rotation elsewhere would otherwise revoke ours and force a mid-session
+  // re-login.
+  const stopReconciler =
+    agentKind === "claude-code" ? startCredentialReconciler(runtimeKey) : undefined;
+  let exitCode: number;
+  try {
+    exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
+  } finally {
+    stopReconciler?.();
+  }
   // Persist any /login done inside the session to its account dir now —
   // don't leave the only live rotated token stranded in the per-account runtime.
   if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);

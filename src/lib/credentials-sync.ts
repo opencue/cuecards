@@ -212,6 +212,84 @@ export async function syncFreshestToSource(
 }
 
 /**
+ * Adopt the owning account's credentials when they are fresher than this
+ * runtime's — the mirror image of `rescueRuntimeCredentials`.
+ *
+ * Why a *running* session needs this: two concurrent sessions on different
+ * profiles hold separate copies of one refresh token, and Anthropic rotates
+ * that token on every refresh. The moment one refreshes, the other's copy is
+ * revoked, and its next refresh drops the user into a login prompt mid-session.
+ * The refresher publishes its new token to the account dir (that is
+ * `rescueRuntimeCredentials`); this is how the other session hears about it.
+ *
+ * Symlinking the runtimes at one shared file would be the obvious fix and does
+ * not work: Claude Code rewrites `.credentials.json` atomically (tmp → rename),
+ * which replaces a symlink with a regular file on the first refresh. Observable
+ * in any authmux runtime, where cue symlinks `.claude.json` and every one has
+ * since become a plain file while its neighbours (`projects/`, `agents/`) are
+ * still links.
+ *
+ * Only ever adopts from a dir claiming the same `accountUuid`, so alternating
+ * accounts can't hand each other tokens. Atomic tmp+rename write, mirroring the
+ * other writers here, so a concurrent reader never sees a partial file.
+ */
+export async function pullFreshestToRuntime(
+  runtimeClaudeDir: string,
+  accountDirs: string[],
+): Promise<{ pulled: false } | { pulled: true; from: string; expiresAt: number }> {
+  const mine = await readCredentials(runtimeClaudeDir);
+  // No credentials, or no identity to match on — never guess which account a
+  // runtime belongs to; adopting the wrong one pairs tokens with an identity
+  // that doesn't own them.
+  if (!mine?.accountUuid) return { pulled: false };
+
+  let best: { path: string; expiresAt: number } | undefined;
+  for (const dir of accountDirs) {
+    if ((await readAccountUuid(dir)) !== mine.accountUuid) continue;
+    const owner = await readCredentials(dir);
+    if (!owner || owner.refreshToken.trim().length === 0) continue;
+    if (owner.expiresAt <= mine.expiresAt) continue;
+    if (!best || owner.expiresAt > best.expiresAt) {
+      best = { path: owner.path, expiresAt: owner.expiresAt };
+    }
+  }
+  if (!best) return { pulled: false };
+
+  const target = join(runtimeClaudeDir, ".credentials.json");
+  const tmp = `${target}.cue-pull.${process.pid}`;
+  try {
+    await copyFile(best.path, tmp);
+    await rename(tmp, target);
+    return { pulled: true, from: best.path, expiresAt: best.expiresAt };
+  } catch {
+    try { await rm(tmp, { force: true }); } catch { /* best-effort cleanup */ }
+    return { pulled: false };
+  }
+}
+
+/**
+ * Bring a live session's tokens and its account dir back into agreement, in
+ * whichever direction is stale.
+ *
+ * Push first: if we hold the newest token, publish it before adopting anything,
+ * so a sibling reconciler running at the same moment can only ever move tokens
+ * forward. Both directions are gated on *strictly* newer `expiresAt`, so once
+ * the pair agrees neither writes again — two reconcilers polling each other
+ * settle instead of trading the file back and forth.
+ */
+export async function reconcileCredentials(
+  runtimeClaudeDir: string,
+  accountDirs: string[],
+): Promise<{ pushed: string[]; pulled?: string }> {
+  const pushed: string[] = [];
+  const push = await rescueRuntimeCredentials(runtimeClaudeDir, accountDirs);
+  if (push.rescued) pushed.push(push.to);
+
+  const pull = await pullFreshestToRuntime(runtimeClaudeDir, accountDirs);
+  return pull.pulled ? { pushed, pulled: pull.from } : { pushed };
+}
+
+/**
  * Known Claude account dirs a runtime's credentials could belong to:
  * `~/.claude` plus every `~/.claude-accounts/<name>` (authmux's parallel
  * account convention — the CLAUDE_CONFIG_DIRs its claude-<name> aliases set).
