@@ -1650,7 +1650,9 @@ export async function run(args: string[]): Promise<number> {
     let combos: ComboUsage[] = [];
     try {
       const { readCombos } = await import("../lib/combo-history");
-      combos = readCombos();
+      // Scoped to the launch directory: stacks confirmed in this repo lead,
+      // stacks from other repos drop to a hint.
+      combos = readCombos(undefined, { cwd });
     } catch (err) { debug("launch:combo-history", err); }
     const picked = await runPicker({
       cwd,

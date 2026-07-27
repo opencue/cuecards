@@ -113,6 +113,31 @@ describe("suggestStacks", () => {
     expect(out[0]?.reasons[0]).toBe("you launched this stack 4×");
   });
 
+  test("a stack confirmed in this directory outranks a more-used foreign one", () => {
+    const out = suggestStacks({
+      profiles,
+      combos: [
+        { parts: ["python", "secops"], count: 6, here: 0, lastUsed: "2026-07-25T00:00:00Z" },
+        { parts: ["rust", "secops"], count: 1, here: 1, lastUsed: "2026-07-20T00:00:00Z" },
+      ],
+    });
+    expect(out[0]?.parts).toEqual(["rust", "secops"]);
+    expect(out[0]?.reasons[0]).toBe("you launched this stack 1× here");
+    expect(out[1]?.reasons[0]).toBe("you launched this stack 6× in other directories");
+  });
+
+  test("a foreign-only stack is named as such and ranks below a cwd recent", () => {
+    const out = suggestStacks({
+      profiles,
+      combos: [{ parts: ["python", "secops"], count: 6, here: 0 }],
+      recents: [{ name: "rust", sessions: 1, lastUsed: "2026-07-25T00:00:00Z" }],
+      recentsAreCwdScoped: true,
+    });
+    expect(out[0]?.parts[0]).toBe("rust");
+    const foreign = out.find((s) => s.origin === "combo");
+    expect(foreign?.reasons[0]).toBe("you launched this stack 6× in other directories");
+  });
+
   test("ignores unknown profile names everywhere", () => {
     const out = suggestStacks({
       profiles,

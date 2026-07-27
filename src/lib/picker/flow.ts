@@ -249,7 +249,7 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
   const choice = parts.join("+");
 
   try {
-    recordCombo(parts, new Date().toISOString());
+    recordCombo(parts, new Date().toISOString(), undefined, input.cwd);
   } catch {
     /* logging must never block a launch */
   }

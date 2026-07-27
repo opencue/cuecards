@@ -54,6 +54,13 @@ export interface SuggestCombo {
   parts: string[];
   count: number;
   lastUsed?: string | null;
+  /**
+   * Of `count`, how many confirmations happened in *this* directory (see
+   * `combo-history.readCombos`). `undefined` means the caller had no per-repo
+   * attribution and the stack is scored the way it always was; `0` means the
+   * stack is genuinely foreign to this directory and is demoted accordingly.
+   */
+  here?: number;
 }
 
 export interface SuggestInput {
@@ -116,6 +123,18 @@ export const DETECT_MIN_CONFIDENCE = 0.5;
 // history comes next (it describes this user), curation last.
 export const SCORE_DETECTED = 100;
 export const SCORE_COMBO = 45;
+/**
+ * A stack confirmed in *this* directory: the strongest history signal there is,
+ * because it describes both this user and this project. Ranks above any
+ * cwd-scoped recent (a single profile) but still below a confident detection.
+ */
+export const SCORE_COMBO_HERE = 55;
+/**
+ * A stack the user only ever confirmed in *other* directories. Still a hint —
+ * they clearly like this pairing — but it says nothing about the repo they're
+ * standing in, so it drops below everything cwd-scoped.
+ */
+export const SCORE_COMBO_ELSEWHERE = 28;
 export const SCORE_RECENT_CWD = 40;
 export const SCORE_RECENT_GLOBAL = 25;
 export const SCORE_FEATURED = 15;
@@ -228,13 +247,14 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
     ]);
   }
 
-  // 2. stacks the user confirmed here before (combo history).
-  for (const c of [...(input.combos ?? [])].sort(byCountThenRecency)) {
+  // 2. stacks the user confirmed before (combo history), repo-scoped when the
+  //    caller supplied attribution: what you launched *here* leads, what you
+  //    launched elsewhere stays available but stops crowding out this
+  //    directory's own signals.
+  for (const c of [...(input.combos ?? [])].sort(byHereThenCountThenRecency)) {
     const parts = c.parts.filter((p) => known.has(p));
     if (parts.length < 2) continue;
-    record(parts, SCORE_COMBO + Math.min(c.count, 4) * 5, "combo", [
-      `you launched this stack ${c.count}×`,
-    ]);
+    record(parts, comboScore(c), "combo", [comboReason(c)]);
   }
 
   // 3. recents — most-recent first, so "what I did here last" wins over
@@ -287,9 +307,31 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
     .slice(0, limit);
 }
 
-/** Sort combos by how often they were used, then by recency. */
-function byCountThenRecency(a: SuggestCombo, b: SuggestCombo): number {
-  return b.count - a.count || (b.lastUsed ?? "").localeCompare(a.lastUsed ?? "");
+/** Sort combos by local use first, then total use, then recency. */
+function byHereThenCountThenRecency(a: SuggestCombo, b: SuggestCombo): number {
+  return (
+    (b.here ?? 0) - (a.here ?? 0) ||
+    b.count - a.count ||
+    (b.lastUsed ?? "").localeCompare(a.lastUsed ?? "")
+  );
+}
+
+/**
+ * Score a remembered stack against the directory it's being suggested for.
+ * Unattributed history (`here === undefined`) keeps the original global score,
+ * so a caller that can't scope loses nothing.
+ */
+function comboScore(c: SuggestCombo): number {
+  if (c.here === undefined) return SCORE_COMBO + Math.min(c.count, 4) * 5;
+  if (c.here > 0) return SCORE_COMBO_HERE + Math.min(c.here, 4) * 5;
+  return SCORE_COMBO_ELSEWHERE + Math.min(c.count, 4) * 3;
+}
+
+/** The one-line "why" shown under a remembered stack. */
+function comboReason(c: SuggestCombo): string {
+  if (c.here === undefined) return `you launched this stack ${c.count}×`;
+  if (c.here > 0) return `you launched this stack ${c.here}× here`;
+  return `you launched this stack ${c.count}× in other directories`;
 }
 
 /** Sort recents newest-first, falling back to session count. */

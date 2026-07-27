@@ -1148,7 +1148,7 @@ export async function runPickerClassic(input: PickerInput): Promise<PickerOutput
   // time — unchecked, as a "you paired these before" hint. Local + best-effort;
   // recordCombo no-ops on a single-profile pick and never throws.
   try {
-    recordCombo(choiceParts, new Date().toISOString());
+    recordCombo(choiceParts, new Date().toISOString(), undefined, input.cwd);
   } catch { /* logging must never block a launch */ }
 
   // Build a display label with icon(s) for the outro line, per deduped part.
