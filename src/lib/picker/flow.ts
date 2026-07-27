@@ -11,7 +11,8 @@ import * as p from "@clack/prompts";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { recordCombo } from "../combo-history";
-import { matchProfilesForCwd } from "../profile-match";
+import { resolveMatchContext } from "../profile-match";
+import { deepMatchProfiles, hasWarmDeepMatch, warmDeepMatchCache } from "../profile-match-llm";
 import {
   mergeSignals,
   pathSignals,
@@ -94,11 +95,27 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
   // this scores every profile's own vocabulary against the directory so
   // cycling through suggestions keeps finding relevant stacks instead of
   // running out. Best-effort — no matches just means a shorter list.
+  //
+  // The model reranks this, but ONLY from cache. A launch must never wait on a
+  // network round-trip: a warm entry (the usual case, since a repo's shape is
+  // stable for weeks) is read in ~1ms, and a cold one serves the lexical answer
+  // now while a detached process fills the cache for next time.
   let matched: SuggestMatch[] = [];
   try {
-    matched = matchProfilesForCwd(input.cwd, { limit: SUGGESTION_LIMIT })
-      .filter((m) => known.has(m.name))
-      .map((m) => ({ name: m.name, strength: m.strength, reason: m.reason }));
+    const ctx = resolveMatchContext(input.cwd);
+    if (ctx) {
+      let ranked = ctx.matches;
+      if (hasWarmDeepMatch(ctx.evidence, ctx.docs)) {
+        const deep = await deepMatchProfiles({ evidence: ctx.evidence, docs: ctx.docs, lexical: ctx.matches });
+        if (deep.classified) ranked = deep.matches;
+      } else {
+        warmDeepMatchCache(input.cwd);
+      }
+      matched = ranked
+        .filter((m) => known.has(m.name))
+        .slice(0, SUGGESTION_LIMIT)
+        .map((m) => ({ name: m.name, strength: m.strength, reason: m.reason }));
+    }
   } catch {
     /* a directory we can't read yields no matches, not an error */
   }

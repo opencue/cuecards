@@ -13,12 +13,18 @@ export async function run(args: string[]): Promise<number> {
 
 Subcommands:
   suggest         Audit profiles/ and propose regroupings (promote-to-core, merges, new clusters)
+  match           Show why a directory matches the profiles it does (--explain, --deep)
   evolve          Surface skill-usage signals from analytics logs (drop / stale / group candidates)
   draft-skill     Draft new SKILL.md files from recurring session prompts
 
 Run \`cue profile <subcommand> --help\` for details.
 `);
     return sub ? 0 : 1;
+  }
+
+  if (sub === "match") {
+    const { run: matchRun } = await import("./profile-match");
+    return matchRun(args.slice(1));
   }
 
   if (sub === "suggest") {

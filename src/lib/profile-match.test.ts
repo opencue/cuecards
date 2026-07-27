@@ -154,6 +154,45 @@ describe("repoEvidence", () => {
     expect(ev.terms.has("rust")).toBe(false);
   });
 
+  // PyPI trove classifiers are prose, and reading them made a small Python CLI
+  // look like it depended on "environment", "intended", "operating",
+  // "programming" and "topic" — garbage that misled the LLM tier too.
+  test("trove classifiers are not dependencies", () => {
+    const ev = repoEvidence(
+      "/r",
+      probeFor({
+        "/r/pyproject.toml": `[project]
+name = "thing"
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+dependencies = ["httpx>=0.27", "click"]
+`,
+      }),
+    );
+    for (const noise of ["environment", "intended", "operating", "programming", "topic", "console"]) {
+      expect(ev.terms.has(noise)).toBe(false);
+    }
+  });
+
+  test("an inline dependency array still yields its packages", () => {
+    const ev = repoEvidence(
+      "/r",
+      probeFor({ "/r/pyproject.toml": `dependencies = ["httpx>=0.27", "click"]\n` }),
+    );
+    expect(ev.terms.has("httpx")).toBe(true);
+    expect(ev.terms.has("click")).toBe(true);
+  });
+
+  test("section headers are not dependencies", () => {
+    const ev = repoEvidence("/r", probeFor({ "/r/Cargo.toml": `[dependencies]\ntokio = "1"\n` }));
+    expect(ev.terms.has("tokio")).toBe(true);
+  });
+
   test("finds a nested manifest only when the root declares none", () => {
     const nested = repoEvidence(
       "/r",

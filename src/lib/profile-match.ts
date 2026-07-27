@@ -177,6 +177,14 @@ const MANIFEST_METADATA_KEYS = new Set([
   "optional", "dev", "test", "default", "path", "branch", "true", "false",
 ]);
 
+/**
+ * Metadata keys whose VALUE is a dependency list.
+ *
+ * They are metadata by name but carry the real package names inline, which for
+ * a pyproject is often the only place dependencies appear at all.
+ */
+const DEPENDENCY_LIST_KEYS = new Set(["dependencies", "requires", "install_requires", "devdependencies"]);
+
 /** Filenames that name a technology outright. */
 const MARKER_FILES: Record<string, string[]> = {
   "cargo.toml": ["rust", "cargo"],
@@ -375,14 +383,32 @@ function manifestDeps(cwd: string, probe: MatchProbe): string[] {
       const raw = probe.read(join(dir, file));
       if (raw === null) continue;
       // Deliberately loose: we want identifier-shaped tokens, not a real parse
-      // of four different manifest grammars. Metadata keys are filtered because
-      // the scanner cannot tell `tokio = "1"` from `requires-python = ">=3.11"`.
-      for (const m of raw.matchAll(/^[\s"']*([a-zA-Z][a-zA-Z0-9._-]{2,})/gm)) {
+      // of four different manifest grammars. Two filters keep that honest.
+      for (const line of raw.split("\n")) {
+        // 1. Trove classifiers. `"Intended Audience :: Developers"` and friends
+        //    are prose. Reading them made a small Python CLI look like it
+        //    depended on "environment", "intended", "operating", "programming"
+        //    and "topic" — and the LLM tier, handed that same evidence, then
+        //    confidently picked profiles about building cue itself.
+        if (line.includes("::")) continue;
+        if (line.trimStart().startsWith("[")) continue; // section header
+
+        const m = line.match(/^[\s"']*([a-zA-Z][a-zA-Z0-9._-]{2,})/);
+        if (!m) continue;
         const key = m[1]!.toLowerCase();
-        if (MANIFEST_METADATA_KEYS.has(key)) continue;
-        // Hyphenated metadata (`build-backend`, `requires-python`) is metadata
-        // if either half is.
-        if (key.split(/[-_.]/).some((part) => MANIFEST_METADATA_KEYS.has(part))) continue;
+
+        // 2. Metadata keys, because the scanner cannot tell `tokio = "1"` from
+        //    `requires-python = ">=3.11"`. Hyphenated metadata (`build-backend`)
+        //    counts if either half does.
+        if (MANIFEST_METADATA_KEYS.has(key) || key.split(/[-_.]/).some((p) => MANIFEST_METADATA_KEYS.has(p))) {
+          // An inline dependency array still carries real names on this line —
+          // `dependencies = ["httpx>=0.27", "click"]` — so harvest those rather
+          // than discarding the only dependency declaration a pyproject has.
+          if (DEPENDENCY_LIST_KEYS.has(key)) {
+            for (const q of line.matchAll(/["']([a-zA-Z][a-zA-Z0-9._-]{2,})/g)) out.push(q[1]!);
+          }
+          continue;
+        }
         out.push(m[1]!);
       }
     }
@@ -564,22 +590,47 @@ export function matchProfiles(evidence: RepoEvidence, docs: ProfileDoc[]): Profi
   return scored.filter((s) => s.strength >= MATCH_MIN_STRENGTH);
 }
 
+/** Everything one directory's match needed, kept for callers that go further. */
+export interface MatchContext {
+  evidence: RepoEvidence;
+  docs: ProfileDoc[];
+  matches: ProfileMatch[];
+}
+
 /**
- * Convenience wrapper: read the profiles, read the directory, score.
+ * Read the profiles, read the directory, score — and hand back the inputs too.
  *
- * The one I/O entry point, so `matchProfiles` itself stays pure and testable.
+ * The LLM reranking tier needs the evidence and the profile docs, not just the
+ * ranking, both to build its prompt and to key its cache. Returning them here
+ * keeps `matchProfiles` pure and stops the caller from re-reading the whole
+ * profile tree to get at them.
+ *
+ * Never throws: a failure costs the suggestion tail, not the picker.
+ */
+export function resolveMatchContext(
+  cwd: string,
+  opts: { root?: string; probe?: MatchProbe } = {},
+): MatchContext | null {
+  try {
+    const probe = opts.probe ?? REAL_MATCH_PROBE;
+    const docs = loadProfileDocs(opts.root ?? profilesRoot(), probe);
+    const evidence = repoEvidence(cwd, probe);
+    return { evidence, docs, matches: matchProfiles(evidence, docs) };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Convenience wrapper for callers that only want the ranking.
+ *
  * Never throws — a failure here costs the suggestion tail, not the picker.
  */
 export function matchProfilesForCwd(
   cwd: string,
   opts: { root?: string; probe?: MatchProbe; limit?: number } = {},
 ): ProfileMatch[] {
-  try {
-    const probe = opts.probe ?? REAL_MATCH_PROBE;
-    const docs = loadProfileDocs(opts.root ?? profilesRoot(), probe);
-    const matches = matchProfiles(repoEvidence(cwd, probe), docs);
-    return opts.limit ? matches.slice(0, opts.limit) : matches;
-  } catch {
-    return [];
-  }
+  const ctx = resolveMatchContext(cwd, opts);
+  if (!ctx) return [];
+  return opts.limit ? ctx.matches.slice(0, opts.limit) : ctx.matches;
 }
