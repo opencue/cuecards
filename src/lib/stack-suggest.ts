@@ -109,9 +109,32 @@ export interface StackSuggestion {
   origin: SuggestionOrigin;
 }
 
-/** Hard cap on how many profiles one suggested stack may contain. Past three
- *  the card stops reading as an answer and starts reading as a list. */
+/**
+ * Hard cap on how many profiles a *proposed* stack may contain — one this
+ * module assembled from a seed plus companions. Past three the card stops
+ * reading as an answer and starts reading as a list.
+ *
+ * Recalled stacks (a recent or a confirmed combo) are exempt: those are a
+ * literal record of what the user launched, and trimming one to fit would put a
+ * stack on screen that was never launched, captioned with its session count.
+ * Showing a four-part line beats showing a lie.
+ */
 export const MAX_STACK_PARTS = 3;
+
+/**
+ * Score bonus for how much something has been used.
+ *
+ * Logarithmic, so every doubling of use adds a fixed step: a stack launched
+ * 100× always outranks one launched 5×, while a heavy user's history still
+ * can't swamp what the directory itself says. The previous rule
+ * (`min(count, N) * k`) saturated almost immediately — at five sessions
+ * everything tied, and the card's headline was decided by alphabetical
+ * tie-break rather than by anything the user had done.
+ */
+export function usageBonus(count: number, step: number, max: number): number {
+  if (count <= 0) return 0;
+  return Math.min(max, Math.round(Math.log2(1 + count) * step));
+}
 
 /** Confidence at/above which a detected companion joins a suggested stack. */
 export const COMPANION_AUTO_CONFIDENCE = 0.7;
@@ -136,6 +159,17 @@ export const SCORE_COMBO_HERE = 55;
  */
 export const SCORE_COMBO_ELSEWHERE = 28;
 export const SCORE_RECENT_CWD = 40;
+/** Usage-bonus shape per origin. Steps are calibrated so the five-session case
+ *  lands where the old saturating rule did — continuity for existing users —
+ *  and everything above it keeps climbing instead of flattening. */
+export const RECENT_CWD_STEP = 4;
+export const RECENT_CWD_BONUS_MAX = 30;
+export const RECENT_GLOBAL_STEP = 3;
+export const RECENT_GLOBAL_BONUS_MAX = 20;
+export const COMBO_HERE_STEP = 5;
+export const COMBO_HERE_BONUS_MAX = 20;
+export const COMBO_ELSEWHERE_STEP = 3;
+export const COMBO_ELSEWHERE_BONUS_MAX = 12;
 export const SCORE_RECENT_GLOBAL = 25;
 export const SCORE_FEATURED = 15;
 export const SCORE_DEFAULT = 5;
@@ -204,37 +238,50 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
   const companions = input.companions ?? [];
   const companionByName = new Map(companions.map((c) => [c.profile, c]));
 
-  const out: StackSuggestion[] = [];
-  const seenKeys = new Set<string>();
-
   /**
-   * Grow a primary into a full stack + reasons and record it, unless an equal
-   * part-set was already recorded by a stronger source.
+   * One entry per distinct part-set, keeping the best-scoring claim on it.
+   *
+   * Keyed rather than appended because sources are scanned in a fixed order but
+   * are no longer ranked by that order: a foreign combo used 4× is scanned
+   * before recents, and would otherwise permanently claim the same stack the
+   * user launches 112× here — suppressing the strongest answer on the card.
    */
+  const byKey = new Map<string, StackSuggestion>();
+
+  /** Grow a primary into a full stack + reasons and record it, keeping whichever
+   *  claim on that part-set scores highest. */
   const record = (
     primaryParts: string[],
     score: number,
     origin: SuggestionOrigin,
     reasons: string[],
+    /** A literal recollection (recent / combo): show it as launched — no
+     *  companions bolted on, no truncation. Only conflicts are resolved, since
+     *  a stack that can't launch is no use as an answer. */
+    recalled = false,
   ): void => {
     const seeds = primaryParts.filter((n) => known.has(n));
     if (seeds.length === 0) return;
-    const parts = growStack(seeds, {
-      known,
-      conflictMap,
-      companionByName,
-      pairSuggestions: input.pairSuggestions,
-    });
+    const parts = recalled
+      ? resolveConflicts(seeds, conflictMap)
+      : growStack(seeds, {
+          known,
+          conflictMap,
+          companionByName,
+          pairSuggestions: input.pairSuggestions,
+        });
     const key = [...parts].sort().join("+");
-    if (seenKeys.has(key)) return;
-    seenKeys.add(key);
+    // Ties keep the incumbent, which came from the earlier — stronger-ranked —
+    // source, preserving the origin ordering where scores don't separate.
+    const prev = byKey.get(key);
+    if (prev !== undefined && prev.score >= score) return;
     const extra = parts.filter((p) => !seeds.includes(p));
     const withCompanions = [...reasons];
     for (const name of extra) {
       const why = companionByName.get(name)?.reason;
       withCompanions.push(why ? `+ ${name} (${why})` : `+ ${name}`);
     }
-    out.push({ parts, score, origin, reasons: withCompanions.slice(0, 3) });
+    byKey.set(key, { parts, score, origin, reasons: withCompanions.slice(0, 3) });
   };
 
   // 1. cwd detection — the strongest statement about *this* directory.
@@ -254,19 +301,26 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
   for (const c of [...(input.combos ?? [])].sort(byHereThenCountThenRecency)) {
     const parts = c.parts.filter((p) => known.has(p));
     if (parts.length < 2) continue;
-    record(parts, comboScore(c), "combo", [comboReason(c)]);
+    record(parts, comboScore(c), "combo", [comboReason(c)], true);
   }
 
-  // 3. recents — most-recent first, so "what I did here last" wins over
-  //    "what I've done here most".
+  // 3. recents — how much you use a stack here decides the order; recency only
+  //    breaks ties between equally-used ones, and settles which entry claims a
+  //    part-set when two collapse to the same one.
   const recentBase = input.recentsAreCwdScoped ? SCORE_RECENT_CWD : SCORE_RECENT_GLOBAL;
   const recentWhy = input.recentsAreCwdScoped ? "last used in this repo" : "you use this often";
+  const recentStep = input.recentsAreCwdScoped ? RECENT_CWD_STEP : RECENT_GLOBAL_STEP;
+  const recentMax = input.recentsAreCwdScoped ? RECENT_CWD_BONUS_MAX : RECENT_GLOBAL_BONUS_MAX;
   for (const r of [...(input.recents ?? [])].sort(byRecency)) {
     const parts = r.name.split("+").filter((p) => known.has(p));
     if (parts.length === 0) continue;
-    record(parts, recentBase + Math.min(r.sessions, 5) * 2, "recent", [
-      `${recentWhy} · ${r.sessions}× session${r.sessions === 1 ? "" : "s"}`,
-    ]);
+    record(
+      parts,
+      recentBase + usageBonus(r.sessions, recentStep, recentMax),
+      "recent",
+      [`${recentWhy} · ${r.sessions}× session${r.sessions === 1 ? "" : "s"}`],
+      true,
+    );
   }
 
   // 4. curated featured picks.
@@ -292,12 +346,12 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
     const parts = input.defaultSelector.split("+").filter((p) => known.has(p));
     if (parts.length > 0) {
       record(parts, SCORE_DEFAULT, "default", [
-        out.length === 0 ? "no clear signal in this directory" : "your default profile",
+        byKey.size === 0 ? "no clear signal in this directory" : "your default profile",
       ]);
     }
   }
 
-  return out
+  return [...byKey.values()]
     .sort(
       (a, b) =>
         b.score - a.score ||
@@ -322,9 +376,13 @@ function byHereThenCountThenRecency(a: SuggestCombo, b: SuggestCombo): number {
  * so a caller that can't scope loses nothing.
  */
 function comboScore(c: SuggestCombo): number {
-  if (c.here === undefined) return SCORE_COMBO + Math.min(c.count, 4) * 5;
-  if (c.here > 0) return SCORE_COMBO_HERE + Math.min(c.here, 4) * 5;
-  return SCORE_COMBO_ELSEWHERE + Math.min(c.count, 4) * 3;
+  if (c.here === undefined) {
+    return SCORE_COMBO + usageBonus(c.count, COMBO_HERE_STEP, COMBO_HERE_BONUS_MAX);
+  }
+  if (c.here > 0) {
+    return SCORE_COMBO_HERE + usageBonus(c.here, COMBO_HERE_STEP, COMBO_HERE_BONUS_MAX);
+  }
+  return SCORE_COMBO_ELSEWHERE + usageBonus(c.count, COMBO_ELSEWHERE_STEP, COMBO_ELSEWHERE_BONUS_MAX);
 }
 
 /** The one-line "why" shown under a remembered stack. */
