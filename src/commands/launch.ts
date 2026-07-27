@@ -1555,11 +1555,17 @@ export async function run(args: string[]): Promise<number> {
     try {
       const { computeAffinityMap, suggestionsByProfile } = await import("../lib/pair-suggestions");
       affinity = computeAffinityMap();
+      // Partners are scoped to this repository: `growStack` grafts one onto
+      // every suggested stack with no reason line of its own, so a pairing
+      // mined from an unrelated project would silently ride along. Cross-repo
+      // habits still surface — as `universalSuggestions` below, which say where
+      // they came from — and in `cue suggest-pairs`.
+      const localAffinity = computeAffinityMap(undefined, { cwd });
       // Surface a partner after a *single* prior combo: these now render
       // unchecked + hinted ("you paired these before"), so a low bar is a gentle
       // recommendation, not an auto-pin. (The stricter defaults still apply to
       // `cue suggest-pairs`, which reports rather than pre-fills.)
-      const sug = suggestionsByProfile(affinity, { minCount: 1, minAffinity: 0, limit: 6 });
+      const sug = suggestionsByProfile(localAffinity, { minCount: 1, minAffinity: 0, limit: 6 });
       pairSuggestions = new Map();
       for (const [name, partners] of sug) {
         pairSuggestions.set(name, partners.map((p) => p.name));

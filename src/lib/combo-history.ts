@@ -16,6 +16,7 @@
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
+import { repoScopeMatcher, type RepoScopeOptions } from "./repo-scope";
 
 /** Resolved path mirrors `pair-suggestions.sessionLogPath` (same config dir). */
 export function comboHistoryPath(): string {
@@ -101,57 +102,8 @@ export interface ComboUsage {
   here?: number;
 }
 
-export interface ReadCombosOptions {
-  /**
-   * Scope counts to a directory. A row counts toward `here` when it was
-   * recorded in the same *repository* — so a launch deep inside `packages/api`
-   * still sees the stack you confirmed at the repo root, and vice versa. Rows
-   * recorded at or beneath `cwd` also count, which covers directories that
-   * aren't in a repo at all.
-   *
-   * A sibling that merely shares a name prefix (`api-legacy` vs `api`) never
-   * matches: comparison is by resolved root or `/`-delimited descent, not raw
-   * string prefix.
-   */
-  cwd?: string;
-  /**
-   * Resolve a directory to its repository root, or `undefined` when it isn't in
-   * one. Injectable so tests stay off the real filesystem.
-   */
-  repoRootOf?: (dir: string) => string | undefined;
-}
-
-/** True when `candidate` is `base` or lives beneath it. */
-function isWithin(candidate: string, base: string): boolean {
-  return candidate === base || candidate.startsWith(`${base}/`);
-}
-
-/**
- * Nearest ancestor directory containing `.git` (a directory for a normal
- * clone, a file for a worktree or submodule). `undefined` when the path isn't
- * inside a repository — callers then fall back to plain directory scoping.
- */
-export function findRepoRoot(dir: string): string | undefined {
-  let current = dir;
-  // `dirname("/") === "/"`, so this terminates at the filesystem root.
-  for (;;) {
-    if (existsSync(join(current, ".git"))) return current;
-    const parent = dirname(current);
-    if (parent === current) return undefined;
-    current = parent;
-  }
-}
-
-/** Memoize root lookups for one read — the log repeats the same directories. */
-function cachedRootResolver(
-  resolve: (dir: string) => string | undefined,
-): (dir: string) => string | undefined {
-  const cache = new Map<string, string | undefined>();
-  return (dir) => {
-    if (!cache.has(dir)) cache.set(dir, resolve(dir));
-    return cache.get(dir);
-  };
-}
+/** Scope `here` counts to one repository. See `lib/repo-scope`. */
+export type ReadCombosOptions = RepoScopeOptions;
 
 /**
  * Aggregate the combo log into distinct stacks with a use count and the most
@@ -167,10 +119,8 @@ export function readCombos(
   path: string = comboHistoryPath(),
   opts: ReadCombosOptions = {},
 ): ComboUsage[] {
-  const scope = opts.cwd;
-  const rootOf = cachedRootResolver(opts.repoRootOf ?? findRepoRoot);
-  // Resolved once: every row is compared against this repo, not this directory.
-  const scopeRoot = scope === undefined ? undefined : rootOf(scope);
+  // undefined when the caller asked for no scoping — `here` then stays absent.
+  const isInScope = repoScopeMatcher(opts);
   const byProfile = new Map<string, ComboUsage>();
   for (const line of readComboHistoryLines(path)) {
     const trimmed = line.trim();
@@ -186,14 +136,9 @@ export function readCombos(
     if (parts.length < 2) continue;
     const existing = byProfile.get(selector);
     const ts = typeof record.ts === "string" ? record.ts : undefined;
-    // An unattributed (pre-cwd) row is never claimed for the current directory.
+    // An unattributed (pre-cwd) row is never claimed for the current repo.
     const rowCwd = typeof record.cwd === "string" ? record.cwd : undefined;
-    const isHere =
-      scope !== undefined &&
-      rowCwd !== undefined &&
-      // Same repository (covers sibling subdirectories in either direction),
-      // or — for paths outside any repo — recorded at or under the scope.
-      ((scopeRoot !== undefined && rootOf(rowCwd) === scopeRoot) || isWithin(rowCwd, scope));
+    const isHere = isInScope?.(rowCwd) ?? false;
     if (existing) {
       existing.count += 1;
       if (isHere) existing.here = (existing.here ?? 0) + 1;
@@ -203,7 +148,7 @@ export function readCombos(
         parts,
         count: 1,
         lastUsed: ts,
-        ...(scope === undefined ? {} : { here: isHere ? 1 : 0 }),
+        ...(isInScope === undefined ? {} : { here: isHere ? 1 : 0 }),
       });
     }
   }
