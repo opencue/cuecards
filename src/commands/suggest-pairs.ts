@@ -16,7 +16,20 @@ import {
   suggestionsByProfile,
   suggestPartnersFor,
   type PartnerSuggestion,
+  type ProfileAffinity,
+  type SuggestPartnersOptions,
 } from "../lib/pair-suggestions";
+
+/**
+ * One rendered line-group: a profile, its partners, and whether that pairing
+ * was learned in the current repository or somewhere else. The picker only
+ * acts on `here` rows, so the split is what makes the table match behavior.
+ */
+export interface PairRow {
+  profile: string;
+  partners: PartnerSuggestion[];
+  scope: "here" | "elsewhere";
+}
 
 interface ParsedArgs {
   profile: string | null;
@@ -54,9 +67,40 @@ function pct(x: number): string {
   return `${Math.round(x * 100)}%`;
 }
 
-function renderTable(
-  rows: ReadonlyArray<{ profile: string; partners: PartnerSuggestion[] }>,
-): string {
+/**
+ * Split pair history into what was learned in this repository and what was
+ * learned elsewhere.
+ *
+ * A partner already shown under `here` is dropped from that profile's
+ * `elsewhere` list — repeating it would imply two separate pieces of evidence
+ * when there's one. Local rows sort first, since those are the only ones the
+ * picker acts on.
+ */
+export function buildRows(
+  here: Map<string, ProfileAffinity>,
+  global: Map<string, ProfileAffinity>,
+  opts: SuggestPartnersOptions,
+  profile: string | null,
+): PairRow[] {
+  const only = (map: Map<string, ProfileAffinity>): Map<string, PartnerSuggestion[]> => {
+    if (!profile) return suggestionsByProfile(map, opts);
+    const partners = suggestPartnersFor(profile, map, opts);
+    return partners.length > 0 ? new Map([[profile, partners]]) : new Map();
+  };
+  const localByProfile = only(here);
+  const rows: PairRow[] = [];
+  for (const [name, partners] of [...localByProfile].sort((a, b) => a[0].localeCompare(b[0]))) {
+    rows.push({ profile: name, partners, scope: "here" });
+  }
+  for (const [name, partners] of [...only(global)].sort((a, b) => a[0].localeCompare(b[0]))) {
+    const known = new Set((localByProfile.get(name) ?? []).map((p) => p.name));
+    const rest = partners.filter((p) => !known.has(p.name));
+    if (rest.length > 0) rows.push({ profile: name, partners: rest, scope: "elsewhere" });
+  }
+  return rows;
+}
+
+export function renderTable(rows: ReadonlyArray<PairRow>): string {
   if (rows.length === 0) {
     return [
       "No pair suggestions yet.",
@@ -67,18 +111,24 @@ function renderTable(
     ].join("\n");
   }
   const lines: string[] = [];
-  lines.push("Pair suggestions from your local session history:");
-  lines.push("");
-  for (const r of rows) {
-    lines.push(`  ${r.profile}`);
-    for (const p of r.partners) {
-      const a = pct(p.affinity);
-      lines.push(`    + ${p.name.padEnd(28)} ${a.padStart(4)} (${p.count}× together)`);
-    }
+  const section = (scope: PairRow["scope"], heading: string): void => {
+    const group = rows.filter((r) => r.scope === scope);
+    if (group.length === 0) return;
+    lines.push(heading);
     lines.push("");
-  }
-  lines.push("Picker behavior: when you pick a profile in this list, its top");
-  lines.push("partners are pre-checked in the combine multiselect.");
+    for (const r of group) {
+      lines.push(`  ${r.profile}`);
+      for (const p of r.partners) {
+        const a = pct(p.affinity);
+        lines.push(`    + ${p.name.padEnd(28)} ${a.padStart(4)} (${p.count}× together)`);
+      }
+      lines.push("");
+    }
+  };
+  section("here", "Pairs you made in this repository:");
+  section("elsewhere", "Pairs you made in your other projects:");
+  lines.push("Picker behavior: only the pairings from this repository are");
+  lines.push("pre-checked in the combine multiselect.");
   return lines.join("\n");
 }
 
@@ -108,22 +158,13 @@ export async function run(argv: string[]): Promise<number> {
     limit: args.limit,
   };
 
-  const affinity = computeAffinityMap();
-
-  if (args.profile) {
-    const partners = suggestPartnersFor(args.profile, affinity, opts);
-    if (args.json) {
-      process.stdout.write(JSON.stringify({ profile: args.profile, partners }, null, 2) + "\n");
-      return 0;
-    }
-    process.stdout.write(renderTable([{ profile: args.profile, partners }]) + "\n");
-    return 0;
-  }
-
-  const sug = suggestionsByProfile(affinity, opts);
-  const rows = [...sug.entries()]
-    .map(([profile, partners]) => ({ profile, partners }))
-    .sort((a, b) => a.profile.localeCompare(b.profile));
+  // Same two views the picker sees: what this repo taught cue, and everything.
+  const rows = buildRows(
+    computeAffinityMap(undefined, { cwd: process.cwd() }),
+    computeAffinityMap(),
+    opts,
+    args.profile,
+  );
 
   if (args.json) {
     process.stdout.write(JSON.stringify(rows, null, 2) + "\n");

@@ -106,8 +106,15 @@ export interface IndexEntry {
 
 export interface SkillIndex {
   schema_version: string;
-  generated_at: string;
-  /** mtime (epoch ms) of the catalog this was derived from — staleness check. */
+  /**
+   * mtime (epoch ms) of the catalog this was derived from.
+   *
+   * There is deliberately no `generated_at`: the index is a checked-in derived
+   * artifact, and a wall-clock stamp made every rebuild produce a one-line diff
+   * on a 432K file that nothing read. Staleness is decided by comparing file
+   * mtimes, so the content can — and should — be byte-identical for identical
+   * input.
+   */
   catalog_mtime: number;
   counts: {
     skills: number;
@@ -191,14 +198,15 @@ export function idFromSource(source: string, root: string): string | null {
  * left alone — and since they're indexed and queried through this same
  * function, leaving them alone is consistent on both sides.
  *
- * Other guards: "ss" (class), "us" (status), "is" (analysis), and anything that
+ * Other guards: "ss" (class), "us" (status), "is" (analysis), "js" (nextjs,
+ * medusajs — a technology suffix, never a plural marker), and anything that
  * would fall under the minimum term length.
  */
 function foldPlural(t: string): string {
   if (t.length <= MIN_TERM_LENGTH) return t;
   if (!/^[a-z0-9-]+$/.test(t)) return t;
   if (!t.endsWith("s")) return t;
-  if (/(ss|us|is)$/.test(t)) return t;
+  if (/(ss|us|is|js)$/.test(t)) return t;
   return t.slice(0, -1);
 }
 
@@ -282,7 +290,6 @@ export function buildIndex(opts: { catalog?: string; root?: string } = {}): Skil
 
   return {
     schema_version: INDEX_SCHEMA_VERSION,
-    generated_at: new Date().toISOString(),
     catalog_mtime: catalogMtime,
     counts: {
       skills: skills.length,

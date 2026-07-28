@@ -113,6 +113,94 @@ describe("suggestStacks", () => {
     expect(out[0]?.reasons[0]).toBe("you launched this stack 4×");
   });
 
+  test("a stack confirmed in this directory outranks a more-used foreign one", () => {
+    const out = suggestStacks({
+      profiles,
+      combos: [
+        { parts: ["python", "secops"], count: 6, here: 0, lastUsed: "2026-07-25T00:00:00Z" },
+        { parts: ["rust", "secops"], count: 1, here: 1, lastUsed: "2026-07-20T00:00:00Z" },
+      ],
+    });
+    expect(out[0]?.parts).toEqual(["rust", "secops"]);
+    expect(out[0]?.reasons[0]).toBe("you launched this stack 1× here");
+    expect(out[1]?.reasons[0]).toBe("you launched this stack 6× in other directories");
+  });
+
+  test("a foreign-only stack is named as such and ranks below a cwd recent", () => {
+    const out = suggestStacks({
+      profiles,
+      combos: [{ parts: ["python", "secops"], count: 6, here: 0 }],
+      recents: [{ name: "rust", sessions: 1, lastUsed: "2026-07-25T00:00:00Z" }],
+      recentsAreCwdScoped: true,
+    });
+    expect(out[0]?.parts[0]).toBe("rust");
+    const foreign = out.find((s) => s.origin === "combo");
+    expect(foreign?.reasons[0]).toBe("you launched this stack 6× in other directories");
+  });
+
+  test("a stack launched far more often outranks a rarely-used one", () => {
+    const out = suggestStacks({
+      profiles,
+      recentsAreCwdScoped: true,
+      recents: [
+        // Alphabetically first and more recent — only usage should decide.
+        { name: "core+python", sessions: 5, lastUsed: "2026-07-26T00:00:00Z" },
+        { name: "rust+secops", sessions: 112, lastUsed: "2026-07-01T00:00:00Z" },
+      ],
+    });
+    expect(out[0]?.parts).toEqual(["rust", "secops"]);
+    expect(out[0]!.score).toBeGreaterThan(out[1]!.score);
+  });
+
+  test("a recalled stack is shown whole, never truncated to the display cap", () => {
+    // Four parts the user actually launched together. Truncating to three would
+    // put a stack on screen that was never launched, under its session count.
+    const out = suggestStacks({
+      profiles,
+      recentsAreCwdScoped: true,
+      recents: [{ name: "core+python+rust+secops", sessions: 5, lastUsed: "2026-07-26T00:00:00Z" }],
+    });
+    expect(out[0]?.parts).toEqual(["core", "python", "rust", "secops"]);
+  });
+
+  test("a recalled stack gains no companions — it is a recollection, not a proposal", () => {
+    const out = suggestStacks({
+      profiles,
+      recentsAreCwdScoped: true,
+      recents: [{ name: "rust", sessions: 9, lastUsed: "2026-07-26T00:00:00Z" }],
+      companions: [{ profile: "secops", reason: "audit rules", confidence: 0.95 }],
+    });
+    const recalled = out.find((s) => s.origin === "recent");
+    expect(recalled?.parts).toEqual(["rust"]);
+  });
+
+  test("combo use keeps ranking past the old saturation point", () => {
+    const out = suggestStacks({
+      profiles,
+      combos: [
+        { parts: ["core", "python"], count: 4, here: 4 },
+        { parts: ["rust", "secops"], count: 40, here: 40 },
+      ],
+    });
+    expect(out[0]?.parts).toEqual(["rust", "secops"]);
+    expect(out[0]!.score).toBeGreaterThan(out[1]!.score);
+  });
+
+  test("a stronger later source wins the stack, not whichever ran first", () => {
+    // Same part-set from two sources: a weak foreign combo (scanned first) and
+    // the stack the user actually launches here. Order of scanning must not
+    // decide which one the card gets to show.
+    const out = suggestStacks({
+      profiles,
+      combos: [{ parts: ["rust", "secops"], count: 4, here: 0 }],
+      recents: [{ name: "rust+secops", sessions: 112, lastUsed: "2026-07-26T00:00:00Z" }],
+      recentsAreCwdScoped: true,
+    });
+    expect(out).toHaveLength(1);
+    expect(out[0]?.origin).toBe("recent");
+    expect(out[0]?.reasons[0]).toContain("112× sessions");
+  });
+
   test("ignores unknown profile names everywhere", () => {
     const out = suggestStacks({
       profiles,
@@ -163,7 +251,7 @@ describe("suggestStacks", () => {
       recents: [{ name: "python", sessions: 2, lastUsed: "2026-07-26T00:00:00Z" }],
     });
     expect(cwdScoped[0]!.score).toBeGreaterThan(global[0]!.score);
-    expect(cwdScoped[0]?.reasons[0]).toContain("last used in this directory");
+    expect(cwdScoped[0]?.reasons[0]).toContain("last used in this repo");
     expect(global[0]?.reasons[0]).toContain("you use this often");
   });
 });

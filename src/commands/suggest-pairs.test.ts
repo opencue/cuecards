@@ -7,7 +7,90 @@
 
 import { describe, test, expect, spyOn, afterEach } from "bun:test";
 
-import { parseArgs, run } from "./suggest-pairs";
+import { buildRows, renderTable, parseArgs, run } from "./suggest-pairs";
+import { computeAffinityMap } from "../lib/pair-suggestions";
+
+// ---------------------------------------------------------------------------
+// buildRows — the here/elsewhere split, pure
+// ---------------------------------------------------------------------------
+
+describe("buildRows", () => {
+  const at = (profile: string, cwd: string): string =>
+    JSON.stringify({ ts: "2026-07-01T00:00:00Z", profile, cwd });
+  const fakeRepoRootOf = (dir: string): string | undefined => {
+    const m = /^(\/home\/u\/[^/]+)(\/|$)/.exec(dir);
+    return m ? m[1] : undefined;
+  };
+  const maps = (...rows: string[]) => {
+    const read = () => rows;
+    return {
+      here: computeAffinityMap(read, { cwd: "/home/u/api", repoRootOf: fakeRepoRootOf }),
+      global: computeAffinityMap(read),
+    };
+  };
+  const opts = { minCount: 1, minAffinity: 0, limit: 5 };
+
+  // Affinity is symmetric (see pair-suggestions: "pairwise co-occurrence in
+  // both directions"), so one `a+b` pick reports under both `a` and `b`.
+  test("a pairing made in this repo lands under `here`, with nothing left over", () => {
+    const { here, global } = maps(at("a+b", "/home/u/api"), at("a+b", "/home/u/api"));
+    const rows = buildRows(here, global, opts, null);
+    expect(rows.map((r) => `${r.profile}:${r.scope}`)).toEqual(["a:here", "b:here"]);
+    expect(rows[0]?.partners.map((p) => p.name)).toEqual(["b"]);
+  });
+
+  test("a pairing made only in other repos is reported as `elsewhere`", () => {
+    const { here, global } = maps(at("a+c", "/home/u/other"));
+    const rows = buildRows(here, global, opts, null);
+    expect(rows.map((r) => `${r.profile}:${r.scope}`)).toEqual(["a:elsewhere", "c:elsewhere"]);
+    expect(rows[0]?.partners.map((p) => p.name)).toEqual(["c"]);
+  });
+
+  test("local rows sort ahead of foreign ones, and a partner is not double-listed", () => {
+    const { here, global } = maps(
+      at("a+b", "/home/u/api"),
+      at("a+c", "/home/u/other"),
+      at("z+y", "/home/u/other"),
+    );
+    const rows = buildRows(here, global, opts, null);
+    expect(rows.map((r) => `${r.profile}:${r.scope}`)).toEqual([
+      "a:here",
+      "b:here",
+      "a:elsewhere",
+      "c:elsewhere",
+      "y:elsewhere",
+      "z:elsewhere",
+    ]);
+    expect(rows[0]?.partners.map((p) => p.name)).toEqual(["b"]);
+    // `a` paired with b here and c elsewhere — only c survives the elsewhere row.
+    const foreignA = rows.find((r) => r.profile === "a" && r.scope === "elsewhere");
+    expect(foreignA?.partners.map((p) => p.name)).toEqual(["c"]);
+    // `b`'s only partner is `a`, already shown under `here` → no elsewhere row.
+    expect(rows.some((r) => r.profile === "b" && r.scope === "elsewhere")).toBe(false);
+  });
+
+  test("--profile narrows both sections to that profile", () => {
+    const { here, global } = maps(at("a+b", "/home/u/api"), at("z+y", "/home/u/other"));
+    expect(buildRows(here, global, opts, "z").map((r) => r.profile)).toEqual(["z"]);
+  });
+});
+
+describe("renderTable", () => {
+  const partners = [{ name: "b", count: 2, affinity: 1 }];
+
+  test("labels each section so a foreign pairing is never mistaken for a local one", () => {
+    const out = renderTable([
+      { profile: "a", partners, scope: "here" },
+      { profile: "z", partners, scope: "elsewhere" },
+    ]);
+    expect(out).toContain("in this repository");
+    expect(out).toContain("in your other projects");
+  });
+
+  test("with no history at all, explains how the table fills in", () => {
+    expect(renderTable([])).toContain("No pair suggestions yet.");
+  });
+});
 
 // ---------------------------------------------------------------------------
 // parseArgs — pure function, exhaustive coverage

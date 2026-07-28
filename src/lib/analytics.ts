@@ -7,6 +7,7 @@ import { appendFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { homedir } from "node:os";
 
+import { repoScopeMatcher, type RepoScopeOptions } from "./repo-scope";
 import { isEnabled as telemetryEnabled } from "./telemetry-consent";
 
 /**
@@ -194,15 +195,15 @@ export interface ProfileStats {
   last_used: string | null;
 }
 
-export interface ComputeStatsOptions {
+export interface ComputeStatsOptions extends RepoScopeOptions {
   since?: Date;
   /**
-   * When set, only count events whose `cwd` equals this path OR is a
-   * descendant of it. Lets the picker scope Recent to the current project
-   * subtree so launches from $HOME (auto-pinned profiles) don't squat in
-   * the Recent slots of unrelated project directories.
+   * `cwd` (inherited) scopes Recent to the repository being launched in, so
+   * launches from $HOME — or from an unrelated project — don't squat in the
+   * Recent slots here. Repository rather than raw subtree, matching how combo
+   * history and pair affinity scope: a launch in `packages/core` and one at the
+   * repo root are the same project, and Recent should say so.
    */
-  cwdPrefix?: string;
 }
 
 /**
@@ -214,12 +215,9 @@ export function computeStats(optsOrSince: Date | ComputeStatsOptions = {}): Prof
   const opts: ComputeStatsOptions = optsOrSince instanceof Date
     ? { since: optsOrSince }
     : optsOrSince;
-  const { since, cwdPrefix } = opts;
-  const matchesCwd = (cwd?: string): boolean => {
-    if (!cwdPrefix) return true;
-    if (!cwd) return false;
-    return cwd === cwdPrefix || cwd.startsWith(`${cwdPrefix}/`);
-  };
+  const { since } = opts;
+  // undefined when unscoped — then every event counts, as before.
+  const matchesCwd = repoScopeMatcher(opts) ?? ((): boolean => true);
 
   const events = readEvents(since);
   const map = new Map<string, { sessions: number; total_s: number; last: string; seenIds: Set<string> }>();

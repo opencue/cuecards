@@ -1,284 +1,214 @@
 /**
  * Tests for src/commands/handoff.ts
  *
- * The command is a thin router over src/lib/handoff.ts. We mock the lib so
- * tests never touch the real HANDOFFS_DIR (which is a module-level constant
- * baked from XDG_CONFIG_HOME at import time and therefore cannot be redirected
- * via beforeEach).
+ * Driven end-to-end via spawnSync with XDG_CONFIG_HOME pointed at a temp dir.
  *
- * Coverage:
- *  - create: missing --task → usage error
- *  - create: valid args → calls createHandoff with parsed skills
- *  - latest: no handoff → "No handoffs yet"
- *  - latest: with handoff → calls formatHandoffForAgent
- *  - list: empty → "No handoffs"
- *  - list: with entries → prints each entry
- *  - show: not found → stderr error, returns 1
- *  - inject: no handoff → stderr error, returns 1
+ * Why e2e instead of mocking ../lib/handoff: `mock.module()` in Bun replaces the
+ * module in a PROCESS-GLOBAL registry that outlives the file registering it. An
+ * earlier version of this file mocked lib/handoff, which leaked the stub into
+ * src/lib/handoff.test.ts whenever the two landed in the same worker — that file
+ * then asserted against the stub's truncated output and failed in CI while
+ * passing locally, depending purely on file ordering. Spawning a child process
+ * gives real isolation: HANDOFFS_DIR is a module-level const baked from
+ * XDG_CONFIG_HOME at import time, so a fresh child picks up the temp dir and no
+ * global state is touched here.
  *
- * Not tested: the actual filesystem I/O in lib/handoff.ts (covered separately
- * by lib tests once written, or can be added with a dynamic-import pattern).
+ * Coverage: create (missing --task, valid, skill-level parsing), latest (empty,
+ * populated, --json), list (empty, populated, --json), show (found, not found),
+ * inject (empty, populated), and the default/unknown subcommand fallback.
  */
 
-import { mock } from "bun:test";
-
-// ---- Mock lib/handoff before the command module imports it ----
-// Bun hoists mock.module calls, so this registers before the static import below.
-
-const mockHandoffStore: any[] = [];
-
-mock.module("../lib/handoff", () => ({
-  createHandoff: (ctx: any) => {
-    const h = { id: "handoff-testid", ts: "2024-01-15T12:00:00.000Z", ...ctx };
-    mockHandoffStore.push(h);
-    return h;
-  },
-  getLatestHandoff: () => mockHandoffStore.at(-1) ?? null,
-  getHandoff: (id: string) => mockHandoffStore.find((h) => h.id === id) ?? null,
-  listHandoffs: (limit = 10) => mockHandoffStore.slice(-limit).reverse(),
-  formatHandoffForAgent: (h: any) =>
-    `## Handoff from "${h.from_profile}" (${h.from_agent})\n> ${h.task_summary}\n`,
-}));
-
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { run } from "./handoff";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { spawnSync } from "node:child_process";
 
-// ---- Output capture ----
+const CUE_BIN = join(import.meta.dir, "../index.ts");
 
-let stdoutBuf: string[];
-let stderrBuf: string[];
-let origStdout: typeof process.stdout.write;
-let origStderr: typeof process.stderr.write;
+// Skip when a child `bun` can't be spawned (some sandboxes / odd PATH setups).
+const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
+
+let xdg: string;
+
+function cue(args: string[]): { status: number; stdout: string; stderr: string } {
+  const env = { ...process.env, XDG_CONFIG_HOME: xdg };
+  delete env.CUE_LAUNCHING;
+  const res = spawnSync("bun", ["run", CUE_BIN, "handoff", ...args], {
+    encoding: "utf8",
+    timeout: 20000,
+    env,
+  });
+  return { status: res.status ?? 1, stdout: res.stdout ?? "", stderr: res.stderr ?? "" };
+}
+
+/** Seed one handoff so read-side subcommands have something to find. */
+function seed(task = "Implement the auth feature"): string {
+  const res = cue([
+    "create",
+    "--from",
+    "core",
+    "--task",
+    task,
+    "--skills",
+    "meta/careful:high,tools/context7:medium",
+    "--notes",
+    "check the env vars",
+  ]);
+  expect(res.status).toBe(0);
+  return res.stdout.match(/handoff-[a-z0-9]+/)![0];
+}
 
 beforeEach(() => {
-  stdoutBuf = [];
-  stderrBuf = [];
-  mockHandoffStore.length = 0; // reset the mock store
-  origStdout = process.stdout.write.bind(process.stdout);
-  origStderr = process.stderr.write.bind(process.stderr);
-  (process.stdout as any).write = (c: string | Uint8Array) => {
-    stdoutBuf.push(typeof c === "string" ? c : Buffer.from(c).toString());
-    return true;
-  };
-  (process.stderr as any).write = (c: string | Uint8Array) => {
-    stderrBuf.push(typeof c === "string" ? c : Buffer.from(c).toString());
-    return true;
-  };
+  xdg = mkdtempSync(join(tmpdir(), "cue-handoff-cmd-"));
 });
 
 afterEach(() => {
-  process.stdout.write = origStdout;
-  process.stderr.write = origStderr;
+  rmSync(xdg, { recursive: true, force: true });
 });
 
-// ---- create subcommand ----
-
-describe("cue handoff create", () => {
-  test("missing --task → usage error on stderr, returns 1", async () => {
-    const code = await run(["create", "--from", "core"]);
-    expect(code).toBe(1);
-    expect(stderrBuf.join("")).toContain("Usage");
+describe.skipIf(!BUN_SPAWNABLE)("cue handoff create", () => {
+  test("missing --task prints usage to stderr and returns 1", () => {
+    const res = cue(["create", "--from", "core"]);
+    expect(res.status).toBe(1);
+    expect(res.stderr).toContain("Usage: cue handoff create");
+    expect(res.stdout).not.toContain("Handoff created");
   });
 
-  test("missing --task with no other flags → usage error, returns 1", async () => {
-    const code = await run(["create"]);
-    expect(code).toBe(1);
-    expect(stderrBuf.join("")).toContain("cue handoff create");
+  test("valid args create a handoff and print its id", () => {
+    const res = cue(["create", "--from", "core", "--task", "Fix the payment flow"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("Handoff created");
+    expect(res.stdout).toMatch(/handoff-[a-z0-9]+/);
+    expect(res.stdout).toContain("cue handoff inject");
   });
 
-  test("valid create → calls createHandoff, confirms id in stdout", async () => {
-    const code = await run(["create", "--from", "core", "--task", "Build feature X"]);
-    expect(code).toBe(0);
-    const out = stdoutBuf.join("");
-    expect(out).toContain("handoff-testid");
+  test("--skills levels are parsed and routed to the right section", () => {
+    seed();
+    const { stdout } = cue(["inject"]);
+    expect(stdout).toContain("**Most useful skills:** meta/careful");
+    expect(stdout).toContain("**Also helpful:** tools/context7");
   });
 
-  test("--skills parsed into high/medium/low objects", async () => {
-    await run([
-      "create",
-      "--from", "core",
-      "--task", "Testing skills parsing",
-      "--skills", "meta/analyze:high,meta/caveman:low,meta/help",
+  test("a skill without an explicit level defaults to medium", () => {
+    cue(["create", "--from", "core", "--task", "t", "--skills", "plan/autoplan"]);
+    const { stdout } = cue(["inject"]);
+    expect(stdout).toContain("**Also helpful:** plan/autoplan");
+    expect(stdout).not.toContain("Most useful");
+  });
+
+  test("--from defaults to 'unknown' when omitted", () => {
+    cue(["create", "--task", "no from flag"]);
+    const { stdout } = cue(["inject"]);
+    expect(stdout).toContain('## Handoff from "unknown"');
+  });
+});
+
+describe.skipIf(!BUN_SPAWNABLE)("cue handoff latest", () => {
+  test("with no handoffs prints 'No handoffs yet.' and returns 0", () => {
+    const res = cue(["latest"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("No handoffs yet.");
+  });
+
+  test("with a handoff prints the formatted context", () => {
+    seed("Implement the auth feature");
+    const res = cue(["latest"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain('## Handoff from "core" (claude-code)');
+    expect(res.stdout).toContain("> Implement the auth feature");
+    expect(res.stdout).toContain("**Notes:** check the env vars");
+  });
+
+  test("--json emits the raw handoff object", () => {
+    seed("json me");
+    const res = cue(["latest", "--json"]);
+    expect(res.status).toBe(0);
+    const parsed = JSON.parse(res.stdout);
+    expect(parsed.from_profile).toBe("core");
+    expect(parsed.task_summary).toBe("json me");
+    expect(parsed.skills_used).toEqual([
+      { id: "meta/careful", usefulness: "high" },
+      { id: "tools/context7", usefulness: "medium" },
     ]);
-    // The mock createHandoff captures the ctx.skills_used
-    const h = mockHandoffStore[0];
-    expect(h).toBeDefined();
-    expect(h.skills_used).toEqual([
-      { id: "meta/analyze", usefulness: "high" },
-      { id: "meta/caveman", usefulness: "low" },
-      // No level → defaults to "medium"
-      { id: "meta/help", usefulness: "medium" },
-    ]);
   });
 
-  test("--from defaults to 'unknown' when omitted", async () => {
-    await run(["create", "--task", "Task without from"]);
-    const h = mockHandoffStore[0];
-    expect(h.from_profile).toBe("unknown");
+  test("is the default subcommand when none is given", () => {
+    const res = cue([]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("No handoffs yet.");
   });
 
-  test("--notes passed through to createHandoff", async () => {
-    await run([
-      "create",
-      "--from", "core",
-      "--task", "Task with notes",
-      "--notes", "Remember to run tests",
-    ]);
-    const h = mockHandoffStore[0];
-    expect(h.notes).toBe("Remember to run tests");
+  test("an unknown subcommand falls back to latest", () => {
+    const res = cue(["not-a-subcommand"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("No handoffs yet.");
   });
 });
 
-// ---- latest subcommand ----
-
-describe("cue handoff latest", () => {
-  test("no handoffs → prints 'No handoffs yet'", async () => {
-    const code = await run(["latest"]);
-    expect(code).toBe(0);
-    expect(stdoutBuf.join("")).toContain("No handoffs yet");
+describe.skipIf(!BUN_SPAWNABLE)("cue handoff list", () => {
+  test("with no handoffs prints 'No handoffs.' and returns 0", () => {
+    const res = cue(["list"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("No handoffs.");
   });
 
-  test("with a handoff → calls formatHandoffForAgent output", async () => {
-    // Create a handoff first
-    mockHandoffStore.push({
-      id: "handoff-abc",
-      ts: "2024-01-15T10:00:00.000Z",
-      from_profile: "backend",
-      from_agent: "claude-code",
-      task_summary: "Implement pagination",
-      skills_used: [],
-      mcps_used: [],
-      notes: "",
-    });
-
-    const code = await run(["latest"]);
-    expect(code).toBe(0);
-    const out = stdoutBuf.join("");
-    expect(out).toContain("backend");
-    expect(out).toContain("Implement pagination");
+  test("lists each stored handoff with its id and task summary", () => {
+    seed("first task");
+    const res = cue(["list"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("Recent handoffs (1):");
+    expect(res.stdout).toMatch(/handoff-[a-z0-9]+/);
+    expect(res.stdout).toContain("first task");
   });
 
-  test("--json with a handoff → valid JSON output", async () => {
-    mockHandoffStore.push({
-      id: "handoff-json",
-      ts: "2024-01-15T10:00:00.000Z",
-      from_profile: "core",
-      from_agent: "claude-code",
-      task_summary: "JSON test",
-      skills_used: [],
-      mcps_used: [],
-      notes: "",
-    });
-
-    const code = await run(["latest", "--json"]);
-    expect(code).toBe(0);
-    const data = JSON.parse(stdoutBuf.join(""));
-    expect(data.id).toBe("handoff-json");
-    expect(data.from_profile).toBe("core");
-  });
-
-  test("default subcommand (no args) behaves like latest", async () => {
-    const code = await run([]);
-    expect(code).toBe(0);
-    // No handoffs → "No handoffs yet"
-    expect(stdoutBuf.join("")).toContain("No handoffs yet");
+  test("--json emits an array", () => {
+    seed();
+    const res = cue(["list", "--json"]);
+    expect(res.status).toBe(0);
+    const parsed = JSON.parse(res.stdout);
+    expect(Array.isArray(parsed)).toBe(true);
+    expect(parsed).toHaveLength(1);
+    expect(parsed[0].from_profile).toBe("core");
   });
 });
 
-// ---- list subcommand ----
-
-describe("cue handoff list", () => {
-  test("empty list → prints 'No handoffs'", async () => {
-    const code = await run(["list"]);
-    expect(code).toBe(0);
-    expect(stdoutBuf.join("")).toContain("No handoffs");
+describe.skipIf(!BUN_SPAWNABLE)("cue handoff show", () => {
+  test("an existing id prints the formatted handoff", () => {
+    const id = seed("show me");
+    const res = cue(["show", id]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("> show me");
   });
 
-  test("with entries → prints count and summary", async () => {
-    mockHandoffStore.push(
-      {
-        id: "handoff-1",
-        ts: "2024-01-15T10:00:00.000Z",
-        from_profile: "core",
-        to_profile: "backend",
-        from_agent: "claude-code",
-        task_summary: "First task",
-        skills_used: [],
-        mcps_used: [],
-        notes: "",
-      },
-      {
-        id: "handoff-2",
-        ts: "2024-01-16T11:00:00.000Z",
-        from_profile: "backend",
-        from_agent: "codex",
-        task_summary: "Second task",
-        skills_used: [],
-        mcps_used: [],
-        notes: "",
-      },
-    );
+  test("a missing id writes an error to stderr and returns 1", () => {
+    const res = cue(["show", "handoff-does-not-exist"]);
+    expect(res.status).toBe(1);
+    expect(res.stderr).toContain('Handoff "handoff-does-not-exist" not found.');
+  });
 
-    const code = await run(["list"]);
-    expect(code).toBe(0);
-    const out = stdoutBuf.join("");
-    expect(out).toContain("handoff-2"); // listed (reversed)
-    expect(out).toContain("handoff-1");
+  test("show with no id argument returns 1", () => {
+    const res = cue(["show"]);
+    expect(res.status).toBe(1);
+    expect(res.stderr).toContain("not found");
   });
 });
 
-// ---- show subcommand ----
-
-describe("cue handoff show", () => {
-  test("unknown id → stderr error, returns 1", async () => {
-    const code = await run(["show", "nonexistent-id"]);
-    expect(code).toBe(1);
-    expect(stderrBuf.join("")).toContain("not found");
+describe.skipIf(!BUN_SPAWNABLE)("cue handoff inject", () => {
+  test("with no handoffs writes an error to stderr and returns 1", () => {
+    const res = cue(["inject"]);
+    expect(res.status).toBe(1);
+    expect(res.stderr).toContain("No handoffs to inject.");
   });
 
-  test("known id → formats the handoff", async () => {
-    mockHandoffStore.push({
-      id: "handoff-known",
-      ts: "2024-01-15T09:00:00.000Z",
-      from_profile: "gstack",
-      from_agent: "claude-code",
-      task_summary: "Show this one",
-      skills_used: [],
-      mcps_used: [],
-      notes: "",
-    });
-
-    const code = await run(["show", "handoff-known"]);
-    expect(code).toBe(0);
-    expect(stdoutBuf.join("")).toContain("gstack");
-  });
-});
-
-// ---- inject subcommand ----
-
-describe("cue handoff inject", () => {
-  test("no handoffs → stderr error, returns 1", async () => {
-    const code = await run(["inject"]);
-    expect(code).toBe(1);
-    expect(stderrBuf.join("")).toContain("No handoffs to inject");
-  });
-
-  test("with a handoff → outputs formatted text", async () => {
-    mockHandoffStore.push({
-      id: "handoff-inject",
-      ts: "2024-01-15T08:00:00.000Z",
-      from_profile: "frontend",
-      from_agent: "claude-code",
-      task_summary: "Inject this context",
-      skills_used: [],
-      mcps_used: [],
-      notes: "",
-    });
-
-    const code = await run(["inject"]);
-    expect(code).toBe(0);
-    const out = stdoutBuf.join("");
-    expect(out).toContain("frontend");
-    expect(out).toContain("Inject this context");
+  test("with a handoff emits the full formatted block on stdout", () => {
+    seed("inject me");
+    const res = cue(["inject"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain('## Handoff from "core" (claude-code)');
+    expect(res.stdout).toContain("> inject me");
+    expect(res.stdout).toContain("**Most useful skills:**");
+    expect(res.stdout).toContain("**Notes:**");
+    expect(res.stderr).not.toContain("No handoffs");
   });
 });

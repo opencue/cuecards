@@ -1141,7 +1141,7 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
     // Second pass scoped to this cwd subtree. When the user opens a project
     // directory, this filters out the ambient career/skill-writer sessions
     // racked up in $HOME so Recent reflects what's been picked *here*.
-    for (const s of computeStats({ cwdPrefix: cwd })) {
+    for (const s of computeStats({ cwd })) {
       recentCwd.push({ name: s.profile, sessions: s.sessions, lastUsed: s.last_used });
     }
   } catch {
@@ -1374,6 +1374,68 @@ async function resolveClaudeCredentialsSource(): Promise<string> {
 }
 
 /**
+ * Fallback reconcile cadence, used only if the credentials-sync import itself
+ * fails. Matches `RECONCILE_IDLE_MS` there, which owns the real schedule.
+ *
+ * Polling (rather than watching) is deliberate throughout: the atomic
+ * tmp→rename rewrite that replaces `.credentials.json` also breaks an inode
+ * watch.
+ */
+const CREDENTIAL_RECONCILE_FALLBACK_MS = 60_000;
+
+/**
+ * Keep a running session's tokens in step with every other session on the same
+ * account, for as long as it runs.
+ *
+ * Concurrent sessions on different profiles hold separate copies of one refresh
+ * token, and Anthropic rotates that token on each refresh — so whichever
+ * session refreshes first silently revokes the others, and they hit a login
+ * prompt mid-session. Rescue-on-exit was too late to help: by then the other
+ * session has already been dropped. Each session now republishes its own
+ * rotation and adopts anyone else's within a minute.
+ *
+ * The cadence is not fixed: it tightens across the window where every copy's
+ * access token expires at once (see `nextReconcileDelayMs`), because that is
+ * precisely when a rotation is contended and a minute of lag loses the race.
+ *
+ * Best-effort throughout, and unref'd so it can never hold the process open.
+ * Returns a stop function.
+ */
+function startCredentialReconciler(runtimeKey: string): () => void {
+  // basename() pins the path inside the runtime tree — this writes token
+  // files, so a runtime key carrying a separator must not escape it.
+  const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
+  let stopped = false;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+
+  // Self-chaining rather than setInterval: the delay varies per tick, and a
+  // slow disk can no longer stack overlapping reconciles.
+  const tick = async (): Promise<void> => {
+    let delayMs = CREDENTIAL_RECONCILE_FALLBACK_MS;
+    try {
+      const { listKnownAccountDirs, reconcileCredentials, readExpiresAt, nextReconcileDelayMs } =
+        await import("../lib/credentials-sync");
+      await reconcileCredentials(runtimeClaudeDir, await listKnownAccountDirs(homedir()));
+      delayMs = nextReconcileDelayMs(await readExpiresAt(runtimeClaudeDir), Date.now());
+    } catch (err) {
+      debug("launch:cred-reconcile", err);
+    }
+    if (stopped) return;
+    timer = setTimeout(() => void tick(), delayMs);
+    timer.unref();
+  };
+
+  // Reconcile once up front: a session launched while a sibling is mid-rotation
+  // should adopt the live token now, not a minute from now.
+  void tick();
+
+  return () => {
+    stopped = true;
+    if (timer !== undefined) clearTimeout(timer);
+  };
+}
+
+/**
  * Write the runtime's login-fresh `.credentials.json` back to the account
  * dir that owns it (matched by accountUuid). Runs (a) before materialization
  * — so the account-identity guard can't destroy the only live copy of the
@@ -1555,11 +1617,17 @@ export async function run(args: string[]): Promise<number> {
     try {
       const { computeAffinityMap, suggestionsByProfile } = await import("../lib/pair-suggestions");
       affinity = computeAffinityMap();
+      // Partners are scoped to this repository: `growStack` grafts one onto
+      // every suggested stack with no reason line of its own, so a pairing
+      // mined from an unrelated project would silently ride along. Cross-repo
+      // habits still surface — as `universalSuggestions` below, which say where
+      // they came from — and in `cue suggest-pairs`.
+      const localAffinity = computeAffinityMap(undefined, { cwd });
       // Surface a partner after a *single* prior combo: these now render
       // unchecked + hinted ("you paired these before"), so a low bar is a gentle
       // recommendation, not an auto-pin. (The stricter defaults still apply to
       // `cue suggest-pairs`, which reports rather than pre-fills.)
-      const sug = suggestionsByProfile(affinity, { minCount: 1, minAffinity: 0, limit: 6 });
+      const sug = suggestionsByProfile(localAffinity, { minCount: 1, minAffinity: 0, limit: 6 });
       pairSuggestions = new Map();
       for (const [name, partners] of sug) {
         pairSuggestions.set(name, partners.map((p) => p.name));
@@ -1650,7 +1718,9 @@ export async function run(args: string[]): Promise<number> {
     let combos: ComboUsage[] = [];
     try {
       const { readCombos } = await import("../lib/combo-history");
-      combos = readCombos();
+      // Scoped to the launch directory: stacks confirmed in this repo lead,
+      // stacks from other repos drop to a hint.
+      combos = readCombos(undefined, { cwd });
     } catch (err) { debug("launch:combo-history", err); }
     const picked = await runPicker({
       cwd,
@@ -2467,7 +2537,47 @@ export async function run(args: string[]): Promise<number> {
     health: healthBadge,
   });
 
-  const exitCode = await execAgent(realBin, parsed.passthrough, childEnv);
+  // Project brief — verified facts about THIS directory (package manager, the
+  // real test/build commands, layout). Delivered per process, never through the
+  // materialized memory file: that file is keyed by profile and shared by every
+  // directory and parallel session using it, so repo-specific text there would
+  // leak across projects. Best-effort in every step — a launch never fails
+  // because a scan did. `CUE_BRIEF=0` opts out.
+  let briefArgs: string[] = [];
+  if (process.env.CUE_BRIEF !== "0") {
+    try {
+      const { scanBrief, renderBrief, buildBriefInjection } = await import("../lib/project-brief");
+      const scanned = scanBrief(cwd);
+      const rendered = scanned ? renderBrief(scanned) : "";
+      if (rendered) {
+        const injection = buildBriefInjection({
+          agent: agentKind,
+          brief: rendered,
+          briefDir: join(configDir(), "briefs"),
+          cwd,
+        });
+        if (injection.file) {
+          const { mkdir, writeFile } = await import("node:fs/promises");
+          await mkdir(dirname(injection.file.path), { recursive: true });
+          await writeFile(injection.file.path, injection.file.content);
+        }
+        Object.assign(childEnv, injection.env);
+        briefArgs = injection.args;
+      }
+    } catch (err) { debug("launch:brief", err); }
+  }
+
+  // Keep tokens in step with sibling sessions *while* this one runs — a
+  // rotation elsewhere would otherwise revoke ours and force a mid-session
+  // re-login.
+  const stopReconciler =
+    agentKind === "claude-code" ? startCredentialReconciler(runtimeKey) : undefined;
+  let exitCode: number;
+  try {
+    exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
+  } finally {
+    stopReconciler?.();
+  }
   // Persist any /login done inside the session to its account dir now —
   // don't leave the only live rotated token stranded in the per-account runtime.
   if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);

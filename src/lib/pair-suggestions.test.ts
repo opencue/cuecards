@@ -23,6 +23,54 @@ describe("parseComposite", () => {
   });
 });
 
+describe("computeAffinityMap — per-repo scoping", () => {
+  /** A history row attributed to a directory, as both log sources write it. */
+  const at = (profile: string, cwd: string, ts = "2026-05-28T00:00:00Z"): string =>
+    JSON.stringify({ ts, profile, cwd, session_id: `${ts}-${profile}-${cwd}` });
+  /** Pretend every path under /home/u/<name> belongs to repo /home/u/<name>. */
+  const fakeRepoRootOf = (dir: string): string | undefined => {
+    const m = /^(\/home\/u\/[^/]+)(\/|$)/.exec(dir);
+    return m ? m[1] : undefined;
+  };
+  const scope = (cwd: string) => ({ cwd, repoRootOf: fakeRepoRootOf });
+
+  test("folds in only the rows recorded in the scoped repository", () => {
+    const reader = lines(
+      at("a+b", "/home/u/api"),
+      at("a+b", "/home/u/api/packages/core"),
+      at("a+c", "/home/u/other"),
+    );
+    const m = computeAffinityMap(reader, scope("/home/u/api"));
+    expect(m.get("a")?.picks).toBe(2);
+    expect(m.get("a")?.partners.get("b")).toBe(2);
+    expect(m.get("c")).toBeUndefined();
+  });
+
+  test("a partner paired only in another repo yields no suggestion here", () => {
+    const reader = lines(at("a+c", "/home/u/other"), at("a+c", "/home/u/other"));
+    const local = suggestionsByProfile(computeAffinityMap(reader, scope("/home/u/api")), {
+      minCount: 1,
+      minAffinity: 0,
+    });
+    expect(local.size).toBe(0);
+    // …while the unscoped map still knows about the pairing.
+    const global = suggestionsByProfile(computeAffinityMap(reader), { minCount: 1, minAffinity: 0 });
+    expect(global.get("a")?.map((p) => p.name)).toEqual(["c"]);
+  });
+
+  test("unattributed rows are excluded when scoping, not guessed at", () => {
+    const reader = lines(JSON.stringify({ ts: "t", profile: "a+b" }), at("a+b", "/home/u/api"));
+    expect(computeAffinityMap(reader, scope("/home/u/api")).get("a")?.picks).toBe(1);
+  });
+
+  test("without a scope every row counts, exactly as before", () => {
+    const reader = lines(at("a+b", "/home/u/api"), at("a+c", "/home/u/other"));
+    const m = computeAffinityMap(reader);
+    expect(m.get("a")?.picks).toBe(2);
+    expect(m.get("a")?.partners.get("c")).toBe(1);
+  });
+});
+
 describe("computeAffinityMap", () => {
   test("ignores rows without a profile field", () => {
     const reader = lines(

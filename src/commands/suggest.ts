@@ -24,6 +24,77 @@ interface Suggestion {
   confidence: number;
 }
 
+/**
+ * Words that say nothing about what a session was *about*.
+ *
+ * Two families, both of which used to dominate every score. English function
+ * words arrive through skill descriptions — every SKILL.md opens with "Use this
+ * when the user asks…", so "use"/"when"/"user" became keywords for the entire
+ * catalogue. Transcript-structure words arrive through the raw JSONL, where
+ * "assistant", "content" and "tool_result" appear on every single line and are
+ * something the format said, not something anyone typed.
+ */
+const STOPWORDS = new Set([
+  // function words (only ones longer than 2 chars can survive tokenizing)
+  "the", "and", "for", "are", "was", "were", "been", "being", "does", "did",
+  "have", "has", "had", "will", "would", "can", "could", "should", "may",
+  "might", "must", "this", "that", "these", "those", "its", "they", "them",
+  "their", "you", "your", "yours", "our", "ours", "not", "yes", "all", "any",
+  "some", "more", "most", "other", "others", "such", "only", "own", "same",
+  "than", "too", "very", "just", "now", "when", "where", "which", "who",
+  "whom", "what", "why", "how", "there", "here", "out", "into", "about",
+  "after", "before", "between", "during", "through", "each", "few", "both",
+  "one", "two", "with", "from", "also", "per", "via", "but", "off", "over",
+  "under", "again", "once", "then", "else", "want", "wants", "wanted",
+  "need", "needs", "needed", "like", "make", "makes", "made", "give", "gives",
+  "let", "lets", "ask", "asks", "asked", "say", "says", "said",
+  // "Use when…" boilerplate — present in essentially every skill description
+  "use", "uses", "used", "using", "usage",
+  // transcript structure — the format's own vocabulary, not the user's
+  "user", "users", "human", "assistant", "content", "message", "messages", "role", "tool", "tools",
+  "tool_use", "tool_result", "result", "results", "type", "text", "input",
+  "output", "json", "true", "false", "null", "uuid", "timestamp", "session",
+  "parent", "http", "https", "www", "com", "org", "net",
+]);
+
+/** A keyword shorter than this is noise even when it isn't a stopword. */
+const MIN_KEYWORD_LENGTH = 3;
+/** Total keyword occurrences below which a skill isn't worth surfacing. */
+const MIN_MENTIONS = 3;
+/**
+ * Distinct keywords a skill must match. One repeated word is a coincidence —
+ * "design" appearing 80× says nothing about a Figma skill specifically. Two or
+ * more of a skill's own vocabulary is a signal.
+ */
+const MIN_DISTINCT_KEYWORDS = 2;
+/**
+ * Only a skill's strongest few signals count toward its score.
+ *
+ * Summing every matched keyword rewards a long description over a relevant
+ * one: a skill whose blurb happens to contain forty ordinary words outscores a
+ * sharply-matching skill with a terse one. Scoring the best few makes the
+ * measure "how strong is the evidence", not "how much prose did the author
+ * write".
+ */
+const TOP_SIGNAL_KEYWORDS = 5;
+/**
+ * Ceiling on the per-keyword frequency term (≈63 occurrences). Beyond that,
+ * repetition says the word is part of the furniture of these sessions, not that
+ * the need is sixty times stronger.
+ */
+const FREQUENCY_LOG_CAP = 6;
+/**
+ * Weighted score at which confidence reaches ~63%.
+ *
+ * Calibrated against a real run over this repo's transcripts, where the score
+ * distribution across 355 candidates ran p10≈30, p50≈67, p90≈88 — so this puts
+ * a median candidate near 0.5 and the strongest near 0.65. Confidence
+ * approaches 1 asymptotically and never arrives, which is the honest shape for
+ * this measure: counting words in transcripts is a hint, and the old formula's
+ * flat 1.00 for every skill claimed a certainty it could not have.
+ */
+const CONFIDENCE_SCALE = 100;
+
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {
     process.stdout.write(`cue suggest — skill recommendations based on session analysis
@@ -94,7 +165,7 @@ Options:
   return 0;
 }
 
-interface CatalogEntry {
+export interface CatalogEntry {
   id: string;
   keywords: string[];
 }
@@ -114,10 +185,14 @@ function buildCatalog(skillIds: string[]): CatalogEntry[] {
 
       const keywords: string[] = [];
       if (descMatch) keywords.push(...tokenizeText(descMatch[1]!));
-      if (tagsMatch) keywords.push(...tagsMatch[1]!.split(",").map(t => t.trim().toLowerCase()));
+      // Tags and id segments go through the same tokenizer as prose, so a
+      // multi-word tag ("web design") becomes matchable words rather than a
+      // phrase nothing will ever equal, and id filler ("to" in image-to-code)
+      // is dropped instead of becoming a keyword.
+      if (tagsMatch) keywords.push(...tokenizeText(tagsMatch[1]!.replace(/,/g, " ")));
       if (nameMatch) keywords.push(...tokenizeText(nameMatch[1]!));
       // Add the slug parts
-      keywords.push(...id.split("/").flatMap(p => p.split("-")));
+      keywords.push(...tokenizeText(id.replace(/\//g, " ")));
 
       entries.push({ id, keywords: [...new Set(keywords)] });
     } catch {}
@@ -125,8 +200,35 @@ function buildCatalog(skillIds: string[]): CatalogEntry[] {
   return entries;
 }
 
-function tokenizeText(text: string): string[] {
-  return text.toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter(t => t.length > 2);
+/**
+ * Split prose into scoring words: lowercased, punctuation-stripped, short and
+ * meaningless words removed. Used for both sides of the comparison — skill
+ * vocabulary and session text — so the two can be matched as whole words.
+ */
+export function tokenizeText(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, " ")
+    .split(/[\s-]+/)
+    .filter((t) => t.length >= MIN_KEYWORD_LENGTH && !STOPWORDS.has(t));
+}
+
+/**
+ * Count whole-word occurrences across the scanned transcripts, once.
+ *
+ * The previous implementation scanned the joined text with `indexOf` per
+ * keyword, which both counted substrings — "ops" inside "operations", "and"
+ * inside "command" — and re-walked megabytes of text for every keyword of every
+ * catalogue entry. One tokenizing pass is correct *and* cheaper.
+ */
+function wordFrequencies(chunks: string[]): Map<string, number> {
+  const freq = new Map<string, number>();
+  for (const chunk of chunks) {
+    for (const word of tokenizeText(chunk)) {
+      freq.set(word, (freq.get(word) ?? 0) + 1);
+    }
+  }
+  return freq;
 }
 
 // Bound the session scan so `cue suggest` stays fast regardless of how large
@@ -139,6 +241,45 @@ function tokenizeText(text: string): string[] {
 const MAX_SESSION_FILES = 100;
 const MAX_SESSION_BYTES = 2_000_000;
 const PER_FILE_BYTES = 100_000;
+
+/**
+ * Pull just the user's own words out of a transcript chunk.
+ *
+ * A `.jsonl` transcript is mostly *not* the user: assistant prose, tool names,
+ * tool output and file contents dwarf it. Counting the raw bytes is what made
+ * `cue suggest` recommend a wedding-invitations skill because "date" appeared
+ * 195×, and a robotics skill because "read" — the Read tool — appeared 798×.
+ * None of that is a topic anyone raised.
+ *
+ * Tool results arrive under `role: "user"` too, as `tool_result` parts; only
+ * `text` parts are the human talking. Unparseable lines are skipped: the reader
+ * takes a byte-bounded prefix of each file, so the last line is usually torn.
+ */
+export function extractUserPrompts(chunk: string): string {
+  const said: string[] = [];
+  for (const line of chunk.split("\n")) {
+    if (line.length === 0) continue;
+    let row: { message?: { role?: string; content?: unknown } };
+    try {
+      row = JSON.parse(line) as typeof row;
+    } catch {
+      continue; // truncated or non-JSON line
+    }
+    const message = row.message;
+    if (message?.role !== "user") continue;
+    const content = message.content;
+    if (typeof content === "string") {
+      said.push(content);
+      continue;
+    }
+    if (!Array.isArray(content)) continue;
+    for (const part of content) {
+      const p = part as { type?: string; text?: unknown };
+      if (p?.type === "text" && typeof p.text === "string") said.push(p.text);
+    }
+  }
+  return said.join("\n");
+}
 
 function scanSessions(cutoffMs: number): string[] {
   const projectsDir = process.env.CUE_SUGGEST_SESSIONS_DIR ?? join(homedir(), ".claude", "projects");
@@ -177,41 +318,84 @@ function scanSessions(cutoffMs: number): string[] {
       const buf = Buffer.alloc(PER_FILE_BYTES);
       const n = fs.readSync(fd, buf, 0, PER_FILE_BYTES, 0);
       fs.closeSync(fd);
-      chunks.push(buf.toString("utf8", 0, n));
+      const said = extractUserPrompts(buf.toString("utf8", 0, n));
+      if (said.length > 0) chunks.push(said);
       total += n;
     } catch {}
   }
   return chunks;
 }
 
-function scoreSkills(catalog: CatalogEntry[], sessionChunks: string[]): Suggestion[] {
-  const combined = sessionChunks.join(" ").toLowerCase();
+/** A skill's scoring vocabulary: deduped, stopword-free, long enough to mean
+ *  something. Shared by the IDF pass and the scoring pass so both see the same
+ *  words. */
+function scoringKeywords(entry: CatalogEntry): string[] {
+  return [...new Set(entry.keywords)].filter(
+    (kw) => kw.length >= MIN_KEYWORD_LENGTH && !STOPWORDS.has(kw),
+  );
+}
+
+/**
+ * How much each keyword distinguishes one skill from the rest of the catalogue.
+ *
+ * A stopword list only removes words that are common in *English*. It can't
+ * know that "mcp", "skill" or "profile" appear in hundreds of these particular
+ * skills and therefore separate none of them — while "kubectl" appears in two
+ * and separates them sharply. Weighting by catalogue-wide rarity is what stops
+ * the busiest word in the transcripts from deciding every recommendation.
+ */
+function inverseDocFrequency(catalog: CatalogEntry[]): Map<string, number> {
+  const docs = new Map<string, number>();
+  for (const entry of catalog) {
+    for (const kw of scoringKeywords(entry)) docs.set(kw, (docs.get(kw) ?? 0) + 1);
+  }
+  const total = Math.max(1, catalog.length);
+  const idf = new Map<string, number>();
+  for (const [kw, n] of docs) idf.set(kw, Math.log(1 + total / (1 + n)));
+  return idf;
+}
+
+/**
+ * Rank uninstalled skills by how strongly the scanned transcripts point at
+ * them.
+ *
+ * A keyword contributes `rarity × log(times seen)`: repetition counts, but with
+ * diminishing returns, and a word that half the catalogue shares counts for
+ * little however often it appears. The old measure — `min(1, mentions / 50)`
+ * over substring hits — reached 1.00 for essentially every skill, so the
+ * ranking carried no information and the printed confidence was decorative.
+ */
+export function scoreSkills(catalog: CatalogEntry[], sessionChunks: string[]): Suggestion[] {
+  const freq = wordFrequencies(sessionChunks);
+  const idf = inverseDocFrequency(catalog);
   const suggestions: Suggestion[] = [];
 
   for (const entry of catalog) {
     let mentions = 0;
-    for (const kw of entry.keywords) {
-      if (kw.length < 3) continue;
-      // Count occurrences in session content
-      let idx = 0;
-      while ((idx = combined.indexOf(kw, idx)) !== -1) {
-        mentions++;
-        idx += kw.length;
-      }
+    const hits: Array<{ kw: string; count: number; weight: number }> = [];
+    for (const kw of scoringKeywords(entry)) {
+      const count = freq.get(kw) ?? 0;
+      if (count === 0) continue;
+      const weight =
+        (idf.get(kw) ?? 0) * Math.min(Math.log2(1 + count), FREQUENCY_LOG_CAP);
+      mentions += count;
+      hits.push({ kw, count, weight });
     }
-    if (mentions < 3) continue;
+    const matched = hits.length;
+    if (matched < MIN_DISTINCT_KEYWORDS || mentions < MIN_MENTIONS) continue;
 
-    const confidence = Math.min(1, mentions / 50);
-    const topKeyword = entry.keywords.reduce((best, kw) => {
-      const count = (combined.match(new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) ?? []).length;
-      return count > best.count ? { kw, count } : best;
-    }, { kw: "", count: 0 });
+    hits.sort((a, b) => b.weight - a.weight || b.count - a.count);
+    const signals = hits.slice(0, TOP_SIGNAL_KEYWORDS);
+    const score = signals.reduce((sum, h) => sum + h.weight, 0);
+    const best = signals[0]!;
 
     suggestions.push({
       skillId: entry.id,
-      reason: `you mentioned "${topKeyword.kw}" ${topKeyword.count} times`,
+      // Names the keyword that contributed most to the score, counted from the
+      // same frequency map — so the stated reason and the ranking can't disagree.
+      reason: `${matched} of its keywords in your sessions — "${best.kw}" ${best.count}×`,
       mentions,
-      confidence,
+      confidence: 1 - Math.exp(-score / CONFIDENCE_SCALE),
     });
   }
 

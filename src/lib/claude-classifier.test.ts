@@ -1,0 +1,175 @@
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
+import { afterEach, describe, expect, test } from "bun:test";
+
+import {
+  classifierSpawnArgs,
+  credExpiresAt,
+  setupClassifierHome,
+  shouldCopyBackCreds,
+  teardownClassifierHome,
+} from "./claude-classifier";
+
+const tmps: string[] = [];
+function tmpDir(): string {
+  const d = mkdtempSync(join(tmpdir(), "cue-classifier-"));
+  tmps.push(d);
+  return d;
+}
+afterEach(() => {
+  for (const d of tmps.splice(0)) rmSync(d, { recursive: true, force: true });
+});
+
+describe("classifierSpawnArgs", () => {
+  test("keeps the spawn lightweight", () => {
+    const args = classifierSpawnArgs("hello");
+    // Without --strict-mcp-config the child boots every MCP server in the
+    // user's config just to answer one line.
+    expect(args).toContain("--strict-mcp-config");
+    expect(args).toContain("--print");
+    expect(args.at(-1)).toBe("hello");
+  });
+
+  test("defaults to a fast model", () => {
+    const prev = process.env.CUE_SMART_SUBSET_MODEL;
+    delete process.env.CUE_SMART_SUBSET_MODEL;
+    try {
+      const args = classifierSpawnArgs("x");
+      expect(args[args.indexOf("--model") + 1]).toBe("haiku");
+    } finally {
+      if (prev !== undefined) process.env.CUE_SMART_SUBSET_MODEL = prev;
+    }
+  });
+
+  test("honours the model override", () => {
+    const prev = process.env.CUE_SMART_SUBSET_MODEL;
+    process.env.CUE_SMART_SUBSET_MODEL = "sonnet";
+    try {
+      const args = classifierSpawnArgs("x");
+      expect(args[args.indexOf("--model") + 1]).toBe("sonnet");
+    } finally {
+      if (prev === undefined) delete process.env.CUE_SMART_SUBSET_MODEL;
+      else process.env.CUE_SMART_SUBSET_MODEL = prev;
+    }
+  });
+
+  // --bare skips credential loading and comes back "Not logged in".
+  test("never passes --bare", () => {
+    expect(classifierSpawnArgs("x")).not.toContain("--bare");
+  });
+});
+
+describe("shouldCopyBackCreds", () => {
+  // Anthropic rotates the refresh token on every refresh, so a stale copy must
+  // never clobber a live source token.
+  test("only carries back a strictly newer token", () => {
+    expect(shouldCopyBackCreds(200, 100)).toBe(true);
+    expect(shouldCopyBackCreds(100, 100)).toBe(false);
+    expect(shouldCopyBackCreds(50, 100)).toBe(false);
+  });
+});
+
+describe("credExpiresAt", () => {
+  test("reads the OAuth expiry", () => {
+    const d = tmpDir();
+    const f = join(d, ".credentials.json");
+    writeFileSync(f, JSON.stringify({ claudeAiOauth: { expiresAt: 12345 } }));
+    expect(credExpiresAt(f)).toBe(12345);
+  });
+
+  test("returns 0 for missing, malformed, or shapeless files", () => {
+    const d = tmpDir();
+    expect(credExpiresAt(join(d, "nope.json"))).toBe(0);
+    const bad = join(d, "bad.json");
+    writeFileSync(bad, "{{{");
+    expect(credExpiresAt(bad)).toBe(0);
+    const empty = join(d, "empty.json");
+    writeFileSync(empty, JSON.stringify({ other: true }));
+    expect(credExpiresAt(empty)).toBe(0);
+  });
+});
+
+describe("setupClassifierHome", () => {
+  test("returns null when there is nothing to isolate", () => {
+    const prev = process.env.CLAUDE_CONFIG_DIR;
+    delete process.env.CLAUDE_CONFIG_DIR;
+    try {
+      expect(setupClassifierHome()).toBeNull();
+    } finally {
+      if (prev !== undefined) process.env.CLAUDE_CONFIG_DIR = prev;
+    }
+  });
+
+  test("builds a minimal config that loads no plugins, hooks or MCP servers", () => {
+    const src = tmpDir();
+    const cache = tmpDir();
+    const prevCfg = process.env.CLAUDE_CONFIG_DIR;
+    const prevCache = process.env.XDG_CACHE_HOME;
+    process.env.CLAUDE_CONFIG_DIR = src;
+    process.env.XDG_CACHE_HOME = cache;
+    try {
+      const h = setupClassifierHome();
+      expect(h).not.toBeNull();
+      const settings = JSON.parse(readFileSync(join(h!.home, "settings.json"), "utf8")) as Record<string, unknown>;
+      expect(settings).toEqual({});
+      const claudeJson = JSON.parse(readFileSync(join(h!.home, ".claude.json"), "utf8")) as Record<string, unknown>;
+      expect(claudeJson.hasCompletedOnboarding).toBe(true);
+      teardownClassifierHome(h!);
+      expect(existsSync(h!.home)).toBe(false);
+    } finally {
+      if (prevCfg === undefined) delete process.env.CLAUDE_CONFIG_DIR;
+      else process.env.CLAUDE_CONFIG_DIR = prevCfg;
+      if (prevCache === undefined) delete process.env.XDG_CACHE_HOME;
+      else process.env.XDG_CACHE_HOME = prevCache;
+    }
+  });
+
+  test("copies live credentials in so the call still authenticates", () => {
+    const src = tmpDir();
+    const cache = tmpDir();
+    writeFileSync(join(src, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: 999 } }));
+    const prevCfg = process.env.CLAUDE_CONFIG_DIR;
+    const prevCache = process.env.XDG_CACHE_HOME;
+    process.env.CLAUDE_CONFIG_DIR = src;
+    process.env.XDG_CACHE_HOME = cache;
+    try {
+      const h = setupClassifierHome()!;
+      expect(credExpiresAt(join(h.home, ".credentials.json"))).toBe(999);
+      expect(h.credSrc).toBe(join(src, ".credentials.json"));
+
+      // Teardown must not clobber the source with an equal-or-older token.
+      teardownClassifierHome(h);
+      expect(credExpiresAt(join(src, ".credentials.json"))).toBe(999);
+    } finally {
+      if (prevCfg === undefined) delete process.env.CLAUDE_CONFIG_DIR;
+      else process.env.CLAUDE_CONFIG_DIR = prevCfg;
+      if (prevCache === undefined) delete process.env.XDG_CACHE_HOME;
+      else process.env.XDG_CACHE_HOME = prevCache;
+    }
+  });
+
+  test("carries a rotated token back to the source", () => {
+    const src = tmpDir();
+    const cache = tmpDir();
+    const srcCred = join(src, ".credentials.json");
+    writeFileSync(srcCred, JSON.stringify({ claudeAiOauth: { expiresAt: 100 } }));
+    const prevCfg = process.env.CLAUDE_CONFIG_DIR;
+    const prevCache = process.env.XDG_CACHE_HOME;
+    process.env.CLAUDE_CONFIG_DIR = src;
+    process.env.XDG_CACHE_HOME = cache;
+    try {
+      const h = setupClassifierHome()!;
+      // Simulate the child refreshing the token inside the ephemeral home.
+      writeFileSync(join(h.home, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: 500 } }));
+      teardownClassifierHome(h);
+      expect(credExpiresAt(srcCred)).toBe(500);
+    } finally {
+      if (prevCfg === undefined) delete process.env.CLAUDE_CONFIG_DIR;
+      else process.env.CLAUDE_CONFIG_DIR = prevCfg;
+      if (prevCache === undefined) delete process.env.XDG_CACHE_HOME;
+      else process.env.XDG_CACHE_HOME = prevCache;
+    }
+  });
+});

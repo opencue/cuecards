@@ -3,7 +3,18 @@ import { mkdtemp, mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { findFreshestCredentials, listKnownAccountDirs, rescueRuntimeCredentials, syncFreshestToSource } from "./credentials-sync";
+import {
+  findFreshestCredentials,
+  listKnownAccountDirs,
+  nextReconcileDelayMs,
+  pullFreshestToRuntime,
+  readExpiresAt,
+  reconcileCredentials,
+  RECONCILE_IDLE_MS,
+  RECONCILE_ROTATION_MS,
+  rescueRuntimeCredentials,
+  syncFreshestToSource,
+} from "./credentials-sync";
 
 let root: string;
 beforeEach(async () => { root = await mkdtemp(join(tmpdir(), "cue-credsync-")); });
@@ -33,6 +44,136 @@ async function writeAccountDir(dir: string, uuid: string | undefined, creds: Cre
     );
   }
 }
+
+/**
+ * Claude Code's real layout when no CLAUDE_CONFIG_DIR is set: `oauthAccount`
+ * lives in the home-root `~/.claude.json`, while `~/.claude/.claude.json` is a
+ * settings-only stub. Returns the `.claude` dir to pass as source/account dir.
+ */
+async function writeDefaultAccountDir(home: string, uuid: string, creds: Creds): Promise<string> {
+  const dir = join(home, ".claude");
+  await mkdir(dir, { recursive: true });
+  await writeFile(join(dir, ".claude.json"), JSON.stringify({ firstStartTime: "t", userID: "u" }));
+  await writeFile(join(home, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: uuid } }));
+  await writeFile(
+    join(dir, ".credentials.json"),
+    JSON.stringify({ claudeAiOauth: { accessToken: "at-" + creds.refreshToken, ...creds } }),
+  );
+  return dir;
+}
+
+describe("home-root .claude.json fallback", () => {
+  test("finds a fresher runtime for a default ~/.claude source", async () => {
+    // Regression: reading identity only from `<dir>/.claude.json` reported the
+    // DEFAULT account as unknown, so every heal here silently no-op'd for it and
+    // the runtimes each drifted onto their own dead rotated token.
+    const sourceDir = await writeDefaultAccountDir(join(root, "home"), UUID_A, {
+      refreshToken: "rt-stale",
+      expiresAt: 1000,
+    });
+    const runtimeRoot = join(root, "runtime");
+    await writeAccountDir(join(runtimeRoot, "live", "claude"), UUID_A, {
+      refreshToken: "rt-live",
+      expiresAt: 9999,
+    });
+
+    const out = await findFreshestCredentials(sourceDir, runtimeRoot);
+    expect(out?.refreshToken).toBe("rt-live");
+  });
+
+  test("adopts into a runtime from a default ~/.claude account dir", async () => {
+    const accountDir = await writeDefaultAccountDir(join(root, "home"), UUID_A, {
+      refreshToken: "rt-new",
+      expiresAt: 9999,
+    });
+    const runtimeDir = join(root, "runtime", "p", "claude");
+    await writeAccountDir(runtimeDir, UUID_A, { refreshToken: "rt-old", expiresAt: 1000 });
+
+    expect((await pullFreshestToRuntime(runtimeDir, [accountDir])).pulled).toBe(true);
+    const after = JSON.parse(await readFile(join(runtimeDir, ".credentials.json"), "utf8"));
+    expect(after.claudeAiOauth.refreshToken).toBe("rt-new");
+  });
+
+  test("publishes a runtime's rotation back to a default ~/.claude account dir", async () => {
+    const accountDir = await writeDefaultAccountDir(join(root, "home"), UUID_A, {
+      refreshToken: "rt-old",
+      expiresAt: 1000,
+    });
+    const runtimeDir = join(root, "runtime", "p", "claude");
+    await writeAccountDir(runtimeDir, UUID_A, { refreshToken: "rt-rotated", expiresAt: 9999 });
+
+    expect((await rescueRuntimeCredentials(runtimeDir, [accountDir])).rescued).toBe(true);
+    const after = JSON.parse(await readFile(join(accountDir, ".credentials.json"), "utf8"));
+    expect(after.claudeAiOauth.refreshToken).toBe("rt-rotated");
+  });
+
+  test("does not apply the fallback to a dir that is not named .claude", async () => {
+    // authmux account dirs carry identity in-dir; a stray sibling `.claude.json`
+    // must never be read as their identity, or accounts could swap tokens.
+    const parent = join(root, "accounts");
+    const accountDir = join(parent, "account1");
+    await mkdir(accountDir, { recursive: true });
+    await writeFile(join(parent, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: UUID_A } }));
+    await writeFile(
+      join(accountDir, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { refreshToken: "rt-other", expiresAt: 9999 } }),
+    );
+    const runtimeDir = join(root, "runtime", "p", "claude");
+    await writeAccountDir(runtimeDir, UUID_A, { refreshToken: "rt-mine", expiresAt: 1000 });
+
+    expect((await pullFreshestToRuntime(runtimeDir, [accountDir])).pulled).toBe(false);
+  });
+
+  test("an in-dir identity still wins over the home-root file", async () => {
+    const home = join(root, "home");
+    const dir = join(home, ".claude");
+    await mkdir(dir, { recursive: true });
+    await writeFile(join(home, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: UUID_B } }));
+    await writeAccountDir(dir, UUID_A, { refreshToken: "rt-a", expiresAt: 1000 });
+
+    const runtimeRoot = join(root, "runtime");
+    await writeAccountDir(join(runtimeRoot, "live", "claude"), UUID_A, {
+      refreshToken: "rt-live-a",
+      expiresAt: 9999,
+    });
+
+    const out = await findFreshestCredentials(dir, runtimeRoot);
+    expect(out?.refreshToken).toBe("rt-live-a");
+  });
+});
+
+describe("nextReconcileDelayMs", () => {
+  const EXPIRES = 8_000_000_000_000;
+  const MIN = 60_000;
+
+  test("idles at a minute far from expiry", () => {
+    expect(nextReconcileDelayMs(EXPIRES, EXPIRES - 240 * MIN)).toBe(RECONCILE_IDLE_MS);
+  });
+
+  test("tightens as the shared expiry approaches", () => {
+    // Every copy carries the same expiresAt, so all live sessions rotate here.
+    expect(nextReconcileDelayMs(EXPIRES, EXPIRES - 5 * MIN)).toBe(RECONCILE_ROTATION_MS);
+    expect(nextReconcileDelayMs(EXPIRES, EXPIRES)).toBe(RECONCILE_ROTATION_MS);
+    expect(nextReconcileDelayMs(EXPIRES, EXPIRES + 5 * MIN)).toBe(RECONCILE_ROTATION_MS);
+  });
+
+  test("drops back once the window has passed", () => {
+    expect(nextReconcileDelayMs(EXPIRES, EXPIRES + 120 * MIN)).toBe(RECONCILE_IDLE_MS);
+  });
+
+  test("idles when the expiry is unknown", () => {
+    expect(nextReconcileDelayMs(0, EXPIRES)).toBe(RECONCILE_IDLE_MS);
+  });
+});
+
+describe("readExpiresAt", () => {
+  test("reads the expiry, and reports 0 when there are no credentials", async () => {
+    const dir = join(root, "rt", "claude");
+    await writeAccountDir(dir, UUID_A, { refreshToken: "rt", expiresAt: 4242 });
+    expect(await readExpiresAt(dir)).toBe(4242);
+    expect(await readExpiresAt(join(root, "nope"))).toBe(0);
+  });
+});
 
 describe("findFreshestCredentials", () => {
   test("returns undefined when no credentials exist anywhere", async () => {
@@ -303,6 +444,92 @@ describe("rescueRuntimeCredentials", () => {
     expect(result.rescued).toBe(true);
     const after = JSON.parse(await readFile(join(account, ".credentials.json"), "utf8"));
     expect(after.claudeAiOauth.refreshToken).toBe("rt-fresh");
+  });
+});
+
+describe("pullFreshestToRuntime", () => {
+  test("adopts the owner's fresher token — a sibling session rotated ours away", async () => {
+    // Two live sessions on different profiles share one refresh token. The
+    // other one refreshed, rotating ours dead; its rescue already published
+    // the new token to the account dir. This is how we find out.
+    const account = join(root, "accounts", "account2");
+    await writeAccountDir(account, UUID_B, { refreshToken: "rt-rotated-by-sibling", expiresAt: 9999 });
+
+    const runtimeDir = join(root, "runtime", "core", "claude");
+    await writeAccountDir(runtimeDir, UUID_B, { refreshToken: "rt-now-dead", expiresAt: 1000 });
+
+    const result = await pullFreshestToRuntime(runtimeDir, [account]);
+    expect(result.pulled).toBe(true);
+    const after = JSON.parse(await readFile(join(runtimeDir, ".credentials.json"), "utf8"));
+    expect(after.claudeAiOauth.refreshToken).toBe("rt-rotated-by-sibling");
+  });
+
+  test("never adopts a different account's token", async () => {
+    const other = join(root, "accounts", "account1");
+    await writeAccountDir(other, UUID_A, { refreshToken: "rt-other-account", expiresAt: 9999 });
+
+    const runtimeDir = join(root, "runtime", "core", "claude");
+    await writeAccountDir(runtimeDir, UUID_B, { refreshToken: "rt-ours", expiresAt: 1000 });
+
+    expect((await pullFreshestToRuntime(runtimeDir, [other])).pulled).toBe(false);
+    const after = JSON.parse(await readFile(join(runtimeDir, ".credentials.json"), "utf8"));
+    expect(after.claudeAiOauth.refreshToken).toBe("rt-ours");
+  });
+
+  test("leaves the runtime alone when it is already the freshest", async () => {
+    const account = join(root, "accounts", "account2");
+    await writeAccountDir(account, UUID_B, { refreshToken: "rt-stale", expiresAt: 5000 });
+    const runtimeDir = join(root, "runtime", "core", "claude");
+    await writeAccountDir(runtimeDir, UUID_B, { refreshToken: "rt-ours", expiresAt: 9999 });
+
+    expect((await pullFreshestToRuntime(runtimeDir, [account])).pulled).toBe(false);
+  });
+
+  test("a runtime with no credentials is not guessed at", async () => {
+    const account = join(root, "accounts", "account2");
+    await writeAccountDir(account, UUID_B, { refreshToken: "rt-owner", expiresAt: 9999 });
+    const runtimeDir = join(root, "runtime", "empty", "claude");
+    await mkdir(runtimeDir, { recursive: true });
+
+    expect((await pullFreshestToRuntime(runtimeDir, [account])).pulled).toBe(false);
+  });
+});
+
+describe("reconcileCredentials", () => {
+  test("publishes our rotation, so the sibling session can adopt it", async () => {
+    const account = join(root, "accounts", "account2");
+    await writeAccountDir(account, UUID_B, { refreshToken: "rt-old", expiresAt: 1000 });
+    const runtimeDir = join(root, "runtime", "core", "claude");
+    await writeAccountDir(runtimeDir, UUID_B, { refreshToken: "rt-we-just-rotated", expiresAt: 9999 });
+
+    const out = await reconcileCredentials(runtimeDir, [account]);
+    expect(out.pushed).toContain(join(account, ".credentials.json"));
+    const owner = JSON.parse(await readFile(join(account, ".credentials.json"), "utf8"));
+    expect(owner.claudeAiOauth.refreshToken).toBe("rt-we-just-rotated");
+  });
+
+  test("adopts the sibling's rotation when we are the stale one", async () => {
+    const account = join(root, "accounts", "account2");
+    await writeAccountDir(account, UUID_B, { refreshToken: "rt-fresh", expiresAt: 9999 });
+    const runtimeDir = join(root, "runtime", "core", "claude");
+    await writeAccountDir(runtimeDir, UUID_B, { refreshToken: "rt-dead", expiresAt: 1000 });
+
+    const out = await reconcileCredentials(runtimeDir, [account]);
+    expect(out.pulled).toBe(join(account, ".credentials.json"));
+    const mine = JSON.parse(await readFile(join(runtimeDir, ".credentials.json"), "utf8"));
+    expect(mine.claudeAiOauth.refreshToken).toBe("rt-fresh");
+  });
+
+  test("settles — an already-agreed pair produces no writes in either direction", async () => {
+    // Guards against a push/pull ping-pong between two reconcilers.
+    const account = join(root, "accounts", "account2");
+    await writeAccountDir(account, UUID_B, { refreshToken: "rt-same", expiresAt: 9999 });
+    const runtimeDir = join(root, "runtime", "core", "claude");
+    await writeAccountDir(runtimeDir, UUID_B, { refreshToken: "rt-same", expiresAt: 9999 });
+
+    const out = await reconcileCredentials(runtimeDir, [account]);
+    expect(out.pushed).toEqual([]);
+    expect(out.pulled).toBeUndefined();
   });
 });
 
