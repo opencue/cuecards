@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,28 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## 💎 [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
 
-**★ 2** · exceptional (score 8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
 
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
-
-```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
-```
-
----
-
-<a id="taewooopark-uiforge"></a>
-## 💎 [TaewoooPark/UIForge](https://github.com/TaewoooPark/UIForge)
-
-**★ 6** · exceptional (score 8) · JavaScript · tags: animation, anti-slop, art-direction, claude-code, claude-code-plugin
-
-Forge masterpiece UI, not AI slop — a design art-director plugin for Claude Code. Forces a deliberate choice on every design axis (type, color, space, motion), sources components from vetted registries, and gates output on forced-subtraction + critique.
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
 
 ```bash
-cue skills add TaewoooPark/UIForge --profile frontend
+cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
 ```
 
 ---

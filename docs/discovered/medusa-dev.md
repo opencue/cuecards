@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-07-28
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-shopping-aggregator"></a>
-## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
+<a id="buluslan-amazon-listing-doctor"></a>
+## 💎 [buluslan/amazon-listing-doctor](https://github.com/buluslan/amazon-listing-doctor)
 
-**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, amazon, claude
+**★ 5** · exceptional (score 13.9) · Python · tags: amazon, amazon-listing, amazon-seller, cdq, claude-code
 
-Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
+亚马逊 Listing 质检+打分 Skill | Amazon listing health-check & scoring (CDQ/A9/COSMO/Alexa) 
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
+cue skills add buluslan/amazon-listing-doctor --profile medusa-dev
 ```
 
 ---

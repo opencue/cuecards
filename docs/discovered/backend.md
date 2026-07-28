@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,43 +15,67 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="sipyourdrink-ltd-bernstein"></a>
-## 💎 [sipyourdrink-ltd/bernstein](https://github.com/sipyourdrink-ltd/bernstein)
+<a id="ralforion-orionbelt-semantic-layer"></a>
+## 💎 [ralforion/orionbelt-semantic-layer](https://github.com/ralforion/orionbelt-semantic-layer)
 
-**★ 736** · exceptional (score 18.3) · Python · tags: agent-orchestrator, ai-agents, aider, air-gap, audit-trail
+**★ 70** · exceptional (score 11.2) · Python · tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
 
-Deterministic orchestrator for CLI coding agents (Claude Code, Codex, Gemini CLI, +40 more). No model in the coordination loop, so parallel runs in per-task git worktrees replay byte-identically. Signed lineage plus an opt-in HMAC audit chain a reviewer checks offline, without rerunning it. Cluster mode, air-gap deploy. https://bernstein.run
+Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
 
 ```bash
-cue skills add sipyourdrink-ltd/bernstein --profile backend
+cue skills add ralforion/orionbelt-semantic-layer --profile backend
 ```
 
 ---
 
-<a id="louishin-claude-api-cost-optimization"></a>
-## 💎 [Louishin/claude-api-cost-optimization](https://github.com/Louishin/claude-api-cost-optimization)
+<a id="ralforion-orionbelt-analytics"></a>
+## 💎 [ralforion/orionbelt-analytics](https://github.com/ralforion/orionbelt-analytics)
 
-**★ 5** · exceptional (score 17.1) · Python · tags: ai-agents, ai-gateway, anthropic, api, api-optimization
+**★ 45** · exceptional (score 9.9) · Python · tags: agentic-ai, chromadb, claude-desktop, clickhouse, databricks
 
-💰 Optimize your Claude API usage to save 50-90% on costs with batching techniques and efficient request management.
-
-✅ SKILL.md
+Ontology-based MCP server that analyzes database schemas (PostgreSQL, Snowflake, ClickHouse, Dremio) and generates RDF/OWL ontologies with SQL mappings for fan-trap-free Text-to-SQL.
 
 ```bash
-cue skills add Louishin/claude-api-cost-optimization --profile backend
+cue skills add ralforion/orionbelt-analytics --profile backend
 ```
 
 ---
 
-<a id="lalithbuilds-engram-mcp"></a>
-## 💎 [lalithbuilds/engram-mcp](https://github.com/lalithbuilds/engram-mcp)
+<a id="amberlee2427-nancy-brain"></a>
+## 💎 [AmberLee2427/nancy-brain](https://github.com/AmberLee2427/nancy-brain)
 
-**★ 2** · exceptional (score 9) · Python · tags: agentic-ai, ai, ai-agents, autonomous-agents, claude
+**★ 5** · exceptional (score 9.7) · Python · tags: embeddings, http, mcp, mcp-server, python
 
-🧠 Zero-dependency MCP server for persistent AI agent memory. Pure Python stdlib. No cloud. No Docker. No API costs. Works with Claude Code, Cursor, Windsurf.
+Nancy's RAG backend and HTTP API/MCP server connectors.
 
 ```bash
-cue skills add lalithbuilds/engram-mcp --profile backend
+cue skills add AmberLee2427/nancy-brain --profile backend
+```
+
+---
+
+<a id="widthdom-codeindex"></a>
+## 💎 [Widthdom/CodeIndex](https://github.com/Widthdom/CodeIndex)
+
+**★ 2** · exceptional (score 8) · C# · tags: ai-coding-agents, cli, code-indexing, code-navigation, code-search
+
+Local-first code search and indexing for repositories, exposed through a CLI, MCP server, and read-only LSP.
+
+```bash
+cue skills add Widthdom/CodeIndex --profile backend
+```
+
+---
+
+<a id="humanix-cybersecurity-humanix-academie"></a>
+## ✨ [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+
+**★ 3** · strong (score 6.7) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+
+🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
+
+```bash
+cue skills add Humanix-Cybersecurity/Humanix-Academie --profile backend
 ```
 
 ---
@@ -59,38 +83,12 @@ cue skills add lalithbuilds/engram-mcp --profile backend
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 8** · strong (score 6.2) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 9** · strong (score 6.3) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
 Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="mengshi02-codetrip"></a>
-## ✨ [mengshi02/codetrip](https://github.com/mengshi02/codetrip)
-
-**★ 0** · strong (score 6) · Go · tags: ast, bm25, code-analysis, code-graph-rag, code-intelligence
-
-Hybrid Graph-Augmented Code Intelligence Engine
-
-```bash
-cue skills add mengshi02/codetrip --profile backend
-```
-
----
-
-<a id="lemur47-lemurkit"></a>
-## ✨ [lemur47/lemurkit](https://github.com/lemur47/lemurkit)
-
-**★ 2** · strong (score 5.5) · TypeScript · tags: ai-agents, ai-memory, claude, cloudflare-workers, mcp
-
-Give your AI a shared memory. Remote MCP storage connector on Cloudflare (R2/KV/D1/Vectorize) for team cognition among AI agents — transactive memory system and shared mental models across environments. One-click deploy.
-
-```bash
-cue skills add lemur47/lemurkit --profile backend
 ```
 
 ---
@@ -108,15 +106,15 @@ cue skills add anirudhlath/alfred --profile backend
 
 ---
 
-<a id="aexhq-aex"></a>
-## ✨ [aexhq/aex](https://github.com/aexhq/aex)
+<a id="demorphed6-lgtm-planomy-mcp"></a>
+## ✨ [demorphed6-lgtm/planomy-mcp](https://github.com/demorphed6-lgtm/planomy-mcp)
 
-**★ 0** · strong (score 5) · TypeScript · tags: agent, ai, cloud, deploy, mcp-server
+**★ 0** · strong (score 5) · JavaScript · tags: ai, anthropic, budgeting, claude, finance
 
-AEX SDK, CLI and docs
+Local MCP server for retirement and financial planning: multi-decade projections, Monte Carlo, scenario comparison, budget variance and safe plan edits — all on your own machine, no API key, no account.
 
 ```bash
-cue skills add aexhq/aex --profile backend
+cue skills add demorphed6-lgtm/planomy-mcp --profile backend
 ```
 
 ---

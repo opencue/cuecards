@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,25 +18,12 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1990** · exceptional (score 10.8) · Python · tags: agentskills, claude, skills
+**★ 1994** · exceptional (score 10.8) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="shrav89-skill-scanner"></a>
-## 💎 [shrav89/skill-scanner](https://github.com/shrav89/skill-scanner)
-
-**★ 2** · exceptional (score 10.5) · Python · tags: agent, agent-skills, ai, ai-agents, anthropic
-
-🔍 Discover and analyze AI skills in your projects with Skill Scanner to enhance development and improve security.
-
-```bash
-cue skills add shrav89/skill-scanner --profile cybersecurity
 ```
 
 ---
@@ -57,12 +44,25 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 3** · strong (score 6.5) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 3** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="humanix-cybersecurity-humanix-academie"></a>
+## ✨ [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+
+**★ 3** · strong (score 6.7) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+
+🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
+
+```bash
+cue skills add Humanix-Cybersecurity/Humanix-Academie --profile cybersecurity
 ```
 
 ---
@@ -83,7 +83,7 @@ cue skills add gesh75/argus --profile cybersecurity
 <a id="forrestrae-stridesmith"></a>
 ## 🔹 [forrestrae/stridesmith](https://github.com/forrestrae/stridesmith)
 
-**★ 1** · potential (score 3.2) · Python · tags: security-review, stride, theatmodel
+**★ 1** · potential (score 3.1) · Python · tags: security-review, stride, theatmodel
 
 Claude Code plugin that runs threat-model-driven security reviews, turning scoped STRIDE models into validated attack paths, prioritized manual review, actionable findings, and executive-ready reports.
 

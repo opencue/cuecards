@@ -2,19 +2,19 @@
 title: "TanaTTV/lyt — Claude Code skill discovered by cue"
 description: "Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, skill, video, creative-media]
 ---
 
 # ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 6.3) · JavaScript · ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 6.2) · JavaScript · ai-agents, audio-downloader, claude-code, cli, codex-cli
 
 > Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-26
 - 🏷️ Tags: ai-agents, audio-downloader, claude-code, cli, codex-cli, command-line-tool, downloader, ffmpeg, local-first, media-downloader, nodejs, video-downloader, youtube, youtube-downloader, youtube-to-mp3, youtube-to-mp4, yt-dlp

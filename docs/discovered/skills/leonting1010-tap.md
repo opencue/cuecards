@@ -2,7 +2,7 @@
 title: "LeonTing1010/tap — Claude Code skill discovered by cue"
 description: "Capture a logged-in browser task once — replay it forever at zero LLM tokens. Local-first browser-automation MCP for Claude Code, Cursor & any MCP host; credent"
 layout: page
-updated: 2026-07-26
+updated: 2026-07-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-07-26
+- 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: ai-agent, automation, browser-automation, browser-use, chrome-extension, claude, claude-code, cli, cursor, data-extraction, deterministic, llm, local-first, mcp, mcp-server, playwright, puppeteer, scraping, stagehand, taprun
 
 ## Best fit cue profiles

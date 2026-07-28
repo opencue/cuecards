@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="aklid01-manhua"></a>
+## ✨ [aklid01/manhua](https://github.com/aklid01/manhua)
+
+**★ 1** · strong (score 5.3) · Python · tags: ai, comic-translation, computer-vision, image-processing, llm
+
+An open-source, modular pipeline for translating manhua pages. Detect speech bubbles, extract text with OCR, translate using LLMs, and regenerate localized pages while preserving the original reading experience.
+
+```bash
+cue skills add aklid01/manhua --profile python
+```
 
 ---
 

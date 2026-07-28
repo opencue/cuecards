@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="abubakrchan-product-launch-motion"></a>
-## 💎 [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion)
-
-**★ 0** · exceptional (score 14.5) · JavaScript · tags: agent-skill, agent-skills, ai-agents, anthropic, claude
-
-Claude Code skill for product launch motion design — make launch videos, promos and demo reels from code. HTML/CSS/GSAP compositions, word-locked voiceover sync, real camera moves, film grade, broadcast-loudness mastering. A director's discipline, not a template.
-
-✅ SKILL.md
-
-```bash
-cue skills add AbubakrChan/product-launch-motion --profile creative-media
-```
 
 ---
 
@@ -43,10 +28,23 @@ cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
 
 ---
 
+<a id="giovannisacca-pixel-mcp-workflow"></a>
+## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+
+**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+
+🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+
+```bash
+cue skills add giovannisacca/pixel-mcp-workflow --profile creative-media
+```
+
+---
+
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
 Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 

@@ -2,7 +2,7 @@
 title: "cpulxb/WSL-Image-Clipboard-Helper — Claude Code skill discovered by cue"
 description: "该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code an"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, skill, creative-media]
 ---
 

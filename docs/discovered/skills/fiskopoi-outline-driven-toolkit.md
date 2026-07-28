@@ -2,21 +2,21 @@
 title: "Fiskopoi/outline-driven-toolkit — Claude Code skill discovered by cue"
 description: "Best AI Code Architect 2026: Diagram-First Agent Orchestrator with AST Editing & Atomic Commits"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-28
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Fiskopoi/outline-driven-toolkit](https://github.com/Fiskopoi/outline-driven-toolkit)
 
-**★ 0** · strong (score 7.5) · HTML · agentic-coding, ai-coding-agent, claude-code, claude-code-plugin, claude-code-plugins
+**★ 1** · strong (score 7.8) · HTML · agentic-coding, ai-coding-agent, claude-code, claude-code-plugin, claude-code-plugins
 
 > Best AI Code Architect 2026: Diagram-First Agent Orchestrator with AST Editing & Atomic Commits
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: agentic-coding, ai-coding-agent, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, claude-marketplace, claude-plugins, claude-skills, cli-tools, coding-paradigm, context-engineering, llm-agents, odd, odin, outline-driven, outline-driven-development, paradigms-of-programming, prompt-engineering
 
 ## Best fit cue profiles

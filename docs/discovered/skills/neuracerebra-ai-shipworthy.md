@@ -2,19 +2,19 @@
 title: "NeuraCerebra-AI/Shipworthy — Claude Code skill discovered by cue"
 description: "Autonomous product-readiness audits for apps & AI agents — a Claude Code and Codex skill suite that safely walks your user paths, finds where they break for rea"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [NeuraCerebra-AI/Shipworthy](https://github.com/NeuraCerebra-AI/Shipworthy)
 
-**★ 1** · potential (score 3.2) · Python
+**★ 1** · potential (score 3.1) · Python
 
 > Autonomous product-readiness audits for apps & AI agents — a Claude Code and Codex skill suite that safely walks your user paths, finds where they break for real users, grades findings by evidence, and never calls anything "ready" without proof. Not code review — does it actually work?
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-23
 - 🏷️ Tags: (none)

@@ -2,19 +2,19 @@
 title: "forrestrae/stridesmith — Claude Code skill discovered by cue"
 description: "Claude Code plugin that runs threat-model-driven security reviews, turning scoped STRIDE models into validated attack paths, prioritized manual review, actionab"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 🔹 [forrestrae/stridesmith](https://github.com/forrestrae/stridesmith)
 
-**★ 1** · potential (score 3.2) · Python · security-review, stride, theatmodel
+**★ 1** · potential (score 3.1) · Python · security-review, stride, theatmodel
 
 > Claude Code plugin that runs threat-model-driven security reviews, turning scoped STRIDE models into validated attack paths, prioritized manual review, actionable findings, and executive-ready reports.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-24
 - 🏷️ Tags: security-review, stride, theatmodel

@@ -2,7 +2,7 @@
 title: "edrc-shawn/lingtai-mcp — Claude Code skill discovered by cue"
 description: "Self-evolving knowledge management system: Obsidian vault + a zero-dependency MCP server (86 tools). Refines raw materials into structured knowledge, evolves it"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-27
+- 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: agent-framework, ai-agent, automation, knowledge-base, knowledge-management, llm, mcp, mcp-server, memory, note-taking, obsidian, personal-knowledge-management, productivity, python, rag, self-improving
 
 ## Best fit cue profiles

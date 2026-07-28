@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="cyanheads-arxiv-mcp-server"></a>
-## ✨ [cyanheads/arxiv-mcp-server](https://github.com/cyanheads/arxiv-mcp-server)
+<a id="mlava-scholar-sidekick-mcp"></a>
+## 💎 [mlava/scholar-sidekick-mcp](https://github.com/mlava/scholar-sidekick-mcp)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: academic-papers, arxiv, cyanheads, mcp, mcp-server
+**★ 7** · exceptional (score 8.8) · TypeScript · tags: academic, agent-skills, arxiv, bibliography, bibtex
 
-Search arXiv, fetch paper metadata, and read full-text content via MCP. STDIO & Streamable HTTP.
+MCP server for Scholar Sidekick — resolve any scholarly identifier (DOI, PMID, PMCID, ISBN, arXiv, ISSN, ADS, WHO IRIS) into 10,000+ CSL styles or nine export formats, single or batch.
 
 ```bash
-cue skills add cyanheads/arxiv-mcp-server --profile research
+cue skills add mlava/scholar-sidekick-mcp --profile research
+```
+
+---
+
+<a id="luismiguelfurlanettosousa-youtube-course-builder"></a>
+## 💎 [LuisMIguelFurlanettoSousa/youtube-course-builder](https://github.com/LuisMIguelFurlanettoSousa/youtube-course-builder)
+
+**★ 1** · exceptional (score 8.3) · tags: agent-skills, anthropic, claude-code, claude-skill, curriculum
+
+YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles
+
+```bash
+cue skills add LuisMIguelFurlanettoSousa/youtube-course-builder --profile research
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-28
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,21 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
+<a id="chaosx-space-god-of-the-void"></a>
+## 💎 [CHAOSX-SPACE/god-of-the-void](https://github.com/CHAOSX-SPACE/god-of-the-void)
+
+**★ 1** · exceptional (score 14.8) · Python · tags: agent-memory, ai-agent, anthropic, claude, claude-code
+
+A Claude Code skill with a BODY: persistent memory across sessions, ~0-token semantic search, an errarium that ambushes you before you repeat a bug, caged autonomy, and a local dashboard. 16 organs · 54 commands · 1,650 tests · zero dependencies.
+
+✅ SKILL.md
+
+```bash
+cue skills add CHAOSX-SPACE/god-of-the-void --profile docs-writer
+```
+
+---
+
 <a id="onourimpram-mneme"></a>
 ## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
@@ -24,19 +39,6 @@ Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before
 
 ```bash
 cue skills add OnourImpram/mneme --profile docs-writer
-```
-
----
-
-<a id="sumeetmi2-architecture-debt-visualizer"></a>
-## ✨ [sumeetmi2/architecture-debt-visualizer](https://github.com/sumeetmi2/architecture-debt-visualizer)
-
-**★ 0** · strong (score 7) · Python · tags: architecture-review, claude-code, claude-plugin, claude-skill, developer-tools
-
-Claude Code skill for architecture reviews, docs-to-code drift detection, and evidence-based technical debt analysis across 12 dimensions — scalability, extensibility, reliability, security, change safety, data architecture, observability, and more.
-
-```bash
-cue skills add sumeetmi2/architecture-debt-visualizer --profile docs-writer
 ```
 
 ---
