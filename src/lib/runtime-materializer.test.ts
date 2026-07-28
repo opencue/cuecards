@@ -666,6 +666,91 @@ describe("materializeRuntime", () => {
     expect(cj.projects).toEqual({ "/w": { history: [1] } });
   });
 
+  test("credentialsSource: cache hit keeps the runtime's fresher token", async () => {
+    // Regression: the overlay stamped source over the runtime unconditionally.
+    // Anthropic rotates the refresh token on every refresh, so only the highest
+    // expiresAt is live — and `cue sync` / `cue install` materialize with an
+    // UNHEALED source, so one bulk sync could hand every runtime a dead token
+    // and force a re-login.
+    const STALE = 1_000;
+    const FRESH = 9_999_999;
+    const credSrc = join(root, "accStaleSource");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }));
+    await writeFile(
+      join(credSrc, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { expiresAt: STALE, refreshToken: "dead" } }),
+    );
+
+    const args = {
+      profile: { ...sampleProfile, name: "cred-cachehit-freshness" },
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+    };
+
+    const first = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    expect(first.rebuilt).toBe(true);
+    // The running session refreshed, rotating source's token dead.
+    await writeFile(
+      join(first.runtimeDir, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" } }),
+    );
+
+    const second = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    expect(second.rebuilt).toBe(false);
+    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    expect(creds.claudeAiOauth.refreshToken).toBe("live");
+    expect(creds.claudeAiOauth.expiresAt).toBe(FRESH);
+  });
+
+  test("credentialsSource: cache hit re-seeds tokens on account switch even when the runtime's are newer", async () => {
+    // The freshness guard above is scoped to ONE account — across accounts the
+    // expiry comparison is meaningless and source must win. Source here uses the
+    // real default-account layout (identity at the home root, stub inside
+    // `.claude/`), so this also covers that fallback: without it the switch reads
+    // as same-account and the runtime's newer token would wrongly survive.
+    const home = join(root, "homeB");
+    const credSrc = join(home, ".claude");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ firstStartTime: "t" }));
+    await writeFile(join(home, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }));
+    await writeFile(
+      join(credSrc, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { expiresAt: 1_000, refreshToken: "B" } }),
+    );
+
+    const args = {
+      profile: { ...sampleProfile, name: "cred-cachehit-switch" },
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+    };
+
+    const first = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    expect(first.rebuilt).toBe(true);
+    // Account A had been logged in here: Claude's atomic rewrite left a local
+    // FILE identity, and A's token outlives B's.
+    await rm(join(first.runtimeDir, ".claude.json"), { force: true });
+    await writeFile(
+      join(first.runtimeDir, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }),
+    );
+    await writeFile(
+      join(first.runtimeDir, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { expiresAt: 9_999_999, refreshToken: "A" } }),
+    );
+
+    const second = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    expect(second.rebuilt).toBe(false);
+    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    expect(creds.claudeAiOauth.refreshToken).toBe("B");
+  });
+
   test("credentialsSource: rebuild does not resurrect another account's identity or tokens", async () => {
     // The preserve step's expiresAt comparison is meaningless across accounts:
     // the old runtime's token may expire later yet belong to the OTHER account.

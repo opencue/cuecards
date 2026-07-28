@@ -1005,6 +1005,20 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
     } catch { /* skip */ }
   }
 
+  // Account identity of both sides, resolved ONCE before the loop below can
+  // swap `.claude.json` out from under the comparison. Same home-root fallback
+  // as the entry list above: with no CLAUDE_CONFIG_DIR, Claude Code keeps
+  // `oauthAccount` in `~/.claude.json`, not in `~/.claude/.claude.json`.
+  const identityOf = async (dir: string): Promise<string | undefined> =>
+    (await accountUuidAt(join(dir, ".claude.json")))
+    ?? (basename(dir) === ".claude" ? await accountUuidAt(join(dirname(dir), ".claude.json")) : undefined);
+  const srcAccount = await identityOf(sourceDir);
+  const dstAccount = await identityOf(targetDir);
+  // Unknown on either side → treat as the same account: the expiry comparison
+  // below is a no-op when the files agree, and refusing to compare would put us
+  // back on the unconditional stamp this guard exists to prevent.
+  const sameAccount = !srcAccount || !dstAccount || srcAccount === dstAccount;
+
   for (const name of entries) {
     if (CUE_MANAGED_ENTRIES.has(name)) continue;
     const targetPath = join(targetDir, name);
@@ -1057,6 +1071,23 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
         }
       }
       continue; // cue override — don't touch
+    }
+
+    // Freshness guard on the rotated OAuth token. Anthropic rotates the refresh
+    // token on every refresh, so only the copy with the highest expiresAt still
+    // holds a LIVE one. This overlay runs on every cache-hit launch — and via
+    // `cue sync` / `cue install`, which resolve their source with
+    // `healFromRuntime: false` — so stamping source over the runtime
+    // unconditionally can hand a session a dead token and force a mid-session
+    // re-login, across every runtime at once on a bulk sync. Keep whichever side
+    // is newer; mirror of the rebuild path's `preserveFiles` guard.
+    //
+    // Scoped to one account: when the identities differ this is a deliberate
+    // account switch, and source must win regardless of expiry.
+    if (name === ".credentials.json" && sameAccount) {
+      const srcExpiresAt = await credentialsExpiresAt(sourcePath);
+      const dstExpiresAt = await credentialsExpiresAt(targetPath);
+      if (dstExpiresAt > srcExpiresAt) continue; // runtime holds the live token
     }
 
     if (existingType === "symlink" || (existingType === "other" && isCopyFile)) {

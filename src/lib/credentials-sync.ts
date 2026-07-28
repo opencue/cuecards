@@ -27,7 +27,7 @@
  */
 
 import { readFile, readdir, copyFile, rename, rm, stat } from "node:fs/promises";
-import { join } from "node:path";
+import { basename, dirname, join } from "node:path";
 
 interface CredentialsBlob {
   claudeAiOauth?: {
@@ -53,17 +53,42 @@ export interface FreshestCandidate {
 }
 
 /**
- * Read the `accountUuid` recorded in `<dir>/.claude.json`. Returns undefined
- * if the file is missing or doesn't have the OAuth metadata.
+ * Read the `accountUuid` recorded in `<dir>/.claude.json`, falling back to the
+ * home-root `.claude.json` one level up when `dir` is a `.claude` config dir
+ * whose own file carries no identity.
+ *
+ * The fallback is load-bearing, not a nicety. With no CLAUDE_CONFIG_DIR set,
+ * Claude Code keeps `oauthAccount` in `~/.claude.json` and leaves
+ * `~/.claude/.claude.json` as a settings-only stub (`firstStartTime`,
+ * `userID`, …). Reading only in-dir therefore reports the DEFAULT account as
+ * "unknown" — and every heal in this module is gated on a known uuid, so all
+ * three directions silently no-op for it: `syncFreshestToSource` returns no
+ * candidates, `rescueRuntimeCredentials` never publishes to `~/.claude`, and
+ * `pullFreshestToRuntime` never adopts from it. The runtimes then diverge into
+ * one dead rotated token each, which is the exact desync this module exists to
+ * fix. authmux account dirs and runtime dirs all carry identity in-dir, so the
+ * `basename` gate keeps the fallback off them.
+ *
+ * Mirrors the legacy home-root fallback in runtime-materializer's
+ * `overlaySourceState`; keep the two in step.
+ *
+ * Returns undefined when neither file exists or has the OAuth metadata.
  */
 async function readAccountUuid(dir: string): Promise<string | undefined> {
-  try {
-    const raw = await readFile(join(dir, ".claude.json"), "utf8");
-    const parsed = JSON.parse(raw) as ClaudeJsonBlob;
-    return parsed?.oauthAccount?.accountUuid;
-  } catch {
-    return undefined;
-  }
+  const uuidAt = async (path: string): Promise<string | undefined> => {
+    try {
+      const raw = await readFile(path, "utf8");
+      const parsed = JSON.parse(raw) as ClaudeJsonBlob;
+      return parsed?.oauthAccount?.accountUuid;
+    } catch {
+      return undefined;
+    }
+  };
+
+  const inDir = await uuidAt(join(dir, ".claude.json"));
+  if (inDir) return inDir;
+  if (basename(dir) === ".claude") return await uuidAt(join(dirname(dir), ".claude.json"));
+  return undefined;
 }
 
 /**
@@ -287,6 +312,56 @@ export async function reconcileCredentials(
 
   const pull = await pullFreshestToRuntime(runtimeClaudeDir, accountDirs);
   return pull.pulled ? { pushed, pulled: pull.from } : { pushed };
+}
+
+/** Reconcile cadence away from a rotation. Token lifetimes are ~8h, so a
+ *  minute of lag costs nothing for almost the whole session. */
+export const RECONCILE_IDLE_MS = 60_000;
+
+/** Cadence across the rotation window. See `nextReconcileDelayMs`. */
+export const RECONCILE_ROTATION_MS = 5_000;
+
+/** Start polling fast this long before expiry… */
+const ROTATION_LEAD_MS = 10 * 60_000;
+/** …and drop back this long after it, by which point any session that was
+ *  going to contend for the rotation already has. */
+const ROTATION_TRAIL_MS = 30 * 60_000;
+
+/**
+ * How long to wait before the next reconcile, given this runtime's access-token
+ * expiry.
+ *
+ * Every copy of a credential blob carries the SAME `expiresAt` — they are
+ * copies — so concurrent sessions all reach expiry in the same instant and
+ * refresh within moments of each other. Only the first rotation succeeds; the
+ * rest present a refresh token Anthropic has already revoked and land on a
+ * login prompt. A flat 60s poll cannot help there: the contended window is
+ * seconds wide, so the winner's new token routinely arrives after the losers
+ * have already tried.
+ *
+ * Polling fast across that window (and only there) shrinks the gap between the
+ * winner publishing and the others adopting to ~5s, which is short enough that
+ * a session which hasn't refreshed yet picks up the live token first and
+ * rotates cleanly off it. Away from the window the cost of a fast poll buys
+ * nothing, so it stays at a minute.
+ *
+ * This narrows the race; it cannot close it. cue does not perform the refresh —
+ * Claude Code does, in-process — so there is no point at which cue can
+ * serialize the two callers. A session that refreshes inside the same few
+ * seconds as the winner still loses.
+ */
+export function nextReconcileDelayMs(expiresAt: number, now: number): number {
+  if (expiresAt <= 0) return RECONCILE_IDLE_MS; // unknown expiry — no window to track
+  const inWindow = now >= expiresAt - ROTATION_LEAD_MS && now <= expiresAt + ROTATION_TRAIL_MS;
+  return inWindow ? RECONCILE_ROTATION_MS : RECONCILE_IDLE_MS;
+}
+
+/**
+ * `claudeAiOauth.expiresAt` for the credentials in `dir`, or 0 when absent or
+ * unreadable. Feeds `nextReconcileDelayMs`.
+ */
+export async function readExpiresAt(dir: string): Promise<number> {
+  return (await readCredentials(dir))?.expiresAt ?? 0;
 }
 
 /**

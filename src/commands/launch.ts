@@ -1374,12 +1374,14 @@ async function resolveClaudeCredentialsSource(): Promise<string> {
 }
 
 /**
- * How often a live session checks whether its OAuth token still matches the
- * account's. Token lifetimes are hours and rotation is rare, so a minute of
- * lag costs nothing; polling (rather than watching) is deliberate, since the
- * atomic tmp→rename rewrite that replaces the file also breaks an inode watch.
+ * Fallback reconcile cadence, used only if the credentials-sync import itself
+ * fails. Matches `RECONCILE_IDLE_MS` there, which owns the real schedule.
+ *
+ * Polling (rather than watching) is deliberate throughout: the atomic
+ * tmp→rename rewrite that replaces `.credentials.json` also breaks an inode
+ * watch.
  */
-const CREDENTIAL_RECONCILE_MS = 60_000;
+const CREDENTIAL_RECONCILE_FALLBACK_MS = 60_000;
 
 /**
  * Keep a running session's tokens in step with every other session on the same
@@ -1392,29 +1394,45 @@ const CREDENTIAL_RECONCILE_MS = 60_000;
  * session has already been dropped. Each session now republishes its own
  * rotation and adopts anyone else's within a minute.
  *
+ * The cadence is not fixed: it tightens across the window where every copy's
+ * access token expires at once (see `nextReconcileDelayMs`), because that is
+ * precisely when a rotation is contended and a minute of lag loses the race.
+ *
  * Best-effort throughout, and unref'd so it can never hold the process open.
  * Returns a stop function.
  */
 function startCredentialReconciler(runtimeKey: string): () => void {
-  let running = false;
+  // basename() pins the path inside the runtime tree — this writes token
+  // files, so a runtime key carrying a separator must not escape it.
+  const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
+  let stopped = false;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+
+  // Self-chaining rather than setInterval: the delay varies per tick, and a
+  // slow disk can no longer stack overlapping reconciles.
   const tick = async (): Promise<void> => {
-    if (running) return; // a slow disk must not stack overlapping reconciles
-    running = true;
+    let delayMs = CREDENTIAL_RECONCILE_FALLBACK_MS;
     try {
-      const { listKnownAccountDirs, reconcileCredentials } = await import("../lib/credentials-sync");
-      // basename() pins the path inside the runtime tree — this writes token
-      // files, so a runtime key carrying a separator must not escape it.
-      const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
+      const { listKnownAccountDirs, reconcileCredentials, readExpiresAt, nextReconcileDelayMs } =
+        await import("../lib/credentials-sync");
       await reconcileCredentials(runtimeClaudeDir, await listKnownAccountDirs(homedir()));
+      delayMs = nextReconcileDelayMs(await readExpiresAt(runtimeClaudeDir), Date.now());
     } catch (err) {
       debug("launch:cred-reconcile", err);
-    } finally {
-      running = false;
     }
+    if (stopped) return;
+    timer = setTimeout(() => void tick(), delayMs);
+    timer.unref();
   };
-  const timer = setInterval(() => void tick(), CREDENTIAL_RECONCILE_MS);
-  timer.unref();
-  return () => clearInterval(timer);
+
+  // Reconcile once up front: a session launched while a sibling is mid-rotation
+  // should adopt the live token now, not a minute from now.
+  void tick();
+
+  return () => {
+    stopped = true;
+    if (timer !== undefined) clearTimeout(timer);
+  };
 }
 
 /**
