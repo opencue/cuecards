@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="aklid01-manhua"></a>
-## ✨ [aklid01/manhua](https://github.com/aklid01/manhua)
+<a id="auro-rium-ops-incident-core"></a>
+## ✨ [Auro-rium/Ops-Incident-Core](https://github.com/Auro-rium/Ops-Incident-Core)
 
-**★ 1** · strong (score 5.3) · Python · tags: ai, comic-translation, computer-vision, image-processing, llm
+**★ 1** · strong (score 6.3) · Python · tags: azure-openai, fastapi, incident-response, mcp-server, observability
 
-An open-source, modular pipeline for translating manhua pages. Detect speech bubbles, extract text with OCR, translate using LLMs, and regenerate localized pages while preserving the original reading experience.
+Azure-first IncidentOps backend for ingesting engineering evidence, indexing it with PostgreSQL/pgvector, and powering cited search, investigation, workflows, and MCP.
 
 ```bash
-cue skills add aklid01/manhua --profile python
+cue skills add Auro-rium/Ops-Incident-Core --profile python
 ```
 
 ---

@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="zandereins-hydra"></a>
+## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
+
+**★ 4** · exceptional (score 16.3) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+
+Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
+
+✅ SKILL.md
+
+```bash
+cue skills add Zandereins/hydra --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1994** · exceptional (score 10.8) · Python · tags: agentskills, claude, skills
+**★ 1996** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -31,7 +46,7 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 <a id="eriknewton-sanctuary-framework"></a>
 ## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 6** · exceptional (score 10.1) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 7** · exceptional (score 10.2) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
@@ -44,7 +59,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 3** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
@@ -54,41 +69,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="humanix-cybersecurity-humanix-academie"></a>
-## ✨ [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
-
-**★ 3** · strong (score 6.7) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
-
-🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
-
-```bash
-cue skills add Humanix-Cybersecurity/Humanix-Academie --profile cybersecurity
-```
-
----
-
 <a id="gesh75-argus"></a>
 ## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 2** · strong (score 5.4) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 2** · strong (score 5.5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
 Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 
 ```bash
 cue skills add gesh75/argus --profile cybersecurity
-```
-
----
-
-<a id="forrestrae-stridesmith"></a>
-## 🔹 [forrestrae/stridesmith](https://github.com/forrestrae/stridesmith)
-
-**★ 1** · potential (score 3.1) · Python · tags: security-review, stride, theatmodel
-
-Claude Code plugin that runs threat-model-driven security reviews, turning scoped STRIDE models into validated attack paths, prioritized manual review, actionable findings, and executive-ready reports.
-
-```bash
-cue skills add forrestrae/stridesmith --profile cybersecurity
 ```
 
 ---

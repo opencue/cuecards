@@ -2,21 +2,21 @@
 title: "RandallLiuXin/GodotMaker — Claude Code skill discovered by cue"
 description: "Autonomous text-to-game pipeline for Godot, powered by Claude Code,Codex,Opencode"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [RandallLiuXin/GodotMaker](https://github.com/RandallLiuXin/GodotMaker)
 
-**★ 492** · exceptional (score 18.2) · Python · ai-agent, claude-code, claude-code-skill, codex, game-development
+**★ 496** · exceptional (score 18.2) · Python · ai-agent, claude-code, claude-code-skill, codex, game-development
 
 > Autonomous text-to-game pipeline for Godot, powered by Claude Code,Codex,Opencode
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.2 based on:
-- ⭐ 492 stars
-- 🗓️ Last pushed: 2026-07-27
+- ⭐ 496 stars
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: ai-agent, claude-code, claude-code-skill, codex, game-development, godot-4, text-to-game
 
 ## Best fit cue profiles

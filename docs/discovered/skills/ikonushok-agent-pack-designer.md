@@ -2,7 +2,7 @@
 title: "ikonushok/agent-pack-designer — Claude Code skill discovered by cue"
 description: "Design minimal AI agent packs for Codex and Claude from project descriptions."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-28
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: agent-skills, agents, ai-agents, ai-agents-automation, claude, claude-code, claude-code-skill, claude-skills, codex, codex-skill, developer-tools, developer-tools-ai-agent, prompt-engineering, prompt-engineering-tool, validation, workflow-automation, workflow-automation-ai
 
 ## Best fit cue profiles

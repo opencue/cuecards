@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-07-28 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-07-29 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 69 | `nano-banana-pro-prompts-recommend-skill`, `trace-mcp`, `brilliant-directories-mcp` |
-| [**backend**](./backend.md) | 9 | `orionbelt-semantic-layer`, `orionbelt-analytics`, `nancy-brain` |
-| [**cybersecurity**](./cybersecurity.md) | 6 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**fleet-control**](./fleet-control.md) | 4 | `suede-creator-skills`, `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator` |
-| [**creative-media**](./creative-media.md) | 4 | `WSL-Image-Clipboard-Helper`, `pixel-mcp-workflow`, `lyt` |
-| [**docs-writer**](./docs-writer.md) | 3 | `god-of-the-void`, `mneme`, `lingtai-mcp` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `pixel-mcp-workflow`, `sticky-switcher-funnel-playbook` |
-| [**research**](./research.md) | 3 | `scholar-sidekick-mcp`, `youtube-course-builder`, `popper-scope` |
+| [**core**](./core.md) | 74 | `nano-banana-pro-prompts-recommend-skill`, `trace-mcp`, `GodotMaker` |
+| [**backend**](./backend.md) | 9 | `LeanKG`, `stigix`, `samyama-graph` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `hydra`, `Claude-OSINT`, `sanctuary-framework` |
+| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**creative-media**](./creative-media.md) | 3 | `WSL-Image-Clipboard-Helper`, `lyt`, `redesigned-pancake` |
+| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
 | [**video**](./video.md) | 2 | `youtube-course-builder`, `lyt` |
-| [**python**](./python.md) | 2 | `manhua`, `alfred` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `amazon-listing-doctor` |
+| [**research**](./research.md) | 2 | `youtube-course-builder`, `popper-scope` |
+| [**python**](./python.md) | 2 | `Ops-Incident-Core`, `alfred` |
+| [**docs-writer**](./docs-writer.md) | 1 | `mneme` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**rust**](./rust.md) | 1 | `intutic` |
 
 ## How scoring works
 

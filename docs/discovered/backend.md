@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,67 +15,67 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="ralforion-orionbelt-semantic-layer"></a>
-## 💎 [ralforion/orionbelt-semantic-layer](https://github.com/ralforion/orionbelt-semantic-layer)
+<a id="freepeak-leankg"></a>
+## 💎 [FreePeak/LeanKG](https://github.com/FreePeak/LeanKG)
 
-**★ 70** · exceptional (score 11.2) · Python · tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
+**★ 213** · exceptional (score 11.6) · Rust · tags: ai-memory, codebase-memory, codebase-memory-mcp, concise-context, context-engineer
 
-Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
+LeanKG: Stop Burning Tokens. Start Coding Lean.
 
 ```bash
-cue skills add ralforion/orionbelt-semantic-layer --profile backend
+cue skills add FreePeak/LeanKG --profile backend
 ```
 
 ---
 
-<a id="ralforion-orionbelt-analytics"></a>
-## 💎 [ralforion/orionbelt-analytics](https://github.com/ralforion/orionbelt-analytics)
+<a id="jsuzanne-stigix"></a>
+## 💎 [jsuzanne/stigix](https://github.com/jsuzanne/stigix)
 
-**★ 45** · exceptional (score 9.9) · Python · tags: agentic-ai, chromadb, claude-desktop, clickhouse, databricks
+**★ 15** · exceptional (score 11.2) · TypeScript · tags: demo-app, digital-experience, docker, emulation, failover
 
-Ontology-based MCP server that analyzes database schemas (PostgreSQL, Snowflake, ClickHouse, Dremio) and generates RDF/OWL ontologies with SQL mappings for fan-trap-free Text-to-SQL.
+Stigix is a lab platform to validate SD‑WAN and SASE. ​ It unifies SaaS traffic generation, security tests, convergence probes, and voice/IoT/VyOS simulations in one web UI
 
 ```bash
-cue skills add ralforion/orionbelt-analytics --profile backend
+cue skills add jsuzanne/stigix --profile backend
 ```
 
 ---
 
-<a id="amberlee2427-nancy-brain"></a>
-## 💎 [AmberLee2427/nancy-brain](https://github.com/AmberLee2427/nancy-brain)
+<a id="samyama-ai-samyama-graph"></a>
+## 💎 [samyama-ai/samyama-graph](https://github.com/samyama-ai/samyama-graph)
 
-**★ 5** · exceptional (score 9.7) · Python · tags: embeddings, http, mcp, mcp-server, python
+**★ 126** · exceptional (score 10.6) · Rust · tags: billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database
 
-Nancy's RAG backend and HTTP API/MCP server connectors.
+Graph-vector database that queried 1 billion edges for $2.50. Rust, OpenCypher, vector search, 14 graph algorithms. 74M nodes / 1B edges on a single machine.
 
 ```bash
-cue skills add AmberLee2427/nancy-brain --profile backend
+cue skills add samyama-ai/samyama-graph --profile backend
 ```
 
 ---
 
-<a id="widthdom-codeindex"></a>
-## 💎 [Widthdom/CodeIndex](https://github.com/Widthdom/CodeIndex)
+<a id="webdevelopers-eu-zolinga"></a>
+## 💎 [webdevelopers-eu/zolinga](https://github.com/webdevelopers-eu/zolinga)
 
-**★ 2** · exceptional (score 8) · C# · tags: ai-coding-agents, cli, code-indexing, code-navigation, code-search
+**★ 4** · exceptional (score 8.3) · PHP · tags: content-management-system, databaseless, mcp, mcp-server, php
 
-Local-first code search and indexing for repositories, exposed through a CLI, MCP server, and read-only LSP.
+🤖 Built for People. 🧠 Optimized for AI Agents. Lightweight PHP framework with native MCP support. ✨ Hand coded from the ground up.
 
 ```bash
-cue skills add Widthdom/CodeIndex --profile backend
+cue skills add webdevelopers-eu/zolinga --profile backend
 ```
 
 ---
 
-<a id="humanix-cybersecurity-humanix-academie"></a>
-## ✨ [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+<a id="chelseakr-gtfs-scorecard"></a>
+## ✨ [ChelseaKR/gtfs-scorecard](https://github.com/ChelseaKR/gtfs-scorecard)
 
-**★ 3** · strong (score 6.7) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+**★ 2** · strong (score 6.5) · HTML · tags: accessibility, civic-tech, data-quality, duckdb, github-actions
 
-🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
+GTFS and GTFS-Realtime quality scorecards for 1,100+ U.S. and Canadian transit feeds, with plain-language fixes for small agencies, MobilityData validation, a read API, GitHub Action, and MCP server.
 
 ```bash
-cue skills add Humanix-Cybersecurity/Humanix-Academie --profile backend
+cue skills add ChelseaKR/gtfs-scorecard --profile backend
 ```
 
 ---
@@ -93,6 +93,19 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
+<a id="auro-rium-ops-incident-core"></a>
+## ✨ [Auro-rium/Ops-Incident-Core](https://github.com/Auro-rium/Ops-Incident-Core)
+
+**★ 1** · strong (score 6.3) · Python · tags: azure-openai, fastapi, incident-response, mcp-server, observability
+
+Azure-first IncidentOps backend for ingesting engineering evidence, indexing it with PostgreSQL/pgvector, and powering cited search, investigation, workflows, and MCP.
+
+```bash
+cue skills add Auro-rium/Ops-Incident-Core --profile backend
+```
+
+---
+
 <a id="anirudhlath-alfred"></a>
 ## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
@@ -102,19 +115,6 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile backend
-```
-
----
-
-<a id="demorphed6-lgtm-planomy-mcp"></a>
-## ✨ [demorphed6-lgtm/planomy-mcp](https://github.com/demorphed6-lgtm/planomy-mcp)
-
-**★ 0** · strong (score 5) · JavaScript · tags: ai, anthropic, budgeting, claude, finance
-
-Local MCP server for retirement and financial planning: multi-decade projections, Monte Carlo, scenario comparison, budget variance and safe plan edits — all on your own machine, no API key, no account.
-
-```bash
-cue skills add demorphed6-lgtm/planomy-mcp --profile backend
 ```
 
 ---

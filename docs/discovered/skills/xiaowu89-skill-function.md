@@ -1,22 +1,22 @@
 ---
 title: "xiaowu89/skill-function — Claude Code skill discovered by cue"
-description: "Claude Code skill from xiaowu89/skill-function"
+description: "AI-powered image content moderation skill — detects adult, political, and violent content in images"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xiaowu89/skill-function](https://github.com/xiaowu89/skill-function)
 
-**★ 3** · exceptional (score 10.2) · agent-skill, agent-skills, claude-skill, claude-skills, content-moderation
+**★ 3** · exceptional (score 11.2) · agent-skill, agent-skills, claude-skill, claude-skills, content-moderation
 
-> A Claude Code skill repository discovered by cue.
+> AI-powered image content moderation skill — detects adult, political, and violent content in images
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-27
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: agent-skill, agent-skills, claude-skill, claude-skills, content-moderation, image-audit, mcp-server, skill-md, skillsmp
 
 ## Best fit cue profiles

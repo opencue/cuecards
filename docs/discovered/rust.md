@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-27
+updated: 2026-07-29
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -18,9 +18,9 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 <a id="intutic-intutic"></a>
 ## ✨ [intutic/intutic](https://github.com/intutic/intutic)
 
-**★ 5** · strong (score 6.9) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 4** · strong (score 6.8) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
 
-The open source circuit breaker for AI agents. Real-time security, secret DLP, and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
+The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
 
 ```bash
 cue skills add intutic/intutic --profile rust

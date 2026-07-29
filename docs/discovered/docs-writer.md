@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="chaosx-space-god-of-the-void"></a>
-## 💎 [CHAOSX-SPACE/god-of-the-void](https://github.com/CHAOSX-SPACE/god-of-the-void)
-
-**★ 1** · exceptional (score 14.8) · Python · tags: agent-memory, ai-agent, anthropic, claude, claude-code
-
-A Claude Code skill with a BODY: persistent memory across sessions, ~0-token semantic search, an errarium that ambushes you before you repeat a bug, caged autonomy, and a local dashboard. 16 organs · 54 commands · 1,650 tests · zero dependencies.
-
-✅ SKILL.md
-
-```bash
-cue skills add CHAOSX-SPACE/god-of-the-void --profile docs-writer
-```
 
 ---
 
@@ -39,19 +24,6 @@ Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before
 
 ```bash
 cue skills add OnourImpram/mneme --profile docs-writer
-```
-
----
-
-<a id="edrc-shawn-lingtai-mcp"></a>
-## ✨ [edrc-shawn/lingtai-mcp](https://github.com/edrc-shawn/lingtai-mcp)
-
-**★ 0** · strong (score 7) · Python · tags: agent-framework, ai-agent, automation, knowledge-base, knowledge-management
-
-Self-evolving knowledge management system: Obsidian vault + a zero-dependency MCP server (86 tools). Refines raw materials into structured knowledge, evolves its own rules, and runs 24/7 patrol automation
-
-```bash
-cue skills add edrc-shawn/lingtai-mcp --profile docs-writer
 ```
 
 ---

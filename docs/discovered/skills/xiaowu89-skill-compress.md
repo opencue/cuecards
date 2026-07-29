@@ -1,23 +1,22 @@
 ---
 title: "xiaowu89/skill-compress — Claude Code skill discovered by cue"
-description: "Claude Code skill from xiaowu89/skill-compress"
+description: "Server-side image compression skill with CDN output — supports batch processing and single-file mode"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xiaowu89/skill-compress](https://github.com/xiaowu89/skill-compress)
 
-**★ 2** · exceptional (score 15) · agent-skill, agent-skills, claude-code, claude-code-skill, claude-skills
+**★ 2** · exceptional (score 11) · agent-skill, agent-skills, claude-code, claude-code-skill, claude-skills
 
-> A Claude Code skill repository discovered by cue.
+> Server-side image compression skill with CDN output — supports batch processing and single-file mode
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-24
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: agent-skill, agent-skills, claude-code, claude-code-skill, claude-skills, compression, image-compress, image-compression, image-optimization, mcp, skill-md, skillsmp
 
 ## Best fit cue profiles

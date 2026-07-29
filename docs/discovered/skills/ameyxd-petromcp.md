@@ -2,7 +2,7 @@
 title: "ameyxd/petromcp — Claude Code skill discovered by cue"
 description: "Local-first MCP server for petroleum data. Read LAS well logs from Claude, behind a default-deny path allowlist."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 

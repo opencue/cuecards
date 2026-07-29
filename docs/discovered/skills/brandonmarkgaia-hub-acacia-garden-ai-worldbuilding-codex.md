@@ -2,7 +2,7 @@
 title: "brandonmarkgaia-hub/Acacia-Garden-AI-Worldbuilding-Codex — Claude Code skill discovered by cue"
 description: "A symbolic, mythic worldbuilding codex of Chambers, Echoes, Rootlines and emergent lore. 🌿♾️"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: ai-worldbuilding, codex, creative-writing, future-proof, gardenos, keeper-protocol, knowledge-architecture, knowledge-graph, llm-native, lore-management, mcp-server, mythic-design, mythology, storytelling, structured-data, symbolic, symbolic-architecture, worldbuilding
 
 ## Best fit cue profiles
