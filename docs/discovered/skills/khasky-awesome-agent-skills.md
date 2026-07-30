@@ -1,27 +1,27 @@
 ---
 title: "khasky/awesome-agent-skills — Claude Code skill discovered by cue"
-description: " Skills for AI coding agents: code review, debugging, security audits, refactoring, and cleaning up AI-written code and text."
+description: " Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more."
 layout: page
-updated: 2026-07-26
-tags: [claude-code, skill, core]
+updated: 2026-07-30
+tags: [claude-code, skill, cybersecurity]
 ---
 
 # ✨ [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
 
-**★ 1** · strong (score 7.8) · Python · agent, agent-skills, ai, ai-skill, awesome-lists
+**★ 1** · strong (score 7.8) · Python · agent, agent-skills, ai, ai-agents, ai-coding
 
->  Skills for AI coding agents: code review, debugging, security audits, refactoring, and cleaning up AI-written code and text.
+>  Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-26
-- 🏷️ Tags: agent, agent-skills, ai, ai-skill, awesome-lists, chatgpt, claude, claude-skill, codex, cursor, pack, skills, universal, vibe-coding
+- 🗓️ Last pushed: 2026-07-30
+- 🏷️ Tags: agent, agent-skills, ai, ai-agents, ai-coding, ai-skill, ai-slop, awesome-lists, chatgpt, claude, claude-skill, code-review, codex, cursor, pack, refactoring, security-audi, skills, vibe-coding
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[cybersecurity](../cybersecurity.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add khasky/awesome-agent-skills --profile core
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
 ```
 
 ## About

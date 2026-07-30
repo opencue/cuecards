@@ -2,7 +2,7 @@
 title: "OpenBioHack/openbiohack — Claude Code skill discovered by cue"
 description: "Free, non-directive, first-principles thinking partner for hard, ambiguous health challenges & optimisation — runs in your own Claude Code, on your own data. Ed"
 layout: page
-updated: 2026-07-27
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-27
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: agent-skills, ai-agent, biohacking, claude-code, claude-skill, health, labs, personal-health, quantified-self
 
 ## Best fit cue profiles

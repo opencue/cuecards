@@ -2,21 +2,21 @@
 title: "conorbronsdon/ai-learning-resources — Claude Code skill discovered by cue"
 description: "Curated learning path from 'what is AI?' to building with Claude Code and MCP. Quality over quantity."
 layout: page
-updated: 2026-07-13
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [conorbronsdon/ai-learning-resources](https://github.com/conorbronsdon/ai-learning-resources)
+# 💎 [conorbronsdon/ai-learning-resources](https://github.com/conorbronsdon/ai-learning-resources)
 
-**★ 1** · strong (score 7.6) · ai, ai-learning, ai-tools, beginners, claude-code
+**★ 2** · exceptional (score 8) · ai, ai-learning, ai-tools, beginners, claude-code
 
 > Curated learning path from 'what is AI?' to building with Claude Code and MCP. Quality over quantity.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.6 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-08
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: ai, ai-learning, ai-tools, beginners, claude-code, developer-tools, education, learning, learning-resources, llm, machine-learning, mcp
 
 ## Best fit cue profiles

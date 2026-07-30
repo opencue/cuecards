@@ -1,22 +1,22 @@
 ---
 title: "nuttaruj/rolepod — Claude Code skill discovered by cue"
-description: "Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership"
+description: "Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by "
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 2** · strong (score 6.5) · Shell · agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 3** · strong (score 6.7) · Shell · agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
-> Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
+> Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering, workflow
 
 ## Best fit cue profiles

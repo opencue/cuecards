@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-30
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="buluslan-amazon-listing-doctor"></a>
-## 💎 [buluslan/amazon-listing-doctor](https://github.com/buluslan/amazon-listing-doctor)
+<a id="dannylydst-sorftime-seller-agent"></a>
+## 💎 [DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
 
-**★ 5** · exceptional (score 13.9) · Python · tags: amazon, amazon-listing, amazon-seller, cdq, claude-code
+**★ 5** · exceptional (score 15.4) · Python · tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
 
-亚马逊 Listing 质检+打分 Skill | Amazon listing health-check & scoring (CDQ/A9/COSMO/Alexa) 
+Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooked high-margin products. 80+ MCP tools. Amazon FBA, Walmart, TikTok Shop, Shopee, TEMU, 1688. Claude Code, Codex, Cursor, OpenClaw. Open source.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add buluslan/amazon-listing-doctor --profile medusa-dev
+cue skills add DannylydST/sorftime-seller-agent --profile medusa-dev
 ```
 
 ---

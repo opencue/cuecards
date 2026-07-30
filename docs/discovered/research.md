@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="dannylydst-sorftime-seller-agent"></a>
+## 💎 [DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
+
+**★ 5** · exceptional (score 15.4) · Python · tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
+
+Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooked high-margin products. 80+ MCP tools. Amazon FBA, Walmart, TikTok Shop, Shopee, TEMU, 1688. Claude Code, Codex, Cursor, OpenClaw. Open source.
+
+✅ SKILL.md
+
+```bash
+cue skills add DannylydST/sorftime-seller-agent --profile research
+```
+
+---
+
 <a id="luismiguelfurlanettosousa-youtube-course-builder"></a>
 ## 💎 [LuisMIguelFurlanettoSousa/youtube-course-builder](https://github.com/LuisMIguelFurlanettoSousa/youtube-course-builder)
 
-**★ 1** · exceptional (score 8.3) · tags: agent-skills, anthropic, claude-code, claude-skill, curriculum
+**★ 1** · exceptional (score 8.2) · tags: agent-skills, anthropic, claude-code, claude-skill, curriculum
 
 YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles
 
 ```bash
 cue skills add LuisMIguelFurlanettoSousa/youtube-course-builder --profile research
+```
+
+---
+
+<a id="zhao73-alphacouncil-agent"></a>
+## 💎 [Zhao73/alphacouncil-agent](https://github.com/Zhao73/alphacouncil-agent)
+
+**★ 3** · exceptional (score 8.2) · JavaScript · tags: ai-agents, anthropic, claude-code, codex, equity-research
+
+🏛️ A simulated investment committee that argues with itself — 27 investor-method lenses (Buffett, Munger, Graham, Marks, Burry, Taleb…) read the same filings and disagree, then bull vs bear debate and a PM decides. Pick your depth: 15/30/60 min. 31 keyless tools, no API keys. Claude Code · Codex · OpenCode · Grok Build. Educational, not advice.
+
+```bash
+cue skills add Zhao73/alphacouncil-agent --profile research
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "moiz-za/svg-design-intelligence-system — Claude Code skill discovered by cue"
 description: "An open-source AI skill for commercial SVG research, strategy, and premium prompt engineering — for Etsy sellers using ChatGPT, Claude, Gemini, or Grok."
 layout: page
-updated: 2026-07-28
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-28
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: ai-prompts, chatgpt, claude, claude-skill, cricut, design-strategy, digital-products, etsy, etsy-svg, gemini, prompt-engineering, svg
 
 ## Best fit cue profiles

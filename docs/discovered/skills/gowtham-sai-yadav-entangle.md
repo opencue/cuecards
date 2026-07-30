@@ -1,8 +1,8 @@
 ---
 title: "gowtham-sai-yadav/entangle — Claude Code skill discovered by cue"
-description: "Move your Claude Code history, memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically."
+description: "Move your Coding Agent history (Claude Code, Codex, OpenCode) memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically across"
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, core]
 
 **★ 21** · strong (score 7.5) · Go · ai-coding, anthropic, backup, claude, claude-code
 
-> Move your Claude Code history, memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically.
+> Move your Coding Agent history (Claude Code, Codex, OpenCode) memory, and sessions between machines (Linux/macOS/Windows), with paths fixed automatically across your teams and friends.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 21 stars
-- 🗓️ Last pushed: 2026-07-28
-- 🏷️ Tags: ai-coding, anthropic, backup, claude, claude-code, cli, cross-platform, developer-tools, devtools, golang, migration
+- 🗓️ Last pushed: 2026-07-29
+- 🏷️ Tags: ai-coding, anthropic, backup, claude, claude-code, cli, codex, cross-platform, developer-tools, devtools, golang, migration, openai, openai-codex, opencode
 
 ## Best fit cue profiles
 

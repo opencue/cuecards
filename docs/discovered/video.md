@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,25 +18,12 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 <a id="luismiguelfurlanettosousa-youtube-course-builder"></a>
 ## 💎 [LuisMIguelFurlanettoSousa/youtube-course-builder](https://github.com/LuisMIguelFurlanettoSousa/youtube-course-builder)
 
-**★ 1** · exceptional (score 8.3) · tags: agent-skills, anthropic, claude-code, claude-skill, curriculum
+**★ 1** · exceptional (score 8.2) · tags: agent-skills, anthropic, claude-code, claude-skill, curriculum
 
 YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles
 
 ```bash
 cue skills add LuisMIguelFurlanettoSousa/youtube-course-builder --profile video
-```
-
----
-
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
-
-**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
-
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
-
-```bash
-cue skills add TanaTTV/lyt --profile video
 ```
 
 ---

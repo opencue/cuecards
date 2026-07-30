@@ -1,24 +1,24 @@
 ---
 title: "DOTfei/borrowed-brain-pro — Claude Code skill discovered by cue"
-description: "Turn a real person's public track record into a structured, sourced thinking profile — then apply it as an extra lens on a decision you're facing. A Claude Skil"
+description: "An open-source AI skill that upgrades your prompts. Load verified thinking profiles of tech founders and philosophers to run virtual boardroom debates on your r"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DOTfei/borrowed-brain-pro](https://github.com/DOTfei/borrowed-brain-pro)
 
-**★ 2** · exceptional (score 11.5) · ai, claude, claude-skill, decision-making, decision-support
+**★ 3** · exceptional (score 11.7) · HTML · ai, chatgpt, claude, claude-skill, decision-making
 
-> Turn a real person's public track record into a structured, sourced thinking profile — then apply it as an extra lens on a decision you're facing. A Claude Skill, no code dependencies.
+> An open-source AI skill that upgrades your prompts. Load verified thinking profiles of tech founders and philosophers to run virtual boardroom debates on your real decisions.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-07
-- 🏷️ Tags: ai, claude, claude-skill, decision-making, decision-support, llm, prompt-engineering, thinking-models
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-07-30
+- 🏷️ Tags: ai, chatgpt, claude, claude-skill, decision-making, decision-support, llm, mental-models, open-webui, prompt-engineering, system-prompt, thinking-frameworks, thinking-models
 
 ## Best fit cue profiles
 

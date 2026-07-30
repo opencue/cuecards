@@ -2,7 +2,7 @@
 title: "CSOAI-ORG/councilof-ai — Claude Code skill discovered by cue"
 description: "Democratic AI Governance through Council of 12 AIs - councilof.ai"
 layout: page
-updated: 2026-07-07
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-07
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: ai-governance, compliance, csoai, mcp, mcp-server, meok-ai-labs, model-context-protocol
 
 ## Best fit cue profiles

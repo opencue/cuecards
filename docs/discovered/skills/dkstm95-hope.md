@@ -1,8 +1,8 @@
 ---
 title: "dkstm95/hope — Claude Code skill discovered by cue"
-description: "Hope looks for practical ways for people and AI to work better together."
+description: "Hope looks for practical ways for human and AI to work better together."
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 3** · exceptional (score 10.7) · JavaScript · ai-assisted-development, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill
 
-> Hope looks for practical ways for people and AI to work better together.
+> Hope looks for practical ways for human and AI to work better together.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-29
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: ai-assisted-development, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, code-understanding, codex-plugin, codex-skill, codex-skills, developer-tools
 
 ## Best fit cue profiles

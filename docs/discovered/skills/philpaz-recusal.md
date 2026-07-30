@@ -2,7 +2,7 @@
 title: "philpaz/recusal — Claude Code skill discovered by cue"
 description: "Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No mo"
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, skill, cybersecurity]
 ---
 

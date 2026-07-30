@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -33,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1996** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
+**★ 1998** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -46,12 +46,25 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 <a id="eriknewton-sanctuary-framework"></a>
 ## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 7** · exceptional (score 10.2) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 6** · exceptional (score 10.1) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
+```
+
+---
+
+<a id="khasky-awesome-agent-skills"></a>
+## ✨ [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
+
+**★ 1** · strong (score 7.8) · Python · tags: agent, agent-skills, ai, ai-agents, ai-coding
+
+ Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
+
+```bash
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
 ```
 
 ---
@@ -65,6 +78,19 @@ Deterministic governance for Claude and MCP tool calls. Pin approved capabilitie
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="draugr-dev-draugr"></a>
+## ✨ [draugr-dev/draugr](https://github.com/draugr-dev/draugr)
+
+**★ 2** · strong (score 6.5) · Go · tags: appsec, cli, code-scanning, container-security, dast
+
+Developer-first security scanning orchestration — describe your app in one file, run many scanners (SAST, SCA, secrets, IaC, containers, headers), get one SARIF verdict for CI & code scanning.
+
+```bash
+cue skills add draugr-dev/draugr --profile cybersecurity
 ```
 
 ---

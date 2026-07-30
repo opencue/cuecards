@@ -2,7 +2,7 @@
 title: "jsuzanne/stigix — Claude Code skill discovered by cue"
 description: "Stigix is a lab platform to validate SD‑WAN and SASE. ​ It unifies SaaS traffic generation, security tests, convergence probes, and voice/IoT/VyOS simulations i"
 layout: page
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
 - ⭐ 15 stars
-- 🗓️ Last pushed: 2026-07-29
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: demo-app, digital-experience, docker, emulation, failover, failover-automation, internet-of-things, iot-device, iot-emulation, mcp-server, network-testing, prisma-sdwan, probes, probing, sase, sd-wan, security-testing, traffic-generator, vyos, vyos-api
 
 ## Best fit cue profiles
