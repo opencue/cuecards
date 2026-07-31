@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
-**★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
+**★ 2** · exceptional (score 11) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
 Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
@@ -37,6 +37,19 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="tarastsavolyk-claude-code-frontend"></a>
+## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
+
+**★ 1** · potential (score 3.3) · JavaScript
+
+Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
+
+```bash
+cue skills add TarasTsavolyk/claude-code-frontend --profile frontend
 ```
 
 ---

@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="inphinity-design-claude-codex-fleet"></a>
+## 💎 [Inphinity-Design/claude-codex-fleet](https://github.com/Inphinity-Design/claude-codex-fleet)
+
+**★ 1** · exceptional (score 13.3) · PowerShell · tags: agent-orchestration, ai-agents, claude, claude-code, claude-code-skill
+
+Run a fleet of OpenAI Codex agents under Claude Code's command - multi-agent orchestration without leaving your terminal. Claude directs, Codex types, nothing ships unverified.
+
+✅ SKILL.md
+
+```bash
+cue skills add Inphinity-Design/claude-codex-fleet --profile fleet-control
+```
 
 ---
 

@@ -2,7 +2,7 @@
 title: "javeckbila/windows-agent-skills — Claude Code skill discovered by cue"
 description: "Make Codex, Claude Code, Cursor & coding agents actually good on Windows. Agent Skills for shell, paths, PowerShell, git, toolchains, WSL."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, skill, core]
 ---
 

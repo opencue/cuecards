@@ -2,7 +2,7 @@
 title: "jlivingston-Cipher/godot-breakpoint-mcp — Claude Code skill discovered by cue"
 description: "MCP for Godot (4.2+)"
 layout: page
-updated: 2026-07-28
+updated: 2026-07-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-28
+- 🗓️ Last pushed: 2026-07-31
 - 🏷️ Tags: crud, csharp, debugging, gdscript, godot, godot4, headless-cli, live-editor, lsp, mcp-server, netcoredbg, omnisharp, screenshots, semantic, undo-redo
 
 ## Best fit cue profiles

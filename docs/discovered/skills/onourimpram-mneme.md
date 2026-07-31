@@ -2,7 +2,7 @@
 title: "OnourImpram/mneme — Claude Code skill discovered by cue"
 description: "Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, skill, docs-writer]
 ---
 

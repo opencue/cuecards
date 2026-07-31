@@ -1,58 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="artokun-comfyui-mcp"></a>
-## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
-
-**★ 462** · exceptional (score 18.3) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
-
-The local-first, agent-native control plane for ComfyUI — MCP server + Claude Code plugin. 108 tools, 29 AI skills (Flux · WAN · LT2.3 · Qwen · Ideogram4 · Krea2). Author & run workflows, edit your live graph in natural language, manage models & custom nodes. Local, LAN, VPS, or Comfy Cloud.
-
-```bash
-cue skills add artokun/comfyui-mcp --profile creative-media
-```
-
----
-
-<a id="danielgwilson-luxin"></a>
-## 💎 [danielgwilson/luxin](https://github.com/danielgwilson/luxin)
-
-**★ 1** · exceptional (score 15.8) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
-
-Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
-
-✅ SKILL.md
-
-```bash
-cue skills add danielgwilson/luxin --profile creative-media
-```
-
----
-
-<a id="cpulxb-wsl-image-clipboard-helper"></a>
-## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
-
-**★ 86** · exceptional (score 10.2) · Rust
-
-该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
-
-```bash
-cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
-```
 
 ---
 

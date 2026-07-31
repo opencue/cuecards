@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="xixihhhh-hotclip"></a>
+## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
+
+**★ 48** · exceptional (score 10.4) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
+
+免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频——AI 找高光金句、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts. No credits, no watermark, no uploads. Win/macOS.
+
+```bash
+cue skills add xixihhhh/hotclip --profile video
+```
 
 ---
 

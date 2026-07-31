@@ -2,7 +2,7 @@
 title: "Zandereins/hydra — Claude Code skill discovered by cue"
 description: "Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dua"
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, skill, cybersecurity]
 ---
 

@@ -1,17 +1,47 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="7onez-cti-expert"></a>
+## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
+
+**★ 421** · exceptional (score 21.7) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
+
+CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required.
+
+✅ SKILL.md
+
+```bash
+cue skills add 7onez/cti-expert --profile cybersecurity
+```
+
+---
+
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+
+**★ 3** · exceptional (score 16.6) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
 
 ---
 
@@ -33,7 +63,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 1998** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
+**★ 2013** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,15 +86,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="khasky-awesome-agent-skills"></a>
-## ✨ [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
+<a id="akshayrao14-git-practices"></a>
+## 💎 [akshayrao14/git-practices](https://github.com/akshayrao14/git-practices)
 
-**★ 1** · strong (score 7.8) · Python · tags: agent, agent-skills, ai, ai-agents, ai-coding
+**★ 0** · exceptional (score 9.5) · Shell · tags: claude-code, claude-skill, dependabot, javascript, security
 
- Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
+Claude Code / Codex / Cursor Agent Skill: defensive Dependabot triage with lockfile parity & exposure mapping. Plus team git workflow scripts (releases, PR helpers, branch resets).
 
 ```bash
-cue skills add khasky/awesome-agent-skills --profile cybersecurity
+cue skills add akshayrao14/git-practices --profile cybersecurity
 ```
 
 ---
@@ -72,25 +102,12 @@ cue skills add khasky/awesome-agent-skills --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="draugr-dev-draugr"></a>
-## ✨ [draugr-dev/draugr](https://github.com/draugr-dev/draugr)
-
-**★ 2** · strong (score 6.5) · Go · tags: appsec, cli, code-scanning, container-security, dast
-
-Developer-first security scanning orchestration — describe your app in one file, run many scanners (SAST, SCA, secrets, IaC, containers, headers), get one SARIF verdict for CI & code scanning.
-
-```bash
-cue skills add draugr-dev/draugr --profile cybersecurity
 ```
 
 ---

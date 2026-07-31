@@ -2,7 +2,7 @@
 title: "LuisMIguelFurlanettoSousa/youtube-course-builder — Claude Code skill discovered by cue"
 description: "YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles"
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, skill, video, research]
 ---
 

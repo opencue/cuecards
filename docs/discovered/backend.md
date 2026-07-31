@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-07-31
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,41 +15,41 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="viewflow-seedkit"></a>
-## 💎 [viewflow/seedkit](https://github.com/viewflow/seedkit)
+<a id="sikamikanikobg-homelab-monitor"></a>
+## 💎 [SikamikanikoBG/homelab-monitor](https://github.com/SikamikanikoBG/homelab-monitor)
 
-**★ 18** · exceptional (score 12.2) · Shell · tags: claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
+**★ 167** · exceptional (score 13) · Python · tags: agentic, ai-agents, ai-infrastructure, claude, dashboard
 
-Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI.
+Plug-and-play homelab dashboard in one container — GPU, local-AI VRAM, Docker, systemd, host health. Built-in read-only MCP server so AI agents can explore it too.
 
 ```bash
-cue skills add viewflow/seedkit --profile backend
+cue skills add SikamikanikoBG/homelab-monitor --profile backend
 ```
 
 ---
 
-<a id="jsuzanne-stigix"></a>
-## 💎 [jsuzanne/stigix](https://github.com/jsuzanne/stigix)
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
 
-**★ 15** · exceptional (score 11.2) · TypeScript · tags: demo-app, digital-experience, docker, emulation, failover
+**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Stigix is a lab platform to validate SD‑WAN and SASE. ​ It unifies SaaS traffic generation, security tests, convergence probes, and voice/IoT/VyOS simulations in one web UI
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
 
 ```bash
-cue skills add jsuzanne/stigix --profile backend
+cue skills add DaizeDong/schedule-reminder --profile backend
 ```
 
 ---
 
-<a id="zhao73-alphacouncil-agent"></a>
-## 💎 [Zhao73/alphacouncil-agent](https://github.com/Zhao73/alphacouncil-agent)
+<a id="unitedideas-nothumansearch"></a>
+## 💎 [unitedideas/nothumansearch](https://github.com/unitedideas/nothumansearch)
 
-**★ 3** · exceptional (score 8.2) · JavaScript · tags: ai-agents, anthropic, claude-code, codex, equity-research
+**★ 8** · exceptional (score 9.8) · Go · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
 
-🏛️ A simulated investment committee that argues with itself — 27 investor-method lenses (Buffett, Munger, Graham, Marks, Burry, Taleb…) read the same filings and disagree, then bull vs bear debate and a PM decides. Pick your depth: 15/30/60 min. 31 keyless tools, no API keys. Claude Code · Codex · OpenCode · Grok Build. Educational, not advice.
+Search engine for AI agents — ranks sites by agentic readiness (llms.txt, OpenAPI, MCP, ai-plugin). MCP server, REST API, full-text search. 8,000+ indexed sites.
 
 ```bash
-cue skills add Zhao73/alphacouncil-agent --profile backend
+cue skills add unitedideas/nothumansearch --profile backend
 ```
 
 ---
