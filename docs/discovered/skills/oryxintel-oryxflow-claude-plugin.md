@@ -1,22 +1,22 @@
 ---
 title: "oryxintel/oryxflow-claude-plugin — Claude Code skill discovered by cue"
-description: "Claude Code plugin for reproducible AI data analysis. A skill + slash commands that teach Claude Code to build analysis as a cached, reproducible oryxflow pipel"
+description: "Trustworthy, reproducible AI data analysis in Claude Code. A data-science plugin (skill + slash commands) that stops your coding agent building on stale data an"
 layout: page
-updated: 2026-07-24
+updated: 2026-08-01
 tags: [claude-code, skill, research]
 ---
 
-# ✨ [oryxintel/oryxflow-claude-plugin](https://github.com/oryxintel/oryxflow-claude-plugin)
+# 💎 [oryxintel/oryxflow-claude-plugin](https://github.com/oryxintel/oryxflow-claude-plugin)
 
-**★ 0** · strong (score 7) · Python · agent-skills, ai-agents, ai-data-analysis, claude-code, claude-code-marketplace
+**★ 0** · exceptional (score 8) · Python · agent-skills, ai-agents, ai-data-analysis, claude-code, claude-code-marketplace
 
-> Claude Code plugin for reproducible AI data analysis. A skill + slash commands that teach Claude Code to build analysis as a cached, reproducible oryxflow pipeline — so AI-written data analysis is   trustworthy and reproducible by default.
+> Trustworthy, reproducible AI data analysis in Claude Code. A data-science plugin (skill + slash commands) that stops your coding agent building on stale data and records what produced every result.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-24
+- 🗓️ Last pushed: 2026-08-01
 - 🏷️ Tags: agent-skills, ai-agents, ai-data-analysis, claude-code, claude-code-marketplace, claude-code-plugin, claude-code-plugins, claude-code-skill, data-analysis, data-science, mlops, reproducibility, reproducible-research, reproducible-science, reproducible-workflows
 
 ## Best fit cue profiles

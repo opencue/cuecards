@@ -2,19 +2,19 @@
 title: "javeckbila/windows-agent-skills — Claude Code skill discovered by cue"
 description: "Make Codex, Claude Code, Cursor & coding agents actually good on Windows. Agent Skills for shell, paths, PowerShell, git, toolchains, WSL."
 layout: page
-updated: 2026-07-31
+updated: 2026-08-01
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [javeckbila/windows-agent-skills](https://github.com/javeckbila/windows-agent-skills)
 
-**★ 1** · strong (score 6.2) · PowerShell · agent-skills, ai-agents, claude-code, codex, cursor
+**★ 1** · strong (score 6.1) · PowerShell · agent-skills, ai-agents, claude-code, codex, cursor
 
 > Make Codex, Claude Code, Cursor & coding agents actually good on Windows. Agent Skills for shell, paths, PowerShell, git, toolchains, WSL.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, codex, cursor, developer-tools, openai-codex, opencode, powershell, windows

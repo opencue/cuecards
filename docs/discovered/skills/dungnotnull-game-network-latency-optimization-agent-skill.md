@@ -2,19 +2,19 @@
 title: "dungnotnull/game-network-latency-optimization-agent-skill — Claude Code skill discovered by cue"
 description: "🌐⚡ Overseas Game Network Performance & Latency Engineering Engine | Production-grade Claude Code harness (v2.0.0) for Valorant, CS2, & MMOs. Features ping/pack"
 layout: page
-updated: 2026-07-31
+updated: 2026-08-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [dungnotnull/game-network-latency-optimization-agent-skill](https://github.com/dungnotnull/game-network-latency-optimization-agent-skill)
 
-**★ 2** · exceptional (score 8.5) · Python
+**★ 2** · exceptional (score 8.4) · Python
 
 > 🌐⚡ Overseas Game Network Performance & Latency Engineering Engine | Production-grade Claude Code harness (v2.0.0) for Valorant, CS2, & MMOs. Features ping/packet loss/jitter decomposition, BGP path optimization, & crawl4ai RAG loops. 🚀
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-07-29

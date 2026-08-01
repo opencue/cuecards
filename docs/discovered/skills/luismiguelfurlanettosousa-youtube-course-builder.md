@@ -2,19 +2,19 @@
 title: "LuisMIguelFurlanettoSousa/youtube-course-builder — Claude Code skill discovered by cue"
 description: "YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles"
 layout: page
-updated: 2026-07-31
+updated: 2026-08-01
 tags: [claude-code, skill, video, research]
 ---
 
 # 💎 [LuisMIguelFurlanettoSousa/youtube-course-builder](https://github.com/LuisMIguelFurlanettoSousa/youtube-course-builder)
 
-**★ 1** · exceptional (score 8.2) · agent-skills, anthropic, claude-code, claude-skill, curriculum
+**★ 1** · exceptional (score 8.1) · agent-skills, anthropic, claude-code, claude-skill, curriculum
 
 > YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: agent-skills, anthropic, claude-code, claude-skill, curriculum, education, learning-path, mcp, playwright, self-learning, study-plan, transcript-analysis, video-curation, yt-dlp

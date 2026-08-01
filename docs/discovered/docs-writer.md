@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-31
+updated: 2026-08-01
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="chaosx-space-god-of-the-void"></a>
+## 💎 [CHAOSX-SPACE/god-of-the-void](https://github.com/CHAOSX-SPACE/god-of-the-void)
+
+**★ 1** · exceptional (score 14.8) · Python · tags: agent-memory, ai-agent, anthropic, claude, claude-code
+
+A Claude Code skill with a BODY: persistent memory across sessions, ~0-token semantic search, an errarium that ambushes you before you repeat a bug, caged autonomy, and a local dashboard. 16 organs · 54 commands · 1,650 tests · zero dependencies.
+
+✅ SKILL.md
+
+```bash
+cue skills add CHAOSX-SPACE/god-of-the-void --profile docs-writer
+```
+
+---
+
 <a id="onourimpram-mneme"></a>
 ## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 2** · exceptional (score 8.9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
+**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
 Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 

@@ -1,54 +1,24 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-31
+updated: 2026-08-01
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="7onez-cti-expert"></a>
-## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
-
-**★ 421** · exceptional (score 21.7) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
-
-CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required.
-
-✅ SKILL.md
-
-```bash
-cue skills add 7onez/cti-expert --profile cybersecurity
-```
-
----
-
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
-
-**★ 3** · exceptional (score 16.6) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
-
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
-
-✅ SKILL.md
-
-```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
-```
-
----
-
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 4** · exceptional (score 16.3) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 4** · exceptional (score 16.2) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -63,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2013** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
+**★ 2052** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -86,15 +56,28 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="akshayrao14-git-practices"></a>
-## 💎 [akshayrao14/git-practices](https://github.com/akshayrao14/git-practices)
+<a id="bambushu-crucible"></a>
+## 💎 [Bambushu/crucible](https://github.com/Bambushu/crucible)
 
-**★ 0** · exceptional (score 9.5) · Shell · tags: claude-code, claude-skill, dependabot, javascript, security
+**★ 35** · exceptional (score 10.1) · Python · tags: adversarial-review, ai-code-review, claude-code, claude-code-skill, code-review
 
-Claude Code / Codex / Cursor Agent Skill: defensive Dependabot triage with lockfile parity & exposure mapping. Plus team git workflow scripts (releases, PR helpers, branch resets).
+Codebase-level adversarial review by a panel of frontier models. A Claude Code skill that runs every file through DeepSeek + Gemini + Kimi + MiniMax in sequence, then has Claude verify the findings against the actual source.
 
 ```bash
-cue skills add akshayrao14/git-practices --profile cybersecurity
+cue skills add Bambushu/crucible --profile cybersecurity
+```
+
+---
+
+<a id="cskwork-superhacker-skill"></a>
+## 💎 [cskwork/superhacker-skill](https://github.com/cskwork/superhacker-skill)
+
+**★ 0** · exceptional (score 8) · Shell · tags: blue-team, claude-code, claude-skill, cybersecurity, pentesting
+
+Single intent-routing security skill: one objective routed to 1 of 13 cybersecurity domains, authorization-gated, least-impact, evidence-backed. EN/KO landing.
+
+```bash
+cue skills add cskwork/superhacker-skill --profile cybersecurity
 ```
 
 ---

@@ -1,22 +1,22 @@
 ---
 title: "maybe-qy/study-tracker — Claude Code skill discovered by cue"
-description: "高考学业追踪与等效分计算工具 — 8种方法自动换算高考等效分，趋势分析，HTML报告生成 | Gaokao score tracking & equivalent score calculator"
+description: "高考学业追踪与等效分计算工具 — 多种方法自动换算高考等效分，趋势分析，HTML报告生成 | Gaokao score tracking & equivalent score calculator"
 layout: page
-updated: 2026-07-22
+updated: 2026-08-01
 tags: [claude-code, skill, research]
 ---
 
 # ✨ [maybe-qy/study-tracker](https://github.com/maybe-qy/study-tracker)
 
-**★ 0** · strong (score 6) · Python · claude-skill, data-analysis, education, equivalent-score, gaokao
+**★ 1** · strong (score 6.3) · Python · claude-skill, data-analysis, education, equivalent-score, gaokao
 
-> 高考学业追踪与等效分计算工具 — 8种方法自动换算高考等效分，趋势分析，HTML报告生成 | Gaokao score tracking & equivalent score calculator
+> 高考学业追踪与等效分计算工具 — 多种方法自动换算高考等效分，趋势分析，HTML报告生成 | Gaokao score tracking & equivalent score calculator
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-01
 - 🏷️ Tags: claude-skill, data-analysis, education, equivalent-score, gaokao, html-report, openpyxl, python, study-tracker, zhejiang
 
 ## Best fit cue profiles
