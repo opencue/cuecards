@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -33,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2052** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
+**★ 2126** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,28 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="bambushu-crucible"></a>
-## 💎 [Bambushu/crucible](https://github.com/Bambushu/crucible)
+<a id="khasky-awesome-agent-skills"></a>
+## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
 
-**★ 35** · exceptional (score 10.1) · Python · tags: adversarial-review, ai-code-review, claude-code, claude-code-skill, code-review
+**★ 1** · exceptional (score 9.8) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
 
-Codebase-level adversarial review by a panel of frontier models. A Claude Code skill that runs every file through DeepSeek + Gemini + Kimi + MiniMax in sequence, then has Claude verify the findings against the actual source.
-
-```bash
-cue skills add Bambushu/crucible --profile cybersecurity
-```
-
----
-
-<a id="cskwork-superhacker-skill"></a>
-## 💎 [cskwork/superhacker-skill](https://github.com/cskwork/superhacker-skill)
-
-**★ 0** · exceptional (score 8) · Shell · tags: blue-team, claude-code, claude-skill, cybersecurity, pentesting
-
-Single intent-routing security skill: one objective routed to 1 of 13 cybersecurity domains, authorization-gated, least-impact, evidence-backed. EN/KO landing.
+ Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
 
 ```bash
-cue skills add cskwork/superhacker-skill --profile cybersecurity
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
 ```
 
 ---
@@ -85,12 +72,25 @@ cue skills add cskwork/superhacker-skill --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.5) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="secblok-belay"></a>
+## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
+
+**★ 3** · strong (score 5.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+
+Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
+
+```bash
+cue skills add SECBLOK/belay --profile cybersecurity
 ```
 
 ---

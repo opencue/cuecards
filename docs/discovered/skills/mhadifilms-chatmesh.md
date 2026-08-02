@@ -2,19 +2,19 @@
 title: "mhadifilms/chatmesh — Claude Code skill discovered by cue"
 description: "Multi-way sync of agentic chat history (Cursor IDE/CLI, Claude Code, Codex) between Macs, with per-machine username/path rewriting."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [mhadifilms/chatmesh](https://github.com/mhadifilms/chatmesh)
 
-**★ 2** · potential (score 4.4) · Python
+**★ 2** · potential (score 4.3) · Python
 
 > Multi-way sync of agentic chat history (Cursor IDE/CLI, Claude Code, Codex) between Macs, with per-machine username/path rewriting.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: (none)

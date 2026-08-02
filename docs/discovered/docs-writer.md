@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="chaosx-space-god-of-the-void"></a>
-## 💎 [CHAOSX-SPACE/god-of-the-void](https://github.com/CHAOSX-SPACE/god-of-the-void)
+<a id="mworldorg-markdown-memory"></a>
+## 💎 [mworldorg/markdown-memory](https://github.com/mworldorg/markdown-memory)
 
-**★ 1** · exceptional (score 14.8) · Python · tags: agent-memory, ai-agent, anthropic, claude, claude-code
+**★ 23** · exceptional (score 9.8) · Python · tags: antigravity, antigravity-ide, antigravity-skills, antrophic, claude
 
-A Claude Code skill with a BODY: persistent memory across sessions, ~0-token semantic search, an errarium that ambushes you before you repeat a bug, caged autonomy, and a local dashboard. 16 organs · 54 commands · 1,650 tests · zero dependencies.
-
-✅ SKILL.md
+A cross-platform, file-based persistent memory and prompt bridge for Claude Code, claude.ai, and Antigravity IDE. Synchronizes project passports, handoffs, and session logs in an Obsidian Vault, connecting web planning with local CLI execution. Install via: npx markdown-memory
 
 ```bash
-cue skills add CHAOSX-SPACE/god-of-the-void --profile docs-writer
+cue skills add mworldorg/markdown-memory --profile docs-writer
 ```
 
 ---

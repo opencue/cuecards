@@ -2,7 +2,7 @@
 title: "Redtropig/harness-anchor — Claude Code skill discovered by cue"
 description: "A warn-only runtime layer for Claude Code agents. Keeps feature state, scope and handoffs on disk so they survive compaction, and requires an evidence path befo"
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, skill, core]
 ---
 

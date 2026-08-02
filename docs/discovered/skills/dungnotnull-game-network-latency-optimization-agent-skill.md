@@ -2,7 +2,7 @@
 title: "dungnotnull/game-network-latency-optimization-agent-skill — Claude Code skill discovered by cue"
 description: "🌐⚡ Overseas Game Network Performance & Latency Engineering Engine | Production-grade Claude Code harness (v2.0.0) for Valorant, CS2, & MMOs. Features ping/pack"
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, skill, core]
 ---
 

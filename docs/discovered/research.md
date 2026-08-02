@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="luismiguelfurlanettosousa-youtube-course-builder"></a>
-## 💎 [LuisMIguelFurlanettoSousa/youtube-course-builder](https://github.com/LuisMIguelFurlanettoSousa/youtube-course-builder)
-
-**★ 1** · exceptional (score 8.1) · tags: agent-skills, anthropic, claude-code, claude-skill, curriculum
-
-YouTube learning-path builder for Claude Code — picks videos by reading transcripts and comments, not titles
-
-```bash
-cue skills add LuisMIguelFurlanettoSousa/youtube-course-builder --profile research
-```
-
----
-
-<a id="oryxintel-oryxflow-claude-plugin"></a>
-## 💎 [oryxintel/oryxflow-claude-plugin](https://github.com/oryxintel/oryxflow-claude-plugin)
-
-**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agents, ai-data-analysis, claude-code, claude-code-marketplace
-
-Trustworthy, reproducible AI data analysis in Claude Code. A data-science plugin (skill + slash commands) that stops your coding agent building on stale data and records what produced every result.
-
-```bash
-cue skills add oryxintel/oryxflow-claude-plugin --profile research
-```
 
 ---
 
@@ -50,19 +24,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="maybe-qy-study-tracker"></a>
-## ✨ [maybe-qy/study-tracker](https://github.com/maybe-qy/study-tracker)
-
-**★ 1** · strong (score 6.3) · Python · tags: claude-skill, data-analysis, education, equivalent-score, gaokao
-
-高考学业追踪与等效分计算工具 — 多种方法自动换算高考等效分，趋势分析，HTML报告生成 | Gaokao score tracking & equivalent score calculator
-
-```bash
-cue skills add maybe-qy/study-tracker --profile research
 ```
 
 ---

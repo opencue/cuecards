@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="artokun-comfyui-mcp"></a>
-## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
+<a id="slavasexton-comfyui-agent-kit"></a>
+## 💎 [SlavaSexton/ComfyUI-Agent-Kit](https://github.com/SlavaSexton/ComfyUI-Agent-Kit)
 
-**★ 468** · exceptional (score 18.3) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
+**★ 62** · exceptional (score 12.1) · Python · tags: ai-art, anthropic, claude, claude-code, claude-skill
 
-The local-first, agent-native control plane for ComfyUI — MCP server + Claude Code plugin. 108 tools, 29 AI skills (Flux · WAN · LT2.3 · Qwen · Ideogram4 · Krea2). Author & run workflows, edit your live graph in natural language, manage models & custom nodes. Local, LAN, VPS, or Comfy Cloud.
+One ComfyUI skill for every AI coding agent (Claude Code, Codex, Gemini CLI, Qwen Code): drives a local ComfyUI end to end. 75 model prompt recipes, 583 templates, hardware-aware selection, auto-start, workflow building, multi-shot video, ControlNet, HDR, enhance/restore. By AI VFX NEWS.
 
 ```bash
-cue skills add artokun/comfyui-mcp --profile creative-media
+cue skills add SlavaSexton/ComfyUI-Agent-Kit --profile creative-media
+```
+
+---
+
+<a id="nanwulan-claude-visuals-skill"></a>
+## 💎 [nanwulan/claude-visuals-skill](https://github.com/nanwulan/claude-visuals-skill)
+
+**★ 2** · exceptional (score 11.5) · JavaScript · tags: claude-code-skill, document-parsing, llm, mineru, ocr
+
+Eyes for text-only LLMs — standalone CLI + Claude Code skill. Qwen3-VL-Plus image understanding (10-dimension description) + MinerU precision REST document parsing. visuals see / visuals parse.
+
+✅ SKILL.md
+
+```bash
+cue skills add nanwulan/claude-visuals-skill --profile creative-media
 ```
 
 ---

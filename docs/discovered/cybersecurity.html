@@ -62,32 +62,18 @@
       "position": 4,
       "item": {
         "@type": "SoftwareApplication",
-        "name": "Bambushu/crucible",
-        "description": "Codebase-level adversarial review by a panel of frontier models. A Claude Code skill that runs every file through DeepSeek + Gemini + Kimi + MiniMax in sequence, then has Claude verify the findings against the actual source.",
-        "url": "https://github.com/Bambushu/crucible",
+        "name": "khasky/awesome-agent-skills",
+        "description": " Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.",
+        "url": "https://github.com/khasky/awesome-agent-skills",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Cross-platform",
-        "codeRepository": "https://github.com/Bambushu/crucible",
+        "codeRepository": "https://github.com/khasky/awesome-agent-skills",
         "programmingLanguage": "Python"
       }
     },
     {
       "@type": "ListItem",
       "position": 5,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "cskwork/superhacker-skill",
-        "description": "Single intent-routing security skill: one objective routed to 1 of 13 cybersecurity domains, authorization-gated, least-impact, evidence-backed. EN/KO landing.",
-        "url": "https://github.com/cskwork/superhacker-skill",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Cross-platform",
-        "codeRepository": "https://github.com/cskwork/superhacker-skill",
-        "programmingLanguage": "Shell"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
       "item": {
         "@type": "SoftwareApplication",
         "name": "philpaz/recusal",
@@ -97,6 +83,20 @@
         "operatingSystem": "Cross-platform",
         "codeRepository": "https://github.com/philpaz/recusal",
         "programmingLanguage": "Python"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "SECBLOK/belay",
+        "description": "Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.",
+        "url": "https://github.com/SECBLOK/belay",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Cross-platform",
+        "codeRepository": "https://github.com/SECBLOK/belay",
+        "programmingLanguage": "Rust"
       }
     },
     {
@@ -119,7 +119,7 @@
 </head><body>
 <p><a href="./index.html">← back to all profiles</a></p>
 <h1>Claude Code Skills for <code>cybersecurity</code></h1>
-<p>7 skills discovered by <a href="https://github.com/opencue/cuecards">cue</a>. Last updated 2026-08-01.</p>
+<p>7 skills discovered by <a href="https://github.com/opencue/cuecards">cue</a>. Last updated 2026-08-02.</p>
 <article id="zandereins-hydra">
 <h2>💎 <a href="https://github.com/Zandereins/hydra">Zandereins/hydra</a></h2>
 <p><small>★ 4 · exceptional (score 16.2) · Python</small></p>
@@ -128,7 +128,7 @@
 </article>
 <article id="elementalsouls-claude-osint">
 <h2>💎 <a href="https://github.com/elementalsouls/Claude-OSINT">elementalsouls/Claude-OSINT</a></h2>
-<p><small>★ 2052 · exceptional (score 10.7) · Python</small></p>
+<p><small>★ 2126 · exceptional (score 10.7) · Python</small></p>
 <p>Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.</p>
 <pre><code>cue skills add elementalsouls/Claude-OSINT --profile cybersecurity</code></pre>
 </article>
@@ -138,23 +138,23 @@
 <p>Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.</p>
 <pre><code>cue skills add eriknewton/sanctuary-framework --profile cybersecurity</code></pre>
 </article>
-<article id="bambushu-crucible">
-<h2>💎 <a href="https://github.com/Bambushu/crucible">Bambushu/crucible</a></h2>
-<p><small>★ 35 · exceptional (score 10.1) · Python</small></p>
-<p>Codebase-level adversarial review by a panel of frontier models. A Claude Code skill that runs every file through DeepSeek + Gemini + Kimi + MiniMax in sequence, then has Claude verify the findings against the actual source.</p>
-<pre><code>cue skills add Bambushu/crucible --profile cybersecurity</code></pre>
-</article>
-<article id="cskwork-superhacker-skill">
-<h2>💎 <a href="https://github.com/cskwork/superhacker-skill">cskwork/superhacker-skill</a></h2>
-<p><small>★ 0 · exceptional (score 8) · Shell</small></p>
-<p>Single intent-routing security skill: one objective routed to 1 of 13 cybersecurity domains, authorization-gated, least-impact, evidence-backed. EN/KO landing.</p>
-<pre><code>cue skills add cskwork/superhacker-skill --profile cybersecurity</code></pre>
+<article id="khasky-awesome-agent-skills">
+<h2>💎 <a href="https://github.com/khasky/awesome-agent-skills">khasky/awesome-agent-skills</a></h2>
+<p><small>★ 1 · exceptional (score 9.8) · Python</small></p>
+<p> Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.</p>
+<pre><code>cue skills add khasky/awesome-agent-skills --profile cybersecurity</code></pre>
 </article>
 <article id="philpaz-recusal">
 <h2>✨ <a href="https://github.com/philpaz/recusal">philpaz/recusal</a></h2>
-<p><small>★ 4 · strong (score 6.6) · Python</small></p>
+<p><small>★ 4 · strong (score 6.5) · Python</small></p>
 <p>Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.</p>
 <pre><code>cue skills add philpaz/recusal --profile cybersecurity</code></pre>
+</article>
+<article id="secblok-belay">
+<h2>✨ <a href="https://github.com/SECBLOK/belay">SECBLOK/belay</a></h2>
+<p><small>★ 3 · strong (score 5.7) · Rust</small></p>
+<p>Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.</p>
+<pre><code>cue skills add SECBLOK/belay --profile cybersecurity</code></pre>
 </article>
 <article id="gesh75-argus">
 <h2>✨ <a href="https://github.com/gesh75/argus">gesh75/argus</a></h2>

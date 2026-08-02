@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-31
+updated: 2026-08-02
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="lupynow-math-modeling-skills"></a>
-## 💎 [Lupynow/math-modeling-skills](https://github.com/Lupynow/math-modeling-skills)
+<a id="menghuanshiguang-bilibili-downloader-skill"></a>
+## 💎 [menghuanshiguang/bilibili-downloader-skill](https://github.com/menghuanshiguang/bilibili-downloader-skill)
 
-**★ 159** · exceptional (score 8.5) · Python · tags: claude-code, claude-skill, cumcm, mathematical-modeling, mcm-icm
+**★ 1** · exceptional (score 11.3) · Shell · tags: ai-agent, audio-downloader, bilibili, bilibili-downloader, claude-skill
 
-数学建模竞赛完整工具链：从拿到赛题到交出论文，一条龙解决。  覆盖 国赛 CUMCM（A/B/C） 和 美赛 MCM/ICM（A-F） 全部题型。
+B站音视频下载技能 - 基于yt-dlp，内置HTTP 412反爬规避方案，支持音频/视频/批量下载UP主空间
+
+✅ SKILL.md
 
 ```bash
-cue skills add Lupynow/math-modeling-skills --profile niche
+cue skills add menghuanshiguang/bilibili-downloader-skill --profile niche
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-02
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,15 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="backendarchitect-gospect-mcp"></a>
-## 💎 [backendArchitect/gospect-mcp](https://github.com/backendArchitect/gospect-mcp)
+<a id="osauer-canary"></a>
+## 💎 [osauer/canary](https://github.com/osauer/canary)
 
-**★ 2** · exceptional (score 10) · Go · tags: claude, claude-code, claude-code-skill, code-analysis-true, code-analyzer
+**★ 5** · exceptional (score 9.5) · Go · tags: canary, claude-code, claude-desktop, finance, golang
 
-Go-only, report-first code scanner exposed as an MCP server. Indexes a module, runs deterministic analyzers, and reports genuine bugs, dead code, stale docs & outdated APIs — never editing your code until you ask.
-
-```bash
-cue skills add backendArchitect/gospect-mcp --profile backend
-```
-
----
-
-<a id="rudi193-cmd-willow-mcp"></a>
-## 💎 [rudi193-cmd/willow-mcp](https://github.com/rudi193-cmd/willow-mcp)
-
-**★ 2** · exceptional (score 8) · Python · tags: agent, authorization, knowledge-base, mcp, mcp-server
-
-Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client.
+Canary — local Interactive Brokers MCP server, CLI, and risk desk. Standard builds and MCP are read/preview-only; a separate opt-in trading build provides gated CLI broker writes.
 
 ```bash
-cue skills add rudi193-cmd/willow-mcp --profile backend
+cue skills add osauer/canary --profile backend
 ```
 
 ---
@@ -54,15 +41,28 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="wyattpalm2-eng-x402-seller"></a>
-## ✨ [wyattpalm2-eng/x402-seller](https://github.com/wyattpalm2-eng/x402-seller)
+<a id="anirudhlath-alfred"></a>
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · strong (score 5.5) · TypeScript · tags: ai-agents, base, crypto-api, honeypot-detector, mcp
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
-Rug protection for AI trading agents — composite honeypot score + liquidity-drain detector, paid per-call in USDC via x402 (no signup, no API key). Free demo + public self-graded track record. MCP server included.
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 
 ```bash
-cue skills add wyattpalm2-eng/x402-seller --profile backend
+cue skills add anirudhlath/alfred --profile backend
+```
+
+---
+
+<a id="qfoldit-uefn-toolbelt"></a>
+## ✨ [qfoldit/UEFN-TOOLBELT](https://github.com/qfoldit/UEFN-TOOLBELT)
+
+**★ 0** · strong (score 5) · Python · tags: lego, lego-mindstorms, lego-universe, mcp, mcp-apps
+
+The ultimate, ever-expanding Swiss Army Knife for the UEFN Python API (358+ tools registered across 55+ categories). Automate world-building, manage assets, generate boilerplate Verse code, and control the editor with AI via a fully-offline PySide6 dashboard.
+
+```bash
+cue skills add qfoldit/UEFN-TOOLBELT --profile backend
 ```
 
 ---
