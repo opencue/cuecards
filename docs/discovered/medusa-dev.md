@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-30
+updated: 2026-08-03
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 <a id="dannylydst-sorftime-seller-agent"></a>
 ## 💎 [DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
 
-**★ 5** · exceptional (score 15.4) · Python · tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
+**★ 13** · exceptional (score 16.8) · Python · tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
 
 Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooked high-margin products. 80+ MCP tools. Amazon FBA, Walmart, TikTok Shop, Shopee, TEMU, 1688. Claude Code, Codex, Cursor, OpenClaw. Open source.
 

@@ -2,13 +2,13 @@
 title: "qfoldit/UEFN-TOOLBELT — Claude Code skill discovered by cue"
 description: "The ultimate, ever-expanding Swiss Army Knife for the UEFN Python API (358+ tools registered across 55+ categories). Automate world-building, manage assets, gen"
 layout: page
-updated: 2026-08-02
+updated: 2026-08-03
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [qfoldit/UEFN-TOOLBELT](https://github.com/qfoldit/UEFN-TOOLBELT)
 
-**★ 0** · strong (score 5) · Python · lego, lego-mindstorms, lego-universe, mcp, mcp-apps
+**★ 0** · strong (score 5) · Python · lego, lego-universe, mcp, mcp-client, mcp-protocol
 
 > The ultimate, ever-expanding Swiss Army Knife for the UEFN Python API (358+ tools registered across 55+ categories). Automate world-building, manage assets, generate boilerplate Verse code, and control the editor with AI via a fully-offline PySide6 dashboard.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-02
-- 🏷️ Tags: lego, lego-mindstorms, lego-universe, mcp, mcp-apps, mcp-client, mcp-gateway, mcp-protocol, mcp-server, mcp-servers, mcp-service, mcp-tools
+- 🗓️ Last pushed: 2026-08-03
+- 🏷️ Tags: lego, lego-universe, mcp, mcp-client, mcp-protocol, mcp-server, mcp-servers, mcp-service, mcp-tools, science, science-research, scientific, scientific-calculator, scientific-computing, scientific-data-engineer, scientific-machine-learning, scientific-research, scientific-visualization, scientific-writing
 
 ## Best fit cue profiles
 

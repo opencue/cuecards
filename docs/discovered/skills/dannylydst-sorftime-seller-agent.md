@@ -2,22 +2,22 @@
 title: "DannylydST/sorftime-seller-agent — Claude Code skill discovered by cue"
 description: "Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooke"
 layout: page
-updated: 2026-07-30
+updated: 2026-08-03
 tags: [claude-code, skill, medusa-dev, research]
 ---
 
 # 💎 [DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
 
-**★ 5** · exceptional (score 15.4) · Python · 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
+**★ 13** · exceptional (score 16.8) · Python · 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
 
 > Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooked high-margin products. 80+ MCP tools. Amazon FBA, Walmart, TikTok Shop, Shopee, TEMU, 1688. Claude Code, Codex, Cursor, OpenClaw. Open source.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-30
+- ⭐ 13 stars
+- 🗓️ Last pushed: 2026-08-03
 - 🏷️ Tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller, claude-code, codex, competitor-analysis, cross-border-ecommerce, hidden-profit-index, keyword-research, marketplace-intelligence, mcp-server, open-source, openclaw, shopee, sorftime, temu, tiktok-shop, walmart
 
 ## Best fit cue profiles

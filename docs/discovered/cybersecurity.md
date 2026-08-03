@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-02
+updated: 2026-08-03
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 4** · exceptional (score 16.2) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 4** · exceptional (score 16.1) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -33,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2126** · exceptional (score 10.7) · Python · tags: agentskills, claude, skills
+**★ 2183** · exceptional (score 10.6) · Python · tags: agentskills, claude, skills
 
 Two paired Claude skills · 90+ recon modules · 48 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · 5,500+ lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,36 +56,10 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="khasky-awesome-agent-skills"></a>
-## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
-
-**★ 1** · exceptional (score 9.8) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
-
- Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
-
-```bash
-cue skills add khasky/awesome-agent-skills --profile cybersecurity
-```
-
----
-
-<a id="philpaz-recusal"></a>
-## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
-
-**★ 4** · strong (score 6.5) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
-
-Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
-
-```bash
-cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
 <a id="secblok-belay"></a>
 ## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
 
-**★ 3** · strong (score 5.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 3** · strong (score 5.6) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
 
 Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
 

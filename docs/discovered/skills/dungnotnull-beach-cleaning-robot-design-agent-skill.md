@@ -2,20 +2,20 @@
 title: "dungnotnull/beach-cleaning-robot-design-agent-skill — Claude Code skill discovered by cue"
 description: "🏖️ Beach-Cleaning Robotics & Path Optimization Design Engine | Production-grade Claude Code harness & Python architecture (v2.0.0) for coastal cleaning robots."
 layout: page
-updated: 2026-08-02
+updated: 2026-08-03
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [dungnotnull/beach-cleaning-robot-design-agent-skill](https://github.com/dungnotnull/beach-cleaning-robot-design-agent-skill)
 
-**★ 2** · potential (score 3.4) · Python
+**★ 4** · potential (score 3.6) · Python
 
 > 🏖️ Beach-Cleaning Robotics & Path Optimization Design Engine | Production-grade Claude Code harness & Python architecture (v2.0.0) for coastal cleaning robots. Features sand locomotion, tidal line path planning..
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.4 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.6 based on:
+- ⭐ 4 stars
 - 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: (none)
 

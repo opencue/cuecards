@@ -2,22 +2,22 @@
 title: "bjgreenberg/senior-engineering-partner — Claude Code skill discovered by cue"
 description: "A stack-agnostic Claude Code skill: strict code reviewer, pair programmer, debugger, and mentor (Python/Bash/Apps Script/JS). Security-first, phase-aware engine"
 layout: page
-updated: 2026-07-23
+updated: 2026-08-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [bjgreenberg/senior-engineering-partner](https://github.com/bjgreenberg/senior-engineering-partner)
 
-**★ 138** · exceptional (score 20.5) · Python · ai-agents, anthropic, bash, claude-code, claude-code-skill
+**★ 142** · exceptional (score 19.5) · Python · ai-agents, anthropic, bash, claude-code, claude-code-skill
 
 > A stack-agnostic Claude Code skill: strict code reviewer, pair programmer, debugger, and mentor (Python/Bash/Apps Script/JS). Security-first, phase-aware engineering discipline with a spec→plan→TDD→verify workflow.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 138 stars
-- 🗓️ Last pushed: 2026-07-23
+- ⭐ 142 stars
+- 🗓️ Last pushed: 2026-08-03
 - 🏷️ Tags: ai-agents, anthropic, bash, claude-code, claude-code-skill, claude-skill, code-review, developer-tools, pair-programming, python
 
 ## Best fit cue profiles
