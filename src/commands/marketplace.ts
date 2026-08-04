@@ -17,6 +17,8 @@ import { readFileSync, existsSync } from "node:fs";
 
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
+import { gateFreshSkill, resolveSkillDir } from "./security";
+import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import type { FileChange } from "../lib/pr-poster";
 import { repoRoot } from "../lib/repo-root";
 
@@ -234,13 +236,48 @@ async function cmdInstallMcp(id: string): Promise<number> {
   return 0;
 }
 
-async function cmdInstallSkill(repo: string): Promise<number> {
+/**
+ * Post-install security gate for `install-skill`. Unlike `cue skills add` there
+ * is no profile registration to withhold here — the files are already on disk —
+ * so a block reports the findings, leaves the files for review, and exits
+ * non-zero rather than deleting anything.
+ */
+function gateInstalledSkill(skillName: string, allowUnsafe: boolean): number {
+  process.stdout.write(`🔍 Scanning "${skillName}" with NVIDIA SkillSpector…\n`);
+  const gate = gateFreshSkill(skillName, { allowUnsafe });
+  const note = unavailableNote(gate.skillspector);
+  if (note) process.stderr.write(`   ${note}\n`);
+
+  if (!gate.ok) {
+    process.stderr.write(`🔴 BLOCKED "${skillName}": ${gate.critical.length} critical security finding(s)\n`);
+    for (const c of gate.critical) {
+      process.stderr.write(`   [${c.code}] ${c.message}${c.line ? ` (line ${c.line})` : ""}\n`);
+    }
+    const dir = resolveSkillDir(skillName);
+    if (dir) process.stderr.write(`   Files left for review at ${dir} — remove them or re-run with --allow-unsafe.\n`);
+    return 1;
+  }
+  if (!gate.scanned) {
+    process.stderr.write(`⚠️  ${skillName}: no SKILL.md found to scan — review manually.\n`);
+  } else if (gate.skillspector.recommendation === "CAUTION") {
+    process.stderr.write(`🟡 ${formatVerdict(gate.skillspector)} — installed, review it.\n`);
+  } else if (gate.skillspector.recommendation === "SAFE") {
+    process.stdout.write(`🟢 SkillSpector SAFE\n`);
+  }
+  return 0;
+}
+
+async function cmdInstallSkill(repo: string, allowUnsafe = false): Promise<number> {
+  const installedName = repo.split("/").pop() ?? repo;
+
   // Try smithery first
   if (hasSmithery()) {
     process.stdout.write(`Installing skill "${repo}" via Smithery...\n`);
     const res = smithery(["skill", "add", repo, "--agent", "claude-code"]);
     if (res.ok) {
       process.stdout.write(res.stdout);
+      const gated = gateInstalledSkill(installedName, allowUnsafe);
+      if (gated !== 0) return gated;
       process.stdout.write(`✅ Skill installed.\n`);
       return 0;
     }
@@ -260,7 +297,7 @@ async function cmdInstallSkill(repo: string): Promise<number> {
 
   // Fetch companion files (scripts/, forms.md, reference.md, etc.)
   const { homedir } = await import("node:os");
-  const skillName = repo.split("/").pop() ?? repo;
+  const skillName = installedName;
   const skillsDir = join(homedir(), ".claude", "skills");
   const localDir = join(skillsDir, skillName);
   if (existsSync(localDir)) {
@@ -272,6 +309,10 @@ async function cmdInstallSkill(repo: string): Promise<number> {
       }
     }
   }
+
+  // Scan after companion files land so scripts/ is covered by the same pass.
+  const gated = gateInstalledSkill(skillName, allowUnsafe);
+  if (gated !== 0) return gated;
 
   process.stdout.write(`✅ Skill installed.\n`);
   return 0;
@@ -1208,7 +1249,9 @@ Subcommands:
   cleanup-forks          Delete cue's forks for PRs that are merged/closed.
                          Use --dry-run to see what would be deleted.
   install-mcp <id>       Install MCP via Smithery
-  install-skill <repo>   Install skill from GitHub
+  install-skill <repo>   Install skill from GitHub. Scanned with NVIDIA
+                         SkillSpector before it is accepted; a DO_NOT_INSTALL
+                         verdict fails the command (--allow-unsafe overrides).
   list-mcps              List connected Smithery MCPs
   list-tools [conn]      List tools from connected MCPs
   find-tools <query>     Search tools by intent
@@ -1244,8 +1287,11 @@ Examples:
       return cmdSearchSkills(rest.slice(1).join(" ") || "", json);
     case "install-mcp":
       return cmdInstallMcp(rest[1] ?? "");
-    case "install-skill":
-      return cmdInstallSkill(rest[1] ?? "");
+    case "install-skill": {
+      // Take the first non-flag so `--allow-unsafe` can appear on either side.
+      const repo = rest.slice(1).find((a) => !a.startsWith("-")) ?? "";
+      return cmdInstallSkill(repo, args.includes("--allow-unsafe"));
+    }
     case "list-mcps":
       return cmdListMcps(json);
     case "list-tools":
