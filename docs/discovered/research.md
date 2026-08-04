@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-03
+updated: 2026-08-04
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="dannylydst-sorftime-seller-agent"></a>
-## 💎 [DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
-
-**★ 13** · exceptional (score 16.8) · Python · tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
-
-Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooked high-margin products. 80+ MCP tools. Amazon FBA, Walmart, TikTok Shop, Shopee, TEMU, 1688. Claude Code, Codex, Cursor, OpenClaw. Open source.
-
-✅ SKILL.md
-
-```bash
-cue skills add DannylydST/sorftime-seller-agent --profile research
-```
 
 ---
 

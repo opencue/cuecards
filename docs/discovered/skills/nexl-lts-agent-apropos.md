@@ -2,7 +2,7 @@
 title: "NEXL-LTS/agent-apropos — Claude Code skill discovered by cue"
 description: "Deterministic binary that delivers the right documentation to the right moment — compiles convention-doc frontmatter into triggers, generates skill wrappers, an"
 layout: page
-updated: 2026-08-03
+updated: 2026-08-04
 tags: [claude-code, skill, core]
 ---
 

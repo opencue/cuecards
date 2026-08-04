@@ -2,22 +2,21 @@
 title: "tonkotsuboy/smart-rebase-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill: rebase the current branch onto origin/main, resolve conflicts, and force-push safely with --force-with-lease"
 layout: page
-updated: 2026-08-03
+updated: 2026-08-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tonkotsuboy/smart-rebase-skill](https://github.com/tonkotsuboy/smart-rebase-skill)
 
-**★ 0** · exceptional (score 13) · Shell · claude-code, claude-skill, git, rebase
+**★ 0** · exceptional (score 8) · Shell · claude-code, claude-skill, git, rebase
 
 > Claude Code skill: rebase the current branch onto origin/main, resolve conflicts, and force-push safely with --force-with-lease
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-03
+- 🗓️ Last pushed: 2026-08-04
 - 🏷️ Tags: claude-code, claude-skill, git, rebase
 
 ## Best fit cue profiles

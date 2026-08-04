@@ -2,21 +2,21 @@
 title: "Cobb04/podcast-to-course — Claude Code skill discovered by cue"
 description: "Turn any podcast transcript into reusable AI judgment assets — framework cards, decision checklists, interview talking points, and an interactive HTML course."
 layout: page
-updated: 2026-07-21
+updated: 2026-08-04
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Cobb04/podcast-to-course](https://github.com/Cobb04/podcast-to-course)
 
-**★ 1** · strong (score 6.3) · CSS · ai, claude-code-skill, learning, podcast
+**★ 21** · strong (score 7.8) · CSS · ai, claude-code-skill, learning, podcast
 
 > Turn any podcast transcript into reusable AI judgment assets — framework cards, decision checklists, interview talking points, and an interactive HTML course.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-21
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 21 stars
+- 🗓️ Last pushed: 2026-08-04
 - 🏷️ Tags: ai, claude-code-skill, learning, podcast
 
 ## Best fit cue profiles

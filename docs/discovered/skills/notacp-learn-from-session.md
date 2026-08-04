@@ -2,13 +2,13 @@
 title: "notacp/learn-from-session — Claude Code skill discovered by cue"
 description: "Claude Code skill: turn your last AI coding session into a credibility-checked, quiz-placed reading path"
 layout: page
-updated: 2026-08-03
+updated: 2026-08-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [notacp/learn-from-session](https://github.com/notacp/learn-from-session)
 
-**★ 14** · exceptional (score 12.3) · agent-skills, ai-coding, claude, claude-code, learning
+**★ 16** · exceptional (score 12.3) · agent-skills, ai-coding, claude, claude-code, learning
 
 > Claude Code skill: turn your last AI coding session into a credibility-checked, quiz-placed reading path
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 14 stars
+- ⭐ 16 stars
 - 🗓️ Last pushed: 2026-08-01
 - 🏷️ Tags: agent-skills, ai-coding, claude, claude-code, learning
 

@@ -2,7 +2,7 @@
 title: "fallow-rs/fallow-skills — Claude Code skill discovered by cue"
 description: "Agent skills for fallow, codebase intelligence for TypeScript and JavaScript. Teaches AI agents how to find unused code, duplication, circular deps, complexity "
 layout: page
-updated: 2026-08-03
+updated: 2026-08-04
 tags: [claude-code, skill, core]
 ---
 

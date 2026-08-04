@@ -2,21 +2,21 @@
 title: "ameyxd/petromcp — Claude Code skill discovered by cue"
 description: "Local-first MCP server for petroleum data. Read LAS well logs from Claude, behind a default-deny path allowlist."
 layout: page
-updated: 2026-08-01
+updated: 2026-08-04
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [ameyxd/petromcp](https://github.com/ameyxd/petromcp)
 
-**★ 2** · strong (score 6.3) · Python · claude, lasio, mcp, mcp-server, model-context-protocol
+**★ 2** · strong (score 6.5) · Python · claude, lasio, mcp, mcp-server, model-context-protocol
 
 > Local-first MCP server for petroleum data. Read LAS well logs from Claude, behind a default-deny path allowlist.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-27
+- 🗓️ Last pushed: 2026-08-03
 - 🏷️ Tags: claude, lasio, mcp, mcp-server, model-context-protocol, oil-and-gas, petroleum, petrophysics, well-logs
 
 ## Best fit cue profiles

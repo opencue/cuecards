@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-08-03
+updated: 2026-08-04
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-08-03 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-08-04 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 80 | `mckinsey-style-visualization-skill`, `context-mode`, `GodotMaker` |
-| [**backend**](./backend.md) | 6 | `i3x2ua`, `Anthropic-Academy`, `liferay-accelerator-sdk` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `hydra`, `Claude-OSINT`, `sanctuary-framework` |
-| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**core**](./core.md) | 77 | `nano-banana-pro-prompts-recommend-skill`, `trace-mcp`, `claude-with-leetcode` |
+| [**backend**](./backend.md) | 9 | `mcp-gitlab-public`, `mcp-gitlab`, `mcp-giphy` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `hydra`, `Claude-OSINT`, `sanctuary-framework` |
 | [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook`, `claude-code-frontend` |
-| [**research**](./research.md) | 2 | `sorftime-seller-agent`, `popper-scope` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `sorftime-seller-agent` |
-| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
+| [**creative-media**](./creative-media.md) | 2 | `luxin`, `redesigned-pancake` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**research**](./research.md) | 1 | `popper-scope` |
+| [**rust**](./rust.md) | 1 | `intutic` |
+| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
+| [**nextjs**](./nextjs.md) | 1 | `cortex` |
+| [**docs-writer**](./docs-writer.md) | 1 | `cortex` |
 | [**python**](./python.md) | 1 | `alfred` |
-| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 
