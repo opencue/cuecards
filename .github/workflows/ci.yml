@@ -24,6 +24,31 @@ jobs:
       - name: Run tests
         run: bun test --timeout 30000
 
+
+      - name: DIAG hook scoring
+        run: |
+          set +e
+          REPO="$PWD"
+          export CUE_SMART_LOOKUP="$REPO/resources/skills/skills/meta/smart-loader/scripts/smart-lookup.sh"
+          export CUE_CATALOG="$REPO/resources/skills/catalog/catalog.json"
+          export CUE_SKILLS_ROOT="$REPO/resources/skills/skills"
+          export CUE_SKILL_INDEX_DIR="$HOME/.cache/cue/skill-index"
+          echo "--- bun: $(bun --version)  awk: $(awk --version 2>&1|head -1)  locale: ${LANG:-unset}/${LC_ALL:-unset}"
+          echo "--- building index the way beforeAll does"
+          bun -e 'import{buildIndex,writeMatcherIndex,matcherDir}from"./src/lib/catalog-index";const i=buildIndex({catalog:process.env.CUE_CATALOG,root:process.env.CUE_SKILLS_ROOT});console.log("skills in index:",Object.keys(i.skills??{}).length||JSON.stringify(Object.keys(i)).slice(0,200));console.log("matcherDir:",matcherDir());console.log(JSON.stringify(writeMatcherIndex(i)));'
+          echo "--- index files"; ls -l "$CUE_SKILL_INDEX_DIR"; cat "$CUE_SKILL_INDEX_DIR/weights.env"
+          echo "--- grep the index for the terms these two prompts need"
+          for t in checkout webhook fizetes; do echo "term[$t]: $(grep -P "^$t\\t" "$CUE_SKILL_INDEX_DIR/terms.idx" | head -5 | tr '\n' ' | ')"; done
+          echo "phrase[kozbeszerzes]: $(grep -i 'zbeszerz' "$CUE_SKILL_INDEX_DIR/phrases.idx" | head -5 | tr '\n' ' | ')"
+          echo "--- run the hook on the two failing prompts"
+          for p in "a fizetes nem megy az adminban, checkout es webhook hibas" "közbeszerzés pályázat keresés"; do
+            echo "=== prompt: $p"
+            printf '{"prompt":"%s","session_id":"diag-%s","cwd":"/tmp"}' "$p" "$RANDOM" \
+              | HOME=$(mktemp -d) CUE_ACTIVE_PROFILE="" CLAUDE_CONFIG_DIR="" \
+                CUE_SMART_LOOKUP="$CUE_SMART_LOOKUP" CUE_CATALOG="$CUE_CATALOG" \
+                CUE_SKILLS_ROOT="$CUE_SKILLS_ROOT" CUE_SKILL_INDEX_DIR="$CUE_SKILL_INDEX_DIR" \
+                bash -x resources/hooks/smart-loader-suggest.sh 2>&1 | grep -E "scored=|rows=|query_words=|indexed_terms|\+ exit|Available skills|^\s+- " | head -20
+          done
       - name: Verify CLI boots
         run: bun src/index.ts --version
 
