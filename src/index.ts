@@ -229,7 +229,8 @@ async function main(argv: string[]): Promise<number> {
   const skipUpdateCheck =
     AGENT_LAUNCH_COMMANDS.has(args[0] ?? "") ||
     TRIVIAL_ARGS.has(args[0] ?? "") ||
-    process.env.CUE_LAUNCHING === "1" ||
+    // Any depth counts — CUE_LAUNCHING carries a number now, not just "1".
+    !!process.env.CUE_LAUNCHING ||
     !!process.env.CI ||
     !process.stdin.isTTY ||
     !process.stdout.isTTY;

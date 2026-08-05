@@ -109,18 +109,37 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch help passthrough", () => {
 });
 
 describe.skipIf(!BUN_SPAWNABLE)("cue launch recursion guard", () => {
-  test("CUE_LAUNCHING=1 aborts with exit 2 (shim recursion)", () => {
-    // Must NOT use the cue() helper — it strips CUE_LAUNCHING. Spawn directly
-    // with CUE_LAUNCHING=1 set (and CLAUDE_CONFIG_DIR cleared to avoid the
-    // unrelated account-alias → picker path).
-    const env = { ...process.env, CUE_LAUNCHING: "1" };
+  // Must NOT use the cue() helper — it strips CUE_LAUNCHING. Spawn directly
+  // with the depth set (and CLAUDE_CONFIG_DIR cleared to avoid the unrelated
+  // account-alias → picker path).
+  const launchAtDepth = (depth: string) => {
+    const env = { ...process.env, CUE_LAUNCHING: depth };
     delete env.CLAUDE_CONFIG_DIR;
-    const res = spawnSync("bun", ["run", CUE_BIN, "launch", "claude", "--cue-profile", "core", "--dry-run"], {
+    return spawnSync("bun", ["run", CUE_BIN, "launch", "claude", "--cue-profile", "core", "--dry-run"], {
       encoding: "utf8",
       timeout: 15000,
       env,
     });
+  };
+
+  test("aborts with exit 2 once nesting reaches the cap", () => {
+    const res = launchAtDepth("3");
     expect(res.status).toBe(2);
-    expect(res.stderr).toContain("shim recursion detected");
+    expect(res.stderr).toContain("refusing to go further");
+  });
+
+  // The case that made the counter necessary: an agent, or a tool it runs,
+  // invoking `claude` for a subtask — an AI code review, say. That is one level
+  // of honest nesting and must not be mistaken for a shim loop.
+  test("a single nested launch is allowed", () => {
+    const res = launchAtDepth("1");
+    expect(res.status).not.toBe(2);
+    expect(res.stderr).not.toContain("refusing to go further");
+  });
+
+  // Pre-counter cue wrote the literal "1"; it must keep meaning depth 1.
+  test("a non-numeric marker from an older cue reads as depth 1", () => {
+    const res = launchAtDepth("yes");
+    expect(res.status).not.toBe(2);
   });
 });
