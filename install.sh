@@ -169,8 +169,12 @@ EOF
   # Migrate: older installers wrote the shim into ~/.local/bin, where it now
   # shadows the real binary. Remove only what is provably ours — never a
   # native-installer symlink.
+  # ...but only when it is a DIFFERENT file. With SHIM_DIR and CUE_SHIMS set to
+  # the same directory, `legacy` is the shim written three lines up, and this
+  # migration deletes the thing it was asked to install.
   local legacy="$SHIM_DIR/$agent"
-  if grep -q "launch $agent" "$legacy" 2>/dev/null && grep -qi "cue" "$legacy" 2>/dev/null; then
+  if [ "$legacy" != "$shim_path" ] \
+     && grep -q "launch $agent" "$legacy" 2>/dev/null && grep -qi "cue" "$legacy" 2>/dev/null; then
     rm -f "$legacy"
     ok "removed legacy cue shim at $legacy"
   fi
