@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-04
+updated: 2026-08-05
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="smixs-autograph"></a>
+## 💎 [smixs/autograph](https://github.com/smixs/autograph)
+
+**★ 55** · exceptional (score 16) · Python · tags: agent-memory, ai-agents, ai-memory, ai-second-brain, claude-code
+
+Schema-as-code memory for AI agents in Obsidian: typed cards, entity dedup, link repair, update-in-place, and Ebbinghaus decay. Plain Markdown you own — a Claude Code skill.
+
+```bash
+cue skills add smixs/autograph --profile docs-writer
+```
 
 ---
 

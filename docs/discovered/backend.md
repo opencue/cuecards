@@ -1,107 +1,55 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-04
+updated: 2026-08-05
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="pipeworx-io-mcp-gitlab-public"></a>
-## ✨ [pipeworx-io/mcp-gitlab-public](https://github.com/pipeworx-io/mcp-gitlab-public)
+<a id="bhaor-toolcheck"></a>
+## 💎 [bhaor/toolcheck](https://github.com/bhaor/toolcheck)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: gitlab-public, mcp, mcp-server, model-context-protocol, pipeworx
+**★ 0** · exceptional (score 8.5) · Python · tags: ai-agents, claude-code, claude-skills, codex, dependency-analysis
 
-GitLab Public MCP — wraps the GitLab REST API v4 (public endpoints, no auth)
+Should you actually install that? A plain-English fit check for any repo, package, API or MCP server, with sources.
 
 ```bash
-cue skills add pipeworx-io/mcp-gitlab-public --profile backend
+cue skills add bhaor/toolcheck --profile backend
 ```
 
 ---
 
-<a id="pipeworx-io-mcp-gitlab"></a>
-## ✨ [pipeworx-io/mcp-gitlab](https://github.com/pipeworx-io/mcp-gitlab)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: gitlab, mcp, mcp-server, model-context-protocol, pipeworx
+**★ 9** · strong (score 6.3) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-GitLab MCP — wraps the GitLab REST API v4 (BYO API key)
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add pipeworx-io/mcp-gitlab --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 ```
 
 ---
 
-<a id="pipeworx-io-mcp-giphy"></a>
-## ✨ [pipeworx-io/mcp-giphy](https://github.com/pipeworx-io/mcp-giphy)
+<a id="jshsakura-mcp-local-vision"></a>
+## ✨ [jshsakura/mcp-local-vision](https://github.com/jshsakura/mcp-local-vision)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: giphy, mcp, mcp-server, model-context-protocol, pipeworx
+**★ 0** · strong (score 6) · JavaScript · tags: glm, local-llm, mcp, mcp-server, ocr
 
-Giphy MCP — wraps Giphy API (public beta key, free)
-
-```bash
-cue skills add pipeworx-io/mcp-giphy --profile backend
-```
-
----
-
-<a id="pipeworx-io-mcp-gnomad"></a>
-## ✨ [pipeworx-io/mcp-gnomad](https://github.com/pipeworx-io/mcp-gnomad)
-
-**★ 0** · strong (score 6) · TypeScript · tags: gnomad, mcp, mcp-server, model-context-protocol, pipeworx
-
-Broad Institute gnomAD genomic variant database (GraphQL)
+Give text-only LLMs (GLM, DeepSeek, ...) eyes. MCP server that reads images and PDFs with a vision model on your own GPU — no API keys, nothing leaves the machine.
 
 ```bash
-cue skills add pipeworx-io/mcp-gnomad --profile backend
-```
-
----
-
-<a id="pipeworx-io-mcp-gnews"></a>
-## ✨ [pipeworx-io/mcp-gnews](https://github.com/pipeworx-io/mcp-gnews)
-
-**★ 0** · strong (score 6) · TypeScript · tags: gnews, mcp, mcp-server, model-context-protocol, pipeworx
-
-GNews MCP — Global news search via GNews API (gnews.io)
-
-```bash
-cue skills add pipeworx-io/mcp-gnews --profile backend
-```
-
----
-
-<a id="pipeworx-io-mcp-geonames"></a>
-## ✨ [pipeworx-io/mcp-geonames](https://github.com/pipeworx-io/mcp-geonames)
-
-**★ 0** · strong (score 6) · TypeScript · tags: geonames, mcp, mcp-server, model-context-protocol, pipeworx
-
-GeoNames MCP — GeoNames geographical database API
-
-```bash
-cue skills add pipeworx-io/mcp-geonames --profile backend
-```
-
----
-
-<a id="pipeworx-io-mcp-geoboundaries"></a>
-## ✨ [pipeworx-io/mcp-geoboundaries](https://github.com/pipeworx-io/mcp-geoboundaries)
-
-**★ 0** · strong (score 6) · TypeScript · tags: geoboundaries, mcp, mcp-server, model-context-protocol, pipeworx
-
-geoBoundaries MCP — open database of political administrative boundaries.
-
-```bash
-cue skills add pipeworx-io/mcp-geoboundaries --profile backend
+cue skills add jshsakura/mcp-local-vision --profile backend
 ```
 
 ---

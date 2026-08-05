@@ -2,7 +2,7 @@
 title: "Cuiyi-Srama/kizuna — Claude Code skill discovered by cue"
 description: "Kizuna - universal Agent governance framework (10-event hooks, 4-type memory taxonomy, anti-regression loop, 3-path experience correction, cross-card entry). Re"
 layout: page
-updated: 2026-08-04
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 

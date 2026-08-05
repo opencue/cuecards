@@ -2,7 +2,7 @@
 title: "kaposty/context-kit — Claude Code skill discovered by cue"
 description: "A long session makes Claude Code dumber: compaction keeps what happened and throws away why, so it retries the path you already dropped. This kit keeps a sessio"
 layout: page
-updated: 2026-08-04
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 

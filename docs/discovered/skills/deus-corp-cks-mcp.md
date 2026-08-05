@@ -1,8 +1,8 @@
 ---
 title: "Deus-corp/cks-mcp — Claude Code skill discovered by cue"
-description: "Give your LLM a canonical knowledge backbone. 24 tools to validate, evolve, and verify — zero hallucinations."
+description: "Give your LLM a canonical knowledge backbone. 39 tools to validate, evolve, and verify — zero hallucinations."
 layout: page
-updated: 2026-07-31
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 1** · strong (score 6.3) · Python · agent, ai-tools-list, anti-hallucination, canonical-knowledge-structure, citation-verification
 
-> Give your LLM a canonical knowledge backbone. 24 tools to validate, evolve, and verify — zero hallucinations.
+> Give your LLM a canonical knowledge backbone. 39 tools to validate, evolve, and verify — zero hallucinations.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-31
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: agent, ai-tools-list, anti-hallucination, canonical-knowledge-structure, citation-verification, cks-mcp, claude, claude-desktop, graph-rag, knowledge-representation-and-reasoning, llm-agent, llm-tools, mcp-protocol, mcp-server, model-context-protocol-mcp, python3, rag, semantic-search, signed-verification, validations
 
 ## Best fit cue profiles

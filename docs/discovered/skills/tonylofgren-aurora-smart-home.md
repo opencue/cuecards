@@ -2,21 +2,21 @@
 title: "tonylofgren/aurora-smart-home — Claude Code skill discovered by cue"
 description: "Independent Claude Skills for the whole smart home: Home Assistant, ESPHome, Node-RED, custom integrations, dashboards, and fab-ready hardware design."
 layout: page
-updated: 2026-07-05
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tonylofgren/aurora-smart-home](https://github.com/tonylofgren/aurora-smart-home)
 
-**★ 96** · exceptional (score 15.4) · Python · anthropic, claude-code, claude-skill, claude-skills, esp32
+**★ 100** · exceptional (score 15.4) · Python · anthropic, claude-code, claude-skill, claude-skills, esp32
 
 > Independent Claude Skills for the whole smart home: Home Assistant, ESPHome, Node-RED, custom integrations, dashboards, and fab-ready hardware design.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.4 based on:
-- ⭐ 96 stars
-- 🗓️ Last pushed: 2026-07-05
+- ⭐ 100 stars
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: anthropic, claude-code, claude-skill, claude-skills, esp32, esphome, hacs, home-assistant, home-automation, iot, node-red, smart-home
 
 ## Best fit cue profiles

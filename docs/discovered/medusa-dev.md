@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-03
+updated: 2026-08-05
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="dannylydst-sorftime-seller-agent"></a>
-## 💎 [DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
+<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
+## ✨ [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 13** · exceptional (score 16.8) · Python · tags: 1688, ai-agent, amazon-fba, amazon-product-research, amazon-seller
+**★ 0** · strong (score 6.5) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
-Free AI-powered Amazon product research & marketplace intelligence for 6 platforms. Hidden Profit Index — Sorftime's proprietary algorithm for finding overlooked high-margin products. 80+ MCP tools. Amazon FBA, Walmart, TikTok Shop, Shopee, TEMU, 1688. Claude Code, Codex, Cursor, OpenClaw. Open source.
-
-✅ SKILL.md
+Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 
 ```bash
-cue skills add DannylydST/sorftime-seller-agent --profile medusa-dev
+cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
 ```
 
 ---

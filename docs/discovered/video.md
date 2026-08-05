@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-02
+updated: 2026-08-05
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="osidemedia-higgsfield-ai-prompt-skill"></a>
-## 💎 [OSideMedia/higgsfield-ai-prompt-skill](https://github.com/OSideMedia/higgsfield-ai-prompt-skill)
+<a id="parthganatra-agent-skills"></a>
+## 💎 [ParthGanatra/agent-skills](https://github.com/ParthGanatra/agent-skills)
 
-**★ 236** · exceptional (score 20.7) · Python · tags: ai-cinema, ai-filmmaking, ai-video, cinema-studio, cinematic-cameras
+**★ 4** · exceptional (score 8.8) · Shell · tags: agent-skills, ai, claude, claude-code, claude-skill
 
-Claude AI skill for cinematic Higgsfield AI prompts — 20 sub-skills covering Cinema Studio 2.5/3.0/3.5, MCSLA formula, Soul ID character consistency, Seedance 2.0 prompt modes, Kling 3.0 Motion Control, Elements system, DISCIPLINE framework, production benchmarks, and 17 templates across 3 categories.
-
-✅ SKILL.md
+Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide extraction.
 
 ```bash
-cue skills add OSideMedia/higgsfield-ai-prompt-skill --profile video
+cue skills add ParthGanatra/agent-skills --profile video
 ```
 
 ---

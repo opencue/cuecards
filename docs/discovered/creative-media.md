@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-04
+updated: 2026-08-05
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="danielgwilson-luxin"></a>
-## 💎 [danielgwilson/luxin](https://github.com/danielgwilson/luxin)
+<a id="eragonlonelyboy-lab-calliope"></a>
+## 💎 [eragonlonelyboy-lab/calliope](https://github.com/eragonlonelyboy-lab/calliope)
 
-**★ 1** · exceptional (score 15.8) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
+**★ 0** · exceptional (score 13) · JavaScript · tags: ai-agents, brand-design, claude-code, claude-code-skill, demiurge
 
-Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
+The agentic design agency in your terminal. The chief Muse runs the full engagement: interviews, signed briefs, role-agent production, a QA gate that rejects a 7.9. Directs Claude Design, Figma, v0.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add danielgwilson/luxin --profile creative-media
+cue skills add eragonlonelyboy-lab/calliope --profile creative-media
 ```
 
 ---
