@@ -250,11 +250,21 @@ export function buildIndex(opts: { catalog?: string; root?: string } = {}): Skil
     if (!source) continue;
     const id = idFromSource(source, root) ?? `${entry.category ?? "unknown"}/${entry.name ?? "unknown"}`;
 
+    // `source` is absolute and was baked in wherever the catalog was generated,
+    // so on any other machine — a fresh clone, a CI runner, a second checkout —
+    // it points at a path that does not exist. Falling through to catalog-only
+    // data there is not a small loss: the mined triggers and the capability
+    // line both come from the file, so recall quietly drops to the 122 skills
+    // with explicit `triggers:` frontmatter out of 452. Re-root it under the
+    // tree we were actually given before giving up.
     let content = "";
-    try {
-      content = readFileSync(source, "utf8");
-    } catch {
-      /* unreadable — fall through with catalog-only data */
+    for (const candidate of [source, join(root, id, "SKILL.md")]) {
+      try {
+        content = readFileSync(candidate, "utf8");
+        break;
+      } catch {
+        /* try the next candidate */
+      }
     }
 
     const parsed = content ? parseSkillFromContent(id, content, entry.name) : null;
