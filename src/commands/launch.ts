@@ -279,6 +279,23 @@ export function formatTmuxTitle(
   return `${friendly} · ${segment(0)} +${parts.length - 1}`;
 }
 
+/** Field separator for the batched option read-back. Never appears in a value. */
+const UNIT_SEP = "\x1f";
+
+/**
+ * Whether this launch owns the pane's cue badge.
+ *
+ * Only an interactive launch does. The `--print` skill-selector cue spawns on
+ * every session start inherits TMUX_PANE from the session it is helping, so
+ * letting it announce would overwrite that session's badge and then clear it
+ * again on exit seconds later — the pane border visibly loses its profile name
+ * while the session is still running. A piped or redirected stdout is what
+ * separates those helper runs from the session the user is looking at.
+ */
+export function ownsPaneBadge(env: NodeJS.ProcessEnv, stdoutIsTty: boolean): boolean {
+  return Boolean(env.TMUX) && env.CUE_TMUX_TITLE !== "0" && stdoutIsTty;
+}
+
 function announceTmuxProfile(
   profileName: string,
   agentKind: string,
@@ -290,7 +307,7 @@ function announceTmuxProfile(
   childEnv.CUE_PROFILE = profileName;
   childEnv.CUE_AGENT = friendly;
 
-  if (!process.env.TMUX || process.env.CUE_TMUX_TITLE === "0") return;
+  if (!ownsPaneBadge(process.env, process.stdout.isTTY === true)) return;
   const cleanIcons = icons.filter((i) => i && i.trim().length > 0);
   // Keep the concatenated icon strip as a separate tmux option for status
   // lines that want every icon at a glance — the visible *title* below uses
@@ -304,6 +321,11 @@ function announceTmuxProfile(
     process.stdout.write(`\x1b]2;${title}\x07`);
   } catch { /* best-effort */ }
 
+  // Exactly what we wrote, so the exit sweep can tell our own badge from one a
+  // nested launch installed over it — clearing that one blanks the border for a
+  // session still running.
+  const applied = new Map<string, string>();
+
   if (pane) {
     try {
       const { spawnSync } = require("node:child_process");
@@ -315,6 +337,7 @@ function announceTmuxProfile(
       const setOpt = (key: string, val: string) => {
         if (args.length > 0) args.push(";");
         args.push("set-option", "-p", "-t", pane, key, val);
+        applied.set(key, val);
       };
       setOpt("@cue_profile", title);
       setOpt("@cue_profile_name", profileName);
@@ -332,28 +355,34 @@ function announceTmuxProfile(
     try {
       process.stdout.write("\x1b]2;\x07");
     } catch { /* ok */ }
-    if (pane) {
+    if (pane && applied.size > 0) {
       try {
         const { spawnSync } = require("node:child_process");
-        const keys = [
-          "@cue_profile",
-          "@cue_profile_name",
-          "@cue_profile_icon",
-          "@cue_profile_icons",
-          "@cue_agent",
-          "@cue_overhead_dot",
-          "@cue_overhead_size",
-          "@cue_health",
-        ];
+        const keys = [...applied.keys()];
+        // Read all eight back in one spawn. A launch that started after us owns
+        // the badge now, and clearing its values would blank the border for a
+        // session still running — so only unset what still holds our value.
+        // Must stay synchronous: process.on("exit") handlers cannot await.
+        const probe = spawnSync(
+          "tmux",
+          ["display-message", "-p", "-t", pane, keys.map((k) => `#{${k}}`).join(UNIT_SEP)],
+          { encoding: "utf8" },
+        );
+        // A failed probe leaves the options in place. Leaking a stale badge is
+        // recoverable — the next launch overwrites it — whereas clearing one we
+        // no longer own is not.
+        const live =
+          probe.status === 0 ? String(probe.stdout).replace(/\n$/, "").split(UNIT_SEP) : [];
         // Same batching as the set path. This one runs inside an `exit`
         // handler, where every spawnSync is time the process spends refusing
         // to die.
         const args: string[] = [];
-        for (const key of keys) {
+        keys.forEach((key, i) => {
+          if (live[i] !== applied.get(key)) return;
           if (args.length > 0) args.push(";");
           args.push("set-option", "-p", "-u", "-t", pane, key);
-        }
-        spawnSync("tmux", args, { stdio: "ignore" });
+        });
+        if (args.length > 0) spawnSync("tmux", args, { stdio: "ignore" });
       } catch { /* ok */ }
     }
   });
