@@ -10,7 +10,7 @@
  *                           bare, interactive launch)
  *   --dry-run              everything except the final exec; prints env
  *
- * Recursion guard via CUE_LAUNCHING=1 in child env.
+ * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
  */
 
 import { spawn } from "node:child_process";
@@ -1514,15 +1514,46 @@ export function isAlwaysPickEnabled(envVal: string | undefined): boolean {
   return ["1", "true", "on"].includes(envVal.trim().toLowerCase());
 }
 
+/**
+ * How many cue launches deep this process already is.
+ *
+ * `CUE_LAUNCHING` used to be the string "1" and the guard tripped on it, which
+ * conflated the two things it can mean. A shim LOOP — cue resolving the agent
+ * binary back to its own shim — re-enters without bound and must be stopped. A
+ * NESTED launch — an agent, or a tool it runs, invoking `claude` for a subtask
+ * such as an AI code review — re-enters exactly once and is legitimate, but the
+ * old guard killed it too, because the flag is inherited by the whole process
+ * tree under a launched agent. Every caller then had to know to `unset` it
+ * first (see `failures.ts`, and the headless-gif-demo skill), and a caller that
+ * did not know simply failed with a message blaming PATH order.
+ *
+ * Counting separates them: a loop climbs to the cap in milliseconds, honest
+ * nesting stays shallow.
+ */
+export function launchDepth(envVal: string | undefined = process.env.CUE_LAUNCHING): number {
+  if (!envVal) return 0;
+  const n = Number.parseInt(envVal.trim(), 10);
+  // Anything unparseable is a launch marker from an older cue — treat as depth 1.
+  return Number.isFinite(n) && n > 0 ? n : 1;
+}
+
+/** Depth at which nesting is no longer plausible and must be a shim loop. */
+export const MAX_LAUNCH_DEPTH = 3;
+
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
 
 export async function run(args: string[]): Promise<number> {
-  // Recursion guard
-  if (process.env.CUE_LAUNCHING === "1") {
+  // Recursion guard. See MAX_LAUNCH_DEPTH for why this counts instead of
+  // tripping on the first nested launch.
+  const depth = launchDepth();
+  if (depth >= MAX_LAUNCH_DEPTH) {
     process.stderr.write(
-      "cue: shim recursion detected — check PATH ordering (cue's shim dir must precede the real claude/codex location)\n",
+      `cue: launch nested ${depth} deep — refusing to go further.\n` +
+        "  A shim loop looks like this: cue resolved the agent binary back to its own\n" +
+        "  shim, so check that cue's shim dir does NOT shadow the real claude/codex.\n" +
+        `  A legitimate nested agent is allowed up to ${MAX_LAUNCH_DEPTH - 1} deep; past that it is a loop.\n`,
     );
     return 2;
   }
@@ -2319,7 +2350,10 @@ export async function run(args: string[]): Promise<number> {
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
     [envKey]: runtime.runtimeDir,
-    CUE_LAUNCHING: "1",
+    // Depth, not a boolean — see launchDepth(). The agent's whole process tree
+    // inherits this, so a subtask that shells out to `claude` lands one deeper
+    // rather than being refused.
+    CUE_LAUNCHING: String(depth + 1),
   };
 
   // Per-profile claude-mem memory: point the (cue-managed) claude-mem plugin at
