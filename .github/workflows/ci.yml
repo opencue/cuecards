@@ -26,6 +26,7 @@ jobs:
 
 
       - name: DIAG hook scoring
+        if: always()
         run: |
           set +e
           REPO="$PWD"
