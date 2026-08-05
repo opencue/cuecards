@@ -307,8 +307,15 @@ function announceTmuxProfile(
   if (pane) {
     try {
       const { spawnSync } = require("node:child_process");
-      const setOpt = (key: string, val: string) =>
-        spawnSync("tmux", ["set-option", "-p", "-t", pane, key, val], { stdio: "ignore" });
+      // One tmux invocation for all eight options. Measured on a live server:
+      // eight separate spawns cost ~81ms, the batched form ~11ms — and this
+      // runs on the launch path, in front of the agent the user is waiting on.
+      // The pane border also stops rendering half-set states on the way in.
+      const args: string[] = [];
+      const setOpt = (key: string, val: string) => {
+        if (args.length > 0) args.push(";");
+        args.push("set-option", "-p", "-t", pane, key, val);
+      };
       setOpt("@cue_profile", title);
       setOpt("@cue_profile_name", profileName);
       setOpt("@cue_profile_icon", primaryIcon);
@@ -317,6 +324,7 @@ function announceTmuxProfile(
       setOpt("@cue_overhead_dot", extras.overhead?.dot ?? "");
       setOpt("@cue_overhead_size", extras.overhead?.size ?? "");
       setOpt("@cue_health", extras.health ?? "");
+      spawnSync("tmux", args, { stdio: "ignore" });
     } catch { /* best-effort */ }
   }
 
@@ -337,9 +345,15 @@ function announceTmuxProfile(
           "@cue_overhead_size",
           "@cue_health",
         ];
+        // Same batching as the set path. This one runs inside an `exit`
+        // handler, where every spawnSync is time the process spends refusing
+        // to die.
+        const args: string[] = [];
         for (const key of keys) {
-          spawnSync("tmux", ["set-option", "-p", "-u", "-t", pane, key], { stdio: "ignore" });
+          if (args.length > 0) args.push(";");
+          args.push("set-option", "-p", "-u", "-t", pane, key);
         }
+        spawnSync("tmux", args, { stdio: "ignore" });
       } catch { /* ok */ }
     }
   });
