@@ -1,0 +1,74 @@
+# Open Code Review — automatic AI review on pull requests.
+#
+# Deliberately uses `pull_request`, NOT the `pull_request_target` that upstream's
+# reference workflow uses. `pull_request_target` runs with the base repo's
+# secrets available to a PR authored by anyone, which is the standard way repos
+# leak tokens to fork PRs. The cost of this choice: PRs from forks are not
+# reviewed, because secrets are withheld from them. Same-repo branches — how
+# this repo actually works — are covered. Switch only if you have read the
+# action's checkout behaviour yourself and accept the tradeoff.
+#
+# The action is pinned by commit SHA, not by tag: a tag can be moved to point at
+# different code, a SHA cannot.
+#
+# Setup — until these repo secrets exist the review job skips cleanly instead of
+# failing CI:
+#   OCR_LLM_URL           LLM endpoint (first-party provider, never a proxy)
+#   OCR_LLM_AUTH_TOKEN    API token
+#   OCR_LLM_MODEL         model name
+#   OCR_LLM_USE_ANTHROPIC 'true' for Anthropic, 'false' for OpenAI-compatible
+
+name: Open Code Review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  configured:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      # The secret is read through env rather than interpolated into the script,
+      # so it is never expanded into a command line that could end up in a log.
+      - id: check
+        env:
+          TOKEN: ${{ secrets.OCR_LLM_AUTH_TOKEN }}
+          URL: ${{ secrets.OCR_LLM_URL }}
+          MODEL: ${{ secrets.OCR_LLM_MODEL }}
+        run: |
+          if [ -n "$TOKEN" ] && [ -n "$URL" ] && [ -n "$MODEL" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Open Code Review secrets not configured — skipping."
+          fi
+
+  review:
+    needs: configured
+    if: needs.configured.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Open Code Review
+        uses: alibaba/open-code-review@6dc3eb067071c01e7234ac6032a9f7d656a29f84 # v1.8.8
+        with:
+          llm_url: ${{ secrets.OCR_LLM_URL }}
+          llm_auth_token: ${{ secrets.OCR_LLM_AUTH_TOKEN }}
+          llm_model: ${{ secrets.OCR_LLM_MODEL }}
+          llm_use_anthropic: ${{ secrets.OCR_LLM_USE_ANTHROPIC }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
