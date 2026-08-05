@@ -26,6 +26,11 @@
  */
 
 import { spawnSync } from "node:child_process";
+import { existsSync } from "node:fs";
+import { homedir } from "node:os";
+import { join, isAbsolute } from "node:path";
+
+import { repoRoot } from "./repo-root";
 
 /** Upstream package spec for the uvx fallback. */
 export const SKILLSPECTOR_PKG = "git+https://github.com/NVIDIA/skillspector.git";
@@ -55,7 +60,51 @@ export interface SkillSpectorReport {
   score?: number;
   severity?: string;
   findings: SkillSpectorFinding[];
+  /** Findings dropped by a baseline. They do not count toward the score. */
+  suppressed?: number;
+  /** Baseline file applied to this scan, if any. */
+  baseline?: string;
   error?: string;
+}
+
+/**
+ * Baselines suppress reviewed false positives. They are resolved ONLY from
+ * cue-owned directories, never from inside the skill being scanned — a skill
+ * that shipped its own `.skillspector-baseline.yaml` could otherwise suppress
+ * every finding against itself.
+ *
+ * Repo baseline wins over the user one so a checkout stays reproducible.
+ *
+ * These live in the cue repo, NOT under `resources/skills/` — that path is a
+ * git submodule, so a baseline written there would land in a different repo
+ * than the gate that reads it.
+ */
+export function baselineDirs(env: NodeJS.ProcessEnv = process.env): string[] {
+  const root = env.CUE_REPO_ROOT ?? repoRoot();
+  return [
+    join(root, "resources", "skillspector-baselines"),
+    join(homedir(), ".config", "cue", "skillspector-baselines"),
+  ];
+}
+
+/**
+ * Find the baseline for a skill id (`meta/smart-loader` → `meta/smart-loader.yaml`).
+ * Returns null when there is none, which is the common case.
+ */
+export function resolveBaselineFor(
+  skillId: string,
+  env: NodeJS.ProcessEnv = process.env,
+): string | null {
+  // Skill ids come from directory names; refuse anything that could climb out
+  // of the baselines directory.
+  if (!skillId || skillId.includes("..") || isAbsolute(skillId)) return null;
+  for (const dir of baselineDirs(env)) {
+    for (const ext of [".yaml", ".yml", ".json"]) {
+      const candidate = join(dir, `${skillId}${ext}`);
+      if (existsSync(candidate)) return candidate;
+    }
+  }
+  return null;
 }
 
 export type RunnerKind = "bin" | "path" | "uvx" | "docker";
@@ -66,6 +115,8 @@ export interface Runner {
   args: string[];
   /** Path to hand to `scan` — differs from the host path under docker. */
   target: string;
+  /** Path to hand to `--baseline`, or undefined when no baseline applies. */
+  baselineTarget?: string;
   label: string;
 }
 
@@ -95,32 +146,47 @@ function hasDockerImage(): boolean {
 }
 
 /**
- * Build the argv for a given runner kind. Pure — the docker case rewrites the
- * scan target to the container mount point, which is why callers must use
- * `runner.target` instead of the host path they passed in.
+ * Build the argv for a given runner kind. Pure — the docker case rewrites both
+ * the scan target and the baseline path to container mount points, which is why
+ * callers must use `runner.target` / `runner.baselineTarget` rather than the
+ * host paths they passed in.
  */
-export function buildRunner(kind: RunnerKind, dir: string, bin?: string): Runner {
+export function buildRunner(kind: RunnerKind, dir: string, bin?: string, baseline?: string): Runner {
   switch (kind) {
     case "bin":
-      return { kind, cmd: bin!, args: [], target: dir, label: bin! };
+      return { kind, cmd: bin!, args: [], target: dir, baselineTarget: baseline, label: bin! };
     case "path":
-      return { kind, cmd: "skillspector", args: [], target: dir, label: "skillspector" };
+      return {
+        kind,
+        cmd: "skillspector",
+        args: [],
+        target: dir,
+        baselineTarget: baseline,
+        label: "skillspector",
+      };
     case "uvx":
       return {
         kind,
         cmd: "uvx",
         args: ["--from", SKILLSPECTOR_PKG, "skillspector"],
         target: dir,
+        baselineTarget: baseline,
         label: "uvx skillspector",
       };
-    case "docker":
+    case "docker": {
+      // The baseline lives outside the scanned directory, so it needs its own
+      // read-only mount to be visible inside the container.
+      const mounts = ["-v", `${dir}:/scan:ro`];
+      if (baseline) mounts.push("-v", `${baseline}:/baseline.yaml:ro`);
       return {
         kind,
         cmd: "docker",
-        args: ["run", "--rm", "-v", `${dir}:/scan:ro`, "skillspector"],
+        args: ["run", "--rm", ...mounts, "skillspector"],
         target: "/scan",
+        baselineTarget: baseline ? "/baseline.yaml" : undefined,
         label: "docker skillspector",
       };
+    }
   }
 }
 
@@ -194,6 +260,12 @@ export function parseSkillSpectorJson(stdout: string): SkillSpectorReport {
     score: typeof assessment.score === "number" ? assessment.score : undefined,
     severity,
     findings,
+    suppressed:
+      typeof raw?.suppressed_count === "number"
+        ? raw.suppressed_count
+        : Array.isArray(raw?.suppressed)
+          ? raw.suppressed.length
+          : undefined,
   };
 }
 
@@ -206,7 +278,7 @@ export function parseSkillSpectorJson(stdout: string): SkillSpectorReport {
  */
 export function runSkillSpector(
   dir: string,
-  opts: { env?: NodeJS.ProcessEnv; timeoutMs?: number } = {},
+  opts: { env?: NodeJS.ProcessEnv; timeoutMs?: number; baseline?: string | null } = {},
 ): SkillSpectorReport {
   const env = opts.env ?? process.env;
   if (!isEnabled(env)) {
@@ -222,12 +294,23 @@ export function runSkillSpector(
     };
   }
 
-  const runner = buildRunner(detected.kind, dir, detected.bin);
+  // A baseline path that does not exist makes the scanner exit 2, so drop it
+  // rather than turning a clean scan into an error.
+  const baseline = opts.baseline && existsSync(opts.baseline) ? opts.baseline : undefined;
+  const runner = buildRunner(detected.kind, dir, detected.bin, baseline);
   const timeout = Number(env.CUE_SKILLSPECTOR_TIMEOUT_MS ?? opts.timeoutMs ?? DEFAULT_TIMEOUT_MS);
 
   const res = spawnSync(
     runner.cmd,
-    [...runner.args, "scan", runner.target, "--no-llm", "--format", "json"],
+    [
+      ...runner.args,
+      "scan",
+      runner.target,
+      "--no-llm",
+      "--format",
+      "json",
+      ...(runner.baselineTarget ? ["--baseline", runner.baselineTarget] : []),
+    ],
     { encoding: "utf8", timeout, stdio: ["ignore", "pipe", "pipe"], env: env as NodeJS.ProcessEnv },
   );
 
@@ -243,6 +326,7 @@ export function runSkillSpector(
 
   const report = parseSkillSpectorJson(res.stdout ?? "");
   report.runner = runner.label;
+  if (baseline) report.baseline = baseline;
   if (report.status !== "ok" && res.status === 2) {
     // Exit 2 is upstream's "bad input / internal failure" — surface its stderr.
     report.error = (res.stderr ?? "").trim().split("\n").pop() || report.error;
@@ -256,7 +340,8 @@ export function formatVerdict(report: SkillSpectorReport): string {
   const score = report.score === undefined ? "" : ` (risk ${report.score}/100, ${report.severity})`;
   const count = report.findings.length;
   const tail = count > 0 ? ` — ${count} finding(s): ${summarizeCategories(report.findings)}` : "";
-  return `SkillSpector: ${report.recommendation}${score}${tail}`;
+  const muted = report.suppressed ? ` [${report.suppressed} baselined]` : "";
+  return `SkillSpector: ${report.recommendation}${score}${tail}${muted}`;
 }
 
 function summarizeCategories(findings: SkillSpectorFinding[]): string {

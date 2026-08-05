@@ -262,6 +262,8 @@ $ cue security scan ./notes-organizer/
 
 No setup needed: cue uses `skillspector` if it's on your PATH, otherwise runs it through `uvx` (cached after the first run), otherwise a local docker image. If none of those exist the gate says so out loud and falls back to cue's own SEC1-7 rules rather than silently passing. Scans run with `--no-llm`, so skill contents never leave your machine.
 
+**Baselines for reviewed false positives.** Pattern scanners produce noise — one of cue's own skills got flagged for "Env Variable Harvesting" because a comment contains the word *token*. `cue security baseline <path>` records the current findings with a written reason so later scans surface only new ones. Suppression is exact: fingerprints bind to the scanner version and the skill's full source, so editing the skill reactivates the finding until someone re-reviews it. Baselines apply to this repo's own skills only, never to a fetched remote skill — its id is chosen by whoever wrote it.
+
 **Confidence tags.** cue-managed agents tag research- and decision-relevant claims with colored confidence markers so you can scan trust at a glance:
 
 | Tier | Tags | Meaning |
