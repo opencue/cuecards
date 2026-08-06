@@ -2,26 +2,26 @@
 title: "johalputt/VayuPress — Claude Code skill discovered by cue"
 description: "Your whole online presence in one sovereign Go binary — website, blog, PGP mail, E2E-encrypted chat, anti-DDoS bot shield, privacy analytics, one-click Tor .oni"
 layout: page
-updated: 2026-07-30
-tags: [claude-code, skill, core]
+updated: 2026-08-06
+tags: [claude-code, skill, backend]
 ---
 
 # ✨ [johalputt/VayuPress](https://github.com/johalputt/VayuPress)
 
-**★ 7** · strong (score 7) · Go · anti-censorship, anti-ddos, blog-engine, bot-protection, claude
+**★ 10** · strong (score 7.2) · Go · anti-censorship, anti-ddos, blog-engine, bot-protection, cms
 
 > Your whole online presence in one sovereign Go binary — website, blog, PGP mail, E2E-encrypted chat, anti-DDoS bot shield, privacy analytics, one-click Tor .onion, and Stripe/PayPal/crypto monetization. No SaaS bills, no third parties, no telemetry. Own your content, your mailbox, your infrastructure.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-07-30
-- 🏷️ Tags: anti-censorship, anti-ddos, blog-engine, bot-protection, claude, cms, encrypted-chat, end-to-end-encryption, golang, mail-server, mcp-server, no-kyc, onion-service, pgp, privacy-analytics, publishing-platform, self-hosted, tor, webmail, website-builder
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-08-06
+- 🏷️ Tags: anti-censorship, anti-ddos, blog-engine, bot-protection, cms, encrypted-chat, end-to-end-encryption, golang, mail-server, mcp-server, no-kyc, onion-service, pgp, privacy-analytics, publishing-platform, self-hosted, sqlite, tor, webmail, website-builder
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add johalputt/VayuPress --profile core
+cue skills add johalputt/VayuPress --profile backend
 ```
 
 ## About

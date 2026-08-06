@@ -2,7 +2,7 @@
 title: "coopersimson96/reverse-engineer — Claude Code skill discovered by cue"
 description: "Reverse-engineer any goal, plan, or stuck point: work backward from the outcome, chunk the path, find the one bottleneck, get the next action. A Claude/agent sk"
 layout: page
-updated: 2026-08-05
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 

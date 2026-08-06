@@ -2,21 +2,21 @@
 title: "mindgameolympiangames78/llm-knowledge-base — Claude Code skill discovered by cue"
 description: "Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes."
 layout: page
-updated: 2026-07-18
+updated: 2026-08-06
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
 
-**★ 0** · exceptional (score 8) · bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+**★ 0** · exceptional (score 9.5) · bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
 
 > Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-18
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt, gpt4, knowledge-base, knowledge-management, llama2, llm, mattermost, open-source, personal-wiki, retrieval, sentence-transformers
 
 ## Best fit cue profiles

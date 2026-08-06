@@ -2,7 +2,7 @@
 title: "OutlineDriven/odin-claude-plugin — Claude Code skill discovered by cue"
 description: "Outline-Driven Development for Claude Code - 46 agents, 25+ skills, diagram-first methodology, AST-based editing, atomic commits."
 layout: page
-updated: 2026-08-05
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ⭐ 34 stars
-- 🗓️ Last pushed: 2026-08-05
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: agentic-coding, ai-coding-agent, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, claude-marketplace, claude-plugins, claude-skills, cli-tools, coding-paradigm, context-engineering, llm-agents, odd, odin, outline-driven, outline-driven-development, paradigms-of-programming, prompt-engineering
 
 ## Best fit cue profiles

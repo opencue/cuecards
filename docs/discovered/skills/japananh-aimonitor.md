@@ -2,7 +2,7 @@
 title: "japananh/aimonitor — Claude Code skill discovered by cue"
 description: "Multi-account Claude Code usage monitor & silent account switcher, plus a Slack/ClickUp MCP server — macOS menu bar + CLI. Local-first, no telemetry."
 layout: page
-updated: 2026-06-24
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: account-switcher, ai, anthropic, claude, claude-code, cli, clickup, golang, keychain, macos, mcp, mcp-server, menu-bar, menubar, oauth, rate-limit, slack, swift, swiftui, usage-monitor
 
 ## Best fit cue profiles

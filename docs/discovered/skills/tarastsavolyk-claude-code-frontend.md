@@ -2,7 +2,7 @@
 title: "TarasTsavolyk/claude-code-frontend — Claude Code skill discovered by cue"
 description: "Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeS"
 layout: page
-updated: 2026-08-05
+updated: 2026-08-06
 tags: [claude-code, skill, frontend]
 ---
 

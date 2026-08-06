@@ -2,7 +2,7 @@
 title: "t11z/kenny — Claude Code skill discovered by cue"
 description: "Self-hosted remote administration and fleet monitoring for Windows PCs in a family setting, operated through Claude (MCP) and a web dashboard."
 layout: page
-updated: 2026-08-02
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-02
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: ai, claude, claude-code, family-it, fleet-management, llm, mcp, mcp-server, orchestration, remote-control, rust, windows
 
 ## Best fit cue profiles

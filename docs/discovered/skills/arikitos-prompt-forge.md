@@ -2,22 +2,21 @@
 title: "arikitos/prompt-forge — Claude Code skill discovered by cue"
 description: "PromptForge is a reusable Claude Code Skill that transforms complex requests into clear, structured, and executable prompts while preserving user intent and imp"
 layout: page
-updated: 2026-07-28
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [arikitos/prompt-forge](https://github.com/arikitos/prompt-forge)
 
-**★ 0** · exceptional (score 13) · ai, anthropic, claude-code, claude-skill, developer-tools
+**★ 0** · exceptional (score 8) · Python · ai, anthropic, claude-code, claude-skill, developer-tools
 
 > PromptForge is a reusable Claude Code Skill that transforms complex requests into clear, structured, and executable prompts while preserving user intent and improving response quality.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-28
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: ai, anthropic, claude-code, claude-skill, developer-tools, prompt-engineering, prompt-forge, promptforge
 
 ## Best fit cue profiles

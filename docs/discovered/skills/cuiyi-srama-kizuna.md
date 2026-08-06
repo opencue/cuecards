@@ -2,22 +2,22 @@
 title: "Cuiyi-Srama/kizuna — Claude Code skill discovered by cue"
 description: "Kizuna - universal Agent governance framework (10-event hooks, 4-type memory taxonomy, anti-regression loop, 3-path experience correction, cross-card entry). Re"
 layout: page
-updated: 2026-08-05
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Cuiyi-Srama/kizuna](https://github.com/Cuiyi-Srama/kizuna)
 
-**★ 1** · exceptional (score 8.2) · Python
+**★ 1** · exceptional (score 8.3) · Python
 
 > Kizuna - universal Agent governance framework (10-event hooks, 4-type memory taxonomy, anti-regression loop, 3-path experience correction, cross-card entry). Rebuilt from Anthropic Claude Code public source.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-02
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
