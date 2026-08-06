@@ -14,9 +14,6 @@ skills:
       skills: [chrome-devtools-mcp]
 
 mcps:
-  # Lightpanda — fast, low-memory headless browser exposed over MCP (`lightpanda mcp`).
-  # Default engine for headless navigation/scraping; tools appear as mcp__lightpanda__*.
-  - lightpanda
   # Playwright — Microsoft's official Playwright MCP (`npx @playwright/mcp@latest`).
   # Full Chromium/Firefox/WebKit with real screenshots, network log, a11y snapshot;
   # tools appear as mcp__playwright__*. Pairs with the browser/playwright skill for

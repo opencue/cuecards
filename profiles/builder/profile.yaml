@@ -134,7 +134,6 @@ plugins:
   - resend@claude-plugins-official
 mcps:
   - cue-tty-watch
-  - lightpanda
   - coolify
 env:
   WORDPRESS_URL: "${WORDPRESS_URL}"

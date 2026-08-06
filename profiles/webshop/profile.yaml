@@ -104,7 +104,6 @@ plugins:
   - frontend-design@claude-plugins-official
   - webwright@webwright                # microsoft/Webwright SOTA browser agent
 mcps:
-  - lightpanda   # fast low-memory headless browser — scrape/DOM dump (no pixels)
   - coolify
   - envoult
   - Higgsfield

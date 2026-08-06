@@ -37,7 +37,6 @@ skills:
       skills: [referral-program]
 mcps:
   - buywhere
-  - lightpanda
   - gbrain
 env:
   BUYWHERE_API_KEY: "${BUYWHERE_API_KEY}"

@@ -49,7 +49,6 @@ plugins:
   - resend@claude-plugins-official
 mcps:
   - cue-tty-watch
-  - lightpanda
   - agentshield
   - mitre-attack
   - cve-search

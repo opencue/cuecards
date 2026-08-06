@@ -112,7 +112,6 @@ plugins:
   - webwright@webwright
 mcps:
   - cue-tty-watch
-  - lightpanda
   - coolify
   - envoult
   - Higgsfield
