@@ -140,10 +140,11 @@ persona: |
   Three browser engines, distinct sweet spots — pick by the job, don't
   default to one:
 
-  - **lightpanda** (MCP / `lightpanda fetch <url> --dump markdown`) — the
-    lightest. Headless, renders DOM + JS but paints **no pixels**. Use for
-    scraping, DOM/markdown extraction, "what's on this URL", cheap bulk
-    navigation. Fastest, lowest memory. Can't screenshot.
+  - **ego-browser** (JS heredoc) — the default, inherited from core. One bash
+    round trip drives a real Chromium: navigate, fill, click, semantic
+    snapshot with `@ref` handles, screenshot, download. Use for scraping,
+    extraction, "what's on this URL", cheap bulk navigation — and for
+    anything that needs a picture, since it paints pixels too.
   - **agent-browser** (CLI) — the interactive default. `snapshot -i` →
     act on `@ref` → `screenshot`. Use to drive and visually verify one
     flow: login, add-to-cart, checkout QA, "does this storefront render
@@ -153,10 +154,9 @@ persona: |
     artifacts to `final_runs/`. Use for autonomous end-to-end missions,
     not a handful of commands.
 
-  Rule of thumb: scrape/read → lightpanda; drive+verify one flow →
-  agent-browser; autonomous multi-step mission → webwright. (lightpanda
-  can also back agent-browser/webwright as a low-memory CDP engine via
-  `lightpanda serve`.)
+  Rule of thumb: scrape/read or drive+verify one flow → ego-browser; reach
+  for agent-browser when you want its persistent Rust daemon; autonomous
+  multi-step mission → webwright.
 
   ## Surface router
 
