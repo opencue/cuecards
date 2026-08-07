@@ -117,7 +117,6 @@ mcps:
   - Higgsfield
   - gbrain
   - hostinger-api
-  - secret-mcp
   # postgres MCP needs a connection string to do anything — gate on it so the
   # server (and its query tool schema) only loads when a DB is configured.
   - id: postgres

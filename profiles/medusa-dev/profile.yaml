@@ -54,4 +54,3 @@ plugins:
 mcps:
   - coolify
   - envoult
-  - secret-mcp   # AWS S3 + Higgsfield job MCP from recodee/tools/secret-mcp — required by higgsfield-to-medusa-products and woocommerce-to-medusa-import skills

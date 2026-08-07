@@ -13,7 +13,7 @@ conflicts:
   - medusa-next           # one Medusa storefront framework per project
 skills:
   local: []   # everything comes from the inherited profiles
-mcps: []      # coolify / envoult / secret-mcp inherited from medusa-dev
+mcps: []      # coolify / envoult inherited from medusa-dev
 plugins: []
 persona: |
   You are working a full-stack Medusa v2 project: backend modules and
