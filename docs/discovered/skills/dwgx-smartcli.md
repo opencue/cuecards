@@ -2,22 +2,22 @@
 title: "dwgx/SmartCLI — Claude Code skill discovered by cue"
 description: "Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit"
 layout: page
-updated: 2026-07-15
+updated: 2026-08-07
 tags: [claude-code, skill, python]
 ---
 
-# ✨ [dwgx/SmartCLI](https://github.com/dwgx/SmartCLI)
+# 💎 [dwgx/SmartCLI](https://github.com/dwgx/SmartCLI)
 
-**★ 2** · strong (score 6.5) · Python · agent-skills, ansi, ascii-art, claude-skill, cli
+**★ 2** · exceptional (score 9) · Python · agent-skills, agent-tools, ai-agents, ansi, ascii-art
 
 > Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-15
-- 🏷️ Tags: agent-skills, ansi, ascii-art, claude-skill, cli, pty, pyte, python, terminal, tui
+- 🗓️ Last pushed: 2026-08-07
+- 🏷️ Tags: agent-skills, agent-tools, ai-agents, ansi, ascii-art, claude-skill, cli, conpty, mcp, mcp-server, pexpect, pty, pyte, python, screen-scraping, terminal, terminal-automation, tui
 
 ## Best fit cue profiles
 

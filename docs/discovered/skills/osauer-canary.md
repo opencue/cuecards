@@ -2,7 +2,7 @@
 title: "osauer/canary — Claude Code skill discovered by cue"
 description: "Canary — local Interactive Brokers MCP server, CLI, and risk desk. Standard builds and MCP are read/preview-only; a separate opt-in trading build provides gated"
 layout: page
-updated: 2026-08-02
+updated: 2026-08-07
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-08-02
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: canary, claude-code, claude-desktop, finance, golang, ib-gateway, ibkr, interactive-brokers, mcp, mcp-server, model-context-protocol, options, options-trading, portfolio-analysis, risk-management, trading, tws-api
 
 ## Best fit cue profiles

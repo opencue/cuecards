@@ -2,21 +2,21 @@
 title: "kyoungbinkim/give-me-job — Claude Code skill discovered by cue"
 description: "AI agent toolkit for Korean job applications, from resume evidence to tailored cover letters and interview prep"
 layout: page
-updated: 2026-06-24
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kyoungbinkim/give-me-job](https://github.com/kyoungbinkim/give-me-job)
 
-**★ 2** · exceptional (score 8.5) · JavaScript · agent-skills, claude-code, claude-code-skill, claude-skills, codex-skills
+**★ 5** · exceptional (score 8.9) · JavaScript · agent-skills, claude-code, claude-code-skill, claude-skills, codex-skills
 
 > AI agent toolkit for Korean job applications, from resume evidence to tailored cover letters and interview prep
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, claude-skills, codex-skills, cover-letter, job-application, korean-jobs, opencode, recruiting, skill-md, skill-md-skillsmp, skills
 
 ## Best fit cue profiles

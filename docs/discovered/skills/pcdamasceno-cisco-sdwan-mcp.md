@@ -2,19 +2,19 @@
 title: "pcDamasceno/cisco-sdwan-mcp — Claude Code skill discovered by cue"
 description: "MCP server for Cisco Catalyst SD-WAN Manager (vManage). Read-only by default: fabric inventory, device health, control connections, BFD/OMP state, alarms, tunne"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [pcDamasceno/cisco-sdwan-mcp](https://github.com/pcDamasceno/cisco-sdwan-mcp)
 
-**★ 1** · strong (score 5.3) · Python · ai-agents, catalyst-sdwan, cisco, claude, fastmcp
+**★ 1** · strong (score 5.2) · Python · ai-agents, catalyst-sdwan, cisco, claude, fastmcp
 
 > MCP server for Cisco Catalyst SD-WAN Manager (vManage). Read-only by default: fabric inventory, device health, control connections, BFD/OMP state, alarms, tunnel path quality, templates and policies as MCP tools for Claude and other AI assistants.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-04
 - 🏷️ Tags: ai-agents, catalyst-sdwan, cisco, claude, fastmcp, mcp, mcp-server, model-context-protocol, netops, network-automation, python, sd-wan, sdwan, vmanage

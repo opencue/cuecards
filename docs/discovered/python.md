@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-05
+updated: 2026-08-07
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+<a id="dwgx-smartcli"></a>
+## 💎 [dwgx/SmartCLI](https://github.com/dwgx/SmartCLI)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · exceptional (score 9) · Python · tags: agent-skills, agent-tools, ai-agents, ansi, ascii-art
 
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit
 
 ```bash
-cue skills add anirudhlath/alfred --profile python
+cue skills add dwgx/SmartCLI --profile python
 ```
 
 ---

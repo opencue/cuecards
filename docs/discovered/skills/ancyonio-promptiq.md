@@ -2,7 +2,7 @@
 title: "ancyonio/PromptIQ — Claude Code skill discovered by cue"
 description: "Deterministic prompt quality engine for the agentic SDLC — lints, scores, and rewrites rough developer asks into structured task specs with no model in the tran"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 

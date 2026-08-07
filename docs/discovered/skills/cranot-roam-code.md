@@ -1,22 +1,22 @@
 ---
 title: "Cranot/roam-code — Claude Code skill discovered by cue"
-description: "Local codebase intelligence CLI + MCP server for AI coding agents: SQLite code graph, 28 languages, 238 commands, 224 MCP tools, change-safety gates, audit evid"
+description: "Local codebase intelligence CLI + MCP server for AI coding agents: SQLite code graph, 28 languages, 285 commands, 244 MCP tools, change-safety gates, audit evid"
 layout: page
-updated: 2026-06-11
+updated: 2026-08-07
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [Cranot/roam-code](https://github.com/Cranot/roam-code)
 
-**★ 473** · exceptional (score 13.8) · Python · ai-agents, ai-coding, cli, code-analysis, code-graph
+**★ 505** · exceptional (score 15.8) · Python · ai-agents, ai-coding, cli, code-analysis, code-graph
 
-> Local codebase intelligence CLI + MCP server for AI coding agents: SQLite code graph, 28 languages, 238 commands, 224 MCP tools, change-safety gates, audit evidence, zero API keys.
+> Local codebase intelligence CLI + MCP server for AI coding agents: SQLite code graph, 28 languages, 285 commands, 244 MCP tools, change-safety gates, audit evidence, zero API keys.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
-- ⭐ 473 stars
-- 🗓️ Last pushed: 2026-06-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+- ⭐ 505 stars
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: ai-agents, ai-coding, cli, code-analysis, code-graph, code-intelligence, code-quality, code-review, developer-tools, graph-analysis, local-first, mcp, mcp-server, model-context-protocol, python, refactoring, software-architecture, sqlite, static-analysis, tree-sitter
 
 ## Best fit cue profiles

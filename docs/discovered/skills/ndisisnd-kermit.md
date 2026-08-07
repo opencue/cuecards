@@ -1,23 +1,22 @@
 ---
 title: "ndisisnd/kermit — Claude Code skill discovered by cue"
-description: "Save 5s of your time (maybe) by letting Claude write your commit messages"
+description: "Conventional Commits-style Skill for writing commits and PRs. Inbuilt changelog management. Github Workflows-compatible. <1K tokens per run to document commits "
 layout: page
-updated: 2026-07-13
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ndisisnd/kermit](https://github.com/ndisisnd/kermit)
 
-**★ 0** · exceptional (score 13) · PowerShell · claude, claude-code, claude-code-skill, claude-skills, conventional-commits
+**★ 0** · exceptional (score 8) · Shell · claude, claude-code, claude-code-skill, claude-skills, conventional-commits
 
-> Save 5s of your time (maybe) by letting Claude write your commit messages
+> Conventional Commits-style Skill for writing commits and PRs. Inbuilt changelog management. Github Workflows-compatible. <1K tokens per run to document commits accurately with breaking changes. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-13
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: claude, claude-code, claude-code-skill, claude-skills, conventional-commits, git-commit, git-commit-messages, skills
 
 ## Best fit cue profiles

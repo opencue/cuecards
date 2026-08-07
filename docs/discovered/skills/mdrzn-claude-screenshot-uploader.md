@@ -2,7 +2,7 @@
 title: "mdrzn/claude-screenshot-uploader — Claude Code skill discovered by cue"
 description: "📸 Upload macOS screenshots to your server over SSH and get the remote path on your clipboard — ready to paste into a remote Claude Code/Codex session. Menu bar"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 

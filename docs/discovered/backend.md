@@ -1,174 +1,120 @@
 ---
 title: "Claude Code Skills for backend"
-description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="roomi-fields-notebooklm-mcp"></a>
-## 💎 [roomi-fields/notebooklm-mcp](https://github.com/roomi-fields/notebooklm-mcp)
+<a id="polterguy-magic"></a>
+## 💎 [polterguy/magic](https://github.com/polterguy/magic)
 
-**★ 147** · exceptional (score 18.2) · TypeScript · tags: ai, anthropic, automation, citations, claude
+**★ 1161** · exceptional (score 17) · C# · tags: agentic-ai, ai, ai-agents, backend, code-generation
 
-Google NotebookLM over MCP + a local HTTP REST API. Citation-backed Q&A, audio/video/content generation, multi-account rotation. For Claude Code, Codex, Cursor, n8n, Zapier, Make.
+Deterministic AI agents and generated backends — MIT-licensed, self-hosted, MCP-native
 
 ```bash
-cue skills add roomi-fields/notebooklm-mcp --profile backend
+cue skills add polterguy/magic --profile backend
 ```
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="cranot-roam-code"></a>
+## 💎 [Cranot/roam-code](https://github.com/Cranot/roam-code)
 
-**★ 5** · exceptional (score 17.1) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 505** · exceptional (score 15.8) · Python · tags: ai-agents, ai-coding, cli, code-analysis, code-graph
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+Local codebase intelligence CLI + MCP server for AI coding agents: SQLite code graph, 28 languages, 285 commands, 244 MCP tools, change-safety gates, audit evidence, zero API keys.
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
+cue skills add Cranot/roam-code --profile backend
 ```
 
 ---
 
-<a id="dcostenco-prism-coder"></a>
-## 💎 [dcostenco/prism-coder](https://github.com/dcostenco/prism-coder)
+<a id="dagucloud-dagu"></a>
+## 💎 [dagucloud/dagu](https://github.com/dagucloud/dagu)
 
-**★ 155** · exceptional (score 15.6) · TypeScript · tags: agent-memory, ai-agent, anti-sycophancy, cognitive-architecture, hebbian-learning
+**★ 3706** · exceptional (score 15) · Go · tags: agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron
 
-Persistent memory + local AI for coding agents. 2B–27B open-weight LLM fleet, cross-session Mind Palace, cognitive routing, L3 grounding verifier, multi-agent Hivemind. Works with Claude Code, Cursor, VS Code. Offline-first, HIPAA-ready. Free tier included.
+Local-first workflow engine for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, and AI agents; keep workflows separate from business logic. One binary, no database. Airflow alternative.
 
 ```bash
-cue skills add dcostenco/prism-coder --profile backend
+cue skills add dagucloud/dagu --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="chronoaiproject-nyxid"></a>
+## 💎 [ChronoAIProject/NyxID](https://github.com/ChronoAIProject/NyxID)
 
-**★ 199506** · exceptional (score 15) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 35** · exceptional (score 12.2) · Rust · tags: ai-agents, api-gateway, claude-code, codex, credential-management
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Connect AI agents to any API, anywhere. Securely. Open-source gateway that proxies requests, injects credentials automatically, punches through NAT to reach localhost services, and wraps REST APIs as MCP tools. Per-agent isolation. Never expose a raw key.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add ChronoAIProject/NyxID --profile backend
 ```
 
 ---
 
-<a id="skyhook-io-radar"></a>
-## 💎 [skyhook-io/radar](https://github.com/skyhook-io/radar)
+<a id="kuvasz-uptime-kuvasz"></a>
+## 💎 [kuvasz-uptime/kuvasz](https://github.com/kuvasz-uptime/kuvasz)
 
-**★ 2739** · exceptional (score 15) · Go · tags: ai-agents, argocd, cloud-native, fluxcd, gitops
+**★ 571** · exceptional (score 12) · Kotlin · tags: cloud-native, containerized, homelab, iac-managed, kotlin
 
-The missing open-source Kubernetes UI with a built-in MCP server for AI agents. See what's broken, why, and what changed. Issues, Topology, event timeline, Helm, GitOps, live service traffic, and cluster audits - all in one Go binary.
+Kuvasz (pronounce as [ˈkuvɒs]) is an open-source uptime and SSL monitoring service, with multiple notification channels, status pages, IAC support via YAML, Prometheus integration, a complete REST API and many more!
 
 ```bash
-cue skills add skyhook-io/radar --profile backend
+cue skills add kuvasz-uptime/kuvasz --profile backend
 ```
 
 ---
 
-<a id="hanyeol-model-compose"></a>
-## 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
+<a id="osauer-canary"></a>
+## 💎 [osauer/canary](https://github.com/osauer/canary)
 
-**★ 76** · exceptional (score 13.4) · Python · tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
+**★ 5** · exceptional (score 9.5) · Go · tags: canary, claude-code, claude-desktop, finance, golang
 
-Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
+Canary — local Interactive Brokers MCP server, CLI, and risk desk. Standard builds and MCP are read/preview-only; a separate opt-in trading build provides gated CLI broker writes.
 
 ```bash
-cue skills add hanyeol/model-compose --profile backend
+cue skills add osauer/canary --profile backend
 ```
 
 ---
 
-<a id="zipstack-unstract"></a>
-## 💎 [Zipstack/unstract](https://github.com/Zipstack/unstract)
+<a id="cyanheads-crossref-mcp-server"></a>
+## 💎 [cyanheads/crossref-mcp-server](https://github.com/cyanheads/crossref-mcp-server)
 
-**★ 7121** · exceptional (score 13) · Python · tags: ai-agents, data-engineering, document-ai, generative-ai, idp
+**★ 2** · exceptional (score 8.5) · TypeScript · tags: academic-search, ai-agent, bibliometrics, bun, citation
 
-LLM-Driven Extraction of Unstructured Data — Built for API Deployments & ETL Pipeline Workflows
+Resolve DOIs, search ~155M scholarly works, and fetch references via the Crossref REST API. STDIO or Streamable HTTP.
 
 ```bash
-cue skills add Zipstack/unstract --profile backend
+cue skills add cyanheads/crossref-mcp-server --profile backend
 ```
 
 ---
 
-<a id="eric-llms-awesome-ai-engineering"></a>
-## 💎 [Eric-LLMs/Awesome-AI-Engineering](https://github.com/Eric-LLMs/Awesome-AI-Engineering)
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
 
-**★ 13** · exceptional (score 9.2) · tags: agents, ai-infrastructure, deep-learning, evaluation, evaluation-framework
+**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
 
-A full-stack LLM engineering playbook- practical guides for building, deploying, and evaluating LLM systems and AI agents.
-
-```bash
-cue skills add Eric-LLMs/Awesome-AI-Engineering --profile backend
-```
-
----
-
-<a id="rudi193-cmd-willow-mcp"></a>
-## 💎 [rudi193-cmd/willow-mcp](https://github.com/rudi193-cmd/willow-mcp)
-
-**★ 2** · exceptional (score 8) · Python · tags: agent, authorization, knowledge-base, mcp, mcp-server
-
-Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client.
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
 
 ```bash
-cue skills add rudi193-cmd/willow-mcp --profile backend
-```
-
----
-
-<a id="prototypes-by-ajit-midas"></a>
-## 💎 [Prototypes-by-Ajit/midas](https://github.com/Prototypes-by-Ajit/midas)
-
-**★ 2** · exceptional (score 8) · Jupyter Notebook · tags: clara, clerk-authentication, cronjob, faiss, fastapi
-
-Repository for the files and folders for the full-stack midas application 
-
-```bash
-cue skills add Prototypes-by-Ajit/midas --profile backend
-```
-
----
-
-<a id="johalputt-vayupress"></a>
-## ✨ [johalputt/VayuPress](https://github.com/johalputt/VayuPress)
-
-**★ 10** · strong (score 7.2) · Go · tags: anti-censorship, anti-ddos, blog-engine, bot-protection, cms
-
-Your whole online presence in one sovereign Go binary — website, blog, PGP mail, E2E-encrypted chat, anti-DDoS bot shield, privacy analytics, one-click Tor .onion, and Stripe/PayPal/crypto monetization. No SaaS bills, no third parties, no telemetry. Own your content, your mailbox, your infrastructure.
-
-```bash
-cue skills add johalputt/VayuPress --profile backend
-```
-
----
-
-<a id="erayendes-app-store-connect-mcp"></a>
-## ✨ [erayendes/app-store-connect-mcp](https://github.com/erayendes/app-store-connect-mcp)
-
-**★ 46** · strong (score 6.9) · TypeScript · tags: ai, app-reviews, app-store-connect, app-store-server-api, apple
-
-Heimdall — MCP server for the Apple App Store Connect API and App Store Server API (StoreKit 2). 875 tools across 13 profiles, generated from Apple's official OpenAPI spec, plus review triage and reply drafting that runs on your own model, and confirm-before-write safety. Works with Claude, Codex, Cursor and any MCP client.
-
-```bash
-cue skills add erayendes/app-store-connect-mcp --profile backend
+cue skills add shadow400x/claude-sh --profile backend
 ```
 
 ---
@@ -186,15 +132,41 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="zeropointrepo-zillow-mcp"></a>
-## ✨ [ZeroPointRepo/zillow-mcp](https://github.com/ZeroPointRepo/zillow-mcp)
+<a id="aoreshkov-oracle-forms-mcp"></a>
+## ✨ [aoreshkov/oracle-forms-mcp](https://github.com/aoreshkov/oracle-forms-mcp)
 
-**★ 0** · strong (score 6) · tags: mcp, mcp-server, property-data, real-estate-api, zestimate
+**★ 1** · strong (score 6.3) · Kotlin · tags: ai, claude, kotlin, kotlin-multiplatform, legacy-modernization
 
-Zillow MCP for AI agents — property data, Zestimates & listings. Try for free.
+MCP server that exposes Oracle Forms modules (.fmb/.mmb/.pll/.olb) — blocks, triggers, PL/SQL, object XML — to AI assistants for legacy modernization and code review.
 
 ```bash
-cue skills add ZeroPointRepo/zillow-mcp --profile backend
+cue skills add aoreshkov/oracle-forms-mcp --profile backend
+```
+
+---
+
+<a id="kenhayward-diariz"></a>
+## ✨ [kenhayward/Diariz](https://github.com/kenhayward/Diariz)
+
+**★ 3** · strong (score 5.7) · C# · tags: action-items, gdpr, llm, mcp-server, meeting-notes
+
+Self-hosted, multi-user transcription platform: record or upload audio. Speaker-labeled, timestamped transcripts, Recognize speakers across recordings, Summarize, extract action items and chat over your transcripts with your own OpenAI-compatible LLM. Your Audio, your Server, your Model. Tested on Laptop RTX4070, Desktop RTX3090 and RTX5090
+
+```bash
+cue skills add kenhayward/Diariz --profile backend
+```
+
+---
+
+<a id="xagi-lab-melra"></a>
+## ✨ [XAGI-Lab/melra](https://github.com/XAGI-Lab/melra)
+
+**★ 1** · strong (score 5.3) · TypeScript · tags: agent-memory, agent-runtime, agent-safety, ai-agents, autonomous-agents
+
+MELRA — Modular Execution Layer for Reliable Autonomy. Open-source durable, policy-governed execution across browser, terminal, files, memory, and computer use—with MCP, CLI, SDKs, and verified evidence.
+
+```bash
+cue skills add XAGI-Lab/melra --profile backend
 ```
 
 ---

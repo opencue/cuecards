@@ -2,7 +2,7 @@
 title: "gowtham-sai-yadav/entangle — Claude Code skill discovered by cue"
 description: "Hand a live Claude Code, Codex, or opencode session to anyone with three spoken words - encrypted, no account. Or carry your whole Claude Code history to a new "
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 

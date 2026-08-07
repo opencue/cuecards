@@ -2,21 +2,21 @@
 title: "adrianohenriqueuna-pixel/printkk-agent-skill — Claude Code skill discovered by cue"
 description: "Connect AI coding agents to the PrintKK API to automate image management, design creation, order fulfillment, and product catalog lookups."
 layout: page
-updated: 2026-07-18
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [adrianohenriqueuna-pixel/printkk-agent-skill](https://github.com/adrianohenriqueuna-pixel/printkk-agent-skill)
 
-**★ 0** · exceptional (score 8) · agent-skills, claude-code, claude-code-skill, claude-skills, dropshipping
+**★ 0** · exceptional (score 9.5) · agent-skills, claude-code, claude-code-skill, claude-skills, dropshipping
 
 > Connect AI coding agents to the PrintKK API to automate image management, design creation, order fulfillment, and product catalog lookups.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-18
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, claude-skills, dropshipping, dropshipping-automation, ecommerce, print-on-demand, printkk, skill-md, skillsmp
 
 ## Best fit cue profiles

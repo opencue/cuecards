@@ -2,7 +2,7 @@
 title: "OraclePersonal/Oracle — Claude Code skill discovered by cue"
 description: "Oracle Assistant — MCP-powered AI assistant with persistent memory, knowledge base, web access, and multi-agent coordination for Claude Code, opencode, and othe"
 layout: page
-updated: 2026-08-03
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-03
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: agent-memory, ai-assistant, ai-coding-assistant, claude-code, llm-tools, mcp-server, opencode, oracle-assistant
 
 ## Best fit cue profiles

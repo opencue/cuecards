@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-05
+updated: 2026-08-07
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="parthganatra-agent-skills"></a>
-## 💎 [ParthGanatra/agent-skills](https://github.com/ParthGanatra/agent-skills)
+<a id="kenhayward-diariz"></a>
+## ✨ [kenhayward/Diariz](https://github.com/kenhayward/Diariz)
 
-**★ 4** · exceptional (score 8.8) · Shell · tags: agent-skills, ai, claude, claude-code, claude-skill
+**★ 3** · strong (score 5.7) · C# · tags: action-items, gdpr, llm, mcp-server, meeting-notes
 
-Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide extraction.
+Self-hosted, multi-user transcription platform: record or upload audio. Speaker-labeled, timestamped transcripts, Recognize speakers across recordings, Summarize, extract action items and chat over your transcripts with your own OpenAI-compatible LLM. Your Audio, your Server, your Model. Tested on Laptop RTX4070, Desktop RTX3090 and RTX5090
 
 ```bash
-cue skills add ParthGanatra/agent-skills --profile video
+cue skills add kenhayward/Diariz --profile video
 ```
 
 ---

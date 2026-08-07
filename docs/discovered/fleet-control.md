@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
 
-**★ 151** · exceptional (score 13) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
 
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
 
 ```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 <a id="nuttaruj-rolepod"></a>
 ## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 3** · strong (score 6.6) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 3** · strong (score 6.7) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 

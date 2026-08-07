@@ -2,21 +2,21 @@
 title: "elyshafresh21/claude-context-lint — Claude Code skill discovered by cue"
 description: "Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts"
 layout: page
-updated: 2026-06-29
+updated: 2026-08-07
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
 
-**★ 1** · exceptional (score 8.8) · agents, ai, ai-agent, ai-coding, cer
+**★ 1** · exceptional (score 10.3) · agents, ai, ai-agent, ai-coding, cer
 
 > Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-29
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: agents, ai, ai-agent, ai-coding, cer, claude-code-skill, claude-md, cli, context-engineering, copilot, copilot-instructions, cursorrules, developer-tools, mcp, mcp-tools, security, security-scanner, token-optimization
 
 ## Best fit cue profiles
