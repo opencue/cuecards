@@ -69,7 +69,7 @@ function expandSkillIds(ids: string[]): string[] {
 // CLAUDE.md can't be measured directly.
 const BASE_CLAUDE_MD_TOKENS = 7000;
 
-async function runCompare(json: boolean, budget: number): Promise<number> {
+async function runCompare(json: boolean, budget: number, target?: string): Promise<number> {
   const mcpCache = loadMcpEstimates();
   const profiles = await listProfiles();
   const results: { name: string; skills: number; mcps: number; tokens: number; cost100: string; over_budget?: boolean }[] = [];
@@ -104,27 +104,45 @@ async function runCompare(json: boolean, budget: number): Promise<number> {
   if (budget > 0) {
     for (const r of results) r.over_budget = budgetExceeded(r.tokens, budget);
   }
-  const overBudget = results.filter((r) => r.over_budget);
+
+  // When a target profile is given, scope the comparison to just that profile
+  // vs `full` — that's the two-way comparison the caller actually asked for,
+  // not an 85-row dump. Filtering the already-sorted `results` array preserves
+  // cheapest-first order between the two rows. If the target isn't a loadable
+  // profile, or `full` itself is missing, fall back to comparing everything
+  // rather than erroring — this can run inside an install flow and must not
+  // become a new failure mode.
+  let rows = results;
+  let heading = "📊 Token budget comparison (all profiles)";
+  if (target) {
+    const scoped = results.filter((r) => r.name === target || r.name === "full");
+    if (scoped.length === 2) {
+      rows = scoped;
+      heading = `📊 Token budget: ${target} vs full (everything loaded)`;
+    }
+  }
+
+  const overBudget = rows.filter((r) => r.over_budget);
 
   if (json) {
-    process.stdout.write(JSON.stringify(results, null, 2) + "\n");
+    process.stdout.write(JSON.stringify(rows, null, 2) + "\n");
     return overBudget.length > 0 ? 1 : 0;
   }
 
-  const maxTokens = results[results.length - 1]?.tokens ?? 1;
+  const maxTokens = rows[rows.length - 1]?.tokens ?? 1;
 
-  process.stdout.write("📊 Token budget comparison (all profiles)\n\n");
+  process.stdout.write(`${heading}\n\n`);
   process.stdout.write(`  ${"Profile".padEnd(20)} ${"Skills".padStart(6)} ${"MCPs".padStart(5)} ${"Tokens".padStart(8)} ${"$/100msg".padStart(8)}  Budget\n`);
   process.stdout.write(`  ${"─".repeat(20)} ${"─".repeat(6)} ${"─".repeat(5)} ${"─".repeat(8)} ${"─".repeat(8)}  ${"─".repeat(20)}\n`);
 
-  for (const r of results) {
+  for (const r of rows) {
     const barLen = Math.max(1, Math.round((r.tokens / maxTokens) * 20));
     const bar = "█".repeat(barLen) + "░".repeat(20 - barLen);
     const level = r.tokens > 20000 ? "🔴" : r.tokens > 8000 ? "🟡" : "🟢";
     process.stdout.write(`  ${r.name.padEnd(20)} ${String(r.skills).padStart(6)} ${String(r.mcps).padStart(5)} ${r.tokens.toLocaleString().padStart(8)} ${"$" + r.cost100.padStart(7)}  ${bar} ${level}\n`);
   }
 
-  process.stdout.write(`\n  ${results.length} profiles compared. Cheapest: ${results[0]?.name}, most expensive: ${results[results.length - 1]?.name}\n`);
+  process.stdout.write(`\n  ${rows.length} profiles compared. Cheapest: ${rows[0]?.name}, most expensive: ${rows[rows.length - 1]?.name}\n`);
 
   if (budget > 0) {
     if (overBudget.length > 0) {
@@ -134,7 +152,7 @@ async function runCompare(json: boolean, budget: number): Promise<number> {
       );
       return 1;
     }
-    process.stdout.write(`\n  ✅ All ${results.length} profiles within the ${budget.toLocaleString()}-token budget.\n`);
+    process.stdout.write(`\n  ✅ All ${rows.length} profiles within the ${budget.toLocaleString()}-token budget.\n`);
   }
   return 0;
 }
@@ -148,7 +166,7 @@ export async function run(args: string[]): Promise<number> {
   let profileName = args.find((a, idx) => !a.startsWith("-") && idx !== budgetValueIdx);
 
   if (compare) {
-    return runCompare(json, budget);
+    return runCompare(json, budget, profileName);
   }
 
   if (!profileName) {

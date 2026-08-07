@@ -72,7 +72,7 @@ function cmdList(json: boolean): number {
         } catch { /* skip */ }
       }
     } catch { /* skip */ }
-    results.push({ repo: "opencue/claude-code-skills (local)", url: "https://github.com/opencue/claude-code-skills", skillCount: count, type: "local" });
+    results.push({ repo: "opencue/cuecards (local)", url: "https://github.com/opencue/cuecards", skillCount: count, type: "local" });
   }
 
   if (json) {
@@ -124,7 +124,7 @@ async function cmdProfile(profileName: string, json: boolean): Promise<number> {
   process.stdout.write(`Skill sources for "${profileName}":\n\n`);
 
   if (localSkills.length) {
-    process.stdout.write(`  📁 opencue/claude-code-skills (local) — ${localSkills.length} skills\n`);
+    process.stdout.write(`  📁 opencue/cuecards (local) — ${localSkills.length} skills\n`);
     for (const s of localSkills.slice(0, 8)) process.stdout.write(`       - ${s}\n`);
     if (localSkills.length > 8) process.stdout.write(`       ... +${localSkills.length - 8} more\n`);
     process.stdout.write("\n");

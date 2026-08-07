@@ -29,7 +29,13 @@ import { repoRoot } from "../lib/repo-root";
 function cacheDir(): string {
   return join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "discover");
 }
-function cacheFile(): string { return join(cacheDir(), "gems.json"); }
+/**
+ * Exported so tests seeding a fake gems cache (e.g. to prove a caller skips
+ * gem discovery even when a qualifying gem exists) derive the SAME path this
+ * module reads, instead of hand-deriving a parallel path string that can
+ * silently drift out of sync with this one.
+ */
+export function cacheFile(): string { return join(cacheDir(), "gems.json"); }
 const DEFAULT_EXPORT = join(repoRoot(), "docs", "discovered.md");
 
 // ---------------------------------------------------------------------------

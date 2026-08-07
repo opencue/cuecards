@@ -2,21 +2,21 @@
 title: "unitedideas/nothumansearch — Claude Code skill discovered by cue"
 description: "Search engine for AI agents — ranks sites by agentic readiness (llms.txt, OpenAPI, MCP, ai-plugin). MCP server, REST API, full-text search. 8,000+ indexed sites"
 layout: page
-updated: 2026-07-18
+updated: 2026-07-31
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [unitedideas/nothumansearch](https://github.com/unitedideas/nothumansearch)
 
-**★ 9** · exceptional (score 9.8) · Go · agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
+**★ 8** · exceptional (score 9.8) · Go · agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
 
 > Search engine for AI agents — ranks sites by agentic readiness (llms.txt, OpenAPI, MCP, ai-plugin). MCP server, REST API, full-text search. 8,000+ indexed sites.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-07-18
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-07-31
 - 🏷️ Tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools, anthropic, claude, fly-io, go, llms-txt, mcp, mcp-server, model-context-protocol, openapi, postgres, search-engine
 
 ## Best fit cue profiles

@@ -8,6 +8,7 @@ import {
   formatStartupBanner,
   formatTmuxTitle,
   getDefaultSelector,
+  ownsPaneBadge,
   relativeTime,
   shouldAppendUserClaudeMd,
   sortProfileOptions,
@@ -903,5 +904,28 @@ describe("shouldAppendUserClaudeMd", () => {
     expect(
       shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/home/u/proj", home, env: { CUE_APPEND_USER_CLAUDEMD: "1" } }),
     ).toBe(true);
+  });
+});
+
+describe("ownsPaneBadge", () => {
+  test("an interactive launch inside tmux owns the badge", () => {
+    expect(ownsPaneBadge({ TMUX: "/tmp/tmux-1000/default,123,0" }, true)).toBe(true);
+  });
+
+  test("a piped launch does not — it is the --print helper sharing the pane", () => {
+    // The skill-selector cue spawns on every session start inherits TMUX_PANE
+    // from the session it helps. Announcing there would overwrite that
+    // session's badge and clear it again on exit seconds later.
+    expect(ownsPaneBadge({ TMUX: "/tmp/tmux-1000/default,123,0" }, false)).toBe(false);
+  });
+
+  test("outside tmux nobody owns a badge", () => {
+    expect(ownsPaneBadge({}, true)).toBe(false);
+  });
+
+  test("CUE_TMUX_TITLE=0 opts out even when interactive", () => {
+    expect(
+      ownsPaneBadge({ TMUX: "/tmp/tmux-1000/default,123,0", CUE_TMUX_TITLE: "0" }, true),
+    ).toBe(false);
   });
 });

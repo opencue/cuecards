@@ -1,42 +1,83 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-08-06
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ezra-y-awesome-claude-ui-armory"></a>
-## 💎 [Ezra-Y/awesome-claude-ui-armory](https://github.com/Ezra-Y/awesome-claude-ui-armory)
+<a id="amohavarshansankar-google-fonts-skill"></a>
+## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
 
-**★ 1** · exceptional (score 10.8) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
+**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
 
-Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
+Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
+
+✅ SKILL.md
 
 ```bash
-cue skills add Ezra-Y/awesome-claude-ui-armory --profile frontend
+cue skills add amohavarshansankar/google-fonts-skill --profile frontend
 ```
 
 ---
 
-<a id="giovannisacca-pixel-mcp-workflow"></a>
-## ✨ [giovannisacca/pixel-mcp-workflow](https://github.com/giovannisacca/pixel-mcp-workflow)
+<a id="ezra-y-awesome-claude-ui-armory"></a>
+## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-coding-agent, claude-code, claude-skill, design-to-code, figma
+**★ 2** · exceptional (score 11) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
-🔧 AI-Powered Design-to-Code Pipeline 2026: Figma to React in 6-Phase Parallel Workflow
+Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
-cue skills add giovannisacca/pixel-mcp-workflow --profile frontend
+cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="wahmoh-claude-react-kit"></a>
+## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
+
+**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
+
+Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
+
+```bash
+cue skills add wahmoh/claude-react-kit --profile frontend
+```
+
+---
+
+<a id="prototypes-by-ajit-midas"></a>
+## 💎 [Prototypes-by-Ajit/midas](https://github.com/Prototypes-by-Ajit/midas)
+
+**★ 2** · exceptional (score 8) · Jupyter Notebook · tags: clara, clerk-authentication, cronjob, faiss, fastapi
+
+Repository for the files and folders for the full-stack midas application 
+
+```bash
+cue skills add Prototypes-by-Ajit/midas --profile frontend
+```
+
+---
+
+<a id="tarastsavolyk-claude-code-frontend"></a>
+## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
+
+**★ 1** · potential (score 3.3) · JavaScript
+
+Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
+
+```bash
+cue skills add TarasTsavolyk/claude-code-frontend --profile frontend
 ```
 
 ---

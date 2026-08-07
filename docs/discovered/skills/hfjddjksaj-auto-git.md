@@ -2,7 +2,7 @@
 title: "hfjddjksaj/auto-git — Claude Code skill discovered by cue"
 description: "Claude Code skill: per-round git auto-commit safety net with progress tracking (cross-platform Stop hooks)"
 layout: page
-updated: 2026-07-23
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: agent-skills, anthropic, auto-commit, automation, claude, claude-code, claude-code-skill, claude-skills, git, hooks, version-control
 
 ## Best fit cue profiles

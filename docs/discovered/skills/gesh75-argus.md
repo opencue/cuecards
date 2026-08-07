@@ -2,21 +2,21 @@
 title: "gesh75/argus — Claude Code skill discovered by cue"
 description: "Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annot"
 layout: page
-updated: 2026-07-26
+updated: 2026-08-04
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 2** · strong (score 5.5) · Python · active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 2** · strong (score 5.4) · Python · active-directory, ai-agent, guardrails, llm, offensive-security
 
 > Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.4 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-25
+- 🗓️ Last pushed: 2026-08-01
 - 🏷️ Tags: active-directory, ai-agent, guardrails, llm, offensive-security, pentest, python, red-team, security
 
 ## Best fit cue profiles

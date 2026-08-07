@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: opencue/claude-code-skills/action@main
+      - uses: opencue/cuecards/action@main
         with:
           token-threshold: '30000'  # fail if profile exceeds 30k tokens
 ```
@@ -55,7 +55,7 @@ The action posts (and updates) a comment on the PR:
 Use `cue-ci` to enforce token budgets across your team:
 
 ```yaml
-- uses: opencue/claude-code-skills/action@main
+- uses: opencue/cuecards/action@main
   with:
     token-threshold: '20000'  # strict: lean profiles only
     comment: 'true'

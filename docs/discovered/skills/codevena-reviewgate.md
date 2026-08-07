@@ -2,7 +2,7 @@
 title: "Codevena/reviewgate — Claude Code skill discovered by cue"
 description: "Fail-closed independent review loop for Claude Code and Codex. Native hooks, six reviewer paths (Codex, Gemini, Claude, OpenCode, OpenRouter, Ollama), LKG polic"
 layout: page
-updated: 2026-07-26
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-25
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: agentic, ai-agents, ai-coding, claude-code, code-quality, code-review, codex, developer-tools, gemini, hooks, llm, typescript
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "tt-a1i/archify — Claude Code skill discovered by cue"
 description: "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
 layout: page
-updated: 2026-07-23
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 7016** · exceptional (score 16) · HTML · agent-skills, anthropic, architecture-diagram, claude-skill, codex
+**★ 9230** · exceptional (score 16) · HTML · agent-skills, anthropic, architecture-diagram, claude-skill, codex
 
 > Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 7016 stars
-- 🗓️ Last pushed: 2026-07-23
+- ⭐ 9230 stars
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: agent-skills, anthropic, architecture-diagram, claude-skill, codex, dark-mode, data-flow-diagram, developer-tools, diagram-as-code, html-diagram, lifecycle-diagram, mermaid-alternative, opencode, sequence-diagram, svg, system-design, workflow-diagram
 
 ## Best fit cue profiles

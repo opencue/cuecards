@@ -2,21 +2,21 @@
 title: "Zipstack/unstract — Claude Code skill discovered by cue"
 description: "LLM-Driven Extraction of Unstructured Data — Built for API Deployments & ETL Pipeline Workflows"
 layout: page
-updated: 2026-07-21
+updated: 2026-08-06
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [Zipstack/unstract](https://github.com/Zipstack/unstract)
 
-**★ 6711** · exceptional (score 13) · Python · ai-agents, data-engineering, document-ai, generative-ai, idp
+**★ 7121** · exceptional (score 13) · Python · ai-agents, data-engineering, document-ai, generative-ai, idp
 
 > LLM-Driven Extraction of Unstructured Data — Built for API Deployments & ETL Pipeline Workflows
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 6711 stars
-- 🗓️ Last pushed: 2026-07-21
+- ⭐ 7121 stars
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: ai-agents, data-engineering, document-ai, generative-ai, idp, json-extraction, llm, mcp-server, ocr, pdf-extraction, prompt-engineering, structured-output
 
 ## Best fit cue profiles

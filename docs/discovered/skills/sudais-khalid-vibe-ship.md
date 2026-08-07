@@ -2,22 +2,22 @@
 title: "sudais-khalid/vibe-ship — Claude Code skill discovered by cue"
 description: "A Claude Code / Claude.ai Skill that turns any codebase into something deployable with docker compose up and shippable through CI/CD, hardened by default, gener"
 layout: page
-updated: 2026-07-05
+updated: 2026-07-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [sudais-khalid/vibe-ship](https://github.com/sudais-khalid/vibe-ship)
 
-**★ 2** · exceptional (score 13.5) · Python · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
+**★ 18** · exceptional (score 14.5) · Python · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
 
 > A Claude Code / Claude.ai Skill that turns any codebase into something deployable with docker compose up and shippable through CI/CD, hardened by default, generated in one pass.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-05
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills
 
 ## Best fit cue profiles

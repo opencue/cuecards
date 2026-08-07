@@ -2,21 +2,21 @@
 title: "AllyJuma1/easel-js-cpu-render-kit — Claude Code skill discovered by cue"
 description: "🚀 WebGPU Agent Skill 2026: Build GPU Apps with Easel.js & AI Coding Agents"
 layout: page
-updated: 2026-07-23
+updated: 2026-08-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [AllyJuma1/easel-js-cpu-render-kit](https://github.com/AllyJuma1/easel-js-cpu-render-kit)
 
-**★ 0** · exceptional (score 10) · HTML · agent-skill, agent-skills, claude, claude-plugin, claude-skill
+**★ 1** · exceptional (score 10.3) · HTML · agent-skill, agent-skills, claude, claude-plugin, claude-skill
 
 > 🚀 WebGPU Agent Skill 2026: Build GPU Apps with Easel.js & AI Coding Agents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-02
 - 🏷️ Tags: agent-skill, agent-skills, claude, claude-plugin, claude-skill, claude-skills, codex, codex-plugin, codex-skill, codex-skills, copilot, copilot-skill, copilot-skills, easeljs, easeljs-graphics, node, opencode, opencode-plugin, opencode-skill, opencode-skills
 
 ## Best fit cue profiles

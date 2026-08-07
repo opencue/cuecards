@@ -2,13 +2,13 @@
 title: "HOKlNG/zzon-doc — Claude Code skill discovered by cue"
 description: "Claude Code plugin that turns your codebase into interactive, dependency-free architecture diagrams (infra · data-flow · ERD · agent topology) as a single self-"
 layout: page
-updated: 2026-07-06
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [HOKlNG/zzon-doc](https://github.com/HOKlNG/zzon-doc)
 
-**★ 1** · exceptional (score 8.3) · JavaScript · anthropic, architecture-diagram, claude, claude-code, claude-code-marketplace
+**★ 1** · exceptional (score 8.3) · TypeScript · anthropic, architecture-diagram, claude, claude-code, claude-code-marketplace
 
 > Claude Code plugin that turns your codebase into interactive, dependency-free architecture diagrams (infra · data-flow · ERD · agent topology) as a single self-contained HTML.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-06
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: anthropic, architecture-diagram, claude, claude-code, claude-code-marketplace, claude-code-plugin, claude-code-skill, diagram, documentation, erd, visualization
 
 ## Best fit cue profiles

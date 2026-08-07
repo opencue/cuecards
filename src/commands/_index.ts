@@ -232,7 +232,7 @@ export const COMMANDS = {
     load: () => import("./init"),
   },
   setup: {
-    summary: "One-command install: shim, project scan, and profile pin (alias of init)",
+    summary: "One-command install: shim, project scan, and profile pin (alias of init). Non-interactive: --profile <name> / --yes (-y) — never opts into telemetry or installs gems",
     load: () => import("./init"),
   },
   import: {
@@ -385,7 +385,7 @@ export const COMMANDS = {
     load: () => import("./feedback"),
   },
   "submit-profile": {
-    summary: "Fork opencue/claude-code-skills, branch, commit your profile.yaml, open PR (community contribution)",
+    summary: "Fork opencue/cuecards, branch, commit your profile.yaml, open PR (community contribution)",
     load: () => import("./submit-profile"),
   },
   telemetry: {

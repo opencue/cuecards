@@ -2,7 +2,7 @@
 title: "BackTrackCo/tenjin-agent — Claude Code skill discovered by cue"
 description: "Agent CLI, Claude Code plugin, and skills for Tenjin, the x402-native knowledge marketplace. USDC on Base, no API keys."
 layout: page
-updated: 2026-07-24
+updated: 2026-07-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-24
+- 🗓️ Last pushed: 2026-07-31
 - 🏷️ Tags: agent-skills, ai-agents, base, claude, claude-skill, cli, codex, knowledge-marketplace, mcp, micropayments, usdc, x402
 
 ## Best fit cue profiles

@@ -2,22 +2,22 @@
 title: "BrokkAi/bifrost — Claude Code skill discovered by cue"
 description: "Multi-language static analysis for agents, editors, and large repositories."
 layout: page
-updated: 2026-07-12
+updated: 2026-07-31
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [BrokkAi/bifrost](https://github.com/BrokkAi/bifrost)
 
-**★ 2** · exceptional (score 8) · Rust · ai, code-intelligence, dev-tools, llm, lsp-server
+**★ 10** · exceptional (score 10.9) · Rust · ai, code-intelligence, dev-tools, llm, lsp-server
 
 > Multi-language static analysis for agents, editors, and large repositories.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-12
-- 🏷️ Tags: ai, code-intelligence, dev-tools, llm, lsp-server, mcp-server
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-07-31
+- 🏷️ Tags: ai, code-intelligence, dev-tools, llm, lsp-server, mcp-server, static-analysis
 
 ## Best fit cue profiles
 

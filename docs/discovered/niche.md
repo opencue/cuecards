@@ -1,46 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-08-02
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikramahmadmemon13-grant-thinking-skill"></a>
-## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+<a id="menghuanshiguang-bilibili-downloader-skill"></a>
+## 💎 [menghuanshiguang/bilibili-downloader-skill](https://github.com/menghuanshiguang/bilibili-downloader-skill)
 
-**★ 0** · exceptional (score 10.5) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+**★ 1** · exceptional (score 11.3) · Shell · tags: ai-agent, audio-downloader, bilibili, bilibili-downloader, claude-skill
 
-Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
-
-✅ SKILL.md
-
-```bash
-cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
-```
-
----
-
-<a id="martellevaliant19-grant-thinking-cn-biology"></a>
-## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
-
-**★ 0** · exceptional (score 10.5) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
-
-Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+B站音视频下载技能 - 基于yt-dlp，内置HTTP 412反爬规避方案，支持音频/视频/批量下载UP主空间
 
 ✅ SKILL.md
 
 ```bash
-cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+cue skills add menghuanshiguang/bilibili-downloader-skill --profile niche
 ```
 
 ---

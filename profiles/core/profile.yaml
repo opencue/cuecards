@@ -193,7 +193,6 @@ mcps:
   # pin: true marks an MCP the agent uses directly (not via a skill), so the
   # launcher's smart-prune keeps it always-on instead of dropping it.
   - { id: codegraph, pin: true }   # Repo code intelligence MCP — use before broad Read/Grep for architecture, feature, bug-context, symbol, caller/callee, and impact questions. Available to Claude and Codex runtimes via the sanitized registry snapshots.
-  - lightpanda                     # Fast headless browser MCP — fetch/render/scrape URLs without Chromium. Pairs with browser/lightpanda skill (prunable when that skill is inactive).
   - { id: context7, pin: true }    # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
   - { id: headroom, pin: true }    # Context-compression MCP (headroom_compress/retrieve/stats) — reversible targeted compression for large payloads. The full all-traffic proxy wrap is opt-in via the `headroom` profile, not inherited by core.
 plugins:

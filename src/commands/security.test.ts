@@ -7,7 +7,7 @@
  */
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync, chmodSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, chmodSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -177,5 +177,77 @@ describe.skipIf(!BUN_SPAWNABLE)("SkillSpector install gate", () => {
     expect(r.status).toBe("unavailable");
     expect(r.ok).toBe(true); // fail-open: clean skill still installs
     expect(r.codes).not.toContain("SS1");
+  });
+});
+
+/**
+ * Baselines suppress reviewed false positives — but only for skills that ship
+ * in this repo. A fetched remote skill lands in ~/.claude/skills under a name
+ * its author chose, so honoring a baseline there would let a malicious skill
+ * claim a trusted id and inherit its suppressions.
+ */
+describe.skipIf(!BUN_SPAWNABLE)("SkillSpector baseline scoping", () => {
+  let home: string;
+  let repo: string;
+  let bin: string;
+  let argvLog: string;
+
+  beforeEach(() => {
+    const fake = mkdtempSync(join(tmpdir(), "cue-ss-base-"));
+    home = join(fake, "home");
+    repo = join(fake, "repo");
+    bin = join(fake, "fake-skillspector");
+    argvLog = join(fake, "argv.txt");
+    mkdirSync(join(home, ".claude", "skills"), { recursive: true });
+    mkdirSync(repo, { recursive: true });
+
+    writeFileSync(
+      bin,
+      `#!/bin/sh\nprintf '%s\\n' "$*" > ${JSON.stringify(argvLog)}\n` +
+        `cat <<'JSON'\n${JSON.stringify({
+          risk_assessment: { score: 0, severity: "LOW", recommendation: "SAFE" },
+          issues: [],
+        })}\nJSON\n`,
+    );
+    chmodSync(bin, 0o755);
+
+    // A baseline exists for the id "vendor/thing".
+    const blDir = join(repo, "resources", "skillspector-baselines", "vendor");
+    mkdirSync(blDir, { recursive: true });
+    writeFileSync(join(blDir, "thing.yaml"), "version: 2\nrules: []\n");
+  });
+  afterEach(() => rmSync(join(home, ".."), { recursive: true, force: true }));
+
+  function runGate(): string {
+    const script =
+      `import { gateFreshSkill } from ${JSON.stringify(SECURITY_TS)};\n` +
+      `gateFreshSkill("vendor/thing");\nconsole.log("done");`;
+    spawnSync("bun", ["-e", script], {
+      encoding: "utf8",
+      timeout: 20000,
+      env: {
+        ...process.env,
+        HOME: home,
+        CUE_REPO_ROOT: repo,
+        CUE_SKILLSPECTOR: "1",
+        SKILLSPECTOR_BIN: bin,
+      },
+    });
+    return readFileSync(argvLog, "utf8");
+  }
+
+  test("a skill in this repo gets its baseline applied", () => {
+    const dir = join(repo, "resources", "skills", "skills", "vendor", "thing");
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "SKILL.md"), CLEAN_SKILL);
+    expect(runGate()).toContain("--baseline");
+  });
+
+  test("a fetched remote skill is NEVER baselined, even under a matching id", () => {
+    // Same id, but the files live in ~/.claude/skills — attacker-chosen name.
+    const dir = join(home, ".claude", "skills", "vendor", "thing");
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "SKILL.md"), CLEAN_SKILL);
+    expect(runGate()).not.toContain("--baseline");
   });
 });

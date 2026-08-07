@@ -2,22 +2,22 @@
 title: "OSideMedia/higgsfield-ai-prompt-skill — Claude Code skill discovered by cue"
 description: "Claude AI skill for cinematic Higgsfield AI prompts — 20 sub-skills covering Cinema Studio 2.5/3.0/3.5, MCSLA formula, Soul ID character consistency, Seedance 2"
 layout: page
-updated: 2026-06-08
+updated: 2026-08-02
 tags: [claude-code, skill, video]
 ---
 
 # 💎 [OSideMedia/higgsfield-ai-prompt-skill](https://github.com/OSideMedia/higgsfield-ai-prompt-skill)
 
-**★ 114** · exceptional (score 20.4) · Python · ai-cinema, ai-filmmaking, ai-video, cinema-studio, cinematic-cameras
+**★ 236** · exceptional (score 20.7) · Python · ai-cinema, ai-filmmaking, ai-video, cinema-studio, cinematic-cameras
 
 > Claude AI skill for cinematic Higgsfield AI prompts — 20 sub-skills covering Cinema Studio 2.5/3.0/3.5, MCSLA formula, Soul ID character consistency, Seedance 2.0 prompt modes, Kling 3.0 Motion Control, Elements system, DISCIPLINE framework, production benchmarks, and 17 templates across 3 categories.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 114 stars
-- 🗓️ Last pushed: 2026-06-08
+- ⭐ 236 stars
+- 🗓️ Last pushed: 2026-08-02
 - 🏷️ Tags: ai-cinema, ai-filmmaking, ai-video, cinema-studio, cinematic-cameras, claude-code, claude-cowork, claude-skill, higgsfield, kling, mcsla, motion-control, prompt-engineering, seedance, sora, soul-cinema, soul-id, veo, video-generation, wan
 
 ## Best fit cue profiles

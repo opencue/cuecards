@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-23
+updated: 2026-08-05
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-shopping-aggregator"></a>
-## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
+<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
+## ✨ [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, amazon, claude
+**★ 0** · strong (score 6.5) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
-Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
+Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 
 ```bash
-cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
+cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
 ```
 
 ---

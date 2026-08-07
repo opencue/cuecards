@@ -1,8 +1,8 @@
 ---
 title: "eragonlonelyboy-lab/calliope — Claude Code skill discovered by cue"
-description: "The chief Muse runs your design studio now: strategist interviews, signed briefs, role-agent production, a QA gate that rejects a 7.9/10. Directs Claude Design,"
+description: "The agentic design agency in your terminal. The chief Muse runs the full engagement: interviews, signed briefs, role-agent production, a QA gate that rejects a "
 layout: page
-updated: 2026-07-06
+updated: 2026-08-05
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, creative-media]
 
 **★ 0** · exceptional (score 13) · JavaScript · ai-agents, brand-design, claude-code, claude-code-skill, demiurge
 
-> The chief Muse runs your design studio now: strategist interviews, signed briefs, role-agent production, a QA gate that rejects a 7.9/10. Directs Claude Design, Figma, v0 as instruments.
+> The agentic design agency in your terminal. The chief Muse runs the full engagement: interviews, signed briefs, role-agent production, a QA gate that rejects a 7.9. Directs Claude Design, Figma, v0.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-06
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: ai-agents, brand-design, claude-code, claude-code-skill, demiurge, design-agency, design-tools, figma, llm, ui-design
 
 ## Best fit cue profiles

@@ -10,7 +10,7 @@
  *                           bare, interactive launch)
  *   --dry-run              everything except the final exec; prints env
  *
- * Recursion guard via CUE_LAUNCHING=1 in child env.
+ * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
  */
 
 import { spawn } from "node:child_process";
@@ -279,6 +279,23 @@ export function formatTmuxTitle(
   return `${friendly} · ${segment(0)} +${parts.length - 1}`;
 }
 
+/** Field separator for the batched option read-back. Never appears in a value. */
+const UNIT_SEP = "\x1f";
+
+/**
+ * Whether this launch owns the pane's cue badge.
+ *
+ * Only an interactive launch does. The `--print` skill-selector cue spawns on
+ * every session start inherits TMUX_PANE from the session it is helping, so
+ * letting it announce would overwrite that session's badge and then clear it
+ * again on exit seconds later — the pane border visibly loses its profile name
+ * while the session is still running. A piped or redirected stdout is what
+ * separates those helper runs from the session the user is looking at.
+ */
+export function ownsPaneBadge(env: NodeJS.ProcessEnv, stdoutIsTty: boolean): boolean {
+  return Boolean(env.TMUX) && env.CUE_TMUX_TITLE !== "0" && stdoutIsTty;
+}
+
 function announceTmuxProfile(
   profileName: string,
   agentKind: string,
@@ -290,7 +307,7 @@ function announceTmuxProfile(
   childEnv.CUE_PROFILE = profileName;
   childEnv.CUE_AGENT = friendly;
 
-  if (!process.env.TMUX || process.env.CUE_TMUX_TITLE === "0") return;
+  if (!ownsPaneBadge(process.env, process.stdout.isTTY === true)) return;
   const cleanIcons = icons.filter((i) => i && i.trim().length > 0);
   // Keep the concatenated icon strip as a separate tmux option for status
   // lines that want every icon at a glance — the visible *title* below uses
@@ -304,11 +321,24 @@ function announceTmuxProfile(
     process.stdout.write(`\x1b]2;${title}\x07`);
   } catch { /* best-effort */ }
 
+  // Exactly what we wrote, so the exit sweep can tell our own badge from one a
+  // nested launch installed over it — clearing that one blanks the border for a
+  // session still running.
+  const applied = new Map<string, string>();
+
   if (pane) {
     try {
       const { spawnSync } = require("node:child_process");
-      const setOpt = (key: string, val: string) =>
-        spawnSync("tmux", ["set-option", "-p", "-t", pane, key, val], { stdio: "ignore" });
+      // One tmux invocation for all eight options. Measured on a live server:
+      // eight separate spawns cost ~81ms, the batched form ~11ms — and this
+      // runs on the launch path, in front of the agent the user is waiting on.
+      // The pane border also stops rendering half-set states on the way in.
+      const args: string[] = [];
+      const setOpt = (key: string, val: string) => {
+        if (args.length > 0) args.push(";");
+        args.push("set-option", "-p", "-t", pane, key, val);
+        applied.set(key, val);
+      };
       setOpt("@cue_profile", title);
       setOpt("@cue_profile_name", profileName);
       setOpt("@cue_profile_icon", primaryIcon);
@@ -317,6 +347,7 @@ function announceTmuxProfile(
       setOpt("@cue_overhead_dot", extras.overhead?.dot ?? "");
       setOpt("@cue_overhead_size", extras.overhead?.size ?? "");
       setOpt("@cue_health", extras.health ?? "");
+      spawnSync("tmux", args, { stdio: "ignore" });
     } catch { /* best-effort */ }
   }
 
@@ -324,22 +355,34 @@ function announceTmuxProfile(
     try {
       process.stdout.write("\x1b]2;\x07");
     } catch { /* ok */ }
-    if (pane) {
+    if (pane && applied.size > 0) {
       try {
         const { spawnSync } = require("node:child_process");
-        const keys = [
-          "@cue_profile",
-          "@cue_profile_name",
-          "@cue_profile_icon",
-          "@cue_profile_icons",
-          "@cue_agent",
-          "@cue_overhead_dot",
-          "@cue_overhead_size",
-          "@cue_health",
-        ];
-        for (const key of keys) {
-          spawnSync("tmux", ["set-option", "-p", "-u", "-t", pane, key], { stdio: "ignore" });
-        }
+        const keys = [...applied.keys()];
+        // Read all eight back in one spawn. A launch that started after us owns
+        // the badge now, and clearing its values would blank the border for a
+        // session still running — so only unset what still holds our value.
+        // Must stay synchronous: process.on("exit") handlers cannot await.
+        const probe = spawnSync(
+          "tmux",
+          ["display-message", "-p", "-t", pane, keys.map((k) => `#{${k}}`).join(UNIT_SEP)],
+          { encoding: "utf8" },
+        );
+        // A failed probe leaves the options in place. Leaking a stale badge is
+        // recoverable — the next launch overwrites it — whereas clearing one we
+        // no longer own is not.
+        const live =
+          probe.status === 0 ? String(probe.stdout).replace(/\n$/, "").split(UNIT_SEP) : [];
+        // Same batching as the set path. This one runs inside an `exit`
+        // handler, where every spawnSync is time the process spends refusing
+        // to die.
+        const args: string[] = [];
+        keys.forEach((key, i) => {
+          if (live[i] !== applied.get(key)) return;
+          if (args.length > 0) args.push(";");
+          args.push("set-option", "-p", "-u", "-t", pane, key);
+        });
+        if (args.length > 0) spawnSync("tmux", args, { stdio: "ignore" });
       } catch { /* ok */ }
     }
   });
@@ -1500,15 +1543,46 @@ export function isAlwaysPickEnabled(envVal: string | undefined): boolean {
   return ["1", "true", "on"].includes(envVal.trim().toLowerCase());
 }
 
+/**
+ * How many cue launches deep this process already is.
+ *
+ * `CUE_LAUNCHING` used to be the string "1" and the guard tripped on it, which
+ * conflated the two things it can mean. A shim LOOP — cue resolving the agent
+ * binary back to its own shim — re-enters without bound and must be stopped. A
+ * NESTED launch — an agent, or a tool it runs, invoking `claude` for a subtask
+ * such as an AI code review — re-enters exactly once and is legitimate, but the
+ * old guard killed it too, because the flag is inherited by the whole process
+ * tree under a launched agent. Every caller then had to know to `unset` it
+ * first (see `failures.ts`, and the headless-gif-demo skill), and a caller that
+ * did not know simply failed with a message blaming PATH order.
+ *
+ * Counting separates them: a loop climbs to the cap in milliseconds, honest
+ * nesting stays shallow.
+ */
+export function launchDepth(envVal: string | undefined = process.env.CUE_LAUNCHING): number {
+  if (!envVal) return 0;
+  const n = Number.parseInt(envVal.trim(), 10);
+  // Anything unparseable is a launch marker from an older cue — treat as depth 1.
+  return Number.isFinite(n) && n > 0 ? n : 1;
+}
+
+/** Depth at which nesting is no longer plausible and must be a shim loop. */
+export const MAX_LAUNCH_DEPTH = 3;
+
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
 
 export async function run(args: string[]): Promise<number> {
-  // Recursion guard
-  if (process.env.CUE_LAUNCHING === "1") {
+  // Recursion guard. See MAX_LAUNCH_DEPTH for why this counts instead of
+  // tripping on the first nested launch.
+  const depth = launchDepth();
+  if (depth >= MAX_LAUNCH_DEPTH) {
     process.stderr.write(
-      "cue: shim recursion detected — check PATH ordering (cue's shim dir must precede the real claude/codex location)\n",
+      `cue: launch nested ${depth} deep — refusing to go further.\n` +
+        "  A shim loop looks like this: cue resolved the agent binary back to its own\n" +
+        "  shim, so check that cue's shim dir does NOT shadow the real claude/codex.\n" +
+        `  A legitimate nested agent is allowed up to ${MAX_LAUNCH_DEPTH - 1} deep; past that it is a loop.\n`,
     );
     return 2;
   }
@@ -2305,7 +2379,10 @@ export async function run(args: string[]): Promise<number> {
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
     [envKey]: runtime.runtimeDir,
-    CUE_LAUNCHING: "1",
+    // Depth, not a boolean — see launchDepth(). The agent's whole process tree
+    // inherits this, so a subtask that shells out to `claude` lands one deeper
+    // rather than being refused.
+    CUE_LAUNCHING: String(depth + 1),
   };
 
   // Per-profile claude-mem memory: point the (cue-managed) claude-mem plugin at

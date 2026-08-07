@@ -2,7 +2,7 @@
 title: "ajaysharmaas/mcp-datadog — Claude Code skill discovered by cue"
 description: "📊 Integrate Datadog Logs, Monitors, Metrics, Incidents, and Dashboards with this Model Context Protocol (MCP) server for seamless AI assistance."
 layout: page
-updated: 2026-07-12
+updated: 2026-07-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-12
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: ai-agents, ai-tools, claude, csharp, datadog, devops, dotnet, logs, mcp, mcp-server, model-context-protocol, monitoring, observability, traces
 
 ## Best fit cue profiles

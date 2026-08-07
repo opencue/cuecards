@@ -1,0 +1,31 @@
+# SkillSpector baseline — findings listed here are suppressed on future scans.
+#
+# Fingerprints are exact: they bind to the scanner version and the full source
+# text of the skill. Editing either file below, or upgrading SkillSpector past
+# scanner_version, reactivates the finding until someone re-reviews it and
+# regenerates this file with:
+#
+#   cue security baseline resources/skills/skills/meta/smart-loader/
+#
+# Applies to this repo's own skills only. Fetched remote skills are never
+# baselined — see gateFreshSkill() in src/commands/security.ts.
+version: 2
+scanner_version: 2.5.2
+rules: []
+fingerprints:
+- hash: sha256:ec96793fdf160a16ee6c1a7bbc9961c03e85cf76bc066a6f85f48670788fda0e
+  rule_id: LP1
+  file: scripts/build-embeddings.py
+  reason: >-
+    False positive. Scanner reports an undeclared 'env' capability at line 1,
+    which is the `#!/usr/bin/env python3` shebang. The script reads the skills
+    catalog and writes an embeddings file; it never reads environment variables
+    for secrets.
+- hash: sha256:b00b1db93218dc4dafc462f9cd02f32f5c6982139561599588a80cc97940f2d6
+  rule_id: E2
+  file: scripts/smart-lookup.sh
+  reason: >-
+    False positive. The 'Env Variable Harvesting' pattern matched the English
+    word "token" inside a comment documenting the scoring tiers
+    ("80  name substring  (token in name)"). No environment variable is read at
+    or near that line.

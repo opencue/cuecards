@@ -2,22 +2,22 @@
 title: "Zandereins/hydra — Claude Code skill discovered by cue"
 description: "Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dua"
 layout: page
-updated: 2026-07-24
+updated: 2026-08-04
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 4** · exceptional (score 16.2) · Python · adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 4** · exceptional (score 16.1) · Python · adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 > Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-07-21
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill, claude-skill, code-review, codex, cross-model, dual-path-verdict, evidence-chains, llm-council, multi-agent, opus, prompt-engineering, security-audit
 
 ## Best fit cue profiles

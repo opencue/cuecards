@@ -2,21 +2,21 @@
 title: "bjwanneng/veriflow-cc — Claude Code skill discovered by cue"
 description: "VeriFlow-CC: A Claude Code-driven RTL design pipeline. Automates Chip-on-Chat from architecture to synthesis (iVerilog/Yosys) using a stateful, zero-dependency "
 layout: page
-updated: 2026-07-08
+updated: 2026-08-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [bjwanneng/veriflow-cc](https://github.com/bjwanneng/veriflow-cc)
 
-**★ 34** · exceptional (score 8.1) · Python · ai-agents, chip-design, claude-code-skill, claude-code-skills, degital-design
+**★ 41** · exceptional (score 9.8) · Python · ai-agents, chip-design, claude-code-skill, claude-code-skills, degital-design
 
 > VeriFlow-CC: A Claude Code-driven RTL design pipeline. Automates Chip-on-Chat from architecture to synthesis (iVerilog/Yosys) using a stateful, zero-dependency LLM orchestration skill. Features sub-agent nesting for code gen and behavioral-driven verification.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-07-08
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 41 stars
+- 🗓️ Last pushed: 2026-08-03
 - 🏷️ Tags: ai-agents, chip-design, claude-code-skill, claude-code-skills, degital-design, digital, eda-automator, hdl, iverilog, llm-agents, rtl-design, verilog, yosys
 
 ## Best fit cue profiles

@@ -48,10 +48,12 @@ npm install -g cue-ai && cue setup
 ## Install
 
 ```bash
-npm install -g cue-ai
-cue discover search                    # find gems
-cue discover install --min-score 8     # install top gems
-cue use backend                        # switch profile
+npm install -g cue-ai && cue setup
 ```
+
+`cue setup` installs the `claude`/`codex` shim, scans this project, and pins
+the matching profile. Already have an agent open? Paste the
+[agent install prompt](https://github.com/opencue/cuecards/blob/main/setup/agent-prompt.md)
+into it instead — it does the same thing, asking before it touches anything.
 
 [GitHub →](https://github.com/opencue/cuecards)

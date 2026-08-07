@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-24
+updated: 2026-08-06
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="ditakebede1-personal-knowledge-nexus"></a>
-## ✨ [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
+<a id="obelyth-cortex"></a>
+## ✨ [Obelyth/cortex](https://github.com/Obelyth/cortex)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
+**★ 1** · strong (score 6.3) · TypeScript · tags: ai-memory, claude, claude-ai, knowledge-base, mcp
 
-Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
+Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations.
 
 ```bash
-cue skills add ditakebede1/personal-knowledge-nexus --profile nextjs
+cue skills add Obelyth/cortex --profile nextjs
 ```
 
 ---

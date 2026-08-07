@@ -2,21 +2,21 @@
 title: "ralforion/orionbelt-semantic-layer — Claude Code skill discovered by cue"
 description: "Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ r"
 layout: page
-updated: 2026-07-19
+updated: 2026-07-28
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [ralforion/orionbelt-semantic-layer](https://github.com/ralforion/orionbelt-semantic-layer)
 
-**★ 68** · exceptional (score 11.1) · Python · agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
+**★ 70** · exceptional (score 11.2) · Python · agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse
 
 > Open-source Semantic Sidecar for AI, analytics, and governed data systems. Compiles declarative YAML models into optimized SQL, semantic context, KPIs, and DQ rules.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
-- ⭐ 68 stars
-- 🗓️ Last pushed: 2026-07-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+- ⭐ 70 stars
+- 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: agentic-ai, analytics-as-code, bigquery, business-intelligence, clickhouse, data-analytics, databricks, dremio, duckdb, headless-bi, mcp, mcp-server, metrics-layer, mysql, postgresql, semantic-layer, semantic-sidecar, snowflake, text-to-sql, yaml
 
 ## Best fit cue profiles

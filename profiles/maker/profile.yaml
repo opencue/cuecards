@@ -71,7 +71,6 @@ plugins:
   - oh-my-claudecode@omc
 mcps:
   - cue-tty-watch
-  - lightpanda
   - gbrain
   - colony
   - soul-skills

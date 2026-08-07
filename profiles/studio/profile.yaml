@@ -90,7 +90,6 @@ plugins:
   - claude-video-vision@jordanrendric
 mcps:
   - cue-tty-watch
-  - lightpanda
   - Higgsfield
   - secret-mcp
   - marva-blog

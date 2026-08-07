@@ -2,21 +2,21 @@
 title: "ParthGanatra/agent-skills — Claude Code skill discovered by cue"
 description: "Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide ext"
 layout: page
-updated: 2026-07-18
+updated: 2026-08-05
 tags: [claude-code, skill, video]
 ---
 
 # 💎 [ParthGanatra/agent-skills](https://github.com/ParthGanatra/agent-skills)
 
-**★ 2** · exceptional (score 8.5) · Shell · agent-skills, ai, claude, claude-code, claude-skill
+**★ 4** · exceptional (score 8.8) · Shell · agent-skills, ai, claude, claude-code, claude-skill
 
 > Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide extraction.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: agent-skills, ai, claude, claude-code, claude-skill, claude-skills, llm, note-taking, obsidian, productivity, summarization, transcript, video-summary, youtube, youtube-summarizer, youtube-summary, yt-dlp
 
 ## Best fit cue profiles

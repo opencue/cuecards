@@ -1,29 +1,74 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-08-06
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="roomi-fields-notebooklm-mcp"></a>
+## 💎 [roomi-fields/notebooklm-mcp](https://github.com/roomi-fields/notebooklm-mcp)
 
-**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 147** · exceptional (score 18.2) · TypeScript · tags: ai, anthropic, automation, citations, claude
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Google NotebookLM over MCP + a local HTTP REST API. Citation-backed Q&A, audio/video/content generation, multi-account rotation. For Claude Code, Codex, Cursor, n8n, Zapier, Make.
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add roomi-fields/notebooklm-mcp --profile research
+```
+
+---
+
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+
+**★ 5** · exceptional (score 17.1) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
+
+```bash
+cue skills add jakubs2623/notebooklm-skill --profile research
+```
+
+---
+
+<a id="kgraph57-medical-slide-templates"></a>
+## 💎 [kgraph57/medical-slide-templates](https://github.com/kgraph57/medical-slide-templates)
+
+**★ 0** · exceptional (score 12.5) · HTML · tags: academic-medicine, bilingual, claude, claude-skill, clinical-research
+
+Bilingual Japanese/English Claude Skill that turns a clinician's natural-language request into presentation-ready 16:9 HTML decks. Fully offline, with a medical safety gate.
+
+✅ SKILL.md
+
+```bash
+cue skills add kgraph57/medical-slide-templates --profile research
+```
+
+---
+
+<a id="patsnap-patent-literature-search-mcp"></a>
+## 💎 [patsnap/patent-literature-search-mcp](https://github.com/patsnap/patent-literature-search-mcp)
+
+**★ 188** · exceptional (score 12.5) · JavaScript · tags: academic-search, ai-agents, bm25, innovation-intelligence, literature-search
+
+Search global patents across WIPO, EPO, USPTO, CNIPA, JPO, KIPO and other authorities, together with scientific literature from PubMed, arXiv, Nature, Science and other major sources using natural-language, semantic, keyword and structured search.
+
+✅ SKILL.md
+
+```bash
+cue skills add patsnap/patent-literature-search-mcp --profile research
 ```
 
 ---

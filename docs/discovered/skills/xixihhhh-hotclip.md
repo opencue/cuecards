@@ -2,21 +2,21 @@
 title: "xixihhhh/hotclip — Claude Code skill discovered by cue"
 description: "免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频——AI 找高光金句、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livest"
 layout: page
-updated: 2026-07-24
+updated: 2026-07-31
 tags: [claude-code, skill, video]
 ---
 
 # 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
 
-**★ 35** · exceptional (score 10.3) · TypeScript · ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
+**★ 48** · exceptional (score 10.4) · TypeScript · ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
 
 > 免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频——AI 找高光金句、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts. No credits, no watermark, no uploads. Win/macOS.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
-- ⭐ 35 stars
-- 🗓️ Last pushed: 2026-07-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
+- ⭐ 48 stars
+- 🗓️ Last pushed: 2026-07-31
 - 🏷️ Tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill, desktop-app, douyin, electron, livestream, local-first, long-video-to-shorts, mcp-server, opus-clip-alternative, podcast-clipper, short-form-video, speech-recognition, tiktok, video-clipping, video-editing, youtube-shorts
 
 ## Best fit cue profiles

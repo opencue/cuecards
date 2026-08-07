@@ -1,22 +1,22 @@
 ---
 title: "SlavaSexton/ComfyUI-Agent-Kit — Claude Code skill discovered by cue"
-description: "One ComfyUI skill for every AI coding agent (Claude Code, Codex, Gemini CLI, Qwen Code): drives a local ComfyUI end to end. 74 model prompt recipes, 578 templat"
+description: "One ComfyUI skill for every AI coding agent (Claude Code, Codex, Gemini CLI, Qwen Code): drives a local ComfyUI end to end. 75 model prompt recipes, 583 templat"
 layout: page
-updated: 2026-07-26
+updated: 2026-08-02
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [SlavaSexton/ComfyUI-Agent-Kit](https://github.com/SlavaSexton/ComfyUI-Agent-Kit)
 
-**★ 58** · exceptional (score 12) · Python · ai-art, anthropic, claude, claude-code, claude-skill
+**★ 62** · exceptional (score 12.1) · Python · ai-art, anthropic, claude, claude-code, claude-skill
 
-> One ComfyUI skill for every AI coding agent (Claude Code, Codex, Gemini CLI, Qwen Code): drives a local ComfyUI end to end. 74 model prompt recipes, 578 templates, hardware-aware selection, auto-start, workflow building, multi-shot video, ControlNet, HDR, enhance/restore. By AI VFX NEWS.
+> One ComfyUI skill for every AI coding agent (Claude Code, Codex, Gemini CLI, Qwen Code): drives a local ComfyUI end to end. 75 model prompt recipes, 583 templates, hardware-aware selection, auto-start, workflow building, multi-shot video, ControlNet, HDR, enhance/restore. By AI VFX NEWS.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 58 stars
-- 🗓️ Last pushed: 2026-07-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
+- ⭐ 62 stars
+- 🗓️ Last pushed: 2026-08-02
 - 🏷️ Tags: ai-art, anthropic, claude, claude-code, claude-skill, codex, comfyui, gemini-cli, glm, image-generation, mcp, qwen, stable-diffusion, video-generation
 
 ## Best fit cue profiles

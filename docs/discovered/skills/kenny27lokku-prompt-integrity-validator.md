@@ -2,21 +2,21 @@
 title: "Kenny27lokku/prompt-integrity-validator — Claude Code skill discovered by cue"
 description: "Lint Your Prompts, Ship Better Agents – Prompt Refiner 2026 Rule Engine"
 layout: page
-updated: 2026-07-23
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Kenny27lokku/prompt-integrity-validator](https://github.com/Kenny27lokku/prompt-integrity-validator)
 
-**★ 0** · exceptional (score 10) · HTML · agent-skills, ai-agent, ai-tools, anthropic, anti-bloat
+**★ 2** · exceptional (score 10.5) · HTML · agent-skills, ai-agent, ai-tools, anthropic, anti-bloat
 
 > Lint Your Prompts, Ship Better Agents – Prompt Refiner 2026 Rule Engine
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: agent-skills, ai-agent, ai-tools, anthropic, anti-bloat, chatgpt, claude, claude-code, claude-plugin, claude-skill, cursor, developer-tools, linter, llm, productivity, prompt-engineering, prompt-injection, prompt-linter, prompt-optimization, prompts
 
 ## Best fit cue profiles

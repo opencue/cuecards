@@ -2,21 +2,21 @@
 title: "Kaminoikari/product-playbook — Claude Code skill discovered by cue"
 description: "World-class product planning AI skill for Claude Code — 22 PM frameworks, 6 modes, 6 languages. From idea to dev handoff."
 layout: page
-updated: 2026-07-16
+updated: 2026-07-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Kaminoikari/product-playbook](https://github.com/Kaminoikari/product-playbook)
 
-**★ 20** · exceptional (score 11.3) · Python · ai-skill, claude-code, claude-code-skill, i18n, jtbd
+**★ 23** · exceptional (score 11.4) · Python · ai-skill, claude-code, claude-code-skill, i18n, jtbd
 
 > World-class product planning AI skill for Claude Code — 22 PM frameworks, 6 modes, 6 languages. From idea to dev handoff.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
-- ⭐ 20 stars
-- 🗓️ Last pushed: 2026-07-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
+- ⭐ 23 stars
+- 🗓️ Last pushed: 2026-07-30
 - 🏷️ Tags: ai-skill, claude-code, claude-code-skill, i18n, jtbd, pm-framework, product-management, product-planning
 
 ## Best fit cue profiles

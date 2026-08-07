@@ -11,9 +11,10 @@
  *   SEC7: Skill instructs to modify .bashrc/.zshrc/crontab/sudoers
  */
 
-import { readFileSync, readdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
+import { join, resolve, relative, dirname } from "node:path";
 import { homedir } from "node:os";
+import { spawnSync } from "node:child_process";
 
 import { listAllSkillIds } from "../lib/resolver-local";
 import { loadProfile, } from "../lib/profile-loader";
@@ -22,7 +23,10 @@ import {
   runSkillSpector,
   formatVerdict,
   unavailableNote,
+  resolveBaselineFor,
+  baselineDirs,
   SKILLSPECTOR_INSTALL_HINT,
+  SKILLSPECTOR_PKG,
   type SkillSpectorReport,
 } from "../lib/skillspector";
 
@@ -265,6 +269,11 @@ export interface GateResult {
  * A missing/failed SkillSpector never blocks on its own — callers surface
  * `unavailableNote()` and fall through to the regex rules. `allowUnsafe` lets
  * the caller override any block. The caller owns all messaging.
+ *
+ * Baselines (reviewed false-positive suppressions) apply ONLY to skills that
+ * live in this repo. A freshly-fetched remote skill in ~/.claude/skills is
+ * never baselined: its id is attacker-chosen, so honoring a baseline there
+ * would let a malicious skill inherit suppressions by taking a trusted name.
  */
 export function gateFreshSkill(
   skillId: string,
@@ -278,8 +287,9 @@ export function gateFreshSkill(
   const scanned = dir !== null;
   const issues = scanSkill(skillId, { trustGlobalPack: false });
 
+  const isRepoSkill = dir !== null && dir === join(SKILLS_ROOT, skillId);
   const skillspector: SkillSpectorReport = dir
-    ? runSkillSpector(dir)
+    ? runSkillSpector(dir, { baseline: isRepoSkill ? resolveBaselineFor(skillId) : null })
     : { status: "unavailable", findings: [], error: "no SKILL.md found to scan" };
 
   if (skillspector.status === "ok" && skillspector.recommendation !== "SAFE") {
@@ -320,7 +330,7 @@ async function cmdSkillSpectorScan(args: string[]): Promise<number> {
   const json = args.includes("--json");
   const target = args.find((a) => !a.startsWith("-"));
   if (!target) {
-    process.stderr.write("Usage: cue security scan <path> [--json]\n");
+    process.stderr.write("Usage: cue security scan <path> [--baseline FILE] [--json]\n");
     return 2;
   }
   if (!existsSync(target)) {
@@ -328,8 +338,20 @@ async function cmdSkillSpectorScan(args: string[]): Promise<number> {
     return 2;
   }
 
+  // An explicit --baseline wins; otherwise a repo skill picks up its own.
+  const flagIdx = args.indexOf("--baseline");
+  const explicit = flagIdx !== -1 ? args[flagIdx + 1] : undefined;
+  if (flagIdx !== -1 && !explicit) {
+    process.stderr.write("--baseline needs a file path\n");
+    return 2;
+  }
+  const baseline = explicit ?? baselineForPath(target);
+
   // Explicit user request — run even under NODE_ENV=test, where the gate is off.
-  const report = runSkillSpector(target, { env: { ...process.env, CUE_SKILLSPECTOR: "1" } });
+  const report = runSkillSpector(target, {
+    env: { ...process.env, CUE_SKILLSPECTOR: "1" },
+    baseline,
+  });
 
   if (json) {
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
@@ -351,8 +373,77 @@ async function cmdSkillSpectorScan(args: string[]): Promise<number> {
     const where = f.file ? ` ${f.file}${f.line ? `:${f.line}` : ""}` : "";
     process.stdout.write(`   [${f.severity}] ${f.id} ${f.category}${where}\n`);
   }
+  if (report.baseline) {
+    process.stdout.write(`   baseline: ${report.baseline}\n`);
+  }
   process.stdout.write(`   scanner: ${report.runner}\n`);
   return report.recommendation === "DO_NOT_INSTALL" ? 1 : 0;
+}
+
+/**
+ * Auto-resolve the baseline for a path that points at one of this repo's own
+ * skills. Returns null for anything else — third-party skills are never
+ * baselined by cue (see gateFreshSkill).
+ */
+function baselineForPath(target: string): string | null {
+  const abs = resolve(target);
+  const root = resolve(SKILLS_ROOT);
+  if (abs !== root && !abs.startsWith(`${root}/`)) return null;
+  const id = relative(root, abs).replace(/\/SKILL\.md$/, "");
+  return id ? resolveBaselineFor(id) : null;
+}
+
+/**
+ * `cue security baseline <path>` — accept the findings that are currently open
+ * on a skill, so future scans surface only new ones. Writes into the repo's
+ * baselines directory by default, keyed by skill id.
+ *
+ * Fingerprints are exact: they bind to the scanner version and the full source
+ * text, so editing the skill or upgrading SkillSpector reactivates the finding
+ * until it is re-reviewed. That is the point — this suppresses reviewed noise,
+ * not future changes.
+ */
+async function cmdSkillSpectorBaseline(args: string[]): Promise<number> {
+  const target = args.find((a) => !a.startsWith("-"));
+  if (!target || !existsSync(target)) {
+    process.stderr.write("Usage: cue security baseline <path> [-o FILE] [--reason TEXT]\n");
+    return 2;
+  }
+
+  const outIdx = args.findIndex((a) => a === "-o" || a === "--output");
+  let out = outIdx !== -1 ? args[outIdx + 1] : undefined;
+  if (!out) {
+    const abs = resolve(target);
+    const root = resolve(SKILLS_ROOT);
+    if (abs !== root && !abs.startsWith(`${root}/`)) {
+      process.stderr.write(
+        "Refusing to guess an output path for a skill outside this repo. Pass -o FILE.\n",
+      );
+      return 2;
+    }
+    out = join(baselineDirs()[0]!, `${relative(root, abs).replace(/\/SKILL\.md$/, "")}.yaml`);
+  }
+
+  const reasonIdx = args.indexOf("--reason");
+  const reason = reasonIdx !== -1 ? args[reasonIdx + 1] : undefined;
+
+  mkdirSync(dirname(out), { recursive: true });
+
+  const bin = process.env.SKILLSPECTOR_BIN;
+  const cmd = bin ?? "uvx";
+  const pre = bin ? [] : ["--from", SKILLSPECTOR_PKG, "skillspector"];
+  const res = spawnSync(
+    cmd,
+    [...pre, "baseline", target, "-o", out, "--no-llm", ...(reason ? ["--reason", reason] : [])],
+    { stdio: "inherit", encoding: "utf8", timeout: 600_000 },
+  );
+  if (res.status !== 0) {
+    process.stderr.write(`Failed to write baseline (exit ${res.status}).\n`);
+    return res.status ?? 1;
+  }
+  process.stdout.write(`\n✅ Baseline written to ${out}\n`);
+  process.stdout.write(`   Review every 'reason' field before committing it.\n`);
+  return 0;
 }
 
 export async function run(args: string[]): Promise<number> {
@@ -360,7 +451,8 @@ export async function run(args: string[]): Promise<number> {
     process.stdout.write(`cue security — scan skills for prompt injection & secret exfiltration
 
 Usage: cue security [profile|--all]
-       cue security scan <path>
+       cue security scan <path> [--baseline FILE] [--json]
+       cue security baseline <path> [-o FILE] [--reason TEXT]
 
 Checks:
   SEC1  Reads/exposes secrets (API keys, .env, credentials)     [critical]
@@ -383,11 +475,18 @@ SkillSpector (the SS1 gate) runs automatically on every skill install:
   cue skills add / cue discover install / cue marketplace install-skill.
   DO_NOT_INSTALL blocks (override with --allow-unsafe), CAUTION warns.
   Set CUE_SKILLSPECTOR=0 to disable. Install: ${SKILLSPECTOR_INSTALL_HINT}
+
+Baselines suppress reviewed false positives, keyed by skill id under
+  resources/skillspector-baselines/ (or ~/.config/cue/skillspector-baselines/).
+  They apply to this repo's own skills only — never to a fetched remote
+  skill, whose id an attacker chooses. Regenerate after editing a skill:
+  cue security baseline resources/skills/skills/meta/smart-loader/
 `);
     return 0;
   }
 
   if (args[0] === "scan") return cmdSkillSpectorScan(args.slice(1));
+  if (args[0] === "baseline") return cmdSkillSpectorBaseline(args.slice(1));
 
   const json = args.includes("--json");
   const all = args.includes("--all");

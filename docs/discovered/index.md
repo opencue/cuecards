@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-07-26
+updated: 2026-08-06
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-07-26 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
+> Last updated: 2026-08-06 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 68 | `GodotMaker`, `safari-mcp`, `xiaohongshu-mcp` |
-| [**cybersecurity**](./cybersecurity.md) | 9 | `nsauditor-ai-agent-skill`, `slowmist-security-cc`, `Claude-OSINT` |
-| [**backend**](./backend.md) | 8 | `firecrawl-mcp-server`, `line-summary`, `oak-open-curriculum-ecosystem` |
-| [**fleet-control**](./fleet-control.md) | 5 | `neo`, `opencouncil-contract-inspector`, `EGC` |
-| [**creative-media**](./creative-media.md) | 4 | `ComfyUI-Agent-Kit`, `pixel-mcp-workflow`, `lyt` |
-| [**video**](./video.md) | 2 | `oh-my-cassette`, `lyt` |
-| [**docs-writer**](./docs-writer.md) | 2 | `second-brain-setup`, `karpathy-html-wiki` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `pixel-mcp-workflow` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `grant-thinking-cn-biology` |
-| [**python**](./python.md) | 2 | `alfred`, `mcp-crm` |
-| [**research**](./research.md) | 1 | `popper-scope` |
+| [**core**](./core.md) | 66 | `shuorenhua`, `langfuse-mcp`, `MaxKB` |
+| [**backend**](./backend.md) | 15 | `notebooklm-mcp`, `notebooklm-skill`, `prism-coder` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `nsauditor-ai-agent-skill`, `claude-security-research-skill`, `Claude-OSINT` |
+| [**docs-writer**](./docs-writer.md) | 5 | `wenlan`, `llm-wiki`, `llm-knowledge-base` |
+| [**frontend**](./frontend.md) | 5 | `google-fonts-skill`, `awesome-claude-ui-armory`, `claude-react-kit` |
+| [**research**](./research.md) | 4 | `notebooklm-mcp`, `notebooklm-skill`, `medical-slide-templates` |
+| [**fleet-control**](./fleet-control.md) | 2 | `opencouncil-contract-inspector`, `rolepod` |
+| [**rust**](./rust.md) | 1 | `intutic` |
+| [**nextjs**](./nextjs.md) | 1 | `cortex` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

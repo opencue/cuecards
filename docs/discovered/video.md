@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-26
+updated: 2026-08-05
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="cassette-editor-oh-my-cassette"></a>
-## 💎 [Cassette-Editor/oh-my-cassette](https://github.com/Cassette-Editor/oh-my-cassette)
+<a id="parthganatra-agent-skills"></a>
+## 💎 [ParthGanatra/agent-skills](https://github.com/ParthGanatra/agent-skills)
 
-**★ 143** · exceptional (score 16) · Python · tags: agent, agent-skills, ai-agent, ai-video-editing, chat-to-edit
+**★ 4** · exceptional (score 8.8) · Shell · tags: agent-skills, ai, claude, claude-code, claude-skill
 
-你的随身 AI 剪辑搭档 | Pocket AI co-editor for video montage — AI video editing plugin & MCP server for Claude Code, Codex, Hermes & OpenCode
-
-```bash
-cue skills add Cassette-Editor/oh-my-cassette --profile video
-```
-
----
-
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
-
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
-
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide extraction.
 
 ```bash
-cue skills add TanaTTV/lyt --profile video
+cue skills add ParthGanatra/agent-skills --profile video
 ```
 
 ---

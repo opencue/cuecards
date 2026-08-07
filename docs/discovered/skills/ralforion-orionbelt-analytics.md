@@ -2,21 +2,21 @@
 title: "ralforion/orionbelt-analytics — Claude Code skill discovered by cue"
 description: "Ontology-based MCP server that analyzes database schemas (PostgreSQL, Snowflake, ClickHouse, Dremio) and generates RDF/OWL ontologies with SQL mappings for fan-"
 layout: page
-updated: 2026-06-22
+updated: 2026-07-28
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [ralforion/orionbelt-analytics](https://github.com/ralforion/orionbelt-analytics)
 
-**★ 34** · exceptional (score 10.7) · Python · agentic-ai, chromadb, claude-desktop, clickhouse, databricks
+**★ 45** · exceptional (score 9.9) · Python · agentic-ai, chromadb, claude-desktop, clickhouse, databricks
 
 > Ontology-based MCP server that analyzes database schemas (PostgreSQL, Snowflake, ClickHouse, Dremio) and generates RDF/OWL ontologies with SQL mappings for fan-trap-free Text-to-SQL.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-06-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+- ⭐ 45 stars
+- 🗓️ Last pushed: 2026-07-28
 - 🏷️ Tags: agentic-ai, chromadb, claude-desktop, clickhouse, databricks, dremio, graphrag, knowledge-graph, mcp, mcp-server, model-context-protocol, ontology, owl, postgresql, r2rml, rdf, semantic-layer, snowflake, sparql, text-to-sql
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "DimeDataCloud/resume-tailor-skill — Claude Code skill discovered by cue"
 description: "AI-tailored, print-ready resumes from 7 design templates — standalone CLI + native Claude Code and Hermes Agent skills. Local Ollama tailoring, no cloud AI requ"
 layout: page
-updated: 2026-07-09
+updated: 2026-08-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DimeDataCloud/resume-tailor-skill](https://github.com/DimeDataCloud/resume-tailor-skill)
 
-**★ 0** · exceptional (score 8) · JavaScript · claude-code, claude-code-skill, hermes-agent, job-search, ollama
+**★ 1** · exceptional (score 8.3) · JavaScript · claude-code, claude-code-skill, hermes-agent, job-search, ollama
 
 > AI-tailored, print-ready resumes from 7 design templates — standalone CLI + native Claude Code and Hermes Agent skills. Local Ollama tailoring, no cloud AI required.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-02
 - 🏷️ Tags: claude-code, claude-code-skill, hermes-agent, job-search, ollama, pdf-generation, resume, resume-builder
 
 ## Best fit cue profiles

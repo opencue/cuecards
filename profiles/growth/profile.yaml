@@ -128,7 +128,6 @@ plugins:
   - claude-ads@agricidaniel-claude-ads
 mcps:
   - cue-tty-watch
-  - lightpanda
   - google-ads-mcp
   - mapi-devdocs
   - Higgsfield

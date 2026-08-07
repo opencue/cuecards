@@ -34,9 +34,11 @@ jobs:
           # Stub authmux so install.sh's Step 5 doesn't run `npm install -g`.
           printf '#!/usr/bin/env bash\necho 0.0.0\n' > "$PREFIX/authmux"
           chmod +x "$PREFIX/authmux"
-          SHIM_DIR="$PREFIX" CUE_DIR="$GITHUB_WORKSPACE" PATH="$PREFIX:$PATH" bash ./install.sh --yes
+          # CUE_SHIMS is where the agent shims land; without it they go to
+          # ~/.config/cue/shims and the assertions below test an empty prefix.
+          SHIM_DIR="$PREFIX" CUE_SHIMS="$PREFIX" CUE_DIR="$GITHUB_WORKSPACE" PATH="$PREFIX:$PATH" bash ./install.sh --yes
           test -L "$PREFIX/cue" -o -f "$PREFIX/cue"
-          grep -q 'exec cue launch claude' "$PREFIX/claude"
+          grep -Eq 'exec .*bin/cue" launch claude' "$PREFIX/claude"
           PATH="$PREFIX:$PATH" "$PREFIX/cue" --version
 
       - name: Verify bundled CLI boots

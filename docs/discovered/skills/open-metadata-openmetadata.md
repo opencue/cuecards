@@ -2,21 +2,21 @@
 title: "open-metadata/OpenMetadata — Claude Code skill discovered by cue"
 description: "The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, "
 layout: page
-updated: 2026-07-13
+updated: 2026-07-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
 
-**★ 14460** · exceptional (score 17) · TypeScript · context, context-layer, data-catalog, data-collaboration, data-contracts
+**★ 14594** · exceptional (score 17) · TypeScript · context, context-layer, data-catalog, data-collaboration, data-contracts
 
 > The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 14460 stars
-- 🗓️ Last pushed: 2026-07-13
+- ⭐ 14594 stars
+- 🗓️ Last pushed: 2026-07-29
 - 🏷️ Tags: context, context-layer, data-catalog, data-collaboration, data-contracts, data-discovery, data-governance, data-lineage, data-observability, data-profiling, data-quality, data-quality-checks, datadiscovery, dataengineering, dataquality, mcp, mcp-server, metadata, metadata-management, semantics
 
 ## Best fit cue profiles

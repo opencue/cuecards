@@ -2,22 +2,22 @@
 title: "s3onghyun/otelcol-doctor — Claude Code skill discovered by cue"
 description: "A Claude Code skill that writes, fixes, and validates OpenTelemetry Collector configs — processor order, core-vs-contrib, pull-vs-push exporters, the works."
 layout: page
-updated: 2026-07-21
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [s3onghyun/otelcol-doctor](https://github.com/s3onghyun/otelcol-doctor)
 
-**★ 6** · exceptional (score 14) · Shell · agent-skills, claude-code, claude-skill, devops, observability
+**★ 8** · exceptional (score 14.1) · Shell · agent-skills, claude-code, claude-skill, devops, observability
 
 > A Claude Code skill that writes, fixes, and validates OpenTelemetry Collector configs — processor order, core-vs-contrib, pull-vs-push exporters, the works.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-07-21
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: agent-skills, claude-code, claude-skill, devops, observability, opentelemetry, otel-collector, prometheus
 
 ## Best fit cue profiles

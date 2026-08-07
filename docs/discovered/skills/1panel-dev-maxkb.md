@@ -2,21 +2,21 @@
 title: "1Panel-dev/MaxKB — Claude Code skill discovered by cue"
 description: "🔥 MaxKB is an open-source platform for building enterprise-grade agents.  强大易用的开源企业级智能体平台。"
 layout: page
-updated: 2026-06-29
+updated: 2026-08-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [1Panel-dev/MaxKB](https://github.com/1Panel-dev/MaxKB)
 
-**★ 21550** · exceptional (score 17) · Python · agent, agentic-ai, chatbot, deepseek-r1, knowledgebase
+**★ 22418** · exceptional (score 17) · Python · agent, agentic-ai, chatbot, deepseek-r1, knowledgebase
 
 > 🔥 MaxKB is an open-source platform for building enterprise-grade agents.  强大易用的开源企业级智能体平台。
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 21550 stars
-- 🗓️ Last pushed: 2026-06-29
+- ⭐ 22418 stars
+- 🗓️ Last pushed: 2026-08-06
 - 🏷️ Tags: agent, agentic-ai, chatbot, deepseek-r1, knowledgebase, langchain, llama3, llm, maxkb, mcp-server, ollama, pgvector, qwen3, rag
 
 ## Best fit cue profiles

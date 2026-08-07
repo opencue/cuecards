@@ -3,7 +3,7 @@
  *
  * - Stored locally at ~/.config/cue/feedback.log (one JSON line per submission)
  * - On first opt-in submission, asks if the user wants to share it as a GitHub
- *   issue on opencue/claude-code-skills. Always opt-in; never automatic.
+ *   issue on opencue/cuecards. Always opt-in; never automatic.
  * - Three questions: how-found, what-using-for, what-blocked.
  *
  * Run with --view to dump local entries. Run with --share <id> to open a
@@ -131,12 +131,12 @@ async function shareCmd(args: string[]): Promise<number> {
   const body = buildIssueBody(entry);
   const dryRun = args.includes("--dry-run");
   if (dryRun) {
-    process.stdout.write(`\n  ${bold("Would post to opencue/claude-code-skills:")}\n\n  ${bold("Title:")} ${title}\n\n  ${bold("Body:")}\n${body}\n\n  ${dim("(dry-run — pass without --dry-run to post)")}\n\n`);
+    process.stdout.write(`\n  ${bold("Would post to opencue/cuecards:")}\n\n  ${bold("Title:")} ${title}\n\n  ${bold("Body:")}\n${body}\n\n  ${dim("(dry-run — pass without --dry-run to post)")}\n\n`);
     return 0;
   }
   const res = spawnSync("gh", [
     "issue", "create",
-    "--repo", "opencue/claude-code-skills",
+    "--repo", "opencue/cuecards",
     "--title", title,
     "--body", body,
     "--label", "feedback",
@@ -172,7 +172,7 @@ All entries are stored locally at:
   ${LOG_PATH}
 
 Entries are NEVER sent anywhere without your explicit consent. The --share
-flag opens a GitHub issue on opencue/claude-code-skills under your own gh identity.
+flag opens a GitHub issue on opencue/cuecards under your own gh identity.
 
 Examples:
   cue feedback                     # walks through 3 questions
@@ -205,7 +205,7 @@ Examples:
     saveEntry(entry);
     process.stdout.write(`\n  ${green("✓ Saved locally")} ${dim(`(id: ${entry.id})`)}\n`);
     process.stdout.write(`  ${dim("Path:")} ${LOG_PATH}\n\n`);
-    process.stdout.write(`  ${bold("Want to share this as a GitHub issue on opencue/claude-code-skills?")}\n`);
+    process.stdout.write(`  ${bold("Want to share this as a GitHub issue on opencue/cuecards?")}\n`);
     const share = await rl.question(`  ${dim("Posts under your gh identity. y/N > ")}`);
     if (share.trim().toLowerCase().startsWith("y")) {
       await shareCmd([entry.id]);

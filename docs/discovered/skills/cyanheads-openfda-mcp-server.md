@@ -2,21 +2,21 @@
 title: "cyanheads/openfda-mcp-server — Claude Code skill discovered by cue"
 description: "Query FDA data on drugs, food, devices, and recalls via openFDA. STDIO or Streamable HTTP."
 layout: page
-updated: 2026-06-05
+updated: 2026-07-27
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [cyanheads/openfda-mcp-server](https://github.com/cyanheads/openfda-mcp-server)
+# 💎 [cyanheads/openfda-mcp-server](https://github.com/cyanheads/openfda-mcp-server)
 
-**★ 1** · strong (score 6.3) · TypeScript · adverse-events, cyanheads, drug-safety, fda, mcp
+**★ 4** · exceptional (score 8.3) · TypeScript · adverse-events, cyanheads, drug-safety, fda, mcp
 
 > Query FDA data on drugs, food, devices, and recalls via openFDA. STDIO or Streamable HTTP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-07-27
 - 🏷️ Tags: adverse-events, cyanheads, drug-safety, fda, mcp, mcp-server, model-context-protocol, openfda, typescript
 
 ## Best fit cue profiles

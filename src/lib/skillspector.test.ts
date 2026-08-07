@@ -7,9 +7,9 @@
  * contract we depend on (`scan <path> --no-llm --format json`).
  */
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtempSync, writeFileSync, readFileSync, rmSync, chmodSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, chmodSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 
 import {
   isEnabled,
@@ -19,6 +19,8 @@ import {
   unavailableNote,
   runSkillSpector,
   resetRunnerCache,
+  resolveBaselineFor,
+  baselineDirs,
   SKILLSPECTOR_PKG,
 } from "./skillspector";
 
@@ -70,6 +72,65 @@ describe("buildRunner", () => {
     const r = buildRunner("bin", "/skills/evil", "/opt/skillspector");
     expect(r.cmd).toBe("/opt/skillspector");
     expect(r.args).toEqual([]);
+  });
+
+  test("a baseline passes through untouched for host runners", () => {
+    const r = buildRunner("uvx", "/skills/evil", undefined, "/cue/baselines/a.yaml");
+    expect(r.baselineTarget).toBe("/cue/baselines/a.yaml");
+  });
+
+  test("docker mounts the baseline separately — it lives outside the scanned dir", () => {
+    const r = buildRunner("docker", "/skills/evil", undefined, "/cue/baselines/a.yaml");
+    expect(r.args).toContain("/cue/baselines/a.yaml:/baseline.yaml:ro");
+    expect(r.baselineTarget).toBe("/baseline.yaml");
+  });
+
+  test("docker without a baseline mounts only the scan dir", () => {
+    const r = buildRunner("docker", "/skills/evil");
+    expect(r.baselineTarget).toBeUndefined();
+    expect(r.args.filter((a) => a === "-v")).toHaveLength(1);
+  });
+});
+
+describe("baseline resolution", () => {
+  let root: string;
+  beforeEach(() => {
+    root = mkdtempSync(join(tmpdir(), "cue-bl-"));
+  });
+  afterEach(() => rmSync(root, { recursive: true, force: true }));
+
+  function writeBaseline(relPath: string) {
+    const full = join(root, "resources", "skillspector-baselines", relPath);
+    mkdirSync(dirname(full), { recursive: true });
+    writeFileSync(full, "version: 2\n");
+    return full;
+  }
+
+  test("baselines live outside resources/skills, which is a git submodule", () => {
+    const [repoDir] = baselineDirs({ CUE_REPO_ROOT: "/repo" });
+    expect(repoDir).toBe("/repo/resources/skillspector-baselines");
+    // A path under resources/skills/ would write into the submodule instead.
+    expect(repoDir).not.toContain("resources/skills/");
+  });
+
+  test("finds a baseline by skill id", () => {
+    const expected = writeBaseline("meta/smart-loader.yaml");
+    expect(resolveBaselineFor("meta/smart-loader", { CUE_REPO_ROOT: root })).toBe(expected);
+  });
+
+  test("accepts .yml and .json too", () => {
+    const expected = writeBaseline("meta/other.json");
+    expect(resolveBaselineFor("meta/other", { CUE_REPO_ROOT: root })).toBe(expected);
+  });
+
+  test("returns null when there is no baseline — the common case", () => {
+    expect(resolveBaselineFor("meta/nothing", { CUE_REPO_ROOT: root })).toBeNull();
+  });
+
+  test("refuses ids that would climb out of the baselines directory", () => {
+    for (const id of ["../../etc/passwd", "meta/../../../x", "/etc/passwd", ""]) {
+      expect(resolveBaselineFor(id, { CUE_REPO_ROOT: root })).toBeNull();
+    }
   });
 });
 
@@ -198,5 +259,62 @@ describe("runSkillSpector", () => {
     const r = runSkillSpector(dir, { env: { CUE_SKILLSPECTOR: "1", SKILLSPECTOR_BIN: bin } });
     expect(r.status).toBe("error");
     expect(r.recommendation).toBeUndefined();
+  });
+
+  test("an existing baseline is passed to the scanner and echoed in the report", () => {
+    writeFakeScanner(report({ score: 0, severity: "LOW", recommendation: "SAFE" }));
+    const baseline = join(dir, "baseline.yaml");
+    writeFileSync(baseline, "version: 2\n");
+    const r = runSkillSpector(dir, { env: { CUE_SKILLSPECTOR: "1", SKILLSPECTOR_BIN: bin }, baseline });
+    expect(readFileSync(argvLog, "utf8").trim()).toBe(
+      `scan ${dir} --no-llm --format json --baseline ${baseline}`,
+    );
+    expect(r.baseline).toBe(baseline);
+  });
+
+  test("a baseline path that does not exist is dropped, not passed", () => {
+    // Upstream exits 2 on a missing baseline; passing it would turn a clean
+    // scan into an error.
+    writeFakeScanner(report({ score: 0, severity: "LOW", recommendation: "SAFE" }));
+    const r = runSkillSpector(dir, {
+      env: { CUE_SKILLSPECTOR: "1", SKILLSPECTOR_BIN: bin },
+      baseline: join(dir, "missing.yaml"),
+    });
+    expect(readFileSync(argvLog, "utf8")).not.toContain("--baseline");
+    expect(r.status).toBe("ok");
+    expect(r.baseline).toBeUndefined();
+  });
+
+  test("null baseline means no flag", () => {
+    writeFakeScanner(report({ score: 0, severity: "LOW", recommendation: "SAFE" }));
+    runSkillSpector(dir, { env: { CUE_SKILLSPECTOR: "1", SKILLSPECTOR_BIN: bin }, baseline: null });
+    expect(readFileSync(argvLog, "utf8")).not.toContain("--baseline");
+  });
+});
+
+describe("suppressed findings", () => {
+  test("suppressed_count is read and surfaced in the verdict line", () => {
+    const raw = JSON.stringify({
+      risk_assessment: { score: 0, severity: "LOW", recommendation: "SAFE" },
+      issues: [],
+      suppressed_count: 2,
+    });
+    const r = parseSkillSpectorJson(raw);
+    expect(r.suppressed).toBe(2);
+    expect(formatVerdict(r)).toContain("[2 baselined]");
+  });
+
+  test("falls back to counting the suppressed array", () => {
+    const raw = JSON.stringify({
+      risk_assessment: { severity: "LOW", recommendation: "SAFE" },
+      suppressed: [{ id: "E2" }, { id: "LP1" }, { id: "P1" }],
+    });
+    expect(parseSkillSpectorJson(raw).suppressed).toBe(3);
+  });
+
+  test("no baseline means no noise in the verdict line", () => {
+    const r = parseSkillSpectorJson(report({ severity: "LOW", recommendation: "SAFE" }));
+    expect(r.suppressed).toBeUndefined();
+    expect(formatVerdict(r)).not.toContain("baselined");
   });
 });
