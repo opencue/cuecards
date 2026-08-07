@@ -1213,9 +1213,11 @@ export async function linkPluginCache(targetDir: string, sourceDir: string): Pro
       try {
         await rename(stagePath, targetPath);
       } catch {
-        // rename refuses to clobber a real directory. That's Claude's lazy
-        // empty copy on a first materialization — no session is reading it
-        // yet, so the non-atomic path is safe here.
+        // rename refuses to clobber a real directory, and POSIX has no atomic
+        // way to replace a directory with a symlink — so this branch keeps the
+        // old window. It is the first materialization, when the target is
+        // still Claude's lazy empty copy; every later pass finds a symlink and
+        // takes the atomic path above, which is the one that was failing hooks.
         await rm(targetPath, { recursive: true, force: true });
         await rename(stagePath, targetPath);
       }
