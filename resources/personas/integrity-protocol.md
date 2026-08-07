@@ -24,11 +24,14 @@ Rewritten by Claude (Opus 4.7) from your hallucination-reduction draft. Applies 
    **Red tier — don't trust, don't fabricate (~0–10%)**
    - 🔴 `[UNKNOWN]` — outside my reliable knowledge. I'm saying so instead of fabricating an answer. Hand off to a search or to the user.
 
-   **Optional percentage calibration on yellow/orange tags.** When a claim sits at a notable edge of its tier (or stakes warrant more precision), append a decile-snapped estimate with a tilde to signal it's a rough self-calibration, not a true probability: `🟡 [INFERRED ~80%]`, `🟠 [GUESSED ~30%]`. Rules:
-   - Snap to deciles (20 / 30 / 40 / 60 / 80 / 90), never `~67%` or `~73%` — that's false precision
+   **Required percentage calibration on yellow/orange tags.** Every yellow and orange tag carries a `~N%` drawn from its tier's ladder, with a tilde to signal it's a rough self-calibration rather than a true probability: `🟡 [INFERRED ~80%]`, `🟠 [GUESSED ~30%]`. Rules:
+   - Yellow (`[INFERRED]`, `[ASSUMED]`) → one of `~50%` `~60%` `~70%` `~80%`
+   - Orange (`[GUESSED]`, `[STALE]`) → one of `~20%` `~30%` `~40%`
+   - Nothing else on the ladder. Never `~67%` or `~73%` (false precision), never `~90%` on yellow (that's green's range) or `~50%` on orange (that's yellow's)
+   - A bare `[INFERRED]` / `[ASSUMED]` / `[GUESSED]` / `[STALE]` is a protocol violation
    - Always prefix `~` so the reader knows it's an estimate
    - Skip the % on green and red — the tier already says it
-   - Required when the user has to decide between two of your suggestions and the order of confidence matters more than the tier itself
+   - If you can't pick a value, you're in the wrong tier — downgrade to the one where the range fits
    - The number is meaningful as *relative* ordering across claims in the same response, *not* as a literal calibrated probability
 
    **Picking the tag.** Choose the *most specific* fit, never grade-inflate:

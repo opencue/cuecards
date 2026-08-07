@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { COMPACT_ROWS, renderCardFrame, type CardSuggestion } from "./card";
+import { displayWidth } from "./render-util";
 
 const rust: CardSuggestion = {
   parts: ["rust", "secops"],
@@ -34,30 +35,45 @@ describe("renderCardFrame", () => {
     expect(frame).toContain("/home/u/proj");
   });
 
-  test("shows a counter only when there is more than one suggestion", () => {
-    expect(renderCardFrame({ ...base, suggestions: [rust] })).not.toContain("1/1");
+  /** The card's top border, where the page indicator rides. */
+  const topBorder = (frame: string) =>
+    plain(frame).split("\n").find((l) => l.startsWith("╭")) ?? "";
+
+  test("page dots appear only when there is more than one suggestion", () => {
+    expect(topBorder(renderCardFrame({ ...base, suggestions: [rust] }))).not.toContain("○");
     const many = renderCardFrame({ ...base, suggestions: [rust, python], index: 1 });
-    expect(many).toContain("2/2");
+    // One dot per suggestion, filled on the one being shown.
+    expect(topBorder(many)).toContain("○ ●");
     expect(many).toContain("🐍 python");
-    expect(many).toContain("↹ next suggestion");
+    expect(plain(many)).toContain("↹ next suggestion");
   });
 
-  test("states the pin decision on the launch key", () => {
-    expect(renderCardFrame({ ...base, suggestions: [rust] })).toContain(
-      "⏎ launch · pins to this directory",
-    );
-    expect(renderCardFrame({ ...base, suggestions: [rust], pin: false })).toContain("⏎ launch · no pin");
-    const disabled = renderCardFrame({ ...base, suggestions: [rust], pinDisabled: true });
+  test("falls back to a numeric page indicator past eight suggestions", () => {
+    const many = Array.from({ length: 12 }, () => python);
+    expect(topBorder(renderCardFrame({ ...base, suggestions: many, index: 2 }))).toContain("3/12");
+  });
+
+  test("shows the pin decision as a switch beside the launch button", () => {
+    const on = plain(renderCardFrame({ ...base, suggestions: [rust] }));
+    expect(on).toContain("⏎ launch");
+    expect(on).toContain("p ● pin to this folder");
+    const off = plain(renderCardFrame({ ...base, suggestions: [rust], pin: false }));
+    expect(off).toContain("p ○ pin to this folder");
+    const disabled = plain(renderCardFrame({ ...base, suggestions: [rust], pinDisabled: true }));
     expect(disabled).toContain("⏎ launch");
-    expect(disabled).not.toContain("pins to this directory");
-    expect(disabled).not.toContain("p pin");
+    expect(disabled).not.toContain("pin to this folder");
   });
 
-  test("warns about a heavy stack, stays quiet about a light one", () => {
-    expect(renderCardFrame({ ...base, suggestions: [{ ...rust, alwaysOn: 32_000 }] })).toContain(
-      "⚠ heavy: ~32k always-on",
-    );
-    expect(renderCardFrame({ ...base, suggestions: [rust] })).not.toContain("⚠ heavy");
+  test("meters the stack weight and only calls out a heavy one", () => {
+    const heavy = plain(renderCardFrame({ ...base, suggestions: [{ ...rust, alwaysOn: 32_000 }] }));
+    expect(heavy).toContain("~32k always-on");
+    expect(heavy).toContain("⚠ heavy, slows the agent");
+    expect(heavy).toContain("█");
+    const light = plain(renderCardFrame({ ...base, suggestions: [rust] }));
+    expect(light).toContain("~6.0k always-on");
+    expect(light).not.toContain("⚠ heavy");
+    // A light stack still gets a meter — the bar is a comparison, not a warning.
+    expect(light).toContain("█");
   });
 
   test("help overlay replaces the body and lists every key", () => {
@@ -69,8 +85,19 @@ describe("renderCardFrame", () => {
 
   test("degrades to a usable frame when there is nothing to suggest", () => {
     const frame = renderCardFrame({ ...base, suggestions: [] });
-    expect(frame).toContain("no profiles available");
+    expect(frame).toContain("nothing to suggest");
     expect(frame).toContain("a browse every profile");
+  });
+
+  test("the card's right border lands in one column on every row", () => {
+    const frame = plain(renderCardFrame({ ...base, suggestions: [{ ...rust, alwaysOn: 32_000 }] }));
+    const bordered = frame
+      .split("\n")
+      .filter((l) => l.startsWith("╭") || l.startsWith("╰") || (l.startsWith("│") && l.endsWith("│") && l.length > 2));
+    // Width in terminal cells, not code points — the emoji labels are 2 cells wide.
+    const widths = new Set(bordered.map(displayWidth));
+    expect(bordered.length).toBeGreaterThan(4);
+    expect(widths.size).toBe(1);
   });
 
   test("ascii mode drops the emoji icons", () => {
@@ -96,6 +123,15 @@ describe("renderCardFrame", () => {
     // The essentials survive the squeeze.
     expect(short).toContain("🦀 rust");
     expect(short).toContain("⏎ launch");
+  });
+
+  test("the action rows shed words instead of wrapping a narrow terminal", () => {
+    for (const cols of [40, 56, 60, 72, 80, 120]) {
+      const frame = plain(renderCardFrame({ ...base, cols, suggestions: [rust, python] }));
+      for (const line of frame.split("\n")) expect(displayWidth(line)).toBeLessThanOrEqual(cols);
+      expect(frame).toContain("⏎ launch");
+      expect(frame).toContain("esc quit");
+    }
   });
 
   test("caps the reason list at three lines", () => {

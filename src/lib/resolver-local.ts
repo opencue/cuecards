@@ -183,7 +183,23 @@ async function walk(root: string): Promise<SkillsIndex> {
     let slugs: string[];
     try {
       const entries = await readdir(catPath, { withFileTypes: true });
-      slugs = entries.filter((e) => e.isDirectory()).map((e) => e.name);
+      // A skill maintained in its own repo can be symlinked into the tree
+      // (e.g. browser/ego-browser -> ~/Documents/ego-lite-linux/skills/...).
+      // dirent.isDirectory() is false for the link itself, so stat through it.
+      const resolved = await Promise.all(
+        entries.map(async (e) => {
+          if (e.isDirectory()) return e.name;
+          if (!e.isSymbolicLink()) return null;
+          try {
+            return (await stat(join(catPath, e.name))).isDirectory()
+              ? e.name
+              : null;
+          } catch {
+            return null; // dangling link — treat as absent
+          }
+        }),
+      );
+      slugs = resolved.filter((name): name is string => name !== null);
     } catch {
       // A non-directory or unreadable entry at the category level is ignored
       // rather than fatal — keeps walk robust against stray files.

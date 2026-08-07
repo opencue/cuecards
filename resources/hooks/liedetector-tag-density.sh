@@ -3,13 +3,15 @@
 #
 # The integrity protocol asks the model to mark decision-relevant claims with
 # confidence tags (🟢 [VERIFIED], 🟡 [INFERRED ~80%], 🟠 [GUESSED ~30%],
-# 🔴 [UNKNOWN], etc.). Two failure modes degrade that signal:
+# 🔴 [UNKNOWN], etc.). Three failure modes degrade that signal:
 #   (a) a long, substantive response with ZERO tags — no confidence signal at
 #       all where the reader most needs one;
-#   (b) tag-spam — a tag on nearly every clause, which trains the reader to
+#   (b) a yellow/orange tag with no ~N%, or an ~N% that isn't on its tier's
+#       ladder — the tier alone can't order claims against each other;
+#   (c) tag-spam — a tag on nearly every clause, which trains the reader to
 #       ignore the tags entirely.
-# This hook nudges on both. It NEVER blocks the Stop; it only prints one line
-# to stderr (which Claude Code surfaces) so the model can self-correct.
+# This hook nudges on all three. It NEVER blocks the Stop; it only prints one
+# line to stderr (which Claude Code surfaces) so the model can self-correct.
 #
 # Honest about its limits: this is a crude heuristic. It cannot tell whether a
 # response was actually "decision-relevant" — it uses response length (>1500
@@ -18,7 +20,9 @@
 # narrative explanation). To keep the false-positive rate low it only fires on
 # CLEARLY long, completely tag-free responses, and stays silent otherwise. The
 # density check needs at least 4 tags before it can call something "spam".
-# Treat every nudge as a question ("did this response need tags?"), not a verdict.
+# Treat those two nudges as a question ("did this response need tags?"), not a
+# verdict. Check (b) is the exception: the protocol names the legal ~N% values,
+# so a missing or off-ladder percent is a fact, not a heuristic.
 #
 # Reliability: parsing the transcript can fail for many reasons (missing file,
 # truncated JSONL, schema drift). Every failure path FAILS OPEN — any error
@@ -54,6 +58,18 @@ import sys, json, re
 TAGS = ("VERIFIED", "KNOWN", "INFERRED", "ASSUMED",
         "GUESSED", "STALE", "UNKNOWN", "CORRECTION")
 TAG_RE = re.compile(r"\[(?:%s)[^\]]*\]" % "|".join(TAGS))
+
+# The protocol requires a ~N% on every yellow and orange tag, drawn from that
+# tier's ladder. Yellow spans ~50-85%, orange ~20-45%, so the ladders don't
+# overlap each other or green (>=90%).
+LADDER = {
+    "INFERRED": {"50", "60", "70", "80"},
+    "ASSUMED":  {"50", "60", "70", "80"},
+    "GUESSED":  {"20", "30", "40"},
+    "STALE":    {"20", "30", "40"},
+}
+CAL_RE = re.compile(r"\[(%s)([^\]]*)\]" % "|".join(LADDER))
+PCT_RE = re.compile(r"~\s*(\d+)\s*%")
 
 LONG_CHARS = 1500          # proxy for "substantive response"
 SPAM_MIN_TAGS = 4          # need real density before calling it spam
@@ -106,7 +122,32 @@ if n_chars > LONG_CHARS and n_tags == 0:
           "Skip this nudge with [skip-tag-density]." % n_chars)
     sys.exit(0)
 
-# (b) tag-spam → density trains the reader to ignore the tags.
+# (b) calibration format → a yellow/orange tag with no ~N%, or with one that
+#     isn't on its tier's ladder. Unlike the two heuristics around it this is
+#     an exact check: the protocol names the legal values, so a miss is a
+#     violation rather than a guess about intent.
+missing, offladder = [], []
+for tag, rest in CAL_RE.findall(last):
+    pct = PCT_RE.search(rest)
+    if not pct:
+        missing.append(tag)
+    elif pct.group(1) not in LADDER[tag]:
+        offladder.append("%s ~%s%%" % (tag, pct.group(1)))
+
+if missing or offladder:
+    parts = []
+    if missing:
+        parts.append("%d tag(s) with no ~N%% (%s)"
+                     % (len(missing), ", ".join(sorted(set(missing)))))
+    if offladder:
+        parts.append("%d off-ladder (%s)"
+                     % (len(offladder), ", ".join(sorted(set(offladder)))))
+    print("liedetector: %s. Yellow ([INFERRED]/[ASSUMED]) takes ~50/60/70/80%%, "
+          "orange ([GUESSED]/[STALE]) takes ~20/30/40%% — nothing else. "
+          "Skip with [skip-tag-density]." % "; ".join(parts))
+    sys.exit(0)
+
+# (c) tag-spam → density trains the reader to ignore the tags.
 if n_tags >= SPAM_MIN_TAGS and n_words > 0:
     words_per_tag = n_words / n_tags
     if words_per_tag < SPAM_WORDS_PER_TAG:

@@ -24,11 +24,26 @@ import {
 } from "./render-util";
 import {
   EMPTY_TALLY,
-  formatOverheadBadge,
   formatStackTotals,
+  OVERHEAD_WARN_TOKENS,
   unionTallyCounts,
   type ProfileTally,
 } from "./tally";
+import {
+  BAR,
+  button,
+  CARD_MAX_WIDTH,
+  clipVisible,
+  fitLine,
+  formatAlwaysOn,
+  keyHints,
+  keyTable,
+  markWidth,
+  meterBar,
+  padVisible,
+  sectionHeader,
+  selectMark,
+} from "./ui";
 
 /** Section title used for the flat ranked list while a filter is active. */
 export const MATCHES_SECTION = "matches";
@@ -80,6 +95,7 @@ const KEY_HELP: ReadonlyArray<[string, string]> = [
   ["⏎", "launch the stack you built"],
   ["space", "add / remove the focused profile"],
   ["↑↓", "move"],
+  ["pgup/pgdn", "move ten rows"],
   ["type", "fuzzy-search every profile"],
   ["⌫", "delete a search character"],
   ["?", "toggle this help"],
@@ -229,44 +245,65 @@ export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
     .map(({ row }) => ({ ...row, section: MATCHES_SECTION }));
 }
 
-/** Column the section-header count is aligned to. */
-export const SECTION_RULE_COL = 30;
-
 /**
  * Render one frame of the palette. Pure — same state in, same string out.
+ *
+ * Reading order top to bottom: what screen is this and how much have I picked →
+ * the search field → the grouped list → what I've built and what it costs → the
+ * one key that ships it.
  */
 export function renderPaletteFrame(state: PaletteState): string {
-  const BAR = styleText("gray", "│");
+  const bar = BAR();
   const cols = state.cols ?? process.stdout.columns ?? 80;
   const width = Math.max(24, cols - 6);
+  // Rows clip to the full terminal width (a long hint deserves the room), but
+  // the right-aligned header meta tracks the card's capped width so the two
+  // screens line up instead of drifting apart on a wide terminal.
+  const headWidth = Math.min(width, CARD_MAX_WIDTH);
   const ascii = state.ascii ?? asciiIconsEnabled();
   const icon = (s: string) => stripIconIfAscii(s, ascii);
   const lines: string[] = [];
-
-  lines.push(BAR);
-  const filterTag =
-    state.query.length > 0
-      ? styleText("cyan", ` ${state.query}▏`)
-      : styleText("dim", " type to search");
-  lines.push(`${BAR}  ${styleText("cyan", "◆")}  ${styleText("bold", "build your stack")}${filterTag}`);
-
-  if (state.help === true) {
-    lines.push(BAR);
-    for (const [key, what] of KEY_HELP) {
-      lines.push(`${BAR}  ${styleText("cyan", key.padEnd(8))}${styleText("dim", what)}`);
-    }
-    lines.push(BAR);
-    lines.push(`${BAR}  ${styleText("dim", "? close help")}`);
-    return lines.join("\n");
-  }
 
   const visible = filterRows(state.rows, state.query);
   const conflictMap = buildConflictMap(state.rows);
   const effective = new Set(resolveConflicts(state.selected, conflictMap));
 
-  lines.push(BAR);
+  // Title bar: the screen's name on the left, how far along you are on the
+  // right — the two things you'd check before touching a key.
+  lines.push(bar);
+  const title = `${styleText("cyan", "◆")}  ${styleText("bold", "build your stack")}`;
+  const picked =
+    effective.size > 0
+      ? styleText("green", `${effective.size} selected`)
+      : styleText("dim", "none selected");
+  lines.push(`${bar}  ${padVisible(title, Math.max(0, headWidth - 14))}${picked}`);
+
+  if (state.help === true) {
+    lines.push(bar);
+    for (const row of keyTable(KEY_HELP, 12)) lines.push(`${bar}  ${row}`);
+    lines.push(bar);
+    lines.push(`${bar}  ${keyHints([["?", "close help"]])}`);
+    return lines.join("\n");
+  }
+
+  // Search field. Rendering it as its own labelled row — rather than a tag
+  // welded onto the title — is what makes "you can just type" discoverable.
+  lines.push(bar);
+  const field =
+    state.query.length > 0
+      ? `${styleText("cyan", state.query)}${styleText("cyan", "▏")}`
+      : styleText("dim", "type to filter…");
+  const scope =
+    state.query.length > 0
+      ? styleText("dim", `${visible.length} ${visible.length === 1 ? "match" : "matches"}`)
+      : styleText("dim", `${state.rows.length} profiles`);
+  lines.push(
+    `${bar}  ${styleText("dim", "search")}  ${padVisible(field, Math.max(0, headWidth - 22))}${scope}`,
+  );
+
+  lines.push(bar);
   if (visible.length === 0) {
-    lines.push(`${BAR}  ${styleText("yellow", `nothing matches "${state.query}"`)}`);
+    lines.push(`${bar}  ${styleText("yellow", `nothing matches "${state.query}"`)}`);
   }
 
   // Per-section totals (across the whole filtered list, not just the window) so
@@ -281,61 +318,86 @@ export function renderPaletteFrame(state: PaletteState): string {
   const max = state.maxRows && state.maxRows > 0 ? state.maxRows : visible.length;
   const cursor = Math.max(0, Math.min(state.cursor, visible.length - 1));
   const win = windowOptions(visible, cursor, max);
-  if (win.hiddenAbove > 0) lines.push(`${BAR}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
+  if (win.hiddenAbove > 0) lines.push(`${bar}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
 
   let lastSection: string | undefined;
   win.items.forEach((row, offset) => {
     const idx = win.start + offset;
     if (row.section !== lastSection) {
-      if (lastSection !== undefined) lines.push(BAR);
-      const count = String(sectionTotals.get(row.section) ?? 0);
-      const rule = styleText(
-        "gray",
-        "─".repeat(Math.max(3, SECTION_RULE_COL - displayWidth(row.section) - 2)),
-      );
-      lines.push(
-        `${BAR}  ${styleText("bold", styleText("blueBright", row.section))} ${rule} ${styleText("dim", count)}`,
-      );
+      if (lastSection !== undefined) lines.push(bar);
+      lines.push(`${bar}  ${sectionHeader(row.section, sectionTotals.get(row.section) ?? 0)}`);
       lastSection = row.section;
     }
-    lines.push(renderRow(row, idx === cursor, effective, conflictMap, { icon, labelCol, state, width }));
+    lines.push(
+      renderRow(row, idx === cursor, effective, conflictMap, { icon, labelCol, state, width, ascii }),
+    );
   });
-  if (win.hiddenBelow > 0) lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
+  if (win.hiddenBelow > 0) lines.push(`${bar}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
 
   // Sticky footer: what you're about to launch, and what it costs.
-  lines.push(BAR);
+  lines.push(bar);
   const chosen = [...effective];
   if (chosen.length === 0) {
-    lines.push(`${BAR}  ${styleText("dim", "nothing selected yet — space adds the focused profile")}`);
+    lines.push(
+      `${bar}  ${styleText("dim", "nothing selected yet — press space to add the focused profile")}`,
+    );
   } else {
     const labelOf = (v: string) => icon(state.rows.find((r) => r.value === v)?.label ?? v);
-    lines.push(`${BAR}  ${styleText("green", clipToWidth(chosen.map(labelOf).join(" + "), width))}`);
+    lines.push(
+      `${bar}  ${styleText("green", clipToWidth(chosen.map(labelOf).join("  +  "), width))}`,
+    );
     const tallies = state.tallies;
     if (tallies) {
-      const picked = chosen.map((v) => tallies.get(v));
-      const totals = formatStackTotals(unionTallyCounts(picked.map((t) => t ?? EMPTY_TALLY)));
-      const pending = picked.some((t) => t === undefined) ? " …" : "";
-      if (totals) lines.push(`${BAR}  ${styleText("dim", `${totals}${pending}`)}`);
-      const badge = formatOverheadBadge(
-        picked.reduce((sum, t) => sum + (t?.alwaysOn ?? 0), 0),
+      const pickedTallies = chosen.map((v) => tallies.get(v));
+      const totals = formatStackTotals(
+        unionTallyCounts(pickedTallies.map((t) => t ?? EMPTY_TALLY)),
       );
-      if (badge) lines.push(`${BAR}  ${styleText("yellow", clipToWidth(badge, width))}`);
+      const pending = pickedTallies.some((t) => t === undefined) ? " …" : "";
+      if (totals) lines.push(`${bar}  ${styleText("dim", `${totals}${pending}`)}`);
+      const alwaysOn = pickedTallies.reduce((sum, t) => sum + (t?.alwaysOn ?? 0), 0);
+      if (alwaysOn > 0) {
+        const heavy = alwaysOn > OVERHEAD_WARN_TOKENS;
+        const caption = heavy
+          ? styleText("yellow", `${formatAlwaysOn(alwaysOn)} · ⚠ heavy, slows the agent`)
+          : styleText("dim", formatAlwaysOn(alwaysOn));
+        lines.push(`${bar}  ${clipVisible(`${meterBar(alwaysOn)}  ${caption}`, width)}`);
+      }
     }
   }
 
-  lines.push(BAR);
-  const enterText =
-    chosen.length > 0 ? `⏎ launch ${chosen.length} selected` : "⏎ pick at least one profile";
+  lines.push(bar);
+  const ship =
+    chosen.length > 0
+      ? button(`⏎ launch ${chosen.length}`)
+      : styleText("dim", " ⏎ pick a profile ");
+  // Three widths of the same row, so a narrow terminal drops words rather than
+  // wrapping — a wrapped action row reflows the list on every keystroke.
+  const row = (pairs: ReadonlyArray<[string, string]>) => `${ship}   ${keyHints(pairs)}`;
   lines.push(
-    `${BAR}  ${styleText(chosen.length > 0 ? "cyan" : "dim", enterText)}${styleText(
-      "dim",
-      " · space toggle · ↑↓ move · ? help · esc back",
+    `${bar}  ${fitLine(
+      cols - 4,
+      row([
+        ["space", "add/remove"],
+        ["↑↓", "move"],
+        ["?", "keys"],
+        ["esc", "back"],
+      ]),
+      row([
+        ["space", "add"],
+        ["↑↓", "move"],
+        ["?", "keys"],
+        ["esc", "back"],
+      ]),
+      row([
+        ["space", "add"],
+        ["esc", "back"],
+      ]),
     )}`,
   );
   return lines.join("\n");
 }
 
-/** One list row: checkbox, label, per-row delta, conflict/recommendation tags. */
+/** One list row: selection mark, label, per-row delta, conflict/danger tags. */
 function renderRow(
   row: PaletteRow,
   isCursor: boolean,
@@ -346,9 +408,10 @@ function renderRow(
     labelCol: number;
     state: PaletteState;
     width: number;
+    ascii: boolean;
   },
 ): string {
-  const BAR = styleText("gray", "│");
+  const bar = BAR();
   const isSel = effective.has(row.value);
   const arrow = isCursor
     ? styleText("cyan", "›")
@@ -363,7 +426,7 @@ function renderRow(
     if (partners) {
       for (const sel of effective) {
         if (partners.has(sel)) {
-          return `${BAR}  ${arrow} ${styleText("dim", "[—]")} ${styleText(
+          return `${bar}  ${arrow} ${selectMark("blocked", ctx.ascii)} ${styleText(
             "dim",
             `${ctx.icon(row.label)} (conflicts with ${sel})`,
           )}`;
@@ -372,28 +435,39 @@ function renderRow(
     }
   }
 
-  const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
+  const box = selectMark(isSel ? "on" : "off", ctx.ascii);
   const rawLabel = ctx.icon(row.label);
-  const labelStyled = isSel || isCursor ? rawLabel : styleText("dim", rawLabel);
+  // Three weights, so the eye lands on the focused row first and the selected
+  // ones second: focused is bold, selected is normal, everything else recedes.
+  const labelStyled = isCursor
+    ? styleText("bold", rawLabel)
+    : isSel
+      ? rawLabel
+      : styleText("dim", rawLabel);
   const tally = ctx.state.tallies?.get(row.value);
   const delta = tally && tally.skills.length > 0 ? `${tally.skills.length} skills` : "";
   // The focused row's description can be a paragraph (some profiles carry a
   // 200-character blurb). Clip it to what's left on the line so one row can't
   // wrap across the screen and shove the rest of the list out of view.
-  const gutter = 9; // "│  › [x] "
+  const gutter = 6 + markWidth(ctx.ascii); // "│  › ● "
   const used = gutter + Math.max(displayWidth(rawLabel), ctx.labelCol) + displayWidth(delta) + 4;
   const hint =
     row.hint && isCursor
       ? styleText("dim", ` (${clipToWidth(row.hint, Math.max(16, ctx.width - used))})`)
       : "";
-  const recTag = row.recommended === true ? styleText("dim", "  suggested") : "";
+  // The "suggested" tag earns its place only where the section header doesn't
+  // already say it — i.e. once a search has flattened everything into `matches`.
+  const recTag =
+    row.recommended === true && row.section !== SUGGESTED_SECTION
+      ? styleText("dim", "  suggested")
+      : "";
   const hasTrailer = delta !== "" || Boolean(row.danger);
   const pad = hasTrailer
     ? " ".repeat(Math.max(2, ctx.labelCol + 2 - displayWidth(rawLabel)))
     : "";
   const deltaStr = delta ? styleText("dim", delta) : "";
   const dangerTag = row.danger ? styleText("red", `${delta ? " · " : ""}${row.danger}`) : "";
-  return `${BAR}  ${arrow} ${box} ${labelStyled}${pad}${deltaStr}${dangerTag}${hint}${recTag}`;
+  return `${bar}  ${arrow} ${box} ${labelStyled}${pad}${deltaStr}${dangerTag}${hint}${recTag}`;
 }
 
 /**
@@ -528,9 +602,10 @@ export class StackPalettePrompt extends Prompt<string[]> {
 
   private visibleWindow(): number {
     const rows = (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
-    // Reserve the header (3), section spacers (2), footer (4) and scroll
-    // markers (2); floor at 5 so a short terminal still lists something.
-    return Math.max(5, rows - 11);
+    // Reserve the header + search field (5), section spacers (2), the footer's
+    // stack / totals / meter / keys (5) and the scroll markers (2); floor at 5
+    // so a short terminal still lists something.
+    return Math.max(5, rows - 14);
   }
 
   renderFrame(this: StackPalettePrompt): string {
