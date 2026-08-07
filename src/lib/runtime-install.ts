@@ -8,7 +8,7 @@
 
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { join, resolve, sep } from "node:path";
+import { join, resolve } from "node:path";
 import { homedir } from "node:os";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
@@ -90,33 +90,48 @@ export async function readUserAgentMemory(agent: RuntimeAgent): Promise<string> 
 }
 
 /**
- * True when `dir` sits inside cue's own runtime tree
- * (`<configDir>/runtime/<profile>/<agent>`).
+ * True when `dir` is the very directory a materialization is about to replace.
  *
- * Exists to keep that tree out of {@link pickClaudeCredentialsSource}. cue
- * points `CLAUDE_CONFIG_DIR` at the runtime dir when it launches an agent, so
- * every process spawned inside a cue session inherits it — and a nested launch
- * that took it as the credentials SOURCE would overlay a runtime dir onto
- * itself: `overlaySourceState()` links each unmanaged entry to
- * `<runtimeDir>/<name>`, then the atomic tmp→runtimeDir rename leaves every one
- * of those links pointing at its own path. Observed 2026-08-07 on a live
- * profile: 69 self-referential symlinks (`sessions/`, `projects/`,
- * `history.jsonl`, …), all unreadable, and a runtime that reported "Not logged
- * in" until the next launch rewrote `.credentials.json`.
+ * Sourcing the overlay from there rebuilds a runtime out of itself:
+ * `overlaySourceState()` links each unmanaged entry to `<runtimeDir>/<name>`,
+ * then the atomic tmp→runtimeDir rename leaves every one of those links
+ * pointing at its own path. Observed 2026-08-07 on a live profile: 69
+ * self-referential symlinks (`sessions/`, `projects/`, `history.jsonl`, …),
+ * all unreadable, and a runtime that reported "Not logged in" until the next
+ * launch rewrote `.credentials.json`.
+ *
+ * Deliberately an exact-path test, not "is it anywhere under the runtime
+ * tree". cue points `CLAUDE_CONFIG_DIR` at the runtime dir on every launch, so
+ * a nested launch always inherits *a* runtime path — but only the one whose
+ * key matches this launch's is the self-overlay. Under an authmux account the
+ * inherited source is `<runtime>/<profile>@account2/claude` while this launch
+ * writes `<runtime>/<profile>/claude` (`authmuxAccountTag()` returns undefined
+ * for a runtime path), and that overlay is both harmless and the only thing
+ * carrying account2's credentials into the child. Rejecting it would silently
+ * hand the nested agent account1's token.
  */
-export function isCueRuntimeDir(dir: string, runtimeRoot = join(configDir(), "runtime")): boolean {
-  const target = resolve(dir);
-  const root = resolve(runtimeRoot);
-  return target === root || target.startsWith(root + sep);
+export function isSelfOverlaySource(dir: string, runtimeDir: string | undefined): boolean {
+  if (!runtimeDir) return false;
+  return resolve(dir) === resolve(runtimeDir);
 }
 
-export async function pickClaudeCredentialsSource(): Promise<string> {
+export interface PickClaudeCredentialsSourceOptions {
+  /**
+   * The runtime dir this launch will write, when the caller knows it. Guards
+   * against {@link isSelfOverlaySource}; omitted by callers that are not
+   * rebuilding a runtime, who then keep the plain `CLAUDE_CONFIG_DIR` answer.
+   */
+  runtimeDir?: string;
+}
+
+export async function pickClaudeCredentialsSource(
+  options: PickClaudeCredentialsSourceOptions = {},
+): Promise<string> {
   // An explicit CLAUDE_CONFIG_DIR wins — that is how authmux hands cue a
-  // per-account config — but not when it is cue's own runtime dir, which is
-  // what a nested launch inherits. Falling through to the real config keeps
-  // the overlay sourced from outside the dir being rebuilt.
+  // per-account config — unless it names the exact dir this launch is about to
+  // rebuild. Falling through then reaches a source outside that dir.
   const envConfigDir = process.env.CLAUDE_CONFIG_DIR;
-  if (envConfigDir && !isCueRuntimeDir(envConfigDir)) return envConfigDir;
+  if (envConfigDir && !isSelfOverlaySource(envConfigDir, options.runtimeDir)) return envConfigDir;
 
   const homeClaude = join(homedir(), ".claude");
   if (existsSync(join(homeClaude, ".credentials.json"))) return homeClaude;
@@ -154,8 +169,10 @@ export async function pickClaudeCredentialsSource(): Promise<string> {
   return homeClaude;
 }
 
-export async function resolveClaudeCredentialsSource(options: { healFromRuntime?: boolean } = {}): Promise<string> {
-  const picked = await pickClaudeCredentialsSource();
+export async function resolveClaudeCredentialsSource(
+  options: { healFromRuntime?: boolean; runtimeDir?: string } = {},
+): Promise<string> {
+  const picked = await pickClaudeCredentialsSource({ runtimeDir: options.runtimeDir });
   if (!options.healFromRuntime) return picked;
 
   try {
