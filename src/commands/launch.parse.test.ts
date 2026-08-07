@@ -1,6 +1,11 @@
 import { afterEach, describe, expect, test } from "bun:test";
 
-import { __test, isAlwaysPickEnabled } from "./launch";
+import {
+  __test,
+  isAlwaysPickEnabled,
+  shouldForcePicker,
+  shouldInheritSessionProfile,
+} from "./launch";
 
 const { parse } = __test;
 
@@ -97,6 +102,71 @@ describe("isAlwaysPickEnabled", () => {
     for (const v of [undefined, "", "0", "false", "off", "no"]) {
       expect(isAlwaysPickEnabled(v)).toBe(false);
     }
+  });
+});
+
+// Regression lock for nested non-interactive launches. cue points
+// CLAUDE_CONFIG_DIR at the per-profile runtime dir when it launches an agent,
+// so every child spawned inside a cue session looks like an account alias. When
+// that forced the picker unconditionally, a nested `claude -p …` — gitguardex's
+// AI review gate, a hook, any script — died on "no profile resolved and stdin is
+// not a TTY", and callers had to strip the env var by hand to get through.
+describe("shouldForcePicker", () => {
+  const base = {
+    forcePick: false,
+    alwaysPickEnv: undefined as string | undefined,
+    hasOverride: false,
+    isAccountAlias: false,
+    isTTY: true,
+  };
+
+  test("an account alias opens the picker on a TTY", () => {
+    expect(shouldForcePicker({ ...base, isAccountAlias: true })).toBe(true);
+  });
+
+  test("an account alias does NOT force the picker off a TTY", () => {
+    expect(shouldForcePicker({ ...base, isAccountAlias: true, isTTY: false })).toBe(false);
+  });
+
+  test("CUE_ALWAYS_PICK does NOT force the picker off a TTY", () => {
+    expect(shouldForcePicker({ ...base, alwaysPickEnv: "1", isTTY: false })).toBe(false);
+  });
+
+  test("--cue-profile opts out of both TTY triggers", () => {
+    expect(shouldForcePicker({
+      ...base, hasOverride: true, isAccountAlias: true, alwaysPickEnv: "1",
+    })).toBe(false);
+  });
+
+  test("--cue-pick wins everywhere, TTY or not", () => {
+    expect(shouldForcePicker({ ...base, forcePick: true, isTTY: false })).toBe(true);
+    expect(shouldForcePicker({ ...base, forcePick: true, hasOverride: true })).toBe(true);
+  });
+});
+
+describe("shouldInheritSessionProfile", () => {
+  test("inherits when nothing resolved and there is no TTY to pick with", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: true, forcePick: false, isTTY: false,
+    })).toBe(true);
+  });
+
+  test("never inherits when the cwd resolved a profile", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: false, forcePick: false, isTTY: false,
+    })).toBe(false);
+  });
+
+  test("never inherits on a TTY — the picker is reachable", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: true, forcePick: false, isTTY: true,
+    })).toBe(false);
+  });
+
+  test("--cue-pick off a TTY stays a hard error rather than inheriting", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: true, forcePick: true, isTTY: false,
+    })).toBe(false);
   });
 });
 
