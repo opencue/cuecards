@@ -1373,3 +1373,61 @@ describe("materializeRuntime — session-telemetry gating", () => {
     expect(onBytes).toBeGreaterThanOrEqual(offBytes);
   });
 });
+
+/**
+ * The rebuild swap used to be `rm -rf runtimeDir` followed by `rename(tmp)`,
+ * which left CLAUDE_CONFIG_DIR nonexistent for the entire recursive delete.
+ * A Claude Code session already running against the profile resolves its hooks
+ * through that path, so every hook firing in the gap died with "No such file or
+ * directory" (2026-08-03: nine Stop hooks at once).
+ *
+ * The swap now moves the old tree to a `.old-<pid>-<ts>` sibling first. These
+ * tests pin the observable half of that — the sibling is transient, and a
+ * leftover from a swap killed between the two renames gets swept. They do NOT
+ * pin the ordering itself; a revert to rm-then-rename would still pass, so keep
+ * the comment above the swap in runtime-materializer.ts.
+ */
+describe("materializeRuntime — rebuild swap leftovers", () => {
+  const swapArgs = (runtimeRoot: string) => ({
+    profile: sampleProfile,
+    agent: "claude-code" as const,
+    runtimeRoot,
+    skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+    mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+    userClaudeMd: "# user CLAUDE.md\n",
+  });
+
+  const swapSiblings = async (runtimeDir: string) => {
+    const { readdir } = await import("node:fs/promises");
+    const { dirname, basename } = await import("node:path");
+    const names = await readdir(dirname(runtimeDir));
+    return names.filter((n) => n.startsWith(`${basename(runtimeDir)}.old-`));
+  };
+
+  test("a rebuild leaves no .old-* sibling behind", async () => {
+    const runtimeRoot = join(root, "runtime");
+    const first = await materializeRuntime(swapArgs(runtimeRoot));
+    // Force a real rebuild rather than the hash-unchanged fast path.
+    await writeFile(join(first.runtimeDir, ".cue-hash"), "0".repeat(64));
+    const second = await materializeRuntime(swapArgs(runtimeRoot));
+
+    expect(second.rebuilt).toBe(true);
+    expect(await swapSiblings(second.runtimeDir)).toEqual([]);
+    // The runtime is intact, not a half-swapped shell.
+    expect(JSON.parse(await readFile(join(second.runtimeDir, "settings.json"), "utf8"))).toBeTruthy();
+  });
+
+  test("sweeps a .old-* left by a swap that died between the two renames", async () => {
+    const runtimeRoot = join(root, "runtime");
+    const first = await materializeRuntime(swapArgs(runtimeRoot));
+
+    const stale = `${first.runtimeDir}.old-99999-deadbeef`;
+    await mkdir(stale, { recursive: true });
+    await writeFile(join(stale, "junk"), "x");
+    await writeFile(join(first.runtimeDir, ".cue-hash"), "0".repeat(64));
+
+    const second = await materializeRuntime(swapArgs(runtimeRoot));
+
+    expect(await swapSiblings(second.runtimeDir)).toEqual([]);
+  });
+});

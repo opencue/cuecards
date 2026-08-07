@@ -828,14 +828,59 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
       await rename(oldPath, newPath);
     } catch { /* doesn't exist — skip */ }
   }
-  await rm(runtimeDir, { recursive: true, force: true });
+  // `rm -rf runtimeDir` followed by rename leaves the live path NONEXISTENT for
+  // the whole recursive delete — seconds, on a runtime carrying a plugin cache
+  // and a backup chain. A Claude Code session already running against this
+  // profile resolves ${CLAUDE_CONFIG_DIR}/hooks/*.sh through that exact path, so
+  // every hook firing inside the gap dies with "No such file or directory"
+  // (observed 2026-08-03: nine Stop hooks at once, mid-session rematerialize).
+  //
+  // Move the old tree aside instead. The live path is then unresolvable only
+  // between two renames, and the delete runs after the new runtime is already
+  // in place. `.old-*` is a SIBLING of the swap target, so it stays on the same
+  // filesystem (rename cannot cross devices) and one level below the runtime
+  // root that runtime-gc scans — it is never mistaken for a runtime entry.
+  const trashDir = `${runtimeDir}.old-${process.pid}-${Date.now().toString(36)}`;
+  let trashed = false;
+  try {
+    await rename(runtimeDir, trashDir);
+    trashed = true;
+  } catch {
+    /* no previous runtime (first materialization) — nothing to move aside */
+  }
   await rename(tmpDir, runtimeDir);
+  if (trashed) {
+    await rm(trashDir, { recursive: true, force: true }).catch(() => {
+      /* the new runtime is already live; a stale .old-* is swept below */
+    });
+  }
+  await sweepStaleSwapDirs(runtimeDir);
 
   if (agent === "claude-code") {
     await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
   }
 
   return { runtimeDir, rebuilt: true, hash };
+}
+
+/**
+ * Delete `<runtimeDir>.old-*` leftovers from an earlier swap that was killed
+ * between the two renames. Best-effort and never fatal: the runtime it belongs
+ * to is already live, so a leftover only wastes disk.
+ */
+async function sweepStaleSwapDirs(runtimeDir: string): Promise<void> {
+  const parent = dirname(runtimeDir);
+  const prefix = `${basename(runtimeDir)}.old-`;
+  try {
+    const names = await readdir(parent);
+    await Promise.all(
+      names
+        .filter((name) => name.startsWith(prefix))
+        .map((name) => rm(join(parent, name), { recursive: true, force: true }).catch(() => {})),
+    );
+  } catch {
+    /* parent unreadable — nothing to sweep */
+  }
 }
 
 /**
