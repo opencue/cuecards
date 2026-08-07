@@ -130,7 +130,17 @@ function parse(args: string[]): ParsedArgs {
   // Folds a real passthrough prompt (`claude -p "…"`) into `subset` so it drives
   // classification, but leaves `subsetExplicit` false so it uses the keep-set
   // cache — repeat identical `-p` launches don't re-call the classifier.
-  if (!subset && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
+  //
+  // CUE_BYPASS gates the fold: the skill/profile classifiers spawn `claude`
+  // themselves, and on a machine with cue's shims first on PATH that lands back
+  // here. Without this guard the child's own argv (`--print --model haiku -p
+  // "<prompt>"`) becomes the next classification prompt, which spawns another
+  // classifier, which folds ITS argv, and so on — each level a full ~400MB
+  // claude process carrying every previous level's argv. Measured in the wild:
+  // 10 levels deep, a 67KB command line, ~3GB resident per launch. An explicit
+  // `--subset` still wins, so a deliberate override is never silently dropped.
+  const bypassed = process.env.CUE_BYPASS === "1";
+  if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
   }
   return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit, passthrough };

@@ -211,25 +211,46 @@ export interface ClassifierResult {
 }
 
 /**
+ * Binaries to try for a classification spawn, best first.
+ *
+ * The real binary leads, deliberately. This used to spawn the bare name
+ * `claude` and trust `CUE_BYPASS` to make cue's shim "transparent" — it never
+ * did: `CUE_BYPASS` is read only by the launch loader, where it suppresses the
+ * spinner. So on any machine with cue's shims first on PATH (the default —
+ * `rcSnippet` pins them with `fish_add_path -p`) the spawn re-entered
+ * `cue launch`, which folded the child's argv into a new classification prompt
+ * and spawned another classifier. Measured before this change: 10 nested
+ * levels, a 67KB command line, ~3GB resident for one launch.
+ *
+ * `launch.ts` now also refuses the argv fold under `CUE_BYPASS`, so the loop is
+ * cut on both sides. Going straight to the real binary is still the better
+ * primary path — it skips a whole `cue launch` boot per classification.
+ *
+ * The bare name stays as a fallback for the case `findRealClaudeBin()` cannot
+ * resolve anything (unusual PATH, or a machine where only a shim exists).
+ */
+export function classifierBinOrder(): string[] {
+  const real = findRealClaudeBin();
+  return real ? [real, "claude"] : ["claude"];
+}
+
+/**
  * Run one classification. Resolves `{ ok: false }` on every failure path.
  *
- * Tries the `claude` on PATH first (usually cue's own shim, which `CUE_BYPASS`
- * makes transparent), then the resolved real binary. The fallback shares what's
- * left of the budget — a minimum of 2s — so a double timeout can't stack to
- * roughly twice the stated tolerance and freeze an interactive command.
+ * Tries {@link classifierBinOrder} in order. Later attempts share what's left
+ * of the budget — a minimum of 2s each — so repeated timeouts can't stack to
+ * several times the stated tolerance and freeze an interactive command.
  */
 export async function runClassifier(prompt: string, timeoutMs = 30_000): Promise<ClassifierResult> {
   const startedAt = Date.now();
   const home = setupClassifierHome();
   const configDir = home?.home;
   try {
-    let res = await spawnClaude("claude", prompt, timeoutMs, configDir);
-    if (res.status !== 0 || !res.stdout.trim()) {
-      const fallback = findRealClaudeBin();
-      if (fallback) {
-        const remaining = Math.max(2_000, timeoutMs - (Date.now() - startedAt));
-        res = await spawnClaude(fallback, prompt, remaining, configDir);
-      }
+    let res = { status: 1, stdout: "" };
+    for (const bin of classifierBinOrder()) {
+      const remaining = Math.max(2_000, timeoutMs - (Date.now() - startedAt));
+      res = await spawnClaude(bin, prompt, remaining, configDir);
+      if (res.status === 0 && res.stdout.trim()) break;
     }
     if (res.status !== 0 || !res.stdout.trim()) return { ok: false, output: "" };
     return { ok: true, output: res.stdout.trim() };
