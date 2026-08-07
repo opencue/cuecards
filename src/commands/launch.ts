@@ -41,7 +41,7 @@ import { materializeRuntime } from "../lib/runtime-materializer";
 import { startLoader } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
 import { resolveLocalSkill } from "../lib/resolver-local";
-import { expandSkillWildcards, loadMcpRegistry, resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource } from "../lib/runtime-install";
+import { expandSkillWildcards, loadMcpRegistry, resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource, runtimeDirFor } from "../lib/runtime-install";
 import { detectKittyTerminal, kittyPlaceholderLabel, transmitKittyImage } from "../lib/kitty-image";
 import { computeStats } from "../lib/analytics";
 import { detectProfileV2, type DetectionResultV2 } from "../lib/auto-detect";
@@ -1444,8 +1444,10 @@ async function findRealBinary(name: string): Promise<string | null> {
  * across `runtime/<profile>/claude/.credentials.json` for matching
  * accountUuid and copies the freshest one back to source.
  */
-async function resolveClaudeCredentialsSource(): Promise<string> {
-  return resolveSharedClaudeCredentialsSource({ healFromRuntime: true });
+async function resolveClaudeCredentialsSource(
+  options: { runtimeDir?: string } = {},
+): Promise<string> {
+  return resolveSharedClaudeCredentialsSource({ healFromRuntime: true, runtimeDir: options.runtimeDir });
 }
 
 /**
@@ -1999,8 +2001,26 @@ export async function run(args: string[]): Promise<number> {
     }
   }
 
+  // Per-account runtime isolation. When launched under an authmux parallel
+  // account, key the runtime dir by profile + account so account1/account2
+  // never share one `.credentials.json` and collapse into a single login.
+  // `profileName` still drives profile source, pins, MCP overrides, and
+  // telemetry — only the physical runtime path switches to `runtimeKey`.
+  //
+  // Resolved BEFORE the credentials source below, which needs to know the dir
+  // this launch will write in order to refuse it as its own overlay source.
+  const accountTag = agentKind === "claude-code"
+    ? authmuxAccountTag(ccd, homedir())
+    : undefined;
+  const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
+  if (accountTag) debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
+
   // Credentials source resolution (Claude only):
   //   1. Honor explicit CLAUDE_CONFIG_DIR (set by claude-account2 alias, etc.)
+  //      — except when it names the runtime dir this launch is about to
+  //      rebuild, which is what a nested launch of the SAME profile inherits.
+  //      Overlaying that dir onto itself leaves every unmanaged entry a
+  //      symlink to its own path.
   //   2. Use ~/.claude if it already has .credentials.json
   //   3. Fall back to authmux's most-recently-used parallel profile — so users
   //      who manage Claude accounts via authmux don't have to re-login per
@@ -2008,19 +2028,10 @@ export async function run(args: string[]): Promise<number> {
   //      configDir; we pick the one whose .credentials.json was touched most
   //      recently as a proxy for "the one you actually use."
   const credentialsSource = agentKind === "claude-code"
-    ? await resolveClaudeCredentialsSource()
+    ? await resolveClaudeCredentialsSource({
+      runtimeDir: runtimeDirFor(runtimeKey, "claude-code"),
+    })
     : undefined;
-
-  // Per-account runtime isolation. When launched under an authmux parallel
-  // account, key the runtime dir by profile + account so account1/account2
-  // never share one `.credentials.json` and collapse into a single login.
-  // `profileName` still drives profile source, pins, MCP overrides, and
-  // telemetry — only the physical runtime path switches to `runtimeKey`.
-  const accountTag = agentKind === "claude-code"
-    ? authmuxAccountTag(ccd, homedir())
-    : undefined;
-  const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
-  if (accountTag) debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
 
   // Pin dir: the directory holding the resolving `.cue.profile`, else cwd
   // (a freshly-picked profile was just pinned to cwd). Keys both the project

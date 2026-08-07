@@ -1,7 +1,8 @@
-import { describe, test, expect } from "bun:test";
+import { describe, test, expect, afterEach } from "bun:test";
 import {
-  isCueRuntimeDir,
   isRuntimeAgent,
+  isSelfOverlaySource,
+  pickClaudeCredentialsSource,
   runtimeAgentSubdir,
   runtimeDirFor,
   RUNTIME_AGENTS,
@@ -70,43 +71,74 @@ describe("runtimeDirFor", () => {
   });
 });
 
-describe("isCueRuntimeDir", () => {
+describe("isSelfOverlaySource", () => {
   const root = "/tmp/cfg/runtime";
+  const target = runtimeDirFor("core", "claude-code", root);
 
-  test("true for a materialized profile runtime — what a nested launch inherits", () => {
-    expect(isCueRuntimeDir(runtimeDirFor("core", "claude-code", root), root)).toBe(true);
+  test("true when the source is the dir this launch will write", () => {
+    expect(isSelfOverlaySource(target, target)).toBe(true);
   });
 
-  test("true for the runtime root itself", () => {
-    expect(isCueRuntimeDir(root, root)).toBe(true);
+  // The authmux case the exact-path test exists to protect: the inherited
+  // source carries the account tag, the dir being written does not, so the
+  // overlay must go ahead and carry account2's credentials into the child.
+  test("false for another profile's runtime under the same root", () => {
+    expect(isSelfOverlaySource(runtimeDirFor("core@account2", "claude-code", root), target)).toBe(false);
   });
 
-  test("true for a codex runtime", () => {
-    expect(isCueRuntimeDir(runtimeDirFor("core", "codex", root), root)).toBe(true);
+  test("false for ~/.claude and for an authmux per-account dir", () => {
+    expect(isSelfOverlaySource("/home/u/.claude", target)).toBe(false);
+    expect(isSelfOverlaySource("/home/u/.claude-account2", target)).toBe(false);
   });
 
-  test("false for ~/.claude", () => {
-    expect(isCueRuntimeDir("/home/u/.claude", root)).toBe(false);
+  test("false when the caller does not know its runtime dir", () => {
+    expect(isSelfOverlaySource(target, undefined)).toBe(false);
   });
 
-  test("false for an authmux per-account config dir", () => {
-    expect(isCueRuntimeDir("/home/u/.claude-account2", root)).toBe(false);
+  test("normalizes traversal and a trailing separator before comparing", () => {
+    expect(isSelfOverlaySource("/tmp/cfg/runtime/core/../core/claude", target)).toBe(true);
+    expect(isSelfOverlaySource(`${target}/`, target)).toBe(true);
   });
 
-  // A path prefix is not a path component: `/tmp/cfg/runtime-backup` is a
-  // sibling of the runtime root, not inside it, and must stay usable as a
-  // credentials source.
-  test("false for a sibling whose name merely starts with the root", () => {
-    expect(isCueRuntimeDir("/tmp/cfg/runtime-backup/claude", root)).toBe(false);
+  // A path prefix is not a path component.
+  test("false for a sibling whose name merely starts with the target", () => {
+    expect(isSelfOverlaySource(`${target}-backup`, target)).toBe(false);
+  });
+});
+
+// The wiring, not just the predicate: deleting the guard in
+// pickClaudeCredentialsSource has to fail something.
+describe("pickClaudeCredentialsSource", () => {
+  const root = "/tmp/cfg/runtime";
+  const target = runtimeDirFor("core", "claude-code", root);
+  const original = process.env.CLAUDE_CONFIG_DIR;
+
+  afterEach(() => {
+    if (original === undefined) delete process.env.CLAUDE_CONFIG_DIR;
+    else process.env.CLAUDE_CONFIG_DIR = original;
   });
 
-  test("normalizes traversal before comparing", () => {
-    expect(isCueRuntimeDir("/tmp/cfg/runtime/core/../core/claude", root)).toBe(true);
-    expect(isCueRuntimeDir("/tmp/cfg/runtime/../.claude", root)).toBe(false);
+  test("refuses CLAUDE_CONFIG_DIR when it is the dir being rebuilt", async () => {
+    process.env.CLAUDE_CONFIG_DIR = target;
+    expect(await pickClaudeCredentialsSource({ runtimeDir: target })).not.toBe(target);
   });
 
-  test("tolerates a trailing separator on either side", () => {
-    expect(isCueRuntimeDir("/tmp/cfg/runtime/core/claude/", root)).toBe(true);
-    expect(isCueRuntimeDir("/tmp/cfg/runtime/core/claude", `${root}/`)).toBe(true);
+  test("keeps an authmux per-account CLAUDE_CONFIG_DIR", async () => {
+    process.env.CLAUDE_CONFIG_DIR = "/home/u/.claude-account2";
+    expect(await pickClaudeCredentialsSource({ runtimeDir: target })).toBe("/home/u/.claude-account2");
+  });
+
+  // A nested launch under account2 inherits account2's RUNTIME dir while this
+  // launch writes the untagged one. Rejecting that would hand the child
+  // account1's token — the regression this narrowing undoes.
+  test("keeps another profile's runtime dir as the source", async () => {
+    const tagged = runtimeDirFor("core@account2", "claude-code", root);
+    process.env.CLAUDE_CONFIG_DIR = tagged;
+    expect(await pickClaudeCredentialsSource({ runtimeDir: target })).toBe(tagged);
+  });
+
+  test("keeps CLAUDE_CONFIG_DIR when the caller passes no runtime dir", async () => {
+    process.env.CLAUDE_CONFIG_DIR = target;
+    expect(await pickClaudeCredentialsSource()).toBe(target);
   });
 });
