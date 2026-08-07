@@ -394,6 +394,26 @@ describe("allowed-tools auto-fix (R005)", () => {
     expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Bash(imagemagick:*)");
   });
 
+  test("space-separated bare names split too", () => {
+    // Splitting on commas alone produced the single bogus `Bash(nmap curl:*)`.
+    const md = fm("allowed-tools: nmap curl");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(nmap:*), Bash(curl:*)");
+  });
+
+  test("a wrapper containing a space is one tool, not two", () => {
+    // The reason the split cannot be a plain /[,\s]+/.
+    const md = fm("allowed-tools: Bash(git diff:*), ffmpeg");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(git diff:*), Bash(ffmpeg:*)");
+  });
+
+  test("flow sequence brackets are stripped", () => {
+    const md = fm("allowed-tools: [ffmpeg, Read]");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Read");
+  });
+
   test("R005 fixes are idempotent", () => {
     const md = fm("allowed-tools:\n  - ffmpeg\n  - mcp__x__y\n  - Read");
     const once = applyFixes(md).fixed;

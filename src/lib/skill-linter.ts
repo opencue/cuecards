@@ -286,6 +286,30 @@ function isBareOkTool(name: string): boolean {
   return BARE_OK_TOOLS.has(name) || name.startsWith("mcp__");
 }
 
+/** Already in `Tool(...)` form, or fine bare. Anything else gets wrapped. */
+function isWellFormedTool(name: string): boolean {
+  return /\w\s*\(/.test(name) || isBareOkTool(name);
+}
+
+function wrapTool(name: string): string {
+  return isWellFormedTool(name) ? name : `Bash(${name}:*)`;
+}
+
+/**
+ * Split an inline `allowed-tools:` value into names. Commas are the documented
+ * separator, but bare names have also been written space-separated, so a
+ * comma-part that is plainly several bare names splits further. A part
+ * containing `(` is left whole: `Bash(git diff:*)` is one tool, not two.
+ */
+function splitToolNames(raw: string): string[] {
+  return raw
+    .replace(/^\[|\]$/g, "")
+    .split(/\s*,\s*/)
+    .flatMap((part) => (part.includes("(") ? [part] : part.split(/\s+/)))
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
 /**
  * Read `allowed-tools:` in either YAML shape: an inline scalar/flow sequence
  * (`allowed-tools: a, b` / `[a, b]`) or a block sequence spanning the lines
@@ -302,8 +326,7 @@ function readAllowedTools(
 
   const inline = lines[keyLine]!.replace(/^allowed-tools:/, "").trim();
   if (inline) {
-    const names = inline.replace(/^\[|\]$/g, "").split(/\s*,\s*/).map((s) => s.trim()).filter(Boolean);
-    return { names, startLine: keyLine, endLine: keyLine };
+    return { names: splitToolNames(inline), startLine: keyLine, endLine: keyLine };
   }
 
   // Block sequence: consume the contiguous `  - item` lines beneath the key.
@@ -327,14 +350,9 @@ function ruleR005(content: string): Diagnostic[] {
   // Already-wrapped entries and legitimately-bare ones (top-level tools,
   // mcp__* ids) are fine. Only genuinely bare CLI names need wrapping — a
   // pure-MCP skill is valid as written and must not be dressed in Bash(...).
-  const needsWrap = parsed.names.filter(
-    (n) => !/\w\s*\(/.test(n) && !isBareOkTool(n),
-  );
+  const needsWrap = parsed.names.filter((n) => !isWellFormedTool(n));
   if (needsWrap.length === 0) return [];
 
-  const fixedNames = parsed.names.map((n) =>
-    /\w\s*\(/.test(n) || isBareOkTool(n) ? n : `Bash(${n}:*)`,
-  );
   return [{
     rule: "R005",
     severity: "error",
@@ -345,9 +363,7 @@ function ruleR005(content: string): Diagnostic[] {
       const p = readAllowedTools(fmm.yaml);
       if (!p) return c;
       const lines = fmm.yaml.split("\n");
-      const rewritten = p.names.map((n) =>
-        /\w\s*\(/.test(n) || isBareOkTool(n) ? n : `Bash(${n}:*)`,
-      );
+      const rewritten = p.names.map(wrapTool);
       lines.splice(p.startLine, p.endLine - p.startLine + 1, `allowed-tools: ${rewritten.join(", ")}`);
       return `---\n${lines.join("\n")}\n---` + c.slice(fmm.end);
     },
