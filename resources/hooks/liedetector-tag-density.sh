@@ -59,14 +59,18 @@ TAGS = ("VERIFIED", "KNOWN", "INFERRED", "ASSUMED",
         "GUESSED", "STALE", "UNKNOWN", "CORRECTION")
 TAG_RE = re.compile(r"\[(?:%s)[^\]]*\]" % "|".join(TAGS))
 
-# The protocol requires a ~N% on every yellow and orange tag, drawn from that
-# tier's ladder. Yellow spans ~50-85%, orange ~20-45%, so the ladders don't
-# overlap each other or green (>=90%).
+# The protocol requires a ~N% on every yellow and orange tag, snapped to a
+# 5-point raster. Yellow spans ~50-85%, orange ~20-45%, so the tiers don't
+# overlap each other or green (>=90%). The raster is deliberately coarser than
+# the model's apparent precision: self-reported LLM confidence is miscalibrated
+# in absolute terms, so ~67% would read as a measurement where none happened.
+# 14 steps is enough to ORDER claims against each other, which is all the number
+# is for.
 LADDER = {
-    "INFERRED": {"50", "60", "70", "80"},
-    "ASSUMED":  {"50", "60", "70", "80"},
-    "GUESSED":  {"20", "30", "40"},
-    "STALE":    {"20", "30", "40"},
+    "INFERRED": {"50", "55", "60", "65", "70", "75", "80", "85"},
+    "ASSUMED":  {"50", "55", "60", "65", "70", "75", "80", "85"},
+    "GUESSED":  {"20", "25", "30", "35", "40", "45"},
+    "STALE":    {"20", "25", "30", "35", "40", "45"},
 }
 CAL_RE = re.compile(r"\[(%s)([^\]]*)\]" % "|".join(LADDER))
 PCT_RE = re.compile(r"~\s*(\d+)\s*%")
@@ -142,8 +146,8 @@ if missing or offladder:
     if offladder:
         parts.append("%d off-ladder (%s)"
                      % (len(offladder), ", ".join(sorted(set(offladder)))))
-    print("liedetector: %s. Yellow ([INFERRED]/[ASSUMED]) takes ~50/60/70/80%%, "
-          "orange ([GUESSED]/[STALE]) takes ~20/30/40%% — nothing else. "
+    print("liedetector: %s. Yellow ([INFERRED]/[ASSUMED]) takes ~50-85%%, "
+          "orange ([GUESSED]/[STALE]) takes ~20-45%%, both in 5-point steps. "
           "Skip with [skip-tag-density]." % "; ".join(parts))
     sys.exit(0)
 
