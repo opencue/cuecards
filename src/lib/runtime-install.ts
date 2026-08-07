@@ -8,7 +8,7 @@
 
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
@@ -89,8 +89,34 @@ export async function readUserAgentMemory(agent: RuntimeAgent): Promise<string> 
   }
 }
 
+/**
+ * True when `dir` sits inside cue's own runtime tree
+ * (`<configDir>/runtime/<profile>/<agent>`).
+ *
+ * Exists to keep that tree out of {@link pickClaudeCredentialsSource}. cue
+ * points `CLAUDE_CONFIG_DIR` at the runtime dir when it launches an agent, so
+ * every process spawned inside a cue session inherits it — and a nested launch
+ * that took it as the credentials SOURCE would overlay a runtime dir onto
+ * itself: `overlaySourceState()` links each unmanaged entry to
+ * `<runtimeDir>/<name>`, then the atomic tmp→runtimeDir rename leaves every one
+ * of those links pointing at its own path. Observed 2026-08-07 on a live
+ * profile: 69 self-referential symlinks (`sessions/`, `projects/`,
+ * `history.jsonl`, …), all unreadable, and a runtime that reported "Not logged
+ * in" until the next launch rewrote `.credentials.json`.
+ */
+export function isCueRuntimeDir(dir: string, runtimeRoot = join(configDir(), "runtime")): boolean {
+  const target = resolve(dir);
+  const root = resolve(runtimeRoot);
+  return target === root || target.startsWith(root + sep);
+}
+
 export async function pickClaudeCredentialsSource(): Promise<string> {
-  if (process.env.CLAUDE_CONFIG_DIR) return process.env.CLAUDE_CONFIG_DIR;
+  // An explicit CLAUDE_CONFIG_DIR wins — that is how authmux hands cue a
+  // per-account config — but not when it is cue's own runtime dir, which is
+  // what a nested launch inherits. Falling through to the real config keeps
+  // the overlay sourced from outside the dir being rebuilt.
+  const envConfigDir = process.env.CLAUDE_CONFIG_DIR;
+  if (envConfigDir && !isCueRuntimeDir(envConfigDir)) return envConfigDir;
 
   const homeClaude = join(homedir(), ".claude");
   if (existsSync(join(homeClaude, ".credentials.json"))) return homeClaude;
