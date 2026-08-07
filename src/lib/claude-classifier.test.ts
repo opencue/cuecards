@@ -201,9 +201,7 @@ describe("classifierBinOrder", () => {
     delete process.env.CLAUDE_CODE_EXECPATH;
     process.env.PATH = realDir;
 
-    const order = classifierBinOrder();
-    expect(order[0]).toBe(realBin);
-    expect(order).not.toHaveLength(0);
+    expect(classifierBinOrder()).toEqual([realBin, "claude"]);
   });
 
   test("skips a cue shim sitting earlier on PATH", () => {

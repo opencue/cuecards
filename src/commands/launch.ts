@@ -136,9 +136,14 @@ function parse(args: string[]): ParsedArgs {
   // here. Without this guard the child's own argv (`--print --model haiku -p
   // "<prompt>"`) becomes the next classification prompt, which spawns another
   // classifier, which folds ITS argv, and so on — each level a full ~400MB
-  // claude process carrying every previous level's argv. Measured in the wild:
-  // 10 levels deep, a 67KB command line, ~3GB resident per launch. An explicit
-  // `--subset` still wins, so a deliberate override is never silently dropped.
+  // claude process carrying every previous level's argv.
+  //
+  // MAX_LAUNCH_DEPTH already bounds the PROCESS nesting at 3, so this was never
+  // unbounded recursion. What it was is waste: measured on a live machine, one
+  // classifier carried a 67KB command line with the prompt template repeated 10
+  // times, and 7 concurrent classifier processes (across simultaneously
+  // launching sessions) held ~2.9GB. An explicit `--subset` still wins, so a
+  // deliberate override is never silently dropped.
   const bypassed = process.env.CUE_BYPASS === "1";
   if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
