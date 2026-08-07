@@ -109,7 +109,6 @@ mcps:
   - Higgsfield
   - gbrain
   - hostinger-api
-  - secret-mcp
 env:
   RESEND_API_KEY: "${RESEND_API_KEY}"
 persona: |

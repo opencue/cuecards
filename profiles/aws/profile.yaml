@@ -5,7 +5,7 @@ description: "AWS — IAM, S3, Lambda, CloudFront, SES, CloudWatch, aws-cli, off
 inherits: core
 recommends:
   - backend      # the API that calls AWS services
-  - medusa-dev   # AWS S3 image rehosting (secret-mcp pairs here)
+  - medusa-dev   # AWS S3 image rehosting
   - postgres     # if Postgres is on RDS / Aurora
   - coolify      # for the EC2/Lightsail VPS coolify runs on
 persona: |
@@ -65,7 +65,7 @@ skills:
     # Official AWS agent toolkit (1.4K installs) — IAM patterns.
     - repo: aws/agent-toolkit-for-aws
       skills: [aws-iam]
-    # S3 management (465 installs) — pairs with secret-mcp's S3 surface in medusa-dev.
+    # S3 management (465 installs).
     - repo: aj-geddes/useful-ai-prompts
       skills: [aws-s3-management]
     # AWS MCP setup (325 installs) — wiring guide.
