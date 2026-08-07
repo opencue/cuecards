@@ -23,6 +23,7 @@ import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { listAllSkillIds } from "../lib/resolver-local";
 import { fetchCompanionFiles, readSourceFile, findIncompleteSkills } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
+import { unavailableNote, formatVerdict } from "../lib/skillspector";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
@@ -494,12 +495,16 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
   if (newSkills.length === 0) return 0;
 
   // Security gate: scan freshly-fetched skills before the profile hook below
-  // registers any into profile.yaml. Block criticals (SEC1-3) unless
-  // --allow-unsafe; flagged skills stay on disk but are dropped from the set.
+  // registers any into profile.yaml. NVIDIA SkillSpector's DO_NOT_INSTALL and
+  // cue's own criticals (SEC1-3) block unless --allow-unsafe; flagged skills
+  // stay on disk but are dropped from the set.
   {
+    process.stdout.write(`🔍 Scanning ${newSkills.length} new skill(s) with NVIDIA SkillSpector…\n`);
     const blocked: string[] = [];
     for (const slug of newSkills) {
       const gate = gateFreshSkill(slug, { allowUnsafe });
+      const note = unavailableNote(gate.skillspector);
+      if (note) process.stderr.write(`   ${note}\n`);
       if (!gate.ok) {
         blocked.push(slug);
         process.stderr.write(`🔴 BLOCKED ${slug}: ${gate.critical.length} critical security finding(s)\n`);
@@ -508,6 +513,10 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
         }
       } else if (!gate.scanned) {
         process.stderr.write(`⚠️  ${slug}: no SKILL.md found to scan — review manually.\n`);
+      } else if (gate.skillspector.recommendation === "CAUTION") {
+        process.stderr.write(`🟡 ${slug}: ${formatVerdict(gate.skillspector)} — registered, review it.\n`);
+      } else if (gate.skillspector.recommendation === "SAFE") {
+        process.stdout.write(`🟢 ${slug}: SkillSpector SAFE\n`);
       }
     }
     if (blocked.length > 0) {

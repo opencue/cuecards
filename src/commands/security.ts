@@ -18,6 +18,13 @@ import { homedir } from "node:os";
 import { listAllSkillIds } from "../lib/resolver-local";
 import { loadProfile, } from "../lib/profile-loader";
 import { repoRoot } from "../lib/repo-root";
+import {
+  runSkillSpector,
+  formatVerdict,
+  unavailableNote,
+  SKILLSPECTOR_INSTALL_HINT,
+  type SkillSpectorReport,
+} from "../lib/skillspector";
 
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const GLOBAL_SKILLS_ROOT = join(homedir(), ".claude", "skills");
@@ -228,27 +235,70 @@ export function scanSkill(id: string, opts: { trustGlobalPack?: boolean } = {}):
   return issues;
 }
 
+/** Where a skill's files live: repo copy first, then the global install dir. */
+export function resolveSkillDir(skillId: string): string | null {
+  for (const root of [SKILLS_ROOT, GLOBAL_SKILLS_ROOT]) {
+    if (existsSync(join(root, skillId, "SKILL.md"))) return join(root, skillId);
+  }
+  return null;
+}
+
+export interface GateResult {
+  ok: boolean;
+  issues: SecurityIssue[];
+  critical: SecurityIssue[];
+  scanned: boolean;
+  skillspector: SkillSpectorReport;
+}
+
 /**
- * Enforcement gate for a freshly-fetched remote skill. Scans with category
- * suppressions OFF (the skill is untrusted), and treats SEC1-3 (secret
- * exfiltration, data exfiltration, safety-override / prompt injection) as
- * blocking. `allowUnsafe` lets the caller override. Pure (only scanSkill's
- * file read); the caller owns all messaging.
+ * Enforcement gate for a freshly-fetched remote skill.
+ *
+ * Two scanners run, and the union decides:
+ *   1. NVIDIA SkillSpector (68 patterns / 17 categories, AST + YARA + OSV).
+ *      `DO_NOT_INSTALL` blocks, `CAUTION` is reported but still registers,
+ *      `SAFE` passes. See lib/skillspector.ts for runner resolution.
+ *   2. cue's own SEC1-7 regex rules, with category suppressions OFF (the skill
+ *      is untrusted). SEC1-3 block. This is the fallback that still works when
+ *      SkillSpector isn't installed.
+ *
+ * A missing/failed SkillSpector never blocks on its own — callers surface
+ * `unavailableNote()` and fall through to the regex rules. `allowUnsafe` lets
+ * the caller override any block. The caller owns all messaging.
  */
 export function gateFreshSkill(
   skillId: string,
   opts: { allowUnsafe?: boolean } = {},
-): { ok: boolean; issues: SecurityIssue[]; critical: SecurityIssue[]; scanned: boolean } {
+): GateResult {
   // Did we actually find a SKILL.md to scan? If a skill installs at a subpath
   // (not ~/.claude/skills/<id>/SKILL.md), scanSkill returns [] for "nothing
   // found" — indistinguishable from "clean" without this. Callers should warn
   // when scanned===false rather than treat it as a pass.
-  const scanned =
-    existsSync(join(SKILLS_ROOT, skillId, "SKILL.md")) ||
-    existsSync(join(GLOBAL_SKILLS_ROOT, skillId, "SKILL.md"));
+  const dir = resolveSkillDir(skillId);
+  const scanned = dir !== null;
   const issues = scanSkill(skillId, { trustGlobalPack: false });
+
+  const skillspector: SkillSpectorReport = dir
+    ? runSkillSpector(dir)
+    : { status: "unavailable", findings: [], error: "no SKILL.md found to scan" };
+
+  if (skillspector.status === "ok" && skillspector.recommendation !== "SAFE") {
+    issues.push({
+      code: "SS1",
+      severity: skillspector.recommendation === "DO_NOT_INSTALL" ? "critical" : "high",
+      skill: skillId,
+      message: formatVerdict(skillspector),
+    });
+  }
+
   const critical = issues.filter((issue) => issue.severity === "critical");
-  return { ok: critical.length === 0 || opts.allowUnsafe === true, issues, critical, scanned };
+  return {
+    ok: critical.length === 0 || opts.allowUnsafe === true,
+    issues,
+    critical,
+    scanned,
+    skillspector,
+  };
 }
 
 /** Check if a line index is inside a fenced code block */
@@ -260,11 +310,57 @@ function isInsideCodeBlock(lines: string[], idx: number): boolean {
   return inside;
 }
 
+/**
+ * `cue security scan <path>` — run SkillSpector directly against any directory
+ * or SKILL.md. This is the "review it, then decide" companion to the install
+ * gate: when a skill is blocked it stays on disk, and this prints the findings.
+ * Exit code mirrors the gate: 1 when the verdict is DO_NOT_INSTALL.
+ */
+async function cmdSkillSpectorScan(args: string[]): Promise<number> {
+  const json = args.includes("--json");
+  const target = args.find((a) => !a.startsWith("-"));
+  if (!target) {
+    process.stderr.write("Usage: cue security scan <path> [--json]\n");
+    return 2;
+  }
+  if (!existsSync(target)) {
+    process.stderr.write(`Path not found: ${target}\n`);
+    return 2;
+  }
+
+  // Explicit user request — run even under NODE_ENV=test, where the gate is off.
+  const report = runSkillSpector(target, { env: { ...process.env, CUE_SKILLSPECTOR: "1" } });
+
+  if (json) {
+    process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+    return report.recommendation === "DO_NOT_INSTALL" ? 1 : report.status === "ok" ? 0 : 2;
+  }
+
+  const note = unavailableNote(report);
+  if (note) {
+    process.stderr.write(`${note}\n`);
+    if (report.status === "unavailable") {
+      process.stderr.write(`   Install it with: ${SKILLSPECTOR_INSTALL_HINT}\n`);
+    }
+    return 2;
+  }
+
+  const icon = report.recommendation === "SAFE" ? "🟢" : report.recommendation === "CAUTION" ? "🟡" : "🔴";
+  process.stdout.write(`${icon} ${formatVerdict(report)}\n`);
+  for (const f of report.findings) {
+    const where = f.file ? ` ${f.file}${f.line ? `:${f.line}` : ""}` : "";
+    process.stdout.write(`   [${f.severity}] ${f.id} ${f.category}${where}\n`);
+  }
+  process.stdout.write(`   scanner: ${report.runner}\n`);
+  return report.recommendation === "DO_NOT_INSTALL" ? 1 : 0;
+}
+
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {
     process.stdout.write(`cue security — scan skills for prompt injection & secret exfiltration
 
 Usage: cue security [profile|--all]
+       cue security scan <path>
 
 Checks:
   SEC1  Reads/exposes secrets (API keys, .env, credentials)     [critical]
@@ -274,15 +370,24 @@ Checks:
   SEC5  Disables security controls                              [high]
   SEC6  Encoded/obfuscated content                              [medium]
   SEC7  Modifies shell config/crontab/sudoers                   [high]
+  SS1   NVIDIA SkillSpector verdict (install gate)              [critical/high]
 
 Examples:
   cue security              # scan active profile
   cue security --all        # scan ALL skills
   cue security backend      # scan one profile
   cue security --json       # machine-readable
+  cue security scan ./my-skill/    # deep SkillSpector scan of any path
+
+SkillSpector (the SS1 gate) runs automatically on every skill install:
+  cue skills add / cue discover install / cue marketplace install-skill.
+  DO_NOT_INSTALL blocks (override with --allow-unsafe), CAUTION warns.
+  Set CUE_SKILLSPECTOR=0 to disable. Install: ${SKILLSPECTOR_INSTALL_HINT}
 `);
     return 0;
   }
+
+  if (args[0] === "scan") return cmdSkillSpectorScan(args.slice(1));
 
   const json = args.includes("--json");
   const all = args.includes("--all");

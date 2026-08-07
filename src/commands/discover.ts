@@ -20,6 +20,7 @@ import { clusterByKeywords, clusterByEmbeddings, unclustered, type Cluster, type
 import { findRealClaudeBin } from "../lib/claude-binary";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
+import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import { repoRoot } from "../lib/repo-root";
 
 // Cache path resolved lazily so tests can redirect via XDG_CONFIG_HOME without
@@ -2100,9 +2101,16 @@ async function cmdInstall(opts: { profile?: string; minScore: number; minQuality
     }
 
     // Security gate: the skill files are now on disk but not yet registered to
-    // a profile. Scan the just-fetched (untrusted) skill and block on critical
-    // findings (secret/data exfiltration, prompt injection) unless --allow-unsafe.
+    // a profile. Scan the just-fetched (untrusted) skill with NVIDIA
+    // SkillSpector plus cue's own rules, and block on a DO_NOT_INSTALL verdict
+    // or critical findings (secret/data exfiltration, prompt injection) unless
+    // --allow-unsafe.
     const gate = gateFreshSkill(gem.name, { allowUnsafe: opts.allowUnsafe });
+    const ssNote = unavailableNote(gate.skillspector);
+    if (ssNote) process.stdout.write(`     ${ssNote}\n`);
+    if (gate.ok && gate.skillspector.recommendation === "CAUTION") {
+      process.stdout.write(`     🟡 ${formatVerdict(gate.skillspector)} — registered, review it.\n`);
+    }
     if (!gate.ok) {
       process.stdout.write(`     🔴 BLOCKED: ${gem.full_name} has ${gate.critical.length} critical security finding(s):\n`);
       for (const c of gate.critical) {
