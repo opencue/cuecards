@@ -165,7 +165,8 @@ skills:
     # ── GitHub / worktree safety ───────────────────────────────────────────────
     - github/gitguardex
 
-# lightpanda is inherited from core; cue-tty-watch is NOT (core ships lightpanda only).
+# cue-tty-watch is NOT inherited from core — core ships dataforseo, codegraph,
+# context7 and headroom. (It used to ship lightpanda; that MCP is gone.)
 mcps:
   - gbrain   # gstack/setup-gbrain + gstack/sync-gbrain drive the gbrain MCP
 rules:
