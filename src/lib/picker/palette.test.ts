@@ -13,6 +13,7 @@ import {
   type PaletteProfile,
   type PaletteRow,
 } from "./palette";
+import { displayWidth } from "./render-util";
 import type { ProfileTally } from "./tally";
 
 const profiles: PaletteProfile[] = [
@@ -154,35 +155,56 @@ describe("buildPaletteRows", () => {
 describe("renderPaletteFrame", () => {
   const base = { cursor: 0, query: "", cols: 80, ascii: false };
 
-  test("shows checkbox state, section headers and the suggested marker", () => {
-    const frame = renderPaletteFrame({ ...base, rows: rows(), selected: ["rust"] });
-    expect(frame).toContain(SUGGESTED_SECTION);
-    expect(plain(frame)).toContain("[x] 🦀 rust");
-    expect(plain(frame)).toContain("[ ] 🔒 secops");
+  test("shows selection marks and an uppercase section header", () => {
+    const frame = plain(renderPaletteFrame({ ...base, rows: rows(), selected: ["rust"] }));
+    expect(frame).toContain(SUGGESTED_SECTION.toUpperCase());
+    expect(frame).toContain("● 🦀 rust");
+    expect(frame).toContain("○ 🔒 secops");
+    // The section header already says "suggested" — the per-row tag would only
+    // repeat it, so it stays off until a search flattens the sections away.
+    expect(frame).not.toContain("  suggested");
+  });
+
+  test("tags a suggested row once a search has flattened the sections", () => {
+    const frame = plain(
+      renderPaletteFrame({ ...base, rows: rows(), selected: [], query: "rust" }),
+    );
+    expect(frame).toContain(MATCHES_SECTION.toUpperCase());
     expect(frame).toContain("suggested");
+  });
+
+  test("reports how much is on screen next to the search field", () => {
+    const frame = plain(renderPaletteFrame({ ...base, rows: rows(), selected: ["rust"] }));
+    expect(frame).toContain("type to filter…");
+    expect(frame).toContain("4 profiles");
+    expect(frame).toContain("1 selected");
+    const searching = plain(
+      renderPaletteFrame({ ...base, rows: rows(), selected: [], query: "medusa" }),
+    );
+    expect(searching).toContain("2 matches");
+    expect(searching).toContain("none selected");
   });
 
   test("disables a row that conflicts with the selection and says why", () => {
     const frame = renderPaletteFrame({ ...base, rows: rows(), selected: ["medusa-next"] });
-    expect(frame).toContain("[—]");
+    expect(plain(frame)).toContain("⊘");
     expect(plain(frame)).toContain("conflicts with medusa-next");
   });
 
-  test("footer totals the selected stack and flags a heavy one", () => {
+  test("footer totals the selected stack, meters it and flags a heavy one", () => {
     const tallies = new Map([
       ["rust", tally("rust", 20, 4000)],
       ["secops", tally("secops", 11, 9000)],
     ]);
-    const frame = renderPaletteFrame({
-      ...base,
-      rows: rows(),
-      selected: ["rust", "secops"],
-      tallies,
-    });
-    expect(frame).toContain("🦀 rust + 🔒 secops");
+    const frame = plain(
+      renderPaletteFrame({ ...base, rows: rows(), selected: ["rust", "secops"], tallies }),
+    );
+    expect(frame).toContain("🦀 rust  +  🔒 secops");
     expect(frame).toContain("31 skills");
-    expect(frame).toContain("⚠ heavy: ~13k always-on");
-    expect(frame).toContain("⏎ launch 2 selected");
+    expect(frame).toContain("~13k always-on");
+    expect(frame).toContain("⚠ heavy, slows the agent");
+    expect(frame).toContain("█");
+    expect(frame).toContain("⏎ launch 2");
   });
 
   test("marks totals as pending while a tally is still loading", () => {
@@ -196,9 +218,21 @@ describe("renderPaletteFrame", () => {
   });
 
   test("nudges when nothing is selected", () => {
-    const frame = renderPaletteFrame({ ...base, rows: rows(), selected: [] });
-    expect(frame).toContain("nothing selected yet");
-    expect(frame).toContain("⏎ pick at least one profile");
+    const frame = plain(renderPaletteFrame({ ...base, rows: rows(), selected: [] }));
+    expect(frame).toContain("nothing selected yet — press space to add the focused profile");
+    expect(frame).toContain("⏎ pick a profile");
+  });
+
+  test("the action row sheds words instead of wrapping a narrow terminal", () => {
+    for (const cols of [40, 56, 60, 72, 80, 120]) {
+      const frame = plain(
+        renderPaletteFrame({ ...base, cols, rows: rows(), selected: ["rust"], maxRows: 6 }),
+      );
+      for (const line of frame.split("\n")) expect(displayWidth(line)).toBeLessThanOrEqual(cols);
+      // However narrow it gets, the two keys you cannot guess still show.
+      expect(frame).toContain("⏎ launch 1");
+      expect(frame).toContain("space add");
+    }
   });
 
   test("windows a long list with scroll markers", () => {
@@ -222,12 +256,13 @@ describe("renderPaletteFrame", () => {
     const frame = renderPaletteFrame({ ...base, rows: rows(), selected: [], help: true });
     expect(frame).toContain("add / remove the focused profile");
     expect(frame).toContain("back to the suggestion");
-    expect(plain(frame)).not.toContain("[ ]");
+    expect(plain(frame)).not.toContain("○");
   });
 
-  test("ascii mode drops the emoji icons", () => {
+  test("ascii mode drops the emoji icons and keeps bracket checkboxes", () => {
     const frame = renderPaletteFrame({ ...base, rows: rows(), selected: ["rust"], ascii: true });
     expect(plain(frame)).toContain("[x] rust");
+    expect(plain(frame)).toContain("[ ] secops");
     expect(frame).not.toContain("🦀");
   });
 });

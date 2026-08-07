@@ -9,8 +9,23 @@
 
 import { Prompt, type PromptOptions } from "@clack/core";
 import { styleText } from "node:util";
-import { asciiIconsEnabled, clipToWidth, displayWidth, stripIconIfAscii } from "./render-util";
-import { formatOverheadBadge } from "./tally";
+import { asciiIconsEnabled, clipToWidth, stripIconIfAscii } from "./render-util";
+import { OVERHEAD_WARN_TOKENS } from "./tally";
+import {
+  BAR,
+  button,
+  cardBottom,
+  cardInner,
+  cardLine,
+  cardTop,
+  cardWidth,
+  fitLine,
+  formatAlwaysOn,
+  keyHints,
+  keyTable,
+  meterBar,
+  pageDots,
+} from "./ui";
 
 /** What the user asked the card to do. */
 export type CardAction = "launch" | "edit" | "search" | "all";
@@ -48,8 +63,10 @@ export interface CardState {
   rows?: number;
 }
 
-/** Terminal height below which the card renders without blank spacer lines. */
-export const COMPACT_ROWS = 16;
+/** Terminal height below which the card renders without blank spacer lines.
+ *  Set above the card's full height (~18 rows) so the squeeze happens *before*
+ *  the frame would overflow, not after. */
+export const COMPACT_ROWS = 20;
 
 const KEY_HELP: ReadonlyArray<[string, string]> = [
   ["⏎", "launch this stack"],
@@ -65,96 +82,147 @@ const KEY_HELP: ReadonlyArray<[string, string]> = [
 /**
  * Render one frame of the suggestion card. Pure — `styleText` is a no-op when
  * stdout isn't a TTY, so tests assert on plain text.
+ *
+ * Layout follows the grouped-inset idiom: the answer sits inside a rounded card
+ * whose left border continues clack's gutter, and the actions live below it —
+ * one filled pill for the thing you almost always want, a quiet keycap row for
+ * everything else.
  */
 export function renderCardFrame(state: CardState): string {
-  const BAR = styleText("gray", "│");
+  const bar = BAR();
   const cols = state.cols ?? process.stdout.columns ?? 80;
   const compact = (state.rows ?? process.stdout.rows ?? 24) < COMPACT_ROWS;
   const ascii = state.ascii ?? asciiIconsEnabled();
   const icon = (s: string) => stripIconIfAscii(s, ascii);
-  // Room for the "│  " gutter plus a right margin.
-  const width = Math.max(20, cols - 6);
+  const width = cardWidth(cols);
+  const inner = cardInner(width);
   const lines: string[] = [];
-  const blank = () => {
-    if (!compact) lines.push(BAR);
+  /** A blank card row — dropped on a short terminal, where height is scarcer
+   *  than calm. */
+  const airInCard = () => {
+    if (!compact) lines.push(cardLine(width));
   };
 
-  lines.push(BAR);
+  lines.push(bar);
   lines.push(
-    `${BAR}  ${styleText("cyan", "◆")}  ${styleText("bold", "cue")} ${styleText(
+    `${bar}  ${styleText("cyan", "◆")}  ${styleText("bold", "cue")}  ${styleText(
       "dim",
-      clipToWidth(state.cwd, width - 6),
+      clipToWidth(state.cwd, width - 10),
     )}`,
   );
+  lines.push(bar);
 
   if (state.help === true) {
-    blank();
-    for (const [key, what] of KEY_HELP) {
-      const k = styleText("cyan", key.padEnd(8));
-      lines.push(`${BAR}  ${k}${styleText("dim", what)}`);
-    }
-    lines.push(BAR);
-    lines.push(`${BAR}  ${styleText("dim", "? close help")}`);
+    lines.push(cardTop(width, "keys"));
+    airInCard();
+    for (const row of keyTable(KEY_HELP)) lines.push(cardLine(width, row));
+    airInCard();
+    lines.push(cardBottom(width));
+    lines.push(bar);
+    lines.push(`${bar}  ${keyHints([["?", "close help"]])}`);
     return lines.join("\n");
   }
 
   const current = state.suggestions[state.index];
   if (!current) {
-    blank();
-    lines.push(`${BAR}  ${styleText("yellow", "no profiles available")}`);
-    lines.push(BAR);
-    lines.push(`${BAR}  ${styleText("dim", "a browse every profile · esc cancel")}`);
+    lines.push(cardTop(width, "nothing to suggest"));
+    airInCard();
+    lines.push(
+      cardLine(width, styleText("dim", "no profiles are installed for this directory yet")),
+    );
+    airInCard();
+    lines.push(cardBottom(width));
+    lines.push(bar);
+    lines.push(
+      `${bar}  ${button("a browse every profile")}  ${keyHints([["esc", "cancel"]])}`,
+    );
     return lines.join("\n");
   }
 
-  blank();
-  const counter =
-    state.suggestions.length > 1 ? `${state.index + 1}/${state.suggestions.length}` : "";
-  const heading = styleText("blueBright", styleText("bold", "suggested stack"));
-  const pad = counter
-    ? " ".repeat(Math.max(2, width - displayWidth("suggested stack") - displayWidth(counter)))
-    : "";
-  lines.push(`${BAR}  ${heading}${pad}${counter ? styleText("dim", counter) : ""}`);
-  blank();
+  // Page dots ride the top border, iOS-style: the count is ambient rather than
+  // another line of text competing with the answer.
+  lines.push(cardTop(width, "suggested stack", pageDots(state.index, state.suggestions.length)));
+  airInCard();
 
-  const stack = current.labels.map(icon).join(styleText("dim", "  +  "));
-  lines.push(`${BAR}    ${clipToWidth(stack, width - 2)}`);
-  blank();
+  // The answer itself, given the most visual weight on the screen.
+  const stack = current.labels
+    .map((l) => styleText("bold", icon(l)))
+    .join(styleText("dim", "  +  "));
+  lines.push(cardLine(width, stack));
+  airInCard();
 
   for (const reason of current.reasons.slice(0, 3)) {
-    lines.push(`${BAR}    ${styleText("dim", clipToWidth(reason, width - 2))}`);
+    lines.push(cardLine(width, styleText("dim", clipToWidth(reason, inner))));
   }
-  if (current.totals) {
-    lines.push(`${BAR}    ${styleText("dim", clipToWidth(current.totals, width - 2))}`);
-  }
-  const badge = formatOverheadBadge(current.alwaysOn ?? 0);
-  if (badge) lines.push(`${BAR}    ${styleText("yellow", clipToWidth(badge, width - 2))}`);
 
-  lines.push(BAR);
-  // Lead with the one key that matters, and say exactly what it does — the pin
-  // decision lives here now instead of in a follow-up confirm.
-  const launchText =
-    state.pinDisabled === true
-      ? "⏎ launch"
-      : state.pin
-        ? "⏎ launch · pins to this directory"
-        : "⏎ launch · no pin";
+  if (current.totals || (current.alwaysOn ?? 0) > 0) {
+    airInCard();
+    if (current.totals) lines.push(cardLine(width, styleText("dim", current.totals)));
+    const alwaysOn = current.alwaysOn ?? 0;
+    if (alwaysOn > 0) {
+      // Weight as a meter, not just a number — "how heavy is this" is a
+      // comparison, and a bar answers it without the reader doing arithmetic.
+      const heavy = alwaysOn > OVERHEAD_WARN_TOKENS;
+      const caption = heavy
+        ? styleText("yellow", `${formatAlwaysOn(alwaysOn)} · ⚠ heavy, slows the agent`)
+        : styleText("dim", formatAlwaysOn(alwaysOn));
+      lines.push(cardLine(width, `${meterBar(alwaysOn)}  ${caption}`));
+    }
+  }
+
+  airInCard();
+  lines.push(cardBottom(width));
+  lines.push(bar);
+
+  // One filled pill for the action you almost always want, then the two
+  // controls that change what it would do: which suggestion, and whether it
+  // sticks. The pin reads as a switch — constant label, changing dot.
+  // Everything below is offered in a long and a short form so a narrow
+  // terminal drops words instead of wrapping the row.
+  const budget = cols - 4;
+  const actionRow = (pinLabel: string, nextLabel: string): string => {
+    const parts: string[] = [button("⏎ launch")];
+    if (state.suggestions.length > 1) parts.push(keyHints([["↹", nextLabel]]));
+    if (state.pinDisabled !== true) {
+      const dot = state.pin ? styleText("green", "●") : styleText("dim", "○");
+      parts.push(`${styleText("dim", "p")} ${dot} ${styleText("dim", pinLabel)}`);
+    }
+    return parts.join(styleText("dim", "   "));
+  };
   lines.push(
-    `${BAR}  ${styleText("cyan", launchText)}${
-      state.suggestions.length > 1 ? styleText("dim", "   ↹ next suggestion") : ""
-    }`,
+    `${bar}  ${fitLine(
+      budget,
+      actionRow("pin to this folder", "next suggestion"),
+      actionRow("pin here", "next"),
+    )}`,
   );
-  const secondary = [
-    "e edit",
-    "/ search",
-    "a all profiles",
-    state.pinDisabled === true ? "" : state.pin ? "p don't pin" : "p pin",
-    "? help",
-    "esc cancel",
-  ]
-    .filter((s) => s.length > 0)
-    .join(" · ");
-  lines.push(`${BAR}  ${styleText("dim", clipToWidth(secondary, width))}`);
+
+  lines.push(
+    `${bar}  ${fitLine(
+      budget,
+      keyHints([
+        ["e", "edit stack"],
+        ["/", "search"],
+        ["a", "all profiles"],
+        ["?", "keys"],
+        ["esc", "quit"],
+      ]),
+      keyHints([
+        ["e", "edit"],
+        ["/", "search"],
+        ["a", "all"],
+        ["?", "keys"],
+        ["esc", "quit"],
+      ]),
+      // Last resort on a very narrow terminal: keep editing, the full
+      // catalogue, and the way out. `?` still lists everything else.
+      keyHints([
+        ["e", "edit"],
+        ["a", "all"],
+        ["esc", "quit"],
+      ]),
+    )}`,
+  );
   return lines.join("\n");
 }
 
@@ -256,13 +324,13 @@ export class CardPrompt extends Prompt<CardAction> {
   }
 
   renderFrame(this: CardPrompt): string {
-    const BAR = styleText("gray", "│");
-    if (this.state === "cancel") return `${BAR}  ${styleText("red", "■")}  cancelled`;
+    const bar = BAR();
+    if (this.state === "cancel") return `${bar}  ${styleText("red", "■")}  cancelled`;
     if (this.state === "submit" && this.value === "launch") {
       const current = this.suggestions[this.index];
       const ascii = asciiIconsEnabled();
       const label = (current?.labels ?? []).map((l) => stripIconIfAscii(l, ascii)).join(" + ");
-      return `${BAR}  ${styleText("green", "◇")}  ${label}`;
+      return `${bar}  ${styleText("green", "◇")}  ${label}`;
     }
     if (this.state === "submit") return "";
     return renderCardFrame({
