@@ -60,9 +60,12 @@ describe("shouldOpenMcpPicker", () => {
 // from the CUE_SMART_SUBSET env fold of a `-p` prompt (cached across launches).
 describe("parse: subset origin", () => {
   const prev = process.env.CUE_SMART_SUBSET;
+  const prevBypass = process.env.CUE_BYPASS;
   afterEach(() => {
     if (prev === undefined) delete process.env.CUE_SMART_SUBSET;
     else process.env.CUE_SMART_SUBSET = prev;
+    if (prevBypass === undefined) delete process.env.CUE_BYPASS;
+    else process.env.CUE_BYPASS = prevBypass;
   });
 
   test("explicit --subset sets subsetExplicit", () => {
@@ -83,6 +86,27 @@ describe("parse: subset origin", () => {
     const p = parse(["claude"]);
     expect(p.subset).toBeNull();
     expect(p.subsetExplicit).toBe(false);
+  });
+
+  // Recursion guard. The classifier spawns `claude` by name, which on a machine
+  // with cue's shims first on PATH re-enters `cue launch`. With CUE_SMART_SUBSET
+  // exported globally, the fold below would turn that child's own argv into the
+  // next classification prompt and spawn another classifier — each level a full
+  // ~400MB claude process carrying the previous level's argv. Observed in the
+  // wild: 10 nested levels, a 67KB command line, ~3GB resident.
+  test("CUE_BYPASS suppresses the env fold so classifier spawns cannot recurse", () => {
+    process.env.CUE_SMART_SUBSET = "1";
+    process.env.CUE_BYPASS = "1";
+    const p = parse(["claude", "--print", "--model", "haiku", "-p", "which skills?"]);
+    expect(p.subset).toBeNull();
+    expect(p.subsetExplicit).toBe(false);
+  });
+
+  test("CUE_BYPASS does not block an explicit --subset", () => {
+    process.env.CUE_BYPASS = "1";
+    const p = parse(["claude", "--subset", "fix the parser"]);
+    expect(p.subset).toBe("fix the parser");
+    expect(p.subsetExplicit).toBe(true);
   });
 });
 
