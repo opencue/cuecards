@@ -1196,13 +1196,34 @@ export async function linkPluginCache(targetDir: string, sourceDir: string): Pro
     }
     const targetPath = join(pluginsDir, name);
     // Replace whatever's there (Claude's lazy/empty copy or a stale symlink)
-    // with a symlink to the real, already-downloaded tree.
+    // with a symlink to the real, already-downloaded tree — atomically.
+    //
+    // A plain rm-then-symlink leaves the path absent for a moment, and
+    // re-materializing happens while sessions are live. A hook firing in that
+    // window sees exactly the error this function exists to prevent:
+    // "Plugin directory does not exist … run /plugin to reinstall". Observed
+    // 2026-08-07, a Stop hook against claude-mem@thedotmack. So stage the new
+    // link beside the target and rename() it over: same directory, so the swap
+    // is atomic and a concurrent reader sees the old entry or the new one,
+    // never neither.
+    const stagePath = `${targetPath}.cue-tmp-${process.pid}`;
     try {
-      await rm(targetPath, { recursive: true, force: true });
-    } catch { /* nothing to remove */ }
-    try {
-      await symlink(sourcePath, targetPath);
-    } catch { /* race or permission — skip silently */ }
+      await rm(stagePath, { recursive: true, force: true });
+      await symlink(sourcePath, stagePath);
+      try {
+        await rename(stagePath, targetPath);
+      } catch {
+        // rename refuses to clobber a real directory. That's Claude's lazy
+        // empty copy on a first materialization — no session is reading it
+        // yet, so the non-atomic path is safe here.
+        await rm(targetPath, { recursive: true, force: true });
+        await rename(stagePath, targetPath);
+      }
+    } catch {
+      // Race or permission — leave the existing entry in place rather than
+      // removing it, and don't leak the staged link.
+      await rm(stagePath, { recursive: true, force: true }).catch(() => {});
+    }
   }
 }
 
