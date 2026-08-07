@@ -118,6 +118,11 @@ describe("pickClaudeCredentialsSource", () => {
     else process.env.CLAUDE_CONFIG_DIR = original;
   });
 
+  // Asserted as "not the target" rather than a concrete path: which fall-through
+  // branch wins (~/.claude, or an authmux profile) depends on the machine, but
+  // none of them can return `target` — only the rejected `CLAUDE_CONFIG_DIR`
+  // early-return could. `os.homedir()` reads the passwd entry, not $HOME, so
+  // there is no cheap way to pin the branch without a test-only injection point.
   test("refuses CLAUDE_CONFIG_DIR when it is the dir being rebuilt", async () => {
     process.env.CLAUDE_CONFIG_DIR = target;
     expect(await pickClaudeCredentialsSource({ runtimeDir: target })).not.toBe(target);

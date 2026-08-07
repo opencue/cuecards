@@ -246,7 +246,13 @@ async function materializeProfile(profileName: string, agent: AnyAgent, force: b
       profile,
       agent,
       credentialsSource: agent === "claude-code"
-        ? await resolveClaudeCredentialsSource({ healFromRuntime: false })
+        ? await resolveClaudeCredentialsSource({
+          healFromRuntime: false,
+          // The dir prepareRuntime() is about to write — it defaults
+          // runtimeKey to profile.name. Passing it keeps a `cue install` run
+          // from inside a cue session from overlaying that runtime onto itself.
+          runtimeDir: runtimeDirFor(profile.name, agent),
+        })
         : undefined,
     });
     return { profile: profileName, agent, targetDir: result.runtimeDir, status: result.rebuilt ? "rebuilt" : "cached" };
