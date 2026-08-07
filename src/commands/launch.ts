@@ -4,6 +4,8 @@
  * Flow: resolve(cwd) → if none, runPicker() → materializeRuntime() → exec.
  *
  * Bypass paths:
+ *   CUE_BYPASS=1           exec the real binary and nothing else — no resolve,
+ *                          no materialize, no profile, no config dir
  *   --cue-profile <name>   force this profile
  *   --cue-pick             always open picker (ignore pins)
  *                          (CUE_ALWAYS_PICK=1 makes this the default for a
@@ -80,6 +82,18 @@ interface ParsedArgs {
   passthrough: string[];
 }
 
+/**
+ * The `CUE_BYPASS=1` escape hatch: cue does nothing but exec the real agent.
+ *
+ * Exactly `"1"`, matching every other reader of the flag (`launch-loader.ts`).
+ * Deliberately not the looser 1/true/on set `isAlwaysPickEnabled` accepts —
+ * this one is documented as `CUE_BYPASS=1` in both docs and every internal
+ * caller sets it that way.
+ */
+export function isBypassEnabled(envVal: string | undefined = process.env.CUE_BYPASS): boolean {
+  return envVal === "1";
+}
+
 function parse(args: string[]): ParsedArgs {
   let agent: ParsedArgs["agent"] = null;
   let override: string | null = null;
@@ -131,9 +145,12 @@ function parse(args: string[]): ParsedArgs {
   // classification, but leaves `subsetExplicit` false so it uses the keep-set
   // cache — repeat identical `-p` launches don't re-call the classifier.
   //
-  // CUE_BYPASS gates the fold: the skill/profile classifiers spawn `claude`
-  // themselves, and on a machine with cue's shims first on PATH that lands back
-  // here. Without this guard the child's own argv (`--print --model haiku -p
+  // CUE_BYPASS gates the fold, as a second line of defense behind the
+  // short-circuit in `run()` — under a real bypass this parse result never
+  // reaches the classifier at all. Kept because the fold is the specific thing
+  // that turned a re-entered shim into a memory bomb: the classifiers spawn
+  // `claude` themselves, and on a machine with cue's shims first on PATH that
+  // lands back here. Unguarded, the child's own argv (`--print --model haiku -p
   // "<prompt>"`) becomes the next classification prompt, which spawns another
   // classifier, which folds ITS argv, and so on — each level a full ~400MB
   // claude process carrying every previous level's argv.
@@ -144,7 +161,7 @@ function parse(args: string[]): ParsedArgs {
   // times, and 7 concurrent classifier processes (across simultaneously
   // launching sessions) held ~2.9GB. An explicit `--subset` still wins, so a
   // deliberate override is never silently dropped.
-  const bypassed = process.env.CUE_BYPASS === "1";
+  const bypassed = isBypassEnabled();
   if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
   }
@@ -1655,6 +1672,38 @@ export async function run(args: string[]): Promise<number> {
     process.stderr.write("cue launch: missing agent (use 'claude' or 'codex')\n");
     return 1;
   }
+
+  // CUE_BYPASS=1 — the documented escape hatch (docs/launch.md,
+  // docs/shell-install.md): exec the real binary and nothing else. No resolve,
+  // no picker, no materialize, no profile, no relocated config dir. cue flags
+  // are still stripped from the argv, because they are cue's, not the agent's.
+  //
+  // This is the whole contract, and for a long time nothing implemented it:
+  // three readers each did something narrow with the flag (the loader dropped
+  // its spinner, `parse` refused the CUE_SMART_SUBSET fold) while the pipeline
+  // ran in full. That gap is what #133 tripped over — the classifier set
+  // CUE_BYPASS on its spawn, believed it made cue's shim transparent, and
+  // re-entered `cue launch` instead of reaching a raw agent.
+  //
+  // The depth guard above deliberately runs FIRST. If `findRealBinary()` ever
+  // handed back a cue shim, bypassing would exec it, land straight back here,
+  // and loop unbounded; carrying the counter into the child keeps that bounded
+  // the same way the normal path is.
+  if (isBypassEnabled()) {
+    const realBin = await findRealBinary(parsed.agent);
+    if (!realBin) {
+      process.stderr.write(
+        `cue launch: CUE_BYPASS=1 but couldn't find the real '${parsed.agent}' binary on PATH=${process.env.PATH}\n`,
+      );
+      return 127;
+    }
+    debug("launch:bypass", realBin);
+    return execAgent(realBin, parsed.passthrough, {
+      ...process.env,
+      CUE_LAUNCHING: String(depth + 1),
+    });
+  }
+
   if (isAgentHelpPassthrough(parsed)) {
     const realBin = await findRealBinary(parsed.agent);
     if (!realBin) {

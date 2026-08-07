@@ -3,6 +3,7 @@ import { afterEach, describe, expect, test } from "bun:test";
 import {
   __test,
   isAlwaysPickEnabled,
+  isBypassEnabled,
   shouldForcePicker,
   shouldInheritSessionProfile,
 } from "./launch";
@@ -112,6 +113,22 @@ describe("parse: subset origin", () => {
     const p = parse(["claude", "--subset", "fix the parser"]);
     expect(p.subset).toBe("fix the parser");
     expect(p.subsetExplicit).toBe(true);
+  });
+});
+
+// The flag is documented as `CUE_BYPASS=1` in docs/launch.md and
+// docs/shell-install.md, and every internal caller sets exactly that. Widening
+// it to the 1/true/on set `isAlwaysPickEnabled` accepts would silently change
+// which environments skip the whole pipeline.
+describe("isBypassEnabled", () => {
+  test("accepts only the documented value", () => {
+    expect(isBypassEnabled("1")).toBe(true);
+  });
+
+  test("rejects anything else, including truthy-looking values", () => {
+    for (const v of ["0", "true", "on", "yes", "", " 1 ", undefined]) {
+      expect(isBypassEnabled(v)).toBe(false);
+    }
   });
 });
 

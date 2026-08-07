@@ -208,5 +208,26 @@ Controls: `--cue-full` (this launch loads everything), `CUE_LOADOUT=off`
   materialize, no profile.
 - Absolute path (`/usr/local/bin/claude`) — bypasses the shim entirely via PATH.
 
+### What `CUE_BYPASS=1` does, exactly
+
+`cue launch` short-circuits before anything else: it locates the real binary
+(the same PATH walk as a normal launch, skipping cue's shims) and execs it with
+the agent's own arguments, returning the child's exit code. Nothing is resolved,
+no picker opens, no runtime is materialized, `CLAUDE_CONFIG_DIR` / `CODEX_HOME`
+are left alone.
+
+Edges worth knowing:
+
+- **Exactly `1`.** `CUE_BYPASS=true` is not a bypass.
+- **cue's own flags are still stripped**, not forwarded — `--cue-profile`,
+  `--cue-pick`, `--dry-run` and friends are cue's vocabulary, and the agent
+  would choke on them. Under a bypass they simply do nothing.
+- **The recursion counter still applies.** `CUE_LAUNCHING` is incremented on the
+  child, so a shim that somehow execs back into cue is still bounded by
+  `MAX_LAUNCH_DEPTH` instead of forking without end.
+- **It is inherited.** Every process under a bypassed session sees the flag, so
+  nested `claude` calls bypass too. That is the point when cue's own internals
+  spawn a classifier; it is worth remembering when debugging interactively.
+
 See the full spec at
 [docs/superpowers/specs/2026-05-22-cue-agent-profile-manager-design.md](./superpowers/specs/2026-05-22-cue-agent-profile-manager-design.md).
