@@ -110,14 +110,22 @@ describe("summon", () => {
   });
 
   test.skipIf(!SKILLS_PRESENT)("mcp_status reflects the active session's loaded MCPs", async () => {
-    // browser/lightpanda needs the `lightpanda` MCP; core loads it.
-    const lp = (skills: { id: string; mcp_status: string }[]) =>
-      skills.find((s) => s.id === "browser/lightpanda");
+    // deployment/coolify needs the `coolify` MCP. The summoned profile ships the
+    // skill; a *different* profile (backend) supplies the MCP — that separation is
+    // the point, since mcp_status answers "can the session I'm in actually run
+    // this?", not "does the profile I'm summoning declare it?".
+    //
+    // This used to key off browser/lightpanda + core. Don't go back to that pair:
+    // no profile supplies the `lightpanda` MCP any more, so the "ok" branch is
+    // unreachable through it. The assertion only passed for a while because the
+    // committed catalog index was stale and still named core as a provider.
+    const dep = (skills: { id: string; mcp_status: string }[]) =>
+      skills.find((s) => s.id === "deployment/coolify");
 
-    const noActive = await summon({ cwd: dir, profile: "vercel", active: null, noPin: true });
-    const withCore = await summon({ cwd: dir, profile: "vercel", active: "core", noPin: true });
+    const noActive = await summon({ cwd: dir, profile: "coolify", active: null, noPin: true });
+    const withBackend = await summon({ cwd: dir, profile: "coolify", active: "backend", noPin: true });
 
-    expect(lp(noActive.skills)?.mcp_status).toBe("missing:lightpanda");
-    expect(lp(withCore.skills)?.mcp_status).toBe("ok");
+    expect(dep(noActive.skills)?.mcp_status).toBe("missing:coolify");
+    expect(dep(withBackend.skills)?.mcp_status).toBe("ok");
   });
 });
