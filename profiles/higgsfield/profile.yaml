@@ -21,7 +21,6 @@ skills:
 
 mcps:
   - Higgsfield   # hosted: https://mcp.higgsfield.ai/mcp
-  - secret-mcp
 
 persona: |
   You operate Higgsfield's image/video/brand generation stack through the

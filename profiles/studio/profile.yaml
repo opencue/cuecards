@@ -91,7 +91,6 @@ plugins:
 mcps:
   - cue-tty-watch
   - Higgsfield
-  - secret-mcp
   - marva-blog
   - trendradar
 persona: |
