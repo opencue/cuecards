@@ -189,7 +189,7 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ---
 
-## 86 ready-made cuecards
+## 87 ready-made cuecards
 
 cue ships with pre-built profiles for common stacks and workflows. A taste:
 
@@ -208,7 +208,7 @@ cue ships with pre-built profiles for common stacks and workflows. A taste:
 | 🏢 **agency** | 63 delegatable subagents — design, sales, product, PM, QA |
 
 ```bash
-cue list           # see all 86
+cue list           # see all 87
 cue auto-detect    # suggest the right one for the current directory
 cue use <name>     # pin it
 ```

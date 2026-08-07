@@ -25,9 +25,10 @@ Rewritten by Claude (Opus 4.7) from your hallucination-reduction draft. Applies 
    - 🔴 `[UNKNOWN]` — outside my reliable knowledge. I'm saying so instead of fabricating an answer. Hand off to a search or to the user.
 
    **Required percentage calibration on yellow/orange tags.** Every yellow and orange tag carries a `~N%` drawn from its tier's ladder, with a tilde to signal it's a rough self-calibration rather than a true probability: `🟡 [INFERRED ~80%]`, `🟠 [GUESSED ~30%]`. Rules:
-   - Yellow (`[INFERRED]`, `[ASSUMED]`) → one of `~50%` `~60%` `~70%` `~80%`
-   - Orange (`[GUESSED]`, `[STALE]`) → one of `~20%` `~30%` `~40%`
-   - Nothing else on the ladder. Never `~67%` or `~73%` (false precision), never `~90%` on yellow (that's green's range) or `~50%` on orange (that's yellow's)
+   - Yellow (`[INFERRED]`, `[ASSUMED]`) → `~50%` to `~85%` in 5-point steps: `~50%` `~55%` `~60%` `~65%` `~70%` `~75%` `~80%` `~85%`
+   - Orange (`[GUESSED]`, `[STALE]`) → `~20%` to `~45%` in 5-point steps: `~20%` `~25%` `~30%` `~35%` `~40%` `~45%`
+   - Nothing between the steps. Never `~67%` or `~73%` (false precision), never `~90%` on yellow (that's green's range) or `~50%` on orange (that's yellow's)
+   - The raster is coarser than your apparent precision on purpose. Self-reported confidence is miscalibrated in absolute terms, so a digit you didn't measure reads as a measurement. 14 steps is enough to *order* claims, which is all the number does
    - A bare `[INFERRED]` / `[ASSUMED]` / `[GUESSED]` / `[STALE]` is a protocol violation
    - Always prefix `~` so the reader knows it's an estimate
    - Skip the % on green and red — the tier already says it

@@ -4,13 +4,53 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { summon, detectActiveProfile, REEXEC_CMD } from "./summon";
-import { existsSync } from "node:fs";
+import { loadProfile } from "../lib/profile-loader";
+import { getSkillDependencies } from "../lib/skill-dependencies";
+import { existsSync, readdirSync } from "node:fs";
 
 // `resources/skills` is a git submodule. The mcp_status assertion below reads a
 // skill's `requires_mcps` from disk; without it checked out (`git submodule
 // update --init`) the deps come back empty and every skill reads "ok". Skip
 // rather than fail spuriously.
 const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
+
+/**
+ * Find a live (profile with an MCP-gated skill, other profile supplying that
+ * skill's MCPs) pairing. Returns null when no such pairing exists.
+ */
+async function findMcpGatedPair(): Promise<
+  { summonProfile: string; skillId: string; deps: string[]; provider: string } | null
+> {
+  const names = readdirSync(join(import.meta.dir, "../../profiles"), { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort();
+
+  const loaded = new Map<string, Awaited<ReturnType<typeof loadProfile>>>();
+  for (const n of names) {
+    try {
+      loaded.set(n, await loadProfile(n));
+    } catch {
+      // Unloadable profile — not this test's problem; profile-loader has its own.
+    }
+  }
+
+  for (const [name, profile] of loaded) {
+    for (const s of profile.skills.local) {
+      // Keep the raw ids: summon reports `missing:<id>` with original casing.
+      const deps = [...new Set(getSkillDependencies(s.id).map((d) => d.mcpId))];
+      if (deps.length === 0) continue;
+      for (const [providerName, provider] of loaded) {
+        if (providerName === name) continue;
+        const ids = new Set(provider.mcps.map((m) => m.id.toLowerCase()));
+        if (deps.every((d) => ids.has(d.toLowerCase()))) {
+          return { summonProfile: name, skillId: s.id, deps, provider: providerName };
+        }
+      }
+    }
+  }
+  return null;
+}
 
 let dir: string;
 beforeEach(async () => { dir = await mkdtemp(join(tmpdir(), "cue-summon-")); });
@@ -110,14 +150,27 @@ describe("summon", () => {
   });
 
   test.skipIf(!SKILLS_PRESENT)("mcp_status reflects the active session's loaded MCPs", async () => {
-    // browser/lightpanda needs the `lightpanda` MCP; core loads it.
-    const lp = (skills: { id: string; mcp_status: string }[]) =>
-      skills.find((s) => s.id === "browser/lightpanda");
+    // The pairing is derived from live profile data, not hardcoded. This test
+    // used to pin browser/lightpanda + core; 18570880 (#121) dropped the
+    // lightpanda MCP from every profile that pinned it, so the assertion named
+    // a pairing that no longer existed and failed for a reason unrelated to
+    // what it tests. The behaviour under test is mcp_status resolution, so
+    // derive any still-valid pairing and assert against that.
+    const pair = await findMcpGatedPair();
+    // Loud rather than a silent skip: if nothing is satisfiable, that is itself
+    // worth a human look, not a vacuous green.
+    expect(pair).not.toBeNull();
+    const { summonProfile, skillId, deps, provider } = pair!;
 
-    const noActive = await summon({ cwd: dir, profile: "vercel", active: null, noPin: true });
-    const withCore = await summon({ cwd: dir, profile: "vercel", active: "core", noPin: true });
+    const find = (skills: { id: string; mcp_status: string }[]) =>
+      skills.find((s) => s.id === skillId);
+    const missing = `missing:${deps.join(",")}`;
+    const opts = { cwd: dir, profile: summonProfile, noPin: true };
 
-    expect(lp(noActive.skills)?.mcp_status).toBe("missing:lightpanda");
-    expect(lp(withCore.skills)?.mcp_status).toBe("ok");
+    const noActive = await summon({ ...opts, active: null });
+    const withProvider = await summon({ ...opts, active: provider });
+
+    expect(find(noActive.skills)?.mcp_status).toBe(missing);
+    expect(find(withProvider.skills)?.mcp_status).toBe("ok");
   });
 });

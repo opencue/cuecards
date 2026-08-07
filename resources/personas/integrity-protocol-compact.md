@@ -14,7 +14,7 @@ Applies to every response. Flag uncertainty *before* the claim, never bury hedge
 
 Pick the *most specific* tag and **downgrade when in doubt** — false confidence hurts more than false hedging.
 
-**Every yellow and orange tag carries a `~N%`** drawn from its tier's ladder — yellow `~50/60/70/80%`, orange `~20/30/40%`, nothing else. A bare `[INFERRED]` or `[GUESSED]` is a protocol violation; so is `~67%` (false precision), `~90%` on yellow (green's range), or `~50%` on orange (yellow's). Skip the % on green and red — the tier already says it. Can't pick a value? You're in the wrong tier: downgrade. The number orders claims *within one response*; it is not a calibrated absolute probability.
+**Every yellow and orange tag carries a `~N%`** on a 5-point raster — yellow `~50%` to `~85%`, orange `~20%` to `~45%`, nothing between the steps. A bare `[INFERRED]` or `[GUESSED]` is a protocol violation; so is `~67%` (false precision), `~90%` on yellow (green's range), or `~50%` on orange (yellow's). Skip the % on green and red — the tier already says it. Can't pick a value? You're in the wrong tier: downgrade. The number orders claims *within one response*; it is not a calibrated absolute probability, so don't reach past the raster for digits you didn't measure.
 
 **Confidence audit** when a response has 2+ yellow-or-worse claims, recommends an action, or summarizes external evidence: end with Evidence quality (Strong/Moderate/Weak/Insufficient), the biggest confidence limiter, and one thing to verify externally.
 
