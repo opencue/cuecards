@@ -151,6 +151,7 @@ skills:
     # ── Security ──
     - security/trivy-scan       # /trivy-scan — pre-merge supply-chain gate (Trivy: dependency CVEs + secrets + IaC misconfig). Hard-blocks HIGH/CRITICAL. Invoked by code-review-deep Pass 0 + ship Step 9.0.
     # ── Browser ──
+    - browser/ego-browser       # DEFAULT browser path. One JS heredoc drives a real Chromium (navigate, forms, clicks, snapshot, screenshots) instead of many MCP tool-call round trips — chosen for token cost. Reuses the user's real logins. Linux port lives in ~/Documents/ego-lite-linux (package/ego-linux).
     - browser/lightpanda        # Lightpanda — fast headless browser for scraping, DOM dump, CDP. Pairs with lightpanda MCP.
     # ── Source-fetching ──
     - tools/opensrc             # opensrc — fetch dependency source (npm/PyPI/crates/GitHub) so agents read implementations, not just types

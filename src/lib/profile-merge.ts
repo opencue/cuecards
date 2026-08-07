@@ -39,6 +39,10 @@ function skillSetTokens(ids: string[]): number {
 // skill discovery — they bootstrap the rest). Matched by slug suffix.
 const ALWAYS_KEEP_SLUGS = new Set([
   "caveman-commit", "find-skills", "smart-loader", "help",
+  // Default browser path. A merged profile that budgets it out doesn't skip
+  // the browser work, it downgrades it to MCP round-trips. Mirrors
+  // skill-subset's ALWAYS_KEEP, which holds it through the project loadout.
+  "ego-browser",
 ]);
 
 export type OptimizeAction = "prune" | "dedupe" | "budget" | "router";
