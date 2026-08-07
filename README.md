@@ -221,6 +221,20 @@ cuecards don't just load tools — they hold your agent to a standard.
 
 Enable it with `touch ~/.config/cue/auto-review-enabled`, watch reviews live with `cue-review-watch`, and skip one turn with `[skip-auto-review]`. Details: [docs/review-visibility.md](https://github.com/opencue/cuecards/blob/main/docs/review-visibility.md).
 
+**The install gate.** Every path that lands a new skill on disk — `cue skills add`, `cue discover install`, `cue marketplace install-skill` — is scanned by [NVIDIA SkillSpector](https://github.com/NVIDIA/SkillSpector) before the skill is registered to a profile. Research behind that scanner puts 26.1% of published skills at "contains vulnerabilities" and 5.2% at "likely malicious intent", so a skill you found on GitHub 30 seconds ago does not get to run on trust.
+
+A `DO_NOT_INSTALL` verdict blocks: the files stay on disk for review but never reach your `profile.yaml`. `CAUTION` registers with a warning. `SAFE` passes silently. Override a block with `--allow-unsafe`, scan anything by hand with `cue security scan <path>`, and turn the gate off with `CUE_SKILLSPECTOR=0`.
+
+```console
+$ cue security scan ./notes-organizer/
+🔴 SkillSpector: DO_NOT_INSTALL (risk 85/100, CRITICAL) — 6 finding(s): Anti-Refusal, Privilege Escalation, Prompt Injection, YARA Match
+   [HIGH] AR3 Anti-Refusal SKILL.md:8
+   [HIGH] PE3 Privilege Escalation SKILL.md:13
+   [HIGH] P1  Prompt Injection SKILL.md:8
+```
+
+No setup needed: cue uses `skillspector` if it's on your PATH, otherwise runs it through `uvx` (cached after the first run), otherwise a local docker image. If none of those exist the gate says so out loud and falls back to cue's own SEC1-7 rules rather than silently passing. Scans run with `--no-llm`, so skill contents never leave your machine.
+
 **Confidence tags.** cue-managed agents tag research- and decision-relevant claims with colored confidence markers so you can scan trust at a glance:
 
 | Tier | Tags | Meaning |
@@ -246,8 +260,13 @@ cue cost --compare           # all profiles ranked vs `full`
 
 # Skills & discovery
 cue discover search <query>  # find skills on GitHub
-cue discover install <skill> # install one
+cue discover install <skill> # install one (SkillSpector-gated)
 cue lint-skill <path> --fix  # validate a SKILL.md
+
+# Security
+cue security                 # scan the active profile's skills
+cue security scan <path>     # deep NVIDIA SkillSpector scan of any skill
+cue security --all --json    # every skill, machine-readable
 
 # Marketplace (push your own to cuecards.cc)
 cue marketplace login --token <t>          # save the API token from the studio → API view

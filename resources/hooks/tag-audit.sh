@@ -11,6 +11,12 @@
 #   - For every [KNOWN] claim that mentions a time-sensitive subject
 #     (versions, "latest", "current"), warn — training data goes stale.
 #
+# It also reports the turn's TAG MIX — the green/yellow/orange/red split of
+# the claims, with a "% grounded" and "% guess-or-worse" readout. The audits
+# above catch violations; the mix answers the plainer question the tags exist
+# for: how much of this answer did the model actually check? Prints on turns
+# with >=3 tags. Disable with CUE_TAG_MIX_OFF=1.
+#
 # When mismatches are detected, the hook emits a "⚠ Tag audit" block to
 # stderr (which Claude Code surfaces). It never blocks; it only flags.
 # Suppress per-turn via [skip-tag-audit] anywhere in the assistant response.
@@ -46,8 +52,10 @@ touch "$throttle"
 last_user_line=$(awk 'BEGIN{n=0; last=0} {n++} /"type":"user"/{last=n} END{print last}' "$transcript_path")
 [ "$last_user_line" = "0" ] && exit 0
 
-# Slice the transcript: just this turn's lines.
-turn_jsonl="$CACHE_DIR/turn.jsonl"
+# Slice the transcript: just this turn's lines. Session-scoped — concurrent
+# Claude sessions share $CACHE_DIR, and an unscoped path lets one session's
+# Stop hook overwrite another's slice mid-read.
+turn_jsonl="$CACHE_DIR/turn.${session_id:-default}.jsonl"
 tail -n +"$last_user_line" "$transcript_path" > "$turn_jsonl"
 
 # ─── Extract assistant text + tool_use names from this turn ────────────────
@@ -73,10 +81,22 @@ if grep -qF "[skip-tag-audit]" <<< "$assistant_text"; then exit 0; fi
 # ─── Count tags in the response ────────────────────────────────────────────
 # Match [VERIFIED], 🟢 [VERIFIED], `[VERIFIED]`, etc. Single regex with
 # optional brackets/backticks.
-verified_count=$(grep -oE '\[VERIFIED[^]]*\]' <<< "$assistant_text" | wc -l | tr -d '\n')
-known_count=$(grep -oE '\[KNOWN[^]]*\]' <<< "$assistant_text" | wc -l | tr -d '\n')
-verified_count=${verified_count:-0}
-known_count=${known_count:-0}
+count_tag() { grep -oE "\[$1[^]]*\]" <<< "$assistant_text" | wc -l | tr -d '\n'; }
+
+verified_count=$(count_tag VERIFIED);   verified_count=${verified_count:-0}
+known_count=$(count_tag KNOWN);         known_count=${known_count:-0}
+inferred_count=$(count_tag INFERRED);   inferred_count=${inferred_count:-0}
+assumed_count=$(count_tag ASSUMED);     assumed_count=${assumed_count:-0}
+guessed_count=$(count_tag GUESSED);     guessed_count=${guessed_count:-0}
+stale_count=$(count_tag STALE);         stale_count=${stale_count:-0}
+unknown_count=$(count_tag UNKNOWN);     unknown_count=${unknown_count:-0}
+correction_count=$(count_tag CORRECTION); correction_count=${correction_count:-0}
+
+green_count=$((verified_count + known_count))
+yellow_count=$((inferred_count + assumed_count))
+orange_count=$((guessed_count + stale_count))
+red_count=$unknown_count
+claim_count=$((green_count + yellow_count + orange_count + red_count))
 
 # ─── Count verification tool calls ─────────────────────────────────────────
 # A "verification action" is one of:
@@ -157,7 +177,22 @@ if [ "$stale_known" -gt 0 ]; then
   warnings+=("⚠ Tag audit: ${stale_known}× [KNOWN] tag on time-sensitive subject(s) (versions / 'latest' / 'current'). Training data goes stale. Downgrade to [STALE] or re-verify via web search.")
 fi
 
-[ "${#warnings[@]}" -eq 0 ] && exit 0
+# ─── Tag mix: how much of this turn was grounded vs guessed ────────────────
+# Everything above detects protocol *violations*. This block answers the
+# plainer question the tags exist for: how much of what I just said did I
+# actually check? Prints whenever the turn carries enough tags to form a
+# distribution (>=3), so one-tag asides stay quiet. Disable: CUE_TAG_MIX_OFF=1.
+mix_line=""
+if [ "${CUE_TAG_MIX_OFF:-}" != "1" ] && [ "$claim_count" -ge 3 ]; then
+  green_pct=$((green_count * 100 / claim_count))
+  soft_pct=$(((orange_count + red_count) * 100 / claim_count))
+  mix_line="$(printf '🕵 Tag mix (%d claims): 🟢%d 🟡%d 🟠%d 🔴%d — %d%% grounded, %d%% guess-or-worse' \
+    "$claim_count" "$green_count" "$yellow_count" "$orange_count" "$red_count" \
+    "$green_pct" "$soft_pct")"
+  [ "$correction_count" -gt 0 ] && mix_line="${mix_line} | ${correction_count}x [CORRECTION]"
+fi
+
+[ "${#warnings[@]}" -eq 0 ] && [ -z "$mix_line" ] && exit 0
 
 # ─── Opt-in: auto-log detected miscalibrations to the calibration scoreboard ─
 # The always-on audit detects exactly the events the scoreboard wants to tally
@@ -190,9 +225,12 @@ fi
 # ─── Emit warnings to stderr (Claude Code surfaces) ────────────────────────
 {
   printf '\n'
-  for w in "${warnings[@]}"; do printf '%s\n' "$w"; done
-  printf '   (turn tool calls: %d verification, %d non-verification | suppress with [skip-tag-audit])\n' \
-    "$verification_count" "$non_verification_count"
+  [ -n "$mix_line" ] && printf '%s\n' "$mix_line"
+  if [ "${#warnings[@]}" -gt 0 ]; then
+    for w in "${warnings[@]}"; do printf '%s\n' "$w"; done
+    printf '   (turn tool calls: %d verification, %d non-verification | suppress with [skip-tag-audit])\n' \
+      "$verification_count" "$non_verification_count"
+  fi
 } >&2
 
 exit 0
