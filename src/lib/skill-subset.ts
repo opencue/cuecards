@@ -48,6 +48,10 @@ export const ALWAYS_KEEP = new Set([
   "meta/acpx",
   "caveman/caveman",
   "caveman/caveman-commit",
+  // The default browser path. Deferring it doesn't save a browser session —
+  // it sends the agent to MCP round-trips or web fetch instead, which costs
+  // more than this skill's frontmatter. Keep it on in every project.
+  "browser/ego-browser",
 ]);
 
 // Re-exported so callers and tests that reached for these here keep working.
