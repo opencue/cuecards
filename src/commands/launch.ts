@@ -130,7 +130,17 @@ function parse(args: string[]): ParsedArgs {
   // Folds a real passthrough prompt (`claude -p "…"`) into `subset` so it drives
   // classification, but leaves `subsetExplicit` false so it uses the keep-set
   // cache — repeat identical `-p` launches don't re-call the classifier.
-  if (!subset && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
+  //
+  // CUE_BYPASS gates the fold: the skill/profile classifiers spawn `claude`
+  // themselves, and on a machine with cue's shims first on PATH that lands back
+  // here. Without this guard the child's own argv (`--print --model haiku -p
+  // "<prompt>"`) becomes the next classification prompt, which spawns another
+  // classifier, which folds ITS argv, and so on — each level a full ~400MB
+  // claude process carrying every previous level's argv. Measured in the wild:
+  // 10 levels deep, a 67KB command line, ~3GB resident per launch. An explicit
+  // `--subset` still wins, so a deliberate override is never silently dropped.
+  const bypassed = process.env.CUE_BYPASS === "1";
+  if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
     subset = passthrough.join(" ");
   }
   return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit, passthrough };
@@ -1569,6 +1579,54 @@ export function launchDepth(envVal: string | undefined = process.env.CUE_LAUNCHI
 /** Depth at which nesting is no longer plausible and must be a shim loop. */
 export const MAX_LAUNCH_DEPTH = 3;
 
+/**
+ * Whether to force the picker open, ignoring whatever the cwd resolved to.
+ *
+ * `--cue-pick` always wins — that IS the request. Everything else needs a TTY,
+ * because a picker nobody can answer is not a fallback, it is a crash: the
+ * caller ends up at "no profile resolved and stdin is not a TTY".
+ *
+ * The TTY guard on `isAccountAlias` is the load-bearing one. cue relocates
+ * CLAUDE_CONFIG_DIR to the per-profile runtime dir when it launches an agent,
+ * so EVERY child spawned inside a cue session inherits a non-default
+ * CLAUDE_CONFIG_DIR and looks like an account alias. A nested non-interactive
+ * `claude -p …` — gitguardex's AI review gate, a hook, any script — was forced
+ * to the picker and died. Same class of bug `launchDepth` fixed for
+ * CUE_LAUNCHING (its doc comment names an AI code review as the motivating
+ * nested launch), and it likewise left callers hand-stripping the env var to
+ * work around it (see `failures.ts` and the `launch.e2e.test.ts` harness).
+ */
+export function shouldForcePicker(opts: {
+  forcePick: boolean;
+  alwaysPickEnv: string | undefined;
+  hasOverride: boolean;
+  isAccountAlias: boolean;
+  isTTY: boolean;
+}): boolean {
+  if (opts.forcePick) return true;
+  if (!opts.isTTY) return false;
+  // An explicit --cue-profile opts out of both remaining triggers.
+  if (opts.hasOverride) return false;
+  return isAlwaysPickEnabled(opts.alwaysPickEnv) || opts.isAccountAlias;
+}
+
+/**
+ * Whether to fall back to the running session's profile (`CUE_PROFILE`, or the
+ * runtime path inside CLAUDE_CONFIG_DIR) instead of failing outright.
+ *
+ * Only off a TTY, and only when the cwd yielded nothing — a pin, repo-default
+ * or global-default always wins, since it is specific to the work. `--cue-pick`
+ * deliberately opts out: asking for a picker that cannot open is a real error,
+ * not something to paper over.
+ */
+export function shouldInheritSessionProfile(opts: {
+  resolvedNone: boolean;
+  forcePick: boolean;
+  isTTY: boolean;
+}): boolean {
+  return opts.resolvedNone && !opts.forcePick && !opts.isTTY;
+}
+
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
@@ -1622,23 +1680,28 @@ export async function run(args: string[]): Promise<number> {
     configDir: configDir(),
     override: parsed.override,
   });
-  // Force picker if --cue-pick OR (account alias AND no explicit --cue-profile).
-  // Explicit --cue-profile always wins.
-  //
-  // `CUE_ALWAYS_PICK=1` makes a bare `claude` offer the picker instead of
-  // silently honoring whatever .cue.profile resolves to. The resolved profile
-  // still sorts to the top of the list, so Enter reproduces the pinned
-  // behavior — this trades one keystroke for the ability to choose.
-  //
-  // Two guards, both load-bearing: an explicit --cue-profile opts out (that IS
-  // the choice), and it only applies on a TTY. Without the TTY guard a
-  // non-interactive `claude -p "…"` would resolve to "none" and die on "no
-  // profile resolved and stdin is not a TTY" instead of using its pin.
-  const alwaysPick = isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK)
-    && !parsed.override
-    && process.stdin.isTTY === true;
-  const forcePicker = parsed.forcePick || alwaysPick || (isAccountAlias && !parsed.override);
-  const resolved = forcePicker ? { source: "none" as const } : existingResolved;
+  const isTTY = process.stdin.isTTY === true;
+  const forcePicker = shouldForcePicker({
+    forcePick: parsed.forcePick,
+    alwaysPickEnv: process.env.CUE_ALWAYS_PICK,
+    hasOverride: Boolean(parsed.override),
+    isAccountAlias,
+    isTTY,
+  });
+  const resolvedForCwd = forcePicker ? { source: "none" as const } : existingResolved;
+  let inheritedProfile: string | null = null;
+  if (shouldInheritSessionProfile({
+    resolvedNone: resolvedForCwd.source === "none",
+    forcePick: parsed.forcePick,
+    isTTY,
+  })) {
+    const { detectActiveProfile } = await import("./summon");
+    inheritedProfile = detectActiveProfile();
+    if (inheritedProfile) debug("launch:inherited-session-profile", inheritedProfile);
+  }
+  const resolved = inheritedProfile
+    ? { source: "session" as const, profile: inheritedProfile }
+    : resolvedForCwd;
   const existingProfile = existingResolved.source !== "none"
     ? (existingResolved as { source: string; profile: string }).profile
     : undefined;

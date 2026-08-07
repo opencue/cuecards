@@ -13,7 +13,7 @@ skills:
 
 # The bot's MCP control surface (~27 tools: xbot_status, xbot_think, xbot_reply,
 # xbot_dm, xbot_cycle, xbot_pause, xbot_control, ...). core already contributes
-# cue-tty-watch + lightpanda.
+# codegraph + context7.
 mcps:
   - xbot
 

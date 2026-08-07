@@ -126,7 +126,7 @@ persona: |
   | Storefront UI implementation, visual polish, a11y          | design/* + browser/agent-browser |
   | Premium visual design, brand kit, redesign                 | design/taste-* + design/brandkit |
   | Long-horizon browser automation, e2e flows                 | webwright plugin |
-  | Scrape / headless read, DOM or markdown dump (no pixels)    | lightpanda       |
+  | Scrape / headless read, page snapshot, screenshots          | browser/ego-browser |
   | Product photos, hero shots, marketplace cards, Soul ID     | higgsfield/*     |
   | Transactional + marketing email, React Email, deliverability | resend plugin  |
   | Containers, env vars, reverse proxy, zero-downtime deploy  | deployment/coolify + gstack/setup-deploy |
@@ -136,9 +136,10 @@ persona: |
 
   Three browser engines, distinct sweet spots — pick by the job:
 
-  - **lightpanda** (MCP / `lightpanda fetch <url> --dump markdown`) — the
-    lightest. Headless, renders DOM + JS but paints **no pixels**. Use for
-    scraping, DOM/markdown extraction, cheap bulk navigation. Can't screenshot.
+  - **ego-browser** (JS heredoc) — the default, inherited from core. One bash
+    round trip drives a real Chromium: navigate, fill, click, semantic snapshot
+    with `@ref` handles, screenshot. Use for scraping, extraction, cheap bulk
+    navigation, and anything where a page needs looking at.
   - **agent-browser** (CLI) — the interactive default. `snapshot -i` → act on
     `@ref` → `screenshot`. Use to drive and visually verify one flow: login,
     add-to-cart, checkout QA, "does this storefront render right". Real pixels.
@@ -146,8 +147,9 @@ persona: |
     goal; it plans → acts → screenshot-self-verifies → logs to `final_runs/`.
     Use for autonomous end-to-end missions, not a handful of commands.
 
-  Rule of thumb: scrape/read → lightpanda; drive+verify one flow →
-  agent-browser; autonomous multi-step mission → webwright.
+  Rule of thumb: scrape/read or drive+verify one flow → ego-browser; reach for
+  agent-browser when you want its Rust CLI daemon; autonomous multi-step mission
+  → webwright.
 
   ## Defaults across the stack
 

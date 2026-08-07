@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="kdnsna-ultimate-ppt-master-skill"></a>
+## 💎 [kdnsna/ultimate-ppt-master-skill](https://github.com/kdnsna/ultimate-ppt-master-skill)
+
+**★ 159** · exceptional (score 14.1) · Python · tags: agent-skill, ai-ppt, ai-presentation, codex, document-conversion
+
+一句话需求也能做成像样 PPT：先问清受众、场景和风格，再整理本地资料，生成可编辑 PPTX/Web Deck，并用 GPT 生图、渲染审阅和审计留痕守住真实办公成稿。
+
+✅ SKILL.md
+
+```bash
+cue skills add kdnsna/ultimate-ppt-master-skill --profile creative-media
+```
 
 ---
 

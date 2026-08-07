@@ -2,7 +2,7 @@
 title: "gurutersesat24/ai-site-forge — Claude Code skill discovered by cue"
 description: "Ultimate AI Static Site Generator 2026 – Free No-Lock-in Build Tool for Claude & Cursor"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-06
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: agent-skills, ai-coding-agent, claude-code-plugin, clawhub, codex-plugin, copilot-skills, cursor-plugin, gemini-cli-extension, markdown, mcp, mcp-server, openclaw-skill, sitemd, static-site-generator, website-builder
 
 ## Best fit cue profiles
