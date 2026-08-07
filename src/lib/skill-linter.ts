@@ -271,29 +271,85 @@ function ruleR004(content: string): Diagnostic[] {
  * R005 — `allowed-tools:` must use Anthropic's `Bash(name:*)` / `Read(path)`
  * syntax. Common mistake: comma-separated bare names like `allowed-tools: nmap, curl`.
  */
+/** Top-level tools that are legitimately written bare, without a `Tool(...)` wrapper. */
+const BARE_OK_TOOLS = new Set([
+  // `Bash` bare means "any command" — wrapping it yields the nonsense
+  // `Bash(Bash:*)`, so it belongs here alongside the rest.
+  "Bash", "BashOutput", "KillBash",
+  "Read", "Write", "Edit", "MultiEdit", "Glob", "Grep", "LS",
+  "WebFetch", "WebSearch", "Task", "Agent", "Skill", "TodoWrite",
+  "NotebookEdit", "NotebookRead", "ExitPlanMode",
+]);
+
+/** A name that needs no wrapping: a top-level tool, or an MCP tool id. */
+function isBareOkTool(name: string): boolean {
+  return BARE_OK_TOOLS.has(name) || name.startsWith("mcp__");
+}
+
+/**
+ * Read `allowed-tools:` in either YAML shape: an inline scalar/flow sequence
+ * (`allowed-tools: a, b` / `[a, b]`) or a block sequence spanning the lines
+ * below the key. Returns the item names plus the exact line span to replace,
+ * so a fix can rewrite the WHOLE construct instead of orphaning list items
+ * under a scalar (which YAML then folds into one garbage string).
+ */
+function readAllowedTools(
+  yaml: string,
+): { names: string[]; startLine: number; endLine: number } | null {
+  const lines = yaml.split("\n");
+  const keyLine = lines.findIndex((l) => /^allowed-tools:/.test(l));
+  if (keyLine === -1) return null;
+
+  const inline = lines[keyLine]!.replace(/^allowed-tools:/, "").trim();
+  if (inline) {
+    const names = inline.replace(/^\[|\]$/g, "").split(/\s*,\s*/).map((s) => s.trim()).filter(Boolean);
+    return { names, startLine: keyLine, endLine: keyLine };
+  }
+
+  // Block sequence: consume the contiguous `  - item` lines beneath the key.
+  const names: string[] = [];
+  let end = keyLine;
+  for (let i = keyLine + 1; i < lines.length; i++) {
+    const m = /^\s+-\s*(.+?)\s*$/.exec(lines[i]!);
+    if (!m) break;
+    names.push(m[1]!);
+    end = i;
+  }
+  return names.length ? { names, startLine: keyLine, endLine: end } : null;
+}
+
 function ruleR005(content: string): Diagnostic[] {
   const fm = getFrontmatter(content);
   if (!fm) return [];
-  const raw = fmField(fm.yaml, "allowed-tools");
-  if (!raw) return [];
-  // Strip array brackets/braces if present.
-  const value = raw.replace(/^\[|\]$/g, "").trim();
-  // Valid form has at least one Tool(...) wrapper.
-  if (/\b(Bash|Read|Write|Edit|Glob|Grep|WebFetch|WebSearch)\s*\(/.test(value)) return [];
+  const parsed = readAllowedTools(fm.yaml);
+  if (!parsed) return [];
 
-  // Common malformation: comma-separated bare names. Auto-fix by wrapping.
-  const bareNames = value.split(/[,\s]+/).filter(Boolean);
-  if (bareNames.length === 0) return [];
-  const fixed = bareNames.map((n) => `Bash(${n}:*)`).join(", ");
+  // Already-wrapped entries and legitimately-bare ones (top-level tools,
+  // mcp__* ids) are fine. Only genuinely bare CLI names need wrapping — a
+  // pure-MCP skill is valid as written and must not be dressed in Bash(...).
+  const needsWrap = parsed.names.filter(
+    (n) => !/\w\s*\(/.test(n) && !isBareOkTool(n),
+  );
+  if (needsWrap.length === 0) return [];
+
+  const fixedNames = parsed.names.map((n) =>
+    /\w\s*\(/.test(n) || isBareOkTool(n) ? n : `Bash(${n}:*)`,
+  );
   return [{
     rule: "R005",
     severity: "error",
-    message: `\`allowed-tools:\` must use \`Bash(name:*)\` / \`Read(path)\` syntax; got bare names "${value}".`,
+    message: `\`allowed-tools:\` must use \`Bash(name:*)\` / \`Read(path)\` syntax; got bare names "${needsWrap.join(", ")}".`,
     fix: (c) => {
       const fmm = getFrontmatter(c);
       if (!fmm) return c;
-      const newYaml = fmm.yaml.replace(/^allowed-tools:.*$/m, `allowed-tools: ${fixed}`);
-      return `---\n${newYaml}\n---` + c.slice(fmm.end);
+      const p = readAllowedTools(fmm.yaml);
+      if (!p) return c;
+      const lines = fmm.yaml.split("\n");
+      const rewritten = p.names.map((n) =>
+        /\w\s*\(/.test(n) || isBareOkTool(n) ? n : `Bash(${n}:*)`,
+      );
+      lines.splice(p.startLine, p.endLine - p.startLine + 1, `allowed-tools: ${rewritten.join(", ")}`);
+      return `---\n${lines.join("\n")}\n---` + c.slice(fmm.end);
     },
   }];
 }
@@ -435,8 +491,13 @@ function fixEmDashesInProse(content: string): string {
     }
     let start = idx;
     let end = idx + 1;
-    while (start > i && /[ \t]/.test(masked[start - 1] ?? "")) start--;
-    while (end < masked.length && /[ \t]/.test(masked[end] ?? "")) end++;
+    // Collapse surrounding whitespace against the ORIGINAL content, not the
+    // mask. stripCodeAndFrontmatter is length-preserving but blanks inline
+    // code to spaces, so walking `masked` treats a whole `` `code span` `` as
+    // whitespace and the slice below swallows it. Only the SEARCH above may
+    // use the mask; every offset arithmetic here is on real characters.
+    while (start > i && /[ \t]/.test(content[start - 1] ?? "")) start--;
+    while (end < content.length && /[ \t]/.test(content[end] ?? "")) end++;
     out.push(content.slice(i, start));
     out.push(", ");
     i = end;

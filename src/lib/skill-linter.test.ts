@@ -312,6 +312,94 @@ describe("em dash auto-fix (R009)", () => {
     const twice = applyFixes(once).fixed;
     expect(twice).toBe(once);
   });
+
+  // The fix masks code to spaces (length-preserving) to FIND em dashes, then
+  // walked that same mask to collapse surrounding whitespace — so an inline
+  // code span next to an em dash read as whitespace and got sliced away.
+  // Measured on the real corpus: 723 spans destroyed across 178 skills.
+  test("inline code before an em dash survives", () => {
+    const md = "---\nname: x\ndescription: Use when X.\n---\n\n# X\n\n- `get_latest_news` — Fetch recent news\n";
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("`get_latest_news`");
+    expect(fixed).toContain("- `get_latest_news`, Fetch recent news");
+  });
+
+  test("inline code after an em dash survives", () => {
+    const md = "---\nname: x\ndescription: Use when X.\n---\n\n# X\n\nRun it — `bun test` proves it.\n";
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("`bun test`");
+    expect(fixed).toContain("Run it, `bun test` proves it.");
+  });
+
+  test("code spans on both sides of an em dash both survive", () => {
+    const md = "---\nname: x\ndescription: Use when X.\n---\n\n# X\n\n`a` — `b`\n";
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("`a`, `b`");
+  });
+});
+
+describe("allowed-tools auto-fix (R005)", () => {
+  const fm = (tools: string) =>
+    `---\nname: x\ndescription: Use when X.\n${tools}\n---\n\n# X\n\nBody.\n`;
+
+  test("a block sequence is rewritten whole, not orphaned under a scalar", () => {
+    const md = fm("allowed-tools:\n  - ffmpeg\n  - imagemagick");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).toContain("R005");
+    expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Bash(imagemagick:*)");
+    // The old fix replaced only the key line, leaving `  - ffmpeg` beneath a
+    // scalar; YAML then folded the leftovers into one garbage string.
+    expect(fixed).not.toMatch(/allowed-tools:.*\n\s+-\s/);
+    expect(fixed).not.toContain("Bash(-:*)");
+  });
+
+  test("a pure-MCP block sequence is left alone", () => {
+    const md = fm("allowed-tools:\n  - mcp__trendradar__get_latest_news\n  - mcp__trendradar__search_news");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).not.toContain("R005");
+    expect(fixed).toBe(md);
+  });
+
+  test("top-level tools stay bare, bare CLI names get wrapped", () => {
+    const md = fm("allowed-tools:\n  - Read\n  - Grep\n  - ffmpeg");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Read, Grep, Bash(ffmpeg:*)");
+  });
+
+  test("bare `Bash` is a tool name, not a CLI name", () => {
+    // Wrapping it produced the nonsense `Bash(Bash:*)`.
+    const md = fm("allowed-tools: Bash");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).not.toContain("R005");
+    expect(fixed).not.toContain("Bash(Bash:*)");
+    expect(fixed).toBe(md);
+  });
+
+  test("a block of top-level tools including Bash is left alone", () => {
+    const md = fm("allowed-tools:\n  - Read\n  - Write\n  - Edit\n  - Bash");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).not.toContain("R005");
+    expect(fixed).toBe(md);
+  });
+
+  test("already-wrapped entries are preserved as written", () => {
+    const md = fm("allowed-tools:\n  - Bash(git:*)\n  - ffmpeg");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(git:*), Bash(ffmpeg:*)");
+  });
+
+  test("inline comma-separated bare names still get wrapped", () => {
+    const md = fm("allowed-tools: ffmpeg, imagemagick");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Bash(imagemagick:*)");
+  });
+
+  test("R005 fixes are idempotent", () => {
+    const md = fm("allowed-tools:\n  - ffmpeg\n  - mcp__x__y\n  - Read");
+    const once = applyFixes(md).fixed;
+    const twice = applyFixes(once).fixed;
+    expect(twice).toBe(once);
+  });
 });
 
 describe("score", () => {
