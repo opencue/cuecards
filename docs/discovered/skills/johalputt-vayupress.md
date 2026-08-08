@@ -2,7 +2,7 @@
 title: "johalputt/VayuPress — Claude Code skill discovered by cue"
 description: "Your whole online presence in one sovereign Go binary — website, blog, PGP mail, E2E-encrypted chat, anti-DDoS bot shield, privacy analytics, one-click Tor .oni"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-08
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
 - ⭐ 10 stars
-- 🗓️ Last pushed: 2026-08-06
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: anti-censorship, anti-ddos, blog-engine, bot-protection, cms, encrypted-chat, end-to-end-encryption, golang, mail-server, mcp-server, no-kyc, onion-service, pgp, privacy-analytics, publishing-platform, self-hosted, sqlite, tor, webmail, website-builder
 
 ## Best fit cue profiles

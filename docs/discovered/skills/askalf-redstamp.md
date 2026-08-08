@@ -2,7 +2,7 @@
 title: "askalf/redstamp — Claude Code skill discovered by cue"
 description: "own your agent security — a deterministic, offline firewall for AI agent tool calls. Blocks secret exfil, prompt injection and destructive commands before they "
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, skill, core]
 ---
 

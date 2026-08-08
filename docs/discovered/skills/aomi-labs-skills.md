@@ -2,21 +2,21 @@
 title: "aomi-labs/skills — Claude Code skill discovered by cue"
 description: "The best blockchain harness for agentic AI - on-chain execution with runtime, skills, and component library."
 layout: page
-updated: 2026-07-21
+updated: 2026-08-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [aomi-labs/skills](https://github.com/aomi-labs/skills)
 
-**★ 6** · exceptional (score 12.6) · Shell · account-abstraction, agent-skills, agentic-ai, agents, ai
+**★ 7** · exceptional (score 12.7) · Shell · account-abstraction, agent-skills, agentic-ai, agents, ai
 
 > The best blockchain harness for agentic AI - on-chain execution with runtime, skills, and component library.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-07-21
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: account-abstraction, agent-skills, agentic-ai, agents, ai, aomi, blockchain, claude-code, claude-code-skill, claude-skills, codex-cli, crypto, cursor, defi, evm, llm, on-chain, skills
 
 ## Best fit cue profiles

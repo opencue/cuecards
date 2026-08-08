@@ -2,7 +2,7 @@
 title: "final90006-sketch/youtube-to-article — Claude Code skill discovered by cue"
 description: "把 YouTube 影片／Podcast 轉成繁中精讀長文的 Claude Code 技能（本機、離線、不需 API 金鑰；含章節對齊切塊＋品質自檢＋心智圖/精華卡/自測卡衍生格式）"
 layout: page
-updated: 2026-07-06
+updated: 2026-08-08
 tags: [claude-code, skill, video]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, video]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-06
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: article-generator, claude-code, claude-skill, podcast, traditional-chinese, transcription, youtube
 
 ## Best fit cue profiles

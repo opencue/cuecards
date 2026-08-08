@@ -2,7 +2,7 @@
 title: "Obelyth/cortex — Claude Code skill discovered by cue"
 description: "Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, skill, nextjs, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, nextjs, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-05
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: ai-memory, claude, claude-ai, knowledge-base, mcp, mcp-server, memory, model-context-protocol, nextjs, note-taking, pkm, second-brain, second-brain-starter-kit, template, typescript, vercel
 
 ## Best fit cue profiles

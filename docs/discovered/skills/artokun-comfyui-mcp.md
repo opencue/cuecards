@@ -1,22 +1,22 @@
 ---
 title: "artokun/comfyui-mcp — Claude Code skill discovered by cue"
-description: "The local-first, agent-native control plane for ComfyUI — MCP server + Claude Code plugin. 108 tools, 29 AI skills (Flux · WAN · LT2.3 · Qwen · Ideogram4 · Krea"
+description: "Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits you"
 layout: page
-updated: 2026-08-01
+updated: 2026-08-08
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
 
-**★ 468** · exceptional (score 18.3) · TypeScript · agent-skills, ai-agent, claude-code, claude-plugin, comfyui
+**★ 519** · exceptional (score 20.3) · TypeScript · agent-skills, ai-agent, claude-code, claude-plugin, comfyui
 
-> The local-first, agent-native control plane for ComfyUI — MCP server + Claude Code plugin. 108 tools, 29 AI skills (Flux · WAN · LT2.3 · Qwen · Ideogram4 · Krea2). Author & run workflows, edit your live graph in natural language, manage models & custom nodes. Local, LAN, VPS, or Comfy Cloud.
+> Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.3 based on:
-- ⭐ 468 stars
-- 🗓️ Last pushed: 2026-08-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.3 based on:
+- ⭐ 519 stars
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui, comfyui-extension, comfyui-mcp, comfyui-mcp-server, flux, image-generation, local-first, mcp, mcp-server, model-context-protocol, offline, ollama, self-hosted, stable-diffusion, video-generation, wan
 
 ## Best fit cue profiles

@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kenhayward-diariz"></a>
-## ✨ [kenhayward/Diariz](https://github.com/kenhayward/Diariz)
+<a id="final90006-sketch-youtube-to-article"></a>
+## 💎 [final90006-sketch/youtube-to-article](https://github.com/final90006-sketch/youtube-to-article)
 
-**★ 3** · strong (score 5.7) · C# · tags: action-items, gdpr, llm, mcp-server, meeting-notes
+**★ 0** · exceptional (score 13) · Python · tags: article-generator, claude-code, claude-skill, podcast, traditional-chinese
 
-Self-hosted, multi-user transcription platform: record or upload audio. Speaker-labeled, timestamped transcripts, Recognize speakers across recordings, Summarize, extract action items and chat over your transcripts with your own OpenAI-compatible LLM. Your Audio, your Server, your Model. Tested on Laptop RTX4070, Desktop RTX3090 and RTX5090
+把 YouTube 影片／Podcast 轉成繁中精讀長文的 Claude Code 技能（本機、離線、不需 API 金鑰；含章節對齊切塊＋品質自檢＋心智圖/精華卡/自測卡衍生格式）
+
+✅ SKILL.md
 
 ```bash
-cue skills add kenhayward/Diariz --profile video
+cue skills add final90006-sketch/youtube-to-article --profile video
+```
+
+---
+
+<a id="mfrashad-video-analyze"></a>
+## 💎 [mfrashad/video-analyze](https://github.com/mfrashad/video-analyze)
+
+**★ 0** · exceptional (score 12) · Shell · tags: ai-agents, claude-code, claude-skill, design-tools, ffmpeg
+
+A Claude Code skill that lets Claude actually watch a video — downloads from Instagram/TikTok/YouTube/X, extracts frames aligned to a transcript, and writes replication prompts for any UI or design it sees.
+
+✅ SKILL.md
+
+```bash
+cue skills add mfrashad/video-analyze --profile video
 ```
 
 ---

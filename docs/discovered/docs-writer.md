@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="aliasunder-vault-cortex"></a>
+## 💎 [aliasunder/vault-cortex](https://github.com/aliasunder/vault-cortex)
+
+**★ 15** · exceptional (score 10.1) · TypeScript · tags: ai-agents, ai-memory-system, claude, docker, hybrid-search
+
+Standalone MCP server for Obsidian vaults — hybrid search, notes & files, memory, tasks, OAuth 2.1.
+
+```bash
+cue skills add aliasunder/vault-cortex --profile docs-writer
+```
 
 ---
 

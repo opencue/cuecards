@@ -2,19 +2,19 @@
 title: "Bemosha/claude-image-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill for making images: adaptive HydraAI generation (Gemini/Nano-Banana, Seedream, Z-Image) + a free HTML→PNG path for UI mocks, banners and charts"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Bemosha/claude-image-skill](https://github.com/Bemosha/claude-image-skill)
 
-**★ 1** · exceptional (score 14.8) · Python · agent-skill, ai-art, anthropic, claude, claude-code
+**★ 1** · exceptional (score 14.7) · Python · agent-skill, ai-art, anthropic, claude, claude-code
 
 > Claude Code skill for making images: adaptive HydraAI generation (Gemini/Nano-Banana, Seedream, Z-Image) + a free HTML→PNG path for UI mocks, banners and charts. Скилл генерации изображений для Claude Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-05

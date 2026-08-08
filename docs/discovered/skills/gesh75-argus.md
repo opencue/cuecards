@@ -2,7 +2,7 @@
 title: "gesh75/argus — Claude Code skill discovered by cue"
 description: "Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annot"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, skill, cybersecurity]
 ---
 

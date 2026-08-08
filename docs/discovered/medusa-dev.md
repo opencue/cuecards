@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
-## ✨ [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
+<a id="buywhere-buywhere"></a>
+## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
 
-**★ 0** · strong (score 6.5) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
+**★ 0** · strong (score 7.5) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
 
-Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
+BuyWhere agent-native product catalog API
 
 ```bash
-cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
+cue skills add BuyWhere/buywhere --profile medusa-dev
 ```
 
 ---

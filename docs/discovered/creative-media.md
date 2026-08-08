@@ -1,31 +1,57 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kdnsna-ultimate-ppt-master-skill"></a>
-## 💎 [kdnsna/ultimate-ppt-master-skill](https://github.com/kdnsna/ultimate-ppt-master-skill)
+<a id="artokun-comfyui-mcp"></a>
+## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
 
-**★ 159** · exceptional (score 14.1) · Python · tags: agent-skill, ai-ppt, ai-presentation, codex, document-conversion
+**★ 519** · exceptional (score 20.3) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
 
-一句话需求也能做成像样 PPT：先问清受众、场景和风格，再整理本地资料，生成可编辑 PPTX/Web Deck，并用 GPT 生图、渲染审阅和审计留痕守住真实办公成稿。
+Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
+
+```bash
+cue skills add artokun/comfyui-mcp --profile creative-media
+```
+
+---
+
+<a id="mfrashad-video-analyze"></a>
+## 💎 [mfrashad/video-analyze](https://github.com/mfrashad/video-analyze)
+
+**★ 0** · exceptional (score 12) · Shell · tags: ai-agents, claude-code, claude-skill, design-tools, ffmpeg
+
+A Claude Code skill that lets Claude actually watch a video — downloads from Instagram/TikTok/YouTube/X, extracts frames aligned to a transcript, and writes replication prompts for any UI or design it sees.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add kdnsna/ultimate-ppt-master-skill --profile creative-media
+cue skills add mfrashad/video-analyze --profile creative-media
+```
+
+---
+
+<a id="novoads-claude-code-ads"></a>
+## 💎 [novoads/claude-code-ads](https://github.com/novoads/claude-code-ads)
+
+**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, ai-ads, ai-agents, ai-marketing, ai-video
+
+Claude Code skills to generate AI video ads, UGC ads, and image ads. The official Novoads skill pack (REST API + MCP).
+
+```bash
+cue skills add novoads/claude-code-ads --profile creative-media
 ```
 
 ---

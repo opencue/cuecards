@@ -2,7 +2,7 @@
 title: "pcDamasceno/cisco-sdwan-mcp — Claude Code skill discovered by cue"
 description: "MCP server for Cisco Catalyst SD-WAN Manager (vManage). Read-only by default: fabric inventory, device health, control connections, BFD/OMP state, alarms, tunne"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, skill, core]
 ---
 

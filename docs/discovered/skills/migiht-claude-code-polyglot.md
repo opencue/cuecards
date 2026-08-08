@@ -2,7 +2,7 @@
 title: "Migiht/claude-code-polyglot — Claude Code skill discovered by cue"
 description: "Use Claude Code in your native language: a local proxy that translates your prompts for the model and its replies for you, fully offline (Bergamot/Marian WASM +"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-08
 tags: [claude-code, skill, core]
 ---
 
