@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="artokun-comfyui-mcp"></a>
-## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
+<a id="danielgwilson-luxin"></a>
+## 💎 [danielgwilson/luxin](https://github.com/danielgwilson/luxin)
 
-**★ 519** · exceptional (score 20.3) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
+**★ 1** · exceptional (score 12.3) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
 
-Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
-
-```bash
-cue skills add artokun/comfyui-mcp --profile creative-media
-```
-
----
-
-<a id="mfrashad-video-analyze"></a>
-## 💎 [mfrashad/video-analyze](https://github.com/mfrashad/video-analyze)
-
-**★ 0** · exceptional (score 12) · Shell · tags: ai-agents, claude-code, claude-skill, design-tools, ffmpeg
-
-A Claude Code skill that lets Claude actually watch a video — downloads from Instagram/TikTok/YouTube/X, extracts frames aligned to a transcript, and writes replication prompts for any UI or design it sees.
-
-✅ SKILL.md
+Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
 
 ```bash
-cue skills add mfrashad/video-analyze --profile creative-media
+cue skills add danielgwilson/luxin --profile creative-media
 ```
 
 ---

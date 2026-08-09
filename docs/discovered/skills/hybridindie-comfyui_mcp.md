@@ -2,7 +2,7 @@
 title: "hybridindie/comfyui_mcp — Claude Code skill discovered by cue"
 description: "Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants wi"
 layout: page
-updated: 2026-06-12
+updated: 2026-08-09
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-11
+- 🗓️ Last pushed: 2026-08-09
 - 🏷️ Tags: ai-tools, claude, comfyui, image-generation, mcp, mcp-server, model-context-protocol, python, security, stable-diffusion
 
 ## Best fit cue profiles

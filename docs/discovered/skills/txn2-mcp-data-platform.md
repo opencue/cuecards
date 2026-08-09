@@ -2,7 +2,7 @@
 title: "txn2/mcp-data-platform — Claude Code skill discovered by cue"
 description: "A semantic data platform MCP server that composes multiple data tools with bidirectional cross-injection - tool responses automatically include critical context"
 layout: page
-updated: 2026-07-27
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-07-27
+- 🗓️ Last pushed: 2026-08-09
 - 🏷️ Tags: data-analysis, data-lake, data-warehouse, golang, golang-library, mcp, mcp-server
 
 ## Best fit cue profiles

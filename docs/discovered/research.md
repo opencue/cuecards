@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,19 +24,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="surendranb-find-research-papers-mcp"></a>
-## ✨ [surendranb/find-research-papers-mcp](https://github.com/surendranb/find-research-papers-mcp)
-
-**★ 0** · strong (score 6) · Python · tags: arxiv, crossref, mcp, mcp-server, openalex
-
-MCP server for scientific grounding: search arXiv, OpenAlex, Crossref, Semantic Scholar, PubMed — references/citations from paywalled journals via public metadata
-
-```bash
-cue skills add surendranb/find-research-papers-mcp --profile research
 ```
 
 ---

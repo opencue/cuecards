@@ -2,19 +2,19 @@
 title: "gowtham-sai-yadav/entangle — Claude Code skill discovered by cue"
 description: "Hand a live Claude Code, Codex, or opencode session to anyone with three spoken words - encrypted, no account. Or carry your whole Claude Code history to a new "
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [gowtham-sai-yadav/entangle](https://github.com/gowtham-sai-yadav/entangle)
 
-**★ 23** · exceptional (score 8.5) · Go · agentic-coding, ai-coding, anthropic, awesome-claude-code, claude
+**★ 23** · exceptional (score 8.4) · Go · agentic-coding, ai-coding, anthropic, awesome-claude-code, claude
 
 > Hand a live Claude Code, Codex, or opencode session to anyone with three spoken words - encrypted, no account. Or carry your whole Claude Code history to a new laptop, every path rewritten.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
 - ⭐ 23 stars
 - 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: agentic-coding, ai-coding, anthropic, awesome-claude-code, claude, claude-code, cli, codex, coding-agent, collaboration, cross-platform, developer-tools, devtools, end-to-end-encryption, golang, openai-codex, opencode, pair-programming, session-sharing, tui

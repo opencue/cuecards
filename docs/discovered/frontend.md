@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,6 +28,19 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+
+**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
+
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+
+```bash
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -37,19 +50,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="tarastsavolyk-claude-code-frontend"></a>
-## 🔹 [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend)
-
-**★ 1** · potential (score 3.2) · JavaScript
-
-Production-ready Claude Code configuration for frontend projects: specialized agents, path-scoped rules, and workflow skills. Vue 3 · Vue-Router · Pinia · TypeScript optional · Tailwind CSS · any package manager.
-
-```bash
-cue skills add TarasTsavolyk/claude-code-frontend --profile frontend
 ```
 
 ---

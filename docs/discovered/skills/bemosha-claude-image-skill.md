@@ -2,7 +2,7 @@
 title: "Bemosha/claude-image-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill for making images: adaptive HydraAI generation (Gemini/Nano-Banana, Seedream, Z-Image) + a free HTML→PNG path for UI mocks, banners and charts"
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 

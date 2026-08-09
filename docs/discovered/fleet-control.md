@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -31,7 +31,7 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 <a id="nuttaruj-rolepod"></a>
 ## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 3** · exceptional (score 8.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 3** · exceptional (score 8.1) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
@@ -50,19 +50,6 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 
 ```bash
 cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
-```
-
----
-
-<a id="arasz-ai-badger"></a>
-## ✨ [Arasz/ai-badger](https://github.com/Arasz/ai-badger)
-
-**★ 2** · strong (score 5.5) · Python · tags: agent, agent-framework, agent-orchestration, agent-skill, agent-skills
-
-Source-of-truth marketplace + project scaffolder for custom Claude/agent skills, personas, and instructions. Organized as {stack|common}/{feature}; welcome-ai-badger scaffolds a repo, feed-badger contributes back.
-
-```bash
-cue skills add Arasz/ai-badger --profile fleet-control
 ```
 
 ---

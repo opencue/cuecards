@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,19 +15,6 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="aliasunder-vault-cortex"></a>
-## 💎 [aliasunder/vault-cortex](https://github.com/aliasunder/vault-cortex)
-
-**★ 15** · exceptional (score 10.1) · TypeScript · tags: ai-agents, ai-memory-system, claude, docker, hybrid-search
-
-Standalone MCP server for Obsidian vaults — hybrid search, notes & files, memory, tasks, OAuth 2.1.
-
-```bash
-cue skills add aliasunder/vault-cortex --profile docs-writer
-```
-
----
-
 <a id="obelyth-cortex"></a>
 ## ✨ [Obelyth/cortex](https://github.com/Obelyth/cortex)
 
@@ -37,6 +24,19 @@ Claude second brain — a private markdown knowledge base (PKM) served to every 
 
 ```bash
 cue skills add Obelyth/cortex --profile docs-writer
+```
+
+---
+
+<a id="meta-taro-md-business"></a>
+## ✨ [meta-taro/md-business](https://github.com/meta-taro/md-business)
+
+**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, business-documents, invoice, json-schema, markdown
+
+Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-in MCP server. Tauri desktop app + Chrome extension.
+
+```bash
+cue skills add meta-taro/md-business --profile docs-writer
 ```
 
 ---

@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="final90006-sketch-youtube-to-article"></a>
-## 💎 [final90006-sketch/youtube-to-article](https://github.com/final90006-sketch/youtube-to-article)
+<a id="xixihhhh-hotclip"></a>
+## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
 
-**★ 0** · exceptional (score 13) · Python · tags: article-generator, claude-code, claude-skill, podcast, traditional-chinese
+**★ 61** · exceptional (score 10.6) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
 
-把 YouTube 影片／Podcast 轉成繁中精讀長文的 Claude Code 技能（本機、離線、不需 API 金鑰；含章節對齊切塊＋品質自檢＋心智圖/精華卡/自測卡衍生格式）
-
-✅ SKILL.md
+免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频——AI 找高光金句、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts. No credits, no watermark, no uploads. Win/macOS.
 
 ```bash
-cue skills add final90006-sketch/youtube-to-article --profile video
-```
-
----
-
-<a id="mfrashad-video-analyze"></a>
-## 💎 [mfrashad/video-analyze](https://github.com/mfrashad/video-analyze)
-
-**★ 0** · exceptional (score 12) · Shell · tags: ai-agents, claude-code, claude-skill, design-tools, ffmpeg
-
-A Claude Code skill that lets Claude actually watch a video — downloads from Instagram/TikTok/YouTube/X, extracts frames aligned to a transcript, and writes replication prompts for any UI or design it sees.
-
-✅ SKILL.md
-
-```bash
-cue skills add mfrashad/video-analyze --profile video
+cue skills add xixihhhh/hotclip --profile video
 ```
 
 ---

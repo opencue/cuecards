@@ -2,7 +2,7 @@
 title: "rodrigooler/portage — Claude Code skill discovered by cue"
 description: "Rehome agent path bindings when a project folder moves (Claude, Codex, Grok, and friends)"
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 

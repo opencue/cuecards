@@ -1,44 +1,42 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
-
-**★ 4** · exceptional (score 16.8) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
-
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
-
-✅ SKILL.md
-
-```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2244** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2250** · exceptional (score 14) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="msaad00-agent-bom"></a>
+## 💎 [msaad00/agent-bom](https://github.com/msaad00/agent-bom)
+
+**★ 29** · exceptional (score 10.6) · Python · tags: ai-agents, ai-security, ai-supply-chain, aibom, blast-radius
+
+Open security scanner and self-hosted control plane for AI, MCP, and cloud. One evidence model — run scans in your environment, centralize findings, govern in your VPC.
+
+```bash
+cue skills add msaad00/agent-bom --profile cybersecurity
 ```
 
 ---
@@ -56,10 +54,23 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="hybridindie-comfyui-mcp"></a>
+## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
+
+**★ 2** · exceptional (score 8) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+
+Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
+
+```bash
+cue skills add hybridindie/comfyui_mcp --profile cybersecurity
+```
+
+---
+
 <a id="secblok-belay"></a>
 ## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
 
-**★ 4** · strong (score 5.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 4** · strong (score 5.6) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
 
 Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
 

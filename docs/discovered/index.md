@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-08-08 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-08-09 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 70 | `nano-banana-pro-prompts-recommend-skill`, `humanizer-de`, `GodotMaker` |
-| [**backend**](./backend.md) | 10 | `mcphub`, `vault-cortex`, `belifoa` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `sanctuary-framework` |
-| [**creative-media**](./creative-media.md) | 4 | `comfyui-mcp`, `video-analyze`, `claude-code-ads` |
-| [**fleet-control**](./fleet-control.md) | 4 | `opencouncil-contract-inspector`, `rolepod`, `multi-agent-revenue-orchestrator` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook`, `claude-code-frontend` |
-| [**video**](./video.md) | 2 | `youtube-to-article`, `video-analyze` |
-| [**marketing**](./marketing.md) | 2 | `brand-launchpad`, `sticky-switcher-funnel-playbook` |
-| [**docs-writer**](./docs-writer.md) | 2 | `vault-cortex`, `cortex` |
-| [**research**](./research.md) | 2 | `popper-scope`, `find-research-papers-mcp` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `buywhere` |
-| [**nextjs**](./nextjs.md) | 1 | `cortex` |
+| [**core**](./core.md) | 72 | `nano-banana-pro-prompts-recommend-skill`, `senior-engineering-partner`, `icode-skill` |
+| [**backend**](./backend.md) | 8 | `code-graph-rag`, `codex-pooler`, `agent-bom` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `Claude-OSINT`, `agent-bom`, `sanctuary-framework` |
+| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `rolepod`, `multi-agent-revenue-orchestrator` |
+| [**creative-media**](./creative-media.md) | 3 | `luxin`, `claude-code-ads`, `redesigned-pancake` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `sticky-switcher-funnel-playbook` |
+| [**nextjs**](./nextjs.md) | 2 | `personal-knowledge-nexus`, `cortex` |
+| [**docs-writer**](./docs-writer.md) | 2 | `cortex`, `md-business` |
+| [**video**](./video.md) | 1 | `hotclip` |
+| [**niche**](./niche.md) | 1 | `xhs-product-poster` |
+| [**research**](./research.md) | 1 | `popper-scope` |
+| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `etsy-ugc-compliance-harvester` |
 
 ## How scoring works
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-09
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="martellevaliant19-grant-thinking-cn-biology"></a>
-## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+<a id="ewingyangs-xhs-product-poster"></a>
+## 💎 [EwingYangs/xhs-product-poster](https://github.com/EwingYangs/xhs-product-poster)
 
-**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 8.5) · HTML · tags: claude-skill, html-to-image, poster-generator, rednote, xiaohongshu
 
-Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+写 HTML 再截图生成小红书产品封面，代替 AI 生图：中文零错字、logo 精确、可嵌真实产品截图、改一行就能调
 
 ✅ SKILL.md
 
 ```bash
-cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+cue skills add EwingYangs/xhs-product-poster --profile niche
 ```
 
 ---

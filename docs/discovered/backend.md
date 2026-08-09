@@ -1,107 +1,81 @@
 ---
 title: "Claude Code Skills for backend"
-description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-08
+updated: 2026-08-09
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="samanhappy-mcphub"></a>
-## 💎 [samanhappy/mcphub](https://github.com/samanhappy/mcphub)
+<a id="vitali87-code-graph-rag"></a>
+## 💎 [vitali87/code-graph-rag](https://github.com/vitali87/code-graph-rag)
 
-**★ 2284** · exceptional (score 17) · TypeScript · tags: mcp, mcp-gateway, mcp-hub, mcp-router, mcp-server
+**★ 2632** · exceptional (score 16.5) · Python · tags: ai, ast, claude-code, code-analysis, code-understanding
 
-A unified hub for centrally managing and dynamically orchestrating multiple MCP servers/APIs into separate endpoints with flexible routing strategies.
+The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs
 
 ```bash
-cue skills add samanhappy/mcphub --profile backend
+cue skills add vitali87/code-graph-rag --profile backend
 ```
 
 ---
 
-<a id="aliasunder-vault-cortex"></a>
-## 💎 [aliasunder/vault-cortex](https://github.com/aliasunder/vault-cortex)
+<a id="icoretech-codex-pooler"></a>
+## 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
 
-**★ 15** · exceptional (score 10.1) · TypeScript · tags: ai-agents, ai-memory-system, claude, docker, hybrid-search
+**★ 139** · exceptional (score 13) · Elixir · tags: aider, api-gateway, cline, codex, continue
 
-Standalone MCP server for Obsidian vaults — hybrid search, notes & files, memory, tasks, OAuth 2.1.
+The full featured self-hosted Codex gateway, for teams, agents and you
 
 ```bash
-cue skills add aliasunder/vault-cortex --profile backend
+cue skills add icoretech/codex-pooler --profile backend
 ```
 
 ---
 
-<a id="imbios-belifoa"></a>
-## 💎 [ImBIOS/belifoa](https://github.com/ImBIOS/belifoa)
+<a id="msaad00-agent-bom"></a>
+## 💎 [msaad00/agent-bom](https://github.com/msaad00/agent-bom)
 
-**★ 1** · exceptional (score 8.3) · TypeScript · tags: agentic-ai, ai-agent, antigravity, bun, cli
+**★ 29** · exceptional (score 10.6) · Python · tags: ai-agents, ai-security, ai-supply-chain, aibom, blast-radius
 
-⚡ High-performance, compact Linear client & MCP server for AI agents. Reduces prompt context payload by 70–80% with persistent auth, CLI, skills & git hooks.
+Open security scanner and self-hosted control plane for AI, MCP, and cloud. One evidence model — run scans in your environment, centralize findings, govern in your VPC.
 
 ```bash
-cue skills add ImBIOS/belifoa --profile backend
+cue skills add msaad00/agent-bom --profile backend
 ```
 
 ---
 
-<a id="widthdom-codeindex"></a>
-## 💎 [Widthdom/CodeIndex](https://github.com/Widthdom/CodeIndex)
+<a id="ronineymessjr-sudo-career-copilot"></a>
+## 💎 [ronineymessjr-sudo/career-copilot](https://github.com/ronineymessjr-sudo/career-copilot)
 
-**★ 2** · exceptional (score 8) · C# · tags: ai-coding-agents, cli, code-indexing, code-navigation, code-search
+**★ 1** · exceptional (score 10.3) · TypeScript · tags: ai-job-search, career, claude-code, cli-tool, cloudflare-workers
 
-Local-first code search and indexing for repositories, exposed through a CLI, MCP server, and read-only LSP.
+AI-powered career copilot — search, track, and land your dream job via CLI, MCP, and Agent. Compatible with WorkBuddy / Claude Code / Codex / OpenCode.
 
 ```bash
-cue skills add Widthdom/CodeIndex --profile backend
+cue skills add ronineymessjr-sudo/career-copilot --profile backend
 ```
 
 ---
 
-<a id="buywhere-buywhere"></a>
-## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
+<a id="ariekogan-ateam-mcp"></a>
+## ✨ [ariekogan/ateam-mcp](https://github.com/ariekogan/ateam-mcp)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
+**★ 1** · strong (score 7.8) · JavaScript · tags: adas, ai-agents, mcp, mcp-server, model-context-protocol
 
-BuyWhere agent-native product catalog API
-
-```bash
-cue skills add BuyWhere/buywhere --profile backend
-```
-
----
-
-<a id="csoai-org-clinical-trials-ai-mcp"></a>
-## ✨ [CSOAI-ORG/clinical-trials-ai-mcp](https://github.com/CSOAI-ORG/clinical-trials-ai-mcp)
-
-**★ 0** · strong (score 7.5) · Python · tags: ai, ai-governance, compliance, csoai, mcp
-
-Search clinical trials, evaluate eligibility, compare trials, and retrieve endpoint data. Uses a reference database for demonstration purposes.
+ADAS MCP Server — build, validate, and deploy multi-agent solutions from any AI environment
 
 ```bash
-cue skills add CSOAI-ORG/clinical-trials-ai-mcp --profile backend
-```
-
----
-
-<a id="johalputt-vayupress"></a>
-## ✨ [johalputt/VayuPress](https://github.com/johalputt/VayuPress)
-
-**★ 10** · strong (score 7.2) · Go · tags: anti-censorship, anti-ddos, blog-engine, bot-protection, cms
-
-Your whole online presence in one sovereign Go binary — website, blog, PGP mail, E2E-encrypted chat, anti-DDoS bot shield, privacy analytics, one-click Tor .onion, and Stripe/PayPal/crypto monetization. No SaaS bills, no third parties, no telemetry. Own your content, your mailbox, your infrastructure.
-
-```bash
-cue skills add johalputt/VayuPress --profile backend
+cue skills add ariekogan/ateam-mcp --profile backend
 ```
 
 ---
@@ -119,15 +93,15 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="johnisanerd-google-images-api"></a>
-## ✨ [johnisanerd/Google-Images-API](https://github.com/johnisanerd/Google-Images-API)
+<a id="juanspz-agent-ready-index"></a>
+## ✨ [JuanSPZ/agent-ready-index](https://github.com/JuanSPZ/agent-ready-index)
 
-**★ 1** · strong (score 6.3) · Python · tags: api, apify, dataset, google-images, image-api
+**★ 1** · strong (score 5.8) · HTML · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
 
-Python + MCP quick-start for the Google Images API on Apify: bulk image search returning clean JSON.
+Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀
 
 ```bash
-cue skills add johnisanerd/Google-Images-API --profile backend
+cue skills add JuanSPZ/agent-ready-index --profile backend
 ```
 
 ---
