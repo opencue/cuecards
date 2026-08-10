@@ -16,7 +16,7 @@
  */
 
 import { spawn } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import { copyFile, readFile } from "node:fs/promises";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
@@ -225,6 +225,16 @@ function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise
     child.on("exit", (code) => res(code ?? 0));
     child.on("error", () => res(127));
   });
+}
+
+/** Keep Cue's isolated CODEX_HOME in sync with Codex/AuthMux's canonical auth. */
+export async function syncCodexAuth(source: string, destination: string): Promise<boolean> {
+  try {
+    await copyFile(source, destination);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -2777,6 +2787,11 @@ export async function run(args: string[]): Promise<number> {
   // re-login.
   const stopReconciler =
     agentKind === "claude-code" ? startCredentialReconciler(runtimeKey) : undefined;
+  const canonicalCodexAuth = join(homedir(), ".codex", "auth.json");
+  const runtimeCodexAuth = join(runtime.runtimeDir, "auth.json");
+  if (agentKind === "codex") {
+    await syncCodexAuth(canonicalCodexAuth, runtimeCodexAuth);
+  }
   let exitCode: number;
   try {
     exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
@@ -2786,6 +2801,9 @@ export async function run(args: string[]): Promise<number> {
   // Persist any /login done inside the session to its account dir now —
   // don't leave the only live rotated token stranded in the per-account runtime.
   if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);
+  if (agentKind === "codex") {
+    await syncCodexAuth(runtimeCodexAuth, canonicalCodexAuth);
+  }
   // Post-session runtime GC: the child has exited, so this costs zero launch
   // latency. Throttled (~once/day) and never touches the runtime we just used.
   try { await maybeAutoGc(runtimeKey); } catch { /* GC is best-effort */ }
