@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-09
+updated: 2026-08-10
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,19 +15,6 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="danielgwilson-luxin"></a>
-## 💎 [danielgwilson/luxin](https://github.com/danielgwilson/luxin)
-
-**★ 1** · exceptional (score 12.3) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
-
-Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
-
-```bash
-cue skills add danielgwilson/luxin --profile creative-media
-```
-
----
-
 <a id="novoads-claude-code-ads"></a>
 ## 💎 [novoads/claude-code-ads](https://github.com/novoads/claude-code-ads)
 
@@ -37,6 +24,19 @@ Claude Code skills to generate AI video ads, UGC ads, and image ads. The officia
 
 ```bash
 cue skills add novoads/claude-code-ads --profile creative-media
+```
+
+---
+
+<a id="mercantile-danaidae17-veo"></a>
+## ✨ [Mercantile-danaidae17/veo](https://github.com/Mercantile-danaidae17/veo)
+
+**★ 0** · strong (score 7.5) · TypeScript · tags: 4k-upscale, ai-video, ai-video-generator, audio-video-generation, camera-control
+
+Run, test, and deploy your AI Studio app locally with Node.js and Gemini API support
+
+```bash
+cue skills add Mercantile-danaidae17/veo --profile creative-media
 ```
 
 ---

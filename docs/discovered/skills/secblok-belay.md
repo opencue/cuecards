@@ -2,7 +2,7 @@
 title: "SECBLOK/belay — Claude Code skill discovered by cue"
 description: "Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous comm"
 layout: page
-updated: 2026-08-09
+updated: 2026-08-10
 tags: [claude-code, skill, cybersecurity]
 ---
 

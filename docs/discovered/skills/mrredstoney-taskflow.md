@@ -2,7 +2,7 @@
 title: "MrRedstoneY/TaskFlow — Claude Code skill discovered by cue"
 description: "Build a collaborative task management backend with Django, REST, WebSockets, and RabbitMQ for realtime updates and async notifications"
 layout: page
-updated: 2026-07-19
+updated: 2026-08-10
 tags: [claude-code, skill, backend, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: ai, ai-agents, dag, dependencies-manager, fastapi, gpu-programming, heterogeneous-parallel-programming, high-performance-computing, mcp, mcp-server, model-context-protocol, multi-threading, multithreading, nodejs, notes-manager, parallel, project-management, typescript, workflow
 
 ## Best fit cue profiles

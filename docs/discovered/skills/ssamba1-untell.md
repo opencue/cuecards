@@ -2,7 +2,7 @@
 title: "ssamba1/untell — Claude Code skill discovered by cue"
 description: "untell — free, open-source AI humanizer that closes the loop: iteratively rewrites AI text against live detector scores (GPTZero, ZeroGPT, Originality.ai, Turni"
 layout: page
-updated: 2026-08-09
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-08-09
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: ai-detection, ai-detector, ai-humanizer, anti-ai-detection, bypass-ai-detection, bypass-turnitin, claude-code, claude-code-skill, gptzero, gptzero-bypass, humanize-ai, humanizer, nlp, open-source, text-humanizer, turnitin, undetectable-ai, undetectable-ai-alternative, writing-tools, zerogpt
 
 ## Best fit cue profiles

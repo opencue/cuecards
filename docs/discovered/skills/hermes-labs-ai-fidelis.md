@@ -2,7 +2,7 @@
 title: "hermes-labs-ai/fidelis — Claude Code skill discovered by cue"
 description: "Zero-LLM agent memory for Claude Code and AI agents: local-first retrieval via BM25, dense vectors, and reciprocal rank fusion, with no LLM call in the default "
 layout: page
-updated: 2026-08-09
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 

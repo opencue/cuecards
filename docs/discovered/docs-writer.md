@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-09
+updated: 2026-08-10
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="obelyth-cortex"></a>
-## ✨ [Obelyth/cortex](https://github.com/Obelyth/cortex)
+<a id="onourimpram-mneme"></a>
+## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 1** · strong (score 6.3) · TypeScript · tags: ai-memory, claude, claude-ai, knowledge-base, mcp
+**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
-Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations.
-
-```bash
-cue skills add Obelyth/cortex --profile docs-writer
-```
-
----
-
-<a id="meta-taro-md-business"></a>
-## ✨ [meta-taro/md-business](https://github.com/meta-taro/md-business)
-
-**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, business-documents, invoice, json-schema, markdown
-
-Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-in MCP server. Tauri desktop app + Chrome extension.
+Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ```bash
-cue skills add meta-taro/md-business --profile docs-writer
+cue skills add OnourImpram/mneme --profile docs-writer
 ```
 
 ---

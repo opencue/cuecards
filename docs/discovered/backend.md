@@ -1,81 +1,68 @@
 ---
 title: "Claude Code Skills for backend"
-description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-09
+updated: 2026-08-10
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vitali87-code-graph-rag"></a>
-## 💎 [vitali87/code-graph-rag](https://github.com/vitali87/code-graph-rag)
+<a id="mistertechie06-x402-payments-skill"></a>
+## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
 
-**★ 2632** · exceptional (score 16.5) · Python · tags: ai, ast, claude-code, code-analysis, code-understanding
+**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
 
-The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs
+Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
 
 ```bash
-cue skills add vitali87/code-graph-rag --profile backend
+cue skills add mistertechie06/x402-payments-skill --profile backend
 ```
 
 ---
 
-<a id="icoretech-codex-pooler"></a>
-## 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
+<a id="sheldonzhuang-housing-sentinel-ai"></a>
+## 💎 [SheldonZhuang/housing-sentinel-ai](https://github.com/SheldonZhuang/housing-sentinel-ai)
 
-**★ 139** · exceptional (score 13) · Elixir · tags: aider, api-gateway, cline, codex, continue
+**★ 1** · exceptional (score 9.8) · tags: ai-agent, api, china, claude, claude-skill
 
-The full featured self-hosted Codex gateway, for teams, agents and you
+房哨兵 AI 接入中心：中国12城官方房产成交数据与进攻/防守市场信号 — MCP Server + REST API + Claude Skill | Housing Sentinel: official housing data & offense/defense market signals for 12 major Chinese cities, via MCP / REST / Claude Skill
 
 ```bash
-cue skills add icoretech/codex-pooler --profile backend
+cue skills add SheldonZhuang/housing-sentinel-ai --profile backend
 ```
 
 ---
 
-<a id="msaad00-agent-bom"></a>
-## 💎 [msaad00/agent-bom](https://github.com/msaad00/agent-bom)
+<a id="unpolished-tagusriver58-uefn-toolbelt"></a>
+## ✨ [Unpolished-tagusriver58/UEFN-TOOLBELT](https://github.com/Unpolished-tagusriver58/UEFN-TOOLBELT)
 
-**★ 29** · exceptional (score 10.6) · Python · tags: ai-agents, ai-security, ai-supply-chain, aibom, blast-radius
+**★ 1** · strong (score 7.8) · Python · tags: 3d-world-mapping, api, automation, editor-extension, framework
 
-Open security scanner and self-hosted control plane for AI, MCP, and cloud. One evidence model — run scans in your environment, centralize findings, govern in your VPC.
+Build UEFN Python tools for asset registry, device cataloging, and workflow automation with 355 utility functions
 
 ```bash
-cue skills add msaad00/agent-bom --profile backend
+cue skills add Unpolished-tagusriver58/UEFN-TOOLBELT --profile backend
 ```
 
 ---
 
-<a id="ronineymessjr-sudo-career-copilot"></a>
-## 💎 [ronineymessjr-sudo/career-copilot](https://github.com/ronineymessjr-sudo/career-copilot)
+<a id="mrredstoney-taskflow"></a>
+## ✨ [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow)
 
-**★ 1** · exceptional (score 10.3) · TypeScript · tags: ai-job-search, career, claude-code, cli-tool, cloudflare-workers
+**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, dag, dependencies-manager, fastapi
 
-AI-powered career copilot — search, track, and land your dream job via CLI, MCP, and Agent. Compatible with WorkBuddy / Claude Code / Codex / OpenCode.
-
-```bash
-cue skills add ronineymessjr-sudo/career-copilot --profile backend
-```
-
----
-
-<a id="ariekogan-ateam-mcp"></a>
-## ✨ [ariekogan/ateam-mcp](https://github.com/ariekogan/ateam-mcp)
-
-**★ 1** · strong (score 7.8) · JavaScript · tags: adas, ai-agents, mcp, mcp-server, model-context-protocol
-
-ADAS MCP Server — build, validate, and deploy multi-agent solutions from any AI environment
+Build a collaborative task management backend with Django, REST, WebSockets, and RabbitMQ for realtime updates and async notifications
 
 ```bash
-cue skills add ariekogan/ateam-mcp --profile backend
+cue skills add MrRedstoneY/TaskFlow --profile backend
 ```
 
 ---
@@ -83,7 +70,7 @@ cue skills add ariekogan/ateam-mcp --profile backend
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 9** · strong (score 6.3) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 10** · strong (score 6.4) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
 Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
@@ -93,15 +80,15 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="juanspz-agent-ready-index"></a>
-## ✨ [JuanSPZ/agent-ready-index](https://github.com/JuanSPZ/agent-ready-index)
+<a id="auro-rium-ops-incident-core"></a>
+## ✨ [Auro-rium/Ops-Incident-Core](https://github.com/Auro-rium/Ops-Incident-Core)
 
-**★ 1** · strong (score 5.8) · HTML · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
+**★ 1** · strong (score 5.3) · Python · tags: azure-openai, collector, engineering-evidence, fastapi, incident-response
 
-Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀
+Collector-first engineering evidence backend for deterministic ingestion, Qdrant retrieval, cited investigation, readiness reports, workflows, evals, and Core MCP. Azure deployment scaffold; not yet production-grade.
 
 ```bash
-cue skills add JuanSPZ/agent-ready-index --profile backend
+cue skills add Auro-rium/Ops-Incident-Core --profile backend
 ```
 
 ---
