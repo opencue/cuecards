@@ -2,19 +2,19 @@
 title: "coopersimson96/reverse-engineer — Claude Code skill discovered by cue"
 description: "Reverse-engineer any goal, plan, or stuck point: work backward from the outcome, chunk the path, find the one bottleneck, get the next action. A Claude/agent sk"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [coopersimson96/reverse-engineer](https://github.com/coopersimson96/reverse-engineer)
 
-**★ 1** · potential (score 4.2)
+**★ 1** · potential (score 4.1)
 
 > Reverse-engineer any goal, plan, or stuck point: work backward from the outcome, chunk the path, find the one bottleneck, get the next action. A Claude/agent skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: (none)

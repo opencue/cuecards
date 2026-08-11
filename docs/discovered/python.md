@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-10
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="dwgx-smartcli"></a>
-## 💎 [dwgx/SmartCLI](https://github.com/dwgx/SmartCLI)
+<a id="mrredstoney-taskflow"></a>
+## ✨ [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow)
 
-**★ 2** · exceptional (score 9) · Python · tags: agent-skills, agent-tools, ai-agents, ansi, ascii-art
+**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, dag, dependencies-manager, fastapi
 
-Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit
+Build a collaborative task management backend with Django, REST, WebSockets, and RabbitMQ for realtime updates and async notifications
 
 ```bash
-cue skills add dwgx/SmartCLI --profile python
+cue skills add MrRedstoneY/TaskFlow --profile python
+```
+
+---
+
+<a id="auro-rium-ops-incident-core"></a>
+## ✨ [Auro-rium/Ops-Incident-Core](https://github.com/Auro-rium/Ops-Incident-Core)
+
+**★ 1** · strong (score 5.3) · Python · tags: azure-openai, collector, engineering-evidence, fastapi, incident-response
+
+Collector-first engineering evidence backend for deterministic ingestion, Qdrant retrieval, cited investigation, readiness reports, workflows, evals, and Core MCP. Azure deployment scaffold; not yet production-grade.
+
+```bash
+cue skills add Auro-rium/Ops-Incident-Core --profile python
 ```
 
 ---

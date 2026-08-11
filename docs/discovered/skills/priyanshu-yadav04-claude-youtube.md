@@ -2,7 +2,7 @@
 title: "priyanshu-yadav04/claude-youtube — Claude Code skill discovered by cue"
 description: "Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools."
 layout: page
-updated: 2026-07-19
+updated: 2026-08-10
 tags: [claude-code, skill, marketing, video]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy, facebook-ads, google-ads, linkedin-ads, mistral, openai, openclaw-plugin, openclaw-skills, paid-advertising, ppc, python, seo, translation, youtube-analytics, youtube-transcript
 
 ## Best fit cue profiles

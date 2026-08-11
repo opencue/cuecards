@@ -2,7 +2,7 @@
 title: "elladineluxemburger97/claude-aso-audit-skill — Claude Code skill discovered by cue"
 description: "Audit iOS and Android app listings with Claude ASO skill packs, score ASO health, and get prioritized fixes for better visibility"
 layout: page
-updated: 2026-07-25
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-25
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: ai-agents, android, app-store-connect, app-store-optimization, claude-code, claude-code-skill, codex, cursor, fastlane, google-play, ios, keyword-research, keywords, metadata-optimization, mobile-app
 
 ## Best fit cue profiles

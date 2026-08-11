@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-11
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="cyanheads-crossref-mcp-server"></a>
-## 💎 [cyanheads/crossref-mcp-server](https://github.com/cyanheads/crossref-mcp-server)
+<a id="aemro-motors-popper-scope"></a>
+## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 2** · exceptional (score 8.5) · TypeScript · tags: academic-search, ai-agent, bibliometrics, bun, citation
+**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-Resolve DOIs, search ~155M scholarly works, and fetch references via the Crossref REST API. STDIO or Streamable HTTP.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add cyanheads/crossref-mcp-server --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

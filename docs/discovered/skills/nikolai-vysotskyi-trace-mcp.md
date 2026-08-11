@@ -2,21 +2,21 @@
 title: "nikolai-vysotskyi/trace-mcp — Claude Code skill discovered by cue"
 description: "MCP server for Claude Code and Codex. One tool call replaces ~42 minutes of agent exploration"
 layout: page
-updated: 2026-08-05
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [nikolai-vysotskyi/trace-mcp](https://github.com/nikolai-vysotskyi/trace-mcp)
 
-**★ 95** · exceptional (score 18.8) · TypeScript · ai-agents, claude, claude-ai, claude-code, claude-code-plugin
+**★ 98** · exceptional (score 18.8) · TypeScript · ai-agents, claude, claude-ai, claude-code, claude-code-plugin
 
 > MCP server for Claude Code and Codex. One tool call replaces ~42 minutes of agent exploration
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.8 based on:
-- ⭐ 95 stars
-- 🗓️ Last pushed: 2026-08-05
+- ⭐ 98 stars
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: ai-agents, claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-desktop, claude-skill, claude-skills, code-intelligence, codex, codex-skill, developer-tools, knowledge-graph, mcp, mcp-server, rag, token, token-savings, tokens
 
 ## Best fit cue profiles

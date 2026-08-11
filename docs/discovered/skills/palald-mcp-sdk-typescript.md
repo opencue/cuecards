@@ -2,7 +2,7 @@
 title: "Palald/mcp-sdk-typescript — Claude Code skill discovered by cue"
 description: "🚀 Build efficient applications with the MCP SDK for TypeScript, offering optimized performance, real-time communication, and robust session management."
 layout: page
-updated: 2026-06-24
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-24
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: agentic-ai, analytics, bioinformatics, bioinformatics-tool, cursor, ethereum, functioncalling, llm, mcp-client, mcp-server, mcp-tools, mcps, model-context-protocol, nodejs, observability, science, sdk, typescript
 
 ## Best fit cue profiles

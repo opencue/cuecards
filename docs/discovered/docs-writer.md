@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-11
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="obelyth-cortex"></a>
-## ✨ [Obelyth/cortex](https://github.com/Obelyth/cortex)
+<a id="onourimpram-mneme"></a>
+## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 1** · strong (score 6.3) · TypeScript · tags: ai-memory, claude, claude-ai, knowledge-base, mcp
+**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
-Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations.
+Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ```bash
-cue skills add Obelyth/cortex --profile docs-writer
+cue skills add OnourImpram/mneme --profile docs-writer
 ```
 
 ---

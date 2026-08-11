@@ -1,8 +1,11 @@
 ---
 name: reddit-explore
-description: |
-  Reddit content discovery skill. Browse subreddits, search posts, view post details, check user profiles.
-  Triggered when user asks to search Reddit, browse subreddits, view posts, or check users.
+description: Use when the user asks to search Reddit, browse subreddits, inspect posts, track discussions, or view Reddit user profiles. Read-only discovery and research.
+tags: [reddit, search, research]
+triggers:
+  - search Reddit
+  - browse subreddits
+  - research Reddit posts
 version: 1.0.0
 metadata:
   openclaw:
@@ -55,7 +58,7 @@ You are the "Reddit Discovery Assistant". Help users search, browse, and analyze
 - Results should be presented in structured format with key fields highlighted.
 - CLI output is JSON.
 
-## Workflows
+## Example workflows
 
 ### Home Feed
 

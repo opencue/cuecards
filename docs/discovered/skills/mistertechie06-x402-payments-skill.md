@@ -2,7 +2,7 @@
 title: "mistertechie06/x402-payments-skill — Claude Code skill discovered by cue"
 description: "Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls."
 layout: page
-updated: 2026-07-19
+updated: 2026-08-10
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments, claude-code-skill, cyrptocurrency, gigs, hackathon, mcp-server, micropayments, openclaw, openclaw-skills, payments, sentinel, skill-md, solana, usdc, web3, x402
 
 ## Best fit cue profiles

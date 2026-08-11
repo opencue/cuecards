@@ -2,21 +2,21 @@
 title: "NEXL-LTS/agent-apropos — Claude Code skill discovered by cue"
 description: "Deterministic binary that delivers the right documentation to the right moment — compiles convention-doc frontmatter into triggers, generates skill wrappers, an"
 layout: page
-updated: 2026-08-05
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [NEXL-LTS/agent-apropos](https://github.com/NEXL-LTS/agent-apropos)
 
-**★ 1** · potential (score 3.2) · Crystal
+**★ 1** · potential (score 3.3) · Crystal
 
 > Deterministic binary that delivers the right documentation to the right moment — compiles convention-doc frontmatter into triggers, generates skill wrappers, and injects path- and construct-scoped rules at edit time via Claude Code hooks.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-02
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

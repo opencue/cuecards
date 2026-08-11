@@ -67,6 +67,8 @@ export interface MaterializeInput {
    *  even though the rebuild preserves the old file. Profile.mcps is already
    *  pruned to the kept set; this just evicts the stale keys. */
   disabledMcpIds?: string[];
+  /** Test seam for loopback proxy health; production defaults to the HTTP probe. */
+  proxyHealthCheck?: (url: string) => Promise<boolean>;
 }
 
 export interface MaterializeOutput {
@@ -188,7 +190,78 @@ export function shouldIncludeSessionTelemetry(env: Record<string, string | undef
   return env.CUE_SESSION_TELEMETRY === "1" || env.CUE_SESSION_TELEMETRY === "true";
 }
 
+const MATERIALIZE_LOCK_STALE_MS = 600_000;
+const MATERIALIZE_LOCK_WAIT_MS = 30_000;
+
+async function withMaterializeLock<T>(runtimeDir: string, action: () => Promise<T>): Promise<T> {
+  const lockDir = `${runtimeDir}.lock`;
+  const ownerFile = join(lockDir, "owner.json");
+  const token = `${process.pid}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  const deadline = Date.now() + MATERIALIZE_LOCK_WAIT_MS;
+  await mkdir(dirname(runtimeDir), { recursive: true });
+
+  while (true) {
+    let created = false;
+    try {
+      await mkdir(lockDir);
+      created = true;
+      await writeFile(ownerFile, JSON.stringify({ pid: process.pid, token }));
+      break;
+    } catch (error) {
+      if (created) {
+        await rm(lockDir, { recursive: true, force: true });
+        throw error;
+      }
+      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+      try {
+        const age = Date.now() - (await lstat(lockDir)).mtimeMs;
+        const owner = JSON.parse(await readFile(ownerFile, "utf8")) as { pid?: number };
+        let ownerAlive = typeof owner.pid === "number";
+        if (ownerAlive) {
+          try { process.kill(owner.pid!, 0); } catch (probeError) {
+            ownerAlive = (probeError as NodeJS.ErrnoException).code === "EPERM";
+          }
+        }
+        if (!ownerAlive && age > 1_000) {
+          await rm(lockDir, { recursive: true, force: true });
+          continue;
+        }
+      } catch {
+        try {
+          const age = Date.now() - (await lstat(lockDir)).mtimeMs;
+          if (age > MATERIALIZE_LOCK_STALE_MS) {
+            await rm(lockDir, { recursive: true, force: true });
+            continue;
+          }
+        } catch { /* lock disappeared between checks */ }
+      }
+      if (Date.now() >= deadline) {
+        throw new Error(`Timed out waiting for runtime materialization lock: ${lockDir}`);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    }
+  }
+
+  try {
+    return await action();
+  } finally {
+    try {
+      const owner = JSON.parse(await readFile(ownerFile, "utf8")) as { token?: string };
+      if (owner.token === token) await rm(lockDir, { recursive: true, force: true });
+    } catch { /* a stale-lock recovery already replaced or removed this lock */ }
+  }
+}
+
 export async function materializeRuntime(input: MaterializeInput): Promise<MaterializeOutput> {
+  const runtimeDir = join(
+    input.runtimeRoot,
+    input.runtimeKey ?? input.profile.name,
+    agentSubdir(input.agent),
+  );
+  return withMaterializeLock(runtimeDir, () => materializeRuntimeUnlocked(input));
+}
+
+async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<MaterializeOutput> {
   const { profile, agent, runtimeRoot } = input;
   const runtimeDir = join(runtimeRoot, input.runtimeKey ?? profile.name, agentSubdir(agent));
 
@@ -283,7 +356,7 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
       }
       slugToSrc.set(slug, src);
       slugToId.set(slug, skill.id);
-    } catch (err) {
+    } catch {
       skippedSkills.push(skill.id);
     }
   }
@@ -480,7 +553,10 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
     // Codex equivalent — write config.toml from registry. Caller pre-renders to TOML.
-    await writeFile(join(tmpDir, "config.toml"), tomlRender({ mcp_servers: mcpServers }));
+    await writeFile(
+      join(tmpDir, "config.toml"),
+      tomlRender({ mcp_servers: mcpServers, extra: profile.codexConfig }),
+    );
   }
 
   // 3. CLAUDE.md with stamp + role identity
@@ -767,6 +843,36 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     await linkPluginCache(tmpDir, input.credentialsSource);
   }
 
+  // Codex writes durable thread state directly into CODEX_HOME (sessions/,
+  // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
+  // Claude, it has no credentialsSource overlay, so an atomic rematerialization
+  // must carry every non-cue-managed entry forward. Otherwise changing a
+  // profile while Codex is running deletes the active rollout and transcript
+  // persistence starts failing with "no rollout found for thread id".
+  if (agent === "codex") {
+    const managed = new Set([
+      ".cue-hash",
+      ".cue-skills",
+      "AGENTS.md",
+      "config.toml",
+      "playbooks",
+      "rules",
+      "skills",
+    ]);
+    let oldEntries: string[] = [];
+    try { oldEntries = await readdir(runtimeDir); } catch { /* first build */ }
+    for (const name of oldEntries) {
+      if (managed.has(name)) continue;
+      const oldPath = join(runtimeDir, name);
+      const newPath = join(tmpDir, name);
+      try {
+        await lstat(newPath);
+        continue; // a freshly generated entry wins
+      } catch { /* absent in the new runtime — preserve the old one */ }
+      try { await rename(oldPath, newPath); } catch { /* best-effort per entry */ }
+    }
+  }
+
   // 6. Atomic swap: rm -rf old, rename tmp.
   //
   // Preserve session/credential state from the OLD runtime so resume + auth
@@ -774,6 +880,8 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
   //   - .claude.json      → session state, projects list, oauthAccount
   //   - .credentials.json → OAuth tokens (refresh + access)
   //   - backups/          → Claude Code's own .claude.json backup chain
+  //   - session-env/      → environment snapshots for sessions still running
+  //   - tasks/            → in-flight task state for sessions still running
   //
   // We MOVE these from the old runtime over whatever the overlay step (5)
   // dropped into tmpDir — so a logged-in runtime stays logged in even when
@@ -800,7 +908,9 @@ export async function materializeRuntime(input: MaterializeInput): Promise<Mater
     const oldUuid = await accountUuidAt(join(runtimeDir, ".claude.json"));
     if (srcUuid && oldUuid && srcUuid !== oldUuid) sameAccount = false;
   }
-  const preserveFiles = sameAccount ? [".claude.json", ".credentials.json", "backups"] : [];
+  const preserveFiles = sameAccount
+    ? [".claude.json", ".credentials.json", "backups", "session-env", "tasks"]
+    : [];
   for (const name of preserveFiles) {
     const oldPath = join(runtimeDir, name);
     const newPath = join(tmpDir, name);
@@ -1396,7 +1506,8 @@ async function buildClaudeSettings(
       // surface it when a loopback proxy actually answers; otherwise drop it
       // (fail-open to direct Anthropic) and warn. Non-loopback URLs are not
       // gated — they're assumed to be a deliberately-managed remote endpoint.
-      if (key === "ANTHROPIC_BASE_URL" && !(await isProxyReachable(val))) {
+      const proxyHealthCheck = input.proxyHealthCheck ?? isProxyReachable;
+      if (key === "ANTHROPIC_BASE_URL" && !(await proxyHealthCheck(val))) {
         console.warn(
           `[cue] ANTHROPIC_BASE_URL=${val} is unreachable — dropping the proxy ` +
             `wrap for profile "${profile.name}"; Claude will talk to Anthropic ` +
@@ -1417,16 +1528,60 @@ async function buildClaudeSettings(
 
 // Minimal TOML emitter for the MCP config block. Replace with `@iarna/toml` if
 // we need broader coverage. Codex only reads a flat-ish [mcp_servers.<id>] table.
-function tomlRender(obj: { mcp_servers: Record<string, unknown> }): string {
+function tomlValue(value: unknown): string {
+  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "boolean") return String(value);
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  if (Array.isArray(value)) return `[${value.map(tomlValue).join(", ")}]`;
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .map(([key, nested]) => `${JSON.stringify(key)} = ${tomlValue(nested)}`);
+    return `{ ${entries.join(", ")} }`;
+  }
+  throw new TypeError(`Unsupported TOML value: ${String(value)}`);
+}
+
+function tomlRender(obj: {
+  mcp_servers: Record<string, unknown>;
+  extra?: Record<string, unknown>;
+}): string {
   const out: string[] = [];
+
+  // Profile `codex_config` first, and within it bare keys before any table
+  // header. TOML binds every key after `[table]` to that table, so emitting
+  // `sandbox_mode` after `[mcp_servers.foo]` would silently make it
+  // `mcp_servers.foo.sandbox_mode` and Codex would ignore it.
+  const extra = obj.extra ?? {};
+  const scalars = Object.entries(extra).filter(([, v]) => !isTomlTable(v));
+  const tables = Object.entries(extra).filter(([, v]) => isTomlTable(v));
+
+  for (const [k, v] of scalars) out.push(`${k} = ${tomlValue(v)}`);
+  if (scalars.length > 0) out.push("");
+
+  for (const [name, val] of tables) {
+    out.push(`[${name}]`);
+    for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
+      out.push(`${k} = ${tomlValue(v)}`);
+    }
+    out.push("");
+  }
+
   for (const [id, val] of Object.entries(obj.mcp_servers)) {
     out.push(`[mcp_servers.${id}]`);
     for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
-      out.push(`${k} = ${JSON.stringify(v)}`);
+      out.push(`${k} = ${tomlValue(v)}`);
     }
     out.push("");
   }
   return out.join("\n");
+}
+
+/**
+ * True for values that must render as a `[table]` header rather than a bare
+ * key. Arrays are inline TOML values, so they stay scalars here.
+ */
+function isTomlTable(v: unknown): boolean {
+  return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
 // ---------------------------------------------------------------------------
@@ -1517,7 +1672,6 @@ async function getSkillChains(skillsList: string[]): Promise<string | null> {
     if (!existsSync(projectsDir)) return null;
 
     // Scan recent sessions for skill co-occurrence
-    const coOccurrence = new Map<string, Map<string, number>>();
     const slugs = new Set(skillsList.map((s) => s.split("/").pop() ?? s));
 
     const res = spawnSync("grep", ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
@@ -1528,8 +1682,6 @@ async function getSkillChains(skillsList: string[]): Promise<string | null> {
 
     if (!res.stdout) return null;
 
-    // Group skill reads by session file (co-occurrence within same session)
-    const sessionSkills = new Map<string, string[]>();
     // We can't easily get per-file grouping from grep -r, so use a simpler heuristic:
     // just find which skills from THIS profile are most commonly used together
     const skillCounts = new Map<string, number>();

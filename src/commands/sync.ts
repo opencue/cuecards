@@ -34,6 +34,7 @@ import {
   prepareRuntime,
   resolveClaudeCredentialsSource,
   runtimeAgentSubdir,
+  runtimeDirFor,
 } from "../lib/runtime-install";
 
 const RUNTIME_ROOT = join(configDir(), "runtime");
@@ -143,7 +144,13 @@ export async function run(args: string[]): Promise<number> {
           runtimeKey: key,
           credentialsSource:
             agent === "claude-code"
-              ? await resolveClaudeCredentialsSource({ healFromRuntime: false })
+              // `key` is the runtimeKey passed above, so this is exactly the
+              // dir this iteration will write — a `cue sync` run from inside a
+              // cue session must not overlay that runtime onto itself.
+              ? await resolveClaudeCredentialsSource({
+                healFromRuntime: false,
+                runtimeDir: runtimeDirFor(key, agent),
+              })
               : undefined,
         });
         rebuilt = rebuilt || out.rebuilt;

@@ -1,0 +1,404 @@
+name: ego-lite-stack
+icon: "🏭"
+description: "Merged loadout — gstack + backend + improver + commerce + skill-writer + vite + growth + studio + resend + headroom + stripe (203 skills, 19 MCPs)"
+inherits: core
+bundles:
+  - gstack
+  - backend
+  - improver
+  - commerce
+  - skill-writer
+  - vite
+  - growth
+  - studio
+  - resend
+  - headroom
+  - stripe
+skills:
+  local:
+    - gstack/ship
+    - gstack/land-and-deploy
+    - gstack/setup-deploy
+    - gstack/canary
+    - gstack/document-release
+    - gstack/document-generate
+    - gstack/landing-report
+    - gstack/gstack-upgrade
+    - gstack/design-review
+    - gstack/design-shotgun
+    - gstack/design-consultation
+    - gstack/design-html
+    - gstack/devex-review
+    - gstack/qa
+    - gstack/qa-only
+    - gstack/spec
+    - gstack/autoplan
+    - gstack/office-hours
+    - gstack/plan-ceo-review
+    - gstack/plan-design-review
+    - gstack/plan-devex-review
+    - gstack/plan-eng-review
+    - gstack/plan-tune
+    - gstack/health
+    - gstack/careful
+    - gstack/freeze
+    - gstack/unfreeze
+    - gstack/guard
+    - gstack/investigate
+    - gstack/review
+    - gstack/cso
+    - gstack/browse
+    - gstack/open-gstack-browser
+    - gstack/setup-browser-cookies
+    - gstack/scrape
+    - gstack/skillify
+    - gstack/hackernews-frontpage
+    - gstack/context-save
+    - gstack/context-restore
+    - gstack/ios-design-review
+    - gstack/ios-qa
+    - gstack/ios-fix
+    - gstack/ios-sync
+    - gstack/ios-clean
+    - gstack/benchmark
+    - gstack/benchmark-models
+    - gstack/codex
+    - gstack/make-pdf
+    - gstack/pair-agent
+    - gstack/learn
+    - gstack/setup-gbrain
+    - gstack/sync-gbrain
+    - github/gitguardex
+    - review/api-tester
+    - review/security-best-practices
+    - review/security-review
+    - stripe/stripe-best-practices
+    - stripe/stripe-webhooks
+    - deployment/supabase
+    - deployment/pnpm
+    - github/github
+    - github/gh-fix-ci
+    - deployment/coolify
+    - medusa/medusa-reference
+    - medusa/building-with-medusa
+    - medusa/building-storefronts
+    - medusa/storefront-best-practices
+    - medusa/building-admin-dashboard-customizations
+    - medusa/creating-internal-agents
+    - medusa/db-generate
+    - medusa/db-migrate
+    - medusa/new-user
+    - medusa/new-admin-via-api
+    - medusa/medusa-shop-setup
+    - medusa/woocommerce-to-medusa-import
+    - medusa/gh-submodule-publish
+    - medusa/medusa-local-dev
+    - medusa/provision-medusa-s3-bucket
+    - design/screenshot
+    - design/design-taste-frontend
+    - design/image-to-code
+    - design/ui-ux-pro-max
+    - design/minimalist-ui
+    - browser/agent-browser
+    - design/taste-skill
+    - design/taste-skill-v1
+    - design/gpt-tasteskill
+    - design/image-to-code-skill
+    - design/imagegen-frontend-web
+    - design/imagegen-frontend-mobile
+    - design/brandkit
+    - design/redesign-skill
+    - design/soft-skill
+    - design/output-skill
+    - design/minimalist-skill
+    - design/brutalist-skill
+    - design/stitch-skill
+    - design/industrial-brutalist-ui
+    - design/redesign-existing-projects
+    - higgsfield/higgsfield-generate
+    - higgsfield/higgsfield-product-photoshoot
+    - higgsfield/higgsfield-marketplace-cards
+    - higgsfield/higgsfield-soul-id
+    - medusa/higgsfield-to-medusa-products
+    - private/myvps
+    - hostinger/dns
+    - hostinger/domains
+    - hostinger/hosting
+    - hostinger/vps
+    - meta/skill-reviewer
+    - meta/description-optimizer
+    - meta/skill-eval
+    - meta/cli-writer
+    - meta/mcp-finder
+    - meta/skill-discovery
+    - meta/skill-suggestion
+    - meta/profile-optimizer
+    - meta/plugin-creator
+    - meta/full-output-enforcement
+    - meta/retro
+    - meta/workspace-recipes
+    - meta/profile-fit-monitor
+    - meta/acpx
+    - meta/builtin-manager
+    - meta/profile-suggest
+    - meta/save-profile
+    - meta/smithery-usage
+    - meta/soul
+    - meta/upgrade-stack
+    - meta/cue-dashboard
+    - design/gpt-taste
+    - design/high-end-visual-design
+    - meta/awesome-list-submit
+    - marketing/cue-rec
+    - marketing/ab-test-analyzer
+    - marketing/ab-test-setup-and-analysis
+    - marketing/account-structure-review
+    - marketing/ad-copy-variant-generator
+    - marketing/ad-extension-audit
+    - marketing/ad-spend-allocator
+    - marketing/anomaly-detection
+    - marketing/attribution-model-comparison
+    - marketing/audience-overlap-analysis
+    - marketing/bid-strategy-recommendations
+    - marketing/budget-scenario-planner
+    - marketing/campaign-naming-convention-builder
+    - marketing/channel-mix-optimizer
+    - marketing/client-report-narratives
+    - marketing/competitor-creative-analysis
+    - marketing/competitor-teardown
+    - marketing/content-repurposer
+    - marketing/conversion-path-analysis
+    - marketing/cpa-diagnostics
+    - marketing/creative-fatigue-detection
+    - marketing/day-hour-performance-breakdown
+    - marketing/device-performance-split
+    - marketing/e2e-seo-assistant
+    - marketing/email-sequence-writer
+    - marketing/frequency-cap-recommendations
+    - marketing/geo-performance-analysis
+    - marketing/google-ads-audit
+    - marketing/icp-research-assistant
+    - marketing/keyword-cannibalization-check
+    - marketing/landing-page-audit
+    - marketing/landing-page-audit-quick
+    - marketing/linkedin-ads-audit
+    - marketing/meta-ads-audit
+    - marketing/pacing-monitor
+    - marketing/performance-benchmarking
+    - marketing/programmatic-seo-builder
+    - marketing/quality-score-breakdown
+    - marketing/reddit-ads-audit
+    - marketing/retargeting-window-analysis
+    - marketing/roas-forecasting
+    - marketing/search-term-mining
+    - marketing/utm-tracking-generator
+    - marketing/wasted-spend-finder
+    - marketing/weekly-account-summary
+    - content/article-writer
+    - content/article-to-everywhere
+    - content/trend-to-thread
+    - content/engagement-feedback
+    - content/stop-slop
+    - content/anti-formula
+    - content/pdf
+    - research/trendradar
+    - research/keyword-research
+    - nvidia/aiq-research
+    - design/kitty-visualize
+    - design/remotion-best-practices
+    - design/png-alpha-cleaner
+    - design/stitch-design-taste
+    - video/video-adapt
+    - video/ugc-flow
+    - video/cinematic-flow
+    - video/motion-design-flow
+    - video/tv-ad
+    - video/amazon-product-listing
+    - video/podcast-flow
+    - design/headless-gif-demo
+    - event-design/wedding-invitations
+    - design/readme-svg-design
+  npx:
+    - repo: anthropics/skills
+      skills: [pdf, docx, pptx]
+    - repo: langfuse/skills
+      skills: [langfuse]
+    - repo: zcebupelka/graphql-mcp-bridge
+      skills: [graphql-mcp-bridge]
+    - repo: xixu-me/skills
+      skills: [github-actions-docs]
+    - repo: docs.stripe.com
+      skills: [stripe-projects]
+    - repo: mindrally/skills
+      skills: [docker]
+    - repo: stripe/ai
+      skills: [stripe-projects]
+    - repo: resend/resend-skills
+      skills: [resend-cli]
+    - repo: ajmcclary/coolify-manager
+      skills: [coolify-manager]
+    - repo: v1truv1us/ai-eng-system
+      skills: [coolify-deploy]
+    - repo: neondatabase/agent-skills
+      skills: [neon-postgres]
+    - repo: planetscale/database-skills
+      skills: [postgres]
+    - repo: neondatabase/postgres-skills
+      skills: [postgres-best-practices]
+    - repo: sickn33/antigravity-awesome-skills
+      skills: [ui-ux-designer]
+    - repo: e01n0/skillspec
+      skills: [skillspec]
+    - repo: gerrict/ghost-token-hunter
+      skills: [ghost-token-hunter]
+    - repo: ScienceIsNeato/slop-mop
+      skills: [slop-mop]
+    - repo: addyosmani/agent-skills
+      skills: [frontend-ui-engineering, performance-optimization]
+    - repo: ansariwaqqas/storybook-mcp-server
+      skills: [storybook-mcp-server]
+    - repo: AgriciDaniel/claude-ads
+      skills: [claude-ads, ads-audit, ads-google, ads-meta, ads-youtube, ads-linkedin, ads-tiktok, ads-microsoft, ads-apple, ads-amazon, ads-attribution, ads-server-side-tracking, ads-creative, ads-landing, ads-budget, ads-plan, ads-competitor, ads-math, ads-test, ads-dna, ads-create, ads-generate, ads-photoshoot]
+    - repo: coreyhaines31/marketingskills
+      skills: [referral-program]
+    - repo: bradautomates/head-of-content
+      skills: [instagram-research]
+    - repo: kostja94/marketing-skills
+      skills: [programmatic-seo, parasite-seo, entity-seo]
+    - repo: affaan-m/everything-claude-code
+      skills: [seo]
+    - repo: Affitor/affiliate-skills
+      skills: [affiliate-program-search, niche-opportunity-finder, competitor-spy, commission-calculator, monopoly-niche-finder, purple-cow-audit, trending-content-scout, content-angle-ranker, traffic-analyzer, viral-post-writer, twitter-thread-writer, reddit-post-writer, tiktok-script-writer, content-pillar-atomizer, content-research-brief, infographic-generator, affiliate-blog-builder, comparison-post-writer, listicle-generator, how-to-tutorial-writer, keyword-cluster-architect, content-moat-calculator, content-decay-detector, landing-page-creator, product-showcase-page, squeeze-page-builder, webinar-registration-page, grand-slam-offer, bonus-stack-builder, guarantee-generator, value-ladder-architect, bio-link-deployer, email-drip-sequence, social-media-scheduler, github-pages-deployer, conversion-tracker, ab-test-generator, performance-report, seo-audit, internal-linking-optimizer, email-automation-builder, content-repurposer, multi-program-manager, paid-ad-copy-writer, proprietary-data-generator, skill-finder, funnel-planner, compliance-checker, self-improver, category-designer]
+    - repo: aaron-he-zhu/seo-geo-claude-skills
+      skills: [seo-content-writer, geo-content-optimizer, content-refresher]
+    - repo: sanity-io/agent-toolkit
+      skills: [seo-aeo-best-practices]
+    - repo: promptingcompany/agent-skills
+      skills: [generative-engine-optimization]
+    - repo: aahl/skills
+      skills: [crypto-report]
+    - repo: googleads/google-ads-mcp
+      skills: [account-performance-diagnostics]
+    - repo: posthog/skills
+      skills: [llm-analytics-setup]
+    - repo: gitroomhq/postiz-agent
+      skills: [postiz-agent]
+    - repo: wshobson/agents
+      skills: [python-design-patterns]
+    - repo: fastapi/fastapi
+      skills: [fastapi]
+    - repo: dagster-io/skills
+      skills: [dignified-python]
+    - repo: github/awesome-copilot
+      skills: [pytest-coverage]
+    - repo: nextlevelbuilder/ui-ux-pro-max-skill
+      skills: [ckm:design]
+    - repo: OSideMedia/higgsfield-ai-prompt-skill
+      skills: [higgsfield-ai-prompt-skill]
+    - repo: op7418/Seedance-Product-Video
+      skills: [seedance-product-video]
+    - repo: digitalsamba/claude-code-video-toolkit
+      skills: [ffmpeg]
+    - repo: mindmorass/reflex
+      skills: [ffmpeg-patterns]
+    - repo: CloudAI-X/threejs-skills
+      skills: [threejs-fundamentals, threejs-geometry, threejs-materials, threejs-lighting, threejs-textures, threejs-animation, threejs-loaders, threejs-shaders, threejs-postprocessing, threejs-interaction]
+    - repo: freshtechbro/claudedesignskills
+      skills: [threejs-webgl]
+    - repo: omer-metin/skills-for-antigravity
+      skills: [threejs-3d-graphics]
+    - repo: yizhiyanhua-ai/fireworks-tech-graph
+      skills: [fireworks-tech-graph]
+    - repo: cathrynlavery/diagram-design
+      skills: [diagram-design]
+plugins:
+  - claude-mem@thedotmack
+  - resend@claude-plugins-official
+  - frontend-design@claude-plugins-official
+  - webwright@webwright
+  - oh-my-claudecode@omc
+  - marketing-skills@claude-code-skills
+  - claude-ads@agricidaniel-claude-ads
+  - claude-video-vision@jordanrendric
+mcps:
+  - dataforseo
+  - codegraph
+  - context7
+  - headroom
+  - gbrain
+  - coolify
+  - supabase
+  - cue-tty-watch
+  - envoult
+  - Higgsfield
+  - hostinger-api
+  - postgres
+  - cue-dashboard
+  - google-ads-mcp
+  - mapi-devdocs
+  - trendradar
+  - google-analytics-mcp
+  - postiz
+  - marva-blog
+env:
+  CLAUDE_CODE_SUBAGENT_MODEL: "claude-sonnet-4-6"
+  SUPABASE_ACCESS_TOKEN: "${SUPABASE_ACCESS_TOKEN}"
+  RESEND_API_KEY: "${RESEND_API_KEY}"
+  STRIPE_API_KEY: "${STRIPE_API_KEY}"
+  STRIPE_WEBHOOK_SECRET: "${STRIPE_WEBHOOK_SECRET}"
+  DATABASE_URL: "${DATABASE_URL}"
+  GOOGLE_APPLICATION_CREDENTIALS: "${GOOGLE_APPLICATION_CREDENTIALS}"
+  GOOGLE_PROJECT_ID: "${GOOGLE_PROJECT_ID}"
+  GOOGLE_ADS_DEVELOPER_TOKEN: "${GOOGLE_ADS_DEVELOPER_TOKEN}"
+  GOOGLE_ADS_LOGIN_CUSTOMER_ID: "${GOOGLE_ADS_LOGIN_CUSTOMER_ID}"
+  POSTIZ_API_URL: "http://localhost:4007/api"
+  POSTIZ_API_KEY: "${POSTIZ_API_KEY}"
+  INSTAGRAM_USERNAME: "${INSTAGRAM_USERNAME}"
+  INSTAGRAM_PASSWORD: "${INSTAGRAM_PASSWORD}"
+  INSTAGRAPI_SESSION_FILE: "${INSTAGRAPI_SESSION_FILE}"
+  INSTAGRAPI_PROXY: "${INSTAGRAPI_PROXY}"
+  ANTHROPIC_BASE_URL: "http://127.0.0.1:8787"
+rules:
+  - common/code-review
+  - common/coding-style
+  - common/development-workflow
+  - common/git-workflow
+  - common/security
+  - common/testing
+  - typescript/coding-style
+  - typescript/patterns
+  - typescript/security
+  - typescript/testing
+commands:
+  - feature-dev
+  - build-fix
+  - aside
+  - autoship
+  - scout
+  - skill-lint
+hooks:
+  - skill-frontmatter-guard.json
+  - learnings-surface.json
+persona: |
+  You are the full-stack operator for ego-lite-linux. Keep the broad tool union,
+  but load only the specialist skill needed for the current task.
+
+  ## Surface routing
+
+  - Product shaping, implementation, review, QA, and shipping: use the matching
+    gstack workflow instead of inventing a parallel process.
+  - APIs, databases, authentication, infrastructure, and deployment: use the
+    backend and commerce specialists.
+  - Payments and billing: use Stripe specialists. Email delivery: use Resend.
+  - Vite, frontend architecture, visual polish, and browser verification: use
+    Vite and studio specialists.
+  - Acquisition, content, SEO, advertising, and experiments: use growth skills.
+  - Skill creation or repair: use skill-writer and run skill lint before shipping.
+  - Existing-code improvement: use improver, preserve behavior, and measure the
+    claimed gain. Use headroom when context size or latency is the bottleneck.
+
+  ## Operating rules
+
+  Prefer the narrowest specialist that owns the task. Keep unrelated skill bodies
+  deferred. Preserve user work, make the smallest effective change, and verify the
+  real behavior before reporting completion.

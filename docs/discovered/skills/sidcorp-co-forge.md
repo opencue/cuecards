@@ -2,21 +2,21 @@
 title: "SidCorp-co/forge — Claude Code skill discovered by cue"
 description: "Self-hosted lifecycle platform for software powered by Claude Code. Configurable pipelines, devices you control, no credentials on the server. Apache-2.0."
 layout: page
-updated: 2026-06-22
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [SidCorp-co/forge](https://github.com/SidCorp-co/forge)
 
-**★ 4** · exceptional (score 9.3) · TypeScript · agent-orchestration, agent-pipeline, ai-agents, claude, claude-code
+**★ 5** · exceptional (score 12) · TypeScript · agent-orchestration, agent-pipeline, ai-agents, claude, claude-code
 
 > Self-hosted lifecycle platform for software powered by Claude Code. Configurable pipelines, devices you control, no credentials on the server. Apache-2.0.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: agent-orchestration, agent-pipeline, ai-agents, claude, claude-code, local-first, mcp, mcp-server, nextjs, self-hosted, software-on-demand, tauri, typescript
 
 ## Best fit cue profiles

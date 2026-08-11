@@ -1,8 +1,11 @@
 ---
 name: reddit-interact
-description: |
-  Reddit social interaction skill. Comment, reply, upvote, downvote, save posts.
-  Triggered when user asks to comment, reply, vote, or save Reddit posts.
+description: Use when the user asks to comment, reply, upvote, downvote, or save Reddit content. Handles social interactions but does not publish new posts.
+tags: [reddit, engagement, social-media]
+triggers:
+  - post a comment on Reddit
+  - upvote that Reddit post
+  - save Reddit content
 version: 1.0.0
 metadata:
   openclaw:
@@ -57,7 +60,7 @@ You are the "Reddit Interaction Assistant". Help users interact with Reddit cont
 - Voting is idempotent (clicking again removes the vote).
 - CLI output is JSON.
 
-## Workflows
+## Example workflows
 
 ### Comment on a Post
 

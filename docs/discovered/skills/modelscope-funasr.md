@@ -1,27 +1,27 @@
 ---
 title: "modelscope/FunASR — Claude Code skill discovered by cue"
-description: "Industrial-grade speech recognition toolkit: 170x realtime, 50+ languages, speaker diarization, emotion detection, streaming, and OpenAI-compatible API."
+description: "Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP servin"
 layout: page
-updated: 2026-07-08
-tags: [claude-code, skill, backend, video]
+updated: 2026-08-11
+tags: [claude-code, skill, video, backend]
 ---
 
 # 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
 
-**★ 19037** · exceptional (score 14) · Python · asr, audio, chinese, emotion-recognition, funasr
+**★ 19767** · exceptional (score 17) · Python · asr, audio, chinese, emotion-recognition, funasr
 
-> Industrial-grade speech recognition toolkit: 170x realtime, 50+ languages, speaker diarization, emotion detection, streaming, and OpenAI-compatible API.
+> Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 19037 stars
-- 🗓️ Last pushed: 2026-07-08
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
+- ⭐ 19767 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: asr, audio, chinese, emotion-recognition, funasr, mcp-server, multilingual-asr, openai-compatible-api, paraformer, punctuation, pytorch, real-time-asr, speaker-diarization, speech-recognition, speech-to-text, streaming-asr, transcription, vllm, voice-activity-detection, whisper-alternative
 
 ## Best fit cue profiles
 
-[backend](../backend.md), [video](../video.md)
+[video](../video.md), [backend](../backend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add modelscope/FunASR --profile backend
+cue skills add modelscope/FunASR --profile video
 ```
 
 ## About

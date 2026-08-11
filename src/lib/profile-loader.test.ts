@@ -537,6 +537,66 @@ describe("loadProfile (composite)", () => {
     expect(merged.inherits).toBeUndefined();
   });
 
+  test("codex_config merges two levels deep across a composite", async () => {
+    // The failure this guards: beta sets only network_access. A shallow merge
+    // would replace alpha's whole sandbox_workspace_write table and silently
+    // drop writable_roots — invisible until Codex fails to launch a browser.
+    await writeProfile(
+      "alpha",
+      [
+        "name: alpha",
+        "description: Alpha",
+        "codex_config:",
+        '  sandbox_mode: "workspace-write"',
+        "  sandbox_workspace_write:",
+        "    writable_roots:",
+        '      - "/home/u/.local/share/ego-lite-linux"',
+      ].join("\n"),
+    );
+    await writeProfile(
+      "beta",
+      [
+        "name: beta",
+        "description: Beta",
+        "codex_config:",
+        '  approval_policy: "never"',
+        "  sandbox_workspace_write:",
+        "    network_access: true",
+      ].join("\n"),
+    );
+
+    const merged = await loadProfile("alpha+beta");
+
+    expect(merged.codexConfig).toEqual({
+      sandbox_mode: "workspace-write",
+      approval_policy: "never",
+      sandbox_workspace_write: {
+        writable_roots: ["/home/u/.local/share/ego-lite-linux"],
+        network_access: true,
+      },
+    });
+  });
+
+  test("codex_config collision is later-wins at the leaf", async () => {
+    await writeProfile(
+      "alpha",
+      ["name: alpha", "description: Alpha", "codex_config:", '  sandbox_mode: "read-only"'].join("\n"),
+    );
+    await writeProfile(
+      "beta",
+      ["name: beta", "description: Beta", "codex_config:", '  sandbox_mode: "workspace-write"'].join("\n"),
+    );
+
+    const merged = await loadProfile("alpha+beta");
+    expect(merged.codexConfig.sandbox_mode).toBe("workspace-write");
+  });
+
+  test("profiles without codex_config resolve to an empty object", async () => {
+    await writeProfile("alpha", "name: alpha\ndescription: Alpha\n");
+    const merged = await loadProfile("alpha");
+    expect(merged.codexConfig).toEqual({});
+  });
+
   test("missing component throws ProfileNotFound for that part", async () => {
     await writeProfile(
       "alpha",

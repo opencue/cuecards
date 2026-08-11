@@ -2,19 +2,19 @@
 title: "rodrigooler/portage — Claude Code skill discovered by cue"
 description: "Rehome agent path bindings when a project folder moves (Claude, Codex, Grok, and friends)"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rodrigooler/portage](https://github.com/rodrigooler/portage)
 
-**★ 1** · exceptional (score 9.3) · Shell
+**★ 1** · exceptional (score 9.1) · Shell
 
 > Rehome agent path bindings when a project folder moves (Claude, Codex, Grok, and friends)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-05

@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kenhayward-diariz"></a>
-## ✨ [kenhayward/Diariz](https://github.com/kenhayward/Diariz)
+<a id="modelscope-funasr"></a>
+## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
 
-**★ 3** · strong (score 5.7) · C# · tags: action-items, gdpr, llm, mcp-server, meeting-notes
+**★ 19767** · exceptional (score 17) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
 
-Self-hosted, multi-user transcription platform: record or upload audio. Speaker-labeled, timestamped transcripts, Recognize speakers across recordings, Summarize, extract action items and chat over your transcripts with your own OpenAI-compatible LLM. Your Audio, your Server, your Model. Tested on Laptop RTX4070, Desktop RTX3090 and RTX5090
+Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
 
 ```bash
-cue skills add kenhayward/Diariz --profile video
+cue skills add modelscope/FunASR --profile video
+```
+
+---
+
+<a id="augustusw-audio-tldr-skill"></a>
+## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+
+**★ 23** · exceptional (score 9.6) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+
+Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+
+```bash
+cue skills add AugustusW/audio-tldr-skill --profile video
 ```
 
 ---

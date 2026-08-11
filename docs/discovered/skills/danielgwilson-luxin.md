@@ -2,22 +2,21 @@
 title: "danielgwilson/luxin — Claude Code skill discovered by cue"
 description: "Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable job"
 layout: page
-updated: 2026-08-04
+updated: 2026-08-09
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [danielgwilson/luxin](https://github.com/danielgwilson/luxin)
 
-**★ 1** · exceptional (score 15.8) · JavaScript · 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
+**★ 1** · exceptional (score 12.3) · JavaScript · 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
 
 > Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-04
+- 🗓️ Last pushed: 2026-08-09
 - 🏷️ Tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation, claude-code-skill, claude-skill, claude-skills, creative-tools, generative-ai, generative-media, image-generation, image-to-3d, music-generation, text-to-audio, text-to-image, text-to-video, video-generation, zero-setup
 
 ## Best fit cue profiles

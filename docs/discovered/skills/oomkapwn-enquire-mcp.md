@@ -1,23 +1,23 @@
 ---
 title: "oomkapwn/enquire-mcp — Claude Code skill discovered by cue"
-description: "The #1 Obsidian MCP for AI memory and local document intelligence — one vault, every agent, private and cited."
+description: "The #1 Obsidian MCP for AI memory — freshness-aware, cited, local-first and read-only by default. Dataview, Bases, PDFs, every agent."
 layout: page
-updated: 2026-07-30
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [oomkapwn/enquire-mcp](https://github.com/oomkapwn/enquire-mcp)
 
-**★ 26** · exceptional (score 11.4) · TypeScript · agent-memory, agentic-rag, ai-memory, chatgpt, claude-code
+**★ 29** · exceptional (score 13) · TypeScript · agent-memory, ai-memory, chatgpt, claude-code, codex
 
-> The #1 Obsidian MCP for AI memory and local document intelligence — one vault, every agent, private and cited.
+> The #1 Obsidian MCP for AI memory — freshness-aware, cited, local-first and read-only by default. Dataview, Bases, PDFs, every agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
-- ⭐ 26 stars
-- 🗓️ Last pushed: 2026-07-30
-- 🏷️ Tags: agent-memory, agentic-rag, ai-memory, chatgpt, claude-code, claude-memory, codex, context-engineering, cursor, hybrid-search, llm-memory, long-term-memory, mcp-server, model-context-protocol, obsidian, obsidian-mcp, openclaw, rag, second-brain, semantic-search
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+- ⭐ 29 stars
+- 🗓️ Last pushed: 2026-08-11
+- 🏷️ Tags: agent-memory, ai-memory, chatgpt, claude-code, codex, context-engineering, cursor, dataview, document-intelligence, hybrid-search, local-first, long-term-memory, mcp-server, model-context-protocol, obsidian, obsidian-bases, obsidian-mcp, read-only, second-brain, semantic-search
 
 ## Best fit cue profiles
 
