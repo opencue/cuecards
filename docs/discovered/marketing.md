@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-10
+updated: 2026-08-11
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,19 +15,6 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
-
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
-
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
-
-```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile marketing
-```
-
----
-
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -37,6 +24,19 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+```
+
+---
+
+<a id="seosiri-official-developers-seosiri-com"></a>
+## ✨ [SEOSiri-Official/developers-seosiri-com](https://github.com/SEOSiri-Official/developers-seosiri-com)
+
+**★ 0** · strong (score 5) · TypeScript · tags: ai, ai-agents, claude-desktop, cloudflare-edge, cloudflare-workers
+
+SEOSiri Official enterprise developer portal & Cloudflare edge topology for AI Search Governance, AEO/GEO Analytics, Schema Validation, Core Web Vitals, DNS Security, and Autonomous AI Agent Tooling for Claude Desktop, Cursor AI, and enterprise AI engines.
+
+```bash
+cue skills add SEOSiri-Official/developers-seosiri-com --profile marketing
 ```
 
 ---

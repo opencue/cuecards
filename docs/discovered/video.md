@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-10
+updated: 2026-08-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="modelscope-funasr"></a>
+## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 19767** · exceptional (score 17) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
 
 ```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
+cue skills add modelscope/FunASR --profile video
 ```
 
 ---
 
-<a id="mercantile-danaidae17-veo"></a>
-## ✨ [Mercantile-danaidae17/veo](https://github.com/Mercantile-danaidae17/veo)
+<a id="augustusw-audio-tldr-skill"></a>
+## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: 4k-upscale, ai-video, ai-video-generator, audio-video-generation, camera-control
+**★ 23** · exceptional (score 9.6) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
 
-Run, test, and deploy your AI Studio app locally with Node.js and Gemini API support
+Claude Code skill: summarize videos, audio & podcasts with local cached transcription
 
 ```bash
-cue skills add Mercantile-danaidae17/veo --profile video
+cue skills add AugustusW/audio-tldr-skill --profile video
 ```
 
 ---

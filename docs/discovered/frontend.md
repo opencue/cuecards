@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-10
+updated: 2026-08-11
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
 
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add riqxa/skills-best-practices --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---

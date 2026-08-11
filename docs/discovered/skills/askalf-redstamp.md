@@ -2,21 +2,21 @@
 title: "askalf/redstamp — Claude Code skill discovered by cue"
 description: "own your agent security — a deterministic, offline firewall for AI agent tool calls. Blocks secret exfil, prompt injection and destructive commands before they "
 layout: page
-updated: 2026-08-10
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [askalf/redstamp](https://github.com/askalf/redstamp)
 
-**★ 3** · strong (score 5.5) · JavaScript · agent-security, ai-agents, benchmark, claude-code, firewall
+**★ 3** · strong (score 5.7) · JavaScript · agent-security, ai-agents, benchmark, claude-code, firewall
 
 > own your agent security — a deterministic, offline firewall for AI agent tool calls. Blocks secret exfil, prompt injection and destructive commands before they run; same call, same verdict, no model in the decision path. 100% recall / 100% precision on a 291-sample corpus, scored in CI against live rivals. Claude Code hook or MCP proxy.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-08-06
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: agent-security, ai-agents, benchmark, claude-code, firewall, guardrails, llm-security, mcp, own-your-stack, prompt-injection, security, ssrf
 
 ## Best fit cue profiles

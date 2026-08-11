@@ -2,7 +2,7 @@
 title: "noluyorAbi/claude-code-recap — Claude Code skill discovered by cue"
 description: "Browse every recent Claude Code session across all your projects and jump back into any of them. Shows project path, summary, git branch, model, turn count, and"
 layout: page
-updated: 2026-08-10
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 

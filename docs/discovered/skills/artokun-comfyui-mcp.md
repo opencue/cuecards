@@ -2,21 +2,21 @@
 title: "artokun/comfyui-mcp — Claude Code skill discovered by cue"
 description: "Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits you"
 layout: page
-updated: 2026-08-08
+updated: 2026-08-11
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
 
-**★ 519** · exceptional (score 20.3) · TypeScript · agent-skills, ai-agent, claude-code, claude-plugin, comfyui
+**★ 547** · exceptional (score 20.3) · TypeScript · agent-skills, ai-agent, claude-code, claude-plugin, comfyui
 
 > Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.3 based on:
-- ⭐ 519 stars
-- 🗓️ Last pushed: 2026-08-08
+- ⭐ 547 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui, comfyui-extension, comfyui-mcp, comfyui-mcp-server, flux, image-generation, local-first, mcp, mcp-server, model-context-protocol, offline, ollama, self-hosted, stable-diffusion, video-generation, wan
 
 ## Best fit cue profiles

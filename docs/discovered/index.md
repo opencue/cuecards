@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-08-10
+updated: 2026-08-11
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-08-10 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-08-11 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 72 | `senior-engineering-partner`, `trace-mcp`, `multi-agent-architecture-advisor` |
-| [**cybersecurity**](./cybersecurity.md) | 9 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `wp-security-audit-skill` |
-| [**backend**](./backend.md) | 7 | `x402-payments-skill`, `housing-sentinel-ai`, `UEFN-TOOLBELT` |
-| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `rolepod`, `multi-agent-revenue-orchestrator` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `skills-best-practices`, `sticky-switcher-funnel-playbook` |
-| [**creative-media**](./creative-media.md) | 3 | `claude-code-ads`, `veo`, `redesigned-pancake` |
-| [**marketing**](./marketing.md) | 2 | `claude-youtube`, `sticky-switcher-funnel-playbook` |
-| [**video**](./video.md) | 2 | `claude-youtube`, `veo` |
-| [**python**](./python.md) | 2 | `TaskFlow`, `Ops-Incident-Core` |
-| [**niche**](./niche.md) | 1 | `nihaixia` |
+| [**core**](./core.md) | 69 | `nano-banana-pro-prompts-recommend-skill`, `archify`, `vm0` |
+| [**backend**](./backend.md) | 10 | `FunASR`, `radar`, `vmlx` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `HealthClawGuardrails` |
+| [**fleet-control**](./fleet-control.md) | 4 | `claude-skill-teams`, `opencouncil-contract-inspector`, `rolepod` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `sticky-switcher-funnel-playbook` |
+| [**creative-media**](./creative-media.md) | 2 | `comfyui-mcp`, `redesigned-pancake` |
+| [**video**](./video.md) | 2 | `FunASR`, `audio-tldr-skill` |
+| [**marketing**](./marketing.md) | 2 | `sticky-switcher-funnel-playbook`, `developers-seosiri-com` |
 | [**docs-writer**](./docs-writer.md) | 1 | `mneme` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
 | [**research**](./research.md) | 1 | `popper-scope` |
+| [**rust**](./rust.md) | 1 | `intutic` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `etsy-ugc-compliance-harvester` |
 
 ## How scoring works
 

@@ -2,7 +2,7 @@
 title: "theislampill/IMPLEMENTAUDIT.md — Claude Code skill discovered by cue"
 description: "A self-correcting system of nested engineering loops: plan & execute repo work; safely implement audit findings; design greenfield & improve brownfield; learn f"
 layout: page
-updated: 2026-08-09
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-08-09
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: agentic-workflow, ai-agents, audit, audit-automation, claude-code, claude-code-skill, codex-skill, continuous-improvement, developer-tools, gemba, hermes-skill, kaizen, kaizen-agents, lean-six-sigma, llm-tools, release-engineering, repo-hygiene, skills-sh, software-quality, verification
 
 ## Best fit cue profiles
