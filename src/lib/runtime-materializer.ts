@@ -1525,12 +1525,25 @@ async function buildClaudeSettings(
 
 // Minimal TOML emitter for the MCP config block. Replace with `@iarna/toml` if
 // we need broader coverage. Codex only reads a flat-ish [mcp_servers.<id>] table.
+function tomlValue(value: unknown): string {
+  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "boolean") return String(value);
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  if (Array.isArray(value)) return `[${value.map(tomlValue).join(", ")}]`;
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .map(([key, nested]) => `${JSON.stringify(key)} = ${tomlValue(nested)}`);
+    return `{ ${entries.join(", ")} }`;
+  }
+  throw new TypeError(`Unsupported TOML value: ${String(value)}`);
+}
+
 function tomlRender(obj: { mcp_servers: Record<string, unknown> }): string {
   const out: string[] = [];
   for (const [id, val] of Object.entries(obj.mcp_servers)) {
     out.push(`[mcp_servers.${id}]`);
     for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
-      out.push(`${k} = ${JSON.stringify(v)}`);
+      out.push(`${k} = ${tomlValue(v)}`);
     }
     out.push("");
   }
