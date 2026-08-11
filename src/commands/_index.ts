@@ -91,6 +91,10 @@ export const COMMANDS = {
     summary: "One-shot bare launch — no profile, no skills, fastest cold start",
     load: () => import("./quick"),
   },
+  auth: {
+    summary: "Check, repair, log in, or log out Claude and Codex authentication",
+    load: () => import("./auth"),
+  },
   login: {
     summary: "Authenticate with cue cloud (GitHub OAuth)",
     load: () => import("./cloud"),

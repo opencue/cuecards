@@ -106,17 +106,6 @@ function detectGaps(lines: any[]): Map<string, number> {
   return topics;
 }
 
-function detectErrors(lines: any[]): string[] {
-  const errors: string[] = [];
-  for (const msg of lines) {
-    if (msg.type === "tool_result" && msg.is_error) {
-      const text = typeof msg.content === "string" ? msg.content : JSON.stringify(msg.content ?? "");
-      if (text.length > 5) errors.push(text.slice(0, 120));
-    }
-  }
-  return errors;
-}
-
 function checkSkillUsage(lines: any[], skills: string[]): { used: string[]; unused: string[] } {
   const content = lines.map(l => lineText(l).toLowerCase()).join("\n");
 
@@ -166,9 +155,6 @@ async function generateProposal(profileName: string): Promise<Proposal> {
   // Detect gaps (asked 3+ times, no skill covers it)
   const gaps = detectGaps(recentLines);
   const significantGaps = [...gaps.entries()].filter(([, count]) => count >= 3).map(([topic]) => topic);
-
-  // Detect errors
-  const errors = detectErrors(recentLines);
 
   // Check skill usage over 30 days
   const { unused } = checkSkillUsage(allLines, skills);

@@ -14,13 +14,19 @@ async function authFreshness(path: string): Promise<number | undefined> {
   }
 }
 
+export type CodexAuthSyncResult =
+  | { status: "copied" }
+  | { status: "up-to-date" }
+  | { status: "invalid-source" }
+  | { status: "error"; message: string };
+
 /** Atomically copy Codex auth only when the source is valid and newer. */
-export async function syncCodexAuth(source: string, destination: string): Promise<boolean> {
+export async function syncCodexAuth(source: string, destination: string): Promise<CodexAuthSyncResult> {
   try {
     const src = await authFreshness(source);
-    if (src === undefined) return false;
+    if (src === undefined) return { status: "invalid-source" };
     const dst = await authFreshness(destination);
-    if (dst !== undefined && dst >= src) return false;
+    if (dst !== undefined && dst >= src) return { status: "up-to-date" };
 
     await mkdir(dirname(destination), { recursive: true });
     const tmp = `${destination}.cue-auth.${process.pid}.${Date.now().toString(36)}`;
@@ -32,9 +38,12 @@ export async function syncCodexAuth(source: string, destination: string): Promis
       await rm(tmp, { force: true }).catch(() => {});
       throw error;
     }
-    return true;
-  } catch {
-    return false;
+    return { status: "copied" };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error instanceof Error ? error.message : String(error),
+    };
   }
 }
 

@@ -17,7 +17,6 @@ import { repoRoot } from "../lib/repo-root";
 
 
 const PROFILES_DIR = join(repoRoot(), "profiles");
-const REGISTRY_PATH = join(repoRoot(), "docs", "registry", "index.json");
 
 interface MatchedProfile {
   name: string;

@@ -79,7 +79,11 @@ export async function repair(
     return 1;
   }
   if (freshest !== canonical) {
-    await syncCodexAuth(freshest, canonical);
+    const promotion = await syncCodexAuth(freshest, canonical);
+    if (promotion.status === "invalid-source" || promotion.status === "error") {
+      process.stderr.write("Auth repair failed: could not update canonical Codex credentials.\n");
+      return 1;
+    }
     const promotedAt = await codexAuthFreshness(canonical);
     if (promotedAt === undefined || promotedAt < freshestAt) {
       process.stderr.write("Auth repair failed: could not update canonical Codex credentials.\n");
@@ -90,10 +94,12 @@ export async function repair(
   let failed = 0;
   const canonicalAt = await codexAuthFreshness(canonical);
   for (const path of candidates) {
-    if (await syncCodexAuth(canonical, path)) {
+    const result = await syncCodexAuth(canonical, path);
+    if (result.status === "copied") {
       updated++;
       continue;
     }
+    if (result.status === "up-to-date") continue;
     const runtimeAt = await codexAuthFreshness(path);
     if (canonicalAt !== undefined && (runtimeAt === undefined || runtimeAt < canonicalAt)) failed++;
   }
