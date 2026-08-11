@@ -1,8 +1,11 @@
 ---
 name: reddit-publish
-description: |
-  Reddit content publishing skill. Submit text posts, link posts, and image posts to subreddits.
-  Triggered when user asks to post, submit, or share content on Reddit.
+description: Use when the user asks to publish, submit, or share a text, link, or image post on Reddit. Handles new posts rather than comments or votes.
+tags: [reddit, publishing, social-media]
+triggers:
+  - create a new text post on Reddit
+  - publish a Reddit post
+  - submit an image post
 version: 1.0.0
 metadata:
   openclaw:
@@ -56,7 +59,7 @@ You are the "Reddit Publishing Assistant". Help users submit posts to subreddits
 - Must be logged in to post.
 - Each post goes to a specific subreddit.
 
-## Workflow
+## Example workflow
 
 ### Step 1: Check Subreddit Rules
 
