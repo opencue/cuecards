@@ -39,6 +39,7 @@ env:
 | `skills.plugins` | array of strings (Claude Code plugin names)                | no       | `[]`    | Resolved from `~/.claude/plugins/<name>/skills/`. Targets are namespaced as `<plugin>:<skill>`.    |
 | `mcps`        | array of strings or `{id, agents?, when?}` objects            | no       | `[]`    | Each id must match a key in `cue/mcps/configs/claude.sanitized.json` (or the codex counterpart). Object form adds optional `agents:` scoping and a `when:` activation gate — see "Conditional activation (`when:`)" below. |
 | `env`         | map<string, string>                                           | no       | `{}`    | Plain string values. Placeholders like `"${HOSTINGER_API_TOKEN}"` are substituted at materialize-time. |
+| `codex_config` | map<string, any>                                             | no       | `{}`    | Extra keys merged into the Codex runtime's `config.toml` next to this profile's MCP servers. cue repoints `CODEX_HOME` at the materialized runtime, so the user's own `~/.codex/config.toml` is **never read** — `sandbox_mode`, `sandbox_workspace_write`, `approval_policy`, `shell_environment_policy` and friends have to come through here. Emitted verbatim as TOML; ignored for non-Codex agents. See "codex_config example" below. |
 | `rules`       | array of strings                                              | no       | `[]`    | Markdown rule files under `resources/rules/` (or absolute paths). Symlinked into `<runtime>/rules/` and indexed in CLAUDE.md — Claude reads on demand, no full-body inline. |
 | `commands`    | array of strings                                              | no       | `[]`    | Slash-command markdown files under `resources/commands/`. Symlinked into `<runtime>/commands/` so the user can invoke `/<name>`. Listed in CLAUDE.md's "Available Commands" section. |
 | `hooks`       | array of strings                                              | no       | `[]`    | Hook bundle JSON files under `resources/hooks/`. Each declares `{ "hooks": { "PreToolUse": [...], "Stop": [...], ... } }` — merged into `settings.json` so hooks run per Claude Code's lifecycle. Sibling `.sh`/`.py` scripts are symlinked into `<runtime>/hooks/` and invoked via `${CLAUDE_CONFIG_DIR}/hooks/...`. |
@@ -67,6 +68,49 @@ time and reported as `E3` by `cue validate`.
 
 Inheritance merges all three with `concat + dedupe`; a child can't remove a
 parent's entry — fork the parent if you need a smaller set.
+
+### codex_config example
+
+`cue launch codex` points `CODEX_HOME` at the materialized runtime, so Codex reads
+`<runtime>/codex/config.toml` and never your own `~/.codex/config.toml`. Anything
+Codex needs beyond MCP servers goes here:
+
+```yaml
+# profiles/my-browser-stack/profile.yaml
+name: my-browser-stack
+codex_config:
+  sandbox_mode: "workspace-write"
+  approval_policy: "never"
+  sandbox_workspace_write:
+    writable_roots:
+      - "/home/me/.local/share/ego-lite-linux"
+      - "/home/me/.local/state/ego-lite-linux"
+    network_access: true
+```
+
+renders to:
+
+```toml
+sandbox_mode = "workspace-write"
+approval_policy = "never"
+
+[sandbox_workspace_write]
+writable_roots = ["/home/me/.local/share/ego-lite-linux", "/home/me/.local/state/ego-lite-linux"]
+network_access = true
+
+[mcp_servers.…]
+```
+
+Bare keys are emitted before any `[table]` header, because TOML binds every key
+after a header to that table — `sandbox_mode` written after `[mcp_servers.foo]`
+would silently become `mcp_servers.foo.sandbox_mode`.
+
+Merging is **two levels deep**, later wins: in `a+b`, a `b` that sets only
+`sandbox_workspace_write.network_access` keeps `a`'s `writable_roots` rather than
+replacing the table. Deeper than two levels, a value replaces wholesale.
+
+Values are emitted verbatim — cue does not validate them against Codex's own
+schema, so a typo here surfaces as Codex ignoring the key.
 
 ## Conditional activation (`when:`)
 
@@ -174,6 +218,9 @@ mcps:
 
 - **arrays** (`skills.local`, `skills.npx`, `skills.plugins`, `mcps`, `agents`) — concat parent then child, dedupe by identity (string for plain arrays; `repo` for `NpxSkillRef`)
 - **objects** (`skills`, `env`) — child keys override parent keys; nested arrays merge per the rule above
+- **`codex_config`** — same, but one level deeper: a child that sets only
+  `sandbox_workspace_write.network_access` keeps the parent's sibling keys in
+  that table instead of replacing it
 - **scalars** (`name`, `description`) — child overrides parent
 
 **Constraints:**
@@ -197,6 +244,7 @@ The `name:` field must equal the directory name. Two profiles with the same
 | `skills.plugins`| `[]`                               |
 | `mcps`          | `[]`                               |
 | `env`           | `{}`                               |
+| `codex_config`  | `{}`                               |
 
 A profile with only `name` and `description` is legal but useless — it
 materializes an empty workspace. The linter flags this as `W5` (vacuous

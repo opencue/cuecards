@@ -553,7 +553,10 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
     // Codex equivalent — write config.toml from registry. Caller pre-renders to TOML.
-    await writeFile(join(tmpDir, "config.toml"), tomlRender({ mcp_servers: mcpServers }));
+    await writeFile(
+      join(tmpDir, "config.toml"),
+      tomlRender({ mcp_servers: mcpServers, extra: profile.codexConfig }),
+    );
   }
 
   // 3. CLAUDE.md with stamp + role identity
@@ -1538,8 +1541,31 @@ function tomlValue(value: unknown): string {
   throw new TypeError(`Unsupported TOML value: ${String(value)}`);
 }
 
-function tomlRender(obj: { mcp_servers: Record<string, unknown> }): string {
+function tomlRender(obj: {
+  mcp_servers: Record<string, unknown>;
+  extra?: Record<string, unknown>;
+}): string {
   const out: string[] = [];
+
+  // Profile `codex_config` first, and within it bare keys before any table
+  // header. TOML binds every key after `[table]` to that table, so emitting
+  // `sandbox_mode` after `[mcp_servers.foo]` would silently make it
+  // `mcp_servers.foo.sandbox_mode` and Codex would ignore it.
+  const extra = obj.extra ?? {};
+  const scalars = Object.entries(extra).filter(([, v]) => !isTomlTable(v));
+  const tables = Object.entries(extra).filter(([, v]) => isTomlTable(v));
+
+  for (const [k, v] of scalars) out.push(`${k} = ${tomlValue(v)}`);
+  if (scalars.length > 0) out.push("");
+
+  for (const [name, val] of tables) {
+    out.push(`[${name}]`);
+    for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
+      out.push(`${k} = ${tomlValue(v)}`);
+    }
+    out.push("");
+  }
+
   for (const [id, val] of Object.entries(obj.mcp_servers)) {
     out.push(`[mcp_servers.${id}]`);
     for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
@@ -1548,6 +1574,14 @@ function tomlRender(obj: { mcp_servers: Record<string, unknown> }): string {
     out.push("");
   }
   return out.join("\n");
+}
+
+/**
+ * True for values that must render as a `[table]` header rather than a bare
+ * key. Arrays are inline TOML values, so they stay scalars here.
+ */
+function isTomlTable(v: unknown): boolean {
+  return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
 // ---------------------------------------------------------------------------

@@ -112,6 +112,13 @@ export interface Profile {
   mcps?: MCPRef[];
   plugins?: PluginRef[];
   env?: Record<string, string>;
+  // Extra keys merged into the Codex runtime's config.toml alongside the
+  // profile's MCP servers. cue repoints CODEX_HOME at the materialized runtime,
+  // so a user's own ~/.codex/config.toml is never read — anything Codex needs
+  // beyond MCP servers (sandbox_mode, sandbox_workspace_write, approval_policy,
+  // shell_environment_policy) has to come through here. Values are emitted
+  // verbatim as TOML. Ignored for non-Codex agents. Shallow merge, later wins.
+  codex_config?: Record<string, unknown>;
   rules?: string[];
   commands?: string[];
   hooks?: string[];
@@ -187,6 +194,7 @@ export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plug
   mcps: ResolvedMCP[];
   plugins: ResolvedPlugin[];
   env: Record<string, string>;
+  codexConfig: Record<string, unknown>;
   rules: string[];
   commands: string[];
   hooks: string[];

@@ -365,6 +365,36 @@ function mergeEnv(
   return { ...(parent ?? {}), ...(child ?? {}) };
 }
 
+/**
+ * Merge Codex config blocks, child winning on collision.
+ *
+ * Two levels deep, unlike `mergeEnv`. Codex config is tables, not flat strings:
+ * a plain shallow merge would let a child that sets only
+ * `sandbox_workspace_write.network_access` silently delete a parent's
+ * `writable_roots`. Composite selectors here run 10+ profiles wide, so that
+ * drop would be both likely and invisible.
+ *
+ * Nesting stops at two levels — a table's table is replaced wholesale, which
+ * keeps the rule easy to state and matches how flat Codex's own config is.
+ */
+function mergeCodexConfig(
+  parent: Record<string, unknown> | undefined,
+  child: Record<string, unknown> | undefined,
+): Record<string, unknown> {
+  const out: Record<string, unknown> = { ...(parent ?? {}) };
+  for (const [key, childVal] of Object.entries(child ?? {})) {
+    const parentVal = out[key];
+    out[key] = isPlainObject(parentVal) && isPlainObject(childVal)
+      ? { ...parentVal, ...childVal }
+      : childVal;
+  }
+  return out;
+}
+
+function isPlainObject(v: unknown): v is Record<string, unknown> {
+  return typeof v === "object" && v !== null && !Array.isArray(v);
+}
+
 const DEFAULT_AGENTS: ResolvedProfile["agents"] = ["claude-code", "codex"];
 
 // ---------------------------------------------------------------------------
@@ -486,6 +516,7 @@ function foldChain(chain: Profile[]): ResolvedProfile {
         child.plugins?.map(normalizePluginRef),
       ),
       env: mergeEnv(acc.env, child.env),
+      codexConfig: mergeCodexConfig(acc.codexConfig, child.codex_config),
       rules: dedupePrimitiveArray(acc.rules, child.rules),
       commands: dedupePrimitiveArray(acc.commands, child.commands),
       hooks: dedupePrimitiveArray(acc.hooks, child.hooks),
@@ -538,6 +569,7 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     mcps: (p.mcps ?? []).map(normalizeMCPRef),
     plugins: (p.plugins ?? []).map(normalizePluginRef),
     env: { ...(p.env ?? {}) },
+    codexConfig: { ...(p.codex_config ?? {}) },
     rules: [...(p.rules ?? [])],
     commands: [...(p.commands ?? [])],
     hooks: [...(p.hooks ?? [])],
@@ -607,6 +639,7 @@ export function isCompositeSelector(selector: string): boolean {
  *   - `inherits`: dropped (each component is already flattened)
  *   - `skills`/`mcps`/`plugins`: union by id, later wins on collision
  *   - `env`: shallow merge, later wins on collision
+ *   - `codexConfig`: two-level merge, later wins on collision
  *   - `rules`/`commands`/`hooks`/`playbooks`/`qualityGates`/`evals`: dedupe-concat
  *   - `persona`: concatenated with `## <profile name>` headers so both
  *     personas stay legible. Empty personas are skipped.
@@ -637,6 +670,7 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
     mcps: [...head.mcps],
     plugins: [...head.plugins],
     env: { ...head.env },
+    codexConfig: { ...head.codexConfig },
     rules: [...head.rules],
     commands: [...head.commands],
     hooks: [...head.hooks],
@@ -681,6 +715,7 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
       mcps: mergeObjectRefs<ResolvedMCP>(acc.mcps, next.mcps),
       plugins: mergeObjectRefs<ResolvedPlugin>(acc.plugins, next.plugins),
       env: mergeEnv(acc.env, next.env),
+      codexConfig: mergeCodexConfig(acc.codexConfig, next.codexConfig),
       rules: dedupePrimitiveArray(acc.rules, next.rules),
       commands: dedupePrimitiveArray(acc.commands, next.commands),
       hooks: dedupePrimitiveArray(acc.hooks, next.hooks),
