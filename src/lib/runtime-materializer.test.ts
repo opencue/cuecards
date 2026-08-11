@@ -23,6 +23,7 @@ const sampleProfile: ResolvedProfile = {
   mcps: [{ id: "claude-mem" }],
   plugins: [{ id: "frontend-design@claude-plugins-official" }],
   env: {},
+  codexConfig: {},
   inheritanceChain: ["test-frontend"],
 };
 
@@ -58,6 +59,73 @@ describe("materializeRuntime", () => {
       'env = { "GOOGLE_PROJECT_ID" = "my-project", "GOOGLE_ADS_DEVELOPER_TOKEN" = "secret" }',
     );
     expect(toml).not.toContain('"GOOGLE_PROJECT_ID":"my-project"');
+  });
+
+  test("codex_config lands in config.toml with bare keys before any table", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-codex-config",
+      agents: ["codex"],
+      mcps: [{ id: "google-ads-mcp" }],
+      codexConfig: {
+        sandbox_mode: "workspace-write",
+        approval_policy: "never",
+        sandbox_workspace_write: {
+          writable_roots: ["/home/u/.local/share/ego-lite-linux"],
+          network_access: true,
+        },
+      },
+      inheritanceChain: ["test-codex-config"],
+    };
+    const out = await materializeRuntime({
+      profile,
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: { "google-ads-mcp": { command: "pipx", args: ["run", "google-ads-mcp"] } },
+      userClaudeMd: "",
+    });
+
+    const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
+
+    // Ordering is the whole point: a bare key emitted after a [table] header
+    // binds to that table. `sandbox_mode` must not become
+    // `mcp_servers.google-ads-mcp.sandbox_mode`.
+    expect(toml.indexOf("sandbox_mode")).toBeLessThan(toml.indexOf("["));
+    expect(toml.indexOf("approval_policy")).toBeLessThan(toml.indexOf("["));
+
+    // Parse it for real rather than trusting substring checks.
+    const parsed = Bun.TOML.parse(toml) as Record<string, any>;
+    expect(parsed.sandbox_mode).toBe("workspace-write");
+    expect(parsed.approval_policy).toBe("never");
+    expect(parsed.sandbox_workspace_write).toEqual({
+      writable_roots: ["/home/u/.local/share/ego-lite-linux"],
+      network_access: true,
+    });
+    // MCP servers still land, unchanged.
+    expect(parsed.mcp_servers["google-ads-mcp"].command).toBe("pipx");
+  });
+
+  test("empty codex_config leaves config.toml as MCP servers only", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-codex-noconfig",
+      agents: ["codex"],
+      mcps: [{ id: "claude-mem" }],
+      inheritanceChain: ["test-codex-noconfig"],
+    };
+    const out = await materializeRuntime({
+      profile,
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+      userClaudeMd: "",
+    });
+
+    const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
+    expect(toml.trimStart().startsWith("[mcp_servers.")).toBe(true);
+    expect(Object.keys(Bun.TOML.parse(toml))).toEqual(["mcp_servers"]);
   });
 
   test("creates runtime dir with hash and settings.json", async () => {
