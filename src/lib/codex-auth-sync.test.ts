@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, test } from "bun:test";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { syncCodexAuth } from "../commands/launch";
+import { syncCodexAuth } from "./codex-auth";
 
 describe("syncCodexAuth", () => {
   const dirs: string[] = [];
@@ -27,5 +27,41 @@ describe("syncCodexAuth", () => {
     const dir = await mkdtemp(join(tmpdir(), "cue-codex-auth-"));
     dirs.push(dir);
     expect(await syncCodexAuth(join(dir, "missing.json"), join(dir, "runtime.json"))).toBe(false);
+  });
+
+  test("never overwrites a newer destination from a stale concurrent session", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "cue-codex-auth-"));
+    dirs.push(dir);
+    const stale = join(dir, "stale.json");
+    const fresh = join(dir, "fresh.json");
+    await writeFile(stale, JSON.stringify({ tokens: { access_token: "old" }, last_refresh: "2026-08-10T09:00:00Z" }));
+    await writeFile(fresh, JSON.stringify({ tokens: { access_token: "new" }, last_refresh: "2026-08-10T10:00:00Z" }));
+
+    expect(await syncCodexAuth(stale, fresh)).toBe(false);
+    expect(JSON.parse(await readFile(fresh, "utf8")).tokens.access_token).toBe("new");
+  });
+
+  test("copies a newer login atomically with private permissions", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "cue-codex-auth-"));
+    dirs.push(dir);
+    const fresh = join(dir, "fresh.json");
+    const stale = join(dir, "nested", "auth.json");
+    await writeFile(fresh, JSON.stringify({ auth_mode: "chatgpt", tokens: {}, last_refresh: "2026-08-10T10:00:00Z" }));
+
+    expect(await syncCodexAuth(fresh, stale)).toBe(true);
+    expect((await stat(stale)).mode & 0o777).toBe(0o600);
+    expect(JSON.parse(await readFile(stale, "utf8")).auth_mode).toBe("chatgpt");
+  });
+
+  test("rejects malformed auth instead of replacing a valid login", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "cue-codex-auth-"));
+    dirs.push(dir);
+    const malformed = join(dir, "bad.json");
+    const valid = join(dir, "auth.json");
+    await writeFile(malformed, "{not-json");
+    await writeFile(valid, JSON.stringify({ tokens: { access_token: "keep" } }));
+
+    expect(await syncCodexAuth(malformed, valid)).toBe(false);
+    expect(JSON.parse(await readFile(valid, "utf8")).tokens.access_token).toBe("keep");
   });
 });
