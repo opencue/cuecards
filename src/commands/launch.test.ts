@@ -443,6 +443,14 @@ describe("buildPickerSections", () => {
     const out = buildPickerSections(opt("__default"), all, [], 3, now, suggested);
     expect(out.some((o) => o.value === `${DIVIDER_PREFIX}suggested`)).toBe(false);
   });
+
+  test("AI suggestions get a distinct advisor heading", () => {
+    const out = buildPickerSections(opt("__default"), [opt("google-ads")], [], 3, now, [
+      { name: "google-ads", confidence: 0.9, reasons: ["GAQL scripts"], source: "ai" },
+    ]);
+    expect(out[0]?.label).toContain("AI profile advisor");
+    expect(out.find((o) => o.value === "google-ads")?.hint).toBe("90% match — GAQL scripts");
+  });
 });
 
 describe("getDefaultSelector", () => {

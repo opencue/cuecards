@@ -15,6 +15,11 @@ afterEach(() => {
 });
 
 describe("detectProfileV2", () => {
+  test("prioritizes the Ads domain from the repository name", () => {
+    const out = detectProfileV2("/tmp/google-ads-manager");
+    expect(out[0]?.profile).toBe("google-ads");
+    expect(out.map((x) => x.profile)).toContain("ads-manager");
+  });
   test("Cargo.toml → rust with 0.9 confidence", () => {
     writeFileSync(join(tmp, "Cargo.toml"), "[package]");
     const results = detectProfileV2(tmp);

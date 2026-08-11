@@ -751,6 +751,8 @@ export interface SuggestedEntry {
   confidence: number;
   /** Files / signals that drove the match — surfaced in the hint. */
   reasons: string[];
+  /** AI advice is visually distinguished from deterministic detection. */
+  source?: "ai" | "deterministic";
 }
 
 /**
@@ -959,7 +961,9 @@ export function buildPickerSections(
   if (eligibleSuggestions.length > 0) {
     result.push({
       value: `${DIVIDER_PREFIX}suggested`,
-      label: "  ── 🔍 Suggested for this cwd ──",
+      label: eligibleSuggestions.some((s) => s.source === "ai")
+        ? "  ── ✨ AI profile advisor ──"
+        : "  ── 🔍 Suggested for this cwd ──",
       hint: "",
       divider: true,
     });
@@ -1115,7 +1119,10 @@ interface ProfileOptionSet {
   defaultSelector?: string;
 }
 
-async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOptionSet> {
+async function listProfileOptions(
+  pinnedProfile?: string,
+  preferredAgent: "claude" | "codex" = "claude",
+): Promise<ProfileOptionSet> {
   const names = await listProfiles();
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
@@ -1173,6 +1180,13 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
     }
   }
 
+  // Keep the resolved .cue.profile visible as context, but never silently
+  // select it or let it suppress advice. The user remains in control.
+  if (pinnedProfile) {
+    const current = opts.find((o) => o.value === pinnedProfile);
+    if (current) current.hint = `current profile (.cue.profile)${current.hint ? ` — ${current.hint}` : ""}`;
+  }
+
   // Build the Default entry (composite of core + user-added profiles).
   // Pressing Enter on the picker selects it (it's first in the section order).
   // The loaded parts are baked into the label so the user always sees what
@@ -1218,13 +1232,33 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
   // Cwd-detected suggestions (medusa-config.js, Cargo.toml, etc.). Only
   // surfaced when a profile of the same name actually exists in this install.
   const knownProfileNames = new Set(names);
-  const detections = detectProfileV2(cwd).filter((d: DetectionResultV2) =>
+  const deterministic = detectProfileV2(cwd).filter((d: DetectionResultV2) =>
     knownProfileNames.has(d.profile),
   );
+  let detections = deterministic;
+  let suggestionSource: SuggestedEntry["source"] = "deterministic";
+  try {
+    const { adviseProfiles } = await import("../lib/ai-profile-advisor");
+    const advice = await adviseProfiles({
+      cwd,
+      knownProfiles: names,
+      currentProfile: pinnedProfile,
+      preferredAgent,
+    });
+    if (advice) {
+      detections = advice.suggestions;
+      suggestionSource = "ai";
+    }
+  } catch (err) {
+    // Timeout, unavailable agents, invalid JSON, and cache errors all fall
+    // through to the existing deterministic detector.
+    debug("launch:profile-advisor", err);
+  }
   const suggested: SuggestedEntry[] = detections.map((d) => ({
     name: d.profile,
     confidence: d.confidence,
     reasons: d.reasons,
+    source: suggestionSource,
   }));
 
   // Tag any option that the cwd autodetect strongly endorses so the combine
@@ -1752,7 +1786,7 @@ export async function run(args: string[]): Promise<number> {
       }
     } catch { /* never block launch on onboarding failure */ }
 
-    const optionSet = await listProfileOptions(existingProfile);
+    const optionSet = await listProfileOptions(existingProfile, parsed.agent);
     const options = optionSet.options;
     // Mine local session history for "you usually pair X with Y" suggestions.
     // The picker pre-checks empirical partners in the combine multiselect.
