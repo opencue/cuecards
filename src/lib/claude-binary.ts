@@ -13,6 +13,9 @@
  *   1. $CUE_REAL_CLAUDE (explicit override)
  *   2. $CLAUDE_CODE_EXECPATH (set by claude-code itself on subprocesses)
  *   3. Walk $PATH, skipping any small shim that contains `cue launch`.
+ *
+ * `cue launch codex` additionally honors $CUE_REAL_CODEX ahead of the PATH walk
+ * — see `codexExecOverride`.
  */
 
 import { existsSync, readFileSync, statSync } from "node:fs";
@@ -56,6 +59,32 @@ export function findRealAgentBin(name: string): string | null {
     }
   }
   return null;
+}
+
+/**
+ * An explicit "exec this instead of codex" override, or null when unset.
+ *
+ * Unlike `$CUE_REAL_CLAUDE` — which the launch path deliberately ignores, so
+ * the binary the user's PATH points at is the one that runs — this one IS
+ * honored by `cue launch codex`. The point is dispatch, not discovery: it puts
+ * a wrapper (oh-my-codex and friends) BEHIND cue's picker, so a bare `codex`
+ * still resolves a profile and materializes a runtime before the wrapper takes
+ * over. Callers execing the result must sanitize the child env first — see
+ * `stripShimDirFromPath` for the loop that otherwise follows.
+ */
+export function codexExecOverride(): string | null {
+  const override = process.env.CUE_REAL_CODEX;
+  if (!override) return null;
+  // Same bar `findRealAgentBin` holds a PATH candidate to. `existsSync` alone
+  // waves through a directory or a non-executable file, and the only symptom is
+  // an unexplained exit 127 from `execAgent`'s spawn-error branch.
+  try {
+    const stat = statSync(override);
+    if (!stat.isFile() || (stat.mode & 0o111) === 0) return null;
+  } catch {
+    return null;
+  }
+  return override;
 }
 
 export function findRealClaudeBin(): string | null {

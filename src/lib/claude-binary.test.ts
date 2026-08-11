@@ -3,7 +3,7 @@ import { chmodSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync }
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { findRealAgentBin } from "./claude-binary";
+import { codexExecOverride, findRealAgentBin } from "./claude-binary";
 
 describe("findRealAgentBin", () => {
   let root: string;
@@ -118,5 +118,64 @@ describe("findRealAgentBin", () => {
     writeExec(localBin, "claude", '#!/usr/bin/env bash\nexec "/home/u/Documents/cue/bin/cue" launch claude "$@"\n');
     process.env.PATH = localBin;
     expect(findRealAgentBin("claude")).toBeNull();
+  });
+});
+
+describe("codexExecOverride", () => {
+  let root: string;
+  let savedPath: string | undefined;
+  let savedOverride: string | undefined;
+
+  const writeExec = (d: string, name: string, content: string): string => {
+    mkdirSync(d, { recursive: true });
+    const p = join(d, name);
+    writeFileSync(p, content);
+    chmodSync(p, 0o755);
+    return p;
+  };
+
+  beforeEach(() => {
+    root = mkdtempSync(join(tmpdir(), "cue-codexover-"));
+    savedPath = process.env.PATH;
+    savedOverride = process.env.CUE_REAL_CODEX;
+    delete process.env.CUE_REAL_CODEX;
+  });
+  afterEach(() => {
+    process.env.PATH = savedPath;
+    if (savedOverride === undefined) delete process.env.CUE_REAL_CODEX;
+    else process.env.CUE_REAL_CODEX = savedOverride;
+    rmSync(root, { recursive: true, force: true });
+  });
+
+  test("null when unset", () => {
+    expect(codexExecOverride()).toBeNull();
+  });
+
+  test("null when set to a path that doesn't exist — never exec a phantom", () => {
+    process.env.CUE_REAL_CODEX = join(root, "nope", "omx");
+    expect(codexExecOverride()).toBeNull();
+  });
+
+  test("returns the override, so a wrapper can sit behind cue's picker", () => {
+    const omx = writeExec(join(root, "bin"), "omx", "#!/bin/sh\nexit 0\n");
+    process.env.CUE_REAL_CODEX = omx;
+    expect(codexExecOverride()).toBe(omx);
+  });
+
+  // Without the stat guard these fall through to execAgent, which can only
+  // report a bare 127 once the spawn fails.
+  test("null when the override is a directory", () => {
+    mkdirSync(join(root, "adir"), { recursive: true });
+    process.env.CUE_REAL_CODEX = join(root, "adir");
+    expect(codexExecOverride()).toBeNull();
+  });
+
+  test("null when the override is not executable", () => {
+    mkdirSync(join(root, "plain"), { recursive: true });
+    const f = join(root, "plain", "omx");
+    writeFileSync(f, "#!/bin/sh\nexit 0\n");
+    chmodSync(f, 0o644);
+    process.env.CUE_REAL_CODEX = f;
+    expect(codexExecOverride()).toBeNull();
   });
 });

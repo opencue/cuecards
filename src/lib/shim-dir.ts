@@ -95,6 +95,25 @@ export function fishDropIn(dir: string): string {
   ].join("\n");
 }
 
+/**
+ * `pathValue` with cue's shim dir removed.
+ *
+ * Used when launch execs a WRAPPER instead of the real agent (`$CUE_REAL_CODEX`
+ * pointed at oh-my-codex, codex-guard, …). Those wrappers spawn `codex` by bare
+ * name, so with the shim dir still on PATH the spawn resolves straight back to
+ * cue's shim: cue → wrapper → cue → wrapper, a loop `MAX_LAUNCH_DEPTH` can only
+ * abort with an error, never fix. Dropping the dir for the wrapper's process
+ * tree makes that bare-name spawn find the real binary, so cue runs exactly
+ * once per launch and the wrapper gets the agent it asked for.
+ */
+export function stripShimDirFromPath(pathValue: string | undefined, dir: string): string {
+  const target = resolve(dir);
+  return (pathValue ?? "")
+    .split(":")
+    .filter((entry) => resolve(entry) !== target)
+    .join(":");
+}
+
 export type ShimPosition = "before" | "after" | "absent";
 
 /**
