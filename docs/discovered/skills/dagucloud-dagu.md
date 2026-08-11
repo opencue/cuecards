@@ -1,27 +1,27 @@
 ---
 title: "dagucloud/dagu — Claude Code skill discovered by cue"
-description: "Local-first workflow engine with a Web UI for small teams. Define DAGs in a declarative YAML format. Self-contained and no DBMS required. Use any AI agent to ma"
+description: "Local-first workflow engine for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, and AI agents; keep wor"
 layout: page
-updated: 2026-06-26
-tags: [claude-code, skill, core]
+updated: 2026-08-07
+tags: [claude-code, skill, backend]
 ---
 
 # 💎 [dagucloud/dagu](https://github.com/dagucloud/dagu)
 
-**★ 3514** · exceptional (score 16) · Go · agentic-workflow, cron, data-pipeline, devops, durable-execution
+**★ 3706** · exceptional (score 15) · Go · agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron
 
-> Local-first workflow engine with a Web UI for small teams. Define DAGs in a declarative YAML format. Self-contained and no DBMS required. Use any AI agent to manage your DAGs.
+> Local-first workflow engine for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, and AI agents; keep workflows separate from business logic. One binary, no database. Airflow alternative.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 3514 stars
-- 🗓️ Last pushed: 2026-06-26
-- 🏷️ Tags: agentic-workflow, cron, data-pipeline, devops, durable-execution, durable-workflows, human-in-the-loop, job-scheduler, mcp-server, multiplayer-agent, on-premise, private-runners, self-hosted, self-service, selfservice-portal, task-automation, task-scheduler, workflow-engine, workflow-orchestration, workflow-scheduler
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
+- ⭐ 3706 stars
+- 🗓️ Last pushed: 2026-08-07
+- 🏷️ Tags: agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron, dag, data-pipeline, devops, durable-execution, human-in-the-loop, job-scheduler, llm, mcp, mcp-gateway, mcp-server, self-hosted, task-automation, workflow-engine, workflow-orchestration, workflow-scheduler
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add dagucloud/dagu --profile core
+cue skills add dagucloud/dagu --profile backend
 ```
 
 ## About

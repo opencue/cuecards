@@ -2,19 +2,19 @@
 title: "Migiht/claude-code-polyglot — Claude Code skill discovered by cue"
 description: "Use Claude Code in your native language: a local proxy that translates your prompts for the model and its replies for you, fully offline (Bergamot/Marian WASM +"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Migiht/claude-code-polyglot](https://github.com/Migiht/claude-code-polyglot)
 
-**★ 1** · potential (score 3.3) · TypeScript
+**★ 1** · potential (score 3.1) · TypeScript
 
 > Use Claude Code in your native language: a local proxy that translates your prompts for the model and its replies for you, fully offline (Bergamot/Marian WASM + Firefox Translations models). Code, paths, and tool calls are never touched.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-04
 - 🏷️ Tags: (none)

@@ -9,11 +9,13 @@
  *   health [--json]     — ping each MCP in active profile
  */
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
+import { findMissingExecutable, probeServer } from "../lib/mcp-probe";
+import type { McpServerConfig, ProbeResult } from "../lib/mcp-probe";
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { repoRoot } from "../lib/repo-root";
@@ -162,57 +164,66 @@ async function cmdRemove(id: string): Promise<number> {
   return 0;
 }
 
-async function cmdHealth(json: boolean): Promise<number> {
+async function cmdHealth(json: boolean, shallow: boolean): Promise<number> {
   const ids = await getActiveProfileMcpIds();
-  const results: { id: string; status: "up" | "down" | "unknown"; latency_ms?: number }[] = [];
 
-  for (const id of ids) {
-    const start = Date.now();
-    // Try to check if the MCP process/command exists
-    const allConfigs = loadMcpConfig(id);
-    if (!allConfigs) {
-      results.push({ id, status: "unknown" });
-      continue;
-    }
-
-    const cmd = allConfigs.command as string | undefined;
-    if (!cmd) {
-      results.push({ id, status: "unknown" });
-      continue;
-    }
-
-    // For stdio MCPs, check if the command binary exists
-    const expandedCmd = cmd.replace(/^~/, process.env.HOME ?? "~");
-    const check = spawnSync("which", [expandedCmd.split("/").pop() ?? cmd], {
-      encoding: "utf8",
-      timeout: 2000,
-    });
-    const latency = Date.now() - start;
-
-    if (check.status === 0) {
-      results.push({ id, status: "up", latency_ms: latency });
-    } else {
-      // Try the full path
-      const { existsSync } = await import("node:fs");
-      if (existsSync(expandedCmd)) {
-        results.push({ id, status: "up", latency_ms: latency });
-      } else {
-        results.push({ id, status: "down", latency_ms: latency });
-      }
-    }
-  }
+  // Probe concurrently — each one spends most of its time waiting on a child
+  // process, and a profile with a dozen servers would otherwise take a minute.
+  const results: ProbeResult[] = await Promise.all(
+    ids.map((id) => {
+      const config = loadMcpConfig(id) as McpServerConfig | null;
+      if (shallow) return Promise.resolve(shallowCheck(id, config));
+      return probeServer(id, config);
+    }),
+  );
 
   if (json) {
     process.stdout.write(JSON.stringify(results, null, 2) + "\n");
-  } else {
-    process.stdout.write(`MCP Health Check (${results.length} servers):\n\n`);
-    for (const r of results) {
-      const icon = r.status === "up" ? "✅" : r.status === "down" ? "❌" : "❓";
-      const lat = r.latency_ms !== undefined ? ` (${r.latency_ms}ms)` : "";
-      process.stdout.write(`  ${icon} ${r.id}${lat}\n`);
-    }
+    return results.some(r => r.status === "down") ? 1 : 0;
   }
-  return 0;
+
+  const mode = shallow ? " — shallow" : "";
+  process.stdout.write(`MCP Health Check (${results.length} servers${mode}):\n\n`);
+  for (const r of results) {
+    const icon = r.status === "up" ? "✅" : r.status === "down" ? "❌" : "❓";
+    const lat = r.latency_ms !== undefined ? ` (${r.latency_ms}ms` : "";
+    const tools = r.tools !== undefined ? `, ${r.tools} tools)` : lat ? ")" : "";
+    const why = r.reason ? `\n      ${r.reason}` : "";
+    process.stdout.write(`  ${icon} ${r.id}${lat}${tools}${why}\n`);
+  }
+
+  const dead = results.filter(r => r.status === "down");
+  if (dead.length > 0) {
+    process.stdout.write(
+      `\n${dead.length} server(s) down. Remove one with:  cue mcps remove <id>\n`,
+    );
+  }
+  return dead.length > 0 ? 1 : 0;
+}
+
+/**
+ * The pre-existing check, kept behind `--shallow` for when spawning every
+ * server is too slow (a hot loop, CI). It only answers "does an executable by
+ * this name exist", so it cannot see a server that starts and then dies —
+ * hence `findMissingExecutable`, which at least catches a broken interpreter
+ * hiding inside a wrapper's arguments.
+ */
+function shallowCheck(id: string, config: McpServerConfig | null): ProbeResult {
+  if (!config?.command) return { id, status: "unknown", reason: "no command in MCP config" };
+
+  const missing = findMissingExecutable(config);
+  if (missing) return { id, status: "down", reason: `missing executable: ${missing}` };
+
+  const expanded = config.command.replace(/^~/, process.env.HOME ?? "~");
+  if (existsSync(expanded)) return { id, status: "up" };
+
+  const found = spawnSync("which", [expanded.split("/").pop() ?? expanded], {
+    encoding: "utf8",
+    timeout: 2000,
+  });
+  return found.status === 0
+    ? { id, status: "up" }
+    : { id, status: "down", reason: `not on PATH: ${config.command}` };
 }
 
 function loadMcpConfig(id: string): Record<string, unknown> | null {
@@ -240,18 +251,26 @@ Subcommands:
   available         MCPs NOT in active profile
   add <id>          Add MCP to active profile
   remove <id>       Remove MCP from active profile
-  health            Ping each MCP, show status
+  health            Spawn each MCP and run the MCP handshake; show status
+
+Flags:
+  --json            Machine-readable output
+  --shallow         Only check that the executable exists (fast, less certain)
+
+Exit code is 1 when any server is down, so CI and hooks can gate on it.
 
 Examples:
   cue mcps add coolify
   cue mcps health
+  cue mcps health --json
 `);
     return 0;
   }
 
   const sub = args[0] ?? "list";
   const json = args.includes("--json");
-  const rest = args.filter(a => a !== "--json");
+  const shallow = args.includes("--shallow");
+  const rest = args.filter(a => a !== "--json" && a !== "--shallow");
 
   switch (sub) {
     case "list":
@@ -263,7 +282,7 @@ Examples:
     case "remove":
       return cmdRemove(rest[1] ?? "");
     case "health":
-      return cmdHealth(json);
+      return cmdHealth(json, shallow);
     default:
       process.stderr.write(`Unknown subcommand: ${sub}. Use: list, available, add, remove, health\n`);
       return 1;

@@ -1,28 +1,28 @@
 ---
 title: "kdnsna/ultimate-ppt-master-skill — Claude Code skill discovered by cue"
-description: "可视化网页工作台 + 本机连接器：把 PDF、Word、PPT、URL 一键整理成本地 AI 助手可接手的 PPT 项目包，输出可编辑 PPTX 或杂志风网页演示"
+description: "一句话需求也能做成像样 PPT：先问清受众、场景和风格，再整理本地资料，生成可编辑 PPTX/Web Deck，并用 GPT 生图、渲染审阅和审计留痕守住真实办公成稿。"
 layout: page
-updated: 2026-06-17
-tags: [claude-code, skill, niche]
+updated: 2026-08-07
+tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [kdnsna/ultimate-ppt-master-skill](https://github.com/kdnsna/ultimate-ppt-master-skill)
 
-**★ 52** · exceptional (score 15) · Python · agent, agent-skill, ai, ai-agent, ai-presentation
+**★ 159** · exceptional (score 14.1) · Python · agent-skill, ai-ppt, ai-presentation, codex, document-conversion
 
-> 可视化网页工作台 + 本机连接器：把 PDF、Word、PPT、URL 一键整理成本地 AI 助手可接手的 PPT 项目包，输出可编辑 PPTX 或杂志风网页演示
+> 一句话需求也能做成像样 PPT：先问清受众、场景和风格，再整理本地资料，生成可编辑 PPTX/Web Deck，并用 GPT 生图、渲染审阅和审计留痕守住真实办公成稿。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 52 stars
-- 🗓️ Last pushed: 2026-06-17
-- 🏷️ Tags: agent, agent-skill, ai, ai-agent, ai-presentation, claude-code-skill, codex, document-conversion, html-to-pptx, local-first, markdown, powerpoint, powerpoint-generation, pptx, pptx-generator, presentation, presentation-generator, presentation-tool, slides, web-deck
+- ⭐ 159 stars
+- 🗓️ Last pushed: 2026-08-07
+- 🏷️ Tags: agent-skill, ai-ppt, ai-presentation, codex, document-conversion, editable-pptx, gpt-image-generation, html-to-pptx, local-first, office-productivity, powerpoint, pptx, pptx-generator, presentation, presentation-design, presentation-generator, presentation-tool, quality-assurance, slides, web-deck
 
 ## Best fit cue profiles
 
-[niche](../niche.md)
+[creative-media](../creative-media.md)
 
 
 
@@ -30,7 +30,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add kdnsna/ultimate-ppt-master-skill --profile niche
+cue skills add kdnsna/ultimate-ppt-master-skill --profile creative-media
 ```
 
 ## About

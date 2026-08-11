@@ -151,8 +151,12 @@ function createLoaderCore(deps: CoreDeps, message: string): LoaderCore {
 /**
  * Start the launch loader. Returns a handle whose stop() must be called before
  * exec'ing the agent, or `null` in any non-interactive context (no TTY,
- * --dry-run via CUE_BYPASS, CUE_NO_LOADER). A null return lets callers route
- * progress text to stderr instead of the (absent) animated line.
+ * CUE_BYPASS, CUE_NO_LOADER). A null return lets callers route progress text to
+ * stderr instead of the (absent) animated line.
+ *
+ * The CUE_BYPASS check is belt-and-braces now that `cue launch` short-circuits
+ * to exec before it ever reaches a loader; it keeps this module honest for any
+ * other caller.
  */
 export function startLoader(opts: LoaderOptions = {}): LoaderHandle | null {
   const stream = opts.stream ?? process.stderr;

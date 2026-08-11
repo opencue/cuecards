@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { afterEach, describe, expect, test } from "bun:test";
 
 import {
+  classifierBinOrder,
   classifierSpawnArgs,
   credExpiresAt,
   setupClassifierHome,
@@ -171,5 +172,68 @@ describe("setupClassifierHome", () => {
       if (prevCache === undefined) delete process.env.XDG_CACHE_HOME;
       else process.env.XDG_CACHE_HOME = prevCache;
     }
+  });
+});
+
+// The classifier used to spawn the bare name `claude`, trusting CUE_BYPASS to
+// make cue's shim "transparent". It was not, at the time: nothing implemented
+// the documented bypass, so the shim re-entered `cue launch`, which folded the
+// child's own argv into a fresh classification prompt and spawned another
+// classifier. `cue launch` now honors CUE_BYPASS for real, but resolving the
+// real binary FIRST is still the better primary path — it skips a whole
+// `cue launch` boot per classification, and holds on an older cue too.
+describe("classifierBinOrder", () => {
+  const prevPath = process.env.PATH;
+  const prevReal = process.env.CUE_REAL_CLAUDE;
+  const prevExec = process.env.CLAUDE_CODE_EXECPATH;
+  afterEach(() => {
+    process.env.PATH = prevPath;
+    if (prevReal === undefined) delete process.env.CUE_REAL_CLAUDE;
+    else process.env.CUE_REAL_CLAUDE = prevReal;
+    if (prevExec === undefined) delete process.env.CLAUDE_CODE_EXECPATH;
+    else process.env.CLAUDE_CODE_EXECPATH = prevExec;
+  });
+
+  test("puts the real binary ahead of the bare PATH name", () => {
+    const realDir = tmpDir();
+    const realBin = join(realDir, "claude");
+    writeFileSync(realBin, "#!/usr/bin/env bash\necho real\n", { mode: 0o755 });
+    delete process.env.CUE_REAL_CLAUDE;
+    delete process.env.CLAUDE_CODE_EXECPATH;
+    process.env.PATH = realDir;
+
+    expect(classifierBinOrder()).toEqual([realBin, "claude"]);
+  });
+
+  test("skips a cue shim sitting earlier on PATH", () => {
+    const shimHome = tmpDir();
+    const realDir = tmpDir();
+    const shimBin = join(shimHome, "claude");
+    // Same body cue actually installs — the absolute-path `exec` form.
+    writeFileSync(shimBin, '#!/usr/bin/env bash\nexec "/opt/cue/bin/cue" launch claude "$@"\n', { mode: 0o755 });
+    const realBin = join(realDir, "claude");
+    writeFileSync(realBin, "#!/usr/bin/env bash\necho real\n", { mode: 0o755 });
+    delete process.env.CUE_REAL_CLAUDE;
+    delete process.env.CLAUDE_CODE_EXECPATH;
+    process.env.PATH = `${shimHome}:${realDir}`;
+
+    expect(classifierBinOrder()[0]).toBe(realBin);
+  });
+
+  test("still falls back to the bare name when no real binary resolves", () => {
+    delete process.env.CUE_REAL_CLAUDE;
+    delete process.env.CLAUDE_CODE_EXECPATH;
+    process.env.PATH = tmpDir(); // empty dir — nothing named claude
+    expect(classifierBinOrder()).toEqual(["claude"]);
+  });
+
+  test("never returns duplicates", () => {
+    const realDir = tmpDir();
+    writeFileSync(join(realDir, "claude"), "#!/usr/bin/env bash\n", { mode: 0o755 });
+    delete process.env.CUE_REAL_CLAUDE;
+    delete process.env.CLAUDE_CODE_EXECPATH;
+    process.env.PATH = realDir;
+    const order = classifierBinOrder();
+    expect(new Set(order).size).toBe(order.length);
   });
 });

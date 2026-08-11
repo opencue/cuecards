@@ -2,7 +2,7 @@
 title: "sequant-io/sequant — Claude Code skill discovered by cue"
 description: "AI coding agent orchestrator — resolve GitHub issues end-to-end with isolated git worktrees, quality gates, and an MCP server. Works with Claude Code or Aider."
 layout: page
-updated: 2026-07-30
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-30
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: agent-orchestrator, ai-coding-agent, autonomous-agent, claude-code, claude-code-plugin, code-review, git-worktree, mcp-server, spec-driven-development
 
 ## Best fit cue profiles

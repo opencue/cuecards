@@ -2,19 +2,19 @@
 title: "ancyonio/PromptIQ — Claude Code skill discovered by cue"
 description: "Deterministic prompt quality engine for the agentic SDLC — lints, scores, and rewrites rough developer asks into structured task specs with no model in the tran"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [ancyonio/PromptIQ](https://github.com/ancyonio/PromptIQ)
 
-**★ 1** · strong (score 5.3) · Python · claude-code, github-copilot, prompt-engineering, prompt-optimization, prompt-toolkit
+**★ 1** · strong (score 5.1) · Python · claude-code, github-copilot, prompt-engineering, prompt-optimization, prompt-toolkit
 
 > Deterministic prompt quality engine for the agentic SDLC — lints, scores, and rewrites rough developer asks into structured task specs with no model in the transformation path. GitHub Copilot–native, with adapters for Claude Code, Cursor, Gemini CLI, and any AGENTS.md-aware assistant.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-05
 - 🏷️ Tags: claude-code, github-copilot, prompt-engineering, prompt-optimization, prompt-toolkit, prompt-tuning, prompts, vscode

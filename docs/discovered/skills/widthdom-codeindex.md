@@ -2,7 +2,7 @@
 title: "Widthdom/CodeIndex — Claude Code skill discovered by cue"
 description: "Local-first code search and indexing for repositories, exposed through a CLI, MCP server, and read-only LSP."
 layout: page
-updated: 2026-07-28
+updated: 2026-08-08
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-28
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: ai-coding-agents, cli, code-indexing, code-navigation, code-search, cross-platform, developer-tools, dotnet-tool, fts5, language-server-protocol, local-first, lsp, mcp, mcp-server, model-context-protocol, repository-analysis, sqlite
 
 ## Best fit cue profiles

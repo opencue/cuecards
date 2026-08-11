@@ -2,7 +2,7 @@
 title: "AgentHouse-org/skills — Claude Code skill discovered by cue"
 description: "Open-source AI agent skills for AgentHouse and compatible SKILL.md-based platforms."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-04
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, claude, claude-skills
 
 ## Best fit cue profiles

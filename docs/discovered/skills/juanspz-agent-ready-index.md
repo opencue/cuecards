@@ -2,21 +2,21 @@
 title: "JuanSPZ/agent-ready-index — Claude Code skill discovered by cue"
 description: "Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀"
 layout: page
-updated: 2026-07-11
+updated: 2026-08-09
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [JuanSPZ/agent-ready-index](https://github.com/JuanSPZ/agent-ready-index)
 
-**★ 0** · strong (score 5.5) · HTML · agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
+**★ 1** · strong (score 5.8) · HTML · agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
 
 > Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-09
 - 🏷️ Tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools, anthropic, claude, fly-io, go, llms-txt, mcp, mcp-server, model-context-protocol, openapi, postgres, search-engine
 
 ## Best fit cue profiles

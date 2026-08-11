@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-02
+updated: 2026-08-10
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="menghuanshiguang-bilibili-downloader-skill"></a>
-## 💎 [menghuanshiguang/bilibili-downloader-skill](https://github.com/menghuanshiguang/bilibili-downloader-skill)
+<a id="jangviktor-web-nihaixia"></a>
+## 💎 [jangviktor-web/nihaixia](https://github.com/jangviktor-web/nihaixia)
 
-**★ 1** · exceptional (score 11.3) · Shell · tags: ai-agent, audio-downloader, bilibili, bilibili-downloader, claude-skill
+**★ 1914** · exceptional (score 22) · HTML · tags: agent-skill, chinese-medicine, nihaixia, openclaw, openclaw-skill
 
-B站音视频下载技能 - 基于yt-dlp，内置HTTP 412反爬规避方案，支持音频/视频/批量下载UP主空间
+倪海厦视角的中医Agent Skill，基于倪海厦教学资料开发，蒸馏倪师伤寒论、金匮要略、黄帝内经、神农本草经、针灸篇等，人纪/医案/经方思维，8个诊断公式+快速诊断流程图+脉舌速查+七步走思维模式（v2.1.0新增），蒸馏129条伤寒论 · 23篇金匮 · 71篇黄帝内经 · 345种本草 · 849个医案 · 2,452页讲义
 
 ✅ SKILL.md
 
 ```bash
-cue skills add menghuanshiguang/bilibili-downloader-skill --profile niche
+cue skills add jangviktor-web/nihaixia --profile niche
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "ChronoAIProject/NyxID — Claude Code skill discovered by cue"
 description: "Connect AI agents to any API, anywhere. Securely. Open-source gateway that proxies requests, injects credentials automatically, punches through NAT to reach loc"
 layout: page
-updated: 2026-07-01
+updated: 2026-08-07
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [ChronoAIProject/NyxID](https://github.com/ChronoAIProject/NyxID)
 
-**★ 31** · exceptional (score 12.1) · Rust · ai-agents, api-gateway, claude-code, codex, credential-management
+**★ 35** · exceptional (score 12.2) · Rust · ai-agents, api-gateway, claude-code, codex, credential-management
 
 > Connect AI agents to any API, anywhere. Securely. Open-source gateway that proxies requests, injects credentials automatically, punches through NAT to reach localhost services, and wraps REST APIs as MCP tools. Per-agent isolation. Never expose a raw key.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
-- ⭐ 31 stars
-- 🗓️ Last pushed: 2026-07-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
+- ⭐ 35 stars
+- 🗓️ Last pushed: 2026-08-07
 - 🏷️ Tags: ai-agents, api-gateway, claude-code, codex, credential-management, cursor, mcp, mcp-server, nat-traversal, nyx, nyxid, oauth2, oidc, react, reverse-proxy, rust, self-hosted, typescript
 
 ## Best fit cue profiles

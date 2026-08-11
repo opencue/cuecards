@@ -2,7 +2,7 @@
 title: "oxHive/hivemind — Claude Code skill discovered by cue"
 description: "Persistent memory MCP server for AI coding agents. Injects project context at session start, stores architectural decisions, and recalls preferences works with "
 layout: page
-updated: 2026-07-20
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-20
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: ai, ai-agent, claude-code, cli, codex, cursor, mcp, mcp-server, memory, rust
 
 ## Best fit cue profiles

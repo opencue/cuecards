@@ -2,7 +2,7 @@
 title: "Unpolished-tagusriver58/UEFN-TOOLBELT — Claude Code skill discovered by cue"
 description: "Build UEFN Python tools for asset registry, device cataloging, and workflow automation with 355 utility functions"
 layout: page
-updated: 2026-07-19
+updated: 2026-08-10
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: 3d-world-mapping, api, automation, editor-extension, framework, game-development, mcp-server, procedural-generation, pyside6, python, python-editor-scripting, toolkit, uefn, unreal-engine-fortnite, verse
 
 ## Best fit cue profiles

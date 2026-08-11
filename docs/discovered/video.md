@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-05
+updated: 2026-08-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="parthganatra-agent-skills"></a>
-## 💎 [ParthGanatra/agent-skills](https://github.com/ParthGanatra/agent-skills)
+<a id="modelscope-funasr"></a>
+## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
 
-**★ 4** · exceptional (score 8.8) · Shell · tags: agent-skills, ai, claude, claude-code, claude-skill
+**★ 19767** · exceptional (score 17) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
 
-Claude Code agent skills. Includes youtube-summary: a YouTube video summarizer that writes structured notes (TL;DR, takeaways, chapters) with optional slide extraction.
+Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
 
 ```bash
-cue skills add ParthGanatra/agent-skills --profile video
+cue skills add modelscope/FunASR --profile video
+```
+
+---
+
+<a id="augustusw-audio-tldr-skill"></a>
+## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+
+**★ 23** · exceptional (score 9.6) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+
+Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+
+```bash
+cue skills add AugustusW/audio-tldr-skill --profile video
 ```
 
 ---

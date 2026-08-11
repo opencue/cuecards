@@ -2,21 +2,21 @@
 title: "AKCodez/seo-god — Claude Code skill discovered by cue"
 description: "Turn Claude Code into an agentic SEO operator for your own site — audit, measure, daily loop, AI visibility, scheduled runs. Free path, no paid keys."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [AKCodez/seo-god](https://github.com/AKCodez/seo-god)
 
-**★ 21** · exceptional (score 10.4) · Shell
+**★ 32** · exceptional (score 11.5) · Shell
 
 > Turn Claude Code into an agentic SEO operator for your own site — audit, measure, daily loop, AI visibility, scheduled runs. Free path, no paid keys.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 21 stars
+- ⭐ 32 stars
 - 🗓️ Last pushed: 2026-08-03
 - 🏷️ Tags: (none)
 

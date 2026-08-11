@@ -1,27 +1,27 @@
 ---
 title: "Obelyth/cortex — Claude Code skill discovered by cue"
-description: "Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations."
+description: "Claude second brain — a private markdown knowledge base served to every Claude surface over MCP, with a read path that proves its own citations."
 layout: page
-updated: 2026-08-06
-tags: [claude-code, skill, nextjs, docs-writer]
+updated: 2026-08-11
+tags: [claude-code, skill, core]
 ---
 
-# ✨ [Obelyth/cortex](https://github.com/Obelyth/cortex)
+# 🔹 [Obelyth/cortex](https://github.com/Obelyth/cortex)
 
-**★ 1** · strong (score 6.3) · TypeScript · ai-memory, claude, claude-ai, knowledge-base, mcp
+**★ 1** · potential (score 4.3) · TypeScript
 
-> Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations.
+> Claude second brain — a private markdown knowledge base served to every Claude surface over MCP, with a read path that proves its own citations.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-05
-- 🏷️ Tags: ai-memory, claude, claude-ai, knowledge-base, mcp, mcp-server, memory, model-context-protocol, nextjs, note-taking, pkm, second-brain, second-brain-starter-kit, template, typescript, vercel
+- 🗓️ Last pushed: 2026-08-10
+- 🏷️ Tags: (none)
 
 ## Best fit cue profiles
 
-[nextjs](../nextjs.md), [docs-writer](../docs-writer.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add Obelyth/cortex --profile nextjs
+cue skills add Obelyth/cortex --profile core
 ```
 
 ## About

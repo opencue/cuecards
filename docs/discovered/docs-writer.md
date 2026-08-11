@@ -1,81 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-11
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="7xuanlu-wenlan"></a>
-## 💎 [7xuanlu/wenlan](https://github.com/7xuanlu/wenlan)
+<a id="onourimpram-mneme"></a>
+## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 47** · exceptional (score 13.3) · Rust · tags: ai-memory, claude, claude-code, claude-code-plugin, codex
+**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
-Wenlan is a knowledge base for the AI-native age. Your AI agents capture what they learn, Wenlan keeps it current and distills it into source-cited wiki pages you can trust
-
-```bash
-cue skills add 7xuanlu/wenlan --profile docs-writer
-```
-
----
-
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
-
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
-
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
-```
-
----
-
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
-
-**★ 0** · exceptional (score 9.5) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
-
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
-
-```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
-```
-
----
-
-<a id="cenmeow-markdown-new-skill"></a>
-## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
-
-**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
-
-Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
-
-```bash
-cue skills add CenMeow/markdown-new-skill --profile docs-writer
-```
-
----
-
-<a id="obelyth-cortex"></a>
-## ✨ [Obelyth/cortex](https://github.com/Obelyth/cortex)
-
-**★ 1** · strong (score 6.3) · TypeScript · tags: ai-memory, claude, claude-ai, knowledge-base, mcp
-
-Claude second brain — a private markdown knowledge base (PKM) served to every Claude surface over MCP, with a read path that proves its own citations.
-
-```bash
-cue skills add Obelyth/cortex --profile docs-writer
+cue skills add OnourImpram/mneme --profile docs-writer
 ```
 
 ---

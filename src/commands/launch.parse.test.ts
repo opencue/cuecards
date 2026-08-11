@@ -1,6 +1,12 @@
 import { afterEach, describe, expect, test } from "bun:test";
 
-import { __test, isAlwaysPickEnabled } from "./launch";
+import {
+  __test,
+  isAlwaysPickEnabled,
+  isBypassEnabled,
+  shouldForcePicker,
+  shouldInheritSessionProfile,
+} from "./launch";
 
 const { parse } = __test;
 
@@ -60,9 +66,12 @@ describe("shouldOpenMcpPicker", () => {
 // from the CUE_SMART_SUBSET env fold of a `-p` prompt (cached across launches).
 describe("parse: subset origin", () => {
   const prev = process.env.CUE_SMART_SUBSET;
+  const prevBypass = process.env.CUE_BYPASS;
   afterEach(() => {
     if (prev === undefined) delete process.env.CUE_SMART_SUBSET;
     else process.env.CUE_SMART_SUBSET = prev;
+    if (prevBypass === undefined) delete process.env.CUE_BYPASS;
+    else process.env.CUE_BYPASS = prevBypass;
   });
 
   test("explicit --subset sets subsetExplicit", () => {
@@ -84,6 +93,43 @@ describe("parse: subset origin", () => {
     expect(p.subset).toBeNull();
     expect(p.subsetExplicit).toBe(false);
   });
+
+  // Recursion guard. The classifier spawns `claude` by name, which on a machine
+  // with cue's shims first on PATH re-enters `cue launch`. With CUE_SMART_SUBSET
+  // exported globally, the fold below would turn that child's own argv into the
+  // next classification prompt and spawn another classifier — each level a full
+  // ~400MB claude process carrying the previous level's argv. Observed in the
+  // wild: 10 nested levels, a 67KB command line, ~3GB resident.
+  test("CUE_BYPASS suppresses the env fold so classifier spawns cannot recurse", () => {
+    process.env.CUE_SMART_SUBSET = "1";
+    process.env.CUE_BYPASS = "1";
+    const p = parse(["claude", "--print", "--model", "haiku", "-p", "which skills?"]);
+    expect(p.subset).toBeNull();
+    expect(p.subsetExplicit).toBe(false);
+  });
+
+  test("CUE_BYPASS does not block an explicit --subset", () => {
+    process.env.CUE_BYPASS = "1";
+    const p = parse(["claude", "--subset", "fix the parser"]);
+    expect(p.subset).toBe("fix the parser");
+    expect(p.subsetExplicit).toBe(true);
+  });
+});
+
+// The flag is documented as `CUE_BYPASS=1` in docs/launch.md and
+// docs/shell-install.md, and every internal caller sets exactly that. Widening
+// it to the 1/true/on set `isAlwaysPickEnabled` accepts would silently change
+// which environments skip the whole pipeline.
+describe("isBypassEnabled", () => {
+  test("accepts only the documented value", () => {
+    expect(isBypassEnabled("1")).toBe(true);
+  });
+
+  test("rejects anything else, including truthy-looking values", () => {
+    for (const v of ["0", "true", "on", "yes", "", " 1 ", undefined]) {
+      expect(isBypassEnabled(v)).toBe(false);
+    }
+  });
 });
 
 describe("isAlwaysPickEnabled", () => {
@@ -97,6 +143,71 @@ describe("isAlwaysPickEnabled", () => {
     for (const v of [undefined, "", "0", "false", "off", "no"]) {
       expect(isAlwaysPickEnabled(v)).toBe(false);
     }
+  });
+});
+
+// Regression lock for nested non-interactive launches. cue points
+// CLAUDE_CONFIG_DIR at the per-profile runtime dir when it launches an agent,
+// so every child spawned inside a cue session looks like an account alias. When
+// that forced the picker unconditionally, a nested `claude -p …` — gitguardex's
+// AI review gate, a hook, any script — died on "no profile resolved and stdin is
+// not a TTY", and callers had to strip the env var by hand to get through.
+describe("shouldForcePicker", () => {
+  const base = {
+    forcePick: false,
+    alwaysPickEnv: undefined as string | undefined,
+    hasOverride: false,
+    isAccountAlias: false,
+    isTTY: true,
+  };
+
+  test("an account alias opens the picker on a TTY", () => {
+    expect(shouldForcePicker({ ...base, isAccountAlias: true })).toBe(true);
+  });
+
+  test("an account alias does NOT force the picker off a TTY", () => {
+    expect(shouldForcePicker({ ...base, isAccountAlias: true, isTTY: false })).toBe(false);
+  });
+
+  test("CUE_ALWAYS_PICK does NOT force the picker off a TTY", () => {
+    expect(shouldForcePicker({ ...base, alwaysPickEnv: "1", isTTY: false })).toBe(false);
+  });
+
+  test("--cue-profile opts out of both TTY triggers", () => {
+    expect(shouldForcePicker({
+      ...base, hasOverride: true, isAccountAlias: true, alwaysPickEnv: "1",
+    })).toBe(false);
+  });
+
+  test("--cue-pick wins everywhere, TTY or not", () => {
+    expect(shouldForcePicker({ ...base, forcePick: true, isTTY: false })).toBe(true);
+    expect(shouldForcePicker({ ...base, forcePick: true, hasOverride: true })).toBe(true);
+  });
+});
+
+describe("shouldInheritSessionProfile", () => {
+  test("inherits when nothing resolved and there is no TTY to pick with", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: true, forcePick: false, isTTY: false,
+    })).toBe(true);
+  });
+
+  test("never inherits when the cwd resolved a profile", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: false, forcePick: false, isTTY: false,
+    })).toBe(false);
+  });
+
+  test("never inherits on a TTY — the picker is reachable", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: true, forcePick: false, isTTY: true,
+    })).toBe(false);
+  });
+
+  test("--cue-pick off a TTY stays a hard error rather than inheriting", () => {
+    expect(shouldInheritSessionProfile({
+      resolvedNone: true, forcePick: true, isTTY: false,
+    })).toBe(false);
   });
 });
 

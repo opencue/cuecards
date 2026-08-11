@@ -2,19 +2,19 @@
 title: "langlanglanglanglang/rules-architect — Claude Code skill discovered by cue"
 description: "Claude Code 的 CLAUDE.md / memory 优化方案。解决\"规则放 memory 里反复忘\"和\"CLAUDE.md 在长会话被 attention 稀释\"。3 个 hook + path-scoped 规则 + 5 层记忆模型 + 个人 memory→hook 升级流程。与官方 claude-md"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [langlanglanglanglang/rules-architect](https://github.com/langlanglanglanglang/rules-architect)
 
-**★ 1** · exceptional (score 11.3) · Python · ai-tooling, claude-code, claude-md, codex, codex-cli
+**★ 1** · exceptional (score 11.1) · Python · ai-tooling, claude-code, claude-md, codex, codex-cli
 
 > Claude Code 的 CLAUDE.md / memory 优化方案。解决"规则放 memory 里反复忘"和"CLAUDE.md 在长会话被 attention 稀释"。3 个 hook + path-scoped 规则 + 5 层记忆模型 + 个人 memory→hook 升级流程。与官方 claude-md-improver 互补（L3   审计委托给它）。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-05
