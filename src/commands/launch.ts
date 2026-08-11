@@ -49,6 +49,7 @@ import { detectCompanions, serviceCompanions, type CompanionSignal } from "../li
 import type { ResolvedProfile } from "../../profiles/_types";
 import type { ProfileAffinity, UniversalSuggestion } from "../lib/pair-suggestions";
 import { hasWorkspaces, getActiveWorkspace, computeOverrides, resolveWorkspaceForCwd } from "../lib/workspaces";
+import { shimDir, stripShimDirFromPath } from "../lib/shim-dir";
 
 // ---------------------------------------------------------------------------
 // Arg parsing
@@ -92,6 +93,24 @@ interface ParsedArgs {
  */
 export function isBypassEnabled(envVal: string | undefined = process.env.CUE_BYPASS): boolean {
   return envVal === "1";
+}
+
+/**
+ * The prompt buried in an agent's passthrough argv, or "" when there isn't one.
+ *
+ * `CUE_SMART_SUBSET` folds a real prompt (`claude -p "fix the auth bug"`) into
+ * the subset classifier. A switch is not a prompt: folding the whole argv hands
+ * the classifier a flag to interpret, and it dutifully obliges — `codex
+ * --madmax` measured as `smart-subset: 4/21 skills kept — "--madmax" likely
+ * refers to a cue profile`, gutting the profile the user had just picked.
+ *
+ * So every `-`-leading token drops out and the rest is kept, including the
+ * value that follows a flag: in the case this fold exists for, `-p`'s value IS
+ * the prompt. That leaves `--model haiku` folding as `haiku` — imprecise, but
+ * strictly closer than the `--model haiku` it used to send.
+ */
+export function passthroughPrompt(passthrough: readonly string[]): string {
+  return passthrough.filter((arg) => !arg.startsWith("-")).join(" ").trim();
 }
 
 function parse(args: string[]): ParsedArgs {
@@ -161,9 +180,13 @@ function parse(args: string[]): ParsedArgs {
   // times, and 7 concurrent classifier processes (across simultaneously
   // launching sessions) held ~2.9GB. An explicit `--subset` still wins, so a
   // deliberate override is never silently dropped.
+  //
+  // Only the PROSE in passthrough folds — see `passthroughPrompt`. A bare flag
+  // (`codex --madmax`, `claude --resume`) carries no prompt, so it leaves the
+  // subset unset and the full profile loads.
   const bypassed = isBypassEnabled();
   if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
-    subset = passthrough.join(" ");
+    subset = passthroughPrompt(passthrough) || null;
   }
   return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit, passthrough };
 }
@@ -1427,10 +1450,33 @@ async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string>
  * Pure PATH walk — launch deliberately ignores $CLAUDE_CODE_EXECPATH /
  * $CUE_REAL_CLAUDE (those serve in-session helpers like `cue quick`), so the
  * binary the user's PATH points at is the one that execs.
+ *
+ * $CUE_REAL_CODEX is the one exception, and it is a dispatch hook rather than a
+ * discovery hint: it exists so a wrapper (oh-my-codex, …) can sit BEHIND the
+ * picker instead of shadowing it in the shell. `viaOverride` tells the caller to
+ * hand that wrapper a sanitized env — see `wrapperEnv`.
  */
-async function findRealBinary(name: string): Promise<string | null> {
-  const { findRealAgentBin } = await import("../lib/claude-binary");
-  return findRealAgentBin(name);
+async function findRealBinary(name: string): Promise<{ bin: string; viaOverride: boolean } | null> {
+  const { codexExecOverride, findRealAgentBin } = await import("../lib/claude-binary");
+  if (name === "codex") {
+    const override = codexExecOverride();
+    if (override) return { bin: override, viaOverride: true };
+  }
+  const bin = findRealAgentBin(name);
+  return bin ? { bin, viaOverride: false } : null;
+}
+
+/**
+ * Child env for a wrapper exec ($CUE_REAL_CODEX). Two loop-breakers:
+ *
+ *  - Drop cue's shim dir from PATH, so the wrapper's bare `codex` spawn reaches
+ *    the real binary instead of re-entering `cue launch`.
+ *  - Unset the override, so a nested `cue launch codex` that slips through some
+ *    other shim can't dispatch back into the wrapper a second time.
+ */
+function wrapperEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const { CUE_REAL_CODEX: _override, ...rest } = env;
+  return { ...rest, PATH: stripShimDirFromPath(env.PATH, shimDir()) };
 }
 
 /**
@@ -1709,11 +1755,16 @@ export async function run(args: string[]): Promise<number> {
       );
       return 127;
     }
-    debug("launch:bypass", realBin);
-    return execAgent(realBin, parsed.passthrough, {
+    debug("launch:bypass", realBin.bin);
+    const bypassEnv: NodeJS.ProcessEnv = {
       ...process.env,
       CUE_LAUNCHING: String(depth + 1),
-    });
+    };
+    return execAgent(
+      realBin.bin,
+      parsed.passthrough,
+      realBin.viaOverride ? wrapperEnv(bypassEnv) : bypassEnv,
+    );
   }
 
   if (isAgentHelpPassthrough(parsed)) {
@@ -1724,7 +1775,11 @@ export async function run(args: string[]): Promise<number> {
       );
       return 127;
     }
-    return execAgent(realBin, parsed.passthrough, process.env);
+    return execAgent(
+      realBin.bin,
+      parsed.passthrough,
+      realBin.viaOverride ? wrapperEnv(process.env) : process.env,
+    );
   }
   const agentKind = parsed.agent === "claude" ? "claude-code" : "codex";
 
@@ -2794,7 +2849,11 @@ export async function run(args: string[]): Promise<number> {
   }
   let exitCode: number;
   try {
-    exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
+    exitCode = await execAgent(
+      realBin.bin,
+      [...briefArgs, ...parsed.passthrough],
+      realBin.viaOverride ? wrapperEnv(childEnv) : childEnv,
+    );
   } finally {
     stopReconciler?.();
   }

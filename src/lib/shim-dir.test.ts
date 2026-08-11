@@ -9,6 +9,7 @@ import {
   shimContent,
   shimDir,
   shimDirPosition,
+  stripShimDirFromPath,
 } from "./shim-dir";
 
 describe("shimDir", () => {
@@ -97,5 +98,30 @@ describe("shimDirPosition", () => {
 
   test("normalizes PATH entries before comparing", () => {
     expect(shimDirPosition([`${dir}/`, "/usr/bin"], "/usr/bin/claude", dir)).toBe("before");
+  });
+});
+
+describe("stripShimDirFromPath", () => {
+  const dir = "/home/u/.config/cue/shims";
+
+  test("removes the shim dir and keeps every other entry in order", () => {
+    expect(stripShimDirFromPath(`${dir}:/usr/local/bin:/usr/bin`, dir))
+      .toBe("/usr/local/bin:/usr/bin");
+  });
+
+  test("normalizes entries before comparing, so a trailing slash still matches", () => {
+    expect(stripShimDirFromPath(`/usr/bin:${dir}/`, dir)).toBe("/usr/bin");
+  });
+
+  test("removes every occurrence, not just the first", () => {
+    expect(stripShimDirFromPath(`${dir}:/usr/bin:${dir}`, dir)).toBe("/usr/bin");
+  });
+
+  test("leaves a PATH without the shim dir untouched", () => {
+    expect(stripShimDirFromPath("/usr/local/bin:/usr/bin", dir)).toBe("/usr/local/bin:/usr/bin");
+  });
+
+  test("returns empty string for an undefined PATH", () => {
+    expect(stripShimDirFromPath(undefined, dir)).toBe("");
   });
 });
