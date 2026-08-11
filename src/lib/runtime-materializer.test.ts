@@ -27,6 +27,39 @@ const sampleProfile: ResolvedProfile = {
 };
 
 describe("materializeRuntime", () => {
+  test("codex renders MCP env maps as TOML inline tables", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-codex-mcp-env",
+      agents: ["codex"],
+      mcps: [{ id: "google-ads-mcp" }],
+      inheritanceChain: ["test-codex-mcp-env"],
+    };
+    const out = await materializeRuntime({
+      profile,
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: {
+        "google-ads-mcp": {
+          command: "pipx",
+          args: ["run", "google-ads-mcp"],
+          env: {
+            GOOGLE_PROJECT_ID: "my-project",
+            GOOGLE_ADS_DEVELOPER_TOKEN: "secret",
+          },
+        },
+      },
+      userClaudeMd: "",
+    });
+
+    const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
+    expect(toml).toContain(
+      'env = { "GOOGLE_PROJECT_ID" = "my-project", "GOOGLE_ADS_DEVELOPER_TOKEN" = "secret" }',
+    );
+    expect(toml).not.toContain('"GOOGLE_PROJECT_ID":"my-project"');
+  });
+
   test("creates runtime dir with hash and settings.json", async () => {
     const out = await materializeRuntime({
       profile: sampleProfile,
