@@ -1,9 +1,7 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import http from "node:http";
 import { mkdtemp, mkdir, writeFile, readFile, stat, lstat, rm, readlink, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import net from "node:net";
 
 import { utimes } from "node:fs/promises";
 
@@ -88,6 +86,36 @@ describe("materializeRuntime", () => {
     await expect(stat(join(out2.runtimeDir, "skills", "cue-deferred-skills"))).rejects.toThrow();
   });
 
+  test("codex rebuild preserves rollout and thread-store state", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-codex-state",
+      agents: ["codex"],
+      inheritanceChain: ["test-codex-state"],
+    };
+    const opts = {
+      agent: "codex" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    };
+    const first = await materializeRuntime({ ...opts, profile });
+    const rollout = join(first.runtimeDir, "sessions", "2026", "08", "10", "rollout-thread.jsonl");
+    await mkdir(join(rollout, ".."), { recursive: true });
+    await writeFile(rollout, "{\"type\":\"response_item\"}\n");
+    await writeFile(join(first.runtimeDir, "thread_history_1.sqlite"), "thread-state");
+
+    const rebuilt = await materializeRuntime({
+      ...opts,
+      profile: { ...profile, description: "force a new materialization hash" },
+    });
+
+    expect(rebuilt.rebuilt).toBe(true);
+    expect(await readFile(rollout, "utf8")).toContain("response_item");
+    expect(await readFile(join(rebuilt.runtimeDir, "thread_history_1.sqlite"), "utf8")).toBe("thread-state");
+  });
+
   test("when: gate — MCP excluded while its env condition fails, included once it passes", async () => {
     const ENV_KEY = "CUE_TEST_GATED_MCP_TOKEN";
     delete process.env[ENV_KEY];
@@ -159,14 +187,7 @@ describe("materializeRuntime", () => {
   });
 
   test("surfaces ANTHROPIC_BASE_URL when the proxy health endpoint responds (health-gate pass)", async () => {
-    // Stand up a throwaway loopback HTTP server so the proxy health probe passes.
-    const server = http.createServer((req, res) => {
-      res.statusCode = req.url === "/health" ? 200 : 404;
-      res.end("ok");
-    });
-    await new Promise<void>((res) => server.listen(0, "127.0.0.1", () => res()));
-    const port = (server.address() as { port: number }).port;
-    try {
+    const port = 43111;
       const out = await materializeRuntime({
         profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` } },
         agent: "claude-code",
@@ -174,20 +195,14 @@ describe("materializeRuntime", () => {
         skillSourceLookup: async (id) => `/fake/skills/${id}`,
         mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
         userClaudeMd: "# user CLAUDE.md\n",
+        proxyHealthCheck: async () => true,
       });
       const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
       expect(settings.env).toEqual({ ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` });
-    } finally {
-      await new Promise<void>((res) => server.close(() => res()));
-    }
   });
 
   test("drops ANTHROPIC_BASE_URL when the port is open but health does not answer", async () => {
-    // Regression for saturated local gateways: TCP accepts while /health hangs.
-    const server = net.createServer();
-    await new Promise<void>((res) => server.listen(0, "127.0.0.1", () => res()));
-    const port = (server.address() as { port: number }).port;
-    try {
+    const port = 43112;
       const out = await materializeRuntime({
         profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` } },
         agent: "claude-code",
@@ -195,20 +210,14 @@ describe("materializeRuntime", () => {
         skillSourceLookup: async (id) => `/fake/skills/${id}`,
         mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
         userClaudeMd: "# user CLAUDE.md\n",
+        proxyHealthCheck: async () => false,
       });
       const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
       expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
-    } finally {
-      await new Promise<void>((res) => server.close(() => res()));
-    }
   });
 
   test("drops ANTHROPIC_BASE_URL when the proxy is unreachable (health-gate fail-open)", async () => {
-    // Reserve a loopback port then close it, so the proxy probe is guaranteed to fail.
-    const probe = net.createServer();
-    await new Promise<void>((res) => probe.listen(0, "127.0.0.1", () => res()));
-    const closedPort = (probe.address() as { port: number }).port;
-    await new Promise<void>((res) => probe.close(() => res()));
+    const closedPort = 43113;
 
     const out = await materializeRuntime({
       profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${closedPort}` } },
@@ -217,6 +226,7 @@ describe("materializeRuntime", () => {
       skillSourceLookup: async (id) => `/fake/skills/${id}`,
       mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
       userClaudeMd: "# user CLAUDE.md\n",
+      proxyHealthCheck: async () => false,
     });
     const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
     // Fail-open: the unreachable base URL is dropped, so Claude talks to Anthropic directly.
@@ -425,6 +435,32 @@ describe("materializeRuntime", () => {
     const st = await lstat(join(out.runtimeDir, "settings.json"));
     expect(st.isSymbolicLink()).toBe(false);
     expect(st.isFile()).toBe(true);
+  });
+
+  test("claude rebuild preserves live session-env and task state", async () => {
+    const credSrc = join(root, "creds");
+    await mkdir(credSrc, { recursive: true });
+    const opts = {
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    };
+    const first = await materializeRuntime({ ...opts, profile: sampleProfile });
+    await mkdir(join(first.runtimeDir, "session-env", "live-session"), { recursive: true });
+    await writeFile(join(first.runtimeDir, "session-env", "live-session", "env"), "ACTIVE=1\n");
+    await mkdir(join(first.runtimeDir, "tasks"), { recursive: true });
+    await writeFile(join(first.runtimeDir, "tasks", "task.json"), "{\"active\":true}\n");
+
+    const rebuilt = await materializeRuntime({
+      ...opts,
+      profile: { ...sampleProfile, description: "force rebuild" },
+    });
+
+    expect(await readFile(join(rebuilt.runtimeDir, "session-env", "live-session", "env"), "utf8")).toBe("ACTIVE=1\n");
+    expect(await readFile(join(rebuilt.runtimeDir, "tasks", "task.json"), "utf8")).toContain("active");
   });
 
   test("credentialsSource: preserves account-level settings but isolates MCPs + plugins per profile", async () => {
@@ -1429,5 +1465,49 @@ describe("materializeRuntime — rebuild swap leftovers", () => {
     const second = await materializeRuntime(swapArgs(runtimeRoot));
 
     expect(await swapSiblings(second.runtimeDir)).toEqual([]);
+  });
+
+  test("serializes concurrent rebuilds and preserves Codex session state", async () => {
+    const runtimeRoot = join(root, "runtime-concurrent");
+    const args = { ...swapArgs(runtimeRoot), agent: "codex" as const };
+    const first = await materializeRuntime(args);
+    await mkdir(join(first.runtimeDir, "sessions"), { recursive: true });
+    await writeFile(join(first.runtimeDir, "sessions", "active.jsonl"), "thread-state\n");
+    await writeFile(join(first.runtimeDir, ".cue-hash"), "0".repeat(64));
+
+    const [a, b] = await Promise.all([materializeRuntime(args), materializeRuntime(args)]);
+
+    expect([a.rebuilt, b.rebuilt].sort()).toEqual([false, true]);
+    expect(await readFile(join(first.runtimeDir, "sessions", "active.jsonl"), "utf8"))
+      .toBe("thread-state\n");
+  });
+
+  test("recovers an abandoned materialization lock", async () => {
+    const runtimeRoot = join(root, "runtime-abandoned-lock");
+    const runtimeDir = join(runtimeRoot, sampleProfile.name, "claude");
+    const lockDir = `${runtimeDir}.lock`;
+    await mkdir(lockDir, { recursive: true });
+    const old = new Date(Date.now() - 700_000);
+    await utimes(lockDir, old, old);
+
+    const out = await materializeRuntime(swapArgs(runtimeRoot));
+
+    expect(out.rebuilt).toBe(true);
+    expect(await lstat(out.runtimeDir)).toBeTruthy();
+    await expect(lstat(lockDir)).rejects.toThrow();
+  });
+
+  test("releases the lock after a failed build so a retry can succeed", async () => {
+    const runtimeRoot = join(root, "runtime-failed-build");
+    const args = swapArgs(runtimeRoot);
+    await expect(materializeRuntime({
+      ...args,
+      skillSourceLookup: async () => { throw new Error("missing skill"); },
+    })).rejects.toThrow();
+
+    const out = await materializeRuntime(args);
+
+    expect(out.rebuilt).toBe(true);
+    expect(await readFile(join(out.runtimeDir, ".cue-hash"), "utf8")).not.toBeEmpty();
   });
 });
