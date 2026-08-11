@@ -1,8 +1,11 @@
 ---
 name: reddit-skills
-description: |
-  Reddit automation skill collection. Supports authentication, content publishing, search & discovery, social interactions, and compound operations.
-  Triggered when a user asks to operate Reddit (post, search, comment, login, analyze, upvote, save).
+description: Use when the user asks to operate Reddit across authentication, search, publishing, comments, votes, saves, subreddit analysis, or multi-step content workflows.
+tags: [reddit, automation, social-media]
+triggers:
+  - use Reddit
+  - operate Reddit
+  - Reddit workflow
 version: 1.0.0
 metadata:
   openclaw:
@@ -66,7 +69,7 @@ This skill requires a Chrome browser extension that operates within the user's l
 
 ## Sub-skill Overview
 
-### reddit-auth — Authentication
+### reddit-auth, Authentication
 
 Manage Reddit login state.
 
@@ -75,7 +78,7 @@ Manage Reddit login state.
 | `cli.py check-login` | Check login status |
 | `cli.py delete-cookies` | Log out (clear session) |
 
-### reddit-publish — Content Publishing
+### reddit-publish, Content Publishing
 
 Submit posts to subreddits.
 
@@ -85,7 +88,7 @@ Submit posts to subreddits.
 | `cli.py submit-link` | Submit a link post |
 | `cli.py submit-image` | Submit an image post |
 
-### reddit-explore — Discovery
+### reddit-explore, Discovery
 
 Search posts, browse subreddits, view post details, check user profiles.
 
@@ -97,7 +100,7 @@ Search posts, browse subreddits, view post details, check user profiles.
 | `cli.py get-post-detail` | Get post content and comments |
 | `cli.py user-profile` | Get user profile info |
 
-### reddit-interact — Social Interaction
+### reddit-interact, Social Interaction
 
 Comment, reply, vote, save.
 
@@ -109,11 +112,11 @@ Comment, reply, vote, save.
 | `cli.py downvote` | Downvote a post |
 | `cli.py save-post` | Save / unsave a post |
 
-### reddit-content-ops — Compound Operations
+### reddit-content-ops, Compound Operations
 
 Multi-step workflows: subreddit analysis, trend tracking, engagement campaigns.
 
-## Quick Start
+## Example: Quick start
 
 ```bash
 # 1. Check login status
@@ -124,7 +127,11 @@ python scripts/cli.py subreddit-feed --subreddit learnpython
 
 # 3. Search posts
 python scripts/cli.py search --query "best IDE for Python" --sort relevance
+```
 
+Inspect a post and publish a response:
+
+```bash
 # 4. Get post details
 python scripts/cli.py get-post-detail --post-url "https://www.reddit.com/r/Python/comments/abc123/title/"
 
@@ -133,7 +140,11 @@ python scripts/cli.py submit-text \
   --subreddit learnpython \
   --title-file title.txt \
   --body-file body.txt
+```
 
+Interact with the published content:
+
+```bash
 # 6. Comment on a post
 python scripts/cli.py post-comment \
   --post-url "https://www.reddit.com/r/Python/comments/abc123/title/" \
