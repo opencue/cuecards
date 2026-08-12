@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-11
+updated: 2026-08-12
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+<a id="zandereins-hydra"></a>
+## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 4** · exceptional (score 16.8) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 4** · exceptional (score 16.3) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+cue skills add Zandereins/hydra --profile cybersecurity
 ```
 
 ---
@@ -33,25 +33,12 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2269** · exceptional (score 14) · Python · tags: agentskills, claude, skills
+**★ 2274** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="aks129-healthclawguardrails"></a>
-## 💎 [aks129/HealthClawGuardrails](https://github.com/aks129/HealthClawGuardrails)
-
-**★ 28** · exceptional (score 10.7) · Python · tags: agent-skills, agents, ai-agents, fhir, gemini-cli-extension
-
-Open-source guardrails between AI agents and FHIR clinical data — PHI redaction, immutable audit, step-up auth, tenant isolation. MCP server + OpenAI/Gemini adapters. A healthclaw.io project.
-
-```bash
-cue skills add aks129/HealthClawGuardrails --profile cybersecurity
 ```
 
 ---
@@ -78,6 +65,19 @@ Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate l
 
 ```bash
 cue skills add hybridindie/comfyui_mcp --profile cybersecurity
+```
+
+---
+
+<a id="braydos-h-netattackai"></a>
+## 💎 [braydos-h/NetAttackAi](https://github.com/braydos-h/NetAttackAi)
+
+**★ 2** · exceptional (score 8) · Python · tags: agent, ai, bug-bounty, cybersecurity, mcp-server
+
+Autonomous Offensive Security Agent for Red Team Operations
+
+```bash
+cue skills add braydos-h/NetAttackAi --profile cybersecurity
 ```
 
 ---

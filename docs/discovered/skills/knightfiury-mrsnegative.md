@@ -2,13 +2,13 @@
 title: "KnightFiury/MrsNegative — Claude Code skill discovered by cue"
 description: "Adversarial code-review persona for AI coding agents. Runs after every diff, flags security/reliability/concurrency issues by severity, and requires a fix for e"
 layout: page
-updated: 2026-08-11
+updated: 2026-08-12
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [KnightFiury/MrsNegative](https://github.com/KnightFiury/MrsNegative)
 
-**★ 0** · strong (score 7) · agent-skills, ai-agents, claude-code, claude-code-skill, code-review
+**★ 0** · strong (score 7) · JavaScript · agent-skills, ai-agents, claude-code, claude-code-skill, code-review
 
 > Adversarial code-review persona for AI coding agents. Runs after every diff, flags security/reliability/concurrency issues by severity, and requires a fix for every finding. Portable across Claude Code, Codex, opencode, and any LLM.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-11
+- 🗓️ Last pushed: 2026-08-12
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-code-skill, code-review, codex-skill, developer-tools, llm, open-code, prompt-engineering, security-tools
 
 ## Best fit cue profiles

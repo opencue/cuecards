@@ -2,21 +2,21 @@
 title: "novoads/claude-code-ads — Claude Code skill discovered by cue"
 description: "Claude Code skills to generate AI video ads, UGC ads, and image ads. The official Novoads skill pack (REST API + MCP)."
 layout: page
-updated: 2026-08-10
+updated: 2026-08-12
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [novoads/claude-code-ads](https://github.com/novoads/claude-code-ads)
 
-**★ 1** · exceptional (score 8.3) · Python · agent-skills, ai-ads, ai-agents, ai-marketing, ai-video
+**★ 6** · exceptional (score 9) · Python · agent-skills, ai-ads, ai-agents, ai-marketing, ai-video
 
 > Claude Code skills to generate AI video ads, UGC ads, and image ads. The official Novoads skill pack (REST API + MCP).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-10
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-08-12
 - 🏷️ Tags: agent-skills, ai-ads, ai-agents, ai-marketing, ai-video, anthropic, arcads-alternative, claude, claude-ai, claude-code, claude-code-skill, claude-code-skills, claude-skills, image-generation, mcp, meta-ads, ugc, ugc-ads, video-ads, video-generation
 
 ## Best fit cue profiles

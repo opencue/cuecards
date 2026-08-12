@@ -2,19 +2,19 @@
 title: "noluyorAbi/claude-code-recap — Claude Code skill discovered by cue"
 description: "Browse every recent Claude Code session across all your projects and jump back into any of them. Shows project path, summary, git branch, model, turn count, and"
 layout: page
-updated: 2026-08-11
+updated: 2026-08-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [noluyorAbi/claude-code-recap](https://github.com/noluyorAbi/claude-code-recap)
 
-**★ 29** · exceptional (score 8.6) · Shell · agent-skills, agentic-coding, anthropic, claude, claude-code
+**★ 29** · exceptional (score 8.5) · Shell · agent-skills, agentic-coding, anthropic, claude, claude-code
 
 > Browse every recent Claude Code session across all your projects and jump back into any of them. Shows project path, summary, git branch, model, turn count, and a ready-to-paste resume command. --open re-opens a whole working set in terminal tabs. Local files only: no network, no telemetry.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 29 stars
 - 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: agent-skills, agentic-coding, anthropic, claude, claude-code, claude-code-marketplace, claude-code-plugin, claude-code-skill, claude-code-skills, claude-skills, cli, coding-agent, developer-productivity, developer-tools, iterm2, local-first, python-cli, session-history, session-resume, terminal

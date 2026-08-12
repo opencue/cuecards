@@ -2,21 +2,21 @@
 title: "koala73/worldmonitor — Claude Code skill discovered by cue"
 description: "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness in"
 layout: page
-updated: 2026-08-08
+updated: 2026-08-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [koala73/worldmonitor](https://github.com/koala73/worldmonitor)
 
-**★ 79732** · exceptional (score 14) · TypeScript · agent, ai, dashboard, geopolitics, mcp
+**★ 80924** · exceptional (score 14) · TypeScript · agent, ai, dashboard, geopolitics, mcp
 
 > Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 79732 stars
-- 🗓️ Last pushed: 2026-08-08
+- ⭐ 80924 stars
+- 🗓️ Last pushed: 2026-08-12
 - 🏷️ Tags: agent, ai, dashboard, geopolitics, mcp, mcp-server, monitoring, news, opensource, osint, palantir, situation
 
 ## Best fit cue profiles
