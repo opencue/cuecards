@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -24,6 +24,19 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="riqxa-skills-best-practices"></a>
+## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+
+**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+
+Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+
+```bash
+cue skills add riqxa/skills-best-practices --profile frontend
 ```
 
 ---
@@ -50,19 +63,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="rga-rt-claude-nuxt-fullstack-scaffold"></a>
-## ✨ [rga-rt/claude-nuxt-fullstack-scaffold](https://github.com/rga-rt/claude-nuxt-fullstack-scaffold)
-
-**★ 0** · strong (score 6) · tags: claude, claude-skill, drizzle-orm, i18n, nuxt
-
-A Claude skill for scaffolding production-ready Nuxt 3 apps with optional i18n, SQLite (Drizzle), or Supabase — includes 3 runnable examples.
-
-```bash
-cue skills add rga-rt/claude-nuxt-fullstack-scaffold --profile frontend
 ```
 
 ---

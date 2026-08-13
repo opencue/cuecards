@@ -1,55 +1,68 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="crbnos-carbon"></a>
-## 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
+<a id="rheosoph-flow-like"></a>
+## 💎 [Rheosoph/flow-like](https://github.com/Rheosoph/flow-like)
 
-**★ 2343** · exceptional (score 14) · TypeScript · tags: business, erp, lean, management, manufacturing
+**★ 932** · exceptional (score 13) · Rust · tags: agents, ai, apis, automation, data-flow
 
-Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, and configure to order manufacturing.
+Flow-Like: Strongly Typed Enterprise Scale Workflows. Built for scalability, speed, seamless AI integration and rich customization.
 
 ```bash
-cue skills add crbnos/carbon --profile backend
+cue skills add Rheosoph/flow-like --profile backend
 ```
 
 ---
 
-<a id="jjang-ai-vmlx"></a>
-## 💎 [jjang-ai/vmlx](https://github.com/jjang-ai/vmlx)
+<a id="andyshaman-telegram-business-bridge"></a>
+## 💎 [AndyShaman/telegram-business-bridge](https://github.com/AndyShaman/telegram-business-bridge)
 
-**★ 800** · exceptional (score 13.9) · Python · tags: anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm
+**★ 13** · exceptional (score 11.8) · Python · tags: ai-agent, ai-assistant, aiogram, claude, claude-code
 
-vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives restart) + L1 Paged (super fast ttft) + Hybrid SSM Scheduler  + Cont Batching + etc!
+Connect any AI agent to your personal Telegram via the official Business API — no userbot, no ban risk, no Premium. Agent reads & searches full history, drafts replies; every reply waits for your ✅. MCP server + 24/7 collector on SQLite/FTS5.
 
 ```bash
-cue skills add jjang-ai/vmlx --profile backend
+cue skills add AndyShaman/telegram-business-bridge --profile backend
 ```
 
 ---
 
-<a id="madgapun-pbp"></a>
-## 💎 [MadGapun/PBP](https://github.com/MadGapun/PBP)
+<a id="benjinsassi-leankg"></a>
+## 💎 [Benjinsassi/LeanKG](https://github.com/Benjinsassi/LeanKG)
 
-**★ 5** · exceptional (score 9.6) · Python · tags: ai, automation, bewerbung, claude, claude-desktop
+**★ 1** · exceptional (score 10.3) · tags: antigravity, claude-code, concise-context, cursor, gemini
 
-Local AI job application assistant for the German-speaking job market (DACH) — job search, application tracking, CV analysis. MCP server for Claude Desktop, self-hosted, no cloud. Deutsch: dein Bewerbungs-Helfer, läuft komplett lokal.
+Index codebases into a local knowledge graph to provide accurate context for AI coding tools through a direct MCP server connection.
 
 ```bash
-cue skills add MadGapun/PBP --profile backend
+cue skills add Benjinsassi/LeanKG --profile backend
+```
+
+---
+
+<a id="mistertechie06-x402-payments-skill"></a>
+## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
+
+**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
+
+Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+
+```bash
+cue skills add mistertechie06/x402-payments-skill --profile backend
 ```
 
 ---
@@ -57,7 +70,7 @@ cue skills add MadGapun/PBP --profile backend
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 10** · strong (score 6.4) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 10** · strong (score 7.9) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
 Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
@@ -67,28 +80,93 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="rga-rt-claude-nuxt-fullstack-scaffold"></a>
-## ✨ [rga-rt/claude-nuxt-fullstack-scaffold](https://github.com/rga-rt/claude-nuxt-fullstack-scaffold)
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
 
-**★ 0** · strong (score 6) · tags: claude, claude-skill, drizzle-orm, i18n, nuxt
+**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
 
-A Claude skill for scaffolding production-ready Nuxt 3 apps with optional i18n, SQLite (Drizzle), or Supabase — includes 3 runnable examples.
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
 
 ```bash
-cue skills add rga-rt/claude-nuxt-fullstack-scaffold --profile backend
+cue skills add shadow400x/claude-sh --profile backend
 ```
 
 ---
 
-<a id="aexhq-aex"></a>
-## ✨ [aexhq/aex](https://github.com/aexhq/aex)
+<a id="buywhere-buywhere"></a>
+## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
 
-**★ 1** · strong (score 5.3) · Rust · tags: agent, ai, cloud, deploy, mcp-server
+**★ 0** · strong (score 7.5) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
 
-Open agent cloud platform
+BuyWhere agent-native product catalog API
 
 ```bash
-cue skills add aexhq/aex --profile backend
+cue skills add BuyWhere/buywhere --profile backend
+```
+
+---
+
+<a id="roxyapi-sdk-typescript"></a>
+## ✨ [RoxyAPI/sdk-typescript](https://github.com/RoxyAPI/sdk-typescript)
+
+**★ 0** · strong (score 7.5) · TypeScript · tags: ai-agents, angel-numbers, astrology-api, biorhythm-api, birth-chart-api
+
+TypeScript SDK for astrology, Vedic kundli, tarot, numerology, horoscope, I Ching, biorhythm and more. One multi domain API key, fully typed. AI agent and MCP ready.
+
+```bash
+cue skills add RoxyAPI/sdk-typescript --profile backend
+```
+
+---
+
+<a id="roxyapi-sdk-python"></a>
+## ✨ [RoxyAPI/sdk-python](https://github.com/RoxyAPI/sdk-python)
+
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, angel-numbers, astrology-api, biorhythm-api, crystals
+
+Python SDK for astrology, Vedic kundli, tarot, numerology, horoscope, I Ching, biorhythm and more. One multi domain API key, sync and async. AI agent and MCP ready.
+
+```bash
+cue skills add RoxyAPI/sdk-python --profile backend
+```
+
+---
+
+<a id="roxyapi-sdk-php"></a>
+## ✨ [RoxyAPI/sdk-php](https://github.com/RoxyAPI/sdk-php)
+
+**★ 0** · strong (score 7.5) · PHP · tags: ai-agents, angel-numbers, astrology-api, biorhythm-api, birth-chart-api
+
+PHP SDK for astrology, Vedic kundli, tarot, numerology, horoscope, I Ching, biorhythm and more. One multi domain API key, fully typed via Saloon. AI agent and MCP ready.
+
+```bash
+cue skills add RoxyAPI/sdk-php --profile backend
+```
+
+---
+
+<a id="saivi3171-faceit-mcp"></a>
+## ✨ [saivi3171/faceit-mcp](https://github.com/saivi3171/faceit-mcp)
+
+**★ 1** · strong (score 6.8) · Python · tags: anthropic, claude, counter-strike, cs2, faceit
+
+Connect Claude to live CS2 FACEIT data to retrieve player stats, match history, ELO trends, and head-to-head comparisons via the Model Context Protocol.
+
+```bash
+cue skills add saivi3171/faceit-mcp --profile backend
+```
+
+---
+
+<a id="alysiadeceptive64-aemet-client"></a>
+## ✨ [Alysiadeceptive64/aemet-client](https://github.com/Alysiadeceptive64/aemet-client)
+
+**★ 0** · strong (score 6) · TypeScript · tags: aemet, anthropic, bot, cap, claude
+
+Access Spanish weather data through a TypeScript SDK and Model Context Protocol server for the AEMET OpenData API.
+
+```bash
+cue skills add Alysiadeceptive64/aemet-client --profile backend
 ```
 
 ---

@@ -1,29 +1,85 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="novoads-claude-code-ads"></a>
-## 💎 [novoads/claude-code-ads](https://github.com/novoads/claude-code-ads)
+<a id="black-line-ops-scroll-scrub-hero"></a>
+## 💎 [Black-Line-Ops/scroll-scrub-hero](https://github.com/Black-Line-Ops/scroll-scrub-hero)
 
-**★ 6** · exceptional (score 9) · Python · tags: agent-skills, ai-ads, ai-agents, ai-marketing, ai-video
+**★ 0** · exceptional (score 11) · JavaScript · tags: claude-skill, ffmpeg, hero-section, kie-ai, kling
 
-Claude Code skills to generate AI video ads, UGC ads, and image ads. The official Novoads skill pack (REST API + MCP).
+Turn one photo of a real place into a scroll-scrubbed hero. kie.ai pipeline: storyboard, keyframes, Kling first/last-frame tweens, drop-in WebP frames. By Black Line Design.
+
+✅ SKILL.md
 
 ```bash
-cue skills add novoads/claude-code-ads --profile creative-media
+cue skills add Black-Line-Ops/scroll-scrub-hero --profile creative-media
+```
+
+---
+
+<a id="flyanx-studiohub"></a>
+## 💎 [flyanx/studiohub](https://github.com/flyanx/studiohub)
+
+**★ 1** · exceptional (score 9.3) · HTML · tags: ai-agent-skill, article, automation, cards, content-creation
+
+自媒体内容生产统一入口 · AI Agent Skill：文章/论文/新闻/主题 → 小红书卡片组 · 公众号文章 · 周报卡片 · 论文深度解读 | StudioHub - unified social content studio: articles, papers, news to Xiaohongshu cards, WeChat articles and paper deep-reads
+
+✅ SKILL.md
+
+```bash
+cue skills add flyanx/studiohub --profile creative-media
+```
+
+---
+
+<a id="qfoldit-qfoldit-github-io"></a>
+## ✨ [qfoldit/qfoldit.github.io](https://github.com/qfoldit/qfoldit.github.io)
+
+**★ 5** · strong (score 7.6) · HTML · tags: citizen-science, game, game-dev, game-development, game-engine
+
+The Future of Molecular Design And Synthetic Biology Workflows. Using Distributed Architecture And 3D Engines. A multiplayer scientific research simulator that combines game mechanics, real-world scientific calculations (bioinformatics, quantum chemistry), and an economic model for crowdsourcing R&D.
+
+```bash
+cue skills add qfoldit/qfoldit.github.io --profile creative-media
+```
+
+---
+
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
+
+**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+
+Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+
+```bash
+cue skills add TanaTTV/lyt --profile creative-media
+```
+
+---
+
+<a id="daghankarakasoglu-windows-application-branding-skill"></a>
+## 🔹 [daghankarakasoglu/windows-application-branding-skill](https://github.com/daghankarakasoglu/windows-application-branding-skill)
+
+**★ 0** · potential (score 4.6) · Python · tags: ai-agent-skill, app-branding, branding-assets, claude-skill, icon-generation
+
+Agent-agnostic AI skill that turns a source image into a complete Windows application branding asset set (ICO, Store tiles, favicon, ICNS, AppxManifest fragment). Usable by any AI agent or as a standalone CLI.
+
+```bash
+cue skills add daghankarakasoglu/windows-application-branding-skill --profile creative-media
 ```
 
 ---

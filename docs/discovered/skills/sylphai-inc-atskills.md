@@ -2,7 +2,7 @@
 title: "SylphAI-Inc/atskills — Claude Code skill discovered by cue"
 description: "The @skills protocol: use any SKILL.md by path, save it into .atskills/, auto-trigger it with one line. Reference implementation + integration guide for any age"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 

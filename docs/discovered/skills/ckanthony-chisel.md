@@ -2,7 +2,7 @@
 title: "ckanthony/Chisel — Claude Code skill discovered by cue"
 description: "🪛 Rust powered precision file tools for AI agents thats minimize context use: patch-based edits, kernel-enforced path confinement.  Dramatically fewer tokens t"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 

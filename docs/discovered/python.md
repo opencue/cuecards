@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for python"
-description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-10
+updated: 2026-08-13
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mrredstoney-taskflow"></a>
-## ✨ [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow)
+<a id="roxyapi-sdk-python"></a>
+## ✨ [RoxyAPI/sdk-python](https://github.com/RoxyAPI/sdk-python)
 
-**★ 0** · strong (score 7.5) · Python · tags: ai, ai-agents, dag, dependencies-manager, fastapi
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, angel-numbers, astrology-api, biorhythm-api, crystals
 
-Build a collaborative task management backend with Django, REST, WebSockets, and RabbitMQ for realtime updates and async notifications
-
-```bash
-cue skills add MrRedstoneY/TaskFlow --profile python
-```
-
----
-
-<a id="auro-rium-ops-incident-core"></a>
-## ✨ [Auro-rium/Ops-Incident-Core](https://github.com/Auro-rium/Ops-Incident-Core)
-
-**★ 1** · strong (score 5.3) · Python · tags: azure-openai, collector, engineering-evidence, fastapi, incident-response
-
-Collector-first engineering evidence backend for deterministic ingestion, Qdrant retrieval, cited investigation, readiness reports, workflows, evals, and Core MCP. Azure deployment scaffold; not yet production-grade.
+Python SDK for astrology, Vedic kundli, tarot, numerology, horoscope, I Ching, biorhythm and more. One multi domain API key, sync and async. AI agent and MCP ready.
 
 ```bash
-cue skills add Auro-rium/Ops-Incident-Core --profile python
+cue skills add RoxyAPI/sdk-python --profile python
 ```
 
 ---

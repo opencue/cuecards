@@ -2,19 +2,19 @@
 title: "DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill — Claude Code skill discovered by cue"
 description: "Use this skill when answering questions about the European Union AI Act (Regulation (EU) 2024/1689) or conducting static and dynamic compliance audits on codeba"
 layout: page
-updated: 2026-08-10
+updated: 2026-08-13
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill](https://github.com/DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill)
 
-**★ 0** · exceptional (score 9.7) · ai-act, ai-agent-skill, ai-agent-skills, ai-governance, ai-safety
+**★ 0** · exceptional (score 9.6) · ai-act, ai-agent-skill, ai-agent-skills, ai-governance, ai-safety
 
 > Use this skill when answering questions about the European Union AI Act (Regulation (EU) 2024/1689) or conducting static and dynamic compliance audits on codebases to detect prohibited practices, missing transparency controls, or unfulfilled high-risk safeguards.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-08-04

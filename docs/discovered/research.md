@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="starry-curry-paper-reader"></a>
-## 💎 [Starry-Curry/Paper-reader](https://github.com/Starry-Curry/Paper-reader)
+<a id="kgraph57-evidentia"></a>
+## 💎 [kgraph57/evidentia](https://github.com/kgraph57/evidentia)
 
-**★ 1** · exceptional (score 13.3) · JavaScript · tags: academic-reading, agent-skills, chinese-translation, claude-code, claude-code-skill
+**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-skills, citation-verification, claude-code, claude-skill, claude-skills
 
-Turn research papers into beginner-friendly learning packages: formula tutorials, mentor-guided source readers, faithful Chinese translations, and concise notes.
-
-✅ SKILL.md
+Open-source medical citation verifier: catches fabricated DOI/PMID/NCT references with CLI, MCP, and Claude Code skill.
 
 ```bash
-cue skills add Starry-Curry/Paper-reader --profile research
-```
-
----
-
-<a id="aemro-motors-popper-scope"></a>
-## ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
-
-**★ 0** · strong (score 7.5) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
-
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
-
-```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add kgraph57/evidentia --profile research
 ```
 
 ---

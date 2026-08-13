@@ -2,7 +2,7 @@
 title: "shno-labs/mem-forge — Claude Code skill discovered by cue"
 description: "Self-evolving, evidence-based memory layer for coding agents and development teams."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-08-06
+- 🗓️ Last pushed: 2026-08-13
 - 🏷️ Tags: agent-memory, claude-code, codex, knowledge-base, llm, mcp, mcp-server, rag
 
 ## Best fit cue profiles

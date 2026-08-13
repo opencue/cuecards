@@ -1,23 +1,23 @@
 ---
 title: "Xquik-dev/hermes-tweet — Claude Code skill discovered by cue"
-description: "Native Hermes Agent plugin for X/Twitter automation through Xquik"
+description: "Native Hermes Agent plugin for X/Twitter automation through Xquik. Not affiliated with X Corp."
 layout: page
-updated: 2026-06-10
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Xquik-dev/hermes-tweet](https://github.com/Xquik-dev/hermes-tweet)
 
-**★ 9** · exceptional (score 9.2) · Python · agent-skill, agent-tools, ai-agent, automation, hermes
+**★ 26** · exceptional (score 11.5) · Python · agent-skill, agent-tools, ai-agent, automation, hermes
 
-> Native Hermes Agent plugin for X/Twitter automation through Xquik
+> Native Hermes Agent plugin for X/Twitter automation through Xquik. Not affiliated with X Corp.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-06-10
-- 🏷️ Tags: agent-skill, agent-tools, ai-agent, automation, hermes, hermes-agent, hermes-plugin, mcp, python, social-media, social-media-api, social-media-automation, tweet, twitter, twitter-api, twitter-automation, x-api, x-automation, x-twitter, xquik
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+- ⭐ 26 stars
+- 🗓️ Last pushed: 2026-08-13
+- 🏷️ Tags: agent-skill, agent-tools, ai-agent, automation, hermes, hermes-agent, hermes-plugin, python, social-media, social-media-api, social-media-automation, tweet, twitter, twitter-api, twitter-automation, x-api, x-automation, x-twitter, xquik
 
 ## Best fit cue profiles
 

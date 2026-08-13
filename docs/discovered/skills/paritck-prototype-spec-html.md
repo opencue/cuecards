@@ -2,19 +2,19 @@
 title: "Paritck/prototype-spec-html — Claude Code skill discovered by cue"
 description: "An AI agent skill that turns requirement descriptions into shareable HTML prototypes with element-level annotations"
 layout: page
-updated: 2026-08-10
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Paritck/prototype-spec-html](https://github.com/Paritck/prototype-spec-html)
 
-**★ 2** · strong (score 6.4) · HTML · ai-agent, ai-agent-skill, html, product-management, prototype
+**★ 2** · strong (score 6.3) · HTML · ai-agent, ai-agent-skill, html, product-management, prototype
 
 > An AI agent skill that turns requirement descriptions into shareable HTML prototypes with element-level annotations
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: ai-agent, ai-agent-skill, html, product-management, prototype, skill, wireframe

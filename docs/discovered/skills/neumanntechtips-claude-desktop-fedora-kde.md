@@ -2,7 +2,7 @@
 title: "NeumannTechTips/claude-desktop-fedora-kde — Claude Code skill discovered by cue"
 description: "Fedora is not a supported platform for Claude Desktop. This guide installs the official, unmodified Anthropic package manually, with full integrity verification"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 

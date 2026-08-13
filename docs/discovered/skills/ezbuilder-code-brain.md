@@ -2,7 +2,7 @@
 title: "ezBuilder/code-brain — Claude Code skill discovered by cue"
 description: "Persistent memory, BM25 code search, MCP tools, and hook guardrails for AI coding agents — Claude Code, Codex CLI & Antigravity. One local-first .ai/ layer per "
 layout: page
-updated: 2026-08-12
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 

@@ -1,42 +1,57 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-11
+updated: 2026-08-13
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="modelscope-funasr"></a>
-## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
+<a id="black-line-ops-scroll-scrub-hero"></a>
+## 💎 [Black-Line-Ops/scroll-scrub-hero](https://github.com/Black-Line-Ops/scroll-scrub-hero)
 
-**★ 19767** · exceptional (score 17) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
+**★ 0** · exceptional (score 11) · JavaScript · tags: claude-skill, ffmpeg, hero-section, kie-ai, kling
 
-Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
+Turn one photo of a real place into a scroll-scrubbed hero. kie.ai pipeline: storyboard, keyframes, Kling first/last-frame tweens, drop-in WebP frames. By Black Line Design.
+
+✅ SKILL.md
 
 ```bash
-cue skills add modelscope/FunASR --profile video
+cue skills add Black-Line-Ops/scroll-scrub-hero --profile video
 ```
 
 ---
 
-<a id="augustusw-audio-tldr-skill"></a>
-## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
 
-**★ 23** · exceptional (score 9.6) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
 
-Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
 
 ```bash
-cue skills add AugustusW/audio-tldr-skill --profile video
+cue skills add priyanshu-yadav04/claude-youtube --profile video
+```
+
+---
+
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
+
+**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+
+Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+
+```bash
+cue skills add TanaTTV/lyt --profile video
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "Rheosoph/flow-like — Claude Code skill discovered by cue"
 description: "Flow-Like: Strongly Typed Enterprise Scale Workflows. Built for scalability, speed, seamless AI integration and rich customization."
 layout: page
-updated: 2026-07-01
+updated: 2026-08-13
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [Rheosoph/flow-like](https://github.com/Rheosoph/flow-like)
 
-**★ 907** · exceptional (score 13) · TypeScript · agents, ai, apis, automation, data-flow
+**★ 932** · exceptional (score 13) · Rust · agents, ai, apis, automation, data-flow
 
 > Flow-Like: Strongly Typed Enterprise Scale Workflows. Built for scalability, speed, seamless AI integration and rich customization.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 907 stars
-- 🗓️ Last pushed: 2026-07-01
+- ⭐ 932 stars
+- 🗓️ Last pushed: 2026-08-13
 - 🏷️ Tags: agents, ai, apis, automation, data-flow, development, llm, low-code, mcp, mcp-client, mcp-server, no-code, rust, self-hosted, typed, typescript, visual-scripting, workflow, workflow-automation
 
 ## Best fit cue profiles

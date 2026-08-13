@@ -2,19 +2,19 @@
 title: "justhandledlabs/env-doctor-free-gemini — Claude Code skill discovered by cue"
 description: "Secret-safe local environment diagnostics for Gemini CLI"
 layout: page
-updated: 2026-08-10
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [justhandledlabs/env-doctor-free-gemini](https://github.com/justhandledlabs/env-doctor-free-gemini)
 
-**★ 0** · potential (score 3.7) · ai-agent-skill, developer-tools, environment-diagnostics, gemini-cli, gemini-cli-extension
+**★ 0** · potential (score 3.6) · ai-agent-skill, developer-tools, environment-diagnostics, gemini-cli, gemini-cli-extension
 
 > Secret-safe local environment diagnostics for Gemini CLI
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.6 based on:
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-08-04
 - 🏷️ Tags: ai-agent-skill, developer-tools, environment-diagnostics, gemini-cli, gemini-cli-extension
