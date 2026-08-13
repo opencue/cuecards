@@ -1,9 +1,23 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, readFile, writeFile, rm, mkdir, stat, chmod } from "node:fs/promises";
+import {
+  mkdtemp,
+  readFile,
+  writeFile,
+  rm,
+  mkdir,
+  stat,
+  chmod,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { runInstall, runUninstall, shimInstalled, resolveCueInvocation, resolveHookShell } from "./shell";
+import {
+  runInstall,
+  runUninstall,
+  shimInstalled,
+  resolveCueInvocation,
+  resolveHookShell,
+} from "./shell";
 import { shimDir, fishDropInPath } from "../lib/shim-dir";
 
 let fakeHome: string;
@@ -12,7 +26,9 @@ let err: string;
 /** Silence install output and capture it for assertions. */
 const sinks = () => ({
   out: (_s: string) => {},
-  err: (s: string) => { err += s; },
+  err: (s: string) => {
+    err += s;
+  },
 });
 
 const localBin = (agent: string) => join(fakeHome, ".local", "bin", agent);
@@ -26,7 +42,9 @@ beforeEach(async () => {
   await mkdir(join(fakeHome, ".local", "bin"), { recursive: true });
   err = "";
 });
-afterEach(async () => { await rm(fakeHome, { recursive: true, force: true }); });
+afterEach(async () => {
+  await rm(fakeHome, { recursive: true, force: true });
+});
 
 describe("shell install", () => {
   test("writes claude and codex shims into cue's own shim dir", async () => {
@@ -151,14 +169,15 @@ describe("shell install", () => {
 });
 
 describe("shell install — PATH configuration", () => {
-  const installFish = () => runInstall({
-    homeDir: fakeHome,
-    pathDirs: ["/usr/bin"],
-    realClaude: "/usr/bin/claude",
-    realCodex: null,
-    shell: "fish",
-    ...sinks(),
-  });
+  const installFish = () =>
+    runInstall({
+      homeDir: fakeHome,
+      pathDirs: ["/usr/bin"],
+      realClaude: "/usr/bin/claude",
+      realCodex: null,
+      shell: "fish",
+      ...sinks(),
+    });
 
   test("creates the fish drop-in without asking", async () => {
     await installFish();
@@ -175,7 +194,9 @@ describe("shell install — PATH configuration", () => {
 
   test("leaves a foreign fish drop-in alone", async () => {
     const target = fishDropInPath(fakeHome);
-    await mkdir(join(fakeHome, ".config", "fish", "conf.d"), { recursive: true });
+    await mkdir(join(fakeHome, ".config", "fish", "conf.d"), {
+      recursive: true,
+    });
     await writeFile(target, "# hand-written, not ours\n");
 
     await installFish();
@@ -184,15 +205,18 @@ describe("shell install — PATH configuration", () => {
     expect(err).toContain("leaving it alone");
   });
 
-  const installBash = (opts: { yes?: boolean; confirm?: () => Promise<boolean> } = {}) => runInstall({
-    homeDir: fakeHome,
-    pathDirs: ["/usr/bin"],
-    realClaude: "/usr/bin/claude",
-    realCodex: null,
-    shell: "bash",
-    ...opts,
-    ...sinks(),
-  });
+  const installBash = (
+    opts: { yes?: boolean; confirm?: () => Promise<boolean> } = {},
+  ) =>
+    runInstall({
+      homeDir: fakeHome,
+      pathDirs: ["/usr/bin"],
+      realClaude: "/usr/bin/claude",
+      realCodex: null,
+      shell: "bash",
+      ...opts,
+      ...sinks(),
+    });
 
   test("does not touch .bashrc without confirmation", async () => {
     await writeFile(join(fakeHome, ".bashrc"), "# mine\n");
@@ -255,7 +279,9 @@ describe("shell uninstall", () => {
 
   test("leaves a foreign fish drop-in alone", async () => {
     const target = fishDropInPath(fakeHome);
-    await mkdir(join(fakeHome, ".config", "fish", "conf.d"), { recursive: true });
+    await mkdir(join(fakeHome, ".config", "fish", "conf.d"), {
+      recursive: true,
+    });
     await writeFile(target, "# hand-written, not ours\n");
     await runUninstall({ homeDir: fakeHome, ...sinks() });
     expect(await readFile(target, "utf8")).toBe("# hand-written, not ours\n");
@@ -275,7 +301,10 @@ describe("shimInstalled", () => {
 
   test("true for the `cue shell install` absolute-path format", async () => {
     await mkdir(shimDir(fakeHome), { recursive: true });
-    await writeFile(shim("claude"), '#!/usr/bin/env bash\nexec "/home/u/Documents/cue/bin/cue" launch claude "$@"\n');
+    await writeFile(
+      shim("claude"),
+      '#!/usr/bin/env bash\nexec "/home/u/Documents/cue/bin/cue" launch claude "$@"\n',
+    );
     expect(shimInstalled(fakeHome)).toBe(true);
   });
 
@@ -292,7 +321,10 @@ describe("shimInstalled", () => {
 
   test("is agent-aware", async () => {
     await mkdir(shimDir(fakeHome), { recursive: true });
-    await writeFile(shim("codex"), '#!/usr/bin/env bash\nexec cue launch codex "$@"\n');
+    await writeFile(
+      shim("codex"),
+      '#!/usr/bin/env bash\nexec cue launch codex "$@"\n',
+    );
     expect(shimInstalled(fakeHome, "codex")).toBe(true);
     expect(shimInstalled(fakeHome, "claude")).toBe(false);
   });

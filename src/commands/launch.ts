@@ -17,7 +17,7 @@
  */
 
 import { spawn } from "node:child_process";
-import { copyFile, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
@@ -36,22 +36,58 @@ import {
   type TokenBreakdown,
 } from "../lib/token-budget";
 
-import { loadProfile, listProfiles, listFeaturedProfiles, parseProfileSelector } from "../lib/profile-loader";
+import {
+  loadProfile,
+  listProfiles,
+  listFeaturedProfiles,
+  parseProfileSelector,
+} from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
-import { DIVIDER_PREFIX, dedupeSelectorParts, runPicker, type PickerOption, type ProfileTally } from "../lib/picker";
+import {
+  DIVIDER_PREFIX,
+  dedupeSelectorParts,
+  runPicker,
+  type PickerOption,
+  type ProfileTally,
+} from "../lib/picker";
 import type { ComboUsage } from "../lib/combo-history";
 import { materializeRuntime } from "../lib/runtime-materializer";
-import { agentLaunchAccent, agentLaunchMessage, startLoader } from "../lib/launch-loader";
+import {
+  agentLaunchAccent,
+  agentLaunchMessage,
+  startLoader,
+} from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
 import { resolveLocalSkill } from "../lib/resolver-local";
-import { expandSkillWildcards, loadMcpRegistry, resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource, runtimeDirFor } from "../lib/runtime-install";
-import { detectKittyTerminal, kittyPlaceholderLabel, transmitKittyImage } from "../lib/kitty-image";
+import {
+  expandSkillWildcards,
+  loadMcpRegistry,
+  resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource,
+  runtimeDirFor,
+} from "../lib/runtime-install";
+import {
+  detectKittyTerminal,
+  kittyPlaceholderLabel,
+  transmitKittyImage,
+} from "../lib/kitty-image";
 import { computeStats } from "../lib/analytics";
 import { detectProfileV2, type DetectionResultV2 } from "../lib/auto-detect";
-import { detectCompanions, serviceCompanions, type CompanionSignal } from "../lib/companion-detect";
+import {
+  detectCompanions,
+  serviceCompanions,
+  type CompanionSignal,
+} from "../lib/companion-detect";
 import type { ResolvedProfile } from "../../profiles/_types";
-import type { ProfileAffinity, UniversalSuggestion } from "../lib/pair-suggestions";
-import { hasWorkspaces, getActiveWorkspace, computeOverrides, resolveWorkspaceForCwd } from "../lib/workspaces";
+import type {
+  ProfileAffinity,
+  UniversalSuggestion,
+} from "../lib/pair-suggestions";
+import {
+  hasWorkspaces,
+  getActiveWorkspace,
+  computeOverrides,
+  resolveWorkspaceForCwd,
+} from "../lib/workspaces";
 import {
   launchDepth,
   MAX_LAUNCH_DEPTH,
@@ -108,7 +144,9 @@ interface ParsedArgs {
  * this one is documented as `CUE_BYPASS=1` in both docs and every internal
  * caller sets it that way.
  */
-export function isBypassEnabled(envVal: string | undefined = process.env.CUE_BYPASS): boolean {
+export function isBypassEnabled(
+  envVal: string | undefined = process.env.CUE_BYPASS,
+): boolean {
   return envVal === "1";
 }
 
@@ -127,7 +165,10 @@ export function isBypassEnabled(envVal: string | undefined = process.env.CUE_BYP
  * strictly closer than the `--model haiku` it used to send.
  */
 export function passthroughPrompt(passthrough: readonly string[]): string {
-  return passthrough.filter((arg) => !arg.startsWith("-")).join(" ").trim();
+  return passthrough
+    .filter((arg) => !arg.startsWith("-"))
+    .join(" ")
+    .trim();
 }
 
 function parse(args: string[]): ParsedArgs {
@@ -202,10 +243,27 @@ function parse(args: string[]): ParsedArgs {
   // (`codex --madmax`, `claude --resume`) carries no prompt, so it leaves the
   // subset unset and the full profile loads.
   const bypassed = isBypassEnabled();
-  if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
+  if (
+    !subset &&
+    !bypassed &&
+    process.env.CUE_SMART_SUBSET &&
+    passthrough.length > 0
+  ) {
     subset = passthroughPrompt(passthrough) || null;
   }
-  return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit, passthrough };
+  return {
+    agent,
+    override,
+    forcePick,
+    forcePickMcps,
+    fullLoad,
+    disableMcp,
+    dryRun,
+    rematerialize,
+    subset,
+    subsetExplicit,
+    passthrough,
+  };
 }
 
 /** Test-only surface. */
@@ -215,7 +273,9 @@ export const __test = { parse, shouldOpenMcpPicker, listProfileOptions };
 // Workspace overrides — merge active workspace env into profile
 // ---------------------------------------------------------------------------
 
-async function applyWorkspaceOverrides(profile: ResolvedProfile): Promise<ResolvedProfile> {
+async function applyWorkspaceOverrides(
+  profile: ResolvedProfile,
+): Promise<ResolvedProfile> {
   if (!hasWorkspaces(profile.name)) return profile;
 
   // Feature 4: .cue-workspace auto-switch takes precedence over global active
@@ -238,10 +298,10 @@ async function applyWorkspaceOverrides(profile: ResolvedProfile): Promise<Resolv
 
   // Feature 2: Workspace-specific skills appended to profile.skills.local
   if (overrides.skills && overrides.skills.length > 0) {
-    const existingIds = new Set(result.skills.local.map(s => s.id));
+    const existingIds = new Set(result.skills.local.map((s) => s.id));
     const newSkills = overrides.skills
-      .filter(id => !existingIds.has(id))
-      .map(id => ({ id }));
+      .filter((id) => !existingIds.has(id))
+      .map((id) => ({ id }));
     result = {
       ...result,
       skills: {
@@ -254,27 +314,20 @@ async function applyWorkspaceOverrides(profile: ResolvedProfile): Promise<Resolv
   return result;
 }
 
-
 // ---------------------------------------------------------------------------
 // Exec helper — spawn with inherited stdio so interactive sessions work
 // ---------------------------------------------------------------------------
 
-function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise<number> {
+function execAgent(
+  bin: string,
+  args: string[],
+  env: NodeJS.ProcessEnv,
+): Promise<number> {
   return new Promise((res) => {
     const child = spawn(bin, args, { env, stdio: "inherit" });
     child.on("exit", (code) => res(code ?? 0));
     child.on("error", () => res(127));
   });
-}
-
-/** Keep Cue's isolated CODEX_HOME in sync with Codex/AuthMux's canonical auth. */
-export async function syncCodexAuth(source: string, destination: string): Promise<boolean> {
-  try {
-    await copyFile(source, destination);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 /**
@@ -347,7 +400,10 @@ export function formatTmuxTitle(
   profileName: string,
   icons: ReadonlyArray<string>,
 ): string {
-  const parts = profileName.split("+").map((s) => s.trim()).filter((s) => s.length > 0);
+  const parts = profileName
+    .split("+")
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
   if (parts.length === 0) return friendly;
   const segment = (i: number): string => {
     const icon = (icons[i] ?? "").trim();
@@ -374,7 +430,10 @@ const UNIT_SEP = "\x1f";
  * while the session is still running. A piped or redirected stdout is what
  * separates those helper runs from the session the user is looking at.
  */
-export function ownsPaneBadge(env: NodeJS.ProcessEnv, stdoutIsTty: boolean): boolean {
+export function ownsPaneBadge(
+  env: NodeJS.ProcessEnv,
+  stdoutIsTty: boolean,
+): boolean {
   return Boolean(env.TMUX) && env.CUE_TMUX_TITLE !== "0" && stdoutIsTty;
 }
 
@@ -401,7 +460,9 @@ function announceTmuxProfile(
 
   try {
     process.stdout.write(`\x1b]2;${title}\x07`);
-  } catch { /* best-effort */ }
+  } catch {
+    /* best-effort */
+  }
 
   // Exactly what we wrote, so the exit sweep can tell our own badge from one a
   // nested launch installed over it — clearing that one blanks the border for a
@@ -430,13 +491,17 @@ function announceTmuxProfile(
       setOpt("@cue_overhead_size", extras.overhead?.size ?? "");
       setOpt("@cue_health", extras.health ?? "");
       spawnSync("tmux", args, { stdio: "ignore" });
-    } catch { /* best-effort */ }
+    } catch {
+      /* best-effort */
+    }
   }
 
   process.on("exit", () => {
     try {
       process.stdout.write("\x1b]2;\x07");
-    } catch { /* ok */ }
+    } catch {
+      /* ok */
+    }
     if (pane && applied.size > 0) {
       try {
         const { spawnSync } = require("node:child_process");
@@ -447,14 +512,22 @@ function announceTmuxProfile(
         // Must stay synchronous: process.on("exit") handlers cannot await.
         const probe = spawnSync(
           "tmux",
-          ["display-message", "-p", "-t", pane, keys.map((k) => `#{${k}}`).join(UNIT_SEP)],
+          [
+            "display-message",
+            "-p",
+            "-t",
+            pane,
+            keys.map((k) => `#{${k}}`).join(UNIT_SEP),
+          ],
           { encoding: "utf8" },
         );
         // A failed probe leaves the options in place. Leaking a stale badge is
         // recoverable — the next launch overwrites it — whereas clearing one we
         // no longer own is not.
         const live =
-          probe.status === 0 ? String(probe.stdout).replace(/\n$/, "").split(UNIT_SEP) : [];
+          probe.status === 0
+            ? String(probe.stdout).replace(/\n$/, "").split(UNIT_SEP)
+            : [];
         // Same batching as the set path. This one runs inside an `exit`
         // handler, where every spawnSync is time the process spends refusing
         // to die.
@@ -465,7 +538,9 @@ function announceTmuxProfile(
           args.push("set-option", "-p", "-u", "-t", pane, key);
         });
         if (args.length > 0) spawnSync("tmux", args, { stdio: "ignore" });
-      } catch { /* ok */ }
+      } catch {
+        /* ok */
+      }
     }
   });
 }
@@ -513,11 +588,13 @@ export function formatProfileSummary(
   const npxCount = profile.skills.npx.length;
   const totalSkills = localCount + npxCount;
   if (totalSkills > 0) {
-    const breakdown = npxCount > 0 ? ` (${localCount} local, ${npxCount} npx)` : "";
+    const breakdown =
+      npxCount > 0 ? ` (${localCount} local, ${npxCount} npx)` : "";
     let line = `${label("skills")}${c.yellow(String(totalSkills))}${c.dim(breakdown)}`;
     if (parts && parts.length > 1) {
       const segs = parts.map(
-        (p) => `${p.icon ? `${p.icon} ` : ""}${p.name}:${p.skills.local.length + p.skills.npx.length}`,
+        (p) =>
+          `${p.icon ? `${p.icon} ` : ""}${p.name}:${p.skills.local.length + p.skills.npx.length}`,
       );
       // Cap the per-profile breakdown so a fat composite doesn't wrap into a
       // multi-line wall — the headline total already carries the full picture.
@@ -534,14 +611,20 @@ export function formatProfileSummary(
     }
   }
   if (profile.mcps.length > 0) {
-    lines.push(`${label("mcps")}${truncateList(profile.mcps.map((m) => m.id))}`);
+    lines.push(
+      `${label("mcps")}${truncateList(profile.mcps.map((m) => m.id))}`,
+    );
   }
   if (profile.plugins.length > 0) {
-    lines.push(`${label("plugins")}${truncateList(profile.plugins.map((pl) => pl.id))}`);
+    lines.push(
+      `${label("plugins")}${truncateList(profile.plugins.map((pl) => pl.id))}`,
+    );
   }
   if (profile.commands && profile.commands.length > 0) {
     const slashed = profile.commands.map((cmd) => `/${basename(cmd, ".md")}`);
-    lines.push(`${label("commands")}${wrapItems(slashed, COMMANDS_PER_LINE, LABEL_WIDTH)}`);
+    lines.push(
+      `${label("commands")}${wrapItems(slashed, COMMANDS_PER_LINE, LABEL_WIDTH)}`,
+    );
   }
   if (profile.agents && profile.agents.length > 0) {
     lines.push(`${label("agents")}${profile.agents.join("  ")}`);
@@ -563,7 +646,10 @@ export function categoryBreakdown(skillIds: string[], max = 7): string {
     groups.set(cat, (groups.get(cat) ?? 0) + 1);
   }
   const sorted = [...groups.entries()].sort((a, b) => b[1] - a[1]);
-  const head = sorted.slice(0, max).map(([cat, n]) => `${cat}:${n}`).join("  ");
+  const head = sorted
+    .slice(0, max)
+    .map(([cat, n]) => `${cat}:${n}`)
+    .join("  ");
   if (sorted.length > max) {
     return `${head}  +${sorted.length - max} cats`;
   }
@@ -589,7 +675,8 @@ function truncateList(items: string[], max = LIST_TRUNCATE): string {
 /** Lazy color helpers. Disabled when stdout isn't a TTY or `NO_COLOR` is set. */
 function colorFns() {
   const enabled = process.stdout.isTTY === true && !process.env.NO_COLOR;
-  const wrap = (code: string) => (s: string) => enabled ? `\x1b[${code}m${s}\x1b[0m` : s;
+  const wrap = (code: string) => (s: string) =>
+    enabled ? `\x1b[${code}m${s}\x1b[0m` : s;
   return {
     cyan: wrap("36"),
     yellow: wrap("33"),
@@ -646,7 +733,9 @@ export function formatTokenWarning(b: TokenBreakdown): string[] {
   let heaviestDroppable: { name: string; tokens: number } | undefined;
   if (b.byProfile.length > 1) {
     heaviestPart = [...b.byProfile].sort((a, x) => x.tokens - a.tokens)[0];
-    heaviestDroppable = [...b.byProfile.slice(1)].sort((a, x) => x.tokens - a.tokens)[0];
+    heaviestDroppable = [...b.byProfile.slice(1)].sort(
+      (a, x) => x.tokens - a.tokens,
+    )[0];
     const heaviestName = heaviestPart!.name;
     const segments = b.byProfile.map((p) => {
       const kStr = `${(p.tokens / 1000).toFixed(1)}K`;
@@ -780,7 +869,10 @@ export function sortProfileOptions(
  * Format a relative-time string for the picker's recent-section hints.
  * `today` / `yesterday` / `Nd ago` / ISO date. Empty string when `iso` is null.
  */
-export function relativeTime(iso: string | null | undefined, now = Date.now()): string {
+export function relativeTime(
+  iso: string | null | undefined,
+  now = Date.now(),
+): string {
   if (!iso) return "";
   const then = new Date(iso).getTime();
   if (Number.isNaN(then)) return "";
@@ -850,9 +942,14 @@ function listPostizzBrands(): Set<string> {
     const profilesRoot =
       process.env.CUE_PROFILES_DIR ??
       process.env.SOUL_PROFILES_DIR ??
-      join(resolve(new URL(import.meta.url).pathname, "..", "..", ".."), "profiles");
+      join(
+        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+        "profiles",
+      );
     return new Set(
-      readdirSync(join(profilesRoot, "postizz", "brands"), { withFileTypes: true })
+      readdirSync(join(profilesRoot, "postizz", "brands"), {
+        withFileTypes: true,
+      })
         .filter((d) => d.isDirectory())
         .map((d) => d.name),
     );
@@ -871,7 +968,11 @@ function listPostizzBrands(): Set<string> {
  * together instead of scattering across the alphabet. Order in this array is
  * the order subsections appear at the bottom of the picker.
  */
-const STACK_SECTIONS: ReadonlyArray<{ key: string; label: string; match: (value: string) => boolean }> = [
+const STACK_SECTIONS: ReadonlyArray<{
+  key: string;
+  label: string;
+  match: (value: string) => boolean;
+}> = [
   {
     key: "ecommerce",
     label: "  ── Ecommerce ──",
@@ -887,22 +988,35 @@ const STACK_SECTIONS: ReadonlyArray<{ key: string; label: string; match: (value:
     key: "web",
     label: "  ── Web Development ──",
     match: (v) =>
-      v === "frontend" || v === "backend" || v === "backend-base" ||
-      v === "vite" || v === "nextjs" || v === "browser" || v === "web-frontend-base",
+      v === "frontend" ||
+      v === "backend" ||
+      v === "backend-base" ||
+      v === "vite" ||
+      v === "nextjs" ||
+      v === "browser" ||
+      v === "web-frontend-base",
   },
   {
     key: "creative",
     label: "  ── Design & Creative ──",
     match: (v) =>
-      v === "designer" || v === "creative-media" || v === "creativity" ||
-      v === "event-design" || v === "video" || v === "threejs" || v === "higgsfield",
+      v === "designer" ||
+      v === "creative-media" ||
+      v === "creativity" ||
+      v === "event-design" ||
+      v === "video" ||
+      v === "threejs" ||
+      v === "higgsfield",
   },
   {
     key: "marketing",
     label: "  ── Marketing & Social ──",
     match: (v) =>
-      v === "marketing" || v === "postizz" || v === "instagram" ||
-      v === "trendradar" || v === "affiliate",
+      v === "marketing" ||
+      v === "postizz" ||
+      v === "instagram" ||
+      v === "trendradar" ||
+      v === "affiliate",
   },
   {
     key: "google",
@@ -918,8 +1032,12 @@ const STACK_SECTIONS: ReadonlyArray<{ key: string; label: string; match: (value:
     key: "data",
     label: "  ── Data & Compute ──",
     match: (v) =>
-      v === "python" || v === "go-api" || v === "research" ||
-      v === "predict-everything" || v === "supercomputer" || v === "nvidia",
+      v === "python" ||
+      v === "go-api" ||
+      v === "research" ||
+      v === "predict-everything" ||
+      v === "supercomputer" ||
+      v === "nvidia",
   },
   {
     key: "rust",
@@ -968,7 +1086,10 @@ const PICKER_WARNINGS: Record<string, { hint: string }> = {
  * (the "Recent only ever shows coolify" bug). We synthesize a row instead: the
  * label lists the parts so the stack is self-describing.
  */
-function makeSelectorOption(selector: string, allProfileOpts: PickerOption[]): PickerOption | undefined {
+function makeSelectorOption(
+  selector: string,
+  allProfileOpts: PickerOption[],
+): PickerOption | undefined {
   // Dedupe parts up front: legacy analytics / combo history can carry a selector
   // with the same profile repeated many times (an old pre-dedup picker path
   // appended companions to the resolved profile each launch, snowballing
@@ -1017,7 +1138,9 @@ export function buildPickerSections(
     .filter((s) => s.confidence >= SUGGESTED_MIN_CONFIDENCE)
     .slice(0, MAX_SUGGESTIONS)
     .map((s) => ({ ...s, opt: allProfileOpts.find((o) => o.value === s.name) }))
-    .filter((s): s is SuggestedEntry & { opt: PickerOption } => s.opt !== undefined);
+    .filter(
+      (s): s is SuggestedEntry & { opt: PickerOption } => s.opt !== undefined,
+    );
   const suggestedSet = new Set(eligibleSuggestions.map((s) => s.name));
 
   if (eligibleSuggestions.length > 0) {
@@ -1055,7 +1178,9 @@ export function buildPickerSections(
     // Synthesize a row for composites instead of dropping them; stale single
     // profiles (no option, no `+`) still drop — see makeSelectorOption.
     .map((r) => ({ ...r, opt: makeSelectorOption(r.name, allProfileOpts) }))
-    .filter((r): r is RecentEntry & { opt: PickerOption } => r.opt !== undefined);
+    .filter(
+      (r): r is RecentEntry & { opt: PickerOption } => r.opt !== undefined,
+    );
 
   const recentSet = new Set(eligible.map((r) => r.name));
 
@@ -1096,7 +1221,10 @@ export function buildPickerSections(
   }
 
   const rest = allProfileOpts.filter(
-    (o) => !recentSet.has(o.value) && !suggestedSet.has(o.value) && !featuredSet.has(o.value),
+    (o) =>
+      !recentSet.has(o.value) &&
+      !suggestedSet.has(o.value) &&
+      !featuredSet.has(o.value),
   );
   if (rest.length > 0) {
     result.push({
@@ -1145,7 +1273,10 @@ export function getDefaultSelector(
   configDirPath: string = configDir(),
   readFile: (p: string) => string = (p) => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return (require("node:fs") as typeof import("node:fs")).readFileSync(p, "utf8");
+    return (require("node:fs") as typeof import("node:fs")).readFileSync(
+      p,
+      "utf8",
+    );
   },
 ): string {
   const path = join(configDirPath, "default-profile");
@@ -1157,12 +1288,17 @@ export function getDefaultSelector(
       .map((s) => s.trim())
       .map((s) => s.replace(/#.*$/, "").trim())
       .filter((s) => s.length > 0 && s !== "core");
-  } catch (err) { debug("launch:default-profile", err); /* missing → core only */ }
+  } catch (err) {
+    debug("launch:default-profile", err); /* missing → core only */
+  }
   // Dedupe while preserving order.
   const seen = new Set<string>(["core"]);
   const parts = ["core"];
   for (const e of extras) {
-    if (!seen.has(e)) { seen.add(e); parts.push(e); }
+    if (!seen.has(e)) {
+      seen.add(e);
+      parts.push(e);
+    }
   }
   return parts.join("+");
 }
@@ -1189,10 +1325,13 @@ async function listProfileOptions(
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
   const kitty = await detectKittyTerminal();
-  const profilesRoot = process.env.CUE_PROFILES_DIR ?? process.env.SOUL_PROFILES_DIR ?? join(
-    resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-    "profiles",
-  );
+  const profilesRoot =
+    process.env.CUE_PROFILES_DIR ??
+    process.env.SOUL_PROFILES_DIR ??
+    join(
+      resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+      "profiles",
+    );
   // Stable per-process image IDs (1..255) for kitty's 256-color FG-encoded
   // placeholder protocol. We have at most a handful of iconImage profiles, so
   // overflow isn't a concern in practice — assert anyway in transmitKittyImage.
@@ -1216,7 +1355,12 @@ async function listProfileOptions(
       const iconImagePath = p.iconImage
         ? resolve(profilesRoot, name, p.iconImage)
         : null;
-      if (kitty && iconImagePath && existsSync(iconImagePath) && nextImageId <= 255) {
+      if (
+        kitty &&
+        iconImagePath &&
+        existsSync(iconImagePath) &&
+        nextImageId <= 255
+      ) {
         const id = nextImageId++;
         // Transmit + virtual placement; placeholder text in the label triggers
         // the actual paint when @clack/prompts renders the option.
@@ -1233,10 +1377,23 @@ async function listProfileOptions(
       const nameLabel = iconLabel ? `${iconLabel} ${name}` : name;
       const warning = PICKER_WARNINGS[name];
       const hint = warning ? warning.hint : p.description;
-      const recommends = p.recommends.filter((r) => r !== name && knownNames.has(r));
-      const autoSelect = p.autoSelect.filter((r) => r !== name && knownNames.has(r));
-      const conflicts = p.conflicts.filter((c) => c !== name && knownNames.has(c));
-      opts.push({ value: name, label: nameLabel, hint, recommends, autoSelect, conflicts });
+      const recommends = p.recommends.filter(
+        (r) => r !== name && knownNames.has(r),
+      );
+      const autoSelect = p.autoSelect.filter(
+        (r) => r !== name && knownNames.has(r),
+      );
+      const conflicts = p.conflicts.filter(
+        (c) => c !== name && knownNames.has(c),
+      );
+      opts.push({
+        value: name,
+        label: nameLabel,
+        hint,
+        recommends,
+        autoSelect,
+        conflicts,
+      });
     } catch {
       opts.push({ value: name, label: name, hint: "" });
     }
@@ -1246,7 +1403,8 @@ async function listProfileOptions(
   // select it or let it suppress advice. The user remains in control.
   if (pinnedProfile) {
     const current = opts.find((o) => o.value === pinnedProfile);
-    if (current) current.hint = `current profile (.cue.profile)${current.hint ? ` — ${current.hint}` : ""}`;
+    if (current)
+      current.hint = `current profile (.cue.profile)${current.hint ? ` — ${current.hint}` : ""}`;
   }
 
   // Build the Default entry (composite of core + user-added profiles).
@@ -1264,7 +1422,9 @@ async function listProfileOptions(
       hint: "",
       top: true,
     };
-  } catch { /* non-fatal — picker still works without the Default entry */ }
+  } catch {
+    /* non-fatal — picker still works without the Default entry */
+  }
 
   // Pull usage data so most-picked entries float to the top. Combo pins like
   // "blog-writer+postizz" are naturally separate keys in the analytics log.
@@ -1275,13 +1435,21 @@ async function listProfileOptions(
   try {
     for (const s of computeStats()) {
       usage.set(s.profile, s.sessions);
-      recentGlobal.push({ name: s.profile, sessions: s.sessions, lastUsed: s.last_used });
+      recentGlobal.push({
+        name: s.profile,
+        sessions: s.sessions,
+        lastUsed: s.last_used,
+      });
     }
     // Second pass scoped to this cwd subtree. When the user opens a project
     // directory, this filters out the ambient career/skill-writer sessions
     // racked up in $HOME so Recent reflects what's been picked *here*.
     for (const s of computeStats({ cwd })) {
-      recentCwd.push({ name: s.profile, sessions: s.sessions, lastUsed: s.last_used });
+      recentCwd.push({
+        name: s.profile,
+        sessions: s.sessions,
+        lastUsed: s.last_used,
+      });
     }
   } catch {
     // Analytics is best-effort — never block the picker on a missing/corrupt log.
@@ -1328,7 +1496,9 @@ async function listProfileOptions(
   // you pick `designer`, medusa-dev starts checked in the companion list).
   // Mutating in place is fine since opts hasn't been returned yet.
   const preselectNames = new Set(
-    detections.filter((d) => d.confidence >= SUGGESTED_AUTO_PICK_CONFIDENCE).map((d) => d.profile),
+    detections
+      .filter((d) => d.confidence >= SUGGESTED_AUTO_PICK_CONFIDENCE)
+      .map((d) => d.profile),
   );
   if (preselectNames.size > 0) {
     for (const o of opts) {
@@ -1344,7 +1514,15 @@ async function listProfileOptions(
     n.split("+").every((part) => knownProfileNames.has(part)),
   );
   return {
-    options: buildPickerSections(defaultOpt, sorted, recent, 3, Date.now(), suggested, featured),
+    options: buildPickerSections(
+      defaultOpt,
+      sorted,
+      recent,
+      3,
+      Date.now(),
+      suggested,
+      featured,
+    ),
     recents: recent,
     recentsAreCwdScoped: recentCwd.length > 0,
     featured,
@@ -1352,10 +1530,14 @@ async function listProfileOptions(
   };
 }
 
-async function readSharedClaudeMd(profile?: { name: string; inheritanceChain?: string[] }): Promise<string> {
-  const root = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(
-    new URL(import.meta.url).pathname, "..", "..", "..",
-  );
+async function readSharedClaudeMd(profile?: {
+  name: string;
+  inheritanceChain?: string[];
+}): Promise<string> {
+  const root =
+    process.env.CUE_REPO_ROOT ??
+    process.env.SOUL_REPO_ROOT ??
+    resolve(new URL(import.meta.url).pathname, "..", "..", "..");
   const baseDir = join(root, "resources", "claude-md");
   const { readdir: rd } = await import("node:fs/promises");
   const parts: string[] = [];
@@ -1363,11 +1545,17 @@ async function readSharedClaudeMd(profile?: { name: string; inheritanceChain?: s
   // Helper: read all .md files from a directory (sorted)
   async function readLayer(dir: string): Promise<void> {
     try {
-      const files = (await rd(dir)).filter(f => f.endsWith(".md")).sort();
+      const files = (await rd(dir)).filter((f) => f.endsWith(".md")).sort();
       for (const f of files) {
-        try { parts.push(await readFile(join(dir, f), "utf8")); } catch { /* skip */ }
+        try {
+          parts.push(await readFile(join(dir, f), "utf8"));
+        } catch {
+          /* skip */
+        }
       }
-    } catch { /* dir doesn't exist — skip */ }
+    } catch {
+      /* dir doesn't exist — skip */
+    }
   }
 
   // Layer 1: _always/ (all profiles)
@@ -1389,14 +1577,24 @@ async function readSharedClaudeMd(profile?: { name: string; inheritanceChain?: s
   return parts.length ? parts.join("\n") + "\n" : "";
 }
 
-async function buildUserClaudeMd(profile: ResolvedProfile, agent: "claude-code" | "codex"): Promise<string> {
-  const appendUser = shouldAppendUserClaudeMd({ agent, cwd: process.cwd(), home: homedir() });
-  let content = await readSharedClaudeMd(profile) + (appendUser ? await readUserClaudeMd(agent) : "");
+async function buildUserClaudeMd(
+  profile: ResolvedProfile,
+  agent: "claude-code" | "codex",
+): Promise<string> {
+  const appendUser = shouldAppendUserClaudeMd({
+    agent,
+    cwd: process.cwd(),
+    home: homedir(),
+  });
+  let content =
+    (await readSharedClaudeMd(profile)) +
+    (appendUser ? await readUserClaudeMd(agent) : "");
 
   // First-time profile suggestion: if no .cue.profile in cwd, inject marker
   const cueProfilePath = join(process.cwd(), ".cue.profile");
   if (!existsSync(cueProfilePath)) {
-    content += "\n<!-- cue:first-time-suggest -->\n" +
+    content +=
+      "\n<!-- cue:first-time-suggest -->\n" +
       "## ⚡ First-Time Setup\n\n" +
       "No `.cue.profile` is pinned to this directory. Before answering the user's first message, " +
       "summon the right profile into THIS session — no restart. Invoke the `meta/profile-summon` " +
@@ -1417,7 +1615,12 @@ async function getProfileListForStamp(): Promise<string> {
     const names = await listProfiles();
     const lines: string[] = [];
     for (const name of names.slice(0, 15)) {
-      const yamlPath = join(process.env.CUE_PROFILES_DIR ?? join(resolve(import.meta.dirname, "..", ".."), "profiles"), name, "profile.yaml");
+      const yamlPath = join(
+        process.env.CUE_PROFILES_DIR ??
+          join(resolve(import.meta.dirname, "..", ".."), "profiles"),
+        name,
+        "profile.yaml",
+      );
       try {
         const content = readFileSync(yamlPath, "utf8");
         const iconMatch = content.match(/^icon:\s*["']?(.+?)["']?\s*$/m);
@@ -1479,7 +1682,9 @@ function isInsideHome(cwd: string, home: string): boolean {
   return c === h || c.startsWith(h + sep);
 }
 
-async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string> {
+async function readUserClaudeMd(
+  agent: "claude-code" | "codex",
+): Promise<string> {
   const path =
     agent === "claude-code"
       ? join(homedir(), ".claude", "CLAUDE.md")
@@ -1507,8 +1712,11 @@ async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string>
  * picker instead of shadowing it in the shell. `viaOverride` tells the caller to
  * hand that wrapper a sanitized env — see `wrapperEnv`.
  */
-async function findRealBinary(name: string): Promise<{ bin: string; viaOverride: boolean } | null> {
-  const { codexExecOverride, findRealAgentBin } = await import("../lib/claude-binary");
+async function findRealBinary(
+  name: string,
+): Promise<{ bin: string; viaOverride: boolean } | null> {
+  const { codexExecOverride, findRealAgentBin } =
+    await import("../lib/claude-binary");
   if (name === "codex") {
     const override = codexExecOverride();
     if (override) return { bin: override, viaOverride: true };
@@ -1554,7 +1762,10 @@ function wrapperEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
 async function resolveClaudeCredentialsSource(
   options: { runtimeDir?: string } = {},
 ): Promise<string> {
-  return resolveSharedClaudeCredentialsSource({ healFromRuntime: true, runtimeDir: options.runtimeDir });
+  return resolveSharedClaudeCredentialsSource({
+    healFromRuntime: true,
+    runtimeDir: options.runtimeDir,
+  });
 }
 
 /**
@@ -1588,7 +1799,12 @@ const CREDENTIAL_RECONCILE_FALLBACK_MS = 60_000;
 function startCredentialReconciler(runtimeKey: string): () => void {
   // basename() pins the path inside the runtime tree — this writes token
   // files, so a runtime key carrying a separator must not escape it.
-  const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
+  const runtimeClaudeDir = join(
+    configDir(),
+    "runtime",
+    basename(runtimeKey),
+    "claude",
+  );
   let stopped = false;
   let timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -1597,10 +1813,20 @@ function startCredentialReconciler(runtimeKey: string): () => void {
   const tick = async (): Promise<void> => {
     let delayMs = CREDENTIAL_RECONCILE_FALLBACK_MS;
     try {
-      const { listKnownAccountDirs, reconcileCredentials, readExpiresAt, nextReconcileDelayMs } =
-        await import("../lib/credentials-sync");
-      await reconcileCredentials(runtimeClaudeDir, await listKnownAccountDirs(homedir()));
-      delayMs = nextReconcileDelayMs(await readExpiresAt(runtimeClaudeDir), Date.now());
+      const {
+        listKnownAccountDirs,
+        reconcileCredentials,
+        readExpiresAt,
+        nextReconcileDelayMs,
+      } = await import("../lib/credentials-sync");
+      await reconcileCredentials(
+        runtimeClaudeDir,
+        await listKnownAccountDirs(homedir()),
+      );
+      delayMs = nextReconcileDelayMs(
+        await readExpiresAt(runtimeClaudeDir),
+        Date.now(),
+      );
     } catch (err) {
       debug("launch:cred-reconcile", err);
     }
@@ -1630,13 +1856,24 @@ function startCredentialReconciler(runtimeKey: string): () => void {
  */
 async function rescueRuntimeCredsToOwner(runtimeKey: string): Promise<void> {
   try {
-    const { listKnownAccountDirs, rescueRuntimeCredentials } = await import("../lib/credentials-sync");
+    const { listKnownAccountDirs, rescueRuntimeCredentials } =
+      await import("../lib/credentials-sync");
     // basename() pins the path inside the runtime tree — this helper WRITES
     // token files, so a runtime key with a path separator must not escape.
-    const runtimeClaudeDir = join(configDir(), "runtime", basename(runtimeKey), "claude");
-    const result = await rescueRuntimeCredentials(runtimeClaudeDir, await listKnownAccountDirs(homedir()));
+    const runtimeClaudeDir = join(
+      configDir(),
+      "runtime",
+      basename(runtimeKey),
+      "claude",
+    );
+    const result = await rescueRuntimeCredentials(
+      runtimeClaudeDir,
+      await listKnownAccountDirs(homedir()),
+    );
     if (result.rescued) {
-      process.stderr.write(`▸ cue: wrote login-fresh credentials back to ${result.to}\n`);
+      process.stderr.write(
+        `▸ cue: wrote login-fresh credentials back to ${result.to}\n`,
+      );
     }
   } catch (err) {
     debug("launch:cred-rescue", err);
@@ -1654,7 +1891,10 @@ async function rescueRuntimeCredsToOwner(runtimeKey: string): Promise<void> {
  * undefined for the default `~/.claude` and any non-authmux config dir, which
  * preserves the plain per-profile runtime.
  */
-export function authmuxAccountTag(configDirEnv: string | undefined, homeDir: string): string | undefined {
+export function authmuxAccountTag(
+  configDirEnv: string | undefined,
+  homeDir: string,
+): string | undefined {
   if (!configDirEnv) return undefined;
   const resolved = resolve(configDirEnv);
   for (const root of [
@@ -1695,7 +1935,9 @@ export async function run(args: string[]): Promise<number> {
 
   const parsed = parse(args);
   if (!parsed.agent) {
-    process.stderr.write("cue launch: missing agent (use 'claude' or 'codex')\n");
+    process.stderr.write(
+      "cue launch: missing agent (use 'claude' or 'codex')\n",
+    );
     return 1;
   }
 
@@ -1778,23 +2020,29 @@ export async function run(args: string[]): Promise<number> {
     isTTY,
     isBareLaunch: parsed.passthrough.length === 0,
   });
-  const resolvedForCwd = forcePicker ? { source: "none" as const } : existingResolved;
+  const resolvedForCwd = forcePicker
+    ? { source: "none" as const }
+    : existingResolved;
   let inheritedProfile: string | null = null;
-  if (shouldInheritSessionProfile({
-    resolvedNone: resolvedForCwd.source === "none",
-    forcePick: parsed.forcePick,
-    isTTY,
-  })) {
+  if (
+    shouldInheritSessionProfile({
+      resolvedNone: resolvedForCwd.source === "none",
+      forcePick: parsed.forcePick,
+      isTTY,
+    })
+  ) {
     const { detectActiveProfile } = await import("./summon");
     inheritedProfile = detectActiveProfile();
-    if (inheritedProfile) debug("launch:inherited-session-profile", inheritedProfile);
+    if (inheritedProfile)
+      debug("launch:inherited-session-profile", inheritedProfile);
   }
   const resolved = inheritedProfile
     ? { source: "session" as const, profile: inheritedProfile }
     : resolvedForCwd;
-  const existingProfile = existingResolved.source !== "none"
-    ? (existingResolved as { source: string; profile: string }).profile
-    : undefined;
+  const existingProfile =
+    existingResolved.source !== "none"
+      ? (existingResolved as { source: string; profile: string }).profile
+      : undefined;
 
   let profileName: string;
   // The picker's `details` callback loads + expands the chosen profile so the
@@ -1816,7 +2064,8 @@ export async function run(args: string[]): Promise<number> {
     // file gates this so it only runs once. Failure is non-fatal; the picker
     // still opens after.
     try {
-      const { onboardedMarkerPath, runGlobalOnboarding } = await import("./init");
+      const { onboardedMarkerPath, runGlobalOnboarding } =
+        await import("./init");
       const { writeFileSync, mkdirSync, existsSync } = await import("node:fs");
       const marker = onboardedMarkerPath();
       if (!existsSync(marker)) {
@@ -1826,11 +2075,15 @@ export async function run(args: string[]): Promise<number> {
           try {
             mkdirSync(configDir(), { recursive: true });
             writeFileSync(marker, new Date().toISOString() + "\n");
-          } catch { /* non-fatal */ }
+          } catch {
+            /* non-fatal */
+          }
           process.stdout.write("\n");
         }
       }
-    } catch { /* never block launch on onboarding failure */ }
+    } catch {
+      /* never block launch on onboarding failure */
+    }
 
     const optionSet = await listProfileOptions(existingProfile, parsed.agent);
     const options = optionSet.options;
@@ -1842,7 +2095,8 @@ export async function run(args: string[]): Promise<number> {
     // reused by the cross-profile frequency suggestions below.
     let affinity: Map<string, ProfileAffinity> = new Map();
     try {
-      const { computeAffinityMap, suggestionsByProfile } = await import("../lib/pair-suggestions");
+      const { computeAffinityMap, suggestionsByProfile } =
+        await import("../lib/pair-suggestions");
       affinity = computeAffinityMap();
       // Partners are scoped to this repository: `growStack` grafts one onto
       // every suggested stack with no reason line of its own, so a pairing
@@ -1854,47 +2108,85 @@ export async function run(args: string[]): Promise<number> {
       // unchecked + hinted ("you paired these before"), so a low bar is a gentle
       // recommendation, not an auto-pin. (The stricter defaults still apply to
       // `cue suggest-pairs`, which reports rather than pre-fills.)
-      const sug = suggestionsByProfile(localAffinity, { minCount: 1, minAffinity: 0, limit: 6 });
+      const sug = suggestionsByProfile(localAffinity, {
+        minCount: 1,
+        minAffinity: 0,
+        limit: 6,
+      });
       pairSuggestions = new Map();
       for (const [name, partners] of sug) {
-        pairSuggestions.set(name, partners.map((p) => p.name));
+        pairSuggestions.set(
+          name,
+          partners.map((p) => p.name),
+        );
       }
-    } catch (err) { debug("launch:pair-suggestions", err); }
+    } catch (err) {
+      debug("launch:pair-suggestions", err);
+    }
     // Installed profile names, computed ONCE and shared by the autodetect +
     // companion passes below (both filter their detections to known profiles).
     // Previously each pass re-walked listProfiles() independently.
     let knownProfileNames = new Set<string>();
     try {
       knownProfileNames = new Set(await listProfiles());
-    } catch (err) { debug("launch:list-profiles", err); }
+    } catch (err) {
+      debug("launch:list-profiles", err);
+    }
     // Cwd autodetect signals, forwarded to runPicker so it can offer a
     // "switch to <X>?" nudge when the user picks a profile that conflicts
     // with what the directory actually looks like (e.g. picking medusa-next
     // in a vite.config.ts project).
-    let detected: ReadonlyArray<{ name: string; reasons: string[]; confidence: number }> = [];
+    let detected: ReadonlyArray<{
+      name: string;
+      reasons: string[];
+      confidence: number;
+    }> = [];
     let rawDetections: DetectionResultV2[] = [];
     try {
-      rawDetections = detectProfileV2(cwd).filter((d) => knownProfileNames.has(d.profile));
-      detected = rawDetections.map((d) => ({ name: d.profile, reasons: d.reasons, confidence: d.confidence }));
-    } catch (err) { debug("launch:autodetect", err); }
+      rawDetections = detectProfileV2(cwd).filter((d) =>
+        knownProfileNames.has(d.profile),
+      );
+      detected = rawDetections.map((d) => ({
+        name: d.profile,
+        reasons: d.reasons,
+        confidence: d.confidence,
+      }));
+    } catch (err) {
+      debug("launch:autodetect", err);
+    }
     // Content-aware combine companions: scan the cwd for asset/draft/brand
     // signals and feed matching profiles into the combine multiselect — plus
     // dep-detected service profiles (stripe, @aws-sdk/*, …), which join as
     // pre-checked rows (see serviceCompanions).
     let companions: CompanionSignal[] = [];
     try {
-      companions = detectCompanions({ cwd, knownProfiles: knownProfileNames, brands: listPostizzBrands() });
-      companions = companions.concat(serviceCompanions(rawDetections, knownProfileNames));
-    } catch (err) { debug("launch:companions", err); }
+      companions = detectCompanions({
+        cwd,
+        knownProfiles: knownProfileNames,
+        brands: listPostizzBrands(),
+      });
+      companions = companions.concat(
+        serviceCompanions(rawDetections, knownProfileNames),
+      );
+    } catch (err) {
+      debug("launch:companions", err);
+    }
     // Cross-profile combine suggestions offered under every primary: the curated
     // `_featured.yaml` set (improver, secops, builder, …) plus the profiles the
     // user picks most often (from the affinity map above). Offered unchecked.
     let universalSuggestions: UniversalSuggestion[] = [];
     try {
-      const { buildUniversalSuggestions } = await import("../lib/pair-suggestions");
+      const { buildUniversalSuggestions } =
+        await import("../lib/pair-suggestions");
       const featured = await listFeaturedProfiles();
-      universalSuggestions = buildUniversalSuggestions({ featured, affinity, known: knownProfileNames });
-    } catch (err) { debug("launch:universal-suggestions", err); }
+      universalSuggestions = buildUniversalSuggestions({
+        featured,
+        affinity,
+        known: knownProfileNames,
+      });
+    } catch (err) {
+      debug("launch:universal-suggestions", err);
+    }
     // Per-profile resource tally for the combine multiselect's live preview +
     // per-row hints. Memoized so each offered profile loads at most once.
     // A shared skill-token reader feeds the always-on estimate (frontmatter
@@ -1902,8 +2194,11 @@ export async function run(args: string[]): Promise<number> {
     // banner below, so the picker's heads-up and the banner agree.
     const { readFileSync: readSkillFile } = await import("node:fs");
     const skillsRootForTally = join(
-      process.env.CUE_REPO_ROOT ?? resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-      "resources", "skills", "skills",
+      process.env.CUE_REPO_ROOT ??
+        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+      "resources",
+      "skills",
+      "skills",
     );
     const skillTokenCache = new Map<string, SkillTokens>();
     const tokensForSkill = (id: string): SkillTokens => {
@@ -1911,9 +2206,16 @@ export async function run(args: string[]): Promise<number> {
       if (c) return c;
       let result: SkillTokens = { frontmatter: 0, body: 0 };
       try {
-        const { frontmatter, body } = splitSkillBytes(readSkillFile(join(skillsRootForTally, id, "SKILL.md"), "utf8"));
-        result = { frontmatter: Math.ceil(frontmatter / 4), body: Math.ceil(body / 4) };
-      } catch { /* skill missing on disk → counts as 0 */ }
+        const { frontmatter, body } = splitSkillBytes(
+          readSkillFile(join(skillsRootForTally, id, "SKILL.md"), "utf8"),
+        );
+        result = {
+          frontmatter: Math.ceil(frontmatter / 4),
+          body: Math.ceil(body / 4),
+        };
+      } catch {
+        /* skill missing on disk → counts as 0 */
+      }
       skillTokenCache.set(id, result);
       return result;
     };
@@ -1935,7 +2237,8 @@ export async function run(args: string[]): Promise<number> {
         commands: (prof.commands ?? []).slice(),
         // This profile's own always-on frontmatter cost (parts=undefined → just
         // its own skills). The picker sums these across the selection.
-        alwaysOn: computeTokenBreakdown(prof, undefined, tokensForSkill).alwaysOn,
+        alwaysOn: computeTokenBreakdown(prof, undefined, tokensForSkill)
+          .alwaysOn,
       };
       tallyCache.set(value, tally);
       return tally;
@@ -1948,7 +2251,9 @@ export async function run(args: string[]): Promise<number> {
       // Scoped to the launch directory: stacks confirmed in this repo lead,
       // stacks from other repos drop to a hint.
       combos = readCombos(undefined, { cwd });
-    } catch (err) { debug("launch:combo-history", err); }
+    } catch (err) {
+      debug("launch:combo-history", err);
+    }
     const picked = await runPicker({
       cwd,
       options,
@@ -1990,13 +2295,18 @@ export async function run(args: string[]): Promise<number> {
     const lastRun = readGateStatus(profileName);
     if (lastRun && lastRun.overall === "fail") {
       const failed = lastRun.results.filter((r) => !r.ok).map((r) => r.name);
-      const tail = failed.length > 2 ? `${failed.slice(0, 2).join(", ")} +${failed.length - 2}` : failed.join(", ");
+      const tail =
+        failed.length > 2
+          ? `${failed.slice(0, 2).join(", ")} +${failed.length - 2}`
+          : failed.join(", ");
       process.stderr.write(
         `\x1b[33m⚠\x1b[0m cue: last gate run for "${profileName}" failed (${tail}). ` +
-        `Inspect: cue gates status\n`,
+          `Inspect: cue gates status\n`,
       );
     }
-  } catch { /* non-fatal */ }
+  } catch {
+    /* non-fatal */
+  }
 
   // Load + materialize. Reuse the picker-cached profile when available.
   let profile!: ResolvedProfile;
@@ -2005,7 +2315,8 @@ export async function run(args: string[]): Promise<number> {
   } else {
     // Try manifest cache first (skips YAML parse + inheritance resolution)
     const profilesDir = join(
-      process.env.CUE_REPO_ROOT ?? resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+      process.env.CUE_REPO_ROOT ??
+        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
       "profiles",
     );
     let fromCache = false;
@@ -2016,7 +2327,9 @@ export async function run(args: string[]): Promise<number> {
         profile = cached;
         fromCache = true;
       }
-    } catch { /* cache miss — fall through */ }
+    } catch {
+      /* cache miss — fall through */
+    }
 
     if (!fromCache) {
       try {
@@ -2031,7 +2344,9 @@ export async function run(args: string[]): Promise<number> {
       try {
         const { putCachedManifest } = await import("../lib/manifest-cache");
         putCachedManifest(profile, profilesDir);
-      } catch { /* non-fatal */ }
+      } catch {
+        /* non-fatal */
+      }
     }
   }
 
@@ -2043,11 +2358,11 @@ export async function run(args: string[]): Promise<number> {
   //
   // Resolved BEFORE the credentials source below, which needs to know the dir
   // this launch will write in order to refuse it as its own overlay source.
-  const accountTag = agentKind === "claude-code"
-    ? authmuxAccountTag(ccd, homedir())
-    : undefined;
+  const accountTag =
+    agentKind === "claude-code" ? authmuxAccountTag(ccd, homedir()) : undefined;
   const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
-  if (accountTag) debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
+  if (accountTag)
+    debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
 
   // Credentials source resolution (Claude only):
   //   1. Honor explicit CLAUDE_CONFIG_DIR (set by claude-account2 alias, etc.)
@@ -2061,11 +2376,12 @@ export async function run(args: string[]): Promise<number> {
   //      cue profile. authmux's `parallel --list --json` returns each profile's
   //      configDir; we pick the one whose .credentials.json was touched most
   //      recently as a proxy for "the one you actually use."
-  const credentialsSource = agentKind === "claude-code"
-    ? await resolveClaudeCredentialsSource({
-      runtimeDir: runtimeDirFor(runtimeKey, "claude-code"),
-    })
-    : undefined;
+  const credentialsSource =
+    agentKind === "claude-code"
+      ? await resolveClaudeCredentialsSource({
+          runtimeDir: runtimeDirFor(runtimeKey, "claude-code"),
+        })
+      : undefined;
 
   // Pin dir: the directory holding the resolving `.cue.profile`, else cwd
   // (a freshly-picked profile was just pinned to cwd). Keys both the project
@@ -2099,8 +2415,11 @@ export async function run(args: string[]): Promise<number> {
       // fuzzy-resolved ids just yield empty metadata — classification then
       // falls back to id-token matching, and the index row omits the path.
       const skillsRoot = join(
-        process.env.CUE_REPO_ROOT ?? resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-        "resources", "skills", "skills",
+        process.env.CUE_REPO_ROOT ??
+          resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+        "resources",
+        "skills",
+        "skills",
       );
       const result = await applyProjectLoadout({
         profile,
@@ -2110,7 +2429,10 @@ export async function run(args: string[]): Promise<number> {
           const path = join(skillsRoot, id, "SKILL.md");
           const content = await readSkillFile(path, "utf8").catch(() => "");
           if (!content) return { description: "", path: "" };
-          return { description: parseMetadataFromContent(content).description, path };
+          return {
+            description: parseMetadataFromContent(content).description,
+            path,
+          };
         },
       });
       if (result) {
@@ -2119,8 +2441,8 @@ export async function run(args: string[]): Promise<number> {
         const top = result.signals.slice(0, 4).join(", ");
         process.stderr.write(
           `[cue] loadout: ${result.full.length} skills full · ${result.deferred.length} deferred` +
-          (top ? ` (${top}${result.signals.length > 4 ? ", …" : ""})` : "") +
-          ` · --cue-full loads all · cue loadout to edit\n`,
+            (top ? ` (${top}${result.signals.length > 4 ? ", …" : ""})` : "") +
+            ` · --cue-full loads all · cue loadout to edit\n`,
         );
       }
     } catch (err) {
@@ -2135,8 +2457,18 @@ export async function run(args: string[]): Promise<number> {
   // --rematerialize: force rebuild by deleting the hash file first
   if (parsed.rematerialize) {
     const { rm: rmFile } = await import("node:fs/promises");
-    const hashPath = join(configDir(), "runtime", runtimeKey, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
-    try { await rmFile(hashPath, { force: true }); } catch { /* ok */ }
+    const hashPath = join(
+      configDir(),
+      "runtime",
+      runtimeKey,
+      agentKind === "claude-code" ? "claude" : "codex",
+      ".cue-hash",
+    );
+    try {
+      await rmFile(hashPath, { force: true });
+    } catch {
+      /* ok */
+    }
   } else {
     // Auto-rematerialize on staleness: if profile.yaml is newer than the stored
     // hash (doctor's D5 predicate), the user edited the profile after the last
@@ -2146,13 +2478,32 @@ export async function run(args: string[]): Promise<number> {
     // rebuild writes a fresh .cue-hash with a current mtime, so it won't loop.
     try {
       const { isRuntimeStale } = await import("../lib/runtime-materializer");
-      if (await isRuntimeStale(profileName, agentKind, join(configDir(), "runtime"), runtimeKey)) {
+      if (
+        await isRuntimeStale(
+          profileName,
+          agentKind,
+          join(configDir(), "runtime"),
+          runtimeKey,
+        )
+      ) {
         const { rm: rmFile } = await import("node:fs/promises");
-        const hashPath = join(configDir(), "runtime", runtimeKey, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
-        try { await rmFile(hashPath, { force: true }); } catch { /* ok */ }
+        const hashPath = join(
+          configDir(),
+          "runtime",
+          runtimeKey,
+          agentKind === "claude-code" ? "claude" : "codex",
+          ".cue-hash",
+        );
+        try {
+          await rmFile(hashPath, { force: true });
+        } catch {
+          /* ok */
+        }
         process.stderr.write(`[cue] profile changed, rebuilding runtime...\n`);
       }
-    } catch (err) { debug("launch:staleness", err); /* fail-open — never blocks launch */ }
+    } catch (err) {
+      debug("launch:staleness", err); /* fail-open — never blocks launch */
+    }
   }
 
   // Lazy-MCP: ids the user disabled, forwarded to the materializer so the stale
@@ -2172,15 +2523,30 @@ export async function run(args: string[]): Promise<number> {
   if (agentKind === "claude-code" && profile.mcps.length > 0) {
     try {
       const { getNeededMcps } = await import("../lib/skill-dependencies");
-      const { readMcpOverride, writeMcpOverride, mcpFingerprint, reconcileDisabledWithNeeded, autoPrunableMcps, mcpPruneMode, isRecognizedPruneEnv, readRuntimeMcpServerIds } = await import("../lib/mcp-overrides");
+      const {
+        readMcpOverride,
+        writeMcpOverride,
+        mcpFingerprint,
+        reconcileDisabledWithNeeded,
+        autoPrunableMcps,
+        mcpPruneMode,
+        isRecognizedPruneEnv,
+        readRuntimeMcpServerIds,
+      } = await import("../lib/mcp-overrides");
 
       const allMcpIds = profile.mcps.map((m) => m.id);
       const fingerprint = mcpFingerprint(allMcpIds);
-      const pinned = new Set(profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()));
+      const pinned = new Set(
+        profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()),
+      );
       const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
 
       const keepNonPinned = (drop: Set<string>): Set<string> =>
-        new Set(allMcpIds.filter((id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase())));
+        new Set(
+          allMcpIds.filter(
+            (id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase()),
+          ),
+        );
 
       let kept: Set<string> | null = null;
       let reviewed = false;
@@ -2199,7 +2565,9 @@ export async function run(args: string[]): Promise<number> {
           `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
         );
       }
-      const pruneMode = pruneFromEnv ? mcpPruneMode(pruneEnv) : (profile.mcpPrune ?? "off");
+      const pruneMode = pruneFromEnv
+        ? mcpPruneMode(pruneEnv)
+        : (profile.mcpPrune ?? "off");
       const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
 
       if (parsed.disableMcp.length > 0) {
@@ -2208,10 +2576,13 @@ export async function run(args: string[]): Promise<number> {
         // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
         // run or a debug session must not silently stick on later launches. Use
         // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
-        kept = keepNonPinned(new Set(parsed.disableMcp.map((s) => s.toLowerCase())));
+        kept = keepNonPinned(
+          new Set(parsed.disableMcp.map((s) => s.toLowerCase())),
+        );
       } else {
         const override = readMcpOverride(pinDir);
-        const overrideValid = override !== undefined && override.fingerprint === fingerprint;
+        const overrideValid =
+          override !== undefined && override.fingerprint === fingerprint;
         const interactive = process.stdin.isTTY === true && !parsed.dryRun;
 
         // Replay a remembered disable-list, cross-checked against what active
@@ -2220,7 +2591,10 @@ export async function run(args: string[]): Promise<number> {
         // and say so, rather than silently starving the skill. The override is
         // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
         const applyRememberedOverride = (): Set<string> => {
-          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(override!.disabled, needed.keys());
+          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(
+            override!.disabled,
+            needed.keys(),
+          );
           if (reEnabled.length > 0) {
             process.stderr.write(
               `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
@@ -2236,7 +2610,13 @@ export async function run(args: string[]): Promise<number> {
         // choice is honored, so picking `core` from the startup menu no longer
         // forces an MCP dialog every time. Re-review explicitly with
         // --cue-pick-mcps. A valid override seeds the checkboxes when it does open.
-        if (shouldOpenMcpPicker({ interactive, forcePickMcps: parsed.forcePickMcps, overrideValid })) {
+        if (
+          shouldOpenMcpPicker({
+            interactive,
+            forcePickMcps: parsed.forcePickMcps,
+            overrideValid,
+          })
+        ) {
           const { pickMcps } = await import("../lib/mcp-picker");
           // Initial checkbox state, best first: the remembered override (this
           // is a re-review), else — when a loadout is active — the project-
@@ -2274,15 +2654,34 @@ export async function run(args: string[]): Promise<number> {
           //                  profile never calls). Removes config set globally.
           const universe = [...allMcpIds];
           if (pruneMode === "all") {
-            const rtClaudeJson = join(configDir(), "runtime", runtimeKey, "claude", ".claude.json");
+            const rtClaudeJson = join(
+              configDir(),
+              "runtime",
+              runtimeKey,
+              "claude",
+              ".claude.json",
+            );
             for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
-              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase())) universe.push(id);
+              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase()))
+                universe.push(id);
             }
           }
-          const drop = new Set(autoPrunableMcps(universe, pinned, needed.keys()));
-          debug("launch:mcp-prune", { mode: pruneMode, source: pruneSource, universe, pinned: [...pinned], needed: [...needed.keys()], drop: [...drop] });
+          const drop = new Set(
+            autoPrunableMcps(universe, pinned, needed.keys()),
+          );
+          debug("launch:mcp-prune", {
+            mode: pruneMode,
+            source: pruneSource,
+            universe,
+            pinned: [...pinned],
+            needed: [...needed.keys()],
+            drop: [...drop],
+          });
           if (drop.size > 0) {
-            profile = { ...profile, mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())) };
+            profile = {
+              ...profile,
+              mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
+            };
             mcpDisabledIds = [...drop];
             process.stderr.write(
               `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
@@ -2293,13 +2692,22 @@ export async function run(args: string[]): Promise<number> {
       }
 
       debug("launch:mcp-prune", {
-        all: allMcpIds, pinned: [...pinned], needed: [...needed.keys()], reviewed, kept: kept ? [...kept] : null,
+        all: allMcpIds,
+        pinned: [...pinned],
+        needed: [...needed.keys()],
+        reviewed,
+        kept: kept ? [...kept] : null,
       });
       if (kept !== null) {
         const keptSet = kept;
-        const disabled = allMcpIds.filter((id) => !keptSet.has(id)).map((id) => id.toLowerCase());
+        const disabled = allMcpIds
+          .filter((id) => !keptSet.has(id))
+          .map((id) => id.toLowerCase());
         if (disabled.length > 0) {
-          profile = { ...profile, mcps: profile.mcps.filter((m) => keptSet.has(m.id)) };
+          profile = {
+            ...profile,
+            mcps: profile.mcps.filter((m) => keptSet.has(m.id)),
+          };
           mcpDisabledIds = disabled;
           process.stderr.write(
             `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · --cue-pick-mcps to change\n`,
@@ -2309,7 +2717,12 @@ export async function run(args: string[]): Promise<number> {
         // fresh, and clears a stale override when they re-enable everything).
         // `disabled` may be [] here — that's intentional: it records "reviewed,
         // nothing disabled" so a later launch doesn't re-prompt.
-        if (reviewed) writeMcpOverride(pinDir, { profile: profileName, fingerprint, disabled });
+        if (reviewed)
+          writeMcpOverride(pinDir, {
+            profile: profileName,
+            fingerprint,
+            disabled,
+          });
       }
     } catch (err) {
       debug("launch:mcp-prune", err); // fail-open — never blocks a launch
@@ -2330,10 +2743,13 @@ export async function run(args: string[]): Promise<number> {
     parsed.dryRun || parsed.rematerialize
       ? null
       : startLoader({
-        logoPath: agentKind === "claude-code" ? ensureClaudeLogoPath() ?? undefined : undefined,
-        message: agentLaunchMessage(agentKind),
-        accentColor: agentLaunchAccent(agentKind),
-      });
+          logoPath:
+            agentKind === "claude-code"
+              ? (ensureClaudeLogoPath() ?? undefined)
+              : undefined,
+          message: agentLaunchMessage(agentKind),
+          accentColor: agentLaunchAccent(agentKind),
+        });
   const progress = (active: string, fallback: string): void => {
     if (loader) loader.setMessage(active);
     else if (fallback) process.stderr.write(fallback);
@@ -2362,27 +2778,52 @@ export async function run(args: string[]): Promise<number> {
         // Explicit --subset bypasses the keep-set cache (the user is overriding
         // deliberately); an env-folded `-p` prompt uses the cache so repeat
         // launches don't re-call the classifier.
-        const result = await selectRelevantSkills(ids, subsetPrompt, { noCache: parsed.subsetExplicit });
-        progress(`Skills: ${result.reason}`, `  🎯 smart-subset: ${result.reason}\n`);
+        const result = await selectRelevantSkills(ids, subsetPrompt, {
+          noCache: parsed.subsetExplicit,
+        });
+        progress(
+          `Skills: ${result.reason}`,
+          `  🎯 smart-subset: ${result.reason}\n`,
+        );
         if (result.classified && result.selected.length < ids.length) {
           const keep = new Set(result.selected);
           // Copy-on-write: never mutate the (possibly manifest-cached) profile
           // object in place — a shared reference would poison sibling reads.
-          profile = { ...profile, skills: { ...profile.skills, local: profile.skills.local.filter((s) => keep.has(s.id)) } };
+          profile = {
+            ...profile,
+            skills: {
+              ...profile.skills,
+              local: profile.skills.local.filter((s) => keep.has(s.id)),
+            },
+          };
           // Force a rebuild so the smaller skill set actually lands on disk.
           const { rm: rmFile } = await import("node:fs/promises");
-          const hashPath = join(configDir(), "runtime", runtimeKey, agentKind === "claude-code" ? "claude" : "codex", ".cue-hash");
-          try { await rmFile(hashPath, { force: true }); } catch { /* ok */ }
+          const hashPath = join(
+            configDir(),
+            "runtime",
+            runtimeKey,
+            agentKind === "claude-code" ? "claude" : "codex",
+            ".cue-hash",
+          );
+          try {
+            await rmFile(hashPath, { force: true });
+          } catch {
+            /* ok */
+          }
         }
       } catch (err) {
-        progress("Loading skills…", `  ⚠️  smart-subset failed (${(err as Error).message}) — kept full skill set\n`);
+        progress(
+          "Loading skills…",
+          `  ⚠️  smart-subset failed (${(err as Error).message}) — kept full skill set\n`,
+        );
       }
     }
 
     // Rescue-before-wipe: if this runtime's credentials belong to a different
     // account than credentialsSource, the materializer's identity guard is
     // about to discard them — return them to their owning account dir first.
-    if (agentKind === "claude-code") await rescueRuntimeCredsToOwner(runtimeKey);
+    if (agentKind === "claude-code")
+      await rescueRuntimeCredsToOwner(runtimeKey);
 
     // Promote npx skills to local via installed plugin marketplaces.
     // The materializer only symlinks profile.skills.local; npx refs are
@@ -2392,13 +2833,20 @@ export async function run(args: string[]): Promise<number> {
     // lists skills.npx works without a network fetch on every launch.
     const npxSkillMap = new Map<string, string>(); // skill id → dir path
     if (profile.skills.npx.length > 0) {
-      const pluginMarketplacesDir = join(homedir(), ".claude", "plugins", "marketplaces");
+      const pluginMarketplacesDir = join(
+        homedir(),
+        ".claude",
+        "plugins",
+        "marketplaces",
+      );
       if (existsSync(pluginMarketplacesDir)) {
-        const mpSkillsDirs = readdirSync(pluginMarketplacesDir, { withFileTypes: true })
+        const mpSkillsDirs = readdirSync(pluginMarketplacesDir, {
+          withFileTypes: true,
+        })
           .filter((d) => d.isDirectory())
           .map((d) => join(pluginMarketplacesDir, d.name, "skills"));
         for (const npxRef of profile.skills.npx) {
-          for (const skillName of (npxRef.skills ?? [])) {
+          for (const skillName of npxRef.skills ?? []) {
             if (npxSkillMap.has(skillName)) continue;
             for (const skillsDir of mpSkillsDirs) {
               const skillDir = join(skillsDir, skillName);
@@ -2416,7 +2864,13 @@ export async function run(args: string[]): Promise<number> {
           .filter((id) => !existingIds.has(id))
           .map((id) => ({ id }));
         if (newSkills.length > 0) {
-          profile = { ...profile, skills: { ...profile.skills, local: [...profile.skills.local, ...newSkills] } };
+          profile = {
+            ...profile,
+            skills: {
+              ...profile.skills,
+              local: [...profile.skills.local, ...newSkills],
+            },
+          };
         }
       }
     }
@@ -2462,7 +2916,12 @@ export async function run(args: string[]): Promise<number> {
     if (runtime.rebuilt) {
       try {
         const { existsSync, writeFileSync } = await import("node:fs");
-        const doctorFlag = join(configDir(), "runtime", runtimeKey, ".doctor-done");
+        const doctorFlag = join(
+          configDir(),
+          "runtime",
+          runtimeKey,
+          ".doctor-done",
+        );
         if (!existsSync(doctorFlag)) {
           const lines = formatDoctorWarnings(warnings);
           if (lines.length > 0) {
@@ -2472,9 +2931,13 @@ export async function run(args: string[]): Promise<number> {
           }
           writeFileSync(doctorFlag, new Date().toISOString());
         }
-      } catch { /* non-fatal */ }
+      } catch {
+        /* non-fatal */
+      }
     }
-  } catch { /* non-fatal */ }
+  } catch {
+    /* non-fatal */
+  }
 
   // W6/W7 description-lint surface — runs on rebuild only, so skill-writer
   // sees weak triggers/capability at the moment the profile materializes,
@@ -2501,21 +2964,29 @@ export async function run(args: string[]): Promise<number> {
           `${c.yellow(`⚠ ${n} skill description issue${n > 1 ? "s" : ""}`)} ${c.dim(`→ cue validate ${profileName}`)}\n`,
         );
       }
-    } catch { /* non-fatal — lint is observability, not a gate */ }
+    } catch {
+      /* non-fatal — lint is observability, not a gate */
+    }
   }
 
   // --rematerialize: report and exit (no exec)
   if (parsed.rematerialize) {
     process.stdout.write(
-      JSON.stringify({
-        profile: profileName,
-        agent: agentKind,
-        runtimeDir: runtime.runtimeDir,
-        rebuilt: runtime.rebuilt,
-        hash: runtime.hash,
-      }, null, 2) + "\n",
+      JSON.stringify(
+        {
+          profile: profileName,
+          agent: agentKind,
+          runtimeDir: runtime.runtimeDir,
+          rebuilt: runtime.rebuilt,
+          hash: runtime.hash,
+        },
+        null,
+        2,
+      ) + "\n",
     );
-    process.stdout.write(runtime.rebuilt ? "✅ Rematerialized.\n" : "ℹ️  Already up to date.\n");
+    process.stdout.write(
+      runtime.rebuilt ? "✅ Rematerialized.\n" : "ℹ️  Already up to date.\n",
+    );
     return 0;
   }
 
@@ -2526,14 +2997,24 @@ export async function run(args: string[]): Promise<number> {
   try {
     const { isRulerAutoEnabled, runAutoRuler } = await import("../lib/ruler");
     if (isRulerAutoEnabled(process.env.CUE_RULER_AUTO)) {
-      const actions = runAutoRuler({ profile, targetDir: cwd, dryRun: parsed.dryRun });
+      const actions = runAutoRuler({
+        profile,
+        targetDir: cwd,
+        dryRun: parsed.dryRun,
+      });
       // dry-run yields "dry-write"; a real run yields "write" (mutually exclusive).
-      const wrote = actions.filter((a) => a.kind === "write" || a.kind === "dry-write").length;
-      const skipped = actions.filter((a) => a.kind === "skip-foreign-safe").length;
+      const wrote = actions.filter(
+        (a) => a.kind === "write" || a.kind === "dry-write",
+      ).length;
+      const skipped = actions.filter(
+        (a) => a.kind === "skip-foreign-safe",
+      ).length;
       if (wrote || skipped) {
         process.stderr.write(
           `[cue] ruler: ${parsed.dryRun ? "would sync" : "synced"} rules → ${wrote} agent file(s)` +
-            (skipped ? `; left ${skipped} hand-written file(s) untouched` : "") +
+            (skipped
+              ? `; left ${skipped} hand-written file(s) untouched`
+              : "") +
             "\n",
         );
       }
@@ -2542,7 +3023,8 @@ export async function run(args: string[]): Promise<number> {
     debug("launch:auto-ruler", err); /* fail-open — never blocks launch */
   }
 
-  const envKey = agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
+  const envKey =
+    agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
     [envKey]: runtime.runtimeDir,
@@ -2566,9 +3048,13 @@ export async function run(args: string[]): Promise<number> {
   // slot; making memory per-account is a separate follow-up.
   try {
     const { resolveClaudeMemEnv } = await import("../lib/claude-mem-env");
-    const memEnv = resolveClaudeMemEnv(profileName, { existingEnv: process.env });
+    const memEnv = resolveClaudeMemEnv(profileName, {
+      existingEnv: process.env,
+    });
     if (memEnv) Object.assign(childEnv, memEnv);
-  } catch { /* non-fatal — memory isolation is an enhancement, not a gate */ }
+  } catch {
+    /* non-fatal — memory isolation is an enhancement, not a gate */
+  }
 
   if (parsed.dryRun) {
     process.stdout.write(
@@ -2609,18 +3095,21 @@ export async function run(args: string[]): Promise<number> {
 
   // Skill → MCP dependency check (non-fatal)
   try {
-    const { detectMissingDependencies } = await import("../lib/skill-dependencies");
+    const { detectMissingDependencies } =
+      await import("../lib/skill-dependencies");
     const skillIds = profile.skills.local.map((s: any) => s.id);
     const mcpIds = profile.mcps.map((m: any) => m.id);
     const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
     if (missing.length > 0) {
-      const unique = [...new Set(missing.map(m => m.mcpId))];
+      const unique = [...new Set(missing.map((m) => m.mcpId))];
       const c = colorFns();
       process.stderr.write(
         `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
       );
     }
-  } catch { /* non-fatal */ }
+  } catch {
+    /* non-fatal */
+  }
 
   // Tracks the breakdown so the tmux badge below can reuse what the CLI
   // banner already computed. Undefined when skillCount is too small to bother
@@ -2630,8 +3119,11 @@ export async function run(args: string[]): Promise<number> {
     try {
       const { readFileSync } = await import("node:fs");
       const skillsRoot = join(
-        process.env.CUE_REPO_ROOT ?? resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-        "resources", "skills", "skills",
+        process.env.CUE_REPO_ROOT ??
+          resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+        "resources",
+        "skills",
+        "skills",
       );
       const tokenCache = new Map<string, SkillTokens>();
       const tokensForSkill = (id: string): SkillTokens => {
@@ -2645,7 +3137,9 @@ export async function run(args: string[]): Promise<number> {
             frontmatter: Math.ceil(frontmatter / 4),
             body: Math.ceil(body / 4),
           };
-        } catch { /* skill missing on disk; counts as 0 */ }
+        } catch {
+          /* skill missing on disk; counts as 0 */
+        }
         tokenCache.set(id, result);
         return result;
       };
@@ -2656,7 +3150,9 @@ export async function run(args: string[]): Promise<number> {
       if (partNames.length > 1) {
         try {
           parts = await Promise.all(partNames.map((p) => loadProfile(p)));
-        } catch { /* breakdown unavailable, total still shown */ }
+        } catch {
+          /* breakdown unavailable, total still shown */
+        }
       }
 
       const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
@@ -2675,7 +3171,11 @@ export async function run(args: string[]): Promise<number> {
       });
       const bc = colorFns();
       lines.push(
-        ...formatContextBudgetWarning(budget, { yellow: bc.yellow, bold: bc.bold, dim: bc.dim }),
+        ...formatContextBudgetWarning(budget, {
+          yellow: bc.yellow,
+          bold: bc.bold,
+          dim: bc.dim,
+        }),
       );
 
       if (lines.length > 0) {
@@ -2683,26 +3183,47 @@ export async function run(args: string[]): Promise<number> {
         for (const l of lines) process.stderr.write(`${l}\n`);
         process.stderr.write("\n");
       }
-    } catch { /* non-fatal */ }
+    } catch {
+      /* non-fatal */
+    }
   }
 
   // First-run: prompt to star the repo (once ever, non-blocking)
   try {
     const { maybePromptStar } = await import("../lib/star-prompt");
     await maybePromptStar();
-  } catch { /* non-fatal */ }
+  } catch {
+    /* non-fatal */
+  }
 
   // Analytics: record session start
   try {
     const { recordEvent } = await import("../lib/analytics");
     const startTs = new Date().toISOString();
-    recordEvent({ ts: startTs, event: "start", profile: profileName, agent: agentKind, cwd: process.cwd() });
+    recordEvent({
+      ts: startTs,
+      event: "start",
+      profile: profileName,
+      agent: agentKind,
+      cwd: process.cwd(),
+    });
     // Record end on exit
     process.on("exit", () => {
       try {
-        const duration_s = Math.round((Date.now() - new Date(startTs).getTime()) / 1000);
-        recordEvent({ ts: new Date().toISOString(), event: "end", profile: profileName, agent: agentKind, cwd: process.cwd(), duration_s });
-      } catch { /* best-effort */ }
+        const duration_s = Math.round(
+          (Date.now() - new Date(startTs).getTime()) / 1000,
+        );
+        recordEvent({
+          ts: new Date().toISOString(),
+          event: "end",
+          profile: profileName,
+          agent: agentKind,
+          cwd: process.cwd(),
+          duration_s,
+        });
+      } catch {
+        /* best-effort */
+      }
       // Sync refreshed credentials back to source so next launch has valid tokens.
       // Freshness guard (mirrors the materializer's preserve step at
       // runtime-materializer.ts:704): write back ONLY when the runtime token is
@@ -2713,22 +3234,35 @@ export async function run(args: string[]): Promise<number> {
       // Must stay synchronous: process.on("exit") handlers cannot await.
       if (credentialsSource) {
         try {
-          const { copyFileSync, readFileSync: rf, existsSync: ex } = require("node:fs");
+          const {
+            copyFileSync,
+            readFileSync: rf,
+            existsSync: ex,
+          } = require("node:fs");
           const runtimeCreds = join(runtime.runtimeDir, ".credentials.json");
           const sourceCreds = join(credentialsSource, ".credentials.json");
           const expiresAt = (p: string): number => {
             try {
               const v = JSON.parse(rf(p, "utf8"))?.claudeAiOauth?.expiresAt;
               return typeof v === "number" ? v : 0;
-            } catch { return 0; }
+            } catch {
+              return 0;
+            }
           };
-          if (ex(runtimeCreds) && expiresAt(runtimeCreds) > expiresAt(sourceCreds)) {
+          if (
+            ex(runtimeCreds) &&
+            expiresAt(runtimeCreds) > expiresAt(sourceCreds)
+          ) {
             copyFileSync(runtimeCreds, sourceCreds);
           }
-        } catch { /* best-effort */ }
+        } catch {
+          /* best-effort */
+        }
       }
     });
-  } catch { /* analytics non-fatal */ }
+  } catch {
+    /* analytics non-fatal */
+  }
 
   // Resolve one icon per profile part for the tmux status line. Single-part
   // profiles use `profile.icon` directly; composites load each part so every
@@ -2751,7 +3285,9 @@ export async function run(args: string[]): Promise<number> {
         }),
       );
     }
-  } catch { /* best-effort */ }
+  } catch {
+    /* best-effort */
+  }
 
   // One-line startup identity banner (stderr). Always prints on a real launch
   // so you can see what you landed in — agent, profile (collapsed to `primary
@@ -2769,12 +3305,13 @@ export async function run(args: string[]): Promise<number> {
     );
   }
 
-  const overhead = alwaysOnForBadge !== undefined && alwaysOnForBadge >= 2000
-    ? {
-      dot: tokenLevelEmoji(alwaysOnForBadge),
-      size: `${Math.round(alwaysOnForBadge / 1000)}K`,
-    }
-    : undefined;
+  const overhead =
+    alwaysOnForBadge !== undefined && alwaysOnForBadge >= 2000
+      ? {
+          dot: tokenLevelEmoji(alwaysOnForBadge),
+          size: `${Math.round(alwaysOnForBadge / 1000)}K`,
+        }
+      : undefined;
 
   announceTmuxProfile(profileName, agentKind, profileIcons, childEnv, {
     overhead,
@@ -2790,7 +3327,8 @@ export async function run(args: string[]): Promise<number> {
   let briefArgs: string[] = [];
   if (process.env.CUE_BRIEF !== "0") {
     try {
-      const { scanBrief, renderBrief, buildBriefInjection } = await import("../lib/project-brief");
+      const { scanBrief, renderBrief, buildBriefInjection } =
+        await import("../lib/project-brief");
       const scanned = scanBrief(cwd);
       const rendered = scanned ? renderBrief(scanned) : "";
       if (rendered) {
@@ -2808,14 +3346,18 @@ export async function run(args: string[]): Promise<number> {
         Object.assign(childEnv, injection.env);
         briefArgs = injection.args;
       }
-    } catch (err) { debug("launch:brief", err); }
+    } catch (err) {
+      debug("launch:brief", err);
+    }
   }
 
   // Keep tokens in step with sibling sessions *while* this one runs — a
   // rotation elsewhere would otherwise revoke ours and force a mid-session
   // re-login.
   const stopReconciler =
-    agentKind === "claude-code" ? startCredentialReconciler(runtimeKey) : undefined;
+    agentKind === "claude-code"
+      ? startCredentialReconciler(runtimeKey)
+      : undefined;
   const canonicalCodexAuth = join(homedir(), ".codex", "auth.json");
   const runtimeCodexAuth = join(runtime.runtimeDir, "auth.json");
   if (agentKind === "codex") {
@@ -2839,6 +3381,10 @@ export async function run(args: string[]): Promise<number> {
   }
   // Post-session runtime GC: the child has exited, so this costs zero launch
   // latency. Throttled (~once/day) and never touches the runtime we just used.
-  try { await maybeAutoGc(runtimeKey); } catch { /* GC is best-effort */ }
+  try {
+    await maybeAutoGc(runtimeKey);
+  } catch {
+    /* GC is best-effort */
+  }
   return exitCode;
 }

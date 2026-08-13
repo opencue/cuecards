@@ -106,10 +106,8 @@ function profileYamlPath(name: string): string {
     const fs = require("node:fs") as typeof import("node:fs");
     if (fs.existsSync(main)) return main;
     if (!name.includes("-")) return main;
-    const sharedBase = process.env.XDG_CONFIG_HOME ?? join(
-      process.env.HOME ?? "",
-      ".config",
-    );
+    const sharedBase =
+      process.env.XDG_CONFIG_HOME ?? join(process.env.HOME ?? "", ".config");
     const sharedRoot = join(sharedBase, "cue", "shared");
     // Walk shared/<user>/<repo>/profile.yaml looking for a name match.
     if (!fs.existsSync(sharedRoot)) return main;
@@ -118,18 +116,26 @@ function profileYamlPath(name: string): string {
       try {
         const stats = fs.statSync(userDir);
         if (!stats.isDirectory()) continue;
-      } catch { continue; }
+      } catch {
+        continue;
+      }
       for (const repo of fs.readdirSync(userDir)) {
         const candidate = join(userDir, repo, "profile.yaml");
         if (!fs.existsSync(candidate)) continue;
         // Reuse the same slugifier as shared-profiles.ts so we recognize
         // the installed namespaced name without depending on that module.
         const slug = (s: string) =>
-          s.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+          s
+            .toLowerCase()
+            .replace(/[^a-z0-9-]/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-|-$/g, "");
         if (`${slug(user)}-${slug(repo)}` === name) return candidate;
       }
     }
-  } catch { /* fall through to main */ }
+  } catch {
+    /* fall through to main */
+  }
   return main;
 }
 
@@ -205,7 +211,12 @@ async function readRawProfile(name: string): Promise<Profile> {
   // message is friendlier than Ajv's pattern mismatch.
   if (Array.isArray(rawRecord.plugins)) {
     for (const ref of rawRecord.plugins as unknown[]) {
-      const id = typeof ref === "string" ? ref : (typeof ref === "object" && ref !== null ? (ref as Record<string, unknown>).id : null);
+      const id =
+        typeof ref === "string"
+          ? ref
+          : typeof ref === "object" && ref !== null
+            ? (ref as Record<string, unknown>).id
+            : null;
       if (typeof id === "string" && !PLUGIN_PATTERN.test(id)) {
         throw new ProfileError(
           "INVALID_PLUGIN_REF",
@@ -218,10 +229,7 @@ async function readRawProfile(name: string): Promise<Profile> {
 
   const validate = await getValidator();
   if (!validate(parsed)) {
-    throw new SchemaViolation(
-      name,
-      (validate.errors ?? []) as ErrorObject[],
-    );
+    throw new SchemaViolation(name, (validate.errors ?? []) as ErrorObject[]);
   }
 
   const profile = parsed as Profile;
@@ -286,7 +294,9 @@ const PRUNE_RANK: Record<McpPruneMode, number> = { off: 0, profile: 1, all: 2 };
  * Returns undefined when no part declares one, so the resolved profile keeps
  * `mcpPrune` unset (launcher treats unset as "off" unless env overrides).
  */
-function mostAggressivePrune(modes: (McpPruneMode | undefined)[]): McpPruneMode | undefined {
+function mostAggressivePrune(
+  modes: (McpPruneMode | undefined)[],
+): McpPruneMode | undefined {
   let best: McpPruneMode | undefined;
   for (const m of modes) {
     if (m && (best === undefined || PRUNE_RANK[m] > PRUNE_RANK[best])) best = m;
@@ -366,7 +376,26 @@ function mergeEnv(
 }
 
 /**
- * Merge Codex config blocks, child winning on collision.
+ * Merge two `codex:` blocks, child wins key by key. `features` merges one level
+ * deeper so a child flipping one flag doesn't drop the parent's other flags.
+ * Returns undefined when neither side declares anything, keeping the field off
+ * the materializer hash for the profiles that don't use it.
+ */
+function mergeCodexConfig(
+  parent: Profile["codex"],
+  child: Profile["codex"],
+): Profile["codex"] {
+  if (!parent) return child ? { ...child } : undefined;
+  if (!child) return { ...parent };
+  const merged: NonNullable<Profile["codex"]> = { ...parent, ...child };
+  if (parent.features || child.features) {
+    merged.features = { ...(parent.features ?? {}), ...(child.features ?? {}) };
+  }
+  return merged;
+}
+
+/**
+ * Merge legacy `codex_config:` blocks, child winning on collision.
  *
  * Two levels deep, unlike `mergeEnv`. Codex config is tables, not flat strings:
  * a plain shallow merge would let a child that sets only
@@ -376,18 +405,21 @@ function mergeEnv(
  *
  * Nesting stops at two levels, a table's table is replaced wholesale, which
  * keeps the rule easy to state and matches how flat Codex's own config is.
+ *
+ * Superseded by `codex:`; `effectiveCodexOverrides` folds whatever lands here
+ * into the current block before the runtime `config.toml` is built.
  */
-function mergeCodexConfig(
+function mergeLegacyCodexConfig(
   parent: Record<string, unknown> | undefined,
   child: Record<string, unknown> | undefined,
-): Record<string, unknown> | undefined {
-  if (!parent && !child) return undefined;
+): Record<string, unknown> {
   const out: Record<string, unknown> = { ...(parent ?? {}) };
   for (const [key, childVal] of Object.entries(child ?? {})) {
     const parentVal = out[key];
-    out[key] = isPlainObject(parentVal) && isPlainObject(childVal)
-      ? { ...parentVal, ...childVal }
-      : childVal;
+    out[key] =
+      isPlainObject(parentVal) && isPlainObject(childVal)
+        ? { ...parentVal, ...childVal }
+        : childVal;
   }
   return out;
 }
@@ -453,7 +485,7 @@ async function buildInheritanceChain(name: string): Promise<Profile[]> {
       // Total chain: parents (in order) + self
       const totalChain = [...allParents, profile];
       if (totalChain.length - 1 > MAX_INHERITANCE_DEPTH + 2) {
-        throw new InheritanceDepthExceeded(totalChain.map(p => p.name));
+        throw new InheritanceDepthExceeded(totalChain.map((p) => p.name));
       }
       return totalChain;
     }
@@ -519,7 +551,7 @@ function foldChain(chain: Profile[]): ResolvedProfile {
         child.plugins?.map(normalizePluginRef),
       ),
       env: mergeEnv(acc.env, child.env),
-      codexConfig: mergeCodexConfig(acc.codexConfig, child.codex_config),
+      codexConfig: mergeLegacyCodexConfig(acc.codexConfig, child.codex_config),
       rules: dedupePrimitiveArray(acc.rules, child.rules),
       commands: dedupePrimitiveArray(acc.commands, child.commands),
       hooks: dedupePrimitiveArray(acc.hooks, child.hooks),
@@ -530,7 +562,10 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       // persona_includes IS additive (concat+dedupe). Lets cross-profile
       // policy snippets (Integrity Protocol, voice rules) fan out via core
       // without forcing children to give up their own persona block.
-      personaIncludes: dedupePrimitiveArray(acc.personaIncludes, child.persona_includes),
+      personaIncludes: dedupePrimitiveArray(
+        acc.personaIncludes,
+        child.persona_includes,
+      ),
       playbooks: dedupePrimitiveArray(acc.playbooks, child.playbooks),
       qualityGates: dedupePrimitiveArray(acc.qualityGates, child.qualityGates),
       evals: dedupePrimitiveArray(acc.evals, child.evals),
@@ -539,7 +574,10 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       conflicts: dedupePrimitiveArray(acc.conflicts, child.conflicts),
       // bundles is a display hint, leaf-wins: a child that declares its own
       // list overrides the parent; a child that omits it inherits the parent's.
-      bundles: child.bundles && child.bundles.length > 0 ? [...child.bundles] : acc.bundles,
+      bundles:
+        child.bundles && child.bundles.length > 0
+          ? [...child.bundles]
+          : acc.bundles,
       personaRouting: [...acc.personaRouting, ...(child.persona_routing ?? [])],
       inheritanceChain: [...acc.inheritanceChain, child.name],
     };
@@ -604,7 +642,10 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
  * part is trimmed and empty parts are rejected.
  */
 export function parseProfileSelector(selector: string): string[] {
-  const parts = selector.split("+").map((p) => p.trim()).filter((p) => p.length > 0);
+  const parts = selector
+    .split("+")
+    .map((p) => p.trim())
+    .filter((p) => p.length > 0);
   if (parts.length === 0) {
     throw new ProfileError(
       "INVALID_SELECTOR",
@@ -649,9 +690,15 @@ export function isCompositeSelector(selector: string): boolean {
  *     personas stay legible. Empty personas are skipped.
  *   - `inheritanceChain`: each part's chain joined with `+`
  */
-function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProfile {
+function foldComposite(
+  selector: string,
+  parts: ResolvedProfile[],
+): ResolvedProfile {
   if (parts.length === 0) {
-    throw new ProfileError("EMPTY_COMPOSITE", `Composite selector "${selector}" resolved to zero profiles`);
+    throw new ProfileError(
+      "EMPTY_COMPOSITE",
+      `Composite selector "${selector}" resolved to zero profiles`,
+    );
   }
   if (parts.length === 1) return parts[0]!;
 
@@ -682,9 +729,10 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
     commands: [...head.commands],
     hooks: [...head.hooks],
     subagents: [...head.subagents],
-    persona: head.persona && head.persona.trim().length > 0
-      ? `## ${head.name}\n\n${head.persona.trim()}`
-      : "",
+    persona:
+      head.persona && head.persona.trim().length > 0
+        ? `## ${head.name}\n\n${head.persona.trim()}`
+        : "",
     playbooks: [...head.playbooks],
     qualityGates: [...head.qualityGates],
     evals: [...head.evals],
@@ -700,9 +748,10 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
 
   for (let i = 1; i < parts.length; i++) {
     const next = parts[i]!;
-    const nextPersona = next.persona && next.persona.trim().length > 0
-      ? `## ${next.name}\n\n${next.persona.trim()}`
-      : "";
+    const nextPersona =
+      next.persona && next.persona.trim().length > 0
+        ? `## ${next.name}\n\n${next.persona.trim()}`
+        : "";
     acc = {
       name: selector,
       description: acc.description,
@@ -714,30 +763,44 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
       // acc); preserve it rather than recomputing per fold step.
       mcpPrune: acc.mcpPrune,
       codex: mergeCodexConfig(acc.codex, next.codex),
-      agents: dedupePrimitiveArray(acc.agents, next.agents) as ResolvedProfile["agents"],
+      agents: dedupePrimitiveArray(
+        acc.agents,
+        next.agents,
+      ) as ResolvedProfile["agents"],
       inherits: undefined,
       skills: {
-        local: mergeObjectRefs<ResolvedSkill>(acc.skills.local, next.skills.local),
+        local: mergeObjectRefs<ResolvedSkill>(
+          acc.skills.local,
+          next.skills.local,
+        ),
         npx: mergeNpxRefs(acc.skills.npx, next.skills.npx),
       },
       mcps: mergeObjectRefs<ResolvedMCP>(acc.mcps, next.mcps),
       plugins: mergeObjectRefs<ResolvedPlugin>(acc.plugins, next.plugins),
       env: mergeEnv(acc.env, next.env),
-      codexConfig: mergeCodexConfig(acc.codexConfig, next.codexConfig),
+      codexConfig: mergeLegacyCodexConfig(acc.codexConfig, next.codexConfig),
       rules: dedupePrimitiveArray(acc.rules, next.rules),
       commands: dedupePrimitiveArray(acc.commands, next.commands),
       hooks: dedupePrimitiveArray(acc.hooks, next.hooks),
       subagents: dedupePrimitiveArray(acc.subagents, next.subagents),
-      persona: [acc.persona, nextPersona].filter((s) => s.length > 0).join("\n\n"),
+      persona: [acc.persona, nextPersona]
+        .filter((s) => s.length > 0)
+        .join("\n\n"),
       playbooks: dedupePrimitiveArray(acc.playbooks, next.playbooks),
       qualityGates: dedupePrimitiveArray(acc.qualityGates, next.qualityGates),
       evals: dedupePrimitiveArray(acc.evals, next.evals),
       recommends: dedupePrimitiveArray(acc.recommends, next.recommends),
       autoSelect: dedupePrimitiveArray(acc.autoSelect, next.autoSelect),
       conflicts: dedupePrimitiveArray(acc.conflicts, next.conflicts),
-      personaIncludes: dedupePrimitiveArray(acc.personaIncludes, next.personaIncludes),
+      personaIncludes: dedupePrimitiveArray(
+        acc.personaIncludes,
+        next.personaIncludes,
+      ),
       personaRouting: [...acc.personaRouting, ...next.personaRouting],
-      inheritanceChain: [...acc.inheritanceChain, next.inheritanceChain.join("+")],
+      inheritanceChain: [
+        ...acc.inheritanceChain,
+        next.inheritanceChain.join("+"),
+      ],
     };
   }
 
@@ -803,12 +866,17 @@ export async function listProfiles(): Promise<string[]> {
   // Also surface profiles installed via `cue share install` so the picker,
   // `cue list`, etc. see them alongside builtins. Namespaced as
   // `<user>-<repo>` to dodge collisions with the builtins above.
-  const sharedBase = process.env.XDG_CONFIG_HOME ?? join(process.env.HOME ?? "", ".config");
+  const sharedBase =
+    process.env.XDG_CONFIG_HOME ?? join(process.env.HOME ?? "", ".config");
   const sharedRoot = join(sharedBase, "cue", "shared");
   try {
     const users = await readdir(sharedRoot, { withFileTypes: true });
     const slug = (s: string) =>
-      s.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+      s
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
     for (const userEntry of users) {
       if (!userEntry.isDirectory()) continue;
       const userDir = join(sharedRoot, userEntry.name);
@@ -821,7 +889,9 @@ export async function listProfiles(): Promise<string[]> {
         if (!names.includes(namespaced)) names.push(namespaced);
       }
     }
-  } catch { /* shared dir missing — fine */ }
+  } catch {
+    /* shared dir missing — fine */
+  }
 
   names.sort();
   return names;
@@ -840,7 +910,9 @@ export async function listFeaturedProfiles(): Promise<string[]> {
     const parsed = parseYaml(raw) as { featured?: unknown } | null | undefined;
     const list = parsed?.featured;
     if (!Array.isArray(list)) return [];
-    return list.filter((s): s is string => typeof s === "string" && s.length > 0);
+    return list.filter(
+      (s): s is string => typeof s === "string" && s.length > 0,
+    );
   } catch {
     return [];
   }
