@@ -13,7 +13,11 @@ import {
   RECONCILE_IDLE_MS,
   RECONCILE_ROTATION_MS,
   rescueRuntimeCredentials,
+  staggerOffsetFor,
   syncFreshestToSource,
+  syncSourceToRuntimes,
+  writeStaggeredCopy,
+  MAX_STAGGER_MS,
 } from "./credentials-sync";
 
 let root: string;
@@ -348,6 +352,50 @@ describe("syncFreshestToSource", () => {
   });
 });
 
+describe("syncSourceToRuntimes", () => {
+  test("updates stale and missing same-account runtimes from the source", async () => {
+    const sourceDir = join(root, "source");
+    await writeAccountDir(sourceDir, UUID_A, { refreshToken: "rt-source", expiresAt: 9999 });
+
+    const stale = join(root, "runtime", "stale", "claude");
+    await writeAccountDir(stale, UUID_A, { refreshToken: "rt-stale", expiresAt: 1000 });
+
+    const missing = join(root, "runtime", "missing", "claude");
+    await writeAccountDir(missing, UUID_A, undefined);
+
+    const result = await syncSourceToRuntimes(sourceDir, join(root, "runtime"));
+    expect(result.failed).toEqual([]);
+    expect(result.updated.sort()).toEqual([
+      join(missing, ".credentials.json"),
+      join(stale, ".credentials.json"),
+    ].sort());
+
+    const staleAfter = JSON.parse(await readFile(join(stale, ".credentials.json"), "utf8"));
+    const missingAfter = JSON.parse(await readFile(join(missing, ".credentials.json"), "utf8"));
+    expect(staleAfter.claudeAiOauth.refreshToken).toBe("rt-source");
+    expect(missingAfter.claudeAiOauth.refreshToken).toBe("rt-source");
+  });
+
+  test("does not overwrite fresher or different-account runtimes", async () => {
+    const sourceDir = join(root, "source");
+    await writeAccountDir(sourceDir, UUID_A, { refreshToken: "rt-source", expiresAt: 5000 });
+
+    const fresher = join(root, "runtime", "fresher", "claude");
+    await writeAccountDir(fresher, UUID_A, { refreshToken: "rt-fresher", expiresAt: 9999 });
+
+    const other = join(root, "runtime", "other", "claude");
+    await writeAccountDir(other, UUID_B, { refreshToken: "rt-other", expiresAt: 1000 });
+
+    const result = await syncSourceToRuntimes(sourceDir, join(root, "runtime"));
+    expect(result).toEqual({ updated: [], failed: [] });
+
+    const fresherAfter = JSON.parse(await readFile(join(fresher, ".credentials.json"), "utf8"));
+    const otherAfter = JSON.parse(await readFile(join(other, ".credentials.json"), "utf8"));
+    expect(fresherAfter.claudeAiOauth.refreshToken).toBe("rt-fresher");
+    expect(otherAfter.claudeAiOauth.refreshToken).toBe("rt-other");
+  });
+});
+
 describe("rescueRuntimeCredentials", () => {
   test("rescues fresher runtime creds to the account dir owning the uuid", async () => {
     // The user's bug in miniature: account2 logged in inside the shared
@@ -551,5 +599,167 @@ describe("listKnownAccountDirs", () => {
   test("works when ~/.claude-accounts does not exist", async () => {
     const dirs = await listKnownAccountDirs(root);
     expect(dirs).toEqual([join(root, ".claude")]);
+  });
+});
+
+describe("expiry staggering", () => {
+  const HOUR = 3_600_000;
+
+  async function readExpiry(path: string): Promise<number> {
+    const blob = JSON.parse(await readFile(path, "utf8"));
+    return blob.claudeAiOauth.expiresAt;
+  }
+
+  test("pulls the expiry forward by a per-runtime offset", async () => {
+    const now = Date.now();
+    const trueExpiry = now + 8 * HOUR;
+    const src = join(root, "src.json");
+    await writeFile(src, JSON.stringify({ claudeAiOauth: { refreshToken: "r", expiresAt: trueExpiry } }));
+
+    const dst = join(root, "dst.json");
+    await writeStaggeredCopy(src, dst, "/runtime/alpha/claude", now);
+
+    const written = await readExpiry(dst);
+    expect(written).toBe(trueExpiry - staggerOffsetFor("/runtime/alpha/claude"));
+    expect(written).toBeLessThanOrEqual(trueExpiry);
+    expect(written).toBeGreaterThanOrEqual(trueExpiry - MAX_STAGGER_MS);
+  });
+
+  test("gives different runtimes different slots, so they stop colliding", () => {
+    const keys = Array.from({ length: 40 }, (_, i) => `/home/u/.config/cue/runtime/profile-${i}/claude`);
+    const slots = new Set(keys.map(staggerOffsetFor));
+    expect(slots.size).toBeGreaterThan(1);
+  });
+
+  test("is deterministic, so a runtime keeps its slot across launches", () => {
+    const key = "/runtime/gstack+backend/claude";
+    expect(staggerOffsetFor(key)).toBe(staggerOffsetFor(key));
+  });
+
+  test("never reports an expiry later than the truth", () => {
+    const keys = Array.from({ length: 200 }, (_, i) => `/runtime/p${i}/claude`);
+    for (const key of keys) expect(staggerOffsetFor(key)).toBeGreaterThanOrEqual(0);
+  });
+
+  test("leaves a near-expiry token alone rather than fabricating a dead one", async () => {
+    const now = Date.now();
+    const trueExpiry = now + 30_000; // inside the stagger window
+    const src = join(root, "near.json");
+    await writeFile(src, JSON.stringify({ claudeAiOauth: { refreshToken: "r", expiresAt: trueExpiry } }));
+
+    const dst = join(root, "near-dst.json");
+    await writeStaggeredCopy(src, dst, "/runtime/alpha/claude", now);
+
+    expect(await readExpiry(dst)).toBe(trueExpiry);
+  });
+
+  test("ships unparseable credentials through untouched rather than failing auth", async () => {
+    const src = join(root, "junk.json");
+    await writeFile(src, "not json at all");
+    const dst = join(root, "junk-dst.json");
+    await writeStaggeredCopy(src, dst, "/runtime/alpha/claude");
+    expect(await readFile(dst, "utf8")).toBe("not json at all");
+  });
+
+  test("preserves every field except the expiry", async () => {
+    const now = Date.now();
+    const src = join(root, "full.json");
+    await writeFile(src, JSON.stringify({
+      claudeAiOauth: { accessToken: "a", refreshToken: "r", expiresAt: now + 8 * HOUR, scopes: ["x"] },
+      other: { keep: true },
+    }));
+    const dst = join(root, "full-dst.json");
+    await writeStaggeredCopy(src, dst, "/runtime/alpha/claude", now);
+
+    const blob = JSON.parse(await readFile(dst, "utf8"));
+    expect(blob.claudeAiOauth.accessToken).toBe("a");
+    expect(blob.claudeAiOauth.refreshToken).toBe("r");
+    expect(blob.claudeAiOauth.scopes).toEqual(["x"]);
+    expect(blob.other).toEqual({ keep: true });
+  });
+
+  test("writes 0600, never leaving tokens group-readable", async () => {
+    const { stat } = await import("node:fs/promises");
+    const now = Date.now();
+    const src = join(root, "perm.json");
+    await writeFile(src, JSON.stringify({ claudeAiOauth: { refreshToken: "r", expiresAt: now + 8 * HOUR } }));
+    const dst = join(root, "perm-dst.json");
+    await writeStaggeredCopy(src, dst, "/runtime/alpha/claude", now);
+    expect((await stat(dst)).mode & 0o777).toBe(0o600);
+  });
+});
+
+describe("syncSourceToRuntimes staggering", () => {
+  test("re-stagger a verbatim copy left by a pre-staggering cue", async () => {
+    // The upgrade case: every runtime on disk holds the right token at the raw
+    // source expiry, so they all still rotate in the same second. Repair has to
+    // move them into their slots even though the token already matches.
+    const sourceDir = join(root, "source");
+    const runtimeRoot = join(root, "runtime");
+    const EXP = Date.now() + 8 * 3_600_000;
+    await writeAccountDir(sourceDir, UUID_A, { refreshToken: "rt", expiresAt: EXP });
+    // Bucket 0 is a real slot whose staggered value IS the raw expiry, so a
+    // verbatim copy there is already correct and rewriting it would be churn.
+    // This case is about every other bucket.
+    let rt = "";
+    for (let i = 0; i < 64 && !rt; i += 1) {
+      const candidate = join(runtimeRoot, `legacy${i}`, "claude");
+      if (staggerOffsetFor(candidate) > 0) rt = candidate;
+    }
+    expect(staggerOffsetFor(rt)).toBeGreaterThan(0);
+    await writeAccountDir(rt, UUID_A, { refreshToken: "rt", expiresAt: EXP });
+
+    const out = await syncSourceToRuntimes(sourceDir, runtimeRoot);
+    expect(out.failed).toEqual([]);
+    expect(out.updated.length).toBe(1);
+
+    const after = JSON.parse(await readFile(join(rt, ".credentials.json"), "utf8"));
+    expect(after.claudeAiOauth.refreshToken).toBe("rt");
+    expect(after.claudeAiOauth.expiresAt).toBe(EXP - staggerOffsetFor(rt));
+  });
+
+  test("is idempotent once every runtime sits in its slot", async () => {
+    const sourceDir = join(root, "source");
+    const runtimeRoot = join(root, "runtime");
+    const EXP = Date.now() + 8 * 3_600_000;
+    await writeAccountDir(sourceDir, UUID_A, { refreshToken: "rt", expiresAt: EXP });
+    await writeAccountDir(join(runtimeRoot, "a", "claude"), UUID_A, { refreshToken: "rt", expiresAt: EXP });
+
+    await syncSourceToRuntimes(sourceDir, runtimeRoot);
+    const second = await syncSourceToRuntimes(sourceDir, runtimeRoot);
+    expect(second.updated).toEqual([]);
+  });
+
+  test("still refuses to clobber a runtime that rotated on its own", async () => {
+    const sourceDir = join(root, "source");
+    const runtimeRoot = join(root, "runtime");
+    const EXP = Date.now() + 8 * 3_600_000;
+    await writeAccountDir(sourceDir, UUID_A, { refreshToken: "rt-old", expiresAt: EXP });
+    const rt = join(runtimeRoot, "live", "claude");
+    await writeAccountDir(rt, UUID_A, { refreshToken: "rt-newer", expiresAt: EXP + 3_600_000 });
+
+    await syncSourceToRuntimes(sourceDir, runtimeRoot);
+    const after = JSON.parse(await readFile(join(rt, ".credentials.json"), "utf8"));
+    expect(after.claudeAiOauth.refreshToken).toBe("rt-newer");
+  });
+
+  test("spreads a fleet across distinct rotation moments", async () => {
+    const sourceDir = join(root, "source");
+    const runtimeRoot = join(root, "runtime");
+    const EXP = Date.now() + 8 * 3_600_000;
+    await writeAccountDir(sourceDir, UUID_A, { refreshToken: "rt", expiresAt: EXP });
+    for (let i = 0; i < 12; i += 1) {
+      await writeAccountDir(join(runtimeRoot, `p${i}`, "claude"), UUID_A, { refreshToken: "rt", expiresAt: EXP });
+    }
+
+    await syncSourceToRuntimes(sourceDir, runtimeRoot);
+
+    const expiries = new Set<number>();
+    for (let i = 0; i < 12; i += 1) {
+      const blob = JSON.parse(await readFile(join(runtimeRoot, `p${i}`, "claude", ".credentials.json"), "utf8"));
+      expiries.add(blob.claudeAiOauth.expiresAt);
+    }
+    // The whole point: they no longer all expire at the same instant.
+    expect(expiries.size).toBeGreaterThan(1);
   });
 });

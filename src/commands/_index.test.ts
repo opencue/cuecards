@@ -77,3 +77,23 @@ describe("COMMANDS summary content", () => {
     expect(s.includes("audit") || s.includes("security")).toBe(true);
   });
 });
+
+describe("COMMANDS export dispatch", () => {
+  test("routes profile arguments through import-profile's export branch", async () => {
+    const command = await COMMANDS.export.load();
+    const stderrWrite = process.stderr.write;
+    let stderr = "";
+    process.stderr.write = ((chunk: string | Uint8Array) => {
+      stderr += chunk.toString();
+      return true;
+    }) as typeof process.stderr.write;
+
+    try {
+      const code = await command.run([]);
+      expect(code).toBe(1);
+      expect(stderr).toContain("Usage: cue export");
+    } finally {
+      process.stderr.write = stderrWrite;
+    }
+  });
+});

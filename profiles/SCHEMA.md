@@ -41,6 +41,7 @@ env:
 | `env`         | map<string, string>                                           | no       | `{}`    | Plain string values. Placeholders like `"${HOSTINGER_API_TOKEN}"` are substituted at materialize-time. |
 | `rules`       | array of strings                                              | no       | `[]`    | Markdown rule files under `resources/rules/` (or absolute paths). Symlinked into `<runtime>/rules/` and indexed in CLAUDE.md — Claude reads on demand, no full-body inline. |
 | `commands`    | array of strings                                              | no       | `[]`    | Slash-command markdown files under `resources/commands/`. Symlinked into `<runtime>/commands/` so the user can invoke `/<name>`. Listed in CLAUDE.md's "Available Commands" section. |
+| `codex`       | map<string, string \| number \| bool> (+ `features` map<string, bool>) | no       | `{}`    | Codex-only `config.toml` overrides, written on top of the inherited `~/.codex/config.toml`. See "Codex config overrides" below. |
 | `hooks`       | array of strings                                              | no       | `[]`    | Hook bundle JSON files under `resources/hooks/`. Each declares `{ "hooks": { "PreToolUse": [...], "Stop": [...], ... } }` — merged into `settings.json` so hooks run per Claude Code's lifecycle. Sibling `.sh`/`.py` scripts are symlinked into `<runtime>/hooks/` and invoked via `${CLAUDE_CONFIG_DIR}/hooks/...`. |
 
 ### rules / commands / hooks example
@@ -67,6 +68,40 @@ time and reported as `E3` by `cue validate`.
 
 Inheritance merges all three with `concat + dedupe`; a child can't remove a
 parent's entry — fork the parent if you need a smaller set.
+
+## Codex config overrides (`codex:`)
+
+cue points `CODEX_HOME` at the per-profile runtime, so `<runtime>/codex/config.toml`
+is the only config a cue-launched Codex reads. That file is built from three
+layers, last wins:
+
+1. **base** — top-level keys and `[features]` from `~/.codex/config.toml`. This is
+   what keeps a Codex session running at the reasoning effort, context window and
+   auto-compact limit the user configured; without it the session silently falls
+   back to model defaults and turns end much sooner.
+2. **the profile's `codex:` block** — merged key by key, so a profile overrides
+   one knob without dropping the rest.
+3. **`[mcp_servers.*]`** — always cue-owned. Base-config MCP servers are never
+   inherited; other base tables (`[projects.*]`, `[model_providers.*]`, …) are
+   dropped as machine-local state.
+
+```yaml
+# profiles/careful-codex/profile.yaml
+name: careful-codex
+inherits: core
+codex:
+  model_reasoning_effort: xhigh
+  sandbox_mode: workspace-write     # tighten what the base config allows
+  model_auto_compact_token_limit: 320000
+  features:
+    goals: true
+```
+
+Keys are passed through verbatim, so cue needs no allowlist tracking Codex's
+config surface — run `codex --strict-config` to catch a typo. Inheritance merges
+key by key (leaf wins); across a composite `a+b`, later parts win, like `env`.
+The base config's content is part of the runtime hash, so editing
+`~/.codex/config.toml` rebuilds the runtime on the next launch.
 
 ## Conditional activation (`when:`)
 
@@ -197,6 +232,7 @@ The `name:` field must equal the directory name. Two profiles with the same
 | `skills.plugins`| `[]`                               |
 | `mcps`          | `[]`                               |
 | `env`           | `{}`                               |
+| `codex`         | `{}` (base `~/.codex/config.toml` still inherited) |
 
 A profile with only `name` and `description` is legal but useless — it
 materializes an empty workspace. The linter flags this as `W5` (vacuous

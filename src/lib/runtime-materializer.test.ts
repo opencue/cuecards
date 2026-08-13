@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { utimes } from "node:fs/promises";
 
 import { materializeRuntime, linkPluginCache, isRuntimeStale, shouldIncludeSessionTelemetry } from "./runtime-materializer";
+import { MAX_STAGGER_MS } from "./credentials-sync";
 import type { ResolvedProfile } from "../../profiles/_types";
 
 let root: string;
@@ -58,6 +59,89 @@ describe("materializeRuntime", () => {
       'env = { "GOOGLE_PROJECT_ID" = "my-project", "GOOGLE_ADS_DEVELOPER_TOKEN" = "secret" }',
     );
     expect(toml).not.toContain('"GOOGLE_PROJECT_ID":"my-project"');
+  });
+
+  test("codex config.toml inherits the base config and applies profile overrides", async () => {
+    const base = join(root, "base-config.toml");
+    await writeFile(base, [
+      'model = "gpt-5.5"',
+      'model_reasoning_effort = "xhigh"',
+      "model_auto_compact_token_limit = 320000",
+      'sandbox_mode = "danger-full-access"',
+      "",
+      "[features]",
+      "goals = true",
+      "memories = true",
+      "",
+      "[mcp_servers.from-base]",
+      'command = "nope"',
+    ].join("\n"));
+
+    const profile = {
+      ...sampleProfile,
+      name: "test-codex-inherit",
+      agents: ["codex"] as ResolvedProfile["agents"],
+      mcps: [{ id: "google-ads-mcp" }],
+      inheritanceChain: ["test-codex-inherit"],
+      codex: { sandbox_mode: "workspace-write", features: { memories: false } },
+    } as ResolvedProfile;
+
+    const out = await materializeRuntime({
+      profile,
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: { "google-ads-mcp": { command: "pipx", args: ["run", "google-ads-mcp"] } },
+      userClaudeMd: "",
+      codexBaseConfig: base,
+    });
+
+    const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
+    // inherited — these are what keep a Codex session working as long as configured
+    expect(toml).toContain('model_reasoning_effort = "xhigh"');
+    expect(toml).toContain("model_auto_compact_token_limit = 320000");
+    expect(toml).toContain("goals = true");
+    // profile overrides win, key by key
+    expect(toml).toContain('sandbox_mode = "workspace-write"');
+    expect(toml).not.toContain("danger-full-access");
+    expect(toml).toContain("memories = false");
+    // cue keeps owning MCP wiring
+    expect(toml).toContain("[mcp_servers.google-ads-mcp]");
+    expect(toml).not.toContain("[mcp_servers.from-base]");
+    // TOML requires top-level keys before any table header
+    expect(toml.indexOf('model = "gpt-5.5"')).toBeLessThan(toml.indexOf("["));
+  });
+
+  test("codex runtime rebuilds when the base config changes", async () => {
+    const base = join(root, "base-config.toml");
+    await writeFile(base, 'model_reasoning_effort = "low"\n');
+    const profile = {
+      ...sampleProfile,
+      name: "test-codex-rehash",
+      agents: ["codex"] as ResolvedProfile["agents"],
+      mcps: [],
+      inheritanceChain: ["test-codex-rehash"],
+    } as ResolvedProfile;
+    const input = {
+      profile,
+      agent: "codex" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+      codexBaseConfig: base,
+    };
+
+    const first = await materializeRuntime(input);
+    const firstHash = (await readFile(join(first.runtimeDir, ".cue-hash"), "utf8")).trim();
+
+    await writeFile(base, 'model_reasoning_effort = "xhigh"\n');
+    const second = await materializeRuntime(input);
+    const secondHash = (await readFile(join(second.runtimeDir, ".cue-hash"), "utf8")).trim();
+
+    expect(secondHash).not.toBe(firstHash);
+    expect(await readFile(join(second.runtimeDir, "config.toml"), "utf8"))
+      .toContain('model_reasoning_effort = "xhigh"');
   });
 
   test("creates runtime dir with hash and settings.json", async () => {
@@ -623,8 +707,12 @@ describe("materializeRuntime", () => {
     expect(second.rebuilt).toBe(true);
 
     const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
-    expect(creds.claudeAiOauth.expiresAt).toBe(FRESH);
     expect(creds.claudeAiOauth.refreshToken).toBe("live");
+    // A runtime's copy carries a staggered expiry so siblings do not all rotate
+    // in the same second, so this checks the fresh token's window rather than
+    // its exact value — still nowhere near the stale token's expiry.
+    expect(creds.claudeAiOauth.expiresAt).toBeLessThanOrEqual(FRESH);
+    expect(creds.claudeAiOauth.expiresAt).toBeGreaterThanOrEqual(FRESH - MAX_STAGGER_MS);
   });
 
   test("credentialsSource: rebuild keeps the runtime token when source is half-logged-out", async () => {
@@ -655,8 +743,11 @@ describe("materializeRuntime", () => {
     expect(second.rebuilt).toBe(true);
 
     const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
-    expect(creds.claudeAiOauth.expiresAt).toBe(FRESH);
     expect(creds.claudeAiOauth.refreshToken).toBe("live");
+    // Staggered window, as above — the guard is that the dead source token did
+    // not win, not the exact millisecond.
+    expect(creds.claudeAiOauth.expiresAt).toBeLessThanOrEqual(FRESH);
+    expect(creds.claudeAiOauth.expiresAt).toBeGreaterThanOrEqual(FRESH - MAX_STAGGER_MS);
   });
 
   test("credentialsSource: cache hit re-seeds a FILE .claude.json on account switch", async () => {
@@ -701,6 +792,37 @@ describe("materializeRuntime", () => {
     expect(cj.oauthAccount.accountUuid).toBe("uuid-B");
     const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
     expect(creds.claudeAiOauth.refreshToken).toBe("B");
+  });
+
+  test("credentialsSource: a cue runtime never overlays itself into self-loop symlinks", async () => {
+    const account = join(root, "account");
+    await mkdir(account, { recursive: true });
+    await writeFile(
+      join(account, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { refreshToken: "live", expiresAt: 9_000_000_000_000 } }),
+    );
+    await writeFile(join(account, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-live" } }));
+
+    const args = {
+      profile: { ...sampleProfile, name: "self-source", inheritanceChain: ["self-source"] },
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+    };
+
+    const first = await materializeRuntime({ ...args, credentialsSource: account });
+    await mkdir(join(first.runtimeDir, "cache"), { recursive: true });
+    await writeFile(join(first.runtimeDir, "cache", "cached"), "data");
+    await writeFile(join(first.runtimeDir, ".cue-hash"), "0".repeat(64));
+
+    const second = await materializeRuntime({ ...args, credentialsSource: first.runtimeDir });
+
+    expect(second.rebuilt).toBe(true);
+    await expect(readlink(join(second.runtimeDir, "cache"))).rejects.toThrow();
+    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    expect(creds.claudeAiOauth.refreshToken).toBe("live");
   });
 
   test("credentialsSource: cache hit keeps a FILE .claude.json when the account matches", async () => {
@@ -1207,6 +1329,25 @@ describe("materializeRuntime", () => {
     expect(captured.join("")).not.toContain("perf");
   });
 
+  test("size guard: does not apply Claude's memory-file warning to Codex", async () => {
+    const captured: string[] = [];
+    const orig = process.stderr.write.bind(process.stderr);
+    (process.stderr as any).write = (chunk: any) => { captured.push(String(chunk)); return true; };
+    try {
+      await materializeRuntime({
+        profile: { ...sampleProfile, agents: ["codex"] },
+        agent: "codex",
+        runtimeRoot: join(root, "runtime"),
+        skillSourceLookup: async (id) => `/fake/source/${id}`,
+        mcpRegistry: {},
+        userClaudeMd: "x".repeat(56_200),
+      });
+    } finally {
+      (process.stderr as any).write = orig;
+    }
+    expect(captured.join("")).not.toContain("AGENTS.md for profile");
+  });
+
   test("missing rule/command/hook ref is non-fatal", async () => {
     const profile: ResolvedProfile = {
       ...sampleProfile,
@@ -1383,6 +1524,17 @@ describe("linkPluginCache", () => {
     await linkPluginCache(tgt, src); // src has no plugins/
     // No plugins dir created, nothing thrown.
     await expect(lstat(join(tgt, "plugins", "cache"))).rejects.toThrow();
+  });
+
+  test("is a no-op when asked to link a runtime's plugin cache to itself", async () => {
+    await mkdir(join(src, "plugins", "cache"), { recursive: true });
+    await writeFile(join(src, "plugins", "cache", "payload"), "x");
+
+    await linkPluginCache(src, src);
+
+    const cache = await lstat(join(src, "plugins", "cache"));
+    expect(cache.isDirectory()).toBe(true);
+    expect(await readFile(join(src, "plugins", "cache", "payload"), "utf8")).toBe("x");
   });
 });
 

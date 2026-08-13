@@ -1,10 +1,12 @@
 ---
 name: reddit-interact
-description: Use when the user asks to comment, reply, upvote, downvote, or save Reddit content. Handles social interactions but does not publish new posts.
+description: Use when the user asks to comment, reply, upvote, downvote, or save Reddit content. Handles social interactions. NOT for publishing new posts.
 tags: [reddit, engagement, social-media]
+capability: Perform Reddit comments, replies, votes, and saves without creating new posts.
 triggers:
   - post a comment on Reddit
   - upvote that Reddit post
+  - downvote this Reddit post
   - save Reddit content
 version: 1.0.0
 metadata:

@@ -14,7 +14,8 @@ import { mkdir, rename, rm, symlink, writeFile, readFile, mkdtemp, readdir, lsta
 import { dirname, join, resolve as resolvePath, basename, isAbsolute } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
+import type { AgentKind, CodexProfileConfig, ResolvedProfile } from "../../profiles/_types";
+import { buildCodexConfigToml } from "./codex-config";
 import { normalizeUvxGitServers } from "./uvx-installer";
 import { evaluateCondition } from "./conditional-skills";
 import { hasWorkspaces, getActiveWorkspace, computeOverrides } from "./workspaces";
@@ -63,6 +64,11 @@ export interface MaterializeInput {
   userClaudeMd: string;
   /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
   credentialsSource?: string;
+  /** Codex only: path to the base `config.toml` (normally ~/.codex/config.toml)
+   *  whose top-level keys and `[features]` the runtime config inherits. cue
+   *  redirects CODEX_HOME at the runtime, so without this the session loses every
+   *  knob the user configured. Omit to inherit nothing (what tests do). */
+  codexBaseConfig?: string;
   /** Lazy-MCP: ids the launcher disabled — removed from the runtime .claude.json
    *  even though the rebuild preserves the old file. Profile.mcps is already
    *  pruned to the kept set; this just evicts the stale keys. */
@@ -166,10 +172,13 @@ function sortedJson(value: unknown): string {
 //       default-off the per-session telemetry sections (#65). The generated
 //       content shrank but no profile field changed, so without this bump every
 //       already-materialized runtime would keep serving its cached 37KB file.
-const MATERIALIZER_VERSION = 3;
+//   v4: Codex config.toml inherits the base config's top-level keys +
+//       [features] (reasoning effort, context window, auto-compact). Same
+//       situation — generated content changed, no profile field did.
+const MATERIALIZER_VERSION = 4;
 
-function computeHash(profile: ResolvedProfile, agent: AgentKind): string {
-  const canonical = sortedJson({ v: MATERIALIZER_VERSION, agent, profile });
+function computeHash(profile: ResolvedProfile, agent: AgentKind, extra = ""): string {
+  const canonical = sortedJson({ v: MATERIALIZER_VERSION, agent, profile, extra });
   return createHash("sha256").update(canonical).digest("hex");
 }
 
@@ -279,7 +288,13 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     );
   }
 
-  const hash = computeHash(profile, agent);
+  // The base Codex config is part of this runtime's content, so it belongs in
+  // the hash: edit ~/.codex/config.toml and the next launch must rebuild rather
+  // than keep serving a config.toml with the previous knobs.
+  const codexBaseText = agent === "codex" && effectiveInput.codexBaseConfig
+    ? await readFile(effectiveInput.codexBaseConfig, "utf8").catch(() => "")
+    : "";
+  const hash = computeHash(profile, agent, codexBaseText);
 
   // Collect profile MCP entries once — used by both cache-hit and rebuild paths
   // for the .claude.json sync.
@@ -302,7 +317,9 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
         await overlaySourceState(runtimeDir, effectiveInput.credentialsSource);
         // Pre-seed the plugin cache so enabled-plugin hooks find their version
         // dir immediately (avoids the "Plugin directory does not exist" race).
-        await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
+        if (!sameResolvedPath(runtimeDir, effectiveInput.credentialsSource)) {
+          await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
+        }
       }
       if (agent === "claude-code") {
         await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
@@ -552,8 +569,15 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const merged = await buildClaudeSettings(profile, agent, effectiveInput);
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
-    // Codex equivalent — write config.toml from registry. Caller pre-renders to TOML.
-    await writeFile(join(tmpDir, "config.toml"), tomlRender({ mcp_servers: mcpServers }));
+    // Codex equivalent — config.toml. cue points CODEX_HOME at this runtime, so
+    // this file is the ONLY config the session reads: it has to carry the base
+    // config's autonomy knobs (reasoning effort, context window, auto-compact,
+    // [features]) or the session silently runs on model defaults.
+    await writeFile(join(tmpDir, "config.toml"), buildCodexConfigToml({
+      baseText: codexBaseText,
+      overrides: (profile as { codex?: CodexProfileConfig }).codex,
+      mcpServers,
+    }));
   }
 
   // 3. CLAUDE.md with stamp + role identity
@@ -812,7 +836,7 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // memory file crosses ~40k chars. Warn at materialize time — the moment the
   // file is generated — so a bloated profile is caught before the user sees
   // the runtime warning, with a pointer to the usual culprit.
-  if (memoryFileContent.length > MEMORY_FILE_WARN_CHARS) {
+  if (agent === "claude-code" && memoryFileContent.length > MEMORY_FILE_WARN_CHARS) {
     const kb = (memoryFileContent.length / 1000).toFixed(1);
     process.stderr.write(
       `[cue] ${memoryFileName} for profile "${profile.name}" is ${kb}k chars ` +
@@ -833,11 +857,13 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // perspective, while still letting cue override skills/, settings.json,
   // and CLAUDE.md.
   if (input.credentialsSource) {
-    await overlaySourceState(tmpDir, input.credentialsSource);
+    await overlaySourceState(tmpDir, input.credentialsSource, runtimeDir);
     // Pre-seed the plugin cache + marketplace metadata from the real config so
     // enabled-plugin hooks find their version dir on the first prompt instead
     // of racing Claude's lazy per-config-dir download.
-    await linkPluginCache(tmpDir, input.credentialsSource);
+    if (!sameResolvedPath(runtimeDir, input.credentialsSource)) {
+      await linkPluginCache(tmpDir, input.credentialsSource);
+    }
   }
 
   // Codex writes durable thread state directly into CODEX_HOME (sessions/,
@@ -1122,6 +1148,10 @@ const CUE_MANAGED_ENTRIES = new Set([
   "plugins",
 ]);
 
+function sameResolvedPath(a: string, b: string): boolean {
+  return resolvePath(a) === resolvePath(b);
+}
+
 /**
  * Overlay state from `sourceDir` into `targetDir` by symlinking every
  * top-level entry that cue doesn't actively manage. This makes the runtime
@@ -1135,7 +1165,21 @@ const CUE_MANAGED_ENTRIES = new Set([
  * on cache hit, where the previous symlinks point to a different source.
  * Errors per-entry are non-fatal.
  */
-async function overlaySourceState(targetDir: string, sourceDir: string): Promise<void> {
+/**
+ * @param staggerKey Stable identity for the runtime being built. The fresh path
+ *   writes into a tmp dir that is renamed into place afterwards, so `targetDir`
+ *   is not the same string across a fresh materialize and a later cache-hit
+ *   refresh. Credential staggering must key off the runtime's final location or
+ *   the same runtime would land in a different slot on every rebuild.
+ */
+async function overlaySourceState(targetDir: string, sourceDir: string, staggerKey: string = targetDir): Promise<void> {
+  const sourceResolved = resolvePath(sourceDir);
+  const targetResolved = resolvePath(targetDir);
+  const finalResolved = resolvePath(staggerKey);
+  if (sourceResolved === targetResolved || sourceResolved === finalResolved) {
+    return;
+  }
+
   let entries: string[];
   try {
     entries = await readdir(sourceDir);
@@ -1252,7 +1296,15 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
     if (isCopyFile) {
       const { copyFile } = await import("node:fs/promises");
       try {
-        await copyFile(sourcePath, targetPath);
+        if (name === ".credentials.json") {
+          // Staggered, so this runtime reaches its apparent expiry at a
+          // different minute than its siblings and they stop racing for one
+          // rotation. See writeStaggeredCopy in credentials-sync.
+          const { writeStaggeredCopy } = await import("./credentials-sync");
+          await writeStaggeredCopy(sourcePath, targetPath, staggerKey);
+        } else {
+          await copyFile(sourcePath, targetPath);
+        }
       } catch { /* skip */ }
     } else {
       try {
@@ -1285,6 +1337,8 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
  *   - `data`: per-plugin writable state; the self-referential ELOOP source.
  */
 export async function linkPluginCache(targetDir: string, sourceDir: string): Promise<void> {
+  if (sameResolvedPath(targetDir, sourceDir)) return;
+
   const srcPlugins = join(sourceDir, "plugins");
   try {
     await lstat(srcPlugins);
@@ -1521,33 +1575,6 @@ async function buildClaudeSettings(
   }
 
   return JSON.stringify(settings, null, 2);
-}
-
-// Minimal TOML emitter for the MCP config block. Replace with `@iarna/toml` if
-// we need broader coverage. Codex only reads a flat-ish [mcp_servers.<id>] table.
-function tomlValue(value: unknown): string {
-  if (typeof value === "string") return JSON.stringify(value);
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number" && Number.isFinite(value)) return String(value);
-  if (Array.isArray(value)) return `[${value.map(tomlValue).join(", ")}]`;
-  if (value && typeof value === "object") {
-    const entries = Object.entries(value as Record<string, unknown>)
-      .map(([key, nested]) => `${JSON.stringify(key)} = ${tomlValue(nested)}`);
-    return `{ ${entries.join(", ")} }`;
-  }
-  throw new TypeError(`Unsupported TOML value: ${String(value)}`);
-}
-
-function tomlRender(obj: { mcp_servers: Record<string, unknown> }): string {
-  const out: string[] = [];
-  for (const [id, val] of Object.entries(obj.mcp_servers)) {
-    out.push(`[mcp_servers.${id}]`);
-    for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
-      out.push(`${k} = ${tomlValue(v)}`);
-    }
-    out.push("");
-  }
-  return out.join("\n");
 }
 
 // ---------------------------------------------------------------------------

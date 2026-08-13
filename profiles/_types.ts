@@ -141,12 +141,32 @@ export interface Profile {
   // "for task X this profile should be able to handle it". `cue eval-behavior`
   // checks structural fit.
   evals?: string[];
+  // Codex-only `config.toml` overrides. cue redirects CODEX_HOME at the runtime
+  // dir, so the runtime config.toml is the only one Codex reads; keys here are
+  // written into it verbatim, on top of the inherited ~/.codex/config.toml.
+  // Use it to pin autonomy knobs per profile (`model_reasoning_effort`,
+  // `approval_policy`, `sandbox_mode`, `model_auto_compact_token_limit`).
+  codex?: CodexProfileConfig;
   // Phase 5: Skill router overrides — hand-tuned rows the auto-built router
   // can't (or shouldn't) produce. Merged into the materialized CLAUDE.md
   // router section under a "Skill overrides (manual)" sub-section so it's
   // obvious which rows are author-edited vs auto-parsed. Use sparingly —
   // the auto-router covers most cases.
   persona_routing?: PersonaRoutingEntry[];
+}
+
+/** A value a profile may set for a top-level Codex `config.toml` key. */
+export type CodexScalar = string | number | boolean;
+
+/**
+ * A profile's `codex:` block. Keys are written into the runtime `config.toml`
+ * verbatim, so cue needs no allowlist tracking Codex's config surface (Codex's
+ * own `--strict-config` is what catches typos). `features` is special-cased
+ * because it renders as a `[features]` table instead of a top-level key.
+ */
+export interface CodexProfileConfig {
+  features?: Record<string, boolean>;
+  [key: string]: CodexScalar | Record<string, boolean> | undefined;
 }
 
 /**

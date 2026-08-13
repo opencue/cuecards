@@ -109,11 +109,18 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch help passthrough", () => {
 });
 
 describe.skipIf(!BUN_SPAWNABLE)("cue launch recursion guard", () => {
+  let xdg: string;
+  beforeEach(async () => {
+    xdg = await mkdtemp(join(tmpdir(), "cue-recursion-"));
+  });
+  afterEach(async () => {
+    await rm(xdg, { recursive: true, force: true });
+  });
   // Must NOT use the cue() helper — it strips CUE_LAUNCHING. Spawn directly
   // with the depth set (and CLAUDE_CONFIG_DIR cleared to avoid the unrelated
   // account-alias → picker path).
   const launchAtDepth = (depth: string) => {
-    const env = { ...process.env, CUE_LAUNCHING: depth };
+    const env = { ...process.env, CUE_LAUNCHING: depth, XDG_CONFIG_HOME: xdg };
     delete env.CLAUDE_CONFIG_DIR;
     return spawnSync("bun", ["run", CUE_BIN, "launch", "claude", "--cue-profile", "core", "--dry-run"], {
       encoding: "utf8",

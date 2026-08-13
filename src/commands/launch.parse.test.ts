@@ -3,6 +3,8 @@ import { afterEach, describe, expect, test } from "bun:test";
 import {
   __test,
   isAlwaysPickEnabled,
+  isBypassEnabled,
+  passthroughPrompt,
   shouldForcePicker,
   shouldInheritSessionProfile,
 } from "./launch";
@@ -79,11 +81,22 @@ describe("parse: subset origin", () => {
     expect(p.subsetExplicit).toBe(true);
   });
 
+  // Only the prose folds — `-p` itself is dropped, so the classifier reads the
+  // prompt rather than the switch that introduced it.
   test("env-folded -p prompt sets subset but NOT subsetExplicit", () => {
     process.env.CUE_SMART_SUBSET = "1";
     const p = parse(["claude", "-p", "fix the parser"]);
-    expect(p.subset).toBe("-p fix the parser");
+    expect(p.subset).toBe("fix the parser");
     expect(p.subsetExplicit).toBe(false);
+  });
+
+  // Regression: a flag-only launch used to fold the flag in as the prompt, and
+  // the classifier answered it — `codex --madmax` trimmed a 21-skill profile to
+  // 4 on the reasoning that "--madmax" named a cue profile.
+  test("flag-only passthrough leaves subset unset, so the full profile loads", () => {
+    process.env.CUE_SMART_SUBSET = "1";
+    expect(parse(["codex", "--madmax"]).subset).toBeNull();
+    expect(parse(["claude", "--resume"]).subset).toBeNull();
   });
 
   test("bare launch with env set stays unclassified (no passthrough prompt)", () => {
@@ -115,6 +128,22 @@ describe("parse: subset origin", () => {
   });
 });
 
+// The flag is documented as `CUE_BYPASS=1` in docs/launch.md and
+// docs/shell-install.md, and every internal caller sets exactly that. Widening
+// it to the 1/true/on set `isAlwaysPickEnabled` accepts would silently change
+// which environments skip the whole pipeline.
+describe("isBypassEnabled", () => {
+  test("accepts only the documented value", () => {
+    expect(isBypassEnabled("1")).toBe(true);
+  });
+
+  test("rejects anything else, including truthy-looking values", () => {
+    for (const v of ["0", "true", "on", "yes", "", " 1 ", undefined]) {
+      expect(isBypassEnabled(v)).toBe(false);
+    }
+  });
+});
+
 describe("isAlwaysPickEnabled", () => {
   test("accepts the documented enabling values", () => {
     for (const v of ["1", "true", "on", "TRUE", " On "]) {
@@ -142,7 +171,20 @@ describe("shouldForcePicker", () => {
     hasOverride: false,
     isAccountAlias: false,
     isTTY: true,
+    isBareLaunch: false,
   };
+
+  test("a bare interactive claude/codex launch opens the picker", () => {
+    expect(shouldForcePicker({ ...base, isBareLaunch: true })).toBe(true);
+  });
+
+  test("a bare launch does not open the picker off a TTY", () => {
+    expect(shouldForcePicker({ ...base, isBareLaunch: true, isTTY: false })).toBe(false);
+  });
+
+  test("--cue-profile skips the default bare-launch picker", () => {
+    expect(shouldForcePicker({ ...base, isBareLaunch: true, hasOverride: true })).toBe(false);
+  });
 
   test("an account alias opens the picker on a TTY", () => {
     expect(shouldForcePicker({ ...base, isAccountAlias: true })).toBe(true);
@@ -211,5 +253,34 @@ describe("picker row for the `full` profile", () => {
     expect(full!.hint).toContain("loads every skill");
     expect(full!.hint!.toLowerCase()).not.toContain("never use this");
     expect(full!.hint!.toLowerCase()).not.toContain("do not pick");
+  });
+});
+
+describe("passthroughPrompt", () => {
+  test("keeps a real prompt, so smart-subset still classifies `-p` launches", () => {
+    expect(passthroughPrompt(["-p", "fix the auth bug"])).toBe("fix the auth bug");
+  });
+
+  test("keeps a bare prompt with no flag at all", () => {
+    expect(passthroughPrompt(["explain this repo"])).toBe("explain this repo");
+  });
+
+  // Regression: `codex --madmax` folded the flag in as a prompt and the
+  // classifier answered it — 21 skills trimmed to 4 on a freshly picked profile.
+  test("drops a lone flag, leaving no subset to classify", () => {
+    expect(passthroughPrompt(["--madmax"])).toBe("");
+    expect(passthroughPrompt(["--resume"])).toBe("");
+  });
+
+  test("drops short flags too", () => {
+    expect(passthroughPrompt(["-c"])).toBe("");
+  });
+
+  test("keeps prose that sits alongside flags", () => {
+    expect(passthroughPrompt(["--madmax", "-p", "ship the release"])).toBe("ship the release");
+  });
+
+  test("empty argv yields no prompt", () => {
+    expect(passthroughPrompt([])).toBe("");
   });
 });

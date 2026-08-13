@@ -185,6 +185,20 @@
       "default": [],
       "description": "Phase 3: Stop-hook validator scripts (relative to resources/quality-gates/) that veto 'done' if work doesn't meet the profile's bar (tests pass, lint clean, etc.)."
     },
+    "codex": {
+      "type": "object",
+      "description": "Codex-only config.toml overrides, written verbatim into the runtime config.toml on top of the inherited ~/.codex/config.toml. Use for per-profile autonomy knobs (model_reasoning_effort, approval_policy, sandbox_mode, model_auto_compact_token_limit). Keys are not validated here — Codex owns that surface; run `codex --strict-config` to catch typos. Merged key-by-key across the chain, leaf-wins.",
+      "properties": {
+        "features": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" },
+          "description": "Codex [features] flags (goals, memories, hooks, …)."
+        }
+      },
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      }
+    },
     "evals": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },

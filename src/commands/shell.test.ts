@@ -7,12 +7,11 @@ import { runInstall, runUninstall, shimInstalled, resolveCueInvocation, resolveH
 import { shimDir, fishDropInPath } from "../lib/shim-dir";
 
 let fakeHome: string;
-let out: string;
 let err: string;
 
 /** Silence install output and capture it for assertions. */
 const sinks = () => ({
-  out: (s: string) => { out += s; },
+  out: () => {},
   err: (s: string) => { err += s; },
 });
 
@@ -25,7 +24,6 @@ const REAL_BINARY = `#!/usr/bin/env bash\n# a real wrapper, not ours\nexec /opt/
 beforeEach(async () => {
   fakeHome = await mkdtemp(join(tmpdir(), "cue-shell-"));
   await mkdir(join(fakeHome, ".local", "bin"), { recursive: true });
-  out = "";
   err = "";
 });
 afterEach(async () => { await rm(fakeHome, { recursive: true, force: true }); });

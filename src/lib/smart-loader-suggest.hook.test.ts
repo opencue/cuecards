@@ -14,13 +14,14 @@ import { join } from "node:path";
 
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 
-import { buildIndex, matcherDir, tokenize, writeMatcherIndex } from "./catalog-index";
+import { buildIndex, tokenize, writeMatcherIndex } from "./catalog-index";
 
 const REPO = join(import.meta.dir, "..", "..");
 const HOOK = join(REPO, "resources", "hooks", "smart-loader-suggest.sh");
 const LOOKUP = join(REPO, "resources", "skills", "skills", "meta", "smart-loader", "scripts", "smart-lookup.sh");
 
 const tmp = mkdtempSync(join(tmpdir(), "cue-hook-"));
+const matcher = join(tmp, "skill-index");
 afterAll(() => rmSync(tmp, { recursive: true, force: true }));
 
 /**
@@ -42,10 +43,11 @@ afterAll(() => rmSync(tmp, { recursive: true, force: true }));
  */
 const HERMETIC: Record<string, string> = {
   HOME: tmp,
+  XDG_RUNTIME_DIR: tmp,
   CUE_SMART_LOOKUP: LOOKUP,
   CUE_CATALOG: join(REPO, "resources", "skills", "catalog", "catalog.json"),
   CUE_SKILLS_ROOT: join(REPO, "resources", "skills", "skills"),
-  CUE_SKILL_INDEX_DIR: matcherDir(),
+  CUE_SKILL_INDEX_DIR: matcher,
   CUE_ACTIVE_PROFILE: "",
   CLAUDE_CONFIG_DIR: "",
 };
@@ -82,14 +84,15 @@ beforeAll(() => {
       catalog: join(REPO, "resources", "skills", "catalog", "catalog.json"),
       root: join(REPO, "resources", "skills", "skills"),
     }),
+    matcher,
   );
 });
 
 describe("smart-loader-suggest hook", () => {
   test("the index files it depends on exist after a build", () => {
-    expect(existsSync(join(matcherDir(), "phrases.idx"))).toBe(true);
-    expect(existsSync(join(matcherDir(), "terms.idx"))).toBe(true);
-    expect(existsSync(join(matcherDir(), "weights.env"))).toBe(true);
+    expect(existsSync(join(matcher, "phrases.idx"))).toBe(true);
+    expect(existsSync(join(matcher, "terms.idx"))).toBe(true);
+    expect(existsSync(join(matcher, "weights.env"))).toBe(true);
   });
 
   // The regression that motivated the rewrite: not one token here is a skill

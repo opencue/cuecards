@@ -58,6 +58,7 @@ function printHelp(): void {
       ["sources", "Show GitHub repos providing skills"],
     ],
     "Diagnostics & Optimization": [
+      ["auth", "Check/repair Claude and Codex authentication"],
       ["optimizer", "Review profiles: skills, MCPs, CLIs dashboard"],
       ["doctor", "Diff declared vs actual state; --fix repairs"],
       ["validate", "Schema + lint checks for profiles"],

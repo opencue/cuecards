@@ -8,10 +8,11 @@
 
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { basename, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
+import { canonicalCodexConfigPath } from "./codex-config";
 import { configDir } from "./config-paths";
 import { debug } from "./debug-log";
 import { listAllSkillIds, resolveLocalSkill } from "./resolver-local";
@@ -31,6 +32,13 @@ export function runtimeAgentSubdir(agent: RuntimeAgent): "claude" | "codex" {
 
 export function runtimeDirFor(profileName: string, agent: RuntimeAgent, runtimeRoot = join(configDir(), "runtime")): string {
   return join(runtimeRoot, profileName, runtimeAgentSubdir(agent));
+}
+
+export function isCueManagedClaudeRuntimeDir(dir: string | undefined, runtimeRoot = join(configDir(), "runtime")): boolean {
+  if (!dir) return false;
+  const resolved = resolve(dir);
+  const root = resolve(runtimeRoot);
+  return basename(resolved) === "claude" && resolved.startsWith(root + sep);
 }
 
 export async function expandSkillWildcards(profile: ResolvedProfile): Promise<void> {
@@ -90,7 +98,15 @@ export async function readUserAgentMemory(agent: RuntimeAgent): Promise<string> 
 }
 
 export async function pickClaudeCredentialsSource(): Promise<string> {
-  if (process.env.CLAUDE_CONFIG_DIR) return process.env.CLAUDE_CONFIG_DIR;
+  // A cue-launched Claude session inherits CLAUDE_CONFIG_DIR=<cue runtime>/claude.
+  // Treating that as the next launch's credentialsSource makes the materializer
+  // overlay the runtime onto itself and creates self-loop symlinks such as
+  // `cache -> ~/.config/cue/runtime/<profile>/claude/cache`. The real account
+  // source is ~/.claude or an authmux account dir; the heal pass below can still
+  // publish a fresher runtime token back there before materializing.
+  if (process.env.CLAUDE_CONFIG_DIR && !isCueManagedClaudeRuntimeDir(process.env.CLAUDE_CONFIG_DIR)) {
+    return process.env.CLAUDE_CONFIG_DIR;
+  }
 
   const homeClaude = join(homedir(), ".claude");
   if (existsSync(join(homeClaude, ".credentials.json"))) return homeClaude;
@@ -169,5 +185,6 @@ export async function prepareRuntime(options: PrepareRuntimeOptions): Promise<Ma
     mcpRegistry: await loadMcpRegistry(options.agent),
     userClaudeMd: options.userMemory ?? await readUserAgentMemory(options.agent),
     credentialsSource: options.credentialsSource,
+    codexBaseConfig: canonicalCodexConfigPath(),
   });
 }

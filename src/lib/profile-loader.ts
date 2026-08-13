@@ -365,6 +365,25 @@ function mergeEnv(
   return { ...(parent ?? {}), ...(child ?? {}) };
 }
 
+/**
+ * Merge two `codex:` blocks, child wins key by key. `features` merges one level
+ * deeper so a child flipping one flag doesn't drop the parent's other flags.
+ * Returns undefined when neither side declares anything, keeping the field off
+ * the materializer hash for the profiles that don't use it.
+ */
+function mergeCodexConfig(
+  parent: Profile["codex"],
+  child: Profile["codex"],
+): Profile["codex"] {
+  if (!parent) return child ? { ...child } : undefined;
+  if (!child) return { ...parent };
+  const merged: NonNullable<Profile["codex"]> = { ...parent, ...child };
+  if (parent.features || child.features) {
+    merged.features = { ...(parent.features ?? {}), ...(child.features ?? {}) };
+  }
+  return merged;
+}
+
 const DEFAULT_AGENTS: ResolvedProfile["agents"] = ["claude-code", "codex"];
 
 // ---------------------------------------------------------------------------
@@ -466,6 +485,8 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       contextWindow: child.contextWindow ?? acc.contextWindow,
       // Prune mode is leaf-wins through single inheritance, same as model.
       mcpPrune: child.mcpPrune ?? acc.mcpPrune,
+      // Codex config.toml overrides merge key by key, child wins.
+      codex: mergeCodexConfig(acc.codex, child.codex),
       // agents: arrays merge by dedupe; if neither parent nor child declares
       // agents we fall back to the default at the end.
       agents: dedupePrimitiveArray(
@@ -529,6 +550,7 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
     model: p.model,
     contextWindow: p.contextWindow,
     mcpPrune: p.mcpPrune,
+    codex: p.codex ? { ...p.codex } : undefined,
     agents: p.agents && p.agents.length > 0 ? [...p.agents] : [],
     inherits: p.inherits,
     skills: {
@@ -631,6 +653,9 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
     // a part that opts into pruning enables it. Safe — prune only drops unused,
     // non-pinned MCPs, so a higher mode can never starve a part's skill.
     mcpPrune: mostAggressivePrune(parts.map((p) => p.mcpPrune)),
+    // Codex overrides merge like `env` does across a composite: later parts win
+    // per key, so stacking a stricter part on the right tightens the runtime.
+    codex: head.codex ? { ...head.codex } : undefined,
     agents: [...head.agents] as ResolvedProfile["agents"],
     inherits: undefined,
     skills: { local: [...head.skills.local], npx: [...head.skills.npx] },
@@ -672,6 +697,7 @@ function foldComposite(selector: string, parts: ResolvedProfile[]): ResolvedProf
       // Already the most-aggressive across all parts (computed in the initial
       // acc); preserve it rather than recomputing per fold step.
       mcpPrune: acc.mcpPrune,
+      codex: mergeCodexConfig(acc.codex, next.codex),
       agents: dedupePrimitiveArray(acc.agents, next.agents) as ResolvedProfile["agents"],
       inherits: undefined,
       skills: {

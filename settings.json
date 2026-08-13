@@ -4,11 +4,7 @@
       "command": "${HOME}/Documents/cue/resources/mcps/cue-tty-watch/bin/cue-tty-watch"
     },
     "coolify": {
-      "args": [
-        "-lc",
-        "<redacted secret-loading argument>"
-      ],
-      "command": "bash"
+      "command": "/home/deadpool/.local/bin/coolify-mcp-wrapper"
     }
   }
 }

@@ -35,12 +35,14 @@ const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
 const QUALITY_GATES_DIR = join(repoRoot(), "resources", "quality-gates");
 const RUNTIME_ROOT = join(process.env.HOME ?? "~", ".config", "cue", "runtime");
 
-interface Issue {
+export interface Issue {
   code: string;
   severity: "error" | "warning";
   profile: string;
   message: string;
   fix?: string;
+  runtimeDir?: string;
+  path?: string;
 }
 
 function loadAllMcpIds(): Set<string> {
@@ -129,7 +131,9 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
               severity: "warning",
               profile: profileName,
               message: `Runtime for ${agent} may be stale (profile.yaml newer than hash)`,
-              fix: `Run \`cue launch --rematerialize\` or next launch will rebuild`,
+              fix: `Remove stale .cue-hash; next launch will rebuild`,
+              runtimeDir: dirname(hashFile),
+              path: hashFile,
             });
           }
         }
@@ -156,7 +160,9 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
                 severity: "error",
                 profile: profileName,
                 message: `Broken symlink: ${entry} → ${target} (in ${agent} runtime)`,
-                fix: `Rematerialize profile`,
+                fix: `Remove broken symlink and stale hash; next launch will rebuild`,
+                runtimeDir,
+                path: entryPath,
               });
             }
           }
@@ -270,6 +276,34 @@ export function checkActivation(
   return issues;
 }
 
+export async function applyRuntimeFix(issue: Issue, runtimeRoot = RUNTIME_ROOT): Promise<boolean> {
+  if (issue.code === "D5") {
+    const hashPath = issue.path ?? join(runtimeRoot, issue.profile, "claude", ".cue-hash");
+    try {
+      await rm(hashPath, { force: true });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  if (issue.code === "D6") {
+    if (!issue.path) return false;
+    try {
+      const st = lstatSync(issue.path);
+      if (!st.isSymbolicLink()) return false;
+      await rm(issue.path, { recursive: true, force: true });
+      const runtimeDir = issue.runtimeDir ?? dirname(issue.path);
+      await rm(join(runtimeDir, ".cue-hash"), { force: true });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+}
+
 async function applyFix(issue: Issue): Promise<boolean> {
   const yamlPath = join(PROFILES_DIR, issue.profile, "profile.yaml");
 
@@ -329,16 +363,8 @@ async function applyFix(issue: Issue): Promise<boolean> {
       return false;
     }
     case "D5":
-    case "D6": {
-      // Delete stale runtime to force rebuild on next launch
-      for (const agent of ["claude", "codex"]) {
-        const runtimeDir = join(RUNTIME_ROOT, issue.profile, agent);
-        if (existsSync(runtimeDir)) {
-          await rm(runtimeDir, { recursive: true, force: true });
-        }
-      }
-      return true;
-    }
+    case "D6":
+      return applyRuntimeFix(issue);
     case "D7": {
       // Fetch missing companion files for incomplete skill
       const idMatch = issue.message.match(/Skill "([^"]+)"/);

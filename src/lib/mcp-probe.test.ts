@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { spawnSync } from "node:child_process";
 import { mkdtempSync, symlinkSync, writeFileSync, chmodSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -6,6 +7,12 @@ import { join } from "node:path";
 import { findMissingExecutable, probeServer } from "./mcp-probe";
 
 const tmp = mkdtempSync(join(tmpdir(), "mcp-probe-"));
+const STDIO_ROUNDTRIP_SUPPORTED = spawnSync(
+  process.execPath,
+  ["-e", "process.stdin.on('data', c => process.stdout.write(c))"],
+  { input: "ping", encoding: "utf8", timeout: 2000 },
+).stdout === "ping";
+const INTERACTIVE_CHILD_SUPPORTED = STDIO_ROUNDTRIP_SUPPORTED && process.env.CODEX_SANDBOX_NETWORK_DISABLED !== "1";
 
 describe("findMissingExecutable", () => {
   test("catches a dangling symlink hidden inside a bash -lc wrapper", () => {
@@ -46,7 +53,7 @@ describe("findMissingExecutable", () => {
 });
 
 describe("probeServer", () => {
-  test("reports up with a tool count when the server completes the handshake", async () => {
+  test.skipIf(!INTERACTIVE_CHILD_SUPPORTED)("reports up with a tool count when the server completes the handshake", async () => {
     const server = join(tmp, "fake-mcp.mjs");
     writeFileSync(
       server,

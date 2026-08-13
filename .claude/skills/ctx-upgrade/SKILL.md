@@ -25,7 +25,7 @@ Pull latest from GitHub and reinstall the plugin.
    ```
    Use `[x]` for success, `[ ]` for failure. Show actual version numbers.
 4. Tell the user to **restart their session** to pick up the new version.
-5. **Fallback** (only if MCP tool call fails): Derive the **plugin root** from this skill's base directory (go up 2 levels — remove `/skills/ctx-upgrade`), then run with Bash:
+5. **Fallback** (only if MCP tool call fails): Derive the **plugin root** from this skill's base directory (go up 2 levels, remove `/skills/ctx-upgrade`), then run with Bash:
    ```
    CLI="<PLUGIN_ROOT>/cli.bundle.mjs"; [ ! -f "$CLI" ] && CLI="<PLUGIN_ROOT>/build/cli.js"; node "$CLI" upgrade
    ```

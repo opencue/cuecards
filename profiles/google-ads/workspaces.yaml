@@ -29,6 +29,37 @@ workspaces:
       Key products: tehergumi, kisteherautó gumi, mezőgazdasági gumi, munkagép gumi
       Seasonality: peak in spring (March-May) and autumn (Sept-Nov)
 
+  lifted:
+    name: "LIFTED (lifted.sk)"
+    url: "https://lifted.sk"
+    description: "Meta-only for now — no Google Ads account shared yet"
+    env:
+      GOOGLE_ADS_CUSTOMER_ID: ""
+      GOOGLE_ADS_LOGIN_CUSTOMER_ID: ""
+      GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/agency-adc.json"
+      FB_AD_ACCOUNT_ID: "${LIFTED_FB_AD_ACCOUNT_ID}"
+    context: |
+      Active workspace: lifted.sk
+      Meta ad account "LIFTED" under the lifted.sk business portfolio.
+      No Google Ads account has been shared — GAQL queries will not work here.
+      TODO: confirm market, language, currency, and seasonality with the client.
+
+  marvahome:
+    name: "Marvahome"
+    description: "Google Ads only for now — Meta access is expected later"
+    env:
+      # Direct Administrator access on the account; not confirmed as MCC-linked,
+      # so no login-customer-id. Switch to ${AGENCY_MCC_ID} if it is linked.
+      GOOGLE_ADS_CUSTOMER_ID: "${MARVAHOME_GOOGLE_ADS_CUSTOMER_ID}"
+      GOOGLE_ADS_LOGIN_CUSTOMER_ID: ""
+      GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/agency-adc.json"
+      FB_AD_ACCOUNT_ID: ""
+    context: |
+      Active workspace: marvahome
+      Google Ads account 685-203-3754, access level: Administrator.
+      Meta ad account not granted yet.
+      TODO: confirm market, language, currency, and seasonality with the client.
+
   # --- Template: MCC-linked client (shares the agency ADC) ---
   # acme:
   #   name: "Acme Kft."

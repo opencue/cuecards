@@ -99,6 +99,7 @@ async function runHook(
     env: {
       ...process.env,
       HOME: dir,
+      XDG_RUNTIME_DIR: dir,
       PATH: `${shimBin}:${process.env.PATH}`,
       ...env,
     },

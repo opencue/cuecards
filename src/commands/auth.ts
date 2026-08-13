@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { findRealAgentBin } from "../lib/claude-binary";
 import { configDir } from "../lib/config-paths";
 import { codexAuthFreshness, syncCodexAuth } from "../lib/codex-auth";
+import { syncSourceToRuntimes } from "../lib/credentials-sync";
 import { resolveClaudeCredentialsSource } from "../lib/runtime-install";
 
 type Agent = "claude" | "codex";
@@ -60,6 +61,12 @@ export async function repair(
 
   const canonical = options.canonical ?? join(homedir(), ".codex", "auth.json");
   const runtimeRoot = options.runtimeRoot ?? join(configDir(), "runtime");
+  const claudeSync = await syncSourceToRuntimes(claudeSource, runtimeRoot);
+  if (claudeSync.failed.length > 0) {
+    process.stderr.write(`Auth repair incomplete: ${claudeSync.failed.length} Claude runtime(s) could not be updated.\n`);
+    return 1;
+  }
+
   const candidates: string[] = [];
   try {
     for (const key of await readdir(runtimeRoot)) candidates.push(join(runtimeRoot, key, "codex", "auth.json"));
@@ -103,7 +110,10 @@ export async function repair(
     return 1;
   }
 
-  process.stdout.write(`Auth repair complete. Claude source: ${claudeSource}; Codex runtimes updated: ${updated}.\n`);
+  process.stdout.write(
+    `Auth repair complete. Claude source: ${claudeSource}; ` +
+      `Claude runtimes updated: ${claudeSync.updated.length}; Codex runtimes updated: ${updated}.\n`,
+  );
   return 0;
 }
 

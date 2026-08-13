@@ -82,3 +82,7 @@ You can bypass the shims without uninstalling:
 `CUE_BYPASS=1` makes cue exec the real binary directly without touching the
 profile, materializer, or config dir. Use it when you need a raw claude session
 for debugging.
+
+A bare interactive `claude` or `codex` invocation opens the profile picker by
+default. Invocations with arguments resolve the pinned/default profile without a
+prompt; use `--cue-pick` when you want the picker in that case.

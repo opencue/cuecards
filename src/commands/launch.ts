@@ -5,22 +5,25 @@
  *
  * Bypass paths:
  *   --cue-profile <name>   force this profile
+ *   bare claude/codex      open picker in an interactive terminal
  *   --cue-pick             always open picker (ignore pins)
- *                          (CUE_ALWAYS_PICK=1 makes this the default for a
- *                           bare, interactive launch)
+ *                          (CUE_ALWAYS_PICK=1 also opens it for interactive
+ *                           launches that pass agent arguments)
  *   --dry-run              everything except the final exec; prints env
  *
  * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
  */
 
 import { spawn } from "node:child_process";
-import { copyFile, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
 import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
+import { syncCodexAuth } from "../lib/codex-auth";
+import { canonicalCodexConfigPath } from "../lib/codex-config";
 import {
   computeTokenBreakdown,
   computeContextBudget,
@@ -36,7 +39,7 @@ import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { DIVIDER_PREFIX, dedupeSelectorParts, runPicker, type PickerOption, type ProfileTally } from "../lib/picker";
 import type { ComboUsage } from "../lib/combo-history";
 import { materializeRuntime } from "../lib/runtime-materializer";
-import { startLoader } from "../lib/launch-loader";
+import { agentLaunchAccent, agentLaunchMessage, startLoader } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
 import { resolveLocalSkill } from "../lib/resolver-local";
 import { expandSkillWildcards, loadMcpRegistry, resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource } from "../lib/runtime-install";
@@ -47,6 +50,21 @@ import { detectCompanions, serviceCompanions, type CompanionSignal } from "../li
 import type { ResolvedProfile } from "../../profiles/_types";
 import type { ProfileAffinity, UniversalSuggestion } from "../lib/pair-suggestions";
 import { hasWorkspaces, getActiveWorkspace, computeOverrides, resolveWorkspaceForCwd } from "../lib/workspaces";
+import {
+  launchDepth,
+  MAX_LAUNCH_DEPTH,
+  shouldForcePicker,
+  shouldInheritSessionProfile,
+} from "../lib/launch-guards";
+import { shimDir, stripShimDirFromPath } from "../lib/shim-dir";
+
+export {
+  isAlwaysPickEnabled,
+  launchDepth,
+  MAX_LAUNCH_DEPTH,
+  shouldForcePicker,
+  shouldInheritSessionProfile,
+} from "../lib/launch-guards";
 
 // ---------------------------------------------------------------------------
 // Arg parsing
@@ -78,6 +96,36 @@ interface ParsedArgs {
   // not a parsed flag. A remembered picker override or `--disable-mcp` takes
   // precedence; default (unset) stays fail-open and keeps all MCPs.
   passthrough: string[];
+}
+
+/**
+ * The `CUE_BYPASS=1` escape hatch: cue does nothing but exec the real agent.
+ *
+ * Exactly `"1"`, matching every other reader of the flag (`launch-loader.ts`).
+ * Deliberately not the looser 1/true/on set `isAlwaysPickEnabled` accepts —
+ * this one is documented as `CUE_BYPASS=1` in both docs and every internal
+ * caller sets it that way.
+ */
+export function isBypassEnabled(envVal: string | undefined = process.env.CUE_BYPASS): boolean {
+  return envVal === "1";
+}
+
+/**
+ * The prompt buried in an agent's passthrough argv, or "" when there isn't one.
+ *
+ * `CUE_SMART_SUBSET` folds a real prompt (`claude -p "fix the auth bug"`) into
+ * the subset classifier. A switch is not a prompt: folding the whole argv hands
+ * the classifier a flag to interpret, and it dutifully obliges — `codex
+ * --madmax` measured as `smart-subset: 4/21 skills kept — "--madmax" likely
+ * refers to a cue profile`, gutting the profile the user had just picked.
+ *
+ * So every `-`-leading token drops out and the rest is kept, including the
+ * value that follows a flag: in the case this fold exists for, `-p`'s value IS
+ * the prompt. That leaves `--model haiku` folding as `haiku` — imprecise, but
+ * strictly closer than the `--model haiku` it used to send.
+ */
+export function passthroughPrompt(passthrough: readonly string[]): string {
+  return passthrough.filter((arg) => !arg.startsWith("-")).join(" ").trim();
 }
 
 function parse(args: string[]): ParsedArgs {
@@ -139,9 +187,13 @@ function parse(args: string[]): ParsedArgs {
   // claude process carrying every previous level's argv. Measured in the wild:
   // 10 levels deep, a 67KB command line, ~3GB resident per launch. An explicit
   // `--subset` still wins, so a deliberate override is never silently dropped.
-  const bypassed = process.env.CUE_BYPASS === "1";
+  //
+  // Only the PROSE in passthrough folds — see `passthroughPrompt`. A bare flag
+  // (`codex --madmax`, `claude --resume`) carries no prompt, so it leaves the
+  // subset unset and the full profile loads.
+  const bypassed = isBypassEnabled();
   if (!subset && !bypassed && process.env.CUE_SMART_SUBSET && passthrough.length > 0) {
-    subset = passthrough.join(" ");
+    subset = passthroughPrompt(passthrough) || null;
   }
   return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit, passthrough };
 }
@@ -203,16 +255,6 @@ function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise
     child.on("exit", (code) => res(code ?? 0));
     child.on("error", () => res(127));
   });
-}
-
-/** Keep Cue's isolated CODEX_HOME in sync with Codex/AuthMux's canonical auth. */
-export async function syncCodexAuth(source: string, destination: string): Promise<boolean> {
-  try {
-    await copyFile(source, destination);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 /**
@@ -1405,10 +1447,33 @@ async function readUserClaudeMd(agent: "claude-code" | "codex"): Promise<string>
  * Pure PATH walk — launch deliberately ignores $CLAUDE_CODE_EXECPATH /
  * $CUE_REAL_CLAUDE (those serve in-session helpers like `cue quick`), so the
  * binary the user's PATH points at is the one that execs.
+ *
+ * $CUE_REAL_CODEX is the one exception, and it is a dispatch hook rather than a
+ * discovery hint: it exists so a wrapper (oh-my-codex, …) can sit BEHIND the
+ * picker instead of shadowing it in the shell. `viaOverride` tells the caller to
+ * hand that wrapper a sanitized env — see `wrapperEnv`.
  */
-async function findRealBinary(name: string): Promise<string | null> {
-  const { findRealAgentBin } = await import("../lib/claude-binary");
-  return findRealAgentBin(name);
+async function findRealBinary(name: string): Promise<{ bin: string; viaOverride: boolean } | null> {
+  const { codexExecOverride, findRealAgentBin } = await import("../lib/claude-binary");
+  if (name === "codex") {
+    const override = codexExecOverride();
+    if (override) return { bin: override, viaOverride: true };
+  }
+  const bin = findRealAgentBin(name);
+  return bin ? { bin, viaOverride: false } : null;
+}
+
+/**
+ * Child env for a wrapper exec ($CUE_REAL_CODEX). Two loop-breakers:
+ *
+ *  - Drop cue's shim dir from PATH, so the wrapper's bare `codex` spawn reaches
+ *    the real binary instead of re-entering `cue launch`.
+ *  - Unset the override, so a nested `cue launch codex` that slips through some
+ *    other shim can't dispatch back into the wrapper a second time.
+ */
+function wrapperEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const { CUE_REAL_CODEX: _override, ...rest } = env;
+  return { ...rest, PATH: stripShimDirFromPath(env.PATH, shimDir()) };
 }
 
 /**
@@ -1554,89 +1619,6 @@ export function authmuxAccountTag(configDirEnv: string | undefined, homeDir: str
   return undefined;
 }
 
-/**
- * True iff `CUE_ALWAYS_PICK` is set to an enabling value (1|true|on).
- * Mirrors `isRulerAutoEnabled`'s convention so the two env flags parse alike.
- */
-export function isAlwaysPickEnabled(envVal: string | undefined): boolean {
-  if (!envVal) return false;
-  return ["1", "true", "on"].includes(envVal.trim().toLowerCase());
-}
-
-/**
- * How many cue launches deep this process already is.
- *
- * `CUE_LAUNCHING` used to be the string "1" and the guard tripped on it, which
- * conflated the two things it can mean. A shim LOOP — cue resolving the agent
- * binary back to its own shim — re-enters without bound and must be stopped. A
- * NESTED launch — an agent, or a tool it runs, invoking `claude` for a subtask
- * such as an AI code review — re-enters exactly once and is legitimate, but the
- * old guard killed it too, because the flag is inherited by the whole process
- * tree under a launched agent. Every caller then had to know to `unset` it
- * first (see `failures.ts`, and the headless-gif-demo skill), and a caller that
- * did not know simply failed with a message blaming PATH order.
- *
- * Counting separates them: a loop climbs to the cap in milliseconds, honest
- * nesting stays shallow.
- */
-export function launchDepth(envVal: string | undefined = process.env.CUE_LAUNCHING): number {
-  if (!envVal) return 0;
-  const n = Number.parseInt(envVal.trim(), 10);
-  // Anything unparseable is a launch marker from an older cue — treat as depth 1.
-  return Number.isFinite(n) && n > 0 ? n : 1;
-}
-
-/** Depth at which nesting is no longer plausible and must be a shim loop. */
-export const MAX_LAUNCH_DEPTH = 3;
-
-/**
- * Whether to force the picker open, ignoring whatever the cwd resolved to.
- *
- * `--cue-pick` always wins — that IS the request. Everything else needs a TTY,
- * because a picker nobody can answer is not a fallback, it is a crash: the
- * caller ends up at "no profile resolved and stdin is not a TTY".
- *
- * The TTY guard on `isAccountAlias` is the load-bearing one. cue relocates
- * CLAUDE_CONFIG_DIR to the per-profile runtime dir when it launches an agent,
- * so EVERY child spawned inside a cue session inherits a non-default
- * CLAUDE_CONFIG_DIR and looks like an account alias. A nested non-interactive
- * `claude -p …` — gitguardex's AI review gate, a hook, any script — was forced
- * to the picker and died. Same class of bug `launchDepth` fixed for
- * CUE_LAUNCHING (its doc comment names an AI code review as the motivating
- * nested launch), and it likewise left callers hand-stripping the env var to
- * work around it (see `failures.ts` and the `launch.e2e.test.ts` harness).
- */
-export function shouldForcePicker(opts: {
-  forcePick: boolean;
-  alwaysPickEnv: string | undefined;
-  hasOverride: boolean;
-  isAccountAlias: boolean;
-  isTTY: boolean;
-}): boolean {
-  if (opts.forcePick) return true;
-  if (!opts.isTTY) return false;
-  // An explicit --cue-profile opts out of both remaining triggers.
-  if (opts.hasOverride) return false;
-  return isAlwaysPickEnabled(opts.alwaysPickEnv) || opts.isAccountAlias;
-}
-
-/**
- * Whether to fall back to the running session's profile (`CUE_PROFILE`, or the
- * runtime path inside CLAUDE_CONFIG_DIR) instead of failing outright.
- *
- * Only off a TTY, and only when the cwd yielded nothing — a pin, repo-default
- * or global-default always wins, since it is specific to the work. `--cue-pick`
- * deliberately opts out: asking for a picker that cannot open is a real error,
- * not something to paper over.
- */
-export function shouldInheritSessionProfile(opts: {
-  resolvedNone: boolean;
-  forcePick: boolean;
-  isTTY: boolean;
-}): boolean {
-  return opts.resolvedNone && !opts.forcePick && !opts.isTTY;
-}
-
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
@@ -1668,7 +1650,11 @@ export async function run(args: string[]): Promise<number> {
       );
       return 127;
     }
-    return execAgent(realBin, parsed.passthrough, process.env);
+    return execAgent(
+      realBin.bin,
+      parsed.passthrough,
+      realBin.viaOverride ? wrapperEnv(process.env) : process.env,
+    );
   }
   const agentKind = parsed.agent === "claude" ? "claude-code" : "codex";
 
@@ -1697,6 +1683,7 @@ export async function run(args: string[]): Promise<number> {
     hasOverride: Boolean(parsed.override),
     isAccountAlias,
     isTTY,
+    isBareLaunch: parsed.passthrough.length === 0,
   });
   const resolvedForCwd = forcePicker ? { source: "none" as const } : existingResolved;
   let inheritedProfile: string | null = null;
@@ -2001,7 +1988,7 @@ export async function run(args: string[]): Promise<number> {
   const loadoutEnvOff = ["off", "0", "false"].includes(
     (process.env.CUE_LOADOUT ?? "").trim().toLowerCase(),
   );
-  if (agentKind === "claude-code" && !parsed.fullLoad && !loadoutEnvOff) {
+  if (!parsed.fullLoad && !loadoutEnvOff) {
     try {
       const { applyProjectLoadout } = await import("../lib/project-loadout");
       const { parseMetadataFromContent } = await import("./optimizer");
@@ -2240,7 +2227,11 @@ export async function run(args: string[]): Promise<number> {
   const loader =
     parsed.dryRun || parsed.rematerialize
       ? null
-      : startLoader({ logoPath: ensureClaudeLogoPath() ?? undefined });
+      : startLoader({
+        logoPath: agentKind === "claude-code" ? ensureClaudeLogoPath() ?? undefined : undefined,
+        message: agentLaunchMessage(agentKind),
+        accentColor: agentLaunchAccent(agentKind),
+      });
   const progress = (active: string, fallback: string): void => {
     if (loader) loader.setMessage(active);
     else if (fallback) process.stderr.write(fallback);
@@ -2342,6 +2333,7 @@ export async function run(args: string[]): Promise<number> {
       mcpRegistry: await loadMcpRegistry(agentKind),
       userClaudeMd: await buildUserClaudeMd(profile, agentKind),
       credentialsSource,
+      codexBaseConfig: canonicalCodexConfigPath(),
       disabledMcpIds: mcpDisabledIds,
     });
   } finally {
@@ -2729,7 +2721,11 @@ export async function run(args: string[]): Promise<number> {
   }
   let exitCode: number;
   try {
-    exitCode = await execAgent(realBin, [...briefArgs, ...parsed.passthrough], childEnv);
+    exitCode = await execAgent(
+      realBin.bin,
+      [...briefArgs, ...parsed.passthrough],
+      realBin.viaOverride ? wrapperEnv(childEnv) : childEnv,
+    );
   } finally {
     stopReconciler?.();
   }
