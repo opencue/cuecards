@@ -31,7 +31,7 @@ function entryFrom(path: string): IndexEntry {
   return {
     id: frontmatter.name,
     name: frontmatter.name,
-    category: "project",
+    category: frontmatter.tags?.[0] ?? "project",
     description: frontmatter.description,
     source,
     tags: frontmatter.tags ?? [],

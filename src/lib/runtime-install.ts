@@ -97,16 +97,49 @@ export async function readUserAgentMemory(agent: RuntimeAgent): Promise<string> 
   }
 }
 
-export async function pickClaudeCredentialsSource(): Promise<string> {
-  // A cue-launched Claude session inherits CLAUDE_CONFIG_DIR=<cue runtime>/claude.
-  // Treating that as the next launch's credentialsSource makes the materializer
-  // overlay the runtime onto itself and creates self-loop symlinks such as
-  // `cache -> ~/.config/cue/runtime/<profile>/claude/cache`. The real account
-  // source is ~/.claude or an authmux account dir; the heal pass below can still
-  // publish a fresher runtime token back there before materializing.
-  if (process.env.CLAUDE_CONFIG_DIR && !isCueManagedClaudeRuntimeDir(process.env.CLAUDE_CONFIG_DIR)) {
-    return process.env.CLAUDE_CONFIG_DIR;
-  }
+/**
+ * True when `dir` is the very directory a materialization is about to replace.
+ *
+ * Sourcing the overlay from there rebuilds a runtime out of itself:
+ * `overlaySourceState()` links each unmanaged entry to `<runtimeDir>/<name>`,
+ * then the atomic tmp→runtimeDir rename leaves every one of those links
+ * pointing at its own path. Observed 2026-08-07 on a live profile: 69
+ * self-referential symlinks (`sessions/`, `projects/`, `history.jsonl`, …),
+ * all unreadable, and a runtime that reported "Not logged in" until the next
+ * launch rewrote `.credentials.json`.
+ *
+ * Deliberately an exact-path test, not "is it anywhere under the runtime
+ * tree". cue points `CLAUDE_CONFIG_DIR` at the runtime dir on every launch, so
+ * a nested launch always inherits *a* runtime path — but only the one whose
+ * key matches this launch's is the self-overlay. Under an authmux account the
+ * inherited source is `<runtime>/<profile>@account2/claude` while this launch
+ * writes `<runtime>/<profile>/claude` (`authmuxAccountTag()` returns undefined
+ * for a runtime path), and that overlay is both harmless and the only thing
+ * carrying account2's credentials into the child. Rejecting it would silently
+ * hand the nested agent account1's token.
+ */
+export function isSelfOverlaySource(dir: string, runtimeDir: string | undefined): boolean {
+  if (!runtimeDir) return false;
+  return resolve(dir) === resolve(runtimeDir);
+}
+
+export interface PickClaudeCredentialsSourceOptions {
+  /**
+   * The runtime dir this launch will write, when the caller knows it. Guards
+   * against {@link isSelfOverlaySource}; omitted by callers that are not
+   * rebuilding a runtime, who then keep the plain `CLAUDE_CONFIG_DIR` answer.
+   */
+  runtimeDir?: string;
+}
+
+export async function pickClaudeCredentialsSource(
+  options: PickClaudeCredentialsSourceOptions = {},
+): Promise<string> {
+  // An explicit CLAUDE_CONFIG_DIR wins — that is how authmux hands cue a
+  // per-account config — unless it names the exact dir this launch is about to
+  // rebuild. Falling through then reaches a source outside that dir.
+  const envConfigDir = process.env.CLAUDE_CONFIG_DIR;
+  if (envConfigDir && !isSelfOverlaySource(envConfigDir, options.runtimeDir)) return envConfigDir;
 
   const homeClaude = join(homedir(), ".claude");
   if (existsSync(join(homeClaude, ".credentials.json"))) return homeClaude;
@@ -144,8 +177,10 @@ export async function pickClaudeCredentialsSource(): Promise<string> {
   return homeClaude;
 }
 
-export async function resolveClaudeCredentialsSource(options: { healFromRuntime?: boolean } = {}): Promise<string> {
-  const picked = await pickClaudeCredentialsSource();
+export async function resolveClaudeCredentialsSource(
+  options: { healFromRuntime?: boolean; runtimeDir?: string } = {},
+): Promise<string> {
+  const picked = await pickClaudeCredentialsSource({ runtimeDir: options.runtimeDir });
   if (!options.healFromRuntime) return picked;
 
   try {

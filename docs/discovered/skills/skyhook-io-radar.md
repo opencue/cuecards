@@ -2,21 +2,21 @@
 title: "skyhook-io/radar — Claude Code skill discovered by cue"
 description: "The missing open-source Kubernetes UI with a built-in MCP server for AI agents. See what's broken, why, and what changed. Issues, Topology, event timeline, Helm"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-11
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [skyhook-io/radar](https://github.com/skyhook-io/radar)
 
-**★ 2739** · exceptional (score 15) · Go · ai-agents, argocd, cloud-native, fluxcd, gitops
+**★ 2824** · exceptional (score 15) · Go · ai-agents, argocd, cloud-native, fluxcd, gitops
 
 > The missing open-source Kubernetes UI with a built-in MCP server for AI agents. See what's broken, why, and what changed. Issues, Topology, event timeline, Helm, GitOps, live service traffic, and cluster audits - all in one Go binary.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 2739 stars
-- 🗓️ Last pushed: 2026-08-06
+- ⭐ 2824 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: ai-agents, argocd, cloud-native, fluxcd, gitops, helm, k8s, kubectl-plugin, kubernetes, kubernetes-dashboard, kubernetes-debugging, kubernetes-mcp, kubernetes-monitoring, kubernetes-tools, kubernetes-troubleshooting, kubernetes-ui, mcp, mcp-server, model-context-protocol, self-hosted
 
 ## Best fit cue profiles

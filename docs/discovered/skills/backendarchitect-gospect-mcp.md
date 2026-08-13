@@ -2,7 +2,7 @@
 title: "backendArchitect/gospect-mcp — Claude Code skill discovered by cue"
 description: "Go-only, report-first code scanner exposed as an MCP server. Indexes a module, runs deterministic analyzers, and reports genuine bugs, dead code, stale docs & o"
 layout: page
-updated: 2026-08-01
+updated: 2026-08-11
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-01
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: claude, claude-code, claude-code-skill, code-analysis-true, code-analyzer, code-quality, code-review, developer-tools, gemini, gemini-ai, golang, golang-cli, golang-package, golang-tools, mcp, mcp-client, mcp-server, mcp-tools, open-source
 
 ## Best fit cue profiles

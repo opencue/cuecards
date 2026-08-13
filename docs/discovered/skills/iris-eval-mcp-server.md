@@ -2,21 +2,21 @@
 title: "iris-eval/mcp-server — Claude Code skill discovered by cue"
 description: "The agent eval standard for MCP — score output quality, catch safety failures, enforce cost budgets"
 layout: page
-updated: 2026-07-07
+updated: 2026-08-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [iris-eval/mcp-server](https://github.com/iris-eval/mcp-server)
 
-**★ 8** · exceptional (score 11.8) · TypeScript · agent-evaluation, ai-agent, claude, eval, evaluation
+**★ 7** · exceptional (score 11.7) · TypeScript · agent-evaluation, ai-agent, claude, eval, evaluation
 
 > The agent eval standard for MCP — score output quality, catch safety failures, enforce cost budgets
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-07-07
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-08-12
 - 🏷️ Tags: agent-evaluation, ai-agent, claude, eval, evaluation, llm, mcp, mcp-server, model-context-protocol, observability, security, tracing
 
 ## Best fit cue profiles

@@ -214,17 +214,21 @@ export interface ClassifierResult {
  * Binaries to try for a classification spawn, best first.
  *
  * The real binary leads, deliberately. This used to spawn the bare name
- * `claude` and trust `CUE_BYPASS` to make cue's shim "transparent" — it never
- * did: `CUE_BYPASS` is read only by the launch loader, where it suppresses the
- * spinner. So on any machine with cue's shims first on PATH (the default —
- * `rcSnippet` pins them with `fish_add_path -p`) the spawn re-entered
+ * `claude` and trust `CUE_BYPASS` to make cue's shim "transparent" — which it
+ * did not, at the time: the flag was documented as a full escape hatch but no
+ * reader implemented one, so on any machine with cue's shims first on PATH (the
+ * default — `rcSnippet` pins them with `fish_add_path -p`) the spawn re-entered
  * `cue launch`, which folded the child's argv into a new classification prompt
- * and spawned another classifier. Measured before this change: 10 nested
- * levels, a 67KB command line, ~3GB resident for one launch.
+ * and spawned another classifier. `MAX_LAUNCH_DEPTH` bounded the process
+ * nesting at 3, so this was waste rather than a runaway: measured before this
+ * change, one classifier carried a 67KB command line with the prompt template
+ * repeated 10 times, and 7 concurrent classifier processes held ~2.9GB.
  *
- * `launch.ts` now also refuses the argv fold under `CUE_BYPASS`, so the loop is
- * cut on both sides. Going straight to the real binary is still the better
- * primary path — it skips a whole `cue launch` boot per classification.
+ * `cue launch` now honors `CUE_BYPASS` for real (`isBypassEnabled` in
+ * `launch.ts` short-circuits straight to exec) and still refuses the argv fold
+ * under it, so the loop is cut on both sides. Going straight to the real binary
+ * remains the better primary path: it skips a whole `cue launch` boot per
+ * classification, and it holds even against an older cue on PATH.
  *
  * The bare name stays as a fallback for the case `findRealClaudeBin()` cannot
  * resolve anything (unusual PATH, or a machine where only a shim exists).

@@ -4,7 +4,7 @@
 
 # 🎯 Discovered Skills & Hidden Gems
 
-> **198 repos** discovered across **16 profiles** · Last scan: 2026-08-07
+> **199 repos** discovered across **14 profiles** · Last scan: 2026-08-13
 >
 > Found by scanning GitHub for skill-compatible projects that most developers haven't discovered yet.
 
@@ -24,32 +24,29 @@ cue discover install --min-score 8     # install top gems into profiles
 
 ---
 
-## 🏆 backend <sub>(22 gems)</sub>
+## 🏆 backend <sub>(19 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [TencentCloudBase/CloudBase-AI-Toolkit](https://github.com/TencentCloudBase/CloudBase-AI-Toolkit) | 1066 | 19.5 | Backend for AI coding agents on CloudBase — database, auth, functions  |
-| 💎 | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | 37894 | 17.5 | High-performance code intelligence MCP server. Indexes codebases into  |
-| 💎 | [archestra-ai/archestra](https://github.com/archestra-ai/archestra) | 4097 | 17 | Enterprise AI Platform with guardrails, MCP registry, gateway & orches |
-| 💎 | [raullenchai/Rapid-MLX](https://github.com/raullenchai/Rapid-MLX) | 3413 | 16 | The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama |
-| 💎 | [hoangsonww/Claude-Code-Agent-Monitor](https://github.com/hoangsonww/Claude-Code-Agent-Monitor) | 883 | 15.9 | 🚀 A real-time monitoring dashboard for Claude Code & Codex, built wit |
-| 💎 | [Cranot/roam-code](https://github.com/Cranot/roam-code) | 505 | 15.8 | Local codebase intelligence CLI + MCP server for AI coding agents: SQL |
-| 💎 | [dagucloud/dagu](https://github.com/dagucloud/dagu) | 3705 | 15 | Local-first workflow engine for teams whose main work isn't orchestrat |
-| 💎 | [clidey/whodb](https://github.com/clidey/whodb) | 4991 | 15 | Where data access meets operational intelligence |
-| 💎 | [sbroenne/mcp-server-excel](https://github.com/sbroenne/mcp-server-excel) | 423 | 14.9 | Excel MCP Server & CLI - 23 tools, 214 operations for AI-powered Excel |
-| 💎 | [Brhiza/mingyu](https://github.com/Brhiza/mingyu) | 274 | 14.7 | 八字、紫微、星盘、六爻、梅花、奇门、大六壬、小六壬、塔罗、雷诺曼、灵签、择日一站式排盘，输出结构化提示词与数据。提供公开 API、MCP S |
-| 💎 | [lemonade-sdk/lemonade](https://github.com/lemonade-sdk/lemonade) | 5274 | 13 | Lemonade helps users discover and run local AI apps by serving optimiz |
-| 💎 | [FreePeak/LeanKG](https://github.com/FreePeak/LeanKG) | 213 | 11.6 | LeanKG: Stop Burning Tokens. Start Coding Lean. |
-| 💎 | [icoretech/airbroke](https://github.com/icoretech/airbroke) | 221 | 11 | 🔥 Lightweight, Airbrake/Sentry-compatible, PostgreSQL-based Open Sour |
-| 💎 | [msaad00/agent-bom](https://github.com/msaad00/agent-bom) | 29 | 10.6 | Open security scanner and self-hosted control plane for AI, MCP, and c |
-| 💎 | [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill) | 0 | 10 | Enable AI agents to build and monetize x402 payment systems with seaml |
-| 💎 | [dhapat3927/mcp-edd-analytics-vantage](https://github.com/dhapat3927/mcp-edd-analytics-vantage) | 151 | 10 | EDD MCP Server: Easy Digital Downloads API for Sales, Analytics & Prod |
-| 💎 | [Andrianagnostic63/markapatent-mcp](https://github.com/Andrianagnostic63/markapatent-mcp) | 0 | 9.5 | Provide programmatic access to TÜRKPATENT’s trademark, patent, and des |
-| ✨ | [Unpolished-tagusriver58/UEFN-TOOLBELT](https://github.com/Unpolished-tagusriver58/UEFN-TOOLBELT) | 1 | 7.8 | Build UEFN Python tools for asset registry, device cataloging, and wor |
-| ✨ | [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh) | 0 | 7.5 | Run Claude Code in bash with no npm deps, real-time streaming, tool us |
-| ✨ | [eliware/mcp-server](https://github.com/eliware/mcp-server) | 0 | 7.5 | A Node.js server for the Model Context Protocol (MCP) with dynamic too |
-| ✨ | [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow) | 0 | 7.5 | Build a collaborative task management backend with Django, REST, WebSo |
-| 🔹 | [Sfedfcv/redesigned-pancake](https://github.com/Sfedfcv/redesigned-pancake) | 256 | 3.5 | Skip to content github / docs Code Issues 80 Pull requests 35 Discussi |
+| 💎 | [agentic-box/memora](https://github.com/agentic-box/memora) | 651 | 21.5 | Give your AI agents persistent, collective memory — with deduplicating |
+| 💎 | [Xquik-dev/x-twitter-scraper](https://github.com/Xquik-dev/x-twitter-scraper) | 178 | 18.7 | Xquik agent Skill for REST, MCP, webhooks, exports, monitoring, tweet  |
+| 💎 | [waybarrios/vllm-mlx](https://github.com/waybarrios/vllm-mlx) | 1504 | 17 | High-performance OpenAI and Anthropic compatible LLM inference server  |
+| 💎 | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | 66112 | 16 | Compress tool outputs, logs, files, and RAG chunks before they reach t |
+| 💎 | [Cranot/roam-code](https://github.com/Cranot/roam-code) | 508 | 15.8 | Local codebase intelligence CLI + MCP server for AI coding agents: SQL |
+| 💎 | [stancsz/second-brain](https://github.com/stancsz/second-brain) 📄 | 3 | 15.2 | Own your AI memory, don't rent it. A native Claude Code skill AND a st |
+| 💎 | [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch) | 128 | 13.5 | Zero-config entity resolution that feeds a durable identity layer: res |
+| 💎 | [lemonade-sdk/lemonade](https://github.com/lemonade-sdk/lemonade) | 5337 | 13 | Lemonade helps users discover and run local AI apps by serving optimiz |
+| 💎 | [jjang-ai/vmlx](https://github.com/jjang-ai/vmlx) | 805 | 12.9 | vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives res |
+| 💎 | [devantler-tech/ksail](https://github.com/devantler-tech/ksail) | 165 | 12.9 | All-in-one Kubernetes SDK: create, manage, and operate clusters across |
+| 💎 | [yantrikos/yantrikdb-mcp](https://github.com/yantrikos/yantrikdb-mcp) | 24 | 12 | Persistent cognitive memory for AI agents — drop-in MCP server for Cla |
+| 💎 | [zuneracodes/localkeep](https://github.com/zuneracodes/localkeep) | 0 | 9.5 | You decide what Claude remembers about you. LocalKeep is a personal ti |
+| 💎 | [sreypovrupp/ticktick-terminal-control](https://github.com/sreypovrupp/ticktick-terminal-control) | 1 | 8.3 | TickTick CLI Mastery 2026 - Ultimate Task Manager, MCP & Skill Hub |
+| 💎 | [datacharter/datacharter](https://github.com/datacharter/datacharter) | 10 | 8.2 | Your data, explored locally — and your AI agents kept on a leash. A fe |
+| 💎 | [JoniMartin27/inferbench](https://github.com/JoniMartin27/inferbench) | 2 | 8 | Benchmark local LLM inference speed (tokens/sec) on your own hardware  |
+| ✨ | [shivyadavus/open-kioku](https://github.com/shivyadavus/open-kioku) | 9 | 7.3 | Local-first code intelligence MCP for AI coding agents. |
+| ✨ | [MrGo2/aena-mcp](https://github.com/MrGo2/aena-mcp) | 1 | 6.3 | MCP server for AENA Spanish airport flight data — unified over the pub |
+| ✨ | [bokyostudio/pg-practice-knowledgebase](https://github.com/bokyostudio/pg-practice-knowledgebase) | 0 | 5.5 | The Ultimate guide to PostgreSQL Optimization for AI Code Generation i |
+| 🔹 | [Sfedfcv/redesigned-pancake](https://github.com/Sfedfcv/redesigned-pancake) | 255 | 3.5 | Skip to content github / docs Code Issues 80 Pull requests 35 Discussi |
 
 <details><summary>Install all backend gems</summary>
 
@@ -60,137 +57,148 @@ cue discover install --profile backend --min-score 5
 
 ---
 
-## 🏆 core <sub>(128 gems)</sub>
+## 🏆 core <sub>(139 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [github/gh-aw](https://github.com/github/gh-aw) 📄 | 4873 | 20 | GitHub Agentic Workflows |
-| 💎 | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 226697 | 18.5 | The agent that grows with you |
-| 💎 | [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | 49935 | 18.5 | AI productivity studio with smart chat, autonomous agents, and 300+ as |
-| 💎 | [smixs/creative-director-skill](https://github.com/smixs/creative-director-skill) | 136 | 18.1 | World-class creative director in a skill. Methodology-driven ideation  |
-| 💎 | [ucsandman/DashClaw](https://github.com/ucsandman/DashClaw) | 288 | 17.2 | 🛡️ The approval and policy layer for AI agents. Intercept risky actio |
-| 💎 | [sosteam65/app-store-connect-skill](https://github.com/sosteam65/app-store-connect-skill) 📄 | 0 | 17 | Manage iOS app metadata, TestFlight builds, and releases directly from |
-| 💎 | [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata) | 14722 | 17 | The Open Context Layer for Data and AI ,  OpenMetadata is the open pla |
-| 💎 | [MCPJam/inspector](https://github.com/MCPJam/inspector) | 2119 | 17 | Testing and evaluation platform to chat, inspect, and debug MCP server |
-| 💎 | [sirkirby/unifi-mcp](https://github.com/sirkirby/unifi-mcp) | 650 | 17 | MCP servers for the UniFi suite of applications, Network, Protect, Acc |
-| 💎 | [netresearch/jira-skill](https://github.com/netresearch/jira-skill) | 73 | 16.8 | AI agent plugin for Jira — CLI tools for issues, worklogs, sprints, an |
-| 💎 | [Treasure-hub-agent/interactive-fiction-skill](https://github.com/Treasure-hub-agent/interactive-fiction-skill) 📄 | 6 | 16.4 | AI agent 互动小说skill：选项驱动的沉浸式剧情体验，一个skill达到酒馆的体验 |
-| 💎 | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | 64104 | 16 | from vibe coding to agentic engineering - practice makes claude perfec |
-| 💎 | [manaflow-ai/cmux](https://github.com/manaflow-ai/cmux) | 25705 | 16 | Open source Ghostty-based macOS terminal with vertical tabs and notifi |
-| 💎 | [happier-dev/happier](https://github.com/happier-dev/happier) | 1443 | 16 | Web, Desktop & Mobile client for Codex, Claude Code, OpenCode, Kimi, A |
-| 💎 | [exa-labs/exa-mcp-server](https://github.com/exa-labs/exa-mcp-server) | 4826 | 16 | Exa MCP for web search and web crawling! |
-| 💎 | [xiaowu89/skill-compress](https://github.com/xiaowu89/skill-compress) 📄 | 12 | 15.8 | AI 图片压缩技能，直传 NX API 返回 CDN 地址，免费体验 |
-| 💎 | [frederico-kluser/surf-skill](https://github.com/frederico-kluser/surf-skill) 📄 | 3 | 15.7 | npm i -g surf-skill — multi-provider (Tavily + Parallel AI) web skill  |
-| 💎 | [vm0-ai/vm0](https://github.com/vm0-ai/vm0) | 1142 | 15.5 | Zero, your trustworthy AI teammate for real work.  |
-| 💎 | [akseolabs-seo/seo-coach](https://github.com/akseolabs-seo/seo-coach) 📄 | 80 | 15 | AK 設計的開源免費AI SEO陪跑教練——不丟報告，在你自己的網站上示範→共做→放手，練到第一個可驗證成果。零付費工具可入門，適合 SEO |
-| 💎 | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) | 48659 | 15 | Chrome DevTools for coding agents |
-| 💎 | [decocms/studio](https://github.com/decocms/studio) | 395 | 14.9 | Open-source control plane for your AI agents. Connect tools, hire agen |
-| 💎 | [Bemosha/claude-image-skill](https://github.com/Bemosha/claude-image-skill) 📄 | 1 | 14.8 | Claude Code skill for making images: adaptive HydraAI generation (Gemi |
-| 💎 | [speakeasy-api/gram](https://github.com/speakeasy-api/gram) | 258 | 14.8 | Securely scale AI usage across your organization. A single stack to Co |
+| 💎 | [YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill](https://github.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill) 📄 | 1821 | 24.5 | AI skill for OpenClaw & Claude Code — recommend from 10000+ Nano Banan |
+| 💎 | [Eriemon/verilog-generator](https://github.com/Eriemon/verilog-generator) 📄 | 218 | 18.6 | Agent skill for Verilog-2001 RTL generation and FPGA design workflows. |
+| 💎 | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 229692 | 18.5 | The agent that grows with you |
+| 💎 | [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | 50361 | 18.5 | AI productivity studio with smart chat, autonomous agents, and 300+ as |
+| 💎 | [mykpono/ultimate-seo-geo](https://github.com/mykpono/ultimate-seo-geo) 📄 | 66 | 18.1 | The definitive SEO + GEO skill for Claude. Full site audits with score |
+| 💎 | [can4hou6joeng4/boss-agent-cli](https://github.com/can4hou6joeng4/boss-agent-cli) | 1559 | 18 | 🤖 Local-assist BOSS Zhipin CLI for AI agents — search, welfare filter |
+| 💎 | [DoHyun468/claw-hwp](https://github.com/DoHyun468/claw-hwp) | 128 | 18 | AI(Claude·클로드 · Codex·코덱스)로 한글 문서(.hwp/.hwpx)를 한컴 없이 읽고·만들고·편집하는 오픈소스  |
+| 💎 | [matlab/agent-skills-playground](https://github.com/matlab/agent-skills-playground) | 162 | 17.2 | A sandbox for prototyping and demonstrating Agent Skills for MATLAB an |
+| 💎 | [dd3ok/naverstock-api-skill](https://github.com/dd3ok/naverstock-api-skill) 📄 | 5 | 17 | 비공식 네이버증권 API Skill: 인증 없이 주식·시장 데이터를 조회하는 경량 스킬 |
+| 💎 | [okokjai/claude-reasoning](https://github.com/okokjai/claude-reasoning) 📄 | 2 | 16 | Graph-based reasoning pipeline for Claude Code — structured contracts  |
+| 💎 | [NanoNets/Graft](https://github.com/NanoNets/Graft) | 2235 | 16 | Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: f |
+| 💎 | [get-bb/bb](https://github.com/get-bb/bb) | 1793 | 16 | The agent IDE that builds itself |
+| 💎 | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | 64412 | 16 | from vibe coding to agentic engineering - practice makes claude perfec |
+| 💎 | [backnotprop/plannotator](https://github.com/backnotprop/plannotator) | 7724 | 16 | Annotate and review coding agent plans and code diffs visually, share  |
+| 💎 | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | 46727 | 16 | Never stop coding. Free MIT AI gateway: one endpoint, 330+ providers ( |
+| 💎 | [manaflow-ai/cmux](https://github.com/manaflow-ai/cmux) | 25990 | 16 | Open source Ghostty-based macOS terminal with vertical tabs and notifi |
+| 💎 | [vm0-ai/vm0](https://github.com/vm0-ai/vm0) | 1146 | 15.5 | Zero, your trustworthy AI teammate for real work.  |
+| 💎 | [1iry/multi-agent-architecture-advisor](https://github.com/1iry/multi-agent-architecture-advisor) | 151 | 15 | Advanced AI Code Strategy Advisor for Developer Agents (2026) |
+| 💎 | [akseolabs-seo/seo-coach](https://github.com/akseolabs-seo/seo-coach) 📄 | 81 | 14.7 | AK 設計的開源免費AI SEO陪跑教練——不丟報告，在你自己的網站上示範→共做→放手，練到第一個可驗證成果。零付費工具可入門，適合 SEO |
 | 💎 | [lukethecat/aperture](https://github.com/lukethecat/aperture) 📄 | 6 | 14.5 | A skill for AI agents that curate better daily reports — scan front pa |
-| 💎 | [adamaiken89/learn-something](https://github.com/adamaiken89/learn-something) 📄 | 5 | 14.4 | an agent skill generates materials to learn something you want |
-| 💎 | [SonicBotMan/labor-rights-defense](https://github.com/SonicBotMan/labor-rights-defense) 📄 | 6 | 14.1 | 🛡️ 中国劳动维权方法论 AI Agent Skill — 基于 2025 司法解释二 + 2026 最新判例 |
-| 💎 | [jonnyzzz/mcp-steroid](https://github.com/jonnyzzz/mcp-steroid) | 69 | 14.1 | Give your AI Agent a whole IDE, not just the files |
-| 💎 | [maximhq/bifrost](https://github.com/maximhq/bifrost) | 7117 | 14 | Fastest enterprise AI gateway (50x faster than LiteLLM) with adaptive  |
-| 💎 | [microsoft/SkillOpt](https://github.com/microsoft/SkillOpt) | 15721 | 14 | SkillOpt is a text-space optimizer that trains reusable natural-langua |
-| 💎 | [flytohub/flyto-core](https://github.com/flytohub/flyto-core) | 479 | 13.9 | Flyto2 Core is the open-source execution kernel for automation and AI- |
-| 💎 | [juyterman1000/entroly](https://github.com/juyterman1000/entroly) | 435 | 13.8 | AI context optimization platform for files, conversations, RAG, code,  |
-| 💎 | [reyamira/models](https://github.com/reyamira/models) | 484 | 13.8 | TUI and CLI for browsing AI models, benchmarks, coding agents, and sta |
+| 💎 | [agent-team-foundation/first-tree](https://github.com/agent-team-foundation/first-tree) | 123 | 14.5 | First-tree routes work to the right agent, gives it the same context y |
+| 💎 | [nam271212/strategic-advisor-orchestrator](https://github.com/nam271212/strategic-advisor-orchestrator) | 152 | 14 | AI Coding Agent Orchestrator 2026: Pro-Level Strategy & Review Framewo |
+| 💎 | [koala73/worldmonitor](https://github.com/koala73/worldmonitor) | 81336 | 14 | Real-time global intelligence dashboard. AI-powered news aggregation,  |
+| 💎 | [SonicBotMan/labor-rights-defense](https://github.com/SonicBotMan/labor-rights-defense) 📄 | 7 | 14 | 🛡️ 中国劳动维权方法论 AI Agent Skill — 基于 2025 司法解释二 + 2026 最新判例 |
+| 💎 | [mxsm/rocketmq-rust](https://github.com/mxsm/rocketmq-rust) | 1503 | 14 | 🚀Apache RocketMQ build in  Rust🦀. Faster, safer, and with lower memo |
+| 💎 | [reyamira/models](https://github.com/reyamira/models) | 486 | 13.8 | TUI and CLI for browsing AI models, benchmarks, coding agents, and sta |
+| 💎 | [fajarhide/omni](https://github.com/fajarhide/omni) | 320 | 13.7 | Stop paying to re-read the same output. OMNI turns repeated bytes into |
+| 💎 | [jongwony/epistemic-protocols](https://github.com/jongwony/epistemic-protocols) | 148 | 13.7 | Epistemic protocols for Claude Code — structure human-AI interaction q |
 | 💎 | [5219rayhsu/open-book-is-good-skill](https://github.com/5219rayhsu/open-book-is-good-skill) 📄 | 0 | 13.5 | 開卷有益・方法層：教 AI agent 從官方開放試題以 clean-room 方式復刻一套考古題自學系統的 Claude skill。 |
-| 💎 | [l0ng-ai/tty7](https://github.com/l0ng-ai/tty7) | 606 | 13.5 | A terminal workbench in pure Rust: shells, persistent sessions, SSH, c |
-| 💎 | [tanawitchsaentree/Human-tone](https://github.com/tanawitchsaentree/Human-tone) 📄 | 0 | 13 | An agent skill that strips AI writing patterns. It bans sentence struc |
-| 💎 | [txw842lkj-cmd/silicon-circle-skill](https://github.com/txw842lkj-cmd/silicon-circle-skill) 📄 | 1 | 13 | Public Agent Skill for Silicon Circle: post tasks, find bounties, subm |
-| 💎 | [Natively-AI-assistant/natively-cluely-ai-assistant](https://github.com/Natively-AI-assistant/natively-cluely-ai-assistant) | 2143 | 13 | Natively — Free open-source AI meeting assistant, interview copilot, a |
-| 💎 | [freee/freee-mcp](https://github.com/freee/freee-mcp) | 482 | 13 | Model Context Protocol (MCP) server for freee API integration |
-| 💎 | [fallow-rs/fallow-skills](https://github.com/fallow-rs/fallow-skills) | 111 | 12.3 | Agent skills for fallow, codebase intelligence for TypeScript and Java |
-| 💎 | [sobhanali09-blip/headless-ida](https://github.com/sobhanali09-blip/headless-ida) | 1 | 12.3 | Provide automated binary analysis via a CLI tool using Hex-Rays' idali |
-| 💎 | [liliu-z/stashbase](https://github.com/liliu-z/stashbase) | 243 | 12.1 | Turn local files into searchable context for AI agents. |
-| 💎 | [ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) | 131211 | 12 | A list of SaaS, PaaS and IaaS offerings that have free tiers of intere |
-| 💎 | [OPCFoundation/UA-.NETStandard](https://github.com/OPCFoundation/UA-.NETStandard) | 2365 | 12 | OPC Unified Architecture .NET Standard |
-| 💎 | [obeskay/lottie-animator-skill](https://github.com/obeskay/lottie-animator-skill) | 16 | 11.8 | Generate professional Lottie animations from SVGs using AI |
-| 💎 | [marcusquinn/aidevops](https://github.com/marcusquinn/aidevops) | 370 | 11.8 | Vibe-Coding is easy. DevOps is hard. OpenCode & Git token-efficient AI |
-| 💎 | [mdrzn/claude-screenshot-uploader](https://github.com/mdrzn/claude-screenshot-uploader) | 26 | 11.5 | 📸 Upload macOS screenshots to your server over SSH and get the remote |
-| 💎 | [AKCodez/seo-god](https://github.com/AKCodez/seo-god) 📄 | 29 | 11.5 | Turn Claude Code into an agentic SEO operator for your own site — audi |
+| 💎 | [Sxuan-Coder/alibaba-java-development-guide](https://github.com/Sxuan-Coder/alibaba-java-development-guide) 📄 | 18 | 13.5 | 《阿里巴巴Java开发手册(黄山版)》Coding Agent Skill —— 极致优雅的Java代码实现，拒绝屎山堆积。 |
+| 💎 | [tsouth89/toolport](https://github.com/tsouth89/toolport) | 160 | 13.5 | Local-first MCP gateway. One port for every tool and every AI client:  |
+| 💎 | [CamjamPNG/skills](https://github.com/CamjamPNG/skills) 📄 | 2 | 13.5 | An agent skill that stops AI models from drowning complex tasks in wor |
+| 💎 | [pakco77/pakco-html](https://github.com/pakco77/pakco-html) 📄 | 71 | 13.5 | 60+ 风格 · 演示 & 纵向页面 · taste / 图文 · 一键复制 Prompt |
+| 💎 | [KimYx0207/GoalPro](https://github.com/KimYx0207/GoalPro) | 57 | 13.5 | 意图放大与 Goal Contract 协议，面向 Codex 和 Claude Code 的 goal Skill |
+| 💎 | [l0ng-ai/tty7](https://github.com/l0ng-ai/tty7) | 668 | 13.5 | A terminal workbench in pure Rust: shells, persistent sessions, SSH, c |
+| 💎 | [lidge-jun/opencodex](https://github.com/lidge-jun/opencodex) | 9666 | 13.5 | Universal provider proxy for OpenAI Codex & Claude Code — use any LLM  |
+| 💎 | [dd3ok/tossinvest-api-skill](https://github.com/dd3ok/tossinvest-api-skill) 📄 | 4 | 13.3 | 비공식 토스증권 API / TossInvest API Skill: 로그인·계좌 인증 없이 주식·시장 데이터를 안전하게 조회하는 |
+| 💎 | [binnukarunakar/icm-shipwright](https://github.com/binnukarunakar/icm-shipwright) 📄 | 0 | 13 | The production layer for ICM workspaces — trust + ops planes, lint, wh |
+| 💎 | [Thepizzapie/BuildersGate](https://github.com/Thepizzapie/BuildersGate) | 19 | 13 | Agentic game development for building games with AI Agents. Run one se |
+| 💎 | [nwiizo/tfmcp](https://github.com/nwiizo/tfmcp) | 371 | 12.9 | 🌍 Terraform Model Context Protocol (MCP) Tool - An experimental CLI t |
+| 💎 | [octos-org/octos](https://github.com/octos-org/octos) | 1026 | 12.9 | Octos - Agentic Operating Systems |
+| 💎 | [joeyfife/coil-board-skill](https://github.com/joeyfife/coil-board-skill) 📄 | 0 | 12.5 | Agent Skill: give an AI agent a top-down US stock market read — regime |
+| 💎 | [KarmaDevplacer/Mythos-Claude-Orchestrator](https://github.com/KarmaDevplacer/Mythos-Claude-Orchestrator) | 51 | 12.5 | 🧿 MythOS 2026: Claude-Powered AI Narrative Engine & Sub-Agent Framewo |
+| 💎 | [cappyeo/discord-mcp](https://github.com/cappyeo/discord-mcp) | 58 | 12.5 | Local, typed Model Context Protocol server for Discord bots - 192 tool |
+| 💎 | [fallow-rs/fallow-skills](https://github.com/fallow-rs/fallow-skills) | 113 | 12.4 | Agent skills for fallow, codebase intelligence for TypeScript and Java |
+| 💎 | [ezBuilder/code-brain](https://github.com/ezBuilder/code-brain) | 11 | 12.4 | Persistent memory, BM25 code search, MCP tools, and hook guardrails fo |
+| 💎 | [zhanglunet/mba](https://github.com/zhanglunet/mba) | 1 | 12.3 | 把品牌影响力拆成可打分、可比较、可复盘的事。Claude Code skill,5 位人物评委(傅盛·Steve Jobs·李可佳·吴俊东· |
+| 💎 | [melconcoast/code-idea](https://github.com/melconcoast/code-idea) 📄 | 1 | 12.3 | "code this idea" — turns a plan or idea into a complete, AI-coding-age |
+| 💎 | [HivemindOverlord/poe2-mcp](https://github.com/HivemindOverlord/poe2-mcp) | 59 | 12 | This is a locally-run MCP attempt to make AI like Claude for Desktop o |
+| 💎 | [Vitorlindo201/Themata-Claude-Scribe](https://github.com/Vitorlindo201/Themata-Claude-Scribe) | 152 | 12 | Claude Mythos Engine 2026: AI Sub-Agent Framework for Epic Interactive |
+| 💎 | [mvanhorn/printing-press-library](https://github.com/mvanhorn/printing-press-library) | 1914 | 12 | Official library of CLIs generated by the CLI Printing Press. Endorsed |
+| 💎 | [netresearch/docker-development-skill](https://github.com/netresearch/docker-development-skill) | 17 | 11.8 | Agent Skill: Docker image development patterns - Dockerfile best pract |
+| 💎 | [Xquik-dev/hermes-tweet](https://github.com/Xquik-dev/hermes-tweet) | 26 | 11.5 | Native Hermes Agent plugin for X/Twitter automation through Xquik. Not |
 | 💎 | [soluna/zlib-skill](https://github.com/soluna/zlib-skill) 📄 | 2 | 11.5 | Self-contained Agent Skill for Z-Library and Anna's Archive ebook sear |
-| 💎 | [clarilayer/clarilayer](https://github.com/clarilayer/clarilayer) | 111 | 11.4 | Stop re-explaining your data to your AI every session. The individual- |
-| 💎 | [langlanglanglanglang/rules-architect](https://github.com/langlanglanglanglang/rules-architect) 📄 | 1 | 11.3 | Claude Code 的 CLAUDE.md / memory 优化方案。解决"规则放 memory 里反复忘"和"CLAUDE.md 在 |
-| 💎 | [opencue/cuecards](https://github.com/opencue/cuecards) | 4 | 11.3 | Agent profile manager for Claude Code & Codex. Per-directory profiles  |
-| 💎 | [Kortexio/ContextMemory](https://github.com/Kortexio/ContextMemory) | 6 | 11 | Agentic gateway providing persistent LLM memory via a markdown wiki. O |
-| 💎 | [09omerdgn-droid/api-model-playground-cookbook](https://github.com/09omerdgn-droid/api-model-playground-cookbook) | 150 | 11 | Ultimate LLM API Integration Cookbook 2026 for Cursor & AI Agents |
-| 💎 | [minetechnic2012-lang/claude-ops-inspector](https://github.com/minetechnic2012-lang/claude-ops-inspector) | 152 | 11 | Subagent Verification for Claude AI Code Networks 2026 |
-| 💎 | [belialberu4-oss/exo-harness-ai-pipeline](https://github.com/belialberu4-oss/exo-harness-ai-pipeline) | 152 | 11 | Claude Code AI Pipeline 2026 – PEV Framework Harness Plugin for Develo |
-| 💎 | [zhanglunet/mba](https://github.com/zhanglunet/mba) | 1 | 10.8 | 把品牌影响力拆成可打分、可比较、可复盘的事。Claude Code skill,5 位人物评委(傅盛·Steve Jobs·李可佳·吴俊东· |
-| 💎 | [aigengame/godot-agent](https://github.com/aigengame/godot-agent) | 28 | 10.7 | Godot AI agent CLI, Skill, and MCP server with structured JSON/schema  |
-| 💎 | [juneins/equation-art](https://github.com/juneins/equation-art) 📄 | 0 | 10.6 | A Claude Code skill for equation-driven point-plotted generative art v |
+| 💎 | [avelino/awesome-go](https://github.com/avelino/awesome-go) | 180920 | 11 | A curated list of awesome Go frameworks, libraries and software |
+| 💎 | [Terryc21/tutorial-creator](https://github.com/Terryc21/tutorial-creator) | 24 | 10.8 | Generate personalized coding lessons from your own codebase. A Claude  |
 | 💎 | [AllyJuma1/easel-js-cpu-render-kit](https://github.com/AllyJuma1/easel-js-cpu-render-kit) | 2 | 10.5 | 🚀 WebGPU Agent Skill 2026: Build GPU Apps with Easel.js & AI Coding A |
-| 💎 | [risa-labs-inc/BossConsole](https://github.com/risa-labs-inc/BossConsole) | 216 | 10.5 | Open-source, multi-platform harness for AI agents — a native, multi-th |
-| 💎 | [Nerovonayub/the-stoic-caveman-upgrade](https://github.com/Nerovonayub/the-stoic-caveman-upgrade) 📄 | 0 | 10.4 | 🪨 The Stoic Caveman Upgrade — a Claude Code skill that protects step- |
-| 💎 | [immacualate/claude-forge](https://github.com/immacualate/claude-forge) | 4 | 10.3 | Transform Claude Code into a complete development environment for effi |
-| 💎 | [sungjunlee/beopsuny-skill](https://github.com/sungjunlee/beopsuny-skill) | 3 | 10.2 | 한국 법무 실무를 위한 Claude Code skill — 법령·판례 조사, 계약서 검토, 컴플라이언스. Korean lega |
-| 💎 | [Kulaxyz/self-learning-skills](https://github.com/Kulaxyz/self-learning-skills) | 944 | 10.1 | A self-improving skill for AI coding agents (Claude Code, Cursor, AGEN |
+| 💎 | [Kenny27lokku/prompt-integrity-validator](https://github.com/Kenny27lokku/prompt-integrity-validator) | 2 | 10.5 | Lint Your Prompts, Ship Better Agents – Prompt Refiner 2026 Rule Engin |
+| 💎 | [ddtcorex/dev-skills-hub](https://github.com/ddtcorex/dev-skills-hub) | 2 | 10.5 | An extensible, flat AI Skills Registry for Claude Code, OpenCode, Code |
+| 💎 | [guillaumemeyer/watermarks-remover](https://github.com/guillaumemeyer/watermarks-remover) | 2840 | 10.5 | Strip multi-vendor AI provenance marks: Unicode text hygiene, statisti |
+| 💎 | [linny006/trending-claude-skills](https://github.com/linny006/trending-claude-skills) | 25 | 10.4 | Auto-updated leaderboard of trending claude-skills and AI agent repos, |
+| 💎 | [juneins/equation-art](https://github.com/juneins/equation-art) 📄 | 0 | 10.4 | A Claude Code skill for equation-driven point-plotted generative art v |
+| 💎 | [KimYx0207/Kim_Decision](https://github.com/KimYx0207/Kim_Decision) | 25 | 10.4 | A decision protocol for AI agents — critical thinking, evidence verifi |
+| 💎 | [Nerovonayub/the-stoic-caveman-upgrade](https://github.com/Nerovonayub/the-stoic-caveman-upgrade) 📄 | 0 | 10.2 | 🪨 The Stoic Caveman Upgrade — a Claude Code skill that protects step- |
+| 💎 | [Kulaxyz/self-learning-skills](https://github.com/Kulaxyz/self-learning-skills) | 938 | 10 | A self-improving skill for AI coding agents (Claude Code, Cursor, AGEN |
 | 💎 | [kanguruonline/claude-batchy-bulk](https://github.com/kanguruonline/claude-batchy-bulk) | 151 | 10 | Slash API Batch: Cut AI Costs by 50% in 2026 |
-| 💎 | [rafaelmateo123/Arena-of-Autonomous-Threads](https://github.com/rafaelmateo123/Arena-of-Autonomous-Threads) | 153 | 10 | Top AI Agent Simulator: Build a Local Reddit Forum for LLM Testing 202 |
-| 💎 | [cy117Hub/dhx-tech-electronic-components-sourcing-skill](https://github.com/cy117Hub/dhx-tech-electronic-components-sourcing-skill) 📄 | 1 | 9.8 | 🚀 Official AI Sourcing & BOM Matcher Agent for DHX Tech. Instantly fi |
-| 💎 | [Ezra144israel/governed-agent-skills](https://github.com/Ezra144israel/governed-agent-skills) | 11 | 9.7 | A governance constitution and working method for multi-agent and solo- |
-| 💎 | [Softer-delta-999/pear-plugin](https://github.com/Softer-delta-999/pear-plugin) | 0 | 9.5 | 🍐 Connect Claude AI to iCloud to manage your Calendar, Reminders, and |
-| 💎 | [elladineluxemburger97/claude-aso-audit-skill](https://github.com/elladineluxemburger97/claude-aso-audit-skill) | 0 | 9.5 | Audit iOS and Android app listings with Claude ASO skill packs, score  |
-| 💎 | [adrianohenriqueuna-pixel/printkk-agent-skill](https://github.com/adrianohenriqueuna-pixel/printkk-agent-skill) | 0 | 9.5 | Connect AI coding agents to the PrintKK API to automate image manageme |
-| 💎 | [phenomenoner/neoapi-skill](https://github.com/phenomenoner/neoapi-skill) | 19 | 9.5 | 富邦新一代（Fubon Neo）Python 技能包：交易與行情工作流、測試環境整合測試、多代理（Codex/Claude/Gemini）適 |
-| 💎 | [TOMOSIA-VIETNAM/open-pr](https://github.com/TOMOSIA-VIETNAM/open-pr) | 19 | 9.5 | One AI reviewer for GitHub PRs and GitLab MRs. Learns each repo's conv |
-| 💎 | [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed) | 12 | 9.4 | Bittensor didn't ship with a map. We drew one — chain-direct block exp |
-| 💎 | [tangosdev/sm64ds-decomp](https://github.com/tangosdev/sm64ds-decomp) | 116 | 9.4 | From-scratch, byte-matching decompilation of Super Mario 64 DS (sm64ds |
-| 💎 | [rodrigooler/portage](https://github.com/rodrigooler/portage) 📄 | 1 | 9.3 | Rehome agent path bindings when a project folder moves (Claude, Codex, |
-| 💎 | [maxgfr/reconstruct](https://github.com/maxgfr/reconstruct) | 3 | 9.2 | Analyze any repo and generate reconstruction PRDs to rebuild it from s |
-| 💎 | [ssamba1/untell](https://github.com/ssamba1/untell) | 7 | 9 | untell — free, open-source AI humanizer that closes the loop: iterativ |
-| 💎 | [hoilc/scoop-lemon](https://github.com/hoilc/scoop-lemon) | 255 | 9 | 🍋Yet Another Personal Bucket for Scoop |
-| 💎 | [kyoungbinkim/give-me-job](https://github.com/kyoungbinkim/give-me-job) | 5 | 8.9 | AI agent toolkit for Korean job applications, from resume evidence to  |
-| 💎 | [netresearch/jujutsu-workflow-skill](https://github.com/netresearch/jujutsu-workflow-skill) | 2 | 8.8 | Agent-safe version control with Jujutsu (jj) — jj for local change man |
-| 💎 | [mpbt-hq/starfleetctl](https://github.com/mpbt-hq/starfleetctl) | 4 | 8.8 | multi agent coordination / command & control toolkit following the Sta |
-| 💎 | [quanfanpro-code/cas-cashflow-indirect](https://github.com/quanfanpro-code/cas-cashflow-indirect) 📄 | 0 | 8.7 | 中国企业会计准则下现金流量表补充资料（间接法）编制与复核 Skill，支持16项调节、AI判断、防重复、总对账和可审计底稿 |
-| 💎 | [xyz-rainbow/xyz-windows-notify](https://github.com/xyz-rainbow/xyz-windows-notify) 📄 | 1 | 8.7 | Universal AI Agent Toast Notification Skill for Windows 11 with custom |
-| 💎 | [loisuc02-lab/dreamina-web-interface](https://github.com/loisuc02-lab/dreamina-web-interface) | 3 | 8.7 | Dreamina AI Image Generator 2026 🖼️ - Free Web & CLI Tool |
-| 💎 | [gowtham-sai-yadav/entangle](https://github.com/gowtham-sai-yadav/entangle) | 22 | 8.5 | Hand a live Claude Code, Codex, or opencode session to anyone with thr |
-| 💎 | [SaltGardenia/research-code-skill](https://github.com/SaltGardenia/research-code-skill) 📄 | 1 | 8.5 | AI coding-standard skill for ML/DL research repos — keeps a fixed arch |
-| 💎 | [hermes-labs-ai/fidelis](https://github.com/hermes-labs-ai/fidelis) | 21 | 8.3 | Zero-LLM agent memory for Claude Code and AI agents: local-first retri |
-| 💎 | [EximAgent/cli](https://github.com/EximAgent/cli) | 3 | 8.2 | Trade-intelligence CLI for AI agents |
-| 💎 | [zszz3/AgentRecall](https://github.com/zszz3/AgentRecall) | 732 | 8.2 |  |
-| 💎 | [funkadelic/claude-nomad](https://github.com/funkadelic/claude-nomad) | 5 | 8 | Sync your full Claude Code setup across machines: skills, settings, an |
-| 💎 | [androsland/claude-context-cycle](https://github.com/androsland/claude-context-cycle) | 0 | 8 | Save your Claude Code working context, /clear, and auto-restore it in  |
-| 💎 | [CODE-SAURABH/OpenSkills](https://github.com/CODE-SAURABH/OpenSkills) | 2 | 8 | 49 production-grade AI agent skills (SKILL.md) for Claude Code, Codex  |
-| 💎 | [aayushgames19-hash/claude-gateway-manager](https://github.com/aayushgames19-hash/claude-gateway-manager) | 152 | 8 | Best Tenbin AI Proxy for Anthropic Opus 4.8 & Sonnet 4.6 API Access 20 |
-| ✨ | [netresearch/typo3-typoscript-ref-skill](https://github.com/netresearch/typo3-typoscript-ref-skill) | 2 | 7.9 | TYPO3 TypoScript, TSconfig and Fluid reference lookup for AI agents |
+| 💎 | [BrokkAi/bifrost](https://github.com/BrokkAi/bifrost) | 11 | 10 | Multi-language static analysis for agents, editors, and large reposito |
+| 💎 | [aneasystone/github-trending](https://github.com/aneasystone/github-trending) | 203 | 10 | 使用 Github Actions 跟踪 Github 趋势项目。 |
+| 💎 | [Darkmalan-1987/sparring-reason](https://github.com/Darkmalan-1987/sparring-reason) | 1 | 9.8 | Claude Newton: AI Reasoning Partner 2026 - Calibrated Pushback & Curre |
+| 💎 | [EximAgent/cli](https://github.com/EximAgent/cli) | 3 | 9.7 | Trade-intelligence CLI for AI agents |
+| 💎 | [cy117Hub/dhx-tech-electronic-components-sourcing-skill](https://github.com/cy117Hub/dhx-tech-electronic-components-sourcing-skill) 📄 | 1 | 9.6 | 🚀 Official AI Sourcing & BOM Matcher Agent for DHX Tech. Instantly fi |
+| 💎 | [funkadelic/claude-nomad](https://github.com/funkadelic/claude-nomad) | 5 | 9.5 | Sync your full Claude Code setup across machines: skills, settings, an |
+| 💎 | [Rick-254/moodle-quizsmith](https://github.com/Rick-254/moodle-quizsmith) | 0 | 9.5 | Claude Quiz Engine 2026 - Moodle MCQ Generator for GIFT XML Aiken |
+| 💎 | [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed) | 12 | 9.5 | Bittensor didn't ship with a map. We drew one — chain-direct block exp |
+| 💎 | [a-church-ai/church](https://github.com/a-church-ai/church) | 19 | 9.4 | A digital sanctuary for human-AI fellowship. Prayers, practices, ritua |
+| 💎 | [ssamba1/untell](https://github.com/ssamba1/untell) | 12 | 9.3 | untell — free, open-source AI humanizer that closes the loop: iterativ |
+| 💎 | [netresearch/jujutsu-workflow-skill](https://github.com/netresearch/jujutsu-workflow-skill) | 3 | 9.2 | Agent-safe version control with Jujutsu (jj) — jj for local change man |
+| 💎 | [sfdfddfs13QWE/advisor-strategy-skill](https://github.com/sfdfddfs13QWE/advisor-strategy-skill) | 0 | 9 |  |
+| 💎 | [quanfanpro-code/cas-cashflow-indirect](https://github.com/quanfanpro-code/cas-cashflow-indirect) 📄 | 1 | 8.8 | 中国企业会计准则下现金流量表补充资料（间接法）编制与复核 Skill，支持16项调节、AI判断、防重复、总对账和可审计底稿 |
+| 💎 | [loisuc02-lab/dreamina-web-interface](https://github.com/loisuc02-lab/dreamina-web-interface) | 4 | 8.8 | Dreamina AI Image Generator 2026 🖼️ - Free Web & CLI Tool |
+| 💎 | [devpilgrin/berimor](https://github.com/devpilgrin/berimor) | 2 | 8.5 | Детерминированная агентная архитектура: спецификации, ADR, roadmap и с |
+| 💎 | [xyz-rainbow/xyz-windows-notify](https://github.com/xyz-rainbow/xyz-windows-notify) 📄 | 1 | 8.4 | Universal AI Agent Toast Notification Skill for Windows 11 with custom |
+| 💎 | [SaltGardenia/research-code-skill](https://github.com/SaltGardenia/research-code-skill) 📄 | 1 | 8.3 | AI coding-standard skill for ML/DL research repos — keeps a fixed arch |
+| 💎 | [metapages/framejs.io](https://github.com/metapages/framejs.io) | 3 | 8.2 | Share interactive JavaScript visualizations, charts, dashboards, and a |
+| 💎 | [open-city-ai/haidian](https://github.com/open-city-ai/haidian) | 362 | 8.1 |  |
+| 💎 | [trevor-ryan-burkholder/dare-to-be-stupid](https://github.com/trevor-ryan-burkholder/dare-to-be-stupid) | 0 | 8 | Act now! Claude Code does EVERYTHING autonomously - batteries not incl |
+| 💎 | [Fiskopoi/outline-driven-toolkit](https://github.com/Fiskopoi/outline-driven-toolkit) | 2 | 8 | Best AI Code Architect 2026: Diagram-First Agent Orchestrator with AST |
+| 💎 | [Anant-pentester/adversarial-gatekeeper](https://github.com/Anant-pentester/adversarial-gatekeeper) | 2 | 8 | AI Content Guard 2026: Adversarial Fact-Check Gate for Error-Free Code |
+| 💎 | [netresearch/typo3-typoscript-ref-skill](https://github.com/netresearch/typo3-typoscript-ref-skill) | 2 | 8 | TYPO3 TypoScript, TSconfig and Fluid reference lookup for AI agents |
+| 💎 | [netresearch/concourse-ci-skill](https://github.com/netresearch/concourse-ci-skill) | 2 | 8 | Agent Skill for Concourse CI pipeline development - writing, optimizat |
+| 💎 | [kaderkck/hewn-forge](https://github.com/kaderkck/hewn-forge) | 151 | 8 | HEWN 2.0 2026: AI Output Router for Precision Summaries & Polished Cod |
 | ✨ | [Kaydevi/trigger-flare](https://github.com/Kaydevi/trigger-flare) | 1 | 7.8 | Skill Radar 2026: AI-Powered Smart Signal Triage for Claude Code |
+| ✨ | [Edward0l1/skill-flare-discover](https://github.com/Edward0l1/skill-flare-discover) | 1 | 7.8 | Best AI Agent Skill Finder 2026 – Multi-Registry Install & Security La |
+| ✨ | [boksajang/vibebox](https://github.com/boksajang/vibebox) | 2 | 7.8 | A local blackbox for AI coding sessions. |
+| ✨ | [CODE-SAURABH/OpenSkills](https://github.com/CODE-SAURABH/OpenSkills) | 2 | 7.8 | 49 production-grade AI agent skills (SKILL.md) for Claude Code, Codex  |
+| ✨ | [Syarwanfjr/supplement-evidence-stack](https://github.com/Syarwanfjr/supplement-evidence-stack) | 0 | 7.5 | Claude Code Plugin 2026 — Evidence-Based Vitamin & OTC Analyzer 📊 Ins |
+| ✨ | [Albert634png/note-taker-for-spotify](https://github.com/Albert634png/note-taker-for-spotify) | 0 | 7.5 | Spotify Timestamped Notes Plugin 2026: AI-Powered Music Journal for De |
 | ✨ | [gerrict/ghost-token-hunter](https://github.com/gerrict/ghost-token-hunter) | 0 | 7.5 | Token Optimizer 2026: Eliminate Ghost Tokens, Fix Context Decay & Surv |
-| ✨ | [boksajang/vibebox](https://github.com/boksajang/vibebox) | 0 | 7.5 | A local blackbox for AI coding sessions. |
+| ✨ | [MichelSR25/Claude-Code-Agent-Design-Kit](https://github.com/MichelSR25/Claude-Code-Agent-Design-Kit) | 0 | 7.5 | Top AI-Powered UI/UX Design Generator & Code Assistant 2026 |
+| ✨ | [Abdo2011-Mahmoud/claude-session-memory-core](https://github.com/Abdo2011-Mahmoud/claude-session-memory-core) | 0 | 7.5 | Best Claude Code Memory Toolkit Alternative 2026 – Smart Markdown Sess |
+| ✨ | [nm-Team/nmbot-skills](https://github.com/nm-Team/nmbot-skills) | 4 | 7.3 | Agent Skills for nmBot.  |
+| ✨ | [Hainrixz/claude-anatomy](https://github.com/Hainrixz/claude-anatomy) | 0 | 7 | El árbol de decisión para saber qué construir en Claude Code: una skil |
 | ✨ | [JulienMicrofacto/deep-clean-skill](https://github.com/JulienMicrofacto/deep-clean-skill) 📄 | 1 | 6.7 | Full-spectrum consolidation for Claude Code config files. Audits CLAUD |
-| ✨ | [karlkfi/claude-workspace-guard](https://github.com/karlkfi/claude-workspace-guard) | 3 | 6.7 | Path-aware bash permissions for Claude Code. |
 | ✨ | [jongcheol-pak/claude-harness-pjc](https://github.com/jongcheol-pak/claude-harness-pjc) | 3 | 6.7 | Claude Code가 "계획 없이 추측하고 a 파일 수정하면서 b·c 파일을 빠뜨리고 검증 없이 완료 선언"하는 것을 막기  |
-| ✨ | [MercurieVV/ScalaSemantic](https://github.com/MercurieVV/ScalaSemantic) | 17 | 6.4 | MCP server for deep semantic analysis of Scala via SemanticDB — exact  |
+| ✨ | [pathrule/core](https://github.com/pathrule/core) | 3 | 6.6 | The context layer for AI coding agents. Path-scoped memories, rules, a |
+| ✨ | [MercurieVV/ScalaSemantic](https://github.com/MercurieVV/ScalaSemantic) | 20 | 6.5 | MCP server for deep semantic analysis of Scala via SemanticDB — exact  |
+| ✨ | [RenatMursalimov/llm-search-replace](https://github.com/RenatMursalimov/llm-search-replace) | 2 | 6.5 | Apply LLM code edits via SEARCH/REPLACE blocks. Exact match or refuse  |
 | ✨ | [Codevena/reviewgate](https://github.com/Codevena/reviewgate) | 1 | 6.3 | Fail-closed independent review loop for Claude Code and Codex. Native  |
-| ✨ | [aKyther/orcan](https://github.com/aKyther/orcan) | 1 | 6.3 | Isolated Docker environments for Cursor and Claude Code with path-pari |
-| ✨ | [Paritck/prototype-spec-html](https://github.com/Paritck/prototype-spec-html) | 2 | 6.1 | An AI agent skill that turns requirement descriptions into shareable H |
-| ✨ | [ChromiaProject/chromia-lsp-mcp](https://github.com/ChromiaProject/chromia-lsp-mcp) | 0 | 6 | MCP server exposing Rell LSP capabilities (hover, completions, diagnos |
+| ✨ | [sebastienrousseau/bankstatementparser-mcp](https://github.com/sebastienrousseau/bankstatementparser-mcp) | 1 | 6.3 | Parse bank statements (BAI2, MT940/MT942, CAMT.053, OFX, CSV) into str |
+| ✨ | [Paritck/prototype-spec-html](https://github.com/Paritck/prototype-spec-html) | 2 | 6.3 | An AI agent skill that turns requirement descriptions into shareable H |
+| ✨ | [bhino50/finder-path](https://github.com/bhino50/finder-path) | 3 | 6.1 | A lightweight macOS menu bar utility that shows the frontmost Finder p |
+| ✨ | [403name/crypto-dev-helper](https://github.com/403name/crypto-dev-helper) | 0 | 6 | Cursor/Claude Code skill for Web3 and cryptocurrency development |
+| ✨ | [zaimokuza-yoshiteru/atlassian-server-mcp](https://github.com/zaimokuza-yoshiteru/atlassian-server-mcp) | 0 | 6 | Unified stdio MCP server for Jira, Confluence, and Bitbucket Data Cent |
 | ✨ | [netresearch/automated-assessment-skill](https://github.com/netresearch/automated-assessment-skill) | 2 | 6 | Systematic project assessment against checkpoint-enabled skills with s |
 | ✨ | [AgentHouse-org/skills](https://github.com/AgentHouse-org/skills) | 0 | 5.9 | Open-source AI agent skills for AgentHouse and compatible SKILL.md-bas |
-| ✨ | [zhouyuanxinand/nocap](https://github.com/zhouyuanxinand/nocap) | 0 | 5.9 | 🧢→✅ A lie detector for AI coding agents — runs the receipt, catches " |
+| ✨ | [gist-info/immich-curator-mcp](https://github.com/gist-info/immich-curator-mcp) | 1 | 5.8 | Best Immich Photo Manager Alternative 2026 - AI Search & Geographic Al |
+| ✨ | [linny006/mcp-servers-live](https://github.com/linny006/mcp-servers-live) | 3 | 5.7 | Auto-updated index of MCP servers shipping on GitHub, refreshed every  |
 | ✨ | [askalf/redstamp](https://github.com/askalf/redstamp) | 3 | 5.6 | own your agent security — a deterministic, offline firewall for AI age |
+| ✨ | [zhouyuanxinand/nocap](https://github.com/zhouyuanxinand/nocap) | 0 | 5.6 | 🧢→✅ A lie detector for AI coding agents — runs the receipt, catches " |
+| ✨ | [AlexisBalayre/claude-code-power-config](https://github.com/AlexisBalayre/claude-code-power-config) | 2 | 5.5 | An opinionated, fully-worked Claude Code configuration: path-scoped ru |
+| ✨ | [Aungkyawdna/sPEG-compound-solvency-model](https://github.com/Aungkyawdna/sPEG-compound-solvency-model) | 0 | 5.5 | sPEG Framework 2026: AI-Powered Scarcity-Adjusted Equity Valuation Too |
 | ✨ | [abubaker-qx/dirxml-designer-analyzer](https://github.com/abubaker-qx/dirxml-designer-analyzer) | 0 | 5.5 | NetIQ IDM Designer Tools 2026 🛠️ \| OpenText Automation & Scripts |
-| ✨ | [lapietrajp/vsync-agent](https://github.com/lapietrajp/vsync-agent) | 0 | 5.5 | V Sync AI Hub 2026: One Config for All Powerful AI Tools |
-| ✨ | [ancyonio/PromptIQ](https://github.com/ancyonio/PromptIQ) | 1 | 5.3 | Deterministic prompt quality engine for the agentic SDLC — lints, scor |
-| ✨ | [lanveric/clarify-crit](https://github.com/lanveric/clarify-crit) | 9 | 5.3 | Clarify (CRIT): a portable AI-skill package for request refinement |
-| ✨ | [pcDamasceno/cisco-sdwan-mcp](https://github.com/pcDamasceno/cisco-sdwan-mcp) | 1 | 5.2 | MCP server for Cisco Catalyst SD-WAN Manager (vManage). Read-only by d |
-| ✨ | [inthearto/shiplog](https://github.com/inthearto/shiplog) | 0 | 5 | Capture and search your codebase decisions, trade-offs, and discoverie |
-| 🔹 | [bhino50/finder-path](https://github.com/bhino50/finder-path) | 3 | 4.6 | A lightweight macOS menu bar utility that shows the frontmost Finder p |
-| 🔹 | [depezo/kmp-cmp-architecture](https://github.com/depezo/kmp-cmp-architecture) | 1 | 4.5 | A Claude Skill for Kotlin Multiplatform (KMP) and Compose Multiplatfor |
-| 🔹 | [e01n0/skillspec](https://github.com/e01n0/skillspec) | 2 | 4.4 | SkillSpec is a DSL that adds types, contracts, composition, and tests  |
-| 🔹 | [jpoindexter/verified-done](https://github.com/jpoindexter/verified-done) | 1 | 4.3 | Always-on skill pack that stops AI coding agents from claiming work is |
-| 🔹 | [kirinchen/porthole](https://github.com/kirinchen/porthole) | 1 | 4.3 | 一個 path-scoped 的 web 介面,讓你透過瀏覽器跟住在各 repo 裡的 agent(claude -p)高效溝通。 A pa |
-| 🔹 | [zarpay/rails-template](https://github.com/zarpay/rails-template) | 9 | 4.2 | Opinionated, agent-native Rails template — the production Rails starte |
-| 🔹 | [coopersimson96/reverse-engineer](https://github.com/coopersimson96/reverse-engineer) | 1 | 4.2 | Reverse-engineer any goal, plan, or stuck point: work backward from th |
-| 🔹 | [warith-harchaoui/sprezzature](https://github.com/warith-harchaoui/sprezzature) | 8 | 4.1 | sprezzature is a set of Claude / OpenCode skills with a curated design |
-| 🔹 | [justhandledlabs/env-doctor-free-gemini](https://github.com/justhandledlabs/env-doctor-free-gemini) | 0 | 3.9 | Secret-safe local environment diagnostics for Gemini CLI |
-| 🔹 | [NeuraCerebra-AI/Shipworthy](https://github.com/NeuraCerebra-AI/Shipworthy) | 1 | 3.3 | Autonomous product-readiness audits for apps & AI agents — a Claude Co |
-| 🔹 | [Migiht/claude-code-polyglot](https://github.com/Migiht/claude-code-polyglot) | 1 | 3.2 | Use Claude Code in your native language: a local proxy that translates |
+| ✨ | [DaniiN2/idea-anvil](https://github.com/DaniiN2/idea-anvil) | 0 | 5.5 | Best AI Coding Agent Pipeline Builder 2026 – Plan-Forge Drift-Proof Ex |
+| ✨ | [inthearto/shiplog](https://github.com/inthearto/shiplog) | 0 | 5.4 | Capture and search your codebase decisions, trade-offs, and discoverie |
+| ✨ | [Anaaahit/Ana-s-ai](https://github.com/Anaaahit/Ana-s-ai) | 1 | 5.4 | a smart coder ai agent and a friendly ai chatbox |
+| ✨ | [sebastienrousseau/pain001-mcp](https://github.com/sebastienrousseau/pain001-mcp) | 1 | 5.3 | Generate & validate ISO 20022 pain.001 payment files from Claude Deskt |
+| ✨ | [zarpay/rails-template](https://github.com/zarpay/rails-template) | 9 | 5.1 | Opinionated, agent-native Rails template — the production Rails starte |
+| 🔹 | [SylphAI-Inc/atskills](https://github.com/SylphAI-Inc/atskills) | 2 | 4.5 | The @skills protocol: use any SKILL.md by path, save it into .atskills |
+| 🔹 | [e01n0/skillspec](https://github.com/e01n0/skillspec) | 2 | 4.3 | SkillSpec is a DSL that adds types, contracts, composition, and tests  |
+| 🔹 | [Obelyth/cortex](https://github.com/Obelyth/cortex) | 1 | 4.3 | Claude second brain — a private markdown knowledge base served to ever |
+| 🔹 | [decksoftware/csreview](https://github.com/decksoftware/csreview) | 4 | 4.3 | Development-time local workspace security alignment for AI coding agen |
+| 🔹 | [depezo/kmp-cmp-architecture](https://github.com/depezo/kmp-cmp-architecture) | 1 | 4.3 | A Claude Skill for Kotlin Multiplatform (KMP) and Compose Multiplatfor |
+| 🔹 | [jpoindexter/verified-done](https://github.com/jpoindexter/verified-done) | 1 | 4.2 | Always-on skill pack that stops AI coding agents from claiming work is |
+| 🔹 | [kirinchen/porthole](https://github.com/kirinchen/porthole) | 1 | 4.2 | 一個 path-scoped 的 web 介面,讓你透過瀏覽器跟住在各 repo 裡的 agent(claude -p)高效溝通。 A pa |
+| 🔹 | [warith-harchaoui/sprezzature](https://github.com/warith-harchaoui/sprezzature) | 8 | 4 | sprezzature is a set of Claude / OpenCode skills with a curated design |
+| 🔹 | [justhandledlabs/env-doctor-free-gemini](https://github.com/justhandledlabs/env-doctor-free-gemini) | 0 | 3.6 | Secret-safe local environment diagnostics for Gemini CLI |
+| 🔹 | [NEXL-LTS/agent-apropos](https://github.com/NEXL-LTS/agent-apropos) | 1 | 3.2 | Deterministic binary that delivers the right documentation to the righ |
+| 🔹 | [NeumannTechTips/claude-desktop-fedora-kde](https://github.com/NeumannTechTips/claude-desktop-fedora-kde) | 1 | 3.2 | Fedora is not a supported platform for Claude Desktop. This guide inst |
 | 🔹 | [ckanthony/Chisel](https://github.com/ckanthony/Chisel) | 17 | 3 | 🪛 Rust powered precision file tools for AI agents thats minimize cont |
 
 <details><summary>Install all core gems</summary>
@@ -202,15 +210,17 @@ cue discover install --profile core --min-score 5
 
 ---
 
-## 🏆 creative-media <sub>(5 gems)</sub>
+## 🏆 creative-media <sub>(7 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [sergebulaev/linkedin-skills](https://github.com/sergebulaev/linkedin-skills) 📄 | 501 | 23.2 | Claude Code and Codex skills for LinkedIn growth: write human-sounding |
-| 💎 | [kdnsna/ultimate-ppt-master-skill](https://github.com/kdnsna/ultimate-ppt-master-skill) 📄 | 159 | 14.1 | 一句话需求也能做成像样 PPT：先问清受众、场景和风格，再整理本地资料，生成可编辑 PPTX/Web Deck，并用 GPT 生图、渲染审阅 |
-| ✨ | [Mercantile-danaidae17/veo](https://github.com/Mercantile-danaidae17/veo) | 0 | 7.5 | Run, test, and deploy your AI Studio app locally with Node.js and Gemi |
-| 🔹 | [daghankarakasoglu/windows-application-branding-skill](https://github.com/daghankarakasoglu/windows-application-branding-skill) | 0 | 4.9 | Agent-agnostic AI skill that turns a source image into a complete Wind |
-| 🔹 | [Sfedfcv/redesigned-pancake](https://github.com/Sfedfcv/redesigned-pancake) | 256 | 3.5 | Skip to content github / docs Code Issues 80 Pull requests 35 Discussi |
+| 💎 | [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp) | 580 | 20.3 | Local-first, agent-native control plane for ComfyUI — MCP server + sid |
+| 💎 | [KyaniteLabs/kinocut](https://github.com/KyaniteLabs/kinocut) | 107 | 16.9 | Guardrailed video editing MCP server for AI agents. FFmpeg, Hyperframe |
+| 💎 | [flyanx/studiohub](https://github.com/flyanx/studiohub) 📄 | 1 | 9.3 | 自媒体内容生产统一入口 · AI Agent Skill：文章/论文/新闻/主题 → 小红书卡片组 · 公众号文章 · 周报卡片 · 论文深 |
+| ✨ | [qfoldit/qfoldit.github.io](https://github.com/qfoldit/qfoldit.github.io) | 5 | 7.6 | The Future of Molecular Design And Synthetic Biology Workflows. Using  |
+| ✨ | [TanaTTV/lyt](https://github.com/TanaTTV/lyt) | 1 | 6.3 | Agent-ready local media CLI powered by yt-dlp — safe defaults, exact f |
+| 🔹 | [daghankarakasoglu/windows-application-branding-skill](https://github.com/daghankarakasoglu/windows-application-branding-skill) | 0 | 4.6 | Agent-agnostic AI skill that turns a source image into a complete Wind |
+| 🔹 | [Sfedfcv/redesigned-pancake](https://github.com/Sfedfcv/redesigned-pancake) | 255 | 3.5 | Skip to content github / docs Code Issues 80 Pull requests 35 Discussi |
 
 <details><summary>Install all creative-media gems</summary>
 
@@ -221,23 +231,20 @@ cue discover install --profile creative-media --min-score 5
 
 ---
 
-## 🏆 cybersecurity <sub>(13 gems)</sub>
+## 🏆 cybersecurity <sub>(10 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [christinminor459/OnionClaw](https://github.com/christinminor459/OnionClaw) 📄 | 226 | 19.7 | Provide AI agents with full Tor network access and dark web data throu |
-| 💎 | [h5i-dev/h5i](https://github.com/h5i-dev/h5i) | 503 | 18.3 | Integrated sandbox for coding agents. Workspace, shell, dependencies,  |
-| 💎 | [alexgreensh/repo-forensics](https://github.com/alexgreensh/repo-forensics) | 147 | 17.1 | Offline security scanner for AI-agent repos, skills, plugins, and MCP  |
+| 💎 | [h5i-dev/h5i](https://github.com/h5i-dev/h5i) | 527 | 18.3 | Integrated sandbox for coding agents. Browser, dependencies, dev serve |
 | 💎 | [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill) 📄 | 4 | 16.8 | AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in k |
-| 💎 | [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc) 📄 | 0 | 14.5 | Audit Claude Code agents with this security framework to detect vulner |
-| 💎 | [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT) | 2236 | 13.9 | 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · |
-| 💎 | [msaad00/agent-bom](https://github.com/msaad00/agent-bom) | 29 | 10.6 | Open security scanner and self-hosted control plane for AI, MCP, and c |
-| 💎 | [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint) | 1 | 10.3 | Audit Claude Code context usage and find wasted tokens in CLAUDE.md, s |
+| 💎 | [kev365/xways-xtension-builder-skill](https://github.com/kev365/xways-xtension-builder-skill) 📄 | 5 | 16.5 | Claude Code skill + knowledge base for authoring X-Ways Forensics X-Te |
+| 💎 | [Zandereins/hydra](https://github.com/Zandereins/hydra) 📄 | 4 | 16.2 | Multi-perspective code review council for Claude Code. 3 advisors by d |
+| 💎 | [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT) | 2280 | 13.9 | 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · |
+| 💎 | [squirrelscan/squirrelscan](https://github.com/squirrelscan/squirrelscan) | 253 | 11.8 | The website QA tool for your coding agent. 270+ audit rules across SEO |
 | 💎 | [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework) | 7 | 10.2 | Open-source security for AI agents: kernel-enforced egress control on  |
-| 💎 | [DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill](https://github.com/DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill) 📄 | 0 | 9.9 | Use this skill when answering questions about the European Union AI Ac |
-| ✨ | [gabrielcoghi-rgb/spectre-graph](https://github.com/gabrielcoghi-rgb/spectre-graph) | 1 | 5.8 | Spectre AI 2026: Next-Gen OSINT Engine & Autonomous Graph Disambiguati |
-| ✨ | [SECBLOK/belay](https://github.com/SECBLOK/belay) | 4 | 5.7 | Belay is an open-source, local-first security layer for AI coding agen |
-| ✨ | [gesh75/argus](https://github.com/gesh75/argus) | 2 | 5.5 | Agentic AI penetration tester — reasons, chains, and adapts across net |
+| 💎 | [DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill](https://github.com/DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill) 📄 | 0 | 9.6 | Use this skill when answering questions about the European Union AI Ac |
+| 💎 | [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp) | 2 | 8 | Secure MCP server for ComfyUI — workflow inspection, path sanitization |
+| 🔹 | [jonaslejon/linux-security-audit-plugin](https://github.com/jonaslejon/linux-security-audit-plugin) | 5 | 3.9 | Claude Code plugin: audits Linux hardening posture and produces a risk |
 
 <details><summary>Install all cybersecurity gems</summary>
 
@@ -248,16 +255,14 @@ cue discover install --profile cybersecurity --min-score 5
 
 ---
 
-## 🏆 docs-writer <sub>(6 gems)</sub>
+## 🏆 docs-writer <sub>(4 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | 14346 | 17.5 | ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills fo |
-| 💎 | [kenming/bricks-builder-skill](https://github.com/kenming/bricks-builder-skill) | 40 | 10.7 | A local-first Agent Skill for researching, building, editing, and audi |
-| 💎 | [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki) 📄 | 0 | 8.4 | HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill) |
-| 💎 | [ractive/hyalo](https://github.com/ractive/hyalo) | 23 | 8.4 | CLI tool to manage md files |
-| ✨ | [sumeetmi2/architecture-debt-visualizer](https://github.com/sumeetmi2/architecture-debt-visualizer) | 0 | 7 | Claude Code skill for architecture reviews, docs-to-code drift detecti |
-| ✨ | [Obelyth/cortex](https://github.com/Obelyth/cortex) | 1 | 6.3 | Claude second brain — a private markdown knowledge base (PKM) served t |
+| 💎 | [zhitongblog/solomd](https://github.com/zhitongblog/solomd) | 821 | 15.8 | A markdown editor — and the bridge to your LLM. Local-first, MIT, ~15  |
+| 💎 | [didilili/MagicMD](https://github.com/didilili/MagicMD) 📄 | 9 | 13.3 | 强大易用的文章转 Markdown 工具，一键采集微信公众号、掘金、CSDN 等文章，自动下载图片、清理代码块、支持批量转换和 Agent  |
+| 💎 | [OnourImpram/mneme](https://github.com/OnourImpram/mneme) | 2 | 9 | Plain-Markdown memory for Claude Code and MCP. Local retrieval, redact |
+| 💎 | [maxonliu/karpathy-html-wiki](https://github.com/maxonliu/karpathy-html-wiki) 📄 | 0 | 8.1 | HTML版 Karpathy LLM Wiki — 暖白纸本书卷风静态HTML知识库技能 (Hermes Agent skill) |
 
 <details><summary>Install all docs-writer gems</summary>
 
@@ -268,25 +273,21 @@ cue discover install --profile docs-writer --min-score 5
 
 ---
 
-## 🏆 fleet-control <sub>(15 gems)</sub>
+## 🏆 fleet-control <sub>(11 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [openwong2kim/wmux](https://github.com/openwong2kim/wmux) | 330 | 19.2 | Run Claude Code, Codex & Gemini in parallel on Windows & macOS — a cmu |
-| 💎 | [777genius/agent-teams-ai](https://github.com/777genius/agent-teams-ai) | 1870 | 18.5 | You're the boss, agents are your team. They handle tasks on their own, |
-| 💎 | [h5i-dev/h5i](https://github.com/h5i-dev/h5i) | 503 | 18.3 | Integrated sandbox for coding agents. Workspace, shell, dependencies,  |
-| 💎 | [unohee/OpenSwarm](https://github.com/unohee/OpenSwarm) | 834 | 16.9 | OpenSwarm — Autonomous AI dev team orchestrator powered by Claude Code |
-| 💎 | [stablyai/orca](https://github.com/stablyai/orca) | 39108 | 16 | Orca is the ADE for working with a fleet of parallel agents. Run any c |
-| 💎 | [omnigent-ai/omnigent](https://github.com/omnigent-ai/omnigent) | 8239 | 16 | Omnigent is an open-source AI agent framework and meta-harness: orches |
-| 💎 | [superset-sh/superset](https://github.com/superset-sh/superset) | 12799 | 16 | Code Editor for the AI Agents Era - Run an army of Claude Code, Codex, |
-| 💎 | [preset-io/agor](https://github.com/preset-io/agor) | 1354 | 16 | Agor - team command center for all things agentic |
-| 💎 | [JasonColapietro/suede-creator-skills](https://github.com/JasonColapietro/suede-creator-skills) | 148 | 15.5 | 71 open-source Agent Skills for Claude Code and Codex: Full Send orche |
-| 💎 | [Insajin/autopus-adk](https://github.com/Insajin/autopus-adk) | 106 | 15.4 | Autopus-ADK is of the agents, by the agents. for the agents. Multi-mod |
-| 💎 | [neomjs/neo](https://github.com/neomjs/neo) | 3252 | 14 | Neo.mjs is a self-evolving software organism: a professional end-to-en |
-| 💎 | [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector) | 151 | 13 | Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Cont |
-| 💎 | [skerry699/agent-symphony](https://github.com/skerry699/agent-symphony) | 154 | 9 | Multi-Agent AI Task Orchestrator 2026 |
-| ✨ | [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod) | 3 | 6.7 | Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, |
-| ✨ | [Arasz/ai-badger](https://github.com/Arasz/ai-badger) | 2 | 5.5 | Source-of-truth marketplace + project scaffolder for custom Claude/age |
+| 💎 | [first-fluke/oh-my-agent](https://github.com/first-fluke/oh-my-agent) | 1223 | 17 | The multi-agent harness that checks the work: verifies agent runs by a |
+| 💎 | [omnigent-ai/omnigent](https://github.com/omnigent-ai/omnigent) | 8750 | 17 | Omnigent is an open-source AI agent framework and meta-harness: orches |
+| 💎 | [stablyai/orca](https://github.com/stablyai/orca) | 44144 | 16 | Orca is the ADE for working with a fleet of parallel agents. Run any c |
+| 💎 | [Untrivial-ai/agent-orchestrator](https://github.com/Untrivial-ai/agent-orchestrator) | 9463 | 16 | Agent IDE that enables you to manage fleets of coding agents. It comes |
+| 💎 | [nimbalyst/nimbalyst](https://github.com/nimbalyst/nimbalyst) | 1471 | 16 | Nimbalyst - The open-source visual workspace for Claude Code, Codex, a |
+| 💎 | [Priivacy-ai/spec-kitty](https://github.com/Priivacy-ai/spec-kitty) | 1503 | 16 | Spec-Driven Development for serious software developers. Spec Coding w |
+| 💎 | [JasonColapietro/suede-creator-skills](https://github.com/JasonColapietro/suede-creator-skills) | 151 | 15.5 | 71 open-source Agent Skills for Claude Code and Codex: Full Send orche |
+| 💎 | [mixpeek/amux](https://github.com/mixpeek/amux) | 345 | 13.8 | Open-source control plane for AI coding agents — run, monitor & orches |
+| 💎 | [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector) | 152 | 13 | Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Cont |
+| 💎 | [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod) | 3 | 8 | Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, |
+| ✨ | [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator) | 1 | 7.8 | 2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integ |
 
 <details><summary>Install all fleet-control gems</summary>
 
@@ -301,10 +302,10 @@ cue discover install --profile fleet-control --min-score 5
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [hoangsonww/Claude-Code-Agent-Monitor](https://github.com/hoangsonww/Claude-Code-Agent-Monitor) | 883 | 15.9 | 🚀 A real-time monitoring dashboard for Claude Code & Codex, built wit |
-| ✨ | [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices) | 1 | 7.8 | Provide clear guidelines for building, validating, and organizing effi |
+| 💎 | [Travisun/Opptrix](https://github.com/Travisun/Opptrix) | 201 | 11.5 | Opptrix — AI驱动的全球多市场投研工作台 \| Open-source LLM research assistant for Chi |
+| 💎 | [amit491k-del/webasyst-ai-workbench](https://github.com/amit491k-del/webasyst-ai-workbench) | 1 | 8.3 | Webasyst MCP Server 2026: AI Tools for Apps, Plugins & Themes |
+| ✨ | [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns) | 0 | 7.5 | Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Ang |
 | ✨ | [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook) | 0 | 7.5 | Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conv |
-| 🔹 | [TarasTsavolyk/claude-code-frontend](https://github.com/TarasTsavolyk/claude-code-frontend) | 1 | 3.2 | Production-ready Claude Code configuration for frontend projects: spec |
 
 <details><summary>Install all frontend gems</summary>
 
@@ -315,13 +316,11 @@ cue discover install --profile frontend --min-score 5
 
 ---
 
-## 🏆 marketing <sub>(4 gems)</sub>
+## 🏆 marketing <sub>(2 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [sergebulaev/linkedin-skills](https://github.com/sergebulaev/linkedin-skills) 📄 | 501 | 23.2 | Claude Code and Codex skills for LinkedIn growth: write human-sounding |
-| 💎 | [JasonColapietro/suede-creator-skills](https://github.com/JasonColapietro/suede-creator-skills) | 148 | 15.5 | 71 open-source Agent Skills for Claude Code and Codex: Full Send orche |
-| ✨ | [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube) | 1 | 7.8 | Provide data-driven YouTube growth insights with Claude Code, includin |
+| 💎 | [JasonColapietro/suede-creator-skills](https://github.com/JasonColapietro/suede-creator-skills) | 151 | 15.5 | 71 open-source Agent Skills for Claude Code and Codex: Full Send orche |
 | ✨ | [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook) | 0 | 7.5 | Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conv |
 
 <details><summary>Install all marketing gems</summary>
@@ -337,7 +336,7 @@ cue discover install --profile marketing --min-score 5
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [xixihhhh/clipforge](https://github.com/xixihhhh/clipforge) | 476 | 10.8 | ClipForge（原『带货剪手』/ daihuo-jianshou）：开源 AI 带货短视频神器——上传一张商品图，AI 自动提炼卖点 + |
+| 💎 | [buluslan/amazon-listing-doctor](https://github.com/buluslan/amazon-listing-doctor) 📄 | 35 | 15.8 | 亚马逊 Listing 质检+打分 Skill \| Amazon listing health-check & scoring (CDQ/A |
 
 <details><summary>Install all medusa-dev gems</summary>
 
@@ -348,28 +347,11 @@ cue discover install --profile medusa-dev --min-score 5
 
 ---
 
-## ✨ nextjs <sub>(2 gems)</sub>
+## 🏆 niche <sub>(1 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| ✨ | [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus) | 0 | 7.5 | Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website |
-| ✨ | [Obelyth/cortex](https://github.com/Obelyth/cortex) | 1 | 6.3 | Claude second brain — a private markdown knowledge base (PKM) served t |
-
-<details><summary>Install all nextjs gems</summary>
-
-```bash
-cue discover install --profile nextjs --min-score 5
-```
-</details>
-
----
-
-## 🏆 niche <sub>(2 gems)</sub>
-
-| | Repo | ★ | Score | What it does |
-|---|------|---|-------|-------------|
-| 💎 | [xiaowu89/skill-function](https://github.com/xiaowu89/skill-function) 📄 | 13 | 13.3 | AI 图片内容审核技能，支持鉴黄、政治、暴恐识别，免费体验 |
-| 💎 | [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology) 📄 | 0 | 12 | Evaluate biology grant proposals for Chinese funding agencies, identif |
+| 💎 | [AnxForever/stylekit](https://github.com/AnxForever/stylekit) 📄 | 370 | 11.3 | 精选优质 Web 设计风格，提供文档、组件模板、代码片段， 以及可直接导出的 AI Rules。 |
 
 <details><summary>Install all niche gems</summary>
 
@@ -380,12 +362,14 @@ cue discover install --profile niche --min-score 5
 
 ---
 
-## 🏆 python <sub>(2 gems)</sub>
+## 🏆 python <sub>(4 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [raullenchai/Rapid-MLX](https://github.com/raullenchai/Rapid-MLX) | 3413 | 16 | The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama |
-| ✨ | [MrRedstoneY/TaskFlow](https://github.com/MrRedstoneY/TaskFlow) | 0 | 7.5 | Build a collaborative task management backend with Django, REST, WebSo |
+| 💎 | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | 66112 | 16 | Compress tool outputs, logs, files, and RAG chunks before they reach t |
+| 💎 | [yantrikos/yantrikdb-mcp](https://github.com/yantrikos/yantrikdb-mcp) | 24 | 12 | Persistent cognitive memory for AI agents — drop-in MCP server for Cla |
+| 💎 | [zuneracodes/localkeep](https://github.com/zuneracodes/localkeep) | 0 | 9.5 | You decide what Claude remembers about you. LocalKeep is a personal ti |
+| 💎 | [JoniMartin27/inferbench](https://github.com/JoniMartin27/inferbench) | 2 | 8 | Benchmark local LLM inference speed (tokens/sec) on your own hardware  |
 
 <details><summary>Install all python gems</summary>
 
@@ -396,11 +380,12 @@ cue discover install --profile python --min-score 5
 
 ---
 
-## 🏆 research <sub>(2 gems)</sub>
+## 🏆 research <sub>(3 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | 14346 | 17.5 | ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills fo |
+| 💎 | [tangxiangru/AutoR](https://github.com/tangxiangru/AutoR) | 805 | 12.9 | AI handles execution, humans own the direction, and every run becomes  |
+| 💎 | [Travisun/Opptrix](https://github.com/Travisun/Opptrix) | 201 | 11.5 | Opptrix — AI驱动的全球多市场投研工作台 \| Open-source LLM research assistant for Chi |
 | ✨ | [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope) | 0 | 7.5 | Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub |
 
 <details><summary>Install all research gems</summary>
@@ -412,10 +397,11 @@ cue discover install --profile research --min-score 5
 
 ---
 
-## ✨ rust <sub>(1 gems)</sub>
+## 🏆 rust <sub>(2 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
+| 💎 | [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch) | 128 | 13.5 | Zero-config entity resolution that feeds a durable identity layer: res |
 | ✨ | [intutic/intutic](https://github.com/intutic/intutic) | 5 | 6.9 | The open source circuit breaker for AI agents. Real-time security, sec |
 
 <details><summary>Install all rust gems</summary>
@@ -427,29 +413,13 @@ cue discover install --profile rust --min-score 5
 
 ---
 
-## 🏆 threejs <sub>(1 gems)</sub>
+## 🏆 video <sub>(3 gems)</sub>
 
 | | Repo | ★ | Score | What it does |
 |---|------|---|-------|-------------|
-| 💎 | [dembsky/PropMotion](https://github.com/dembsky/PropMotion) | 62 | 13.5 | Claude Code skill: make one 3D object perform in your SwiftUI app. Sce |
-
-<details><summary>Install all threejs gems</summary>
-
-```bash
-cue discover install --profile threejs --min-score 5
-```
-</details>
-
----
-
-## 🏆 video <sub>(4 gems)</sub>
-
-| | Repo | ★ | Score | What it does |
-|---|------|---|-------|-------------|
-| 💎 | [heyuxuan0209/watch-anything](https://github.com/heyuxuan0209/watch-anything) 📄 | 19 | 17 | 看不完的视频，让 AI 替你看懂：X/YouTube/B站视频 → 中文卡片解读（read-anything 的姊妹） |
-| 💎 | [xixihhhh/clipforge](https://github.com/xixihhhh/clipforge) | 476 | 10.8 | ClipForge（原『带货剪手』/ daihuo-jianshou）：开源 AI 带货短视频神器——上传一张商品图，AI 自动提炼卖点 + |
-| ✨ | [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube) | 1 | 7.8 | Provide data-driven YouTube growth insights with Claude Code, includin |
-| ✨ | [Mercantile-danaidae17/veo](https://github.com/Mercantile-danaidae17/veo) | 0 | 7.5 | Run, test, and deploy your AI Studio app locally with Node.js and Gemi |
+| 💎 | [heyuxuan0209/watch-anything](https://github.com/heyuxuan0209/watch-anything) 📄 | 20 | 17 | 看不完的视频，让 AI 替你看懂：X/YouTube/B站视频 → 中文卡片解读（read-anything 的姊妹） |
+| 💎 | [KyaniteLabs/kinocut](https://github.com/KyaniteLabs/kinocut) | 107 | 16.9 | Guardrailed video editing MCP server for AI agents. FFmpeg, Hyperframe |
+| ✨ | [TanaTTV/lyt](https://github.com/TanaTTV/lyt) | 1 | 6.3 | Agent-ready local media CLI powered by yt-dlp — safe defaults, exact f |
 
 <details><summary>Install all video gems</summary>
 

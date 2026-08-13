@@ -69,6 +69,7 @@ function printHelp(): void {
       ["mem", "Inspect/manage per-profile claude-mem stores"],
     ],
     "Launch & Shell": [
+      ["auth", "Check, repair, log in, or log out agent authentication"],
       ["install", "Prepare profile runtimes and optionally install required CLIs"],
       ["sync", "Refresh materialized runtimes after editing a profile source"],
       ["launch", "Resolve + materialize + exec claude/codex"],

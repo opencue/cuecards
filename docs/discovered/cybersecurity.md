@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-13
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,6 +26,21 @@ AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge
 
 ```bash
 cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+```
+
+---
+
+<a id="zandereins-hydra"></a>
+## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
+
+**★ 4** · exceptional (score 16.2) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+
+Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
+
+✅ SKILL.md
+
+```bash
+cue skills add Zandereins/hydra --profile cybersecurity
 ```
 
 ---
@@ -48,7 +63,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2236** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2281** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -84,41 +99,43 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="ali-ulu-huqan"></a>
-## ✨ [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
+<a id="dirtybeastafterthetoad-eu-ai-act-compliance-codebase-audit-skill"></a>
+## 💎 [DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill](https://github.com/DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: agent-security, agentic-workflow, ai-agents, ai-governance, ai-safety
+**★ 0** · exceptional (score 9.6) · tags: ai-act, ai-agent-skill, ai-agent-skills, ai-governance, ai-safety
 
-Local-first, deterministic verification layer for AI claims, memory writes, and risky actions.
+Use this skill when answering questions about the European Union AI Act (Regulation (EU) 2024/1689) or conducting static and dynamic compliance audits on codebases to detect prohibited practices, missing transparency controls, or unfulfilled high-risk safeguards.
+
+✅ SKILL.md
 
 ```bash
-cue skills add ali-ulu/huqan --profile cybersecurity
+cue skills add DirtyBeastAfterTheToad/EU-AI-Act-Compliance-Codebase-Audit-Skill --profile cybersecurity
 ```
 
 ---
 
-<a id="secblok-belay"></a>
-## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
+<a id="hybridindie-comfyui-mcp"></a>
+## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
-**★ 4** · strong (score 5.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 2** · exceptional (score 8) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
 
-Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
+Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
 
 ```bash
-cue skills add SECBLOK/belay --profile cybersecurity
+cue skills add hybridindie/comfyui_mcp --profile cybersecurity
 ```
 
 ---
 
-<a id="gesh75-argus"></a>
-## ✨ [gesh75/argus](https://github.com/gesh75/argus)
+<a id="jonaslejon-linux-security-audit-plugin"></a>
+## 🔹 [jonaslejon/linux-security-audit-plugin](https://github.com/jonaslejon/linux-security-audit-plugin)
 
-**★ 2** · strong (score 5.5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 6** · potential (score 4) · Shell
 
-Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
+Claude Code plugin: audits Linux hardening posture and produces a risk-ranked report. 450+ checks — kernel, filesystem, privesc paths, egress, TLS/mTLS, secrets, image hygiene, config drift. Live host, mounted image, or container.
 
 ```bash
-cue skills add gesh75/argus --profile cybersecurity
+cue skills add jonaslejon/linux-security-audit-plugin --profile cybersecurity
 ```
 
 ---

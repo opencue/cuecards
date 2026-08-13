@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 14 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-13
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,27 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-08-07 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **14 profiles**.
+> Last updated: 2026-08-13 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 69 | `GodotMaker`, `app-store-connect-skill`, `OpenMetadata` |
-| [**backend**](./backend.md) | 13 | `magic`, `roam-code`, `dagu` |
-| [**cybersecurity**](./cybersecurity.md) | 8 | `nsauditor-ai-agent-skill`, `slowmist-security-cc`, `Claude-OSINT` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `claude-code-frontend` |
-| [**creative-media**](./creative-media.md) | 2 | `ultimate-ppt-master-skill`, `redesigned-pancake` |
-| [**fleet-control**](./fleet-control.md) | 2 | `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**core**](./core.md) | 62 | `repobrain`, `app-store-connect-skill`, `seo-coach` |
+| [**backend**](./backend.md) | 13 | `flow-like`, `telegram-business-bridge`, `LeanKG` |
+| [**cybersecurity**](./cybersecurity.md) | 9 | `nsauditor-ai-agent-skill`, `hydra`, `slowmist-security-cc` |
+| [**creative-media**](./creative-media.md) | 6 | `scroll-scrub-hero`, `studiohub`, `qfoldit.github.io` |
+| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `skills-best-practices`, `ionik-capacitor-flux-patterns` |
+| [**video**](./video.md) | 3 | `scroll-scrub-hero`, `claude-youtube`, `lyt` |
+| [**marketing**](./marketing.md) | 2 | `claude-youtube`, `sticky-switcher-funnel-playbook` |
+| [**medusa-dev**](./medusa-dev.md) | 2 | `buywhere`, `etsy-ugc-compliance-harvester` |
 | [**niche**](./niche.md) | 1 | `grant-thinking-cn-biology` |
-| [**python**](./python.md) | 1 | `SmartCLI` |
-| [**research**](./research.md) | 1 | `crossref-mcp-server` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `etsy-ugc-compliance-harvester` |
-| [**nextjs**](./nextjs.md) | 1 | `cortex` |
-| [**docs-writer**](./docs-writer.md) | 1 | `cortex` |
-| [**video**](./video.md) | 1 | `Diariz` |
+| [**research**](./research.md) | 1 | `evidentia` |
+| [**docs-writer**](./docs-writer.md) | 1 | `mneme` |
+| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
+| [**python**](./python.md) | 1 | `sdk-python` |
 
 ## How scoring works
 

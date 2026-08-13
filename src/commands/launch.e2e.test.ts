@@ -30,9 +30,15 @@ function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> 
   // ways that have nothing to do with the test:
   //   CUE_LAUNCHING=1       → triggers the shim-recursion guard
   //   CLAUDE_CONFIG_DIR=... → triggers isAccountAlias → forces picker → fails on non-TTY
-  const cleanEnv = { ...process.env, ...opts.env };
+  //   CUE_BYPASS=1          → short-circuits straight to exec, so nothing below
+  //                           would resolve or materialize anything
+  // Order matters: strip from the inherited env FIRST, then layer opts.env on
+  // top, so a test that wants one of these can still set it.
+  const cleanEnv: Record<string, string | undefined> = { ...process.env };
   delete cleanEnv.CUE_LAUNCHING;
   delete cleanEnv.CLAUDE_CONFIG_DIR;
+  delete cleanEnv.CUE_BYPASS;
+  Object.assign(cleanEnv, opts.env);
   const res = spawnSync("bun", ["run", CUE_BIN, ...args], {
     encoding: "utf8",
     timeout: 15000,
@@ -141,5 +147,63 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
     const skillsDir = join(output.runtimeDir, "skills");
     const entries = await readdir(skillsDir);
     expect(entries.length).toBeGreaterThan(0);
+  });
+
+  // CUE_BYPASS=1 is documented in docs/launch.md and docs/shell-install.md as
+  // "exec the real binary directly; no resolve, no materialize, no profile".
+  // For a long time nothing implemented that: the flag only suppressed the
+  // loader spinner and (after #133) the CUE_SMART_SUBSET fold, while the full
+  // pipeline still ran. Both arms below run the SAME argv against a fake
+  // `claude` first on PATH — the only variable is the flag.
+  test("CUE_BYPASS=1 execs the real binary instead of resolving/materializing", async () => {
+    const { mkdir } = await import("node:fs/promises");
+    const binDir = join(tmpDir, "fakebin");
+    await mkdir(binDir, { recursive: true });
+    // Must not read as a cue shim, or findRealAgentBin() skips it by content.
+    await writeFile(join(binDir, "claude"), '#!/usr/bin/env bash\necho "FAKE-CLAUDE $*"\n', { mode: 0o755 });
+    await writeFile(join(tmpDir, ".cue.profile"), "core\n");
+    const fakePath = `${binDir}:${process.env.PATH}`;
+
+    // Control: cue resolves the pin and reports the runtime it built.
+    const normal = cue(["launch", "claude", "--rematerialize"], {
+      cwd: tmpDir,
+      env: { PATH: fakePath },
+    });
+    expect(normal.status).toBe(0);
+    expect(normal.stdout).toContain("runtimeDir");
+    expect(normal.stdout).not.toContain("FAKE-CLAUDE");
+
+    // Bypassed: straight to exec. No profile line, no runtime JSON — and the
+    // cue-only flag is stripped rather than forwarded to the agent.
+    const bypassed = cue(["launch", "claude", "--rematerialize"], {
+      cwd: tmpDir,
+      env: { PATH: fakePath, CUE_BYPASS: "1" },
+    });
+    expect(bypassed.status).toBe(0);
+    expect(bypassed.stdout).toContain("FAKE-CLAUDE");
+    expect(bypassed.stdout).not.toContain("--rematerialize");
+    expect(bypassed.stdout).not.toContain("runtimeDir");
+    expect(bypassed.stdout).not.toContain("core");
+  });
+
+  test("CUE_BYPASS=1 forwards passthrough args and the exit code verbatim", async () => {
+    const { mkdir } = await import("node:fs/promises");
+    const binDir = join(tmpDir, "fakebin");
+    await mkdir(binDir, { recursive: true });
+    await writeFile(
+      join(binDir, "claude"),
+      '#!/usr/bin/env bash\necho "FAKE-CLAUDE $*"\nexit 42\n',
+      { mode: 0o755 },
+    );
+
+    // No .cue.profile anywhere and stdin is not a TTY, so the normal path would
+    // bail with "no profile resolved" long before exec.
+    const res = cue(["launch", "claude", "--print", "-p", "hello"], {
+      cwd: tmpDir,
+      env: { PATH: `${binDir}:${process.env.PATH}`, CUE_BYPASS: "1" },
+    });
+
+    expect(res.status).toBe(42);
+    expect(res.stdout.trim()).toBe("FAKE-CLAUDE --print -p hello");
   });
 });

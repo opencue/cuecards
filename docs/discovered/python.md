@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-13
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="dwgx-smartcli"></a>
-## 💎 [dwgx/SmartCLI](https://github.com/dwgx/SmartCLI)
+<a id="roxyapi-sdk-python"></a>
+## ✨ [RoxyAPI/sdk-python](https://github.com/RoxyAPI/sdk-python)
 
-**★ 2** · exceptional (score 9) · Python · tags: agent-skills, agent-tools, ai-agents, ansi, ascii-art
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, angel-numbers, astrology-api, biorhythm-api, crystals
 
-Three Agent Skills over one pluggable PTY + pyte core: drive TUIs, design terminal effects, and render cell-accurate UIs. pip install smartcli-toolkit
+Python SDK for astrology, Vedic kundli, tarot, numerology, horoscope, I Ching, biorhythm and more. One multi domain API key, sync and async. AI agent and MCP ready.
 
 ```bash
-cue skills add dwgx/SmartCLI --profile python
+cue skills add RoxyAPI/sdk-python --profile python
 ```
 
 ---

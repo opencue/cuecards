@@ -896,6 +896,36 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     }
   }
 
+  // Codex writes durable thread state directly into CODEX_HOME (sessions/,
+  // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
+  // Claude, it has no credentialsSource overlay, so an atomic rematerialization
+  // must carry every non-cue-managed entry forward. Otherwise changing a
+  // profile while Codex is running deletes the active rollout and transcript
+  // persistence starts failing with "no rollout found for thread id".
+  if (agent === "codex") {
+    const managed = new Set([
+      ".cue-hash",
+      ".cue-skills",
+      "AGENTS.md",
+      "config.toml",
+      "playbooks",
+      "rules",
+      "skills",
+    ]);
+    let oldEntries: string[] = [];
+    try { oldEntries = await readdir(runtimeDir); } catch { /* first build */ }
+    for (const name of oldEntries) {
+      if (managed.has(name)) continue;
+      const oldPath = join(runtimeDir, name);
+      const newPath = join(tmpDir, name);
+      try {
+        await lstat(newPath);
+        continue; // a freshly generated entry wins
+      } catch { /* absent in the new runtime — preserve the old one */ }
+      try { await rename(oldPath, newPath); } catch { /* best-effort per entry */ }
+    }
+  }
+
   // 6. Atomic swap: rm -rf old, rename tmp.
   //
   // Preserve session/credential state from the OLD runtime so resume + auth

@@ -11,7 +11,7 @@ let err: string;
 
 /** Silence install output and capture it for assertions. */
 const sinks = () => ({
-  out: () => {},
+  out: (_s: string) => {},
   err: (s: string) => { err += s; },
 });
 

@@ -4,6 +4,8 @@
  * Flow: resolve(cwd) → if none, runPicker() → materializeRuntime() → exec.
  *
  * Bypass paths:
+ *   CUE_BYPASS=1           exec the real binary and nothing else — no resolve,
+ *                          no materialize, no profile, no config dir
  *   --cue-profile <name>   force this profile
  *   bare claude/codex      open picker in an interactive terminal
  *   --cue-pick             always open picker (ignore pins)
@@ -15,7 +17,7 @@
  */
 
 import { spawn } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import { copyFile, readFile } from "node:fs/promises";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
@@ -42,7 +44,7 @@ import { materializeRuntime } from "../lib/runtime-materializer";
 import { agentLaunchAccent, agentLaunchMessage, startLoader } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
 import { resolveLocalSkill } from "../lib/resolver-local";
-import { expandSkillWildcards, loadMcpRegistry, resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource } from "../lib/runtime-install";
+import { expandSkillWildcards, loadMcpRegistry, resolveClaudeCredentialsSource as resolveSharedClaudeCredentialsSource, runtimeDirFor } from "../lib/runtime-install";
 import { detectKittyTerminal, kittyPlaceholderLabel, transmitKittyImage } from "../lib/kitty-image";
 import { computeStats } from "../lib/analytics";
 import { detectProfileV2, type DetectionResultV2 } from "../lib/auto-detect";
@@ -179,14 +181,22 @@ function parse(args: string[]): ParsedArgs {
   // classification, but leaves `subsetExplicit` false so it uses the keep-set
   // cache — repeat identical `-p` launches don't re-call the classifier.
   //
-  // CUE_BYPASS gates the fold: the skill/profile classifiers spawn `claude`
-  // themselves, and on a machine with cue's shims first on PATH that lands back
-  // here. Without this guard the child's own argv (`--print --model haiku -p
+  // CUE_BYPASS gates the fold, as a second line of defense behind the
+  // short-circuit in `run()` — under a real bypass this parse result never
+  // reaches the classifier at all. Kept because the fold is the specific thing
+  // that turned a re-entered shim into a memory bomb: the classifiers spawn
+  // `claude` themselves, and on a machine with cue's shims first on PATH that
+  // lands back here. Unguarded, the child's own argv (`--print --model haiku -p
   // "<prompt>"`) becomes the next classification prompt, which spawns another
   // classifier, which folds ITS argv, and so on — each level a full ~400MB
-  // claude process carrying every previous level's argv. Measured in the wild:
-  // 10 levels deep, a 67KB command line, ~3GB resident per launch. An explicit
-  // `--subset` still wins, so a deliberate override is never silently dropped.
+  // claude process carrying every previous level's argv.
+  //
+  // MAX_LAUNCH_DEPTH already bounds the PROCESS nesting at 3, so this was never
+  // unbounded recursion. What it was is waste: measured on a live machine, one
+  // classifier carried a 67KB command line with the prompt template repeated 10
+  // times, and 7 concurrent classifier processes (across simultaneously
+  // launching sessions) held ~2.9GB. An explicit `--subset` still wins, so a
+  // deliberate override is never silently dropped.
   //
   // Only the PROSE in passthrough folds — see `passthroughPrompt`. A bare flag
   // (`codex --madmax`, `claude --resume`) carries no prompt, so it leaves the
@@ -255,6 +265,16 @@ function execAgent(bin: string, args: string[], env: NodeJS.ProcessEnv): Promise
     child.on("exit", (code) => res(code ?? 0));
     child.on("error", () => res(127));
   });
+}
+
+/** Keep Cue's isolated CODEX_HOME in sync with Codex/AuthMux's canonical auth. */
+export async function syncCodexAuth(source: string, destination: string): Promise<boolean> {
+  try {
+    await copyFile(source, destination);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -793,6 +813,8 @@ export interface SuggestedEntry {
   confidence: number;
   /** Files / signals that drove the match — surfaced in the hint. */
   reasons: string[];
+  /** AI advice is visually distinguished from deterministic detection. */
+  source?: "ai" | "deterministic";
 }
 
 /**
@@ -1001,7 +1023,9 @@ export function buildPickerSections(
   if (eligibleSuggestions.length > 0) {
     result.push({
       value: `${DIVIDER_PREFIX}suggested`,
-      label: "  ── 🔍 Suggested for this cwd ──",
+      label: eligibleSuggestions.some((s) => s.source === "ai")
+        ? "  ── ✨ AI profile advisor ──"
+        : "  ── 🔍 Suggested for this cwd ──",
       hint: "",
       divider: true,
     });
@@ -1157,7 +1181,10 @@ interface ProfileOptionSet {
   defaultSelector?: string;
 }
 
-async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOptionSet> {
+async function listProfileOptions(
+  pinnedProfile?: string,
+  preferredAgent: "claude" | "codex" = "claude",
+): Promise<ProfileOptionSet> {
   const names = await listProfiles();
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
@@ -1215,6 +1242,13 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
     }
   }
 
+  // Keep the resolved .cue.profile visible as context, but never silently
+  // select it or let it suppress advice. The user remains in control.
+  if (pinnedProfile) {
+    const current = opts.find((o) => o.value === pinnedProfile);
+    if (current) current.hint = `current profile (.cue.profile)${current.hint ? ` — ${current.hint}` : ""}`;
+  }
+
   // Build the Default entry (composite of core + user-added profiles).
   // Pressing Enter on the picker selects it (it's first in the section order).
   // The loaded parts are baked into the label so the user always sees what
@@ -1260,13 +1294,33 @@ async function listProfileOptions(pinnedProfile?: string): Promise<ProfileOption
   // Cwd-detected suggestions (medusa-config.js, Cargo.toml, etc.). Only
   // surfaced when a profile of the same name actually exists in this install.
   const knownProfileNames = new Set(names);
-  const detections = detectProfileV2(cwd).filter((d: DetectionResultV2) =>
+  const deterministic = detectProfileV2(cwd).filter((d: DetectionResultV2) =>
     knownProfileNames.has(d.profile),
   );
+  let detections = deterministic;
+  let suggestionSource: SuggestedEntry["source"] = "deterministic";
+  try {
+    const { adviseProfiles } = await import("../lib/ai-profile-advisor");
+    const advice = await adviseProfiles({
+      cwd,
+      knownProfiles: names,
+      currentProfile: pinnedProfile,
+      preferredAgent,
+    });
+    if (advice) {
+      detections = advice.suggestions;
+      suggestionSource = "ai";
+    }
+  } catch (err) {
+    // Timeout, unavailable agents, invalid JSON, and cache errors all fall
+    // through to the existing deterministic detector.
+    debug("launch:profile-advisor", err);
+  }
   const suggested: SuggestedEntry[] = detections.map((d) => ({
     name: d.profile,
     confidence: d.confidence,
     reasons: d.reasons,
+    source: suggestionSource,
   }));
 
   // Tag any option that the cwd autodetect strongly endorses so the combine
@@ -1497,8 +1551,10 @@ function wrapperEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
  * across `runtime/<profile>/claude/.credentials.json` for matching
  * accountUuid and copies the freshest one back to source.
  */
-async function resolveClaudeCredentialsSource(): Promise<string> {
-  return resolveSharedClaudeCredentialsSource({ healFromRuntime: true });
+async function resolveClaudeCredentialsSource(
+  options: { runtimeDir?: string } = {},
+): Promise<string> {
+  return resolveSharedClaudeCredentialsSource({ healFromRuntime: true, runtimeDir: options.runtimeDir });
 }
 
 /**
@@ -1642,6 +1698,43 @@ export async function run(args: string[]): Promise<number> {
     process.stderr.write("cue launch: missing agent (use 'claude' or 'codex')\n");
     return 1;
   }
+
+  // CUE_BYPASS=1 — the documented escape hatch (docs/launch.md,
+  // docs/shell-install.md): exec the real binary and nothing else. No resolve,
+  // no picker, no materialize, no profile, no relocated config dir. cue flags
+  // are still stripped from the argv, because they are cue's, not the agent's.
+  //
+  // This is the whole contract, and for a long time nothing implemented it:
+  // three readers each did something narrow with the flag (the loader dropped
+  // its spinner, `parse` refused the CUE_SMART_SUBSET fold) while the pipeline
+  // ran in full. That gap is what #133 tripped over — the classifier set
+  // CUE_BYPASS on its spawn, believed it made cue's shim transparent, and
+  // re-entered `cue launch` instead of reaching a raw agent.
+  //
+  // The depth guard above deliberately runs FIRST. If `findRealBinary()` ever
+  // handed back a cue shim, bypassing would exec it, land straight back here,
+  // and loop unbounded; carrying the counter into the child keeps that bounded
+  // the same way the normal path is.
+  if (isBypassEnabled()) {
+    const realBin = await findRealBinary(parsed.agent);
+    if (!realBin) {
+      process.stderr.write(
+        `cue launch: CUE_BYPASS=1 but couldn't find the real '${parsed.agent}' binary on PATH=${process.env.PATH}\n`,
+      );
+      return 127;
+    }
+    debug("launch:bypass", realBin.bin);
+    const bypassEnv: NodeJS.ProcessEnv = {
+      ...process.env,
+      CUE_LAUNCHING: String(depth + 1),
+    };
+    return execAgent(
+      realBin.bin,
+      parsed.passthrough,
+      realBin.viaOverride ? wrapperEnv(bypassEnv) : bypassEnv,
+    );
+  }
+
   if (isAgentHelpPassthrough(parsed)) {
     const realBin = await findRealBinary(parsed.agent);
     if (!realBin) {
@@ -1739,7 +1832,7 @@ export async function run(args: string[]): Promise<number> {
       }
     } catch { /* never block launch on onboarding failure */ }
 
-    const optionSet = await listProfileOptions(existingProfile);
+    const optionSet = await listProfileOptions(existingProfile, parsed.agent);
     const options = optionSet.options;
     // Mine local session history for "you usually pair X with Y" suggestions.
     // The picker pre-checks empirical partners in the combine multiselect.
@@ -1942,8 +2035,26 @@ export async function run(args: string[]): Promise<number> {
     }
   }
 
+  // Per-account runtime isolation. When launched under an authmux parallel
+  // account, key the runtime dir by profile + account so account1/account2
+  // never share one `.credentials.json` and collapse into a single login.
+  // `profileName` still drives profile source, pins, MCP overrides, and
+  // telemetry — only the physical runtime path switches to `runtimeKey`.
+  //
+  // Resolved BEFORE the credentials source below, which needs to know the dir
+  // this launch will write in order to refuse it as its own overlay source.
+  const accountTag = agentKind === "claude-code"
+    ? authmuxAccountTag(ccd, homedir())
+    : undefined;
+  const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
+  if (accountTag) debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
+
   // Credentials source resolution (Claude only):
   //   1. Honor explicit CLAUDE_CONFIG_DIR (set by claude-account2 alias, etc.)
+  //      — except when it names the runtime dir this launch is about to
+  //      rebuild, which is what a nested launch of the SAME profile inherits.
+  //      Overlaying that dir onto itself leaves every unmanaged entry a
+  //      symlink to its own path.
   //   2. Use ~/.claude if it already has .credentials.json
   //   3. Fall back to authmux's most-recently-used parallel profile — so users
   //      who manage Claude accounts via authmux don't have to re-login per
@@ -1951,19 +2062,10 @@ export async function run(args: string[]): Promise<number> {
   //      configDir; we pick the one whose .credentials.json was touched most
   //      recently as a proxy for "the one you actually use."
   const credentialsSource = agentKind === "claude-code"
-    ? await resolveClaudeCredentialsSource()
+    ? await resolveClaudeCredentialsSource({
+      runtimeDir: runtimeDirFor(runtimeKey, "claude-code"),
+    })
     : undefined;
-
-  // Per-account runtime isolation. When launched under an authmux parallel
-  // account, key the runtime dir by profile + account so account1/account2
-  // never share one `.credentials.json` and collapse into a single login.
-  // `profileName` still drives profile source, pins, MCP overrides, and
-  // telemetry — only the physical runtime path switches to `runtimeKey`.
-  const accountTag = agentKind === "claude-code"
-    ? authmuxAccountTag(ccd, homedir())
-    : undefined;
-  const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
-  if (accountTag) debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
 
   // Pin dir: the directory holding the resolving `.cue.profile`, else cwd
   // (a freshly-picked profile was just pinned to cwd). Keys both the project

@@ -81,7 +81,9 @@ You can bypass the shims without uninstalling:
 
 `CUE_BYPASS=1` makes cue exec the real binary directly without touching the
 profile, materializer, or config dir. Use it when you need a raw claude session
-for debugging.
+for debugging. The value must be exactly `1`, cue's own flags are dropped rather
+than forwarded to the agent, and the child inherits the variable — so anything
+that session spawns bypasses too. Full contract: [docs/launch.md](./launch.md).
 
 A bare interactive `claude` or `codex` invocation opens the profile picker by
 default. Invocations with arguments resolve the pinned/default profile without a

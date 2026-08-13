@@ -1,23 +1,23 @@
 ---
 title: "lzehrung/codegraph — Claude Code skill discovered by cue"
-description: "A tool for agents and humans to understand a repo, assess diff impact/risk, navigate code, and answer questions fast."
+description: "Give your coding agent a map of the repository, not a pile of search results."
 layout: page
-updated: 2026-07-08
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [lzehrung/codegraph](https://github.com/lzehrung/codegraph)
 
-**★ 2** · exceptional (score 8) · TypeScript · agent-skills, agent-tools, codegraph, mcp-server, tree-sitter
+**★ 2** · exceptional (score 10) · TypeScript · agent-skills, agent-tools, ai-agent, code-search, codegraph
 
-> A tool for agents and humans to understand a repo, assess diff impact/risk, navigate code, and answer questions fast.
+> Give your coding agent a map of the repository, not a pile of search results.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-08
-- 🏷️ Tags: agent-skills, agent-tools, codegraph, mcp-server, tree-sitter
+- 🗓️ Last pushed: 2026-08-09
+- 🏷️ Tags: agent-skills, agent-tools, ai-agent, code-search, codegraph, llm, mcp, mcp-server, tree-sitter
 
 ## Best fit cue profiles
 

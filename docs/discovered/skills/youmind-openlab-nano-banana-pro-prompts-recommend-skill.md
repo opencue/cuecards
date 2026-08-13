@@ -2,13 +2,13 @@
 title: "YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill — Claude Code skill discovered by cue"
 description: "AI skill for OpenClaw & Claude Code — recommend from 10000+ Nano Banana Pro (Gemini) image prompts. Smart search by use case, content remix, sample images."
 layout: page
-updated: 2026-08-05
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill](https://github.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill)
 
-**★ 1813** · exceptional (score 24.5) · TypeScript · ai-agent, ai-image, claude-code-skill, clawhub, content-creation
+**★ 1821** · exceptional (score 24.5) · TypeScript · ai-agent, ai-image, claude-code-skill, clawhub, content-creation
 
 > AI skill for OpenClaw & Claude Code — recommend from 10000+ Nano Banana Pro (Gemini) image prompts. Smart search by use case, content remix, sample images.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 24.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1813 stars
-- 🗓️ Last pushed: 2026-08-05
+- ⭐ 1821 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: ai-agent, ai-image, claude-code-skill, clawhub, content-creation, gemini, image-generation, nano-banana, openclaw, openclaw-skill, prompt-engineering, prompt-library
 
 ## Best fit cue profiles

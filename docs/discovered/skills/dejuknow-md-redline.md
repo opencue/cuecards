@@ -2,21 +2,21 @@
 title: "dejuknow/md-redline — Claude Code skill discovered by cue"
 description: "Inline review comments for markdown specs. Built-in MCP server hands feedback directly to your AI agent."
 layout: page
-updated: 2026-07-29
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [dejuknow/md-redline](https://github.com/dejuknow/md-redline)
 
-**★ 28** · exceptional (score 13) · TypeScript · agentic-coding, ai-agents, claude-code, code-review, codex
+**★ 31** · exceptional (score 13.1) · TypeScript · agentic-coding, ai-agents, claude-code, code-review, codex
 
 > Inline review comments for markdown specs. Built-in MCP server hands feedback directly to your AI agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 28 stars
-- 🗓️ Last pushed: 2026-07-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.1 based on:
+- ⭐ 31 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: agentic-coding, ai-agents, claude-code, code-review, codex, comments, developer-tools, gemini-cli, human-in-the-loop, markdown, markdown-editor, mcp, mcp-server, review, specs
 
 ## Best fit cue profiles

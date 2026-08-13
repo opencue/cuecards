@@ -2,22 +2,22 @@
 title: "xxluffyxx40/cera-reasoning-harness — Claude Code skill discovered by cue"
 description: "Preserve reasoning chains and logical state in Claude Projects to maintain context and build project understanding across AI sessions."
 layout: page
-updated: 2026-06-27
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xxluffyxx40/cera-reasoning-harness](https://github.com/xxluffyxx40/cera-reasoning-harness)
 
-**★ 0** · exceptional (score 11) · agi, ai-collaboration, claude, claude-projects, claude-skill
+**★ 0** · exceptional (score 12.5) · agi, ai-collaboration, claude, claude-projects, claude-skill
 
 > Preserve reasoning chains and logical state in Claude Projects to maintain context and build project understanding across AI sessions.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-27
+- 🗓️ Last pushed: 2026-08-13
 - 🏷️ Tags: agi, ai-collaboration, claude, claude-projects, claude-skill, harness-engineering, human-ai-collaboration, meta-harness, persistent-memory, provenance-tracking, reasoning-harness
 
 ## Best fit cue profiles

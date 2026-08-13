@@ -2,7 +2,7 @@
 title: "thephenyl02-creator/claude-tier — Claude Code skill discovered by cue"
 description: "A tiny Claude Code skill: /tier installs a quality-first, cost-efficient model/effort-tiering rule into any project's CLAUDE.md."
 layout: page
-updated: 2026-07-23
+updated: 2026-08-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-23
+- 🗓️ Last pushed: 2026-08-12
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-skill, cost-optimization, model-routing
 
 ## Best fit cue profiles

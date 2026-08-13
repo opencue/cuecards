@@ -50,6 +50,7 @@ describe("COMMANDS sentinel keys", () => {
     "scan",
     "score",
     "shell",
+    "auth",
     "current",
     "resolve",
   ] as const;
@@ -75,6 +76,11 @@ describe("COMMANDS summary content", () => {
   test("audit summary mentions audit or security", () => {
     const s = COMMANDS.audit.summary.toLowerCase();
     expect(s.includes("audit") || s.includes("security")).toBe(true);
+  });
+
+  test("auth summary describes authentication management", () => {
+    const s = COMMANDS.auth.summary.toLowerCase();
+    expect(s.includes("auth") || s.includes("login")).toBe(true);
   });
 });
 

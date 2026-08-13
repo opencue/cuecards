@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-13
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="cyanheads-crossref-mcp-server"></a>
-## 💎 [cyanheads/crossref-mcp-server](https://github.com/cyanheads/crossref-mcp-server)
+<a id="kgraph57-evidentia"></a>
+## 💎 [kgraph57/evidentia](https://github.com/kgraph57/evidentia)
 
-**★ 2** · exceptional (score 8.5) · TypeScript · tags: academic-search, ai-agent, bibliometrics, bun, citation
+**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-skills, citation-verification, claude-code, claude-skill, claude-skills
 
-Resolve DOIs, search ~155M scholarly works, and fetch references via the Crossref REST API. STDIO or Streamable HTTP.
+Open-source medical citation verifier: catches fabricated DOI/PMID/NCT references with CLI, MCP, and Claude Code skill.
 
 ```bash
-cue skills add cyanheads/crossref-mcp-server --profile research
+cue skills add kgraph57/evidentia --profile research
 ```
 
 ---

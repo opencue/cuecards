@@ -139,6 +139,10 @@
       "additionalProperties": { "type": "string" },
       "description": "Env vars set when this profile is materialized; values may contain ${VAR} placeholders."
     },
+    "codex_config": {
+      "type": "object",
+      "description": "Extra keys merged into the Codex runtime's config.toml alongside this profile's MCP servers. cue repoints CODEX_HOME at the materialized runtime, so the user's own ~/.codex/config.toml is never read — put sandbox_mode, sandbox_workspace_write, approval_policy, shell_environment_policy and similar here. Emitted verbatim as TOML; ignored for non-Codex agents."
+    },
     "rules": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },

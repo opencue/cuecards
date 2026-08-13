@@ -4,7 +4,7 @@
  */
 
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 
 /**
  * V2 detection result with 0-1 confidence and reasons array.
@@ -220,6 +220,18 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
     // Dedupe reasons so the same file counted twice doesn't inflate the boost.
     if (!entry.reasons.includes(reason)) entry.reasons.push(reason);
     results.set(profile, entry);
+  }
+
+  // Domain-first signals: advertising repos are often infrastructure-shaped
+  // (Docker/Coolify) but their primary job is campaign management. Prefer the
+  // domain profile over generic ops when the repo name/docs/scripts say Ads.
+  const repoText = `${cwd} ${basename(cwd)}`.toLowerCase();
+  const adsSignal = /(^|[^a-z])(ads?|google[-_ ]?ads|campaigns?|ppc|roas|gaql|ad[-_ ]?copy)([^a-z]|$)/.test(repoText);
+  if (adsSignal) {
+    add("google-ads", 0.86, "repository name suggests advertising");
+    add("claude-ads", 0.78, "repository name suggests advertising");
+    add("marketing", 0.72, "repository name suggests advertising");
+    add("ads-manager", 0.68, "repository name suggests advertising");
   }
 
   // ── Rust ──

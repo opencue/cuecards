@@ -2,21 +2,21 @@
 title: "edison7009/EchoBird — Claude Code skill discovered by cue"
 description: "One-click install + model switch:Claude Code,Codex CLI (OpenAI), Grok Build (xAI), Kimi Code (Moonshot) ,Qwen Code,Aider,OpenCode,MiMo Code (Xiaomi),ZCode (Z.AI"
 layout: page
-updated: 2026-07-26
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [edison7009/EchoBird](https://github.com/edison7009/EchoBird)
 
-**★ 2913** · exceptional (score 15) · Rust · claude-code, kimi-code, model-switch, one-click-install, openclaw
+**★ 3004** · exceptional (score 15) · Rust · claude-code, kimi-code, model-switch, one-click-install, openclaw
 
 > One-click install + model switch:Claude Code,Codex CLI (OpenAI), Grok Build (xAI), Kimi Code (Moonshot) ,Qwen Code,Aider,OpenCode,MiMo Code (Xiaomi),ZCode (Z.AI),OpenClaw,Pi,OpenScience,Vibe-Trading,Claude Desktop (3P profile),ChatGPT desktop,OpenCode Desktop,WorkBuddy (Tencent CodeBuddy).
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 2913 stars
-- 🗓️ Last pushed: 2026-07-26
+- ⭐ 3004 stars
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: claude-code, kimi-code, model-switch, one-click-install, openclaw, opencode, qwen-code, workbuddy, zcode
 
 ## Best fit cue profiles

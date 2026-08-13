@@ -2,22 +2,22 @@
 title: "hebulin/mcp-read-file-server — Claude Code skill discovered by cue"
 description: "加密环境文件操作 MCP 工具。当 Node.js 是加密软件白名单进程时，通过 fs 模块自动解密读写文件明文，替代 AI Agent 内置文件工具，适用于任何支持 MCP 协议的 Agent。"
 layout: page
-updated: 2026-07-20
+updated: 2026-08-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [hebulin/mcp-read-file-server](https://github.com/hebulin/mcp-read-file-server)
 
-**★ 3** · exceptional (score 13.7) · JavaScript · agent, ai, claude-code, claude-code-skill, codex
+**★ 4** · exceptional (score 13.8) · JavaScript · agent, ai, claude-code, claude-code-skill, codex
 
 > 加密环境文件操作 MCP 工具。当 Node.js 是加密软件白名单进程时，通过 fs 模块自动解密读写文件明文，替代 AI Agent 内置文件工具，适用于任何支持 MCP 协议的 Agent。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-20
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: agent, ai, claude-code, claude-code-skill, codex, codex-skill, encryption, mcp, mcp-tools, nodejs, read-the-encrypted-file-mcp, readfile, skill
 
 ## Best fit cue profiles

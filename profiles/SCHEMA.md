@@ -39,6 +39,7 @@ env:
 | `skills.plugins` | array of strings (Claude Code plugin names)                | no       | `[]`    | Resolved from `~/.claude/plugins/<name>/skills/`. Targets are namespaced as `<plugin>:<skill>`.    |
 | `mcps`        | array of strings or `{id, agents?, when?}` objects            | no       | `[]`    | Each id must match a key in `cue/mcps/configs/claude.sanitized.json` (or the codex counterpart). Object form adds optional `agents:` scoping and a `when:` activation gate — see "Conditional activation (`when:`)" below. |
 | `env`         | map<string, string>                                           | no       | `{}`    | Plain string values. Placeholders like `"${HOSTINGER_API_TOKEN}"` are substituted at materialize-time. |
+| `codex_config` | map<string, any>                                             | no       | `{}`    | Extra keys merged into the Codex runtime's `config.toml` next to this profile's MCP servers. cue repoints `CODEX_HOME` at the materialized runtime, so the user's own `~/.codex/config.toml` is **never read** — `sandbox_mode`, `sandbox_workspace_write`, `approval_policy`, `shell_environment_policy` and friends have to come through here. Emitted verbatim as TOML; ignored for non-Codex agents. See "codex_config example" below. |
 | `rules`       | array of strings                                              | no       | `[]`    | Markdown rule files under `resources/rules/` (or absolute paths). Symlinked into `<runtime>/rules/` and indexed in CLAUDE.md — Claude reads on demand, no full-body inline. |
 | `commands`    | array of strings                                              | no       | `[]`    | Slash-command markdown files under `resources/commands/`. Symlinked into `<runtime>/commands/` so the user can invoke `/<name>`. Listed in CLAUDE.md's "Available Commands" section. |
 | `codex`       | map<string, string \| number \| bool> (+ `features` map<string, bool>) | no       | `{}`    | Codex-only `config.toml` overrides, written on top of the inherited `~/.codex/config.toml`. See "Codex config overrides" below. |
@@ -209,6 +210,9 @@ mcps:
 
 - **arrays** (`skills.local`, `skills.npx`, `skills.plugins`, `mcps`, `agents`) — concat parent then child, dedupe by identity (string for plain arrays; `repo` for `NpxSkillRef`)
 - **objects** (`skills`, `env`) — child keys override parent keys; nested arrays merge per the rule above
+- **`codex_config`** — same, but one level deeper: a child that sets only
+  `sandbox_workspace_write.network_access` keeps the parent's sibling keys in
+  that table instead of replacing it
 - **scalars** (`name`, `description`) — child overrides parent
 
 **Constraints:**

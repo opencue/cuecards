@@ -2,21 +2,21 @@
 title: "study8677/repobrain — Claude Code skill discovered by cue"
 description: "🧠 RepoBrain (formerly Antigravity) — Give your repo a brain. ChatGPT for your codebase: works in Claude Code, Cursor, Codex, Windsurf & more."
 layout: page
-updated: 2026-07-09
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [study8677/repobrain](https://github.com/study8677/repobrain)
 
-**★ 1294** · exceptional (score 20.5) · Python · agents-sdk, ai-agent, claude-code, code-intelligence, code-search
+**★ 1307** · exceptional (score 20.5) · Python · agents-sdk, ai-agent, claude-code, code-intelligence, code-search
 
 > 🧠 RepoBrain (formerly Antigravity) — Give your repo a brain. ChatGPT for your codebase: works in Claude Code, Cursor, Codex, Windsurf & more.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.5 based on:
-- ⭐ 1294 stars
-- 🗓️ Last pushed: 2026-07-09
+- ⭐ 1307 stars
+- 🗓️ Last pushed: 2026-08-13
 - 🏷️ Tags: agents-sdk, ai-agent, claude-code, code-intelligence, code-search, codebase-qa, codex-cli, copilot, cursor, developer-tools, ide-plugin, knowledge-graph, llm, mcp, mcp-server, multi-agent, openai, python, rag, windsurf
 
 ## Best fit cue profiles

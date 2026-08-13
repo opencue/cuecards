@@ -2,7 +2,7 @@
 title: "Alysiadeceptive64/aemet-client — Claude Code skill discovered by cue"
 description: "Access Spanish weather data through a TypeScript SDK and Model Context Protocol server for the AEMET OpenData API."
 layout: page
-updated: 2026-06-23
+updated: 2026-08-13
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-23
+- 🗓️ Last pushed: 2026-08-13
 - 🏷️ Tags: aemet, anthropic, bot, cap, claude, javascript, llm-tools, mcp, mcp-server, meteorology, model-context-protocol, nodejs, radar, ruby, ruby-api, spain, surf, telegram, weather
 
 ## Best fit cue profiles

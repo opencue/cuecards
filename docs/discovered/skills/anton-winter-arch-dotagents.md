@@ -2,7 +2,7 @@
 title: "anton-winter-arch/dotagents — Claude Code skill discovered by cue"
 description: "My main list of vendor-agnostic agent skills and harness configs"
 layout: page
-updated: 2026-08-02
+updated: 2026-08-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-02
+- 🗓️ Last pushed: 2026-08-09
 - 🏷️ Tags: agent-skills, ai, ai-agents, ai-tools, claude, claude-code, claude-code-skill, claude-code-skills, claude-skills, skills
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "XAKLESK/cre-agent-skills — Claude Code skill discovered by cue"
 description: "Automate CRE analysis with AI skills for multifamily, industrial, and brokerage acquisitions, underwriting, due diligence, and closing"
 layout: page
-updated: 2026-07-25
+updated: 2026-08-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-25
+- 🗓️ Last pushed: 2026-08-10
 - 🏷️ Tags: agent-skills, ai, ai-tools, chatgpt-prompts, claude-code, claude-code-skills, commercial-real-estate, cre, cursor-rules, due-diligence, investment-analysis, mcp, mcp-server, multifamily, prompt-engineering, proptech, real-estate, real-estate-investing, underwriting
 
 ## Best fit cue profiles

@@ -1,17 +1,36 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, mkdir, writeFile, readFile, stat, lstat, rm, readlink, symlink } from "node:fs/promises";
+import {
+  mkdtemp,
+  mkdir,
+  writeFile,
+  readFile,
+  stat,
+  lstat,
+  rm,
+  readlink,
+  symlink,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { utimes } from "node:fs/promises";
 
-import { materializeRuntime, linkPluginCache, isRuntimeStale, shouldIncludeSessionTelemetry } from "./runtime-materializer";
+import {
+  materializeRuntime,
+  linkPluginCache,
+  isRuntimeStale,
+  shouldIncludeSessionTelemetry,
+} from "./runtime-materializer";
 import { MAX_STAGGER_MS } from "./credentials-sync";
 import type { ResolvedProfile } from "../../profiles/_types";
 
 let root: string;
-beforeEach(async () => { root = await mkdtemp(join(tmpdir(), "cue-runtime-")); });
-afterEach(async () => { await rm(root, { recursive: true, force: true }); });
+beforeEach(async () => {
+  root = await mkdtemp(join(tmpdir(), "cue-runtime-"));
+});
+afterEach(async () => {
+  await rm(root, { recursive: true, force: true });
+});
 
 const sampleProfile: ResolvedProfile = {
   name: "test-frontend",
@@ -63,19 +82,22 @@ describe("materializeRuntime", () => {
 
   test("codex config.toml inherits the base config and applies profile overrides", async () => {
     const base = join(root, "base-config.toml");
-    await writeFile(base, [
-      'model = "gpt-5.5"',
-      'model_reasoning_effort = "xhigh"',
-      "model_auto_compact_token_limit = 320000",
-      'sandbox_mode = "danger-full-access"',
-      "",
-      "[features]",
-      "goals = true",
-      "memories = true",
-      "",
-      "[mcp_servers.from-base]",
-      'command = "nope"',
-    ].join("\n"));
+    await writeFile(
+      base,
+      [
+        'model = "gpt-5.5"',
+        'model_reasoning_effort = "xhigh"',
+        "model_auto_compact_token_limit = 320000",
+        'sandbox_mode = "danger-full-access"',
+        "",
+        "[features]",
+        "goals = true",
+        "memories = true",
+        "",
+        "[mcp_servers.from-base]",
+        'command = "nope"',
+      ].join("\n"),
+    );
 
     const profile = {
       ...sampleProfile,
@@ -91,7 +113,9 @@ describe("materializeRuntime", () => {
       agent: "codex",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/skills/${id}`,
-      mcpRegistry: { "google-ads-mcp": { command: "pipx", args: ["run", "google-ads-mcp"] } },
+      mcpRegistry: {
+        "google-ads-mcp": { command: "pipx", args: ["run", "google-ads-mcp"] },
+      },
       userClaudeMd: "",
       codexBaseConfig: base,
     });
@@ -110,6 +134,44 @@ describe("materializeRuntime", () => {
     expect(toml).not.toContain("[mcp_servers.from-base]");
     // TOML requires top-level keys before any table header
     expect(toml.indexOf('model = "gpt-5.5"')).toBeLessThan(toml.indexOf("["));
+  });
+
+  test("legacy codex_config still lands in config.toml", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-codex-config",
+      agents: ["codex"],
+      mcps: [{ id: "google-ads-mcp" }],
+      codexConfig: {
+        sandbox_mode: "workspace-write",
+        approval_policy: "never",
+        sandbox_workspace_write: {
+          writable_roots: ["/home/u/.local/share/ego-lite-linux"],
+          network_access: true,
+        },
+      },
+      inheritanceChain: ["test-codex-config"],
+    };
+    const out = await materializeRuntime({
+      profile,
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: {
+        "google-ads-mcp": { command: "pipx", args: ["run", "google-ads-mcp"] },
+      },
+      userClaudeMd: "",
+    });
+
+    const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
+    expect(toml).toContain('sandbox_mode = "workspace-write"');
+    expect(toml).toContain('approval_policy = "never"');
+    expect(toml).toContain(
+      'sandbox_workspace_write = { "writable_roots" = ["/home/u/.local/share/ego-lite-linux"], "network_access" = true }',
+    );
+    expect(toml.indexOf('sandbox_mode = "workspace-write"')).toBeLessThan(
+      toml.indexOf("[mcp_servers.google-ads-mcp]"),
+    );
   });
 
   test("codex runtime rebuilds when the base config changes", async () => {
@@ -133,15 +195,20 @@ describe("materializeRuntime", () => {
     };
 
     const first = await materializeRuntime(input);
-    const firstHash = (await readFile(join(first.runtimeDir, ".cue-hash"), "utf8")).trim();
+    const firstHash = (
+      await readFile(join(first.runtimeDir, ".cue-hash"), "utf8")
+    ).trim();
 
     await writeFile(base, 'model_reasoning_effort = "xhigh"\n');
     const second = await materializeRuntime(input);
-    const secondHash = (await readFile(join(second.runtimeDir, ".cue-hash"), "utf8")).trim();
+    const secondHash = (
+      await readFile(join(second.runtimeDir, ".cue-hash"), "utf8")
+    ).trim();
 
     expect(secondHash).not.toBe(firstHash);
-    expect(await readFile(join(second.runtimeDir, "config.toml"), "utf8"))
-      .toContain('model_reasoning_effort = "xhigh"');
+    expect(
+      await readFile(join(second.runtimeDir, "config.toml"), "utf8"),
+    ).toContain('model_reasoning_effort = "xhigh"');
   });
 
   test("creates runtime dir with hash and settings.json", async () => {
@@ -155,12 +222,20 @@ describe("materializeRuntime", () => {
       userClaudeMd: "# user CLAUDE.md\n",
     });
 
-    expect(out.runtimeDir).toBe(join(root, "runtime", "test-frontend", "claude"));
+    expect(out.runtimeDir).toBe(
+      join(root, "runtime", "test-frontend", "claude"),
+    );
     expect(out.rebuilt).toBe(true);
 
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
-    expect(settings.enabledPlugins).toEqual({ "frontend-design@claude-plugins-official": true });
-    expect(settings.mcpServers).toEqual({ "claude-mem": { command: "claude-mem", args: [] } });
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.enabledPlugins).toEqual({
+      "frontend-design@claude-plugins-official": true,
+    });
+    expect(settings.mcpServers).toEqual({
+      "claude-mem": { command: "claude-mem", args: [] },
+    });
 
     const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
     expect(claudemd).toMatch(/^<!-- cue: profile=test-frontend/);
@@ -183,24 +258,39 @@ describe("materializeRuntime", () => {
       name: "test-loadout",
       inheritanceChain: ["test-loadout"],
       deferredSkills: [
-        { id: "gstack/browse", description: "Headless browser QA", path: "/skills/gstack/browse/SKILL.md" },
+        {
+          id: "gstack/browse",
+          description: "Headless browser QA",
+          path: "/skills/gstack/browse/SKILL.md",
+        },
       ],
     };
     const out = await materializeRuntime({ ...opts, profile: withDeferred });
-    const indexPath = join(out.runtimeDir, "skills", "cue-deferred-skills", "SKILL.md");
+    const indexPath = join(
+      out.runtimeDir,
+      "skills",
+      "cue-deferred-skills",
+      "SKILL.md",
+    );
     const index = await readFile(indexPath, "utf8");
     expect(index).toContain("gstack/browse");
     expect(index).toContain("Headless browser QA");
     expect(index).toContain("/skills/gstack/browse/SKILL.md");
     // The generated index is a real file, not a symlink into resources.
-    expect((await lstat(join(out.runtimeDir, "skills", "cue-deferred-skills"))).isSymbolicLink()).toBe(false);
+    expect(
+      (
+        await lstat(join(out.runtimeDir, "skills", "cue-deferred-skills"))
+      ).isSymbolicLink(),
+    ).toBe(false);
 
     // Same profile without deferredSkills → different hash (rebuild) and no index.
     const bare: ResolvedProfile = { ...withDeferred };
     delete (bare as { deferredSkills?: unknown }).deferredSkills;
     const out2 = await materializeRuntime({ ...opts, profile: bare });
     expect(out2.hash).not.toBe(out.hash);
-    await expect(stat(join(out2.runtimeDir, "skills", "cue-deferred-skills"))).rejects.toThrow();
+    await expect(
+      stat(join(out2.runtimeDir, "skills", "cue-deferred-skills")),
+    ).rejects.toThrow();
   });
 
   test("codex rebuild preserves rollout and thread-store state", async () => {
@@ -218,10 +308,20 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
     const first = await materializeRuntime({ ...opts, profile });
-    const rollout = join(first.runtimeDir, "sessions", "2026", "08", "10", "rollout-thread.jsonl");
+    const rollout = join(
+      first.runtimeDir,
+      "sessions",
+      "2026",
+      "08",
+      "10",
+      "rollout-thread.jsonl",
+    );
     await mkdir(join(rollout, ".."), { recursive: true });
-    await writeFile(rollout, "{\"type\":\"response_item\"}\n");
-    await writeFile(join(first.runtimeDir, "thread_history_1.sqlite"), "thread-state");
+    await writeFile(rollout, '{"type":"response_item"}\n');
+    await writeFile(
+      join(first.runtimeDir, "thread_history_1.sqlite"),
+      "thread-state",
+    );
 
     const rebuilt = await materializeRuntime({
       ...opts,
@@ -230,7 +330,12 @@ describe("materializeRuntime", () => {
 
     expect(rebuilt.rebuilt).toBe(true);
     expect(await readFile(rollout, "utf8")).toContain("response_item");
-    expect(await readFile(join(rebuilt.runtimeDir, "thread_history_1.sqlite"), "utf8")).toBe("thread-state");
+    expect(
+      await readFile(
+        join(rebuilt.runtimeDir, "thread_history_1.sqlite"),
+        "utf8",
+      ),
+    ).toBe("thread-state");
   });
 
   test("when: gate — MCP excluded while its env condition fails, included once it passes", async () => {
@@ -239,10 +344,7 @@ describe("materializeRuntime", () => {
     const gatedProfile: ResolvedProfile = {
       ...sampleProfile,
       name: "test-gated",
-      mcps: [
-        { id: "claude-mem" },
-        { id: "gated", when: { env: ENV_KEY } },
-      ],
+      mcps: [{ id: "claude-mem" }, { id: "gated", when: { env: ENV_KEY } }],
       inheritanceChain: ["test-gated"],
     };
     const registry = {
@@ -261,12 +363,17 @@ describe("materializeRuntime", () => {
     // re-synced on every launch (cache hit or rebuild), so it reflects the
     // current cwd/env gate even when the profile hash is unchanged.
     const claudeJsonMcps = async (dir: string) =>
-      JSON.parse(await readFile(join(dir, ".claude.json"), "utf8")).mcpServers as Record<string, unknown>;
+      JSON.parse(await readFile(join(dir, ".claude.json"), "utf8"))
+        .mcpServers as Record<string, unknown>;
 
     // Condition fails (env unset): the gated server is absent.
     const off = await materializeRuntime({ profile: gatedProfile, ...opts });
-    expect(Object.keys(await claudeJsonMcps(off.runtimeDir))).toEqual(["claude-mem"]);
-    const offSettings = JSON.parse(await readFile(join(off.runtimeDir, "settings.json"), "utf8"));
+    expect(Object.keys(await claudeJsonMcps(off.runtimeDir))).toEqual([
+      "claude-mem",
+    ]);
+    const offSettings = JSON.parse(
+      await readFile(join(off.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(Object.keys(offSettings.mcpServers)).toEqual(["claude-mem"]);
 
     // Condition passes (env set): the gated server activates on the next launch
@@ -274,7 +381,9 @@ describe("materializeRuntime", () => {
     try {
       process.env[ENV_KEY] = "1";
       const on = await materializeRuntime({ profile: gatedProfile, ...opts });
-      expect((await claudeJsonMcps(on.runtimeDir)).gated).toEqual({ command: "gated-server" });
+      expect((await claudeJsonMcps(on.runtimeDir)).gated).toEqual({
+        command: "gated-server",
+      });
     } finally {
       delete process.env[ENV_KEY];
     }
@@ -297,47 +406,45 @@ describe("materializeRuntime", () => {
       userClaudeMd: "# user CLAUDE.md\n",
     });
 
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
-    expect(settings.env).toEqual({ CLAUDE_CODE_SUBAGENT_MODEL: "claude-sonnet-4-6" });
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.env).toEqual({
+      CLAUDE_CODE_SUBAGENT_MODEL: "claude-sonnet-4-6",
+    });
     // unresolved "${...}" placeholder and non-allowlisted keys stay out
     expect(settings.env.AWS_SECRET_ACCESS_KEY).toBeUndefined();
   });
 
   test("surfaces ANTHROPIC_BASE_URL when the proxy health endpoint responds (health-gate pass)", async () => {
     const port = 43111;
-      const out = await materializeRuntime({
-        profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` } },
-        agent: "claude-code",
-        runtimeRoot: join(root, "runtime"),
-        skillSourceLookup: async (id) => `/fake/skills/${id}`,
-        mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
-        userClaudeMd: "# user CLAUDE.md\n",
-        proxyHealthCheck: async () => true,
-      });
-      const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
-      expect(settings.env).toEqual({ ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` });
+    const out = await materializeRuntime({
+      profile: {
+        ...sampleProfile,
+        env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` },
+      },
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+      userClaudeMd: "# user CLAUDE.md\n",
+      proxyHealthCheck: async () => true,
+    });
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.env).toEqual({
+      ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}`,
+    });
   });
 
   test("drops ANTHROPIC_BASE_URL when the port is open but health does not answer", async () => {
     const port = 43112;
-      const out = await materializeRuntime({
-        profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` } },
-        agent: "claude-code",
-        runtimeRoot: join(root, "runtime"),
-        skillSourceLookup: async (id) => `/fake/skills/${id}`,
-        mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
-        userClaudeMd: "# user CLAUDE.md\n",
-        proxyHealthCheck: async () => false,
-      });
-      const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
-      expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
-  });
-
-  test("drops ANTHROPIC_BASE_URL when the proxy is unreachable (health-gate fail-open)", async () => {
-    const closedPort = 43113;
-
     const out = await materializeRuntime({
-      profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${closedPort}` } },
+      profile: {
+        ...sampleProfile,
+        env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` },
+      },
       agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/skills/${id}`,
@@ -345,7 +452,30 @@ describe("materializeRuntime", () => {
       userClaudeMd: "# user CLAUDE.md\n",
       proxyHealthCheck: async () => false,
     });
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+  });
+
+  test("drops ANTHROPIC_BASE_URL when the proxy is unreachable (health-gate fail-open)", async () => {
+    const closedPort = 43113;
+
+    const out = await materializeRuntime({
+      profile: {
+        ...sampleProfile,
+        env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${closedPort}` },
+      },
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+      userClaudeMd: "# user CLAUDE.md\n",
+      proxyHealthCheck: async () => false,
+    });
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
     // Fail-open: the unreachable base URL is dropped, so Claude talks to Anthropic directly.
     expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
   });
@@ -400,11 +530,16 @@ describe("materializeRuntime", () => {
     const first = await materializeRuntime(args);
     expect(first.rebuilt).toBe(true);
     // Stomp the stored hash with a stale value (what a prior version would have left).
-    await writeFile(join(first.runtimeDir, ".cue-hash"), "stale-hash-from-old-version\n");
+    await writeFile(
+      join(first.runtimeDir, ".cue-hash"),
+      "stale-hash-from-old-version\n",
+    );
     const second = await materializeRuntime(args);
     expect(second.rebuilt).toBe(true);
     // And the freshly written hash is the real current one (no longer stale).
-    const stored = (await readFile(join(first.runtimeDir, ".cue-hash"), "utf8")).trim();
+    const stored = (
+      await readFile(join(first.runtimeDir, ".cue-hash"), "utf8")
+    ).trim();
     expect(stored).toMatch(/^[a-f0-9]{64}$/);
   });
 
@@ -418,7 +553,9 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     });
     // Flat layout (skills/<slug>) so Claude Code's one-level discovery finds it.
-    const link = await readlink(join(out.runtimeDir, "skills", "ui-ux-pro-max"));
+    const link = await readlink(
+      join(out.runtimeDir, "skills", "ui-ux-pro-max"),
+    );
     expect(link).toBe("/fake/source/design/ui-ux-pro-max");
   });
 
@@ -431,8 +568,13 @@ describe("materializeRuntime", () => {
       mcpRegistry: {},
       userClaudeMd: "",
     });
-    const manifest = await readFile(join(out.runtimeDir, ".cue-skills"), "utf8");
-    expect(manifest.split("\n").filter(Boolean)).toContain("design/ui-ux-pro-max");
+    const manifest = await readFile(
+      join(out.runtimeDir, ".cue-skills"),
+      "utf8",
+    );
+    expect(manifest.split("\n").filter(Boolean)).toContain(
+      "design/ui-ux-pro-max",
+    );
   });
 
   test("slug collisions resolve last-wins; both ids stay in the manifest", async () => {
@@ -440,10 +582,7 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       skills: {
         ...sampleProfile.skills,
-        local: [
-          { id: "plan/investigate" },
-          { id: "gstack/investigate" },
-        ],
+        local: [{ id: "plan/investigate" }, { id: "gstack/investigate" }],
       },
     };
     const out = await materializeRuntime({
@@ -458,7 +597,9 @@ describe("materializeRuntime", () => {
     const link = await readlink(join(out.runtimeDir, "skills", "investigate"));
     expect(link).toBe("/fake/source/gstack/investigate");
     // Both remain in the manifest so smart-loader knows the lean one is loaded too.
-    const manifest = (await readFile(join(out.runtimeDir, ".cue-skills"), "utf8"))
+    const manifest = (
+      await readFile(join(out.runtimeDir, ".cue-skills"), "utf8")
+    )
       .split("\n")
       .filter(Boolean);
     expect(manifest).toContain("plan/investigate");
@@ -468,20 +609,22 @@ describe("materializeRuntime", () => {
   test("excludes resources whose agents list does not include current agent", async () => {
     const filtered: ResolvedProfile = {
       ...sampleProfile,
-      mcps: [
-        { id: "codex-only", agents: ["codex"] },
-        { id: "claude-mem" },
-      ],
+      mcps: [{ id: "codex-only", agents: ["codex"] }, { id: "claude-mem" }],
     };
     const out = await materializeRuntime({
       profile: filtered,
       agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
-      mcpRegistry: { "codex-only": {}, "claude-mem": { command: "claude-mem" } },
+      mcpRegistry: {
+        "codex-only": {},
+        "claude-mem": { command: "claude-mem" },
+      },
       userClaudeMd: "",
     });
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(Object.keys(settings.mcpServers)).toEqual(["claude-mem"]);
   });
 
@@ -490,7 +633,10 @@ describe("materializeRuntime", () => {
     const { mkdir, writeFile } = await import("node:fs/promises");
     const { lstat } = await import("node:fs/promises");
     await mkdir(credSrc, { recursive: true });
-    await writeFile(join(credSrc, ".credentials.json"), '{"claudeAiOauth":{"token":"abc"}}');
+    await writeFile(
+      join(credSrc, ".credentials.json"),
+      '{"claudeAiOauth":{"token":"abc"}}',
+    );
 
     const out = await materializeRuntime({
       profile: sampleProfile,
@@ -508,7 +654,10 @@ describe("materializeRuntime", () => {
     expect(st.isSymbolicLink()).toBe(false);
     expect(st.isFile()).toBe(true);
     // Contents match the source
-    const contents = await readFile(join(out.runtimeDir, ".credentials.json"), "utf8");
+    const contents = await readFile(
+      join(out.runtimeDir, ".credentials.json"),
+      "utf8",
+    );
     expect(contents).toBe('{"claudeAiOauth":{"token":"abc"}}');
   });
 
@@ -522,7 +671,10 @@ describe("materializeRuntime", () => {
     await writeFile(join(credSrc, ".session-stats.json"), '{"x":1}');
     await writeFile(join(credSrc, ".credentials.json"), '{"token":"a"}');
     // cue-managed files in source MUST NOT be symlinked (cue overrides them).
-    await writeFile(join(credSrc, "settings.json"), JSON.stringify({ permissions: { allow: [] } }));
+    await writeFile(
+      join(credSrc, "settings.json"),
+      JSON.stringify({ permissions: { allow: [] } }),
+    );
 
     const out = await materializeRuntime({
       profile: sampleProfile,
@@ -535,10 +687,18 @@ describe("materializeRuntime", () => {
     });
 
     // Source state symlinked through
-    expect(await readlink(join(out.runtimeDir, "sessions"))).toBe(join(credSrc, "sessions"));
-    expect(await readlink(join(out.runtimeDir, "projects"))).toBe(join(credSrc, "projects"));
-    expect(await readlink(join(out.runtimeDir, "history.jsonl"))).toBe(join(credSrc, "history.jsonl"));
-    expect(await readlink(join(out.runtimeDir, ".session-stats.json"))).toBe(join(credSrc, ".session-stats.json"));
+    expect(await readlink(join(out.runtimeDir, "sessions"))).toBe(
+      join(credSrc, "sessions"),
+    );
+    expect(await readlink(join(out.runtimeDir, "projects"))).toBe(
+      join(credSrc, "projects"),
+    );
+    expect(await readlink(join(out.runtimeDir, "history.jsonl"))).toBe(
+      join(credSrc, "history.jsonl"),
+    );
+    expect(await readlink(join(out.runtimeDir, ".session-stats.json"))).toBe(
+      join(credSrc, ".session-stats.json"),
+    );
 
     // .credentials.json is COPIED (not symlinked) because Claude Code's
     // token refresh does atomic write which breaks symlinks.
@@ -566,18 +726,33 @@ describe("materializeRuntime", () => {
       credentialsSource: credSrc,
     };
     const first = await materializeRuntime({ ...opts, profile: sampleProfile });
-    await mkdir(join(first.runtimeDir, "session-env", "live-session"), { recursive: true });
-    await writeFile(join(first.runtimeDir, "session-env", "live-session", "env"), "ACTIVE=1\n");
+    await mkdir(join(first.runtimeDir, "session-env", "live-session"), {
+      recursive: true,
+    });
+    await writeFile(
+      join(first.runtimeDir, "session-env", "live-session", "env"),
+      "ACTIVE=1\n",
+    );
     await mkdir(join(first.runtimeDir, "tasks"), { recursive: true });
-    await writeFile(join(first.runtimeDir, "tasks", "task.json"), "{\"active\":true}\n");
+    await writeFile(
+      join(first.runtimeDir, "tasks", "task.json"),
+      '{"active":true}\n',
+    );
 
     const rebuilt = await materializeRuntime({
       ...opts,
       profile: { ...sampleProfile, description: "force rebuild" },
     });
 
-    expect(await readFile(join(rebuilt.runtimeDir, "session-env", "live-session", "env"), "utf8")).toBe("ACTIVE=1\n");
-    expect(await readFile(join(rebuilt.runtimeDir, "tasks", "task.json"), "utf8")).toContain("active");
+    expect(
+      await readFile(
+        join(rebuilt.runtimeDir, "session-env", "live-session", "env"),
+        "utf8",
+      ),
+    ).toBe("ACTIVE=1\n");
+    expect(
+      await readFile(join(rebuilt.runtimeDir, "tasks", "task.json"), "utf8"),
+    ).toContain("active");
   });
 
   test("credentialsSource: preserves account-level settings but isolates MCPs + plugins per profile", async () => {
@@ -611,9 +786,14 @@ describe("materializeRuntime", () => {
       credentialsSource: credSrc,
     });
 
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
     // Account-level settings preserved (these are user-scoped, not profile-scoped)
-    expect(settings.permissions).toEqual({ allow: ["Bash(*)"], defaultMode: "auto" });
+    expect(settings.permissions).toEqual({
+      allow: ["Bash(*)"],
+      defaultMode: "auto",
+    });
     expect(settings.trustedDirectories).toEqual(["/home/user/work"]);
     expect(settings.skipAutoPermissionPrompt).toBe(true);
     // Profile plugins/mcps are EXCLUSIVE — only what the profile declared.
@@ -653,21 +833,37 @@ describe("materializeRuntime", () => {
     };
 
     // First launch with account A → builds runtime with A's creds + settings
-    const first = await materializeRuntime({ ...args, credentialsSource: credSrcA });
+    const first = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrcA,
+    });
     expect(first.rebuilt).toBe(true);
     // .credentials.json is a copy, not a symlink
-    const contentsA = await readFile(join(first.runtimeDir, ".credentials.json"), "utf8");
+    const contentsA = await readFile(
+      join(first.runtimeDir, ".credentials.json"),
+      "utf8",
+    );
     expect(contentsA).toBe('{"token":"A"}');
-    let s1 = JSON.parse(await readFile(join(first.runtimeDir, "settings.json"), "utf8"));
+    let s1 = JSON.parse(
+      await readFile(join(first.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(s1.permissions.allow).toEqual(["A"]);
 
     // Second launch with account B (same profile) → hash matches → cache hit.
     // Settings rebuilt from B; .credentials.json re-copied from B.
-    const second = await materializeRuntime({ ...args, credentialsSource: credSrcB });
+    const second = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrcB,
+    });
     expect(second.rebuilt).toBe(false);
-    const contentsB = await readFile(join(second.runtimeDir, ".credentials.json"), "utf8");
+    const contentsB = await readFile(
+      join(second.runtimeDir, ".credentials.json"),
+      "utf8",
+    );
     expect(contentsB).toBe('{"token":"B"}');
-    let s2 = JSON.parse(await readFile(join(second.runtimeDir, "settings.json"), "utf8"));
+    let s2 = JSON.parse(
+      await readFile(join(second.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(s2.permissions.allow).toEqual(["B"]);
   });
 
@@ -683,8 +879,18 @@ describe("materializeRuntime", () => {
     await mkdir(fresh, { recursive: true });
     const STALE = 1_000;
     const FRESH = 9_000_000_000_000;
-    await writeFile(join(stale, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: STALE, refreshToken: "dead" } }));
-    await writeFile(join(fresh, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" } }));
+    await writeFile(
+      join(stale, ".credentials.json"),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: STALE, refreshToken: "dead" },
+      }),
+    );
+    await writeFile(
+      join(fresh, ".credentials.json"),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" },
+      }),
+    );
 
     const base = {
       agent: "claude-code" as const,
@@ -695,24 +901,43 @@ describe("materializeRuntime", () => {
     };
     const p1: ResolvedProfile = { ...sampleProfile, name: "rotate" };
     // Extra skill → different hash → forces a REBUILD (exercises the preserve step).
-    const p2: ResolvedProfile = { ...sampleProfile, name: "rotate", skills: { local: [{ id: "design/ui-ux-pro-max" }, { id: "design/extra" }], npx: [] } };
+    const p2: ResolvedProfile = {
+      ...sampleProfile,
+      name: "rotate",
+      skills: {
+        local: [{ id: "design/ui-ux-pro-max" }, { id: "design/extra" }],
+        npx: [],
+      },
+    };
 
     // First launch: runtime ends up with the (then-current) STALE source token.
-    const first = await materializeRuntime({ ...base, profile: p1, credentialsSource: stale });
+    const first = await materializeRuntime({
+      ...base,
+      profile: p1,
+      credentialsSource: stale,
+    });
     expect(first.rebuilt).toBe(true);
 
     // syncFreshestToSource has since healed source to the live token. Relaunch
     // with a changed profile → rebuild path runs the preserve step.
-    const second = await materializeRuntime({ ...base, profile: p2, credentialsSource: fresh });
+    const second = await materializeRuntime({
+      ...base,
+      profile: p2,
+      credentialsSource: fresh,
+    });
     expect(second.rebuilt).toBe(true);
 
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("live");
     // A runtime's copy carries a staggered expiry so siblings do not all rotate
     // in the same second, so this checks the fresh token's window rather than
     // its exact value — still nowhere near the stale token's expiry.
     expect(creds.claudeAiOauth.expiresAt).toBeLessThanOrEqual(FRESH);
-    expect(creds.claudeAiOauth.expiresAt).toBeGreaterThanOrEqual(FRESH - MAX_STAGGER_MS);
+    expect(creds.claudeAiOauth.expiresAt).toBeGreaterThanOrEqual(
+      FRESH - MAX_STAGGER_MS,
+    );
   });
 
   test("credentialsSource: rebuild keeps the runtime token when source is half-logged-out", async () => {
@@ -724,8 +949,16 @@ describe("materializeRuntime", () => {
     await mkdir(fresh, { recursive: true });
     await mkdir(loggedOut, { recursive: true });
     const FRESH = 9_000_000_000_000;
-    await writeFile(join(fresh, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" } }));
-    await writeFile(join(loggedOut, ".credentials.json"), JSON.stringify({ claudeAiOauth: { refreshToken: "" } }));
+    await writeFile(
+      join(fresh, ".credentials.json"),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" },
+      }),
+    );
+    await writeFile(
+      join(loggedOut, ".credentials.json"),
+      JSON.stringify({ claudeAiOauth: { refreshToken: "" } }),
+    );
 
     const base = {
       agent: "claude-code" as const,
@@ -735,19 +968,38 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
     const p1: ResolvedProfile = { ...sampleProfile, name: "rotate2" };
-    const p2: ResolvedProfile = { ...sampleProfile, name: "rotate2", skills: { local: [{ id: "design/ui-ux-pro-max" }, { id: "design/extra" }], npx: [] } };
+    const p2: ResolvedProfile = {
+      ...sampleProfile,
+      name: "rotate2",
+      skills: {
+        local: [{ id: "design/ui-ux-pro-max" }, { id: "design/extra" }],
+        npx: [],
+      },
+    };
 
-    const first = await materializeRuntime({ ...base, profile: p1, credentialsSource: fresh });
+    const first = await materializeRuntime({
+      ...base,
+      profile: p1,
+      credentialsSource: fresh,
+    });
     expect(first.rebuilt).toBe(true);
-    const second = await materializeRuntime({ ...base, profile: p2, credentialsSource: loggedOut });
+    const second = await materializeRuntime({
+      ...base,
+      profile: p2,
+      credentialsSource: loggedOut,
+    });
     expect(second.rebuilt).toBe(true);
 
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("live");
     // Staggered window, as above — the guard is that the dead source token did
     // not win, not the exact millisecond.
     expect(creds.claudeAiOauth.expiresAt).toBeLessThanOrEqual(FRESH);
-    expect(creds.claudeAiOauth.expiresAt).toBeGreaterThanOrEqual(FRESH - MAX_STAGGER_MS);
+    expect(creds.claudeAiOauth.expiresAt).toBeGreaterThanOrEqual(
+      FRESH - MAX_STAGGER_MS,
+    );
   });
 
   test("credentialsSource: cache hit re-seeds a FILE .claude.json on account switch", async () => {
@@ -761,10 +1013,22 @@ describe("materializeRuntime", () => {
     const credSrcB = join(root, "accB");
     await mkdir(credSrcA, { recursive: true });
     await mkdir(credSrcB, { recursive: true });
-    await writeFile(join(credSrcA, ".credentials.json"), '{"claudeAiOauth":{"refreshToken":"A"}}');
-    await writeFile(join(credSrcB, ".credentials.json"), '{"claudeAiOauth":{"refreshToken":"B"}}');
-    await writeFile(join(credSrcA, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }));
-    await writeFile(join(credSrcB, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }));
+    await writeFile(
+      join(credSrcA, ".credentials.json"),
+      '{"claudeAiOauth":{"refreshToken":"A"}}',
+    );
+    await writeFile(
+      join(credSrcB, ".credentials.json"),
+      '{"claudeAiOauth":{"refreshToken":"B"}}',
+    );
+    await writeFile(
+      join(credSrcA, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }),
+    );
+    await writeFile(
+      join(credSrcB, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }),
+    );
 
     const args = {
       profile: { ...sampleProfile, name: "acct-switch" },
@@ -775,22 +1039,35 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
 
-    const first = await materializeRuntime({ ...args, credentialsSource: credSrcA });
+    const first = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrcA,
+    });
     expect(first.rebuilt).toBe(true);
     // Simulate Claude Code's atomic rewrite: the .claude.json symlink becomes
     // a local regular file carrying account A's identity + session state.
     await rm(join(first.runtimeDir, ".claude.json"), { force: true });
     await writeFile(
       join(first.runtimeDir, ".claude.json"),
-      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" }, projects: { "/w": {} } }),
+      JSON.stringify({
+        oauthAccount: { accountUuid: "uuid-A" },
+        projects: { "/w": {} },
+      }),
     );
 
     // Account B launches the same profile → cache hit → identity must follow.
-    const second = await materializeRuntime({ ...args, credentialsSource: credSrcB });
+    const second = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrcB,
+    });
     expect(second.rebuilt).toBe(false);
-    const cj = JSON.parse(await readFile(join(second.runtimeDir, ".claude.json"), "utf8"));
+    const cj = JSON.parse(
+      await readFile(join(second.runtimeDir, ".claude.json"), "utf8"),
+    );
     expect(cj.oauthAccount.accountUuid).toBe("uuid-B");
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("B");
   });
 
@@ -799,12 +1076,21 @@ describe("materializeRuntime", () => {
     await mkdir(account, { recursive: true });
     await writeFile(
       join(account, ".credentials.json"),
-      JSON.stringify({ claudeAiOauth: { refreshToken: "live", expiresAt: 9_000_000_000_000 } }),
+      JSON.stringify({
+        claudeAiOauth: { refreshToken: "live", expiresAt: 9_000_000_000_000 },
+      }),
     );
-    await writeFile(join(account, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-live" } }));
+    await writeFile(
+      join(account, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-live" } }),
+    );
 
     const args = {
-      profile: { ...sampleProfile, name: "self-source", inheritanceChain: ["self-source"] },
+      profile: {
+        ...sampleProfile,
+        name: "self-source",
+        inheritanceChain: ["self-source"],
+      },
       agent: "claude-code" as const,
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id: string) => `/fake/source/${id}`,
@@ -812,16 +1098,24 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
 
-    const first = await materializeRuntime({ ...args, credentialsSource: account });
+    const first = await materializeRuntime({
+      ...args,
+      credentialsSource: account,
+    });
     await mkdir(join(first.runtimeDir, "cache"), { recursive: true });
     await writeFile(join(first.runtimeDir, "cache", "cached"), "data");
     await writeFile(join(first.runtimeDir, ".cue-hash"), "0".repeat(64));
 
-    const second = await materializeRuntime({ ...args, credentialsSource: first.runtimeDir });
+    const second = await materializeRuntime({
+      ...args,
+      credentialsSource: first.runtimeDir,
+    });
 
     expect(second.rebuilt).toBe(true);
     await expect(readlink(join(second.runtimeDir, "cache"))).rejects.toThrow();
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("live");
   });
 
@@ -830,8 +1124,14 @@ describe("materializeRuntime", () => {
     // (projects list etc.) that Claude wrote into the runtime's local file.
     const credSrc = join(root, "accSame");
     await mkdir(credSrc, { recursive: true });
-    await writeFile(join(credSrc, ".credentials.json"), '{"claudeAiOauth":{"refreshToken":"A"}}');
-    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }));
+    await writeFile(
+      join(credSrc, ".credentials.json"),
+      '{"claudeAiOauth":{"refreshToken":"A"}}',
+    );
+    await writeFile(
+      join(credSrc, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }),
+    );
 
     const args = {
       profile: { ...sampleProfile, name: "acct-same" },
@@ -842,17 +1142,28 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
 
-    const first = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    const first = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrc,
+    });
     await rm(join(first.runtimeDir, ".claude.json"), { force: true });
-    const localState = JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" }, projects: { "/w": { history: [1] } } });
+    const localState = JSON.stringify({
+      oauthAccount: { accountUuid: "uuid-A" },
+      projects: { "/w": { history: [1] } },
+    });
     await writeFile(join(first.runtimeDir, ".claude.json"), localState);
 
-    const second = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    const second = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrc,
+    });
     expect(second.rebuilt).toBe(false);
     // Identity + per-profile session state preserved (syncMcpsIntoClaudeJson
     // legitimately rewrites the file to merge mcpServers, so compare fields,
     // not bytes).
-    const cj = JSON.parse(await readFile(join(second.runtimeDir, ".claude.json"), "utf8"));
+    const cj = JSON.parse(
+      await readFile(join(second.runtimeDir, ".claude.json"), "utf8"),
+    );
     expect(cj.oauthAccount.accountUuid).toBe("uuid-A");
     expect(cj.projects).toEqual({ "/w": { history: [1] } });
   });
@@ -867,10 +1178,15 @@ describe("materializeRuntime", () => {
     const FRESH = 9_999_999;
     const credSrc = join(root, "accStaleSource");
     await mkdir(credSrc, { recursive: true });
-    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }));
+    await writeFile(
+      join(credSrc, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }),
+    );
     await writeFile(
       join(credSrc, ".credentials.json"),
-      JSON.stringify({ claudeAiOauth: { expiresAt: STALE, refreshToken: "dead" } }),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: STALE, refreshToken: "dead" },
+      }),
     );
 
     const args = {
@@ -882,17 +1198,27 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
 
-    const first = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    const first = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrc,
+    });
     expect(first.rebuilt).toBe(true);
     // The running session refreshed, rotating source's token dead.
     await writeFile(
       join(first.runtimeDir, ".credentials.json"),
-      JSON.stringify({ claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" } }),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: FRESH, refreshToken: "live" },
+      }),
     );
 
-    const second = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    const second = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrc,
+    });
     expect(second.rebuilt).toBe(false);
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("live");
     expect(creds.claudeAiOauth.expiresAt).toBe(FRESH);
   });
@@ -906,11 +1232,19 @@ describe("materializeRuntime", () => {
     const home = join(root, "homeB");
     const credSrc = join(home, ".claude");
     await mkdir(credSrc, { recursive: true });
-    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ firstStartTime: "t" }));
-    await writeFile(join(home, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }));
+    await writeFile(
+      join(credSrc, ".claude.json"),
+      JSON.stringify({ firstStartTime: "t" }),
+    );
+    await writeFile(
+      join(home, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }),
+    );
     await writeFile(
       join(credSrc, ".credentials.json"),
-      JSON.stringify({ claudeAiOauth: { expiresAt: 1_000, refreshToken: "B" } }),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: 1_000, refreshToken: "B" },
+      }),
     );
 
     const args = {
@@ -922,7 +1256,10 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
 
-    const first = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    const first = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrc,
+    });
     expect(first.rebuilt).toBe(true);
     // Account A had been logged in here: Claude's atomic rewrite left a local
     // FILE identity, and A's token outlives B's.
@@ -933,12 +1270,19 @@ describe("materializeRuntime", () => {
     );
     await writeFile(
       join(first.runtimeDir, ".credentials.json"),
-      JSON.stringify({ claudeAiOauth: { expiresAt: 9_999_999, refreshToken: "A" } }),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: 9_999_999, refreshToken: "A" },
+      }),
     );
 
-    const second = await materializeRuntime({ ...args, credentialsSource: credSrc });
+    const second = await materializeRuntime({
+      ...args,
+      credentialsSource: credSrc,
+    });
     expect(second.rebuilt).toBe(false);
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("B");
   });
 
@@ -951,10 +1295,26 @@ describe("materializeRuntime", () => {
     await mkdir(credSrcA, { recursive: true });
     await mkdir(credSrcB, { recursive: true });
     const LATER = 9_000_000_000_000;
-    await writeFile(join(credSrcA, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: LATER, refreshToken: "A" } }));
-    await writeFile(join(credSrcB, ".credentials.json"), JSON.stringify({ claudeAiOauth: { expiresAt: 1_000, refreshToken: "B" } }));
-    await writeFile(join(credSrcA, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }));
-    await writeFile(join(credSrcB, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }));
+    await writeFile(
+      join(credSrcA, ".credentials.json"),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: LATER, refreshToken: "A" },
+      }),
+    );
+    await writeFile(
+      join(credSrcB, ".credentials.json"),
+      JSON.stringify({
+        claudeAiOauth: { expiresAt: 1_000, refreshToken: "B" },
+      }),
+    );
+    await writeFile(
+      join(credSrcA, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }),
+    );
+    await writeFile(
+      join(credSrcB, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-B" } }),
+    );
 
     const base = {
       agent: "claude-code" as const,
@@ -964,19 +1324,41 @@ describe("materializeRuntime", () => {
       userClaudeMd: "",
     };
     const p1: ResolvedProfile = { ...sampleProfile, name: "acct-rebuild" };
-    const p2: ResolvedProfile = { ...sampleProfile, name: "acct-rebuild", skills: { local: [{ id: "design/ui-ux-pro-max" }, { id: "design/extra" }], npx: [] } };
+    const p2: ResolvedProfile = {
+      ...sampleProfile,
+      name: "acct-rebuild",
+      skills: {
+        local: [{ id: "design/ui-ux-pro-max" }, { id: "design/extra" }],
+        npx: [],
+      },
+    };
 
-    const first = await materializeRuntime({ ...base, profile: p1, credentialsSource: credSrcA });
+    const first = await materializeRuntime({
+      ...base,
+      profile: p1,
+      credentialsSource: credSrcA,
+    });
     // Claude's rewrite pins account A's identity into the runtime as a FILE.
     await rm(join(first.runtimeDir, ".claude.json"), { force: true });
-    await writeFile(join(first.runtimeDir, ".claude.json"), JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }));
+    await writeFile(
+      join(first.runtimeDir, ".claude.json"),
+      JSON.stringify({ oauthAccount: { accountUuid: "uuid-A" } }),
+    );
 
     // Account B relaunches with a changed profile → rebuild + preserve step.
-    const second = await materializeRuntime({ ...base, profile: p2, credentialsSource: credSrcB });
+    const second = await materializeRuntime({
+      ...base,
+      profile: p2,
+      credentialsSource: credSrcB,
+    });
     expect(second.rebuilt).toBe(true);
-    const creds = JSON.parse(await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"));
+    const creds = JSON.parse(
+      await readFile(join(second.runtimeDir, ".credentials.json"), "utf8"),
+    );
     expect(creds.claudeAiOauth.refreshToken).toBe("B");
-    const cj = JSON.parse(await readFile(join(second.runtimeDir, ".claude.json"), "utf8"));
+    const cj = JSON.parse(
+      await readFile(join(second.runtimeDir, ".claude.json"), "utf8"),
+    );
     expect(cj.oauthAccount.accountUuid).toBe("uuid-B");
   });
 
@@ -1005,17 +1387,21 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-cmds",
       inheritanceChain: ["test-cmds"],
-      rules: [], hooks: [],
+      rules: [],
+      hooks: [],
       commands: ["code-review", "checkpoint"],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
       userClaudeMd: "",
     });
-    const cmdLink = await readlink(join(out.runtimeDir, "commands", "code-review.md"));
+    const cmdLink = await readlink(
+      join(out.runtimeDir, "commands", "code-review.md"),
+    );
     expect(cmdLink).toContain("resources/commands/code-review.md");
     const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
     expect(claudemd).toContain("## Available Commands");
@@ -1030,21 +1416,30 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-subagents",
       inheritanceChain: ["test-subagents"],
-      rules: [], hooks: [], commands: [],
+      rules: [],
+      hooks: [],
+      commands: [],
       subagents: ["design/design-ui-designer", "testing/testing-api-tester"],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
       userClaudeMd: "",
     });
     // Division prefix is flattened to the basename in agents/.
-    const link = await readlink(join(out.runtimeDir, "agents", "design-ui-designer.md"));
+    const link = await readlink(
+      join(out.runtimeDir, "agents", "design-ui-designer.md"),
+    );
     expect(link).toContain("resources/subagents/design/design-ui-designer.md");
-    const link2 = await readlink(join(out.runtimeDir, "agents", "testing-api-tester.md"));
-    expect(link2).toContain("resources/subagents/testing/testing-api-tester.md");
+    const link2 = await readlink(
+      join(out.runtimeDir, "agents", "testing-api-tester.md"),
+    );
+    expect(link2).toContain(
+      "resources/subagents/testing/testing-api-tester.md",
+    );
     // Stamp surfaces the roster so the model knows what it can delegate to.
     const claudemd = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
     expect(claudemd).toContain("## Subagents (2)");
@@ -1057,17 +1452,25 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-no-subagents",
       inheritanceChain: ["test-no-subagents"],
-      rules: [], hooks: [], commands: [], subagents: [],
+      rules: [],
+      hooks: [],
+      commands: [],
+      subagents: [],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
       userClaudeMd: "",
     });
     let exists = true;
-    try { await lstat(join(out.runtimeDir, "agents")); } catch { exists = false; }
+    try {
+      await lstat(join(out.runtimeDir, "agents"));
+    } catch {
+      exists = false;
+    }
     expect(exists).toBe(false);
   });
 
@@ -1076,11 +1479,13 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-rules",
       inheritanceChain: ["test-rules"],
-      commands: [], hooks: [],
+      commands: [],
+      hooks: [],
       rules: ["common/security", "common/testing"],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
@@ -1101,23 +1506,29 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-hooks",
       inheritanceChain: ["test-hooks"],
-      rules: [], commands: [],
+      rules: [],
+      commands: [],
       hooks: ["bash-quality-preflight.json", "session-summary.json"],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
       userClaudeMd: "",
     });
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(settings.hooks.PreToolUse).toBeArray();
     expect(settings.hooks.PreToolUse[0].matcher).toBe("Bash");
     expect(settings.hooks.Stop).toBeArray();
     expect(settings.hooks.Stop[0].hooks[0].id).toBe("cue:stop:session-summary");
     // Symlinks also created under hooks/
-    const link = await readlink(join(out.runtimeDir, "hooks", "bash-quality-preflight.json"));
+    const link = await readlink(
+      join(out.runtimeDir, "hooks", "bash-quality-preflight.json"),
+    );
     expect(link).toContain("resources/hooks/bash-quality-preflight.json");
   });
 
@@ -1126,23 +1537,29 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-auto-review",
       inheritanceChain: ["test-auto-review"],
-      rules: [], commands: [],
+      rules: [],
+      commands: [],
       hooks: ["auto-review.json"],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
       userClaudeMd: "",
     });
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(settings.hooks.Stop).toBeArray();
     expect(settings.hooks.Stop[0].hooks[0].id).toBe("cue:stop:auto-review");
     expect(settings.hooks.Stop[0].hooks[0].command).toContain("auto-review.sh");
     // The reviewer script companion must be symlinked too, else the hook fires
     // `bash $CLAUDE_CONFIG_DIR/hooks/auto-review.sh` against a missing file.
-    const script = await readlink(join(out.runtimeDir, "hooks", "auto-review.sh"));
+    const script = await readlink(
+      join(out.runtimeDir, "hooks", "auto-review.sh"),
+    );
     expect(script).toContain("resources/hooks/auto-review.sh");
   });
 
@@ -1159,7 +1576,7 @@ describe("materializeRuntime", () => {
       JSON.stringify({
         numStartups: 42,
         oauthAccount: { emailAddress: "u@example.com" },
-        mcpServers: { "preexisting": { command: "/bin/pre" } },
+        mcpServers: { preexisting: { command: "/bin/pre" } },
       }),
     );
 
@@ -1181,15 +1598,22 @@ describe("materializeRuntime", () => {
 
     // Profile MCPs merged in under top-level `mcpServers`, preserving the
     // source's preexisting entries and other top-level fields.
-    const cj = JSON.parse(await readFile(join(out.runtimeDir, ".claude.json"), "utf8"));
-    expect(cj.mcpServers["claude-mem"]).toEqual({ command: "claude-mem", args: [] });
+    const cj = JSON.parse(
+      await readFile(join(out.runtimeDir, ".claude.json"), "utf8"),
+    );
+    expect(cj.mcpServers["claude-mem"]).toEqual({
+      command: "claude-mem",
+      args: [],
+    });
     expect(cj.mcpServers["preexisting"]).toEqual({ command: "/bin/pre" });
     expect(cj.numStartups).toBe(42);
     expect(cj.oauthAccount).toEqual({ emailAddress: "u@example.com" });
 
     // Source .claude.json untouched — proof the copy isolates per-profile writes.
-    const src = JSON.parse(await readFile(join(credSrc, ".claude.json"), "utf8"));
-    expect(src.mcpServers).toEqual({ "preexisting": { command: "/bin/pre" } });
+    const src = JSON.parse(
+      await readFile(join(credSrc, ".claude.json"), "utf8"),
+    );
+    expect(src.mcpServers).toEqual({ preexisting: { command: "/bin/pre" } });
   });
 
   // Cache-hit path must also re-sync MCPs into .claude.json, so adding/removing
@@ -1200,7 +1624,10 @@ describe("materializeRuntime", () => {
     const credSrc = join(root, "creds");
     const { mkdir, writeFile } = await import("node:fs/promises");
     await mkdir(credSrc, { recursive: true });
-    await writeFile(join(credSrc, ".claude.json"), JSON.stringify({ numStartups: 1 }));
+    await writeFile(
+      join(credSrc, ".claude.json"),
+      JSON.stringify({ numStartups: 1 }),
+    );
 
     const args = {
       profile: sampleProfile,
@@ -1220,7 +1647,9 @@ describe("materializeRuntime", () => {
     });
     expect(second.rebuilt).toBe(false);
 
-    const cj = JSON.parse(await readFile(join(second.runtimeDir, ".claude.json"), "utf8"));
+    const cj = JSON.parse(
+      await readFile(join(second.runtimeDir, ".claude.json"), "utf8"),
+    );
     expect(cj.mcpServers["claude-mem"]).toEqual({ command: "claude-mem-v2" });
   });
 
@@ -1233,17 +1662,25 @@ describe("materializeRuntime", () => {
       ...sampleProfile,
       name: "test-resolve-fail",
       inheritanceChain: ["test-resolve-fail"],
-      skills: { local: [{ id: "a/one" }, { id: "a/two" }, { id: "a/three" }], npx: [] },
+      skills: {
+        local: [{ id: "a/one" }, { id: "a/two" }, { id: "a/three" }],
+        npx: [],
+      },
     };
     const runtimeRoot = join(root, "runtime");
 
     // First build succeeds (everything resolves) so an old runtime exists.
     const ok = await materializeRuntime({
-      profile, agent: "claude-code", runtimeRoot,
+      profile,
+      agent: "claude-code",
+      runtimeRoot,
       skillSourceLookup: async (id) => `/fake/source/${id}`,
-      mcpRegistry: {}, userClaudeMd: "# original\n",
+      mcpRegistry: {},
+      userClaudeMd: "# original\n",
     });
-    expect(await readFile(join(ok.runtimeDir, "CLAUDE.md"), "utf8")).toContain("# original");
+    expect(await readFile(join(ok.runtimeDir, "CLAUDE.md"), "utf8")).toContain(
+      "# original",
+    );
 
     // Second build: profile content changed (cache miss) + lookup now fails for
     // 2 of 3 skills → >50% → must throw and leave the old runtime untouched.
@@ -1251,12 +1688,14 @@ describe("materializeRuntime", () => {
     try {
       await materializeRuntime({
         profile: { ...profile, plugins: [{ id: "changed@x" }] },
-        agent: "claude-code", runtimeRoot,
+        agent: "claude-code",
+        runtimeRoot,
         skillSourceLookup: async (id) => {
           if (id === "a/one") return `/fake/source/${id}`;
           throw new Error("missing");
         },
-        mcpRegistry: {}, userClaudeMd: "# replacement\n",
+        mcpRegistry: {},
+        userClaudeMd: "# replacement\n",
       });
     } catch (e: any) {
       threw = true;
@@ -1264,7 +1703,9 @@ describe("materializeRuntime", () => {
     }
     expect(threw).toBe(true);
     // Old runtime preserved (throw happens before the atomic swap).
-    expect(await readFile(join(ok.runtimeDir, "CLAUDE.md"), "utf8")).toContain("# original");
+    expect(await readFile(join(ok.runtimeDir, "CLAUDE.md"), "utf8")).toContain(
+      "# original",
+    );
   });
 
   test("fail-loud: CUE_ALLOW_PARTIAL_SKILLS=1 bypasses the abort", async () => {
@@ -1278,9 +1719,14 @@ describe("materializeRuntime", () => {
     process.env.CUE_ALLOW_PARTIAL_SKILLS = "1";
     try {
       const out = await materializeRuntime({
-        profile, agent: "claude-code", runtimeRoot: join(root, "runtime"),
-        skillSourceLookup: async () => { throw new Error("missing"); },
-        mcpRegistry: {}, userClaudeMd: "",
+        profile,
+        agent: "claude-code",
+        runtimeRoot: join(root, "runtime"),
+        skillSourceLookup: async () => {
+          throw new Error("missing");
+        },
+        mcpRegistry: {},
+        userClaudeMd: "",
       });
       expect(out.rebuilt).toBe(true);
     } finally {
@@ -1292,7 +1738,10 @@ describe("materializeRuntime", () => {
   test("size guard: warns when the generated CLAUDE.md exceeds the perf threshold", async () => {
     const captured: string[] = [];
     const orig = process.stderr.write.bind(process.stderr);
-    (process.stderr as any).write = (chunk: any) => { captured.push(String(chunk)); return true; };
+    (process.stderr as any).write = (chunk: any) => {
+      captured.push(String(chunk));
+      return true;
+    };
     try {
       await materializeRuntime({
         profile: sampleProfile,
@@ -1313,7 +1762,10 @@ describe("materializeRuntime", () => {
   test("size guard: silent for a normal-sized CLAUDE.md", async () => {
     const captured: string[] = [];
     const orig = process.stderr.write.bind(process.stderr);
-    (process.stderr as any).write = (chunk: any) => { captured.push(String(chunk)); return true; };
+    (process.stderr as any).write = (chunk: any) => {
+      captured.push(String(chunk));
+      return true;
+    };
     try {
       await materializeRuntime({
         profile: sampleProfile,
@@ -1332,7 +1784,10 @@ describe("materializeRuntime", () => {
   test("size guard: does not apply Claude's memory-file warning to Codex", async () => {
     const captured: string[] = [];
     const orig = process.stderr.write.bind(process.stderr);
-    (process.stderr as any).write = (chunk: any) => { captured.push(String(chunk)); return true; };
+    (process.stderr as any).write = (chunk: any) => {
+      captured.push(String(chunk));
+      return true;
+    };
     try {
       await materializeRuntime({
         profile: { ...sampleProfile, agents: ["codex"] },
@@ -1358,7 +1813,8 @@ describe("materializeRuntime", () => {
       hooks: ["nope.json"],
     };
     const out = await materializeRuntime({
-      profile, agent: "claude-code",
+      profile,
+      agent: "claude-code",
       runtimeRoot: join(root, "runtime"),
       skillSourceLookup: async (id) => `/fake/source/${id}`,
       mcpRegistry: {},
@@ -1366,7 +1822,9 @@ describe("materializeRuntime", () => {
     });
     expect(out.rebuilt).toBe(true);
     // No symlinks created for missing refs — directories may exist but be empty.
-    const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
     expect(settings.hooks).toBeUndefined();
   });
 });
@@ -1400,7 +1858,11 @@ describe("isRuntimeStale", () => {
     const runtimeRoot = join(root, "runtime");
     const { yamlPath, hashPath } = await setup("p1", runtimeRoot);
     // Hash built in the past, profile.yaml edited just now.
-    await utimes(hashPath, new Date(Date.now() - 60_000), new Date(Date.now() - 60_000));
+    await utimes(
+      hashPath,
+      new Date(Date.now() - 60_000),
+      new Date(Date.now() - 60_000),
+    );
     await utimes(yamlPath, new Date(), new Date());
     expect(await isRuntimeStale("p1", "claude-code", runtimeRoot)).toBe(true);
   });
@@ -1408,7 +1870,11 @@ describe("isRuntimeStale", () => {
   test("returns false when .cue-hash is newer than profile.yaml", async () => {
     const runtimeRoot = join(root, "runtime");
     const { yamlPath, hashPath } = await setup("p2", runtimeRoot);
-    await utimes(yamlPath, new Date(Date.now() - 60_000), new Date(Date.now() - 60_000));
+    await utimes(
+      yamlPath,
+      new Date(Date.now() - 60_000),
+      new Date(Date.now() - 60_000),
+    );
     await utimes(hashPath, new Date(), new Date());
     expect(await isRuntimeStale("p2", "claude-code", runtimeRoot)).toBe(false);
   });
@@ -1420,7 +1886,11 @@ describe("isRuntimeStale", () => {
     expect(await isRuntimeStale("p3", "claude-code", runtimeRoot)).toBe(false);
   });
 
-  async function writeRuntimeSkill(name: string, runtimeRoot: string, slug: string): Promise<string> {
+  async function writeRuntimeSkill(
+    name: string,
+    runtimeRoot: string,
+    slug: string,
+  ): Promise<string> {
     const skillDir = join(runtimeRoot, name, "claude", "skills", slug);
     await mkdir(skillDir, { recursive: true });
     const md = join(skillDir, "SKILL.md");
@@ -1432,8 +1902,16 @@ describe("isRuntimeStale", () => {
     const runtimeRoot = join(root, "runtime");
     const { yamlPath, hashPath } = await setup("p4", runtimeRoot);
     const mdPath = await writeRuntimeSkill("p4", runtimeRoot, "alpha");
-    await utimes(yamlPath, new Date(Date.now() - 120_000), new Date(Date.now() - 120_000));
-    await utimes(hashPath, new Date(Date.now() - 60_000), new Date(Date.now() - 60_000));
+    await utimes(
+      yamlPath,
+      new Date(Date.now() - 120_000),
+      new Date(Date.now() - 120_000),
+    );
+    await utimes(
+      hashPath,
+      new Date(Date.now() - 60_000),
+      new Date(Date.now() - 60_000),
+    );
     await utimes(mdPath, new Date(), new Date());
     expect(await isRuntimeStale("p4", "claude-code", runtimeRoot)).toBe(true);
   });
@@ -1452,8 +1930,14 @@ describe("isRuntimeStale", () => {
   test("skips a slug dir with no SKILL.md (broken symlink is non-fatal)", async () => {
     const runtimeRoot = join(root, "runtime");
     const { yamlPath, hashPath } = await setup("p6", runtimeRoot);
-    await mkdir(join(runtimeRoot, "p6", "claude", "skills", "broken"), { recursive: true });
-    await utimes(yamlPath, new Date(Date.now() - 60_000), new Date(Date.now() - 60_000));
+    await mkdir(join(runtimeRoot, "p6", "claude", "skills", "broken"), {
+      recursive: true,
+    });
+    await utimes(
+      yamlPath,
+      new Date(Date.now() - 60_000),
+      new Date(Date.now() - 60_000),
+    );
     await utimes(hashPath, new Date(), new Date());
     expect(await isRuntimeStale("p6", "claude-code", runtimeRoot)).toBe(false);
   });
@@ -1470,8 +1954,16 @@ describe("isRuntimeStale", () => {
     const skillsDir = join(runtimeRoot, "p7", "claude", "skills");
     await mkdir(skillsDir, { recursive: true });
     await symlink(src, join(skillsDir, "s"));
-    await utimes(yamlPath, new Date(Date.now() - 120_000), new Date(Date.now() - 120_000));
-    await utimes(hashPath, new Date(Date.now() - 60_000), new Date(Date.now() - 60_000));
+    await utimes(
+      yamlPath,
+      new Date(Date.now() - 120_000),
+      new Date(Date.now() - 120_000),
+    );
+    await utimes(
+      hashPath,
+      new Date(Date.now() - 60_000),
+      new Date(Date.now() - 60_000),
+    );
     await utimes(srcMd, new Date(), new Date());
     expect(await isRuntimeStale("p7", "claude-code", runtimeRoot)).toBe(true);
   });
@@ -1491,7 +1983,14 @@ describe("linkPluginCache", () => {
 
   test("symlinks cache + marketplace metadata to the real source, leaving registry/data alone", async () => {
     // Real source: a fully-downloaded plugin tree.
-    const verDir = join(src, "plugins", "cache", "thedotmack", "claude-mem", "13.3.0");
+    const verDir = join(
+      src,
+      "plugins",
+      "cache",
+      "thedotmack",
+      "claude-mem",
+      "13.3.0",
+    );
     await mkdir(verDir, { recursive: true });
     await writeFile(join(verDir, "hooks.json"), "{}");
     await mkdir(join(src, "plugins", "marketplaces"), { recursive: true });
@@ -1499,7 +1998,10 @@ describe("linkPluginCache", () => {
 
     // Target runtime: Claude's lazy empty stubs that must be replaced.
     await mkdir(join(tgt, "plugins", "cache"), { recursive: true }); // empty real dir
-    await writeFile(join(tgt, "plugins", "installed_plugins.json"), '{"version":2,"plugins":{}}');
+    await writeFile(
+      join(tgt, "plugins", "installed_plugins.json"),
+      '{"version":2,"plugins":{}}',
+    );
     await mkdir(join(tgt, "plugins", "data"), { recursive: true });
 
     await linkPluginCache(tgt, src);
@@ -1508,16 +2010,34 @@ describe("linkPluginCache", () => {
     const cacheLink = join(tgt, "plugins", "cache");
     expect((await lstat(cacheLink)).isSymbolicLink()).toBe(true);
     expect(await readlink(cacheLink)).toBe(join(src, "plugins", "cache"));
-    expect((await stat(join(cacheLink, "thedotmack", "claude-mem", "13.3.0", "hooks.json"))).isFile()).toBe(true);
+    expect(
+      (
+        await stat(
+          join(cacheLink, "thedotmack", "claude-mem", "13.3.0", "hooks.json"),
+        )
+      ).isFile(),
+    ).toBe(true);
 
     // marketplace metadata linked too.
-    expect((await lstat(join(tgt, "plugins", "marketplaces"))).isSymbolicLink()).toBe(true);
-    expect((await lstat(join(tgt, "plugins", "known_marketplaces.json"))).isSymbolicLink()).toBe(true);
+    expect(
+      (await lstat(join(tgt, "plugins", "marketplaces"))).isSymbolicLink(),
+    ).toBe(true);
+    expect(
+      (
+        await lstat(join(tgt, "plugins", "known_marketplaces.json"))
+      ).isSymbolicLink(),
+    ).toBe(true);
 
     // installed_plugins.json is NOT a symlink (Claude owns it; never clobber the real one).
-    expect((await lstat(join(tgt, "plugins", "installed_plugins.json"))).isSymbolicLink()).toBe(false);
+    expect(
+      (
+        await lstat(join(tgt, "plugins", "installed_plugins.json"))
+      ).isSymbolicLink(),
+    ).toBe(false);
     // data stays a real local dir (ELOOP-safe).
-    expect((await lstat(join(tgt, "plugins", "data"))).isSymbolicLink()).toBe(false);
+    expect((await lstat(join(tgt, "plugins", "data"))).isSymbolicLink()).toBe(
+      false,
+    );
   });
 
   test("is a no-op when the source has no plugins tree", async () => {
@@ -1534,7 +2054,9 @@ describe("linkPluginCache", () => {
 
     const cache = await lstat(join(src, "plugins", "cache"));
     expect(cache.isDirectory()).toBe(true);
-    expect(await readFile(join(src, "plugins", "cache", "payload"), "utf8")).toBe("x");
+    expect(
+      await readFile(join(src, "plugins", "cache", "payload"), "utf8"),
+    ).toBe("x");
   });
 });
 
@@ -1544,13 +2066,21 @@ describe("shouldIncludeSessionTelemetry", () => {
   });
 
   test("CUE_SESSION_TELEMETRY=1 or 'true' → opt back in", () => {
-    expect(shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "1" })).toBe(true);
-    expect(shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "true" })).toBe(true);
+    expect(shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "1" })).toBe(
+      true,
+    );
+    expect(
+      shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "true" }),
+    ).toBe(true);
   });
 
   test("any other value → stays trimmed", () => {
-    expect(shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "0" })).toBe(false);
-    expect(shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "yes" })).toBe(false);
+    expect(shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "0" })).toBe(
+      false,
+    );
+    expect(
+      shouldIncludeSessionTelemetry({ CUE_SESSION_TELEMETRY: "yes" }),
+    ).toBe(false);
   });
 });
 
@@ -1560,14 +2090,21 @@ describe("shouldIncludeSessionTelemetry", () => {
 describe("materializeRuntime — session-telemetry gating", () => {
   const realName = "core+gstack+skill-writer";
   const probe: ResolvedProfile = {
-    name: realName, description: "telemetry gate probe", icon: "🧪",
+    name: realName,
+    description: "telemetry gate probe",
+    icon: "🧪",
     skills: { local: [{ id: "caveman/caveman" }], npx: [] },
-    mcps: [], plugins: [], env: {}, inheritanceChain: [realName],
+    mcps: [],
+    plugins: [],
+    env: {},
+    inheritanceChain: [realName],
   } as unknown as ResolvedProfile;
   const base = {
-    profile: probe, agent: "claude-code" as const,
+    profile: probe,
+    agent: "claude-code" as const,
     skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
-    mcpRegistry: {}, userClaudeMd: "# user CLAUDE.md\n",
+    mcpRegistry: {},
+    userClaudeMd: "# user CLAUDE.md\n",
   };
   const SAVED = process.env.CUE_SESSION_TELEMETRY;
   afterEach(() => {
@@ -1577,7 +2114,10 @@ describe("materializeRuntime — session-telemetry gating", () => {
 
   test("default omits the three telemetry section headers", async () => {
     delete process.env.CUE_SESSION_TELEMETRY;
-    const out = await materializeRuntime({ ...base, runtimeRoot: join(root, "off") });
+    const out = await materializeRuntime({
+      ...base,
+      runtimeRoot: join(root, "off"),
+    });
     const md = await readFile(join(out.runtimeDir, "CLAUDE.md"), "utf8");
     expect(md).not.toContain("## Skill Usage (last 30 days)");
     expect(md).not.toContain("## Last Session");
@@ -1586,11 +2126,19 @@ describe("materializeRuntime — session-telemetry gating", () => {
 
   test("opted-in materialization is >= default size (sections only add bytes)", async () => {
     delete process.env.CUE_SESSION_TELEMETRY;
-    const off = await materializeRuntime({ ...base, runtimeRoot: join(root, "a") });
-    const offBytes = (await readFile(join(off.runtimeDir, "CLAUDE.md"), "utf8")).length;
+    const off = await materializeRuntime({
+      ...base,
+      runtimeRoot: join(root, "a"),
+    });
+    const offBytes = (await readFile(join(off.runtimeDir, "CLAUDE.md"), "utf8"))
+      .length;
     process.env.CUE_SESSION_TELEMETRY = "1";
-    const on = await materializeRuntime({ ...base, runtimeRoot: join(root, "b") });
-    const onBytes = (await readFile(join(on.runtimeDir, "CLAUDE.md"), "utf8")).length;
+    const on = await materializeRuntime({
+      ...base,
+      runtimeRoot: join(root, "b"),
+    });
+    const onBytes = (await readFile(join(on.runtimeDir, "CLAUDE.md"), "utf8"))
+      .length;
     expect(onBytes).toBeGreaterThanOrEqual(offBytes);
   });
 });
@@ -1635,7 +2183,11 @@ describe("materializeRuntime — rebuild swap leftovers", () => {
     expect(second.rebuilt).toBe(true);
     expect(await swapSiblings(second.runtimeDir)).toEqual([]);
     // The runtime is intact, not a half-swapped shell.
-    expect(JSON.parse(await readFile(join(second.runtimeDir, "settings.json"), "utf8"))).toBeTruthy();
+    expect(
+      JSON.parse(
+        await readFile(join(second.runtimeDir, "settings.json"), "utf8"),
+      ),
+    ).toBeTruthy();
   });
 
   test("sweeps a .old-* left by a swap that died between the two renames", async () => {
@@ -1657,14 +2209,24 @@ describe("materializeRuntime — rebuild swap leftovers", () => {
     const args = { ...swapArgs(runtimeRoot), agent: "codex" as const };
     const first = await materializeRuntime(args);
     await mkdir(join(first.runtimeDir, "sessions"), { recursive: true });
-    await writeFile(join(first.runtimeDir, "sessions", "active.jsonl"), "thread-state\n");
+    await writeFile(
+      join(first.runtimeDir, "sessions", "active.jsonl"),
+      "thread-state\n",
+    );
     await writeFile(join(first.runtimeDir, ".cue-hash"), "0".repeat(64));
 
-    const [a, b] = await Promise.all([materializeRuntime(args), materializeRuntime(args)]);
+    const [a, b] = await Promise.all([
+      materializeRuntime(args),
+      materializeRuntime(args),
+    ]);
 
     expect([a.rebuilt, b.rebuilt].sort()).toEqual([false, true]);
-    expect(await readFile(join(first.runtimeDir, "sessions", "active.jsonl"), "utf8"))
-      .toBe("thread-state\n");
+    expect(
+      await readFile(
+        join(first.runtimeDir, "sessions", "active.jsonl"),
+        "utf8",
+      ),
+    ).toBe("thread-state\n");
   });
 
   test("recovers an abandoned materialization lock", async () => {
@@ -1685,14 +2247,20 @@ describe("materializeRuntime — rebuild swap leftovers", () => {
   test("releases the lock after a failed build so a retry can succeed", async () => {
     const runtimeRoot = join(root, "runtime-failed-build");
     const args = swapArgs(runtimeRoot);
-    await expect(materializeRuntime({
-      ...args,
-      skillSourceLookup: async () => { throw new Error("missing skill"); },
-    })).rejects.toThrow();
+    await expect(
+      materializeRuntime({
+        ...args,
+        skillSourceLookup: async () => {
+          throw new Error("missing skill");
+        },
+      }),
+    ).rejects.toThrow();
 
     const out = await materializeRuntime(args);
 
     expect(out.rebuilt).toBe(true);
-    expect(await readFile(join(out.runtimeDir, ".cue-hash"), "utf8")).not.toBeEmpty();
+    expect(
+      await readFile(join(out.runtimeDir, ".cue-hash"), "utf8"),
+    ).not.toBeEmpty();
   });
 });

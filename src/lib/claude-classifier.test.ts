@@ -176,11 +176,12 @@ describe("setupClassifierHome", () => {
 });
 
 // The classifier used to spawn the bare name `claude`, trusting CUE_BYPASS to
-// make cue's shim "transparent". It never was: CUE_BYPASS is only read by the
-// launch loader (spinner suppression), so the shim re-entered `cue launch`,
-// which folded the child's own argv into a fresh classification prompt and
-// spawned another classifier. Resolving the real binary FIRST breaks the loop
-// at the source and skips a whole `cue launch` boot per classification.
+// make cue's shim "transparent". It was not, at the time: nothing implemented
+// the documented bypass, so the shim re-entered `cue launch`, which folded the
+// child's own argv into a fresh classification prompt and spawned another
+// classifier. `cue launch` now honors CUE_BYPASS for real, but resolving the
+// real binary FIRST is still the better primary path — it skips a whole
+// `cue launch` boot per classification, and holds on an older cue too.
 describe("classifierBinOrder", () => {
   const prevPath = process.env.PATH;
   const prevReal = process.env.CUE_REAL_CLAUDE;
@@ -201,9 +202,7 @@ describe("classifierBinOrder", () => {
     delete process.env.CLAUDE_CODE_EXECPATH;
     process.env.PATH = realDir;
 
-    const order = classifierBinOrder();
-    expect(order[0]).toBe(realBin);
-    expect(order).not.toHaveLength(0);
+    expect(classifierBinOrder()).toEqual([realBin, "claude"]);
   });
 
   test("skips a cue shim sitting earlier on PATH", () => {

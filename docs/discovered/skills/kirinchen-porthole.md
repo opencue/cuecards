@@ -2,7 +2,7 @@
 title: "kirinchen/porthole — Claude Code skill discovered by cue"
 description: "一個 path-scoped 的 web 介面,讓你透過瀏覽器跟住在各 repo 裡的 agent(claude -p)高效溝通。 A path-scoped web GUI to talk to the coding agents living in your repos — through the browser."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-05
+- 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
