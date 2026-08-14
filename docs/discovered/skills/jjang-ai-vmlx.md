@@ -2,21 +2,21 @@
 title: "jjang-ai/vmlx — Claude Code skill discovered by cue"
 description: "vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives restart) + L1 Paged (super fast ttft) + Hybrid SSM Scheduler  + Cont Batching + etc!"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-14
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [jjang-ai/vmlx](https://github.com/jjang-ai/vmlx)
 
-**★ 800** · exceptional (score 13.9) · Python · anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm
+**★ 806** · exceptional (score 12.9) · Python · anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm
 
 > vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives restart) + L1 Paged (super fast ttft) + Hybrid SSM Scheduler  + Cont Batching + etc!
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
-- ⭐ 800 stars
-- 🗓️ Last pushed: 2026-08-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.9 based on:
+- ⭐ 806 stars
+- 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm, lmstudio, macbook, mcp-server, mlx, mlxllm, mlxstudio, omlx, omlx-alternative, openai-api, openclaw, openclaw-agent, persistent-memory, prefix-cache, vmlx
 
 ## Best fit cue profiles

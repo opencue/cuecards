@@ -1,27 +1,27 @@
 ---
 title: "vassiliylakhonin/agenda-intelligence-md — Claude Code skill discovered by cue"
-description: "Evidence-readiness and trust-routing runtime for high-stakes AI-assisted decisions. Turns source packs, RFPs, vendor docs, and risk files into human-review pack"
+description: "Checks AI claim/source packets before human review: missing references, quote mismatches, weak lexical support, and unmatched numbers. CLI, Python API, and MCP."
 layout: page
-updated: 2026-06-29
-tags: [claude-code, skill, core]
+updated: 2026-08-14
+tags: [claude-code, skill, backend]
 ---
 
-# ✨ [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
+# 💎 [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
 
-**★ 4** · strong (score 5.8) · Python · a2a, a2a-protocol, agenda-intelligence, ai-agents, ai-assurance
+**★ 6** · exceptional (score 9.6) · Python · ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema
 
-> Evidence-readiness and trust-routing runtime for high-stakes AI-assisted decisions. Turns source packs, RFPs, vendor docs, and risk files into human-review packets with evidence gaps, weak claims, owner actions, and decision-readiness routing.
+> Checks AI claim/source packets before human review: missing references, quote mismatches, weak lexical support, and unmatched numbers. CLI, Python API, and MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-29
-- 🏷️ Tags: a2a, a2a-protocol, agenda-intelligence, ai-agents, ai-assurance, ai-governance, cloudflare-workers, decision-readiness, evidence-readiness, human-review, json-schema, mcp, mcp-server, procurement, risk-analysis, risk-intelligence, trust-routing, vendor-risk
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-08-14
+- 🏷️ Tags: ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema, llm-evaluation, mcp-server, python, source-grounding
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add vassiliylakhonin/agenda-intelligence-md --profile core
+cue skills add vassiliylakhonin/agenda-intelligence-md --profile backend
 ```
 
 ## About

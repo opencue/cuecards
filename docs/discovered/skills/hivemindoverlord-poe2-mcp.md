@@ -2,20 +2,20 @@
 title: "HivemindOverlord/poe2-mcp — Claude Code skill discovered by cue"
 description: "This is a locally-run MCP attempt to make AI like Claude for Desktop or others better understand questions about Path of Exile 2. Good luck to me I guess? -- If"
 layout: page
-updated: 2026-08-13
+updated: 2026-08-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [HivemindOverlord/poe2-mcp](https://github.com/HivemindOverlord/poe2-mcp)
 
-**★ 59** · exceptional (score 12) · Python
+**★ 60** · exceptional (score 12) · Python
 
 > This is a locally-run MCP attempt to make AI like Claude for Desktop or others better understand questions about Path of Exile 2. Good luck to me I guess? -- If you like what you see and would like to see continuing development, please support me with your donations here: https://buymeacoffee.com/tomawar40 -- I will never go paid, and never charge.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 59 stars
+- ⭐ 60 stars
 - 🗓️ Last pushed: 2026-08-11
 - 🏷️ Tags: (none)
 

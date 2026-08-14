@@ -2,7 +2,7 @@
 title: "hybridindie/comfyui_mcp — Claude Code skill discovered by cue"
 description: "Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants wi"
 layout: page
-updated: 2026-08-13
+updated: 2026-08-14
 tags: [claude-code, skill, cybersecurity]
 ---
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-13
+updated: 2026-08-14
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+<a id="appllama-appllama-skills"></a>
+## 💎 [Appllama/appllama-skills](https://github.com/Appllama/appllama-skills)
 
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+**★ 2** · exceptional (score 8.5) · tags: agent-skills, ai-agents, claude, claude-code, claude-code-skill
 
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.
 
 ```bash
-cue skills add riqxa/skills-best-practices --profile frontend
+cue skills add Appllama/appllama-skills --profile frontend
 ```
 
 ---

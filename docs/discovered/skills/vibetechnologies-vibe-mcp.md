@@ -1,23 +1,23 @@
 ---
 title: "VibeTechnologies/vibe-mcp — Claude Code skill discovered by cue"
-description: "MCP server for browser automation - the only solution supporting multiple AI agents simultaneously (Claude Desktop, Cursor, VS Code, OpenCode)"
+description: "MCP server that drives your real, logged-in Chrome from any MCP client - including agents on a remote machine, with no inbound port open"
 layout: page
-updated: 2026-07-15
+updated: 2026-08-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [VibeTechnologies/vibe-mcp](https://github.com/VibeTechnologies/vibe-mcp)
 
-**★ 2** · exceptional (score 10) · TypeScript · ai-agent, browser-automation, chrome-automation, claude-desktop, cursor
+**★ 2** · exceptional (score 10) · TypeScript · ai-agent, browser-automation, browser-mcp, chrome, chrome-automation
 
-> MCP server for browser automation - the only solution supporting multiple AI agents simultaneously (Claude Desktop, Cursor, VS Code, OpenCode)
+> MCP server that drives your real, logged-in Chrome from any MCP client - including agents on a remote machine, with no inbound port open
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-15
-- 🏷️ Tags: ai-agent, browser-automation, chrome-automation, claude-desktop, cursor, mcp, mcp-server, model-context-protocol, multi-agent, web-automation
+- 🗓️ Last pushed: 2026-08-14
+- 🏷️ Tags: ai-agent, browser-automation, browser-mcp, chrome, chrome-automation, chrome-devtools-protocol, chrome-extension, claude-desktop, cursor, logged-in-browser, mcp, mcp-server, model-context-protocol, multi-agent, opencode, playwright-alternative, remote-browser, typescript, web-automation, windsurf
 
 ## Best fit cue profiles
 

@@ -2,7 +2,7 @@
 title: "5219rayhsu/open-book-is-good-skill — Claude Code skill discovered by cue"
 description: "開卷有益・方法層：教 AI agent 從官方開放試題以 clean-room 方式復刻一套考古題自學系統的 Claude skill。"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-14
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-07
+- 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: ai-agent, claude-skill, clean-room, education, exam, open-data
 
 ## Best fit cue profiles

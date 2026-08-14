@@ -1,22 +1,22 @@
 ---
 title: "polterguy/magic — Claude Code skill discovered by cue"
-description: "Deterministic AI agents and generated backends — MIT-licensed, self-hosted, MCP-native"
+description: "An Open Source Alternative to Lovable and Supabase in one system!"
 layout: page
-updated: 2026-08-07
+updated: 2026-08-14
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [polterguy/magic](https://github.com/polterguy/magic)
 
-**★ 1161** · exceptional (score 17) · C# · agentic-ai, ai, ai-agents, backend, code-generation
+**★ 1162** · exceptional (score 14) · C# · agentic-ai, ai, ai-agents, backend, code-generation
 
-> Deterministic AI agents and generated backends — MIT-licensed, self-hosted, MCP-native
+> An Open Source Alternative to Lovable and Supabase in one system!
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 1161 stars
-- 🗓️ Last pushed: 2026-08-07
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+- ⭐ 1162 stars
+- 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: agentic-ai, ai, ai-agents, backend, code-generation, crud-generator, csharp, dotnet, hyperlambda, llm, low-code, mcp, mcp-server, no-code, rest-api, self-hosted, sql-server
 
 ## Best fit cue profiles

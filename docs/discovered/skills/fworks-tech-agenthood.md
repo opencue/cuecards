@@ -2,7 +2,7 @@
 title: "fworks-tech/agenthood — Claude Code skill discovered by cue"
 description: "A society of AI agents with impeccable standards and zero tolerance for 'fix stuff' commits."
 layout: page
-updated: 2026-08-12
+updated: 2026-08-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-12
+- 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: agent-skills, agentic-ai, ai, ai-agent, ai-agents, ai-assistant, ai-tools, claude-code-skill, claude-skills, markdown, multi-agent, npm, typescript, vscode-extension
 
 ## Best fit cue profiles
