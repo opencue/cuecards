@@ -2,21 +2,21 @@
 title: "kanguruonline/claude-batchy-bulk — Claude Code skill discovered by cue"
 description: "Slash API Batch: Cut AI Costs by 50% in 2026"
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kanguruonline/claude-batchy-bulk](https://github.com/kanguruonline/claude-batchy-bulk)
 
-**★ 151** · exceptional (score 10) · HTML · anthropic, anthropic-api, batch-api, claude-code, claude-opus
+**★ 115** · exceptional (score 9.9) · HTML · anthropic, anthropic-api, batch-api, claude-code, claude-opus
 
 > Slash API Batch: Cut AI Costs by 50% in 2026
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 151 stars
-- 🗓️ Last pushed: 2026-08-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+- ⭐ 115 stars
+- 🗓️ Last pushed: 2026-08-15
 - 🏷️ Tags: anthropic, anthropic-api, batch-api, claude-code, claude-opus, claude-skill, cli, cost-optimization, llm-tools, python
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-13
+updated: 2026-08-15
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="roxyapi-sdk-python"></a>
-## ✨ [RoxyAPI/sdk-python](https://github.com/RoxyAPI/sdk-python)
+<a id="jackxiaozhiren-datasentry"></a>
+## ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
 
-**★ 0** · strong (score 7.5) · Python · tags: ai-agents, angel-numbers, astrology-api, biorhythm-api, crystals
+**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-observability, data-pipeline
 
-Python SDK for astrology, Vedic kundli, tarot, numerology, horoscope, I Ching, biorhythm and more. One multi domain API key, sync and async. AI agent and MCP ready.
+Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
 
 ```bash
-cue skills add RoxyAPI/sdk-python --profile python
+cue skills add Jackxiaozhiren/datasentry --profile python
 ```
 
 ---

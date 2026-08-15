@@ -2,7 +2,7 @@
 title: "HivemindOverlord/poe2-mcp — Claude Code skill discovered by cue"
 description: "This is a locally-run MCP attempt to make AI like Claude for Desktop or others better understand questions about Path of Exile 2. Good luck to me I guess? -- If"
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, skill, core]
 ---
 

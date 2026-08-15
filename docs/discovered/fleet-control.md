@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
+## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
+
+**★ 118** · exceptional (score 12.9) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+
+Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
+
+```bash
+cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
 
 ---
 
@@ -24,6 +37,19 @@ Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, A
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
+```
+
+---
+
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+
+**★ 1** · strong (score 7.8) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+
+```bash
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---

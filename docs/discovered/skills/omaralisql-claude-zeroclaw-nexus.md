@@ -2,21 +2,21 @@
 title: "omaralisql/Claude-Zeroclaw-Nexus — Claude Code skill discovered by cue"
 description: "Claude Code ZeroClaw Pro 2026: AI Multitool & CLI Router for Claude SDK Subagents"
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [omaralisql/Claude-Zeroclaw-Nexus](https://github.com/omaralisql/Claude-Zeroclaw-Nexus)
 
-**★ 51** · exceptional (score 12.5) · HTML · awesome-claude-code, claude, claude-4-5-sonnet, claude-code, claude-code-claw
+**★ 51** · exceptional (score 12.8) · HTML · awesome-claude-code, claude, claude-4-5-sonnet, claude-code, claude-code-claw
 
 > Claude Code ZeroClaw Pro 2026: AI Multitool & CLI Router for Claude SDK Subagents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
 - ⭐ 51 stars
-- 🗓️ Last pushed: 2026-08-14
+- 🗓️ Last pushed: 2026-08-15
 - 🏷️ Tags: awesome-claude-code, claude, claude-4-5-sonnet, claude-code, claude-code-claw, claude-code-cli, claude-code-proxy, claude-code-router, claude-code-sdk, claude-code-zeroclaw, claude-context, claude-desktop, claude-integration, claude-mcp, claude-sdk, claude-skill, claude-subagents, zeroclaw, zeroclaw-claude, zeroclaw-claude-code
 
 ## Best fit cue profiles

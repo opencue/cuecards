@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,19 +24,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="appllama-appllama-skills"></a>
-## 💎 [Appllama/appllama-skills](https://github.com/Appllama/appllama-skills)
-
-**★ 2** · exceptional (score 8.5) · tags: agent-skills, ai-agents, claude, claude-code, claude-code-skill
-
-A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.
-
-```bash
-cue skills add Appllama/appllama-skills --profile frontend
 ```
 
 ---

@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="zycaskevin-vault-agent-memory"></a>
+## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
+
+**★ 47** · exceptional (score 10.9) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
+
+Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
+
+```bash
+cue skills add zycaskevin/Vault-Agent-Memory --profile docs-writer
+```
+
+---
+
+<a id="ting-hong-shieh-polish-open-source-prose"></a>
+## 💎 [ting-hong-shieh/polish-open-source-prose](https://github.com/ting-hong-shieh/polish-open-source-prose)
+
+**★ 6** · exceptional (score 10) · Python · tags: agent-skills, ai-agents, claude-code, claude-code-skill, claude-skills
+
+Agent Skill for Claude Code + Codex that edits open-source prose without losing facts or voice. Includes zh-Hant-TW.
+
+```bash
+cue skills add ting-hong-shieh/polish-open-source-prose --profile docs-writer
+```
 
 ---
 
@@ -24,6 +50,19 @@ Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before
 
 ```bash
 cue skills add OnourImpram/mneme --profile docs-writer
+```
+
+---
+
+<a id="custom-domain-app-docs"></a>
+## ✨ [CUSTOM-DOMAIN-APP/docs](https://github.com/CUSTOM-DOMAIN-APP/docs)
+
+**★ 3** · strong (score 5.7) · MDX · tags: ai-agents, cname, custom-domain, custom-domains, custom-hostname
+
+Docs for customdomain.ai — custom domains for SaaS. Let users connect their own domain in one click: automatic DNS configuration, CNAME/TXT domain verification, auto-issued SSL/TLS certificates. Guides + reference for the embeddable widget, REST API, and hosted MCP server for AI agents. Entri alternative.
+
+```bash
+cue skills add CUSTOM-DOMAIN-APP/docs --profile docs-writer
 ```
 
 ---

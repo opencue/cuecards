@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="codeofaxel-kiln"></a>
-## 💎 [codeofaxel/Kiln](https://github.com/codeofaxel/Kiln)
+<a id="artokun-comfyui-mcp"></a>
+## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
 
-**★ 46** · exceptional (score 14.9) · Python · tags: 3d-printing, ai, ai-agents, bambu-lab, claude
+**★ 589** · exceptional (score 20.4) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
 
-Describe it or draw it — Kiln makes it real. The open-source MCP server for 3D printing: AI agents (Claude, Codex, Cursor, or any MCP client) design, generate, slice & print on Bambu Lab, Creality, Prusa, Elegoo, Klipper/Moonraker, OctoPrint, Duet/RepRapFirmware & any Marlin printer.
+Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
+
+```bash
+cue skills add artokun/comfyui-mcp --profile creative-media
+```
+
+---
+
+<a id="jorgut-folio"></a>
+## 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
+
+**★ 1** · exceptional (score 11.3) · JavaScript · tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
+
+Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add codeofaxel/Kiln --profile creative-media
+cue skills add Jorgut/folio --profile creative-media
 ```
 
 ---
@@ -33,7 +46,7 @@ cue skills add codeofaxel/Kiln --profile creative-media
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.8) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 7.7) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
 Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 

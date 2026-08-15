@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,67 +15,28 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="polterguy-magic"></a>
-## 💎 [polterguy/magic](https://github.com/polterguy/magic)
+<a id="zycaskevin-vault-agent-memory"></a>
+## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
 
-**★ 1162** · exceptional (score 14) · C# · tags: agentic-ai, ai, ai-agents, backend, code-generation
+**★ 47** · exceptional (score 10.9) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
 
-An Open Source Alternative to Lovable and Supabase in one system!
+Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
 
 ```bash
-cue skills add polterguy/magic --profile backend
+cue skills add zycaskevin/Vault-Agent-Memory --profile backend
 ```
 
 ---
 
-<a id="jjang-ai-vmlx"></a>
-## 💎 [jjang-ai/vmlx](https://github.com/jjang-ai/vmlx)
+<a id="pdugan20-rewind"></a>
+## 💎 [pdugan20/rewind](https://github.com/pdugan20/rewind)
 
-**★ 806** · exceptional (score 12.9) · Python · tags: anthropic-api, kvcache-compression, kvcache-optimization, kvcache-reuse, llm
+**★ 5** · exceptional (score 9.6) · TypeScript · tags: cloudflare, cloudflare-workers, d1, drizzle-orm, hono
 
-vMLX - JANGTQ Uber Compressed MLX Models - L2 Disk Cache (survives restart) + L1 Paged (super fast ttft) + Hybrid SSM Scheduler  + Cont Batching + etc!
-
-```bash
-cue skills add jjang-ai/vmlx --profile backend
-```
-
----
-
-<a id="alyiox-mcp-walmart-ads"></a>
-## 💎 [alyiox/mcp-walmart-ads](https://github.com/alyiox/mcp-walmart-ads)
-
-**★ 1** · exceptional (score 9.8) · Python · tags: advertising, ai-agent, display-ads, mcp, mcp-server
-
-MCP server for Walmart Connect Ads (Sponsored Search + Display) — automatic RSA-SHA256 signing, multi-region config, and bundled API docs.
+Personal data aggregation service. Syncs data from Strava, Last.fm, Discogs, Plex, Trakt, and Letterboxd into a centralized API.
 
 ```bash
-cue skills add alyiox/mcp-walmart-ads --profile backend
-```
-
----
-
-<a id="vassiliylakhonin-agenda-intelligence-md"></a>
-## 💎 [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
-
-**★ 6** · exceptional (score 9.6) · Python · tags: ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema
-
-Checks AI claim/source packets before human review: missing references, quote mismatches, weak lexical support, and unmatched numbers. CLI, Python API, and MCP.
-
-```bash
-cue skills add vassiliylakhonin/agenda-intelligence-md --profile backend
-```
-
----
-
-<a id="mt3hr-gkill"></a>
-## 💎 [mt3hr/gkill](https://github.com/mt3hr/gkill)
-
-**★ 3** · exceptional (score 8.2) · Go · tags: ai-memory, android, golang, life-logging, lifelog
-
-Local-first, self-hosted lifelog app for recording, searching, and analyzing your life with AI through MCP.
-
-```bash
-cue skills add mt3hr/gkill --profile backend
+cue skills add pdugan20/rewind --profile backend
 ```
 
 ---
@@ -89,6 +50,45 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
+## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+
+**★ 2** · strong (score 7) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+
+AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+
+```bash
+cue skills add MrPeppersDev/agent-infrastructure-landscape --profile backend
+```
+
+---
+
+<a id="custom-domain-app-docs"></a>
+## ✨ [CUSTOM-DOMAIN-APP/docs](https://github.com/CUSTOM-DOMAIN-APP/docs)
+
+**★ 3** · strong (score 5.7) · MDX · tags: ai-agents, cname, custom-domain, custom-domains, custom-hostname
+
+Docs for customdomain.ai — custom domains for SaaS. Let users connect their own domain in one click: automatic DNS configuration, CNAME/TXT domain verification, auto-issued SSL/TLS certificates. Guides + reference for the embeddable widget, REST API, and hosted MCP server for AI agents. Entri alternative.
+
+```bash
+cue skills add CUSTOM-DOMAIN-APP/docs --profile backend
+```
+
+---
+
+<a id="jackxiaozhiren-datasentry"></a>
+## ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
+
+**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-observability, data-pipeline
+
+Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
+
+```bash
+cue skills add Jackxiaozhiren/datasentry --profile backend
 ```
 
 ---

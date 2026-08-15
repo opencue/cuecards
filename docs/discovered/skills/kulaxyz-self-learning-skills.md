@@ -2,20 +2,20 @@
 title: "Kulaxyz/self-learning-skills — Claude Code skill discovered by cue"
 description: "A self-improving skill for AI coding agents (Claude Code, Cursor, AGENTS.md): recognize a hard-won golden path in a session and harvest it into a reusable skill"
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Kulaxyz/self-learning-skills](https://github.com/Kulaxyz/self-learning-skills)
 
-**★ 931** · exceptional (score 9.9)
+**★ 932** · exceptional (score 9.9)
 
 > A self-improving skill for AI coding agents (Claude Code, Cursor, AGENTS.md): recognize a hard-won golden path in a session and harvest it into a reusable skill/rule for next time.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
-- ⭐ 931 stars
+- ⭐ 932 stars
 - 🗓️ Last pushed: 2026-07-01
 - 🏷️ Tags: (none)
 

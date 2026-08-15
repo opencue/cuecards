@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-15
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 4** · exceptional (score 16.2) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 4** · exceptional (score 16.1) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -33,7 +33,7 @@ cue skills add Zandereins/hydra --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2293** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
+**★ 2297** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -43,23 +43,10 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="nuguardai-nuguard"></a>
-## 💎 [NuGuardAI/nuguard](https://github.com/NuGuardAI/nuguard)
-
-**★ 21** · exceptional (score 11.4) · Python · tags: adversarial-machine-learning, agentic-ai, ai-agents, ai-red-team-tool, ai-red-teaming
-
-AI red-teaming tool and LLM security framework to evaluate agentic AI applications. Tests prompt injections, handles vulnerability assessment, SBOM generation, and static analysis.
-
-```bash
-cue skills add NuGuardAI/nuguard --profile cybersecurity
-```
-
----
-
 <a id="eriknewton-sanctuary-framework"></a>
 ## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 7** · exceptional (score 10.2) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 8** · exceptional (score 10.3) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
@@ -70,9 +57,9 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 ---
 
 <a id="hybridindie-comfyui-mcp"></a>
-## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
+## ✨ [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
-**★ 2** · exceptional (score 8) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+**★ 2** · strong (score 7.9) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
 
 Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
 
