@@ -2,21 +2,21 @@
 title: "tsouth89/toolport — Claude Code skill discovered by cue"
 description: "Local-first MCP gateway. One port for every tool and every AI client: lazy discovery (~90% token savings), tool integrity + quarantine, secrets in the OS keycha"
 layout: page
-updated: 2026-08-01
+updated: 2026-08-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tsouth89/toolport](https://github.com/tsouth89/toolport)
 
-**★ 107** · exceptional (score 13.3) · Rust · ai, ai-agents, anthropic, claude, cursor
+**★ 170** · exceptional (score 12.5) · Rust · ai, ai-agents, anthropic, claude, cursor
 
 > Local-first MCP gateway. One port for every tool and every AI client: lazy discovery (~90% token savings), tool integrity + quarantine, secrets in the OS keychain.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
-- ⭐ 107 stars
-- 🗓️ Last pushed: 2026-08-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+- ⭐ 170 stars
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: ai, ai-agents, anthropic, claude, cursor, developer-tools, gateway, llm, local-first, mcp, mcp-server, model-context-protocol, react, rust, tauri, vscode
 
 ## Best fit cue profiles

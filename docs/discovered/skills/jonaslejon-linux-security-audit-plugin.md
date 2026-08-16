@@ -2,7 +2,7 @@
 title: "jonaslejon/linux-security-audit-plugin — Claude Code skill discovered by cue"
 description: "Claude Code plugin: audits Linux hardening posture and produces a risk-ranked report. 450+ checks — kernel, filesystem, privesc paths, egress, TLS/mTLS, secrets"
 layout: page
-updated: 2026-08-15
+updated: 2026-08-16
 tags: [claude-code, skill, cybersecurity]
 ---
 

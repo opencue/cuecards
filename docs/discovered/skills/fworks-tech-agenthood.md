@@ -2,13 +2,13 @@
 title: "fworks-tech/agenthood — Claude Code skill discovered by cue"
 description: "A society of AI agents with impeccable standards and zero tolerance for 'fix stuff' commits."
 layout: page
-updated: 2026-08-14
+updated: 2026-08-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [fworks-tech/agenthood](https://github.com/fworks-tech/agenthood)
 
-**★ 2** · exceptional (score 9) · TypeScript · agent-skills, agentic-ai, ai, ai-agent, ai-agents
+**★ 2** · exceptional (score 9) · TypeScript · agent-skills, agentic-ai, agentic-workflow, ai, ai-agent
 
 > A society of AI agents with impeccable standards and zero tolerance for 'fix stuff' commits.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-14
-- 🏷️ Tags: agent-skills, agentic-ai, ai, ai-agent, ai-agents, ai-assistant, ai-tools, claude-code-skill, claude-skills, markdown, multi-agent, npm, typescript, vscode-extension
+- 🗓️ Last pushed: 2026-08-16
+- 🏷️ Tags: agent-skills, agentic-ai, agentic-workflow, ai, ai-agent, ai-agents, ai-tools, claude-code-skill, claude-skills, cli, markdown, mcp, multi-agent, npm, rag, typescript, vscode-extension
 
 ## Best fit cue profiles
 

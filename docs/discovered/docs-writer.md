@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-15
+updated: 2026-08-16
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zycaskevin-vault-agent-memory"></a>
-## 💎 [zycaskevin/Vault-Agent-Memory](https://github.com/zycaskevin/Vault-Agent-Memory)
+<a id="7xuanlu-wenlan"></a>
+## 💎 [7xuanlu/wenlan](https://github.com/7xuanlu/wenlan)
 
-**★ 47** · exceptional (score 10.9) · Python · tags: agent-memory, ai-agents, knowledge-base, llm, local-first
+**★ 47** · exceptional (score 13.4) · Rust · tags: ai-memory, claude, claude-code, claude-code-plugin, codex
 
-Local-first memory governance for AI agents: shared, reviewable, auditable memory via SQLite and MCP.
-
-```bash
-cue skills add zycaskevin/Vault-Agent-Memory --profile docs-writer
-```
-
----
-
-<a id="ting-hong-shieh-polish-open-source-prose"></a>
-## 💎 [ting-hong-shieh/polish-open-source-prose](https://github.com/ting-hong-shieh/polish-open-source-prose)
-
-**★ 6** · exceptional (score 10) · Python · tags: agent-skills, ai-agents, claude-code, claude-code-skill, claude-skills
-
-Agent Skill for Claude Code + Codex that edits open-source prose without losing facts or voice. Includes zh-Hant-TW.
+Wenlan is a knowledge base for the AI-native age. Your AI agents capture what they learn, Wenlan keeps it current and distills it into source-cited wiki pages you can trust
 
 ```bash
-cue skills add ting-hong-shieh/polish-open-source-prose --profile docs-writer
+cue skills add 7xuanlu/wenlan --profile docs-writer
 ```
 
 ---
@@ -54,15 +41,15 @@ cue skills add OnourImpram/mneme --profile docs-writer
 
 ---
 
-<a id="custom-domain-app-docs"></a>
-## ✨ [CUSTOM-DOMAIN-APP/docs](https://github.com/CUSTOM-DOMAIN-APP/docs)
+<a id="meta-taro-md-business"></a>
+## ✨ [meta-taro/md-business](https://github.com/meta-taro/md-business)
 
-**★ 3** · strong (score 5.7) · MDX · tags: ai-agents, cname, custom-domain, custom-domains, custom-hostname
+**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, business-documents, invoice, json-schema, markdown
 
-Docs for customdomain.ai — custom domains for SaaS. Let users connect their own domain in one click: automatic DNS configuration, CNAME/TXT domain verification, auto-issued SSL/TLS certificates. Guides + reference for the embeddable widget, REST API, and hosted MCP server for AI agents. Entri alternative.
+Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-in MCP server. Tauri desktop app + Chrome extension.
 
 ```bash
-cue skills add CUSTOM-DOMAIN-APP/docs --profile docs-writer
+cue skills add meta-taro/md-business --profile docs-writer
 ```
 
 ---

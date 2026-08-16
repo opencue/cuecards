@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-15
+updated: 2026-08-16
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,32 +24,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
-
-**★ 2** · strong (score 7) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
-
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
-
-```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
-```
-
----
-
-<a id="mhrnqaruni-ai-agent-skill-research-proposal-orchestrator"></a>
-## 🔹 [Mhrnqaruni/ai-agent-skill-research-proposal-orchestrator](https://github.com/Mhrnqaruni/ai-agent-skill-research-proposal-orchestrator)
-
-**★ 0** · potential (score 4) · Python · tags: academic-research, ai-agent-skill, codex, grants, phd
-
-General-purpose Codex skill for feasible, evidence-backed research proposals in any discipline.
-
-```bash
-cue skills add Mhrnqaruni/ai-agent-skill-research-proposal-orchestrator --profile research
 ```
 
 ---

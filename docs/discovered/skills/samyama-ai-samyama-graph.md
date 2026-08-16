@@ -2,21 +2,21 @@
 title: "samyama-ai/samyama-graph — Claude Code skill discovered by cue"
 description: "Graph-vector database that queried 1 billion edges for $2.50. Rust, OpenCypher, vector search, 14 graph algorithms. 74M nodes / 1B edges on a single machine."
 layout: page
-updated: 2026-07-29
+updated: 2026-08-16
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [samyama-ai/samyama-graph](https://github.com/samyama-ai/samyama-graph)
 
-**★ 126** · exceptional (score 10.6) · Rust · billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database
+**★ 167** · exceptional (score 10.7) · Rust · billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database
 
 > Graph-vector database that queried 1 billion edges for $2.50. Rust, OpenCypher, vector search, 14 graph algorithms. 74M nodes / 1B edges on a single machine.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
-- ⭐ 126 stars
-- 🗓️ Last pushed: 2026-07-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+- ⭐ 167 stars
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database, graph-rag, hnsw, knowledge-graph, mcp-server, opencypher, rust, vector-search
 
 ## Best fit cue profiles

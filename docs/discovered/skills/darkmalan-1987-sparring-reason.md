@@ -2,7 +2,7 @@
 title: "Darkmalan-1987/sparring-reason — Claude Code skill discovered by cue"
 description: "Claude Newton: AI Reasoning Partner 2026 - Calibrated Pushback & Current Sources"
 layout: page
-updated: 2026-08-15
+updated: 2026-08-16
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-15
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: ai-skill, ai-skills, anthropic, anthropic-compatible, anthropic-skills, claude-code, claude-code-plugin, claude-code-plugins-marketplace, claude-code-skill, claude-cowork, claude-cowork-plugin, claude-skills, codex, codex-plugin, codex-skills, karpathy, karpathy-skills, prompt-engineering, reasoning
 
 ## Best fit cue profiles

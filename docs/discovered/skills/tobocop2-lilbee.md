@@ -2,22 +2,22 @@
 title: "tobocop2/lilbee — Claude Code skill discovered by cue"
 description: "The whole local AI stack in one executable: it runs and manages local AI models across every GPU, and it's a search engine you can talk to, with cited answers f"
 layout: page
-updated: 2026-07-19
+updated: 2026-08-16
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [tobocop2/lilbee](https://github.com/tobocop2/lilbee)
 
-**★ 38** · exceptional (score 9.7) · Python · ai-search-engine, chat-with-documents, gguf, llama-cpp, lm-studio
+**★ 45** · exceptional (score 8.9) · Python · ai-search-engine, chat-with-documents, gguf, llama-cpp, lm-studio
 
 > The whole local AI stack in one executable: it runs and manages local AI models across every GPU, and it's a search engine you can talk to, with cited answers from your files, code, and the web. MCP server for coding agents, web crawler, TUI, CLI, REST API, Python library. No Ollama or LM Studio needed, works with both.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
-- ⭐ 38 stars
-- 🗓️ Last pushed: 2026-07-19
-- 🏷️ Tags: ai-search-engine, chat-with-documents, gguf, llama-cpp, lm-studio, local-ai, local-llm, local-rag, local-search-engine, mcp-server, model-manager, multi-gpu, notebooklm, notebooklm-alternative, ollama, private-ai, rag, self-hosted, semantic-search, tui
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
+- ⭐ 45 stars
+- 🗓️ Last pushed: 2026-08-16
+- 🏷️ Tags: ai-search-engine, chat-with-documents, gguf, llama-cpp, lm-studio, local-ai, local-first, local-llm, local-rag, mcp-server, model-manager, multi-gpu, notebooklm-alternative, ollama, privacy, private-ai, rag, self-hosted, semantic-search, tui
 
 ## Best fit cue profiles
 
