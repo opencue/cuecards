@@ -2,7 +2,7 @@
 title: "diligent-dilettante/life-planning — Claude Code skill discovered by cue"
 description: "A Claude skill that coaches one person through values, direction, goals and follow-through. Asks questions instead of handing out templates, keeps one markdown "
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-16
+- 🗓️ Last pushed: 2026-08-17
 - 🏷️ Tags: accountability, agent-skills, anthropic-claude, claude-code, claude-skill, coaching, goal-setting, life-planning, personal-development, productivity, self-improvement, values
 
 ## Best fit cue profiles

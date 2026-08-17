@@ -1,70 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zaydiscold-robinhood-cli-mcp-api"></a>
-## 💎 [zaydiscold/robinhood-cli-mcp-api](https://github.com/zaydiscold/robinhood-cli-mcp-api)
+<a id="polterguy-magic"></a>
+## 💎 [polterguy/magic](https://github.com/polterguy/magic)
 
-**★ 9** · exceptional (score 12.3) · TypeScript · tags: ai-agents, api, automation, brokerage, claude
+**★ 1162** · exceptional (score 14) · C# · tags: agentic-ai, ai, ai-agents, backend, code-generation
 
-Robinhood CLI (MCP + API) — unofficial Robinhood API map + CLI + MCP for a real account (reads live, writes gated). The API map is the product.
-
-✅ SKILL.md
+An Open Source Alternative to Lovable and Supabase in one system!
 
 ```bash
-cue skills add zaydiscold/robinhood-cli-mcp-api --profile backend
+cue skills add polterguy/magic --profile backend
 ```
 
 ---
 
-<a id="samyama-ai-samyama-graph"></a>
-## 💎 [samyama-ai/samyama-graph](https://github.com/samyama-ai/samyama-graph)
+<a id="deverman-focusrelaymcp"></a>
+## 💎 [deverman/FocusRelayMCP](https://github.com/deverman/FocusRelayMCP)
 
-**★ 167** · exceptional (score 10.7) · Rust · tags: billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database
+**★ 42** · exceptional (score 12.9) · Swift · tags: ai, ai-agent, automation, claude, cli
 
-Graph-vector database that queried 1 billion edges for $2.50. Rust, OpenCypher, vector search, 14 graph algorithms. 74M nodes / 1B edges on a single machine.
-
-```bash
-cue skills add samyama-ai/samyama-graph --profile backend
-```
-
----
-
-<a id="ptweezy-cronstable"></a>
-## 💎 [ptweezy/cronstable](https://github.com/ptweezy/cronstable)
-
-**★ 74** · exceptional (score 9.4) · Python · tags: containers, cron, cronjob, crontab, daemon
-
-A modern, container-friendly, optionally-distributed, fault-tolerant, highly available, leader-electing, highly configurable, precompiled, multi-architecture, portable, security-hardened, production-ready cron replacement
+Fast native Swift OmniFocus MCP server and CLI for macOS. Let AI assistants safely read, update, complete, and organize tasks and projects through documented Omni Automation APIs.
 
 ```bash
-cue skills add ptweezy/cronstable --profile backend
-```
-
----
-
-<a id="tobocop2-lilbee"></a>
-## 💎 [tobocop2/lilbee](https://github.com/tobocop2/lilbee)
-
-**★ 45** · exceptional (score 8.9) · Python · tags: ai-search-engine, chat-with-documents, gguf, llama-cpp, lm-studio
-
-The whole local AI stack in one executable: it runs and manages local AI models across every GPU, and it's a search engine you can talk to, with cited answers from your files, code, and the web. MCP server for coding agents, web crawler, TUI, CLI, REST API, Python library. No Ollama or LM Studio needed, works with both.
-
-```bash
-cue skills add tobocop2/lilbee --profile backend
+cue skills add deverman/FocusRelayMCP --profile backend
 ```
 
 ---
@@ -82,15 +54,67 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="cbangera2-robinhood-mcp-cli"></a>
-## ✨ [cbangera2/robinhood-mcp-cli](https://github.com/cbangera2/robinhood-mcp-cli)
+<a id="maneek21-deft"></a>
+## ✨ [Maneek21/Deft](https://github.com/Maneek21/Deft)
 
-**★ 0** · strong (score 6) · Python · tags: cli, mcp, mcp-server, robinhood, robinhood-api
+**★ 1** · strong (score 7.8) · TypeScript · tags: agent-platform, ai-agents, ai-workspace, byoa, chat
 
-Schema-driven CLI for the Robinhood Trading MCP server
+Self-hostable, source-available workspace where humans and AI agents share chat, tasks, knowledge, approvals, and MCP context.
 
 ```bash
-cue skills add cbangera2/robinhood-mcp-cli --profile backend
+cue skills add Maneek21/Deft --profile backend
+```
+
+---
+
+<a id="malkreide-meteoswiss-mcp"></a>
+## ✨ [malkreide/meteoswiss-mcp](https://github.com/malkreide/meteoswiss-mcp)
+
+**★ 0** · strong (score 7.5) · Python · tags: claude, climate-data, fastmcp, icon-model, llm
+
+MCP Server for Swiss weather & climate data – MeteoSwiss SwissMetNet, ICON forecasts, school planning
+
+```bash
+cue skills add malkreide/meteoswiss-mcp --profile backend
+```
+
+---
+
+<a id="buywhere-buywhere"></a>
+## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
+
+**★ 0** · strong (score 7.5) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
+
+BuyWhere agent-native product catalog API
+
+```bash
+cue skills add BuyWhere/buywhere --profile backend
+```
+
+---
+
+<a id="malkreide-swiss-procurement-mcp"></a>
+## ✨ [malkreide/swiss-procurement-mcp](https://github.com/malkreide/swiss-procurement-mcp)
+
+**★ 0** · strong (score 6) · Python · tags: llm, mcp, mcp-server, model-context-protocol, open-data
+
+MCP server for the simap.ch Swiss public procurement API — all cantons, read-only
+
+```bash
+cue skills add malkreide/swiss-procurement-mcp --profile backend
+```
+
+---
+
+<a id="jackxiaozhiren-datasentry"></a>
+## ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
+
+**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-engineering, data-governance
+
+Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
+
+```bash
+cue skills add Jackxiaozhiren/datasentry --profile backend
 ```
 
 ---

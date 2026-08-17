@@ -2,19 +2,19 @@
 title: "OnourImpram/mneme — Claude Code skill discovered by cue"
 description: "Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path."
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 2** · exceptional (score 9) · Python · agent-memory, anthropic, claude, claude-code, codex
+**★ 2** · exceptional (score 8.9) · Python · agent-memory, anthropic, claude, claude-code, codex
 
 > Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: agent-memory, anthropic, claude, claude-code, codex, developer-tools, knowledge-graph, llm, local-first, markdown, mcp, mcp-server, memory, model-context-protocol, obsidian, privacy, python, rag, retrieval, typescript

@@ -2,7 +2,7 @@
 title: "AlexisBalayre/claude-code-power-config — Claude Code skill discovered by cue"
 description: "An opinionated, fully-worked Claude Code configuration: path-scoped rules, skills, subagents, deterministic hooks, and a worktree-first workflow. Demonstrated o"
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, core]
 ---
 

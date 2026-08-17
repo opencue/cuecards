@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zandereins-hydra"></a>
-## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
+<a id="skymanbp-cc-tree"></a>
+## 💎 [skymanbp/cc-tree](https://github.com/skymanbp/cc-tree)
 
-**★ 4** · exceptional (score 16.1) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 161** · exceptional (score 15.5) · Python · tags: adversarial-review, ai-agent, anthropic, bilingual, brainstorming
 
-Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
-
-✅ SKILL.md
+Claude Code plugin: universal radial-tree exploration engine. One tree skill + swappable presets (brainstorm / attack / design / code-audit) for divergent ideation, adversarial critique, and design-space exploration. 12 framings × hard-ban-on-incomplete-leaves × stable convergence.
 
 ```bash
-cue skills add Zandereins/hydra --profile cybersecurity
-```
-
----
-
-<a id="leontynestirredup43-slowmist-security-cc"></a>
-## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
-
-**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
-
-Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
-
-✅ SKILL.md
-
-```bash
-cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+cue skills add skymanbp/cc-tree --profile cybersecurity
 ```
 
 ---
@@ -48,7 +31,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2299** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
+**★ 2303** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -74,7 +57,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="hybridindie-comfyui-mcp"></a>
 ## ✨ [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
-**★ 2** · strong (score 7.9) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+**★ 2** · strong (score 7.8) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
 
 Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
 
@@ -87,7 +70,7 @@ cue skills add hybridindie/comfyui_mcp --profile cybersecurity
 <a id="jonaslejon-linux-security-audit-plugin"></a>
 ## 🔹 [jonaslejon/linux-security-audit-plugin](https://github.com/jonaslejon/linux-security-audit-plugin)
 
-**★ 11** · potential (score 4.2) · Shell
+**★ 11** · potential (score 4.1) · Shell
 
 Claude Code plugin: audits Linux hardening posture and produces a risk-ranked report. 450+ checks — kernel, filesystem, privesc paths, egress, TLS/mTLS, secrets, image hygiene, config drift. Live host, mounted image, or container.
 

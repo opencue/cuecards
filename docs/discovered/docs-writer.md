@@ -1,37 +1,24 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="7xuanlu-wenlan"></a>
-## 💎 [7xuanlu/wenlan](https://github.com/7xuanlu/wenlan)
-
-**★ 47** · exceptional (score 13.4) · Rust · tags: ai-memory, claude, claude-code, claude-code-plugin, codex
-
-Wenlan is a knowledge base for the AI-native age. Your AI agents capture what they learn, Wenlan keeps it current and distills it into source-cited wiki pages you can trust
-
-```bash
-cue skills add 7xuanlu/wenlan --profile docs-writer
-```
-
----
-
 <a id="onourimpram-mneme"></a>
 ## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
+**★ 2** · exceptional (score 8.9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
 Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
@@ -41,15 +28,15 @@ cue skills add OnourImpram/mneme --profile docs-writer
 
 ---
 
-<a id="meta-taro-md-business"></a>
-## ✨ [meta-taro/md-business](https://github.com/meta-taro/md-business)
+<a id="surendranb-writing-skills"></a>
+## 💎 [surendranb/writing-skills](https://github.com/surendranb/writing-skills)
 
-**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, business-documents, invoice, json-schema, markdown
+**★ 14** · exceptional (score 8.9) · Python · tags: agent-skills, ai-agents, business-writing, claude, claude-code
 
-Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-in MCP server. Tauri desktop app + Chrome extension.
+Procedural writing-style skills for AI agents: official frameworks (plain language, business writing, GOV.UK, AP style, STE-100, developer docs) + character voices. Agent Plugins 1.0.0, works in opencode, Claude Code, Codex.
 
 ```bash
-cue skills add meta-taro/md-business --profile docs-writer
+cue skills add surendranb/writing-skills --profile docs-writer
 ```
 
 ---

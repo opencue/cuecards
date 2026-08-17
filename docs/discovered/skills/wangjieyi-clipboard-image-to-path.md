@@ -2,7 +2,7 @@
 title: "WANGJIEYI/clipboard-image-to-path — Claude Code skill discovered by cue"
 description: "Convert Windows clipboard images to file paths so text-only AI agents (Claude Code, Codex, Cursor...) can read screenshots - AutoHotkey v2"
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, core]
 ---
 

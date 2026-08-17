@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="travisun-opptrix"></a>
+## 💎 [Travisun/Opptrix](https://github.com/Travisun/Opptrix)
+
+**★ 207** · exceptional (score 11.5) · TypeScript · tags: a-shares, china-stock-market, electron, fastify, financial-analysis
+
+Opptrix — AI驱动的全球多市场投研工作台 | Open-source LLM research assistant for China A-shares. 170+ MCP tools, factor screening, backtest, watchlist & Electron desktop. TypeScript · React · Fastify monorepo.
+
+```bash
+cue skills add Travisun/Opptrix --profile research
+```
 
 ---
 
@@ -24,6 +37,19 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="rakib-nyc-skillassay"></a>
+## ✨ [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
+
+**★ 2** · strong (score 5.5) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+
+Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
+
+```bash
+cue skills add rakib-nyc/skillassay --profile research
 ```
 
 ---

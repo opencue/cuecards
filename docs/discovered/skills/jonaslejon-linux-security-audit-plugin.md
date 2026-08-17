@@ -2,19 +2,19 @@
 title: "jonaslejon/linux-security-audit-plugin — Claude Code skill discovered by cue"
 description: "Claude Code plugin: audits Linux hardening posture and produces a risk-ranked report. 450+ checks — kernel, filesystem, privesc paths, egress, TLS/mTLS, secrets"
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 🔹 [jonaslejon/linux-security-audit-plugin](https://github.com/jonaslejon/linux-security-audit-plugin)
 
-**★ 11** · potential (score 4.2) · Shell
+**★ 11** · potential (score 4.1) · Shell
 
 > Claude Code plugin: audits Linux hardening posture and produces a risk-ranked report. 450+ checks — kernel, filesystem, privesc paths, egress, TLS/mTLS, secrets, image hygiene, config drift. Live host, mounted image, or container.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 11 stars
 - 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: (none)

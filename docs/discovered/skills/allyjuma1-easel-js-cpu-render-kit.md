@@ -2,7 +2,7 @@
 title: "AllyJuma1/easel-js-cpu-render-kit — Claude Code skill discovered by cue"
 description: "🚀 WebGPU Agent Skill 2026: Build GPU Apps with Easel.js & AI Coding Agents"
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-16
+- 🗓️ Last pushed: 2026-08-17
 - 🏷️ Tags: agent-skill, agent-skills, claude, claude-plugin, claude-skill, claude-skills, codex, codex-plugin, codex-skill, codex-skills, copilot, copilot-skill, copilot-skills, easeljs, easeljs-graphics, node, opencode, opencode-plugin, opencode-skill, opencode-skills
 
 ## Best fit cue profiles

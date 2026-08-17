@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-15
+updated: 2026-08-17
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 <a id="jackxiaozhiren-datasentry"></a>
 ## ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
 
-**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-observability, data-pipeline
+**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-engineering, data-governance
 
 Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
 

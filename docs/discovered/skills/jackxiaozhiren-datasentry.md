@@ -2,13 +2,13 @@
 title: "Jackxiaozhiren/datasentry — Claude Code skill discovered by cue"
 description: "Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed work"
 layout: page
-updated: 2026-08-15
+updated: 2026-08-17
 tags: [claude-code, skill, backend, python]
 ---
 
 # ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
 
-**★ 2** · strong (score 5.5) · Python · ai-copilot, cli, data-cleaning, data-observability, data-pipeline
+**★ 2** · strong (score 5.5) · Python · ai-copilot, cli, data-cleaning, data-engineering, data-governance
 
 > Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, backend, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-15
-- 🏷️ Tags: ai-copilot, cli, data-cleaning, data-observability, data-pipeline, data-profiling, data-quality, data-quality-tool, data-validation, devtools, duckdb, etl, llm, mcp, mcp-server, python, rest-api, sqlite
+- 🗓️ Last pushed: 2026-08-17
+- 🏷️ Tags: ai-copilot, cli, data-cleaning, data-engineering, data-governance, data-observability, data-pipeline, data-profiling, data-quality, data-quality-tool, data-validation, devtools, duckdb, etl, llm, mcp, mcp-server, python, rest-api, sqlite
 
 ## Best fit cue profiles
 

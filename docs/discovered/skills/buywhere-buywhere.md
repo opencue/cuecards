@@ -2,7 +2,7 @@
 title: "BuyWhere/buywhere — Claude Code skill discovered by cue"
 description: "BuyWhere agent-native product catalog API"
 layout: page
-updated: 2026-08-13
+updated: 2026-08-17
 tags: [claude-code, skill, medusa-dev, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, medusa-dev, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-13
+- 🗓️ Last pushed: 2026-08-17
 - 🏷️ Tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent, singapore, southeast-asia
 
 ## Best fit cue profiles

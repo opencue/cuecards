@@ -2,7 +2,7 @@
 title: "decross1/poe-upgrade-advisor — Claude Code skill discovered by cue"
 description: "RETIRED, open for exploration — 'is this item an upgrade?' overlay for Path of Exile, built end-to-end by a three-agent autonomous org (Claude/Codex/Kimi) over "
 layout: page
-updated: 2026-08-16
+updated: 2026-08-17
 tags: [claude-code, skill, core]
 ---
 
