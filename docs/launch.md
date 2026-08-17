@@ -42,10 +42,12 @@ Profile resolution stops at the first match, in this order:
 
 ## Picker
 
-On first launch in a new directory, the picker opens in the terminal. Arrow keys
-navigate; Enter selects. By default the chosen profile is written to
-`.cue.profile` in the current directory so the next launch is instant. Pass
-`--cue-pick` to force the picker open even when a pin is present.
+On every bare interactive `claude` or `codex` launch, the picker opens in the
+terminal. Arrow keys navigate; Enter selects. By default the chosen profile is
+written to `.cue.profile` in the current directory. Launches with agent arguments
+keep resolving that pin automatically so scripts and one-shot commands do not
+stop for input. Pass `--cue-profile <name>` to skip the picker for a bare launch,
+or `--cue-pick` to force it for a launch that has arguments.
 
 ## Materialize
 

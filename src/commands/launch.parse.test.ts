@@ -171,7 +171,20 @@ describe("shouldForcePicker", () => {
     hasOverride: false,
     isAccountAlias: false,
     isTTY: true,
+    isBareLaunch: false,
   };
+
+  test("a bare interactive claude/codex launch opens the picker", () => {
+    expect(shouldForcePicker({ ...base, isBareLaunch: true })).toBe(true);
+  });
+
+  test("a bare launch does not open the picker off a TTY", () => {
+    expect(shouldForcePicker({ ...base, isBareLaunch: true, isTTY: false })).toBe(false);
+  });
+
+  test("--cue-profile skips the default bare-launch picker", () => {
+    expect(shouldForcePicker({ ...base, isBareLaunch: true, hasOverride: true })).toBe(false);
+  });
 
   test("an account alias opens the picker on a TTY", () => {
     expect(shouldForcePicker({ ...base, isAccountAlias: true })).toBe(true);

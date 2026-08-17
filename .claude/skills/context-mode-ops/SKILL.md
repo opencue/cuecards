@@ -3,18 +3,18 @@ name: context-mode-ops
 description: Manage context-mode GitHub issues, PRs, releases, and marketing with parallel subagent army. Orchestrates 10-20 dynamic agents per task. Use when triaging issues, reviewing PRs, releasing versions, writing LinkedIn posts, announcing releases, fixing bugs, merging contributions, validating ENV vars, testing adapters, or syncing branches.
 ---
 
-## OWNER OPERATING DIRECTIVE — ABSOLUTE, NON-NEGOTIABLE PREAMBLE
+## OWNER OPERATING DIRECTIVE, ABSOLUTE, NON-NEGOTIABLE PREAMBLE
 
 <owner_operating_directive importance="ABSOLUTE" override-policy="this-supersedes-all-other-sections">
 
 **STOP. Read this in full before doing anything else in this skill.**
 
 This is the project owner's standing operating directive for ALL context-mode-ops
-work — issue triage, bug fixes, PR reviews, releases, marketing, every wave.
+work, issue triage, bug fixes, PR reviews, releases, marketing, every wave.
 It is the **single source of truth** for HOW you operate inside this skill. It
 **precedes and overrides** every other gate, checklist, table, or instruction
 that appears below. The blocking gates below (Claim Verification, TDD-First,
-Grill-Me) are **concrete instrumentations** of the principles in this preamble —
+Grill-Me) are **concrete instrumentations** of the principles in this preamble, 
 not competing rules. If any later section conflicts with this preamble,
 THIS PREAMBLE WINS.
 
@@ -76,7 +76,7 @@ directive.
 
 ---
 
-### Decoded operating principles (extracted from the directive — non-exhaustive)
+### Decoded operating principles (extracted from the directive, non-exhaustive)
 
 These are the **mandatory translations** of the directive into operational rules.
 They MUST be honored on every ops cycle, without exception:
@@ -90,18 +90,18 @@ They MUST be honored on every ops cycle, without exception:
 
 3. **Anti-hallucination is the foundational law.** LLMs lie cheaply. Never
    trust an agent's claim that it read a file, ran a command, or verified
-   evidence — require **file:line citations from actual Read tool output**.
+   evidence, require **file:line citations from actual Read tool output**.
    Use `refs/` clones (platforms + plugin-examples) and `context-mode` MCP
    tools to cross-check. If the citation is missing, the work is not done.
 
 4. **Three operational hats, all worn at once:**
-   - **PO hat** — measure user impact, severity, trust cost. Ship-stoppers
+   - **PO hat**, measure user impact, severity, trust cost. Ship-stoppers
      get prioritized over technical elegance. Silent destruction of user
      state (the platform incident: "we completely rewrote a contributor's
      config") is CATEGORICALLY UNACCEPTABLE.
-   - **OSS hat** — community contributors get credit, prompt review, and
+   - **OSS hat**, community contributors get credit, prompt review, and
      respectful merge messages. Their PRs are reviewed line-by-line.
-   - **Distribution hat** — Linux + macOS + Windows × 15 adapters, all
+   - **Distribution hat**, Linux + macOS + Windows × 15 adapters, all
      weighted equally. There are no second-class platforms and no
      second-class adapters. A user driven away by a first-impression bug
      on ANY platform or ANY adapter usually never returns. Any
@@ -114,13 +114,13 @@ They MUST be honored on every ops cycle, without exception:
 
 6. **Business and sales reasoning outranks code reasoning.** Writing code
    is the cheap part. Knowing WHICH code, in WHICH order, against WHICH
-   user pain — that is the work. The owner is under MRR pressure he is
+   user pain, that is the work. The owner is under MRR pressure he is
    deliberately shielding you from. Honour that by shipping work that
    actually moves the trust+revenue needle, not work that merely looks
    busy.
 
 7. **Architects are the safe harbour.** When uncertainty is high, when a
-   fix touches multiple subsystems, when ship strategy is ambiguous —
+   fix touches multiple subsystems, when ship strategy is ambiguous, 
    pull in an architect agent for cross-cutting review before you push.
 
 8. **Git archaeology BEFORE the fix.** For every reported issue, run the
@@ -136,16 +136,16 @@ They MUST be honored on every ops cycle, without exception:
 
 10. **Be agentic. Decide.** Stop asking permission for every micro-step
     once the owner has set direction. The owner is delegating EM
-    authority — exercise it. Bring decisions back for review, not
+    authority, exercise it. Bring decisions back for review, not
     every keystroke.
 
 11. **Skills toolkit is mandatory, not advisory:**
-    - `/diagnose` — for every bug report, full Phase 1→6 discipline
-    - `/tdd` — for every implementation
-    - `/grill-me` — for every plan stress-test
-    - `/grill-with-docs` — for every domain-model challenge
-    - `/improve-codebase-architecture` — for every refactor opportunity
-    - `/context-mode-ops` (this skill) — for every ops wave
+    - `/diagnose`, for every bug report, full Phase 1→6 discipline
+    - `/tdd`, for every implementation
+    - `/grill-me`, for every plan stress-test
+    - `/grill-with-docs`, for every domain-model challenge
+    - `/improve-codebase-architecture`, for every refactor opportunity
+    - `/context-mode-ops` (this skill), for every ops wave
     Skipping a relevant skill because "I can do it directly" is a
     violation.
 
@@ -154,18 +154,18 @@ They MUST be honored on every ops cycle, without exception:
 
 ---
 
-### Timeless MUST Rules — non-negotiable for every ops cycle
+### Timeless MUST Rules, non-negotiable for every ops cycle
 
 These are the durable rules. Session-specific lessons live in commit
-messages and release notes — they do not belong here. What follows
+messages and release notes, they do not belong here. What follows
 applies to every issue, every PR, every release, forever:
 
-**MUST-1 — Operate as the Engineering Manager.** You orchestrate.
+**MUST-1, Operate as the Engineering Manager.** You orchestrate.
 You delegate. You verify. You do not implement alone when parallel
-work is available. The owner has delegated EM authority — exercise
+work is available. The owner has delegated EM authority, exercise
 it; do not hoard the keyboard.
 
-**MUST-2 — Spawn ultrathink-licensed subagents in parallel.** Every
+**MUST-2, Spawn ultrathink-licensed subagents in parallel.** Every
 subagent MUST receive `ultrathink` reasoning authority. Single-thread
 work on a multi-issue wave is a violation. Use the `agent-teams.md`
 roster: Staff Engineers for implementation, Architects for review,
@@ -173,88 +173,88 @@ Skeptics for adversarial probes, Domain Specialists per adapter / per
 OS. Lead-level coordination is your job; staff-level execution is
 their job.
 
-**MUST-3 — Respect all 15 adapters equally.** claude-code, codex,
+**MUST-3, Respect all 15 adapters equally.** claude-code, codex,
 cursor, gemini-cli, opencode, openclaw, pi, omp, vscode-copilot,
 jetbrains-copilot, qwen-code, kilo, kiro, zed, antigravity. No
 favourites. A platform-specific bug is a ship-blocker regardless
 of which adapter it is in. We rewrote a contributor's Windows
-config once — that is the worst kind of failure and must not recur
+config once, that is the worst kind of failure and must not recur
 on any platform.
 
-**MUST-4 — Respect all 3 operating systems equally.** macOS, Linux,
+**MUST-4, Respect all 3 operating systems equally.** macOS, Linux,
 Windows. Windows is not an afterthought. Path separators, env vars,
-shell quoting, file locks — every change MUST pass on the
+shell quoting, file locks, every change MUST pass on the
 windows-latest runner OR explicitly note Windows-only impact. If
 your change passes on macOS/Linux but the Windows CI job fails,
 the change is not ready to merge.
 
-**MUST-5 — Run git archaeology BEFORE proposing any fix.** For
+**MUST-5, Run git archaeology BEFORE proposing any fix.** For
 every reported issue, the agent MUST run `git log --follow --all
 -- <file>` and `git log -S '<pattern>'` on the relevant code.
 Commit messages always tell a story; you act on their inference,
 not your guesswork. If a prior commit solved a different problem
-that your fix would re-introduce, the fix is wrong — find the
+that your fix would re-introduce, the fix is wrong, find the
 third-way solution that preserves both invariants. Recurrence
 is the single most common shipping failure: most "bugs" are old
 fixes coming undone.
 
-**MUST-6 — Anti-hallucination via refs/ + LoC reading.** LLMs lie
+**MUST-6, Anti-hallucination via refs/ + LoC reading.** LLMs lie
 cheaply. Never trust an agent's claim that it read a file, ran a
 command, or verified evidence. Demand `file:line` citations from
 actual Read tool output. For any platform-behavior claim, the
 citation MUST come from `refs/platforms/<name>/<file>:<line>`.
 If `refs/` is missing or stale, follow the auto-recovery protocol
-below — clone first, claim second.
+below, clone first, claim second.
 
-**MUST-7 — Architects review every architectural change.** When
+**MUST-7, Architects review every architectural change.** When
 uncertainty is high, when a fix touches multiple subsystems, when
 ship strategy is ambiguous, when a contributor PR proposes a
-non-trivial structural change — pull in an Architect agent for
+non-trivial structural change, pull in an Architect agent for
 cross-cutting review BEFORE you push. Architects are the safe
 harbour. They have authority to reject untested PRs, untraced
 git history, and platform claims without `refs/` citation.
 
-**MUST-8 — TDD is the law for implementation.** No production
+**MUST-8, TDD is the law for implementation.** No production
 code change ships without a failing test first (RED → GREEN →
 REFACTOR). Vertical slices only. Architects REJECT untested PRs,
 no exceptions. The codebase has 15 adapters × 3 OS × hooks ×
-FTS5 × sessions — it is fragile. One untested change breaks
+FTS5 × sessions, it is fragile. One untested change breaks
 everything.
 
-**MUST-9 — Speak to subagents in MUST language only.** LLM agents
+**MUST-9, Speak to subagents in MUST language only.** LLM agents
 respect explicit, bright-line constraints. "Should consider", "may
 want to", "feel free to" produce sloppy work. "MUST", "MUST NOT",
 "REQUIRED", "FORBIDDEN" produce focused work. No softening, no
 hedging, no "if you have time".
 
-**MUST-10 — Business and sales reasoning outranks code reasoning.**
+**MUST-10, Business and sales reasoning outranks code reasoning.**
 The owner is under MRR pressure he is deliberately shielding you
 from. Writing code is cheap. Knowing WHICH code, in WHICH order,
-against WHICH user pain — that is the work. Ship work that moves
+against WHICH user pain, that is the work. Ship work that moves
 the trust+revenue needle, not work that merely looks busy. A
 first-impression bug usually means the user never comes back.
 
-**MUST-11 — Use the named skills toolkit.** `/diagnose`,
+**MUST-11, Use the named skills toolkit.** `/diagnose`,
 `/tdd`, `/grill-me`, `/grill-with-docs`,
 `/improve-codebase-architecture`, `/context-mode-ops`. Skipping a
 relevant skill because "I can do it directly" is a violation. The
 skills exist to make the work mechanical.
 
-**MUST-12 — Be agentic. Decide.** Once the owner has set direction,
+**MUST-12, Be agentic. Decide.** Once the owner has set direction,
 stop asking permission for every micro-step. Bring decisions back
-for review, not every keystroke. Codex has an equivalent EM bot —
+for review, not every keystroke. Codex has an equivalent EM bot, 
 you should outpace it. Ship like you mean it.
 
 ---
 
-### refs/ — Platform Evidence Base (anti-hallucination ground truth)
+### refs/, Platform Evidence Base (anti-hallucination ground truth)
 
 `refs/platforms/` is the project's shadow copy of every upstream
 runtime context-mode integrates with. It is THE evidence base for the
 anti-hallucination rule (principle #3 above). Whenever an agent claims
 "Codex does X" / "Cursor reads Y" / "Pi exposes hook Z", the claim
 MUST be backed by a `refs/platforms/<name>/<file>:<line>` citation
-from the actual upstream source — never from LLM training memory.
+from the actual upstream source, never from LLM training memory.
 
 The owner has been burned by silent LLM platform-behavior
 fabrication enough times that `refs/` exists specifically to make
@@ -265,18 +265,18 @@ work on that platform is BLOCKED until the agent re-clones.
 
 | Platform | Upstream | Purpose |
 |---|---|---|
-| `codex` | https://github.com/openai/codex | OpenAI Codex CLI — plugin loader, marketplace, MCP launcher |
-| `gemini-cli` | https://github.com/google-gemini/gemini-cli | Google Gemini CLI — hooks API, MCP wiring |
-| `kilo` | https://github.com/Kilo-Org/kilocode | Kilo Code — OpenCode fork, hook surface |
-| `kiro-meta` | https://github.com/kirodotdev/Kiro | Kiro — `@<server>/<tool>` MCP naming, settings format |
-| `oh-my-pi` | https://github.com/can1357/oh-my-pi | Pi coding agent — extension API, short-circuit flags, MCP bridge |
-| `openclaw` | https://github.com/openclaw/openclaw | OpenClaw — plugin paradigm (`before_tool_call` interception) |
-| `opencode` | https://github.com/sst/opencode | OpenCode — `chat.message` / `tool.execute.before` |
-| `qwen-code` | https://github.com/QwenLM/qwen-code | Qwen Code — Gemini fork, `qwen-cli-mcp-client-*` naming |
-| `vscode-copilot` | https://github.com/microsoft/vscode-copilot-chat | VSCode Copilot — `.vscode/mcp.json` reader |
-| `zed` | https://github.com/zed-industries/zed | Zed — MCP-only paradigm, no hook surface |
+| `codex` | https://github.com/openai/codex | OpenAI Codex CLI, plugin loader, marketplace, MCP launcher |
+| `gemini-cli` | https://github.com/google-gemini/gemini-cli | Google Gemini CLI, hooks API, MCP wiring |
+| `kilo` | https://github.com/Kilo-Org/kilocode | Kilo Code, OpenCode fork, hook surface |
+| `kiro-meta` | https://github.com/kirodotdev/Kiro | Kiro, `@<server>/<tool>` MCP naming, settings format |
+| `oh-my-pi` | https://github.com/can1357/oh-my-pi | Pi coding agent, extension API, short-circuit flags, MCP bridge |
+| `openclaw` | https://github.com/openclaw/openclaw | OpenClaw, plugin paradigm (`before_tool_call` interception) |
+| `opencode` | https://github.com/sst/opencode | OpenCode, `chat.message` / `tool.execute.before` |
+| `qwen-code` | https://github.com/QwenLM/qwen-code | Qwen Code, Gemini fork, `qwen-cli-mcp-client-*` naming |
+| `vscode-copilot` | https://github.com/microsoft/vscode-copilot-chat | VSCode Copilot, `.vscode/mcp.json` reader |
+| `zed` | https://github.com/zed-industries/zed | Zed, MCP-only paradigm, no hook surface |
 
-**Auto-recovery protocol — MUST follow when `refs/` is missing
+**Auto-recovery protocol, MUST follow when `refs/` is missing
 or stale.**
 
 `refs/` lives outside the published npm tarball and is git-ignored
@@ -288,20 +288,20 @@ source it expects. If even one platform directory is missing, the
 agent's response MUST be:
 
 1. Detect the gap: `[ ! -d refs/platforms/<name> ]` or empty.
-2. Issue parallel clones — `ctx_batch_execute(commands, concurrency: 8)`
+2. Issue parallel clones, `ctx_batch_execute(commands, concurrency: 8)`
    with one `git clone --depth 1 <url> refs/platforms/<name>`
    command per missing platform. Concurrency MUST be 4-8 to stay
    inside GitHub's rate limit for unauthenticated clones.
 3. Block all platform-behavior claims until the clones return and
    the referenced files exist.
 4. Cite the freshly-cloned `refs/platforms/<name>/<file>:<line>` in
-   the agent's report — never an unverified claim.
+   the agent's report, never an unverified claim.
 
 **Why this matters.** Over the lifetime of context-mode we have
 shipped at least three high-impact regressions that traced back
 to an agent confidently asserting platform behavior without reading
 the source: (a) inheriting env keys we did not need to inherit
-(claimed Claude Code stripped them — it does not), (b) Codex
+(claimed Claude Code stripped them, it does not), (b) Codex
 marketplace placed in a path Codex never reads (`mcp__plugin_*`
 naming claim was right but the marketplace location claim was
 fabricated), (c) `${CODEX_PLUGIN_ROOT}` claim that turned out to
@@ -322,7 +322,7 @@ Parallel subagent army for issue triage, PR review, and releases.
 
 <claim_verification_enforcement>
 STOP. Before implementing ANY fix or feature, you MUST verify that the reported problem actually exists.
-We shipped inheritEnvKeys because an LLM said Claude Code strips env vars from child processes — it does not.
+We shipped inheritEnvKeys because an LLM said Claude Code strips env vars from child processes, it does not.
 We got burned shipping a fix for an unverified claim. Never again.
 
 RULE: No code without proof. Every bug must be reproduced. Every behavioral claim must be
@@ -343,7 +343,7 @@ If you cannot verify the claim, ask the reporter for evidence BEFORE writing a s
 <tdd_enforcement>
 STOP. Before writing ANY implementation code, you MUST have a failing test.
 No exceptions. No "I'll add tests later." No "this change is too small for tests."
-This codebase has 15 adapters, 3 OS, hooks, FTS5, sessions — it is FRAGILE.
+This codebase has 15 adapters, 3 OS, hooks, FTS5, sessions, it is FRAGILE.
 One untested change breaks everything. TDD is not optional, it is the gate.
 </tdd_enforcement>
 
@@ -376,20 +376,20 @@ Every release gets grilled. If the grill reveals an unresolved question, the rel
 ## You Are the Engineering Manager
 
 <delegation_enforcement>
-You are the EM — you ORCHESTRATE, you do NOT code. You MUST delegate ALL work to subagents.
+You are the EM, you ORCHESTRATE, you do NOT code. You MUST delegate ALL work to subagents.
 You are FORBIDDEN from: reading source code, writing fixes, running tests, or analyzing diffs yourself.
 Your ONLY job: spawn agents, route results, make ship/no-ship decisions.
 If the user sends multiple issues/PRs in sequence, spawn a SEPARATE agent army for EACH one.
-Never fall back to doing the work yourself. If an agent fails, spawn another agent — not yourself.
+Never fall back to doing the work yourself. If an agent fails, spawn another agent, not yourself.
 </delegation_enforcement>
 
 For every task:
 
-1. **Analyze** — Read the issue/PR with `gh` (via agent), classify affected domains
-2. **Recruit** — Spawn domain-specific agent teams from [agent-teams.md](agent-teams.md)
-3. **Dispatch** — ALL agents in ONE parallel batch (10-20 agents minimum)
-4. **Ping-pong** — Route Architect reviews ↔ Staff Engineer fixes
-5. **Ship** — Push to `next`, comment, close
+1. **Analyze**, Read the issue/PR with `gh` (via agent), classify affected domains
+2. **Recruit**, Spawn domain-specific agent teams from [agent-teams.md](agent-teams.md)
+3. **Dispatch**, ALL agents in ONE parallel batch (10-20 agents minimum)
+4. **Ping-pong**, Route Architect reviews ↔ Staff Engineer fixes
+5. **Ship**, Push to `next`, comment, close
 
 ## Workflow Detection
 
@@ -407,15 +407,15 @@ ALL GitHub operations MUST use the `gh` CLI. Never use raw git commands for GitH
 Never use curl/wget to GitHub API. `gh` handles auth, pagination, and rate limits correctly.
 </gh_enforcement>
 
-- `gh issue view`, `gh issue comment`, `gh issue close` — for issues
-- `gh pr view`, `gh pr diff`, `gh pr merge --squash`, `gh pr edit --base next` — for PRs
-- `gh release create` — for releases
+- `gh issue view`, `gh issue comment`, `gh issue close`, for issues
+- `gh pr view`, `gh pr diff`, `gh pr merge --squash`, `gh pr edit --base next`, for PRs
+- `gh release create`, for releases
 
 ## Agent Spawning Protocol
 
 1. Read issue/PR body + comments + diff via `gh` (through agent)
 2. Identify affected: adapters, OS, core modules
-3. Build agent roster from [agent-teams.md](agent-teams.md) — context-driven, not static
+3. Build agent roster from [agent-teams.md](agent-teams.md), context-driven, not static
 4. Spawn ALL agents in ONE message with multiple `Agent` tool calls
 5. Every code-changing agent gets `isolation: "worktree"`
 6. Use context-mode MCP tools inside agents for large output
@@ -423,7 +423,7 @@ Never use curl/wget to GitHub API. `gh` handles auth, pagination, and rate limit
 ## Validation (Every Workflow)
 
 Before shipping ANY change, validate per [validation.md](validation.md):
-- [ ] **Problem verified** — claim reproduced or confirmed with hard evidence (CLAIM_VERDICT logged)
+- [ ] **Problem verified**, claim reproduced or confirmed with hard evidence (CLAIM_VERDICT logged)
 - [ ] ENV vars verified against real platform source (not LLM hallucinations)
 - [ ] All 12 adapter tests pass: `npx vitest run tests/adapters/`
 - [ ] TypeScript compiles: `npm run typecheck`
@@ -435,19 +435,19 @@ Before shipping ANY change, validate per [validation.md](validation.md):
 After ANY code change that affects adapters, features, or platform support:
 - [ ] Update `docs/platform-support.md` if adapter capabilities changed
 - [ ] Update `README.md` if install instructions, features, or platform list changed
-- [ ] These updates are NOT optional — ship docs with code, not after
+- [ ] These updates are NOT optional, ship docs with code, not after
 
 ## Communication (Every Workflow)
 
-Follow [communication.md](communication.md) — be warm, technical, and always put responsibility on contributors to test their changes.
+Follow [communication.md](communication.md), be warm, technical, and always put responsibility on contributors to test their changes.
 
 ## Cross-Cutting References
 
-- [TDD Methodology](tdd.md) — Red-Green-Refactor, mandatory for all code changes
+- [TDD Methodology](tdd.md), Red-Green-Refactor, mandatory for all code changes
 - [Dynamic Agent Organization](agent-teams.md)
 - [Validation Patterns](validation.md)
 - [Communication Templates](communication.md)
-- [Marketing & Announcements](marketing.md) — LinkedIn posts, release announcements, VC-targeted
+- [Marketing & Announcements](marketing.md), LinkedIn posts, release announcements, VC-targeted
 
 ## Installation
 

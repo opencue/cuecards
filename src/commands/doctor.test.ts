@@ -3,11 +3,11 @@
  * against a throwaway HOME/PATH without touching the real machine.
  */
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { existsSync, lstatSync, mkdtempSync, mkdirSync, readFileSync, symlinkSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { checkActivation } from "./doctor";
+import { applyRuntimeFix, checkActivation } from "./doctor";
 import { shimDir } from "../lib/shim-dir";
 
 let home: string;
@@ -66,5 +66,56 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.code).toBe("D9");
     expect(issues[0]!.severity).toBe("warning");
     expect(issues[0]!.message).toContain("not found");
+  });
+});
+
+describe("applyRuntimeFix (D5/D6)", () => {
+  test("D6 removes only the broken symlink and preserves Claude auth files", async () => {
+    const runtimeRoot = join(home, "runtime");
+    const runtimeDir = join(runtimeRoot, "gstack+ros2", "claude");
+    mkdirSync(runtimeDir, { recursive: true });
+    writeFileSync(join(runtimeDir, ".credentials.json"), "token");
+    writeFileSync(join(runtimeDir, ".cue-hash"), "hash");
+    const cacheLink = join(runtimeDir, "cache");
+    symlinkSync(cacheLink, cacheLink);
+
+    const ok = await applyRuntimeFix({
+      code: "D6",
+      severity: "error",
+      profile: "gstack+ros2",
+      message: "Broken symlink: cache",
+      fix: "Remove broken symlink",
+      runtimeDir,
+      path: cacheLink,
+    }, runtimeRoot);
+
+    expect(ok).toBe(true);
+    expect(() => lstatSync(cacheLink)).toThrow();
+    expect(readFileSync(join(runtimeDir, ".credentials.json"), "utf8")).toBe("token");
+    expect(existsSync(join(runtimeDir, ".cue-hash"))).toBe(false);
+  });
+
+  test("D5 removes only the stale hash and preserves the runtime directory", async () => {
+    const runtimeRoot = join(home, "runtime");
+    const runtimeDir = join(runtimeRoot, "core", "claude");
+    mkdirSync(runtimeDir, { recursive: true });
+    writeFileSync(join(runtimeDir, ".credentials.json"), "token");
+    const hashPath = join(runtimeDir, ".cue-hash");
+    writeFileSync(hashPath, "hash");
+
+    const ok = await applyRuntimeFix({
+      code: "D5",
+      severity: "warning",
+      profile: "core",
+      message: "stale",
+      fix: "Remove stale hash",
+      runtimeDir,
+      path: hashPath,
+    }, runtimeRoot);
+
+    expect(ok).toBe(true);
+    expect(existsSync(hashPath)).toBe(false);
+    expect(lstatSync(runtimeDir).isDirectory()).toBe(true);
+    expect(readFileSync(join(runtimeDir, ".credentials.json"), "utf8")).toBe("token");
   });
 });

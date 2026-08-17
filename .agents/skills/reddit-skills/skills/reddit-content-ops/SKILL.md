@@ -2,6 +2,7 @@
 name: reddit-content-ops
 description: Use when the user asks for multi-step Reddit operations such as subreddit analysis, trend tracking, content strategy, publishing, or engagement campaigns.
 tags: [reddit, content-strategy, analysis, automation]
+capability: Execute compound Reddit research, strategy, publishing, and engagement workflows.
 triggers:
   - analyze subreddit trends
   - Reddit content strategy

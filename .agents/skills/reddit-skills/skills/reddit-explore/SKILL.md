@@ -2,6 +2,7 @@
 name: reddit-explore
 description: Use when the user asks to search Reddit, browse subreddits, inspect posts, track discussions, or view Reddit user profiles. Read-only discovery and research.
 tags: [reddit, search, research]
+capability: Perform read-only Reddit discovery across posts, subreddits, discussions, and profiles.
 triggers:
   - search Reddit
   - browse subreddits

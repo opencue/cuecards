@@ -42,6 +42,7 @@ env:
 | `codex_config` | map<string, any>                                             | no       | `{}`    | Extra keys merged into the Codex runtime's `config.toml` next to this profile's MCP servers. cue repoints `CODEX_HOME` at the materialized runtime, so the user's own `~/.codex/config.toml` is **never read** — `sandbox_mode`, `sandbox_workspace_write`, `approval_policy`, `shell_environment_policy` and friends have to come through here. Emitted verbatim as TOML; ignored for non-Codex agents. See "codex_config example" below. |
 | `rules`       | array of strings                                              | no       | `[]`    | Markdown rule files under `resources/rules/` (or absolute paths). Symlinked into `<runtime>/rules/` and indexed in CLAUDE.md — Claude reads on demand, no full-body inline. |
 | `commands`    | array of strings                                              | no       | `[]`    | Slash-command markdown files under `resources/commands/`. Symlinked into `<runtime>/commands/` so the user can invoke `/<name>`. Listed in CLAUDE.md's "Available Commands" section. |
+| `codex`       | map<string, string \| number \| bool> (+ `features` map<string, bool>) | no       | `{}`    | Codex-only `config.toml` overrides, written on top of the inherited `~/.codex/config.toml`. See "Codex config overrides" below. |
 | `hooks`       | array of strings                                              | no       | `[]`    | Hook bundle JSON files under `resources/hooks/`. Each declares `{ "hooks": { "PreToolUse": [...], "Stop": [...], ... } }` — merged into `settings.json` so hooks run per Claude Code's lifecycle. Sibling `.sh`/`.py` scripts are symlinked into `<runtime>/hooks/` and invoked via `${CLAUDE_CONFIG_DIR}/hooks/...`. |
 
 ### rules / commands / hooks example
@@ -69,48 +70,39 @@ time and reported as `E3` by `cue validate`.
 Inheritance merges all three with `concat + dedupe`; a child can't remove a
 parent's entry — fork the parent if you need a smaller set.
 
-### codex_config example
+## Codex config overrides (`codex:`)
 
-`cue launch codex` points `CODEX_HOME` at the materialized runtime, so Codex reads
-`<runtime>/codex/config.toml` and never your own `~/.codex/config.toml`. Anything
-Codex needs beyond MCP servers goes here:
+cue points `CODEX_HOME` at the per-profile runtime, so `<runtime>/codex/config.toml`
+is the only config a cue-launched Codex reads. That file is built from three
+layers, last wins:
+
+1. **base** — top-level keys and `[features]` from `~/.codex/config.toml`. This is
+   what keeps a Codex session running at the reasoning effort, context window and
+   auto-compact limit the user configured; without it the session silently falls
+   back to model defaults and turns end much sooner.
+2. **the profile's `codex:` block** — merged key by key, so a profile overrides
+   one knob without dropping the rest.
+3. **`[mcp_servers.*]`** — always cue-owned. Base-config MCP servers are never
+   inherited; other base tables (`[projects.*]`, `[model_providers.*]`, …) are
+   dropped as machine-local state.
 
 ```yaml
-# profiles/my-browser-stack/profile.yaml
-name: my-browser-stack
-codex_config:
-  sandbox_mode: "workspace-write"
-  approval_policy: "never"
-  sandbox_workspace_write:
-    writable_roots:
-      - "/home/me/.local/share/ego-lite-linux"
-      - "/home/me/.local/state/ego-lite-linux"
-    network_access: true
+# profiles/careful-codex/profile.yaml
+name: careful-codex
+inherits: core
+codex:
+  model_reasoning_effort: xhigh
+  sandbox_mode: workspace-write     # tighten what the base config allows
+  model_auto_compact_token_limit: 320000
+  features:
+    goals: true
 ```
 
-renders to:
-
-```toml
-sandbox_mode = "workspace-write"
-approval_policy = "never"
-
-[sandbox_workspace_write]
-writable_roots = ["/home/me/.local/share/ego-lite-linux", "/home/me/.local/state/ego-lite-linux"]
-network_access = true
-
-[mcp_servers.…]
-```
-
-Bare keys are emitted before any `[table]` header, because TOML binds every key
-after a header to that table — `sandbox_mode` written after `[mcp_servers.foo]`
-would silently become `mcp_servers.foo.sandbox_mode`.
-
-Merging is **two levels deep**, later wins: in `a+b`, a `b` that sets only
-`sandbox_workspace_write.network_access` keeps `a`'s `writable_roots` rather than
-replacing the table. Deeper than two levels, a value replaces wholesale.
-
-Values are emitted verbatim — cue does not validate them against Codex's own
-schema, so a typo here surfaces as Codex ignoring the key.
+Keys are passed through verbatim, so cue needs no allowlist tracking Codex's
+config surface — run `codex --strict-config` to catch a typo. Inheritance merges
+key by key (leaf wins); across a composite `a+b`, later parts win, like `env`.
+The base config's content is part of the runtime hash, so editing
+`~/.codex/config.toml` rebuilds the runtime on the next launch.
 
 ## Conditional activation (`when:`)
 
@@ -244,7 +236,7 @@ The `name:` field must equal the directory name. Two profiles with the same
 | `skills.plugins`| `[]`                               |
 | `mcps`          | `[]`                               |
 | `env`           | `{}`                               |
-| `codex_config`  | `{}`                               |
+| `codex`         | `{}` (base `~/.codex/config.toml` still inherited) |
 
 A profile with only `name` and `description` is legal but useless — it
 materializes an empty workspace. The linter flags this as `W5` (vacuous

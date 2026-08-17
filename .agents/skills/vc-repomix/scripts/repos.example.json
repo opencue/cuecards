@@ -1,0 +1,11 @@
+[
+  {
+    "path": ".",
+    "output": "repomix-flowser-local.md"
+  },
+  {
+    "path": "yamadashy/repomix",
+    "remote": true,
+    "output": "repomix-yamadashy-repomix.xml"
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "name": "prompt-engineer-skill",
+  "version": "1.0.2",
+  "description": "Claude Code skill: transform rough prompts/ideas into production-ready LLM prompts with CoT, Constitutional AI, RAG optimization, and multi-model support",
+  "bin": {
+    "prompt-engineer-skill": "./cli.js"
+  },
+  "scripts": {
+    "test": "node cli.js --dry-run"
+  },
+  "files": [
+    "cli.js",
+    "SKILL.md",
+    "references/"
+  ],
+  "keywords": [
+    "claude-code",
+    "skill",
+    "agent-skill",
+    "prompt-engineering",
+    "llm",
+    "claude",
+    "gpt",
+    "ai-prompts",
+    "chain-of-thought",
+    "rag"
+  ],
+  "author": "repo-phuocdt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/repo-phuocdt/prompt-engineer-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/repo-phuocdt/prompt-engineer-skill/issues"
+  },
+  "homepage": "https://github.com/repo-phuocdt/prompt-engineer-skill#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

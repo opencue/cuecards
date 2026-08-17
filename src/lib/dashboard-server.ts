@@ -47,6 +47,9 @@ import { resolveProfileForCwd } from "./cwd-resolver";
 import { quickDiagnose } from "../commands/status";
 import { isEnabled as telemetryEnabled } from "./telemetry-consent";
 import { collectUserPrompts } from "../commands/trigger-gaps";
+import { computeVersionInfo, type NoticePayload, type VersionInfo } from "./dashboard-version";
+
+export { computeVersionInfo, semverGt } from "./dashboard-version";
 
 const REPO_ROOT = resolve(new URL(import.meta.url).pathname, "..", "..", "..");
 const WEB_DIST = join(REPO_ROOT, "web", "dist");
@@ -1254,15 +1257,6 @@ export async function handleDiscoveredPlugins(): Promise<ApiResult<unknown>> {
 // the npm registry. No user data leaves the box; it's cached ~1h and fail-soft
 // (any error → no banner), mirroring the CLI's existing 24h update check.
 
-/** Maintainer-authored broadcast, baked into the published `package.json`. */
-interface NoticePayload { message?: string; command?: string }
-interface VersionInfo {
-  current: string;
-  latest: string | null;
-  updateAvailable: boolean;
-  notice: NoticePayload | null;
-}
-
 const NPM_LATEST_URL = "https://registry.npmjs.org/cue-ai/latest";
 const VERSION_TTL_MS = 60 * 60 * 1000; // 1h — matches the answer's "cached ~1h".
 let versionCache: { ts: number; data: VersionInfo } | null = null;
@@ -1275,32 +1269,6 @@ function localVersion(): string {
   } catch {
     return "0.0.0";
   }
-}
-
-/** True when semver `a` is strictly newer than `b` (major.minor.patch only). */
-export function semverGt(a: string, b: string): boolean {
-  const pa = a.split(".").map((n) => parseInt(n, 10) || 0);
-  const pb = b.split(".").map((n) => parseInt(n, 10) || 0);
-  for (let i = 0; i < 3; i++) {
-    const x = pa[i] ?? 0, y = pb[i] ?? 0;
-    if (x !== y) return x > y;
-  }
-  return false;
-}
-
-/**
- * Pure shaping of the version banner from the local version + the registry's
- * `latest` doc (its published package.json). Split out so it's unit-testable
- * without a network round-trip. `doc` is null when the fetch failed.
- */
-export function computeVersionInfo(
-  current: string,
-  doc: { version?: string; cue?: { notice?: NoticePayload } } | null,
-): VersionInfo {
-  const latest = doc?.version ?? null;
-  const n = doc?.cue?.notice;
-  const notice = n && (n.message || n.command) ? { message: n.message, command: n.command } : null;
-  return { current, latest, updateAvailable: !!latest && semverGt(latest, current), notice };
 }
 
 export async function handleVersion(): Promise<ApiResult<unknown>> {

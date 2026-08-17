@@ -32,9 +32,9 @@ import { existsSync } from "node:fs";
 
 import { clearKittyImageByIdSequence, isKittyTerminal, renderKittyImage } from "./kitty-image";
 
-/** Sparkle frames — a rotating/pulsing 4-point star, the "Claude" feel. */
-const FRAMES = ["✦", "✧", "✶", "✷", "✸", "✹", "✺", "✻"];
-const TICK_MS = 90;
+/** Stable-width braille frames avoid the visual jitter of mixed star glyphs. */
+const FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+const TICK_MS = 80;
 /** Wait this long before drawing anything; warm launches finish first → no-op. */
 const START_DELAY_MS = 64;
 /**
@@ -49,12 +49,14 @@ const SHOW_CURSOR = "\x1b[?25h";
 const ERASE_LINE = "\r\x1b[K";
 const DIM = "\x1b[2m";
 const RESET = "\x1b[0m";
-/** Claude clay/coral, as a 24-bit FG so the spinner reads as "Claude". */
 const CORAL = "\x1b[38;2;217;119;87m";
+const CODEX_GREEN = "\x1b[38;2;16;163;127m";
 
 export interface LoaderOptions {
   /** Trailing message after the spinner. Default "Launching Claude…". */
   message?: string;
+  /** ANSI foreground sequence for the spinner. Default Claude coral. */
+  accentColor?: string;
   /** Stream to draw on. Default process.stderr. Must be a TTY to animate. */
   stream?: NodeJS.WriteStream;
   /** Absolute path to a PNG logo for the Kitty path. Skipped if missing. */
@@ -69,6 +71,14 @@ export interface LoaderHandle {
   setMessage(msg: string): void;
   /** Idempotent. Restores the terminal. Call before exec. */
   stop(): void;
+}
+
+export function agentLaunchMessage(agent: "claude-code" | "codex"): string {
+  return agent === "codex" ? "Launching Codex…" : "Launching Claude…";
+}
+
+export function agentLaunchAccent(agent: "claude-code" | "codex"): string {
+  return agent === "codex" ? CODEX_GREEN : CORAL;
 }
 
 /** Dependencies the pure core needs — injected so tests drive it without a TTY. */
@@ -95,7 +105,7 @@ interface LoaderCore {
  * side effect goes through `deps`. `startLoader` wraps this with a real
  * setInterval + SIGINT handling; tests drive start/tick/stop by hand.
  */
-function createLoaderCore(deps: CoreDeps, message: string): LoaderCore {
+function createLoaderCore(deps: CoreDeps, message: string, accentColor = CORAL): LoaderCore {
   let frame = 0;
   let started = false;
   let stopped = false;
@@ -105,7 +115,7 @@ function createLoaderCore(deps: CoreDeps, message: string): LoaderCore {
   const drawFrame = (): void => {
     // 1-based column where the text begins: after the logo (if any) + 1 gap cell.
     const textCol = logo ? deps.logoCols + 2 : 1;
-    const spinner = `${CORAL}${FRAMES[frame % FRAMES.length]}${RESET}`;
+    const spinner = `${accentColor}${FRAMES[frame % FRAMES.length]}${RESET}`;
     // Strip control chars (CR/LF/ESC/tab) from the message — it can carry the
     // classifier's REASON line, and an embedded \r/\n would break the single-line
     // redraw (cursor leaves the line; stop() then erases the wrong one).
@@ -180,7 +190,7 @@ export function startLoader(opts: LoaderOptions = {}): LoaderHandle | null {
     logoCols,
   };
 
-  const core = createLoaderCore(deps, opts.message ?? "Launching Claude…");
+  const core = createLoaderCore(deps, opts.message ?? "Launching Claude…", opts.accentColor);
   const delayMs = opts.startDelayMs ?? START_DELAY_MS;
 
   let interval: ReturnType<typeof setInterval> | null = null;

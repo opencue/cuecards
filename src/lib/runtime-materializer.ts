@@ -10,18 +10,51 @@
 import { createHash } from "node:crypto";
 import http from "node:http";
 import https from "node:https";
-import { mkdir, rename, rm, symlink, writeFile, readFile, mkdtemp, readdir, lstat } from "node:fs/promises";
-import { dirname, join, resolve as resolvePath, basename, isAbsolute } from "node:path";
+import {
+  mkdir,
+  rename,
+  rm,
+  symlink,
+  writeFile,
+  readFile,
+  mkdtemp,
+  readdir,
+  lstat,
+} from "node:fs/promises";
+import {
+  dirname,
+  join,
+  resolve as resolvePath,
+  basename,
+  isAbsolute,
+} from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
+import type {
+  AgentKind,
+  CodexProfileConfig,
+  ResolvedProfile,
+} from "../../profiles/_types";
+import { buildCodexConfigToml } from "./codex-config";
 import { normalizeUvxGitServers } from "./uvx-installer";
 import { evaluateCondition } from "./conditional-skills";
-import { hasWorkspaces, getActiveWorkspace, computeOverrides } from "./workspaces";
-import { parseSkillFromDir, renderRouter, type ParsedSkill } from "./skill-router";
+import {
+  hasWorkspaces,
+  getActiveWorkspace,
+  computeOverrides,
+} from "./workspaces";
+import {
+  parseSkillFromDir,
+  renderRouter,
+  type ParsedSkill,
+} from "./skill-router";
 import { CODEX_BRIEF_POINTER } from "./project-brief";
 
-const REPO_ROOT = resolvePath(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const REPO_ROOT = resolvePath(
+  dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+);
 const RESOURCES_RULES = join(REPO_ROOT, "resources", "rules");
 const RESOURCES_COMMANDS = join(REPO_ROOT, "resources", "commands");
 const RESOURCES_SUBAGENTS = join(REPO_ROOT, "resources", "subagents");
@@ -63,6 +96,11 @@ export interface MaterializeInput {
   userClaudeMd: string;
   /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
   credentialsSource?: string;
+  /** Codex only: path to the base `config.toml` (normally ~/.codex/config.toml)
+   *  whose top-level keys and `[features]` the runtime config inherits. cue
+   *  redirects CODEX_HOME at the runtime, so without this the session loses every
+   *  knob the user configured. Omit to inherit nothing (what tests do). */
+  codexBaseConfig?: string;
   /** Lazy-MCP: ids the launcher disabled — removed from the runtime .claude.json
    *  even though the rebuild preserves the old file. Profile.mcps is already
    *  pruned to the kept set; this just evicts the stale keys. */
@@ -123,10 +161,15 @@ export async function isRuntimeStale(
   // (a) Source profile.yaml newer than the hash. Its own try/catch so a missing
   //     yaml doesn't short-circuit the skill check below.
   try {
-    if ((await lstat(join(profilesDir(), profileName, "profile.yaml"))).mtimeMs > hashMtime) {
+    if (
+      (await lstat(join(profilesDir(), profileName, "profile.yaml"))).mtimeMs >
+      hashMtime
+    ) {
       return true;
     }
-  } catch { /* no source yaml — fall through to the skill check */ }
+  } catch {
+    /* no source yaml — fall through to the skill check */
+  }
 
   // (b) Any resolved SKILL.md newer than the hash.
   const skillsDir = join(runtimeDir, "skills");
@@ -138,13 +181,19 @@ export async function isRuntimeStale(
   }
   for (const slug of slugs) {
     try {
-      if ((await lstat(join(skillsDir, slug, "SKILL.md"))).mtimeMs > hashMtime) return true;
-    } catch { /* broken symlink / no SKILL.md under this slug — skip */ }
+      if ((await lstat(join(skillsDir, slug, "SKILL.md"))).mtimeMs > hashMtime)
+        return true;
+    } catch {
+      /* broken symlink / no SKILL.md under this slug — skip */
+    }
   }
   return false;
 }
 
-function appliesToAgent(scoped: { agents?: AgentKind[] }, agent: AgentKind): boolean {
+function appliesToAgent(
+  scoped: { agents?: AgentKind[] },
+  agent: AgentKind,
+): boolean {
   if (!scoped.agents || scoped.agents.length === 0) return true;
   return scoped.agents.includes(agent);
 }
@@ -154,7 +203,11 @@ function sortedJson(value: unknown): string {
   if (Array.isArray(value)) return "[" + value.map(sortedJson).join(",") + "]";
   const obj = value as Record<string, unknown>;
   const keys = Object.keys(obj).sort();
-  return "{" + keys.map((k) => JSON.stringify(k) + ":" + sortedJson(obj[k])).join(",") + "}";
+  return (
+    "{" +
+    keys.map((k) => JSON.stringify(k) + ":" + sortedJson(obj[k])).join(",") +
+    "}"
+  );
 }
 
 // Bump when the on-disk runtime layout changes in a way the profile content
@@ -166,11 +219,48 @@ function sortedJson(value: unknown): string {
 //       default-off the per-session telemetry sections (#65). The generated
 //       content shrank but no profile field changed, so without this bump every
 //       already-materialized runtime would keep serving its cached 37KB file.
-const MATERIALIZER_VERSION = 3;
+//   v4: Codex config.toml inherits the base config's top-level keys +
+//       [features] (reasoning effort, context window, auto-compact). Same
+//       situation — generated content changed, no profile field did.
+const MATERIALIZER_VERSION = 4;
 
-function computeHash(profile: ResolvedProfile, agent: AgentKind): string {
-  const canonical = sortedJson({ v: MATERIALIZER_VERSION, agent, profile });
+function computeHash(
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  extra = "",
+): string {
+  const canonical = sortedJson({
+    v: MATERIALIZER_VERSION,
+    agent,
+    profile,
+    extra,
+  });
   return createHash("sha256").update(canonical).digest("hex");
+}
+
+function effectiveCodexOverrides(
+  profile: ResolvedProfile,
+): CodexProfileConfig | undefined {
+  const legacy =
+    (profile as { codexConfig?: Record<string, unknown> }).codexConfig ?? {};
+  const current = (profile as { codex?: CodexProfileConfig }).codex ?? {};
+  if (Object.keys(legacy).length === 0 && Object.keys(current).length === 0) {
+    return undefined;
+  }
+  const merged: Record<string, unknown> = { ...legacy, ...current };
+  const legacyFeatures = isRecord(legacy.features) ? legacy.features : {};
+  const currentFeatures = isRecord(current.features) ? current.features : {};
+  if (
+    Object.keys(legacyFeatures).length > 0 ||
+    Object.keys(currentFeatures).length > 0
+  ) {
+    merged.features = { ...legacyFeatures, ...currentFeatures };
+  }
+  return merged as CodexProfileConfig;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 /**
@@ -186,14 +276,21 @@ function computeHash(profile: ResolvedProfile, agent: AgentKind): string {
  * Opt back in with `CUE_SESSION_TELEMETRY=1|true` (mirrors the file's other
  * default-off knobs like `CUE_TRIGGER_PHRASES`).
  */
-export function shouldIncludeSessionTelemetry(env: Record<string, string | undefined>): boolean {
-  return env.CUE_SESSION_TELEMETRY === "1" || env.CUE_SESSION_TELEMETRY === "true";
+export function shouldIncludeSessionTelemetry(
+  env: Record<string, string | undefined>,
+): boolean {
+  return (
+    env.CUE_SESSION_TELEMETRY === "1" || env.CUE_SESSION_TELEMETRY === "true"
+  );
 }
 
 const MATERIALIZE_LOCK_STALE_MS = 600_000;
 const MATERIALIZE_LOCK_WAIT_MS = 30_000;
 
-async function withMaterializeLock<T>(runtimeDir: string, action: () => Promise<T>): Promise<T> {
+async function withMaterializeLock<T>(
+  runtimeDir: string,
+  action: () => Promise<T>,
+): Promise<T> {
   const lockDir = `${runtimeDir}.lock`;
   const ownerFile = join(lockDir, "owner.json");
   const token = `${process.pid}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
@@ -215,10 +312,14 @@ async function withMaterializeLock<T>(runtimeDir: string, action: () => Promise<
       if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
       try {
         const age = Date.now() - (await lstat(lockDir)).mtimeMs;
-        const owner = JSON.parse(await readFile(ownerFile, "utf8")) as { pid?: number };
+        const owner = JSON.parse(await readFile(ownerFile, "utf8")) as {
+          pid?: number;
+        };
         let ownerAlive = typeof owner.pid === "number";
         if (ownerAlive) {
-          try { process.kill(owner.pid!, 0); } catch (probeError) {
+          try {
+            process.kill(owner.pid!, 0);
+          } catch (probeError) {
             ownerAlive = (probeError as NodeJS.ErrnoException).code === "EPERM";
           }
         }
@@ -233,10 +334,14 @@ async function withMaterializeLock<T>(runtimeDir: string, action: () => Promise<
             await rm(lockDir, { recursive: true, force: true });
             continue;
           }
-        } catch { /* lock disappeared between checks */ }
+        } catch {
+          /* lock disappeared between checks */
+        }
       }
       if (Date.now() >= deadline) {
-        throw new Error(`Timed out waiting for runtime materialization lock: ${lockDir}`);
+        throw new Error(
+          `Timed out waiting for runtime materialization lock: ${lockDir}`,
+        );
       }
       await new Promise((resolve) => setTimeout(resolve, 25));
     }
@@ -246,24 +351,39 @@ async function withMaterializeLock<T>(runtimeDir: string, action: () => Promise<
     return await action();
   } finally {
     try {
-      const owner = JSON.parse(await readFile(ownerFile, "utf8")) as { token?: string };
-      if (owner.token === token) await rm(lockDir, { recursive: true, force: true });
-    } catch { /* a stale-lock recovery already replaced or removed this lock */ }
+      const owner = JSON.parse(await readFile(ownerFile, "utf8")) as {
+        token?: string;
+      };
+      if (owner.token === token)
+        await rm(lockDir, { recursive: true, force: true });
+    } catch {
+      /* a stale-lock recovery already replaced or removed this lock */
+    }
   }
 }
 
-export async function materializeRuntime(input: MaterializeInput): Promise<MaterializeOutput> {
+export async function materializeRuntime(
+  input: MaterializeInput,
+): Promise<MaterializeOutput> {
   const runtimeDir = join(
     input.runtimeRoot,
     input.runtimeKey ?? input.profile.name,
     agentSubdir(input.agent),
   );
-  return withMaterializeLock(runtimeDir, () => materializeRuntimeUnlocked(input));
+  return withMaterializeLock(runtimeDir, () =>
+    materializeRuntimeUnlocked(input),
+  );
 }
 
-async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<MaterializeOutput> {
+async function materializeRuntimeUnlocked(
+  input: MaterializeInput,
+): Promise<MaterializeOutput> {
   const { profile, agent, runtimeRoot } = input;
-  const runtimeDir = join(runtimeRoot, input.runtimeKey ?? profile.name, agentSubdir(agent));
+  const runtimeDir = join(
+    runtimeRoot,
+    input.runtimeKey ?? profile.name,
+    agentSubdir(agent),
+  );
 
   // Normalize any `uvx --from git+<repo> <bin>` MCP entries: install the
   // package locally with `uv tool install` and rewrite the entry to call the
@@ -272,29 +392,49 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // Idempotent — re-runs detect an existing binary and just rewrite.
   const { normalized: normalizedRegistry, report: uvxReport } =
     normalizeUvxGitServers(input.mcpRegistry);
-  const effectiveInput: MaterializeInput = { ...input, mcpRegistry: normalizedRegistry };
+  const effectiveInput: MaterializeInput = {
+    ...input,
+    mcpRegistry: normalizedRegistry,
+  };
   if (uvxReport.installed.length > 0) {
     process.stderr.write(
       `[cue] installed uvx MCPs: ${uvxReport.installed.join(", ")}\n`,
     );
   }
 
-  const hash = computeHash(profile, agent);
+  // The base Codex config is part of this runtime's content, so it belongs in
+  // the hash: edit ~/.codex/config.toml and the next launch must rebuild rather
+  // than keep serving a config.toml with the previous knobs.
+  const codexBaseText =
+    agent === "codex" && effectiveInput.codexBaseConfig
+      ? await readFile(effectiveInput.codexBaseConfig, "utf8").catch(() => "")
+      : "";
+  const hash = computeHash(profile, agent, codexBaseText);
 
   // Collect profile MCP entries once — used by both cache-hit and rebuild paths
   // for the .claude.json sync.
-  const mcpServers = collectProfileMcps(profile, agent, effectiveInput.mcpRegistry);
+  const mcpServers = collectProfileMcps(
+    profile,
+    agent,
+    effectiveInput.mcpRegistry,
+  );
 
   // Short-circuit if hash matches.
   try {
-    const existing = (await readFile(join(runtimeDir, ".cue-hash"), "utf8")).trim();
+    const existing = (
+      await readFile(join(runtimeDir, ".cue-hash"), "utf8")
+    ).trim();
     if (existing === hash) {
       // Refresh state from credentialsSource even on cache hit so account
       // switches and newly-added source entries are reflected.
       if (effectiveInput.credentialsSource) {
         // Re-merge settings.json from current credentialsSource.
         if (agent === "claude-code") {
-          const merged = await buildClaudeSettings(profile, agent, effectiveInput);
+          const merged = await buildClaudeSettings(
+            profile,
+            agent,
+            effectiveInput,
+          );
           await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
         }
         // Re-overlay any source entries that aren't already present (e.g.
@@ -302,14 +442,22 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
         await overlaySourceState(runtimeDir, effectiveInput.credentialsSource);
         // Pre-seed the plugin cache so enabled-plugin hooks find their version
         // dir immediately (avoids the "Plugin directory does not exist" race).
-        await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
+        if (!sameResolvedPath(runtimeDir, effectiveInput.credentialsSource)) {
+          await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
+        }
       }
       if (agent === "claude-code") {
-        await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
+        await syncMcpsIntoClaudeJson(
+          runtimeDir,
+          mcpServers,
+          effectiveInput.disabledMcpIds,
+        );
       }
       return { runtimeDir, rebuilt: false, hash };
     }
-  } catch { /* not present — fall through to build */ }
+  } catch {
+    /* not present — fall through to build */
+  }
 
   // Build in a sibling tmp dir, atomic-swap at the end.
   await mkdir(dirname(runtimeDir), { recursive: true });
@@ -370,15 +518,19 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // profile.deferredSkills, so loadout changes rebuild this file.
   const deferredSkills = profile.deferredSkills ?? [];
   if (deferredSkills.length > 0) {
-    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } = await import("./lazy-skills");
+    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } =
+      await import("./lazy-skills");
     const indexDir = join(skillsDir, DEFERRED_INDEX_SLUG);
     await mkdir(indexDir, { recursive: true });
-    await writeFile(join(indexDir, "SKILL.md"), generateDeferredIndexSkill(deferredSkills));
+    await writeFile(
+      join(indexDir, "SKILL.md"),
+      generateDeferredIndexSkill(deferredSkills),
+    );
   }
   if (overridden.length > 0) {
     process.stderr.write(
       `[cue] ${overridden.length} skill slug collision(s) resolved last-wins ` +
-      `(loser still smart-loadable): ${overridden.join("; ")}\n`,
+        `(loser still smart-loadable): ${overridden.join("; ")}\n`,
     );
   }
   // Manifest for smart-loader's --exclude-loaded: the resolved <category>/<slug>
@@ -390,8 +542,10 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   if (skippedSkills.length > 0) {
     process.stderr.write(
       `[cue] skipped ${skippedSkills.length} missing skill(s): ${skippedSkills.slice(0, 5).join(", ")}` +
-      (skippedSkills.length > 5 ? `, +${skippedSkills.length - 5} more` : "") +
-      ` — run \`cue debug ${profile.name}\` for details\n`,
+        (skippedSkills.length > 5
+          ? `, +${skippedSkills.length - 5} more`
+          : "") +
+        ` — run \`cue debug ${profile.name}\` for details\n`,
     );
   }
   // Fail-loud guard: a single broken ref in a 20-skill profile is tolerable
@@ -412,11 +566,11 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     await rm(tmpDir, { recursive: true, force: true });
     throw new Error(
       `[cue] skill resolution failed: ${skippedSkills.length}/${attemptedSkills} ` +
-      `skill(s) for profile "${profile.name}" could not be resolved. The runtime ` +
-      `would be broken, so the rebuild was aborted (old runtime left intact). ` +
-      `This usually means the skill source root is wrong — check CUE_REPO_ROOT / ` +
-      `the skillSourceLookup wiring, then run \`cue debug ${profile.name}\`. ` +
-      `Set CUE_ALLOW_PARTIAL_SKILLS=1 to bypass.`,
+        `skill(s) for profile "${profile.name}" could not be resolved. The runtime ` +
+        `would be broken, so the rebuild was aborted (old runtime left intact). ` +
+        `This usually means the skill source root is wrong — check CUE_REPO_ROOT / ` +
+        `the skillSourceLookup wiring, then run \`cue debug ${profile.name}\`. ` +
+        `Set CUE_ALLOW_PARTIAL_SKILLS=1 to bypass.`,
     );
   }
 
@@ -445,11 +599,16 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const commandsDir = join(tmpDir, "commands");
     await mkdir(commandsDir, { recursive: true });
     for (const ref of profileCommands) {
-      const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_COMMANDS);
+      const src = resolveResourcePath(
+        ref.endsWith(".md") ? ref : `${ref}.md`,
+        RESOURCES_COMMANDS,
+      );
       try {
         await lstat(src);
         await symlink(src, join(commandsDir, basename(src)));
-      } catch { /* missing source — skip */ }
+      } catch {
+        /* missing source — skip */
+      }
     }
   }
 
@@ -464,11 +623,16 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const agentsDir = join(tmpDir, "agents");
     await mkdir(agentsDir, { recursive: true });
     for (const ref of profileSubagents) {
-      const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_SUBAGENTS);
+      const src = resolveResourcePath(
+        ref.endsWith(".md") ? ref : `${ref}.md`,
+        RESOURCES_SUBAGENTS,
+      );
       try {
         await lstat(src);
         await symlink(src, join(agentsDir, basename(src)));
-      } catch { /* missing source — skip */ }
+      } catch {
+        /* missing source — skip */
+      }
     }
   }
 
@@ -477,11 +641,16 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const rulesDir = join(tmpDir, "rules");
     await mkdir(rulesDir, { recursive: true });
     for (const ref of profileRules) {
-      const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_RULES);
+      const src = resolveResourcePath(
+        ref.endsWith(".md") ? ref : `${ref}.md`,
+        RESOURCES_RULES,
+      );
       try {
         await lstat(src);
         await symlink(src, join(rulesDir, basename(src)));
-      } catch { /* missing source — skip */ }
+      } catch {
+        /* missing source — skip */
+      }
     }
   }
 
@@ -498,14 +667,18 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       try {
         await lstat(src);
         await symlink(src, join(hooksDir, basename(src)));
-      } catch { /* missing source — skip */ }
+      } catch {
+        /* missing source — skip */
+      }
       const stem = basename(ref).replace(/\.[^.]+$/, "");
       for (const ext of [".sh", ".py", ".js", ".mjs", ".ts"]) {
         const companion = join(RESOURCES_HOOKS, `${stem}${ext}`);
         try {
           await lstat(companion);
           await symlink(companion, join(hooksDir, `${stem}${ext}`));
-        } catch { /* no companion at this ext — skip */ }
+        } catch {
+          /* no companion at this ext — skip */
+        }
       }
     }
   }
@@ -517,11 +690,16 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const pbDir = join(tmpDir, "playbooks");
     await mkdir(pbDir, { recursive: true });
     for (const ref of profilePlaybooks) {
-      const src = resolveResourcePath(ref.endsWith(".md") ? ref : `${ref}.md`, RESOURCES_PLAYBOOKS);
+      const src = resolveResourcePath(
+        ref.endsWith(".md") ? ref : `${ref}.md`,
+        RESOURCES_PLAYBOOKS,
+      );
       try {
         await lstat(src);
         await symlink(src, join(pbDir, basename(src)));
-      } catch { /* missing source — skip */ }
+      } catch {
+        /* missing source — skip */
+      }
     }
   }
 
@@ -542,7 +720,9 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       try {
         await lstat(src);
         await symlink(src, join(gDir, basename(src)));
-      } catch { /* missing source — skip; surfaced by `cue doctor` (D8) */ }
+      } catch {
+        /* missing source — skip; surfaced by `cue doctor` (D8) */
+      }
     }
   }
 
@@ -552,24 +732,33 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const merged = await buildClaudeSettings(profile, agent, effectiveInput);
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
-    // Codex equivalent — write config.toml from registry. Caller pre-renders to TOML.
+    // Codex equivalent — config.toml. cue points CODEX_HOME at this runtime, so
+    // this file is the ONLY config the session reads: it has to carry the base
+    // config's autonomy knobs (reasoning effort, context window, auto-compact,
+    // [features]) or the session silently runs on model defaults.
     await writeFile(
       join(tmpDir, "config.toml"),
-      tomlRender({ mcp_servers: mcpServers, extra: profile.codexConfig }),
+      buildCodexConfigToml({
+        baseText: codexBaseText,
+        overrides: effectiveCodexOverrides(profile),
+        mcpServers,
+      }),
     );
   }
 
   // 3. CLAUDE.md with stamp + role identity
   const iconStr = profile.icon ?? "";
   const skillsList = (profile.skills?.local ?? [])
-    .map((s) => typeof s === "string" ? s : s.id)
+    .map((s) => (typeof s === "string" ? s : s.id))
     .filter((s) => !s.includes("*"));
-  const mcpsList = (profile.mcps ?? [])
-    .map((m) => typeof m === "string" ? m : m.id);
+  const mcpsList = (profile.mcps ?? []).map((m) =>
+    typeof m === "string" ? m : m.id,
+  );
 
-  let stamp = `<!-- cue: profile=${profile.name} icon=${iconStr} -->\n` +
-              `# Active Profile: ${iconStr ? iconStr + " " : ""}${profile.name}\n\n` +
-              `> ${profile.description}\n\n`;
+  let stamp =
+    `<!-- cue: profile=${profile.name} icon=${iconStr} -->\n` +
+    `# Active Profile: ${iconStr ? iconStr + " " : ""}${profile.name}\n\n` +
+    `> ${profile.description}\n\n`;
 
   // Phase 1: Persona — multi-line role-priming defining who the agent IS.
   // Goes above the mechanical "Your Role" block so it primes interpretation
@@ -626,13 +815,30 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       // silently vanishing.
       const fallbackName = id.split("/").pop() ?? id;
       routerParsed.push({
-        id, name: fallbackName, triggers: [], capability: "",
-        capabilityExplicit: false, whenToInvoke: [], notFor: "",
-        rawDescription: "", quality: "none", missing: true,
+        id,
+        name: fallbackName,
+        triggers: [],
+        capability: "",
+        capabilityExplicit: false,
+        whenToInvoke: [],
+        notFor: "",
+        rawDescription: "",
+        quality: "none",
+        missing: true,
       });
     }
   }
-  const routerOverrides = (profile as { personaRouting?: { phrase?: string; capability?: string; skill: string; note?: string }[] }).personaRouting ?? [];
+  const routerOverrides =
+    (
+      profile as {
+        personaRouting?: {
+          phrase?: string;
+          capability?: string;
+          skill: string;
+          note?: string;
+        }[];
+      }
+    ).personaRouting ?? [];
 
   // Telemetry-driven router compaction. Read the same skill-usage data that
   // `cue skill-report` shows; collapse zombies (0 hits in last 30d) into a
@@ -644,7 +850,9 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
     const { computeSkillUsage } = await import("./skill-report");
     const usage = computeSkillUsage(profile, { windowDays: 30 });
     zombieIds = usage.filter((u) => u.zombie).map((u) => u.id);
-  } catch { /* render full router on any failure */ }
+  } catch {
+    /* render full router on any failure */
+  }
   const lean = process.env.CUE_LEAN === "1" || process.env.CUE_LEAN === "true";
   // Default-on: the trigger-phrases table duplicates each SKILL.md's own
   // frontmatter, and on heavy profiles it pushes the materialized CLAUDE.md
@@ -659,7 +867,8 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // under "Available Skills" and loadable on demand. Override with
   // CUE_MAX_CAPABILITY_ROWS (0 disables the cap).
   const maxCapEnv = Number(process.env.CUE_MAX_CAPABILITY_ROWS);
-  const maxCapabilityRows = Number.isFinite(maxCapEnv) && maxCapEnv >= 0 ? maxCapEnv : 50;
+  const maxCapabilityRows =
+    Number.isFinite(maxCapEnv) && maxCapEnv >= 0 ? maxCapEnv : 50;
   const routerBlock = renderRouter(routerParsed, {
     overrides: routerOverrides,
     zombies: zombieIds,
@@ -670,15 +879,17 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   if (routerBlock) stamp += routerBlock;
 
   // Role identity — tell Claude what it is
-  stamp += `## Your Role\n\n` +
-           `You are operating as **${profile.name}** — ${profile.description.toLowerCase()}.\n` +
-           `Focus on tasks within this domain. Use the skills loaded in this profile.\n\n`;
+  stamp +=
+    `## Your Role\n\n` +
+    `You are operating as **${profile.name}** — ${profile.description.toLowerCase()}.\n` +
+    `Focus on tasks within this domain. Use the skills loaded in this profile.\n\n`;
 
   // Skills summary
   if (skillsList.length > 0) {
     stamp += `## Available Skills (${skillsList.length})\n\n`;
     if (skillsList.length <= 20) {
-      stamp += skillsList.map((s) => `- \`${s.split("/").pop()}\``).join("\n") + "\n";
+      stamp +=
+        skillsList.map((s) => `- \`${s.split("/").pop()}\``).join("\n") + "\n";
     } else {
       // Group by category
       const groups = new Map<string, string[]>();
@@ -719,7 +930,9 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
         }
         stamp += "\n";
       }
-    } catch { /* analytics unavailable — skip */ }
+    } catch {
+      /* analytics unavailable — skip */
+    }
 
     // Profile fit monitoring — formerly a ~150-token hardcoded block; now a
     // skill (meta/profile-fit-monitor) loaded on demand. Net per-message cost
@@ -741,15 +954,23 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // Rules — index only. Symlinks live in rules/; Claude reads on demand instead
   // of paying the full token cost every turn.
   if (profileRules.length > 0) {
-    stamp += `## Rules (${profileRules.length})\n\n` +
+    stamp +=
+      `## Rules (${profileRules.length})\n\n` +
       `Read on demand from \`rules/\`:\n` +
-      profileRules.map((r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``).join("\n") + "\n\n";
+      profileRules
+        .map(
+          (r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``,
+        )
+        .join("\n") +
+      "\n\n";
   }
 
   // Commands — list as a quick reference
   if (profileCommands.length > 0) {
-    stamp += `## Available Commands\n\n` +
-      profileCommands.map((c) => `- /${basename(c, ".md")}`).join("\n") + "\n\n";
+    stamp +=
+      `## Available Commands\n\n` +
+      profileCommands.map((c) => `- /${basename(c, ".md")}`).join("\n") +
+      "\n\n";
   }
 
   // Subagents — a grouped roster of the delegatable specialists in agents/.
@@ -767,7 +988,8 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       if (!groups.has(div)) groups.set(div, []);
       groups.get(div)!.push(stem);
     }
-    stamp += `## Subagents (${profileSubagents.length})\n\n` +
+    stamp +=
+      `## Subagents (${profileSubagents.length})\n\n` +
       `Delegatable specialists in \`agents/\`. **Prefer handing a matching task ` +
       `to one of these via the Task tool over improvising it yourself.** Claude ` +
       `Code routes by each agent's description; this is your quick map of who's ` +
@@ -781,20 +1003,28 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // Playbooks (Phase 2) — proven step-by-step protocols for common tasks.
   // Indexed only; bodies are read on demand when the matching task triggers.
   if (profilePlaybooks.length > 0) {
-    stamp += `## Playbooks (${profilePlaybooks.length})\n\n` +
+    stamp +=
+      `## Playbooks (${profilePlaybooks.length})\n\n` +
       `Read on demand from \`playbooks/\` when the user's request matches:\n` +
-      profilePlaybooks.map((p: string) => {
-        const stem = basename(p, ".md");
-        return `- \`playbooks/${stem}.md\` — use when ${stem.replace(/-/g, " ")}`;
-      }).join("\n") + "\n\n" +
+      profilePlaybooks
+        .map((p: string) => {
+          const stem = basename(p, ".md");
+          return `- \`playbooks/${stem}.md\` — use when ${stem.replace(/-/g, " ")}`;
+        })
+        .join("\n") +
+      "\n\n" +
       `**Following a playbook beats freestyling.** If a relevant playbook exists, read it first and step through it.\n\n`;
   }
 
   // Quality gates (Phase 3) — mention so Claude knows what'll be checked at Stop.
   const profileGatesForStamp = (profile as any).qualityGates ?? [];
   if (profileGatesForStamp.length > 0) {
-    stamp += `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
-      profileGatesForStamp.map((g: string) => `- \`${basename(g)}\``).join("\n") + "\n\n" +
+    stamp +=
+      `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
+      profileGatesForStamp
+        .map((g: string) => `- \`${basename(g)}\``)
+        .join("\n") +
+      "\n\n" +
       `Don't claim "done" if you haven't met them — they'll fail you publicly.\n\n`;
   }
 
@@ -815,13 +1045,16 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // memory file crosses ~40k chars. Warn at materialize time — the moment the
   // file is generated — so a bloated profile is caught before the user sees
   // the runtime warning, with a pointer to the usual culprit.
-  if (memoryFileContent.length > MEMORY_FILE_WARN_CHARS) {
+  if (
+    agent === "claude-code" &&
+    memoryFileContent.length > MEMORY_FILE_WARN_CHARS
+  ) {
     const kb = (memoryFileContent.length / 1000).toFixed(1);
     process.stderr.write(
       `[cue] ${memoryFileName} for profile "${profile.name}" is ${kb}k chars ` +
-      `(> ${(MEMORY_FILE_WARN_CHARS / 1000).toFixed(0)}k) — large memory files slow the agent ` +
-      `and trigger its perf warning. Trim the profile (fewer skills/rules) or the ` +
-      `appended user instructions.\n`,
+        `(> ${(MEMORY_FILE_WARN_CHARS / 1000).toFixed(0)}k) — large memory files slow the agent ` +
+        `and trigger its perf warning. Trim the profile (fewer skills/rules) or the ` +
+        `appended user instructions.\n`,
     );
   }
   await writeFile(join(tmpDir, memoryFileName), memoryFileContent);
@@ -836,11 +1069,13 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // perspective, while still letting cue override skills/, settings.json,
   // and CLAUDE.md.
   if (input.credentialsSource) {
-    await overlaySourceState(tmpDir, input.credentialsSource);
+    await overlaySourceState(tmpDir, input.credentialsSource, runtimeDir);
     // Pre-seed the plugin cache + marketplace metadata from the real config so
     // enabled-plugin hooks find their version dir on the first prompt instead
     // of racing Claude's lazy per-config-dir download.
-    await linkPluginCache(tmpDir, input.credentialsSource);
+    if (!sameResolvedPath(runtimeDir, input.credentialsSource)) {
+      await linkPluginCache(tmpDir, input.credentialsSource);
+    }
   }
 
   // Codex writes durable thread state directly into CODEX_HOME (sessions/,
@@ -860,7 +1095,11 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       "skills",
     ]);
     let oldEntries: string[] = [];
-    try { oldEntries = await readdir(runtimeDir); } catch { /* first build */ }
+    try {
+      oldEntries = await readdir(runtimeDir);
+    } catch {
+      /* first build */
+    }
     for (const name of oldEntries) {
       if (managed.has(name)) continue;
       const oldPath = join(runtimeDir, name);
@@ -868,8 +1107,54 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       try {
         await lstat(newPath);
         continue; // a freshly generated entry wins
-      } catch { /* absent in the new runtime — preserve the old one */ }
-      try { await rename(oldPath, newPath); } catch { /* best-effort per entry */ }
+      } catch {
+        /* absent in the new runtime — preserve the old one */
+      }
+      try {
+        await rename(oldPath, newPath);
+      } catch {
+        /* best-effort per entry */
+      }
+    }
+  }
+
+  // Codex writes durable thread state directly into CODEX_HOME (sessions/,
+  // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
+  // Claude, it has no credentialsSource overlay, so an atomic rematerialization
+  // must carry every non-cue-managed entry forward. Otherwise changing a
+  // profile while Codex is running deletes the active rollout and transcript
+  // persistence starts failing with "no rollout found for thread id".
+  if (agent === "codex") {
+    const managed = new Set([
+      ".cue-hash",
+      ".cue-skills",
+      "AGENTS.md",
+      "config.toml",
+      "playbooks",
+      "rules",
+      "skills",
+    ]);
+    let oldEntries: string[] = [];
+    try {
+      oldEntries = await readdir(runtimeDir);
+    } catch {
+      /* first build */
+    }
+    for (const name of oldEntries) {
+      if (managed.has(name)) continue;
+      const oldPath = join(runtimeDir, name);
+      const newPath = join(tmpDir, name);
+      try {
+        await lstat(newPath);
+        continue; // a freshly generated entry wins
+      } catch {
+        /* absent in the new runtime — preserve the old one */
+      }
+      try {
+        await rename(oldPath, newPath);
+      } catch {
+        /* best-effort per entry */
+      }
     }
   }
 
@@ -904,7 +1189,9 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   // entirely and let the overlay's source state win.
   let sameAccount = true;
   if (input.credentialsSource) {
-    const srcUuid = await accountUuidAt(join(input.credentialsSource, ".claude.json"));
+    const srcUuid = await accountUuidAt(
+      join(input.credentialsSource, ".claude.json"),
+    );
     const oldUuid = await accountUuidAt(join(runtimeDir, ".claude.json"));
     if (srcUuid && oldUuid && srcUuid !== oldUuid) sameAccount = false;
   }
@@ -936,7 +1223,9 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
       // or a copy for .credentials.json) so rename can replace it cleanly.
       await rm(newPath, { force: true, recursive: true });
       await rename(oldPath, newPath);
-    } catch { /* doesn't exist — skip */ }
+    } catch {
+      /* doesn't exist — skip */
+    }
   }
   // `rm -rf runtimeDir` followed by rename leaves the live path NONEXISTENT for
   // the whole recursive delete — seconds, on a runtime carrying a plugin cache
@@ -967,7 +1256,11 @@ async function materializeRuntimeUnlocked(input: MaterializeInput): Promise<Mate
   await sweepStaleSwapDirs(runtimeDir);
 
   if (agent === "claude-code") {
-    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
+    await syncMcpsIntoClaudeJson(
+      runtimeDir,
+      mcpServers,
+      effectiveInput.disabledMcpIds,
+    );
   }
 
   return { runtimeDir, rebuilt: true, hash };
@@ -986,7 +1279,11 @@ async function sweepStaleSwapDirs(runtimeDir: string): Promise<void> {
     await Promise.all(
       names
         .filter((name) => name.startsWith(prefix))
-        .map((name) => rm(join(parent, name), { recursive: true, force: true }).catch(() => {})),
+        .map((name) =>
+          rm(join(parent, name), { recursive: true, force: true }).catch(
+            () => {},
+          ),
+        ),
     );
   } catch {
     /* parent unreadable — nothing to sweep */
@@ -1001,7 +1298,9 @@ async function sweepStaleSwapDirs(runtimeDir: string): Promise<void> {
 async function credentialsExpiresAt(path: string): Promise<number> {
   try {
     const raw = await readFile(path, "utf8");
-    const parsed = JSON.parse(raw) as { claudeAiOauth?: { expiresAt?: number } };
+    const parsed = JSON.parse(raw) as {
+      claudeAiOauth?: { expiresAt?: number };
+    };
     const exp = parsed?.claudeAiOauth?.expiresAt;
     return typeof exp === "number" ? exp : 0;
   } catch {
@@ -1020,7 +1319,9 @@ async function credentialsExpiresAt(path: string): Promise<number> {
 async function accountUuidAt(path: string): Promise<string | undefined> {
   try {
     const raw = await readFile(path, "utf8");
-    const parsed = JSON.parse(raw) as { oauthAccount?: { accountUuid?: string } };
+    const parsed = JSON.parse(raw) as {
+      oauthAccount?: { accountUuid?: string };
+    };
     return parsed?.oauthAccount?.accountUuid;
   } catch {
     return undefined;
@@ -1071,7 +1372,8 @@ async function syncMcpsIntoClaudeJson(
     const code = (err as NodeJS.ErrnoException)?.code;
     if (code !== undefined && code !== "ENOENT") return;
   }
-  const existing = (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
+  const existing =
+    (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
   const merged: Record<string, unknown> = { ...existing, ...mcpServers };
 
   // Lazy-MCP removal: the rebuild preserves the OLD runtime's .claude.json
@@ -1125,6 +1427,10 @@ const CUE_MANAGED_ENTRIES = new Set([
   "plugins",
 ]);
 
+function sameResolvedPath(a: string, b: string): boolean {
+  return resolvePath(a) === resolvePath(b);
+}
+
 /**
  * Overlay state from `sourceDir` into `targetDir` by symlinking every
  * top-level entry that cue doesn't actively manage. This makes the runtime
@@ -1138,7 +1444,25 @@ const CUE_MANAGED_ENTRIES = new Set([
  * on cache hit, where the previous symlinks point to a different source.
  * Errors per-entry are non-fatal.
  */
-async function overlaySourceState(targetDir: string, sourceDir: string): Promise<void> {
+/**
+ * @param staggerKey Stable identity for the runtime being built. The fresh path
+ *   writes into a tmp dir that is renamed into place afterwards, so `targetDir`
+ *   is not the same string across a fresh materialize and a later cache-hit
+ *   refresh. Credential staggering must key off the runtime's final location or
+ *   the same runtime would land in a different slot on every rebuild.
+ */
+async function overlaySourceState(
+  targetDir: string,
+  sourceDir: string,
+  staggerKey: string = targetDir,
+): Promise<void> {
+  const sourceResolved = resolvePath(sourceDir);
+  const targetResolved = resolvePath(targetDir);
+  const finalResolved = resolvePath(staggerKey);
+  if (sourceResolved === targetResolved || sourceResolved === finalResolved) {
+    return;
+  }
+
   let entries: string[];
   try {
     entries = await readdir(sourceDir);
@@ -1152,12 +1476,17 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
   // surface it so the runtime looks fully onboarded — otherwise claude
   // boots into the OAuth flow even with a valid .credentials.json present.
   // Only kicks in when sourceDir is the user's ~/.claude.
-  if (!entries.includes(".claude.json") && sourceDir === join(homedir(), ".claude")) {
+  if (
+    !entries.includes(".claude.json") &&
+    sourceDir === join(homedir(), ".claude")
+  ) {
     const legacy = join(homedir(), ".claude.json");
     try {
       const { existsSync } = await import("node:fs");
       if (existsSync(legacy)) entries.push(".claude.json");
-    } catch { /* skip */ }
+    } catch {
+      /* skip */
+    }
   }
 
   // Account identity of both sides, resolved ONCE before the loop below can
@@ -1165,8 +1494,10 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
   // as the entry list above: with no CLAUDE_CONFIG_DIR, Claude Code keeps
   // `oauthAccount` in `~/.claude.json`, not in `~/.claude/.claude.json`.
   const identityOf = async (dir: string): Promise<string | undefined> =>
-    (await accountUuidAt(join(dir, ".claude.json")))
-    ?? (basename(dir) === ".claude" ? await accountUuidAt(join(dirname(dir), ".claude.json")) : undefined);
+    (await accountUuidAt(join(dir, ".claude.json"))) ??
+    (basename(dir) === ".claude"
+      ? await accountUuidAt(join(dirname(dir), ".claude.json"))
+      : undefined);
   const srcAccount = await identityOf(sourceDir);
   const dstAccount = await identityOf(targetDir);
   // Unknown on either side → treat as the same account: the expiry comparison
@@ -1180,8 +1511,7 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
     // Special-case the legacy ~/.claude.json fallback above: source is at the
     // home-root path, not inside sourceDir.
     const isLegacyClaudeJson =
-      name === ".claude.json" &&
-      sourceDir === join(homedir(), ".claude");
+      name === ".claude.json" && sourceDir === join(homedir(), ".claude");
     const sourcePath = isLegacyClaudeJson
       ? join(homedir(), ".claude.json")
       : join(sourceDir, name);
@@ -1190,7 +1520,9 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
     try {
       const st = await lstat(targetPath);
       existingType = st.isSymbolicLink() ? "symlink" : "other";
-    } catch { /* missing */ }
+    } catch {
+      /* missing */
+    }
 
     // .claude.json gets the same copy-not-symlink treatment as .credentials.json:
     // claude rewrites it atomically and we want per-profile session state, not
@@ -1222,7 +1554,9 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
             const tmp = `${targetPath}.cue-swap.${process.pid}`;
             await copyFile(sourcePath, tmp);
             await rename(tmp, targetPath);
-          } catch { /* non-fatal — keep existing file */ }
+          } catch {
+            /* non-fatal — keep existing file */
+          }
         }
       }
       continue; // cue override — don't touch
@@ -1245,22 +1579,39 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
       if (dstExpiresAt > srcExpiresAt) continue; // runtime holds the live token
     }
 
-    if (existingType === "symlink" || (existingType === "other" && isCopyFile)) {
+    if (
+      existingType === "symlink" ||
+      (existingType === "other" && isCopyFile)
+    ) {
       // Replace if it points elsewhere (e.g. previous account on cache hit).
       try {
         await rm(targetPath, { force: true });
-      } catch { continue; }
+      } catch {
+        continue;
+      }
     }
 
     if (isCopyFile) {
       const { copyFile } = await import("node:fs/promises");
       try {
-        await copyFile(sourcePath, targetPath);
-      } catch { /* skip */ }
+        if (name === ".credentials.json") {
+          // Staggered, so this runtime reaches its apparent expiry at a
+          // different minute than its siblings and they stop racing for one
+          // rotation. See writeStaggeredCopy in credentials-sync.
+          const { writeStaggeredCopy } = await import("./credentials-sync");
+          await writeStaggeredCopy(sourcePath, targetPath, staggerKey);
+        } else {
+          await copyFile(sourcePath, targetPath);
+        }
+      } catch {
+        /* skip */
+      }
     } else {
       try {
         await symlink(sourcePath, targetPath);
-      } catch { /* race or permission — skip silently */ }
+      } catch {
+        /* race or permission — skip silently */
+      }
     }
   }
 }
@@ -1287,7 +1638,12 @@ async function overlaySourceState(targetDir: string, sourceDir: string): Promise
  *     it risks clobbering the real registry with an empty `{plugins:{}}`.
  *   - `data`: per-plugin writable state; the self-referential ELOOP source.
  */
-export async function linkPluginCache(targetDir: string, sourceDir: string): Promise<void> {
+export async function linkPluginCache(
+  targetDir: string,
+  sourceDir: string,
+): Promise<void> {
+  if (sameResolvedPath(targetDir, sourceDir)) return;
+
   const srcPlugins = join(sourceDir, "plugins");
   try {
     await lstat(srcPlugins);
@@ -1348,7 +1704,8 @@ function parseLoopbackProxyUrl(rawUrl: string): URL | null {
   try {
     const u = new URL(rawUrl);
     const host = u.hostname;
-    if (host !== "127.0.0.1" && host !== "::1" && host !== "localhost") return null;
+    if (host !== "127.0.0.1" && host !== "::1" && host !== "localhost")
+      return null;
     if (u.protocol !== "http:" && u.protocol !== "https:") return null;
     return u;
   } catch {
@@ -1363,7 +1720,10 @@ function parseLoopbackProxyUrl(rawUrl: string): URL | null {
  * within `timeoutMs`. A raw TCP connect is not enough: a saturated proxy may
  * accept sockets while timing out or returning 503 to Claude traffic.
  */
-async function isProxyReachable(rawUrl: string, timeoutMs = 400): Promise<boolean> {
+async function isProxyReachable(
+  rawUrl: string,
+  timeoutMs = 400,
+): Promise<boolean> {
   const baseUrl = parseLoopbackProxyUrl(rawUrl);
   if (!baseUrl) return true;
   const healthUrl = new URL("/health", baseUrl);
@@ -1401,16 +1761,22 @@ async function buildClaudeSettings(
   let baseSettings: Record<string, unknown> = {};
   if (input.credentialsSource) {
     try {
-      const raw = await readFile(join(input.credentialsSource, "settings.json"), "utf8");
+      const raw = await readFile(
+        join(input.credentialsSource, "settings.json"),
+        "utf8",
+      );
       baseSettings = JSON.parse(raw);
-    } catch { /* no existing settings — start fresh */ }
+    } catch {
+      /* no existing settings — start fresh */
+    }
   }
 
   // Merge profile hooks. A hook ref points to a JSON file with shape
   // { hooks: { PreToolUse: [...], ... } } — same shape Claude Code expects.
   // Multiple hook files concat their event arrays under each lifecycle key.
   let mergedHooks: Record<string, unknown[]> = {};
-  const baseHooks = (baseSettings.hooks as Record<string, unknown[]> | undefined) ?? {};
+  const baseHooks =
+    (baseSettings.hooks as Record<string, unknown[]> | undefined) ?? {};
   for (const [k, v] of Object.entries(baseHooks)) {
     mergedHooks[k] = Array.isArray(v) ? [...v] : [];
   }
@@ -1436,7 +1802,9 @@ async function buildClaudeSettings(
         if (!Array.isArray(entries)) continue;
         mergedHooks[event] = [...(mergedHooks[event] ?? []), ...entries];
       }
-    } catch { /* missing or malformed — skip */ }
+    } catch {
+      /* missing or malformed — skip */
+    }
   }
 
   // Dedupe entries per event by JSON signature — keeps the first occurrence.
@@ -1526,64 +1894,6 @@ async function buildClaudeSettings(
   return JSON.stringify(settings, null, 2);
 }
 
-// Minimal TOML emitter for the MCP config block. Replace with `@iarna/toml` if
-// we need broader coverage. Codex only reads a flat-ish [mcp_servers.<id>] table.
-function tomlValue(value: unknown): string {
-  if (typeof value === "string") return JSON.stringify(value);
-  if (typeof value === "boolean") return String(value);
-  if (typeof value === "number" && Number.isFinite(value)) return String(value);
-  if (Array.isArray(value)) return `[${value.map(tomlValue).join(", ")}]`;
-  if (value && typeof value === "object") {
-    const entries = Object.entries(value as Record<string, unknown>)
-      .map(([key, nested]) => `${JSON.stringify(key)} = ${tomlValue(nested)}`);
-    return `{ ${entries.join(", ")} }`;
-  }
-  throw new TypeError(`Unsupported TOML value: ${String(value)}`);
-}
-
-function tomlRender(obj: {
-  mcp_servers: Record<string, unknown>;
-  extra?: Record<string, unknown>;
-}): string {
-  const out: string[] = [];
-
-  // Profile `codex_config` first, and within it bare keys before any table
-  // header. TOML binds every key after `[table]` to that table, so emitting
-  // `sandbox_mode` after `[mcp_servers.foo]` would silently make it
-  // `mcp_servers.foo.sandbox_mode` and Codex would ignore it.
-  const extra = obj.extra ?? {};
-  const scalars = Object.entries(extra).filter(([, v]) => !isTomlTable(v));
-  const tables = Object.entries(extra).filter(([, v]) => isTomlTable(v));
-
-  for (const [k, v] of scalars) out.push(`${k} = ${tomlValue(v)}`);
-  if (scalars.length > 0) out.push("");
-
-  for (const [name, val] of tables) {
-    out.push(`[${name}]`);
-    for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
-      out.push(`${k} = ${tomlValue(v)}`);
-    }
-    out.push("");
-  }
-
-  for (const [id, val] of Object.entries(obj.mcp_servers)) {
-    out.push(`[mcp_servers.${id}]`);
-    for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
-      out.push(`${k} = ${tomlValue(v)}`);
-    }
-    out.push("");
-  }
-  return out.join("\n");
-}
-
-/**
- * True for values that must render as a `[table]` header rather than a bare
- * key. Arrays are inline TOML values, so they stay scalars here.
- */
-function isTomlTable(v: unknown): boolean {
-  return typeof v === "object" && v !== null && !Array.isArray(v);
-}
-
 // ---------------------------------------------------------------------------
 // #8: Warm-start — summarize last session for this profile
 // ---------------------------------------------------------------------------
@@ -1592,7 +1902,9 @@ import { homedir } from "node:os";
 import { readdirSync, existsSync, statSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
-async function getLastSessionSummary(profileName: string): Promise<string | null> {
+async function getLastSessionSummary(
+  profileName: string,
+): Promise<string | null> {
   try {
     const projectsDir = join(homedir(), ".claude", "projects");
     if (!existsSync(projectsDir)) return null;
@@ -1607,7 +1919,9 @@ async function getLastSessionSummary(profileName: string): Promise<string | null
     if (!projectDir) return null;
 
     // Find most recent .jsonl (limit scan to avoid slow stat on large dirs)
-    const allFiles = readdirSync(projectDir).filter((f) => f.endsWith(".jsonl"));
+    const allFiles = readdirSync(projectDir).filter((f) =>
+      f.endsWith(".jsonl"),
+    );
     if (allFiles.length === 0) return null;
 
     // Sort by name (includes timestamp) — take last 3 only
@@ -1621,7 +1935,11 @@ async function getLastSessionSummary(profileName: string): Promise<string | null
     const ago = formatTimeAgo(lastMtime);
 
     // Extract a quick summary: last few assistant messages
-    const res = spawnSync("tail", ["-50", lastFile], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 2000 });
+    const res = spawnSync("tail", ["-50", lastFile], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 2000,
+    });
     if (!res.stdout) return null;
 
     const lines = res.stdout.split("\n").filter(Boolean);
@@ -1632,8 +1950,11 @@ async function getLastSessionSummary(profileName: string): Promise<string | null
         const msg = JSON.parse(line);
         if (msg.type === "assistant" && msg.message?.content) {
           const text = Array.isArray(msg.message.content)
-            ? msg.message.content.find((c: any) => c.type === "text")?.text ?? ""
-            : typeof msg.message.content === "string" ? msg.message.content : "";
+            ? (msg.message.content.find((c: any) => c.type === "text")?.text ??
+              "")
+            : typeof msg.message.content === "string"
+              ? msg.message.content
+              : "";
           if (text.length > 20) {
             // Take first sentence
             const sentence = text.split(/[.!?\n]/)[0]?.trim();
@@ -1674,11 +1995,15 @@ async function getSkillChains(skillsList: string[]): Promise<string | null> {
     // Scan recent sessions for skill co-occurrence
     const slugs = new Set(skillsList.map((s) => s.split("/").pop() ?? s));
 
-    const res = spawnSync("grep", ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir], {
-      stdio: ["ignore", "pipe", "pipe"],
-      encoding: "utf8",
-      timeout: 2000,
-    });
+    const res = spawnSync(
+      "grep",
+      ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir],
+      {
+        stdio: ["ignore", "pipe", "pipe"],
+        encoding: "utf8",
+        timeout: 2000,
+      },
+    );
 
     if (!res.stdout) return null;
 
@@ -1701,9 +2026,11 @@ async function getSkillChains(skillsList: string[]): Promise<string | null> {
     if (topSkills.length < 2) return null;
 
     // Build a simple chain from the top skills
-    return `Based on your usage patterns, common skill sequences:\n` +
+    return (
+      `Based on your usage patterns, common skill sequences:\n` +
       `- ${topSkills.slice(0, 3).join(" → ")}\n` +
-      (topSkills.length > 3 ? `- ${topSkills.slice(2, 5).join(" → ")}\n` : "");
+      (topSkills.length > 3 ? `- ${topSkills.slice(2, 5).join(" → ")}\n` : "")
+    );
   } catch {
     return null;
   }

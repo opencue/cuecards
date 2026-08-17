@@ -90,6 +90,20 @@ describe("findRealAgentBin", () => {
     expect(findRealAgentBin("codex")).toBe(real);
   });
 
+  test("skips a codex-guard dispatcher to avoid guard → cue shim recursion", () => {
+    const guardDir = dir("codex-guard");
+    writeExec(
+      guardDir,
+      "codex",
+      "#!/bin/bash\n# codex-guard.sh\nfind_real_codex() { :; }\n" + "# padding\n".repeat(100),
+    );
+    const realDir = dir("codex-native");
+    const real = writeExec(realDir, "codex", "#!/usr/bin/env node\n" + "x".repeat(1000));
+    process.env.PATH = `${guardDir}:${realDir}`;
+
+    expect(findRealAgentBin("codex")).toBe(real);
+  });
+
   // cue owns its shim dir outright, so the directory guard stands on its own —
   // it must hold even when the content heuristic would pass the file through.
   test("skips cue's own shim dir even for a large file", () => {

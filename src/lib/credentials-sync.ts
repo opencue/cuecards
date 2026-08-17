@@ -26,7 +26,7 @@
  * touching `~/`.
  */
 
-import { readFile, readdir, copyFile, rename, rm, stat } from "node:fs/promises";
+import { chmod, copyFile, readFile, readdir, rename, rm, stat, writeFile } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
 
 interface CredentialsBlob {
@@ -110,6 +110,105 @@ async function readCredentials(dir: string): Promise<FreshestCandidate | undefin
     };
   } catch {
     return undefined;
+  }
+}
+
+/**
+ * Expiry staggering — stop concurrent sessions from racing for one rotation.
+ *
+ * Every copy of a credential blob carries the same `expiresAt`, so N sessions
+ * reach expiry in the same instant, all present the same refresh token, and
+ * Anthropic honours exactly one. The rest hold a revoked token and land on a
+ * login prompt. Polling faster narrows that window but cannot close it — cue
+ * does not perform the refresh, so it has no point at which to serialize the
+ * callers (see `nextReconcileDelayMs`).
+ *
+ * What cue *can* control is when each session believes its token expires. Every
+ * copy cue writes into a runtime gets its expiry pulled forward by a
+ * deterministic per-runtime offset, so the runtimes reach their apparent expiry
+ * minutes apart instead of together. The earliest one refreshes alone and
+ * publishes; `reconcileCredentials` hands the new blob to the others well
+ * before their own (later) deadline, so they never attempt a rotation of their
+ * own. A simultaneous collision becomes a sequenced handoff.
+ *
+ * Under-reporting is the safe direction: the access token is still valid, so an
+ * early refresh is an ordinary rotation. Over-reporting would hand a session a
+ * dead token and is never done.
+ *
+ * The offset is a pure function of the runtime path, so re-writing an unchanged
+ * blob is byte-identical and the same runtime keeps its slot across launches.
+ */
+const STAGGER_STEP_MS = 2 * 60_000;
+const STAGGER_BUCKETS = 8;
+
+/** The widest an expiry is pulled forward. */
+export const MAX_STAGGER_MS = (STAGGER_BUCKETS - 1) * STAGGER_STEP_MS;
+
+/** Never write an expiry this close to now — staggering must not fabricate an
+ *  already-expired token and send every runtime to refresh at once. */
+const STAGGER_FLOOR_MS = 60_000;
+
+/**
+ * What a runtime's copy of `sourceExpiresAt` should read once staggered.
+ *
+ * Lets a writer tell "already holds this blob, correctly staggered" from
+ * "holds this blob verbatim because an older cue wrote it" — the second still
+ * needs rewriting, or a fleet that predates staggering keeps rotating in
+ * lockstep until every token happens to turn over.
+ */
+export function expectedStaggeredExpiry(sourceExpiresAt: number, runtimeKey: string): number {
+  return sourceExpiresAt - staggerOffsetFor(runtimeKey);
+}
+
+/** Deterministic bucket for a runtime, from its path. FNV-1a, 32-bit. */
+export function staggerOffsetFor(runtimeKey: string): number {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < runtimeKey.length; i += 1) {
+    hash ^= runtimeKey.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return (hash % STAGGER_BUCKETS) * STAGGER_STEP_MS;
+}
+
+/**
+ * Copy a credentials blob into a runtime with its expiry staggered.
+ *
+ * Falls back to a verbatim copy whenever staggering cannot be applied safely —
+ * unparseable JSON, no OAuth block, or a true expiry already so close that the
+ * offset would land in the past. Authentication must never break because a
+ * latency optimisation could not be applied.
+ *
+ * Writes tmp + atomic rename like every other writer here, so a concurrent
+ * reader never observes a partial file.
+ */
+export async function writeStaggeredCopy(
+  sourcePath: string,
+  targetPath: string,
+  runtimeKey: string,
+  now: number = Date.now(),
+): Promise<void> {
+  const tmp = `${targetPath}.cue-stagger.${process.pid}`;
+  try {
+    const raw = await readFile(sourcePath, "utf8");
+    let out = raw;
+    try {
+      const parsed = JSON.parse(raw) as CredentialsBlob;
+      const trueExpiresAt = parsed?.claudeAiOauth?.expiresAt;
+      if (typeof trueExpiresAt === "number" && trueExpiresAt > 0) {
+        const staggered = trueExpiresAt - staggerOffsetFor(runtimeKey);
+        if (staggered >= now + STAGGER_FLOOR_MS) {
+          parsed.claudeAiOauth!.expiresAt = staggered;
+          out = JSON.stringify(parsed);
+        }
+      }
+    } catch { /* unparseable — ship the bytes through untouched */ }
+
+    await writeFile(tmp, out, { mode: 0o600 });
+    await chmod(tmp, 0o600);
+    await rename(tmp, targetPath);
+  } catch (error) {
+    try { await rm(tmp, { force: true }); } catch { /* best-effort cleanup */ }
+    throw error;
   }
 }
 
@@ -237,6 +336,92 @@ export async function syncFreshestToSource(
 }
 
 /**
+ * Copy the owning account's fresh credentials into every stale runtime for
+ * that same account.
+ *
+ * This is intentionally stricter than launch-time materialization:
+ *   - source must have a known accountUuid and a non-empty refresh token
+ *   - runtime must have the same accountUuid in its `.claude.json`
+ *   - copy only moves credentials forward by `expiresAt`
+ *
+ * `cue auth repair` uses this to fix dormant profile runtimes. Running
+ * sessions still rely on `reconcileCredentials`, but updating stale on-disk
+ * copies prevents a later direct/resumed launch from starting with a revoked
+ * refresh token.
+ */
+export async function syncSourceToRuntimes(
+  sourceDir: string,
+  runtimeRoot: string,
+): Promise<{ updated: string[]; failed: string[] }> {
+  const source = await readCredentials(sourceDir);
+  if (!source?.accountUuid || source.refreshToken.trim().length === 0) {
+    return { updated: [], failed: [] };
+  }
+
+  let dirs: string[];
+  try {
+    dirs = await readdir(runtimeRoot);
+  } catch {
+    return { updated: [], failed: [] };
+  }
+
+  const updated: string[] = [];
+  const failed: string[] = [];
+  const sourcePath = join(sourceDir, ".credentials.json");
+
+  for (const profile of dirs) {
+    const claudeDir = join(runtimeRoot, profile, "claude");
+    try {
+      const st = await stat(claudeDir);
+      if (!st.isDirectory()) continue;
+    } catch {
+      continue;
+    }
+
+    try {
+      if ((await readAccountUuid(claudeDir)) !== source.accountUuid) continue;
+      // Two distinct reasons to leave a runtime alone, and expiry alone cannot
+      // tell them apart once staggering is in play:
+      //
+      //   - it rotated on its own and holds a token this source has not seen —
+      //     never clobber that;
+      //   - it already holds this very token, sitting in its stagger slot.
+      //
+      // A runtime holding this token at the raw source expiry is neither: that
+      // is a verbatim copy from a cue that predates staggering, and it must be
+      // rewritten or the whole fleet keeps rotating in lockstep.
+      const held = (c: { refreshToken: string; expiresAt: number } | undefined): "newer" | "settled" | "stale" => {
+        if (!c) return "stale";
+        if (c.refreshToken !== source.refreshToken) {
+          return c.expiresAt >= source.expiresAt ? "newer" : "stale";
+        }
+        return c.expiresAt === expectedStaggeredExpiry(source.expiresAt, claudeDir) ? "settled" : "stale";
+      };
+
+      const current = await readCredentials(claudeDir);
+      if (held(current) !== "stale") continue;
+
+      const target = join(claudeDir, ".credentials.json");
+      try {
+        // Re-read: a session may have rotated in the gap above, and its token
+        // must never be clobbered by the older source blob.
+        if (held(await readCredentials(claudeDir)) !== "stale") continue;
+
+        await writeStaggeredCopy(sourcePath, target, claudeDir);
+        updated.push(target);
+      } catch {
+        // writeStaggeredCopy cleans up its own tmp file.
+        failed.push(target);
+      }
+    } catch {
+      failed.push(claudeDir);
+    }
+  }
+
+  return { updated, failed };
+}
+
+/**
  * Adopt the owning account's credentials when they are fresher than this
  * runtime's — the mirror image of `rescueRuntimeCredentials`.
  *
@@ -274,6 +459,10 @@ export async function pullFreshestToRuntime(
     const owner = await readCredentials(dir);
     if (!owner || owner.refreshToken.trim().length === 0) continue;
     if (owner.expiresAt <= mine.expiresAt) continue;
+    // Our copy reports a staggered expiry, so the account dir always looks
+    // newer even when it holds the very token we already have. Adopting it
+    // would undo our stagger slot on every poll.
+    if (owner.refreshToken === mine.refreshToken) continue;
     if (!best || owner.expiresAt > best.expiresAt) {
       best = { path: owner.path, expiresAt: owner.expiresAt };
     }
@@ -281,13 +470,10 @@ export async function pullFreshestToRuntime(
   if (!best) return { pulled: false };
 
   const target = join(runtimeClaudeDir, ".credentials.json");
-  const tmp = `${target}.cue-pull.${process.pid}`;
   try {
-    await copyFile(best.path, tmp);
-    await rename(tmp, target);
+    await writeStaggeredCopy(best.path, target, runtimeClaudeDir);
     return { pulled: true, from: best.path, expiresAt: best.expiresAt };
   } catch {
-    try { await rm(tmp, { force: true }); } catch { /* best-effort cleanup */ }
     return { pulled: false };
   }
 }

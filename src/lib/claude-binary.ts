@@ -52,7 +52,15 @@ export function findRealAgentBin(name: string): string | null {
     try {
       const stat = statSync(candidate);
       if (!stat.isFile() || (stat.mode & 0o111) === 0) continue;
-      if (stat.size < 500 && isCueShimContent(readFileSync(candidate, "utf8"))) continue;
+      if (stat.size < 64_000) {
+        const content = readFileSync(candidate, "utf8");
+        if (isCueShimContent(content)) continue;
+        // codex-guard is another dispatcher, not the real CLI. Selecting it
+        // from inside `cue launch codex` makes the guard find cue's shim next,
+        // creating a launch loop. The guard still protects raw shell launches;
+        // cue must exec the actual Codex binary behind both wrappers.
+        if (name === "codex" && content.includes("find_real_codex") && content.includes("codex-guard")) continue;
+      }
       return candidate;
     } catch {
       continue; // unreadable/broken entry — keep walking

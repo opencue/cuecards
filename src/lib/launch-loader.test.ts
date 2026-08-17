@@ -1,8 +1,19 @@
 import { describe, expect, test } from "bun:test";
 
-import { __test, startLoader } from "./launch-loader";
+import { __test, agentLaunchAccent, agentLaunchMessage, startLoader } from "./launch-loader";
 
 const { createLoaderCore, FRAMES, ESC } = __test;
+
+describe("agentLaunchMessage", () => {
+  test("names the agent being launched", () => {
+    expect(agentLaunchMessage("claude-code")).toBe("Launching Claude…");
+    expect(agentLaunchMessage("codex")).toBe("Launching Codex…");
+  });
+
+  test("uses a distinct accent for each agent", () => {
+    expect(agentLaunchAccent("codex")).not.toBe(agentLaunchAccent("claude-code"));
+  });
+});
 
 /** A CoreDeps stub that records every write into a single string. */
 function makeRecorder(opts: { logo?: string | null; clear?: string; logoCols?: number } = {}) {
@@ -36,6 +47,13 @@ describe("launch-loader core — ANSI path (no logo)", () => {
     core.start();
     core.tick();
     expect(r.get()).toContain(FRAMES[1]!);
+  });
+
+  test("uses the requested accent color", () => {
+    const r = makeRecorder();
+    const core = createLoaderCore(r.deps, "msg", "<ACCENT>");
+    core.start();
+    expect(r.get()).toContain(`<ACCENT>${FRAMES[0]}`);
   });
 
   test("stop erases the line and shows the cursor, with no Kitty clear", () => {

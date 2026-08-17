@@ -2,6 +2,7 @@
 name: hydra
 description: Use when the user asks for Hydra, a deep multi-perspective code review, architecture or security tradeoffs, blind spots, or iterative re-review. Avoid for simple fixes and lookups.
 tags: [code-review, architecture, security, multi-perspective]
+capability: Run a multi-perspective review council for architecture, security, and hidden risks.
 triggers:
   - run Hydra
   - Hydra review

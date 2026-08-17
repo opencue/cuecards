@@ -1,5 +1,6 @@
 import { describe, test, expect, afterEach } from "bun:test";
 import {
+  isCueManagedClaudeRuntimeDir,
   isRuntimeAgent,
   isSelfOverlaySource,
   pickClaudeCredentialsSource,
@@ -19,6 +20,22 @@ describe("RUNTIME_AGENTS", () => {
 
   test("has exactly two entries", () => {
     expect(RUNTIME_AGENTS).toHaveLength(2);
+  });
+});
+
+describe("isCueManagedClaudeRuntimeDir", () => {
+  const runtimeRoot = "/home/u/.config/cue/runtime";
+
+  test("matches cue-managed per-profile Claude runtimes", () => {
+    expect(isCueManagedClaudeRuntimeDir("/home/u/.config/cue/runtime/gstack+ros2/claude", runtimeRoot)).toBe(true);
+    expect(isCueManagedClaudeRuntimeDir("/home/u/.config/cue/runtime/core@account1/claude", runtimeRoot)).toBe(true);
+  });
+
+  test("does not match real account config dirs or sibling paths", () => {
+    expect(isCueManagedClaudeRuntimeDir("/home/u/.claude", runtimeRoot)).toBe(false);
+    expect(isCueManagedClaudeRuntimeDir("/home/u/.claude-accounts/work", runtimeRoot)).toBe(false);
+    expect(isCueManagedClaudeRuntimeDir("/home/u/.config/cue/runtime-other/core/claude", runtimeRoot)).toBe(false);
+    expect(isCueManagedClaudeRuntimeDir("/home/u/.config/cue/runtime/core/codex", runtimeRoot)).toBe(false);
   });
 });
 

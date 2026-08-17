@@ -252,7 +252,7 @@ export const COMMANDS = {
           return run(args.filter(a => a !== "--docker"));
         }
         const { run } = await import("./import-profile");
-        return run(args);
+        return run(["export", ...args]);
       },
     }),
   },

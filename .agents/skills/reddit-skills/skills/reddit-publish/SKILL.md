@@ -1,7 +1,8 @@
 ---
 name: reddit-publish
-description: Use when the user asks to publish, submit, or share a text, link, or image post on Reddit. Handles new posts rather than comments or votes.
+description: Use when the user asks to publish, submit, or share a text, link, or image post on Reddit. NOT for blogs, company websites, comments, or votes.
 tags: [reddit, publishing, social-media]
+capability: Create new Reddit text, link, or image posts without handling comments or votes.
 triggers:
   - create a new text post on Reddit
   - publish a Reddit post

@@ -2,6 +2,7 @@
 name: reddit-auth
 description: Use when the user asks to check Reddit login status, authenticate a Reddit session, or log out. Handles authentication state only.
 tags: [reddit, authentication]
+capability: Inspect or change Reddit authentication state without performing content operations.
 triggers:
   - am I logged in to Reddit
   - check my Reddit login

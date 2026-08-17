@@ -2,10 +2,15 @@
 name: reddit-skills
 description: Use when the user asks to operate Reddit across authentication, search, publishing, comments, votes, saves, subreddit analysis, or multi-step content workflows.
 tags: [reddit, automation, social-media]
+capability: Coordinate Reddit search, publish, comment, login, vote, and save tasks across multiple skills.
 triggers:
   - use Reddit
   - operate Reddit
   - Reddit workflow
+  - several Reddit actions
+  - Search Reddit, then comment
+  - Browse a subreddit and save a post
+  - Check Reddit login and publish a link post
 version: 1.0.0
 metadata:
   openclaw:

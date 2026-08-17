@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
-import { homedir } from "node:os";
+import { configDir } from "./config-paths";
 
 export interface SkillLockEntry {
   id: string;
@@ -23,7 +23,7 @@ export interface SkillsLockFile {
 }
 
 export function lockfilePath(): string {
-  return join(homedir(), ".config", "cue", "skills-lock.json");
+  return process.env.CUE_SKILLS_LOCK_PATH || join(configDir(), "skills-lock.json");
 }
 
 export function readLockfile(): SkillsLockFile {
