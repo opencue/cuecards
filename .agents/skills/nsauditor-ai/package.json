@@ -1,0 +1,58 @@
+{
+  "name": "nsauditor-ai-agent-skill",
+  "version": "0.1.41",
+  "description": "AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows.",
+  "keywords": [
+    "nsauditor",
+    "ai-agent",
+    "ai-agent-skill",
+    "mcp",
+    "model-context-protocol",
+    "network-security",
+    "vulnerability-scanner",
+    "security-audit",
+    "skill",
+    "claude",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "copilot",
+    "ai-coding-agent",
+    "cve",
+    "nvd",
+    "mitre-attack",
+    "sarif",
+    "port-scanner",
+    "tls-audit",
+    "penetration-testing"
+  ],
+  "homepage": "https://github.com/nsasoft/nsauditor-ai-agent-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nsasoft/nsauditor-ai-agent-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nsasoft/nsauditor-ai-agent-skill/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nsasoft US LLC",
+    "url": "https://www.nsauditor.com"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "references/",
+    "examples/"
+  ],
+  "peerDependencies": {
+    "nsauditor-ai": ">=0.1.40"
+  },
+  "peerDependenciesMeta": {
+    "nsauditor-ai": {
+      "optional": true
+    }
+  }
+}

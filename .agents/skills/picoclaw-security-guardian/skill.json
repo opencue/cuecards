@@ -1,0 +1,130 @@
+{
+  "name": "picoclaw-security-guardian",
+  "version": "0.0.2",
+  "description": "Picoclaw security posture skill with advisory awareness, configuration drift detection, and supply-chain verification guidance.",
+  "author": "prompt-security",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://clawsec.prompt.security/",
+  "platform": "picoclaw",
+  "keywords": [
+    "security",
+    "picoclaw",
+    "ai-gateway",
+    "advisory",
+    "drift-detection",
+    "supply-chain"
+  ],
+  "sbom": {
+    "files": [
+      {
+        "path": "SKILL.md",
+        "required": true,
+        "description": "Skill documentation and Picoclaw operator playbook"
+      },
+      {
+        "path": "README.md",
+        "required": true,
+        "description": "Human-oriented overview and quickstart"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "required": true,
+        "description": "Version history and release notes"
+      },
+      {
+        "path": "lib/profile.mjs",
+        "required": true,
+        "description": "Picoclaw posture profile and path-confinement helpers"
+      },
+      {
+        "path": "lib/drift.mjs",
+        "required": true,
+        "description": "Baseline comparison and severity mapping helpers"
+      },
+      {
+        "path": "lib/supply_chain.mjs",
+        "required": true,
+        "description": "Release artifact checksum/signature verification helpers"
+      },
+      {
+        "path": "lib/advisories.mjs",
+        "required": true,
+        "description": "Picoclaw advisory feed filtering helpers"
+      },
+      {
+        "path": "scripts/generate_profile.mjs",
+        "required": true,
+        "description": "Generate deterministic Picoclaw security posture profile"
+      },
+      {
+        "path": "scripts/check_drift.mjs",
+        "required": true,
+        "description": "Compare Picoclaw profile against an approved baseline"
+      },
+      {
+        "path": "scripts/verify_supply_chain.mjs",
+        "required": true,
+        "description": "Verify release artifact checksums and required detached signatures for provenance"
+      },
+      {
+        "path": "scripts/check_advisories.mjs",
+        "required": true,
+        "description": "Check Picoclaw-relevant advisories from a signed/verified feed state"
+      }
+    ]
+  },
+  "picoclaw": {
+    "emoji": "🦐",
+    "category": "security",
+    "requires": {
+      "bins": [
+        "node"
+      ]
+    },
+    "runtime": {
+      "required_env": [],
+      "optional_env": [
+        "PICOCLAW_HOME",
+        "PICOCLAW_CONFIG",
+        "PICOCLAW_PROFILE_OUTPUT_DIR",
+        "PICOCLAW_BASELINE",
+        "PICOCLAW_ADVISORY_FEED_STATE_PATH",
+        "PICOCLAW_ADVISORY_CACHED_FEED",
+        "PICOCLAW_ALLOW_UNSIGNED_FEED"
+      ]
+    },
+    "capabilities": {
+      "security_feed": true,
+      "config_drift": true,
+      "agent_self_pen_testing": false,
+      "supply_chain_install_verification": true
+    },
+    "execution": {
+      "always": false,
+      "persistence": "Read-only/on-demand in v0.0.1; no scheduler is installed.",
+      "network_egress": "None by default. Advisory checks consume local verified feed state/cache unless the operator supplies a feed file."
+    },
+    "operator_review": [
+      "Picoclaw-specific skill: use for Picoclaw gateways and lightweight AI gateway deployments, not OpenClaw hook execution.",
+      "Treat public Web UI binding and broad chat-channel enablement as review findings until explicitly justified.",
+      "Keep unsigned advisory mode temporary and documented; default workflows expect verified feed state.",
+      "Supply-chain verification requires manifests/signatures from a trusted release source; third-party LuCI wrappers need separate provenance review."
+    ],
+    "triggers": [
+      "picoclaw security profile",
+      "picoclaw drift detection",
+      "picoclaw advisory check",
+      "picoclaw supply chain verification"
+    ],
+    "test_requires": {
+      "bins": [
+        "bash",
+        "docker",
+        "python3",
+        "node",
+        "openssl",
+        "zip"
+      ]
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "clawtributor",
+  "version": "0.0.6",
+  "description": "Community incident reporting for AI agents. Contribute to collective security by reporting threats.",
+  "author": "prompt-security",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://clawsec.prompt.security",
+  "keywords": [
+    "security",
+    "reporting",
+    "community",
+    "agents",
+    "ai",
+    "vulnerability",
+    "contribution"
+  ],
+  "sbom": {
+    "files": [
+      {
+        "path": "SKILL.md",
+        "required": true,
+        "description": "Community reporting skill documentation"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "required": true,
+        "description": "Version history and release notes"
+      },
+      {
+        "path": "reporting.md",
+        "required": true,
+        "description": "Incident report format and submission guide"
+      }
+    ]
+  },
+  "openclaw": {
+    "emoji": "🤝",
+    "category": "security",
+    "requires": {
+      "bins": [
+        "openclaw"
+      ]
+    },
+    "execution": {
+      "always": false,
+      "persistence": "Stores local report/state files only; no recurring automation is created by default.",
+      "network_egress": "No automatic egress; reports are prepared locally and submitted manually only after explicit user approval."
+    },
+    "operator_review": [
+      "Reporting is opt-in and should remain approval-gated for every submission.",
+      "Review and sanitize report content before submitting because reports leave the host and become visible to maintainers.",
+      "Use the browser-based Security Incident Report form for manual submission after user approval."
+    ],
+    "triggers": [
+      "report vulnerability",
+      "report attack",
+      "clawtributor",
+      "submit report",
+      "security report",
+      "contribute report",
+      "report incident",
+      "report threat"
+    ]
+  }
+}

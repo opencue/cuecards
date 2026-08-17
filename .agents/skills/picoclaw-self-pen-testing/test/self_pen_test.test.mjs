@@ -1,0 +1,3 @@
+import assert from "node:assert/strict"; import { runPicoclawSelfPenTest } from "../lib/self_pen_test.mjs";
+const result=runPicoclawSelfPenTest({posture:{runtime:{ui:{public_web_ui:true,auth_disabled:true},tools:{enabled:true,unrestricted_workspace:true},mcp:{enabled:true},scheduler:{enabled:true},risky_toggles:{allow_unsigned_mode:true},secrets:{config_secret_markers:2},gateways:{telegram:true,discord:true}}}});
+assert.ok(result.summary.critical>=4); assert.ok(result.findings.some(f=>f.code==="MCP_REVIEW_REQUIRED")); assert.ok(result.findings.some(f=>f.code==="MULTI_CHANNEL_AUTH_REVIEW")); console.log("self_pen_test.test.mjs PASS");
