@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,19 @@ Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
 cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="andrerenatomenezes-sdd-maestri"></a>
+## 💎 [AndreRenatoMenezes/SDD-Maestri](https://github.com/AndreRenatoMenezes/SDD-Maestri)
+
+**★ 1** · exceptional (score 8.3) · tags: agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude
+
+Skill de Spec-Driven Development para times de agentes de IA no Maestri: papéis com fronteiras que não se cruzam, spec como contrato e um painel auditável no canvas.
+
+```bash
+cue skills add AndreRenatoMenezes/SDD-Maestri --profile fleet-control
 ```
 
 ---

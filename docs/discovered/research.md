@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="travisun-opptrix"></a>
-## 💎 [Travisun/Opptrix](https://github.com/Travisun/Opptrix)
+<a id="outrotim-evidence-aligned-scientific-revision"></a>
+## 💎 [outrotim/evidence-aligned-scientific-revision](https://github.com/outrotim/evidence-aligned-scientific-revision)
 
-**★ 207** · exceptional (score 11.5) · TypeScript · tags: a-shares, china-stock-market, electron, fastify, financial-analysis
+**★ 0** · exceptional (score 9) · Python · tags: academic-writing, ai-agent-skill, biomedical-research, research-integrity, scientific-writing
 
-Opptrix — AI驱动的全球多市场投研工作台 | Open-source LLM research assistant for China A-shares. 170+ MCP tools, factor screening, backtest, watchlist & Electron desktop. TypeScript · React · Fastify monorepo.
+Evidence-aligned terminology, claim-strength, and scientific-writing audit skill for Chinese and English biomedical research.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Travisun/Opptrix --profile research
+cue skills add outrotim/evidence-aligned-scientific-revision --profile research
 ```
 
 ---

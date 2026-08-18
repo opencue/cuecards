@@ -1,22 +1,22 @@
 ---
 title: "vshulcz/deja-vu — Claude Code skill discovered by cue"
-description: "Your agents already solved this. deja finds it — it indexes the sessions your coding agents already wrote to disk, months of history from before you installed i"
+description: "Memory for coding agents. Indexes the sessions 17 agents already wrote to disk, including months from before you installed it, and recalls them in any of them. "
 layout: page
-updated: 2026-07-31
+updated: 2026-08-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vshulcz/deja-vu](https://github.com/vshulcz/deja-vu)
 
-**★ 501** · exceptional (score 15) · Go · agent-memory, ai-memory, claude, claude-code, cli
+**★ 643** · exceptional (score 15) · Go · agent-memory, ai-memory, claude, claude-code, cli
 
-> Your agents already solved this. deja finds it — it indexes the sessions your coding agents already wrote to disk, months of history from before you installed it, and recalls them automatically at session start in all seventeen. 84.9% hit@1 on LongMemEval-S, no LLM, no embeddings. One zero-dep binary, fully local.
+> Memory for coding agents. Indexes the sessions 17 agents already wrote to disk, including months from before you installed it, and recalls them in any of them. No LLM, no embeddings — one local Go binary.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 501 stars
-- 🗓️ Last pushed: 2026-07-31
+- ⭐ 643 stars
+- 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: agent-memory, ai-memory, claude, claude-code, cli, codex, coding-agents, developer-tools, golang, mcp, mcp-server, opencode, session-search
 
 ## Best fit cue profiles

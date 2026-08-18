@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="niflhum-machiavelli-skill"></a>
-## 💎 [niflhum/machiavelli-skill](https://github.com/niflhum/machiavelli-skill)
+<a id="konglong87-study-anything"></a>
+## ✨ [konglong87/study-anything](https://github.com/konglong87/study-anything)
 
-**★ 4** · exceptional (score 10.8) · JavaScript · tags: agent-skill, ai, ai-skill, chinese, digital-twin
+**★ 0** · strong (score 7.5) · Shell · tags: agent-skills, claude-code-skill, skills, study, study-guide
 
-基于马基雅维利全集蒸馏而成的 AI 数字分身 / A conversational digital twin of Niccolò Machiavelli distilled from his complete works
+快速学习任何新知识，内化到自己大脑里。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add niflhum/machiavelli-skill --profile niche
-```
-
----
-
-<a id="kassarhahaha-skills-4-molecular-simulation"></a>
-## 🔹 [KASSARhahaha/skills-4-Molecular-Simulation](https://github.com/KASSARhahaha/skills-4-Molecular-Simulation)
-
-**★ 0** · potential (score 3.5) · Python · tags: adsorption, ccus, chinese-translation, claude-code-skill, computational-chemistry
-
-开放的中文分子模拟 / CCUS / 吸附教学知识库 — 6 本领域教材的结构化衍生品 + Frenkel & Smit 第三版中文译本
-
-```bash
-cue skills add KASSARhahaha/skills-4-Molecular-Simulation --profile niche
+cue skills add konglong87/study-anything --profile niche
 ```
 
 ---

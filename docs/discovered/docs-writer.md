@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+
+**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+
+```bash
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
+```
 
 ---
 
@@ -28,15 +41,15 @@ cue skills add OnourImpram/mneme --profile docs-writer
 
 ---
 
-<a id="surendranb-writing-skills"></a>
-## 💎 [surendranb/writing-skills](https://github.com/surendranb/writing-skills)
+<a id="recourse-software-inc-knowdrive-mcp"></a>
+## ✨ [Recourse-Software-Inc/knowdrive-mcp](https://github.com/Recourse-Software-Inc/knowdrive-mcp)
 
-**★ 14** · exceptional (score 8.9) · Python · tags: agent-skills, ai-agents, business-writing, claude, claude-code
+**★ 0** · strong (score 6) · tags: agent-memory, ai-agents, document-search, embeddings, hybrid-search
 
-Procedural writing-style skills for AI agents: official frameworks (plain language, business writing, GOV.UK, AP style, STE-100, developer docs) + character voices. Agent Plugins 1.0.0, works in opencode, Claude Code, Codex.
+Semantic search over your private knowledge base — docs, audio, images — via MCP.
 
 ```bash
-cue skills add surendranb/writing-skills --profile docs-writer
+cue skills add Recourse-Software-Inc/knowdrive-mcp --profile docs-writer
 ```
 
 ---

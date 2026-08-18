@@ -2,22 +2,22 @@
 title: "quanfanpro-code/cas-cashflow-indirect — Claude Code skill discovered by cue"
 description: "中国企业会计准则下现金流量表补充资料（间接法）编制与复核 Skill，支持16项调节、AI判断、防重复、总对账和可审计底稿"
 layout: page
-updated: 2026-08-02
+updated: 2026-08-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [quanfanpro-code/cas-cashflow-indirect](https://github.com/quanfanpro-code/cas-cashflow-indirect)
 
-**★ 0** · exceptional (score 9) · Python · accounting, accounting-automation, ai-agent-skill, audit, audit-workpapers
+**★ 1** · exceptional (score 9.3) · Python · accounting, accounting-automation, ai-agent-skill, audit, audit-workpapers
 
 > 中国企业会计准则下现金流量表补充资料（间接法）编制与复核 Skill，支持16项调节、AI判断、防重复、总对账和可审计底稿
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-01
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: accounting, accounting-automation, ai-agent-skill, audit, audit-workpapers, cash-flow, chinese-accounting-standards, excel, indirect-method, python
 
 ## Best fit cue profiles

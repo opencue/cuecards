@@ -2,7 +2,7 @@
 title: "TanaTTV/lyt — Claude Code skill discovered by cue"
 description: "Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills."
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, skill, video, creative-media]
 ---
 

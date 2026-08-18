@@ -2,19 +2,19 @@
 title: "decross1/poe-upgrade-advisor — Claude Code skill discovered by cue"
 description: "RETIRED, open for exploration — 'is this item an upgrade?' overlay for Path of Exile, built end-to-end by a three-agent autonomous org (Claude/Codex/Kimi) over "
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [decross1/poe-upgrade-advisor](https://github.com/decross1/poe-upgrade-advisor)
 
-**★ 1** · potential (score 3.3) · Python
+**★ 1** · potential (score 3.2) · Python
 
 > RETIRED, open for exploration — 'is this item an upgrade?' overlay for Path of Exile, built end-to-end by a three-agent autonomous org (Claude/Codex/Kimi) over an append-only ledger. PoB's math, Raidbots' simplicity.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-15
 - 🏷️ Tags: (none)

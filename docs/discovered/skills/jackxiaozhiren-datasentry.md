@@ -2,7 +2,7 @@
 title: "Jackxiaozhiren/datasentry — Claude Code skill discovered by cue"
 description: "Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed work"
 layout: page
-updated: 2026-08-17
+updated: 2026-08-18
 tags: [claude-code, skill, backend, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-17
+- 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: ai-copilot, cli, data-cleaning, data-engineering, data-governance, data-observability, data-pipeline, data-profiling, data-quality, data-quality-tool, data-validation, devtools, duckdb, etl, llm, mcp, mcp-server, python, rest-api, sqlite
 
 ## Best fit cue profiles
