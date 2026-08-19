@@ -1,55 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="senna-lang-graph-context-for-claude-code"></a>
+## ✨ [senna-lang/graph-context-for-claude-code](https://github.com/senna-lang/graph-context-for-claude-code)
 
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 2** · strong (score 6.5) · TypeScript · tags: claude-code, ide-integration, obsidian, obsidian-plugin
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
-
-```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
-```
-
----
-
-<a id="onourimpram-mneme"></a>
-## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
-
-**★ 2** · exceptional (score 8.9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
-
-Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
+Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks.
 
 ```bash
-cue skills add OnourImpram/mneme --profile docs-writer
-```
-
----
-
-<a id="recourse-software-inc-knowdrive-mcp"></a>
-## ✨ [Recourse-Software-Inc/knowdrive-mcp](https://github.com/Recourse-Software-Inc/knowdrive-mcp)
-
-**★ 0** · strong (score 6) · tags: agent-memory, ai-agents, document-search, embeddings, hybrid-search
-
-Semantic search over your private knowledge base — docs, audio, images — via MCP.
-
-```bash
-cue skills add Recourse-Software-Inc/knowdrive-mcp --profile docs-writer
+cue skills add senna-lang/graph-context-for-claude-code --profile docs-writer
 ```
 
 ---

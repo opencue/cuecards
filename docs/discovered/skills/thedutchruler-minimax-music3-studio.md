@@ -2,21 +2,21 @@
 title: "TheDutchRuler/minimax-music3-studio — Claude Code skill discovered by cue"
 description: "Sub-realtime MiniMax Music 3 on a single consumer GPU - Suno-style local studio with a re-engineered inference path (2.9x measured). Engineered with Claude Fabl"
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [TheDutchRuler/minimax-music3-studio](https://github.com/TheDutchRuler/minimax-music3-studio)
 
-**★ 2** · potential (score 4.4) · Python
+**★ 2** · potential (score 4.5) · Python
 
 > Sub-realtime MiniMax Music 3 on a single consumer GPU - Suno-style local studio with a re-engineered inference path (2.9x measured). Engineered with Claude Fable 5 Max.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-15
+- 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="jackxiaozhiren-datasentry"></a>
-## ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
+<a id="rasinmuhammed-misata"></a>
+## 💎 [rasinmuhammed/misata](https://github.com/rasinmuhammed/misata)
 
-**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-engineering, data-governance
+**★ 66** · exceptional (score 13.2) · Python · tags: data-engineering, data-generation, database-seeding, dbt, developer-tools
 
-Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
+Synthetic test data that hits the numbers you declare, exactly. Multi-table with verified foreign-key integrity, deterministic, no model in the data path. Python + MCP server.
 
 ```bash
-cue skills add Jackxiaozhiren/datasentry --profile python
+cue skills add rasinmuhammed/misata --profile python
 ```
 
 ---

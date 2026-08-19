@@ -2,7 +2,7 @@
 title: "shinpr/grok-workflows — Claude Code skill discovered by cue"
 description: "Run Claude Code Workflows (CCW) on Grok: single install path plus a runtime translation layer"
 layout: page
-updated: 2026-07-14
+updated: 2026-08-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-12
+- 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: agent-skills, ai-agents, automation, claude-code, code-quality, developer-tools, development-workflow, grok, llm-orchestration, productivity, prompt-engineering
 
 ## Best fit cue profiles

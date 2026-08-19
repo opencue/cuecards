@@ -2,7 +2,7 @@
 title: "Obelyth/cortex — Claude Code skill discovered by cue"
 description: "Claude second brain — a private markdown knowledge base served to every Claude surface over MCP, with a read path that proves its own citations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-17
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

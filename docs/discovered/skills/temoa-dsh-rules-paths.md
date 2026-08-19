@@ -2,7 +2,7 @@
 title: "Temoa/dsh-rules-paths — Claude Code skill discovered by cue"
 description: "Claude Code-style paths: rule injection for DeepSeek Harness (DSH)."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, skill, core]
 ---
 

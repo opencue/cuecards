@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,17 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 
 ---
 
-<a id="andrerenatomenezes-sdd-maestri"></a>
-## 💎 [AndreRenatoMenezes/SDD-Maestri](https://github.com/AndreRenatoMenezes/SDD-Maestri)
+<a id="caleb-boddington-quorum"></a>
+## 💎 [Caleb-Boddington/quorum](https://github.com/Caleb-Boddington/quorum)
 
-**★ 1** · exceptional (score 8.3) · tags: agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude
+**★ 0** · exceptional (score 12) · HTML · tags: adversarial-review, agent-orchestration, ai-agents, ai-governance, claude-code
 
-Skill de Spec-Driven Development para times de agentes de IA no Maestri: papéis com fronteiras que não se cruzam, spec como contrato e um painel auditável no canvas.
+Multi-agent deliberation for Claude Code. Three branches of government with separate mandates, an independent Audit Office verifying claims at source, and a Comptroller auditing the verdict. 8 to 38 sub-agents per run. Includes a measured baseline, a sabotage test, and seven postmortems of its own defects.
+
+✅ SKILL.md
 
 ```bash
-cue skills add AndreRenatoMenezes/SDD-Maestri --profile fleet-control
+cue skills add Caleb-Boddington/quorum --profile fleet-control
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
+<a id="skymanbp-cc-tree"></a>
+## 💎 [skymanbp/cc-tree](https://github.com/skymanbp/cc-tree)
+
+**★ 160** · exceptional (score 15.5) · Python · tags: adversarial-review, ai-agent, anthropic, bilingual, brainstorming
+
+Claude Code plugin: universal radial-tree exploration engine. One tree skill + swappable presets (brainstorm / attack / design / code-audit) for divergent ideation, adversarial critique, and design-space exploration. 12 framings × hard-ban-on-incomplete-leaves × stable convergence.
+
+```bash
+cue skills add skymanbp/cc-tree --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2306** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
+**★ 2307** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
-
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
-
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
-
-```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---
@@ -57,7 +57,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="jonaslejon-linux-security-audit-plugin"></a>
 ## 🔹 [jonaslejon/linux-security-audit-plugin](https://github.com/jonaslejon/linux-security-audit-plugin)
 
-**★ 11** · potential (score 4.1) · Shell
+**★ 11** · potential (score 4) · Shell
 
 Claude Code plugin: audits Linux hardening posture and produces a risk-ranked report. 450+ checks — kernel, filesystem, privesc paths, egress, TLS/mTLS, secrets, image hygiene, config drift. Live host, mounted image, or container.
 

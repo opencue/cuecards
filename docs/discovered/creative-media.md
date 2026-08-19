@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
-
-**★ 1** · strong (score 7.6) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
-
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
-
-```bash
-cue skills add TanaTTV/lyt --profile creative-media
-```
-
----
-
-<a id="sameerkhan-apple-photos-to-social"></a>
-## ✨ [SameerKhan/apple-photos-to-social](https://github.com/SameerKhan/apple-photos-to-social)
-
-**★ 0** · strong (score 6) · Python · tags: apple-photos, applescript, automation, claude-skill, deduplication
-
-Review, deduplicate and privacy-filter an Apple Photos library into social post candidates. macOS, no Full Disk Access required.
-
-```bash
-cue skills add SameerKhan/apple-photos-to-social --profile creative-media
-```
 
 ---
 

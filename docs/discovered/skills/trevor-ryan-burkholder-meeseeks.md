@@ -2,21 +2,21 @@
 title: "trevor-ryan-burkholder/meeseeks — Claude Code skill discovered by cue"
 description: "Meeseeks is a Claude Code plugin. One command hands a specification to an autonomous loop that designs, builds, gates, audits and ships it - unattended - until "
 layout: page
-updated: 2026-08-15
+updated: 2026-08-19
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [trevor-ryan-burkholder/meeseeks](https://github.com/trevor-ryan-burkholder/meeseeks)
 
-**★ 0** · strong (score 7) · JavaScript · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
+**★ 1** · strong (score 7.3) · JavaScript · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
 
 > Meeseeks is a Claude Code plugin. One command hands a specification to an autonomous loop that designs, builds, gates, audits and ships it - unattended - until it passes an enterprise definition of done, or the budget dies.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-15
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, for-fun, meeseeks, rick-and-morty
 
 ## Best fit cue profiles

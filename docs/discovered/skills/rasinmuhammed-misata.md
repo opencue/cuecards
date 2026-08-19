@@ -1,22 +1,22 @@
 ---
 title: "rasinmuhammed/misata — Claude Code skill discovered by cue"
-description: "High-performance open-source synthetic data engine. Uses LLMs for schema design and vectorized NumPy for deterministic, scalable generation."
+description: "Synthetic test data that hits the numbers you declare, exactly. Multi-table with verified foreign-key integrity, deterministic, no model in the data path. Pytho"
 layout: page
-updated: 2026-07-12
+updated: 2026-08-19
 tags: [claude-code, skill, python, backend]
 ---
 
 # 💎 [rasinmuhammed/misata](https://github.com/rasinmuhammed/misata)
 
-**★ 62** · exceptional (score 10.1) · Python · data-engineering, data-generation, database-seeding, dbt, developer-tools
+**★ 66** · exceptional (score 13.2) · Python · data-engineering, data-generation, database-seeding, dbt, developer-tools
 
-> High-performance open-source synthetic data engine. Uses LLMs for schema design and vectorized NumPy for deterministic, scalable generation.
+> Synthetic test data that hits the numbers you declare, exactly. Multi-table with verified foreign-key integrity, deterministic, no model in the data path. Python + MCP server.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
-- ⭐ 62 stars
-- 🗓️ Last pushed: 2026-07-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
+- ⭐ 66 stars
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: data-engineering, data-generation, database-seeding, dbt, developer-tools, fake-data, generative-ai, llm, mcp-server, mock-data, numpy, pandas, pytest, python, synthetic, synthetic-data, synthetic-dataset-generation, test-data, test-data-generator, testing
 
 ## Best fit cue profiles

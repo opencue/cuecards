@@ -2,20 +2,20 @@
 title: "PerryLink/dsh-permission-rules — Claude Code skill discovered by cue"
 description: "Claude Code-style declarative permission rules for DeepSeek Harness: ordered allow/deny/ask rules with tool-name, argument (glob/regex), and workspace-path matc"
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [PerryLink/dsh-permission-rules](https://github.com/PerryLink/dsh-permission-rules)
+# 🔹 [PerryLink/dsh-permission-rules](https://github.com/PerryLink/dsh-permission-rules)
 
-**★ 8** · strong (score 5.1) · TypeScript · ai-safety, allow-deny-ask, approval, cordis, deepseek
+**★ 11** · potential (score 4.2) · TypeScript · ai-safety, allow-deny-ask, approval, cordis, deepseek
 
 > Claude Code-style declarative permission rules for DeepSeek Harness: ordered allow/deny/ask rules with tool-name, argument (glob/regex), and workspace-path matching on the tools/pre-execute waterfall, session-log audit, and HMR reload.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.1 based on:
-- ⭐ 8 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+- ⭐ 11 stars
 - 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: ai-safety, allow-deny-ask, approval, cordis, deepseek, deepseek-harness, dsh, dsh-plugin, permission, policy, safety
 

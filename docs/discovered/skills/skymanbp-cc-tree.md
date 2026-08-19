@@ -2,21 +2,21 @@
 title: "skymanbp/cc-tree — Claude Code skill discovered by cue"
 description: "Claude Code plugin: universal radial-tree exploration engine. One tree skill + swappable presets (brainstorm / attack / design / code-audit) for divergent ideat"
 layout: page
-updated: 2026-08-17
+updated: 2026-08-19
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [skymanbp/cc-tree](https://github.com/skymanbp/cc-tree)
 
-**★ 161** · exceptional (score 15.5) · Python · adversarial-review, ai-agent, anthropic, bilingual, brainstorming
+**★ 160** · exceptional (score 15.5) · Python · adversarial-review, ai-agent, anthropic, bilingual, brainstorming
 
 > Claude Code plugin: universal radial-tree exploration engine. One tree skill + swappable presets (brainstorm / attack / design / code-audit) for divergent ideation, adversarial critique, and design-space exploration. 12 framings × hard-ban-on-incomplete-leaves × stable convergence.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 161 stars
-- 🗓️ Last pushed: 2026-08-17
+- ⭐ 160 stars
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: adversarial-review, ai-agent, anthropic, bilingual, brainstorming, claude-code, claude-code-plugin, claude-code-skill, code-review, decision-making, design-exploration, developer-tools, ideation, llm-agent, multi-agent, prompt-engineering, red-team, security-review, structured-reasoning, tree-of-thoughts
 
 ## Best fit cue profiles

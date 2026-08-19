@@ -1,42 +1,55 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-19
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="dave-london-pare"></a>
-## 💎 [Dave-London/Pare](https://github.com/Dave-London/Pare)
+<a id="livetennisapi-livetennisapi-mcp"></a>
+## 💎 [livetennisapi/livetennisapi-mcp](https://github.com/livetennisapi/livetennisapi-mcp)
 
-**★ 136** · exceptional (score 13.6) · TypeScript · tags: ai-coding, ai-tools, claude, cursor, developer-tools
+**★ 191** · exceptional (score 13.5) · TypeScript · tags: ai, claude, live-scores, llm, mcp
 
-Dev tools, optimized for agents. Structured, token-efficient MCP servers for git, test runners, npm, Docker, and more.
+MCP server for the Live Tennis API — give Claude, Cursor and other LLM agents real-time tennis scores, odds and model win-probability
 
 ```bash
-cue skills add Dave-London/Pare --profile backend
+cue skills add livetennisapi/livetennisapi-mcp --profile backend
 ```
 
 ---
 
-<a id="muchiny-bridge-mcp"></a>
-## 💎 [muchiny/bridge-mcp](https://github.com/muchiny/bridge-mcp)
+<a id="rasinmuhammed-misata"></a>
+## 💎 [rasinmuhammed/misata](https://github.com/rasinmuhammed/misata)
 
-**★ 8** · exceptional (score 12.4) · Rust · tags: ai-tools, air-gapped, automation, claude, claude-code
+**★ 66** · exceptional (score 13.2) · Python · tags: data-engineering, data-generation, database-seeding, dbt, developer-tools
 
-MCP server for secure SSH remote management — 337 tools across 74 groups for DevOps, Docker, Kubernetes, databases, systemd, Windows, cloud, compliance & more. Built in Rust.
+Synthetic test data that hits the numbers you declare, exactly. Multi-table with verified foreign-key integrity, deterministic, no model in the data path. Python + MCP server.
 
 ```bash
-cue skills add muchiny/bridge-mcp --profile backend
+cue skills add rasinmuhammed/misata --profile backend
+```
+
+---
+
+<a id="masayukita-m365-copilot-companion-mcp"></a>
+## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+
+**★ 4** · exceptional (score 8.8) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+
+Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+
+```bash
+cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
 ```
 
 ---
@@ -54,41 +67,15 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="ali-meoo-meoo-cli"></a>
-## ✨ [ali-meoo/meoo-cli](https://github.com/ali-meoo/meoo-cli)
+<a id="sqlew-io-sqlew"></a>
+## ✨ [sqlew-io/sqlew](https://github.com/sqlew-io/sqlew)
 
-**★ 21** · strong (score 7.8) · tags: claude-code-skill, claude-skills, cli, deploy, dsh-plugin
+**★ 4** · strong (score 7.3) · TypeScript · tags: ai-agents, ai-coding-assistant, mcp-server
 
-meoo cli 是秒悟（Meoo）官方推出的命令行工具，让 Claude Code、Codex、Cursor、Qoder等本地 agent 在帮你写完前端代码后，能直接接管「数据库、用户登录、文件存储、部署上线」的所有云端工作——你只需要在终端跑一条命令，剩下的交给 AI。
-
-```bash
-cue skills add ali-meoo/meoo-cli --profile backend
-```
-
----
-
-<a id="buywhere-buywhere"></a>
-## ✨ [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
-
-**★ 1** · strong (score 7.8) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
-
-BuyWhere agent-native product catalog API
+Extended Memory Layer of Coding AI
 
 ```bash
-cue skills add BuyWhere/buywhere --profile backend
-```
-
----
-
-<a id="jackxiaozhiren-datasentry"></a>
-## ✨ [Jackxiaozhiren/datasentry](https://github.com/Jackxiaozhiren/datasentry)
-
-**★ 2** · strong (score 5.5) · Python · tags: ai-copilot, cli, data-cleaning, data-engineering, data-governance
-
-Local-first AI copilot for data quality: 39 detectors, six-dimension scoring, AI repair with human approval, drift engine, cron scheduling with distributed worker pool (failover + parallel), MCP/REST/CLI/Web UI. Apache-2.0.
-
-```bash
-cue skills add Jackxiaozhiren/datasentry --profile backend
+cue skills add sqlew-io/sqlew --profile backend
 ```
 
 ---
