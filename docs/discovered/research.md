@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="obenic-paper-translator"></a>
+## 💎 [obenic/paper-translator](https://github.com/obenic/paper-translator)
+
+**★ 1** · exceptional (score 15.8) · Python · tags: academic-papers, ai-agent, chinese-translation, claude-code, claude-skill
+
+Claude Code skill: 把英文论文 PDF 完整翻译成中文，图和正文一起交付（含漏图交叉校验），输出 Markdown + PDF
+
+✅ SKILL.md
+
+```bash
+cue skills add obenic/paper-translator --profile research
+```
 
 ---
 
@@ -24,6 +39,19 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="lerpkey-source-grounded-research"></a>
+## ✨ [LerpKey/source-grounded-research](https://github.com/LerpKey/source-grounded-research)
+
+**★ 2** · strong (score 6.5) · Python · tags: academic-research, agent-skills, auditable-research, claude-code-skill, claude-skills
+
+Evidence-first skill for fact-checking, policy research, market research, and auditable reports.
+
+```bash
+cue skills add LerpKey/source-grounded-research --profile research
 ```
 
 ---

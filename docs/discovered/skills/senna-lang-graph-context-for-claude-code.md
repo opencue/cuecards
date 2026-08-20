@@ -2,7 +2,7 @@
 title: "senna-lang/graph-context-for-claude-code — Claude Code skill discovered by cue"
 description: "Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks."
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, skill, docs-writer]
 ---
 

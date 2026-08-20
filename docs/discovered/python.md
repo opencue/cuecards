@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="rasinmuhammed-misata"></a>
-## 💎 [rasinmuhammed/misata](https://github.com/rasinmuhammed/misata)
+<a id="anirudhlath-alfred"></a>
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 66** · exceptional (score 13.2) · Python · tags: data-engineering, data-generation, database-seeding, dbt, developer-tools
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
-Synthetic test data that hits the numbers you declare, exactly. Multi-table with verified foreign-key integrity, deterministic, no model in the data path. Python + MCP server.
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 
 ```bash
-cue skills add rasinmuhammed/misata --profile python
+cue skills add anirudhlath/alfred --profile python
 ```
 
 ---

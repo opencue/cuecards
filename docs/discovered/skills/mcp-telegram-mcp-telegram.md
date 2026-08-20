@@ -1,23 +1,23 @@
 ---
 title: "mcp-telegram/mcp-telegram — Claude Code skill discovered by cue"
-description: "Connect Telegram to Claude AI — messages, media, reactions, polls, scheduled messages & more. Hosted version: mcp-telegram.com (QR login, 30 sec setup). Built o"
+description: "Telegram MCP Server — connect Telegram to Claude AI & ChatGPT. 181 tools: messages, media, reactions, polls, stories & more. MTProto userbot. Self-host (npx) or"
 layout: page
-updated: 2026-06-26
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mcp-telegram/mcp-telegram](https://github.com/mcp-telegram/mcp-telegram)
 
-**★ 15** · exceptional (score 11.1) · TypeScript · ai-tools, claude, gramjs, mcp, mcp-server
+**★ 26** · exceptional (score 11.5) · TypeScript · ai-tools, chatgpt, claude, gramjs, mcp
 
-> Connect Telegram to Claude AI — messages, media, reactions, polls, scheduled messages & more. Hosted version: mcp-telegram.com (QR login, 30 sec setup). Built on GramJS/MTProto.
+> Telegram MCP Server — connect Telegram to Claude AI & ChatGPT. 181 tools: messages, media, reactions, polls, stories & more. MTProto userbot. Self-host (npx) or hosted at mcp-telegram.com.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
-- ⭐ 15 stars
-- 🗓️ Last pushed: 2026-06-26
-- 🏷️ Tags: ai-tools, claude, gramjs, mcp, mcp-server, model-context-protocol, mtproto, telegram, typescript, userbot
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+- ⭐ 26 stars
+- 🗓️ Last pushed: 2026-08-20
+- 🏷️ Tags: ai-tools, chatgpt, claude, gramjs, mcp, mcp-server, model-context-protocol, mtproto, telegram, telegram-mcp-server, typescript, userbot
 
 ## Best fit cue profiles
 

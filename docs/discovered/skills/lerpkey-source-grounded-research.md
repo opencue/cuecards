@@ -1,27 +1,27 @@
 ---
 title: "LerpKey/source-grounded-research — Claude Code skill discovered by cue"
-description: "Claude Code skill from LerpKey/source-grounded-research"
+description: "Evidence-first skill for fact-checking, policy research, market research, and auditable reports."
 layout: page
-updated: 2026-08-19
-tags: [claude-code, skill, core]
+updated: 2026-08-20
+tags: [claude-code, skill, research]
 ---
 
 # ✨ [LerpKey/source-grounded-research](https://github.com/LerpKey/source-grounded-research)
 
-**★ 2** · strong (score 5.5) · Python · agent-skills, claude-code-skill, claude-skills, codex-skills, cursor-skills
+**★ 2** · strong (score 6.5) · Python · academic-research, agent-skills, auditable-research, claude-code-skill, claude-skills
 
-> A Claude Code skill repository discovered by cue.
+> Evidence-first skill for fact-checking, policy research, market research, and auditable reports.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-19
-- 🏷️ Tags: agent-skills, claude-code-skill, claude-skills, codex-skills, cursor-skills, evidence-based-research, fact-checking, report-writing, research
+- 🗓️ Last pushed: 2026-08-20
+- 🏷️ Tags: academic-research, agent-skills, auditable-research, claude-code-skill, claude-skills, codex-skills, cursor-skills, deep-research, evidence-based-research, fact-checking, market-research, policy-research, report-writing, research
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[research](../research.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add LerpKey/source-grounded-research --profile core
+cue skills add LerpKey/source-grounded-research --profile research
 ```
 
 ## About

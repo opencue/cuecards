@@ -2,13 +2,13 @@
 title: "codeofaxel/Kiln — Claude Code skill discovered by cue"
 description: "Describe it or draw it — Kiln makes it real. The open-source MCP server for 3D printing: AI agents (Claude, Codex, Cursor, or any MCP client) design, generate, "
 layout: page
-updated: 2026-08-14
+updated: 2026-08-20
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [codeofaxel/Kiln](https://github.com/codeofaxel/Kiln)
 
-**★ 46** · exceptional (score 14.9) · Python · 3d-printing, ai, ai-agents, bambu-lab, claude
+**★ 48** · exceptional (score 14.9) · Python · 3d-printing, ai, ai-agents, bambu-lab, claude
 
 > Describe it or draw it — Kiln makes it real. The open-source MCP server for 3D printing: AI agents (Claude, Codex, Cursor, or any MCP client) design, generate, slice & print on Bambu Lab, Creality, Prusa, Elegoo, Klipper/Moonraker, OctoPrint, Duet/RepRapFirmware & any Marlin printer.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.9 based on:
 - ✅ Contains SKILL.md
-- ⭐ 46 stars
-- 🗓️ Last pushed: 2026-08-14
+- ⭐ 48 stars
+- 🗓️ Last pushed: 2026-08-20
 - 🏷️ Tags: 3d-printing, ai, ai-agents, bambu-lab, claude, creality, elegoo, generative-ai, image-to-3d, klipper, mcp, mcp-server, model-context-protocol, moonraker, octoprint, openclaw, openscad, prusa, stl, text-to-3d
 
 ## Best fit cue profiles

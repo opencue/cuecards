@@ -1,37 +1,24 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="skymanbp-cc-tree"></a>
-## 💎 [skymanbp/cc-tree](https://github.com/skymanbp/cc-tree)
-
-**★ 160** · exceptional (score 15.5) · Python · tags: adversarial-review, ai-agent, anthropic, bilingual, brainstorming
-
-Claude Code plugin: universal radial-tree exploration engine. One tree skill + swappable presets (brainstorm / attack / design / code-audit) for divergent ideation, adversarial critique, and design-space exploration. 12 framings × hard-ban-on-incomplete-leaves × stable convergence.
-
-```bash
-cue skills add skymanbp/cc-tree --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2307** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
+**★ 2311** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -50,6 +37,32 @@ Open-source security for AI agents: kernel-enforced egress control on macOS and 
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
+```
+
+---
+
+<a id="infokom-ki-wazuh-mcp-server"></a>
+## 💎 [INFOKOM-KI/Wazuh-MCP-Server](https://github.com/INFOKOM-KI/Wazuh-MCP-Server)
+
+**★ 34** · exceptional (score 8.8) · Python · tags: ai-agents, blue-team, llm, mcp, mcp-server
+
+Wazuh MCP Server: AI-Driven SOC Automation
+
+```bash
+cue skills add INFOKOM-KI/Wazuh-MCP-Server --profile cybersecurity
+```
+
+---
+
+<a id="rlx-uplevel"></a>
+## 💎 [rlx/uplevel](https://github.com/rlx/uplevel)
+
+**★ 1** · exceptional (score 8.3) · Shell · tags: agent-skills, ai-agents, ci-cd, claude-code, claude-code-skill
+
+Uplevel your repo's engineering process. Most tools tell you what's wrong; uplevel tells you what's missing, then hands you a ranked plan. A Claude Code skill. Nothing changes until you pick.
+
+```bash
+cue skills add rlx/uplevel --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 

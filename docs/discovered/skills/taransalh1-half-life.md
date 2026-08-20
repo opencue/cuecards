@@ -2,20 +2,20 @@
 title: "taransalh1/half-life — Claude Code skill discovered by cue"
 description: "Safety-first Claude Code plugin that finds temporary engineering decisions—workarounds, feature flags, compatibility paths, pinned dependencies, and migration l"
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [taransalh1/half-life](https://github.com/taransalh1/half-life)
 
-**★ 1** · strong (score 5.3) · TypeScript · ai-tools, claude-code, developer-tools, typescript
+**★ 2** · strong (score 5.5) · TypeScript · ai-tools, claude-code, developer-tools, typescript
 
 > Safety-first Claude Code plugin that finds temporary engineering decisions—workarounds, feature flags, compatibility paths, pinned dependencies, and migration leftovers—before they become permanent technical debt.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
-- ⭐ 1 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+- ⭐ 2 stars
 - 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: ai-tools, claude-code, developer-tools, typescript
 

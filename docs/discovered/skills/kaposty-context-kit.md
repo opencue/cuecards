@@ -2,7 +2,7 @@
 title: "kaposty/context-kit — Claude Code skill discovered by cue"
 description: "A long session makes Claude Code dumber: compaction keeps what happened and throws away why, so it retries the path you already dropped. This kit keeps a sessio"
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-18
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: agent-skills, claude-code, claude-plugins, compaction, context-engineering
 
 ## Best fit cue profiles

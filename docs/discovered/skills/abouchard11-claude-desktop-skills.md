@@ -2,7 +2,7 @@
 title: "abouchard11/claude-desktop-skills — Claude Code skill discovered by cue"
 description: "10 high-leverage skills for Claude Desktop: research, decisions, meetings, communication, feedback, document comparison, learning paths, content transformation,"
 layout: page
-updated: 2026-08-19
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-18
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

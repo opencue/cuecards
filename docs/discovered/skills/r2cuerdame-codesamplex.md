@@ -2,7 +2,7 @@
 title: "r2cuerdame/CodeSampleX — Claude Code skill discovered by cue"
 description: "Stop solving the same code twice — a local-first distributed reasoning cache: anonymous compatibility evidence from real environments plus verified minimal samp"
 layout: page
-updated: 2026-08-18
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-18
+- 🗓️ Last pushed: 2026-08-20
 - 🏷️ Tags: ai-agents, cargo, claude, claude-code, codex, compatibility, dependency-management, developer-tools, gemini-cli, golang, llm-tools, mcp, mcp-server, model-context-protocol, npm, pypi
 
 ## Best fit cue profiles
