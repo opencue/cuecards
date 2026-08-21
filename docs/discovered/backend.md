@@ -1,17 +1,82 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="benseverndev-oss-goldenmatch"></a>
+## 💎 [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch)
+
+**★ 129** · exceptional (score 13.5) · Python · tags: data-cleaning, data-engineering, data-matching, data-quality, deduplication
+
+Zero-config entity resolution that feeds a durable identity layer: resolve messy records from any source into stable golden entities — a Customer 360 with whole-record provenance, merge/split & audit. Splink-beating accuracy, Arrow-native/Rust, 100M rows in 9.2 min. Python + edge TypeScript (WASM), SQL-native in Postgres & DuckDB, MCP/REST.
+
+```bash
+cue skills add benseverndev-oss/goldenmatch --profile backend
+```
+
+---
+
+<a id="frowningdev-django-orm-lens"></a>
+## 💎 [FROWNINGdev/django-orm-lens](https://github.com/FROWNINGdev/django-orm-lens)
+
+**★ 72** · exceptional (score 12.1) · Python · tags: ai-agents, aider, code-navigation, cursor, database
+
+Free, MIT alternative to paid Django schema review. Blast radius on every PR, schema drift, N+1 across functions, ER diagrams, MCP server. No DB, no Django boot, no Pro tier.
+
+```bash
+cue skills add FROWNINGdev/django-orm-lens --profile backend
+```
+
+---
+
+<a id="masayukita-m365-copilot-companion-mcp"></a>
+## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+
+**★ 5** · exceptional (score 11) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+
+Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+
+```bash
+cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
+```
+
+---
+
+<a id="eirik-rune-runemap"></a>
+## 💎 [eirik-rune/runemap](https://github.com/eirik-rune/runemap)
+
+**★ 3** · exceptional (score 9.2) · Python · tags: agent-skills, agents, ascii-art, claude-skill, llm
+
+Weather radar MCP server and Agent Skill — live conditions and a text radar map for any place on earth, in one HTTP request. No image, no API key.
+
+```bash
+cue skills add eirik-rune/runemap --profile backend
+```
+
+---
+
+<a id="buywhere-buywhere"></a>
+## 💎 [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
+
+**★ 2** · exceptional (score 8) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
+
+BuyWhere agent-native product catalog API
+
+```bash
+cue skills add BuyWhere/buywhere --profile backend
+```
 
 ---
 
@@ -28,41 +93,28 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="visterion-hivemem"></a>
-## ✨ [visterion/HiveMem](https://github.com/visterion/HiveMem)
+<a id="sponge-b0b-polaris"></a>
+## ✨ [sponge-b0b/Polaris](https://github.com/sponge-b0b/Polaris)
 
-**★ 1** · strong (score 7.8) · Java · tags: knowledge-graph, knowledge-management, mcp, mcp-server, pgvector
+**★ 4** · strong (score 6.8) · Python · tags: bge-m3, crawl4ai, deepeval, financial-analysis, graph-rag
 
-Personal knowledge system — MCP server with PostgreSQL semantic search and temporal knowledge graph
+A runtime-native AI intelligence platform for portfolio analysis
 
 ```bash
-cue skills add visterion/HiveMem --profile backend
+cue skills add sponge-b0b/Polaris --profile backend
 ```
 
 ---
 
-<a id="agenterr-agenterr"></a>
-## ✨ [agenterr/agenterr](https://github.com/agenterr/agenterr)
+<a id="tylampella-unmanned-mcp"></a>
+## ✨ [tylampella/unmanned-mcp](https://github.com/tylampella/unmanned-mcp)
 
-**★ 1** · strong (score 6.3) · Go · tags: ai-agents, claude, developer-tools, error-monitoring, error-tracking
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, mcp, mcp-server, model-context-protocol, wiki
 
-Self-hosted error and log tracking with an MCP server built in. One Go binary: OTLP and JSON ingest, issue grouping, search, REST API, minimal web UI.
-
-```bash
-cue skills add agenterr/agenterr --profile backend
-```
-
----
-
-<a id="juanspz-agent-ready-index"></a>
-## ✨ [JuanSPZ/agent-ready-index](https://github.com/JuanSPZ/agent-ready-index)
-
-**★ 1** · strong (score 5.8) · HTML · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
-
-Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀
+MCP server for un.manned — an experiment: a public wiki only AI agents can write. Your agent contributes; the model never touches an API key.
 
 ```bash
-cue skills add JuanSPZ/agent-ready-index --profile backend
+cue skills add tylampella/unmanned-mcp --profile backend
 ```
 
 ---

@@ -1,22 +1,22 @@
 ---
 title: "sattyamjjain/agent-airlock — Claude Code skill discovered by cue"
-description: "Open-source security firewall for AI agents — validates tool calls, strips ghost arguments, enforces type safety, PII masking, RBAC, cost tracking & sandbox iso"
+description: "A type-checker and contract layer for AI agent tool calls, deny-by-default, in-process, Pydantic-only. Strict argument validation, ghost-argument stripping, and"
 layout: page
-updated: 2026-06-05
+updated: 2026-08-21
 tags: [claude-code, skill, python]
 ---
 
 # 💎 [sattyamjjain/agent-airlock](https://github.com/sattyamjjain/agent-airlock)
 
-**★ 6** · exceptional (score 9.6) · Python · ai-agents, ai-security, crewai, firewall, langchain
+**★ 13** · exceptional (score 9.1) · Python · ai-agents, ai-security, crewai, firewall, langchain
 
-> Open-source security firewall for AI agents — validates tool calls, strips ghost arguments, enforces type safety, PII masking, RBAC, cost tracking & sandbox isolation. Works with LangChain, OpenAI Agents SDK, PydanticAI & CrewAI.
+> A type-checker and contract layer for AI agent tool calls, deny-by-default, in-process, Pydantic-only. Strict argument validation, ghost-argument stripping, and self-healing retries for MCP servers and agent frameworks.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-06-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
+- ⭐ 13 stars
+- 🗓️ Last pushed: 2026-08-21
 - 🏷️ Tags: ai-agents, ai-security, crewai, firewall, langchain, llm-safety, mcp-server, openai, pii-masking, pydantic-ai, python, rbac, sandbox, tool-validation, zero-trust
 
 ## Best fit cue profiles

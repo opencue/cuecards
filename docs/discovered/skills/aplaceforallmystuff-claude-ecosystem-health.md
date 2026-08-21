@@ -2,7 +2,7 @@
 title: "aplaceforallmystuff/claude-ecosystem-health — Claude Code skill discovered by cue"
 description: "Detect drift between Claude Code skills, agents, MCP servers, vault paths, and CLI tools. 7 diagnostic checks with severity-based reporting."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, skill, core]
 ---
 

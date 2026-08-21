@@ -1,22 +1,22 @@
 ---
 title: "GuillaumeLessard/qector-claude-plugin — Claude Code skill discovered by cue"
-description: "Official Claude Code plugin and claude.ai skill bundle for QECTOR: local quantum error correction decoding with qector-decoder-v3 via MCP. 24 skills, 5 agents, "
+description: "QECTOR Quantum Error Correction: High-performance, mathematically verified local QEC engineering environment for Claude Code and Claude Desktop."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [GuillaumeLessard/qector-claude-plugin](https://github.com/GuillaumeLessard/qector-claude-plugin)
 
-**★ 0** · exceptional (score 10.5) · Python · ai-agents, anthropic, claude-code, claude-code-plugin, claude-code-skill
+**★ 1** · exceptional (score 10.8) · Python · ai-agents, anthropic, claude-code, claude-code-plugin, claude-code-skill
 
-> Official Claude Code plugin and claude.ai skill bundle for QECTOR: local quantum error correction decoding with qector-decoder-v3 via MCP. 24 skills, 5 agents, local stdio MCP server.
+> QECTOR Quantum Error Correction: High-performance, mathematically verified local QEC engineering environment for Claude Code and Claude Desktop.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-21
 - 🏷️ Tags: ai-agents, anthropic, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-desktop, claude-plugin, claude-skills, decoder, error-correction, llm, mcp, mcp-server, python, qec, qector, quantum-computing, quantum-error-correction, skills
 
 ## Best fit cue profiles

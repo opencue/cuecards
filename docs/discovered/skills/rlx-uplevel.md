@@ -1,22 +1,22 @@
 ---
 title: "rlx/uplevel — Claude Code skill discovered by cue"
-description: "Uplevel your repo's engineering process. Most tools tell you what's wrong; uplevel tells you what's missing, then hands you a ranked plan. A Claude Code skill. "
+description: "Uplevel your repo's engineering process. Most tools tell you what's wrong; uplevel tells you also what's missing, then hands you a ranked plan. A Claude Code sk"
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, skill, cybersecurity]
 ---
 
-# 💎 [rlx/uplevel](https://github.com/rlx/uplevel)
+# ✨ [rlx/uplevel](https://github.com/rlx/uplevel)
 
-**★ 1** · exceptional (score 8.3) · Shell · agent-skills, ai-agents, ci-cd, claude-code, claude-code-skill
+**★ 1** · strong (score 7.3) · Shell · agent-skills, ai-agents, ci-cd, claude-code, claude-code-skill
 
-> Uplevel your repo's engineering process. Most tools tell you what's wrong; uplevel tells you what's missing, then hands you a ranked plan. A Claude Code skill. Nothing changes until you pick.
+> Uplevel your repo's engineering process. Most tools tell you what's wrong; uplevel tells you also what's missing, then hands you a ranked plan. A Claude Code skill that can learn your specific repository and adapts to it. Nothing changes until you pick.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-20
+- 🗓️ Last pushed: 2026-08-21
 - 🏷️ Tags: agent-skills, ai-agents, ci-cd, claude-code, claude-code-skill, code-quality, developer-tools, devops, engineering-standards, release-engineering, repository-audit, software-quality, supply-chain-security
 
 ## Best fit cue profiles

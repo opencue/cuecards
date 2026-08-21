@@ -2,19 +2,19 @@
 title: "senna-lang/graph-context-for-claude-code — Claude Code skill discovered by cue"
 description: "Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, skill, docs-writer]
 ---
 
 # ✨ [senna-lang/graph-context-for-claude-code](https://github.com/senna-lang/graph-context-for-claude-code)
 
-**★ 2** · strong (score 6.5) · TypeScript · claude-code, ide-integration, obsidian, obsidian-plugin
+**★ 2** · strong (score 6.4) · TypeScript · claude-code, ide-integration, obsidian, obsidian-plugin
 
 > Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: claude-code, ide-integration, obsidian, obsidian-plugin

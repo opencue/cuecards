@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,19 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="superdesigndev-superdesign-skill"></a>
+## 💎 [superdesigndev/superdesign-skill](https://github.com/superdesigndev/superdesign-skill)
+
+**★ 436** · exceptional (score 14.8) · JavaScript · tags: agent-skills, ai-design, claude-code, claude-skill, claude-skills
+
+The design skill for Claude Code, Cursor and any coding agent. Stop shipping AI-slop UI: turn it into shippable, tasteful frontend. Install: npx skills add superdesigndev/superdesign-skill. Powered by superdesign.dev
+
+```bash
+cue skills add superdesigndev/superdesign-skill --profile frontend
+```
 
 ---
 
@@ -28,23 +41,10 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
-## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
-
-Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
-
-```bash
-cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
-```
-
----
-
 <a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## ✨ [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
 Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 

@@ -2,19 +2,19 @@
 title: "Obelyth/cortex — Claude Code skill discovered by cue"
 description: "Claude second brain — a private markdown knowledge base served to every Claude surface over MCP, with a read path that proves its own citations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Obelyth/cortex](https://github.com/Obelyth/cortex)
 
-**★ 1** · potential (score 4.3) · TypeScript · ai-memory, claude, markdown, mcp, second-brain
+**★ 1** · potential (score 4.2) · TypeScript · ai-memory, claude, markdown, mcp, second-brain
 
 > Claude second brain — a private markdown knowledge base served to every Claude surface over MCP, with a read path that proves its own citations.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: ai-memory, claude, markdown, mcp, second-brain, vercel

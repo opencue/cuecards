@@ -1,17 +1,56 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="frowningdev-django-orm-lens"></a>
+## 💎 [FROWNINGdev/django-orm-lens](https://github.com/FROWNINGdev/django-orm-lens)
+
+**★ 72** · exceptional (score 12.1) · Python · tags: ai-agents, aider, code-navigation, cursor, database
+
+Free, MIT alternative to paid Django schema review. Blast radius on every PR, schema drift, N+1 across functions, ER diagrams, MCP server. No DB, no Django boot, no Pro tier.
+
+```bash
+cue skills add FROWNINGdev/django-orm-lens --profile python
+```
+
+---
+
+<a id="sattyamjjain-agent-airlock"></a>
+## 💎 [sattyamjjain/agent-airlock](https://github.com/sattyamjjain/agent-airlock)
+
+**★ 13** · exceptional (score 9.1) · Python · tags: ai-agents, ai-security, crewai, firewall, langchain
+
+A type-checker and contract layer for AI agent tool calls, deny-by-default, in-process, Pydantic-only. Strict argument validation, ghost-argument stripping, and self-healing retries for MCP servers and agent frameworks.
+
+```bash
+cue skills add sattyamjjain/agent-airlock --profile python
+```
+
+---
+
+<a id="sponge-b0b-polaris"></a>
+## ✨ [sponge-b0b/Polaris](https://github.com/sponge-b0b/Polaris)
+
+**★ 4** · strong (score 6.8) · Python · tags: bge-m3, crawl4ai, deepeval, financial-analysis, graph-rag
+
+A runtime-native AI intelligence platform for portfolio analysis
+
+```bash
+cue skills add sponge-b0b/Polaris --profile python
+```
 
 ---
 

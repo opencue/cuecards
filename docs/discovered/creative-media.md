@@ -1,59 +1,42 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="yanliudesign-mono-color-skill"></a>
-## 💎 [yanliudesign/mono-color-skill](https://github.com/yanliudesign/mono-color-skill)
+<a id="artokun-comfyui-mcp"></a>
+## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
 
-**★ 0** · exceptional (score 15.5) · tags: agent-skill, ai-agent, claude-skill, editorial-design, generative-art
+**★ 631** · exceptional (score 20.4) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
 
-One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography.
-
-✅ SKILL.md
+Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
 
 ```bash
-cue skills add yanliudesign/mono-color-skill --profile creative-media
+cue skills add artokun/comfyui-mcp --profile creative-media
 ```
 
 ---
 
-<a id="codeofaxel-kiln"></a>
-## 💎 [codeofaxel/Kiln](https://github.com/codeofaxel/Kiln)
+<a id="cpulxb-wsl-image-clipboard-helper"></a>
+## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
 
-**★ 48** · exceptional (score 14.9) · Python · tags: 3d-printing, ai, ai-agents, bambu-lab, claude
+**★ 89** · exceptional (score 10.4) · Rust
 
-Describe it or draw it — Kiln makes it real. The open-source MCP server for 3D printing: AI agents (Claude, Codex, Cursor, or any MCP client) design, generate, slice & print on Bambu Lab, Creality, Prusa, Elegoo, Klipper/Moonraker, OctoPrint, Duet/RepRapFirmware & any Marlin printer.
-
-✅ SKILL.md
+该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
 
 ```bash
-cue skills add codeofaxel/Kiln --profile creative-media
-```
-
----
-
-<a id="julilaoshi-takeaway-skill"></a>
-## 💎 [julilaoshi/takeaway-skill](https://github.com/julilaoshi/takeaway-skill)
-
-**★ 58** · exceptional (score 14) · HTML · tags: ai-workflow, claude-code-skill, codex-skill, creative-workflow, design-analysis
-
-Takeaway Skill / 拿来主义 Skill: distill references into reusable mechanisms, adaptation routes, pattern cards, and implementation briefs without copying surface style.
-
-```bash
-cue skills add julilaoshi/takeaway-skill --profile creative-media
+cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
 ```
 
 ---

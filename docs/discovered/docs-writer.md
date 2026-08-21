@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-21
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 <a id="senna-lang-graph-context-for-claude-code"></a>
 ## ✨ [senna-lang/graph-context-for-claude-code](https://github.com/senna-lang/graph-context-for-claude-code)
 
-**★ 2** · strong (score 6.5) · TypeScript · tags: claude-code, ide-integration, obsidian, obsidian-plugin
+**★ 2** · strong (score 6.4) · TypeScript · tags: claude-code, ide-integration, obsidian, obsidian-plugin
 
 Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks.
 
