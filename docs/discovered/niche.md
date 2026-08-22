@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-20
+updated: 2026-08-22
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="ikramahmadmemon13-grant-thinking-skill"></a>
-## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
 
-Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
 ```
 
 ---

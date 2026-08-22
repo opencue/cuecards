@@ -2,21 +2,21 @@
 title: "Abdo2011-Mahmoud/claude-session-memory-core — Claude Code skill discovered by cue"
 description: "Best Claude Code Memory Toolkit Alternative 2026 – Smart Markdown Session Manager"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Abdo2011-Mahmoud/claude-session-memory-core](https://github.com/Abdo2011-Mahmoud/claude-session-memory-core)
+# 💎 [Abdo2011-Mahmoud/claude-session-memory-core](https://github.com/Abdo2011-Mahmoud/claude-session-memory-core)
 
-**★ 0** · strong (score 7.5) · HTML · ai-memory, anthropic, claude-code, claude-code-skill, claude-plugin
+**★ 0** · exceptional (score 9) · HTML · ai-memory, anthropic, claude-code, claude-code-skill, claude-plugin
 
 > Best Claude Code Memory Toolkit Alternative 2026 – Smart Markdown Session Manager
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-21
+- 🗓️ Last pushed: 2026-08-22
 - 🏷️ Tags: ai-memory, anthropic, claude-code, claude-code-skill, claude-plugin, context, context-engineering, context-management, developer-tools, llm-memory, memory, productivity, session-memory
 
 ## Best fit cue profiles

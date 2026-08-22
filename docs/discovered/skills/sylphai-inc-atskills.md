@@ -2,19 +2,19 @@
 title: "SylphAI-Inc/atskills — Claude Code skill discovered by cue"
 description: "The @skills protocol: use any SKILL.md by path, save it into .atskills/, auto-trigger it with one line. Reference implementation + integration guide for any age"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [SylphAI-Inc/atskills](https://github.com/SylphAI-Inc/atskills)
 
-**★ 67** · exceptional (score 9) · TypeScript
+**★ 67** · exceptional (score 8.9) · TypeScript
 
 > The @skills protocol: use any SKILL.md by path, save it into .atskills/, auto-trigger it with one line. Reference implementation + integration guide for any agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ⭐ 67 stars
 - 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: (none)

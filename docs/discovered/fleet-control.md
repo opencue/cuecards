@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
 ## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 119** · exceptional (score 12.9) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 118** · exceptional (score 12.9) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
 Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 

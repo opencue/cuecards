@@ -2,7 +2,7 @@
 title: "Naberator/editor-guide — Claude Code skill discovered by cue"
 description: "Claude Code plugin: Claude drives your editor (Neovim, JetBrains, VS Code/Cursor/Windsurf) — opens files at the right line instead of printing path:line"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 

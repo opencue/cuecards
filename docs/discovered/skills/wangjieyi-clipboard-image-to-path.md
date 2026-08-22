@@ -2,19 +2,19 @@
 title: "WANGJIEYI/clipboard-image-to-path — Claude Code skill discovered by cue"
 description: "Convert Windows clipboard images to file paths so text-only AI agents (Claude Code, Codex, Cursor...) can read screenshots - AutoHotkey v2"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [WANGJIEYI/clipboard-image-to-path](https://github.com/WANGJIEYI/clipboard-image-to-path)
 
-**★ 1** · exceptional (score 8.6) · AutoHotkey · ahk-v2, ai-agent, ai-cli, autohotkey, claude-code
+**★ 1** · exceptional (score 8.5) · AutoHotkey · ahk-v2, ai-agent, ai-cli, autohotkey, claude-code
 
 > Convert Windows clipboard images to file paths so text-only AI agents (Claude Code, Codex, Cursor...) can read screenshots - AutoHotkey v2
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-08-15
 - 🏷️ Tags: ahk-v2, ai-agent, ai-cli, autohotkey, claude-code, clipboard, clipboard-image, codex, cursor, image-to-path, llm, screenshot, windows

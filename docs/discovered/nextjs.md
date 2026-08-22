@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -16,9 +16,9 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
 <a id="ditakebede1-personal-knowledge-nexus"></a>
-## ✨ [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
+## 💎 [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
 
-**★ 0** · strong (score 7.5) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
+**★ 0** · exceptional (score 9) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
 
 Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
 

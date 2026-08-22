@@ -2,19 +2,19 @@
 title: "aplaceforallmystuff/claude-ecosystem-health — Claude Code skill discovered by cue"
 description: "Detect drift between Claude Code skills, agents, MCP servers, vault paths, and CLI tools. 7 diagnostic checks with severity-based reporting."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [aplaceforallmystuff/claude-ecosystem-health](https://github.com/aplaceforallmystuff/claude-ecosystem-health)
 
-**★ 6** · exceptional (score 10.6) · Shell · claude, claude-code, developer-tools, diagnostic, drift-detection
+**★ 6** · exceptional (score 10.5) · Shell · claude, claude-code, developer-tools, diagnostic, drift-detection
 
 > Detect drift between Claude Code skills, agents, MCP servers, vault paths, and CLI tools. 7 diagnostic checks with severity-based reporting.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 6 stars
 - 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: claude, claude-code, developer-tools, diagnostic, drift-detection, ecosystem-health, mcp-servers

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="nsasoft-nsauditor-ai-agent-skill"></a>
-## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
 
-**★ 4** · exceptional (score 16.8) · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
+**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
 
-AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 ```
 
 ---
@@ -33,7 +33,7 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2315** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
+**★ 2319** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,15 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="rlx-uplevel"></a>
-## ✨ [rlx/uplevel](https://github.com/rlx/uplevel)
+<a id="elyshafresh21-claude-context-lint"></a>
+## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
 
-**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, ai-agents, ci-cd, claude-code, claude-code-skill
+**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
 
-Uplevel your repo's engineering process. Most tools tell you what's wrong; uplevel tells you also what's missing, then hands you a ranked plan. A Claude Code skill that can learn your specific repository and adapts to it. Nothing changes until you pick.
+Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
 
 ```bash
-cue skills add rlx/uplevel --profile cybersecurity
+cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
 ```
 
 ---

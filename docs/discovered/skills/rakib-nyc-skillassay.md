@@ -2,7 +2,7 @@
 title: "rakib-nyc/skillassay — Claude Code skill discovered by cue"
 description: "Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; f"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, research]
 ---
 

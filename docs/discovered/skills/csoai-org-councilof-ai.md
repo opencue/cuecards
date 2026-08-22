@@ -2,13 +2,13 @@
 title: "CSOAI-ORG/councilof-ai — Claude Code skill discovered by cue"
 description: "Independent AI-governance measurement. We measure, sign and preserve the evidence; regulators and accredited bodies decide. Deterministic scoring anchored to fr"
 layout: page
-updated: 2026-08-15
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [CSOAI-ORG/councilof-ai](https://github.com/CSOAI-ORG/councilof-ai)
 
-**★ 0** · strong (score 6.5) · TypeScript · ai-governance, compliance, csoai, mcp, mcp-server
+**★ 0** · strong (score 6.5) · TypeScript · ai-compliance, ai-governance, ai-measurement, ed25519, eu-ai-act
 
 > Independent AI-governance measurement. We measure, sign and preserve the evidence; regulators and accredited bodies decide. Deterministic scoring anchored to frozen statute, Ed25519-signed results, published refutations. Not a notified body.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-15
-- 🏷️ Tags: ai-governance, compliance, csoai, mcp, mcp-server, meok-ai-labs, model-context-protocol
+- 🗓️ Last pushed: 2026-08-22
+- 🏷️ Tags: ai-compliance, ai-governance, ai-measurement, ed25519, eu-ai-act, mcp-server, signed-attestation
 
 ## Best fit cue profiles
 

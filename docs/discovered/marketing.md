@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="sequenzy-mcp"></a>
+## 💎 [Sequenzy/mcp](https://github.com/Sequenzy/mcp)
+
+**★ 2** · exceptional (score 8) · TypeScript · tags: ai-agents, email-marketing, lifecycle-email, marketing-automation, mcp-server
+
+MCP server for AI agents to operate Sequenzy lifecycle, campaign, and transactional email workflows.
+
+```bash
+cue skills add Sequenzy/mcp --profile marketing
+```
 
 ---
 

@@ -2,7 +2,7 @@
 title: "shinpr/grok-workflows — Claude Code skill discovered by cue"
 description: "Run Claude Code Workflows (CCW) on Grok: single install path plus a runtime translation layer"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 

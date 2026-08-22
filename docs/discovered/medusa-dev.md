@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,19 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
+<a id="alex-brecher-shopify-multi-store"></a>
+## 💎 [alex-brecher/shopify-multi-store](https://github.com/alex-brecher/shopify-multi-store)
+
+**★ 1** · exceptional (score 10.8) · JavaScript · tags: agent-skills, ai-agent, ai-agents, claude, claude-code
+
+One MCP server for every Shopify store. Search products, compare inventory, find catalog gaps, track fulfillment SLAs, and make guarded updates from Claude, Codex, Cursor, and VS Code.
+
+```bash
+cue skills add alex-brecher/shopify-multi-store --profile medusa-dev
+```
+
+---
+
 <a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
 ## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
@@ -24,19 +37,6 @@ Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Complia
 
 ```bash
 cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
-```
-
----
-
-<a id="buywhere-buywhere"></a>
-## 💎 [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
-
-BuyWhere agent-native product catalog API
-
-```bash
-cue skills add BuyWhere/buywhere --profile medusa-dev
 ```
 
 ---

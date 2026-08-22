@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,19 @@ Claude Code IDE integration (/ide) for Obsidian with expanded graph context — 
 
 ```bash
 cue skills add senna-lang/graph-context-for-claude-code --profile docs-writer
+```
+
+---
+
+<a id="grunion-ai-weave"></a>
+## ✨ [grunion-ai/weave](https://github.com/grunion-ai/weave)
+
+**★ 0** · strong (score 5) · JavaScript · tags: ai-agents, airtable-alternative, clickup-alternative, database, fibery-alternative
+
+Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp, built so AI agents are first-class users. Connected tables, relations, workflows, formulas, rollups and per-entity markdown/PDF documents in one SQLite file — with a REST API, CLI and MCP server. Zero dependencies, no build step, MIT.
+
+```bash
+cue skills add grunion-ai/weave --profile docs-writer
 ```
 
 ---

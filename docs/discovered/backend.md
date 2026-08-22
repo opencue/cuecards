@@ -1,55 +1,83 @@
 ---
 title: "Claude Code Skills for backend"
-description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="benseverndev-oss-goldenmatch"></a>
-## 💎 [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch)
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 129** · exceptional (score 13.5) · Python · tags: data-cleaning, data-engineering, data-matching, data-quality, deduplication
+**★ 421** · exceptional (score 22.7) · Python · tags: ai-agent, ai-infra, claude, deepseek-harness, devops
 
-Zero-config entity resolution that feeds a durable identity layer: resolve messy records from any source into stable golden entities — a Customer 360 with whole-record provenance, merge/split & audit. Splink-beating accuracy, Arrow-native/Rust, 100M rows in 9.2 min. Python + edge TypeScript (WASM), SQL-native in Postgres & DuckDB, MCP/REST.
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
+
+✅ SKILL.md
 
 ```bash
-cue skills add benseverndev-oss/goldenmatch --profile backend
+cue skills add Ikalus1988/MisakaNet --profile backend
 ```
 
 ---
 
-<a id="frowningdev-django-orm-lens"></a>
-## 💎 [FROWNINGdev/django-orm-lens](https://github.com/FROWNINGdev/django-orm-lens)
+<a id="open-metadata-openmetadata"></a>
+## 💎 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
 
-**★ 72** · exceptional (score 12.1) · Python · tags: ai-agents, aider, code-navigation, cursor, database
+**★ 14939** · exceptional (score 17) · TypeScript · tags: context, context-layer, data-catalog, data-collaboration, data-contracts
 
-Free, MIT alternative to paid Django schema review. Blast radius on every PR, schema drift, N+1 across functions, ER diagrams, MCP server. No DB, no Django boot, no Pro tier.
+The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
 
 ```bash
-cue skills add FROWNINGdev/django-orm-lens --profile backend
+cue skills add open-metadata/OpenMetadata --profile backend
 ```
 
 ---
 
-<a id="masayukita-m365-copilot-companion-mcp"></a>
-## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+<a id="viewflow-seedkit"></a>
+## 💎 [viewflow/seedkit](https://github.com/viewflow/seedkit)
 
-**★ 5** · exceptional (score 11) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+**★ 78** · exceptional (score 15.2) · tags: claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
 
-Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI.
 
 ```bash
-cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
+cue skills add viewflow/seedkit --profile backend
+```
+
+---
+
+<a id="enkinvsh-crystallized"></a>
+## 💎 [enkinvsh/crystallized](https://github.com/enkinvsh/crystallized)
+
+**★ 2** · exceptional (score 11.5) · Python · tags: agent-memory, ai-agent, ai-agents, ai-memory, anthropic
+
+Persistent memory MCP server for opencode — Redis facts, ChromaDB semantic search, document storage, power-law memory decay, agent identity. Plus first-party Claude.app OAuth: use your Claude Max plan without third-party detection. One-command install.
+
+```bash
+cue skills add enkinvsh/crystallized --profile backend
+```
+
+---
+
+<a id="alex-brecher-shopify-multi-store"></a>
+## 💎 [alex-brecher/shopify-multi-store](https://github.com/alex-brecher/shopify-multi-store)
+
+**★ 1** · exceptional (score 10.8) · JavaScript · tags: agent-skills, ai-agent, ai-agents, claude, claude-code
+
+One MCP server for every Shopify store. Search products, compare inventory, find catalog gaps, track fulfillment SLAs, and make guarded updates from Claude, Codex, Cursor, and VS Code.
+
+```bash
+cue skills add alex-brecher/shopify-multi-store --profile backend
 ```
 
 ---
@@ -67,19 +95,6 @@ cue skills add eirik-rune/runemap --profile backend
 
 ---
 
-<a id="buywhere-buywhere"></a>
-## 💎 [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
-
-BuyWhere agent-native product catalog API
-
-```bash
-cue skills add BuyWhere/buywhere --profile backend
-```
-
----
-
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
@@ -93,36 +108,49 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="sponge-b0b-polaris"></a>
-## ✨ [sponge-b0b/Polaris](https://github.com/sponge-b0b/Polaris)
+<a id="fastbean-au-hippocampus"></a>
+## ✨ [fastbean-au/hippocampus](https://github.com/fastbean-au/hippocampus)
 
-**★ 4** · strong (score 6.8) · Python · tags: bge-m3, crawl4ai, deepeval, financial-analysis, graph-rag
+**★ 0** · strong (score 7.5) · Go · tags: audit-trail, bounded-storage, cognitive-architecture, context-management, data-retention
 
-A runtime-native AI intelligence platform for portfolio analysis
+A finite, biological-inspired memory storage engine for log retention, audit trails, and context management.
 
 ```bash
-cue skills add sponge-b0b/Polaris --profile backend
+cue skills add fastbean-au/hippocampus --profile backend
 ```
 
 ---
 
-<a id="tylampella-unmanned-mcp"></a>
-## ✨ [tylampella/unmanned-mcp](https://github.com/tylampella/unmanned-mcp)
+<a id="pipik-roman-rowlite"></a>
+## ✨ [pipik-roman/rowlite](https://github.com/pipik-roman/rowlite)
 
-**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, mcp, mcp-server, model-context-protocol, wiki
+**★ 3** · strong (score 6.7) · Go · tags: llm-tools, markdown, markdown-editor, markdown-parser, markdown-table
 
-MCP server for un.manned — an experiment: a public wiki only AI agents can write. Your agent contributes; the model never touches an API key.
+Rowlite is an open-source, non-SQL, lightweight CLI tool and MCP server to work with markdown tables - create, read, update, delete
 
 ```bash
-cue skills add tylampella/unmanned-mcp --profile backend
+cue skills add pipik-roman/rowlite --profile backend
+```
+
+---
+
+<a id="grunion-ai-weave"></a>
+## ✨ [grunion-ai/weave](https://github.com/grunion-ai/weave)
+
+**★ 0** · strong (score 5) · JavaScript · tags: ai-agents, airtable-alternative, clickup-alternative, database, fibery-alternative
+
+Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp, built so AI agents are first-class users. Connected tables, relations, workflows, formulas, rollups and per-entity markdown/PDF documents in one SQLite file — with a REST API, CLI and MCP server. Zero dependencies, no build step, MIT.
+
+```bash
+cue skills add grunion-ai/weave --profile backend
 ```
 
 ---
 
 <a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

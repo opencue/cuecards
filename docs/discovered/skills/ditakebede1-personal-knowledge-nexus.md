@@ -2,21 +2,21 @@
 title: "ditakebede1/personal-knowledge-nexus — Claude Code skill discovered by cue"
 description: "Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website"
 layout: page
-updated: 2026-08-21
+updated: 2026-08-22
 tags: [claude-code, skill, nextjs]
 ---
 
-# ✨ [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
+# 💎 [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
 
-**★ 0** · strong (score 7.5) · HTML · ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
+**★ 0** · exceptional (score 9) · HTML · ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
 
 > Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-21
+- 🗓️ Last pushed: 2026-08-22
 - 🏷️ Tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill, library-os, nextjs, personal-knowledge-management, quote-management, reading-list, vercel
 
 ## Best fit cue profiles
