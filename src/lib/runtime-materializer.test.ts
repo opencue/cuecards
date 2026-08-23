@@ -20,6 +20,8 @@ import {
   linkPluginCache,
   isRuntimeStale,
   shouldIncludeSessionTelemetry,
+  getLastSessionSummary,
+  getSkillChains,
 } from "./runtime-materializer";
 import { MAX_STAGGER_MS } from "./credentials-sync";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -2192,6 +2194,46 @@ describe("materializeRuntime — session-telemetry gating", () => {
     const onBytes = (await readFile(join(on.runtimeDir, "CLAUDE.md"), "utf8"))
       .length;
     expect(onBytes).toBeGreaterThanOrEqual(offBytes);
+  });
+});
+
+describe("session telemetry helpers", () => {
+  test("summarizes the newest matching Claude session", async () => {
+    const projectsDir = join(root, "projects");
+    const cwdKey = process.cwd().replace(/\//g, "-").slice(1, 30);
+    const projectDir = join(projectsDir, `${cwdKey}-fixture`);
+    await mkdir(projectDir, { recursive: true });
+    await writeFile(
+      join(projectDir, "2026-08-24.jsonl"),
+      `${JSON.stringify({
+        type: "assistant",
+        message: { content: "Implemented the portable profile handoff successfully. Extra detail." },
+      })}\n`,
+    );
+
+    const summary = await getLastSessionSummary("core", projectsDir);
+    expect(summary).toContain("Last session");
+    expect(summary).toContain("Implemented the portable profile handoff successfully");
+  });
+
+  test("builds workflow hints from profile skill usage", async () => {
+    const projectsDir = join(root, "projects");
+    await mkdir(projectsDir, { recursive: true });
+    await writeFile(
+      join(projectsDir, "usage.log"),
+      [
+        "skills/alpha/SKILL.md",
+        "skills/alpha/SKILL.md",
+        "skills/beta/SKILL.md",
+        "skills/gamma/SKILL.md",
+      ].join("\n"),
+    );
+
+    const hint = await getSkillChains(
+      ["test/alpha", "test/beta", "test/gamma"],
+      projectsDir,
+    );
+    expect(hint).toContain("alpha → beta → gamma");
   });
 });
 

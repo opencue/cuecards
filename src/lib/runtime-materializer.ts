@@ -1934,11 +1934,11 @@ import { homedir } from "node:os";
 import { readdirSync, existsSync, statSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
-async function getLastSessionSummary(
+export async function getLastSessionSummary(
   profileName: string,
+  projectsDir = join(homedir(), ".claude", "projects"),
 ): Promise<string | null> {
   try {
-    const projectsDir = join(homedir(), ".claude", "projects");
     if (!existsSync(projectsDir)) return null;
 
     // Find the most recent session jsonl in the cwd-based project dir
@@ -2019,9 +2019,11 @@ function formatTimeAgo(date: Date): string {
 // #9: Skill chaining — detect common skill sequences from usage
 // ---------------------------------------------------------------------------
 
-async function getSkillChains(skillsList: string[]): Promise<string | null> {
+export async function getSkillChains(
+  skillsList: string[],
+  projectsDir = join(homedir(), ".claude", "projects"),
+): Promise<string | null> {
   try {
-    const projectsDir = join(homedir(), ".claude", "projects");
     if (!existsSync(projectsDir)) return null;
 
     // Scan recent sessions for skill co-occurrence
