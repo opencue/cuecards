@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -93,13 +93,24 @@ describe("credExpiresAt", () => {
 });
 
 describe("setupClassifierHome", () => {
-  test("returns null when there is nothing to isolate", () => {
+  test("isolates against ~/.claude when CLAUDE_CONFIG_DIR is not set", () => {
     const prev = process.env.CLAUDE_CONFIG_DIR;
+    const prevHome = process.env.HOME;
+    const home = tmpDir();
+    const defaultClaude = join(home, ".claude");
+    mkdirSync(defaultClaude, { recursive: true });
     delete process.env.CLAUDE_CONFIG_DIR;
+    process.env.HOME = home;
     try {
-      expect(setupClassifierHome()).toBeNull();
+      const h = setupClassifierHome();
+      expect(h).not.toBeNull();
+      expect(readFileSync(join(h!.home, "settings.json"), "utf8")).toBe("{}\n");
+      expect(h!.credSrc).toBeNull();
+      teardownClassifierHome(h!);
     } finally {
       if (prev !== undefined) process.env.CLAUDE_CONFIG_DIR = prev;
+      if (prevHome === undefined) delete process.env.HOME;
+      else process.env.HOME = prevHome;
     }
   });
 

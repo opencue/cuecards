@@ -9,9 +9,31 @@
 import { describe, expect, test } from "bun:test";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
+import { parseSkillFrontmatter } from "./skills-lint";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
+
+describe("parseSkillFrontmatter", () => {
+  test("parses folded multiline descriptions and block tags", () => {
+    const metadata = parseSkillFrontmatter(`name: example\ndescription: >-\n  Use when the user asks for a multiline workflow.\ntags:\n  - workflow\n  - example`);
+    expect(metadata.description).toBe("Use when the user asks for a multiline workflow.");
+    expect(metadata.tags).toEqual(["workflow", "example"]);
+  });
+
+  test("fails closed on malformed YAML", () => {
+    expect(parseSkillFrontmatter("description: [unterminated")).toEqual({
+      description: "",
+      tags: [],
+    });
+  });
+
+  test("accepts legacy frontmatter with a repeated name key", () => {
+    const metadata = parseSkillFrontmatter(`name: first\ndescription: Use when the user asks for help.\nname: second\ntags: [help]`);
+    expect(metadata.description).toBe("Use when the user asks for help.");
+    expect(metadata.tags).toEqual(["help"]);
+  });
+});
 
 function cue(args: string[]): { status: number; stdout: string; stderr: string } {
   const res = spawnSync("bun", ["run", CUE_BIN, ...args], {

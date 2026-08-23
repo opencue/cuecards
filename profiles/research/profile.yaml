@@ -72,7 +72,6 @@ mcps:
   - polymarket-live
   - obsidian-vault
   - Higgsfield
-  - openaiDeveloperDocs
 playbooks:
   - research-workflow   # scope → fan-out → cite → verify → synthesize (this profile's core loop)
 persona: |

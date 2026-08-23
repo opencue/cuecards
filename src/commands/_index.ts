@@ -80,7 +80,7 @@ export const COMMANDS = {
     load: () => import("./ruler"),
   },
   summon: {
-    summary: "Bind a profile into the LIVE session (soft-load + pin), no cold restart",
+    summary: "Soft-load a profile into live Claude/Codex; pin + warm handoff for MCPs",
     load: () => import("./summon"),
   },
   resolve: {
@@ -96,23 +96,23 @@ export const COMMANDS = {
     load: () => import("./auth"),
   },
   login: {
-    summary: "Authenticate with cue cloud (GitHub OAuth)",
+    summary: "Alias for marketplace login with a cuecards.cc API token",
     load: () => import("./cloud"),
   },
   logout: {
-    summary: "Clear cue cloud credentials",
+    summary: "Clear hosted marketplace credentials",
     load: () => import("./cloud"),
   },
   push: {
-    summary: "Upload a profile to cue cloud",
+    summary: "Alias for marketplace publish profile",
     load: () => import("./cloud"),
   },
   pull: {
-    summary: "Download a profile from cue cloud",
+    summary: "Retired cloud pull alias with migration guidance",
     load: () => import("./cloud"),
   },
   whoami: {
-    summary: "Show current cue cloud user",
+    summary: "Alias for marketplace whoami",
     load: () => import("./cloud"),
   },
   shell: {
@@ -164,7 +164,7 @@ export const COMMANDS = {
     load: () => import("./marketplace"),
   },
   stats: {
-    summary: "Profile usage analytics dashboard",
+    summary: "Profile usage and picker suggestion quality dashboard",
     load: () => import("./stats"),
   },
   status: {

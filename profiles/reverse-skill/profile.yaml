@@ -82,6 +82,9 @@ skills:
         # --- deliverables ---
         - docs-generator
         - diagram-generator
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [spec-miner]
     # The repo also ships a CTF pack under CTF-Sandbox-Orchestrator/ (41
     # competition-* skills). They live outside the skills/ tree, so wire them
     # into a `reverse-skill-ctf` child profile once you've confirmed the

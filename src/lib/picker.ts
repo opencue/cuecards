@@ -17,6 +17,7 @@ import { styleText } from "node:util";
 import type { CompanionSignal } from "./companion-detect";
 import type { UniversalSuggestion, UniversalOrigin } from "./pair-suggestions";
 import { recordCombo } from "./combo-history";
+import { recordProfileChoice } from "./profile-choice-feedback";
 import { buildConflictMap, resolveConflicts } from "./profile-conflicts";
 import { SHOW_ALL, SKIP_COMBINE, compressCombo, dedupeSelectorParts } from "./picker/selector";
 import {
@@ -1012,6 +1013,11 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
 export async function runPickerClassic(input: PickerInput): Promise<PickerOutput> {
   p.intro(`cue · pick a profile for ${input.cwd}`);
 
+  const shownSuggestions = input.options
+    .filter((option) => option.divider !== true)
+    .slice(0, 3)
+    .map((option) => option.value);
+
   let first = await selectSkipDividers(input.options, "Profile");
 
   // Conflict-aware switch nudge. If the user's first pick conflicts with any
@@ -1149,6 +1155,11 @@ export async function runPickerClassic(input: PickerInput): Promise<PickerOutput
   // recordCombo no-ops on a single-profile pick and never throws.
   try {
     recordCombo(choiceParts, new Date().toISOString(), undefined, input.cwd);
+    recordProfileChoice({
+      cwd: input.cwd,
+      choice: choiceParts,
+      suggested: shownSuggestions,
+    });
   } catch { /* logging must never block a launch */ }
 
   // Build a display label with icon(s) for the outro line, per deduped part.

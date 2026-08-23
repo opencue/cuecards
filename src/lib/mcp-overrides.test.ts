@@ -9,6 +9,7 @@ import {
   mcpFingerprint,
   reconcileDisabledWithNeeded,
   autoPrunableMcps,
+  withAutoPrunedGlobals,
   autoPruneEnabled,
   mcpPruneMode,
   isRecognizedPruneEnv,
@@ -170,6 +171,17 @@ describe("all-mode universe includes globals; profile-mode does not", () => {
   test("all mode (universe = profile ∪ globals) drops unused globals", () => {
     const drop = autoPrunableMcps([...profileIds, ...globalIds], pinned, needed);
     expect(drop.sort()).toEqual(["colony", "higgsfield"]);
+  });
+
+  test("remembered profile choices still auto-prune unused globals in all mode", () => {
+    const disabled = withAutoPrunedGlobals(
+      ["unused-profile"],
+      profileIds,
+      [...profileIds, ...globalIds],
+      pinned,
+      needed,
+    );
+    expect(disabled).toEqual(["unused-profile", "higgsfield", "colony"]);
   });
 });
 

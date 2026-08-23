@@ -104,6 +104,9 @@ skills:
     # Discovered 2026-06-08: maintainability pressure for agent-authored code.
     - repo: ScienceIsNeato/slop-mop
       skills: [slop-mop]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [mcp-developer, prompt-engineer]
 
 playbooks:
   - write-skill-from-scratch

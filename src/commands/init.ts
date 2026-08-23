@@ -32,7 +32,8 @@ import { scanProject } from "../lib/project-scanner";
 import { listProfiles } from "../lib/profile-loader";
 import { getCachedGemsForProfile, autoInstallClis } from "./discover";
 import { shimInstalled, runInstall, type ShimOptions } from "./shell";
-import { shimDir } from "../lib/shim-dir";
+import { SHIM_AGENTS, shimDir } from "../lib/shim-dir";
+import { findRealAgentBin } from "../lib/claude-binary";
 import { gateFreshSkill } from "./security";
 import {
   configDir,
@@ -287,7 +288,14 @@ export async function showCostProof(
  */
 export type ShimInjectOptions = Pick<
   ShimOptions,
-  "homeDir" | "realClaude" | "realCodex" | "pathDirs" | "out" | "err"
+  | "homeDir"
+  | "realClaude"
+  | "realCodex"
+  | "pathDirs"
+  | "platform"
+  | "updateWindowsPath"
+  | "out"
+  | "err"
 >;
 
 /**
@@ -311,19 +319,36 @@ export type ShimInjectOptions = Pick<
 async function ensureShim(
   opts: { nonInteractive?: boolean } & ShimInjectOptions = {},
 ): Promise<boolean> {
-  if (shimInstalled(opts.homeDir)) return true;
+  const platform = opts.platform ?? process.platform;
+  let installedAny = false;
+  let missingAvailable = false;
+  for (const agent of SHIM_AGENTS) {
+    if (shimInstalled(opts.homeDir, agent, platform)) {
+      installedAny = true;
+      continue;
+    }
+    const injected = agent === "claude" ? opts.realClaude : opts.realCodex;
+    const real = injected === undefined ? findRealAgentBin(agent) : injected;
+    if (real) missingAvailable = true;
+  }
+  // An agent that is not installed does not require a shim. But if Codex was
+  // added after an older Claude-only cue setup, do not let the Claude shim
+  // short-circuit setup — install Codex's picker shim too.
+  if (installedAny && !missingAvailable) return true;
   const dir = shimDir(opts.homeDir);
   const injected: ShimInjectOptions = {
     homeDir: opts.homeDir,
     realClaude: opts.realClaude,
     realCodex: opts.realCodex,
     pathDirs: opts.pathDirs,
+    platform: opts.platform,
+    updateWindowsPath: opts.updateWindowsPath,
     out: opts.out,
     err: opts.err,
   };
 
   if (opts.nonInteractive) {
-    p.log.step(`Installing the claude/codex shim (non-interactive) → ${dir}/claude...`);
+    p.log.step(`Installing the claude/codex shims (non-interactive) → ${dir}...`);
     try {
       // runInstall() prints its own PATH guidance, including the exact rc
       // line when the shim dir isn't on PATH yet. `yes: true` lets it also

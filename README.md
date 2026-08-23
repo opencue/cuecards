@@ -47,8 +47,8 @@ for this project.
    each one is for, and let me pick one — don't choose for me.
 5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile,
    installs the shim that makes `claude`/`codex` load it, and — if needed —
-   appends a PATH line to my shell rc file (~/.bashrc, ~/.zshrc, or fish config)
-   so the shim takes effect. It will not enable telemetry and will not install
+   configures the shim directory on PATH (shell rc on Linux/macOS, Current User
+   PATH on native Windows) so the shim takes effect. It will not enable telemetry and will not install
    third-party skills. If it exits non-zero, stop and show me the output
    instead of continuing to step 6.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
@@ -70,6 +70,10 @@ the matching profile costs against loading everything, and pins it. Requires
 Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code)
 or [Codex](https://github.com/openai/codex) install — cue is a thin shim that
 hands off to your real agent, not a replacement for it.
+
+After setup, a bare interactive `codex` opens Cue's profile suggestion picker
+on Linux, macOS, PowerShell, and cmd.exe. `codex <args>` remains non-interactive
+unless you pass `--cue-pick`.
 
 > package `cue-ai` · command `cue` · repo [opencue/cuecards](https://github.com/opencue/cuecards)
 
@@ -189,7 +193,7 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ---
 
-## 90 ready-made cuecards
+## 95 ready-made cuecards
 
 cue ships with pre-built profiles for common stacks and workflows. A taste:
 
@@ -208,7 +212,7 @@ cue ships with pre-built profiles for common stacks and workflows. A taste:
 | 🏢 **agency** | 63 delegatable subagents — design, sales, product, PM, QA |
 
 ```bash
-cue list           # see all 90
+cue list           # see all 95
 cue auto-detect    # suggest the right one for the current directory
 cue use <name>     # pin it
 ```

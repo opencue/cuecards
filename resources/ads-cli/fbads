@@ -7,26 +7,58 @@ Endpoint is relative to the client's act_<id> (e.g. insights, campaigns,
 adsets). An endpoint starting with '/' is absolute (e.g. /me/adaccounts).
 GET by default; POST requires BOTH --method POST and --write.
 """
+from __future__ import annotations
+
 import json
 import os
 import sys
 import urllib.parse
 import urllib.request
+from typing import Any
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-from _adslib import META_API_VERSION, SECRETS, fail, resolve_client  # noqa: E402
-
-TOKEN_FILE = os.path.join(SECRETS, "meta", "system-user.token")
+from _adslib import META_API_VERSION, fail, resolve_client  # noqa: E402
 
 
-def read_token() -> str:
+def read_token(token_file: str) -> str:
     try:
-        with open(TOKEN_FILE) as f:
+        with open(token_file) as f:
             token = f.read().strip()
     except FileNotFoundError:
-        fail(f"missing {TOKEN_FILE} — run ads-secrets-init, then paste the BM system-user token into it")
+        fail(f"missing {token_file} — run ads setup meta-token <client>")
     if not token:
-        fail(f"{TOKEN_FILE} is empty — paste the BM system-user token into it (single line)")
+        fail(f"{token_file} is empty — run ads setup meta-token <client>")
     return token
+
+
+def _redact_string(value: str) -> str:
+    """Redact Graph access tokens embedded in paging URLs."""
+    try:
+        parsed = urllib.parse.urlsplit(value)
+    except ValueError:
+        return value
+    if not parsed.query:
+        return value
+    query = [
+        (key, "***" if key.lower() == "access_token" else item)
+        for key, item in urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)
+    ]
+    return urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, parsed.path, urllib.parse.urlencode(query), parsed.fragment)
+    )
+
+
+def redact_response(value: Any) -> Any:
+    """Return a JSON-compatible response with all access tokens redacted."""
+    if isinstance(value, dict):
+        return {
+            key: "***" if str(key).lower() == "access_token" else redact_response(item)
+            for key, item in value.items()
+        }
+    if isinstance(value, list):
+        return [redact_response(item) for item in value]
+    if isinstance(value, str):
+        return _redact_string(value)
+    return value
 
 
 def main() -> None:
@@ -61,7 +93,7 @@ def main() -> None:
         qs = urllib.parse.urlencode({**kv, "access_token": "***"})
         print(f"client={client} name={c['name']} {method} {url}?{qs}")
         return
-    kv["access_token"] = read_token()
+    kv["access_token"] = read_token(c["meta_token_file"])
     data = None
     if method == "GET":
         url += "?" + urllib.parse.urlencode(kv)
@@ -79,7 +111,7 @@ def main() -> None:
             fail(f"Graph API {e.code}: {e.reason}")
     except OSError as e:
         fail(f"network error: {e}")
-    print(json.dumps(body, indent=2, ensure_ascii=False))
+    print(json.dumps(redact_response(body), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

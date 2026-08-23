@@ -5,7 +5,7 @@
  */
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { fromNodeHeaders } from "better-auth/node";
-import { getMe } from "../../lib/me";
+import { getMe } from "../../lib/me.js";
 
 export default async function handler(
   req: IncomingMessage,

@@ -4,9 +4,13 @@
 # config file.
 set -euo pipefail
 SERVER_DIR="$HOME/.config/cue/mcp-servers/facebook-ads"
-TOKEN_FILE="$HOME/.config/cue/secrets/ads/meta/system-user.token"
+TOKEN_FILE="${META_TOKEN_FILE:-}"
+if [ -z "$TOKEN_FILE" ]; then
+  echo "facebook-ads-mcp: META_TOKEN_FILE is unset; select a client workspace first" >&2
+  exit 1
+fi
 if [ ! -s "$TOKEN_FILE" ]; then
-  echo "facebook-ads-mcp: missing or empty $TOKEN_FILE — run ads-secrets-init and paste the BM system-user token" >&2
+  echo "facebook-ads-mcp: missing or empty $TOKEN_FILE — run ads setup meta-token <client>" >&2
   exit 1
 fi
 if [ ! -x "$SERVER_DIR/.venv/bin/python" ]; then

@@ -1092,17 +1092,26 @@ async function apiFetch(
   url: string,
   token: string | null,
   init: { method?: string; body?: unknown } = {},
-): Promise<{ status: number; json: any }> {
+): Promise<{ status: number; json: any; error?: string }> {
   const headers: Record<string, string> = { "content-type": "application/json" };
   if (token) headers.authorization = `Bearer ${token}`;
-  const res = await fetch(url, {
-    method: init.method ?? "GET",
-    headers,
-    body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
-  });
-  let json: any = null;
-  try { json = await res.json(); } catch { /* non-JSON */ }
-  return { status: res.status, json };
+  try {
+    const res = await fetch(url, {
+      method: init.method ?? "GET",
+      headers,
+      body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
+      signal: AbortSignal.timeout(10_000),
+    });
+    let json: any = null;
+    try { json = await res.json(); } catch { /* non-JSON */ }
+    return { status: res.status, json };
+  } catch (err) {
+    return {
+      status: 0,
+      json: null,
+      error: err instanceof Error ? err.message : String(err),
+    };
+  }
 }
 
 /** `cue marketplace login --token <t>` — save the token to ~/.config/cue. */
@@ -1121,6 +1130,10 @@ async function cmdLogin(args: string[]): Promise<number> {
 
   // Verify the token works before persisting it.
   const me = await apiFetch(`${apiUrl}/api/v1/me`, token);
+  if (me.status === 0) {
+    process.stderr.write(`${red("✗")} cannot reach ${apiUrl}: ${me.error}\n`);
+    return 1;
+  }
   if (me.status !== 200 || !me.json?.ok) {
     process.stderr.write(`${red("✗")} token rejected by ${apiUrl} (HTTP ${me.status}). Not saved.\n`);
     return 1;
@@ -1140,6 +1153,10 @@ async function cmdWhoami(args: string[]): Promise<number> {
     return 1;
   }
   const me = await apiFetch(`${apiUrl}/api/v1/me`, token);
+  if (me.status === 0) {
+    process.stderr.write(`${red("✗")} cannot reach ${apiUrl}: ${me.error}\n`);
+    return 1;
+  }
   if (me.status !== 200 || !me.json?.ok) {
     process.stderr.write(`${red("✗")} token invalid or expired (HTTP ${me.status}).\n`);
     return 1;
@@ -1210,6 +1227,12 @@ async function cmdPublish(args: string[], json: boolean): Promise<number> {
     body: { type, name, description, tags, sourceUrl },
   });
 
+  if (res.status === 0) {
+    const err = `cannot reach ${apiUrl}: ${res.error}`;
+    if (json) process.stdout.write(JSON.stringify({ ok: false, error: err }) + "\n");
+    else process.stderr.write(`${red("✗ publish failed:")} ${err}\n`);
+    return 1;
+  }
   if (res.status !== 200 || !res.json?.ok) {
     const err = res.json?.error ?? `HTTP ${res.status}`;
     if (json) process.stdout.write(JSON.stringify({ ok: false, error: err }) + "\n");

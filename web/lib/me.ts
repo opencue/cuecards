@@ -6,7 +6,7 @@
  * Returns a plain `{ status, body }` so both transports — the Bun dev server
  * (web `Headers`) and the Vercel Node function — can reuse it.
  */
-import { auth } from "./auth";
+import { auth } from "./auth.js";
 
 export type MeResult = {
   status: number;

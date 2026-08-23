@@ -26,6 +26,9 @@ skills:
     - repo: lucasli6833/slop-cop
       skills:
         - ai-slop-detector
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [code-documenter]
 mcps:
   - gbrain
   - obsidian-vault

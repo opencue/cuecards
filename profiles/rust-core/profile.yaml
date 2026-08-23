@@ -18,6 +18,10 @@ skills:
     - rust/error-handling
     - rust/just-runner
     - rust/chisel-tool           # Chisel — agent precision file edits (recipe + pointer guide)
+  npx:
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [rust-engineer]
 rules:
   - rust/coding-style
   - rust/patterns

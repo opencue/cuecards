@@ -66,7 +66,7 @@ done
 # ---------- uninstall ----------
 if [ "$UNINSTALL" = "1" ]; then
   say "${DIM}→ Removing cue shims and symlinks${RESET}"
-  for f in "$SHIM_DIR/cue" "$CUE_SHIMS/claude" "$CUE_SHIMS/codex" "$SHIM_DIR/claude" "$SHIM_DIR/codex"; do
+  for f in "$SHIM_DIR/cue" "$SHIM_DIR/cue-learnings" "$CUE_SHIMS/claude" "$CUE_SHIMS/codex" "$SHIM_DIR/claude" "$SHIM_DIR/codex"; do
     [ -L "$f" ] || [ -e "$f" ] || continue
     agent="$(basename "$f")"
     target="$(readlink "$f" 2>/dev/null || true)"
@@ -111,18 +111,26 @@ say "${DIM}Step 3/6 — verifying cue binary${RESET}"
 "$CUE_DIR/bin/cue" --version >/dev/null || die "cue binary failed self-check"
 ok "cue $("$CUE_DIR/bin/cue" --version) works"
 
-# 4. Symlink cue into ~/.local/bin
+# 4. Symlink cue's commands into ~/.local/bin
 say ""
-say "${DIM}Step 4/6 — exposing cue on PATH${RESET}"
+say "${DIM}Step 4/6 — exposing cue commands on PATH${RESET}"
 mkdir -p "$SHIM_DIR"
-if [ -L "$SHIM_DIR/cue" ] && [ "$(readlink "$SHIM_DIR/cue")" = "$CUE_DIR/bin/cue" ]; then
-  ok "$SHIM_DIR/cue already points at $CUE_DIR/bin/cue"
-elif [ -e "$SHIM_DIR/cue" ]; then
-  warn "$SHIM_DIR/cue exists and is not a cue symlink — skipping (remove manually if you want cue here)"
-else
-  ln -s "$CUE_DIR/bin/cue" "$SHIM_DIR/cue"
-  ok "symlinked $SHIM_DIR/cue → $CUE_DIR/bin/cue"
-fi
+install_cli_link() {
+  local name="$1"
+  local target="$CUE_DIR/bin/$name"
+  local link="$SHIM_DIR/$name"
+  if [ -L "$link" ] && [ "$(readlink "$link")" = "$target" ]; then
+    ok "$link already points at $target"
+  elif [ -e "$link" ] || [ -L "$link" ]; then
+    warn "$link exists and is not a cue symlink — skipping (remove manually if you want $name here)"
+  else
+    ln -s "$target" "$link"
+    ok "symlinked $link → $target"
+  fi
+}
+
+install_cli_link cue
+install_cli_link cue-learnings
 
 case ":$PATH:" in
   *":$SHIM_DIR:"*) ok "$SHIM_DIR is on PATH" ;;

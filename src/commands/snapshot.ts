@@ -1,26 +1,98 @@
 /**
- * `cue snapshot` — export current effective profile state.
- * `cue restore <file>` — recreate profile from snapshot.
+ * `cue snapshot` — export the current effective profile as portable YAML.
+ * `cue snapshot restore <file>` — recreate the flattened profile.
  */
 
-import { writeFileSync, readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 
-import { loadProfile } from "../lib/profile-loader";
+import type { Profile, ResolvedProfile } from "../../profiles/_types";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
-import { repoRoot } from "../lib/repo-root";
+import { validateProfileName } from "../lib/profile-generator";
+import { loadProfile } from "../lib/profile-loader";
+import { profilesDir, repoRoot } from "../lib/repo-root";
 
+interface SnapshotDocument {
+  _snapshot: {
+    created: string;
+    profile: string;
+    inheritanceChain: string[];
+    agents: string[];
+    cue_version: string;
+    cwd: string;
+  };
+  profile: Profile;
+}
+
+function cueVersion(): string {
+  try {
+    const pkg = JSON.parse(
+      readFileSync(join(repoRoot(), "package.json"), "utf8"),
+    ) as { version?: string };
+    return pkg.version ?? "0.0.0";
+  } catch {
+    return "0.0.0";
+  }
+}
+
+function flattenedProfileName(name: string): string {
+  const flattened = name.replaceAll("+", "-");
+  return validateProfileName(flattened) ? flattened : "restored-profile";
+}
+
+/** Convert the resolved profile into a schema-valid, inheritance-free profile. */
+export function snapshotProfile(profile: ResolvedProfile): Profile {
+  return {
+    name: flattenedProfileName(profile.name),
+    description: profile.description,
+    icon: profile.icon,
+    iconImage: profile.iconImage,
+    model: profile.model,
+    mcpPrune: profile.mcpPrune,
+    contextWindow: profile.contextWindow,
+    bundles: profile.bundles ? [...profile.bundles] : undefined,
+    agents: [...profile.agents],
+    recommends: [...profile.recommends],
+    autoSelect: [...profile.autoSelect],
+    conflicts: [...profile.conflicts],
+    skills: {
+      local: profile.skills.local.map((skill) => ({ ...skill })),
+      npx: profile.skills.npx.map((ref) => ({
+        ...ref,
+        skills: [...ref.skills],
+        agents: ref.agents ? [...ref.agents] : undefined,
+      })),
+    },
+    mcps: profile.mcps.map((mcp) => ({ ...mcp })),
+    plugins: profile.plugins.map((plugin) => ({ ...plugin })),
+    env: { ...profile.env },
+    codex_config: { ...profile.codexConfig },
+    rules: [...profile.rules],
+    commands: [...profile.commands],
+    hooks: [...profile.hooks],
+    subagents: [...profile.subagents],
+    persona: profile.persona,
+    persona_includes: [...profile.personaIncludes],
+    playbooks: [...profile.playbooks],
+    qualityGates: [...profile.qualityGates],
+    codex: profile.codex ? { ...profile.codex } : undefined,
+    evals: [...profile.evals],
+    persona_routing: profile.personaRouting.map((entry) => ({ ...entry })),
+  };
+}
 
 export async function run(args: string[]): Promise<number> {
-  const sub = args[0];
-
-  if (sub === "restore") return cmdRestore(args.slice(1));
+  if (args[0] === "restore") return cmdRestore(args.slice(1));
   return cmdSnapshot(args);
 }
 
 async function cmdSnapshot(args: string[]): Promise<number> {
   const outputIdx = args.indexOf("--output");
-  const outputPath = outputIdx >= 0 ? args[outputIdx + 1] : null;
+  if (outputIdx >= 0 && !args[outputIdx + 1]) {
+    process.stderr.write("Usage: cue snapshot [--output <file.yaml>]\n");
+    return 1;
+  }
+  const outputPath = outputIdx >= 0 ? args[outputIdx + 1]! : null;
 
   const profileName = await resolveActiveProfile();
   if (!profileName) {
@@ -29,30 +101,20 @@ async function cmdSnapshot(args: string[]): Promise<number> {
   }
 
   const profile = await loadProfile(profileName);
-
-  const snapshot = {
+  const snapshot: SnapshotDocument = {
     _snapshot: {
       created: new Date().toISOString(),
       profile: profileName,
-      agent: "claude-code",
+      inheritanceChain: [...profile.inheritanceChain],
+      agents: [...profile.agents],
+      cue_version: cueVersion(),
       cwd: process.cwd(),
-      cue_version: "0.3.0",
     },
-    profile: {
-      name: profile.name,
-      description: profile.description,
-      icon: profile.icon,
-      inherits: profile.inheritanceChain.length > 1 ? profile.inheritanceChain[0] : undefined,
-      skills: { local: profile.skills.local.map(s => s.id) },
-      mcps: profile.mcps.map(m => m.id),
-      plugins: profile.plugins.map(p => p.id),
-      env: profile.env,
-    },
+    profile: snapshotProfile(profile),
   };
 
   const yaml = require("yaml");
   const output = yaml.stringify(snapshot);
-
   if (outputPath) {
     writeFileSync(outputPath, output);
     process.stdout.write(`✅ Snapshot written to ${outputPath}\n`);
@@ -70,36 +132,46 @@ async function cmdRestore(args: string[]): Promise<number> {
   }
 
   const yaml = require("yaml");
-  const content = readFileSync(file, "utf8");
-  const snapshot = yaml.parse(content);
-
-  if (!snapshot?.profile?.name) {
-    process.stderr.write("Invalid snapshot: missing profile.name\n");
+  let snapshot: unknown;
+  try {
+    snapshot = yaml.parse(readFileSync(file, "utf8"));
+  } catch (err) {
+    process.stderr.write(`Invalid snapshot: ${err}\n`);
     return 1;
   }
 
-  const profileDir = join(repoRoot(), "profiles", snapshot.profile.name);
-  const { mkdirSync } = require("node:fs");
-  mkdirSync(profileDir, { recursive: true });
+  if (
+    !snapshot ||
+    typeof snapshot !== "object" ||
+    !("profile" in snapshot) ||
+    !snapshot.profile ||
+    typeof snapshot.profile !== "object"
+  ) {
+    process.stderr.write("Invalid snapshot: missing profile mapping\n");
+    return 1;
+  }
 
-  // Build profile.yaml from snapshot
-  const profileYaml: Record<string, unknown> = {
-    name: snapshot.profile.name,
-    description: snapshot.profile.description || "Restored from snapshot",
+  const rawProfile = snapshot.profile as Record<string, unknown>;
+  const name = rawProfile.name;
+  if (typeof name !== "string" || !validateProfileName(name)) {
+    process.stderr.write(
+      "Invalid snapshot: profile.name must use lowercase kebab-case\n",
+    );
+    return 1;
+  }
+
+  const profileYaml = {
+    ...rawProfile,
+    name,
+    description:
+      typeof rawProfile.description === "string"
+        ? rawProfile.description
+        : "Restored from snapshot",
   };
-  if (snapshot.profile.icon) profileYaml.icon = snapshot.profile.icon;
-  if (snapshot.profile.inherits) profileYaml.inherits = snapshot.profile.inherits;
-  if (snapshot.profile.skills?.local?.length) {
-    profileYaml.skills = { local: snapshot.profile.skills.local };
-  }
-  if (snapshot.profile.mcps?.length) profileYaml.mcps = snapshot.profile.mcps;
-  if (snapshot.profile.plugins?.length) profileYaml.plugins = snapshot.profile.plugins;
-  if (snapshot.profile.env && Object.keys(snapshot.profile.env).length) {
-    profileYaml.env = snapshot.profile.env;
-  }
-
+  const profileDir = join(profilesDir(), name);
+  mkdirSync(profileDir, { recursive: true });
   writeFileSync(join(profileDir, "profile.yaml"), yaml.stringify(profileYaml));
-  process.stdout.write(`✅ Restored profile "${snapshot.profile.name}" from snapshot\n`);
-  process.stdout.write(`   Pin with: echo ${snapshot.profile.name} > .cue.profile\n`);
+  process.stdout.write(`✅ Restored profile "${name}" from snapshot\n`);
+  process.stdout.write(`   Pin with: echo ${name} > .cue.profile\n`);
   return 0;
 }

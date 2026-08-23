@@ -11,7 +11,7 @@ import { GateTimeline } from "./components/GateTimeline";
 import { StatsOverview } from "./components/StatsOverview";
 import { OfflineCTA } from "./components/OfflineCTA";
 import { MergeStudio } from "./routes/MergeStudio";
-import { fetcher } from "./lib/fetcher";
+import { fetcher, getCueMode } from "./lib/fetcher";
 
 type Route = "dashboard" | "merge";
 
@@ -27,7 +27,7 @@ function useHashRoute(): Route {
 }
 
 export function App() {
-  const mode = (window as { __CUE_MODE__?: string }).__CUE_MODE__ ?? "local";
+  const mode = getCueMode();
   const route = useHashRoute();
 
   // One shared probe against /status: tells us whether the dashboard server

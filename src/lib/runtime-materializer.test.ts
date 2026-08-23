@@ -20,6 +20,8 @@ import {
   linkPluginCache,
   isRuntimeStale,
   shouldIncludeSessionTelemetry,
+  getLastSessionSummary,
+  getSkillChains,
 } from "./runtime-materializer";
 import { MAX_STAGGER_MS } from "./credentials-sync";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -865,6 +867,58 @@ describe("materializeRuntime", () => {
       await readFile(join(second.runtimeDir, "settings.json"), "utf8"),
     );
     expect(s2.permissions.allow).toEqual(["B"]);
+  });
+
+  test("credentialsSource: preserves profile-local autoMode on cache hit and rebuild", async () => {
+    const credSrc = join(root, "creds");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(
+      join(credSrc, "settings.json"),
+      JSON.stringify({ permissions: { allow: ["source-before"] } }),
+    );
+
+    const args = {
+      profile: sampleProfile,
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    };
+
+    const first = await materializeRuntime(args);
+    const settingsPath = join(first.runtimeDir, "settings.json");
+    const localAutoMode = {
+      environment: ["**Trusted repo**: /work/profile-only"],
+    };
+    const runtimeSettings = JSON.parse(await readFile(settingsPath, "utf8"));
+    runtimeSettings.autoMode = localAutoMode;
+    await writeFile(settingsPath, JSON.stringify(runtimeSettings));
+
+    // A cache-hit refresh must still pick up source-owned settings without
+    // deleting Claude's profile-local /auto-mode-setup result.
+    await writeFile(
+      join(credSrc, "settings.json"),
+      JSON.stringify({ permissions: { allow: ["source-after"] } }),
+    );
+    const cached = await materializeRuntime(args);
+    expect(cached.rebuilt).toBe(false);
+    let settings = JSON.parse(await readFile(settingsPath, "utf8"));
+    expect(settings.permissions.allow).toEqual(["source-after"]);
+    expect(settings.autoMode).toEqual(localAutoMode);
+
+    // A profile change forces an atomic rebuild and must preserve the same
+    // profile-local setup rather than falling back to global source settings.
+    const rebuilt = await materializeRuntime({
+      ...args,
+      profile: { ...sampleProfile, description: "force rebuild" },
+    });
+    expect(rebuilt.rebuilt).toBe(true);
+    settings = JSON.parse(
+      await readFile(join(rebuilt.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.autoMode).toEqual(localAutoMode);
   });
 
   test("credentialsSource: rebuild keeps the freshest token (no logged-out-after-relaunch)", async () => {
@@ -2140,6 +2194,46 @@ describe("materializeRuntime — session-telemetry gating", () => {
     const onBytes = (await readFile(join(on.runtimeDir, "CLAUDE.md"), "utf8"))
       .length;
     expect(onBytes).toBeGreaterThanOrEqual(offBytes);
+  });
+});
+
+describe("session telemetry helpers", () => {
+  test("summarizes the newest matching Claude session", async () => {
+    const projectsDir = join(root, "projects");
+    const cwdKey = process.cwd().replace(/\//g, "-").slice(1, 30);
+    const projectDir = join(projectsDir, `${cwdKey}-fixture`);
+    await mkdir(projectDir, { recursive: true });
+    await writeFile(
+      join(projectDir, "2026-08-24.jsonl"),
+      `${JSON.stringify({
+        type: "assistant",
+        message: { content: "Implemented the portable profile handoff successfully. Extra detail." },
+      })}\n`,
+    );
+
+    const summary = await getLastSessionSummary("core", projectsDir);
+    expect(summary).toContain("Last session");
+    expect(summary).toContain("Implemented the portable profile handoff successfully");
+  });
+
+  test("builds workflow hints from profile skill usage", async () => {
+    const projectsDir = join(root, "projects");
+    await mkdir(projectsDir, { recursive: true });
+    await writeFile(
+      join(projectsDir, "usage.log"),
+      [
+        "skills/alpha/SKILL.md",
+        "skills/alpha/SKILL.md",
+        "skills/beta/SKILL.md",
+        "skills/gamma/SKILL.md",
+      ].join("\n"),
+    );
+
+    const hint = await getSkillChains(
+      ["test/alpha", "test/beta", "test/gamma"],
+      projectsDir,
+    );
+    expect(hint).toContain("alpha → beta → gamma");
   });
 });
 

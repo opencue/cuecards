@@ -93,6 +93,12 @@ export interface PickerInput {
    * "switch profile?" nudge; the v2 suggestion engine ranks stacks from them.
    */
   detected?: ReadonlyArray<{ name: string; reasons: string[]; confidence: number }>;
+  /** Rules-only repository detections used to gate history and AI suggestions. */
+  repositoryDetected?: ReadonlyArray<{
+    name: string;
+    reasons: string[];
+    confidence: number;
+  }>;
   /**
    * Content-detected combine companions (see `lib/companion-detect`). Flat and
    * primary-independent: signals come from the cwd's contents (image/video

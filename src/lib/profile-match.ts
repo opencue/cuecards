@@ -31,6 +31,7 @@
  */
 
 import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
@@ -51,6 +52,8 @@ const PROFILE_WEIGHTS = {
 const EVIDENCE_WEIGHTS = {
   /** A declared dependency is the strongest statement a repo makes. */
   dependency: 3,
+  /** A service name encoded in an env key, never its value. */
+  environment: 3,
   /** A language inferred from file extensions present. */
   language: 3,
   /** A marker file (Dockerfile, next.config.ts, ...). */
@@ -124,6 +127,8 @@ const EVIDENCE_STOPWORDS = new Set([
   // agent tooling config — present in every repo in this workspace, so it says
   // nothing about any of them
   "claude", "agent", "agents", "cursor", "codex", "gemini", "copilot", "windsurf",
+  // env-key scaffolding. Service names remain; credentials never become terms.
+  "secret", "key", "token", "password", "username", "url", "host", "port", "id",
 ]);
 
 /** File extension → the terms that extension implies. */
@@ -140,12 +145,47 @@ const EXT_LANGUAGE: Record<string, string[]> = {
   jsx: ["react", "javascript", "frontend"],
   vue: ["vue", "frontend"],
   svelte: ["svelte", "frontend"],
+  dart: ["dart", "flutter"],
+  cpp: ["cpp", "cplusplus"],
+  cxx: ["cpp", "cplusplus"],
+  cc: ["cpp", "cplusplus"],
+  hpp: ["cpp", "cplusplus"],
   tf: ["terraform", "infrastructure"],
   sol: ["solidity", "blockchain"],
   ipynb: ["notebook", "research"],
   urdf: ["robot", "robotics", "ros"],
   xacro: ["robot", "robotics", "ros"],
 };
+
+/** Extensions that count when deciding whether a language is substantial. */
+const SOURCE_CODE_EXTS = new Set([
+  ...Object.keys(EXT_LANGUAGE),
+  "ts",
+  "js",
+  "mts",
+  "mjs",
+  "cts",
+  "cjs",
+  "c",
+  "h",
+  "cs",
+  "html",
+  "css",
+  "scss",
+  "sql",
+  "sh",
+  "bash",
+  "zsh",
+  "fish",
+  "lua",
+  "scala",
+  "clj",
+  "cljs",
+  "ex",
+  "exs",
+  "erl",
+  "hrl",
+]);
 
 /**
  * Extensions distinctive enough that a single file settles the question.
@@ -155,10 +195,23 @@ const EXT_LANGUAGE: Record<string, string[]> = {
  * `robot.urdf`, `main.tf`, or `Contract.sol` by accident — and requiring two
  * made a real ROS workspace match nothing at all.
  */
-const DISTINCTIVE_EXTS = new Set(["rs", "go", "swift", "kt", "rb", "tf", "sol", "urdf", "xacro", "ipynb", "vue", "svelte"]);
+const DISTINCTIVE_EXTS = new Set(["rs", "go", "swift", "kt", "rb", "tf", "sol", "urdf", "xacro", "ipynb", "vue", "svelte", "dart", "cpp", "cxx", "cc", "hpp"]);
+
+/** Bounded dotenv files whose KEY NAMES can identify integrations. */
+const ENV_EVIDENCE_FILES = [
+  ".env",
+  ".env.local",
+  ".env.development",
+  ".env.production",
+  ".env.example",
+  ".env.sample",
+] as const;
 
 /** Manifests worth looking for one directory down, for monorepo layouts. */
 const NESTED_MANIFESTS = ["package.json", "pyproject.toml", "requirements.txt", "Cargo.toml", "go.mod"];
+
+/** Bound declared-workspace scanning so a large monorepo cannot stall launch. */
+const MAX_WORKSPACE_MANIFESTS = 24;
 
 /**
  * Manifest METADATA keys, which the loose line-scanner would otherwise read as
@@ -184,6 +237,11 @@ const MANIFEST_METADATA_KEYS = new Set([
  * a pyproject is often the only place dependencies appear at all.
  */
 const DEPENDENCY_LIST_KEYS = new Set(["dependencies", "requires", "install_requires", "devdependencies"]);
+
+/** Package scopes whose ecosystem name differs from the published scope. */
+const DEPENDENCY_ALIASES: Readonly<Record<string, readonly string[]>> = {
+  medusajs: ["medusa"],
+};
 
 /** Filenames that name a technology outright. */
 const MARKER_FILES: Record<string, string[]> = {
@@ -226,10 +284,20 @@ export interface ProfileDoc {
 }
 
 /** Where a piece of evidence came from. Drives the corroboration rule. */
-export type EvidenceSource = "dependency" | "language" | "marker" | "entry";
+export type EvidenceSource =
+  | "dependency"
+  | "environment"
+  | "language"
+  | "marker"
+  | "entry";
 
 /** Sources that can stand on their own. See the corroboration rule below. */
-const STRONG_SOURCES: ReadonlySet<EvidenceSource> = new Set(["dependency", "language", "marker"]);
+const STRONG_SOURCES: ReadonlySet<EvidenceSource> = new Set([
+  "dependency",
+  "environment",
+  "language",
+  "marker",
+]);
 
 /** What a directory says about itself. */
 export interface RepoEvidence {
@@ -239,6 +307,8 @@ export interface RepoEvidence {
   reasons: Map<string, string>;
   /** term → which source produced it. */
   sources: Map<string, EvidenceSource>;
+  /** Language term → repository-relative source count and share. */
+  languageStats: Map<string, { files: number; share: number }>;
 }
 
 export interface ProfileMatch {
@@ -258,6 +328,109 @@ export interface MatchProbe {
   exists: (p: string) => boolean;
   list: (p: string) => string[];
   read: (p: string) => string | null;
+  /**
+   * Repository-relative files used for language detection. Production prefers
+   * Git's tracked + non-ignored inventory; tests can omit this and use the
+   * bounded directory-walk fallback.
+   */
+  files?: (p: string) => string[];
+}
+
+export const MAX_REPO_LANGUAGE_FILES = 5_000;
+export const MAX_FALLBACK_LANGUAGE_FILES = 2_000;
+export const MAX_FALLBACK_LANGUAGE_DEPTH = 4;
+
+const SOURCE_TREE_SKIP_SEGMENTS = new Set([
+  ".git",
+  ".cache",
+  ".venv",
+  "node_modules",
+  "dist",
+  "build",
+  "target",
+  "vendor",
+  "coverage",
+  "resources",
+  "templates",
+  "fixtures",
+  "generated",
+  "__pycache__",
+  "venv",
+  "out",
+]);
+
+function keepRepoFile(rel: string): boolean {
+  if (!rel || rel.includes("\0")) return false;
+  const segments = rel.replaceAll("\\", "/").split("/");
+  return !segments.some(
+    (segment, index) =>
+      SOURCE_TREE_SKIP_SEGMENTS.has(segment.toLowerCase()) ||
+      (index < segments.length - 1 && segment.startsWith(".")),
+  );
+}
+
+function walkRepoFiles(
+  cwd: string,
+  list: (path: string) => string[],
+): string[] {
+  const files: string[] = [];
+  const queue: Array<{ absolute: string; relative: string; depth: number }> = [
+    { absolute: cwd, relative: "", depth: 0 },
+  ];
+
+  while (queue.length > 0 && files.length < MAX_FALLBACK_LANGUAGE_FILES) {
+    const current = queue.shift()!;
+    for (const name of list(current.absolute)) {
+      if (files.length >= MAX_FALLBACK_LANGUAGE_FILES) break;
+      const relative = current.relative ? `${current.relative}/${name}` : name;
+      if (!keepRepoFile(relative)) continue;
+      const absolute = join(current.absolute, name);
+      const children =
+        current.depth < MAX_FALLBACK_LANGUAGE_DEPTH ? list(absolute) : [];
+      if (children.length > 0) {
+        queue.push({
+          absolute,
+          relative,
+          depth: current.depth + 1,
+        });
+      } else if (name.includes(".")) {
+        files.push(relative);
+      }
+    }
+  }
+  return files;
+}
+
+function realRepoFiles(cwd: string): string[] {
+  try {
+    const git = spawnSync(
+      "git",
+      [
+        "-C",
+        cwd,
+        "ls-files",
+        "-z",
+        "--cached",
+        "--others",
+        "--exclude-standard",
+      ],
+      {
+        encoding: "utf8",
+        maxBuffer: 4 * 1024 * 1024,
+        timeout: 500,
+        windowsHide: true,
+      },
+    );
+    if (git.status === 0 && typeof git.stdout === "string") {
+      return git.stdout
+        .split("\0")
+        .filter(keepRepoFile)
+        .slice(0, MAX_REPO_LANGUAGE_FILES);
+    }
+  } catch {
+    /* Git is optional; bounded filesystem traversal is the fallback. */
+  }
+  return walkRepoFiles(cwd, REAL_MATCH_PROBE.list);
 }
 
 export const REAL_MATCH_PROBE: MatchProbe = {
@@ -276,6 +449,7 @@ export const REAL_MATCH_PROBE: MatchProbe = {
       return null;
     }
   },
+  files: realRepoFiles,
 };
 
 function repoRoot(): string {
@@ -363,6 +537,7 @@ export function loadProfileDocs(root: string = profilesRoot(), probe: MatchProbe
  */
 function manifestDeps(cwd: string, probe: MatchProbe): string[] {
   const out: string[] = [];
+  const visited = new Set<string>();
 
   const readPackageJson = (dir: string): void => {
     const pkg = probe.read(join(dir, "package.json"));
@@ -414,8 +589,67 @@ function manifestDeps(cwd: string, probe: MatchProbe): string[] {
     }
   };
 
-  readPackageJson(cwd);
-  readLooseManifests(cwd);
+  const readManifestDir = (dir: string): void => {
+    if (visited.has(dir)) return;
+    visited.add(dir);
+    readPackageJson(dir);
+    readLooseManifests(dir);
+  };
+
+  readManifestDir(cwd);
+
+  // A root manifest often contains only workspace tooling while the real stack
+  // lives in packages/web or apps/api. Follow declared workspaces even when the
+  // root has dependencies; arbitrary child directories remain fallback-only.
+  const patterns: string[] = [];
+  try {
+    const root = JSON.parse(probe.read(join(cwd, "package.json")) ?? "{}") as {
+      workspaces?: string[] | { packages?: string[] };
+    };
+    const workspaces = Array.isArray(root.workspaces)
+      ? root.workspaces
+      : root.workspaces?.packages;
+    if (Array.isArray(workspaces)) {
+      for (const pattern of workspaces) {
+        if (typeof pattern === "string") patterns.push(pattern);
+      }
+    }
+  } catch {
+    /* missing/malformed root package.json */
+  }
+  const pnpmWorkspace = probe.read(join(cwd, "pnpm-workspace.yaml"));
+  if (pnpmWorkspace) {
+    const section = pnpmWorkspace.match(
+      /^packages:\s*\n((?:[ \t]*-[^\n]*\n?)*)/m,
+    );
+    for (const match of section?.[1]?.matchAll(
+      /-\s*["']?([^"'\n#]+)/g,
+    ) ?? []) {
+      patterns.push(match[1]!.trim());
+    }
+  }
+
+  let workspaceReads = 0;
+  for (const pattern of patterns) {
+    if (pattern.startsWith("!")) continue;
+    const dirs: string[] = [];
+    if (pattern.endsWith("/*") && !pattern.slice(0, -2).includes("*")) {
+      const base = pattern.slice(0, -2);
+      for (const entry of probe.list(join(cwd, base))) {
+        dirs.push(join(cwd, base, entry));
+      }
+    } else if (!pattern.includes("*")) {
+      dirs.push(join(cwd, pattern));
+    }
+    for (const dir of dirs) {
+      if (workspaceReads >= MAX_WORKSPACE_MANIFESTS) break;
+      if (!NESTED_MANIFESTS.some((name) => probe.exists(join(dir, name)))) {
+        continue;
+      }
+      workspaceReads += 1;
+      readManifestDir(dir);
+    }
+  }
 
   // Descend ONLY when the root declares nothing itself.
   //
@@ -433,8 +667,7 @@ function manifestDeps(cwd: string, probe: MatchProbe): string[] {
     for (const dir of subdirs) {
       const full = join(cwd, dir);
       if (NESTED_MANIFESTS.some((m) => probe.exists(join(full, m)))) {
-        readPackageJson(full);
-        readLooseManifests(full);
+        readManifestDir(full);
       }
     }
   }
@@ -446,13 +679,14 @@ function manifestDeps(cwd: string, probe: MatchProbe): string[] {
  * Describe a directory as a weighted bag of terms.
  *
  * Best-effort throughout: an unreadable directory yields fewer terms, never an
- * error. Only the top level is inspected — walking a whole tree would cost more
- * than the suggestion is worth.
+ * error. Language files come from a bounded Git inventory when possible, then
+ * a depth- and file-capped directory walk for non-Git repositories.
  */
 export function repoEvidence(cwd: string, probe: MatchProbe = REAL_MATCH_PROBE): RepoEvidence {
   const terms = new Map<string, number>();
   const reasons = new Map<string, string>();
   const sources = new Map<string, EvidenceSource>();
+  const languageStats = new Map<string, { files: number; share: number }>();
 
   /**
    * Every evidence term goes through `tokenize` — the SAME normalizer the
@@ -480,11 +714,30 @@ export function repoEvidence(cwd: string, probe: MatchProbe = REAL_MATCH_PROBE):
   // so "@medusajs/medusa" reaches a profile that only says "medusa".
   for (const dep of manifestDeps(cwd, probe)) {
     const parts = dep.replace(/^@/, "").split(/[/@]/).filter(Boolean);
-    add([dep, ...parts, ...tokenize(dep.replace(/[@/_-]/g, " "))], EVIDENCE_WEIGHTS.dependency, `depends on ${dep}`, "dependency");
+    const aliases = parts.flatMap((part) => DEPENDENCY_ALIASES[part.toLowerCase()] ?? []);
+    add([dep, ...parts, ...aliases, ...tokenize(dep.replace(/[@/_-]/g, " "))], EVIDENCE_WEIGHTS.dependency, `depends on ${dep}`, "dependency");
+  }
+
+  // Dotenv values may contain credentials, customer endpoints, or other
+  // secrets. Read only assignment names and never place the value in evidence,
+  // reasons, cache keys, advisor prompts, or logs.
+  for (const file of ENV_EVIDENCE_FILES) {
+    const raw = probe.read(join(cwd, file));
+    if (raw === null) continue;
+    for (const line of raw.slice(0, 64 * 1024).split("\n").slice(0, 256)) {
+      const match = line.match(
+        /^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=/,
+      );
+      if (!match) continue;
+      const key = match[1]!;
+      add([key], EVIDENCE_WEIGHTS.environment, `${key} in ${file}`, "environment");
+    }
   }
 
   const entries = probe.list(cwd);
-  const files = entries.filter((e) => e.includes("."));
+  const files = (probe.files?.(cwd) ?? walkRepoFiles(cwd, probe.list))
+    .filter(keepRepoFile)
+    .slice(0, MAX_REPO_LANGUAGE_FILES);
 
   // Marker files.
   for (const e of entries) {
@@ -493,16 +746,41 @@ export function repoEvidence(cwd: string, probe: MatchProbe = REAL_MATCH_PROBE):
   }
 
   // Languages, by extension frequency. A single stray .py in a Rust repo
-  // shouldn't make it a Python project, so a language needs two files.
+  // shouldn't make it a Python project. Common languages must form at least a
+  // fifth of recognized source files, or have ten files of their own. This
+  // still finds a real secondary package in a large monorepo without letting a
+  // handful of release helpers redefine the whole repository. Distinctive
+  // project formats still settle on one file.
   const extCount = new Map<string, number>();
   for (const f of files) {
     const ext = f.split(".").pop()?.toLowerCase() ?? "";
     if (ext) extCount.set(ext, (extCount.get(ext) ?? 0) + 1);
   }
+  const recognizedSourceFiles = [...extCount].reduce(
+    (total, [ext, count]) => total + (SOURCE_CODE_EXTS.has(ext) ? count : 0),
+    0,
+  );
   for (const [ext, count] of extCount) {
     const langs = EXT_LANGUAGE[ext];
     if (!langs) continue;
     if (count < (DISTINCTIVE_EXTS.has(ext) ? 1 : 2)) continue;
+    if (
+      !DISTINCTIVE_EXTS.has(ext) &&
+      count < 10 &&
+      count / Math.max(recognizedSourceFiles, 1) < 0.2
+    ) {
+      continue;
+    }
+    const share = count / Math.max(recognizedSourceFiles, 1);
+    for (const lang of langs) {
+      const normalized = tokenize(lang)[0];
+      if (!normalized) continue;
+      const previous = languageStats.get(normalized);
+      languageStats.set(normalized, {
+        files: (previous?.files ?? 0) + count,
+        share: (previous?.share ?? 0) + share,
+      });
+    }
     add(langs, EVIDENCE_WEIGHTS.language, `${count} .${ext} file${count === 1 ? "" : "s"}`, "language");
   }
 
@@ -515,7 +793,7 @@ export function repoEvidence(cwd: string, probe: MatchProbe = REAL_MATCH_PROBE):
     add(tokenize(stem.replace(/[-_]/g, " ")), EVIDENCE_WEIGHTS.entry, `${e} in this directory`, "entry");
   }
 
-  return { terms, reasons, sources };
+  return { terms, reasons, sources, languageStats };
 }
 
 /**

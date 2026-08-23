@@ -50,6 +50,24 @@ skills:
     # Discovered 2026-06-08: GraphQL API bridge/integration support.
     - repo: zcebupelka/graphql-mcp-bridge
       skills: [graphql-mcp-bridge]
+    # Language, framework, API, and architecture specialists.
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills:
+        - api-designer
+        - architecture-designer
+        - csharp-developer
+        - dotnet-core-expert
+        - graphql-architect
+        - java-architect
+        - kotlin-specialist
+        - laravel-specialist
+        - microservices-architect
+        - nestjs-expert
+        - php-pro
+        - rails-expert
+        - spring-boot-engineer
+        - websocket-engineer
 plugins:
   - resend@claude-plugins-official
 mcps:

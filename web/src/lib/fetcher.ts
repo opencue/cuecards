@@ -12,13 +12,13 @@ export type ApiEnvelope<T> = { ok: true; data: T } | { ok: false; error: string 
 
 type Mode = "local" | "demo";
 
-function detectMode(): Mode {
-  return (window as { __CUE_MODE__?: Mode }).__CUE_MODE__ ?? "local";
+export function getCueMode(): Mode {
+  return window.__CUE_MODE__ ?? (import.meta.env.VITE_CUE_MODE === "demo" ? "demo" : "local");
 }
 
 /** True on the static demo deploy (no local server → no SSE / live push). */
 export function isDemoMode(): boolean {
-  return detectMode() === "demo";
+  return getCueMode() === "demo";
 }
 
 let demoCache: Record<string, unknown> | null = null;
@@ -43,7 +43,7 @@ async function loadDemoData(): Promise<Record<string, unknown>> {
  * paths render identically.
  */
 export async function fetcher<T>(path: string): Promise<T> {
-  const mode = detectMode();
+  const mode = getCueMode();
 
   if (mode === "demo") {
     const demo = await loadDemoData();
@@ -85,7 +85,7 @@ export async function fetcher<T>(path: string): Promise<T> {
  * the Vercel demo doesn't pretend to write files.
  */
 export async function postJson<T>(path: string, body: unknown): Promise<T> {
-  const mode = detectMode();
+  const mode = getCueMode();
 
   if (mode === "demo") {
     if (path.startsWith("/merge/save")) {

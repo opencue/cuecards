@@ -4,7 +4,7 @@ import { readdir } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-import { findRealAgentBin } from "../lib/claude-binary";
+import { findRealAgentBin, needsWindowsCommandShell } from "../lib/claude-binary";
 import { configDir } from "../lib/config-paths";
 import { codexAuthFreshness, syncCodexAuth } from "../lib/codex-auth";
 import { syncSourceToRuntimes } from "../lib/credentials-sync";
@@ -36,7 +36,11 @@ function runAgent(agent: Agent, args: string[], claudeSource: string): number {
     process.stderr.write(`cue auth: ${agent} CLI not found outside cue's shim\n`);
     return 1;
   }
-  const result = spawnSync(bin, args, { stdio: "inherit", env: canonicalEnv(agent, claudeSource) });
+  const result = spawnSync(bin, args, {
+    stdio: "inherit",
+    env: canonicalEnv(agent, claudeSource),
+    shell: needsWindowsCommandShell(bin),
+  });
   return result.status ?? 1;
 }
 

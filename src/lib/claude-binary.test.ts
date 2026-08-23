@@ -3,7 +3,7 @@ import { chmodSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync }
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { codexExecOverride, findRealAgentBin } from "./claude-binary";
+import { codexExecOverride, findRealAgentBin, needsWindowsCommandShell } from "./claude-binary";
 
 describe("findRealAgentBin", () => {
   let root: string;
@@ -132,6 +132,28 @@ describe("findRealAgentBin", () => {
     writeExec(localBin, "claude", '#!/usr/bin/env bash\nexec "/home/u/Documents/cue/bin/cue" launch claude "$@"\n');
     process.env.PATH = localBin;
     expect(findRealAgentBin("claude")).toBeNull();
+  });
+
+  test("finds codex.cmd on a Windows-style PATH and skips cue's cmd shim", () => {
+    const shim = dir("windows-shim");
+    writeFileSync(join(shim, "codex.cmd"), "@echo off\r\n@call cue launch codex %*\r\n");
+    const realDir = dir("windows-real");
+    const real = join(realDir, "codex.cmd");
+    writeFileSync(real, "@echo off\r\nnode codex.js %*\r\n");
+
+    expect(findRealAgentBin("codex", {
+      platform: "win32",
+      pathValue: `${shim};${realDir}`,
+      pathExt: ".EXE;.CMD",
+    })).toBe(real);
+  });
+});
+
+describe("needsWindowsCommandShell", () => {
+  test("only Windows cmd/bat launchers require a shell", () => {
+    expect(needsWindowsCommandShell("C:\\npm\\codex.cmd", "win32")).toBe(true);
+    expect(needsWindowsCommandShell("C:\\bin\\codex.exe", "win32")).toBe(false);
+    expect(needsWindowsCommandShell("/usr/bin/codex", "linux")).toBe(false);
   });
 });
 

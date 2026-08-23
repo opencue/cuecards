@@ -109,13 +109,15 @@ BIN_DIR="$HOME/.local/bin"
 CUE_SHIMS="${XDG_CONFIG_HOME:-$HOME/.config}/cue/shims"
 mkdir -p "$BIN_DIR" "$CUE_SHIMS"
 
-# Symlink cue. ~/.local/bin is fine for cue's OWN binary — nothing else claims
-# that name.
-if [ -L "$BIN_DIR/cue" ] || [ -f "$BIN_DIR/cue" ]; then
-  rm -f "$BIN_DIR/cue"
-fi
-ln -s "$CUE_DIR/bin/cue" "$BIN_DIR/cue"
-ok "cue → $BIN_DIR/cue"
+# Symlink cue's own commands. ~/.local/bin is safe for these names because cue
+# owns them; agent binaries still live elsewhere.
+for cli in cue cue-learnings; do
+  if [ -L "$BIN_DIR/$cli" ] || [ -f "$BIN_DIR/$cli" ]; then
+    rm -f "$BIN_DIR/$cli"
+  fi
+  ln -s "$CUE_DIR/bin/$cli" "$BIN_DIR/$cli"
+  ok "$cli → $BIN_DIR/$cli"
+done
 
 # Agent shims go in cue's OWN dir, never ~/.local/bin. The native Claude
 # installer owns ~/.local/bin/claude — it's a symlink to the real binary and is

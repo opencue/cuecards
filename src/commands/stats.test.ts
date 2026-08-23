@@ -63,11 +63,30 @@ function writeAnalytics(dir: string, events: object[]): void {
   );
 }
 
+function writeProfileChoices(dir: string, events: object[]): void {
+  const cueDir = join(dir, "cue");
+  mkdirSync(cueDir, { recursive: true });
+  writeFileSync(
+    join(cueDir, "profile-choice-history.jsonl"),
+    events.map((event) => JSON.stringify(event)).join("\n") + "\n",
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
 describe("cue stats run — no data", () => {
+  test("help documents the suggestion-quality report", async () => {
+    tmpDir = mkdtempSync(join(tmpdir(), "cue-stats-help-"));
+    setup(tmpDir);
+
+    const code = await run(["--help"]);
+    expect(code).toBe(0);
+    expect(stdoutBuf).toContain("--suggestions");
+    expect(stdoutBuf).toContain("--all");
+  });
+
   test("empty analytics dir prints 'No usage data' and returns 0", async () => {
     tmpDir = mkdtempSync(join(tmpdir(), "cue-stats-nodata-"));
     setup(tmpDir);
@@ -86,6 +105,37 @@ describe("cue stats run — no data", () => {
     const data = JSON.parse(stdoutBuf);
     expect(Array.isArray(data)).toBe(true);
     expect(data).toHaveLength(0);
+  });
+});
+
+describe("cue stats --suggestions", () => {
+  test("reports local top-suggestion acceptance as JSON", async () => {
+    tmpDir = mkdtempSync(join(tmpdir(), "cue-stats-suggestions-"));
+    writeProfileChoices(tmpDir, [
+      { ts: "2026-08-20T10:00:00Z", cwd: "/repo", choice: "python", suggested: ["python", "core"] },
+      { ts: "2026-08-20T11:00:00Z", cwd: "/repo", choice: "python", suggested: ["vite", "python"] },
+      { ts: "2026-08-20T12:00:00Z", cwd: "/other", choice: "rust", suggested: ["rust"] },
+    ]);
+    setup(tmpDir);
+
+    const code = await run(["--suggestions", "--all", "--json"]);
+    expect(code).toBe(0);
+    expect(JSON.parse(stdoutBuf)).toMatchObject({
+      choices: 3,
+      compared: 3,
+      topAccepted: 2,
+      topOverridden: 1,
+      topAcceptanceRate: 2 / 3,
+    });
+  });
+
+  test("prints an actionable empty state without analytics data", async () => {
+    tmpDir = mkdtempSync(join(tmpdir(), "cue-stats-suggestions-empty-"));
+    setup(tmpDir);
+
+    const code = await run(["--suggestions"]);
+    expect(code).toBe(0);
+    expect(stdoutBuf).toContain("No profile suggestion feedback yet");
   });
 });
 

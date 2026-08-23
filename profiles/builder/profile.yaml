@@ -113,7 +113,8 @@ skills:
     - repo: margelo/react-native-skills
       skills: [nitro-fetch]
     - repo: jeffallan/claude-skills
-      skills: [wordpress-pro]
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [cli-developer, feature-forge, fullstack-guardian, wordpress-pro]
     - repo: mindrally/skills
       skills: [wordpress]
     - repo: jezweb/claude-skills

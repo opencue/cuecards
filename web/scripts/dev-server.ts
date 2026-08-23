@@ -11,9 +11,9 @@
  * Env: DATABASE_URL, BETTER_AUTH_SECRET, optional PORT (default 3000).
  * Run:  bun scripts/dev-server.ts
  */
-import { auth } from "../lib/auth";
-import { getMe } from "../lib/me";
-import { getMarket, publishMarket, type PublishInput } from "../lib/market";
+import { auth } from "../lib/auth.js";
+import { getMe } from "../lib/me.js";
+import { getMarket, publishMarket, type PublishInput } from "../lib/market.js";
 
 const port = Number(process.env.PORT ?? 3000);
 

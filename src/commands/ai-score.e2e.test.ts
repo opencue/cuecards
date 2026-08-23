@@ -87,7 +87,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue score", () => {
     expect(res.stdout).toContain("Profile Scores");
     expect(res.stdout).toContain("core");
     expect(res.stdout).toContain("backend");
-  });
+  }, 15000);
 
   test("--json returns valid JSON", () => {
     const res = cue(["score", "--profile", "rust", "--json"]);

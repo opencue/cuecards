@@ -15,9 +15,10 @@ Spec: `docs/superpowers/specs/2026-07-15-ads-multi-client-design.md`
    and `ads-gen-yaml agency --login-customer-id $AGENCY_MCC_ID`
 4. Each separate-login client: repeat step 3 with that login →
    `<slug>-adc.json`, then `ads-gen-yaml <slug>` (no --login-customer-id).
-5. Meta: Business Manager → system user → generate token (`ads_read`;
-   `ads_management` only if you will use `fbads --write`). Paste into
-   `~/.config/cue/secrets/ads/meta/system-user.token`.
+5. Meta: Business Manager → per-client system user → generate token
+   (`ads_read`; `ads_management` only if you will use `fbads --write`). Store it
+   through `ads setup meta-token <client>` in the client-specific path declared
+   as `META_TOKEN_FILE`.
 
 ## Adding a client
 

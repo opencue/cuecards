@@ -54,6 +54,7 @@ skills:
   npx:
     # Top community WordPress skill (5K installs) — pro-tier patterns.
     - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
       skills: [wordpress-pro]
     # mindrally generalist (447 installs) — complements with broader patterns.
     - repo: mindrally/skills

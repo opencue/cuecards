@@ -1,7 +1,13 @@
 name: ads-manager
 icon: "📊"
-description: "Multi-client Google Ads + Meta Ads management with Ego Browser, official Google Ads MCP, Meta Graph API MCP, reporting CLIs, and approval-gated writes"
+description: "Multi-client Google Ads + Meta Ads management with AdLoop, Ego Browser, official platform MCPs, reporting CLIs, and approval-gated writes"
 inherits: google-ads
 skills:
   local: []
-mcps: []
+mcps:
+  - adloop
+persona_includes:
+  - ads-manager-workspace
+codex_config:
+  features:
+    hooks: true

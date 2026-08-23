@@ -31,6 +31,9 @@ skills:
       skills: [dignified-python]             # 1.5K installs — production Python conventions
     - repo: github/awesome-copilot
       skills: [pytest-coverage]              # 10.6K installs — pytest patterns matching the profile's testing rules
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [django-expert, django-storages-s3, fastapi-expert, pandas-pro, python-pro]
 mcps: []
 playbooks:
   # Inherits core's playbooks (ship-feature, triage-bug, sprint) via inheritance.
