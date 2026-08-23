@@ -69,6 +69,27 @@ concurrent running session never sees a partial state.
 For Codex the shape is identical under `runtime/<profile>/codex/` with
 `CODEX_HOME` and a `config.toml` instead of `settings.json`.
 
+## Loading another profile from a running agent
+
+`cue summon <profile>` soft-loads the profile persona and readable skill
+playbooks into the current Claude or Codex conversation and pins
+`.cue.profile`. Add `--with-active` when the requested profile should augment,
+rather than replace, the running profile:
+
+```bash
+cue summon coolify --with-active
+cue summon coolify --with-active --json
+```
+
+MCP servers and native commands are fixed when the agent process starts, so
+they cannot be injected honestly into that process. The command therefore
+returns `reexec_cmd`: Claude uses native continuation under the materialized
+profile; Codex starts a newly materialized profile with a prompt pointing to
+the current rollout file (`resume_mode: transcript-handoff`). This preserves
+the work context without claiming that a new profile's tools appeared inside
+the already-running Codex process. Use `--agent claude|codex` only when automatic
+detection from `CUE_AGENT` is unavailable.
+
 ## Per-profile memory (claude-mem)
 
 cue ships the [claude-mem] plugin in `core`, so most profiles inherit

@@ -1,0 +1,15 @@
+name: flutter
+icon: "🦋"
+description: "Flutter and Dart application development: widgets, state management, navigation, native integration, testing, and performance"
+inherits: web-frontend-base
+recommends:
+  - backend
+conflicts:
+  - react-native
+  - swift-ios
+skills:
+  npx:
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [flutter-expert]
+mcps: []

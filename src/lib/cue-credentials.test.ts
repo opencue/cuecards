@@ -1,10 +1,19 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, readFileSync, rmSync, statSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import {
   DEFAULT_API_URL,
+  clearCredentials,
   loadCredentials,
   resolveApiUrl,
   resolveToken,
@@ -53,6 +62,32 @@ describe("cue-credentials", () => {
     expect(mode).toBe(0o600);
     // sanity: the secret is actually persisted
     expect(readFileSync(path, "utf8")).toContain("secret");
+  });
+
+  test("tightens permissions when replacing an existing credential file", () => {
+    const path = saveCredentials({ apiUrl: DEFAULT_API_URL, token: "first" });
+    chmodSync(path, 0o644);
+
+    saveCredentials({ apiUrl: DEFAULT_API_URL, token: "second" });
+
+    expect(statSync(path).mode & 0o777).toBe(0o600);
+    expect(readFileSync(path, "utf8")).toContain("second");
+  });
+
+  test("does not treat a retired GitHub cloud credential as an API token", () => {
+    const path = saveCredentials({ apiUrl: DEFAULT_API_URL, token: "placeholder" });
+    writeFileSync(path, '{"token":"gho_secret","user":"octocat"}\n');
+
+    expect(loadCredentials()).toBeNull();
+    expect(resolveToken()).toBeNull();
+  });
+
+  test("clearCredentials is idempotent", () => {
+    const path = saveCredentials({ apiUrl: DEFAULT_API_URL, token: "secret" });
+    expect(existsSync(path)).toBe(true);
+    expect(clearCredentials()).toBe(path);
+    expect(clearCredentials()).toBe(path);
+    expect(existsSync(path)).toBe(false);
   });
 
   test("resolution order: flag > env > file", () => {

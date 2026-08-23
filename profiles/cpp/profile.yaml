@@ -1,0 +1,10 @@
+name: cpp
+icon: "⚙️"
+description: "Modern C++20/23 systems development: RAII, templates, CMake, concurrency, embedded targets, and game performance"
+inherits: core
+skills:
+  npx:
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [cpp-pro, embedded-systems, game-developer]
+mcps: []

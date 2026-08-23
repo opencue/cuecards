@@ -7,7 +7,8 @@
  */
 
 import { existsSync, readFileSync, statSync, accessSync, constants } from "node:fs";
-import { join, resolve, dirname } from "node:path";
+import { spawnSync } from "node:child_process";
+import { join, dirname } from "node:path";
 import { homedir } from "node:os";
 
 import { findRealAgentBin } from "../lib/claude-binary";
@@ -21,20 +22,27 @@ import {
   shimContent,
   shimDir,
   shimDirPosition,
+  shimPath,
   type ShimAgent,
   type ShimShell,
 } from "../lib/shim-dir";
 
 /** True when `p` is an executable regular file (mirrors how the shell resolves
  * a command on PATH — skips directories and non-executable files). */
-function isExecutableFile(p: string): boolean {
+function isExecutableFile(p: string, platform: NodeJS.Platform = process.platform): boolean {
   try {
     if (!statSync(p).isFile()) return false;
-    accessSync(p, constants.X_OK);
+    if (platform !== "win32") accessSync(p, constants.X_OK);
     return true;
   } catch {
     return false;
   }
+}
+
+function commandCandidates(name: string, platform: NodeJS.Platform): string[] {
+  return platform === "win32"
+    ? [`${name}.exe`, `${name}.cmd`, `${name}.bat`, name]
+    : [name];
 }
 
 function hookBash(): string {
@@ -134,14 +142,50 @@ export interface ShimOptions {
   agents?: readonly ShimAgent[];
   /** Shell whose rc receives the PATH line. Defaults to $SHELL. */
   shell?: ShimShell;
+  /** OS injection for cross-platform tests. Production uses process.platform. */
+  platform?: NodeJS.Platform;
   /** false → print the PATH line but write nothing (`--no-rc`). */
   writeRc?: boolean;
   /** Skip the confirmation before appending to an existing bash/zsh rc. */
   yes?: boolean;
   /** Confirmation hook. Returning false leaves the rc untouched. */
   confirm?: (message: string) => Promise<boolean>;
+  /** Test seam for the Windows CurrentUser PATH registry update. */
+  updateWindowsPath?: (
+    dir: string,
+    action: "add" | "remove",
+  ) => boolean | Promise<boolean>;
   out?: (s: string) => void;
   err?: (s: string) => void;
+}
+
+function windowsPathScript(action: "add" | "remove"): string {
+  const kept = "$parts=@($p -split ';' | Where-Object { $_ -and $_.TrimEnd('\\') -ine $d.TrimEnd('\\') })";
+  const next = action === "add" ? "(@($d)+$parts)-join ';'" : "$parts-join ';'";
+  return [
+    "$d=$env:CUE_SHIM_DIR",
+    "$p=[Environment]::GetEnvironmentVariable('Path','User')",
+    kept,
+    `[Environment]::SetEnvironmentVariable('Path',${next},'User')`,
+  ].join("; ");
+}
+
+function updateWindowsUserPath(dir: string, action: "add" | "remove"): boolean {
+  const env = { ...process.env, CUE_SHIM_DIR: dir };
+  for (const command of ["powershell.exe", "pwsh.exe"]) {
+    const result = spawnSync(
+      command,
+      ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", windowsPathScript(action)],
+      { env, stdio: "ignore", windowsHide: true },
+    );
+    if (result.status === 0) return true;
+  }
+  return false;
+}
+
+function windowsPathGuidance(dir: string): string {
+  const escaped = dir.replaceAll("'", "''");
+  return `$env:CUE_SHIM_DIR='${escaped}'; ${windowsPathScript("add")}`;
 }
 
 /**
@@ -203,8 +247,15 @@ async function ensureRcPath(a: {
  * yet" hint stays correct for anyone who installed before the shim dir moved.
  * Conservative: any read error → false.
  */
-export function shimInstalled(homeDir?: string, agent: ShimAgent = "claude"): boolean {
-  const candidates = [join(shimDir(homeDir), agent), join(homeDir ?? homedir(), ".local", "bin", agent)];
+export function shimInstalled(
+  homeDir?: string,
+  agent: ShimAgent = "claude",
+  platform: NodeJS.Platform = process.platform,
+): boolean {
+  const candidates = [
+    shimPath(shimDir(homeDir), agent, platform),
+    ...(platform === "win32" ? [] : [join(homeDir ?? homedir(), ".local", "bin", agent)]),
+  ];
   for (const candidate of candidates) {
     try {
       if (existsSync(candidate) && isCueShimContent(readFileSync(candidate, "utf8"), agent)) return true;
@@ -231,17 +282,32 @@ export function shimInstalled(homeDir?: string, agent: ShimAgent = "claude"): bo
  * hard-coded `~/Documents/cue/bin/cue`, which doesn't exist for npm-global
  * users — the shim pointed at a missing file and `claude` broke.
  */
-export function resolveCueInvocation(opts: { repoRoot?: string; pathDirs?: string[] } = {}): string {
-  const pathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(":").filter(Boolean);
+export function resolveCueInvocation(opts: {
+  repoRoot?: string;
+  pathDirs?: string[];
+  platform?: NodeJS.Platform;
+} = {}): string {
+  const platform = opts.platform ?? process.platform;
+  const separator = platform === "win32" ? ";" : ":";
+  const pathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(separator).filter(Boolean);
   for (const dir of pathDirs) {
-    if (dir && isExecutableFile(join(dir, "cue"))) return "cue";
+    for (const name of commandCandidates("cue", platform)) {
+      if (dir && isExecutableFile(join(dir, name), platform)) return "cue";
+    }
   }
   // Prefer the node entrypoint (npm layout) then the bash one, then ~/Documents.
   const root = opts.repoRoot ?? process.env.CUE_REPO_ROOT ?? join(homedir(), "Documents", "cue");
   for (const candidate of [join(root, "bin", "cue.mjs"), join(root, "bin", "cue")]) {
-    if (existsSync(candidate)) return `"${candidate}"`;
+    if (existsSync(candidate)) {
+      return platform === "win32"
+        ? `"${process.execPath}" "${candidate}"`
+        : `"${candidate}"`;
+    }
   }
-  return `"${process.argv[1] ?? "cue"}"`;
+  const current = process.argv[1] ?? "cue";
+  return platform === "win32"
+    ? `"${process.execPath}" "${current}"`
+    : `"${current}"`;
 }
 
 /**
@@ -259,8 +325,10 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   const out = opts.out ?? ((s: string) => process.stdout.write(s));
   const err = opts.err ?? ((s: string) => process.stderr.write(s));
   const home = opts.homeDir ?? homedir();
+  const platform = opts.platform ?? process.platform;
   const dir = shimDir(opts.homeDir);
-  const pathDirs = (opts.pathDirs ?? (process.env.PATH ?? "").split(":")).filter(Boolean);
+  const separator = platform === "win32" ? ";" : ":";
+  const pathDirs = (opts.pathDirs ?? (process.env.PATH ?? "").split(separator)).filter(Boolean);
   const agents = opts.agents ?? SHIM_AGENTS;
   const { mkdirSync, writeFileSync, chmodSync, unlinkSync } = await import("node:fs");
 
@@ -282,11 +350,11 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
 
   // 2. Write the shims.
   mkdirSync(dir, { recursive: true });
-  const cueInvoke = resolveCueInvocation();
+  const cueInvoke = resolveCueInvocation({ pathDirs, platform });
   for (const agent of real.keys()) {
-    const target = join(dir, agent);
-    writeFileSync(target, shimContent(cueInvoke, agent));
-    chmodSync(target, 0o755);
+    const target = shimPath(dir, agent, platform);
+    writeFileSync(target, shimContent(cueInvoke, agent, platform));
+    if (platform !== "win32") chmodSync(target, 0o755);
     out(`✅ Installed ${agent} shim → ${target}\n`);
   }
 
@@ -294,7 +362,7 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   //    would shadow the very binary the new shim needs to exec. Only remove a
   //    file whose CONTENT proves cue wrote it: on a native Claude install this
   //    same path is the real binary's symlink.
-  for (const agent of real.keys()) {
+  for (const agent of platform === "win32" ? [] : real.keys()) {
     const legacy = join(home, ".local", "bin", agent);
     try {
       if (existsSync(legacy) && isCueShimContent(readFileSync(legacy, "utf8"), agent)) {
@@ -312,7 +380,20 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   const firstReal = real.values().next().value as string;
   const shell = opts.shell ?? resolveHookShell();
   const line = rcSnippet(shell, dir);
-  const position = shimDirPosition(pathDirs, firstReal, dir);
+  const position = shimDirPosition(pathDirs, firstReal, dir, platform);
+
+  if (platform === "win32" && position !== "before") {
+    const updater = opts.updateWindowsPath ?? updateWindowsUserPath;
+    const configured = opts.writeRc !== false && await updater(dir, "add");
+    if (configured) {
+      out(`✅ User PATH configured → ${dir}\n`);
+      out(`\n▸ Open a new terminal to pick it up.\n`);
+    } else {
+      err(`\n⚠️  ${dir} is not first on User PATH — the shims are inert or shadowed until it is.\n`);
+      err(`   Run this in PowerShell, then open a new terminal:\n     ${windowsPathGuidance(dir)}\n`);
+    }
+    return 0;
+  }
 
   if (position === "absent") {
     const configured = await ensureRcPath({ ...opts, shell, dir, line, home, out, err });
@@ -323,7 +404,7 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
       err(`   Add this line, then open a new terminal:\n     ${line}\n`);
     }
   } else if (position === "after") {
-    err(`\n⚠️  ${resolve(firstReal, "..")} precedes ${dir} on PATH — the real binary shadows the shim.\n`);
+    err(`\n⚠️  ${dirname(firstReal)} precedes ${dir} on PATH — the real binary shadows the shim.\n`);
     err(`   Move ${dir} earlier on PATH, then open a new terminal.\n`);
   }
 
@@ -339,33 +420,49 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
  * install, and `runInstall()` already migrates it away on the next install.
  */
 export async function runUninstall(
-  opts: { homeDir?: string; out?: (s: string) => void; err?: (s: string) => void } = {},
+  opts: {
+    homeDir?: string;
+    platform?: NodeJS.Platform;
+    updateWindowsPath?: ShimOptions["updateWindowsPath"];
+    out?: (s: string) => void;
+    err?: (s: string) => void;
+  } = {},
 ): Promise<number> {
   const out = opts.out ?? ((s: string) => process.stdout.write(s));
   const err = opts.err ?? ((s: string) => process.stderr.write(s));
   const home = opts.homeDir ?? homedir();
+  const platform = opts.platform ?? process.platform;
   const dir = shimDir(opts.homeDir);
   const { unlinkSync } = await import("node:fs");
 
   for (const agent of SHIM_AGENTS) {
-    const target = join(dir, agent);
+    const target = shimPath(dir, agent, platform);
     if (existsSync(target)) {
       unlinkSync(target);
       out(`🗑️  Removed ${target}\n`);
     }
   }
 
-  const fishTarget = fishDropInPath(opts.homeDir);
-  try {
-    if (existsSync(fishTarget) && readFileSync(fishTarget, "utf8").includes(FISH_DROPIN_MARKER)) {
-      unlinkSync(fishTarget);
-      out(`🗑️  Removed ${fishTarget}\n`);
+  if (platform === "win32") {
+    const updater = opts.updateWindowsPath ?? updateWindowsUserPath;
+    if (await updater(dir, "remove")) {
+      out(`🗑️  Removed ${dir} from User PATH\n`);
+    } else {
+      err(`⚠️  Couldn't remove ${dir} from User PATH automatically.\n`);
     }
-  } catch {
-    // Unreadable or hand-edited — leave it for the user.
+  } else {
+    const fishTarget = fishDropInPath(opts.homeDir);
+    try {
+      if (existsSync(fishTarget) && readFileSync(fishTarget, "utf8").includes(FISH_DROPIN_MARKER)) {
+        unlinkSync(fishTarget);
+        out(`🗑️  Removed ${fishTarget}\n`);
+      }
+    } catch {
+      // Unreadable or hand-edited — leave it for the user.
+    }
   }
 
-  for (const agent of SHIM_AGENTS) {
+  for (const agent of platform === "win32" ? [] : SHIM_AGENTS) {
     const legacy = join(home, ".local", "bin", agent);
     try {
       if (existsSync(legacy) && isCueShimContent(readFileSync(legacy, "utf8"), agent)) {
@@ -376,7 +473,9 @@ export async function runUninstall(
     }
   }
 
-  out(`\nbash/zsh: remove the cue PATH line from your rc if you added one.\n`);
+  if (platform !== "win32") {
+    out(`\nbash/zsh: remove the cue PATH line from your rc if you added one.\n`);
+  }
   return 0;
 }
 
@@ -412,8 +511,10 @@ export async function run(args: string[]): Promise<number> {
     });
     if (rc !== 0) return rc;
 
-    process.stdout.write(`\nAdd the shell hook to auto-switch profiles on cd:\n`);
-    process.stdout.write(`  eval "$(cue shell hook)"\n`);
+    if (process.platform !== "win32") {
+      process.stdout.write(`\nAdd the shell hook to auto-switch profiles on cd:\n`);
+      process.stdout.write(`  eval "$(cue shell hook)"\n`);
+    }
 
     await installCompletions();
     return 0;

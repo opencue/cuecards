@@ -781,6 +781,10 @@ skills:
     - repo: davila7/claude-code-templates
       skills:
         - red-team-tools-and-methodology
+    # Secure implementation and focused security review.
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [secure-code-guardian, security-reviewer]
 
 mcps:
   - agentshield    # AgentShield scanner — audit .claude/, settings.json, mcp.json, hooks, agents (scan / scan_summary / list_rules tools)

@@ -52,6 +52,13 @@ describe("isCueShimContent", () => {
       expect(isCueShimContent(shimContent(invoke, "claude"), "claude")).toBe(true);
     }
   });
+
+  test("writes a Windows cmd shim that preserves a bare codex invocation", () => {
+    const content = shimContent("cue", "codex", "win32");
+    expect(content).toContain("call cue launch codex %*");
+    expect(content).not.toContain("--cue-profile");
+    expect(isCueShimContent(content, "codex")).toBe(true);
+  });
 });
 
 describe("rcSnippet", () => {
@@ -99,6 +106,17 @@ describe("shimDirPosition", () => {
   test("normalizes PATH entries before comparing", () => {
     expect(shimDirPosition([`${dir}/`, "/usr/bin"], "/usr/bin/claude", dir)).toBe("before");
   });
+
+  test("compares Windows PATH entries case-insensitively", () => {
+    expect(
+      shimDirPosition(
+        ["C:\\Users\\U\\.config\\cue\\shims", "C:\\Tools"],
+        "C:\\Tools\\codex.cmd",
+        "c:\\users\\u\\.config\\cue\\shims",
+        "win32",
+      ),
+    ).toBe("before");
+  });
 });
 
 describe("stripShimDirFromPath", () => {
@@ -123,5 +141,15 @@ describe("stripShimDirFromPath", () => {
 
   test("returns empty string for an undefined PATH", () => {
     expect(stripShimDirFromPath(undefined, dir)).toBe("");
+  });
+
+  test("uses semicolons and case-insensitive matching on Windows", () => {
+    expect(
+      stripShimDirFromPath(
+        "C:\\Users\\U\\.config\\cue\\shims;C:\\Windows\\System32",
+        "c:\\users\\u\\.config\\cue\\shims",
+        "win32",
+      ),
+    ).toBe("C:\\Windows\\System32");
   });
 });

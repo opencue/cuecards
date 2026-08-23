@@ -1,9 +1,22 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, rm, writeFile, readFile, stat } from "node:fs/promises";
+import {
+  mkdir,
+  mkdtemp,
+  rm,
+  writeFile,
+  readFile,
+  stat,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { summon, detectActiveProfile, REEXEC_CMD } from "./summon";
+import {
+  buildReexecCommand,
+  detectActiveAgent,
+  detectActiveProfile,
+  findActiveCodexRollout,
+  summon,
+} from "./summon";
 import { loadProfile } from "../lib/profile-loader";
 import { getSkillDependencies } from "../lib/skill-dependencies";
 import { existsSync, readdirSync } from "node:fs";
@@ -68,8 +81,73 @@ describe("detectActiveProfile", () => {
     expect(detectActiveProfile(env)).toBe("core+skill-writer");
   });
 
+  test("falls back to the CODEX_HOME runtime path", () => {
+    const env = {
+      CODEX_HOME: "/home/u/.config/cue/runtime/ads-manager+coolify/codex",
+    } as NodeJS.ProcessEnv;
+    expect(detectActiveProfile(env)).toBe("ads-manager+coolify");
+  });
+
   test("returns null when nothing identifies the session", () => {
     expect(detectActiveProfile({} as NodeJS.ProcessEnv)).toBeNull();
+  });
+});
+
+describe("Codex warm handoff", () => {
+  test("detects Codex from CUE_AGENT before weaker harness signals", () => {
+    expect(
+      detectActiveAgent({
+        CUE_AGENT: "codex",
+        CLAUDE_CONFIG_DIR: "/tmp/claude",
+      } as NodeJS.ProcessEnv),
+    ).toBe("codex");
+    expect(detectActiveAgent({} as NodeJS.ProcessEnv)).toBe("claude");
+  });
+
+  test("finds the active rollout under CODEX_HOME", async () => {
+    const threadId = "123e4567-e89b-12d3-a456-426614174000";
+    const rollout = join(
+      dir,
+      "sessions",
+      "2026",
+      "08",
+      "23",
+      `rollout-2026-08-23T12-00-00-${threadId}.jsonl`,
+    );
+    await mkdir(join(rollout, ".."), { recursive: true });
+    await writeFile(rollout, "{}\n");
+
+    expect(
+      findActiveCodexRollout({
+        CODEX_HOME: dir,
+        CODEX_THREAD_ID: threadId,
+      } as NodeJS.ProcessEnv),
+    ).toBe(rollout);
+  });
+
+  test("builds an explicit Cue launch with transcript handoff", () => {
+    const result = buildReexecCommand({
+      agent: "codex",
+      profile: "ads-manager+coolify",
+      handoffPath: "/tmp/old rollout.jsonl",
+    });
+    expect(result.mode).toBe("transcript-handoff");
+    expect(result.command).toContain(
+      "cue launch codex --cue-profile 'ads-manager+coolify' --cue-full",
+    );
+    expect(result.command).toContain("/tmp/old rollout.jsonl");
+  });
+
+  test("Claude uses native continuation under the requested profile", () => {
+    const result = buildReexecCommand({
+      agent: "claude",
+      profile: "vercel",
+    });
+    expect(result).toEqual({
+      command:
+        "cue launch claude --cue-profile 'vercel' --cue-full -- --continue",
+      mode: "native",
+    });
   });
 });
 
@@ -78,13 +156,52 @@ describe("summon", () => {
     // Arrange: a dir that WOULD auto-detect vercel...
     await writeFile(join(dir, "vercel.json"), "{}");
     // Act: ...but an explicit profile is passed.
-    const r = await summon({ cwd: dir, profile: "core", active: null, noPin: true });
+    const r = await summon({
+      cwd: dir,
+      profile: "core",
+      active: null,
+      agent: "claude",
+      noPin: true,
+      env: {},
+    });
     // Assert
     expect(r.profile).toBe("core");
     expect(r.detected).toBe(false);
-    expect(r.reexec_cmd).toBe(REEXEC_CMD);
+    expect(r.agent).toBe("claude");
+    expect(r.resume_mode).toBe("native");
+    expect(r.reexec_cmd).toBe(
+      "cue launch claude --cue-profile 'core' --cue-full -- --continue",
+    );
     expect(r.skills.length).toBeGreaterThan(0);
-    expect(r.skills.every((s) => s.id.length > 0 && typeof s.mcp_status === "string")).toBe(true);
+    expect(
+      r.skills.every(
+        (s) =>
+          s.id.length > 0 &&
+          typeof s.mcp_status === "string" &&
+          typeof s.loaded === "boolean",
+      ),
+    ).toBe(true);
+  });
+
+  test("combines the active and requested profiles without duplicates", async () => {
+    const r = await summon({
+      cwd: dir,
+      profile: "coolify",
+      active: "core+coolify",
+      agent: "codex",
+      withActive: true,
+      noPin: true,
+      env: {},
+    });
+
+    expect(r.requested_profile).toBe("coolify");
+    expect(r.profile).toBe("core+coolify");
+    expect(r.agent).toBe("codex");
+    expect(r.resume_mode).toBe("fresh");
+    expect(r.reexec_cmd).toBe(
+      "cue launch codex --cue-profile 'core+coolify' --cue-full",
+    );
+    expect(r.skills.some((skill) => skill.loaded)).toBe(true);
   });
 
   test("auto-detects vercel from vercel.json + @vercel deps", async () => {

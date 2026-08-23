@@ -16,7 +16,14 @@
  */
 
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { run } from "./import-profile";
@@ -105,23 +112,23 @@ describe("cue import — unresolvable source", () => {
   });
 });
 
-// ---- Import from local file (P2) — YAML validation errors only ----
-//
-// Note: cmdImport writes to PROFILES_DIR which is a module-level constant baked
-// from CUE_PROFILES_DIR at import time. Setting the env var in beforeEach is too
-// late — the constant is already resolved. The "success" path would write to the
-// repo's real profiles/ directory. We therefore only test the validation error
-// paths (YAML parse error, missing name) which bail out before any filesystem
-// write.
+// ---- Import from local file ----
 
 describe("cue import — local YAML error paths", () => {
   let tmpDir: string;
+  let profilesRoot: string;
+  let savedProfilesDir: string | undefined;
 
   beforeEach(() => {
     tmpDir = mkdtempSync(join(tmpdir(), "cue-import-profile-"));
+    profilesRoot = join(tmpDir, "profiles");
+    savedProfilesDir = process.env.CUE_PROFILES_DIR;
+    process.env.CUE_PROFILES_DIR = profilesRoot;
   });
 
   afterEach(() => {
+    if (savedProfilesDir === undefined) delete process.env.CUE_PROFILES_DIR;
+    else process.env.CUE_PROFILES_DIR = savedProfilesDir;
     rmSync(tmpDir, { recursive: true, force: true });
   });
 
@@ -141,6 +148,29 @@ describe("cue import — local YAML error paths", () => {
     const code = await run([badYaml]);
     expect(code).toBe(1);
     expect(stderrBuf.join("")).toContain("Invalid YAML");
+  });
+
+  test("rejects a path-traversal profile name before writing", async () => {
+    const badYaml = join(tmpDir, "traversal.yaml");
+    writeFileSync(badYaml, "name: ../escape\ndescription: Unsafe\n");
+
+    const code = await run([badYaml]);
+
+    expect(code).toBe(1);
+    expect(stderrBuf.join("")).toContain("Invalid profile name");
+    expect(existsSync(join(tmpDir, "escape", "profile.yaml"))).toBe(false);
+  });
+
+  test("imports a valid profile into the configured profiles directory", async () => {
+    const source = join(tmpDir, "valid.yaml");
+    writeFileSync(source, "name: safe-profile\ndescription: Safe\n");
+
+    const code = await run([source]);
+
+    expect(code).toBe(0);
+    const written = join(profilesRoot, "safe-profile", "profile.yaml");
+    expect(existsSync(written)).toBe(true);
+    expect(readFileSync(written, "utf8")).toContain("safe-profile");
   });
 });
 
@@ -191,7 +221,6 @@ describe("cue export — real profile to stdout", () => {
     const out = stdoutBuf.join("");
     expect(out).toContain("outpkg");
     expect(out).toContain("KB"); // size confirmation
-    const { readFileSync, existsSync } = await import("node:fs");
     expect(existsSync(outputFile)).toBe(true);
     const content = readFileSync(outputFile, "utf8");
     expect(content).toContain("outpkg");

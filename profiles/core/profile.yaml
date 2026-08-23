@@ -122,6 +122,7 @@ persona: |
   - Pre-landing diff review → `/code-review-deep`
   - Touching prod or want safety rails → `/careful`, `/freeze <dir>`, `/guard <dir>`
   - Larger work — read `playbooks/sprint.md` first
+  - User asks to load/summon another profile into this Claude/Codex session → run `cue summon <profile> --with-active --json`, soft-load the returned persona/skill paths, and use `reexec_cmd` for MCP fidelity
   - Topic mentions a tool/platform NOT in the loaded skills list (coolify, resend, hostinger, sanity, security/cso, etc.) → `/smart-loader` to locate and soft-load the matching SKILL.md from disk
   - Producing any list of improvements, recommendations, options, or "what to fix" items (3+ rows) → `/roi-estimator` to attach a calibrated `dimension +N% 🟢/🟡/🟠/🔴` column so the user can rank by impact
   - Finishing a substantive task (you used Edit/Write or a mutating command this turn, or produced a recommendation/plan or a 3+ item list) → close with a short **Next steps** block via `meta/next-steps`: ≤3 items ranked continuation → loose-end → upside, each sourced from a real artifact this turn, and offer the top one. Skip trivial turns and brief/caveman mode.
@@ -140,6 +141,7 @@ skills:
     - meta/liedetector          # confidence-calibration tags (🟢🟡🟠🔴) on every claim
     - meta/integrity-tags       # explains the 7-tag confidence system the liedetector applies
     - meta/smart-loader         # soft-loads non-profile skills from disk when topic matches (coolify, resend, cso, etc.)
+    - meta/profile-summon       # live Claude/Codex profile soft-load; full MCPs use an agent-specific warm handoff
     - meta/roi-estimator        # auto-attaches ROI column (dimension, %, confidence tier) to any improvement list
     - meta/next-steps           # closes substantive tasks with a short, ranked Next steps block + offers the top one
     - meta/ralph-loop           # /ralph-loop — autonomous "work longer" loop (re-feed prompt until tests pass), guarded by stop-check + iteration cap

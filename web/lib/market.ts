@@ -20,8 +20,8 @@
  */
 import { createHash } from "node:crypto";
 
-import { auth } from "./auth";
-import { getPool } from "./db";
+import { auth } from "./auth.js";
+import { getPool } from "./db.js";
 
 // ---------------------------------------------------------------------------
 // Types

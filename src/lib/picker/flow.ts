@@ -11,11 +11,17 @@ import * as p from "@clack/prompts";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { recordCombo } from "../combo-history";
+import {
+  applyProfileChoiceFeedback,
+  readProfileChoiceFeedback,
+  recordProfileChoice,
+} from "../profile-choice-feedback";
 import { resolveMatchContext } from "../profile-match";
 import { deepMatchProfiles, hasWarmDeepMatch, warmDeepMatchCache } from "../profile-match-llm";
 import {
   mergeSignals,
   pathSignals,
+  repositorySupportedProfiles,
   suggestStacks,
   type StackSuggestion,
   type SuggestMatch,
@@ -84,8 +90,17 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
     confidence: d.confidence,
     reasons: [...d.reasons],
   }));
+  let repositoryDetected: SuggestSignal[] = (
+    input.repositoryDetected ?? input.detected ?? []
+  ).map((d) => ({
+    name: d.name,
+    confidence: d.confidence,
+    reasons: [...d.reasons],
+  }));
   try {
-    detected = mergeSignals(detected, pathSignals(input.cwd));
+    const path = pathSignals(input.cwd);
+    detected = mergeSignals(detected, path);
+    repositoryDetected = mergeSignals(repositoryDetected, path);
   } catch {
     /* an unreadable cwd just means fewer signals */
   }
@@ -114,12 +129,22 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
       matched = ranked
         .filter((m) => known.has(m.name))
         .slice(0, SUGGESTION_LIMIT)
-        .map((m) => ({ name: m.name, strength: m.strength, reason: m.reason }));
+        .map((m) => ({
+          name: m.name,
+          strength: m.strength,
+          reason: m.reason,
+          matchedTerms: [...m.matchedTerms],
+        }));
     }
   } catch {
     /* a directory we can't read yields no matches, not an error */
   }
 
+  const supportedProfiles = repositorySupportedProfiles(
+    repositoryDetected,
+    matched,
+    input.companions,
+  );
   const suggestions = suggestStacks({
     profiles,
     detected,
@@ -131,16 +156,24 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
     featured: input.featured,
     matched,
     defaultSelector: input.defaultSelector,
+    supportedProfiles,
     limit: SUGGESTION_LIMIT,
   });
   // Belt and braces: the engine only returns nothing when it was handed
   // nothing, but the card must always have something to show.
-  const ranked: StackSuggestion[] =
+  const baseRanked: StackSuggestion[] =
     suggestions.length > 0
       ? suggestions
       : profiles.length > 0
         ? [{ parts: [profiles[0]!.value], score: 0, reasons: ["first available profile"], origin: "default" }]
         : [];
+  const ranked = applyProfileChoiceFeedback(
+    baseRanked,
+    readProfileChoiceFeedback(undefined, { cwd: input.cwd }),
+    known,
+    SUGGESTION_LIMIT,
+    supportedProfiles,
+  );
 
   // ── resource tallies ──────────────────────────────────────────────────────
   const tallies = new Map<string, ProfileTally>();
@@ -250,6 +283,11 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
 
   try {
     recordCombo(parts, new Date().toISOString(), undefined, input.cwd);
+    recordProfileChoice({
+      cwd: input.cwd,
+      choice: parts,
+      suggested: ranked.slice(0, 3).map((suggestion) => suggestion.parts),
+    });
   } catch {
     /* logging must never block a launch */
   }

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -23,12 +23,15 @@ describe("classifier home isolation", () => {
   let tmp: string;
   let prevXdg: string | undefined;
   let prevConfig: string | undefined;
+  let prevHome: string | undefined;
 
   beforeEach(() => {
     prevXdg = process.env.XDG_CACHE_HOME;
     prevConfig = process.env.CLAUDE_CONFIG_DIR;
+    prevHome = process.env.HOME;
     tmp = mkdtempSync(join(tmpdir(), "cue-iso-"));
     process.env.XDG_CACHE_HOME = tmp; // redirect cacheDir() into the temp tree
+    process.env.HOME = tmp; // redirect the no-CLAUDE_CONFIG_DIR fallback ~/.claude
   });
 
   afterEach(() => {
@@ -36,12 +39,19 @@ describe("classifier home isolation", () => {
     else process.env.XDG_CACHE_HOME = prevXdg;
     if (prevConfig === undefined) delete process.env.CLAUDE_CONFIG_DIR;
     else process.env.CLAUDE_CONFIG_DIR = prevConfig;
+    if (prevHome === undefined) delete process.env.HOME;
+    else process.env.HOME = prevHome;
     try { rmSync(tmp, { recursive: true, force: true }); } catch { /* ok */ }
   });
 
-  test("returns null when no CLAUDE_CONFIG_DIR is set (inherit path)", () => {
+  test("still isolates when no CLAUDE_CONFIG_DIR is set", () => {
     delete process.env.CLAUDE_CONFIG_DIR;
-    expect(setupClassifierHome()).toBeNull();
+    mkdirSync(join(tmp, ".claude"), { recursive: true });
+    const h = setupClassifierHome();
+    expect(h).not.toBeNull();
+    expect(readFileSync(join(h!.home, "settings.json"), "utf8")).toBe("{}\n");
+    expect(h!.credSrc).toBeNull();
+    teardownClassifierHome(h!);
   });
 
   test("builds a home with empty settings, no plugins, and copied credentials", () => {

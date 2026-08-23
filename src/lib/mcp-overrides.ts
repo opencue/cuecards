@@ -124,6 +124,27 @@ export function autoPrunableMcps(
 }
 
 /**
+ * Extend a profile-level disable list with unused runtime-global MCPs.
+ *
+ * A remembered picker override only governs profile MCP ids. In `all` prune
+ * mode it must not suppress pruning of global servers overlaid from the user's
+ * Claude config, while the remembered profile choices remain authoritative.
+ */
+export function withAutoPrunedGlobals(
+  disabledIds: string[],
+  profileMcpIds: string[],
+  runtimeMcpIds: string[],
+  pinned: Set<string>,
+  neededIds: Iterable<string>,
+): string[] {
+  const profile = new Set(profileMcpIds.map((id) => id.toLowerCase()));
+  const globals = runtimeMcpIds.filter((id) => !profile.has(id.toLowerCase()));
+  const merged = new Set(disabledIds.map((id) => id.toLowerCase()));
+  for (const id of autoPrunableMcps(globals, pinned, neededIds)) merged.add(id);
+  return [...merged];
+}
+
+/**
  * Parse a `CUE_PRUNE_MCPS` value into an {@link McpPruneMode}:
  *   - "off"     — keep all (fail-open).
  *   - "profile" — drop unused PROFILE-declared MCPs only. Preserves cue's

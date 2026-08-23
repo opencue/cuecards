@@ -202,7 +202,7 @@ export function Card({
 export interface GhostButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  /** danger = red text on hover */
+  /** danger = red text */
   variant?: "default" | "danger";
   active?: boolean;
   disabled?: boolean;
@@ -224,7 +224,7 @@ export function GhostButton({
   const style: React.CSSProperties = {
     fontFamily: "var(--mono)",
     fontSize: "11px",
-    color: active ? "#fff" : "var(--fg2)",
+    color: active ? "#fff" : variant === "danger" ? "var(--red)" : "var(--fg2)",
     background: active ? "var(--violet-d)" : "var(--bg3)",
     border: `1px solid ${active ? "var(--violet)" : "var(--bd)"}`,
     borderRadius: "6px",

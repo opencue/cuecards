@@ -10,6 +10,12 @@ t() { # t <name> <expected-substring> <cmd...>
   if [[ "$out" == *"$want"* ]]; then PASS=$((PASS+1)); echo "ok  - $name";
   else FAIL=$((FAIL+1)); echo "FAIL - $name"; echo "  want: $want"; echo "  got : $out"; fi
 }
+t_not() { # t_not <name> <forbidden-substring> <cmd...>
+  local name="$1" forbidden="$2"; shift 2
+  local out; out="$("$@" 2>&1)"
+  if [[ "$out" != *"$forbidden"* ]]; then PASS=$((PASS+1)); echo "ok  - $name";
+  else FAIL=$((FAIL+1)); echo "FAIL - $name"; echo "  leaked: $forbidden"; fi
+}
 
 # Fixture workspaces.yaml
 FIX="$(mktemp -d)"
@@ -23,6 +29,7 @@ workspaces:
       GOOGLE_ADS_LOGIN_CUSTOMER_ID: "${AGENCY_MCC_ID}"
       GOOGLE_APPLICATION_CREDENTIALS: "$FIXDIR/agency-adc.json"
       FB_AD_ACCOUNT_ID: "${ACME_FB_AD_ACCOUNT_ID}"
+      META_TOKEN_FILE: "$FIXDIR/acme.system-user.token"
 YAML
 touch "$FIX/agency-adc.json"
 export ADS_WORKSPACES_FILE="$FIX/workspaces.yaml" FIXDIR="$FIX"
@@ -35,6 +42,10 @@ t "resolve login id" "9998887777" \
   python3 -c "import sys; sys.path.insert(0,'$CLI'); import _adslib; print(_adslib.resolve_client('acme')['login_customer_id'])"
 t "resolve fb act" "act_42" \
   python3 -c "import sys; sys.path.insert(0,'$CLI'); import _adslib; print(_adslib.resolve_client('acme')['fb_ad_account_id'])"
+t "resolve prefixes bare fb id" "act_42" \
+  env ACME_FB_AD_ACCOUNT_ID=42 python3 -c "import sys; sys.path.insert(0,'$CLI'); import _adslib; print(_adslib.resolve_client('acme')['fb_ad_account_id'])"
+t "resolve client Meta token" "acme.system-user.token" \
+  python3 -c "import sys; sys.path.insert(0,'$CLI'); import _adslib; print(_adslib.resolve_client('acme')['meta_token_file'])"
 t "yaml path derived" "agency.google-ads.yaml" \
   python3 -c "import sys; sys.path.insert(0,'$CLI'); import _adslib; print(_adslib.resolve_client('acme')['ads_yaml_path'])"
 t "unknown client lists available" "acme" \
@@ -72,5 +83,11 @@ t "fbads method needs value" "requires a value" \
   "$CLI/fbads" acme insights --method
 t "fbads rejects bare param" "expected key=value" \
   "$CLI/fbads" acme insights level --dry-run
+t "fbads redacts response token fields" '"access_token": "***"' \
+  python3 -c "import json,runpy; f=runpy.run_path('$CLI/fbads')['redact_response']; print(json.dumps(f({'access_token':'secret-value'})))"
+t "fbads redacts paging next tokens" "access_token=%2A%2A%2A" \
+  python3 -c "import json,runpy; f=runpy.run_path('$CLI/fbads')['redact_response']; print(json.dumps(f({'paging':{'next':'https://graph.facebook.com/next?after=x&access_token=secret-value'}})))"
+t_not "fbads response contains no raw token" "secret-value" \
+  python3 -c "import json,runpy; f=runpy.run_path('$CLI/fbads')['redact_response']; print(json.dumps(f({'access_token':'secret-value','paging':{'next':'https://graph.facebook.com/next?after=x&access_token=secret-value'}})))"
 
 echo "----"; echo "pass=$PASS fail=$FAIL"; [ "$FAIL" -eq 0 ]

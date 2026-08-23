@@ -12,7 +12,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { fromNodeHeaders } from "better-auth/node";
 
-import { getMarket, publishMarket, type PublishInput } from "../../lib/market";
+import { getMarket, publishMarket, type PublishInput } from "../../lib/market.js";
 
 function readBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {

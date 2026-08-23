@@ -1,7 +1,17 @@
 name: ads-manager
 icon: "📊"
-description: "Multi-client Google Ads + Meta Ads management with Ego Browser, official Google Ads MCP, Meta Graph API MCP, reporting CLIs, and approval-gated writes"
+description: "Multi-client Google Ads + Meta Ads management with AdLoop, Ego Browser, official platform MCPs, reporting CLIs, and approval-gated writes"
 inherits: google-ads
 skills:
   local: []
-mcps: []
+mcps:
+  - adloop
+rules:
+  - /home/deadpool/Documents/ADS/adloop/src/adloop/rules/adloop.md
+  - /home/deadpool/Documents/ADS/.claude/rules/adloop-workspace.md
+codex_config:
+  projects:
+    /home/deadpool/Documents/ADS:
+      trust_level: trusted
+  features:
+    hooks: true

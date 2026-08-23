@@ -26,6 +26,7 @@
 
 import { spawn } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { homedir } from "node:os";
 import { join } from "node:path";
 
 import { findRealClaudeBin } from "./claude-binary";
@@ -85,12 +86,15 @@ export function shouldCopyBackCreds(homeExpiresAt: number, srcExpiresAt: number)
  * load the user's plugins (claude-mem spawns a worker daemon per call), fire
  * their hooks, or append phantom sessions to their logs. Copies the live OAuth
  * credentials from the launch's real config dir in so the call still auths.
- * Returns null when there's nothing to isolate (no CLAUDE_CONFIG_DIR set) — the
- * caller then inherits the parent env, the pre-isolation behavior.
+ * When no CLAUDE_CONFIG_DIR is set (the common path from Codex-launched cue
+ * commands), fall back to ~/.claude as the credential source but still point
+ * the child at the minimal ephemeral config. Inheriting the real ~/.claude
+ * config lets plugins/hooks fire during a "lightweight" classifier call; in
+ * practice that made profile warm-ups start claude-mem workers and marketplace
+ * updates during agent launch.
  */
 export function setupClassifierHome(): ClassifierHome | null {
-  const src = process.env.CLAUDE_CONFIG_DIR;
-  if (!src) return null;
+  const src = process.env.CLAUDE_CONFIG_DIR || join(process.env.HOME || homedir(), ".claude");
   try {
     const base = join(cacheDir(), "classifier-home");
     mkdirSync(base, { recursive: true });

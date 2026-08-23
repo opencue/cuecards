@@ -26,8 +26,16 @@
 #   resources/skills/skills/meta/skill-reviewer/references/learnings.md
 set -euo pipefail
 
-# Resolve cue-slug — same directory as this script.
-SCRIPT_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Resolve symlinks before locating cue-slug. Global npm/source installs invoke
+# this script through a bin-directory symlink, while cue-slug stays beside the
+# real script inside the package or checkout.
+src="${BASH_SOURCE[0]}"
+while [ -h "$src" ]; do
+  dir="$(cd -P "$(dirname "$src")" && pwd)"
+  src="$(readlink "$src")"
+  [[ "$src" != /* ]] && src="$dir/$src"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$src")" && pwd)"
 SLUG_BIN="$SCRIPT_DIR/cue-slug"
 
 if [[ ! -x "$SLUG_BIN" ]]; then

@@ -34,6 +34,14 @@ def _expand(value: str) -> str:
     return out
 
 
+def _normalize_meta_ad_account_id(value: str) -> str:
+    """Return the Graph API ad-account resource form (``act_<digits>``)."""
+    expanded = _expand(value).strip()
+    if not expanded or expanded.startswith("act_"):
+        return expanded
+    return f"act_{expanded}"
+
+
 def _load() -> dict:
     try:
         with open(WORKSPACES_FILE) as f:
@@ -66,5 +74,13 @@ def resolve_client(client: str) -> dict:
         "login_customer_id": _expand(env.get("GOOGLE_ADS_LOGIN_CUSTOMER_ID", "")).replace("-", ""),
         "adc_path": adc,
         "ads_yaml_path": ads_yaml,
-        "fb_ad_account_id": _expand(env.get("FB_AD_ACCOUNT_ID", "")),
+        "fb_ad_account_id": _normalize_meta_ad_account_id(
+            env.get("FB_AD_ACCOUNT_ID", "")
+        ),
+        "meta_token_file": _expand(
+            env.get(
+                "META_TOKEN_FILE",
+                f"{SECRETS}/meta/{client}.system-user.token",
+            )
+        ),
     }

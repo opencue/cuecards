@@ -85,6 +85,11 @@ export interface SuggestInput {
   matched?: SuggestMatch[];
   /** Resolved Default selector (e.g. `"core"`), the last-resort suggestion. */
   defaultSelector?: string;
+  /**
+   * Profiles backed by current-repository evidence. When supplied, remembered,
+   * curated, AI, and generic candidates cannot reintroduce unsupported parts.
+   */
+  supportedProfiles?: ReadonlySet<string>;
   /** Max suggestions returned. Default 3. */
   limit?: number;
 }
@@ -96,9 +101,18 @@ export interface SuggestMatch {
   strength: number;
   /** One-line explanation, already human-readable. */
   reason: string;
+  /** Normalized repository terms that matched this profile. */
+  matchedTerms?: string[];
 }
 
-export type SuggestionOrigin = "detected" | "combo" | "recent" | "featured" | "matched" | "default";
+export type SuggestionOrigin =
+  | "feedback"
+  | "detected"
+  | "combo"
+  | "recent"
+  | "featured"
+  | "matched"
+  | "default";
 
 export interface StackSuggestion {
   /** Conflict-free, deduped profile names. Always at least one. */
@@ -114,10 +128,10 @@ export interface StackSuggestion {
  * module assembled from a seed plus companions. Past three the card stops
  * reading as an answer and starts reading as a list.
  *
- * Recalled stacks (a recent or a confirmed combo) are exempt: those are a
- * literal record of what the user launched, and trimming one to fit would put a
- * stack on screen that was never launched, captioned with its session count.
- * Showing a four-part line beats showing a lie.
+ * Recalled stacks (a recent or a confirmed combo) are exempt from the display
+ * cap. When no repository support set is supplied they remain a literal record
+ * of what the user launched. With repository evidence, unsupported parts are
+ * removed before ranking so history cannot override the current codebase.
  */
 export const MAX_STACK_PARTS = 3;
 
@@ -188,12 +202,13 @@ export const SCORE_MATCHED_MAX = 30;
 
 /** Origin ordering used as a deterministic tie-break when scores match. */
 const ORIGIN_RANK: Record<SuggestionOrigin, number> = {
-  detected: 0,
-  combo: 1,
-  recent: 2,
-  featured: 3,
-  matched: 4,
-  default: 5,
+  feedback: 0,
+  detected: 1,
+  combo: 2,
+  recent: 3,
+  featured: 4,
+  matched: 5,
+  default: 6,
 };
 
 /**
@@ -217,6 +232,48 @@ export function mergeSignals(...lists: Array<SuggestSignal[] | undefined>): Sugg
   return [...byName.values()].sort((a, b) => b.confidence - a.confidence || a.name.localeCompare(b.name));
 }
 
+const GENERIC_PROFILE_NAME_TERMS = new Set([
+  "api",
+  "base",
+  "dev",
+  "developer",
+  "designer",
+  "engineer",
+  "manager",
+  "stack",
+  "writer",
+]);
+
+/** Build the allow-list that makes current repository evidence authoritative. */
+export function repositorySupportedProfiles(
+  detected: readonly SuggestSignal[],
+  matched: readonly SuggestMatch[] = [],
+  companions: readonly SuggestCompanion[] = [],
+): Set<string> {
+  const supported = new Set(
+    detected
+      .filter((signal) => signal.confidence >= DETECT_MIN_CONFIDENCE)
+      .map((signal) => signal.name),
+  );
+  for (const companion of companions) {
+    if (companion.confidence >= COMPANION_AUTO_CONFIDENCE) {
+      supported.add(companion.profile);
+    }
+  }
+  for (const match of matched) {
+    if (match.strength < DETECT_MIN_CONFIDENCE) continue;
+    const terms = new Set((match.matchedTerms ?? []).map((term) => term.toLowerCase()));
+    const nameTerms = match.name
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((term) => term && !GENERIC_PROFILE_NAME_TERMS.has(term));
+    if (nameTerms.length > 0 && nameTerms.every((term) => terms.has(term))) {
+      supported.add(match.name);
+    }
+  }
+  return supported;
+}
+
 /**
  * Rank concrete stacks for this directory.
  *
@@ -237,6 +294,8 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
   const conflictMap = buildConflictMap(input.profiles);
   const companions = input.companions ?? [];
   const companionByName = new Map(companions.map((c) => [c.profile, c]));
+  const isSupported = (name: string): boolean =>
+    input.supportedProfiles === undefined || input.supportedProfiles.has(name);
 
   /**
    * One entry per distinct part-set, keeping the best-scoring claim on it.
@@ -255,12 +314,14 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
     score: number,
     origin: SuggestionOrigin,
     reasons: string[],
-    /** A literal recollection (recent / combo): show it as launched — no
-     *  companions bolted on, no truncation. Only conflicts are resolved, since
-     *  a stack that can't launch is no use as an answer. */
+    /** A recollection (recent / combo): no companions and no display-cap
+     *  truncation. Repository-unsupported parts are removed when gated. */
     recalled = false,
+    enforceSupport = true,
   ): void => {
-    const seeds = primaryParts.filter((n) => known.has(n));
+    const seeds = primaryParts.filter(
+      (name) => known.has(name) && (!enforceSupport || isSupported(name)),
+    );
     if (seeds.length === 0) return;
     const parts = recalled
       ? resolveConflicts(seeds, conflictMap)
@@ -269,6 +330,7 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
           conflictMap,
           companionByName,
           pairSuggestions: input.pairSuggestions,
+          supportedProfiles: input.supportedProfiles,
         });
     const key = [...parts].sort().join("+");
     // Ties keep the incumbent, which came from the earlier — stronger-ranked —
@@ -347,7 +409,7 @@ export function suggestStacks(input: SuggestInput): StackSuggestion[] {
     if (parts.length > 0) {
       record(parts, SCORE_DEFAULT, "default", [
         byKey.size === 0 ? "no clear signal in this directory" : "your default profile",
-      ]);
+      ], false, false);
     }
   }
 
@@ -410,11 +472,13 @@ function growStack(
     conflictMap: Map<string, Set<string>>;
     companionByName: Map<string, SuggestCompanion>;
     pairSuggestions?: Map<string, string[]>;
+    supportedProfiles?: ReadonlySet<string>;
   },
 ): string[] {
   const candidates: string[] = [...seeds];
   const push = (name: string) => {
     if (!ctx.known.has(name)) return;
+    if (ctx.supportedProfiles !== undefined && !ctx.supportedProfiles.has(name)) return;
     if (!candidates.includes(name)) candidates.push(name);
   };
   for (const seed of seeds) for (const a of ctx.known.get(seed)?.autoSelect ?? []) push(a);

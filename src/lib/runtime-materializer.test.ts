@@ -867,6 +867,58 @@ describe("materializeRuntime", () => {
     expect(s2.permissions.allow).toEqual(["B"]);
   });
 
+  test("credentialsSource: preserves profile-local autoMode on cache hit and rebuild", async () => {
+    const credSrc = join(root, "creds");
+    await mkdir(credSrc, { recursive: true });
+    await writeFile(
+      join(credSrc, "settings.json"),
+      JSON.stringify({ permissions: { allow: ["source-before"] } }),
+    );
+
+    const args = {
+      profile: sampleProfile,
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    };
+
+    const first = await materializeRuntime(args);
+    const settingsPath = join(first.runtimeDir, "settings.json");
+    const localAutoMode = {
+      environment: ["**Trusted repo**: /work/profile-only"],
+    };
+    const runtimeSettings = JSON.parse(await readFile(settingsPath, "utf8"));
+    runtimeSettings.autoMode = localAutoMode;
+    await writeFile(settingsPath, JSON.stringify(runtimeSettings));
+
+    // A cache-hit refresh must still pick up source-owned settings without
+    // deleting Claude's profile-local /auto-mode-setup result.
+    await writeFile(
+      join(credSrc, "settings.json"),
+      JSON.stringify({ permissions: { allow: ["source-after"] } }),
+    );
+    const cached = await materializeRuntime(args);
+    expect(cached.rebuilt).toBe(false);
+    let settings = JSON.parse(await readFile(settingsPath, "utf8"));
+    expect(settings.permissions.allow).toEqual(["source-after"]);
+    expect(settings.autoMode).toEqual(localAutoMode);
+
+    // A profile change forces an atomic rebuild and must preserve the same
+    // profile-local setup rather than falling back to global source settings.
+    const rebuilt = await materializeRuntime({
+      ...args,
+      profile: { ...sampleProfile, description: "force rebuild" },
+    });
+    expect(rebuilt.rebuilt).toBe(true);
+    settings = JSON.parse(
+      await readFile(join(rebuilt.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.autoMode).toEqual(localAutoMode);
+  });
+
   test("credentialsSource: rebuild keeps the freshest token (no logged-out-after-relaunch)", async () => {
     // Regression: Anthropic rotates the refresh token on every refresh. The old
     // preserve step blindly resurrected the runtime's own .credentials.json on a

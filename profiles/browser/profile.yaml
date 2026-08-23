@@ -11,6 +11,9 @@ skills:
     # Discovered 2026-06-08: Chrome DevTools for coding agents.
     - repo: ChromeDevTools/chrome-devtools-mcp
       skills: [chrome-devtools-mcp]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [playwright-expert]
 
 mcps:
   # Playwright — Microsoft's official Playwright MCP (`npx @playwright/mcp@latest`).

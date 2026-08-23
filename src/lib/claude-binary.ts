@@ -19,7 +19,7 @@
  */
 
 import { existsSync, readFileSync, statSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { join, resolve, win32 } from "node:path";
 
 import { isCueShimContent, shimDir } from "./shim-dir";
 
@@ -42,28 +42,76 @@ import { isCueShimContent, shimDir } from "./shim-dir";
  * between `cue` and `launch` is not whitespace — so a source-clone user's shim
  * was mistaken for the real binary and `cue launch` recursed into itself.
  */
-export function findRealAgentBin(name: string): string | null {
-  const pathDirs = (process.env.PATH ?? "").split(":").filter(Boolean);
-  const cueShims = resolve(shimDir());
+export interface AgentBinSearchOptions {
+  platform?: NodeJS.Platform;
+  pathValue?: string;
+  pathExt?: string;
+}
+
+function commandNames(
+  name: string,
+  platform: NodeJS.Platform,
+  pathExt = process.env.PATHEXT ?? ".COM;.EXE;.BAT;.CMD",
+): string[] {
+  if (platform !== "win32") return [name];
+  const extensions = pathExt.split(";").filter(Boolean);
+  const names = extensions.flatMap((ext) => {
+    const normalized = ext.startsWith(".") ? ext : `.${ext}`;
+    return [`${name}${normalized}`, `${name}${normalized.toLowerCase()}`];
+  });
+  return [...new Set([...names, name])];
+}
+
+function isRunnableFile(path: string, platform: NodeJS.Platform): boolean {
+  try {
+    const stat = statSync(path);
+    return stat.isFile() && (platform === "win32" || (stat.mode & 0o111) !== 0);
+  } catch {
+    return false;
+  }
+}
+
+/** Windows npm launchers are .cmd files and must be spawned through cmd.exe. */
+export function needsWindowsCommandShell(
+  bin: string,
+  platform: NodeJS.Platform = process.platform,
+): boolean {
+  return platform === "win32" && /\.(cmd|bat)$/i.test(bin);
+}
+
+export function findRealAgentBin(name: string, opts: AgentBinSearchOptions = {}): string | null {
+  const platform = opts.platform ?? process.platform;
+  const separator = platform === "win32" ? ";" : ":";
+  const pathDirs = (opts.pathValue ?? process.env.PATH ?? "").split(separator).filter(Boolean);
+  const pathApi = platform === "win32" ? win32 : { resolve };
+  const normalize = (value: string): string => {
+    const normalized = pathApi.resolve(value);
+    return platform === "win32" ? normalized.toLowerCase() : normalized;
+  };
+  const cueShims = normalize(shimDir());
   for (const dir of pathDirs) {
-    if (resolve(dir) === cueShims) continue;
-    const candidate = join(dir, name);
-    if (!existsSync(candidate)) continue;
-    try {
-      const stat = statSync(candidate);
-      if (!stat.isFile() || (stat.mode & 0o111) === 0) continue;
-      if (stat.size < 64_000) {
-        const content = readFileSync(candidate, "utf8");
-        if (isCueShimContent(content)) continue;
-        // codex-guard is another dispatcher, not the real CLI. Selecting it
-        // from inside `cue launch codex` makes the guard find cue's shim next,
-        // creating a launch loop. The guard still protects raw shell launches;
-        // cue must exec the actual Codex binary behind both wrappers.
-        if (name === "codex" && content.includes("find_real_codex") && content.includes("codex-guard")) continue;
+    if (normalize(dir) === cueShims) continue;
+    for (const commandName of commandNames(name, platform, opts.pathExt)) {
+      // Use the host path implementation for filesystem access. On native
+      // Windows `join` already emits backslashes; keeping it here also lets
+      // Linux CI exercise win32 command-extension behavior in temp dirs.
+      const candidate = join(dir, commandName);
+      if (!existsSync(candidate) || !isRunnableFile(candidate, platform)) continue;
+      try {
+        const stat = statSync(candidate);
+        if (stat.size < 64_000) {
+          const content = readFileSync(candidate, "utf8");
+          if (isCueShimContent(content)) continue;
+          // codex-guard is another dispatcher, not the real CLI. Selecting it
+          // from inside `cue launch codex` makes the guard find cue's shim next,
+          // creating a launch loop. The guard still protects raw shell launches;
+          // cue must exec the actual Codex binary behind both wrappers.
+          if (name === "codex" && content.includes("find_real_codex") && content.includes("codex-guard")) continue;
+        }
+        return candidate;
+      } catch {
+        continue; // unreadable/broken entry — keep walking
       }
-      return candidate;
-    } catch {
-      continue; // unreadable/broken entry — keep walking
     }
   }
   return null;
@@ -86,13 +134,7 @@ export function codexExecOverride(): string | null {
   // Same bar `findRealAgentBin` holds a PATH candidate to. `existsSync` alone
   // waves through a directory or a non-executable file, and the only symptom is
   // an unexplained exit 127 from `execAgent`'s spawn-error branch.
-  try {
-    const stat = statSync(override);
-    if (!stat.isFile() || (stat.mode & 0o111) === 0) return null;
-  } catch {
-    return null;
-  }
-  return override;
+  return isRunnableFile(override, process.platform) ? override : null;
 }
 
 export function findRealClaudeBin(): string | null {

@@ -6,10 +6,9 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
+import { validateProfileName } from "../lib/profile-generator";
 import { loadProfile } from "../lib/profile-loader";
-import { repoRoot } from "../lib/repo-root";
-
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+import { profilesDir, repoRoot } from "../lib/repo-root";
 
 export async function run(args: string[]): Promise<number> {
   const sub = args[0];
@@ -74,9 +73,15 @@ async function cmdImport(args: string[]): Promise<number> {
     process.stderr.write("Profile YAML missing 'name' field\n");
     return 1;
   }
+  if (!validateProfileName(name)) {
+    process.stderr.write(
+      `Invalid profile name "${name}" (use lowercase kebab-case)\n`,
+    );
+    return 1;
+  }
 
   // Write to profiles dir
-  const profileDir = join(PROFILES_DIR, name);
+  const profileDir = join(profilesDir(), name);
   mkdirSync(profileDir, { recursive: true });
 
   // Strip _portable metadata before writing

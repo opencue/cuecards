@@ -14,6 +14,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { COMMANDS, type CommandName } from "./commands/_index";
+import { runCommand } from "./lib/command-runner";
 import { repoRoot } from "./lib/repo-root";
 
 
@@ -63,7 +64,7 @@ function printHelp(): void {
       ["doctor", "Diff declared vs actual state; --fix repairs"],
       ["validate", "Schema + lint checks for profiles"],
       ["cost", "Estimate token budget for a profile"],
-      ["stats", "Profile usage analytics"],
+      ["stats", "Profile usage and picker suggestion quality"],
       ["scan", "Tree of installed skills/plugins by domain"],
       ["why", "Trace why a skill/MCP is loaded"],
       ["mem", "Inspect/manage per-profile claude-mem stores"],
@@ -73,7 +74,7 @@ function printHelp(): void {
       ["install", "Prepare profile runtimes and optionally install required CLIs"],
       ["sync", "Refresh materialized runtimes after editing a profile source"],
       ["launch", "Resolve + materialize + exec claude/codex"],
-      ["summon", "Bind a profile into the live session (soft-load + pin), no restart"],
+      ["summon", "Soft-load a profile into live Claude/Codex; warm handoff for MCPs"],
       ["shell", "Install/uninstall the claude/codex shims"],
       ["update", "Self-update: git pull + bun install"],
       ["upgrade", "Pull new skills from the registry"],
@@ -240,14 +241,7 @@ async function main(argv: string[]): Promise<number> {
 
   if (args.length === 0) {
     // Show status dashboard by default (like `git status`)
-    const statusCmd = COMMANDS["status"];
-    try {
-      const mod = await statusCmd.load();
-      return await mod.run([]);
-    } catch {
-      printHelp();
-      return 0;
-    }
+    return runCommand("status", [], COMMANDS.status);
   }
 
   if (args[0] === "-h" || args[0] === "--help" || args[0] === "help") {
@@ -281,14 +275,7 @@ async function main(argv: string[]): Promise<number> {
     return 1;
   }
 
-  try {
-    const mod = await cmd.load();
-    return await mod.run(args.slice(1));
-  } catch (err) {
-    const msg = err instanceof Error ? err.stack ?? err.message : String(err);
-    process.stderr.write(`cue: internal error in "${name}": ${msg}\n`);
-    return 2;
-  }
+  return runCommand(name, args.slice(1), cmd);
 }
 
 main(process.argv).then(

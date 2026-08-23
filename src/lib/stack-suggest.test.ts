@@ -6,6 +6,7 @@ import {
   MAX_STACK_PARTS,
   mergeSignals,
   pathSignals,
+  repositorySupportedProfiles,
   suggestStacks,
   type PathProbe,
   type SuggestProfile,
@@ -21,6 +22,9 @@ const profiles: SuggestProfile[] = [
   { value: "medusa-vite", label: "medusa-vite" },
   { value: "higgsfield", label: "higgsfield" },
   { value: "improver", label: "improver" },
+  { value: "vite", label: "vite" },
+  { value: "stripe", label: "stripe" },
+  { value: "coolify", label: "coolify" },
 ];
 
 describe("suggestStacks", () => {
@@ -36,6 +40,32 @@ describe("suggestStacks", () => {
     expect(out[0]?.origin).toBe("detected");
     expect(out[0]?.reasons[0]).toBe("90% match — Cargo.toml");
     expect(out.map((s) => s.origin)).toContain("recent");
+  });
+
+  test("repository evidence removes unsupported parts from recalled stacks", () => {
+    const supportedProfiles = new Set(["python"]);
+    const out = suggestStacks({
+      profiles,
+      detected: [{ name: "python", confidence: 0.85, reasons: ["12 .py files"] }],
+      combos: [{
+        parts: ["python", "vite", "stripe", "coolify", "improver"],
+        count: 40,
+        here: 4,
+      }],
+      featured: ["vite", "stripe", "coolify"],
+      matched: [
+        { name: "vite", strength: 1, reason: "weak lexical match" },
+        { name: "stripe", strength: 1, reason: "weak lexical match" },
+      ],
+      supportedProfiles,
+      defaultSelector: "core",
+      limit: 8,
+    });
+
+    expect(out[0]?.parts).toEqual(["python"]);
+    expect(out.flatMap((suggestion) => suggestion.parts)).not.toContain("vite");
+    expect(out.flatMap((suggestion) => suggestion.parts)).not.toContain("stripe");
+    expect(out.flatMap((suggestion) => suggestion.parts)).not.toContain("coolify");
   });
 
   test("drops detections below the confidence floor", () => {
@@ -274,6 +304,30 @@ describe("mergeSignals", () => {
       { name: "top", confidence: 0.9, reasons: [] },
     ]);
     expect(merged.map((s) => s.name)).toEqual(["top", "alpha", "zebra"]);
+  });
+});
+
+describe("repositorySupportedProfiles", () => {
+  test("keeps deterministic evidence and only direct generic name matches", () => {
+    const supported = repositorySupportedProfiles(
+      [{ name: "python", confidence: 0.85, reasons: ["12 .py files"] }],
+      [
+        {
+          name: "vite",
+          strength: 1,
+          reason: "depends on vite",
+          matchedTerms: ["vite"],
+        },
+        {
+          name: "react-native",
+          strength: 1,
+          reason: "depends on react",
+          matchedTerms: ["react"],
+        },
+      ],
+    );
+
+    expect([...supported].sort()).toEqual(["python", "vite"]);
   });
 });
 

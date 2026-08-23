@@ -1,7 +1,7 @@
 /**
  * Smoke test for install.sh — proves the shell install path that every new
- * user depends on: it symlinks `cue` onto PATH, writes a working `claude`
- * shim, and `cue --version` runs through the shim dir.
+ * user depends on: it symlinks cue's commands onto PATH, writes a working
+ * `claude` shim, and `cue --version` runs through the shim dir.
  *
  * Hermetic: installs into a throwaway SHIM_DIR with a stub `authmux` on PATH so
  * install.sh's Step 5 never runs `npm install -g authmux` (no network).
@@ -40,7 +40,7 @@ describe.skipIf(!CAN_RUN)("install.sh smoke", () => {
     rmSync(cueShims, { recursive: true, force: true });
   });
 
-  test("symlinks cue, writes a working claude shim, and cue --version runs through it", () => {
+  test("symlinks cue commands, writes a working claude shim, and cue --version runs through it", () => {
     const env = {
       ...process.env,
       SHIM_DIR: shimDir,
@@ -57,6 +57,7 @@ describe.skipIf(!CAN_RUN)("install.sh smoke", () => {
 
     // cue is exposed on PATH (symlink to bin/cue).
     expect(existsSync(join(shimDir, "cue"))).toBe(true);
+    expect(existsSync(join(shimDir, "cue-learnings"))).toBe(true);
 
     // The claude shim routes through cue, and lives in cue's own shim dir —
     // never in SHIM_DIR, which on a native install holds the real binary.

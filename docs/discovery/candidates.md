@@ -24,7 +24,7 @@ Already referenced (skip / expand): `vercel-labs/agent-skills`→vercel, `anthro
 | `addyosmani/agent-skills` | 48k | 🟡 | Production-grade engineering skills for coding agents | frontend, nextjs, backend | reach +30% 🟡 |
 | `kepano/obsidian-skills` | 34k | 🟡 | Markdown/Obsidian agent skills | research, docs-writer | reach +20% 🟡 |
 | `mvanhorn/last30days-skill` | 27k | 🟡 | Research a topic across Reddit/news/last-30-days | research | reach +20% 🟡 |
-| `Jeffallan/claude-skills` | 9.6k | 🟡 | 66 full-stack dev skills (cherry-pick) | frontend, backend | reach +15% 🟡 |
+| `Jeffallan/claude-skills` | 11.1k | 🟡 | 67 full-stack dev skills, pinned at `882ef55e` | `fullstack-dev-skills` + 22 domain profiles | adopted 🟢 |
 | `SawyerHood/dev-browser` | 6.2k | 🟡 | Give the agent a real browser | browser | reach +20% 🟡 |
 | `elementalsouls/Claude-OSINT` | 1.6k | 🟠 | 90+ recon modules, 2 paired skills | cybersecurity, secops | reach +25% 🟠 |
 | `digitalocean-labs/do-app-platform-skills` | 29 | 🟢 | DigitalOcean App Platform deploy skills | ops, deployment | niche +10% 🟡 |

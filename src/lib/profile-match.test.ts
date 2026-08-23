@@ -117,6 +117,20 @@ describe("repoEvidence", () => {
     expect(ev.sources.get("medusa")).toBe("dependency");
   });
 
+  test("reads service names from env keys but never indexes env values", () => {
+    const ev = repoEvidence(
+      "/r",
+      probeFor({
+        "/r/.env.example": "STRIPE_SECRET_KEY=do-not-index-this\nCOOLIFY_API_TOKEN=also-secret\n",
+      }),
+    );
+    expect(ev.terms.has("stripe")).toBe(true);
+    expect(ev.terms.has("coolify")).toBe(true);
+    expect(ev.sources.get("stripe")).toBe("environment");
+    expect(ev.terms.has("index")).toBe(false);
+    expect(ev.terms.has("secret")).toBe(false);
+  });
+
   test("a malformed package.json contributes nothing and doesn't throw", () => {
     const ev = repoEvidence("/r", probeFor({ "/r/package.json": "{{{ not json" }));
     expect(ev.terms.has("medusa")).toBe(false);
@@ -131,6 +145,45 @@ describe("repoEvidence", () => {
 
     const realPy = repoEvidence("/r", probeFor({ "/r/a.py": "", "/r/b.py": "" }));
     expect(realPy.terms.has("python")).toBe(true);
+  });
+
+  test("finds source languages below the repository root", () => {
+    const ev = repoEvidence(
+      "/r",
+      probeFor({
+        "/r/src/api/routes.py": "",
+        "/r/src/api/models.py": "",
+      }),
+    );
+    expect(ev.terms.has("python")).toBe(true);
+    expect(ev.reasons.get("python")).toContain("2 .py files");
+  });
+
+  test("ignores generated, vendored, and fixture language files", () => {
+    const ev = repoEvidence(
+      "/r",
+      probeFor({
+        "/r/src/main.ts": "",
+        "/r/src/app.ts": "",
+        "/r/fixtures/python/a.py": "",
+        "/r/fixtures/python/b.py": "",
+        "/r/vendor/tool/c.py": "",
+        "/r/vendor/tool/d.py": "",
+      }),
+    );
+    expect(ev.terms.has("python")).toBe(false);
+  });
+
+  test("a handful of helper files do not outweigh a larger primary language", () => {
+    const files: Record<string, string> = {
+      "/r/tools/release.py": "",
+      "/r/tools/check.py": "",
+      "/r/tools/package.py": "",
+    };
+    for (let index = 0; index < 20; index += 1) {
+      files[`/r/src/module-${index}.ts`] = "";
+    }
+    expect(repoEvidence("/r", probeFor(files)).terms.has("python")).toBe(false);
   });
 
   test("universal scaffolding never becomes evidence", () => {
@@ -209,6 +262,23 @@ dependencies = ["httpx>=0.27", "click"]
     );
     expect(rootDeclares.terms.has("tokio")).toBe(true);
     expect(rootDeclares.terms.has("medusa")).toBe(false);
+  });
+
+  test("reads declared workspace manifests even when the root has dependencies", () => {
+    const ev = repoEvidence(
+      "/r",
+      probeFor({
+        "/r/package.json": JSON.stringify({
+          dependencies: { turbo: "1" },
+          workspaces: ["apps/*"],
+        }),
+        "/r/apps/web/package.json": JSON.stringify({
+          dependencies: { next: "1", "@medusajs/js-sdk": "1" },
+        }),
+      }),
+    );
+    expect(ev.terms.has("next")).toBe(true);
+    expect(ev.terms.has("medusa")).toBe(true);
   });
 });
 

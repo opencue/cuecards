@@ -33,6 +33,7 @@ const sinks = () => ({
 
 const localBin = (agent: string) => join(fakeHome, ".local", "bin", agent);
 const shim = (agent: string) => join(shimDir(fakeHome), agent);
+const windowsShim = (agent: string) => join(shimDir(fakeHome), `${agent}.cmd`);
 
 const CUE_SHIM = '#!/usr/bin/env bash\nexec cue launch claude "$@"\n';
 const REAL_BINARY = `#!/usr/bin/env bash\n# a real wrapper, not ours\nexec /opt/anthropic/claude "$@"\n`;
@@ -166,6 +167,46 @@ describe("shell install", () => {
     expect(rc).toBe(0);
     expect(err).toContain("shadows the shim");
   });
+
+  test("writes a Windows cmd shim and persists its directory on User PATH", async () => {
+    const pathUpdates: Array<[string, "add" | "remove"]> = [];
+    const rc = await runInstall({
+      homeDir: fakeHome,
+      platform: "win32",
+      pathDirs: ["C:\\Windows\\System32"],
+      realClaude: null,
+      realCodex: "C:\\Users\\U\\AppData\\Roaming\\npm\\codex.cmd",
+      updateWindowsPath: (dir, action) => {
+        pathUpdates.push([dir, action]);
+        return true;
+      },
+      ...sinks(),
+    });
+
+    expect(rc).toBe(0);
+    expect(await readFile(windowsShim("codex"), "utf8")).toContain("launch codex %*");
+    expect(pathUpdates).toEqual([[shimDir(fakeHome), "add"]]);
+  });
+
+  test("--no-rc leaves Windows User PATH unchanged and prints manual guidance", async () => {
+    let updates = 0;
+    await runInstall({
+      homeDir: fakeHome,
+      platform: "win32",
+      pathDirs: ["C:\\Windows\\System32"],
+      realClaude: null,
+      realCodex: "C:\\Tools\\codex.cmd",
+      writeRc: false,
+      updateWindowsPath: () => {
+        updates += 1;
+        return true;
+      },
+      ...sinks(),
+    });
+
+    expect(updates).toBe(0);
+    expect(err).toContain("User PATH");
+  });
 });
 
 describe("shell install — PATH configuration", () => {
@@ -286,6 +327,26 @@ describe("shell uninstall", () => {
     await runUninstall({ homeDir: fakeHome, ...sinks() });
     expect(await readFile(target, "utf8")).toBe("# hand-written, not ours\n");
   });
+
+  test("removes Windows cmd shims and the User PATH entry", async () => {
+    await mkdir(shimDir(fakeHome), { recursive: true });
+    await writeFile(windowsShim("codex"), "@echo off\r\n@call cue launch codex %*\r\n");
+    const pathUpdates: Array<[string, "add" | "remove"]> = [];
+
+    const rc = await runUninstall({
+      homeDir: fakeHome,
+      platform: "win32",
+      updateWindowsPath: (dir, action) => {
+        pathUpdates.push([dir, action]);
+        return true;
+      },
+      ...sinks(),
+    });
+
+    expect(rc).toBe(0);
+    await expect(stat(windowsShim("codex"))).rejects.toThrow();
+    expect(pathUpdates).toEqual([[shimDir(fakeHome), "remove"]]);
+  });
 });
 
 describe("shimInstalled", () => {
@@ -328,6 +389,12 @@ describe("shimInstalled", () => {
     expect(shimInstalled(fakeHome, "codex")).toBe(true);
     expect(shimInstalled(fakeHome, "claude")).toBe(false);
   });
+
+  test("recognizes a Windows cmd shim", async () => {
+    await mkdir(shimDir(fakeHome), { recursive: true });
+    await writeFile(windowsShim("codex"), "@echo off\r\n@call cue launch codex %*\r\n");
+    expect(shimInstalled(fakeHome, "codex", "win32")).toBe(true);
+  });
 });
 
 describe("resolveCueInvocation", () => {
@@ -360,6 +427,13 @@ describe("resolveCueInvocation", () => {
     expect(out).toBe(`"${join(repoRoot, "bin", "cue")}"`);
     // Either form must keep the `launch claude` substring intact downstream.
     expect(`exec ${out} launch claude "$@"`).toContain("launch claude");
+  });
+
+  test("recognizes npm's cue.cmd launcher on Windows", async () => {
+    const binDir = join(fakeHome, "windows-npm-bin");
+    await mkdir(binDir, { recursive: true });
+    await writeFile(join(binDir, "cue.cmd"), "@echo off\r\n");
+    expect(resolveCueInvocation({ pathDirs: [binDir], platform: "win32" })).toBe("cue");
   });
 });
 

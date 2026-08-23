@@ -1,0 +1,15 @@
+name: swift-ios
+icon: "🍎"
+description: "Swift and Apple platform development: SwiftUI, UIKit, concurrency, actors, Combine, testing, and performance"
+inherits: core
+recommends:
+  - backend
+conflicts:
+  - flutter
+  - react-native
+skills:
+  npx:
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [swift-expert]
+mcps: []

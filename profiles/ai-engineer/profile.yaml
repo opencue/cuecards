@@ -1,0 +1,24 @@
+name: ai-engineer
+icon: "🧪"
+description: "Applied AI engineering: Python, data preparation, ML pipelines, RAG systems, distributed training, and model fine-tuning"
+inherits: python
+recommends:
+  - nvidia
+  - postgres
+skills:
+  npx:
+    # Npx entries merge by repository, so repeat the inherited Python subset
+    # before adding AI specialists. This preserves every parent skill.
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills:
+        - django-expert
+        - django-storages-s3
+        - fastapi-expert
+        - pandas-pro
+        - python-pro
+        - fine-tuning-expert
+        - ml-pipeline
+        - rag-architect
+        - spark-engineer
+mcps: []

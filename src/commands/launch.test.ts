@@ -8,6 +8,7 @@ import {
   formatStartupBanner,
   formatTmuxTitle,
   getDefaultSelector,
+  mergeProfileSuggestions,
   ownsPaneBadge,
   relativeTime,
   shouldAppendUserClaudeMd,
@@ -94,6 +95,46 @@ describe("sortProfileOptions", () => {
     ]);
     const out = sortProfileOptions(input, undefined, usage);
     expect(out.map((o) => o.value)).toEqual(["postizz", "marketing", "backend", "frontend"]);
+  });
+});
+
+describe("mergeProfileSuggestions", () => {
+  test("puts agreement first and combines distinct reasons", () => {
+    const advised = [
+      { profile: "nextjs", confidence: 0.82, reasons: ["primary web app"] },
+      { profile: "gstack", confidence: 0.7, reasons: ["agent workflow"] },
+    ];
+    const deterministic = [
+      { profile: "nextjs", confidence: 0.9, reasons: ["next.config.ts"] },
+      { profile: "typescript", confidence: 0.8, reasons: ["tsconfig.json"] },
+    ];
+
+    const merged = mergeProfileSuggestions(advised, deterministic);
+    expect(merged.map((item) => item.profile)).toEqual([
+      "nextjs",
+      "gstack",
+      "typescript",
+    ]);
+    expect(merged[0]?.confidence).toBe(0.9);
+    expect(merged[0]?.reasons).toEqual(["primary web app", "next.config.ts"]);
+  });
+
+  test("preserves one AI and one deterministic choice when they disagree", () => {
+    const merged = mergeProfileSuggestions(
+      [
+        { profile: "google-ads", confidence: 0.9, reasons: ["GAQL scripts"] },
+        { profile: "marketing", confidence: 0.8, reasons: ["campaign copy"] },
+      ],
+      [
+        { profile: "coolify", confidence: 0.85, reasons: ["Dockerfile"] },
+        { profile: "nextjs", confidence: 0.75, reasons: ["next.config.ts"] },
+      ],
+    );
+
+    expect(merged.slice(0, 2).map((item) => item.profile)).toEqual([
+      "google-ads",
+      "coolify",
+    ]);
   });
 });
 
@@ -450,6 +491,18 @@ describe("buildPickerSections", () => {
     ]);
     expect(out[0]?.label).toContain("AI profile advisor");
     expect(out.find((o) => o.value === "google-ads")?.hint).toBe("90% match — GAQL scripts");
+  });
+
+  test("hybrid suggestions disclose repository-signal merging and stale reuse", () => {
+    const hybrid = buildPickerSections(opt("__default"), [opt("nextjs")], [], 3, now, [
+      { name: "nextjs", confidence: 0.9, reasons: ["next.config.ts"], source: "hybrid" },
+    ]);
+    expect(hybrid[0]?.label).toContain("AI + repository signals");
+
+    const stale = buildPickerSections(opt("__default"), [opt("nextjs")], [], 3, now, [
+      { name: "nextjs", confidence: 0.9, reasons: ["next.config.ts"], source: "stale-hybrid" },
+    ]);
+    expect(stale[0]?.label).toContain("Recent AI + repository signals");
   });
 });
 

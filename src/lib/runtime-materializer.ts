@@ -434,6 +434,7 @@ async function materializeRuntimeUnlocked(
             profile,
             agent,
             effectiveInput,
+            runtimeDir,
           );
           await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
         }
@@ -729,7 +730,12 @@ async function materializeRuntimeUnlocked(
   // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
   // mcpServers was already collected above (used by both code paths).
   if (agent === "claude-code") {
-    const merged = await buildClaudeSettings(profile, agent, effectiveInput);
+    const merged = await buildClaudeSettings(
+      profile,
+      agent,
+      effectiveInput,
+      runtimeDir,
+    );
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
     // Codex equivalent — config.toml. cue points CODEX_HOME at this runtime, so
@@ -1751,6 +1757,7 @@ async function buildClaudeSettings(
   profile: ResolvedProfile,
   agent: AgentKind,
   input: MaterializeInput,
+  runtimeDir: string,
 ): Promise<string> {
   const enabledPlugins: Record<string, true> = {};
   for (const plugin of profile.plugins) {
@@ -1770,6 +1777,7 @@ async function buildClaudeSettings(
       /* no existing settings — start fresh */
     }
   }
+  const profileLocalSettings = await readClaudeProfileLocalSettings(runtimeDir);
 
   // Merge profile hooks. A hook ref points to a JSON file with shape
   // { hooks: { PreToolUse: [...], ... } } — same shape Claude Code expects.
@@ -1825,6 +1833,10 @@ async function buildClaudeSettings(
 
   const settings: Record<string, unknown> = {
     ...baseSettings,
+    // Claude's /auto-mode-setup writes environment-specific trust context to
+    // the profile runtime, not the global credentials source. Carry that one
+    // Claude-managed field across both cache-hit refreshes and full rebuilds.
+    ...profileLocalSettings,
     // MCPs are profile-scoped — do NOT merge baseSettings.mcpServers in.
     // Otherwise every MCP registered in the user's source ~/.claude/settings.json
     // (or ~/.claude-accounts/<acct>/settings.json) leaks into every profile's
@@ -1892,6 +1904,26 @@ async function buildClaudeSettings(
   }
 
   return JSON.stringify(settings, null, 2);
+}
+
+async function readClaudeProfileLocalSettings(
+  runtimeDir: string,
+): Promise<Record<string, unknown>> {
+  try {
+    const parsed = JSON.parse(
+      await readFile(join(runtimeDir, "settings.json"), "utf8"),
+    ) as unknown;
+    if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return {};
+    }
+    const settings = parsed as Record<string, unknown>;
+    if (Object.prototype.hasOwnProperty.call(settings, "autoMode")) {
+      return { autoMode: settings.autoMode };
+    }
+  } catch {
+    /* first build or malformed old settings — use credentials source only */
+  }
+  return {};
 }
 
 // ---------------------------------------------------------------------------

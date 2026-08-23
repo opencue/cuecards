@@ -38,6 +38,7 @@ workspaces:
       GOOGLE_ADS_LOGIN_CUSTOMER_ID: ""
       GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/agency-adc.json"
       FB_AD_ACCOUNT_ID: "${LIFTED_FB_AD_ACCOUNT_ID}"
+      META_TOKEN_FILE: "/home/deadpool/.config/cue/secrets/ads/meta/lifted.system-user.token"
     context: |
       Active workspace: lifted.sk
       Meta ad account "LIFTED" under the lifted.sk business portfolio.
@@ -46,18 +47,20 @@ workspaces:
 
   marvahome:
     name: "Marvahome"
-    description: "Google Ads only for now — Meta access is expected later"
+    description: "Google Ads + Meta Ads for Marvahome"
     env:
       # Direct Administrator access on the account; not confirmed as MCC-linked,
       # so no login-customer-id. Switch to ${AGENCY_MCC_ID} if it is linked.
       GOOGLE_ADS_CUSTOMER_ID: "${MARVAHOME_GOOGLE_ADS_CUSTOMER_ID}"
       GOOGLE_ADS_LOGIN_CUSTOMER_ID: ""
-      GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/agency-adc.json"
-      FB_AD_ACCOUNT_ID: ""
+      # direct login (same ADC, no MCC header): the MCC login_customer_id is
+      # PERMISSION_DENIED on this directly-administered account.
+      GOOGLE_APPLICATION_CREDENTIALS: "/home/deadpool/.config/cue/secrets/ads/google/direct-adc.json"
+      FB_AD_ACCOUNT_ID: "${MARVAHOME_FB_AD_ACCOUNT_ID}"
     context: |
       Active workspace: marvahome
       Google Ads account 685-203-3754, access level: Administrator.
-      Meta ad account not granted yet.
+      Meta ad account "Marvahome" under the Marva Home business portfolio.
       TODO: confirm market, language, currency, and seasonality with the client.
 
   # --- Template: MCC-linked client (shares the agency ADC) ---

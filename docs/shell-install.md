@@ -1,11 +1,16 @@
 # cue shell install
 
 `cue shell install` drops a shim script into cue's own shim directory for every
-agent it can find a real binary for:
+agent it can find a real binary for. The same command is used by `cue setup`:
 
-```
+```text
+# Linux / macOS
 ~/.config/cue/shims/claude   →   exec cue launch claude "$@"
 ~/.config/cue/shims/codex    →   exec cue launch codex  "$@"
+
+# Windows (resolved by both PowerShell and cmd.exe)
+%USERPROFILE%\.config\cue\shims\claude.cmd → call cue launch claude %*
+%USERPROFILE%\.config\cue\shims\codex.cmd  → call cue launch codex  %*
 ```
 
 and puts that directory at the **front** of your PATH. From then on every
@@ -25,6 +30,7 @@ binaries. `cue shell install` handles that for you:
 |---|---|
 | fish | Creates `~/.config/fish/conf.d/cue-shims.fish`. A new file, so no prompt — delete it to undo. |
 | bash / zsh | Asks before appending the `export PATH=…` line to your `.bashrc` / `.zshrc`. |
+| Windows PowerShell / cmd.exe | Writes `.cmd` shims and prepends the shim directory to the Current User PATH. No PowerShell execution-policy change is needed. |
 
 Flags:
 
@@ -33,7 +39,7 @@ Flags:
 | `--yes` / `-y` | Skip the bash/zsh confirmation |
 | `--no-rc` | Print the PATH line, change no config files |
 
-Open a new terminal afterwards, or re-source your config.
+Open a new terminal afterwards, or re-source your config on bash/zsh/fish.
 
 ## Verify
 
@@ -41,6 +47,14 @@ Open a new terminal afterwards, or re-source your config.
 which claude   # should print ~/.config/cue/shims/claude
 which codex    # should print ~/.config/cue/shims/codex
 cue doctor     # D9 covers shim presence, PATH order, and the real binary
+```
+
+Windows PowerShell:
+
+```powershell
+Get-Command claude
+Get-Command codex
+# Source should end in .config\cue\shims\<agent>.cmd
 ```
 
 Run `cue launch claude --dry-run` in any directory that has a `.cue.profile` to
@@ -64,9 +78,10 @@ removed because it would shadow the very binary the new shim needs to exec.
 cue shell uninstall
 ```
 
-Removes the shims and the fish drop-in. bash/zsh users should delete the PATH
-line from their rc by hand. After that, `claude` and `codex` resolve to the real
-binaries again.
+Removes the shims and the fish drop-in. On Windows it also removes the shim
+directory from the Current User PATH. bash/zsh users should delete the PATH
+line from their rc by hand. After that, `claude` and `codex` resolve to the
+real binaries again.
 
 ## Bypass paths
 
@@ -88,3 +103,7 @@ that session spawns bypasses too. Full contract: [docs/launch.md](./launch.md).
 A bare interactive `claude` or `codex` invocation opens the profile picker by
 default. Invocations with arguments resolve the pinned/default profile without a
 prompt; use `--cue-pick` when you want the picker in that case.
+
+If Codex is installed after an older Claude-only Cue setup, re-run `cue setup`
+or `cue shell install`; Cue detects the new real binary and adds `codex` without
+requiring a separate wrapper.

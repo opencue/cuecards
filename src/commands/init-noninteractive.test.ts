@@ -61,6 +61,7 @@ beforeEach(() => {
   const dir = shimDir();
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "claude"), shimContent("cue", "claude"));
+  writeFileSync(join(dir, "codex"), shimContent("cue", "codex"));
 });
 
 afterEach(() => {
@@ -260,6 +261,31 @@ describe("cue init --profile / --yes (non-interactive)", () => {
       expect(stdout).toContain("Shim installed to");
       expect(shimOut).toContain("Installed claude shim");
       expect(shimErr).toBe("");
+    } finally {
+      rmSync(fakeAgentHome, { recursive: true, force: true });
+    }
+  });
+
+  test("--yes adds a Codex shim to an older Claude-only setup", async () => {
+    const fakeAgentHome = mkdtempSync(join(tmpdir(), "cue-init-codex-shim-"));
+    const dir = join(fakeAgentHome, ".config", "cue", "shims");
+    try {
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, "claude"), shimContent("cue", "claude"));
+
+      const { code } = await capture(["--profile", "core", "--yes"], {
+        shim: {
+          homeDir: fakeAgentHome,
+          realClaude: "/usr/bin/claude",
+          realCodex: "/usr/bin/codex",
+          pathDirs: [dir, "/usr/bin"],
+          out: () => {},
+          err: () => {},
+        },
+      });
+
+      expect(code).toBe(0);
+      expect(readFileSync(join(dir, "codex"), "utf8")).toContain("launch codex");
     } finally {
       rmSync(fakeAgentHome, { recursive: true, force: true });
     }

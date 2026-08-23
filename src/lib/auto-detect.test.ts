@@ -20,6 +20,12 @@ describe("detectProfileV2", () => {
     expect(out[0]?.profile).toBe("google-ads");
     expect(out.map((x) => x.profile)).toContain("ads-manager");
   });
+
+  test("generic marketing campaigns do not become Google Ads projects", () => {
+    const out = detectProfileV2("/tmp/marketing-campaign");
+    expect(out[0]?.profile).toBe("marketing");
+    expect(out[0]?.profile).not.toBe("google-ads");
+  });
   test("Cargo.toml → rust with 0.9 confidence", () => {
     writeFileSync(join(tmp, "Cargo.toml"), "[package]");
     const results = detectProfileV2(tmp);
@@ -61,6 +67,17 @@ describe("detectProfileV2", () => {
     expect(frontend!.confidence).toBe(0.8);
   });
 
+  test("Vite config and dependency → vite outranks generic frontend", () => {
+    writeFileSync(join(tmp, "vite.config.ts"), "export default {}");
+    writeFileSync(
+      join(tmp, "package.json"),
+      JSON.stringify({ dependencies: { react: "18.0.0" }, devDependencies: { vite: "7.0.0" } }),
+    );
+    const results = detectProfileV2(tmp);
+    expect(results[0]?.profile).toBe("vite");
+    expect(results.find((result) => result.profile === "frontend")).toBeDefined();
+  });
+
   test("package.json with no framework → backend 0.6", () => {
     writeFileSync(join(tmp, "package.json"), JSON.stringify({ dependencies: { express: "4.0.0" } }));
     const results = detectProfileV2(tmp);
@@ -82,6 +99,20 @@ describe("detectProfileV2", () => {
     expect(results).toEqual([]);
   });
 
+  test("generic OMX session state is not fleet-control repository evidence", () => {
+    mkdirSync(join(tmp, ".omx"));
+    expect(
+      detectProfileV2(tmp).find((result) => result.profile === "fleet-control"),
+    ).toBeUndefined();
+  });
+
+  test("an explicit fleet marker still suggests fleet-control", () => {
+    mkdirSync(join(tmp, ".colony"));
+    expect(
+      detectProfileV2(tmp).find((result) => result.profile === "fleet-control"),
+    ).toBeDefined();
+  });
+
   test("medusa-config.ts → medusa-dev 0.9", () => {
     writeFileSync(join(tmp, "medusa-config.ts"), "export default {}");
     const results = detectProfileV2(tmp);
@@ -97,6 +128,15 @@ describe("detectProfileV2", () => {
     const results = detectProfileV2(tmp);
     const vite = results.find(r => r.profile === "medusa-vite");
     expect(vite).toBeDefined();
+  });
+
+  test("Medusa + Next storefront outranks the generic Next.js signal", () => {
+    writeFileSync(join(tmp, "next.config.ts"), "export default {}");
+    writeFileSync(
+      join(tmp, "package.json"),
+      JSON.stringify({ dependencies: { "@medusajs/js-sdk": "2.0.0", next: "15.0.0" } }),
+    );
+    expect(detectProfileV2(tmp)[0]?.profile).toBe("medusa-next");
   });
 
   test("corroborating signals boost confidence above the lone-signal base", () => {
@@ -133,6 +173,7 @@ describe("detectProfileV2", () => {
     expect(stripe!.confidence).toBeGreaterThanOrEqual(0.5);
     expect(stripe!.confidence).toBeLessThan(0.7);
     expect(stripe!.reasons.join(" ")).toContain("stripe");
+    expect(results[0]?.profile).toBe("stripe");
   });
 
   test("package.json with @aws-sdk/client-s3 → aws profile suggested", () => {
@@ -165,6 +206,22 @@ describe("detectProfileV2", () => {
     const results = detectProfileV2(tmp);
     expect(results.find(r => r.profile === "supabase")).toBeDefined();
     expect(results.find(r => r.profile === "slack")).toBeDefined();
+    expect(results[0]?.profile).not.toBe("backend");
+  });
+
+  test("Playwright tooling suggests browser above generic backend", () => {
+    writeFileSync(join(tmp, "package.json"), JSON.stringify({
+      devDependencies: { "@playwright/test": "1.50.0" },
+    }));
+    const results = detectProfileV2(tmp);
+    expect(results[0]?.profile).toBe("browser");
+  });
+
+  test("a Coolify project marker outranks generic Docker backend", () => {
+    mkdirSync(join(tmp, ".coolify"));
+    writeFileSync(join(tmp, ".coolify/config.json"), "{}");
+    writeFileSync(join(tmp, "docker-compose.yml"), "services: {}");
+    expect(detectProfileV2(tmp)[0]?.profile).toBe("coolify");
   });
 
   test("no service dep → no service profile suggested", () => {
@@ -206,6 +263,58 @@ describe("detectProfileV2", () => {
 
 
 describe("detectProfileV2 — Python deps", () => {
+  test("multiple Python source files suggest python without a manifest", () => {
+    writeFileSync(join(tmp, "main.py"), "print('hello')\n");
+    writeFileSync(join(tmp, "worker.py"), "def run(): pass\n");
+
+    const results = detectProfileV2(tmp);
+    const python = results.find((result) => result.profile === "python");
+    expect(python).toBeDefined();
+    expect(python!.confidence).toBeGreaterThanOrEqual(0.8);
+    expect(python!.reasons.join(" ")).toContain(".py");
+  });
+
+  test("nested Python source files suggest python without a manifest or git repository", () => {
+    mkdirSync(join(tmp, "src"), { recursive: true });
+    writeFileSync(join(tmp, "src", "main.py"), "print('hello')\n");
+    writeFileSync(join(tmp, "src", "worker.py"), "def run(): pass\n");
+
+    const results = detectProfileV2(tmp);
+    expect(results.find((result) => result.profile === "python")).toMatchObject({
+      confidence: 0.85,
+    });
+  });
+
+  test("one stray Python helper does not redefine another project", () => {
+    writeFileSync(join(tmp, "Cargo.toml"), "[package]\nname='app'\n");
+    writeFileSync(join(tmp, "release.py"), "print('release')\n");
+
+    const results = detectProfileV2(tmp);
+    expect(results[0]?.profile).toBe("rust");
+    expect(results.find((result) => result.profile === "python")).toBeUndefined();
+  });
+
+  test("a substantial secondary language stays below the primary manifest", () => {
+    writeFileSync(
+      join(tmp, "package.json"),
+      JSON.stringify({ dependencies: { express: "4" } }),
+    );
+    mkdirSync(join(tmp, "src"));
+    mkdirSync(join(tmp, "tools"));
+    for (let index = 0; index < 50; index += 1) {
+      writeFileSync(join(tmp, "src", `module-${index}.ts`), "export {};\n");
+    }
+    for (let index = 0; index < 10; index += 1) {
+      writeFileSync(join(tmp, "tools", `job-${index}.py`), "pass\n");
+    }
+
+    const results = detectProfileV2(tmp);
+    expect(results[0]?.profile).toBe("backend");
+    expect(results.find((result) => result.profile === "python")?.confidence).toBe(
+      0.55,
+    );
+  });
+
   test("requirements.txt with boto3 → aws suggested, python outranks it", () => {
     writeFileSync(join(tmp, "requirements.txt"), "boto3==1.34.0\n");
     const results = detectProfileV2(tmp);
@@ -259,6 +368,31 @@ describe("detectProfileV2 — Python deps", () => {
 });
 
 describe("detectProfileV2 — monorepo workspaces", () => {
+  test("child package manifests are scanned when the root has no manifest", () => {
+    mkdirSync(join(tmp, "ui"));
+    writeFileSync(join(tmp, "ui/package.json"), JSON.stringify({
+      dependencies: { react: "19.0.0" },
+      devDependencies: { vite: "7.0.0" },
+    }));
+
+    const results = detectProfileV2(tmp);
+    expect(results.find((result) => result.profile === "vite")).toBeDefined();
+    expect(results.find((result) => result.profile === "frontend")).toBeDefined();
+  });
+
+  test("workspace Next.js app outranks generic root package tooling", () => {
+    writeFileSync(join(tmp, "package.json"), JSON.stringify({
+      private: true,
+      dependencies: { turbo: "2.0.0" },
+      workspaces: ["apps/*"],
+    }));
+    mkdirSync(join(tmp, "apps/web"), { recursive: true });
+    writeFileSync(join(tmp, "apps/web/package.json"), JSON.stringify({
+      dependencies: { next: "15.0.0", react: "19.0.0" },
+    }));
+    expect(detectProfileV2(tmp)[0]?.profile).toBe("nextjs");
+  });
+
   test("workspaces glob: packages/*/package.json deps surface at the root", () => {
     writeFileSync(join(tmp, "package.json"), JSON.stringify({
       private: true,
@@ -308,5 +442,27 @@ describe("detectProfileV2 — monorepo workspaces", () => {
     }));
     const results = detectProfileV2(tmp);
     expect(results.find(r => r.profile === "stripe")).toBeUndefined();
+  });
+});
+
+describe("detectProfileV2 — environment key names", () => {
+  test("service-specific env keys suggest their profiles without reading values", () => {
+    writeFileSync(
+      join(tmp, ".env.example"),
+      "STRIPE_SECRET_KEY=replace-me\nCOOLIFY_API_TOKEN=replace-me\n",
+    );
+
+    const results = detectProfileV2(tmp);
+    expect(results.find((result) => result.profile === "stripe")).toBeDefined();
+    expect(results.find((result) => result.profile === "coolify")).toBeDefined();
+    expect(results.flatMap((result) => result.reasons).join(" ")).not.toContain("replace-me");
+  });
+
+  test("generic env keys do not invent service profiles", () => {
+    writeFileSync(join(tmp, ".env"), "API_KEY=secret\nDATABASE_URL=secret\n");
+
+    const results = detectProfileV2(tmp);
+    expect(results.find((result) => result.profile === "stripe")).toBeUndefined();
+    expect(results.find((result) => result.profile === "coolify")).toBeUndefined();
   });
 });

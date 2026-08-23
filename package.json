@@ -4,7 +4,8 @@
   "description": "Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory.",
   "type": "module",
   "bin": {
-    "cue": "bin/cue.mjs"
+    "cue": "bin/cue.mjs",
+    "cue-learnings": "bin/cue-learnings"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -12,6 +13,7 @@
   "scripts": {
     "cue": "bun src/index.ts",
     "test": "bun test",
+    "eval:profile-suggestions": "bun scripts/evaluate-profile-suggestions.ts",
     "test:critical:coverage": "bun test src/lib/profile-loader.test.ts src/lib/cwd-resolver.test.ts src/lib/runtime-materializer.test.ts src/commands/launch.test.ts --coverage --coverage-reporter=lcov --coverage-dir=coverage/critical --timeout 30000 && bun scripts/check-critical-coverage.ts",
     "lint:skills:baseline": "bun scripts/check-skill-lint-baseline.ts",
     "typecheck": "tsc --noEmit",

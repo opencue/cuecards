@@ -1,1 +1,1 @@
-core+skill-writer
+skill-writer+core

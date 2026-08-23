@@ -95,6 +95,7 @@ import {
   shouldInheritSessionProfile,
 } from "../lib/launch-guards";
 import { shimDir, stripShimDirFromPath } from "../lib/shim-dir";
+import { needsWindowsCommandShell } from "../lib/claude-binary";
 
 export {
   isAlwaysPickEnabled,
@@ -324,7 +325,11 @@ function execAgent(
   env: NodeJS.ProcessEnv,
 ): Promise<number> {
   return new Promise((res) => {
-    const child = spawn(bin, args, { env, stdio: "inherit" });
+    const child = spawn(bin, args, {
+      env,
+      stdio: "inherit",
+      shell: needsWindowsCommandShell(bin),
+    });
     child.on("exit", (code) => res(code ?? 0));
     child.on("error", () => res(127));
   });
@@ -906,7 +911,7 @@ export interface SuggestedEntry {
   /** Files / signals that drove the match — surfaced in the hint. */
   reasons: string[];
   /** AI advice is visually distinguished from deterministic detection. */
-  source?: "ai" | "deterministic";
+  source?: "ai" | "deterministic" | "hybrid" | "stale-hybrid";
 }
 
 /**
@@ -915,6 +920,61 @@ export interface SuggestedEntry {
  * medusa-next) without dominating the picker.
  */
 export const MAX_SUGGESTIONS = 2;
+
+/**
+ * Combine model judgement with repository signals without inventing a weighted
+ * score. Agreement leads. When they disagree, the model's first choice and the
+ * detector's strongest choice both survive the two-row picker cap.
+ */
+export function mergeProfileSuggestions(
+  advised: readonly DetectionResultV2[],
+  deterministic: readonly DetectionResultV2[],
+): DetectionResultV2[] {
+  const deterministicByProfile = new Map(
+    deterministic.map((item) => [item.profile, item]),
+  );
+  const seen = new Set<string>();
+  const merged: DetectionResultV2[] = [];
+  const add = (
+    item: DetectionResultV2,
+    counterpart?: DetectionResultV2,
+  ): void => {
+    if (seen.has(item.profile)) return;
+    seen.add(item.profile);
+    merged.push({
+      profile: item.profile,
+      confidence: Math.max(item.confidence, counterpart?.confidence ?? 0),
+      reasons: [...new Set([...item.reasons, ...(counterpart?.reasons ?? [])])].slice(
+        0,
+        3,
+      ),
+    });
+  };
+
+  const consensus = advised.filter((item) =>
+    deterministicByProfile.has(item.profile),
+  );
+  for (const item of consensus) {
+    add(item, deterministicByProfile.get(item.profile));
+  }
+
+  const advisedOnly = advised.filter(
+    (item) => !deterministicByProfile.has(item.profile),
+  );
+  const deterministicOnly = deterministic.filter(
+    (item) => !seen.has(item.profile),
+  );
+
+  // No consensus: preserve one choice from each system before either can fill
+  // the remaining rows. With consensus, it already represents both systems.
+  if (consensus.length === 0) {
+    if (advisedOnly[0]) add(advisedOnly[0]);
+    if (deterministicOnly[0]) add(deterministicOnly[0]);
+  }
+  for (const item of advisedOnly) add(item);
+  for (const item of deterministicOnly) add(item);
+  return merged;
+}
 
 /**
  * Minimum confidence for a detection to appear in the Suggested section at
@@ -1144,11 +1204,17 @@ export function buildPickerSections(
   const suggestedSet = new Set(eligibleSuggestions.map((s) => s.name));
 
   if (eligibleSuggestions.length > 0) {
+    const sourceKinds = new Set(eligibleSuggestions.map((s) => s.source));
+    const heading = sourceKinds.has("stale-hybrid")
+      ? "  ── ✨ Recent AI + repository signals ──"
+      : sourceKinds.has("hybrid")
+        ? "  ── ✨ AI + repository signals ──"
+        : sourceKinds.has("ai")
+          ? "  ── ✨ AI profile advisor ──"
+          : "  ── 🔍 Suggested for this cwd ──";
     result.push({
       value: `${DIVIDER_PREFIX}suggested`,
-      label: eligibleSuggestions.some((s) => s.source === "ai")
-        ? "  ── ✨ AI profile advisor ──"
-        : "  ── 🔍 Suggested for this cwd ──",
+      label: heading,
       hint: "",
       divider: true,
     });
@@ -1311,6 +1377,11 @@ export function getDefaultSelector(
  */
 interface ProfileOptionSet {
   options: PickerOption[];
+  profileNames: string[];
+  /** AI-cache + deterministic merge used by the default v2 suggestion card. */
+  detected: DetectionResultV2[];
+  /** Rules-only signals retained for service-companion auto-selection. */
+  deterministic: DetectionResultV2[];
   recents: RecentEntry[];
   recentsAreCwdScoped: boolean;
   featured: string[];
@@ -1468,20 +1539,32 @@ async function listProfileOptions(
   let detections = deterministic;
   let suggestionSource: SuggestedEntry["source"] = "deterministic";
   try {
-    const { adviseProfiles } = await import("../lib/ai-profile-advisor");
-    const advice = await adviseProfiles({
+    const { adviseProfiles, getCachedProfileAdvice } = await import("../lib/ai-profile-advisor");
+    const advisorOptions = {
       cwd,
       knownProfiles: names,
       currentProfile: pinnedProfile,
       preferredAgent,
-    });
-    if (advice) {
-      detections = advice.suggestions;
-      suggestionSource = "ai";
+    } as const;
+    const cachedAdvice = getCachedProfileAdvice(advisorOptions);
+    if (cachedAdvice) {
+      detections = mergeProfileSuggestions(
+        cachedAdvice.advice.suggestions,
+        deterministic,
+      );
+      suggestionSource =
+        cachedAdvice.freshness === "fresh" ? "hybrid" : "stale-hybrid";
+    }
+    if (!cachedAdvice || cachedAdvice.freshness === "stale") {
+      // A model-backed recommendation may take 12 seconds per attempted agent.
+      // Never make the picker wait: show deterministic or stale hybrid matches
+      // now and refresh the AI cache for the next launch in the background.
+      void adviseProfiles(advisorOptions).catch((err) => {
+        debug("launch:profile-advisor-warm", err);
+      });
     }
   } catch (err) {
-    // Timeout, unavailable agents, invalid JSON, and cache errors all fall
-    // through to the existing deterministic detector.
+    // Import and cache errors fall through to the deterministic detector.
     debug("launch:profile-advisor", err);
   }
   const suggested: SuggestedEntry[] = detections.map((d) => ({
@@ -1523,6 +1606,9 @@ async function listProfileOptions(
       suggested,
       featured,
     ),
+    profileNames: names,
+    detected: detections,
+    deterministic,
     recents: recent,
     recentsAreCwdScoped: recentCwd.length > 0,
     featured,
@@ -1599,8 +1685,8 @@ async function buildUserClaudeMd(
       "No `.cue.profile` is pinned to this directory. Before answering the user's first message, " +
       "summon the right profile into THIS session — no restart. Invoke the `meta/profile-summon` " +
       "skill, or run `cue summon` (auto-detects from the repo). It soft-loads the profile's persona " +
-      "and skill playbooks inline, pins `.cue.profile`, and prints `claude --continue` for the MCP / " +
-      "/slash-command tail (which needs a warm re-exec). Propose the detected profile in 3-4 lines, " +
+      "and skill playbooks inline, pins `.cue.profile`, and prints an agent-specific warm handoff for the MCP / " +
+      "command tail (Claude continues natively; Codex reads the prior rollout in a newly profiled process). Propose the detected profile in 3-4 lines, " +
       "apply on the user's OK, then proceed with their request.\n\n" +
       "Available profiles:\n```\n" +
       (await getProfileListForStamp()) +
@@ -2123,37 +2209,25 @@ export async function run(args: string[]): Promise<number> {
     } catch (err) {
       debug("launch:pair-suggestions", err);
     }
-    // Installed profile names, computed ONCE and shared by the autodetect +
-    // companion passes below (both filter their detections to known profiles).
-    // Previously each pass re-walked listProfiles() independently.
-    let knownProfileNames = new Set<string>();
-    try {
-      knownProfileNames = new Set(await listProfiles());
-    } catch (err) {
-      debug("launch:list-profiles", err);
-    }
-    // Cwd autodetect signals, forwarded to runPicker so it can offer a
+    // Installed profile names and detections were already collected while
+    // building options. Reuse them here so v2 receives cached AI advice too,
+    // without a second directory scan or listProfiles() walk.
+    const knownProfileNames = new Set(optionSet.profileNames);
+    // Merged cwd signals, forwarded to runPicker so it can offer a
     // "switch to <X>?" nudge when the user picks a profile that conflicts
     // with what the directory actually looks like (e.g. picking medusa-next
     // in a vite.config.ts project).
-    let detected: ReadonlyArray<{
-      name: string;
-      reasons: string[];
-      confidence: number;
-    }> = [];
-    let rawDetections: DetectionResultV2[] = [];
-    try {
-      rawDetections = detectProfileV2(cwd).filter((d) =>
-        knownProfileNames.has(d.profile),
-      );
-      detected = rawDetections.map((d) => ({
-        name: d.profile,
-        reasons: d.reasons,
-        confidence: d.confidence,
-      }));
-    } catch (err) {
-      debug("launch:autodetect", err);
-    }
+    const detected = optionSet.detected.map((d) => ({
+      name: d.profile,
+      reasons: d.reasons,
+      confidence: d.confidence,
+    }));
+    const rawDetections = optionSet.deterministic;
+    const repositoryDetected = rawDetections.map((d) => ({
+      name: d.profile,
+      reasons: d.reasons,
+      confidence: d.confidence,
+    }));
     // Content-aware combine companions: scan the cwd for asset/draft/brand
     // signals and feed matching profiles into the combine multiselect — plus
     // dep-detected service profiles (stripe, @aws-sdk/*, …), which join as
@@ -2260,6 +2334,7 @@ export async function run(args: string[]): Promise<number> {
       noPin: isAccountAlias,
       pairSuggestions,
       detected,
+      repositoryDetected,
       companions,
       universalSuggestions,
       resourceTally,
@@ -2532,6 +2607,7 @@ export async function run(args: string[]): Promise<number> {
         mcpPruneMode,
         isRecognizedPruneEnv,
         readRuntimeMcpServerIds,
+        withAutoPrunedGlobals,
       } = await import("../lib/mcp-overrides");
 
       const allMcpIds = profile.mcps.map((m) => m.id);
@@ -2700,9 +2776,25 @@ export async function run(args: string[]): Promise<number> {
       });
       if (kept !== null) {
         const keptSet = kept;
-        const disabled = allMcpIds
+        let disabled = allMcpIds
           .filter((id) => !keptSet.has(id))
           .map((id) => id.toLowerCase());
+        if (pruneMode === "all") {
+          const rtClaudeJson = join(
+            configDir(),
+            "runtime",
+            runtimeKey,
+            "claude",
+            ".claude.json",
+          );
+          disabled = withAutoPrunedGlobals(
+            disabled,
+            allMcpIds,
+            readRuntimeMcpServerIds(rtClaudeJson),
+            pinned,
+            needed.keys(),
+          );
+        }
         if (disabled.length > 0) {
           profile = {
             ...profile,

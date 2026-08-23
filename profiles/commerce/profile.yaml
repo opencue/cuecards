@@ -105,6 +105,9 @@ skills:
       skills: [postgres-best-practices]
     - repo: sickn33/antigravity-awesome-skills
       skills: [neon-postgres]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [shopify-expert]
 plugins:
   - claude-mem@thedotmack
   - resend@claude-plugins-official

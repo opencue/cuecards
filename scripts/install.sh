@@ -113,8 +113,10 @@ case "$METHOD" in
       warn "No writable bin dir found on PATH; add this to your shell rc:"
       printf "    %sexport PATH=\"%s/bin:\$PATH\"%s\n" "$C_DIM" "$DIR" "$C_RESET"
     else
-      ln -sf "$DIR/bin/cue" "$BIN_DIR/cue"
-      ok "Symlinked cue → $BIN_DIR/cue"
+      for cli in cue cue-learnings; do
+        ln -sf "$DIR/bin/$cli" "$BIN_DIR/$cli"
+        ok "Symlinked $cli → $BIN_DIR/$cli"
+      done
     fi
     ;;
 esac

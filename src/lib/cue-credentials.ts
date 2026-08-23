@@ -10,7 +10,14 @@
  *
  * The file is written with 0600 perms — it holds a bearer secret.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 
 import { configDir } from "./config-paths";
@@ -40,6 +47,10 @@ export function loadCredentials(): Credentials | null {
   if (!existsSync(path)) return null;
   try {
     const parsed = JSON.parse(readFileSync(path, "utf8")) as Partial<Credentials>;
+    // The retired `cue login` flow wrote `{ token, user, team }` to this same
+    // path. Its GitHub token is not a cuecards.cc API token, so never silently
+    // send that legacy secret to the marketplace API.
+    if (!("apiUrl" in parsed) && "user" in parsed) return null;
     if (typeof parsed.token === "string" && parsed.token.length > 0) {
       return { apiUrl: parsed.apiUrl ?? DEFAULT_API_URL, token: parsed.token };
     }
@@ -52,6 +63,20 @@ export function saveCredentials(creds: Credentials): string {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   const path = credentialsPath();
   writeFileSync(path, JSON.stringify(creds, null, 2) + "\n", { mode: 0o600 });
+  // `mode` only applies when Node creates a file. Tighten an existing file too,
+  // including files left world-readable by the retired cloud implementation.
+  chmodSync(path, 0o600);
+  return path;
+}
+
+/** Delete the hosted marketplace credential file. Idempotent for logout. */
+export function clearCredentials(): string {
+  const path = credentialsPath();
+  try {
+    unlinkSync(path);
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code !== "ENOENT") throw err;
+  }
   return path;
 }
 

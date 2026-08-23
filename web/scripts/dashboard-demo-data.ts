@@ -7,7 +7,7 @@
  * payloads keyed by the endpoint path the React fetcher requests.
  *
  * Usage:
- *   bun scripts/dashboard-demo-data.ts > web/public/demo-data.json
+ *   bun scripts/dashboard-demo-data.ts > public/demo-data.json
  *
  * The realistic shape comes from a hand-picked snapshot, NOT from running the
  * commands against the maintainer's machine — that would leak local prompts

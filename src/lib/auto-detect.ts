@@ -5,6 +5,7 @@
 
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, join } from "node:path";
+import { repoEvidence } from "./profile-match";
 
 /**
  * V2 detection result with 0-1 confidence and reasons array.
@@ -72,14 +73,15 @@ export interface DepProfileRule {
 }
 
 export const DEP_PROFILE_RULES: DepProfileRule[] = [
-  { profile: "stripe", deps: ["stripe"], prefixes: ["@stripe/"], pyDeps: ["stripe"], confidence: 0.6, reason: "package.json has stripe", companion: true },
-  { profile: "aws", deps: ["aws-sdk", "aws-cdk"], prefixes: ["@aws-sdk/", "@aws-cdk/"], pyDeps: ["boto3", "botocore", "aws-cdk-lib"], confidence: 0.6, reason: "package.json has @aws-sdk/*", companion: true },
-  { profile: "supabase", prefixes: ["@supabase/"], pyDeps: ["supabase"], confidence: 0.6, reason: "package.json has @supabase/*", companion: true },
-  { profile: "slack", prefixes: ["@slack/"], pyDeps: ["slack-sdk"], confidence: 0.6, reason: "package.json has @slack/*", companion: true },
-  { profile: "postgres", deps: ["pg", "postgres", "pg-promise"], pyDeps: ["psycopg", "psycopg2", "psycopg2-binary", "asyncpg"], confidence: 0.55, reason: "package.json has pg/postgres", companion: true },
-  { profile: "resend", deps: ["resend"], pyDeps: ["resend"], confidence: 0.6, reason: "package.json has resend", companion: true },
+  { profile: "stripe", deps: ["stripe"], prefixes: ["@stripe/"], pyDeps: ["stripe"], confidence: 0.65, reason: "package.json has stripe", companion: true },
+  { profile: "aws", deps: ["aws-sdk", "aws-cdk"], prefixes: ["@aws-sdk/", "@aws-cdk/"], pyDeps: ["boto3", "botocore", "aws-cdk-lib"], confidence: 0.65, reason: "package.json has @aws-sdk/*", companion: true },
+  { profile: "supabase", prefixes: ["@supabase/"], pyDeps: ["supabase"], confidence: 0.65, reason: "package.json has @supabase/*", companion: true },
+  { profile: "slack", prefixes: ["@slack/"], pyDeps: ["slack-sdk"], confidence: 0.65, reason: "package.json has @slack/*", companion: true },
+  { profile: "postgres", deps: ["pg", "postgres", "pg-promise"], pyDeps: ["psycopg", "psycopg2", "psycopg2-binary", "asyncpg"], confidence: 0.65, reason: "package.json has pg/postgres", companion: true },
+  { profile: "resend", deps: ["resend"], pyDeps: ["resend"], confidence: 0.65, reason: "package.json has resend", companion: true },
   { profile: "strapi", prefixes: ["@strapi/"], confidence: 0.65, reason: "package.json has @strapi/*", companion: true },
-  { profile: "threejs", deps: ["three"], confidence: 0.6, reason: "package.json has three", companion: true },
+  { profile: "threejs", deps: ["three"], confidence: 0.65, reason: "package.json has three", companion: true },
+  { profile: "browser", deps: ["playwright", "@playwright/test"], prefixes: ["@playwright/"], confidence: 0.65, reason: "package.json has Playwright" },
   // react-native is a primary stack, not a service: an RN repo also has
   // `react`, which the framework chain reads as plain `frontend` (0.8) — so
   // this one rule sits above the band to outrank that misread.
@@ -95,6 +97,17 @@ const exAny = (cwd: string, rels: string[]): boolean => rels.some((r) => ex(cwd,
  * turn profile suggestion into a directory crawl.
  */
 const MAX_WORKSPACE_PKGS = 24;
+const FALLBACK_PACKAGE_SKIP = new Set([
+  "node_modules",
+  "dist",
+  "build",
+  "target",
+  "vendor",
+  "coverage",
+  "resources",
+  "templates",
+  "fixtures",
+]);
 
 /**
  * Union of dependency names across workspace child packages, so a monorepo
@@ -117,6 +130,28 @@ function readWorkspaceDeps(cwd: string): Set<string> {
       for (const m of section[1]!.matchAll(/-\s*["']?([^"'\n#]+)/g)) patterns.push(m[1]!.trim());
     }
   } catch { /* no pnpm workspace file */ }
+
+  // Repositories without a root JS manifest often keep isolated clients in
+  // `ui/` or `electron/`. Scan only one level and only in this no-root case;
+  // a declared root manifest remains authoritative unless it names workspaces.
+  if (patterns.length === 0 && !ex(cwd, "package.json")) {
+    try {
+      for (const entry of readdirSync(cwd, { withFileTypes: true })) {
+        if (patterns.length >= MAX_WORKSPACE_PKGS) break;
+        if (
+          !entry.isDirectory() ||
+          entry.name.startsWith(".") ||
+          FALLBACK_PACKAGE_SKIP.has(entry.name) ||
+          !ex(cwd, join(entry.name, "package.json"))
+        ) {
+          continue;
+        }
+        patterns.push(entry.name);
+      }
+    } catch {
+      /* unreadable cwd contributes no child packages */
+    }
+  }
 
   const deps = new Set<string>();
   let read = 0;
@@ -222,16 +257,72 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
     results.set(profile, entry);
   }
 
+  // Structured file-language and dotenv-key evidence. This catches source-only
+  // repositories (for example several .py files without pyproject.toml) and
+  // integrations declared by safe env KEY NAMES. Dotenv values never leave
+  // repoEvidence(), which deliberately does not parse them.
+  const evidence = repoEvidence(cwd);
+  const languageProfiles: ReadonlyArray<
+    readonly [term: string, profile: string, confidence: number]
+  > = [
+    ["python", "python", 0.85],
+    ["rust", "rust", 0.85],
+    ["golang", "go-api", 0.8],
+    ["swift", "swift-ios", 0.85],
+    ["cpp", "cpp", 0.8],
+    ["flutter", "flutter", 0.85],
+  ];
+  for (const [term, profile, confidence] of languageProfiles) {
+    if (evidence.sources.get(term) !== "language") continue;
+    const stats = evidence.languageStats.get(term);
+    const calibratedConfidence =
+      stats === undefined || stats.share >= 0.35
+        ? confidence
+        : stats.share >= 0.2
+          ? Math.min(confidence, 0.7)
+          : Math.min(confidence, 0.55);
+    add(
+      profile,
+      calibratedConfidence,
+      evidence.reasons.get(term) ?? `${term} source files`,
+    );
+  }
+  const environmentProfiles: ReadonlyArray<
+    readonly [term: string, profile: string, confidence: number]
+  > = [
+    ["stripe", "stripe", 0.75],
+    ["coolify", "coolify", 0.75],
+    ["supabase", "supabase", 0.75],
+    ["resend", "resend", 0.75],
+    ["postgres", "postgres", 0.7],
+    ["aws", "aws", 0.7],
+    ["vercel", "vercel", 0.7],
+  ];
+  for (const [term, profile, confidence] of environmentProfiles) {
+    if (evidence.sources.get(term) !== "environment") continue;
+    add(profile, confidence, evidence.reasons.get(term) ?? `${term} env key`);
+  }
+
   // Domain-first signals: advertising repos are often infrastructure-shaped
-  // (Docker/Coolify) but their primary job is campaign management. Prefer the
-  // domain profile over generic ops when the repo name/docs/scripts say Ads.
+  // (Docker/Coolify) but their primary job is campaign management. Keep
+  // Google-specific terms separate from generic marketing language: a repo
+  // named `marketing-campaign` is not evidence that it uses Google Ads.
   const repoText = `${cwd} ${basename(cwd)}`.toLowerCase();
-  const adsSignal = /(^|[^a-z])(ads?|google[-_ ]?ads|campaigns?|ppc|roas|gaql|ad[-_ ]?copy)([^a-z]|$)/.test(repoText);
-  if (adsSignal) {
+  const googleAdsSignal = /(^|[^a-z])(google[-_ ]?ads?|gaql|ppc|roas)([^a-z]|$)/.test(repoText);
+  const adsSignal = /(^|[^a-z])(ads?|ad[-_ ]?copy)([^a-z]|$)/.test(repoText);
+  const marketingSignal = /(^|[^a-z])(marketing|campaigns?|content[-_ ]?calendar|brand)([^a-z]|$)/.test(repoText);
+  if (googleAdsSignal) {
     add("google-ads", 0.86, "repository name suggests advertising");
     add("claude-ads", 0.78, "repository name suggests advertising");
     add("marketing", 0.72, "repository name suggests advertising");
     add("ads-manager", 0.68, "repository name suggests advertising");
+  } else if (adsSignal) {
+    add("ads-manager", 0.82, "repository name suggests advertising");
+    add("marketing", 0.78, "repository name suggests advertising");
+    add("google-ads", 0.6, "repository name suggests advertising");
+  } else if (marketingSignal) {
+    add("marketing", 0.84, "repository name suggests marketing");
+    add("ads-manager", 0.6, "repository name suggests campaigns");
   }
 
   // ── Rust ──
@@ -264,12 +355,17 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
     add("nextjs", 0.85, "next.config.*");
   }
   if (exAny(cwd, ["vite.config.ts", "vite.config.js"])) add("frontend", 0.6, "vite.config.*");
+  if (exAny(cwd, ["vite.config.ts", "vite.config.js"])) add("vite", 0.8, "vite.config.*");
   if (exAny(cwd, ["tailwind.config.js", "tailwind.config.ts"])) add("frontend", 0.4, "tailwind.config.*");
 
   // ── Vercel (deploy target) — an explicit vercel.json / .vercel signals intent
   // to use Vercel, so it edges out the bare framework profile (nextjs/frontend).
   if (exAny(cwd, ["vercel.json", ".vercel/project.json"])) add("vercel", 0.95, "vercel.json");
   else if (ex(cwd, ".vercel")) add("vercel", 0.9, ".vercel/");
+
+  // Coolify's project marker states the deployment product directly; unlike a
+  // Dockerfile alone, it should select the dedicated profile above `backend`.
+  if (exAny(cwd, [".coolify", "coolify.json"])) add("coolify", 0.85, "Coolify project marker");
 
   // ── Docs ──
   if (exAny(cwd, ["astro.config.mjs", "docusaurus.config.js", "mkdocs.yml"])) {
@@ -281,7 +377,11 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
   if (isMedusaBackend) add("medusa-dev", 0.9, "medusa-config.*");
 
   // ── Fleet / meta ──
-  if (exAny(cwd, [".colony", ".omx", "scripts/codex-fleet"])) add("fleet-control", 0.6, "fleet markers");
+  // `.omx/` is ordinary agent-session state and appears in unrelated repos.
+  // Only project-owned orchestration markers identify a fleet-control repo.
+  if (exAny(cwd, [".colony", "scripts/codex-fleet"])) {
+    add("fleet-control", 0.6, "fleet markers");
+  }
   if (exAny(cwd, ["CLAUDE.md", ".claude"])) add("core", 0.4, "CLAUDE.md or .claude/");
   if (ex(cwd, "profiles")) add("full", 0.3, "profiles/ dir");
 
@@ -292,16 +392,19 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
     const isMedusaPkg = hasPrefix(allDeps, "@medusajs/");
     if (isMedusaPkg && allDeps.has("next")) {
       // Medusa storefront on Next.js.
-      add("medusa-next", 0.85, "package.json @medusajs + next");
+      add("medusa-next", 0.92, "package.json @medusajs + next");
     } else if (isMedusaPkg && hasAny(allDeps, ["vite"])) {
       // Medusa storefront on Vite (the canonical storefront pattern).
-      add("medusa-vite", 0.85, "package.json @medusajs + vite");
+      add("medusa-vite", 0.92, "package.json @medusajs + vite");
     } else if (isMedusaPkg) {
       add("medusa-dev", 0.85, "package.json @medusajs/*");
     } else if (allDeps.has("next")) {
       add("nextjs", 0.9, "package.json has next");
     } else if (hasAny(allDeps, ["astro", "@docusaurus/core"])) {
       add("docs-writer", 0.8, "package.json docs framework");
+    } else if (allDeps.has("vite")) {
+      add("vite", 0.85, "package.json has vite");
+      if (allDeps.has("react")) add("frontend", 0.75, "package.json has react");
     } else if (allDeps.has("react")) {
       add("frontend", 0.8, "package.json has react");
     } else {
@@ -321,9 +424,21 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
   }
 
   // ── Workspace child deps (monorepo roots) — same rule table ──
-  if (exAny(cwd, ["package.json", "pnpm-workspace.yaml"])) {
+  {
     const wsDeps = readWorkspaceDeps(cwd);
     if (wsDeps.size > 0) {
+      const workspaceHasMedusa = hasPrefix(wsDeps, "@medusajs/");
+      if (workspaceHasMedusa && wsDeps.has("next")) {
+        add("medusa-next", 0.88, "workspace has @medusajs + next");
+      } else if (workspaceHasMedusa && wsDeps.has("vite")) {
+        add("medusa-vite", 0.88, "workspace has @medusajs + vite");
+      } else if (workspaceHasMedusa) {
+        add("medusa-dev", 0.85, "workspace has @medusajs/*");
+      } else {
+        if (wsDeps.has("next")) add("nextjs", 0.85, "workspace package has next");
+        if (wsDeps.has("vite")) add("vite", 0.8, "workspace package has vite");
+        if (wsDeps.has("react")) add("frontend", 0.75, "workspace package has react");
+      }
       for (const rule of DEP_PROFILE_RULES) {
         const hit =
           (rule.deps !== undefined && hasAny(wsDeps, rule.deps)) ||

@@ -57,6 +57,16 @@ skills:
       skills: [linear]
     - repo: davila7/claude-code-templates
       skills: [linear]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills:
+        - chaos-engineer
+        - cloud-architect
+        - devops-engineer
+        - kubernetes-specialist
+        - monitoring-expert
+        - sre-engineer
+        - terraform-engineer
 plugins:
   - claude-mem@thedotmack
   - oh-my-claudecode@omc

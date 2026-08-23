@@ -33,4 +33,16 @@ skills:
     # Discovered 2026-06-08: Storybook component/story/screenshot access for UI work.
     - repo: ansariwaqqas/storybook-mcp-server
       skills: [storybook-mcp-server]
+    # Browser-framework and typed JavaScript specialists. nextjs inherits this
+    # profile, so keep nextjs-developer here to avoid a repo-level child override.
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills:
+        - angular-architect
+        - javascript-pro
+        - nextjs-developer
+        - react-expert
+        - typescript-pro
+        - vue-expert
+        - vue-expert-js
 mcps: []   # browser automation via the agent-browser CLI (no MCP needed)

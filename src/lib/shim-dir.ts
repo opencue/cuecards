@@ -20,7 +20,7 @@
  */
 
 import { homedir } from "node:os";
-import { join, resolve } from "node:path";
+import { delimiter, dirname, join, resolve, win32 } from "node:path";
 
 import { configDir } from "./config-paths";
 
@@ -54,8 +54,29 @@ export function fishDropInPath(homeDir?: string): string {
  * `isCueShimContent()` and `findRealAgentBin()` both match on, for both the
  * bare-`cue` and quoted-absolute-path forms of `cueInvoke`.
  */
-export function shimContent(cueInvoke: string, agent: ShimAgent): string {
+export function shimContent(
+  cueInvoke: string,
+  agent: ShimAgent,
+  platform: NodeJS.Platform = process.platform,
+): string {
+  if (platform === "win32") {
+    // A .cmd launcher is resolved by both cmd.exe and PowerShell without
+    // changing PowerShell's execution policy. `call` is required when the
+    // npm-installed `cue` command is itself cue.cmd; `%*` preserves the
+    // distinction between a bare launch (opens the picker) and an invocation
+    // with agent arguments (direct profile resolution).
+    return `@echo off\r\n@call ${cueInvoke} launch ${agent} %*\r\n@exit /b %ERRORLEVEL%\r\n`;
+  }
   return `#!/usr/bin/env bash\nexec ${cueInvoke} launch ${agent} "$@"\n`;
+}
+
+/** Platform-specific filename for an agent shim. */
+export function shimPath(
+  dir: string,
+  agent: ShimAgent,
+  platform: NodeJS.Platform = process.platform,
+): string {
+  return join(dir, platform === "win32" ? `${agent}.cmd` : agent);
 }
 
 /**
@@ -106,12 +127,22 @@ export function fishDropIn(dir: string): string {
  * tree makes that bare-name spawn find the real binary, so cue runs exactly
  * once per launch and the wrapper gets the agent it asked for.
  */
-export function stripShimDirFromPath(pathValue: string | undefined, dir: string): string {
-  const target = resolve(dir);
+export function stripShimDirFromPath(
+  pathValue: string | undefined,
+  dir: string,
+  platform: NodeJS.Platform = process.platform,
+): string {
+  const pathApi = platform === "win32" ? win32 : { resolve };
+  const separator = platform === "win32" ? ";" : delimiter;
+  const normalize = (value: string): string => {
+    const normalized = pathApi.resolve(value);
+    return platform === "win32" ? normalized.toLowerCase() : normalized;
+  };
+  const target = normalize(dir);
   return (pathValue ?? "")
-    .split(":")
-    .filter((entry) => resolve(entry) !== target)
-    .join(":");
+    .split(separator)
+    .filter((entry) => normalize(entry) !== target)
+    .join(separator);
 }
 
 export type ShimPosition = "before" | "after" | "absent";
@@ -128,12 +159,18 @@ export function shimDirPosition(
   pathDirs: readonly string[],
   realBin: string | null | undefined,
   dir: string,
+  platform: NodeJS.Platform = process.platform,
 ): ShimPosition {
-  const dirs = pathDirs.map((d) => resolve(d));
-  const shimIdx = dirs.indexOf(resolve(dir));
+  const pathApi = platform === "win32" ? win32 : { dirname, resolve };
+  const normalize = (value: string): string => {
+    const normalized = pathApi.resolve(value);
+    return platform === "win32" ? normalized.toLowerCase() : normalized;
+  };
+  const dirs = pathDirs.map(normalize);
+  const shimIdx = dirs.indexOf(normalize(dir));
   if (shimIdx < 0) return "absent";
   if (!realBin) return "before";
-  const realIdx = dirs.indexOf(resolve(realBin, ".."));
+  const realIdx = dirs.indexOf(normalize(pathApi.dirname(realBin)));
   if (realIdx < 0) return "before";
   return realIdx < shimIdx ? "after" : "before";
 }

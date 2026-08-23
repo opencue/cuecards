@@ -70,6 +70,9 @@ skills:
     # Antigravity Neon-Postgres pack (554 installs).
     - repo: sickn33/antigravity-awesome-skills
       skills: [neon-postgres]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [database-optimizer, postgres-pro, sql-pro]
 mcps:
   - postgres      # @modelcontextprotocol/server-postgres — requires DATABASE_URL to start
   - postgres-pro  # crystaldba/postgres-mcp (Postgres Pro) — perf/tuning/health; requires DATABASE_URI

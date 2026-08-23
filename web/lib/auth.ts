@@ -12,6 +12,8 @@ import { betterAuth } from "better-auth";
 import { apiKey } from "@better-auth/api-key";
 import { Pool } from "pg";
 
+import { resolveAuthBaseUrl } from "./auth-origin.js";
+
 function required(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`missing required env var: ${name}`);
@@ -21,7 +23,7 @@ function required(name: string): string {
 export const auth = betterAuth({
   // Public origin of the auth server. On Vercel this is the site URL; for the
   // local check it falls back to the dev server port.
-  baseURL: process.env.BETTER_AUTH_URL ?? "http://localhost:3000",
+  baseURL: resolveAuthBaseUrl(),
   // Extra origins allowed to make authenticated requests (CSRF allowlist).
   // Same-origin (baseURL) is always trusted; this covers the Vite dev proxy
   // origin in development. Comma-separated env var, e.g.

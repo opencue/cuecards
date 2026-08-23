@@ -1,9 +1,10 @@
 /**
- * `cue summon [profile]` — bind a profile into the LIVE session, no cold restart.
+ * `cue summon [profile]` — bind a profile into the LIVE Claude/Codex session.
  *
  * When you open a directory with no `.cue.profile`, the right profile's skills
- * and MCPs normally need a pin + a full `claude` restart (CLAUDE_CONFIG_DIR, the
- * Skill() list, MCP servers, and /slash commands are frozen at boot). `summon`
+ * and MCPs normally need a pin + a harness re-entry (CLAUDE_CONFIG_DIR /
+ * CODEX_HOME, the Skill() list, MCP servers, and commands are frozen at boot).
+ * `summon`
  * is the two-tier bridge:
  *
  *   Tier A (now, zero restart): resolve a profile, list its skills as
@@ -11,10 +12,11 @@
  *     them inline (the `meta/profile-summon` skill drives this — same mechanism
  *     as `meta/smart-loader`, just whole-profile).
  *   Tier B (durable + full fidelity): write the `.cue.profile` pin so the next
- *     launch is correct, and hand back the warm re-exec (`claude --continue`)
- *     that resumes THIS conversation under the fully-materialized profile —
- *     the only honest way to get the MCP servers + /slash commands the soft
- *     load can't fake.
+ *     launch is correct, and hand back an agent-specific warm handoff. Claude
+ *     resumes natively; Codex starts the requested profile with a prompt that
+ *     points at the current rollout, because Codex stores threads inside the
+ *     profile-specific CODEX_HOME and cannot resume that rollout from another
+ *     profile runtime directly.
  *
  * This command never spawns an agent and never fakes MCP tools. Its only side
  * effect is writing the pin (skippable with `--no-pin`).
@@ -25,13 +27,24 @@
  *   --no-pin         don't write .cue.profile
  *   --pick           list detected candidates and exit (no pin, no apply)
  *   --active <name>  override active-session profile detection (for mcp_status)
+ *   --agent <name>   force claude or codex (default: detect from CUE_AGENT)
+ *   --with-active    combine the requested profile with the active profile
  *   --dry-run        compute everything, write nothing
  */
 
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import { basename, join } from "node:path";
 
-import { loadProfile, listProfiles } from "../lib/profile-loader";
+import {
+  loadProfile,
+  listProfiles,
+  parseProfileSelector,
+} from "../lib/profile-loader";
 import { resolveLocalSkill } from "../lib/resolver-local";
 import { detectProfileV2 } from "../lib/auto-detect";
 import { getSkillDependencies } from "../lib/skill-dependencies";
@@ -40,7 +53,9 @@ import { getSkillDependencies } from "../lib/skill-dependencies";
  * SUGGESTED_MIN_CONFIDENCE in launch.ts so the picker and summon agree. */
 export const SUMMON_MIN_CONFIDENCE = 0.5;
 
-/** The warm re-exec that resumes this conversation under the full profile. */
+export type SummonAgent = "claude" | "codex";
+
+/** Kept as a public compatibility constant for callers that imported it. */
 export const REEXEC_CMD = "claude --continue";
 
 export interface SummonOptions {
@@ -49,6 +64,12 @@ export interface SummonOptions {
   profile?: string | null;
   /** Override active-session profile detection (for mcp_status). */
   active?: string | null;
+  /** Override agent detection. Defaults to CUE_AGENT / harness env signals. */
+  agent?: SummonAgent | null;
+  /** Merge the target with the active selector instead of replacing it. */
+  withActive?: boolean;
+  /** Environment lookup override (tests). */
+  env?: NodeJS.ProcessEnv;
   noPin?: boolean;
   dryRun?: boolean;
 }
@@ -59,9 +80,15 @@ export interface SummonSkill {
   path: string;
   /** "ok" (soft-loadable now) or "missing:<mcp1,mcp2>" (needs the harness). */
   mcp_status: string;
+  /** True when the running profile already supplied this skill. */
+  loaded: boolean;
 }
 
 export interface SummonResult {
+  /** Agent whose live session requested the summon. */
+  agent: SummonAgent;
+  /** Explicit/detected profile before an optional --with-active merge. */
+  requested_profile: string;
   profile: string;
   /** Profile persona prose to apply inline ("" when none declared). */
   persona: string;
@@ -86,23 +113,140 @@ export interface SummonResult {
   /** /slash commands the profile adds (need the harness). */
   commands: string[];
   plugins: string[];
+  /** Native resume for Claude, transcript handoff for Codex, else fresh. */
+  resume_mode: "native" | "transcript-handoff" | "fresh";
+  /** Codex rollout consumed by the handoff prompt, when discoverable. */
+  handoff_path: string | null;
   reexec_cmd: string;
 }
 
 /**
  * Detect the profile of the *currently running* session (not the cwd's pin).
  * Mirrors `resolve_active_profile` in smart-lookup.sh: env first, then the
- * CLAUDE_CONFIG_DIR runtime path. Returns a selector like "core+skill-writer".
+ * CLAUDE_CONFIG_DIR / CODEX_HOME runtime path. Returns a selector like
+ * "core+skill-writer".
  */
 export function detectActiveProfile(env: NodeJS.ProcessEnv = process.env): string | null {
   const fromEnv = env.CUE_ACTIVE_PROFILE || env.CUE_PROFILE;
   if (fromEnv) return fromEnv;
-  const ccd = env.CLAUDE_CONFIG_DIR;
-  if (ccd) {
-    const m = ccd.match(/\/cue\/runtime\/(.+?)\/claude\/?$/);
+  for (const [path, runtimeLeaf] of [
+    [env.CLAUDE_CONFIG_DIR, "claude"],
+    [env.CODEX_HOME, "codex"],
+  ] as const) {
+    if (!path) continue;
+    const normalized = path.replaceAll("\\", "/");
+    const m = normalized.match(
+      new RegExp(`/cue/runtime/(.+?)/${runtimeLeaf}/?$`),
+    );
     if (m) return m[1]!;
   }
   return null;
+}
+
+/** Detect the harness that invoked cue. Explicit CUE_AGENT always wins. */
+export function detectActiveAgent(
+  env: NodeJS.ProcessEnv = process.env,
+): SummonAgent {
+  const declared = env.CUE_AGENT?.toLowerCase();
+  if (declared === "codex") return "codex";
+  if (declared === "claude" || declared === "claude-code") return "claude";
+  if (
+    env.CODEX_THREAD_ID ||
+    env.CODEX_SESSION_ID ||
+    env.CODEX_HOME
+  ) {
+    return "codex";
+  }
+  return "claude";
+}
+
+/** Shell-safe single argument for the printable warm-handoff command. */
+function shellQuote(value: string): string {
+  return `'${value.replaceAll("'", `'\\''`)}'`;
+}
+
+/** Locate the current Codex rollout without reading or copying its contents. */
+export function findActiveCodexRollout(
+  env: NodeJS.ProcessEnv = process.env,
+): string | null {
+  const home = env.CODEX_HOME;
+  const threadId = env.CODEX_THREAD_ID || env.CODEX_SESSION_ID;
+  if (!home || !threadId) return null;
+
+  const root = join(home, "sessions");
+  if (!existsSync(root)) return null;
+  const pending: Array<{ path: string; depth: number }> = [
+    { path: root, depth: 0 },
+  ];
+  let visited = 0;
+  while (pending.length > 0 && visited < 10_000) {
+    const current = pending.pop()!;
+    visited++;
+    let entries: Array<{
+      name: string;
+      isFile(): boolean;
+      isDirectory(): boolean;
+    }>;
+    try {
+      entries = readdirSync(current.path, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      const path = join(current.path, entry.name);
+      if (
+        entry.isFile() &&
+        entry.name.endsWith(".jsonl") &&
+        entry.name.includes(threadId)
+      ) {
+        return path;
+      }
+      if (entry.isDirectory() && current.depth < 6) {
+        pending.push({ path, depth: current.depth + 1 });
+      }
+    }
+  }
+  return null;
+}
+
+function combineSelectors(active: string | null, requested: string): string {
+  if (!active) return requested;
+  return [
+    ...new Set([
+      ...parseProfileSelector(active),
+      ...parseProfileSelector(requested),
+    ]),
+  ].join("+");
+}
+
+export function buildReexecCommand(opts: {
+  agent: SummonAgent;
+  profile: string;
+  handoffPath?: string | null;
+}): { command: string; mode: SummonResult["resume_mode"] } {
+  const profile = shellQuote(opts.profile);
+  if (opts.agent === "claude") {
+    return {
+      command: `cue launch claude --cue-profile ${profile} --cue-full -- --continue`,
+      mode: "native",
+    };
+  }
+
+  if (opts.handoffPath) {
+    const prompt =
+      "Continue the unfinished work after a Cue profile switch. " +
+      `The previous Codex rollout is ${opts.handoffPath}. ` +
+      "Read only the latest user goal, verified progress, constraints, and pending work from that JSONL; do not replay the whole transcript or print secrets. Then continue autonomously.";
+    return {
+      command: `cue launch codex --cue-profile ${profile} --cue-full -- ${shellQuote(prompt)}`,
+      mode: "transcript-handoff",
+    };
+  }
+
+  return {
+    command: `cue launch codex --cue-profile ${profile} --cue-full`,
+    mode: "fresh",
+  };
 }
 
 /** Union of MCP ids (lowercased) loaded by an active profile selector. */
@@ -142,10 +286,14 @@ async function resolveTarget(
 ): Promise<{ profile: string; detected: boolean; confidence?: number; reasons?: string[] }> {
   const known = new Set(await listProfiles());
   if (explicit) {
-    if (!known.has(explicit)) {
-      throw new Error(`unknown profile "${explicit}" — run \`cue list\` to see profiles`);
+    const parts = parseProfileSelector(explicit);
+    const unknown = parts.filter((part) => !known.has(part));
+    if (unknown.length > 0) {
+      throw new Error(
+        `unknown profile "${unknown[0]}" — run \`cue list\` to see profiles`,
+      );
     }
-    return { profile: explicit, detected: false };
+    return { profile: parts.join("+"), detected: false };
   }
   const dets = detectProfileV2(cwd).filter((d) => known.has(d.profile));
   const top = dets[0];
@@ -162,13 +310,27 @@ async function resolveTarget(
  * Exported for tests and for the `meta/profile-summon` skill via `--json`.
  */
 export async function summon(opts: SummonOptions): Promise<SummonResult> {
+  const env = opts.env ?? process.env;
   const target = await resolveTarget(opts.profile, opts.cwd);
-  const profile = await loadProfile(target.profile);
 
   // `undefined` (omitted) → auto-detect the running session; explicit `null` →
   // treat as no active session (every MCP-gated skill counts as not loaded).
-  const active = opts.active === undefined ? detectActiveProfile() : opts.active;
+  const active =
+    opts.active === undefined ? detectActiveProfile(env) : opts.active;
+  const selector = opts.withActive
+    ? combineSelectors(active, target.profile)
+    : target.profile;
+  const profile = await loadProfile(selector);
   const activeMcps = await loadActiveMcpIds(active);
+  const activeSkills = new Set<string>();
+  if (active) {
+    try {
+      const activeProfile = await loadProfile(active);
+      for (const skill of activeProfile.skills.local) activeSkills.add(skill.id);
+    } catch {
+      // Stale active selector: conservative, report every requested skill.
+    }
+  }
 
   const skills: SummonSkill[] = [];
   for (const s of profile.skills.local) {
@@ -179,7 +341,12 @@ export async function summon(opts: SummonOptions): Promise<SummonResult> {
       // Skill id doesn't resolve on disk — still report it; the consumer can
       // fall through to smart-loader's filesystem scan.
     }
-    skills.push({ id: s.id, path, mcp_status: skillMcpStatus(s.id, activeMcps) });
+    skills.push({
+      id: s.id,
+      path,
+      mcp_status: skillMcpStatus(s.id, activeMcps),
+      loaded: activeSkills.has(s.id),
+    });
   }
 
   const pinPath = join(opts.cwd, ".cue.profile");
@@ -193,7 +360,18 @@ export async function summon(opts: SummonOptions): Promise<SummonResult> {
     pinWritten = true;
   }
 
+  const agent = opts.agent ?? detectActiveAgent(env);
+  const handoffPath =
+    agent === "codex" ? findActiveCodexRollout(env) : null;
+  const reexec = buildReexecCommand({
+    agent,
+    profile: profile.name,
+    handoffPath,
+  });
+
   return {
+    agent,
+    requested_profile: target.profile,
     profile: profile.name,
     persona: profile.persona ?? "",
     detected: target.detected,
@@ -208,7 +386,9 @@ export async function summon(opts: SummonOptions): Promise<SummonResult> {
     mcps: profile.mcps.map((m) => ({ id: m.id, loaded: activeMcps.has(m.id.toLowerCase()) })),
     commands: profile.commands.map((c) => `/${basename(c, ".md")}`),
     plugins: profile.plugins.map((p) => p.id),
-    reexec_cmd: REEXEC_CMD,
+    resume_mode: reexec.mode,
+    handoff_path: handoffPath,
+    reexec_cmd: reexec.command,
   };
 }
 
@@ -216,25 +396,29 @@ export async function summon(opts: SummonOptions): Promise<SummonResult> {
 // CLI wrapper
 // ---------------------------------------------------------------------------
 
-const HELP = `cue summon — bind a profile into the LIVE session, no cold restart
+const HELP = `cue summon — bind a profile into the LIVE Claude/Codex session
 
 Usage: cue summon [profile] [flags]
 
 Resolves a profile (explicit arg, else auto-detected from this directory),
 lists its skills as readable SKILL.md paths so the running agent can soft-load
-them inline, pins .cue.profile, and prints the warm re-exec (\`${REEXEC_CMD}\`)
-that resumes this conversation under the full profile (MCPs + /slash commands).
+them inline, pins .cue.profile, and prints an agent-specific warm handoff for
+the full profile (MCPs + commands). Claude resumes natively; Codex starts the
+new profile with a prompt pointing at the current rollout.
 
 Flags:
   --json           machine-readable output (for meta/profile-summon)
   --no-pin         don't write .cue.profile
   --pick           list detected candidates and exit (no pin)
   --active <name>  override active-session profile (affects mcp_status)
+  --agent <name>   force claude or codex (default: auto-detect)
+  --with-active    combine requested + currently active profiles
   --dry-run        compute everything, write nothing
   -h, --help       show this help
 
 Examples:
-  cue summon vercel          # summon a known profile here
+  cue summon coolify --with-active  # add Coolify to the running profile
+  cue summon vercel          # replace with a known profile here
   cue summon                 # auto-detect from cwd
   cue summon --json | jq     # drive from the meta/profile-summon skill
 `;
@@ -246,8 +430,13 @@ function printHuman(r: SummonResult): void {
   if (r.detected && r.reasons?.length) out.push(`   why: ${r.reasons.slice(0, 3).join(", ")}`);
   out.push("");
 
-  const loadable = r.skills.filter((s) => s.mcp_status === "ok");
-  const gated = r.skills.filter((s) => s.mcp_status !== "ok");
+  out.push(`   agent: ${r.agent}`);
+  const loadable = r.skills.filter(
+    (s) => !s.loaded && s.mcp_status === "ok",
+  );
+  const gated = r.skills.filter(
+    (s) => !s.loaded && s.mcp_status !== "ok",
+  );
   out.push(`✅ soft-load now (no restart): persona${r.persona ? "" : " (none)"} + ${loadable.length} skill${loadable.length === 1 ? "" : "s"}`);
   for (const s of loadable.slice(0, 8)) out.push(`   • ${s.id}`);
   if (loadable.length > 8) out.push(`   …and ${loadable.length - 8} more`);
@@ -274,7 +463,13 @@ function printHuman(r: SummonResult): void {
   } else {
     out.push(`📌 pin skipped`);
   }
-  out.push(`↻ full fidelity (MCPs + /slash): run \`${r.reexec_cmd}\` resumes this conversation`);
+  const handoff =
+    r.resume_mode === "native"
+      ? "resumes this conversation"
+      : r.resume_mode === "transcript-handoff"
+        ? "starts profiled Codex with transcript handoff"
+        : "starts a fresh profiled Codex session";
+  out.push(`↻ full fidelity (MCPs + commands): run \`${r.reexec_cmd}\` — ${handoff}`);
   process.stdout.write(out.join("\n") + "\n");
 }
 
@@ -291,13 +486,26 @@ export async function run(args: string[]): Promise<number> {
   let noPin = false;
   let pick = false;
   let dryRun = false;
+  let agent: SummonAgent | undefined;
+  let withActive = false;
   for (let i = 0; i < args.length; i++) {
     const a = args[i]!;
     if (a === "--json") json = true;
     else if (a === "--no-pin") noPin = true;
     else if (a === "--pick") pick = true;
     else if (a === "--dry-run") dryRun = true;
+    else if (a === "--with-active") withActive = true;
     else if (a === "--active") active = args[++i] ?? undefined;
+    else if (a === "--agent") {
+      const value = args[++i];
+      if (value !== "claude" && value !== "codex") {
+        process.stderr.write(
+          `cue summon: --agent must be "claude" or "codex"\n`,
+        );
+        return 1;
+      }
+      agent = value;
+    }
     else if (!a.startsWith("-") && profile === null) profile = a;
   }
 
@@ -323,7 +531,15 @@ export async function run(args: string[]): Promise<number> {
 
   let result: SummonResult;
   try {
-    result = await summon({ cwd, profile, active, noPin, dryRun });
+    result = await summon({
+      cwd,
+      profile,
+      active,
+      agent,
+      withActive,
+      noPin,
+      dryRun,
+    });
   } catch (err) {
     process.stderr.write(`cue summon: ${err instanceof Error ? err.message : String(err)}\n`);
     return 1;
