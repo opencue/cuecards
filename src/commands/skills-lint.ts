@@ -6,13 +6,14 @@
  *   S2: Body > 5000 tokens (~20KB) (warning)
  *   S3: No examples in body (warning)
  *   S4: Frontmatter missing description field (error)
- *   S5: Duplicate slug across categories (error)
+ *   S5: Duplicate slug across categories (warning; namespaces keep them distinct)
  *   S6: Tags empty (info)
  *   S7: No trigger phrases in description (warning)
  */
 
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { parse as parseYaml } from "yaml";
 
 import { listAllSkillIds } from "../lib/resolver-local";
 import { repoRoot } from "../lib/repo-root";
@@ -24,6 +25,26 @@ interface LintIssue {
   severity: "error" | "warning" | "info";
   skill: string;
   message: string;
+}
+
+export function parseSkillFrontmatter(frontmatter: string): {
+  description: string;
+  tags: string[];
+} {
+  try {
+    // Older curated skills sometimes repeat a scalar key (usually `name`).
+    // Keep linting their actual metadata instead of treating the whole
+    // frontmatter as absent; the last occurrence matches the runtime parser.
+    const parsed = parseYaml(frontmatter, { uniqueKeys: false }) as Record<string, unknown> | null;
+    return {
+      description: typeof parsed?.description === "string" ? parsed.description.trim() : "",
+      tags: Array.isArray(parsed?.tags)
+        ? parsed.tags.filter((tag): tag is string => typeof tag === "string")
+        : [],
+    };
+  } catch {
+    return { description: "", tags: [] };
+  }
 }
 
 function lintSkill(id: string): LintIssue[] {
@@ -43,16 +64,16 @@ function lintSkill(id: string): LintIssue[] {
     issues.push({ code: "S4", severity: "error", skill: id, message: "No YAML frontmatter found" });
   } else {
     const fm = fmMatch[1]!;
-    const descMatch = fm.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+    const metadata = parseSkillFrontmatter(fm);
 
     // S1: Description quality
-    if (!descMatch || descMatch[1]!.length < 10) {
+    if (metadata.description.length < 10) {
       issues.push({ code: "S1", severity: "error", skill: id, message: "Description missing or too short (< 10 chars)" });
     }
 
     // S7: No trigger phrases
-    if (descMatch) {
-      const desc = descMatch[1]!.toLowerCase();
+    if (metadata.description) {
+      const desc = metadata.description.toLowerCase();
       const hasTrigger = /when|if user|asks?|request|says?|wants?/.test(desc);
       if (!hasTrigger) {
         issues.push({ code: "S7", severity: "warning", skill: id, message: "Description lacks trigger phrases (when/if user asks/says)" });
@@ -60,8 +81,7 @@ function lintSkill(id: string): LintIssue[] {
     }
 
     // S6: Tags empty
-    const tagsMatch = fm.match(/^tags:\s*\[([^\]]*)\]/m);
-    if (!tagsMatch || !tagsMatch[1]!.trim()) {
+    if (metadata.tags.length === 0) {
       issues.push({ code: "S6", severity: "info", skill: id, message: "No tags defined" });
     }
   }
@@ -117,7 +137,7 @@ export async function run(args: string[]): Promise<number> {
   for (const [slug, owners] of slugMap) {
     if (owners.length > 1) {
       for (const id of owners) {
-        allIssues.push({ code: "S5", severity: "error", skill: id, message: `Duplicate slug "${slug}" also in: ${owners.filter(o => o !== id).join(", ")}` });
+        allIssues.push({ code: "S5", severity: "warning", skill: id, message: `Duplicate slug "${slug}" also in: ${owners.filter(o => o !== id).join(", ")}` });
       }
     }
   }
