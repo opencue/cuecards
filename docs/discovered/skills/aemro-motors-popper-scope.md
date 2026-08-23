@@ -2,21 +2,21 @@
 title: "aemro-motors/popper-scope — Claude Code skill discovered by cue"
 description: "Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis"
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, skill, research]
 ---
 
-# ✨ [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+# 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 0** · strong (score 7.5) · HTML · claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 9) · HTML · claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
 > Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-22
+- 🗓️ Last pushed: 2026-08-23
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill, falsifiability, hypothesis, popper, research
 
 ## Best fit cue profiles

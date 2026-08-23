@@ -2,7 +2,7 @@
 title: "taransalh1/half-life — Claude Code skill discovered by cue"
 description: "Safety-first Claude Code plugin that finds temporary engineering decisions—workarounds, feature flags, compatibility paths, pinned dependencies, and migration l"
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, skill, core]
 ---
 

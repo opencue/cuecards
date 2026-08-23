@@ -2,19 +2,19 @@
 title: "Naberator/editor-guide — Claude Code skill discovered by cue"
 description: "Claude Code plugin: Claude drives your editor (Neovim, JetBrains, VS Code/Cursor/Windsurf) — opens files at the right line instead of printing path:line"
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Naberator/editor-guide](https://github.com/Naberator/editor-guide)
 
-**★ 2** · potential (score 4.4)
+**★ 2** · potential (score 4.3)
 
 > Claude Code plugin: Claude drives your editor (Neovim, JetBrains, VS Code/Cursor/Windsurf) — opens files at the right line instead of printing path:line
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-08-18
 - 🏷️ Tags: (none)

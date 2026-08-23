@@ -1,104 +1,50 @@
 ---
 title: "Claude Code Skills for backend"
-description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+<a id="sandbaseai-cli"></a>
+## 💎 [sandbaseai/cli](https://github.com/sandbaseai/cli)
 
-**★ 421** · exceptional (score 22.7) · Python · tags: ai-agent, ai-infra, claude, deepseek-harness, devops
+**★ 33** · exceptional (score 12.3) · TypeScript · tags: agent-skills, agent-tools, ai-agents, ai-coding, ai-gateway
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
-
-✅ SKILL.md
+Open-source AI CLI and local MCP server connecting 25 AI clients—including Claude Code, Cursor, Codex, and ChatGPT—to 2,000+ models and APIs, with OAuth and rollback.
 
 ```bash
-cue skills add Ikalus1988/MisakaNet --profile backend
+cue skills add sandbaseai/cli --profile backend
 ```
 
 ---
 
-<a id="open-metadata-openmetadata"></a>
-## 💎 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
+<a id="peopleworks-xaflogicexplainer"></a>
+## 💎 [peopleworks/XAFLogicExplainer](https://github.com/peopleworks/XAFLogicExplainer)
 
-**★ 14939** · exceptional (score 17) · TypeScript · tags: context, context-layer, data-catalog, data-collaboration, data-contracts
+**★ 7** · exceptional (score 10.5) · C# · tags: ai-agents, claude-code, csharp, devexpress, documentation-generator
 
-The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
-
-```bash
-cue skills add open-metadata/OpenMetadata --profile backend
-```
-
----
-
-<a id="viewflow-seedkit"></a>
-## 💎 [viewflow/seedkit](https://github.com/viewflow/seedkit)
-
-**★ 78** · exceptional (score 15.2) · tags: claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
-
-Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI.
+Teach your AI coding agent what your DevExpress XAF application actually does. Roslyn-based extraction of entities, controllers, business rules and Model Editor customizations.
 
 ```bash
-cue skills add viewflow/seedkit --profile backend
-```
-
----
-
-<a id="enkinvsh-crystallized"></a>
-## 💎 [enkinvsh/crystallized](https://github.com/enkinvsh/crystallized)
-
-**★ 2** · exceptional (score 11.5) · Python · tags: agent-memory, ai-agent, ai-agents, ai-memory, anthropic
-
-Persistent memory MCP server for opencode — Redis facts, ChromaDB semantic search, document storage, power-law memory decay, agent identity. Plus first-party Claude.app OAuth: use your Claude Max plan without third-party detection. One-command install.
-
-```bash
-cue skills add enkinvsh/crystallized --profile backend
-```
-
----
-
-<a id="alex-brecher-shopify-multi-store"></a>
-## 💎 [alex-brecher/shopify-multi-store](https://github.com/alex-brecher/shopify-multi-store)
-
-**★ 1** · exceptional (score 10.8) · JavaScript · tags: agent-skills, ai-agent, ai-agents, claude, claude-code
-
-One MCP server for every Shopify store. Search products, compare inventory, find catalog gaps, track fulfillment SLAs, and make guarded updates from Claude, Codex, Cursor, and VS Code.
-
-```bash
-cue skills add alex-brecher/shopify-multi-store --profile backend
-```
-
----
-
-<a id="eirik-rune-runemap"></a>
-## 💎 [eirik-rune/runemap](https://github.com/eirik-rune/runemap)
-
-**★ 3** · exceptional (score 9.2) · Python · tags: agent-skills, agents, ascii-art, claude-skill, llm
-
-Weather radar MCP server and Agent Skill — live conditions and a text radar map for any place on earth, in one HTTP request. No image, no API key.
-
-```bash
-cue skills add eirik-rune/runemap --profile backend
+cue skills add peopleworks/XAFLogicExplainer --profile backend
 ```
 
 ---
 
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
-## ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 10** · strong (score 7.9) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 11** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
 Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
@@ -108,41 +54,28 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="fastbean-au-hippocampus"></a>
-## ✨ [fastbean-au/hippocampus](https://github.com/fastbean-au/hippocampus)
+<a id="imhamzakhan-context-flow-compressor"></a>
+## 💎 [imhamzakhan/context-flow-compressor](https://github.com/imhamzakhan/context-flow-compressor)
 
-**★ 0** · strong (score 7.5) · Go · tags: audit-trail, bounded-storage, cognitive-architecture, context-management, data-retention
+**★ 0** · exceptional (score 8) · HTML · tags: ai-agents, ai-coding, anthropic, claude-code, cli
 
-A finite, biological-inspired memory storage engine for log retention, audit trails, and context management.
+Top Token-Saving AI Coding Tools 2026: Local Memory MCP Cuts Costs 90%
 
 ```bash
-cue skills add fastbean-au/hippocampus --profile backend
+cue skills add imhamzakhan/context-flow-compressor --profile backend
 ```
 
 ---
 
-<a id="pipik-roman-rowlite"></a>
-## ✨ [pipik-roman/rowlite](https://github.com/pipik-roman/rowlite)
+<a id="superczach-lunar-gatekeeper-sentinel"></a>
+## ✨ [superczach/lunar-gatekeeper-sentinel](https://github.com/superczach/lunar-gatekeeper-sentinel)
 
-**★ 3** · strong (score 6.7) · Go · tags: llm-tools, markdown, markdown-editor, markdown-parser, markdown-table
+**★ 0** · strong (score 5.5) · HTML · tags: agent-skills, api-proxy, mcp, mcp-client, mcp-gateway
 
-Rowlite is an open-source, non-SQL, lightweight CLI tool and MCP server to work with markdown tables - create, read, update, delete
-
-```bash
-cue skills add pipik-roman/rowlite --profile backend
-```
-
----
-
-<a id="grunion-ai-weave"></a>
-## ✨ [grunion-ai/weave](https://github.com/grunion-ai/weave)
-
-**★ 0** · strong (score 5) · JavaScript · tags: ai-agents, airtable-alternative, clickup-alternative, database, fibery-alternative
-
-Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp, built so AI agents are first-class users. Connected tables, relations, workflows, formulas, rollups and per-entity markdown/PDF documents in one SQLite file — with a REST API, CLI and MCP server. Zero dependencies, no build step, MIT.
+Lunar Gateway 2026: Agent-Native MCP Security & Governance Hub for AI Workloads
 
 ```bash
-cue skills add grunion-ai/weave --profile backend
+cue skills add superczach/lunar-gatekeeper-sentinel --profile backend
 ```
 
 ---

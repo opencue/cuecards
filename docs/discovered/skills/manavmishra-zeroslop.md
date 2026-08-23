@@ -2,7 +2,7 @@
 title: "manavmishra/ZeroSlop — Claude Code skill discovered by cue"
 description: "You use AI to help with your writing, and now everything you create reads AI-written. There is a name for that machine \"tell\": AI slop. Zero Slop finds that slo"
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-22
+- 🗓️ Last pushed: 2026-08-23
 - 🏷️ Tags: agent-skills, ai-detection, ai-slop, ai-writing, chatgpt, claude-code, claude-skill, cli, codex, content-writing, de-slop, editing, humanize-ai-text, humanizer, linkedin, nlp, prose, python, text-analysis, writing-tools
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 

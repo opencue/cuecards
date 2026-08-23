@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="alex-brecher-shopify-multi-store"></a>
-## 💎 [alex-brecher/shopify-multi-store](https://github.com/alex-brecher/shopify-multi-store)
-
-**★ 1** · exceptional (score 10.8) · JavaScript · tags: agent-skills, ai-agent, ai-agents, claude, claude-code
-
-One MCP server for every Shopify store. Search products, compare inventory, find catalog gaps, track fulfillment SLAs, and make guarded updates from Claude, Codex, Cursor, and VS Code.
-
-```bash
-cue skills add alex-brecher/shopify-multi-store --profile medusa-dev
-```
 
 ---
 

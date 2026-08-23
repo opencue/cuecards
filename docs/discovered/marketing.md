@@ -1,37 +1,24 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-22
+updated: 2026-08-23
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sequenzy-mcp"></a>
-## 💎 [Sequenzy/mcp](https://github.com/Sequenzy/mcp)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: ai-agents, email-marketing, lifecycle-email, marketing-automation, mcp-server
-
-MCP server for AI agents to operate Sequenzy lifecycle, campaign, and transactional email workflows.
-
-```bash
-cue skills add Sequenzy/mcp --profile marketing
-```
-
----
-
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## ✨ [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
 Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
