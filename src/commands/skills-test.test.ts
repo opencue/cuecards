@@ -112,6 +112,21 @@ beforeAll(async () => {
     "case.md": fm("x", ["uppercase_keyword"], []),
   });
 
+  // Bun treats absolute test paths as name filters in some environments.
+  // This fixture proves script tests run from their own scripts directory.
+  mkSkill("cat/script-pass", "Script test fixture.");
+  {
+    const scriptsDir = join(
+      tmpDir, "resources", "skills", "skills", "cat", "script-pass", "scripts",
+    );
+    mkdirSync(scriptsDir, { recursive: true });
+    writeFileSync(
+      join(scriptsDir, "pass.test.ts"),
+      'import { expect, test } from "bun:test";\ntest("passes", () => expect(2 + 2).toBe(4));\n',
+      "utf8",
+    );
+  }
+
   process.env.CUE_REPO_ROOT = tmpDir;
   // Dynamic import so module-level SKILLS_ROOT = tmpDir/.../skills/skills.
   const mod = await import("./skills-test");
@@ -180,6 +195,10 @@ describe("run — single skill, text mode", () => {
 
   test("nonexistent skill id → no test cases found, returns 0", async () => {
     expect(await run(["cat/zzz-does-not-exist"])).toBe(0);
+  });
+
+  test("runs Bun script tests from the skill scripts directory", async () => {
+    expect(await run(["cat/script-pass"])).toBe(0);
   });
 });
 

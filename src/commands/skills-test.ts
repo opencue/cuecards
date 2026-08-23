@@ -121,11 +121,14 @@ export async function run(args: string[]): Promise<number> {
       if (testFiles.length > 0) {
         const scriptResults: TestResult[] = [];
         for (const tf of testFiles) {
-          const filePath = join(scriptsDir, tf);
           const cmd = tf.endsWith(".py") ? "python3" : "bun";
-          const cmdArgs = tf.endsWith(".py") ? [filePath] : ["test", filePath];
+          const cmdArgs = tf.endsWith(".py") ? [tf] : ["test", tf];
           const { spawnSync } = await import("node:child_process");
-          const proc = spawnSync(cmd, cmdArgs, { encoding: "utf8", timeout: 30000 });
+          const proc = spawnSync(cmd, cmdArgs, {
+            cwd: scriptsDir,
+            encoding: "utf8",
+            timeout: 30000,
+          });
           const passed = proc.status === 0;
           scriptResults.push({
             file: tf,
