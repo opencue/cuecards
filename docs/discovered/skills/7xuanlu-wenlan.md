@@ -2,21 +2,21 @@
 title: "7xuanlu/wenlan — Claude Code skill discovered by cue"
 description: "Wenlan is a knowledge base for the AI-native age. Your AI agents capture what they learn, Wenlan keeps it current and distills it into source-cited wiki pages y"
 layout: page
-updated: 2026-08-06
+updated: 2026-08-16
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [7xuanlu/wenlan](https://github.com/7xuanlu/wenlan)
 
-**★ 47** · exceptional (score 13.3) · Rust · ai-memory, claude, claude-code, claude-code-plugin, codex
+**★ 47** · exceptional (score 13.4) · Rust · ai-memory, claude, claude-code, claude-code-plugin, codex
 
 > Wenlan is a knowledge base for the AI-native age. Your AI agents capture what they learn, Wenlan keeps it current and distills it into source-cited wiki pages you can trust
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.4 based on:
 - ⭐ 47 stars
-- 🗓️ Last pushed: 2026-08-06
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: ai-memory, claude, claude-code, claude-code-plugin, codex, knowledge-base, knowledge-graph, llm-wiki, local-first, mcp-server, second-brain
 
 ## Best fit cue profiles

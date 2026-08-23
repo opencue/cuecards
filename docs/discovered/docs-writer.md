@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-13
+updated: 2026-08-23
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="onourimpram-mneme"></a>
-## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
+<a id="senna-lang-graph-context-for-claude-code"></a>
+## ✨ [senna-lang/graph-context-for-claude-code](https://github.com/senna-lang/graph-context-for-claude-code)
 
-**★ 2** · exceptional (score 9) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
+**★ 2** · strong (score 6.4) · TypeScript · tags: claude-code, ide-integration, obsidian, obsidian-plugin
 
-Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
+Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks.
 
 ```bash
-cue skills add OnourImpram/mneme --profile docs-writer
+cue skills add senna-lang/graph-context-for-claude-code --profile docs-writer
 ```
 
 ---

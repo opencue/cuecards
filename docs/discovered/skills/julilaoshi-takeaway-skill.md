@@ -2,21 +2,21 @@
 title: "julilaoshi/takeaway-skill — Claude Code skill discovered by cue"
 description: "Takeaway Skill / 拿来主义 Skill: distill references into reusable mechanisms, adaptation routes, pattern cards, and implementation briefs without copying surface st"
 layout: page
-updated: 2026-06-03
+updated: 2026-08-20
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [julilaoshi/takeaway-skill](https://github.com/julilaoshi/takeaway-skill)
 
-**★ 44** · exceptional (score 8.9) · HTML · ai-workflow, claude-code-skill, codex-skill, creative-workflow, design-analysis
+**★ 58** · exceptional (score 14) · HTML · ai-workflow, claude-code-skill, codex-skill, creative-workflow, design-analysis
 
 > Takeaway Skill / 拿来主义 Skill: distill references into reusable mechanisms, adaptation routes, pattern cards, and implementation briefs without copying surface style.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
-- ⭐ 44 stars
-- 🗓️ Last pushed: 2026-06-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+- ⭐ 58 stars
+- 🗓️ Last pushed: 2026-08-20
 - 🏷️ Tags: ai-workflow, claude-code-skill, codex-skill, creative-workflow, design-analysis, implementation-brief, pattern-library, reference-distillation, takeaway-skill, visual-thinking
 
 ## Best fit cue profiles

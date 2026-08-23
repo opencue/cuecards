@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-12
+updated: 2026-08-21
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 
 ---
 
-<a id="intutic-intutic"></a>
-## ✨ [intutic/intutic](https://github.com/intutic/intutic)
+<a id="benseverndev-oss-goldenmatch"></a>
+## 💎 [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch)
 
-**★ 5** · strong (score 6.9) · Rust · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 129** · exceptional (score 13.5) · Python · tags: data-cleaning, data-engineering, data-matching, data-quality, deduplication
 
-The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
+Zero-config entity resolution that feeds a durable identity layer: resolve messy records from any source into stable golden entities — a Customer 360 with whole-record provenance, merge/split & audit. Splink-beating accuracy, Arrow-native/Rust, 100M rows in 9.2 min. Python + edge TypeScript (WASM), SQL-native in Postgres & DuckDB, MCP/REST.
 
 ```bash
-cue skills add intutic/intutic --profile rust
+cue skills add benseverndev-oss/goldenmatch --profile rust
 ```
 
 ---

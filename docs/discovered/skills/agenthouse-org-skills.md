@@ -1,23 +1,23 @@
 ---
 title: "AgentHouse-org/skills — Claude Code skill discovered by cue"
-description: "Open-source AI agent skills for AgentHouse and compatible SKILL.md-based platforms."
+description: "Open-source AI agent skills for agenthouse and compatible SKILL.md-based platforms."
 layout: page
-updated: 2026-08-13
+updated: 2026-08-21
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [AgentHouse-org/skills](https://github.com/AgentHouse-org/skills)
 
-**★ 0** · strong (score 5.9) · Python · ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, claude
+**★ 0** · strong (score 6) · Python · agenthouse, ai-agent, ai-agent-skill, ai-agent-skills, ai-agents
 
-> Open-source AI agent skills for AgentHouse and compatible SKILL.md-based platforms.
+> Open-source AI agent skills for agenthouse and compatible SKILL.md-based platforms.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-10
-- 🏷️ Tags: ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, claude, claude-skills
+- 🗓️ Last pushed: 2026-08-20
+- 🏷️ Tags: agenthouse, ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, claude, claude-skills
 
 ## Best fit cue profiles
 

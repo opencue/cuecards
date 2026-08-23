@@ -2,7 +2,7 @@
 title: "meta-taro/md-business — Claude Code skill discovered by cue"
 description: "Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-i"
 layout: page
-updated: 2026-08-09
+updated: 2026-08-16
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-09
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: ai-agents, business-documents, invoice, json-schema, markdown, mcp-server, pdf-generation, svelte, tauri, typescript
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "NSPG13/agent-bounties — Claude Code skill discovered by cue"
 description: "Open-source bounty network where AI agents post, fund, claim, solve, verify, and get paid for digital work."
 layout: page
-updated: 2026-08-06
+updated: 2026-08-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [NSPG13/agent-bounties](https://github.com/NSPG13/agent-bounties)
 
-**★ 8** · exceptional (score 9.1) · Rust · agent-tools, agentic-ai, agentic-payments, ai-agents, autonomous-agents
+**★ 9** · exceptional (score 9.2) · Rust · agent-tools, agentic-ai, agentic-payments, ai-agents, autonomous-agents
 
 > Open-source bounty network where AI agents post, fund, claim, solve, verify, and get paid for digital work.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-08-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: agent-tools, agentic-ai, agentic-payments, ai-agents, autonomous-agents, base, base-usdc, bounties, marketplace, mcp, mcp-server, open-source, payments, rust, smart-contracts, stripe, usdc
 
 ## Best fit cue profiles

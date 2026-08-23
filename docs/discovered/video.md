@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-13
+updated: 2026-08-19
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="black-line-ops-scroll-scrub-hero"></a>
-## 💎 [Black-Line-Ops/scroll-scrub-hero](https://github.com/Black-Line-Ops/scroll-scrub-hero)
+<a id="backtthefuture-video-transcript"></a>
+## 💎 [Backtthefuture/video-transcript](https://github.com/Backtthefuture/video-transcript)
 
-**★ 0** · exceptional (score 11) · JavaScript · tags: claude-skill, ffmpeg, hero-section, kie-ai, kling
+**★ 7** · exceptional (score 14) · Python · tags: asr, chinese-asr, claude-skill, funasr, offline
 
-Turn one photo of a real place into a scroll-scrubbed hero. kie.ai pipeline: storyboard, keyframes, Kling first/last-frame tweens, drop-in WebP frames. By Black Line Design.
+视频文案提取 Skill：微信视频号/B站/抖音/小红书/YouTube/本地视频 → 逐字稿（FunASR SenseVoice-Small 本地离线转录）
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Black-Line-Ops/scroll-scrub-hero --profile video
+cue skills add Backtthefuture/video-transcript --profile video
 ```
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="xixihhhh-hotclip"></a>
+## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 82** · exceptional (score 10.7) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
-
-```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
-```
-
----
-
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
-
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
-
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频,直发抖音/快手/B站/小红书/视频号——AI 找高光金句、弹幕热度进爆点判断、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts for TikTok & YouTube Shorts. No credits, no watermark, no uploads. Win/macOS/Linux.
 
 ```bash
-cue skills add TanaTTV/lyt --profile video
+cue skills add xixihhhh/hotclip --profile video
 ```
 
 ---

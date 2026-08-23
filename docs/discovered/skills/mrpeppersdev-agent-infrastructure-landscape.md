@@ -2,21 +2,21 @@
 title: "MrPeppersDev/agent-infrastructure-landscape — Claude Code skill discovered by cue"
 description: "AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, "
 layout: page
-updated: 2026-07-13
+updated: 2026-08-15
 tags: [claude-code, skill, backend, research]
 ---
 
 # ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
 
-**★ 1** · strong (score 5.3) · HTML · agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+**★ 2** · strong (score 7) · HTML · agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
 
 > AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-13
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-08-15
 - 🏷️ Tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems, ai-research, catalog, knowledge-graph, langchain, letta, llm, llm-memory, mcp, mcp-server, mem0, rag, sveltekit, vector-database, zep
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "trevor-ryan-burkholder/dare-to-be-stupid — Claude Code skill discovered by cue"
 description: "Act now! Claude Code does EVERYTHING autonomously - batteries not included, warranty void, prod not invited. Dare to be stupid!"
 layout: page
-updated: 2026-08-13
+updated: 2026-08-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-13
+- 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, for-fun, transformers, weird-al, weird-al-yankovic
 
 ## Best fit cue profiles

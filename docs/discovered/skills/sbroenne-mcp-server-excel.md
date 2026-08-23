@@ -1,27 +1,27 @@
 ---
 title: "sbroenne/mcp-server-excel — Claude Code skill discovered by cue"
-description: "Excel MCP Server & CLI - 23 tools, 214 operations for AI-powered Excel automation via COM API"
+description: "Automate real Microsoft Excel with AI via MCP Server or CLI — Power Query, DAX, VBA, PivotTables, charts, and 326 operations."
 layout: page
-updated: 2026-07-14
-tags: [claude-code, skill, backend]
+updated: 2026-08-20
+tags: [claude-code, skill, core]
 ---
 
 # 💎 [sbroenne/mcp-server-excel](https://github.com/sbroenne/mcp-server-excel)
 
-**★ 330** · exceptional (score 14.8) · C# · ai-automation, claude-ai, com-automation, conditional-formatting, data-connections
+**★ 541** · exceptional (score 16.9) · C# · ai-automation, claude-ai, com-automation, conditional-formatting, data-connections
 
-> Excel MCP Server & CLI - 23 tools, 214 operations for AI-powered Excel automation via COM API
+> Automate real Microsoft Excel with AI via MCP Server or CLI — Power Query, DAX, VBA, PivotTables, charts, and 326 operations.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
-- ⭐ 330 stars
-- 🗓️ Last pushed: 2026-07-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.9 based on:
+- ⭐ 541 stars
+- 🗓️ Last pushed: 2026-08-20
 - 🏷️ Tags: ai-automation, claude-ai, com-automation, conditional-formatting, data-connections, dax, dotnet, excel, excel-automation, excel-charts, excel-pivottables, excel-tables, github-copilot, mcp-server, model-context-protocol, named-ranges, power-pivot, power-query, vba, windows
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add sbroenne/mcp-server-excel --profile backend
+cue skills add sbroenne/mcp-server-excel --profile core
 ```
 
 ## About

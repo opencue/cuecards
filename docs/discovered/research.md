@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-13
+updated: 2026-08-23
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kgraph57-evidentia"></a>
-## 💎 [kgraph57/evidentia](https://github.com/kgraph57/evidentia)
+<a id="aglyx3-interview-synthesis"></a>
+## 💎 [AgLyx3/interview-synthesis](https://github.com/AgLyx3/interview-synthesis)
 
-**★ 1** · exceptional (score 9.8) · TypeScript · tags: agent-skills, citation-verification, claude-code, claude-skill, claude-skills
+**★ 0** · exceptional (score 11) · Python · tags: agent-skills, claude-skill, customer-interviews, qualitative-research, thematic-analysis
 
-Open-source medical citation verifier: catches fabricated DOI/PMID/NCT references with CLI, MCP, and Claude Code skill.
+Incremental customer interview synthesis skill for AI coding agents — code 1-3 transcripts at a time into a running evidence base, regenerate the report on demand
+
+✅ SKILL.md
 
 ```bash
-cue skills add kgraph57/evidentia --profile research
+cue skills add AgLyx3/interview-synthesis --profile research
+```
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="rakib-nyc-skillassay"></a>
+## ✨ [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
+
+**★ 2** · strong (score 5.3) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+
+Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
+
+```bash
+cue skills add rakib-nyc/skillassay --profile research
 ```
 
 ---

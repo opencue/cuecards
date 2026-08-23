@@ -2,21 +2,21 @@
 title: "Albert634png/note-taker-for-spotify — Claude Code skill discovered by cue"
 description: "Spotify Timestamped Notes Plugin 2026: AI-Powered Music Journal for Developer Workflow"
 layout: page
-updated: 2026-08-11
+updated: 2026-08-23
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Albert634png/note-taker-for-spotify](https://github.com/Albert634png/note-taker-for-spotify)
+# 💎 [Albert634png/note-taker-for-spotify](https://github.com/Albert634png/note-taker-for-spotify)
 
-**★ 0** · strong (score 7.5) · HTML · claude-code, claude-code-plugin, claude-plugin, claude-skill, journaling
+**★ 0** · exceptional (score 9) · HTML · claude-code, claude-code-plugin, claude-plugin, claude-skill, journaling
 
 > Spotify Timestamped Notes Plugin 2026: AI-Powered Music Journal for Developer Workflow
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-11
+- 🗓️ Last pushed: 2026-08-23
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-plugin, claude-skill, journaling, music, notes, now-playing, spotify
 
 ## Best fit cue profiles

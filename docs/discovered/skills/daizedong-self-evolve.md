@@ -2,7 +2,7 @@
 title: "DaizeDong/self-evolve — Claude Code skill discovered by cue"
 description: "Methodology skill + deterministic harness for agents that self-iterate any skill/repo/project. Anti-self-deception by design — an un-gameable acceptance gate so"
 layout: page
-updated: 2026-07-23
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-23
+- 🗓️ Last pushed: 2026-08-20
 - 🏷️ Tags: agent, agent-evolution, ai, ai-agent, ai-safety, autonomous-agents, claude, claude-code, claude-plugin, claude-skill, evals, llm, mcp, reflection, reward-hacking, self-evolving-agents, self-improving-agents, skill
 
 ## Best fit cue profiles

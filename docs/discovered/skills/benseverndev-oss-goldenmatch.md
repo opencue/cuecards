@@ -1,27 +1,27 @@
 ---
 title: "benseverndev-oss/goldenmatch — Claude Code skill discovered by cue"
-description: "Zero-config entity resolution that scales from a CSV to 100M+ rows on a Ray cluster (verified: 100M deduped in 213s, 0.30 GB driver). Fuzzy + exact + probabilis"
+description: "Zero-config entity resolution that feeds a durable identity layer: resolve messy records from any source into stable golden entities — a Customer 360 with whole"
 layout: page
-updated: 2026-06-05
-tags: [claude-code, skill, backend]
+updated: 2026-08-21
+tags: [claude-code, skill, backend, rust]
 ---
 
 # 💎 [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch)
 
-**★ 79** · exceptional (score 11.6) · Python · active-learning, agent, airflow, auto-config, data-engineering
+**★ 129** · exceptional (score 13.5) · Python · data-cleaning, data-engineering, data-matching, data-quality, deduplication
 
-> Zero-config entity resolution that scales from a CSV to 100M+ rows on a Ray cluster (verified: 100M deduped in 213s, 0.30 GB driver). Fuzzy + exact + probabilistic dedupe, identity graph, PPRL, LLM boost. Python + full TypeScript port; SQL-native in PostgreSQL & DuckDB; MCP/REST servers, dbt + Airflow recipes.
+> Zero-config entity resolution that feeds a durable identity layer: resolve messy records from any source into stable golden entities — a Customer 360 with whole-record provenance, merge/split & audit. Splink-beating accuracy, Arrow-native/Rust, 100M rows in 9.2 min. Python + edge TypeScript (WASM), SQL-native in Postgres & DuckDB, MCP/REST.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
-- ⭐ 79 stars
-- 🗓️ Last pushed: 2026-06-05
-- 🏷️ Tags: active-learning, agent, airflow, auto-config, data-engineering, data-quality, deduplication, entity-resolution, fuzzy-matching, human-in-the-loop, llm, mcp-server, negative-evidence, polars, pprl, privacy-preserving, python, record-linkage, typescript, zero-config
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+- ⭐ 129 stars
+- 🗓️ Last pushed: 2026-08-21
+- 🏷️ Tags: data-cleaning, data-engineering, data-matching, data-quality, deduplication, entity-resolution, fellegi-sunter, fuzzy-matching, knowledge-graph, llm, master-data-management, mcp-server, polars, pprl, python, record-linkage, rust, splink, typescript, zero-config
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[backend](../backend.md), [rust](../rust.md)
 
 
 

@@ -2,21 +2,21 @@
 title: "Abderrahmane-msd/mcp-bench-report — Claude Code skill discovered by cue"
 description: "Best MCP Server Testing & Evaluation Toolkit 2026 – Token Cost Analysis & Visual Reports"
 layout: page
-updated: 2026-07-10
+updated: 2026-08-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Abderrahmane-msd/mcp-bench-report](https://github.com/Abderrahmane-msd/mcp-bench-report)
 
-**★ 0** · exceptional (score 8) · HTML · anthropic, claude-code, claude-plugin, evaluation, mcp
+**★ 0** · exceptional (score 9.5) · HTML · anthropic, claude-code, claude-plugin, evaluation, mcp
 
 > Best MCP Server Testing & Evaluation Toolkit 2026 – Token Cost Analysis & Visual Reports
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-10
+- 🗓️ Last pushed: 2026-08-23
 - 🏷️ Tags: anthropic, claude-code, claude-plugin, evaluation, mcp, mcp-server, testing, tool-evaluation
 
 ## Best fit cue profiles

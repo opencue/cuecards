@@ -2,22 +2,22 @@
 title: "connerkward/macos-screen-recorder-system-audio — Claude Code skill discovered by cue"
 description: "macos-screen-recorder (sck-record) — a macOS screen recorder with system audio via ScreenCaptureKit: CLI, no driver, no sudo. Plus a Claude Code skill."
 layout: page
-updated: 2026-06-17
+updated: 2026-08-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [connerkward/macos-screen-recorder-system-audio](https://github.com/connerkward/macos-screen-recorder-system-audio)
 
-**★ 0** · exceptional (score 15) · Swift · agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
+**★ 2** · exceptional (score 15.5) · Swift · agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin
 
 > macos-screen-recorder (sck-record) — a macOS screen recorder with system audio via ScreenCaptureKit: CLI, no driver, no sudo. Plus a Claude Code skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-17
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-08-16
 - 🏷️ Tags: agent-skills, ai-tools, anthropic, claude-code, claude-code-plugin, claude-code-skill, claude-skill, macos, screen-recording, screencapturekit, swift, system-audio
 
 ## Best fit cue profiles

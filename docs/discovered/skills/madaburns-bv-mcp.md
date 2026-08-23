@@ -2,7 +2,7 @@
 title: "MadaBurns/bv-mcp — Claude Code skill discovered by cue"
 description: "Open-source DNS & email security scanner. One MCP endpoint, 57 checks, zero install. Cloudflare Workers."
 layout: page
-updated: 2026-08-07
+updated: 2026-08-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-08-07
+- 🗓️ Last pushed: 2026-08-14
 - 🏷️ Tags: agentic, ai, ai-tools, cloudflare-workers, cybersecurity, dkim, dmarc, dns-security, email-security, llm, mcp, mcp-server, model-context-protocol, saas, security-scanner, spf
 
 ## Best fit cue profiles

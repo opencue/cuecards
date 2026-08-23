@@ -2,21 +2,21 @@
 title: "Syarwanfjr/supplement-evidence-stack — Claude Code skill discovered by cue"
 description: "Claude Code Plugin 2026 — Evidence-Based Vitamin & OTC Analyzer 📊 Install 2 Lines"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-23
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Syarwanfjr/supplement-evidence-stack](https://github.com/Syarwanfjr/supplement-evidence-stack)
+# 💎 [Syarwanfjr/supplement-evidence-stack](https://github.com/Syarwanfjr/supplement-evidence-stack)
 
-**★ 0** · strong (score 7.5) · HTML · claude-code, claude-plugin, claude-skill, health, kfda
+**★ 0** · exceptional (score 9) · HTML · claude-code, claude-plugin, claude-skill, health, kfda
 
 > Claude Code Plugin 2026 — Evidence-Based Vitamin & OTC Analyzer 📊 Install 2 Lines
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-12
+- 🗓️ Last pushed: 2026-08-23
 - 🏷️ Tags: claude-code, claude-plugin, claude-skill, health, kfda, korean, nih, nutrition, supplement, vitamin
 
 ## Best fit cue profiles

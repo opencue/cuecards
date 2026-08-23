@@ -2,21 +2,21 @@
 title: "intutic/intutic — Claude Code skill discovered by cue"
 description: "The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, L"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-19
 tags: [claude-code, skill, rust]
 ---
 
-# ✨ [intutic/intutic](https://github.com/intutic/intutic)
+# 💎 [intutic/intutic](https://github.com/intutic/intutic)
 
-**★ 5** · strong (score 6.9) · Rust · agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 7** · exceptional (score 8) · TypeScript · agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
 
 > The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-08-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool, circuit-breaker, claude, claude-code-skill, cursor-ai, devsecops-pipeline, finops-mcp, firewall, llm-security-probe, llm-security-proxy, mcp, model-context-protocol-server, rust-lang, security, wasm4, webassemby
 
 ## Best fit cue profiles

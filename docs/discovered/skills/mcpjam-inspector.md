@@ -2,21 +2,21 @@
 title: "MCPJam/inspector — Claude Code skill discovered by cue"
 description: "Testing and evaluation platform to chat, inspect, and debug MCP servers, MCP apps, and ChatGPT apps."
 layout: page
-updated: 2026-07-24
+updated: 2026-08-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [MCPJam/inspector](https://github.com/MCPJam/inspector)
 
-**★ 2078** · exceptional (score 17) · TypeScript · anthropic, chatgpt, cicd, debugger, evals
+**★ 2154** · exceptional (score 17) · TypeScript · anthropic, chatgpt, cicd, debugger, evals
 
 > Testing and evaluation platform to chat, inspect, and debug MCP servers, MCP apps, and ChatGPT apps.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 2078 stars
-- 🗓️ Last pushed: 2026-07-24
+- ⭐ 2154 stars
+- 🗓️ Last pushed: 2026-08-22
 - 🏷️ Tags: anthropic, chatgpt, cicd, debugger, evals, evaluation, inspector, mcp, mcp-apps, mcp-clients, mcp-inspector, mcp-server, mcp-tools, modelcontextprotocol, oauth, oauth2, openai, openai-apps-sdk, opensource, tracing
 
 ## Best fit cue profiles

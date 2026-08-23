@@ -2,7 +2,7 @@
 title: "notprashanth/pvr-inox-mcp — Claude Code skill discovered by cue"
 description: "MCP server + watcher for PVR/INOX cinemas in India: showtimes, live seat maps, and an alert the moment booking opens"
 layout: page
-updated: 2026-08-11
+updated: 2026-08-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-11
+- 🗓️ Last pushed: 2026-08-21
 - 🏷️ Tags: cinema, india, mcp, mcp-server, pvr
 
 ## Best fit cue profiles
