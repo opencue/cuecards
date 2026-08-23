@@ -6,12 +6,8 @@ skills:
   local: []
 mcps:
   - adloop
-rules:
-  - /home/deadpool/Documents/ADS/adloop/src/adloop/rules/adloop.md
-  - /home/deadpool/Documents/ADS/.claude/rules/adloop-workspace.md
+persona_includes:
+  - ads-manager-workspace
 codex_config:
-  projects:
-    /home/deadpool/Documents/ADS:
-      trust_level: trusted
   features:
     hooks: true
