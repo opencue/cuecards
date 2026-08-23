@@ -32,6 +32,7 @@ import { repoRoot } from "../lib/repo-root";
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
+const MCP_SOURCES_DIR = join(repoRoot(), "resources", "mcps", "mcps");
 const QUALITY_GATES_DIR = join(repoRoot(), "resources", "quality-gates");
 const RUNTIME_ROOT = join(process.env.HOME ?? "~", ".config", "cue", "runtime");
 
@@ -54,6 +55,33 @@ function loadAllMcpIds(): Set<string> {
     } catch { /* skip */ }
   }
   return ids;
+}
+
+export function missingMcpIssue(
+  profile: string,
+  id: string,
+  registeredIds: ReadonlySet<string>,
+  sourcesDir = MCP_SOURCES_DIR,
+): Issue | null {
+  if (registeredIds.has(id)) return null;
+  const hasLocalSource =
+    /^[A-Za-z0-9._-]+$/.test(id) && existsSync(join(sourcesDir, id));
+  if (hasLocalSource) {
+    return {
+      code: "D2",
+      severity: "warning",
+      profile,
+      message: `MCP "${id}" is local-only and absent from the sanitized registry`,
+      fix: `Configure "${id}" in the user's agent MCP settings`,
+    };
+  }
+  return {
+    code: "D2",
+    severity: "error",
+    profile,
+    message: `MCP "${id}" declared but not in any registry config`,
+    fix: `Remove "${id}" from ${profile}/profile.yaml mcps section`,
+  };
 }
 
 async function checkProfile(profileName: string, allSkillIds: Set<string>, allMcpIds: Set<string>): Promise<Issue[]> {
@@ -87,15 +115,8 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
 
   // D2: MCP in profile but not in registry
   for (const id of profileMcpIds) {
-    if (!allMcpIds.has(id)) {
-      issues.push({
-        code: "D2",
-        severity: "error",
-        profile: profileName,
-        message: `MCP "${id}" declared but not in any registry config`,
-        fix: `Remove "${id}" from ${profileName}/profile.yaml mcps section`,
-      });
-    }
+    const issue = missingMcpIssue(profileName, id, allMcpIds);
+    if (issue) issues.push(issue);
   }
 
   // D4: Skill requires MCP not in profile (explicit requires_mcps + implicit

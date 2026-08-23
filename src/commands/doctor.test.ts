@@ -7,7 +7,7 @@ import { existsSync, lstatSync, mkdtempSync, mkdirSync, readFileSync, symlinkSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { applyRuntimeFix, checkActivation } from "./doctor";
+import { applyRuntimeFix, checkActivation, missingMcpIssue } from "./doctor";
 import { shimDir } from "../lib/shim-dir";
 
 let home: string;
@@ -66,6 +66,26 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.code).toBe("D9");
     expect(issues[0]!.severity).toBe("warning");
     expect(issues[0]!.message).toContain("not found");
+  });
+});
+
+describe("missingMcpIssue (D2)", () => {
+  test("registered MCPs are healthy", () => {
+    expect(missingMcpIssue("commerce", "github", new Set(["github"]), home)).toBeNull();
+  });
+
+  test("local-only MCP sources are warnings, not CI-blocking errors", () => {
+    const sources = join(home, "mcp-sources");
+    mkdirSync(join(sources, "envoult"), { recursive: true });
+    const issue = missingMcpIssue("commerce", "envoult", new Set(), sources);
+    expect(issue?.severity).toBe("warning");
+    expect(issue?.message).toContain("local-only");
+  });
+
+  test("unknown MCPs remain errors", () => {
+    const issue = missingMcpIssue("commerce", "missing", new Set(), home);
+    expect(issue?.severity).toBe("error");
+    expect(issue?.message).toContain("not in any registry");
   });
 });
 
