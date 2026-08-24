@@ -1,39 +1,24 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-19
+updated: 2026-08-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="backtthefuture-video-transcript"></a>
-## 💎 [Backtthefuture/video-transcript](https://github.com/Backtthefuture/video-transcript)
-
-**★ 7** · exceptional (score 14) · Python · tags: asr, chinese-asr, claude-skill, funasr, offline
-
-视频文案提取 Skill：微信视频号/B站/抖音/小红书/YouTube/本地视频 → 逐字稿（FunASR SenseVoice-Small 本地离线转录）
-
-✅ SKILL.md
-
-```bash
-cue skills add Backtthefuture/video-transcript --profile video
-```
-
----
-
 <a id="xixihhhh-hotclip"></a>
 ## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
 
-**★ 82** · exceptional (score 10.7) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
+**★ 109** · exceptional (score 10.8) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
 
 免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频,直发抖音/快手/B站/小红书/视频号——AI 找高光金句、弹幕热度进爆点判断、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts for TikTok & YouTube Shorts. No credits, no watermark, no uploads. Win/macOS/Linux.
 

@@ -2,21 +2,21 @@
 title: "abubaker-qx/dirxml-designer-analyzer — Claude Code skill discovered by cue"
 description: "NetIQ IDM Designer Tools 2026 🛠️ | OpenText Automation & Scripts"
 layout: page
-updated: 2026-08-23
+updated: 2026-08-24
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [abubaker-qx/dirxml-designer-analyzer](https://github.com/abubaker-qx/dirxml-designer-analyzer)
 
-**★ 0** · strong (score 5.5) · HTML · claude-skill, designer, dirxml, identity-manager, idm
+**★ 0** · strong (score 7) · HTML · claude-skill, designer, dirxml, identity-manager, idm
 
 > NetIQ IDM Designer Tools 2026 🛠️ | OpenText Automation & Scripts
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-23
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: claude-skill, designer, dirxml, identity-manager, idm, netiq, opentext
 
 ## Best fit cue profiles

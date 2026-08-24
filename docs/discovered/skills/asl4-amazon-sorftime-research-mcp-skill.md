@@ -2,21 +2,21 @@
 title: "asl4/amazon-sorftime-research-MCP-skill — Claude Code skill discovered by cue"
 description: "Analyze Amazon listings and categories using Sorftime MCP to deliver detailed competitor insights and automated product selection."
 layout: page
-updated: 2026-07-16
+updated: 2026-08-24
 tags: [claude-code, skill, backend]
 ---
 
-# ✨ [asl4/amazon-sorftime-research-MCP-skill](https://github.com/asl4/amazon-sorftime-research-MCP-skill)
+# 💎 [asl4/amazon-sorftime-research-MCP-skill](https://github.com/asl4/amazon-sorftime-research-MCP-skill)
 
-**★ 1** · strong (score 7.8) · ai, amazon-web-services, automation, aws, aws-eks
+**★ 2** · exceptional (score 8) · ai, amazon-web-services, automation, aws, aws-eks
 
 > Analyze Amazon listings and categories using Sorftime MCP to deliver detailed competitor insights and automated product selection.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: ai, amazon-web-services, automation, aws, aws-eks, cloud-management, computer-vision, csi, data-science, inference, knowledge-graph, kubernetes-deployment, mcp, mcp-server, nlp, python, research, sagemaker, skill, training
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Atharvpatil112/nano-banana-2-ai — Claude Code skill discovered by cue"
 description: "Deliver high-speed 4K text-to-image generation with 5-character consistency using the open-source Gemini 3.1 Flash Image model."
 layout: page
-updated: 2026-07-16
+updated: 2026-08-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-16
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: agent-skills, aigc, bolt, claude-code, codex, gemini, generative-ai, image-editing, image-generation, imageeditor, mcp, mcp-server, nano-banana, nanobanana, nanobanana-pro, prompt, prompt-engineering, prompts, text-to-image, veo3
 
 ## Best fit cue profiles

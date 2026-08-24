@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-08-23
+updated: 2026-08-24
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,24 +11,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-08-23 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-08-24 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 76 | `nano-banana-pro-prompts-recommend-skill`, `remnic`, `icode-skill` |
-| [**backend**](./backend.md) | 7 | `cli`, `XAFLogicExplainer`, `adaptive-llm-gateway` |
-| [**fleet-control**](./fleet-control.md) | 4 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
-| [**research**](./research.md) | 3 | `interview-synthesis`, `popper-scope`, `skillassay` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `sticky-switcher-funnel-playbook` |
-| [**cybersecurity**](./cybersecurity.md) | 2 | `Claude-OSINT`, `sanctuary-framework` |
+| [**core**](./core.md) | 74 | `humanizer-de`, `remnic`, `humanize-chinese` |
+| [**backend**](./backend.md) | 8 | `claw-recall`, `Anthropic-Academy`, `amazon-sorftime-research-MCP-skill` |
+| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `claude-react-kit`, `ionik-capacitor-flux-patterns` |
+| [**cybersecurity**](./cybersecurity.md) | 3 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `sanctuary-framework` |
+| [**docs-writer**](./docs-writer.md) | 3 | `markdown-new-skill`, `rabbit-writes`, `graph-context-for-claude-code` |
 | [**creative-media**](./creative-media.md) | 2 | `WSL-Image-Clipboard-Helper`, `redesigned-pancake` |
-| [**niche**](./niche.md) | 1 | `wujutong` |
+| [**fleet-control**](./fleet-control.md) | 2 | `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**research**](./research.md) | 2 | `popper-scope`, `skillassay` |
+| [**video**](./video.md) | 1 | `hotclip` |
 | [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
 | [**medusa-dev**](./medusa-dev.md) | 1 | `etsy-ugc-compliance-harvester` |
-| [**docs-writer**](./docs-writer.md) | 1 | `graph-context-for-claude-code` |
 | [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works

@@ -2,7 +2,7 @@
 title: "ken12ken/claw-recall — Claude Code skill discovered by cue"
 description: "Store and search AI agent conversations to recover lost context and improve memory persistence in multi-agent workflows."
 layout: page
-updated: 2026-07-02
+updated: 2026-08-24
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-02
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: ai-agents, claude-code, conversation-history, fts5, mcp, mcp-server, memory, openclaw, semantic-search, sqlite
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "SiddhuShkya/Anthropic-Academy — Claude Code skill discovered by cue"
 description: "Get in the know with Anthropic resources. From API development guides to enterprise deployment best practices, the academy has you covered."
 layout: page
-updated: 2026-08-03
+updated: 2026-08-24
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-03
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: claude, claude-ai, claude-api, claude-code, claude-code-skill, claude-skills
 
 ## Best fit cue profiles

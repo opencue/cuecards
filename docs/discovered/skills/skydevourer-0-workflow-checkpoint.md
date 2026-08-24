@@ -2,7 +2,7 @@
 title: "Skydevourer-0/workflow-checkpoint — Claude Code skill discovered by cue"
 description: "Cross-session task checkpoint for Claude Code — pause, resume, and heat-sorted attention with zero-config auto-scope."
 layout: page
-updated: 2026-06-27
+updated: 2026-08-24
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-27
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: checkpoint, claude-code-skill, task-management
 
 ## Best fit cue profiles

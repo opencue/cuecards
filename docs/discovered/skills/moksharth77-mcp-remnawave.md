@@ -2,21 +2,21 @@
 title: "moksharth77/mcp-remnawave — Claude Code skill discovered by cue"
 description: "Provide LLM clients with tools to fully manage Remnawave VPN panels using MCP Server for user, node, and system control."
 layout: page
-updated: 2026-07-16
+updated: 2026-08-24
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [moksharth77/mcp-remnawave](https://github.com/moksharth77/mcp-remnawave)
 
-**★ 0** · strong (score 7.5) · TypeScript · ai, aiogram, aws, cursor, go
+**★ 1** · strong (score 7.8) · TypeScript · ai, aiogram, aws, cursor, go
 
 > Provide LLM clients with tools to fully manage Remnawave VPN panels using MCP Server for user, node, and system control.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: ai, aiogram, aws, cursor, go, mcp-client, mcp-host, mcp-server, mcp-servers, modelcontextprotocol, postgresql, python, remnawave-bot, remnawave-panel, telegram, telegrambot, tor, warp
 
 ## Best fit cue profiles
