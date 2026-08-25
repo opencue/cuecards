@@ -1,55 +1,55 @@
 ---
 title: "Claude Code Skills for backend"
-description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ken12ken-claw-recall"></a>
-## 💎 [ken12ken/claw-recall](https://github.com/ken12ken/claw-recall)
+<a id="pspdfkit-nutrient-dws-mcp-server"></a>
+## 💎 [PSPDFKit/nutrient-dws-mcp-server](https://github.com/PSPDFKit/nutrient-dws-mcp-server)
 
-**★ 0** · exceptional (score 10) · tags: ai-agents, claude-code, conversation-history, fts5, mcp
+**★ 69** · exceptional (score 13.3) · TypeScript · tags: ai-agents, claude, document-ai, document-processing, langchain
 
-Store and search AI agent conversations to recover lost context and improve memory persistence in multi-agent workflows.
+A Model Context Protocol (MCP) server implementation that integrates with the Nutrient Document Web Service (DWS) Processor API, providing powerful PDF processing capabilities for AI assistants.
 
 ```bash
-cue skills add ken12ken/claw-recall --profile backend
+cue skills add PSPDFKit/nutrient-dws-mcp-server --profile backend
 ```
 
 ---
 
-<a id="siddhushkya-anthropic-academy"></a>
-## 💎 [SiddhuShkya/Anthropic-Academy](https://github.com/SiddhuShkya/Anthropic-Academy)
+<a id="codecoradev-uteke"></a>
+## 💎 [codecoradev/uteke](https://github.com/codecoradev/uteke)
 
-**★ 0** · exceptional (score 8) · Jupyter Notebook · tags: claude, claude-ai, claude-api, claude-code, claude-code-skill
+**★ 235** · exceptional (score 13.1) · Rust · tags: agent-memory, ai, ai-agents, cli, cli-tool
 
-Get in the know with Anthropic resources. From API development guides to enterprise deployment best practices, the academy has you covered.
+🧠 The Brain for Your AI — Local-first memory engine for AI agents. Store, recall, and search memories with semantic embeddings. Single Rust binary, zero config, fully offline.
 
 ```bash
-cue skills add SiddhuShkya/Anthropic-Academy --profile backend
+cue skills add codecoradev/uteke --profile backend
 ```
 
 ---
 
-<a id="asl4-amazon-sorftime-research-mcp-skill"></a>
-## 💎 [asl4/amazon-sorftime-research-MCP-skill](https://github.com/asl4/amazon-sorftime-research-MCP-skill)
+<a id="openagentemail-openagentemail"></a>
+## 💎 [openagentemail/openagentemail](https://github.com/openagentemail/openagentemail)
 
-**★ 2** · exceptional (score 8) · tags: ai, amazon-web-services, automation, aws, aws-eks
+**★ 8** · exceptional (score 10.1) · TypeScript · tags: ai, ai-agent, ai-agents, docker, email
 
-Analyze Amazon listings and categories using Sorftime MCP to deliver detailed competitor insights and automated product selection.
+Self-hosted email for AI agents — the open-source alternative to AgentMail. One compose file → unlimited inboxes, OTP extraction, MCP server.
 
 ```bash
-cue skills add asl4/amazon-sorftime-research-MCP-skill --profile backend
+cue skills add openagentemail/openagentemail --profile backend
 ```
 
 ---
@@ -67,28 +67,41 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="moksharth77-mcp-remnawave"></a>
-## ✨ [moksharth77/mcp-remnawave](https://github.com/moksharth77/mcp-remnawave)
+<a id="bluetieroperations-create-blackwall-mcp"></a>
+## ✨ [bluetieroperations-create/blackwall-mcp](https://github.com/bluetieroperations-create/blackwall-mcp)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: ai, aiogram, aws, cursor, go
+**★ 0** · strong (score 7.5) · JavaScript · tags: agent-safety, ai-agents, ai-safety, blackwall, claude-desktop
 
-Provide LLM clients with tools to fully manage Remnawave VPN panels using MCP Server for user, node, and system control.
+BLACK_WALL MCP server — a pre-action risk check your AI agent calls before any irreversible action (send email, move money, run SQL, delete data).
 
 ```bash
-cue skills add moksharth77/mcp-remnawave --profile backend
+cue skills add bluetieroperations-create/blackwall-mcp --profile backend
 ```
 
 ---
 
-<a id="kamflowersthemacrogod-opentwitter-mcp"></a>
-## ✨ [kamflowersthemacrogod/opentwitter-mcp](https://github.com/kamflowersthemacrogod/opentwitter-mcp)
+<a id="mizcausevic-dev-mcp-kinetic-gain"></a>
+## ✨ [mizcausevic-dev/mcp-kinetic-gain](https://github.com/mizcausevic-dev/mcp-kinetic-gain)
 
-**★ 1** · strong (score 7.8) · Python · tags: ai, aws, browser-automation, browser-extension, claude
+**★ 0** · strong (score 6.5) · TypeScript · tags: aeo, agent-cards, audit-stream, clinical-ai, compliance
 
-Provide Twitter data access with user profiles, tweet search, follower events, and influencer tracking through an easy-to-deploy MCP server.
+Unified MCP server for all 12 Kinetic Gain Protocol Suite specs + DefenseTech (8 tools): 75 callable tools (47 spec + 16 implementation + 8 DefenseTech + 4 AI Claims Decision Card). One Claude Desktop config, stdio, no API key, no build step.
 
 ```bash
-cue skills add kamflowersthemacrogod/opentwitter-mcp --profile backend
+cue skills add mizcausevic-dev/mcp-kinetic-gain --profile backend
+```
+
+---
+
+<a id="aiguanginc-suxiaoqiang-cli"></a>
+## ✨ [AiGuangInc/suxiaoqiang-cli](https://github.com/AiGuangInc/suxiaoqiang-cli)
+
+**★ 5** · strong (score 5.9) · TypeScript · tags: claude-code-skill, claude-skills, cli, deploy, edge-functions
+
+sxq is the official command-line tool for Superun, the vibe coding platform. It syncs your Superun project files to your local machine so you can edit them with your favorite editor or AI coding agent, then push changes back, trigger a preview build, and release to production.
+
+```bash
+cue skills add AiGuangInc/suxiaoqiang-cli --profile backend
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "TheDutchRuler/minimax-music3-studio — Claude Code skill discovered by cue"
 description: "Sub-realtime MiniMax Music 3 on a single consumer GPU - Suno-style local studio with a re-engineered inference path (2.9x measured). Engineered with Claude Fabl"
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 

@@ -2,21 +2,21 @@
 title: "joshuaswarren/remnic — Claude Code skill discovered by cue"
 description: "Open-source memory and context for user-aware agents: scoped memory, provenance, retrieval quality, correction, boundaries, evals, and MCP/HTTP access."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [joshuaswarren/remnic](https://github.com/joshuaswarren/remnic)
 
-**★ 178** · exceptional (score 19.2) · TypeScript · ai-agent, ai-memory, claude-code, engram, hermes-plugin
+**★ 180** · exceptional (score 19.2) · TypeScript · ai-agent, ai-memory, claude-code, engram, hermes-plugin
 
 > Open-source memory and context for user-aware agents: scoped memory, provenance, retrieval quality, correction, boundaries, evals, and MCP/HTTP access.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.2 based on:
-- ⭐ 178 stars
-- 🗓️ Last pushed: 2026-08-24
+- ⭐ 180 stars
+- 🗓️ Last pushed: 2026-08-25
 - 🏷️ Tags: ai-agent, ai-memory, claude-code, engram, hermes-plugin, knowledge-graph, llm, local-first, long-term-memory, markdown, mcp, mcp-server, memory-plugin, okf, open-knowledge-format, openai, openclaw, semantic-search, typescript
 
 ## Best fit cue profiles

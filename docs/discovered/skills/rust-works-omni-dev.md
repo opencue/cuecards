@@ -2,21 +2,21 @@
 title: "rust-works/omni-dev — Claude Code skill discovered by cue"
 description: "AI-powered git commit rewriter, PR generator, and MCP server for Jira, Confluence, and Datadog. Single Rust binary."
 layout: page
-updated: 2026-06-23
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rust-works/omni-dev](https://github.com/rust-works/omni-dev)
 
-**★ 7** · exceptional (score 9.8) · Rust · ai, anthropic, atlassian, automation, claude
+**★ 12** · exceptional (score 10.2) · Rust · ai, anthropic, atlassian, automation, claude
 
 > AI-powered git commit rewriter, PR generator, and MCP server for Jira, Confluence, and Datadog. Single Rust binary.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-06-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 12 stars
+- 🗓️ Last pushed: 2026-08-25
 - 🏷️ Tags: ai, anthropic, atlassian, automation, claude, cli, commit-message, confluence, conventional-commits, datadog, developer-tools, git, git-tools, jira, llm, mcp, mcp-server, model-context-protocol, pull-request, rust
 
 ## Best fit cue profiles

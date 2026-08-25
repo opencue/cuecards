@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="cenmeow-markdown-new-skill"></a>
-## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
-
-**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
-
-Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
-
-```bash
-cue skills add CenMeow/markdown-new-skill --profile docs-writer
-```
-
----
-
-<a id="whit3rabbit-rabbit-writes"></a>
-## 💎 [whit3rabbit/rabbit-writes](https://github.com/whit3rabbit/rabbit-writes)
-
-**★ 0** · exceptional (score 8) · Python · tags: asd-ste100, claude-code, claude-code-skill, claude-code-skills, claude-skills
-
-Skills to make AI writing sound more human
-
-```bash
-cue skills add whit3rabbit/rabbit-writes --profile docs-writer
-```
 
 ---
 

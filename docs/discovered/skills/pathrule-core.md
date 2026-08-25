@@ -2,19 +2,19 @@
 title: "pathrule/core — Claude Code skill discovered by cue"
 description: "The context layer for AI coding agents. Path-scoped memories, rules, and skills for Claude Code, Cursor, Codex, and Windsurf. Local-first, no account, Apache-2."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [pathrule/core](https://github.com/pathrule/core)
 
-**★ 3** · strong (score 6.7) · TypeScript · ai-coding, claude-code, codex, context-layer, cursor
+**★ 3** · strong (score 6.6) · TypeScript · ai-coding, claude-code, codex, context-layer, cursor
 
 > The context layer for AI coding agents. Path-scoped memories, rules, and skills for Claude Code, Cursor, Codex, and Windsurf. Local-first, no account, Apache-2.0.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-08-24
 - 🏷️ Tags: ai-coding, claude-code, codex, context-layer, cursor, developer-tools, mcp, memory, sqlite, windsurf

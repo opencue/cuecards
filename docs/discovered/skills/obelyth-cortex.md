@@ -2,7 +2,7 @@
 title: "Obelyth/cortex — Claude Code skill discovered by cue"
 description: "Claude second brain — a private markdown knowledge base served to every Claude surface over MCP, with a read path that proves its own citations."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 

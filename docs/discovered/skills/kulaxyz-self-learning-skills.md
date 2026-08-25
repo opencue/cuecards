@@ -2,7 +2,7 @@
 title: "Kulaxyz/self-learning-skills — Claude Code skill discovered by cue"
 description: "A self-improving skill for AI coding agents (Claude Code, Cursor, AGENTS.md): recognize a hard-won golden path in a session and harvest it into a reusable skill"
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "wei-wei-hu/life-designer-pro — Claude Code skill discovered by cue"
 description: "AI life-design coach for Claude Code and Codex. Find the question under your career and life goal, map your future paths, and start an experiment now."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 

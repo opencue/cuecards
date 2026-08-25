@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="yanliudesign-mono-color-skill"></a>
+## 💎 [yanliudesign/mono-color-skill](https://github.com/yanliudesign/mono-color-skill)
+
+**★ 1** · exceptional (score 15.8) · Python · tags: agent-skill, ai-agent, claude-skill, editorial-design, generative-art
+
+One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography.
+
+✅ SKILL.md
+
+```bash
+cue skills add yanliudesign/mono-color-skill --profile creative-media
+```
 
 ---
 

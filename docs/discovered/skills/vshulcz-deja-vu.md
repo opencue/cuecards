@@ -2,22 +2,22 @@
 title: "vshulcz/deja-vu — Claude Code skill discovered by cue"
 description: "Memory for coding agents — Claude Code, Codex, Cursor and 17 others. Indexes the sessions they already wrote to disk, including months from before you installed"
 layout: page
-updated: 2026-08-24
+updated: 2026-08-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vshulcz/deja-vu](https://github.com/vshulcz/deja-vu)
 
-**★ 685** · exceptional (score 17) · Go · agent-memory, ai-memory, antigravity, bm25, claude
+**★ 711** · exceptional (score 17) · Go · agent-memory, ai-memory, antigravity, bm25, claude
 
 > Memory for coding agents — Claude Code, Codex, Cursor and 17 others. Indexes the sessions they already wrote to disk, including months from before you installed it, and recalls them in any of them. No LLM, no embeddings, one local Go binary.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 685 stars
-- 🗓️ Last pushed: 2026-08-24
-- 🏷️ Tags: agent-memory, ai-memory, antigravity, bm25, claude, claude-code, claude-code-hooks, claude-code-plugins, claude-code-skill, cli, codex, coding-agents, deepseek-harness, developer-tools, dsh-plugin, golang, mcp, mcp-server, opencode, zed-extension
+- ⭐ 711 stars
+- 🗓️ Last pushed: 2026-08-25
+- 🏷️ Tags: agent-memory, ai-memory, antigravity, bm25, claude, claude-code, claude-code-hooks, claude-code-plugins, claude-code-skill, cli, codex, coding-agents, deepseek-harness, developer-tools, dsh-plugin, gemini-cli-extension, mcp, mcp-server, opencode, zed-extension
 
 ## Best fit cue profiles
 
