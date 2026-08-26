@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="senna-lang-graph-context-for-claude-code"></a>
-## ✨ [senna-lang/graph-context-for-claude-code](https://github.com/senna-lang/graph-context-for-claude-code)
+<a id="meta-taro-md-business"></a>
+## ✨ [meta-taro/md-business](https://github.com/meta-taro/md-business)
 
-**★ 2** · strong (score 6.3) · TypeScript · tags: claude-code, ide-integration, obsidian, obsidian-plugin
+**★ 1** · strong (score 5.3) · TypeScript · tags: ai-agents, business-documents, invoice, json-schema, markdown
 
-Claude Code IDE integration (/ide) for Obsidian with expanded graph context — embeds inlined, wikilinks summarized, heading path, and backlinks.
+Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-in MCP server. Tauri desktop app + Chrome extension.
 
 ```bash
-cue skills add senna-lang/graph-context-for-claude-code --profile docs-writer
+cue skills add meta-taro/md-business --profile docs-writer
 ```
 
 ---

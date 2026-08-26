@@ -2,7 +2,7 @@
 title: "lastnpcalex/a-shadow-loom — Claude Code skill discovered by cue"
 description: "A self-hosted web interface for branching AI conversations across Claude Code, Gemini CLI, and local Ollama models — and for handing off between them mid-conver"
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, skill, core]
 ---
 

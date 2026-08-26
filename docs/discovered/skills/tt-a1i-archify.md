@@ -2,26 +2,26 @@
 title: "tt-a1i/archify — Claude Code skill discovered by cue"
 description: "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
 layout: page
-updated: 2026-08-11
-tags: [claude-code, skill, core]
+updated: 2026-08-26
+tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 11249** · exceptional (score 16) · HTML · agent-skills, anthropic, architecture-diagram, claude-skill, codex
+**★ 16492** · exceptional (score 16) · HTML · agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
 > Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 11249 stars
-- 🗓️ Last pushed: 2026-08-11
-- 🏷️ Tags: agent-skills, anthropic, architecture-diagram, claude-skill, codex, dark-mode, data-flow-diagram, developer-tools, diagram-as-code, html-diagram, lifecycle-diagram, mermaid-alternative, opencode, sequence-diagram, svg, system-design, workflow-diagram
+- ⭐ 16492 stars
+- 🗓️ Last pushed: 2026-08-26
+- 🏷️ Tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization, codex, coding-agents, data-flow-diagram, deepseek-harness, developer-tools, diagram-as-code, diagrams, diagrams-as-code, dsh-plugin, mermaid-alternative, opencode, sequence-diagram, software-architecture, system-design, text-to-diagram
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[creative-media](../creative-media.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add tt-a1i/archify --profile core
+cue skills add tt-a1i/archify --profile creative-media
 ```
 
 ## About

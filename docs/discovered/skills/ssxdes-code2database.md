@@ -2,7 +2,7 @@
 title: "ssxdes/Code2Database — Claude Code skill discovered by cue"
 description: "Scan C/C++/Go/Python/Java/Rust/etc. codebases and generate directed call graphs with call ordering, conditions, conditional compilation paths, concurrency analy"
 layout: page
-updated: 2026-08-20
+updated: 2026-08-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-20
+- 🗓️ Last pushed: 2026-08-26
 - 🏷️ Tags: agent, code-analysis, code-knowledge-graph, code-search, databse, databse-project, graph, mcp, mcp-server, skill, skills
 
 ## Best fit cue profiles

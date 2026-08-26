@@ -2,19 +2,19 @@
 title: "anirudhlath/alfred — Claude Code skill discovered by cue"
 description: "Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation trigge"
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, skill, python, backend]
 ---
 
 # 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · potential (score 4.8) · Python · agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · potential (score 4.7) · Python · agentic-ai, claude, fastapi, home-automation, llm
 
 > Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-08-19
 - 🏷️ Tags: agentic-ai, claude, fastapi, home-automation, llm, multi-agent, ollama, python, voice-assistant

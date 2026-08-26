@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="derwi6819-sys-academic-research-survey"></a>
+## 💎 [derwi6819-sys/academic-research-survey](https://github.com/derwi6819-sys/academic-research-survey)
+
+**★ 0** · exceptional (score 13) · Python · tags: academic-research, claude-code, claude-skill, literature-survey, research-workflow
+
+通用学术调研工作流 skill（Claude Code）：任意专业门类的论文全景调研→候选方向短名单→深挖+研究计划书→实施清单；分门别类、创新点台账、质量红线、无损 token 经济
+
+✅ SKILL.md
+
+```bash
+cue skills add derwi6819-sys/academic-research-survey --profile research
+```
 
 ---
 
@@ -31,7 +46,7 @@ cue skills add aemro-motors/popper-scope --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## ✨ [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · strong (score 5.2) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · strong (score 5.1) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="leontynestirredup43-slowmist-security-cc"></a>
-## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+<a id="7onez-cti-expert"></a>
+## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
 
-**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+**★ 569** · exceptional (score 23.8) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
 
-Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+cue skills add 7onez/cti-expert --profile cybersecurity
 ```
 
 ---
@@ -33,25 +33,12 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2334** · exceptional (score 14) · Python · tags: agentskills, claude, skills
+**★ 2338** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="owasp-www-project-agent-memory-guard"></a>
-## 💎 [OWASP/www-project-agent-memory-guard](https://github.com/OWASP/www-project-agent-memory-guard)
-
-**★ 155** · exceptional (score 10.7) · Python · tags: agent-memory, agentic-ai, ai-agents, ai-safety, ai-security
-
-OWASP Foundation web repository
-
-```bash
-cue skills add OWASP/www-project-agent-memory-guard --profile cybersecurity
 ```
 
 ---
@@ -69,15 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="elyshafresh21-claude-context-lint"></a>
-## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
+<a id="gesh75-argus"></a>
+## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
+**★ 2** · strong (score 5.5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
-Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
+Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 
 ```bash
-cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+cue skills add gesh75/argus --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -44,7 +44,7 @@ cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 <a id="nuttaruj-rolepod"></a>
 ## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 3** · exceptional (score 8.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 3** · exceptional (score 8.1) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 

@@ -2,21 +2,21 @@
 title: "Temoa/dsh-rules-paths — Claude Code skill discovered by cue"
 description: "Claude Code-style paths: rule injection for DeepSeek Harness (DSH)."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-26
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Temoa/dsh-rules-paths](https://github.com/Temoa/dsh-rules-paths)
 
-**★ 1** · potential (score 4.1) · JavaScript · dsh, dsh-plugin
+**★ 1** · potential (score 4.3) · JavaScript · dsh, dsh-plugin
 
 > Claude Code-style paths: rule injection for DeepSeek Harness (DSH).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-15
+- 🗓️ Last pushed: 2026-08-25
 - 🏷️ Tags: dsh, dsh-plugin
 
 ## Best fit cue profiles

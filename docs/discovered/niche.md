@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="martellevaliant19-grant-thinking-cn-biology"></a>
-## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+```
+
+---
+
+<a id="locoda-reading-companion-skill"></a>
+## ✨ [locoda/reading-companion-skill](https://github.com/locoda/reading-companion-skill)
+
+**★ 0** · strong (score 6.5) · tags: ai-agent-skill, ai-agent-skills, anti-spoiler, chinese, reading-assistant
+
+对坐 ·阅读陪伴 · 陪一个人读完一本虚构长篇。开读前教他怎么读，开读后只聊他读到的部分，一个字都不剧透。
+
+✅ SKILL.md
+
+```bash
+cue skills add locoda/reading-companion-skill --profile niche
 ```
 
 ---

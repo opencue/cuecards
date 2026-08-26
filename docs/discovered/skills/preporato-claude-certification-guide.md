@@ -2,21 +2,21 @@
 title: "preporato/claude-certification-guide — Claude Code skill discovered by cue"
 description: "Study guides for all Anthropic Claude certifications: CCA-F, CCDV-F, CCAO-F, and CCAR-P. Exam domains, comparison, study paths, free practice resources."
 layout: page
-updated: 2026-08-25
+updated: 2026-08-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [preporato/claude-certification-guide](https://github.com/preporato/claude-certification-guide)
 
-**★ 166** · exceptional (score 10.4) · cca-f, cca-f-exam-questions, cca-f-practice-test, cca-f-study-guide, ccar-f
+**★ 140** · exceptional (score 10.5) · cca-f, cca-f-exam-questions, cca-f-practice-test, cca-f-study-guide, ccar-f
 
 > Study guides for all Anthropic Claude certifications: CCA-F, CCDV-F, CCAO-F, and CCAR-P. Exam domains, comparison, study paths, free practice resources.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
-- ⭐ 166 stars
-- 🗓️ Last pushed: 2026-08-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 140 stars
+- 🗓️ Last pushed: 2026-08-25
 - 🏷️ Tags: cca-f, cca-f-exam-questions, cca-f-practice-test, cca-f-study-guide, ccar-f, ccar-f-certification, ccar-f-exam, ccar-f-exam-prep, ccar-f-exam-questions, ccar-f-practice-questions, ccar-f-study-guide, ccar-p, ccdv-f, ccdv-f-exam-questions, ccdv-f-practice-test, ccdv-f-study-guide, claude
 
 ## Best fit cue profiles

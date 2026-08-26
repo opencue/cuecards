@@ -2,22 +2,22 @@
 title: "7onez/cti-expert — Claude Code skill discovered by cue"
 description: "CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required."
 layout: page
-updated: 2026-07-31
+updated: 2026-08-26
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
 
-**★ 421** · exceptional (score 21.7) · Python · claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
+**★ 569** · exceptional (score 23.8) · Python · claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
 
 > CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 23.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 421 stars
-- 🗓️ Last pushed: 2026-07-31
+- ⭐ 569 stars
+- 🗓️ Last pushed: 2026-08-26
 - 🏷️ Tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics, investigation, osint, reconnaissance, security, threat-intelligence
 
 ## Best fit cue profiles
