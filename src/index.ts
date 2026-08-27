@@ -38,6 +38,7 @@ const ESSENTIAL_COMMANDS: CommandName[] = [
   "launch",
   "skills",
   "mcps",
+  "auth",
   "doctor",
   "validate",
   "sync",

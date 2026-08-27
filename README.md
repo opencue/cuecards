@@ -193,9 +193,9 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ---
 
-## 95 ready-made cuecards
+## 188 ready-made cuecards
 
-cue ships with pre-built profiles for common stacks and workflows. A taste:
+cue ships with 95 focused primary profiles plus 93 opt-in AAS overlays. A taste:
 
 | Profile | What it's for |
 |---|---|
@@ -212,7 +212,8 @@ cue ships with pre-built profiles for common stacks and workflows. A taste:
 | 🏢 **agency** | 63 delegatable subagents — design, sales, product, PM, QA |
 
 ```bash
-cue list           # see all 95
+cue list           # browse the 95 focused primary profiles
+cue list --all     # see all 188, including opt-in overlays
 cue auto-detect    # suggest the right one for the current directory
 cue use <name>     # pin it
 ```
