@@ -145,6 +145,13 @@ skills:
     - meta/roi-estimator        # auto-attaches ROI column (dimension, %, confidence tier) to any improvement list
     - meta/next-steps           # closes substantive tasks with a short, ranked Next steps block + offers the top one
     - meta/ralph-loop           # /ralph-loop — autonomous "work longer" loop (re-feed prompt until tests pass), guarded by stop-check + iteration cap
+    # ── GitGuardex collaboration — active only in managed repos ──
+    - id: github/gitguardex
+      when:
+        has_dir: .omx
+    - id: github/gx-agents
+      when:
+        has_dir: .omx
     # ── Plan / debug (the rest of the plan cluster soft-loads via autoplan + smart-loader) ──
     - plan/investigate          # /investigate — root-cause debugging
     - plan/autoplan             # /autoplan — chains office-hours → ceo → eng on demand
