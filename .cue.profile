@@ -1,1 +1,1 @@
-skill-writer+core
+backend+python
