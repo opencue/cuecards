@@ -6,6 +6,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, join } from "node:path";
 import { repoEvidence } from "./profile-match";
+import type { SuggestEvidence } from "./stack-suggest";
 
 /**
  * V2 detection result with 0-1 confidence and reasons array.
@@ -14,6 +15,8 @@ export interface DetectionResultV2 {
   profile: string;
   confidence: number; // 0.0 - 1.0
   reasons: string[];
+  /** Structured observations that produced the human-readable reasons. */
+  evidence?: SuggestEvidence[];
 }
 
 /**
@@ -247,13 +250,36 @@ const CONFIDENCE_CAP = 0.97;
  * (capped), so an agreement of weak signals can out-rank a lone strong one.
  */
 export function detectProfileV2(cwd: string): DetectionResultV2[] {
-  const results = new Map<string, { confidence: number; reasons: string[] }>();
+  const results = new Map<
+    string,
+    { confidence: number; reasons: string[]; evidence: SuggestEvidence[] }
+  >();
 
-  function add(profile: string, confidence: number, reason: string) {
-    const entry = results.get(profile) ?? { confidence: 0, reasons: [] };
+  const evidenceKey = (value: string): string =>
+    value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const observed = (
+    source: string,
+    key: string,
+    family = `${source}:${evidenceKey(key)}`,
+  ): SuggestEvidence => ({
+    id: `${source}:${evidenceKey(key)}`,
+    family,
+    source,
+  });
+
+  function add(
+    profile: string,
+    confidence: number,
+    reason: string,
+    observation: SuggestEvidence = observed("detector", reason),
+  ) {
+    const entry = results.get(profile) ?? { confidence: 0, reasons: [], evidence: [] };
     entry.confidence = Math.max(entry.confidence, confidence);
-    // Dedupe reasons so the same file counted twice doesn't inflate the boost.
+    // Dedupe observations so the same file counted twice doesn't inflate the boost.
     if (!entry.reasons.includes(reason)) entry.reasons.push(reason);
+    if (!entry.evidence.some((item) => item.id === observation.id)) {
+      entry.evidence.push(observation);
+    }
     results.set(profile, entry);
   }
 
@@ -285,6 +311,7 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
       profile,
       calibratedConfidence,
       evidence.reasons.get(term) ?? `${term} source files`,
+      observed("language", term),
     );
   }
   const environmentProfiles: ReadonlyArray<
@@ -300,7 +327,12 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
   ];
   for (const [term, profile, confidence] of environmentProfiles) {
     if (evidence.sources.get(term) !== "environment") continue;
-    add(profile, confidence, evidence.reasons.get(term) ?? `${term} env key`);
+    add(
+      profile,
+      confidence,
+      evidence.reasons.get(term) ?? `${term} env key`,
+      observed("environment", term),
+    );
   }
 
   // Domain-first signals: advertising repos are often infrastructure-shaped
@@ -308,21 +340,26 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
   // Google-specific terms separate from generic marketing language: a repo
   // named `marketing-campaign` is not evidence that it uses Google Ads.
   const repoText = `${cwd} ${basename(cwd)}`.toLowerCase();
+  const repositoryNameEvidence = observed(
+    "repository-name",
+    basename(cwd),
+    `repository-name:${evidenceKey(basename(cwd))}`,
+  );
   const googleAdsSignal = /(^|[^a-z])(google[-_ ]?ads?|gaql|ppc|roas)([^a-z]|$)/.test(repoText);
   const adsSignal = /(^|[^a-z])(ads?|ad[-_ ]?copy)([^a-z]|$)/.test(repoText);
   const marketingSignal = /(^|[^a-z])(marketing|campaigns?|content[-_ ]?calendar|brand)([^a-z]|$)/.test(repoText);
   if (googleAdsSignal) {
-    add("google-ads", 0.86, "repository name suggests advertising");
-    add("claude-ads", 0.78, "repository name suggests advertising");
-    add("marketing", 0.72, "repository name suggests advertising");
-    add("ads-manager", 0.68, "repository name suggests advertising");
+    add("google-ads", 0.86, "repository name suggests advertising", repositoryNameEvidence);
+    add("claude-ads", 0.78, "repository name suggests advertising", repositoryNameEvidence);
+    add("marketing", 0.72, "repository name suggests advertising", repositoryNameEvidence);
+    add("ads-manager", 0.68, "repository name suggests advertising", repositoryNameEvidence);
   } else if (adsSignal) {
-    add("ads-manager", 0.82, "repository name suggests advertising");
-    add("marketing", 0.78, "repository name suggests advertising");
-    add("google-ads", 0.6, "repository name suggests advertising");
+    add("ads-manager", 0.82, "repository name suggests advertising", repositoryNameEvidence);
+    add("marketing", 0.78, "repository name suggests advertising", repositoryNameEvidence);
+    add("google-ads", 0.6, "repository name suggests advertising", repositoryNameEvidence);
   } else if (marketingSignal) {
-    add("marketing", 0.84, "repository name suggests marketing");
-    add("ads-manager", 0.6, "repository name suggests campaigns");
+    add("marketing", 0.84, "repository name suggests marketing", repositoryNameEvidence);
+    add("ads-manager", 0.6, "repository name suggests campaigns", repositoryNameEvidence);
   }
 
   // ── Rust ──
@@ -419,7 +456,14 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
       const hit =
         (rule.deps !== undefined && hasAny(allDeps, rule.deps)) ||
         (rule.prefixes ?? []).some((p) => hasPrefix(allDeps, p));
-      if (hit) add(rule.profile, rule.confidence, rule.reason);
+      if (hit) {
+        add(
+          rule.profile,
+          rule.confidence,
+          rule.reason,
+          observed("dependency", rule.profile),
+        );
+      }
     }
   }
 
@@ -443,7 +487,14 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
         const hit =
           (rule.deps !== undefined && hasAny(wsDeps, rule.deps)) ||
           (rule.prefixes ?? []).some((p) => hasPrefix(wsDeps, p));
-        if (hit) add(rule.profile, rule.confidence, `workspace ${rule.reason}`);
+        if (hit) {
+          add(
+            rule.profile,
+            rule.confidence,
+            `workspace ${rule.reason}`,
+            observed("workspace-dependency", rule.profile),
+          );
+        }
       }
     }
   }
@@ -455,19 +506,26 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
       for (const rule of DEP_PROFILE_RULES) {
         if (rule.pyDeps === undefined) continue;
         const matched = rule.pyDeps.find((d) => pyDeps.has(d));
-        if (matched !== undefined) add(rule.profile, rule.confidence, `${source} has ${matched}`);
+        if (matched !== undefined) {
+          add(
+            rule.profile,
+            rule.confidence,
+            `${source} has ${matched}`,
+            observed("python-dependency", matched),
+          );
+        }
       }
     }
   }
 
   return [...results.entries()]
-    .map(([profile, { confidence, reasons }]) => {
+    .map(([profile, { confidence, reasons, evidence }]) => {
       // Corroboration boost: each signal beyond the first nudges confidence up
       // toward the cap. Lone signals keep their base value (tested contract).
-      const boosted = reasons.length > 1
-        ? Math.min(CONFIDENCE_CAP, confidence + CORROBORATION_STEP * (reasons.length - 1))
+      const boosted = evidence.length > 1
+        ? Math.min(CONFIDENCE_CAP, confidence + CORROBORATION_STEP * (evidence.length - 1))
         : confidence;
-      return { profile, confidence: boosted, reasons };
+      return { profile, confidence: boosted, reasons, evidence };
     })
     .sort((a, b) => b.confidence - a.confidence)
     .slice(0, 5);

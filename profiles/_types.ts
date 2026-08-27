@@ -43,6 +43,22 @@ export interface ProfileSkills {
   // Using it will throw a SchemaViolation.
 }
 
+/** Machine-readable provenance and discovery metadata for catalog-generated profiles. */
+export interface ProfileCatalog {
+  /** Stable source identifier, e.g. `agentic-awesome-skills`. */
+  source: string;
+  /** Broad semantic domain used to group profiles in discovery surfaces. */
+  group: string;
+  /** Narrow capability within the broad group. */
+  capability: string;
+  /** True when the profile is owned by a generator rather than hand-authored. */
+  generated: boolean;
+  /** `search` keeps large generated catalogs out of the empty picker view. */
+  discoverability: "catalogue" | "search";
+  /** True when one or more assignments need a human taxonomy decision. */
+  reviewRequired?: boolean;
+}
+
 /**
  * Default MCP prune mode applied at launch when no `CUE_PRUNE_MCPS` env override
  * is set. `off` keeps all MCPs (fail-open, the global default); `profile` drops
@@ -53,9 +69,15 @@ export interface ProfileSkills {
  */
 export type McpPruneMode = "off" | "profile" | "all";
 
+/** How prominently a profile appears in human-facing discovery surfaces. */
+export type ProfileKind = "primary" | "overlay" | "internal";
+
 export interface Profile {
   name: string;
   description: string;
+  catalog?: ProfileCatalog;
+  /** Primary profiles lead discovery; overlays are opt-in extensions. */
+  kind?: ProfileKind;
   icon?: string;
   iconImage?: string;
   /** Default non-interactive prune mode; `CUE_PRUNE_MCPS` overrides per launch. */
@@ -206,6 +228,7 @@ export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 export interface DeferredSkillEntry { id: string; description: string; path: string; }
 
 export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plugins"> {
+  kind: ProfileKind;
   agents: AgentKind[];
   skills: {
     local: ResolvedSkill[];

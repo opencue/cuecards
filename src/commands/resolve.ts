@@ -218,9 +218,9 @@ interface ResultRow {
   loaded: boolean;
   missingMcps: string[];
   fix: string | null;
-  /** Prior resolutions of this skill in this directory. */
+  /** Prior invocations of this skill in this directory. */
   resolvedHere: number;
-  /** Set once resolvedHere clears the promotion threshold. */
+  /** Set once the invocation count clears the promotion threshold. */
   keepCommand: string | null;
   matched?: string[];
   /** Companion skills the SKILL.md wiki-links to. */
@@ -327,7 +327,7 @@ function renderHuman(rows: ResultRow[], profile: ActiveProfile, query: string, n
     }
     if (r.links.length > 0) out.push(`       related: ${r.links.join(", ")}`);
     if (r.keepCommand) {
-      out.push(`       ↑ resolved ${r.resolvedHere}× in this directory — keep it: ${r.keepCommand}`);
+      out.push(`       ↑ invoked ${r.resolvedHere}× in this directory — keep it: ${r.keepCommand}`);
     }
     if (r.matched && r.matched.length > 0) {
       out.push(`       matched: ${r.matched.slice(0, 6).join(", ")}`);
@@ -399,6 +399,7 @@ export async function run(args: string[]): Promise<number> {
         id: r.id,
         cwd: process.cwd(),
         profile: profile.name,
+        stage: "surfaced",
         tier: r.tier,
         score: r.score,
       });

@@ -27,9 +27,9 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import * as p from "@clack/prompts";
 
-import { detectProfileV2 } from "../lib/auto-detect";
-import { scanProject } from "../lib/project-scanner";
-import { listProfiles } from "../lib/profile-loader";
+import { listProfiles, loadProfile } from "../lib/profile-loader";
+import { detectRepositoryStacks } from "../lib/repository-stack-detect";
+import { countProfileSkills } from "../lib/profile-capabilities";
 import { getCachedGemsForProfile, autoInstallClis } from "./discover";
 import { shimInstalled, runInstall, type ShimOptions } from "./shell";
 import { SHIM_AGENTS, shimDir } from "../lib/shim-dir";
@@ -402,7 +402,23 @@ export interface RunDeps {
   shim?: ShimInjectOptions;
 }
 
+function printHelp(): void {
+  process.stdout.write("Usage: cue setup [options]\n");
+  process.stdout.write("       cue init [options]\n\n");
+  process.stdout.write("Scans the current project, recommends a profile, and pins the selection.\n\n");
+  process.stdout.write("Options:\n");
+  process.stdout.write("      --profile <name>  Pin an explicit profile\n");
+  process.stdout.write("  -y, --yes             Use safe defaults without prompts\n");
+  process.stdout.write("      --no-onboarding   Skip global first-run onboarding\n");
+  process.stdout.write("      --re-onboard      Repeat global onboarding\n");
+  process.stdout.write("  -h, --help            Show this help\n");
+}
+
 export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
+  if (args.includes("--help") || args.includes("-h")) {
+    printHelp();
+    return 0;
+  }
   const cwd = process.cwd();
   const reOnboard = args.includes("--re-onboard");
   const skipOnboarding = args.includes("--no-onboarding");
@@ -456,7 +472,8 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
   }
 
   // Scan
-  const project = scanProject(cwd);
+  const report = await detectRepositoryStacks(cwd, { limit: 3 });
+  const project = report.project;
   const detected: string[] = [...project.languages, ...project.frameworks, ...project.tools];
 
   if (detected.length) {
@@ -465,8 +482,8 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
     p.log.info("No strong project signals detected.");
   }
 
-  // Score
-  const suggestions = detectProfileV2(cwd);
+  // Score through the same repository-stack service used by launch and auto-detect.
+  const suggestions = report.suggestions;
 
   // Resolve which profile to pin WITHOUT ever reaching `p.select` when either
   // `--profile` or `--yes` is set.
@@ -477,8 +494,12 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
     // `--yes` is ALSO set.
     choice = pinnedProfile;
   } else if (yes) {
-    // Top detectProfileV2() match, or `core` when nothing matched.
-    choice = suggestions[0]?.profile ?? "core";
+    // Auto-pin only a strong, separated repository stack. A weak or ambiguous
+    // suggestion falls back to the safe default instead of silently guessing.
+    choice = report.autoSelection.selector ?? "core";
+    if (report.autoSelection.status === "uncertain") {
+      p.log.warn(`Suggestion uncertain (${report.autoSelection.reason}); using core.`);
+    }
   } else {
     const allProfiles = await listProfiles();
 
@@ -487,21 +508,19 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
 
     for (let i = 0; i < Math.min(suggestions.length, 3); i++) {
       const s = suggestions[i]!;
+      const selector = s.parts.join("+");
       options.push({
-        value: s.profile,
-        label: s.profile,
-        hint: `${Math.round(s.confidence * 100)}% match — ${s.reasons.join(", ")}`,
+        value: selector,
+        label: selector,
+        hint: s.reasons.join(", "),
       });
     }
 
-    // Add remaining profiles not in suggestions
-    const suggestedNames = new Set(suggestions.map(s => s.profile));
-    for (const name of allProfiles) {
-      if (suggestedNames.has(name)) continue;
-      if (name.startsWith("_")) continue;
-      options.push({ value: name, label: name });
-    }
-
+    options.push({
+      value: "__search",
+      label: "Search all profiles…",
+      hint: `${allProfiles.length} profiles including opt-in extensions`,
+    });
     options.push({ value: "__new", label: "Create a new profile", hint: "interactive wizard" });
     options.push({ value: "__skip", label: "Skip — don't pin a profile" });
 
@@ -520,7 +539,33 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
       return 0;
     }
 
-    if (picked === "__new") {
+    if (picked === "__search") {
+      const searchOptions = await Promise.all(allProfiles.map(async (name) => {
+        try {
+          const profile = await loadProfile(name);
+          const totals = `${countProfileSkills(profile)} skills · ${profile.mcps.length} MCPs`;
+          return {
+            value: name,
+            label: profile.icon ? `${profile.icon} ${name}` : name,
+            hint: profile.kind === "overlay"
+              ? `opt-in extension · ${totals} · ${profile.description}`
+              : `${totals} · ${profile.description}`,
+          };
+        } catch {
+          return { value: name, label: name };
+        }
+      }));
+      const searched = await p.autocomplete({
+        message: "Search profiles",
+        placeholder: "Type a profile or capability…",
+        options: searchOptions,
+      });
+      if (p.isCancel(searched)) {
+        p.cancel("Cancelled.");
+        return 130;
+      }
+      choice = searched as string;
+    } else if (picked === "__new") {
       const name = await p.text({
         message: "Profile name",
         placeholder: "my-project",
@@ -555,9 +600,9 @@ export async function run(args: string[], deps: RunDeps = {}): Promise<number> {
       // reachable only from the interactive `p.select` menu), so this is
       // belt-and-suspenders, not a behavior change.
       return yes && !shimActiveNew ? 1 : 0;
+    } else {
+      choice = picked as string;
     }
-
-    choice = picked as string;
   }
 
   // Pin the chosen profile

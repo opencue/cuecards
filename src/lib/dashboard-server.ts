@@ -27,6 +27,7 @@ import { computeAffinityMap, suggestionsByProfile } from "./pair-suggestions";
 import { computeSkillUsage } from "./skill-report";
 import { computeTriggerGaps } from "./trigger-gaps";
 import { loadProfile, listProfiles } from "./profile-loader";
+import { countProfileSkills } from "./profile-capabilities";
 import {
   mergeProfiles,
   renderMerged,
@@ -113,7 +114,7 @@ export async function handleStatus(): Promise<ApiResult<unknown>> {
       profile = {
         name: loaded.name,
         description: loaded.description,
-        skills: loaded.skills.local.length + loaded.skills.npx.length,
+        skills: countProfileSkills(loaded),
         mcps: loaded.mcps.length,
         plugins: loaded.plugins.length,
       };
@@ -134,7 +135,7 @@ export async function handleStatus(): Promise<ApiResult<unknown>> {
             parts.push({
               name: part.name,
               description: part.description,
-              skills: part.skills.local.length + part.skills.npx.length,
+              skills: countProfileSkills(part),
               mcps: part.mcps.length,
               plugins: part.plugins.length,
             });

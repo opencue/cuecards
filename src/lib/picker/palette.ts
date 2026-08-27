@@ -73,6 +73,8 @@ export interface PaletteRow {
   recommended?: boolean;
   /** Red trailing warning, e.g. `full`'s "never use this". */
   danger?: string;
+  /** Omit from the empty catalogue, but retain as a fuzzy-search candidate. */
+  searchOnly?: boolean;
 }
 
 export interface PaletteState {
@@ -108,6 +110,8 @@ export interface PaletteProfile {
   label: string;
   hint?: string;
   conflicts?: string[];
+  catalogGroup?: string;
+  searchOnly?: boolean;
 }
 
 export interface BuildPaletteArgs {
@@ -150,16 +154,20 @@ export function buildPaletteRows(args: BuildPaletteArgs): PaletteRow[] {
       hint: opt.hint,
       section,
       conflicts: opt.conflicts,
+      searchOnly: opt.searchOnly,
       danger: opt.value === "full" ? "never use this" : undefined,
       ...over,
     });
   };
 
   const minConfidence = args.minConfidence ?? DETECTED_MIN_CONFIDENCE;
-  for (const v of args.suggested) push(v, SUGGESTED_SECTION, { recommended: true });
+  for (const v of args.suggested) push(v, SUGGESTED_SECTION, { recommended: true, searchOnly: false });
   for (const d of args.detected ?? []) {
     if (d.confidence < minConfidence) continue;
-    push(d.name, DETECTED_SECTION, { hint: d.reasons.slice(0, 2).join(", ") });
+    push(d.name, DETECTED_SECTION, {
+      hint: d.reasons.slice(0, 2).join(", "),
+      searchOnly: false,
+    });
   }
   for (const r of args.recents ?? []) {
     // Composite recents ("a+b") contribute their parts; the palette lists
@@ -167,18 +175,19 @@ export function buildPaletteRows(args: BuildPaletteArgs): PaletteRow[] {
     for (const part of r.name.split("+")) {
       push(part, FREQUENT_SECTION, {
         hint: `${r.sessions}× session${r.sessions === 1 ? "" : "s"}`,
+        searchOnly: false,
       });
     }
   }
   for (const f of args.featured ?? []) {
-    for (const part of f.split("+")) push(part, FEATURED_SECTION);
+    for (const part of f.split("+")) push(part, FEATURED_SECTION, { searchOnly: false });
   }
 
   // Everything else, bucketed into category sections (stable order).
   const rest = args.profiles.filter((o) => !claimed.has(o.value));
   const buckets = new Map<string, PaletteProfile[]>();
   for (const o of rest) {
-    const cat = combineCategoryOf(o.value);
+    const cat = combineCategoryOf(o.value, o.catalogGroup);
     const list = buckets.get(cat);
     if (list) list.push(o);
     else buckets.set(cat, [o]);
@@ -232,7 +241,11 @@ export function fuzzyScore(query: string, candidate: string): number | null {
  * relevance beats grouping. Ties keep the original order. Pure.
  */
 export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
-  if (query.trim().length === 0) return rows;
+  if (query.trim().length === 0) {
+    return rows.some((row) => row.searchOnly === true)
+      ? rows.filter((row) => row.searchOnly !== true)
+      : rows;
+  }
   const scored: Array<{ row: PaletteRow; score: number; i: number }> = [];
   rows.forEach((row, i) => {
     const byValue = fuzzyScore(query, row.value);
@@ -296,7 +309,7 @@ export function renderPaletteFrame(state: PaletteState): string {
   const scope =
     state.query.length > 0
       ? styleText("dim", `${visible.length} ${visible.length === 1 ? "match" : "matches"}`)
-      : styleText("dim", `${state.rows.length} profiles`);
+      : styleText("dim", `${visible.length} profiles`);
   lines.push(
     `${bar}  ${styleText("dim", "search")}  ${padVisible(field, Math.max(0, headWidth - 22))}${scope}`,
   );

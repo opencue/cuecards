@@ -54,6 +54,29 @@ describe.skipIf(!BUN_SPAWNABLE)("global flags", () => {
     expect(res.stdout).toContain("cue");
   });
 
+  test("--help --all is generated from the full command registry", () => {
+    const res = cue(["--help", "--all"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("All commands");
+    expect(res.stdout).toContain("lint-skill");
+    expect(res.stdout).toContain("eval-behavior");
+  });
+
+  test("setup --help is side-effect-free and does not start onboarding", () => {
+    const res = cue(["setup", "--help"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("Usage: cue setup");
+    expect(res.stdout).not.toContain("Which profile for this directory?");
+    expect(res.stdout).not.toContain("Detected:");
+  });
+
+  test("use --help prints focused usage without dumping the profile catalogue", () => {
+    const res = cue(["use", "--help"]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("Usage: cue use");
+    expect(res.stderr).not.toContain("Available:");
+  });
+
   test("--version exits 0 and prints a semver string", () => {
     const res = cue(["--version"]);
     expect(res.status).toBe(0);
@@ -102,5 +125,26 @@ describe.skipIf(!BUN_SPAWNABLE)("unknown command handling", () => {
     expect(res.status).toBe(1);
     // "Did you mean?" section should be absent when no command scores above 0.3.
     expect(res.stderr).not.toContain("Did you mean");
+  });
+});
+
+describe.skipIf(!BUN_SPAWNABLE)("large machine-readable output", () => {
+  test("list --json flushes the complete catalogue before exit", () => {
+    const res = cue(["list", "--json"]);
+    expect(res.status).toBe(0);
+    const rows = JSON.parse(res.stdout) as Array<{ name: string }>;
+    expect(rows.length).toBeGreaterThan(100);
+    expect(rows.some((row) => row.name === "aas-backend-auth")).toBe(true);
+
+    // A direct spawn can drain stdout quickly enough to hide process.exit()
+    // truncation. A real shell pipeline applies backpressure and used to stop
+    // at Bun's 8192-byte buffer boundary.
+    const piped = spawnSync(
+      "bash",
+      ["-lc", `bun run ${JSON.stringify(CUE_BIN)} list --json | wc -c`],
+      { encoding: "utf8", timeout: 15000 },
+    );
+    expect(piped.status).toBe(0);
+    expect(Number(piped.stdout.trim())).toBeGreaterThan(8192);
   });
 });

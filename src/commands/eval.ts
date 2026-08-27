@@ -24,6 +24,7 @@ import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { computeStats } from "../lib/analytics";
 import type { ResolvedProfile } from "../../profiles/_types";
 import { repoRoot } from "../lib/repo-root";
+import { countProfileSkills } from "../lib/profile-capabilities";
 
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const RULES_ROOT = join(repoRoot(), "resources", "rules");
@@ -171,7 +172,7 @@ async function renderOne(name: string, showBreakdown: boolean, asJson: boolean):
     process.stdout.write(JSON.stringify({
       profile: name,
       counts: {
-        skills: profile.skills.local.length + profile.skills.npx.length,
+        skills: countProfileSkills(profile),
         rules: (profile.rules ?? []).length,
         commands: (profile.commands ?? []).length,
         hooks: (profile.hooks ?? []).length,

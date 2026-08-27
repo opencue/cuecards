@@ -24,6 +24,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 
 import { recordEvent, type SessionEvent } from "./analytics";
+import { recordResolve } from "./skill-resolve-journal";
 import { redactPrompt } from "./telemetry-redact";
 import { isEnabled, seenTrackerPath } from "./telemetry-consent";
 
@@ -137,9 +138,11 @@ interface ParsedTurn {
   kind: "user" | "assistant";
   text: string;
   toolUses: Array<{ id: string; name: string; input: Record<string, unknown> }>;
+  toolResultIds: string[];
   messageId: string | null;
   sessionId: string | null;
   timestamp: string | null;
+  cwd: string | null;
 }
 
 /**
@@ -155,6 +158,7 @@ export function parseTranscript(content: string): ParsedTurn[] {
     try { line = JSON.parse(rawLine) as Record<string, unknown>; } catch { continue; }
     const sessionId = typeof line.sessionId === "string" ? line.sessionId : null;
     const timestamp = typeof line.timestamp === "string" ? line.timestamp : null;
+    const cwd = typeof line.cwd === "string" ? line.cwd : null;
     const message = line.message as Record<string, unknown> | undefined;
     if (!message || typeof message !== "object") continue;
 
@@ -164,6 +168,7 @@ export function parseTranscript(content: string): ParsedTurn[] {
 
     let text = "";
     const toolUses: ParsedTurn["toolUses"] = [];
+    const toolResultIds: string[] = [];
     const content = message.content;
 
     if (typeof content === "string") {
@@ -179,11 +184,22 @@ export function parseTranscript(content: string): ParsedTurn[] {
             ? (b.input as Record<string, unknown>)
             : {};
           toolUses.push({ id: b.id, name: b.name, input });
+        } else if (b.type === "tool_result" && typeof b.tool_use_id === "string") {
+          toolResultIds.push(b.tool_use_id);
         }
       }
     }
 
-    turns.push({ kind: role, text: text.trim(), toolUses, messageId, sessionId, timestamp });
+    turns.push({
+      kind: role,
+      text: text.trim(),
+      toolUses,
+      toolResultIds,
+      messageId,
+      sessionId,
+      timestamp,
+      cwd,
+    });
   }
   return turns;
 }
@@ -251,6 +267,7 @@ function ingestTranscript(
   let invocations = 0;
   let misses = 0;
   let duplicates = 0;
+  const completedToolUseIds = new Set(turns.flatMap((turn) => turn.toolResultIds));
 
   for (let i = 0; i < turns.length; i++) {
     const turn = turns[i]!;
@@ -271,6 +288,18 @@ function ingestTranscript(
           tool_use_id: tu.id,
         };
         recordEvent(event);
+        if (turn.cwd) {
+          const base = {
+            ts: turn.timestamp ?? new Date().toISOString(),
+            id: skill,
+            cwd: turn.cwd,
+            profile: "",
+          };
+          recordResolve({ ...base, stage: "invoked" });
+          if (completedToolUseIds.has(tu.id)) {
+            recordResolve({ ...base, stage: "completed" });
+          }
+        }
         invocations++;
       }
       continue;

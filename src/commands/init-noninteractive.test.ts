@@ -172,7 +172,7 @@ describe("cue init --profile / --yes (non-interactive)", () => {
     expect(existsSync(join(tmpCwd, ".cue.profile"))).toBe(false);
   });
 
-  test("--yes without --profile pins the top detectProfileV2() match", async () => {
+  test("--yes without --profile pins the top detected repository stack", async () => {
     writeFileSync(join(tmpCwd, "package.json"), JSON.stringify({
       dependencies: { next: "14.0.0" },
     }));
@@ -182,6 +182,15 @@ describe("cue init --profile / --yes (non-interactive)", () => {
   });
 
   test("--yes with no detected match falls back to core", async () => {
+    const { code } = await capture(["--yes"]);
+    expect(code).toBe(0);
+    expect(readFileSync(join(tmpCwd, ".cue.profile"), "utf8").trim()).toBe("core");
+  });
+
+  test("--yes falls back to core instead of pinning a weak repository match", async () => {
+    writeFileSync(join(tmpCwd, "package.json"), JSON.stringify({
+      dependencies: { express: "5.0.0" },
+    }));
     const { code } = await capture(["--yes"]);
     expect(code).toBe(0);
     expect(readFileSync(join(tmpCwd, ".cue.profile"), "utf8").trim()).toBe("core");

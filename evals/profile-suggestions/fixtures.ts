@@ -15,6 +15,7 @@ export const PROFILE_SUGGESTION_FIXTURES: ProfileSuggestionFixture[] = [
   {
     id: "nextjs-app-router",
     expected: ["nextjs"],
+    expectAutoSelect: true,
     forbiddenTop: ["medusa-next", "medusa-vite"],
     files: { "package.json": pkg({ next: "15", react: "19" }), "next.config.ts": "export default {}" },
   },
@@ -77,6 +78,7 @@ export const PROFILE_SUGGESTION_FIXTURES: ProfileSuggestionFixture[] = [
   {
     id: "stripe-integration",
     expected: ["stripe"],
+    expectAutoSelect: false,
     files: { "package.json": pkg({ stripe: "18" }), "payments.ts": "export const payments = true" },
   },
   {
@@ -130,23 +132,37 @@ export const PROFILE_SUGGESTION_FIXTURES: ProfileSuggestionFixture[] = [
   {
     id: "nextjs-with-stripe",
     expected: ["nextjs"],
+    expectedStack: ["nextjs", "stripe"],
+    expectAutoSelect: true,
     files: { "package.json": pkg({ next: "15", react: "19", stripe: "18" }), "next.config.ts": "export default {}" },
   },
   {
     id: "vite-with-supabase",
     expected: ["vite"],
+    expectedStack: ["vite", "supabase"],
     files: { "package.json": pkg({ react: "19", "@supabase/supabase-js": "2" }, { vite: "7" }), "vite.config.ts": "export default {}" },
   },
   {
     id: "python-with-aws",
     expected: ["python"],
+    expectedStack: ["python", "aws"],
     files: { "requirements.txt": "fastapi==0.116\nboto3==1.40\n", "app/main.py": "from fastapi import FastAPI" },
   },
   {
     id: "docker-node-api",
     expected: ["backend"],
+    expectAutoSelect: false,
     forbiddenTop: ["coolify"],
     files: { "package.json": pkg({ express: "5" }), "Dockerfile": "FROM node:22" },
+  },
+  {
+    id: "ads-automation",
+    expected: ["ads-manager"],
+    expectAutoSelect: false,
+    forbiddenTop: ["backend"],
+    files: {
+      "README.md": "Automation utilities for advertising campaigns",
+    },
   },
   {
     id: "medusa-backend",

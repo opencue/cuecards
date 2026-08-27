@@ -1,6 +1,10 @@
 import { describe, expect, test } from "bun:test";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
   buildCodexConfigToml,
+  discoverCodexSkillFiles,
   parseBaseCodexConfig,
 } from "./codex-config";
 
@@ -25,10 +29,14 @@ COLONY_HOME = "/somewhere"
 
 [projects."/home/u/x"]
 trust_level = "trusted"
+
+[[skills.config]]
+name = "unused-global-skill"
+enabled = false
 `;
 
 describe("parseBaseCodexConfig", () => {
-  test("keeps top-level scalars and [features], drops every other table", () => {
+  test("keeps top-level scalars, [features], and skill overrides", () => {
     const base = parseBaseCodexConfig(BASE);
     expect(base.top.model).toBe('"gpt-5.5"');
     expect(base.top.model_reasoning_effort).toBe('"xhigh"');
@@ -38,6 +46,9 @@ describe("parseBaseCodexConfig", () => {
     expect(base.top.command).toBeUndefined();
     expect(base.top.trust_level).toBeUndefined();
     expect(base.top.COLONY_HOME).toBeUndefined();
+    expect(base.skillsConfig).toEqual([
+      '[[skills.config]]\nname = "unused-global-skill"\nenabled = false',
+    ]);
   });
 
   test("pulls multi-line arrays and inline tables in whole", () => {
@@ -130,5 +141,53 @@ describe("buildCodexConfigToml", () => {
       'args = ["run", "google-ads-mcp"]\n' +
       'env = { "GOOGLE_PROJECT_ID" = "my-project" }\n',
     );
+  });
+
+  test("scopes Codex to cue-managed skills while preserving base overrides", () => {
+    const toml = buildCodexConfigToml({
+      baseText: BASE,
+      mcpServers: {},
+      disabledSkillPaths: ["/repo/.agents/skills/unused/SKILL.md"],
+      enabledSkillPaths: ["/runtime/skills/analyze/SKILL.md"],
+    });
+
+    const inherited = toml.indexOf('name = "unused-global-skill"');
+    const disabled = toml.indexOf('path = "/repo/.agents/skills/unused/SKILL.md"');
+    const enabled = toml.indexOf('path = "/runtime/skills/analyze/SKILL.md"');
+    expect(inherited).toBeGreaterThan(-1);
+    expect(disabled).toBeGreaterThan(inherited);
+    expect(enabled).toBeGreaterThan(disabled);
+    expect(toml.slice(disabled, enabled)).toContain("enabled = false");
+    expect(toml.slice(enabled)).toContain("enabled = true");
+  });
+});
+
+describe("discoverCodexSkillFiles", () => {
+  test("finds user and repository skill files from cwd through the pin directory", () => {
+    const root = mkdtempSync(join(tmpdir(), "cue-codex-skills-"));
+    const home = join(root, "home");
+    const repo = join(root, "repo");
+    const cwd = join(repo, "packages", "api");
+    const paths = [
+      join(home, ".agents", "skills", "global", "SKILL.md"),
+      join(repo, ".agents", "skills", "root", "SKILL.md"),
+      join(repo, ".agents", "skills", "bundle", "skills", "nested", "SKILL.md"),
+      join(cwd, ".agents", "skills", "local", "SKILL.md"),
+    ];
+    try {
+      for (const path of paths) {
+        mkdirSync(join(path, ".."), { recursive: true });
+        writeFileSync(path, "---\nname: test\ndescription: test\n---\n");
+      }
+      const outside = join(root, ".agents", "skills", "outside", "SKILL.md");
+      mkdirSync(join(outside, ".."), { recursive: true });
+      writeFileSync(outside, "---\nname: outside\ndescription: outside\n---\n");
+
+      expect(discoverCodexSkillFiles({ cwd, pinDir: repo, homeDir: home })).toEqual(
+        [...paths].sort(),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

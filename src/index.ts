@@ -29,79 +29,29 @@ function readVersion(): string {
   }
 }
 
-function printHelp(): void {
-  const groups: Record<string, [string, string][]> = {
-    "Profile Management": [
-      ["list", "List available profiles"],
-      ["use", "Activate a profile for the current directory"],
-      ["current", "Show the active profile"],
-      ["tui", "Three-pane interactive viewer: profiles, skills, preview"],
-      ["new", "Scaffold a new profile"],
-      ["create-profile", "Create profile from skills/MCPs list"],
-      ["icon", "Pick an emoji icon for a profile"],
-      ["setup", "One-command install: shim, project scan, profile pin"],
-      ["init", "Interactive project scanner + profile wizard"],
-      ["auto-detect", "Detect project type and suggest a profile"],
-      ["diff", "Compare two profiles side-by-side"],
-      ["tree", "Visualize profile inheritance tree"],
-      ["lock", "Lock a profile to prevent modifications"],
-      ["unlock", "Unlock a previously locked profile"],
-    ],
-    "Skills": [
-      ["skills", "Manage skills: list, search, rank, add/remove"],
-      ["skills add", "Install skills from GitHub with profile hook"],
-      ["skills rank", "Show skill usage leaderboard"],
-      ["packs", "Manage skill packs (grouped bundles)"],
-    ],
-    "MCPs & Marketplace": [
-      ["mcps", "Manage MCP servers: list, add, remove"],
-      ["marketplace", "Search and install from remote registry"],
-      ["sources", "Show GitHub repos providing skills"],
-    ],
-    "Diagnostics & Optimization": [
-      ["auth", "Check/repair Claude and Codex authentication"],
-      ["optimizer", "Review profiles: skills, MCPs, CLIs dashboard"],
-      ["doctor", "Diff declared vs actual state; --fix repairs"],
-      ["validate", "Schema + lint checks for profiles"],
-      ["cost", "Estimate token budget for a profile"],
-      ["stats", "Profile usage and picker suggestion quality"],
-      ["scan", "Tree of installed skills/plugins by domain"],
-      ["why", "Trace why a skill/MCP is loaded"],
-      ["mem", "Inspect/manage per-profile claude-mem stores"],
-    ],
-    "Launch & Shell": [
-      ["auth", "Check, repair, log in, or log out agent authentication"],
-      ["install", "Prepare profile runtimes and optionally install required CLIs"],
-      ["sync", "Refresh materialized runtimes after editing a profile source"],
-      ["launch", "Resolve + materialize + exec claude/codex"],
-      ["summon", "Soft-load a profile into live Claude/Codex; warm handoff for MCPs"],
-      ["shell", "Install/uninstall the claude/codex shims"],
-      ["update", "Self-update: git pull + bun install"],
-      ["upgrade", "Pull new skills from the registry"],
-      ["clean", "Prune stale runtimes and cache"],
-      ["gc", "Remove runtimes idle past the age threshold (--dry-run, --days N)"],
-      ["migrate", "Auto-migrate profiles to latest schema"],
-    ],
-    "Multi-Agent": [
-      ["colony-dispatch", "Resolve profile for a Colony task"],
-      ["handoff", "Pass skill context between agents"],
-      ["trace", "Live session inspector"],
-      ["replay", "Replay session with different profile"],
-      ["replay --what-if", "Simulate session with alternate profile"],
-    ],
-    "Intelligence": [
-      ["ai", "Create profile from natural language"],
-      ["suggest", "Usage-based profile recommendations"],
-      ["score", "Profile efficiency score (A+ to F)"],
-      ["benchmark", "Measure token usage from transcripts"],
-    ],
-    "Import / Export": [
-      ["import", "Import profile from URL, file, or repo"],
-      ["export", "Export profile as portable YAML"],
-      ["snapshot", "Export/restore current profile state"],
-      ["share", "Publish/browse community profiles"],
-    ],
-  };
+const ESSENTIAL_COMMANDS: CommandName[] = [
+  "setup",
+  "use",
+  "current",
+  "status",
+  "list",
+  "launch",
+  "skills",
+  "mcps",
+  "doctor",
+  "validate",
+  "sync",
+  "tui",
+];
+
+function printCommandRows(names: CommandName[]): void {
+  const width = Math.max(...names.map((name) => name.length)) + 2;
+  for (const name of names) {
+    process.stdout.write(`  ${name.padEnd(width)}${COMMANDS[name].summary}\n`);
+  }
+}
+
+function printHelp(all = false): void {
 
   process.stdout.write(
     "\x1b[1mcue\x1b[0m — Agent Profile Manager for Claude Code & Codex\n" +
@@ -109,17 +59,17 @@ function printHelp(): void {
     "\x1b[1mUsage:\x1b[0m cue <command> [args...]\n\n"
   );
 
-  for (const [group, cmds] of Object.entries(groups)) {
-    process.stdout.write(`\x1b[1m${group}:\x1b[0m\n`);
-    for (const [name, desc] of cmds) {
-      process.stdout.write(`  ${name.padEnd(18)}${desc}\n`);
-    }
-    process.stdout.write("\n");
-  }
+  const commands = all
+    ? (Object.keys(COMMANDS).sort() as CommandName[])
+    : ESSENTIAL_COMMANDS;
+  process.stdout.write(`\x1b[1m${all ? "All commands" : "Core commands"}:\x1b[0m\n`);
+  printCommandRows(commands);
+  process.stdout.write("\n");
 
   process.stdout.write(
     "\x1b[1mGlobal flags:\x1b[0m\n" +
     "  -h, --help       Show this help\n" +
+    "      --all        Show the full command catalogue\n" +
     "  -v, --version    Print version\n\n"
   );
 
@@ -134,6 +84,7 @@ function printHelp(): void {
 
   process.stdout.write(
     "\x1b[1mLearn more:\x1b[0m\n" +
+    (all ? "" : "  Run `cue --help --all` for every command.\n") +
     "  Run `cue <command> --help` for command-specific usage.\n" +
     "  Run `cue status` for the current-directory dashboard.\n"
   );
@@ -245,7 +196,7 @@ async function main(argv: string[]): Promise<number> {
   }
 
   if (args[0] === "-h" || args[0] === "--help" || args[0] === "help") {
-    printHelp();
+    printHelp(args.includes("--all"));
     return 0;
   }
 
@@ -279,9 +230,12 @@ async function main(argv: string[]): Promise<number> {
 }
 
 main(process.argv).then(
-  (code) => process.exit(code),
+  // Let stdout/stderr drain before Node/Bun exits. Calling process.exit()
+  // truncates large machine-readable responses (notably `cue list --json`)
+  // when the CLI is piped into jq or another consumer.
+  (code) => { process.exitCode = code; },
   (err) => {
     process.stderr.write(`cue: fatal: ${err}\n`);
-    process.exit(2);
+    process.exitCode = 2;
   },
 );

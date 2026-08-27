@@ -18,6 +18,38 @@
       "maxLength": 200,
       "description": "One-line description shown in `cue list` and embedded in the materialized CLAUDE.md stamp."
     },
+    "kind": {
+      "type": "string",
+      "enum": ["primary", "overlay", "internal"],
+      "default": "primary",
+      "description": "Discovery visibility. primary profiles appear in default lists; overlay profiles are opt-in extensions surfaced by matching/search; internal profiles are hidden implementation details."
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "group", "capability", "generated", "discoverability"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "group": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "capability": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "generated": { "type": "boolean" },
+        "discoverability": {
+          "type": "string",
+          "enum": ["catalogue", "search"]
+        },
+        "reviewRequired": { "type": "boolean" }
+      },
+      "description": "Provenance, semantic grouping, and picker discoverability for generated or imported profile catalogs."
+    },
     "icon": {
       "type": "string",
       "maxLength": 2,

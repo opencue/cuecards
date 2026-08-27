@@ -55,15 +55,35 @@ describe("cue auto-detect (CLI)", () => {
       expect(s.confidence).toBeGreaterThan(0);
       expect(s.confidence).toBeLessThanOrEqual(1);
     }
+    expect(parsed.stacks[0].profiles).toEqual(["nextjs", "aws"]);
+    expect(parsed.autoSelection).toMatchObject({
+      status: "confident",
+      selector: "nextjs+aws",
+    });
   });
 
   test("--apply pins the top v2 match to .cue.profile", async () => {
     writeFileSync(join(tmp, "package.json"), JSON.stringify({
-      dependencies: { next: "14.0.0" },
+      dependencies: { next: "14.0.0", stripe: "14.0.0" },
     }));
     const { code } = await capture(["--apply"]);
     expect(code).toBe(0);
-    expect(readFileSync(join(tmp, ".cue.profile"), "utf8").trim()).toBe("nextjs");
+    expect(readFileSync(join(tmp, ".cue.profile"), "utf8").trim()).toBe("nextjs+stripe");
+  });
+
+  test("--apply refuses a weak match unless --force is explicit", async () => {
+    writeFileSync(join(tmp, "package.json"), JSON.stringify({
+      dependencies: { express: "5.0.0" },
+    }));
+
+    const refused = await capture(["--apply"]);
+    expect(refused.code).toBe(1);
+    expect(refused.stdout).toContain("uncertain");
+    expect(() => readFileSync(join(tmp, ".cue.profile"), "utf8")).toThrow();
+
+    const forced = await capture(["--apply", "--force"]);
+    expect(forced.code).toBe(0);
+    expect(readFileSync(join(tmp, ".cue.profile"), "utf8").trim()).toBe("backend");
   });
 
   test("empty dir reports no matches", async () => {

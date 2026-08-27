@@ -8,7 +8,7 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -22,6 +22,7 @@ const LOOKUP = join(REPO, "resources", "skills", "skills", "meta", "smart-loader
 
 const tmp = mkdtempSync(join(tmpdir(), "cue-hook-"));
 const matcher = join(tmp, "skill-index");
+const journal = join(tmp, "journal.jsonl");
 afterAll(() => rmSync(tmp, { recursive: true, force: true }));
 
 /**
@@ -69,7 +70,7 @@ function runHook(prompt: string, env: Record<string, string> = {}): Run {
     env: {
       ...process.env,
       ...HERMETIC,
-      CUE_RESOLVE_JOURNAL: join(tmp, "journal.jsonl"),
+      CUE_RESOLVE_JOURNAL: journal,
       ...env,
     },
   });
@@ -118,6 +119,23 @@ describe("smart-loader-suggest hook", () => {
   test("points at cue resolve for the full ranking", () => {
     const { stdout } = runHook("deploy the backend to coolify and check the logs");
     expect(stdout).toContain("cue resolve");
+  });
+
+  test("promotes only actual invocations, not repeatedly surfaced suggestions", () => {
+    const row = (stage: string) => JSON.stringify({
+      ts: "2026-08-27T00:00:00.000Z",
+      id: "deployment/coolify",
+      cwd: "/tmp/cue-hook-test",
+      profile: "",
+      tier: 1,
+      score: 0,
+      stage,
+    });
+    writeFileSync(journal, `${row("surfaced")}\n${row("surfaced")}\n${row("surfaced")}\n`);
+    expect(runHook("deploy the backend to coolify and check the logs").stdout).not.toContain("keep it");
+
+    writeFileSync(journal, `${row("invoked")}\n${row("invoked")}\n${row("invoked")}\n`);
+    expect(runHook("deploy the backend to coolify and check the logs").stdout).toContain("keep it");
   });
 
   test("stays inside the 200ms budget", () => {

@@ -1,6 +1,6 @@
 /**
- * Skill-resolution journal — a local record of which library skills got
- * resolved where.
+ * Skill-resolution journal — a local record of how far library skills moved
+ * through the surfaced → loaded → invoked → completed funnel.
  *
  * Modeled on `combo-history.ts`: written directly, no consent gate, no hook.
  * It deliberately does NOT go through `analytics.jsonl`, which `recordEvent`
@@ -26,18 +26,22 @@ export function resolveJournalPath(): string {
   return join(base, "cue", "skill-resolve.jsonl");
 }
 
+export type SkillResolutionStage = "surfaced" | "loaded" | "invoked" | "completed";
+
 export interface ResolveRecord {
   ts: string;
   /** Canonical skill id, e.g. "deployment/coolify". */
   id: string;
   cwd: string;
   profile: string;
+  /** Observable point reached in the skill-resolution funnel. */
+  stage: SkillResolutionStage;
   /** Which tier produced the hit — lets us tell cheap matches from LLM ones. */
-  tier: 1 | 2 | 3;
-  score: number;
+  tier?: 1 | 2 | 3;
+  score?: number;
 }
 
-/** Append one resolution. Never throws. */
+/** Append one funnel observation. Never throws. */
 export function recordResolve(rec: ResolveRecord): void {
   try {
     const path = resolveJournalPath();
@@ -49,14 +53,18 @@ export function recordResolve(rec: ResolveRecord): void {
 }
 
 /**
- * Count prior resolutions per skill id, optionally scoped to one directory.
+ * Count prior funnel observations per skill id, optionally scoped to one
+ * directory. Actual invocations are the default promotion signal.
  *
  * Scoping to cwd is the point: "you keep reaching for the Coolify skill in
  * THIS repo" is an actionable signal; the same count spread across twelve
  * unrelated projects is not.
  */
-export function resolveCounts(opts: { cwd?: string } = {}): Map<string, number> {
+export function resolveCounts(
+  opts: { cwd?: string; stages?: ReadonlySet<SkillResolutionStage> } = {},
+): Map<string, number> {
   const counts = new Map<string, number>();
+  const stages = opts.stages ?? new Set<SkillResolutionStage>(["invoked"]);
   const path = resolveJournalPath();
   if (!existsSync(path)) return counts;
 
@@ -77,10 +85,13 @@ export function resolveCounts(opts: { cwd?: string } = {}): Map<string, number> 
     }
     if (!rec.id) continue;
     if (opts.cwd && rec.cwd !== opts.cwd) continue;
+    // Legacy rows predate funnel stages and represent surfaced resolver hits.
+    // They must not silently count as real usage.
+    if (!rec.stage || !stages.has(rec.stage)) continue;
     counts.set(rec.id, (counts.get(rec.id) ?? 0) + 1);
   }
   return counts;
 }
 
-/** Resolutions in this directory before we suggest making the skill permanent. */
+/** Invocations in this directory before we suggest making the skill permanent. */
 export const PROMOTION_THRESHOLD = 3;

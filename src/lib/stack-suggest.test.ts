@@ -305,6 +305,28 @@ describe("mergeSignals", () => {
     ]);
     expect(merged.map((s) => s.name)).toEqual(["top", "alpha", "zebra"]);
   });
+
+  test("unions structured evidence by stable observation id", () => {
+    const merged = mergeSignals(
+      [{
+        name: "nextjs",
+        confidence: 0.9,
+        reasons: ["package.json has next"],
+        evidence: [{ id: "dependency:next", family: "dependency:next", source: "package.json" }],
+      }],
+      [{
+        name: "nextjs",
+        confidence: 0.85,
+        reasons: ["next.config.ts"],
+        evidence: [{ id: "file:next-config", family: "file:next-config", source: "next.config.ts" }],
+      }],
+    );
+
+    expect(merged[0]?.evidence?.map((item) => item.id)).toEqual([
+      "dependency:next",
+      "file:next-config",
+    ]);
+  });
 });
 
 describe("repositorySupportedProfiles", () => {
@@ -356,7 +378,16 @@ describe("pathSignals", () => {
   test("maps a websites/ child to frontend", () => {
     const out = pathSignals("/home/u/Documents/websites/portfolio", probe([]));
     expect(out).toEqual([
-      { name: "frontend", confidence: 0.55, reasons: ["websites/portfolio"] },
+      {
+        name: "frontend",
+        confidence: 0.55,
+        reasons: ["websites/portfolio"],
+        evidence: [{
+          id: "path:websites-portfolio",
+          family: "path:websites-portfolio",
+          source: "repository-path",
+        }],
+      },
     ]);
   });
 

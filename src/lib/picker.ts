@@ -1159,6 +1159,7 @@ export async function runPickerClassic(input: PickerInput): Promise<PickerOutput
       cwd: input.cwd,
       choice: choiceParts,
       suggested: shownSuggestions,
+      surface: "picker-classic",
     });
   } catch { /* logging must never block a launch */ }
 

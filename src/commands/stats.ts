@@ -3,7 +3,10 @@
  */
 
 import { computeStats } from "../lib/analytics";
-import { readProfileSuggestionQuality } from "../lib/profile-choice-feedback";
+import {
+  readProfileChoiceReplay,
+  readProfileSuggestionQuality,
+} from "../lib/profile-choice-feedback";
 
 function parseSince(args: string[]): Date | undefined {
   const idx = args.indexOf("--since");
@@ -35,9 +38,34 @@ function clipSelector(value: string, width: number): string {
 function runSuggestionStats(args: string[]): number {
   const json = args.includes("--json");
   const allRepositories = args.includes("--all");
+  const replay = args.includes("--replay");
+  const scope = allRepositories ? {} : { cwd: process.cwd() };
+  if (replay) {
+    const report = readProfileChoiceReplay(undefined, scope);
+    if (json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+      return 0;
+    }
+    process.stdout.write("Profile Suggestion Offline Replay:\n\n");
+    process.stdout.write(`  Recorded rows       ${report.records}\n`);
+    process.stdout.write(`  Replayable v2 rows  ${report.replayable}\n`);
+    process.stdout.write(`  Legacy rows skipped ${report.skippedLegacy}\n`);
+    process.stdout.write("\n  Ranker    Top acceptance   MRR\n");
+    process.stdout.write("  ────────  ──────────────   ──────\n");
+    process.stdout.write(
+      `  legacy    ${formatPercent(report.legacy.topAcceptanceRate).padStart(14)}   ${formatPercent(report.legacy.meanReciprocalRank).padStart(6)}\n`,
+    );
+    process.stdout.write(
+      `  current   ${formatPercent(report.current.topAcceptanceRate).padStart(14)}   ${formatPercent(report.current.meanReciprocalRank).padStart(6)}\n`,
+    );
+    process.stdout.write(
+      `\n  Top-acceptance delta  ${formatPercent(report.topAcceptanceDelta)}\n\n`,
+    );
+    return 0;
+  }
   const quality = readProfileSuggestionQuality(
     undefined,
-    allRepositories ? {} : { cwd: process.cwd() },
+    scope,
   );
 
   if (json) {
@@ -51,8 +79,8 @@ function runSuggestionStats(args: string[]): number {
     return 0;
   }
 
-  const scope = allRepositories ? "all repositories" : "this repository";
-  process.stdout.write(`Profile Suggestion Quality (${scope}):\n\n`);
+  const scopeLabel = allRepositories ? "all repositories" : "this repository";
+  process.stdout.write(`Profile Suggestion Quality (${scopeLabel}):\n\n`);
   process.stdout.write(`  Choices recorded    ${quality.choices}\n`);
   process.stdout.write(`  Suggestions scored  ${quality.compared}\n`);
   process.stdout.write(`  Top accepted        ${quality.topAccepted}\n`);
@@ -80,10 +108,11 @@ export async function run(args: string[]): Promise<number> {
 
 Usage:
   cue stats [--since 7d] [--profile <name>] [--json]
-  cue stats --suggestions [--all] [--json]
+  cue stats --suggestions [--all] [--replay] [--json]
 
 Options:
   --suggestions  Report how often the picker top suggestion was accepted
+  --replay       Compare legacy and current feedback rankers offline
   --all          Include suggestion feedback from every local repository
   --since <age>  Filter profile usage (for example 24h, 7d, 4w)
   --profile <n>  Filter profile usage by name

@@ -238,8 +238,8 @@ done <<< "$rows"
 [ "${#hits[@]}" -eq 0 ] && exit 0
 
 # ─── Promotion counter ────────────────────────────────────────────────────
-# How many times has this skill been resolved in THIS directory before? Three
-# is the point where "keep it" beats re-resolving. Read-only: we print the
+# How many times has this skill been invoked in THIS directory before? Three
+# is the point where "keep it" beats re-loading. Read-only: we print the
 # command, we never run it.
 promo_for() {
   local id="$1" n
@@ -248,6 +248,7 @@ promo_for() {
   # order. tail bounds the cost as the journal grows.
   n=$(tail -n 2000 "$JOURNAL" 2>/dev/null \
     | grep -F "\"id\":\"$id\"" 2>/dev/null \
+    | grep -F '"stage":"invoked"' 2>/dev/null \
     | grep -Fc "\"cwd\":\"$cwd\"" 2>/dev/null || true)
   [ -z "$n" ] && n=0
   [ "$n" -ge 3 ] && printf '%s' "$n"
@@ -260,7 +261,7 @@ for hit in "${hits[@]}"; do
   printf '   - %s%s\n' "$cat_name" "$mcp_note"
   [ -n "$short_desc" ] && printf '     %s\n' "$short_desc"
   n=$(promo_for "$cat_name")
-  [ -n "$n" ] && printf '     ↑ resolved %s× here — keep it: cue loadout keep %s\n' "$n" "$cat_name"
+  [ -n "$n" ] && printf '     ↑ invoked %s× here — keep it: cue loadout keep %s\n' "$n" "$cat_name"
 done
 printf '   Use meta/smart-loader to read the SKILL.md from disk.\n'
 printf '   Full ranking + fidelity check: cue resolve %s\n' "$query_words"
@@ -272,7 +273,7 @@ if mkdir -p "$(dirname "$JOURNAL")" 2>/dev/null; then
   ts=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
   for hit in "${hits[@]}"; do
     IFS='|' read -r cat_name _ _ <<< "$hit"
-    printf '{"ts":"%s","id":"%s","cwd":"%s","profile":"","tier":1,"score":0}\n' \
+    printf '{"ts":"%s","id":"%s","cwd":"%s","profile":"","stage":"surfaced","tier":1,"score":0}\n' \
       "$ts" "$cat_name" "$cwd" >> "$JOURNAL" 2>/dev/null || true
   done
 fi

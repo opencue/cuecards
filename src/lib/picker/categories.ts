@@ -14,8 +14,46 @@ export const COMBINE_CATEGORY_ORDER = [
   "backend & infra",
   "commerce",
   "integrations",
+  "review needed",
   "other",
 ] as const;
+
+const CATALOG_GROUP_CATEGORY: Record<string, string> = {
+  agents: "orchestrators",
+  general: "orchestrators",
+  skills: "orchestrators",
+  content: "content & research",
+  education: "content & research",
+  health: "content & research",
+  legal: "content & research",
+  marketing: "content & research",
+  productivity: "content & research",
+  research: "content & research",
+  travel: "content & research",
+  browser: "frontend & design",
+  design: "frontend & design",
+  frontend: "frontend & design",
+  game: "frontend & design",
+  media: "frontend & design",
+  mobile: "frontend & design",
+  ai: "backend & infra",
+  architecture: "backend & infra",
+  backend: "backend & infra",
+  blockchain: "backend & infra",
+  cloud: "backend & infra",
+  data: "backend & infra",
+  database: "backend & infra",
+  development: "backend & infra",
+  security: "backend & infra",
+  testing: "backend & infra",
+  business: "commerce",
+  commerce: "commerce",
+  finance: "commerce",
+  product: "commerce",
+  automation: "integrations",
+  workflow: "integrations",
+  review: "review needed",
+};
 
 const COMBINE_CATEGORY_OF: Record<string, string> = {
   growth: "orchestrators", builder: "orchestrators", studio: "orchestrators",
@@ -42,7 +80,9 @@ const COMBINE_CATEGORY_OF: Record<string, string> = {
   instagram: "integrations", nvidia: "integrations",
 };
 
-/** Bucket a profile into a combine category. Unknown names → "other" (sorts last). */
-export function combineCategoryOf(name: string): string {
-  return COMBINE_CATEGORY_OF[name] ?? "other";
+/** Bucket a profile into a combine category. Catalog metadata wins over legacy name maps. */
+export function combineCategoryOf(name: string, catalogGroup?: string): string {
+  return (catalogGroup ? CATALOG_GROUP_CATEGORY[catalogGroup] : undefined)
+    ?? COMBINE_CATEGORY_OF[name]
+    ?? "other";
 }
