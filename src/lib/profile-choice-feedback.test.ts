@@ -177,10 +177,43 @@ describe("profile choice feedback", () => {
       records: 4,
       replayable: 4,
       skippedLegacy: 0,
+      sampleSizeRequired: 30,
+      sampleSizeSufficient: false,
+      rankerVersions: { "profile-feedback-v2-decay90": 4 },
+      evidenceCohorts: 1,
+      paired: { currentWins: 1, legacyWins: 0, ties: 3 },
       legacy: { evaluated: 4, topAccepted: 0, topAcceptanceRate: 0 },
       current: { evaluated: 4, topAccepted: 1, topAcceptanceRate: 0.25 },
       topAcceptanceDelta: 0.25,
     });
+  });
+
+  test("all-repository replay keeps each event's feedback repository-scoped", () => {
+    const candidates = [
+      { selector: "nextjs", rank: 1, score: 100, origin: "detected" },
+      { selector: "rust", rank: 2, score: 90, origin: "detected" },
+    ];
+    const versionedRow = (cwd: string, ts: string, choice: string) => JSON.stringify({
+      schemaVersion: PROFILE_CHOICE_RECORD_VERSION,
+      rankerVersion: PROFILE_CHOICE_RANKER_VERSION,
+      ts,
+      cwd,
+      choice,
+      suggested: ["nextjs", "rust"],
+      chosenRank: choice === "nextjs" ? 1 : 2,
+      surface: "picker-v2",
+      candidates,
+    });
+    const replay = replayProfileChoiceFeedback([
+      versionedRow("/repo-a", "2026-08-14T10:00:00Z", "rust"),
+      versionedRow("/repo-a", "2026-08-15T10:00:00Z", "rust"),
+      versionedRow("/repo-a", "2026-08-16T10:00:00Z", "rust"),
+      versionedRow("/repo-b", "2026-08-17T10:00:00Z", "nextjs"),
+    ]);
+
+    expect(replay.legacy).toMatchObject({ evaluated: 4, topAccepted: 1 });
+    expect(replay.current).toMatchObject({ evaluated: 4, topAccepted: 1 });
+    expect(replay.paired).toEqual({ currentWins: 0, legacyWins: 0, ties: 4 });
   });
 
   test("counts choices and declined top-1 only inside this repository", () => {

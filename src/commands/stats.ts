@@ -50,6 +50,14 @@ function runSuggestionStats(args: string[]): number {
     process.stdout.write(`  Recorded rows       ${report.records}\n`);
     process.stdout.write(`  Replayable v2 rows  ${report.replayable}\n`);
     process.stdout.write(`  Legacy rows skipped ${report.skippedLegacy}\n`);
+    process.stdout.write(`  Evidence cohorts    ${report.evidenceCohorts}\n`);
+    process.stdout.write(
+      `  Sample threshold    ${report.replayable}/${report.sampleSizeRequired} (${report.sampleSizeSufficient ? "ready" : "insufficient"})\n`,
+    );
+    const versions = Object.entries(report.rankerVersions)
+      .map(([version, count]) => `${version}=${count}`)
+      .join(", ");
+    process.stdout.write(`  Recorded rankers    ${versions || "none"}\n`);
     process.stdout.write("\n  Ranker    Top acceptance   MRR\n");
     process.stdout.write("  ────────  ──────────────   ──────\n");
     process.stdout.write(
@@ -61,6 +69,15 @@ function runSuggestionStats(args: string[]): number {
     process.stdout.write(
       `\n  Top-acceptance delta  ${formatPercent(report.topAcceptanceDelta)}\n\n`,
     );
+    process.stdout.write(
+      `  Paired outcomes       current ${report.paired.currentWins} · legacy ${report.paired.legacyWins} · ties ${report.paired.ties}\n`,
+    );
+    if (!report.sampleSizeSufficient) {
+      process.stdout.write(
+        "  ⚠ Replay is directional only; collect more v2 choices before promoting a ranker.\n",
+      );
+    }
+    process.stdout.write("\n");
     return 0;
   }
   const quality = readProfileSuggestionQuality(

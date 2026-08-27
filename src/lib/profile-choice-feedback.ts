@@ -32,6 +32,7 @@ export const PROFILE_CHOICE_RECORD_VERSION = 2;
 export const PROFILE_CHOICE_RANKER_VERSION = "profile-feedback-v2-decay90";
 export const PROFILE_CHOICE_DECAY_HALF_LIFE_DAYS = 90;
 export const PROFILE_CHOICE_DECAYED_THRESHOLD = 2.5;
+export const PROFILE_CHOICE_REPLAY_MIN_SAMPLE_SIZE = 30;
 
 export interface ProfileChoiceCandidateSnapshot {
   selector: string;
@@ -102,6 +103,15 @@ export interface ProfileChoiceReplayReport {
   records: number;
   replayable: number;
   skippedLegacy: number;
+  sampleSizeRequired: number;
+  sampleSizeSufficient: boolean;
+  rankerVersions: Record<string, number>;
+  evidenceCohorts: number;
+  paired: {
+    currentWins: number;
+    legacyWins: number;
+    ties: number;
+  };
   legacy: ProfileChoiceReplayMetrics;
   current: ProfileChoiceReplayMetrics;
   topAcceptanceDelta: number | null;
@@ -545,6 +555,11 @@ export function replayProfileChoiceFeedback(
   let currentTopAccepted = 0;
   let legacyReciprocalRank = 0;
   let currentReciprocalRank = 0;
+  let currentWins = 0;
+  let legacyWins = 0;
+  let ties = 0;
+  const rankerVersions = new Map<string, number>();
+  const evidenceCohorts = new Set<string>();
 
   for (const { line, record } of rows) {
     const candidates = Array.isArray(record.candidates)
@@ -571,6 +586,13 @@ export function replayProfileChoiceFeedback(
     }
 
     replayable += 1;
+    const rankerVersion = typeof record.rankerVersion === "string"
+      ? record.rankerVersion
+      : "unknown";
+    rankerVersions.set(rankerVersion, (rankerVersions.get(rankerVersion) ?? 0) + 1);
+    if (typeof record.evidenceHash === "string" && record.evidenceHash) {
+      evidenceCohorts.add(record.evidenceHash);
+    }
     const base: StackSuggestion[] = candidates.map((candidate) => ({
       parts: candidate.selector.split("+").filter(Boolean),
       score: candidate.score,
@@ -578,8 +600,15 @@ export function replayProfileChoiceFeedback(
       origin: "detected",
     }));
     const choice = normalizeSelector(record.choice ?? "");
-    const legacyFeedback = aggregateProfileChoiceFeedback(history, scope, { decay: false });
-    const currentFeedback = aggregateProfileChoiceFeedback(history, scope, {
+    const eventCwd = typeof record.cwd === "string" ? record.cwd : undefined;
+    // `scope` selects which events to report. Ranking feedback must still stay
+    // local to the repository where each individual choice was recorded;
+    // otherwise `--all` lets one repository's habits reorder another's replay.
+    const eventScope: RepoScopeOptions = eventCwd
+      ? { cwd: eventCwd, ...(scope.repoRootOf ? { repoRootOf: scope.repoRootOf } : {}) }
+      : scope;
+    const legacyFeedback = aggregateProfileChoiceFeedback(history, eventScope, { decay: false });
+    const currentFeedback = aggregateProfileChoiceFeedback(history, eventScope, {
       now: new Date(eventTime),
     });
     const known = new Set(
@@ -592,8 +621,13 @@ export function replayProfileChoiceFeedback(
     const currentRanked = applyProfileChoiceFeedback(base, currentFeedback, known, limit);
     const legacyRank = legacyRanked.findIndex((item) => item.parts.join("+") === choice);
     const currentRank = currentRanked.findIndex((item) => item.parts.join("+") === choice);
-    if (legacyRank === 0) legacyTopAccepted += 1;
-    if (currentRank === 0) currentTopAccepted += 1;
+    const legacyAccepted = legacyRank === 0;
+    const currentAccepted = currentRank === 0;
+    if (legacyAccepted) legacyTopAccepted += 1;
+    if (currentAccepted) currentTopAccepted += 1;
+    if (currentAccepted && !legacyAccepted) currentWins += 1;
+    else if (legacyAccepted && !currentAccepted) legacyWins += 1;
+    else ties += 1;
     if (legacyRank >= 0) legacyReciprocalRank += 1 / (legacyRank + 1);
     if (currentRank >= 0) currentReciprocalRank += 1 / (currentRank + 1);
     history.push(line);
@@ -605,6 +639,13 @@ export function replayProfileChoiceFeedback(
     records: rows.length,
     replayable,
     skippedLegacy: rows.length - replayable,
+    sampleSizeRequired: PROFILE_CHOICE_REPLAY_MIN_SAMPLE_SIZE,
+    sampleSizeSufficient: replayable >= PROFILE_CHOICE_REPLAY_MIN_SAMPLE_SIZE,
+    rankerVersions: Object.fromEntries(
+      [...rankerVersions.entries()].sort(([a], [b]) => a.localeCompare(b)),
+    ),
+    evidenceCohorts: evidenceCohorts.size,
+    paired: { currentWins, legacyWins, ties },
     legacy,
     current,
     topAcceptanceDelta:
