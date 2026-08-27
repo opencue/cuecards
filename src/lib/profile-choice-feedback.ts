@@ -13,10 +13,11 @@ import {
   existsSync,
   mkdirSync,
   openSync,
+  readFileSync,
   readSync,
   statSync,
 } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { configDir } from "./config-paths";
 import { repoScopeMatcher, type RepoScopeOptions } from "./repo-scope";
 import type { StackSuggestion } from "./stack-suggest";
@@ -25,6 +26,7 @@ export const PROFILE_CHOICE_FEEDBACK_THRESHOLD = 3;
 export const PROFILE_CHOICE_HISTORY_LIMIT = 1_000;
 export const PROFILE_CHOICE_HISTORY_MAX_BYTES = 256 * 1024;
 export const SCORE_PROFILE_CHOICE = 105;
+export const SCORE_PINNED_PROFILE = 140;
 
 export interface ProfileChoiceRecord {
   ts: string;
@@ -40,6 +42,8 @@ export interface ProfileChoiceUsage {
   /** Times this selector was the top recommendation but another was chosen. */
   rejected: number;
   lastChosen?: string;
+  /** Explicit selector from this repository's nearest `.cue.profile`. */
+  pinned?: boolean;
 }
 
 export interface ProfileSuggestionSelectorQuality {
@@ -76,6 +80,24 @@ function normalizeSelector(value: string | readonly string[]): string {
     }
   }
   return parts.join("+");
+}
+
+function pinnedSelectorForCwd(cwd: string | undefined): string | null {
+  if (!cwd) return null;
+  let dir = resolve(cwd);
+  while (true) {
+    try {
+      const firstLine = readFileSync(join(dir, ".cue.profile"), "utf8").split(/\r?\n/, 1)[0] ?? "";
+      const selector = normalizeSelector(firstLine);
+      if (selector) return selector;
+    } catch {
+      // Keep walking until the repository root.
+    }
+    if (existsSync(join(dir, ".git"))) return null;
+    const parent = dirname(dir);
+    if (parent === dir) return null;
+    dir = parent;
+  }
 }
 
 /** Append one best-effort local feedback row. */
@@ -253,7 +275,19 @@ export function readProfileChoiceFeedback(
   path: string = profileChoiceHistoryPath(),
   scope: RepoScopeOptions = {},
 ): Map<string, ProfileChoiceUsage> {
-  return aggregateProfileChoiceFeedback(readProfileChoiceHistoryLines(path), scope);
+  const feedback = aggregateProfileChoiceFeedback(readProfileChoiceHistoryLines(path), scope);
+  const pinned = pinnedSelectorForCwd(scope.cwd);
+  if (pinned) {
+    const existing = feedback.get(pinned);
+    feedback.set(pinned, {
+      selector: pinned,
+      chosen: existing?.chosen ?? 0,
+      rejected: existing?.rejected ?? 0,
+      ...(existing?.lastChosen ? { lastChosen: existing.lastChosen } : {}),
+      pinned: true,
+    });
+  }
+  return feedback;
 }
 
 export function readProfileSuggestionQuality(
@@ -288,12 +322,30 @@ export function applyProfileChoiceFeedback(
     if (parts.length === 0 || parts.some((part) => !knownProfiles.has(part))) continue;
     if (
       supportedProfiles !== undefined &&
+      !item.pinned &&
       parts.some((part) => !supportedProfiles.has(part))
     ) {
       continue;
     }
     const existing = bySelector.get(item.selector);
-    if (item.chosen >= PROFILE_CHOICE_FEEDBACK_THRESHOLD) {
+    if (item.pinned) {
+      const reason = "pinned in .cue.profile";
+      if (existing) {
+        existing.score = Math.max(existing.score, SCORE_PINNED_PROFILE);
+        existing.origin = "feedback";
+        existing.reasons = [reason, ...existing.reasons.filter((value) => value !== reason)].slice(0, 3);
+      } else {
+        const added = {
+          parts,
+          score: SCORE_PINNED_PROFILE,
+          reasons: [reason],
+          origin: "feedback" as const,
+          order: ranked.length,
+        };
+        ranked.push(added);
+        bySelector.set(item.selector, added);
+      }
+    } else if (item.chosen >= PROFILE_CHOICE_FEEDBACK_THRESHOLD) {
       const score = SCORE_PROFILE_CHOICE + Math.min(20, item.chosen - PROFILE_CHOICE_FEEDBACK_THRESHOLD);
       const reason = `you chose this ${item.chosen}× here`;
       if (existing) {
