@@ -1,56 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="artokun-comfyui-mcp"></a>
-## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
-
-**★ 677** · exceptional (score 20.4) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
-
-Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
-
-```bash
-cue skills add artokun/comfyui-mcp --profile creative-media
-```
-
----
-
-<a id="tt-a1i-archify"></a>
-## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
-
-**★ 16492** · exceptional (score 16) · HTML · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
-
-Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
-
-```bash
-cue skills add tt-a1i/archify --profile creative-media
-```
-
----
-
-<a id="cpulxb-wsl-image-clipboard-helper"></a>
-## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
-
-**★ 89** · exceptional (score 10.1) · Rust
-
-该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
-
-```bash
-cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
-```
 
 ---
 

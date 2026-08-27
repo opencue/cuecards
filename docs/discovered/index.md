@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-08-26 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-08-27 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 67 | `semble`, `ZeroSlop`, `multi-agent-architecture-advisor` |
-| [**backend**](./backend.md) | 11 | `pad`, `weather-mcp`, `stimmo` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `cti-expert`, `Claude-OSINT`, `sanctuary-framework` |
-| [**creative-media**](./creative-media.md) | 4 | `comfyui-mcp`, `archify`, `WSL-Image-Clipboard-Helper` |
-| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `sticky-switcher-funnel-playbook` |
-| [**research**](./research.md) | 3 | `academic-research-survey`, `popper-scope`, `skillassay` |
-| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
-| [**niche**](./niche.md) | 2 | `grant-thinking-skill`, `reading-companion-skill` |
-| [**medusa-dev**](./medusa-dev.md) | 2 | `etsy-ugc-compliance-harvester`, `buywhere` |
-| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
-| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
-| [**docs-writer**](./docs-writer.md) | 1 | `md-business` |
+| [**core**](./core.md) | 78 | `trace-mcp`, `deja-vu`, `icode-skill` |
+| [**backend**](./backend.md) | 5 | `pagespeed-insights-mcp`, `gitlab-mcp-server`, `artifactflow` |
+| [**fleet-control**](./fleet-control.md) | 5 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `roast-my-design-system`, `sticky-switcher-funnel-playbook` |
+| [**research**](./research.md) | 2 | `mcp-for-stata`, `skillassay` |
+| [**marketing**](./marketing.md) | 2 | `sticky-switcher-funnel-playbook`, `super-mkt-skill` |
+| [**docs-writer**](./docs-writer.md) | 1 | `humanizer-skill` |
+| [**niche**](./niche.md) | 1 | `mu-mbti-job` |
 | [**python**](./python.md) | 1 | `alfred` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

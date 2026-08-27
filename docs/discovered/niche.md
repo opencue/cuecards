@@ -1,46 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikramahmadmemon13-grant-thinking-skill"></a>
-## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+<a id="muippt-mu-mbti-job"></a>
+## ✨ [muippt/mu-mbti-job](https://github.com/muippt/mu-mbti-job)
 
-**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+**★ 0** · strong (score 6.5) · Python · tags: ai-agent-skill, bilingual, career-development, mbti, offline-first
 
-Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
-
-✅ SKILL.md
-
-```bash
-cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
-```
-
----
-
-<a id="locoda-reading-companion-skill"></a>
-## ✨ [locoda/reading-companion-skill](https://github.com/locoda/reading-companion-skill)
-
-**★ 0** · strong (score 6.5) · tags: ai-agent-skill, ai-agent-skills, anti-spoiler, chinese, reading-assistant
-
-对坐 ·阅读陪伴 · 陪一个人读完一本虚构长篇。开读前教他怎么读，开读后只聊他读到的部分，一个字都不剧透。
+三档深度 MBTI 人格与职业测评，中英双语 PDF 报告，团队分析，纯本地零遥测。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add locoda/reading-companion-skill --profile niche
+cue skills add muippt/mu-mbti-job --profile niche
 ```
 
 ---

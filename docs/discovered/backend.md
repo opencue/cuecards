@@ -1,141 +1,63 @@
 ---
 title: "Claude Code Skills for backend"
-description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="perpetualsoftware-pad"></a>
-## 💎 [PerpetualSoftware/pad](https://github.com/PerpetualSoftware/pad)
+<a id="ruslanlap-pagespeed-insights-mcp"></a>
+## 💎 [ruslanlap/pagespeed-insights-mcp](https://github.com/ruslanlap/pagespeed-insights-mcp)
 
-**★ 137** · exceptional (score 16.1) · Go · tags: agent-era, agent-tools, ai-agents, claude-code, cli
+**★ 55** · exceptional (score 16.6) · TypeScript · tags: claude, claude-code, claude-desktop, codex, core-web-vitals
 
-Project Management for the agent era
+Six-tool MCP server for Google PageSpeed Insights & Chrome UX Report APIs. Analyze, compare, and optimize web performance directly through Claude, Cursor, or any MCP-compatible AI client.
 
 ```bash
-cue skills add PerpetualSoftware/pad --profile backend
+cue skills add ruslanlap/pagespeed-insights-mcp --profile backend
 ```
 
 ---
 
-<a id="weather-mcp-weather-mcp"></a>
-## 💎 [weather-mcp/weather-mcp](https://github.com/weather-mcp/weather-mcp)
+<a id="jmrplens-gitlab-mcp-server"></a>
+## 💎 [jmrplens/gitlab-mcp-server](https://github.com/jmrplens/gitlab-mcp-server)
 
-**★ 41** · exceptional (score 12.4) · TypeScript · tags: ai-tools, air-quality, claude-code, free, historical-weather
+**★ 30** · exceptional (score 9.6) · Go · tags: ai-tools, gitlab, gitlab-api, go, llm
 
-Free, open-source MCP server giving AI assistants 17 weather tools — a one-call weather summary plus forecasts, alerts, air quality, marine, radar, lightning, rivers, wildfires, and historical data back to 1940. Ask by city name or coordinates. Built on free public APIs (NOAA, Open-Meteo). No API keys, no signup.
+Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 850+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only modes.
 
 ```bash
-cue skills add weather-mcp/weather-mcp --profile backend
+cue skills add jmrplens/gitlab-mcp-server --profile backend
 ```
 
 ---
 
-<a id="alediaferia-stimmo"></a>
-## 💎 [alediaferia/stimmo](https://github.com/alediaferia/stimmo)
+<a id="gadsotek-artifactflow"></a>
+## ✨ [Gadsotek/artifactflow](https://github.com/Gadsotek/artifactflow)
 
-**★ 7** · exceptional (score 8.7) · Python · tags: fastapi, italy, mcp, mcp-server, milano
+**★ 3** · strong (score 6.7) · PHP · tags: ai-artifacts, artifact-management, docker, html, laravel
 
-Transparent, OMI-anchored fair-price check for apartment listings.
-
-```bash
-cue skills add alediaferia/stimmo --profile backend
-```
-
----
-
-<a id="buywhere-buywhere"></a>
-## 💎 [BuyWhere/buywhere](https://github.com/BuyWhere/buywhere)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: buywhere, mcp-server, model-context-protocol, product-catalog, shopping-agent
-
-BuyWhere agent-native product catalog API
+Open-source, self-hosted, versioned vault for AI-generated HTML, Markdown, Mermaid, and image artifacts, with scoped MCP access and isolated two-origin previews.
 
 ```bash
-cue skills add BuyWhere/buywhere --profile backend
-```
-
----
-
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
-
-**★ 11** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
-
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
-
-```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="imhamzakhan-context-flow-compressor"></a>
-## 💎 [imhamzakhan/context-flow-compressor](https://github.com/imhamzakhan/context-flow-compressor)
-
-**★ 0** · exceptional (score 8) · HTML · tags: ai-agents, ai-coding, anthropic, claude-code, cli
-
-Top Token-Saving AI Coding Tools 2026: Local Memory MCP Cuts Costs 90%
-
-```bash
-cue skills add imhamzakhan/context-flow-compressor --profile backend
-```
-
----
-
-<a id="willow-memory-willow-mcp"></a>
-## 💎 [willow-memory/willow-mcp](https://github.com/willow-memory/willow-mcp)
-
-**★ 2** · exceptional (score 8) · Python · tags: agent, authorization, knowledge-base, mcp, mcp-server
-
-Agent-neutral MCP server with persistent memory (SOIL + Postgres KB) and a sandboxed task queue. Manifest-based ACL; works with any stdio MCP client.
-
-```bash
-cue skills add willow-memory/willow-mcp --profile backend
-```
-
----
-
-<a id="juanspz-agent-ready-index"></a>
-## ✨ [JuanSPZ/agent-ready-index](https://github.com/JuanSPZ/agent-ready-index)
-
-**★ 1** · strong (score 7.3) · HTML · tags: agent-discovery, agentic-ai, ai-agents, ai-plugin, ai-tools
-
-Agent Search 2026: Best AI-Ready Site Indexer & MCP Tools 🚀
-
-```bash
-cue skills add JuanSPZ/agent-ready-index --profile backend
-```
-
----
-
-<a id="benwold-lgtm-mcp-gateway"></a>
-## ✨ [benwold-lgtm/MCP-Gateway](https://github.com/benwold-lgtm/MCP-Gateway)
-
-**★ 0** · strong (score 6.5) · Python · tags: api-gateway, fastapi, mcp, mcp-apps, mcp-gateway
-
-One governed MCP endpoint for a mixed fleet: translates REST/OpenAPI services into MCP tools and federates servers that already speak MCP — with authentication, role-based access, rate limiting, health checking and tool-change governance.
-
-```bash
-cue skills add benwold-lgtm/MCP-Gateway --profile backend
+cue skills add Gadsotek/artifactflow --profile backend
 ```
 
 ---
 
 <a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · potential (score 4.7) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

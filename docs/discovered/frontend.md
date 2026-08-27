@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="gregkozakiewicz-roast-my-design-system"></a>
+## 💎 [gregkozakiewicz/roast-my-design-system](https://github.com/gregkozakiewicz/roast-my-design-system)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 12** · exceptional (score 10.8) · JavaScript · tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+v5.4.0 · Try it: npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff, rules via --apply, a local MCP server via --mcp (verified in Claude Code, Cursor and Windsurf/Devin), and Claude's read of your numbers embedded in the shareable report.
 
 ```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+cue skills add gregkozakiewicz/roast-my-design-system --profile frontend
 ```
 
 ---
@@ -50,19 +50,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
-## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
-
-Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
-
-```bash
-cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
 ```
 
 ---

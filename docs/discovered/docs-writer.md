@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="meta-taro-md-business"></a>
-## ✨ [meta-taro/md-business](https://github.com/meta-taro/md-business)
+<a id="aboudjem-humanizer-skill"></a>
+## 💎 [Aboudjem/humanizer-skill](https://github.com/Aboudjem/humanizer-skill)
 
-**★ 1** · strong (score 5.3) · TypeScript · tags: ai-agents, business-documents, invoice, json-schema, markdown
+**★ 197** · exceptional (score 15.7) · JavaScript · tags: agent-skills, ai-detection, ai-humanizer, ai-writing, anti-ai-detection
 
-Business documents as Markdown — invoices, design docs and test sheets validated by JSON Schema, rendered to A4 PDF, and editable by AI agents through a built-in MCP server. Tauri desktop app + Chrome extension.
+AI writing humanizer and pattern detector. 55 patterns, 5 voices, 0-100 AI-tell score. Pure Markdown, zero dependencies.
 
 ```bash
-cue skills add meta-taro/md-business --profile docs-writer
+cue skills add Aboudjem/humanizer-skill --profile docs-writer
 ```
 
 ---

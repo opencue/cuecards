@@ -1,23 +1,23 @@
 ---
 title: "Agents365-ai/drawio-skill — Claude Code skill discovered by cue"
-description: "Generate draw.io diagrams from natural language — 11 presets (UML, SysML/MBSE, BPMN, network, C4…), 36 tools: codebase/CI/infra-to-diagram, image→editable diagr"
+description: "Generate draw.io diagrams from natural language — 11 presets (UML, SysML/MBSE, BPMN, network, C4…), 39 tools: codebase/CI/infra-to-diagram, image→editable diagr"
 layout: page
-updated: 2026-07-14
+updated: 2026-08-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Agents365-ai/drawio-skill](https://github.com/Agents365-ai/drawio-skill)
 
-**★ 5733** · exceptional (score 14) · Python · agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill
+**★ 8071** · exceptional (score 14) · Python · agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill
 
-> Generate draw.io diagrams from natural language — 11 presets (UML, SysML/MBSE, BPMN, network, C4…), 36 tools: codebase/CI/infra-to-diagram, image→editable diagram, mind maps, build-up animation, exec-view compression, click-through runbooks, PR diff bot. Vision self-check, 10,000+ shapes. Exports PNG/SVG/PDF/JPG.
+> Generate draw.io diagrams from natural language — 11 presets (UML, SysML/MBSE, BPMN, network, C4…), 39 tools: codebase/CI/infra-to-diagram, image→editable diagram, Databricks product icons, mind maps, build-up animation, exec-view compression, click-through runbooks, PR diff bot. Vision self-check, 10,000+ shapes. Exports PNG/SVG/PDF/JPG.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 5733 stars
-- 🗓️ Last pushed: 2026-07-14
-- 🏷️ Tags: agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill, claude-skills, diagram, drawio, erd, flowchart, github-actions, image-to-diagram, mbse, mindmap, network-topology, openclaw, openclaw-skills, skillsmp, sysml, uml
+- ⭐ 8071 stars
+- 🗓️ Last pushed: 2026-08-27
+- 🏷️ Tags: agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill, claude-skills, databricks, diagram, drawio, erd, flowchart, image-to-diagram, mbse, mindmap, network-topology, openclaw, openclaw-skills, skillsmp, sysml, uml
 
 ## Best fit cue profiles
 

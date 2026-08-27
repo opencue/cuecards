@@ -2,21 +2,21 @@
 title: "husniadil/herdr-dispatch — Claude Code skill discovered by cue"
 description: "Dispatcher for the herdr-tasks board - a worker agent pane per ready task, the goal delivered, the worker tracked, and a stop at review, in one Go binary."
 layout: page
-updated: 2026-08-23
+updated: 2026-08-27
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [husniadil/herdr-dispatch](https://github.com/husniadil/herdr-dispatch)
 
-**★ 0** · strong (score 6) · Go · agent-orchestration, ai-agents, dispatcher, herdr, herdr-plugin
+**★ 1** · strong (score 6.3) · Go · agent-orchestration, ai-agents, dispatcher, herdr, herdr-plugin
 
 > Dispatcher for the herdr-tasks board - a worker agent pane per ready task, the goal delivered, the worker tracked, and a stop at review, in one Go binary.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-27
 - 🏷️ Tags: agent-orchestration, ai-agents, dispatcher, herdr, herdr-plugin, mcp-server
 
 ## Best fit cue profiles

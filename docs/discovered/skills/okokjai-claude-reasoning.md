@@ -2,13 +2,13 @@
 title: "okokjai/claude-reasoning — Claude Code skill discovered by cue"
 description: "Graph-based reasoning pipeline for Claude Code — structured contracts × DAG orchestration"
 layout: page
-updated: 2026-08-23
+updated: 2026-08-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [okokjai/claude-reasoning](https://github.com/okokjai/claude-reasoning)
 
-**★ 2** · exceptional (score 16) · Shell · ai-agent, anthropic, claude-code, claude-code-skill, mcp-client
+**★ 2** · exceptional (score 16) · TypeScript · ai-agent, anthropic, claude-code, claude-code-skill, mcp-client
 
 > Graph-based reasoning pipeline for Claude Code — structured contracts × DAG orchestration
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-23
+- 🗓️ Last pushed: 2026-08-27
 - 🏷️ Tags: ai-agent, anthropic, claude-code, claude-code-skill, mcp-client, reasoning-engine, reasoning-engines, sequential-thinking, structured-prompts
 
 ## Best fit cue profiles

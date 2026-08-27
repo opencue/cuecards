@@ -2,7 +2,7 @@
 title: "ayukyo/icode-skill — Claude Code skill discovered by cue"
 description: "A 6-step coding workflow for Claude Code — Plan → Review → Finalize → Code → Deep Check → Audit. Run all at once or step-by-step, switch models between steps.  "
 layout: page
-updated: 2026-08-23
+updated: 2026-08-27
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-08-23
+- 🗓️ Last pushed: 2026-08-27
 - 🏷️ Tags: ai-agent, ai-coding, ai-workflow, automation, claude-code, claude-code-skill, claude-skills, code-review, coding-agent, coding-assistant, llm, mcp, skill, workflow
 
 ## Best fit cue profiles

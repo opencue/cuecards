@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-26
+updated: 2026-08-27
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="derwi6819-sys-academic-research-survey"></a>
-## 💎 [derwi6819-sys/academic-research-survey](https://github.com/derwi6819-sys/academic-research-survey)
+<a id="sepinetam-mcp-for-stata"></a>
+## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
 
-**★ 0** · exceptional (score 13) · Python · tags: academic-research, claude-code, claude-skill, literature-survey, research-workflow
+**★ 253** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
 
-通用学术调研工作流 skill（Claude Code）：任意专业门类的论文全景调研→候选方向短名单→深挖+研究计划书→实施清单；分门别类、创新点台账、质量红线、无损 token 经济
-
-✅ SKILL.md
+A MCP server for Stata to integrate Stata into your agent. 
 
 ```bash
-cue skills add derwi6819-sys/academic-research-survey --profile research
-```
-
----
-
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
-
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
-
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
-
-```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add SepineTam/mcp-for-stata --profile research
 ```
 
 ---
