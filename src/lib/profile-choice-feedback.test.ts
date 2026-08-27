@@ -1,9 +1,13 @@
 import { describe, expect, test } from "bun:test";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
   analyzeProfileSuggestionQuality,
   aggregateProfileChoiceFeedback,
   applyProfileChoiceFeedback,
   PROFILE_CHOICE_FEEDBACK_THRESHOLD,
+  readProfileChoiceFeedback,
   recordProfileChoice,
 } from "./profile-choice-feedback";
 import type { StackSuggestion } from "./stack-suggest";
@@ -139,5 +143,70 @@ describe("profile choice feedback", () => {
     );
 
     expect(out).toEqual(suggestions);
+  });
+
+  test("ranks the pinned composite above repeated partial history", () => {
+    const repo = mkdtempSync(join(tmpdir(), "cue-pinned-profile-"));
+    try {
+      const historyPath = join(repo, "history.jsonl");
+      writeFileSync(
+        historyPath,
+        `${Array.from({ length: 24 }, () =>
+          row(repo, "medusa-vite+resend", ["medusa-vite+resend"]),
+        ).join("\n")}\n`,
+      );
+      writeFileSync(
+        join(repo, ".cue.profile"),
+        "medusa-vite+resend+hostinger+coolify\n",
+      );
+
+      const feedback = readProfileChoiceFeedback(historyPath, { cwd: repo });
+      const ranked = applyProfileChoiceFeedback(
+        [
+          {
+            parts: ["medusa-vite", "resend"],
+            score: 100,
+            reasons: ["detected"],
+            origin: "detected",
+          },
+        ],
+        feedback,
+        new Set(["medusa-vite", "resend", "hostinger", "coolify"]),
+        4,
+        new Set(["medusa-vite", "resend"]),
+      );
+
+      expect(ranked[0]).toMatchObject({
+        parts: ["medusa-vite", "resend", "hostinger", "coolify"],
+        score: 140,
+        origin: "feedback",
+      });
+      expect(ranked[0]?.reasons[0]).toBe("pinned in .cue.profile");
+      expect(ranked[1]?.parts).toEqual(["medusa-vite", "resend"]);
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  test("does not promote a pin containing an unknown profile", () => {
+    const repo = mkdtempSync(join(tmpdir(), "cue-unknown-pin-"));
+    try {
+      const historyPath = join(repo, "history.jsonl");
+      writeFileSync(historyPath, "");
+      writeFileSync(join(repo, ".cue.profile"), "medusa-vite+unknown-provider\n");
+
+      const ranked = applyProfileChoiceFeedback(
+        [{ parts: ["medusa-vite"], score: 90, reasons: ["detected"], origin: "detected" }],
+        readProfileChoiceFeedback(historyPath, { cwd: repo }),
+        new Set(["medusa-vite"]),
+        4,
+      );
+
+      expect(ranked).toEqual([
+        { parts: ["medusa-vite"], score: 90, reasons: ["detected"], origin: "detected" },
+      ]);
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
   });
 });
