@@ -10,6 +10,7 @@ This change is complete only when **all** of the following are true:
 
 - Handoff: change=`agent-codex-respect-pinned-composite-in-auto-detect-2026-08-27-20-10`; branch=`agent/codex/respect-pinned-composite-in-auto-detect-2026-08-27-20-10`; scope=`pinned repository profile ranking`; action=`continue this sandbox or finish cleanup after a usage-limit/manual takeover`.
 - Copy prompt: Continue `agent-codex-respect-pinned-composite-in-auto-detect-2026-08-27-20-10` on branch `agent/codex/respect-pinned-composite-in-auto-detect-2026-08-27-20-10`. Work inside the existing sandbox, review `openspec/changes/agent-codex-respect-pinned-composite-in-auto-detect-2026-08-27-20-10/tasks.md`, continue from the current state instead of creating a new sandbox, and when the work is done run `gx branch finish --branch agent/codex/respect-pinned-composite-in-auto-detect-2026-08-27-20-10 --base main --via-pr --wait-for-merge --cleanup`.
+- Completion: PR=`https://github.com/opencue/cuecards/pull/150`; state=`MERGED`; merge=`8221ce271b69ec6782ce58928353fc8d2b96e08b`; sandbox=`pruned`.
 
 ## 1. Specification
 
@@ -29,6 +30,6 @@ This change is complete only when **all** of the following are true:
 
 ## 4. Cleanup (mandatory; run before claiming completion)
 
-- [ ] 4.1 Run the cleanup pipeline: `gx branch finish --branch agent/codex/respect-pinned-composite-in-auto-detect-2026-08-27-20-10 --base main --via-pr --wait-for-merge --cleanup`. This handles commit -> push -> PR create -> merge wait -> worktree prune in one invocation.
-- [ ] 4.2 Record the PR URL and final merge state (`MERGED`) in the completion handoff.
-- [ ] 4.3 Confirm the sandbox worktree is gone (`git worktree list` no longer shows the agent path; `git branch -a` shows no surviving local/remote refs for the branch).
+- [x] 4.1 Run the cleanup pipeline: `gx branch finish --branch agent/codex/respect-pinned-composite-in-auto-detect-2026-08-27-20-10 --base main --via-pr --wait-for-merge --cleanup`. This handles commit -> push -> PR create -> merge wait -> worktree prune in one invocation.
+- [x] 4.2 Record the PR URL and final merge state (`MERGED`) in the completion handoff.
+- [x] 4.3 Confirm the sandbox worktree is gone (`git worktree list` no longer shows the agent path; `git branch -a` shows no surviving local/remote refs for the branch).
