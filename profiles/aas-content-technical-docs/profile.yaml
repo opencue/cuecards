@@ -21,6 +21,7 @@ skills:
         - daily
         - documentation-generation-doc-generate
         - documentation-templates
+        - pdf-conversion-router
         - readme
         - reference-builder
         - tutorial-engineer

@@ -38,6 +38,7 @@ skills:
         - pydantic-ai
         - quinn
         - review-multi-agent-orchestration
+        - review-swarm
         - rex
         - subagent-orchestrator
 mcps: []

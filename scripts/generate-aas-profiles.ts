@@ -104,11 +104,12 @@ function run(): number {
   const eligible = catalog.skills.filter((skill) => skill.risk === "safe" || skill.risk === "none");
   const plannedSkillIds = plans.flatMap((plan) => plan.skills.map((skill) => skill.id));
   const assignedIds = [...preserved.skillIds, ...plannedSkillIds];
+  const shadowedIds = new Set(organization.shadowedSkillIds);
   const counts = new Map<string, number>();
   for (const id of assignedIds) counts.set(id, (counts.get(id) ?? 0) + 1);
   const eligibleIds = new Set(eligible.map((skill) => skill.id));
   const unassignedSkillIds = [...eligibleIds]
-    .filter((id) => !counts.has(id))
+    .filter((id) => !counts.has(id) && !shadowedIds.has(id))
     .sort((a, b) => a.localeCompare(b));
   const duplicateSkillIds = [...counts.entries()]
     .filter(([, count]) => count > 1)
@@ -145,6 +146,7 @@ function run(): number {
       revision,
       generatedAt: new Date().toISOString(),
       assignments: organization.assignments,
+      shadowedSkillIds: organization.shadowedSkillIds,
       possibleVariantGroups: organization.possibleVariantGroups,
     }, null, 2)}\n`);
   }
@@ -166,6 +168,8 @@ function run(): number {
     reviewRequiredSkills: reviewRequiredSkillIds.length,
     reviewRequiredSkillIds,
     possibleVariantGroups: organization.possibleVariantGroups,
+    shadowedSkills: organization.shadowedSkillIds.length,
+    shadowedSkillIds: organization.shadowedSkillIds,
     auditFile: options.auditFile,
     assignedSkills: new Set(assignedIds).size,
     unassignedSkillIds,
@@ -185,6 +189,7 @@ function run(): number {
       `  assignment confidence: ${confidenceCounts.high} high, ${confidenceCounts.medium} medium, ${confidenceCounts.low} low\n`,
     );
     process.stdout.write(`  review queue: ${reviewRequiredSkillIds.length} skills\n`);
+    process.stdout.write(`  shadowed by local skills: ${organization.shadowedSkillIds.length}\n`);
     process.stdout.write(`  possible variant groups: ${organization.possibleVariantGroups.length}\n`);
     if (options.auditFile) process.stdout.write(`  audit: ${options.auditFile}\n`);
     process.stdout.write(`  mode: ${options.apply ? "applied" : "dry-run (pass --apply to write)"}\n`);

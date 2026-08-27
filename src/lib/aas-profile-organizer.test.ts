@@ -50,6 +50,16 @@ describe("AAS profile organizer", () => {
         { ...general, id: "two", categories: ["shared"] },
       ],
     })).toThrow("belongs to more than one domain");
+    expect(() => parseAasTaxonomy({
+      version: 1,
+      domains: [general],
+      overrides: { "manual-skill": { domain: "missing" } },
+    })).toThrow("unknown domain");
+    expect(() => parseAasTaxonomy({
+      version: 1,
+      domains: [general],
+      shadowed: { "duplicate-skill": "../unsafe" },
+    })).toThrow("invalid local skill id");
   });
 
   test("validates catalog entries at the boundary", () => {
@@ -130,6 +140,34 @@ describe("AAS profile organizer", () => {
         reviewRequired: true,
       }));
     expect(organization.profiles.some((plan) => plan.catalog.reviewRequired === true)).toBe(true);
+  });
+
+  test("uses explicit taxonomy overrides for audited uncategorized skills", () => {
+    const organization = planAasCatalog([
+      skill("cold-email", "uncategorized"),
+    ]);
+
+    expect(organization.assignments).toEqual([
+      expect.objectContaining({
+        skillId: "cold-email",
+        profileName: "aas-marketing-conversion-email",
+        group: "marketing",
+        capability: "conversion-email",
+        method: "override",
+        confidence: "high",
+        reviewRequired: false,
+      }),
+    ]);
+  });
+
+  test("omits catalog skills shadowed by equivalent local skills", () => {
+    const organization = planAasCatalog([
+      skill("github", "uncategorized"),
+    ]);
+
+    expect(organization.profiles).toEqual([]);
+    expect(organization.assignments).toEqual([]);
+    expect(organization.shadowedSkillIds).toEqual(["github"]);
   });
 
   test("balances split profiles instead of creating a tiny tail chunk", () => {

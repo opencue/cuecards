@@ -20,6 +20,7 @@ skills:
       skills:
         - android-dev
         - android-jetpack-compose-expert
+        - earllm-build
         - flutter-expert
         - ios-debugger-agent
         - swift-concurrency-expert

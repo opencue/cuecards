@@ -18,6 +18,7 @@ skills:
     - repo: sickn33/agentic-awesome-skills
       pin: git@50a74ca3ddea4a91a45bdc625f0e354b6e54f1b4
       skills:
+        - akf-trust-metadata
         - aws-compliance-checker
         - aws-iam-best-practices
         - aws-secrets-rotation

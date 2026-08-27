@@ -18,12 +18,14 @@ skills:
     - repo: sickn33/agentic-awesome-skills
       pin: git@50a74ca3ddea4a91a45bdc625f0e354b6e54f1b4
       skills:
+        - cold-email
         - copy-editing
         - copywriting
         - cro
         - email-sequence
         - email-systems
         - klaviyo-automation
+        - lead-magnets
         - page-cro
         - popup-cro
         - signup-flow-cro

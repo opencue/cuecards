@@ -56,7 +56,7 @@ export interface PlanAasProfilesOptions {
   reservedSkillIds?: readonly string[];
 }
 
-export type AasAssignmentMethod = "category" | "keyword" | "fallback" | "ambiguous";
+export type AasAssignmentMethod = "override" | "category" | "keyword" | "fallback" | "ambiguous";
 export type AasAssignmentConfidence = "high" | "medium" | "low";
 
 export interface AasAssignmentAudit {
@@ -82,6 +82,7 @@ export interface AasCatalogOrganization {
   profiles: AasProfilePlan[];
   assignments: AasAssignmentAudit[];
   possibleVariantGroups: AasPossibleVariantGroup[];
+  shadowedSkillIds: string[];
 }
 
 export interface CatalogCluster {
@@ -103,6 +104,7 @@ export interface CatalogDomain {
 
 interface DomainDecision {
   domain: CatalogDomain;
+  capability?: string;
   method: AasAssignmentMethod;
   confidence: AasAssignmentConfidence;
   score: number;
@@ -110,6 +112,11 @@ interface DomainDecision {
   margin: number;
   matchedKeywords: string[];
   reviewRequired: boolean;
+}
+
+interface CatalogAssignmentOverride {
+  domain: string;
+  capability?: string;
 }
 
 const REVIEW_DOMAIN: CatalogDomain = {
@@ -209,19 +216,92 @@ export function parseAasTaxonomy(raw: unknown): readonly CatalogDomain[] {
     });
   }
   if (!domainIds.has("general")) throw new Error("AAS taxonomy must include a general domain.");
+  parseTaxonomyOverrides(root, domains);
+  parseTaxonomyShadowed(root);
   return domains;
 }
 
-function loadAasTaxonomy(path: string = AAS_TAXONOMY_PATH): readonly CatalogDomain[] {
+function parseTaxonomyOverrides(
+  root: Record<string, unknown>,
+  domains: readonly CatalogDomain[],
+): Map<string, CatalogAssignmentOverride> {
+  const raw = root.overrides;
+  if (raw === undefined) return new Map();
+  if (raw === null || typeof raw !== "object" || Array.isArray(raw)) {
+    throw new Error("AAS taxonomy overrides must be an object keyed by skill id.");
+  }
+  const byDomain = new Map(domains.map((domain) => [domain.id, domain]));
+  const overrides = new Map<string, CatalogAssignmentOverride>();
+  for (const [skillId, value] of Object.entries(raw as Record<string, unknown>)) {
+    if (!/^[a-z0-9][a-z0-9_-]*$/.test(skillId)) {
+      throw new Error(`AAS taxonomy override has invalid skill id: ${skillId}.`);
+    }
+    if (value === null || typeof value !== "object" || Array.isArray(value)) {
+      throw new Error(`AAS taxonomy override ${skillId} must be an object.`);
+    }
+    const item = value as Record<string, unknown>;
+    const domainId = cleanText(item.domain);
+    const domain = byDomain.get(domainId);
+    if (!domain) {
+      throw new Error(`AAS taxonomy override ${skillId} references unknown domain: ${domainId}.`);
+    }
+    const capability = item.capability === undefined ? undefined : cleanText(item.capability);
+    if (capability !== undefined) {
+      if (!capability || !domain.clusters?.some((cluster) => cluster.id === capability)) {
+        throw new Error(
+          `AAS taxonomy override ${skillId} references unknown capability ${domainId}/${capability}.`,
+        );
+      }
+    }
+    overrides.set(skillId, { domain: domainId, ...(capability ? { capability } : {}) });
+  }
+  return overrides;
+}
+
+function parseTaxonomyShadowed(root: Record<string, unknown>): Map<string, string> {
+  const raw = root.shadowed;
+  if (raw === undefined) return new Map();
+  if (raw === null || typeof raw !== "object" || Array.isArray(raw)) {
+    throw new Error("AAS taxonomy shadowed entries must be an object keyed by catalog skill id.");
+  }
+  const shadowed = new Map<string, string>();
+  for (const [skillId, localSkillId] of Object.entries(raw as Record<string, unknown>)) {
+    if (!/^[a-z0-9][a-z0-9_-]*$/.test(skillId)) {
+      throw new Error(`AAS taxonomy shadowed entry has invalid catalog skill id: ${skillId}.`);
+    }
+    if (typeof localSkillId !== "string" || !/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)+$/.test(localSkillId)) {
+      throw new Error(`AAS taxonomy shadowed entry ${skillId} has invalid local skill id.`);
+    }
+    shadowed.set(skillId, localSkillId);
+  }
+  return shadowed;
+}
+
+function loadAasTaxonomy(
+  path: string = AAS_TAXONOMY_PATH,
+): {
+  domains: readonly CatalogDomain[];
+  overrides: Map<string, CatalogAssignmentOverride>;
+  shadowed: Map<string, string>;
+} {
   try {
-    return parseAasTaxonomy(parseYaml(readFileSync(path, "utf8")));
+    const raw = parseYaml(readFileSync(path, "utf8"));
+    const domains = parseAasTaxonomy(raw);
+    return {
+      domains,
+      overrides: parseTaxonomyOverrides(raw as Record<string, unknown>, domains),
+      shadowed: parseTaxonomyShadowed(raw as Record<string, unknown>),
+    };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw new Error(`Cannot load AAS taxonomy at ${path}: ${message}`);
   }
 }
 
-const DOMAINS = loadAasTaxonomy();
+const LOADED_TAXONOMY = loadAasTaxonomy();
+const DOMAINS = LOADED_TAXONOMY.domains;
+const TAXONOMY_OVERRIDES = LOADED_TAXONOMY.overrides;
+const TAXONOMY_SHADOWED = LOADED_TAXONOMY.shadowed;
 export const AAS_TAXONOMY: readonly CatalogDomain[] = DOMAINS;
 
 const DOMAIN_BY_CATEGORY = new Map(
@@ -309,7 +389,8 @@ export function planAasCatalog(
   const eligible = catalog
     .filter((skill) =>
       (skill.risk === "safe" || skill.risk === "none")
-      && !reservedSkillIds.has(skill.id))
+      && !reservedSkillIds.has(skill.id)
+      && !TAXONOMY_SHADOWED.has(skill.id))
     .sort((a, b) => a.id.localeCompare(b.id));
   const grouped = new Map<string, { domain: CatalogDomain; skills: AasSkill[] }>();
   const decisions = new Map<string, DomainDecision>();
@@ -327,8 +408,9 @@ export function planAasCatalog(
   const assignments: AasAssignmentAudit[] = [];
   for (const { domain, skills } of [...grouped.values()].sort((a, b) =>
     a.domain.id.localeCompare(b.domain.id))) {
-    const buckets = skills.length > maxSkills && domain.clusters
-      ? clusterSkills(domain, skills)
+    const hasForcedCapability = skills.some((skill) => decisions.get(skill.id)?.capability);
+    const buckets = domain.clusters && (skills.length > maxSkills || hasForcedCapability)
+      ? clusterSkills(domain, skills, decisions)
       : [{ id: "", summary: domain.summary, skills }];
     for (const bucket of buckets.sort((a, b) => a.id.localeCompare(b.id))) {
       const chunks = balancedChunks(bucket.skills, maxSkills);
@@ -380,10 +462,31 @@ export function planAasCatalog(
     profiles: plans.sort((a, b) => a.name.localeCompare(b.name)),
     assignments: assignments.sort((a, b) => a.skillId.localeCompare(b.skillId)),
     possibleVariantGroups: findPossibleVariantGroups(eligible),
+    shadowedSkillIds: catalog
+      .filter((skill) =>
+        (skill.risk === "safe" || skill.risk === "none")
+        && TAXONOMY_SHADOWED.has(skill.id))
+      .map((skill) => skill.id)
+      .sort((a, b) => a.localeCompare(b)),
   };
 }
 
 function classifyDomain(skill: AasSkill): DomainDecision {
+  const override = TAXONOMY_OVERRIDES.get(skill.id);
+  if (override) {
+    const domain = DOMAINS.find((candidate) => candidate.id === override.domain)!;
+    return {
+      domain,
+      capability: override.capability,
+      method: "override",
+      confidence: "high",
+      score: 100,
+      runnerUpScore: 0,
+      margin: 100,
+      matchedKeywords: [`override:${override.domain}${override.capability ? `/${override.capability}` : ""}`],
+      reviewRequired: false,
+    };
+  }
   const direct = DOMAIN_BY_CATEGORY.get(slug(skill.category));
   if (direct) {
     return {
@@ -449,6 +552,7 @@ function classifyDomain(skill: AasSkill): DomainDecision {
 function clusterSkills(
   domain: CatalogDomain,
   skills: readonly AasSkill[],
+  decisions: ReadonlyMap<string, DomainDecision>,
 ): Array<{ id: string; summary: string; skills: AasSkill[] }> {
   const clusters = domain.clusters ?? [];
   const fallback = clusters.find((cluster) => cluster.fallback) ?? clusters.at(-1);
@@ -458,6 +562,11 @@ function clusterSkills(
   }
 
   for (const skill of skills) {
+    const forcedCapability = decisions.get(skill.id)?.capability;
+    if (forcedCapability) {
+      grouped.get(forcedCapability)!.skills.push(skill);
+      continue;
+    }
     const terms = skillTerms(skill);
     const category = slug(skill.category);
     const ranked = clusters

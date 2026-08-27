@@ -23,6 +23,7 @@ skills:
         - container-security-hardening
         - file-uploads
         - gha-security-review
+        - infinity
         - laravel-security-audit
         - protocol-reverse-engineering
         - security-scanning-security-dependencies

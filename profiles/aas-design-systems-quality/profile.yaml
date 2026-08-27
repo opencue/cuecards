@@ -29,7 +29,10 @@ skills:
         - rayden-use
         - stitch-ui-design
         - swiss-design
+        - ui-lint
+        - ui-review
         - ui-visual-validator
+        - ux-audit
         - uxui-principles
         - vizcom
         - wcag-audit-patterns

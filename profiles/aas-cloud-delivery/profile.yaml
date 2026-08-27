@@ -25,5 +25,8 @@ skills:
         - mise-configurator
         - pre-release-review
         - terraform-skill
+        - vercel-cli-with-tokens
+        - vercel-deployment
+        - vercel-optimize
         - vibecode-production-qa-validator
 mcps: []

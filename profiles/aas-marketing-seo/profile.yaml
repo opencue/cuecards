@@ -26,8 +26,13 @@ skills:
         - nextjs-seo-indexing
         - programmatic-seo
         - schema-markup-generator
+        - seo-aeo-internal-linking
+        - seo-aeo-landing-page-writer
         - seo-aeo-meta-description-generator
+        - seo-aeo-schema-generator
         - seo-drift
+        - seo-images
+        - seo-page
         - social-metadata-hardening
         - tools-page-seo-optimizer
 mcps: []

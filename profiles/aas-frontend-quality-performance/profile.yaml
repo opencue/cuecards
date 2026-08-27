@@ -21,4 +21,6 @@ skills:
         - accesslint-audit
         - frontend-lighthouse
         - full-output-enforcement
+        - lovable-cleanup
+        - pagespeed-enhancer
 mcps: []

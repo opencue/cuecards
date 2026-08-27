@@ -25,4 +25,5 @@ skills:
         - tmux
         - uv-package-manager
         - vscode-extension-guide-en
+        - windows-shell-reliability
 mcps: []

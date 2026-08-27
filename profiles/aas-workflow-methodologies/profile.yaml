@@ -19,7 +19,10 @@ skills:
       pin: git@50a74ca3ddea4a91a45bdc625f0e354b6e54f1b4
       skills:
         - ask-questions-if-underspecified
+        - nerdzao-elite
+        - nerdzao-elite-gemini-high
         - patterns
+        - planning-and-task-breakdown
         - scale-benchmarks
         - tech-matrix
 mcps: []

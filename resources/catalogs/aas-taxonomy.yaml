@@ -1,6 +1,79 @@
 # Declarative taxonomy for scripts/generate-aas-profiles.ts.
 # Edit this file, then run: bun scripts/generate-aas-profiles.ts --apply
 version: 1
+shadowed:
+  github: github/github
+  design-taste-frontend: design/design-taste-frontend
+  minimalist-ui: design/minimalist-ui
+overrides:
+  adhx: { domain: marketing, capability: social-content }
+  akf-trust-metadata: { domain: security, capability: cloud-compliance }
+  anti-sycophancy: { domain: agents, capability: quality-governance }
+  brand-perception-psychologist: { domain: general, capability: persuasion }
+  brooks-audit: { domain: development, capability: quality-refactoring }
+  brooks-debt: { domain: development, capability: quality-refactoring }
+  brooks-review: { domain: development, capability: quality-refactoring }
+  cold-email: { domain: marketing, capability: conversion-email }
+  composition-patterns: { domain: development, capability: quality-refactoring }
+  customer-psychographic-profiler: { domain: general, capability: persuasion }
+  earllm-build: { domain: mobile }
+  efficient-web-research: { domain: research }
+  emotional-arc-designer: { domain: general, capability: persuasion }
+  event-staffing-compliance: { domain: legal }
+  event-staffing-ordering: { domain: business, capability: operations }
+  free-tier-strategy: { domain: product }
+  helium-mcp: { domain: research }
+  idea-darwin: { domain: product }
+  infinity: { domain: security, capability: application }
+  invariant-guard: { domain: development, capability: quality-refactoring }
+  it-manager-pro: { domain: business, capability: operations }
+  itil-expert: { domain: business, capability: operations }
+  jobgpt: { domain: business, capability: people-sales }
+  lead-magnets: { domain: marketing, capability: conversion-email }
+  lemmaly: { domain: development, capability: quality-refactoring }
+  logistics-exception-management: { domain: business, capability: operations }
+  lookdev-auto: { domain: design, capability: graphics-tools }
+  loss-aversion-designer: { domain: general, capability: persuasion }
+  lovable-cleanup: { domain: frontend, capability: quality-performance }
+  macos-menubar-tuist-app: { domain: development, capability: apple-hig }
+  macos-spm-app-packaging: { domain: development, capability: project-workflows }
+  magic-animator: { domain: design, capability: graphics-tools }
+  mathguard: { domain: development, capability: quality-refactoring }
+  nerdzao-elite: { domain: workflow, capability: methodologies }
+  nerdzao-elite-gemini-high: { domain: workflow, capability: methodologies }
+  network-engineer: { domain: cloud, capability: architecture }
+  nextjs-supabase-auth: { domain: backend, capability: auth }
+  obsidian-clipper-template-creator: { domain: productivity }
+  offers: { domain: general, capability: persuasion }
+  onboarding: { domain: product }
+  oss-hunter: { domain: development, capability: project-workflows }
+  pagespeed-enhancer: { domain: frontend, capability: quality-performance }
+  pdf-conversion-router: { domain: content, capability: technical-docs }
+  photopea-embedded-editor: { domain: design, capability: graphics-tools }
+  planning-and-task-breakdown: { domain: workflow, capability: methodologies }
+  project-skill-audit: { domain: skills }
+  review-swarm: { domain: agents, capability: orchestration }
+  sales-enablement: { domain: business, capability: people-sales }
+  seo-aeo-internal-linking: { domain: marketing, capability: seo }
+  seo-aeo-landing-page-writer: { domain: marketing, capability: seo }
+  seo-aeo-schema-generator: { domain: marketing, capability: seo }
+  seo-images: { domain: marketing, capability: seo }
+  seo-page: { domain: marketing, capability: seo }
+  shader-programming-glsl: { domain: frontend, capability: motion-3d }
+  social-proof-architect: { domain: general, capability: persuasion }
+  steve-jobs: { domain: ai, capability: personas }
+  superpowers-lab: { domain: development, capability: agent-tooling }
+  the-honoured-one: { domain: development, capability: agent-tooling }
+  ui-lint: { domain: design, capability: systems-quality }
+  ui-review: { domain: design, capability: systems-quality }
+  ux-audit: { domain: design, capability: systems-quality }
+  ux-persuasion-engineer: { domain: general, capability: persuasion }
+  vercel-cli-with-tokens: { domain: cloud, capability: delivery }
+  vercel-deployment: { domain: cloud, capability: delivery }
+  vercel-optimize: { domain: cloud, capability: delivery }
+  visual-emotion-engineer: { domain: general, capability: persuasion }
+  windows-shell-reliability: { domain: development, capability: developer-tools }
+  yield-intelligence: { domain: finance }
 domains:
   - id: agents
     inherits: core
