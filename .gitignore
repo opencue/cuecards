@@ -57,3 +57,17 @@ vibecode-pro-max-kit/
 .agents/skills/hirelens-showcase/
 .agents/skills/jdfit/
 .agents/skills/job-hunter/
+
+# multiagent-safety:START
+.omx/
+.omc/
+.codex/
+!.vscode/
+.vscode/*
+!.vscode/settings.json
+scripts/guardex-docker-loader.sh
+scripts/guardex-env.sh
+.githooks
+oh-my-codex/
+.omx/state/agent-file-locks.json
+# multiagent-safety:END
