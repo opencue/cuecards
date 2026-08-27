@@ -309,11 +309,13 @@ export function applyProfileChoiceFeedback(
   limit = suggestions.length,
   supportedProfiles?: ReadonlySet<string>,
 ): StackSuggestion[] {
-  const ranked = suggestions.map((suggestion, index) => ({
+  type RankedSuggestion = StackSuggestion & { order: number; pinned: boolean };
+  const ranked: RankedSuggestion[] = suggestions.map((suggestion, index) => ({
     ...suggestion,
     parts: [...suggestion.parts],
     reasons: [...suggestion.reasons],
     order: index,
+    pinned: false,
   }));
   const bySelector = new Map(ranked.map((item) => [item.parts.join("+"), item]));
 
@@ -331,16 +333,18 @@ export function applyProfileChoiceFeedback(
     if (item.pinned) {
       const reason = "pinned in .cue.profile";
       if (existing) {
+        existing.pinned = true;
         existing.score = Math.max(existing.score, SCORE_PINNED_PROFILE);
         existing.origin = "feedback";
         existing.reasons = [reason, ...existing.reasons.filter((value) => value !== reason)].slice(0, 3);
       } else {
-        const added = {
+        const added: RankedSuggestion = {
           parts,
           score: SCORE_PINNED_PROFILE,
           reasons: [reason],
           origin: "feedback" as const,
           order: ranked.length,
+          pinned: true,
         };
         ranked.push(added);
         bySelector.set(item.selector, added);
@@ -353,12 +357,13 @@ export function applyProfileChoiceFeedback(
         existing.origin = "feedback";
         existing.reasons = [reason, ...existing.reasons.filter((value) => value !== reason)].slice(0, 3);
       } else {
-        const added = {
+        const added: RankedSuggestion = {
           parts,
           score,
           reasons: [reason],
           origin: "feedback" as const,
           order: ranked.length,
+          pinned: false,
         };
         ranked.push(added);
         bySelector.set(item.selector, added);
@@ -375,12 +380,13 @@ export function applyProfileChoiceFeedback(
   return ranked
     .sort(
       (a, b) =>
+        Number(b.pinned) - Number(a.pinned) ||
         b.score - a.score ||
         Number(b.origin === "feedback") - Number(a.origin === "feedback") ||
         a.order - b.order,
     )
     .slice(0, Math.max(0, limit))
-    .map(({ order: _order, ...suggestion }) => suggestion);
+    .map(({ order: _order, pinned: _pinned, ...suggestion }) => suggestion);
 }
 
 function defaultAppend(line: string): void {

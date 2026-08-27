@@ -165,7 +165,7 @@ describe("profile choice feedback", () => {
         [
           {
             parts: ["medusa-vite", "resend"],
-            score: 100,
+            score: 10_000,
             reasons: ["detected"],
             origin: "detected",
           },
@@ -183,6 +183,7 @@ describe("profile choice feedback", () => {
       });
       expect(ranked[0]?.reasons[0]).toBe("pinned in .cue.profile");
       expect(ranked[1]?.parts).toEqual(["medusa-vite", "resend"]);
+      expect(ranked[1]?.score).toBe(10_000);
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }
