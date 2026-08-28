@@ -10,6 +10,14 @@ conflicts:
   - nextjs        # pick one React build tool per project
 skills:
   local: []   # browser/agent-browser + design/screenshot inherited via frontend → web-frontend-base
+  npx:
+    - repo: DeckardGer/tanstack-agent-skills
+      pin: git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a
+      skills:
+        - tanstack-integration-best-practices
+        - tanstack-query-best-practices
+        - tanstack-router-best-practices
+        - tanstack-start-best-practices
 mcps: []   # browser automation via the agent-browser CLI (no MCP needed)
 plugins: []
 playbooks:

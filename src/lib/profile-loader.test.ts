@@ -746,6 +746,53 @@ describe("core persona_includes fan-out (real profiles)", () => {
   });
 });
 
+describe("TanStack skill propagation (real profiles)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+  const TANSTACK_SOURCE = {
+    repo: "DeckardGer/tanstack-agent-skills",
+    pin: "git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a",
+    skills: [
+      "tanstack-integration-best-practices",
+      "tanstack-query-best-practices",
+      "tanstack-router-best-practices",
+      "tanstack-start-best-practices",
+    ],
+  };
+
+  test.each(["tanstack", "vite", "medusa-vite"])(
+    "%s always resolves the pinned TanStack skill bundle",
+    async (name) => {
+      process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+      const profile = await loadProfile(name);
+
+      expect(
+        profile.skills.npx.find((entry) => entry.repo === TANSTACK_SOURCE.repo),
+      ).toEqual(TANSTACK_SOURCE);
+    },
+  );
+});
+
+describe("opensrc routing (real profiles)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+  const OPENSRC_ROUTE = {
+    capability:
+      "Fetch, download, clone, or inspect an external GitHub repository or package source",
+    skill: "tools/opensrc",
+    note: "Use `opensrc path owner/repo[@ref|#ref]` before generic `git clone`.",
+  };
+
+  test.each(["core", "opensrc"])(
+    "%s keeps opensrc loaded and routes repository fetching through it",
+    async (name) => {
+      process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+      const profile = await loadProfile(name);
+
+      expect(profile.skills.local).toContainEqual({ id: "tools/opensrc" });
+      expect(profile.personaRouting).toContainEqual(OPENSRC_ROUTE);
+    },
+  );
+});
+
 describe("mcpPrune resolution", () => {
   test("unset by default", async () => {
     await writeProfile("np", "name: np\ndescription: no prune declared\n");
