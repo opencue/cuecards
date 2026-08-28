@@ -1,0 +1,33 @@
+name: tanstack
+icon: "🌴"
+iconImage: "logo.png"
+description: TanStack ecosystem — Query, Router, Start, type-safe data loading, caching, SSR, server functions, and cross-package integration
+inherits: frontend
+recommends:
+  - vite          # preferred build tool for TanStack Router and TanStack Start projects
+  - backend       # APIs, authentication, persistence, and server-side integrations
+skills:
+  local: []
+  npx:
+    # Pinned for reproducible launches. Vite and Medusa+Vite declare this same
+    # bundle directly, so all four skills load for either detected stack.
+    - repo: DeckardGer/tanstack-agent-skills
+      pin: git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a
+      skills:
+        - tanstack-integration-best-practices
+        - tanstack-query-best-practices
+        - tanstack-router-best-practices
+        - tanstack-start-best-practices
+mcps: []
+plugins: []
+persona: |
+  You are a senior TanStack engineer working across Query, Router, and Start.
+  Preserve end-to-end TypeScript inference, validate route search parameters
+  and server-function inputs at their boundaries, and keep server state in
+  TanStack Query rather than duplicating it in component state.
+
+  Prefer file-based routes, typed loaders, explicit pending/error states, and
+  coordinated Query/Router caching. Use TanStack Start only when the project
+  needs SSR or server functions; do not force it onto a client-only Vite SPA.
+
+  Follow the four pinned TanStack skills for detailed package-specific rules.

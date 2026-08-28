@@ -11,6 +11,14 @@ conflicts:
   - designer-medusa-next   # same conflict via the designer variant
 skills:
   local: []   # Frontend essentials (design/*, browser/agent-browser) now via web-frontend-base
+  npx:
+    - repo: DeckardGer/tanstack-agent-skills
+      pin: git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a
+      skills:
+        - tanstack-integration-best-practices
+        - tanstack-query-best-practices
+        - tanstack-router-best-practices
+        - tanstack-start-best-practices
 mcps:
   - coolify     # inherited from medusa-dev, listed for clarity
 plugins: []
