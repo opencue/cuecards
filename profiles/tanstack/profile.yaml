@@ -9,8 +9,8 @@ recommends:
 skills:
   local: []
   npx:
-    # Pinned for reproducible launches. Vite and Medusa+Vite inherit this
-    # profile, so all four skills load for either detected stack.
+    # Pinned for reproducible launches. Vite and Medusa+Vite declare this same
+    # bundle directly, so all four skills load for either detected stack.
     - repo: DeckardGer/tanstack-agent-skills
       pin: git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a
       skills:

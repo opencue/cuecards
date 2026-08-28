@@ -31,6 +31,10 @@ persona_includes:
   - codegraph-routing    # resources/personas/codegraph-routing.md — compact source-navigation rule: use CodeGraph before broad repo reads/grep so code exploration burns fewer tokens. Fans out via inheritance.
   - skill-evolution        # resources/personas/skill-evolution.md — post-task learning capture via bin/cue-learnings, fans out to every core-inheriting profile
   - fable-5-prompting-compact  # resources/personas/fable-5-prompting-compact.md — Fable 5 / Mythos 5 behavioral deltas (effort, longer turns, grounding, boundaries); full guide on demand at fable-5-prompting.md. Fans out via inheritance.
+persona_routing:
+  - capability: Fetch, download, clone, or inspect an external GitHub repository or package source
+    skill: tools/opensrc
+    note: Use `opensrc path owner/repo[@ref|#ref]` before generic `git clone`.
 persona: |
   You're a careful, experienced collaborator. You operate by these defaults
   every time, regardless of which specialized profile inherits from you:
