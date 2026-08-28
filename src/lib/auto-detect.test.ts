@@ -19,6 +19,9 @@ describe("detectProfileV2", () => {
     const out = detectProfileV2("/tmp/google-ads-manager");
     expect(out[0]?.profile).toBe("google-ads");
     expect(out.map((x) => x.profile)).toContain("ads-manager");
+    const google = out.find((item) => item.profile === "google-ads");
+    const alternative = out.find((item) => item.profile === "claude-ads");
+    expect(google?.evidence?.[0]?.family).toBe(alternative?.evidence?.[0]?.family);
   });
 
   test("generic marketing campaigns do not become Google Ads projects", () => {

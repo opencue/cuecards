@@ -97,10 +97,13 @@ export interface MaterializeInput {
   /** Directory to copy .credentials.json from (e.g. a pre-set CLAUDE_CONFIG_DIR). */
   credentialsSource?: string;
   /** Codex only: path to the base `config.toml` (normally ~/.codex/config.toml)
-   *  whose top-level keys and `[features]` the runtime config inherits. cue
-   *  redirects CODEX_HOME at the runtime, so without this the session loses every
-   *  knob the user configured. Omit to inherit nothing (what tests do). */
+   *  whose top-level keys, `[features]`, and `[[skills.config]]` the runtime
+   *  config inherits. cue redirects CODEX_HOME at the runtime, so without this
+   *  the session loses user configuration. Omit to inherit nothing (what tests do). */
   codexBaseConfig?: string;
+  /** Codex only: user/repo skill files that bypass `$CODEX_HOME/skills` and
+   *  must be disabled so the cue profile remains the source of truth. */
+  codexExternalSkillPaths?: string[];
   /** Lazy-MCP: ids the launcher disabled — removed from the runtime .claude.json
    *  even though the rebuild preserves the old file. Profile.mcps is already
    *  pruned to the kept set; this just evicts the stale keys. */
@@ -409,7 +412,11 @@ async function materializeRuntimeUnlocked(
     agent === "codex" && effectiveInput.codexBaseConfig
       ? await readFile(effectiveInput.codexBaseConfig, "utf8").catch(() => "")
       : "";
-  const hash = computeHash(profile, agent, codexBaseText);
+  const codexSkillScopeText =
+    agent === "codex" && effectiveInput.codexExternalSkillPaths
+      ? JSON.stringify([...effectiveInput.codexExternalSkillPaths].sort())
+      : "";
+  const hash = computeHash(profile, agent, `${codexBaseText}\n${codexSkillScopeText}`);
 
   // Collect profile MCP entries once — used by both cache-hit and rebuild paths
   // for the .claude.json sync.
@@ -741,13 +748,19 @@ async function materializeRuntimeUnlocked(
     // Codex equivalent — config.toml. cue points CODEX_HOME at this runtime, so
     // this file is the ONLY config the session reads: it has to carry the base
     // config's autonomy knobs (reasoning effort, context window, auto-compact,
-    // [features]) or the session silently runs on model defaults.
+    // [features]) and its skill overrides or the session silently diverges from
+    // the user's canonical Codex setup.
     await writeFile(
       join(tmpDir, "config.toml"),
       buildCodexConfigToml({
         baseText: codexBaseText,
         overrides: effectiveCodexOverrides(profile),
         mcpServers,
+        disabledSkillPaths: effectiveInput.codexExternalSkillPaths,
+        enabledSkillPaths: [
+          ...slugToSrc.keys(),
+          ...(deferredSkills.length > 0 ? ["cue-deferred-skills"] : []),
+        ].map((slug) => join(runtimeDir, "skills", slug, "SKILL.md")),
       }),
     );
   }

@@ -6,3 +6,7 @@
 	path = resources/skills
 	url = https://github.com/opencue/skills.git
 	branch = main
+[submodule "resources/ai-memory"]
+	path = resources/ai-memory
+	url = https://github.com/NagyVikt/ai-memory.git
+	branch = main

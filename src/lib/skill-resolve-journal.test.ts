@@ -4,7 +4,13 @@ import { dirname, join } from "node:path";
 
 import { afterAll, beforeEach, describe, expect, test } from "bun:test";
 
-import { PROMOTION_THRESHOLD, recordResolve, resolveCounts, resolveJournalPath } from "./skill-resolve-journal";
+import {
+  PROMOTION_THRESHOLD,
+  recordResolve,
+  resolveCounts,
+  resolveJournalPath,
+  type SkillResolutionStage,
+} from "./skill-resolve-journal";
 
 // The journal lives under XDG_CONFIG_HOME, so pointing that at a temp dir
 // redirects both the writer and the reader without stubbing either.
@@ -18,13 +24,14 @@ afterAll(() => {
   rmSync(home, { recursive: true, force: true });
 });
 
-const rec = (id: string, cwd: string) => ({
+const rec = (id: string, cwd: string, stage: SkillResolutionStage = "invoked") => ({
   ts: "2026-07-26T00:00:00.000Z",
   id,
   cwd,
   profile: "core",
   tier: 2 as const,
   score: 12,
+  stage,
 });
 
 beforeEach(() => {
@@ -62,6 +69,20 @@ describe("recordResolve / resolveCounts", () => {
     const counts = resolveCounts({ cwd: "/repo" });
     expect(counts.get("a/one")).toBe(1);
     expect(counts.get("b/two")).toBe(1);
+  });
+
+  test("promotion counts only invoked records", () => {
+    recordResolve(rec("deployment/coolify", "/repo", "surfaced"));
+    recordResolve(rec("deployment/coolify", "/repo", "loaded"));
+    recordResolve(rec("deployment/coolify", "/repo", "completed"));
+    recordResolve(rec("deployment/coolify", "/repo", "invoked"));
+    writeFileSync(
+      resolveJournalPath(),
+      `${JSON.stringify({ ...rec("deployment/coolify", "/repo"), stage: undefined })}\n`,
+      { flag: "a" },
+    );
+
+    expect(resolveCounts({ cwd: "/repo" }).get("deployment/coolify")).toBe(1);
   });
 
   test("a torn line doesn't discard the rest of the journal", () => {

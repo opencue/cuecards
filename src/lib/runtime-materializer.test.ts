@@ -138,6 +138,46 @@ describe("materializeRuntime", () => {
     expect(toml.indexOf('model = "gpt-5.5"')).toBeLessThan(toml.indexOf("["));
   });
 
+  test("codex runtime disables external skills and re-enables profile skills", async () => {
+    const base = join(root, "base-config.toml");
+    await writeFile(
+      base,
+      '[[skills.config]]\nname = "ui-ux-pro-max"\nenabled = false\n',
+    );
+    const external = "/repo/.agents/skills/unrelated/SKILL.md";
+    const out = await materializeRuntime({
+      profile: {
+        ...sampleProfile,
+        name: "test-codex-skill-scope",
+        agents: ["codex"],
+        inheritanceChain: ["test-codex-skill-scope"],
+      },
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id) => `/fake/skills/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+      codexBaseConfig: base,
+      codexExternalSkillPaths: [external],
+    });
+
+    const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
+    const inherited = toml.indexOf('name = "ui-ux-pro-max"');
+    const disabled = toml.indexOf(`path = "${external}"`);
+    const enabledPath = join(
+      out.runtimeDir,
+      "skills",
+      "ui-ux-pro-max",
+      "SKILL.md",
+    );
+    const enabled = toml.indexOf(`path = "${enabledPath}"`);
+    expect(inherited).toBeGreaterThan(-1);
+    expect(disabled).toBeGreaterThan(inherited);
+    expect(enabled).toBeGreaterThan(disabled);
+    expect(toml.slice(disabled, enabled)).toContain("enabled = false");
+    expect(toml.slice(enabled)).toContain("enabled = true");
+  });
+
   test("legacy codex_config still lands in config.toml", async () => {
     const profile: ResolvedProfile = {
       ...sampleProfile,

@@ -38,11 +38,10 @@ describe.skipIf(!BUN_SPAWNABLE)("cue use", () => {
     expect(stderr).toContain("cue use");
   });
 
-  test("no selector lists available profiles on stderr", () => {
+  test("no selector points to the concise profile catalogue", () => {
     const { stderr } = cue(["use"]);
-    expect(stderr).toContain("Available:");
-    // At minimum the baseline 'core' profile should be listed
-    expect(stderr).toContain("core");
+    expect(stderr).toContain("cue list");
+    expect(stderr).not.toContain("Available:");
   });
 
   test("unknown profile exits 1", () => {
@@ -56,8 +55,9 @@ describe.skipIf(!BUN_SPAWNABLE)("cue use", () => {
     expect(stderr).toContain("xyz-nonexistent-profile-abc");
   });
 
-  test("unknown profile prints available profiles on stderr", () => {
+  test("unknown profile points to discovery without dumping every profile", () => {
     const { stderr } = cue(["use", "xyz-nonexistent-profile-abc"]);
-    expect(stderr).toContain("Available:");
+    expect(stderr).toContain("cue list --all");
+    expect(stderr).not.toContain("Available:");
   });
 });

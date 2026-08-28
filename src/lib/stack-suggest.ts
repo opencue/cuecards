@@ -25,13 +25,26 @@ export interface SuggestProfile {
   recommends?: string[];
   autoSelect?: string[];
   conflicts?: string[];
+  /** Resolved ancestors, used to avoid stacking a specialization with its base. */
+  inherits?: string[];
 }
 
 /** A scored "this directory looks like X" signal. */
+export interface SuggestEvidence {
+  /** Stable observation id, e.g. `dependency:package.json:stripe`. */
+  id: string;
+  /** Correlation group: profiles from the same family are alternatives, not companions. */
+  family: string;
+  /** Human-readable origin that produced the observation. */
+  source: string;
+}
+
 export interface SuggestSignal {
   name: string;
   confidence: number;
   reasons: string[];
+  /** Structured provenance used for corroboration and safe stack composition. */
+  evidence?: SuggestEvidence[];
 }
 
 /** A content-detected companion profile (image assets → higgsfield, …). */
@@ -222,11 +235,22 @@ export function mergeSignals(...lists: Array<SuggestSignal[] | undefined>): Sugg
     for (const s of list ?? []) {
       const prev = byName.get(s.name);
       if (!prev) {
-        byName.set(s.name, { name: s.name, confidence: s.confidence, reasons: [...s.reasons] });
+        byName.set(s.name, {
+          name: s.name,
+          confidence: s.confidence,
+          reasons: [...s.reasons],
+          ...(s.evidence ? { evidence: s.evidence.map((item) => ({ ...item })) } : {}),
+        });
         continue;
       }
       prev.confidence = Math.max(prev.confidence, s.confidence);
       for (const r of s.reasons) if (!prev.reasons.includes(r)) prev.reasons.push(r);
+      for (const item of s.evidence ?? []) {
+        prev.evidence ??= [];
+        if (!prev.evidence.some((existing) => existing.id === item.id)) {
+          prev.evidence.push({ ...item });
+        }
+      }
     }
   }
   return [...byName.values()].sort((a, b) => b.confidence - a.confidence || a.name.localeCompare(b.name));
@@ -520,8 +544,15 @@ const REAL_PROBE: PathProbe = {
  */
 export function pathSignals(cwd: string, probe: PathProbe = REAL_PROBE): SuggestSignal[] {
   const out: SuggestSignal[] = [];
-  const add = (name: string, confidence: number, reason: string) =>
-    out.push({ name, confidence, reasons: [reason] });
+  const add = (name: string, confidence: number, reason: string) => {
+    const key = reason.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    out.push({
+      name,
+      confidence,
+      reasons: [reason],
+      evidence: [{ id: `path:${key}`, family: `path:${key}`, source: "repository-path" }],
+    });
+  };
   const has = (...names: string[]) => names.some((n) => probe.exists(join(cwd, n)));
   const segments = cwd.split(sep);
   const parent = segments[segments.length - 2] ?? "";

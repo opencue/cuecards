@@ -43,6 +43,28 @@ describe("combineCategoryOf", () => {
     expect(combineCategoryOf("")).toBe("other");
     expect(combineCategoryOf("UPPERCASE")).toBe("other");
   });
+
+  test("generated catalog metadata groups profiles without a hardcoded profile name", () => {
+    expect(combineCategoryOf("aas-backend-auth", "backend")).toBe("backend & infra");
+    expect(combineCategoryOf("aas-content-seo", "content")).toBe("content & research");
+    expect(combineCategoryOf("aas-design-spatial", "design")).toBe("frontend & design");
+    expect(combineCategoryOf("aas-legal", "legal")).toBe("content & research");
+    expect(combineCategoryOf("aas-skills", "skills")).toBe("orchestrators");
+    expect(combineCategoryOf("aas-review-needed", "review")).toBe("review needed");
+  });
+
+  test("every AAS taxonomy group has a first-class picker category", () => {
+    const groups = [
+      "agents", "ai", "architecture", "automation", "backend", "blockchain", "browser",
+      "business", "cloud", "commerce", "content", "data", "database", "design",
+      "development", "education", "finance", "frontend", "game", "general", "health",
+      "legal", "marketing", "media", "mobile", "product", "productivity", "research",
+      "security", "skills", "testing", "travel", "workflow", "review",
+    ];
+
+    expect(groups.filter((group) => combineCategoryOf("aas-generated", group) === "other"))
+      .toEqual([]);
+  });
 });
 
 describe("COMBINE_CATEGORY_ORDER", () => {
@@ -54,6 +76,7 @@ describe("COMBINE_CATEGORY_ORDER", () => {
     expect(order).toContain("backend & infra");
     expect(order).toContain("commerce");
     expect(order).toContain("integrations");
+    expect(order).toContain("review needed");
   });
 
   test("'other' is the last entry so unknown profiles sort last", () => {

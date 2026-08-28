@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { ingest, parseTranscript } from "./telemetry-ingest";
+import { resolveJournalPath } from "./skill-resolve-journal";
 import { analyticsPath, enable } from "./telemetry-consent";
 
 let tempHome: string;
@@ -32,8 +33,9 @@ function writeTranscript(name: string, lines: object[]): string {
   return file;
 }
 
-function userTurn(text: string, opts: { sessionId?: string; messageId?: string; ts?: string } = {}) {
+function userTurn(text: string, opts: { sessionId?: string; messageId?: string; ts?: string; cwd?: string } = {}) {
   return {
+    cwd: opts.cwd ?? "/repo/test",
     sessionId: opts.sessionId ?? "sess-1",
     timestamp: opts.ts ?? "2026-05-26T10:00:00Z",
     message: {
@@ -44,8 +46,9 @@ function userTurn(text: string, opts: { sessionId?: string; messageId?: string; 
   };
 }
 
-function assistantTextTurn(text: string, opts: { sessionId?: string; messageId?: string } = {}) {
+function assistantTextTurn(text: string, opts: { sessionId?: string; messageId?: string; cwd?: string } = {}) {
   return {
+    cwd: opts.cwd ?? "/repo/test",
     sessionId: opts.sessionId ?? "sess-1",
     timestamp: "2026-05-26T10:00:05Z",
     message: {
@@ -56,8 +59,9 @@ function assistantTextTurn(text: string, opts: { sessionId?: string; messageId?:
   };
 }
 
-function assistantSkillTurn(skillName: string, opts: { toolUseId?: string; sessionId?: string } = {}) {
+function assistantSkillTurn(skillName: string, opts: { toolUseId?: string; sessionId?: string; cwd?: string } = {}) {
   return {
+    cwd: opts.cwd ?? "/repo/test",
     sessionId: opts.sessionId ?? "sess-1",
     timestamp: "2026-05-26T10:00:05Z",
     message: {
@@ -73,6 +77,19 @@ function assistantSkillTurn(skillName: string, opts: { toolUseId?: string; sessi
   };
 }
 
+function skillResultTurn(toolUseId: string, opts: { sessionId?: string; cwd?: string } = {}) {
+  return {
+    cwd: opts.cwd ?? "/repo/test",
+    sessionId: opts.sessionId ?? "sess-1",
+    timestamp: "2026-05-26T10:00:06Z",
+    message: {
+      id: "msg-tool-result",
+      role: "user",
+      content: [{ type: "tool_result", tool_use_id: toolUseId, content: "loaded" }],
+    },
+  };
+}
+
 describe("parseTranscript (pure)", () => {
   test("extracts user text and assistant tool_use", () => {
     const content = [userTurn("save progress"), assistantSkillTurn("context-save")]
@@ -84,6 +101,16 @@ describe("parseTranscript (pure)", () => {
     expect(turns[1]!.kind).toBe("assistant");
     expect(turns[1]!.toolUses[0]!.name).toBe("Skill");
     expect(turns[1]!.toolUses[0]!.input.skill).toBe("context-save");
+    expect(turns[1]!.cwd).toBe("/repo/test");
+  });
+
+  test("extracts tool-result ids for completed skill invocations", () => {
+    const turns = parseTranscript(
+      [assistantSkillTurn("context-save", { toolUseId: "tool-a" }), skillResultTurn("tool-a")]
+        .map((line) => JSON.stringify(line))
+        .join("\n"),
+    );
+    expect(turns[1]!.toolResultIds).toEqual(["tool-a"]);
   });
 
   test("skips malformed JSON lines", () => {
@@ -125,6 +152,28 @@ describe("ingest", () => {
     expect(events.filter((e) => e.event === "skill_invoked").length).toBe(2);
     expect(events.find((e) => e.skill === "context-save")).toBeDefined();
     expect(events.find((e) => e.skill === "caveman-commit")).toBeDefined();
+
+    const journal = readFileSync(resolveJournalPath(), "utf8")
+      .split("\n").filter(Boolean)
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(journal.filter((row) => row.stage === "invoked")).toHaveLength(2);
+    expect(journal.every((row) => row.cwd === "/repo/test")).toBe(true);
+  });
+
+  test("records completed after the matching Skill tool result", async () => {
+    enable();
+    writeTranscript("t1", [
+      userTurn("save progress"),
+      assistantSkillTurn("context-save", { toolUseId: "tool-a" }),
+      skillResultTurn("tool-a"),
+    ]);
+
+    await ingest({ projectsDir, sinceDays: 7 });
+    const stages = readFileSync(resolveJournalPath(), "utf8")
+      .split("\n").filter(Boolean)
+      .map((line) => JSON.parse(line) as { stage: string })
+      .map((row) => row.stage);
+    expect(stages).toEqual(["invoked", "completed"]);
   });
 
   test("idempotent: second ingest skips duplicates", async () => {

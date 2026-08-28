@@ -20,6 +20,7 @@ import { requiredClisFor } from "../cli-extractor";
 import { scanPlugins, type DiscoveredPlugin } from "../scan-plugins";
 import { cacheKey } from "../resolver-npx";
 import { cacheSkillPath } from "../cache";
+import { countProfileSkills } from "../profile-capabilities";
 import type {
   ActiveProfile,
   Preview,
@@ -397,7 +398,7 @@ export async function activeFor(cwd: string): Promise<ActiveProfile | null> {
     return {
       name: res.profile,
       source: res.source,
-      skillCount: (p.skills.local?.length ?? 0) + (p.skills.npx?.length ?? 0),
+      skillCount: countProfileSkills(p),
       mcpCount: p.mcps.length,
       pluginCount: p.plugins.length,
     };

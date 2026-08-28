@@ -12,7 +12,7 @@ import { tokenLevelEmoji } from "../token-budget";
  * A single profile's own resource identifiers, as lists so combined-profile
  * previews can union them exactly (a skill/mcp/plugin shared by two stacked
  * profiles is counted once). Skills mirror the picker headline: one entry per
- * local skill + one per npx repo.
+ * local skill and per skill exposed by an npx repository.
  */
 export interface ProfileTally {
   skills: string[];

@@ -12,21 +12,11 @@ import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { recordCombo } from "../combo-history";
 import {
-  applyProfileChoiceFeedback,
-  readProfileChoiceFeedback,
+  profileSuggestionEvidenceHash,
   recordProfileChoice,
 } from "../profile-choice-feedback";
-import { resolveMatchContext } from "../profile-match";
-import { deepMatchProfiles, hasWarmDeepMatch, warmDeepMatchCache } from "../profile-match-llm";
-import {
-  mergeSignals,
-  pathSignals,
-  repositorySupportedProfiles,
-  suggestStacks,
-  type StackSuggestion,
-  type SuggestMatch,
-  type SuggestSignal,
-} from "../stack-suggest";
+import { detectRepositoryStacks } from "../repository-stack-detect";
+import type { StackSuggestion } from "../stack-suggest";
 import { CardPrompt, type CardSuggestion } from "./card";
 import { buildPaletteRows, PRIORITY_SECTIONS, StackPalettePrompt } from "./palette";
 import { dedupeSelectorParts } from "./selector";
@@ -79,86 +69,27 @@ export function flattenProfileRows(options: PickerOption[]): PickerOption[] {
 
 export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
   const profiles = flattenProfileRows(input.options);
-  const known = new Set(profiles.map((o) => o.value));
   const labelOf = (value: string) =>
     profiles.find((o) => o.value === value)?.label ?? value;
 
-  // cwd detection + workspace path conventions, merged the way detectProfileV2
-  // merges its own rules. Path probing is best-effort.
-  let detected: SuggestSignal[] = (input.detected ?? []).map((d) => ({
-    name: d.name,
-    confidence: d.confidence,
-    reasons: [...d.reasons],
-  }));
-  let repositoryDetected: SuggestSignal[] = (
-    input.repositoryDetected ?? input.detected ?? []
-  ).map((d) => ({
-    name: d.name,
-    confidence: d.confidence,
-    reasons: [...d.reasons],
-  }));
-  try {
-    const path = pathSignals(input.cwd);
-    detected = mergeSignals(detected, path);
-    repositoryDetected = mergeSignals(repositoryDetected, path);
-  } catch {
-    /* an unreadable cwd just means fewer signals */
-  }
-  detected = detected.filter((d) => known.has(d.name));
-
-  // Generic repo→profile matches. The curated sources cover 19 of 85 profiles;
-  // this scores every profile's own vocabulary against the directory so
-  // cycling through suggestions keeps finding relevant stacks instead of
-  // running out. Best-effort — no matches just means a shorter list.
-  //
-  // The model reranks this, but ONLY from cache. A launch must never wait on a
-  // network round-trip: a warm entry (the usual case, since a repo's shape is
-  // stable for weeks) is read in ~1ms, and a cold one serves the lexical answer
-  // now while a detached process fills the cache for next time.
-  let matched: SuggestMatch[] = [];
-  try {
-    const ctx = resolveMatchContext(input.cwd);
-    if (ctx) {
-      let ranked = ctx.matches;
-      if (hasWarmDeepMatch(ctx.evidence, ctx.docs)) {
-        const deep = await deepMatchProfiles({ evidence: ctx.evidence, docs: ctx.docs, lexical: ctx.matches });
-        if (deep.classified) ranked = deep.matches;
-      } else {
-        warmDeepMatchCache(input.cwd);
-      }
-      matched = ranked
-        .filter((m) => known.has(m.name))
-        .slice(0, SUGGESTION_LIMIT)
-        .map((m) => ({
-          name: m.name,
-          strength: m.strength,
-          reason: m.reason,
-          matchedTerms: [...m.matchedTerms],
-        }));
-    }
-  } catch {
-    /* a directory we can't read yields no matches, not an error */
-  }
-
-  const supportedProfiles = repositorySupportedProfiles(
-    repositoryDetected,
-    matched,
-    input.companions,
-  );
-  const suggestions = suggestStacks({
+  const report = await detectRepositoryStacks(input.cwd, {
     profiles,
-    detected,
+    detected: input.detected?.map((signal) => ({ ...signal, reasons: [...signal.reasons] })),
+    repositoryDetected: input.repositoryDetected?.map((signal) => ({
+      ...signal,
+      reasons: [...signal.reasons],
+    })),
     companions: input.companions,
     recents: input.recents,
     recentsAreCwdScoped: input.recentsAreCwdScoped,
     combos: input.combos,
     pairSuggestions: input.pairSuggestions,
     featured: input.featured,
-    matched,
     defaultSelector: input.defaultSelector,
-    supportedProfiles,
     limit: SUGGESTION_LIMIT,
   });
+  const detected = report.detected;
+  const suggestions = report.suggestions;
   // Belt and braces: the engine only returns nothing when it was handed
   // nothing, but the card must always have something to show.
   const baseRanked: StackSuggestion[] =
@@ -167,13 +98,7 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
       : profiles.length > 0
         ? [{ parts: [profiles[0]!.value], score: 0, reasons: ["first available profile"], origin: "default" }]
         : [];
-  const ranked = applyProfileChoiceFeedback(
-    baseRanked,
-    readProfileChoiceFeedback(undefined, { cwd: input.cwd }),
-    known,
-    SUGGESTION_LIMIT,
-    supportedProfiles,
-  );
+  const ranked = baseRanked;
 
   // ── resource tallies ──────────────────────────────────────────────────────
   const tallies = new Map<string, ProfileTally>();
@@ -287,6 +212,9 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
       cwd: input.cwd,
       choice: parts,
       suggested: ranked.slice(0, 3).map((suggestion) => suggestion.parts),
+      candidates: report.baseSuggestions,
+      evidenceHash: profileSuggestionEvidenceHash(report.repositoryDetected),
+      surface: "picker-v2",
     });
   } catch {
     /* logging must never block a launch */

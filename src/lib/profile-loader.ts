@@ -64,6 +64,7 @@ function schemaPath(): string {
 // ---------------------------------------------------------------------------
 
 let _validator: ValidateFunction | null = null;
+let _validatorPromise: Promise<ValidateFunction> | null = null;
 
 async function getValidator(): Promise<ValidateFunction> {
   // The compiled validator is pinned at first call. `schemaPath()` is lazy, but
@@ -74,11 +75,20 @@ async function getValidator(): Promise<ValidateFunction> {
   // (CUE_PROFILES_DIR), so this is intentional; if per-test schemas are ever
   // needed, store the compiled schema's path and null-reset on mismatch.
   if (_validator) return _validator;
-  const schemaText = await readFile(schemaPath(), "utf8");
-  const schema = JSON.parse(schemaText);
-  const ajv = new Ajv({ allErrors: true, strict: false, useDefaults: false });
-  _validator = ajv.compile(schema);
-  return _validator;
+  if (!_validatorPromise) {
+    _validatorPromise = (async () => {
+      const schemaText = await readFile(schemaPath(), "utf8");
+      const schema = JSON.parse(schemaText);
+      const ajv = new Ajv({ allErrors: true, strict: false, useDefaults: false });
+      return ajv.compile(schema);
+    })();
+  }
+  try {
+    _validator = await _validatorPromise;
+    return _validator;
+  } finally {
+    _validatorPromise = null;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -352,6 +362,36 @@ function mergeNpxRefs(
   return [...byRepo.values()];
 }
 
+/**
+ * Composite profiles are additive rather than an inheritance override. When
+ * two selected profiles use the same repo, pin, and agent scope, retain the
+ * union of their skill ids. A pin or scope change remains later-wins because
+ * mixing revisions or activation scopes in one resolver entry is ambiguous.
+ */
+function mergeCompositeNpxRefs(
+  left: NpxSkillRef[] | undefined,
+  right: NpxSkillRef[] | undefined,
+): NpxSkillRef[] {
+  const byRepo = new Map<string, NpxSkillRef>();
+  for (const ref of left ?? []) {
+    byRepo.set(ref.repo, { ...ref, skills: [...ref.skills], agents: ref.agents ? [...ref.agents] : undefined });
+  }
+  for (const ref of right ?? []) {
+    const existing = byRepo.get(ref.repo);
+    const sameScope = JSON.stringify(existing?.agents ?? []) === JSON.stringify(ref.agents ?? []);
+    if (existing && existing.pin === ref.pin && sameScope) {
+      existing.skills = dedupePrimitiveArray(existing.skills, ref.skills);
+    } else {
+      byRepo.set(ref.repo, {
+        ...ref,
+        skills: [...ref.skills],
+        agents: ref.agents ? [...ref.agents] : undefined,
+      });
+    }
+  }
+  return [...byRepo.values()];
+}
+
 interface ProfileSkillsResolved {
   local: ResolvedSkill[];
   npx: NpxSkillRef[];
@@ -521,6 +561,8 @@ function foldChain(chain: Profile[]): ResolvedProfile {
       // Identity comes from the leaf.
       name: child.name,
       description: child.description,
+      catalog: child.catalog ? { ...child.catalog } : acc.catalog,
+      kind: child.kind ?? acc.kind,
       icon: child.icon ?? acc.icon,
       iconImage: child.iconImage ?? acc.iconImage,
       // Budget hints are leaf-wins: a child that declares its own model /
@@ -596,6 +638,8 @@ function normalizeToResolved(p: Profile, chain: string[]): ResolvedProfile {
   return {
     name: p.name,
     description: p.description,
+    catalog: p.catalog ? { ...p.catalog } : undefined,
+    kind: p.kind ?? "primary",
     icon: p.icon,
     iconImage: p.iconImage,
     model: p.model,
@@ -706,6 +750,11 @@ function foldComposite(
   let acc: ResolvedProfile = {
     name: selector,
     description: parts.map((p) => p.description).join(" + "),
+    kind: parts.some((p) => p.kind === "primary")
+      ? "primary"
+      : parts.some((p) => p.kind === "internal")
+        ? "internal"
+        : "overlay",
     icon: parts.find((p) => p.icon)?.icon,
     iconImage: parts.find((p) => p.iconImage)?.iconImage,
     // First part that declares a budget hint wins for the composite.
@@ -755,6 +804,7 @@ function foldComposite(
     acc = {
       name: selector,
       description: acc.description,
+      kind: acc.kind,
       icon: acc.icon ?? next.icon,
       iconImage: acc.iconImage ?? next.iconImage,
       model: acc.model ?? next.model,
@@ -773,7 +823,7 @@ function foldComposite(
           acc.skills.local,
           next.skills.local,
         ),
-        npx: mergeNpxRefs(acc.skills.npx, next.skills.npx),
+        npx: mergeCompositeNpxRefs(acc.skills.npx, next.skills.npx),
       },
       mcps: mergeObjectRefs<ResolvedMCP>(acc.mcps, next.mcps),
       plugins: mergeObjectRefs<ResolvedPlugin>(acc.plugins, next.plugins),

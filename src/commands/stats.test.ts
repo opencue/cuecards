@@ -85,6 +85,7 @@ describe("cue stats run — no data", () => {
     expect(code).toBe(0);
     expect(stdoutBuf).toContain("--suggestions");
     expect(stdoutBuf).toContain("--all");
+    expect(stdoutBuf).toContain("--replay");
   });
 
   test("empty analytics dir prints 'No usage data' and returns 0", async () => {
@@ -126,6 +127,43 @@ describe("cue stats --suggestions", () => {
       topAccepted: 2,
       topOverridden: 1,
       topAcceptanceRate: 2 / 3,
+    });
+  });
+
+  test("replays versioned candidate snapshots as JSON", async () => {
+    tmpDir = mkdtempSync(join(tmpdir(), "cue-stats-replay-"));
+    writeProfileChoices(tmpDir, [
+      {
+        schemaVersion: 2,
+        rankerVersion: "profile-feedback-v2-decay90",
+        ts: "2026-08-20T10:00:00Z",
+        cwd: "/repo",
+        choice: "python",
+        suggested: ["python", "core"],
+        chosenRank: 1,
+        surface: "picker-v2",
+        candidates: [
+          { selector: "python", rank: 1, score: 85, origin: "detected" },
+          { selector: "core", rank: 2, score: 5, origin: "default" },
+        ],
+      },
+    ]);
+    setup(tmpDir);
+
+    const code = await run(["--suggestions", "--replay", "--all", "--json"]);
+    expect(code).toBe(0);
+    expect(JSON.parse(stdoutBuf)).toMatchObject({
+      records: 1,
+      replayable: 1,
+      skippedLegacy: 0,
+      sampleSizeRequired: 30,
+      sampleSizeSufficient: false,
+      rankerVersions: { "profile-feedback-v2-decay90": 1 },
+      evidenceCohorts: 0,
+      paired: { currentWins: 0, legacyWins: 0, ties: 1 },
+      legacy: { topAcceptanceRate: 1 },
+      current: { topAcceptanceRate: 1 },
+      topAcceptanceDelta: 0,
     });
   });
 

@@ -12,6 +12,10 @@ export interface PickerOption {
   value: string;
   label: string;
   hint: string;
+  /** Semantic catalog group copied from profile metadata. */
+  catalogGroup?: string;
+  /** Hidden from the unfiltered catalogue, but included in fuzzy search. */
+  searchOnly?: boolean;
   /** When true, sort this option above every other (used for the Default entry). */
   top?: boolean;
   /** When true, this is a non-selectable visual header. Selecting it re-prompts. */
@@ -35,6 +39,8 @@ export interface PickerOption {
    * stacked together.
    */
   conflicts?: string[];
+  /** Resolved ancestors, used to avoid proposing ancestor+specialization stacks. */
+  inherits?: string[];
   /**
    * Pre-check this option when the combine multiselect opens. Set by
    * launch.ts when cwd autodetection has high confidence in a recommended

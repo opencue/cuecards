@@ -195,7 +195,7 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ## 97 ready-made cuecards
 
-cue ships with pre-built profiles for common stacks and workflows. A taste:
+cue ships with 95 focused primary profiles plus 93 opt-in AAS overlays. A taste:
 
 | Profile | What it's for |
 |---|---|

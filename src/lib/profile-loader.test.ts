@@ -97,6 +97,33 @@ describe("loadProfile", () => {
     expect(resolved.inheritanceChain).toEqual(["minimal"]);
   });
 
+  test("catalog metadata validates and survives profile resolution", async () => {
+    await writeProfile(
+      "catalogued",
+      [
+        "name: catalogued",
+        "description: generated catalog profile",
+        "catalog:",
+        "  source: agentic-awesome-skills",
+        "  group: backend",
+        "  capability: authentication",
+        "  generated: true",
+        "  discoverability: search",
+        "",
+      ].join("\n"),
+    );
+
+    const resolved = await loadProfile("catalogued");
+
+    expect(resolved.catalog).toEqual({
+      source: "agentic-awesome-skills",
+      group: "backend",
+      capability: "authentication",
+      generated: true,
+      discoverability: "search",
+    });
+  });
+
   test("valid w/inheritance: arrays concat+dedupe, env overrides, child wins on scalars", async () => {
     // Parent — "core" — supplies a baseline set of skills, mcps, env.
     await writeProfile(
@@ -535,6 +562,42 @@ describe("loadProfile (composite)", () => {
     expect(merged.persona).toContain("beta persona text");
     expect(merged.inheritanceChain).toEqual(["alpha", "beta"]);
     expect(merged.inherits).toBeUndefined();
+  });
+
+  test("a+b unions npx skill lists when both profiles use the same pinned repo", async () => {
+    const pin = "git@0123456789abcdef0123456789abcdef01234567";
+    await writeProfile(
+      "alpha",
+      [
+        "name: alpha",
+        "description: Alpha",
+        "skills:",
+        "  npx:",
+        "    - repo: owner/catalog",
+        `      pin: ${pin}`,
+        "      skills: [one, shared]",
+      ].join("\n"),
+    );
+    await writeProfile(
+      "beta",
+      [
+        "name: beta",
+        "description: Beta",
+        "skills:",
+        "  npx:",
+        "    - repo: owner/catalog",
+        `      pin: ${pin}`,
+        "      skills: [shared, two]",
+      ].join("\n"),
+    );
+
+    const merged = await loadProfile("alpha+beta");
+
+    expect(merged.skills.npx).toEqual([{
+      repo: "owner/catalog",
+      pin,
+      skills: ["one", "shared", "two"],
+    }]);
   });
 
   test("codex_config merges two levels deep across a composite", async () => {

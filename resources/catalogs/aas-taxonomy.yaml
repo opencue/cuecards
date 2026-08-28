@@ -1,0 +1,1357 @@
+# Declarative taxonomy for scripts/generate-aas-profiles.ts.
+# Edit this file, then run: bun scripts/generate-aas-profiles.ts --apply
+version: 1
+shadowed:
+  github: github/github
+  design-taste-frontend: design/design-taste-frontend
+  minimalist-ui: design/minimalist-ui
+overrides:
+  adhx: { domain: marketing, capability: social-content }
+  akf-trust-metadata: { domain: security, capability: cloud-compliance }
+  anti-sycophancy: { domain: agents, capability: quality-governance }
+  brand-perception-psychologist: { domain: general, capability: persuasion }
+  brooks-audit: { domain: development, capability: quality-refactoring }
+  brooks-debt: { domain: development, capability: quality-refactoring }
+  brooks-review: { domain: development, capability: quality-refactoring }
+  cold-email: { domain: marketing, capability: conversion-email }
+  composition-patterns: { domain: development, capability: quality-refactoring }
+  customer-psychographic-profiler: { domain: general, capability: persuasion }
+  earllm-build: { domain: mobile }
+  efficient-web-research: { domain: research }
+  emotional-arc-designer: { domain: general, capability: persuasion }
+  event-staffing-compliance: { domain: legal }
+  event-staffing-ordering: { domain: business, capability: operations }
+  free-tier-strategy: { domain: product }
+  helium-mcp: { domain: research }
+  idea-darwin: { domain: product }
+  infinity: { domain: security, capability: application }
+  invariant-guard: { domain: development, capability: quality-refactoring }
+  it-manager-pro: { domain: business, capability: operations }
+  itil-expert: { domain: business, capability: operations }
+  jobgpt: { domain: business, capability: people-sales }
+  lead-magnets: { domain: marketing, capability: conversion-email }
+  lemmaly: { domain: development, capability: quality-refactoring }
+  logistics-exception-management: { domain: business, capability: operations }
+  lookdev-auto: { domain: design, capability: graphics-tools }
+  loss-aversion-designer: { domain: general, capability: persuasion }
+  lovable-cleanup: { domain: frontend, capability: quality-performance }
+  macos-menubar-tuist-app: { domain: development, capability: apple-hig }
+  macos-spm-app-packaging: { domain: development, capability: project-workflows }
+  magic-animator: { domain: design, capability: graphics-tools }
+  mathguard: { domain: development, capability: quality-refactoring }
+  nerdzao-elite: { domain: workflow, capability: methodologies }
+  nerdzao-elite-gemini-high: { domain: workflow, capability: methodologies }
+  network-engineer: { domain: cloud, capability: architecture }
+  nextjs-supabase-auth: { domain: backend, capability: auth }
+  obsidian-clipper-template-creator: { domain: productivity }
+  offers: { domain: general, capability: persuasion }
+  onboarding: { domain: product }
+  oss-hunter: { domain: development, capability: project-workflows }
+  pagespeed-enhancer: { domain: frontend, capability: quality-performance }
+  pdf-conversion-router: { domain: content, capability: technical-docs }
+  photopea-embedded-editor: { domain: design, capability: graphics-tools }
+  planning-and-task-breakdown: { domain: workflow, capability: methodologies }
+  project-skill-audit: { domain: skills }
+  review-swarm: { domain: agents, capability: orchestration }
+  sales-enablement: { domain: business, capability: people-sales }
+  seo-aeo-internal-linking: { domain: marketing, capability: seo }
+  seo-aeo-landing-page-writer: { domain: marketing, capability: seo }
+  seo-aeo-schema-generator: { domain: marketing, capability: seo }
+  seo-images: { domain: marketing, capability: seo }
+  seo-page: { domain: marketing, capability: seo }
+  shader-programming-glsl: { domain: frontend, capability: motion-3d }
+  social-proof-architect: { domain: general, capability: persuasion }
+  steve-jobs: { domain: ai, capability: personas }
+  superpowers-lab: { domain: development, capability: agent-tooling }
+  the-honoured-one: { domain: development, capability: agent-tooling }
+  ui-lint: { domain: design, capability: systems-quality }
+  ui-review: { domain: design, capability: systems-quality }
+  ux-audit: { domain: design, capability: systems-quality }
+  ux-persuasion-engineer: { domain: general, capability: persuasion }
+  vercel-cli-with-tokens: { domain: cloud, capability: delivery }
+  vercel-deployment: { domain: cloud, capability: delivery }
+  vercel-optimize: { domain: cloud, capability: delivery }
+  visual-emotion-engineer: { domain: general, capability: persuasion }
+  windows-shell-reliability: { domain: development, capability: developer-tools }
+  yield-intelligence: { domain: finance }
+domains:
+  - id: agents
+    inherits: core
+    summary: Agent architecture, orchestration, evaluation, governance, and voice-agent workflows.
+    categories:
+      - agent-behavior
+      - agent-evaluation
+      - agent-orchestration
+      - agent-squad
+      - ai-agents
+      - voice-agents
+    keywords:
+      - autogen
+      - crewai
+      - multi-agent
+      - orchestration
+      - subagent
+      - voice-agent
+    clusters:
+      - id: orchestration
+        summary: Multi-agent planning, delegation, role coordination, bounded loops, and agent-to-agent workflows.
+        categories:
+          - agent-orchestration
+          - agent-squad
+          - ai-agents
+        keywords:
+          - multi-agent
+          - orchestrat
+          - subagent
+          - squad
+          - council
+          - loop
+      - id: voice
+        summary: Speech, transcription, text-to-speech, and production voice-agent implementation.
+        categories:
+          - voice-agents
+        keywords:
+          - voice
+          - audio
+          - speech
+          - transcrib
+          - pipecat
+      - id: quality-governance
+        summary: Agent evaluation, behavioral guardrails, evidence review, governance, and reliability checks.
+        categories:
+          - agent-behavior
+          - agent-evaluation
+        keywords:
+          - evaluat
+          - audit
+          - evidence
+          - govern
+          - safe
+          - reliab
+          - review
+          - optim
+        fallback: true
+  - id: ai
+    inherits: python
+    summary: LLM applications, model evaluation, RAG, context engineering, inference, and AI product development.
+    categories:
+      - ai
+      - ai-ml
+      - ai-research
+      - ai-testing
+      - data-ai
+      - ml-ops
+    keywords:
+      - ai
+      - embedding
+      - llm
+      - machine-learning
+      - model
+      - neural
+      - rag
+    clusters:
+      - id: context-prompts
+        summary: Context engineering, prompt design, structured output, caching, and tool interfaces for LLM apps.
+        keywords:
+          - context
+          - prompt
+          - structured-output
+          - caching
+          - tool-design
+          - claude-code
+          - ai-native-cli
+      - id: retrieval-memory
+        summary: RAG, semantic search, vector indexes, recommendation pipelines, and durable AI memory.
+        categories:
+          - data-ai
+        keywords:
+          - rag
+          - retrieval
+          - vector
+          - embedding
+          - semantic
+          - search
+          - memory
+          - weaviate
+          - recsys
+      - id: media-models
+        summary: AI image, video, audio, editing, upscaling, and multimodal model workflows.
+        keywords:
+          - fal
+          - image
+          - video
+          - audio
+          - photo
+          - media
+          - upscale
+          - lookdev
+      - id: evaluation-research
+        summary: Model evaluation, behavioral testing, knowledge extraction, and scientific AI research.
+        categories:
+          - ai-research
+          - ai-testing
+        keywords:
+          - evaluat
+          - audit
+          - behavior
+          - research
+          - knowledge-extraction
+          - scientific
+          - distill
+      - id: infrastructure
+        summary: Local and remote inference, model gateways, GPU training, LLM operations, and AI cost controls.
+        categories:
+          - ml-ops
+        keywords:
+          - llm-ops
+          - gpu
+          - inference
+          - gateway
+          - local-llm
+          - router
+          - cost
+          - finops
+      - id: personas
+        summary: Expert AI personas, model debates, technical viewpoints, and research-leader simulations.
+        keywords:
+          - persona
+          - ilya
+          - sam-altman
+          - yann-lecun
+          - debate
+          - filosofia
+      - id: products-agents
+        summary: AI assistants, agent-enabled products, model personas, and production application patterns.
+        keywords:
+          - agent
+          - assistant
+          - product
+          - persona
+          - voice
+          - application
+          - ui
+        fallback: true
+  - id: architecture
+    inherits: builder
+    summary: System design, C4, DDD, distributed architecture, and full-stack technical decision-making.
+    categories:
+      - architecture
+      - fullstack
+    keywords:
+      - architecture
+      - distributed
+      - fullstack
+      - microservice
+      - system-design
+  - id: automation
+    inherits: maker
+    summary: Scheduled jobs, workflow automation, voice automation, and repeatable operational pipelines.
+    categories:
+      - automation
+    keywords:
+      - automation
+      - cron
+      - n8n
+      - pipeline
+      - scheduled
+  - id: backend
+    inherits: backend
+    summary: Backend API design, service implementation, authentication, webhooks, and third-party integrations.
+    categories:
+      - api-integration
+      - backend
+    keywords:
+      - api
+      - auth
+      - django
+      - fastapi
+      - flask
+      - server
+      - webhook
+    clusters:
+      - id: api-design
+        summary: REST, GraphQL, OpenAPI, interface contracts, versioning, and API review.
+        keywords:
+          - api-design
+          - api-pattern
+          - api-analy
+          - interface-design
+          - openapi
+          - graphql
+      - id: services
+        summary: Production backend services, frameworks, gateways, deployment, and scalable service architecture.
+        categories:
+          - backend
+        keywords:
+          - backend
+          - service
+          - gateway
+          - dotnet
+          - nodejs
+          - hono
+          - deploy
+      - id: auth
+        summary: Authentication, authorization, identity middleware, user synchronization, and auth webhooks.
+        keywords:
+          - auth
+          - clerk
+          - identity
+          - supabase-auth
+      - id: integrations
+        summary: Payments, commerce, media, scientific data, and external service API integrations.
+        categories:
+          - api-integration
+        keywords:
+          - integration
+          - payment
+          - shopify
+          - salesforce
+          - youtube
+          - unsplash
+          - property
+          - uniprot
+        fallback: true
+  - id: blockchain
+    inherits: builder
+    summary: Blockchain, Lightning, Solidity, smart-contract, crypto, and Web3 engineering.
+    categories:
+      - blockchain
+    keywords:
+      - blockchain
+      - crypto
+      - ethereum
+      - lightning
+      - solidity
+      - web3
+  - id: browser
+    inherits: browser
+    summary: Browser automation, scraping, form workflows, Playwright, Puppeteer, and Selenium.
+    categories:
+      - browser-automation
+    keywords:
+      - browser
+      - playwright
+      - puppeteer
+      - selenium
+      - web-scraping
+  - id: business
+    inherits: core
+    summary: Business strategy, operations, finance, sales, organization design, and enterprise systems.
+    categories:
+      - business
+      - business-strategy
+      - consulting
+    keywords:
+      - business
+      - customer
+      - sales
+      - strategy
+    clusters:
+      - id: odoo
+        summary: Odoo modules, ORM, security, deployment, upgrades, accounting, inventory, sales, and operations.
+        keywords:
+          - odoo
+      - id: operations
+        summary: Supply chain, procurement, inventory, manufacturing, scheduling, logistics, and quality operations.
+        keywords:
+          - carrier
+          - procurement
+          - inventory
+          - manufactur
+          - production
+          - logistics
+          - quality
+          - supply
+      - id: finance-risk
+        summary: Financial modeling, backtesting, portfolio analytics, investment analysis, and risk management.
+        keywords:
+          - financial
+          - finance
+          - backtest
+          - portfolio
+          - quant
+          - risk
+          - invest
+          - buffett
+      - id: people-sales
+        summary: Hiring, team design, HR operations, CRM, sales enablement, and customer-facing workflows.
+        keywords:
+          - hr
+          - team
+          - hiring
+          - sales
+          - crm
+          - customer
+      - id: strategy-product
+        summary: Competitive strategy, business models, product planning, pricing, SaaS metrics, and startup execution.
+        categories:
+          - business-strategy
+          - consulting
+        keywords:
+          - strategy
+          - competitive
+          - product
+          - pricing
+          - saas
+          - startup
+          - canvas
+          - metrics
+        fallback: true
+  - id: cloud
+    inherits: ops
+    summary: Cloud platforms, CI/CD, infrastructure as code, reliability, deployment, and production operations.
+    categories:
+      - cloud
+      - devops
+      - operations
+      - reliability
+    keywords:
+      - aws
+      - azure
+      - cloud
+      - deploy
+      - docker
+      - kubernetes
+      - terraform
+    clusters:
+      - id: aws
+        summary: AWS architecture, services, identity discovery, cost controls, and operational automation.
+        keywords:
+          - aws
+          - amazon
+          - alexa
+      - id: azure
+        summary: Azure Functions, Communication Services, monitoring, SDK integration, and cloud operations.
+        keywords:
+          - azure
+      - id: delivery
+        summary: CI/CD, GitHub Actions, Vercel, Terraform, release readiness, and deployment toolchains.
+        categories:
+          - devops
+          - operations
+        keywords:
+          - deploy
+          - ci-cd
+          - github-actions
+          - vercel
+          - terraform
+          - release
+          - mise
+          - cron
+      - id: reliability
+        summary: Performance diagnosis, postmortems, servers, service meshes, retries, and resilient tool execution.
+        categories:
+          - reliability
+        keywords:
+          - reliab
+          - postmortem
+          - performance
+          - server
+          - service-mesh
+          - troubleshoot
+          - guardian
+      - id: architecture
+        summary: Hybrid and multi-cloud networking, platform architecture, and cross-cloud design decisions.
+        keywords:
+          - hybrid-cloud
+          - multi-cloud
+          - network
+          - architecture
+        fallback: true
+  - id: commerce
+    inherits: commerce
+    summary: Ecommerce catalogs, offers, checkout, payments, Shopify, Stripe, and shopping integrations.
+    categories:
+      - ecommerce
+    keywords:
+      - checkout
+      - commerce
+      - ecommerce
+      - payment
+      - shopify
+      - stripe
+  - id: content
+    inherits: docs-writer
+    summary: Technical documentation, editorial writing, SEO content, presentations, and office documents.
+    categories:
+      - content
+      - document-processing
+      - presentation-processing
+      - spreadsheet-processing
+      - writing
+    keywords:
+      - content
+      - document
+      - docs
+      - presentation
+      - spreadsheet
+      - writing
+    clusters:
+      - id: technical-docs
+        summary: README, API reference, tutorials, repository explanations, changelogs, and technical documentation.
+        keywords:
+          - documentation
+          - readme
+          - reference
+          - tutorial
+          - wiki
+          - changelog
+          - code-explain
+      - id: seo-strategy
+        summary: SEO audits, keyword strategy, content clusters, authority, structure, and incident analysis.
+        keywords:
+          - seo-audit
+          - keyword
+          - content-cluster
+          - authority
+          - cannibal
+          - forensic
+          - fundamentals
+          - planner
+          - structure
+      - id: seo-writing
+        summary: Search-optimized articles, snippets, metadata, content refreshes, WordPress, and YouTube packages.
+        keywords:
+          - seo-content-writer
+          - blog-writer
+          - snippet
+          - meta
+          - refresher
+          - wordpress
+          - youtube-seo
+      - id: writing-editing
+        summary: Prose, proofreading, humanization, concise editing, internal communications, and structured notes.
+        categories:
+          - writing
+        keywords:
+          - writing
+          - prose
+          - proofread
+          - humanize
+          - unslop
+          - internal-comms
+          - bullet
+          - short
+      - id: presentations-office
+        summary: Presentations, slide generation, spreadsheets, CVs, and office-document conversion.
+        categories:
+          - document-processing
+          - presentation-processing
+          - spreadsheet-processing
+        keywords:
+          - presentation
+          - slide
+          - ppt
+          - spreadsheet
+          - calc
+          - cv-generator
+          - libreoffice
+      - id: crossframe
+        summary: CrossFrame Chinese essays, debates, teaching, casebooks, notebooks, and editorial dialogue.
+        keywords:
+          - crossframe
+      - id: analysis-learning
+        summary: Explanations, summaries, correctness reasoning, educational transformation, and specialist content tools.
+        keywords:
+          - socrates
+          - summar
+          - doc2math
+          - invariant
+          - algorithm
+          - shader
+          - lead-magnet
+        fallback: true
+  - id: data
+    inherits: research
+    summary: Analytics, data engineering, data science, ETL, observability, dbt, pandas, and Spark workflows.
+    categories:
+      - data
+      - data-engineering
+      - data-science
+    keywords:
+      - analytics
+      - data
+      - dbt
+      - etl
+      - pandas
+      - spark
+  - id: database
+    inherits: postgres
+    summary: Database design, SQL, PostgreSQL, Redis, MySQL, tenancy, ORM, and performance optimization.
+    categories:
+      - database
+      - database-processing
+    keywords:
+      - database
+      - mysql
+      - postgres
+      - redis
+      - sql
+      - supabase
+  - id: design
+    inherits: designer
+    summary: UI/UX systems, accessibility, visual review, graphics tools, and production design styles.
+    categories:
+      - creative
+      - design
+      - design-it
+      - graphics-processing
+    keywords:
+      - a11y
+      - design
+      - figma
+      - graphics
+      - layout
+      - ui
+      - ux
+      - visual
+    clusters:
+      - id: systems-quality
+        summary: Design systems, accessibility, Figma, UI/UX review, visual validation, and web design standards.
+        categories:
+          - design
+        keywords:
+          - accessibility
+          - audit
+          - design-system
+          - figma
+          - lint
+          - review
+          - validator
+          - wcag
+          - guideline
+          - uxui
+      - id: graphics-tools
+        summary: Illustration, drawing, image generation, look development, visualization, and graphics production.
+        categories:
+          - creative
+          - graphics-processing
+        keywords:
+          - illustration
+          - draw
+          - image
+          - imagen
+          - lookdev
+          - vizcom
+          - graphics
+      - id: minimal-editorial
+        summary: Minimal, flat, editorial, Swiss, typography-led, dashboard, and high-contrast interface styles.
+        keywords:
+          - minimal
+          - flat
+          - editorial
+          - swiss
+          - typography
+          - monochromatic
+          - material
+          - card
+          - tile
+          - bento
+          - dashboard
+          - data-dense
+          - high-contrast
+      - id: expressive-retro
+        summary: Brutalist, cyberpunk, Y2K, synthwave, vaporwave, retro, maximalist, and expressive visual styles.
+        keywords:
+          - brutal
+          - cyber
+          - y2k
+          - synthwave
+          - vaporwave
+          - retro
+          - maximal
+          - aurora
+          - holographic
+          - sci-fi
+          - frutiger
+          - duotone
+      - id: depth-spatial
+        summary: 3D, spatial, glass, clay, neumorphic, skeuomorphic, layered, gradient, and isometric interfaces.
+        keywords:
+          - 3d
+          - spatial
+          - glass
+          - clay
+          - neumorph
+          - skeuo
+          - layer
+          - gradient
+          - isometric
+          - floating
+          - soft-pastel
+          - widget
+        fallback: true
+  - id: development
+    inherits: builder
+    summary: Programming languages, frameworks, debugging, refactoring, developer tools, and codebase workflows.
+    categories:
+      - code
+      - coding
+      - core-dev
+      - developer-tools
+      - development
+      - framework
+      - super-code
+    keywords:
+      - code
+      - coding
+      - compiler
+      - developer
+      - javascript
+      - python
+      - refactor
+      - typescript
+    clusters:
+      - id: systems-languages
+        summary: C, C++, C#, Go, Rust, Java, Kotlin, Swift, Scala, Dart, Elixir, Haskell, and systems patterns.
+        keywords:
+          - cpp
+          - csharp
+          - golang
+          - rust
+          - java
+          - kotlin
+          - swift
+          - scala
+          - dart
+          - elixir
+          - haskell
+          - boost
+          - grpc
+          - memory-safety
+      - id: web-languages
+        summary: TypeScript, JavaScript, Python, PHP, Ruby, packaging, async patterns, and typed validation.
+        keywords:
+          - typescript
+          - javascript
+          - python
+          - php
+          - ruby
+          - async-python
+          - packaging
+          - zod
+      - id: debugging-reliability
+        summary: Debugging, error diagnosis, traces, triage, fault injection, logic analysis, and recovery patterns.
+        keywords:
+          - debug
+          - error
+          - diagnos
+          - triage
+          - fault
+          - trace
+          - logic-lens
+          - recovery
+      - id: quality-refactoring
+        summary: Code review, refactoring, cleanup, architecture improvement, performance, migration, and TDD.
+        keywords:
+          - review
+          - refactor
+          - cleanup
+          - audit
+          - lint
+          - architecture
+          - performance
+          - moderniz
+          - migration
+          - tdd
+          - tech-debt
+      - id: frameworks
+        summary: Application frameworks, runtimes, queues, full-stack libraries, desktop apps, and query tooling.
+        categories:
+          - framework
+        keywords:
+          - framework
+          - convex
+          - bullmq
+          - cloudflare-workers
+          - dbos
+          - nextjs
+          - tanstack
+          - shadcn
+          - trpc
+          - electron
+          - avalonia
+      - id: developer-tools
+        summary: Shell, terminals, containers, editors, package managers, MCP tools, harnesses, and coding-agent utilities.
+        categories:
+          - developer-tools
+          - core-dev
+        keywords:
+          - bash
+          - jq
+          - tmux
+          - devcontainer
+          - busybox
+          - vscode
+          - uv-package
+          - skill-check
+          - lore
+          - memory
+      - id: agent-tooling
+        summary: Coding-agent harnesses, skill authoring, session observability, memory, handoffs, and agent integration tools.
+        keywords:
+          - agent-harness
+          - agenttrace
+          - agent-skill
+          - effective-agent-skills
+          - session
+          - tree-ring
+          - technical-change
+          - global-chat
+          - mcp-tool
+      - id: apple-hig
+        summary: Apple Human Interface Guidelines for foundations, components, layouts, controls, and platforms.
+        keywords:
+          - hig
+      - id: makepad
+        summary: Makepad UI development, live design, widgets, layout, fonts, animation, and event handling.
+        keywords:
+          - makepad
+      - id: functional-typescript
+        summary: Practical fp-ts, Option, Either, pipelines, typed errors, React integration, and quick references.
+        keywords:
+          - fp-ts
+          - fp-option
+          - fp-either
+          - fp-pipe
+          - fp-types
+      - id: project-workflows
+        summary: Documentation, monorepos, localization, change tracking, prototypes, and repeatable project delivery.
+        keywords:
+          - documentation
+          - monorepo
+          - localization
+          - change-tracker
+          - prototype
+          - showcase
+          - wordpress-converter
+          - squirrel
+        fallback: true
+  - id: education
+    inherits: research
+    summary: Teaching, learning, lesson design, exam preparation, science, and educational activities.
+    categories:
+      - education
+      - science
+    keywords:
+      - education
+      - learning
+      - lesson
+      - science
+      - teaching
+  - id: finance
+    inherits: finance
+    summary: Financial markets, options flow, trading analysis, investments, and portfolio decision support.
+    categories:
+      - finance
+    keywords:
+      - accounting
+      - finance
+      - financial
+      - investment
+      - options
+      - trading
+  - id: frontend
+    inherits: frontend
+    summary: Frontend frameworks, component systems, performance, motion, 3D, accessibility, and visual quality.
+    categories:
+      - front-end
+      - frontend
+      - web-development
+    keywords:
+      - angular
+      - css
+      - frontend
+      - nextjs
+      - react
+      - svelte
+      - vue
+      - web
+    clusters:
+      - id: react-ecosystem
+        summary: React, component patterns, Radix, Tailwind, Vercel, landing pages, and modern React delivery.
+        keywords:
+          - react
+          - radix
+          - tailwind
+          - vercel
+          - landing-page
+          - core-components
+      - id: frameworks-platforms
+        summary: Angular, Astro, SvelteKit, browser extensions, PWAs, React Native, and cross-platform frontend apps.
+        keywords:
+          - angular
+          - astro
+          - svelte
+          - chrome-extension
+          - progressive-web
+          - react-native
+      - id: design-systems
+        summary: Frontend design systems, visual taste, UI composition, typography, icons, and premium interface direction.
+        keywords:
+          - design
+          - ui
+          - minimal
+          - visual
+          - stitch
+          - icons
+          - brutalist
+          - taste
+      - id: motion-3d
+        summary: Web animation, transitions, Three.js, WebGL, Spline, shaders, and premium 3D experiences.
+        keywords:
+          - animation
+          - motion
+          - 3d
+          - threejs
+          - webgl
+          - spline
+          - animejs
+          - shader
+      - id: quality-performance
+        summary: Accessibility, Lighthouse, performance, modernization, UI-slop detection, redesign, and frontend review.
+        keywords:
+          - accesslint
+          - lighthouse
+          - performance
+          - modernization
+          - slop
+          - review
+          - redesign
+          - quality
+          - api-integration
+        fallback: true
+  - id: game
+    inherits: builder
+    summary: 2D and 3D game development, engines, ECS, assets, audio, shaders, Unity, Unreal, Godot, and Bevy.
+    categories:
+      - game-development
+    keywords:
+      - bevy
+      - game
+      - godot
+      - unity
+      - unreal
+  - id: health
+    inherits: core
+    summary: Healthcare operations, wellness analysis, medical information, and health-focused decision support.
+    categories:
+      - health
+    keywords:
+      - clinical
+      - health
+      - healthcare
+      - medical
+  - id: legal
+    inherits: legal
+    summary: Legal analysis, contracts, privacy, compliance, trade controls, and jurisdiction-specific workflows.
+    categories:
+      - legal
+    keywords:
+      - compliance
+      - contract
+      - law
+      - legal
+      - privacy
+  - id: marketing
+    inherits: marketing
+    summary: Brand, growth, SEO, conversion, email, social media, copywriting, and campaign execution.
+    categories:
+      - growth
+      - marketing
+      - seo
+    keywords:
+      - ads
+      - brand
+      - campaign
+      - growth
+      - marketing
+      - seo
+      - social
+    clusters:
+      - id: seo
+        summary: Technical SEO, indexing, schema, metadata, programmatic pages, monitoring, and search visibility.
+        categories:
+          - seo
+        keywords:
+          - seo
+          - indexing
+          - schema
+          - search-console
+          - meta-description
+          - canonical
+      - id: conversion-email
+        summary: CRO, signup and popup optimization, copywriting, email systems, sequences, and Klaviyo automation.
+        keywords:
+          - cro
+          - conversion
+          - copywriting
+          - copy-edit
+          - email
+          - klaviyo
+          - signup
+          - popup
+      - id: social-content
+        summary: LinkedIn, WeChat, X, Xiaohongshu, social posts, screenshots, and channel-specific content.
+        keywords:
+          - linkedin
+          - wechat
+          - xiaohongshu
+          - social
+          - x-article
+          - screenshot
+      - id: brand-growth
+        summary: Brand systems, competitor research, growth engines, free tools, partnerships, and marketing strategy.
+        keywords:
+          - brand
+          - competitor
+          - growth
+          - free-tool
+          - co-marketing
+          - marketing-ideas
+          - psychology
+        fallback: true
+  - id: media
+    inherits: media
+    summary: Image, video, audio, editing, generation, transcription, podcasts, and media-production workflows.
+    categories:
+      - media
+      - media-processing
+      - video
+    keywords:
+      - audio
+      - image
+      - media
+      - podcast
+      - video
+  - id: mobile
+    inherits: builder
+    summary: Android, iOS, Flutter, React Native, Swift, Kotlin, mobile architecture, concurrency, and debugging.
+    categories:
+      - mobile
+    keywords:
+      - android
+      - flutter
+      - ios
+      - mobile
+      - react-native
+      - swift
+  - id: product
+    inherits: maker
+    summary: Product discovery, roadmaps, validation, project planning, decision-making, and delivery management.
+    categories:
+      - planning
+      - product
+      - product-management
+      - project-management
+    keywords:
+      - planning
+      - product
+      - project
+      - roadmap
+  - id: productivity
+    inherits: core
+    summary: Knowledge management, collaboration, personal productivity, coaching, notes, and task workflows.
+    categories:
+      - collaboration
+      - knowledge-management
+      - personal-development
+      - productivity
+    keywords:
+      - collaboration
+      - knowledge
+      - notes
+      - productivity
+      - task
+  - id: research
+    inherits: research
+    summary: Evidence-backed research, papers, citations, deep reading, source discovery, and web investigation.
+    categories:
+      - research
+    keywords:
+      - academic
+      - citation
+      - paper
+      - research
+      - sources
+  - id: security
+    inherits: cybersecurity
+    summary: Secure development, audits, compliance, threat modeling, cloud security, and supply-chain defense.
+    categories:
+      - security
+    keywords:
+      - audit
+      - security
+      - threat
+      - vulnerability
+    clusters:
+      - id: cloud-compliance
+        summary: AWS security, IAM, secrets, GDPR, privacy, PCI, fintech controls, and compliance assessment.
+        keywords:
+          - aws
+          - iam
+          - secret
+          - gdpr
+          - privacy
+          - compliance
+          - pci
+          - fsi
+      - id: application
+        summary: Application, dependency, container, CI, Laravel, Solidity, file-upload, and protocol security.
+        keywords:
+          - application
+          - dependenc
+          - container
+          - github-actions
+          - laravel
+          - solidity
+          - file-upload
+          - protocol
+          - accesslint
+      - id: threat-modeling
+        summary: STRIDE analysis, threat models, mitigations, security requirements, and defensive bluebooks.
+        keywords:
+          - stride
+          - threat
+          - mitigation
+          - requirement
+          - bluebook
+      - id: supply-chain
+        summary: Skill and package auditing, malicious dependency detection, provenance, and supply-chain response.
+        keywords:
+          - skill-audit
+          - audit-skills
+          - supply-chain
+          - bumblebee
+          - malicious
+        fallback: true
+  - id: skills
+    inherits: skill-writer
+    summary: Skill authoring, MCP design, prompt engineering, context optimization, and agent memory systems.
+    categories:
+      - context-optimization
+      - mcp
+      - memory
+      - prompt-engineering
+      - skill-authoring
+    keywords:
+      - context
+      - mcp
+      - memory
+      - prompt
+      - skill
+  - id: testing
+    inherits: builder
+    summary: Automated testing, debugging, QA, quality gates, load tests, accessibility, and code compliance.
+    categories:
+      - code-quality
+      - development-and-testing
+      - quality
+      - test-automation
+      - testing
+      - tool-quality
+    keywords:
+      - benchmark
+      - quality
+      - test
+      - testing
+      - verification
+    clusters:
+      - id: automation
+        summary: E2E, Playwright, load, mobile, screen-reader, sandbox, and cross-platform test automation.
+        categories:
+          - test-automation
+          - testing
+        keywords:
+          - e2e
+          - playwright
+          - load-test
+          - screen-reader
+          - android
+          - lambdatest
+          - pypict
+          - sandbox
+      - id: debugging
+        summary: Bug hunting, debugging strategies, failure triage, test repair, and root-cause analysis.
+        categories:
+          - development-and-testing
+        keywords:
+          - bug
+          - debug
+          - triage
+          - test-fixing
+          - root-cause
+      - id: quality-gates
+        summary: Clean-code review, spec compliance, pre-ship checks, repository audits, and release quality gates.
+        categories:
+          - code-quality
+          - quality
+          - tool-quality
+        keywords:
+          - clean-code
+          - compliance
+          - pre-ship
+          - audit
+          - review
+          - quality-gate
+          - logic-locate
+        fallback: true
+  - id: travel
+    inherits: core
+    summary: Travel research, itinerary planning, flights, hotels, and trip logistics.
+    categories:
+      - travel
+    keywords:
+      - flight
+      - hotel
+      - travel
+      - trip
+  - id: workflow
+    inherits: maker
+    summary: Delivery workflows, skill operations, infrastructure pipelines, review gates, and specialist bundles.
+    categories:
+      - andruia
+      - granular-workflow-bundle
+      - leiloeiro
+      - meta
+      - monopoly
+      - workflow
+      - workflow-bundle
+    keywords:
+      - process
+      - workflow
+    clusters:
+      - id: skill-management
+        summary: Skill creation, installation, routing, optimization, validation, discovery, governance, and upgrades.
+        categories:
+          - meta
+        keywords:
+          - skill
+          - continuous-learning
+          - strategic-compact
+          - antigravity-skill
+      - id: delivery-git
+        summary: Acceptance gates, closed-loop delivery, Git and PR workflows, issue gates, and task orchestration.
+        keywords:
+          - acceptance
+          - closed-loop
+          - conductor
+          - git
+          - github
+          - pull-request
+          - create-issue
+          - pr-merge
+          - task-intelligence
+          - ai-loop
+      - id: infrastructure
+        summary: Airflow, Inngest, Temporal, Kubernetes, Terraform, Linux, shell, and cloud delivery workflows.
+        keywords:
+          - airflow
+          - inngest
+          - temporal
+          - kubernetes
+          - terraform
+          - linux
+          - bash
+          - os-scripting
+          - cloud-devops
+      - id: development-bundles
+        summary: API, database, documentation, Python, RAG, React, WordPress, and full-stack implementation bundles.
+        categories:
+          - granular-workflow-bundle
+          - workflow-bundle
+        keywords:
+          - api-documentation
+          - database
+          - development
+          - documentation
+          - python-fastapi
+          - rag
+          - react-nextjs
+      - id: cms-bundles
+        summary: WordPress core, plugin, theme, WooCommerce, and CMS delivery workflows.
+        keywords:
+          - wordpress
+          - woocommerce
+          - cms
+      - id: security-testing
+        summary: API, web, end-to-end, QA, and security testing workflows with reusable quality checklists.
+        keywords:
+          - security-testing
+          - security-audit
+          - security-checklist
+          - e2e-testing
+          - testing-qa
+      - id: crossframe
+        summary: CrossFrame structural diagnosis, public-policy analysis, evidence review, and multi-skill workflows.
+        keywords:
+          - crossframe
+      - id: auctions
+        summary: Brazilian auction valuation, notices, legal analysis, market review, and risk scoring.
+        categories:
+          - leiloeiro
+        keywords:
+          - leiloeiro
+          - auction
+      - id: andruia
+        summary: Andruia consulting, niche intelligence, and skill-building workflows.
+        categories:
+          - andruia
+        keywords:
+          - andruia
+      - id: methodologies
+        summary: Workflow patterns, orchestration methods, build loops, benchmarks, and reusable delivery methodologies.
+        categories:
+          - monopoly
+        keywords:
+          - workflow-pattern
+          - orchestration-pattern
+          - wgm
+          - benchmark
+          - methodology
+          - diary
+        fallback: true
+  - id: general
+    inherits: core
+    summary: Cross-cutting reasoning, persuasion, engineering discipline, daily work, and operational decision support.
+    categories: []
+    keywords: []
+    clusters:
+      - id: persuasion
+        summary: Customer psychology, emotional arcs, onboarding, objections, trust, social proof, and persuasive UX.
+        keywords:
+          - psycholog
+          - emotion
+          - objection
+          - scarcity
+          - social-proof
+          - identity
+          - trust
+          - awareness
+          - onboarding
+          - pitch
+          - persuasion
+      - id: engineering
+        summary: Code simplification, debugging, algorithms, mathematics, shell reliability, GitHub, and OSS workflows.
+        keywords:
+          - bug
+          - complexity
+          - github
+          - oss
+          - logic
+          - math
+          - code
+          - shell
+          - algorithm
+          - debug
+      - id: strategy-operations
+        summary: Ideas, billing, logistics, daily planning, strategic personas, and operational intelligence.
+        keywords:
+          - idea
+          - billing
+          - logistics
+          - daily
+          - yield
+          - strategy
+          - bill-gates
+        fallback: true

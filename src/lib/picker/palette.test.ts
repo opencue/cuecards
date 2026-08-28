@@ -93,6 +93,13 @@ describe("filterRows", () => {
   test("returns nothing for a query that matches nothing", () => {
     expect(filterRows(rows(), "zzzz")).toEqual([]);
   });
+
+  test("keeps search-only catalog profiles out of the empty view but searchable", () => {
+    const all = rows([{ value: "aas-backend-auth", label: "AAS auth", section: "backend & infra", searchOnly: true }]);
+
+    expect(filterRows(all, "").some((row) => row.value === "aas-backend-auth")).toBe(false);
+    expect(filterRows(all, "auth").map((row) => row.value)).toContain("aas-backend-auth");
+  });
 });
 
 describe("buildPaletteRows", () => {
@@ -149,6 +156,25 @@ describe("buildPaletteRows", () => {
   test("tags the kitchen-sink profile as dangerous", () => {
     const out = buildPaletteRows({ profiles, suggested: [] });
     expect(out.find((r) => r.value === "full")?.danger).toBe("never use this");
+  });
+
+  test("uses catalog groups and search-only discoverability for generated profiles", () => {
+    const out = buildPaletteRows({
+      profiles: [
+        ...profiles,
+        {
+          value: "aas-backend-auth",
+          label: "AAS auth",
+          catalogGroup: "backend",
+          searchOnly: true,
+        },
+      ],
+      suggested: [],
+    });
+    const row = out.find((entry) => entry.value === "aas-backend-auth");
+
+    expect(row?.section).toBe("backend & infra");
+    expect(row?.searchOnly).toBe(true);
   });
 });
 

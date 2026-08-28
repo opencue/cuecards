@@ -53,11 +53,20 @@ describe("cue list --json", () => {
     expect(typeof core!.skillCount).toBe("number");
     expect(typeof core!.mcpCount).toBe("number");
     expect(typeof core!.featured).toBe("boolean");
+    expect(core!.kind).toBe("primary");
   });
 
-  test("without --json still renders the human-readable list (unchanged behavior)", async () => {
+  test("default human list hides opt-in overlay profiles", async () => {
     const { code, out } = await captureStdout(() => run([]));
     expect(code).toBe(0);
     expect(out).toContain("core");
+    expect(out).not.toContain("aas-backend-auth");
+    expect(out).toContain("opt-in extensions hidden");
+  });
+
+  test("--all includes opt-in overlay profiles", async () => {
+    const { code, out } = await captureStdout(() => run(["--all"]));
+    expect(code).toBe(0);
+    expect(out).toContain("aas-backend-auth");
   });
 });

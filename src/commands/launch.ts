@@ -25,7 +25,10 @@ import { configDir } from "../lib/config-paths";
 import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
 import { syncCodexAuth } from "../lib/codex-auth";
-import { canonicalCodexConfigPath } from "../lib/codex-config";
+import {
+  canonicalCodexConfigPath,
+  discoverCodexSkillFiles,
+} from "../lib/codex-config";
 import {
   computeTokenBreakdown,
   computeContextBudget,
@@ -71,6 +74,7 @@ import {
   transmitKittyImage,
 } from "../lib/kitty-image";
 import { computeStats } from "../lib/analytics";
+import { countProfileSkills, profileSkillIds } from "../lib/profile-capabilities";
 import { detectProfileV2, type DetectionResultV2 } from "../lib/auto-detect";
 import {
   detectCompanions,
@@ -590,8 +594,8 @@ export function formatProfileSummary(
   const lines: string[] = [];
 
   const localCount = profile.skills.local.length;
-  const npxCount = profile.skills.npx.length;
-  const totalSkills = localCount + npxCount;
+  const npxCount = profile.skills.npx.reduce((sum, source) => sum + source.skills.length, 0);
+  const totalSkills = countProfileSkills(profile);
   if (totalSkills > 0) {
     const breakdown =
       npxCount > 0 ? ` (${localCount} local, ${npxCount} npx)` : "";
@@ -599,7 +603,7 @@ export function formatProfileSummary(
     if (parts && parts.length > 1) {
       const segs = parts.map(
         (p) =>
-          `${p.icon ? `${p.icon} ` : ""}${p.name}:${p.skills.local.length + p.skills.npx.length}`,
+          `${p.icon ? `${p.icon} ` : ""}${p.name}:${countProfileSkills(p)}`,
       );
       // Cap the per-profile breakdown so a fat composite doesn't wrap into a
       // multi-line wall — the headline total already carries the full picture.
@@ -1417,6 +1421,7 @@ async function listProfileOptions(
     if (PICKER_HIDDEN_PROFILES.has(name) && name !== pinnedProfile) continue;
     try {
       const p = await loadProfile(name);
+      if (p.kind === "internal" && name !== pinnedProfile) continue;
       let iconLabel: string;
       // iconImage may be inherited from a parent (e.g. medusa-dev's logo.png
       // bleeds to designer-medusa via the inherits chain), but the file
@@ -1461,9 +1466,12 @@ async function listProfileOptions(
         value: name,
         label: nameLabel,
         hint,
+        catalogGroup: p.catalog?.group,
+        searchOnly: p.kind === "overlay" || p.catalog?.discoverability === "search",
         recommends,
         autoSelect,
         conflicts,
+        inherits: p.inheritanceChain.filter((ancestor) => ancestor !== name),
       });
     } catch {
       opts.push({ value: name, label: name, hint: "" });
@@ -2300,12 +2308,7 @@ export async function run(args: string[]): Promise<number> {
       const prof = await loadProfile(value);
       await expandWildcards(prof);
       const tally: ProfileTally = {
-        // Skills mirror the headline count: one entry per local skill + one per
-        // npx repo (an npx ref bundles several skills under one repo).
-        skills: [
-          ...prof.skills.local.map((s) => `local:${s.id}`),
-          ...prof.skills.npx.map((n) => `npx:${n.repo}`),
-        ],
+        skills: profileSkillIds(prof),
         mcps: prof.mcps.map((m) => m.id),
         plugins: prof.plugins.map((pl) => pl.id),
         commands: (prof.commands ?? []).slice(),
@@ -2465,6 +2468,10 @@ export async function run(args: string[]): Promise<number> {
     existingResolved.source === "pin-file"
       ? dirname((existingResolved as { pinPath: string }).pinPath)
       : cwd;
+  const codexExternalSkillPaths =
+    agentKind === "codex"
+      ? discoverCodexSkillFiles({ cwd, pinDir, homeDir: homedir() })
+      : undefined;
 
   // ── Project loadout ───────────────────────────────────────────────────
   // Project-aware skill loading: classify each local skill as full (project
@@ -2982,6 +2989,7 @@ export async function run(args: string[]): Promise<number> {
       userClaudeMd: await buildUserClaudeMd(profile, agentKind),
       credentialsSource,
       codexBaseConfig: canonicalCodexConfigPath(),
+      codexExternalSkillPaths,
       disabledMcpIds: mcpDisabledIds,
     });
   } finally {
@@ -3390,7 +3398,7 @@ export async function run(args: string[]): Promise<number> {
     process.stderr.write(
       `${formatStartupBanner({
         title: formatTmuxTitle(friendly, profileName, profileIcons),
-        skills: profile.skills.local.length + profile.skills.npx.length,
+        skills: countProfileSkills(profile),
         mcps: profile.mcps.length,
         alwaysOn: alwaysOnForBadge,
       })}\n`,

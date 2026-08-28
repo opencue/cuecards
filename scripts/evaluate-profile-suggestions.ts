@@ -1,28 +1,22 @@
 #!/usr/bin/env bun
 
-import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { performance } from "node:perf_hooks";
 import { PROFILE_SUGGESTION_FIXTURES } from "../evals/profile-suggestions/fixtures";
 import { detectProfileV2 } from "../src/lib/auto-detect";
-import { profilesRoot, resolveMatchContext } from "../src/lib/profile-match";
+import {
+  detectRepositoryStacks,
+  loadSuggestProfiles,
+} from "../src/lib/repository-stack-detect";
 import {
   type ProfileSuggestionPrediction,
   scoreProfileSuggestions,
 } from "../src/lib/profile-suggestion-eval";
-import {
-  mergeSignals,
-  pathSignals,
-  repositorySupportedProfiles,
-  suggestStacks,
-} from "../src/lib/stack-suggest";
 
 const root = mkdtempSync(join(tmpdir(), "cue-profile-eval-"));
-const knownProfiles = readdirSync(profilesRoot()).filter(
-  (name) => !name.startsWith("_") && !name.startsWith("."),
-);
-const profiles = knownProfiles.map((value) => ({ value }));
+const profiles = await loadSuggestProfiles();
 
 function materialize(id: string, files: Record<string, string>): string {
   const cwd = join(root, id);
@@ -35,10 +29,15 @@ function materialize(id: string, files: Record<string, string>): string {
   return cwd;
 }
 
-function measure(id: string, run: () => string[][]): ProfileSuggestionPrediction {
+async function measure(
+  id: string,
+  run: () =>
+    | Pick<ProfileSuggestionPrediction, "suggestions" | "autoSelection">
+    | Promise<Pick<ProfileSuggestionPrediction, "suggestions" | "autoSelection">>,
+): Promise<ProfileSuggestionPrediction> {
   const start = performance.now();
-  const suggestions = run();
-  return { id, suggestions, latencyMs: performance.now() - start };
+  const result = await run();
+  return { id, ...result, latencyMs: performance.now() - start };
 }
 
 const baseline: ProfileSuggestionPrediction[] = [];
@@ -48,34 +47,26 @@ try {
   for (const fixture of PROFILE_SUGGESTION_FIXTURES) {
     const cwd = materialize(fixture.id, fixture.files);
     baseline.push(
-      measure(fixture.id, () => detectProfileV2(cwd).map((item) => [item.profile])),
+      await measure(fixture.id, () => {
+        const detected = detectProfileV2(cwd);
+        return {
+          suggestions: detected.map((item) => [item.profile]),
+          autoSelection: detected[0]?.profile ?? null,
+        };
+      }),
     );
     structured.push(
-      measure(fixture.id, () => {
-        const detected = mergeSignals(
-          detectProfileV2(cwd).map((item) => ({
-            name: item.profile,
-            confidence: item.confidence,
-            reasons: item.reasons,
-          })),
-          pathSignals(cwd),
-        );
-        const matched = (resolveMatchContext(cwd)?.matches ?? []).map((item) => ({
-          name: item.name,
-          strength: item.strength,
-          reason: item.reason,
-          matchedTerms: item.matchedTerms,
-        }));
-        const supportedProfiles = repositorySupportedProfiles(detected, matched);
-        return suggestStacks({
+      await measure(fixture.id, async () => {
+        const report = await detectRepositoryStacks(cwd, {
           profiles,
-          detected,
-          matched,
-          supportedProfiles,
+          deepMatch: false,
+          feedback: new Map(),
           limit: 3,
-        }).map(
-          (item) => item.parts,
-        );
+        });
+        return {
+          suggestions: report.suggestions.map((item) => item.parts),
+          autoSelection: report.autoSelection.selector,
+        };
       }),
     );
   }
@@ -83,11 +74,15 @@ try {
   rmSync(root, { recursive: true, force: true });
 }
 
-const labels = PROFILE_SUGGESTION_FIXTURES.map(({ id, expected, forbiddenTop }) => ({
-  id,
-  expected,
-  forbiddenTop,
-}));
+const labels = PROFILE_SUGGESTION_FIXTURES.map(
+  ({ id, expected, forbiddenTop, expectedStack, expectAutoSelect }) => ({
+    id,
+    expected,
+    forbiddenTop,
+    expectedStack,
+    expectAutoSelect,
+  }),
+);
 const baselineMetrics = scoreProfileSuggestions(labels, baseline);
 const structuredMetrics = scoreProfileSuggestions(labels, structured);
 const pct = (value: number) => `${(value * 100).toFixed(1)}%`;
@@ -107,12 +102,29 @@ process.stdout.write("\nmetric                     baseline       structured\n")
 process.stdout.write(`top-1 hit rate             ${pct(baselineMetrics.top1Rate).padEnd(15)}${pct(structuredMetrics.top1Rate)}\n`);
 process.stdout.write(`top-2 hit rate             ${pct(baselineMetrics.top2Rate).padEnd(15)}${pct(structuredMetrics.top2Rate)}\n`);
 process.stdout.write(`forbidden top-1 rate       ${pct(baselineMetrics.forbiddenTopRate).padEnd(15)}${pct(structuredMetrics.forbiddenTopRate)}\n`);
+process.stdout.write(`exact stack rate           ${pct(baselineMetrics.exactStackRate).padEnd(15)}${pct(structuredMetrics.exactStackRate)}\n`);
+process.stdout.write(`companion recall           ${pct(baselineMetrics.companionRecallRate).padEnd(15)}${pct(structuredMetrics.companionRecallRate)}\n`);
+process.stdout.write(`companion precision        ${pct(baselineMetrics.companionPrecision).padEnd(15)}${pct(structuredMetrics.companionPrecision)}\n`);
+process.stdout.write(`overfill rate              ${pct(baselineMetrics.overfillRate).padEnd(15)}${pct(structuredMetrics.overfillRate)}\n`);
+process.stdout.write(`simulated acceptance       ${pct(baselineMetrics.simulatedAcceptanceRate).padEnd(15)}${pct(structuredMetrics.simulatedAcceptanceRate)}\n`);
+process.stdout.write(`auto decision accuracy     ${pct(baselineMetrics.autoDecisionAccuracy).padEnd(15)}${pct(structuredMetrics.autoDecisionAccuracy)}\n`);
+process.stdout.write(`auto selection precision   ${pct(baselineMetrics.autoSelectionPrecision).padEnd(15)}${pct(structuredMetrics.autoSelectionPrecision)}\n`);
+process.stdout.write(`auto selection coverage    ${pct(baselineMetrics.autoSelectionCoverage).padEnd(15)}${pct(structuredMetrics.autoSelectionCoverage)}\n`);
+process.stdout.write(`wrong auto selections      ${String(baselineMetrics.wrongAutoSelections).padEnd(15)}${structuredMetrics.wrongAutoSelections}\n`);
 process.stdout.write(`p95 latency                ${baselineMetrics.p95LatencyMs.toFixed(1).padEnd(15)}${structuredMetrics.p95LatencyMs.toFixed(1)} ms\n`);
 
 const failed =
   structuredMetrics.top1Rate < baselineMetrics.top1Rate ||
   structuredMetrics.top2Rate < baselineMetrics.top2Rate ||
   structuredMetrics.forbiddenTopRate > baselineMetrics.forbiddenTopRate ||
+  structuredMetrics.exactStackRate < 1 ||
+  structuredMetrics.companionRecallRate < 1 ||
+  structuredMetrics.companionPrecision < 1 ||
+  structuredMetrics.overfillRate > 0 ||
+  structuredMetrics.simulatedAcceptanceRate < 1 ||
+  structuredMetrics.autoDecisionAccuracy < 1 ||
+  structuredMetrics.autoSelectionPrecision < 1 ||
+  structuredMetrics.wrongAutoSelections > 0 ||
   structuredMetrics.p95LatencyMs > 1_000;
 if (failed) {
   process.stderr.write("\nEval regression: structured suggestions failed a baseline or latency guard.\n");

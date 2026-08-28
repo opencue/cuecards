@@ -92,7 +92,7 @@ export const COMMANDS = {
     load: () => import("./quick"),
   },
   auth: {
-    summary: "Check, repair, log in, or log out Claude and Codex authentication",
+    summary: "Check, repair, log in, or log out agent authentication",
     load: () => import("./auth"),
   },
   login: {
