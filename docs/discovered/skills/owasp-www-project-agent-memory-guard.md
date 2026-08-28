@@ -2,21 +2,21 @@
 title: "OWASP/www-project-agent-memory-guard — Claude Code skill discovered by cue"
 description: "OWASP Foundation web repository"
 layout: page
-updated: 2026-08-25
+updated: 2026-08-28
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [OWASP/www-project-agent-memory-guard](https://github.com/OWASP/www-project-agent-memory-guard)
 
-**★ 155** · exceptional (score 10.7) · Python · agent-memory, agentic-ai, ai-agents, ai-safety, ai-security
+**★ 160** · exceptional (score 10.7) · Python · agent-memory, agentic-ai, ai-agents, ai-safety, ai-security
 
 > OWASP Foundation web repository
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
-- ⭐ 155 stars
-- 🗓️ Last pushed: 2026-08-25
+- ⭐ 160 stars
+- 🗓️ Last pushed: 2026-08-28
 - 🏷️ Tags: agent-memory, agentic-ai, ai-agents, ai-safety, ai-security, autogen, crewai, langchain, llm-agents, llm-security, mcp, mcp-server, mem0, memory-poisoning, openai-agents, owasp, prompt-injection, python, rag-security, security
 
 ## Best fit cue profiles

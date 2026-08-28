@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-28
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,41 +15,41 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="ruslanlap-pagespeed-insights-mcp"></a>
-## 💎 [ruslanlap/pagespeed-insights-mcp](https://github.com/ruslanlap/pagespeed-insights-mcp)
+<a id="eirik-rune-runemap"></a>
+## 💎 [eirik-rune/runemap](https://github.com/eirik-rune/runemap)
 
-**★ 55** · exceptional (score 16.6) · TypeScript · tags: claude, claude-code, claude-desktop, codex, core-web-vitals
+**★ 3** · exceptional (score 9.2) · Python · tags: agent-skills, agents, ascii-art, claude-skill, llm
 
-Six-tool MCP server for Google PageSpeed Insights & Chrome UX Report APIs. Analyze, compare, and optimize web performance directly through Claude, Cursor, or any MCP-compatible AI client.
+Weather radar MCP server and Agent Skill — live conditions and a text radar map for any place on earth, in one HTTP request. No image, no API key.
 
 ```bash
-cue skills add ruslanlap/pagespeed-insights-mcp --profile backend
+cue skills add eirik-rune/runemap --profile backend
 ```
 
 ---
 
-<a id="jmrplens-gitlab-mcp-server"></a>
-## 💎 [jmrplens/gitlab-mcp-server](https://github.com/jmrplens/gitlab-mcp-server)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 30** · exceptional (score 9.6) · Go · tags: ai-tools, gitlab, gitlab-api, go, llm
+**★ 11** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 850+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only modes.
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add jmrplens/gitlab-mcp-server --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 ```
 
 ---
 
-<a id="gadsotek-artifactflow"></a>
-## ✨ [Gadsotek/artifactflow](https://github.com/Gadsotek/artifactflow)
+<a id="nulljosh-newsline"></a>
+## ✨ [nulljosh/newsline](https://github.com/nulljosh/newsline)
 
-**★ 3** · strong (score 6.7) · PHP · tags: ai-artifacts, artifact-management, docker, html, laravel
+**★ 1** · strong (score 6.3) · JavaScript · tags: api, cloudflare-workers, mcp, mcp-server, media-bias
 
-Open-source, self-hosted, versioned vault for AI-generated HTML, Markdown, Mermaid, and image artifacts, with scoped MCP access and isolated two-origin previews.
+MCP server + JSON API for headlines from 17 news outlets, with left/center/right bias tags and blindspot detection
 
 ```bash
-cue skills add Gadsotek/artifactflow --profile backend
+cue skills add nulljosh/newsline --profile backend
 ```
 
 ---

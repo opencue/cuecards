@@ -2,7 +2,7 @@
 title: "AURORA-NEURO/aurora-agent — Claude Code skill discovered by cue"
 description: "Context engineering, with receipts. AURORA Agent compiles a typed query into the smallest decision-sufficient context and issues a machine-checkable Context Cer"
 layout: page
-updated: 2026-08-26
+updated: 2026-08-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-26
+- 🗓️ Last pushed: 2026-08-28
 - 🏷️ Tags: claude, claude-plugin, decision-support, mcp, mcp-server, model-context-protocol
 
 ## Best fit cue profiles

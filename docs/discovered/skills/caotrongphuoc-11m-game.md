@@ -2,7 +2,7 @@
 title: "caotrongphuoc/11m-game — Claude Code skill discovered by cue"
 description: "A penalty shootout game for the AK Base Kit (STM32L151), built with an AI agent using AK MCP docs."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-27
+- 🗓️ Last pushed: 2026-08-28
 - 🏷️ Tags: ak-base-kit, embedded-systems, mcp-server, penalty-shootout, stm32l151
 
 ## Best fit cue profiles

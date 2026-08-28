@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-28
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="aboudjem-humanizer-skill"></a>
-## 💎 [Aboudjem/humanizer-skill](https://github.com/Aboudjem/humanizer-skill)
+<a id="eugeniughelbur-clearmode"></a>
+## 💎 [eugeniughelbur/clearmode](https://github.com/eugeniughelbur/clearmode)
 
-**★ 197** · exceptional (score 15.7) · JavaScript · tags: agent-skills, ai-detection, ai-humanizer, ai-writing, anti-ai-detection
+**★ 0** · exceptional (score 12) · Python · tags: agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop
 
-AI writing humanizer and pattern detector. 55 patterns, 5 voices, 0-100 AI-tell score. Pure Markdown, zero dependencies.
+An anti-AI-slop writing standard and checker for AI-drafted text. Scores any document 0-100 against 43 rules on four axes: plain words, human voice, structure, information density. One JSON rule pack compiles to 18 targets - Claude Code skill, AGENTS.md, Cursor rule, system prompt, Vale style. Zero dependencies, runs offline.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Aboudjem/humanizer-skill --profile docs-writer
+cue skills add eugeniughelbur/clearmode --profile docs-writer
 ```
 
 ---

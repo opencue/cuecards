@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-28
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,28 +28,54 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="gregkozakiewicz-roast-my-design-system"></a>
-## 💎 [gregkozakiewicz/roast-my-design-system](https://github.com/gregkozakiewicz/roast-my-design-system)
+<a id="studiogo-oczyszczalnia-ai"></a>
+## 💎 [studiogo/oczyszczalnia-ai](https://github.com/studiogo/oczyszczalnia-ai)
 
-**★ 12** · exceptional (score 10.8) · JavaScript · tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
+**★ 0** · exceptional (score 8) · Python · tags: ai-slop, anti-patterns, claude, claude-code, claude-skill
 
-v5.4.0 · Try it: npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff, rules via --apply, a local MCP server via --mcp (verified in Claude Code, Cursor and Windsurf/Devin), and Claude's read of your numbers embedded in the shareable report.
+Skill do Claude: buduje strony internetowe bez AI-slopu (28 stylów + linter-bramka). Instalacja dla Claude Code i przeglądarki.
 
 ```bash
-cue skills add gregkozakiewicz/roast-my-design-system --profile frontend
+cue skills add studiogo/oczyszczalnia-ai --profile frontend
 ```
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="hemangjoshi37a-scroll-animated-webpages-skill"></a>
+## 💎 [hemangjoshi37a/scroll_animated_webpages_skill](https://github.com/hemangjoshi37a/scroll_animated_webpages_skill)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · exceptional (score 8) · HTML · tags: agent-skills, awwwards, claude-code, claude-skill, gsap
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Claude Code skill that builds award-winning scroll-animated websites end to end — discovery wizard, Scroll Score blueprint, GSAP + Lenis build, and real-browser verification via Playwright.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add hemangjoshi37a/scroll_animated_webpages_skill --profile frontend
+```
+
+---
+
+<a id="andresparrasilva-learn-up"></a>
+## 💎 [AndresParraSilva/learn-up](https://github.com/AndresParraSilva/learn-up)
+
+**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agents, badges, claude-code, claude-code-plugin
+
+Turn trusted sources into a local gamified study app with lessons, explained quizzes, labs, spaced repetition, multilingual content, badges, and progress tracking.
+
+```bash
+cue skills add AndresParraSilva/learn-up --profile frontend
+```
+
+---
+
+<a id="praticoeq-sudo-browser-account-guard"></a>
+## ✨ [praticoeq-sudo/browser-account-guard](https://github.com/praticoeq-sudo/browser-account-guard)
+
+**★ 0** · strong (score 7) · tags: agent-safety, agent-skills, ai-agents, browser-automation, claude
+
+Two Claude skills for agents that drive web panels. browser-account-guard proves the right account AND the right target before acting; flaky-browser-ui handles tabs that die, clicks that never register, and knowing when to abandon the UI for an API.
+
+```bash
+cue skills add praticoeq-sudo/browser-account-guard --profile frontend
 ```
 
 ---

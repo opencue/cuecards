@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-28
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="studiogo-plakat-bez-ai"></a>
+## 💎 [studiogo/plakat-bez-ai](https://github.com/studiogo/plakat-bez-ai)
+
+**★ 0** · exceptional (score 15.5) · Python · tags: ai-agent, anti-ai-look, chatgpt, claude-code, claude-skill
+
+Skill do Claude Code: dwa prompty do ChatGPT na plakat/grafikę z tekstem, która nie wygląda jak AI
+
+✅ SKILL.md
+
+```bash
+cue skills add studiogo/plakat-bez-ai --profile creative-media
+```
 
 ---
 
