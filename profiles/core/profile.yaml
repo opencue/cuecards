@@ -166,7 +166,7 @@ skills:
     # ── Browser ──
     - browser/ego-browser       # DEFAULT browser path. One JS heredoc drives a real Chromium (navigate, forms, clicks, snapshot, screenshots) instead of many MCP tool-call round trips — chosen for token cost. Reuses the user's real logins. Linux port lives in ~/Documents/ego-lite-linux (package/ego-linux).
     # ── Source-fetching ──
-    - tools/opensrc             # opensrc — fetch dependency source (npm/PyPI/crates/GitHub) so agents read implementations, not just types
+    - tools/opensrc             # ALWAYS-ON: persona_routing sends GitHub/package source fetches here instead of generic git clone
     - tools/context7            # context7 — fetch up-to-date, version-specific library/API docs. Pairs with the context7 MCP (in core's mcps).
     # ── Usage & cost ──
     - tools/ccusage             # ccusage — analyze coding-agent token usage & cost from local logs (Claude Code, Codex, Gemini, Copilot, +more). Zero setup; `bunx ccusage`. Fans out to every profile.
