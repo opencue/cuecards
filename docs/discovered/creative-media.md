@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-28
+updated: 2026-08-29
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="studiogo-plakat-bez-ai"></a>
-## 💎 [studiogo/plakat-bez-ai](https://github.com/studiogo/plakat-bez-ai)
+<a id="netresearch-netresearch-branding-skill"></a>
+## 💎 [netresearch/netresearch-branding-skill](https://github.com/netresearch/netresearch-branding-skill)
 
-**★ 0** · exceptional (score 15.5) · Python · tags: ai-agent, anti-ai-look, chatgpt, claude-code, claude-skill
+**★ 2** · exceptional (score 10.5) · HTML · tags: agent-skills, ai-agent, branding, claude-code-skill, corporate-identity
 
-Skill do Claude Code: dwa prompty do ChatGPT na plakat/grafikę z tekstem, która nie wygląda jak AI
-
-✅ SKILL.md
+Agent Skill for implementing Netresearch brand guidelines - colors, typography, components | Claude Code compatible
 
 ```bash
-cue skills add studiogo/plakat-bez-ai --profile creative-media
+cue skills add netresearch/netresearch-branding-skill --profile creative-media
 ```
 
 ---

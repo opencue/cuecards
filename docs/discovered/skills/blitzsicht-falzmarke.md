@@ -2,7 +2,7 @@
 title: "blitzsicht/falzmarke — Claude Code skill discovered by cue"
 description: "DIN-5008-Briefe aus Markdown, am fertigen PDF nachgemessen. Sollwerte aus Sekundärquellen."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-27
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: agent-skills, brief, claude-skill, din-5008, din5008, german, geschaeftsbrief, letter, markdown, normbrief, pdf, pdfa, pdfua, typst
 
 ## Best fit cue profiles

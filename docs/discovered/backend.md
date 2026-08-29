@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-28
+updated: 2026-08-29
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="eirik-rune-runemap"></a>
-## 💎 [eirik-rune/runemap](https://github.com/eirik-rune/runemap)
+<a id="systempromptio-systemprompt-core"></a>
+## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
 
-**★ 3** · exceptional (score 9.2) · Python · tags: agent-skills, agents, ascii-art, claude-skill, llm
+**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
 
-Weather radar MCP server and Agent Skill — live conditions and a text radar map for any place on earth, in one HTTP request. No image, no API key.
+AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
 
 ```bash
-cue skills add eirik-rune/runemap --profile backend
+cue skills add systempromptio/systemprompt-core --profile backend
+```
+
+---
+
+<a id="whiteknightonhorse-apibase"></a>
+## 💎 [whiteknightonhorse/APIbase](https://github.com/whiteknightonhorse/APIbase)
+
+**★ 10** · exceptional (score 11) · TypeScript · tags: ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers
+
+Universal MCP gateway for AI agents — 1230 tools, 348 providers. One endpoint (https://apibase.pro/mcp), pay-per-call with x402 USDC on Base + MPP USDC on Tempo.
+
+```bash
+cue skills add whiteknightonhorse/APIbase --profile backend
 ```
 
 ---
@@ -41,23 +54,36 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="nulljosh-newsline"></a>
-## ✨ [nulljosh/newsline](https://github.com/nulljosh/newsline)
+<a id="malkreide-sbb-opendata-mcp"></a>
+## ✨ [malkreide/sbb-opendata-mcp](https://github.com/malkreide/sbb-opendata-mcp)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: api, cloudflare-workers, mcp, mcp-server, media-bias
+**★ 1** · strong (score 7.8) · Python · tags: fastmcp, mcp, mcp-server, model-context-protocol, open-data
 
-MCP server + JSON API for headlines from 17 news outlets, with left/center/right bias tags and blindspot detection
+MCP server for Swiss Federal Railways (SBB) open data — passenger frequency, live disruptions, construction projects, platform data & more. No API key required.
 
 ```bash
-cue skills add nulljosh/newsline --profile backend
+cue skills add malkreide/sbb-opendata-mcp --profile backend
+```
+
+---
+
+<a id="astranl-astranl-mcp"></a>
+## ✨ [ASTRANL/astranl-mcp](https://github.com/ASTRANL/astranl-mcp)
+
+**★ 0** · strong (score 6) · tags: a2a, agent-economy, ai-agents, coordination, mcp
+
+AstraNL — protocol-governed coordination infrastructure for the AI + robot + human economy. Live MCP server, Europe-wide robot & drone database.
+
+```bash
+cue skills add ASTRANL/astranl-mcp --profile backend
 ```
 
 ---
 
 <a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

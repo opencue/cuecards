@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-21
+updated: 2026-08-29
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 
 ---
 
-<a id="benseverndev-oss-goldenmatch"></a>
-## 💎 [benseverndev-oss/goldenmatch](https://github.com/benseverndev-oss/goldenmatch)
+<a id="systempromptio-systemprompt-core"></a>
+## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
 
-**★ 129** · exceptional (score 13.5) · Python · tags: data-cleaning, data-engineering, data-matching, data-quality, deduplication
+**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
 
-Zero-config entity resolution that feeds a durable identity layer: resolve messy records from any source into stable golden entities — a Customer 360 with whole-record provenance, merge/split & audit. Splink-beating accuracy, Arrow-native/Rust, 100M rows in 9.2 min. Python + edge TypeScript (WASM), SQL-native in Postgres & DuckDB, MCP/REST.
+AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
 
 ```bash
-cue skills add benseverndev-oss/goldenmatch --profile rust
+cue skills add systempromptio/systemprompt-core --profile rust
 ```
 
 ---

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-28
+updated: 2026-08-29
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,54 +28,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="studiogo-oczyszczalnia-ai"></a>
-## 💎 [studiogo/oczyszczalnia-ai](https://github.com/studiogo/oczyszczalnia-ai)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 0** · exceptional (score 8) · Python · tags: ai-slop, anti-patterns, claude, claude-code, claude-skill
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
-Skill do Claude: buduje strony internetowe bez AI-slopu (28 stylów + linter-bramka). Instalacja dla Claude Code i przeglądarki.
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add studiogo/oczyszczalnia-ai --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---
 
-<a id="hemangjoshi37a-scroll-animated-webpages-skill"></a>
-## 💎 [hemangjoshi37a/scroll_animated_webpages_skill](https://github.com/hemangjoshi37a/scroll_animated_webpages_skill)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 0** · exceptional (score 8) · HTML · tags: agent-skills, awwwards, claude-code, claude-skill, gsap
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Claude Code skill that builds award-winning scroll-animated websites end to end — discovery wizard, Scroll Score blueprint, GSAP + Lenis build, and real-browser verification via Playwright.
-
-```bash
-cue skills add hemangjoshi37a/scroll_animated_webpages_skill --profile frontend
-```
-
----
-
-<a id="andresparrasilva-learn-up"></a>
-## 💎 [AndresParraSilva/learn-up](https://github.com/AndresParraSilva/learn-up)
-
-**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agents, badges, claude-code, claude-code-plugin
-
-Turn trusted sources into a local gamified study app with lessons, explained quizzes, labs, spaced repetition, multilingual content, badges, and progress tracking.
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add AndresParraSilva/learn-up --profile frontend
-```
-
----
-
-<a id="praticoeq-sudo-browser-account-guard"></a>
-## ✨ [praticoeq-sudo/browser-account-guard](https://github.com/praticoeq-sudo/browser-account-guard)
-
-**★ 0** · strong (score 7) · tags: agent-safety, agent-skills, ai-agents, browser-automation, claude
-
-Two Claude skills for agents that drive web panels. browser-account-guard proves the right account AND the right target before acting; flaky-browser-ui handles tabs that die, clicks that never register, and knowing when to abandon the UI for an API.
-
-```bash
-cue skills add praticoeq-sudo/browser-account-guard --profile frontend
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---

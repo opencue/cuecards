@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-28
+updated: 2026-08-29
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2345** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
+**★ 2350** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,15 +28,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="owasp-www-project-agent-memory-guard"></a>
-## 💎 [OWASP/www-project-agent-memory-guard](https://github.com/OWASP/www-project-agent-memory-guard)
+<a id="khasky-awesome-agent-skills"></a>
+## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
 
-**★ 160** · exceptional (score 10.7) · Python · tags: agent-memory, agentic-ai, ai-agents, ai-safety, ai-security
+**★ 7** · exceptional (score 10.7) · JavaScript · tags: agent, agent-skills, ai, ai-coding, ai-skill
 
-OWASP Foundation web repository
+ Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
 
 ```bash
-cue skills add OWASP/www-project-agent-memory-guard --profile cybersecurity
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
 ```
 
 ---
@@ -70,7 +70,7 @@ cue skills add philpaz/recusal --profile cybersecurity
 <a id="gesh75-argus"></a>
 ## ✨ [gesh75/argus](https://github.com/gesh75/argus)
 
-**★ 2** · strong (score 5.4) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
+**★ 2** · strong (score 5.5) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
 
 Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
 

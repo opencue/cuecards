@@ -2,22 +2,22 @@
 title: "eugeniughelbur/clearmode — Claude Code skill discovered by cue"
 description: "An anti-AI-slop writing standard and checker for AI-drafted text. Scores any document 0-100 against 43 rules on four axes: plain words, human voice, structure, "
 layout: page
-updated: 2026-08-28
+updated: 2026-08-29
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [eugeniughelbur/clearmode](https://github.com/eugeniughelbur/clearmode)
 
-**★ 0** · exceptional (score 12) · Python · agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop
+**★ 1** · exceptional (score 12.3) · Python · agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop
 
 > An anti-AI-slop writing standard and checker for AI-drafted text. Scores any document 0-100 against 43 rules on four axes: plain words, human voice, structure, information density. One JSON rule pack compiles to 18 targets - Claude Code skill, AGENTS.md, Cursor rule, system prompt, Vale style. Zero dependencies, runs offline.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-28
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop, anti-slop, claude-code, claude-code-skill, codex, cursor-rules, de-slop, humanize-text, llm, plain-language, prose-linter, readability, style-guide, technical-writing, vale-linter-style, writing-standard
 
 ## Best fit cue profiles

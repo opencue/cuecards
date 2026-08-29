@@ -2,7 +2,7 @@
 title: "Aident-AI/aident-skill — Claude Code skill discovered by cue"
 description: "Use Aident Loadout to connect your AI Agents to 1,000+ real-world apps and tools like Gmail, Slack, Linear, Notion, Firecrawl, and Fal, unlock 27,000+ executabl"
 layout: page
-updated: 2026-08-12
+updated: 2026-08-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-08-12
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: agent-skills, ai-agents, aident, aident-skill, automation, claude-code-skill, claude-skills, codex-cli, codex-skill, codex-skills, developer-tools, gemini-cli-extension, mcp, openai-codex, openclaw, openclaw-skills, skill-md, skill-md-skillsmp, skills-sh, skillsmp
 
 ## Best fit cue profiles

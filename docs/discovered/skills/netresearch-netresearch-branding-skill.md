@@ -2,7 +2,7 @@
 title: "netresearch/netresearch-branding-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for implementing Netresearch brand guidelines - colors, typography, components | Claude Code compatible"
 layout: page
-updated: 2026-07-21
+updated: 2026-08-29
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-21
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: agent-skills, ai-agent, branding, claude-code-skill, corporate-identity, design-system, netresearch, open-standard, skill
 
 ## Best fit cue profiles

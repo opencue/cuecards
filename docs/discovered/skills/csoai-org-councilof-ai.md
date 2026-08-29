@@ -2,7 +2,7 @@
 title: "CSOAI-ORG/councilof-ai — Claude Code skill discovered by cue"
 description: "Independent AI-governance measurement. We measure, sign and preserve the evidence; regulators and accredited bodies decide. Deterministic scoring anchored to fr"
 layout: page
-updated: 2026-08-26
+updated: 2026-08-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-26
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: ai-compliance, ai-governance, ai-measurement, ed25519, eu-ai-act, mcp-server, signed-attestation
 
 ## Best fit cue profiles

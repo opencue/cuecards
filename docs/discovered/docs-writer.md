@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-28
+updated: 2026-08-29
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 <a id="eugeniughelbur-clearmode"></a>
 ## 💎 [eugeniughelbur/clearmode](https://github.com/eugeniughelbur/clearmode)
 
-**★ 0** · exceptional (score 12) · Python · tags: agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop
+**★ 1** · exceptional (score 12.3) · Python · tags: agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop
 
 An anti-AI-slop writing standard and checker for AI-drafted text. Scores any document 0-100 against 43 rules on four axes: plain words, human voice, structure, information density. One JSON rule pack compiles to 18 targets - Claude Code skill, AGENTS.md, Cursor rule, system prompt, Vale style. Zero dependencies, runs offline.
 

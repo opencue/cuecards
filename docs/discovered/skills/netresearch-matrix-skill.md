@@ -1,23 +1,23 @@
 ---
 title: "netresearch/matrix-skill — Claude Code skill discovered by cue"
-description: "Agentic Skill for Matrix chat communication. Send messages to Matrix rooms on behalf of users via access token authentication. Works with any Matrix homeserver."
+description: "Three Agentic Skills for Matrix: encrypted chat with a daemon that follows rooms live, Synapse homeserver administration, and content guidance for announcements"
 layout: page
-updated: 2026-08-13
+updated: 2026-08-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/matrix-skill](https://github.com/netresearch/matrix-skill)
 
-**★ 4** · exceptional (score 10.8) · Python · agent-skills, agentic-skill, ai-agent, chat, claude-code-skill
+**★ 5** · exceptional (score 10.1) · Python · agent-skills, agentic-skill, ai-agent, chat, chatops
 
-> Agentic Skill for Matrix chat communication. Send messages to Matrix rooms on behalf of users via access token authentication. Works with any Matrix homeserver.
+> Three Agentic Skills for Matrix: encrypted chat with a daemon that follows rooms live, Synapse homeserver administration, and content guidance for announcements. Chat works with any homeserver; administration requires Synapse.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-08-13
-- 🏷️ Tags: agent-skills, agentic-skill, ai-agent, chat, claude-code-skill, communication, element, matrix, open-standard, skill
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-08-29
+- 🏷️ Tags: agent-skills, agentic-skill, ai-agent, chat, chatops, claude-code-plugin, claude-code-skill, communication, e2ee, element, matrix, matrix-nio, open-standard, python, skill, synapse
 
 ## Best fit cue profiles
 

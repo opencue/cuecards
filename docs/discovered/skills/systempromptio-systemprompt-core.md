@@ -2,21 +2,21 @@
 title: "systempromptio/systemprompt-core — Claude Code skill discovered by cue"
 description: "AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with s"
 layout: page
-updated: 2026-06-04
+updated: 2026-08-29
 tags: [claude-code, skill, rust, backend]
 ---
 
 # 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
 
-**★ 4** · exceptional (score 10.8) · Rust · a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
+**★ 8** · exceptional (score 12.4) · Rust · a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
 
 > AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-04
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance, ai-infrastructure, autonomous-agents, claude, claude-code, enterprise, llm, llmops, mcp, mcp-server, model-context-protocol, oauth2, postgresql, rust, rust-crate, self-hosted
 
 ## Best fit cue profiles

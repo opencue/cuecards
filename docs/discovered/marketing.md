@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-29
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 
 ---
 
-<a id="bilusca-super-mkt-skill"></a>
-## 💎 [Bilusca/super-mkt-skill](https://github.com/Bilusca/super-mkt-skill)
+<a id="rogueduda-marketread"></a>
+## ✨ [rogueduda/marketread](https://github.com/rogueduda/marketread)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, ai-prompts, claude-code, claude-skill, copywriting
+**★ 0** · strong (score 7) · tags: agent-skills, claude-code, claude-skill, codex, copywriting
 
-super-mkt — direct-response copywriting skill for Claude Code, Claude.ai, Cursor, ChatGPT and any LLM
+Free market research skill for Claude, Codex, and any AI assistant. It interviews you, mines what your buyers actually say in public, and returns evidence-labeled findings with a ranked action plan. No signup.
 
 ```bash
-cue skills add Bilusca/super-mkt-skill --profile marketing
+cue skills add rogueduda/marketread --profile marketing
 ```
 
 ---

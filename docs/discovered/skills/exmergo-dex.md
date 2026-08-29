@@ -2,21 +2,21 @@
 title: "exmergo/dex — Claude Code skill discovered by cue"
 description: "Dex is the agent-native analytics engineering toolkit. Point it at your warehouse and your dbt project. It learns the landscape, authors your transformations, a"
 layout: page
-updated: 2026-08-05
+updated: 2026-08-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [exmergo/dex](https://github.com/exmergo/dex)
 
-**★ 18** · exceptional (score 9.5) · Python · agent, agent-skills, analytics-engineering, bigquery, claude-code
+**★ 24** · exceptional (score 10.9) · Python · agent, agent-skills, analytics-engineering, bigquery, claude-code
 
 > Dex is the agent-native analytics engineering toolkit. Point it at your warehouse and your dbt project. It learns the landscape, authors your transformations, and tells you exactly what to fix when the schema drifts. Built for analytics engineers and data engineers who want more out of their coding agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 18 stars
-- 🗓️ Last pushed: 2026-08-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 24 stars
+- 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: agent, agent-skills, analytics-engineering, bigquery, claude-code, claude-code-plugin, claude-code-skill, data-contracts, data-engineering, databricks, dbt, duckdb, fabric, metricflow, redshift, schema-drift, semantic-layer, snowflake, text-to-sql, text-to-sql-data-analytics
 
 ## Best fit cue profiles
