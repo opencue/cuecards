@@ -114,10 +114,20 @@ function commandCandidates(
   )
     .split(";")
     .filter(Boolean);
-  const hasExtension = /\.[^\\/]+$/.test(command);
-  return hasExtension
-    ? [command]
-    : extensions.map((extension) => `${command}${extension}`);
+  const explicitExtension = command
+    .match(/(\.[^.\\/]+)$/)?.[1]
+    ?.toLowerCase();
+  if (explicitExtension !== undefined) {
+    const executableExtensions = new Set([
+      ".com",
+      ".exe",
+      ".bat",
+      ".cmd",
+      ...extensions.map((extension) => extension.toLowerCase()),
+    ]);
+    return executableExtensions.has(explicitExtension) ? [command] : [];
+  }
+  return extensions.map((extension) => `${command}${extension}`);
 }
 
 export function isCommandAvailable(

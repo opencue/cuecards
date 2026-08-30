@@ -134,6 +134,20 @@ describe("filterUnavailableMcpServers", () => {
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
 
+  test("rejects non-executable Windows file extensions", () => {
+    const command = String.raw`C:\Tools\mcp-server.txt`;
+    const filtered = filterUnavailableMcpServers(
+      { local: { command } },
+      {
+        platform: "win32",
+        env: { Path: "", PATHEXT: ".CMD" },
+        isExecutable: (path) => path === command,
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual([]);
+  });
+
   test("does not expand Windows percent variables on POSIX", () => {
     const command = "/opt/%HOME%/mcp-server";
     const filtered = filterUnavailableMcpServers(
