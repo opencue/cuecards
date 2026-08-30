@@ -58,6 +58,25 @@ function defaultExecutableProbe(
   }
 }
 
+function commandCandidates(
+  command: string,
+  env: Record<string, string | undefined>,
+  platform: NodeJS.Platform,
+): string[] {
+  if (platform !== "win32") return [command];
+  const extensions = (
+    envValue(env, "PATHEXT", platform) ?? ".COM;.EXE;.BAT;.CMD"
+  )
+    .split(";")
+    .filter(Boolean);
+  const hasKnownExtension = extensions.some((extension) =>
+    command.toLowerCase().endsWith(extension.toLowerCase()),
+  );
+  return hasKnownExtension
+    ? [command]
+    : extensions.map((extension) => `${command}${extension}`);
+}
+
 export function isCommandAvailable(
   command: string,
   options: CommandAvailabilityOptions = {},
@@ -69,37 +88,26 @@ export function isCommandAvailable(
   const isExecutable =
     options.isExecutable ?? ((path: string) => defaultExecutableProbe(path, platform));
   const expanded = expandEnvironmentPath(command, env, platform);
+  const candidates = commandCandidates(expanded, env, platform);
 
   if (/[\\/]/.test(expanded)) {
-    const path = pathApi.isAbsolute(expanded)
-      ? expanded
-      : pathApi.resolve(cwd, expanded);
-    return isExecutable(path);
+    return candidates.some((candidate) => {
+      const path = pathApi.isAbsolute(candidate)
+        ? candidate
+        : pathApi.resolve(cwd, candidate);
+      return isExecutable(path);
+    });
   }
 
   const pathValue = envValue(env, "PATH", platform) ?? "";
   const pathSeparator = platform === "win32" ? ";" : ":";
-  const extensions =
-    platform === "win32"
-      ? (envValue(env, "PATHEXT", platform) ?? ".COM;.EXE;.BAT;.CMD")
-          .split(";")
-          .filter(Boolean)
-      : [""];
-  const hasKnownExtension =
-    platform === "win32" &&
-    extensions.some((extension) =>
-      expanded.toLowerCase().endsWith(extension.toLowerCase()),
-    );
-  const names = hasKnownExtension
-    ? [expanded]
-    : platform === "win32"
-      ? extensions.map((extension) => `${expanded}${extension}`)
-      : [expanded];
 
   for (const rawDir of pathValue.split(pathSeparator)) {
     const unquoted = rawDir.replace(/^"|"$/g, "");
     const dir = expandEnvironmentPath(unquoted || cwd, env, platform);
-    if (names.some((name) => isExecutable(pathApi.join(dir, name)))) return true;
+    if (candidates.some((name) => isExecutable(pathApi.join(dir, name)))) {
+      return true;
+    }
   }
   return false;
 }

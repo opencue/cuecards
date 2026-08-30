@@ -7,7 +7,10 @@ import {
 
 describe("filterUnavailableMcpServers", () => {
   test("drops unavailable local commands from a fresh Windows runtime", () => {
-    const available = new Set([String.raw`C:\Program Files\nodejs\npx.CMD`]);
+    const available = new Set([
+      String.raw`C:\Program Files\nodejs\npx.CMD`,
+      String.raw`C:\Tools\mcp-server.EXE`,
+    ]);
     const options: CommandAvailabilityOptions = {
       platform: "win32",
       cwd: String.raw`C:\Users\Felhasznalo\project`,
@@ -30,11 +33,12 @@ describe("filterUnavailableMcpServers", () => {
           command: "npx",
           args: ["-y", "@upstash/context7-mcp"],
         },
+        extensionless: { command: String.raw`C:\Tools\mcp-server` },
       },
       options,
     );
 
-    expect(Object.keys(filtered)).toEqual(["context7"]);
+    expect(Object.keys(filtered)).toEqual(["context7", "extensionless"]);
   });
 
   test("keeps remote and explicitly disabled servers without probing a command", () => {
