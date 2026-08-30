@@ -169,6 +169,8 @@ export function filterUnavailableMcpServers<T extends object>(
     const isDisabled = launch.enabled === false;
     const env = environmentForServer(launch.env, options);
     const commandAvailable =
+      !isRemote &&
+      !isDisabled &&
       typeof launch.command === "string" &&
       launch.command.length > 0 &&
       isCommandAvailable(launch.command, {

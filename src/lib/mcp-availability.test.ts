@@ -42,15 +42,22 @@ describe("filterUnavailableMcpServers", () => {
   });
 
   test("keeps remote and explicitly disabled servers without probing a command", () => {
+    let probes = 0;
     const filtered = filterUnavailableMcpServers(
       {
         remote: { url: "https://example.test/mcp" },
         disabled: { command: "missing-command", enabled: false },
       },
-      { isExecutable: () => false },
+      {
+        isExecutable: () => {
+          probes += 1;
+          return false;
+        },
+      },
     );
 
     expect(Object.keys(filtered)).toEqual(["remote", "disabled"]);
+    expect(probes).toBe(0);
   });
 
   test("resolves commands against the MCP server's PATH override", () => {
