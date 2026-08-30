@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
-import { detectCompanions, type CompanionDetectInput } from "./companion-detect";
+import { detectCompanions, serviceCompanions, type CompanionDetectInput } from "./companion-detect";
+import { COMBINE_AUTO_CHECK_CONFIDENCE } from "./picker";
 
 const KNOWN = new Set(["higgsfield", "blog-writer", "postizz", "creative-media"]);
 
@@ -104,5 +105,46 @@ describe("detectCompanions — gating & robustness", () => {
   test("an empty / unreadable directory yields no signals", () => {
     expect(run([])).toEqual([]);
     expect(detectCompanions({ cwd: "/work/x", knownProfiles: KNOWN })).toBeInstanceOf(Array);
+  });
+});
+
+describe("serviceCompanions", () => {
+  const SERVICE_KNOWN = new Set(["stripe", "aws", "react-native", "nextjs"]);
+
+  test("dep-detected stripe becomes a pre-checked combine companion", () => {
+    const out = serviceCompanions(
+      [{ profile: "stripe", confidence: 0.6, reasons: ["package.json has stripe"] }],
+      SERVICE_KNOWN,
+    );
+    expect(out).toHaveLength(1);
+    expect(out[0]!.profile).toBe("stripe");
+    // At/above the combine multiselect's auto-check line (0.7) so the row
+    // starts checked — a direct dependency is a strong companion signal.
+    expect(out[0]!.confidence).toBeGreaterThanOrEqual(COMBINE_AUTO_CHECK_CONFIDENCE);
+    expect(out[0]!.reason).toBe("package.json has stripe");
+  });
+
+  test("primary-stack rules (react-native) never become companions", () => {
+    const out = serviceCompanions(
+      [{ profile: "react-native", confidence: 0.85, reasons: ["package.json has react-native/expo"] }],
+      SERVICE_KNOWN,
+    );
+    expect(out).toEqual([]);
+  });
+
+  test("non-rule detections (nextjs from framework chain) pass through nothing", () => {
+    const out = serviceCompanions(
+      [{ profile: "nextjs", confidence: 0.9, reasons: ["package.json has next"] }],
+      SERVICE_KNOWN,
+    );
+    expect(out).toEqual([]);
+  });
+
+  test("profiles not installed in this cue install are filtered out", () => {
+    const out = serviceCompanions(
+      [{ profile: "aws", confidence: 0.6, reasons: ["package.json has @aws-sdk/*"] }],
+      new Set(["stripe"]),
+    );
+    expect(out).toEqual([]);
   });
 });

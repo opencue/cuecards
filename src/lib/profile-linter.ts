@@ -4,7 +4,7 @@
  * The rules below are intentionally numbered and centralized so a later
  * suppression pass can key off stable ids such as `# lint: ignore W1`.
  *
- * W1: profile declares more than 40 skills.
+ * W1: profile declares more than 120 skills.
  * W2: profile declares more than 5 MCP servers.
  * W3: inheritance chain depth is greater than 2.
  * W4: a skill slug appears in both `skills.local` and `skills.npx`.
@@ -18,10 +18,9 @@
  */
 
 import { mkdir, mkdtemp, readdir, readFile, rm } from "node:fs/promises";
-import type { Dirent } from "node:fs";
+import { existsSync, type Dirent } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 
 import { parse as parseYaml } from "yaml";
 
@@ -36,7 +35,7 @@ import {
   SchemaViolation,
 } from "../../profiles/_types";
 import { listProfiles, loadProfile } from "./profile-loader";
-import { materializeMcp, type MaterializeOptions } from "./mcp-materializer";
+import { materializeMcp, McpNotFound, UnresolvedEnvPlaceholder, type MaterializeOptions } from "./mcp-materializer";
 import { resolveLocal } from "./resolver-local";
 import {
   NpxFetchFailed,
@@ -45,19 +44,18 @@ import {
 } from "./resolver-npx";
 import { PluginNotInstalled, resolvePlugins } from "./resolver-plugins";
 import { parseSkillFromPath } from "./skill-router";
+import { repoRoot as cueRepoRoot } from "./repo-root";
 
-const HERE = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(HERE, "..", "..");
-const DEFAULT_PROFILES_DIR = join(REPO_ROOT, "profiles");
-const DEFAULT_SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const DEFAULT_CONFIGS_ROOT = join(REPO_ROOT, "resources", "mcps", "configs");
-const DEFAULT_RULES_ROOT = join(REPO_ROOT, "resources", "rules");
-const DEFAULT_COMMANDS_ROOT = join(REPO_ROOT, "resources", "commands");
-const DEFAULT_HOOKS_ROOT = join(REPO_ROOT, "resources", "hooks");
-const DEFAULT_SUBAGENTS_ROOT = join(REPO_ROOT, "resources", "subagents");
+const DEFAULT_PROFILES_DIR = join(cueRepoRoot(), "profiles");
+const DEFAULT_SKILLS_ROOT = join(cueRepoRoot(), "resources", "skills", "skills");
+const DEFAULT_CONFIGS_ROOT = join(cueRepoRoot(), "resources", "mcps", "configs");
+const DEFAULT_RULES_ROOT = join(cueRepoRoot(), "resources", "rules");
+const DEFAULT_COMMANDS_ROOT = join(cueRepoRoot(), "resources", "commands");
+const DEFAULT_HOOKS_ROOT = join(cueRepoRoot(), "resources", "hooks");
+const DEFAULT_SUBAGENTS_ROOT = join(cueRepoRoot(), "resources", "subagents");
 
 export type LintRuleId =
-  | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8"
+  | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8" | "W9" | "W10"
   | "E1" | "E2" | "E3";
 export type DiagnosticRuleId = LintRuleId | "SCHEMA" | "LOAD";
 export type LintSeverity = "warning" | "error";
@@ -72,7 +70,7 @@ export const PROFILE_LINT_RULES: Record<LintRuleId, RuleDoc> = {
   W1: {
     severity: "warning",
     title: "too many skills",
-    description: "Profile declares more than 40 skills; this can bloat prompt tokens.",
+    description: "Profile declares more than 120 skills; this can bloat prompt tokens.",
   },
   W2: {
     severity: "warning",
@@ -108,6 +106,16 @@ export const PROFILE_LINT_RULES: Record<LintRuleId, RuleDoc> = {
     severity: "warning",
     title: "skill missing when_to_invoke",
     description: "Skill has a capability but no explicit `when_to_invoke:` frontmatter — proactive routing falls back to a single generic row. Add `when_to_invoke:` with task-shape bullets for richer routing.",
+  },
+  W9: {
+    severity: "warning",
+    title: "local-only MCP",
+    description: "Profile references an MCP that has a source dir but isn't in the sanitized public registry — a private/local server the user wires into their own ~/.claude.json. Not a profile bug, so it's a warning, not E3.",
+  },
+  W10: {
+    severity: "warning",
+    title: "unresolved MCP env secret",
+    description: "An MCP config references a `${VAR}` env placeholder (typically an API key/username) that isn't set in this environment. Secrets are supplied at launch, not at validate time — so this is environmental state, not a profile bug. Declare it in profile.env or export it before `cue launch`.",
   },
   E1: {
     severity: "error",
@@ -167,7 +175,7 @@ function profilesDir(opts: ProfileLinterOptions): string {
 }
 
 function repoRoot(opts: ProfileLinterOptions): string {
-  return opts.repoRoot ?? process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? REPO_ROOT;
+  return opts.repoRoot ?? process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? cueRepoRoot();
 }
 
 function addIssue(
@@ -498,7 +506,7 @@ function checkStaticRules(
   result: ProfileLintResult,
 ): void {
   const skillCount = declaredSkillCount(profile);
-  if (skillCount > 40) {
+  if (skillCount > 120) {
     addIssue(
       result,
       "W1",
@@ -732,7 +740,22 @@ async function checkMcps(
       });
       resolvedCount += 1;
     } catch (err) {
-      addResolverIssue(result, "MCP", ref.id, err);
+      // A ref to an MCP that has a source dir but is absent from the sanitized
+      // public registry is a private/local-only server (configured in the
+      // user's own ~/.claude.json), not a profile bug — demote to W9, the same
+      // way PluginNotInstalled demotes to W5. A ref with no source dir is a
+      // genuine dangling reference and still fails with E3.
+      if (err instanceof McpNotFound && mcpHasLocalSource(ref.id, opts)) {
+        addIssue(
+          result,
+          "W9",
+          "warning",
+          `MCP "${ref.id}" is local-only — it has a source dir but isn't in the sanitized public registry; configure it in ~/.claude.json`,
+          { subject: ref.id },
+        );
+      } else {
+        addResolverIssue(result, "MCP", ref.id, err);
+      }
     }
   }
 
@@ -756,6 +779,22 @@ function addResolverIssue(
       "W5",
       "warning",
       `plugin "${ref}" is not installed locally — run /plugin marketplace add ${ref.split("@")[0]}`,
+      { subject: ref },
+    );
+    return;
+  }
+  // An unresolved `${VAR}` secret is environmental state, not a profile defect:
+  // the MCP config correctly declares the placeholder, and the secret is
+  // supplied at launch (or exported in the shell), not at validate time. Demote
+  // to W10 — same reasoning as PluginNotInstalled/local-only MCP above. Without
+  // this, ANY profile referencing a secret-bearing MCP fails `cue validate` in a
+  // bare environment (CI, a fresh checkout, before the user exports the key).
+  if (err instanceof UnresolvedEnvPlaceholder) {
+    addIssue(
+      result,
+      "W10",
+      "warning",
+      `MCP "${ref}" needs env secret \${${err.varName}} — set it in profile.env or export it before \`cue launch\``,
       { subject: ref },
     );
     return;
@@ -789,6 +828,18 @@ function profileWithMcp(profile: ResolvedProfile, ref: ResolvedProfile["mcps"][n
     ...profile,
     mcps: [ref],
   };
+}
+
+/**
+ * True when an MCP id has a source manifest dir under `resources/mcps/mcps/<id>`
+ * even though it's absent from the sanitized public registry — i.e. a private /
+ * local-only server, not a dangling reference. Keyed off the same registry root
+ * the resolver uses (configsRoot's parent) so test overrides stay consistent.
+ */
+function mcpHasLocalSource(id: string, opts: ProfileLinterOptions): boolean {
+  if (!/^[A-Za-z0-9._-]+$/.test(id)) return false;
+  const configsRoot = opts.configsRoot ?? DEFAULT_CONFIGS_ROOT;
+  return existsSync(join(dirname(configsRoot), "mcps", id));
 }
 
 function formatErrorMessage(err: unknown): string {

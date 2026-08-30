@@ -12,8 +12,7 @@
 
 import { spawnSync } from "node:child_process";
 import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
@@ -21,16 +20,35 @@ import { clusterByKeywords, clusterByEmbeddings, unclustered, type Cluster, type
 import { findRealClaudeBin } from "../lib/claude-binary";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
+import { unavailableNote, formatVerdict } from "../lib/skillspector";
+import { repoRoot } from "../lib/repo-root";
+import {
+  ANSI,
+  colorize as wrap,
+  colorStars,
+  freshnessColor,
+  freshnessLabel,
+  tierColorFor,
+  tierName,
+  wrapText,
+} from "../lib/discover-format";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
+export { colorStars, freshnessColor, freshnessLabel, tierColorFor, tierName, wrapText } from "../lib/discover-format";
+
 // Cache path resolved lazily so tests can redirect via XDG_CONFIG_HOME without
 // re-importing the module. (Bun shares module state across test files; const
 // values captured at import time wouldn't see runtime env changes.)
 function cacheDir(): string {
   return join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "discover");
 }
-function cacheFile(): string { return join(cacheDir(), "gems.json"); }
-const DEFAULT_EXPORT = join(REPO_ROOT, "docs", "discovered.md");
+/**
+ * Exported so tests seeding a fake gems cache (e.g. to prove a caller skips
+ * gem discovery even when a qualifying gem exists) derive the SAME path this
+ * module reads, instead of hand-deriving a parallel path string that can
+ * silently drift out of sync with this one.
+ */
+export function cacheFile(): string { return join(cacheDir(), "gems.json"); }
+const DEFAULT_EXPORT = join(repoRoot(), "docs", "discovered.md");
 
 // ---------------------------------------------------------------------------
 // Types
@@ -346,20 +364,6 @@ export function scoreGem(repo: GemRepo): number {
 // Render helpers — colors, formatting, slop strip, freshness, install detection
 // ---------------------------------------------------------------------------
 
-const ANSI = {
-  reset: "\x1b[0m",
-  bold: "\x1b[1m",
-  dim: "\x1b[2m",
-  gray: "\x1b[90m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
-};
-const wrap = (color: string, s: string): string => `${color}${s}${ANSI.reset}`;
-
 /** Strip marketing-slop openers from a description so the real feature shows first. */
 export function stripSlopOpener(desc: string): string {
   let s = desc.trim();
@@ -370,75 +374,13 @@ export function stripSlopOpener(desc: string): string {
   return s;
 }
 
-/** Word-wrap to width, returning lines with the given hanging indent on continuations. */
-export function wrapText(text: string, width: number, indent: string): string[] {
-  if (!text) return [];
-  const words = text.split(/\s+/);
-  const lines: string[] = [];
-  let line = "";
-  for (const w of words) {
-    if (line.length + 1 + w.length > width && line) {
-      lines.push(line);
-      line = indent + w;
-    } else {
-      line = line ? `${line} ${w}` : w;
-    }
-  }
-  if (line) lines.push(line);
-  return lines;
-}
-
-/** Color stars by tier: magenta ≥1000, green ≥100, yellow ≥10, gray <10. */
-export function colorStars(n: number): string {
-  if (n >= 1000) return wrap(ANSI.magenta + ANSI.bold, `★ ${n}`);
-  if (n >= 100) return wrap(ANSI.green, `★ ${n}`);
-  if (n >= 10) return wrap(ANSI.yellow, `★ ${n}`);
-  return wrap(ANSI.gray, `★ ${n}`);
-}
-
-/** Pretty "Nd ago" / "Nw ago" / "Nmo ago" / "Nyr ago". */
-export function freshnessLabel(pushed_at: string): string {
-  if (!pushed_at) return "unknown";
-  const days = Math.floor((Date.now() - new Date(pushed_at).getTime()) / 86400000);
-  if (days < 0) return "in future";
-  if (days === 0) return "today";
-  if (days < 7) return `${days}d ago`;
-  if (days < 30) return `${Math.floor(days / 7)}w ago`;
-  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
-  return `${Math.floor(days / 365)}yr ago`;
-}
-
-/** Green if hot (<14d), yellow if warm (<60d), gray if cold (<365d), red if stale. */
-export function freshnessColor(pushed_at: string): string {
-  if (!pushed_at) return ANSI.gray;
-  const days = Math.floor((Date.now() - new Date(pushed_at).getTime()) / 86400000);
-  if (days < 14) return ANSI.green;
-  if (days < 60) return ANSI.yellow;
-  if (days < 365) return ANSI.gray;
-  return ANSI.red;
-}
-
-/** Tier name + tier color for a score. */
-export function tierName(score: number): string {
-  if (score >= 12) return "premium";
-  if (score >= 8) return "strong";
-  if (score >= 5) return "worth";
-  return "tail";
-}
-export function tierColorFor(score: number): string {
-  if (score >= 12) return ANSI.magenta;
-  if (score >= 8) return ANSI.cyan;
-  if (score >= 5) return ANSI.yellow;
-  return ANSI.gray;
-}
-
 /**
  * Scan all profile.yaml files for a skill ref matching the gem's name or
  * `owner/name` slug. Returns the list of profiles that already include it.
  * Cheap enough to call per-gem (cached once per session via the closure pattern
  * in renderers).
  */
-export function getInstalledIn(gem: GemRepo, profilesDir = join(REPO_ROOT, "profiles")): string[] {
+export function getInstalledIn(gem: GemRepo, profilesDir = join(repoRoot(), "profiles")): string[] {
   if (!existsSync(profilesDir)) return [];
   const hits: string[] = [];
   const slugs = [gem.name.toLowerCase(), gem.full_name.toLowerCase()];
@@ -455,9 +397,9 @@ export function getInstalledIn(gem: GemRepo, profilesDir = join(REPO_ROOT, "prof
   return hits;
 }
 
-/** Detect active profile from cwd (`.cue-profile` file). Returns undefined if none. */
+/** Detect active profile from cwd (`.cue.profile` file). Returns undefined if none. */
 export function getActiveProfile(cwd: string = process.cwd()): string | undefined {
-  const f = join(cwd, ".cue-profile");
+  const f = join(cwd, ".cue.profile");
   if (!existsSync(f)) return undefined;
   try {
     const s = readFileSync(f, "utf8").trim();
@@ -707,12 +649,6 @@ export interface RenderOpts {
  */
 function visualLen(s: string): number {
   return s.replace(/\x1b\[[0-9;]*m/g, "").length;
-}
-
-/** Pad a string to a visual width, accounting for ANSI codes. */
-function padVisual(s: string, width: number): string {
-  const len = visualLen(s);
-  return len >= width ? s : s + " ".repeat(width - len);
 }
 
 /**
@@ -1049,6 +985,8 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 # 🎯 Discovered Claude Code Skills
 
+These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
+
 > **${totalGems} hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **${byProfile.size} profiles**.
 > Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.
 
@@ -1121,6 +1059,7 @@ ${jsonLd}
 </script>
 </head><body>
 <h1>🎯 Discovered Claude Code Skills</h1>
+<p>These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.</p>
 <p><strong>${totalGems} hidden-gem skills</strong> discovered by <a href="https://github.com/opencue/cuecards">cue</a> across <strong>${byProfile.size} profiles</strong>.</p>
 <p><small>Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.</small></p>
 <h2>Browse by profile</h2>
@@ -1177,12 +1116,22 @@ ${cards}
 // names), and so the repo's authors get a backlink from cue.dev.
 // ---------------------------------------------------------------------------
 
+/**
+ * Escape a string for a double-quoted YAML scalar in generated frontmatter.
+ * Repo descriptions routinely contain `"` and `\` (e.g. `Tell Claude "deploy this"`),
+ * which break Jekyll's YAML parser if interpolated raw — failing the landing build.
+ * Escapes backslash + double-quote and collapses newlines to spaces.
+ */
+function yamlStr(s: string): string {
+  return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\r\n]+/g, " ");
+}
+
 function buildRepoPage(gem: GemRepo, updated: string): string {
   const icon = tierIcon(gem.gem_score);
   const profileLinks = gem.suggested_profiles.map((p) => `[${p}](../${p}.md)`).join(", ") || "_(no profile match)_";
   return `---
-title: "${gem.full_name} — Claude Code skill discovered by cue"
-description: "${(gem.description || `Claude Code skill from ${gem.full_name}`).slice(0, 160)}"
+title: "${yamlStr(`${gem.full_name} — Claude Code skill discovered by cue`)}"
+description: "${yamlStr((gem.description || `Claude Code skill from ${gem.full_name}`).slice(0, 160))}"
 layout: page
 updated: ${updated.split("T")[0]}
 tags: [claude-code, skill, ${gem.suggested_profiles.join(", ")}]
@@ -1769,56 +1718,6 @@ export function buildGemHeroBadges(gem: GemRepo, profile: string): string {
 </p>`;
 }
 
-/**
- * Standalone SVG card mimicking tokscale — dark gradient bg, three stat cards
- * (Score · Stars · Profile) with bold colored numbers. Self-contained, no
- * external font deps. Embed via raw URL or inline.
- */
-export function buildGemBadgeSvg(gem: GemRepo, profile: string): string {
-  const t = tierPalette(gem.gem_score);
-  const s = starsPalette(gem.stars);
-  const esc = (str: string) => str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const W = 720, H = 220;
-  const cardW = 220, cardH = 100, gap = 20, padX = 20, cardY = 95;
-  const cards = [
-    { label: "Score", value: `${gem.gem_score}`, sub: t.tier, color: `#${t.primary}`, bg: `#${t.label}` },
-    { label: "Stars", value: s.display, sub: "github", color: `#${s.primary}`, bg: "#1f3a1d" },
-    { label: "Profile", value: profile, sub: gem.has_skill_md ? "SKILL.md" : "matched", color: "#c084fc", bg: "#3a1d3a" },
-  ];
-  const updated = new Date().toISOString().split("T")[0];
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="cue hidden gem: ${esc(gem.full_name)}">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0a14"/>
-      <stop offset="100%" stop-color="#1e1b4b"/>
-    </linearGradient>
-    <style>
-      .title { font: bold 18px -apple-system, system-ui, sans-serif; fill: #fff; }
-      .sub { font: 13px -apple-system, system-ui, sans-serif; fill: #9ca3af; }
-      .card-label { font: bold 12px -apple-system, system-ui, sans-serif; letter-spacing: .5px; text-transform: uppercase; }
-      .card-value { font: bold 32px -apple-system, system-ui, sans-serif; }
-      .card-sub { font: 11px -apple-system, system-ui, sans-serif; fill: #6b7280; }
-      .footer { font: 11px -apple-system, system-ui, sans-serif; fill: #4b5563; }
-    </style>
-  </defs>
-  <rect width="${W}" height="${H}" rx="14" fill="url(#bg)"/>
-  <text class="title" x="${padX}" y="36">💎 cue · hidden gem</text>
-  <text class="sub" x="${padX}" y="58">@${esc(gem.full_name)}</text>
-${cards.map((c, i) => {
-  const x = padX + i * (cardW + gap);
-  return `  <g transform="translate(${x}, ${cardY})">
-    <rect width="${cardW}" height="${cardH}" rx="10" fill="${c.bg}" stroke="${c.color}" stroke-opacity="0.4" stroke-width="1"/>
-    <text class="card-label" x="14" y="22" fill="${c.color}">${esc(c.label)}</text>
-    <text class="card-value" x="14" y="62" fill="${c.color}">${esc(c.value)}</text>
-    <text class="card-sub" x="14" y="84">${esc(c.sub)}</text>
-  </g>`;
-}).join("\n")}
-  <text class="footer" x="${padX}" y="${H - 14}">cue discovery engine · scored ${updated}</text>
-  <text class="footer" x="${W - padX}" y="${H - 14}" text-anchor="end">github.com/opencue/cuecards</text>
-</svg>`;
-}
-
 function notifyOwner(gem: GemRepo, profile: string, opts: { dryRun?: boolean; force?: boolean } = {}): void {
   const log = loadNotifyLog();
   if (log.notified[gem.full_name] && !opts.force) {
@@ -2144,9 +2043,16 @@ async function cmdInstall(opts: { profile?: string; minScore: number; minQuality
     }
 
     // Security gate: the skill files are now on disk but not yet registered to
-    // a profile. Scan the just-fetched (untrusted) skill and block on critical
-    // findings (secret/data exfiltration, prompt injection) unless --allow-unsafe.
+    // a profile. Scan the just-fetched (untrusted) skill with NVIDIA
+    // SkillSpector plus cue's own rules, and block on a DO_NOT_INSTALL verdict
+    // or critical findings (secret/data exfiltration, prompt injection) unless
+    // --allow-unsafe.
     const gate = gateFreshSkill(gem.name, { allowUnsafe: opts.allowUnsafe });
+    const ssNote = unavailableNote(gate.skillspector);
+    if (ssNote) process.stdout.write(`     ${ssNote}\n`);
+    if (gate.ok && gate.skillspector.recommendation === "CAUTION") {
+      process.stdout.write(`     🟡 ${formatVerdict(gate.skillspector)} — registered, review it.\n`);
+    }
     if (!gate.ok) {
       process.stdout.write(`     🔴 BLOCKED: ${gem.full_name} has ${gate.critical.length} critical security finding(s):\n`);
       for (const c of gate.critical) {
@@ -2166,7 +2072,7 @@ async function cmdInstall(opts: { profile?: string; minScore: number; minQuality
     autoInstallClis(gem.name, { yes: opts.yes });
 
     // Add to profile.yaml
-    const profileYaml = join(REPO_ROOT, "profiles", targetProfile, "profile.yaml");
+    const profileYaml = join(repoRoot(), "profiles", targetProfile, "profile.yaml");
     if (existsSync(profileYaml)) {
       const content = readFileSync(profileYaml, "utf8");
       // Find the skill ID (use repo name as fallback)
@@ -2585,7 +2491,7 @@ async function cmdDiscoverMcps(opts: { limit: number; minScore: number; json: bo
 
   if (opts.install) {
     const targetProfile = opts.profile ?? getActiveProfile() ?? "core";
-    const profileYaml = join(REPO_ROOT, "profiles", targetProfile, "profile.yaml");
+    const profileYaml = join(repoRoot(), "profiles", targetProfile, "profile.yaml");
     if (!existsSync(profileYaml)) {
       process.stderr.write(`  ⚠️  Profile "${targetProfile}" not found at ${profileYaml}\n`);
       return 1;
@@ -2841,7 +2747,7 @@ Examples:
     const minSize = minSizeIdx >= 0 ? parseInt(args[minSizeIdx + 1] ?? "3", 10) : 3;
     const outIdx = args.indexOf("--out");
     const outDir = outIdx >= 0 && args[outIdx + 1] ? args[outIdx + 1]!
-      : join(REPO_ROOT, ".cue-suggestions");
+      : join(repoRoot(), ".cue-suggestions");
     const dryRun = args.includes("--dry-run");
     const noClaude = args.includes("--no-claude");
     const embeddings = args.includes("--embeddings");

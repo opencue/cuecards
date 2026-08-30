@@ -1,10 +1,11 @@
 {
   "name": "cue-ai",
-  "version": "0.9.0",
-  "description": "cue — Agent Profile Manager for Claude Code & Codex. Pick a profile, launch with the right skills, MCPs, and plugins.",
+  "version": "0.10.0",
+  "description": "Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory.",
   "type": "module",
   "bin": {
-    "cue": "bin/cue.mjs"
+    "cue": "bin/cue.mjs",
+    "cue-learnings": "bin/cue-learnings"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -12,12 +13,17 @@
   "scripts": {
     "cue": "bun src/index.ts",
     "test": "bun test",
+    "eval:profile-suggestions": "bun scripts/evaluate-profile-suggestions.ts",
+    "eval:profile-suggestion-replay": "bun scripts/evaluate-profile-suggestion-replay.ts",
+    "profiles:aas": "bun scripts/generate-aas-profiles.ts",
+    "test:critical:coverage": "bun test src/lib/profile-loader.test.ts src/lib/cwd-resolver.test.ts src/lib/runtime-materializer.test.ts src/commands/launch.test.ts --coverage --coverage-reporter=lcov --coverage-dir=coverage/critical --timeout 30000 && bun scripts/check-critical-coverage.ts",
+    "lint:skills:baseline": "bun scripts/check-skill-lint-baseline.ts",
     "typecheck": "tsc --noEmit",
-    "lint": "biome lint src",
+    "lint": "biome lint src web/src scripts",
     "build": "bun build src/index.ts --no-bundle",
     "build:bundle": "bun build src/index.ts --target=node --outfile=dist/cue.js",
     "prepack": "bash scripts/prepack-check.sh && bun run build:bundle",
-    "postinstall": "echo '' && echo '  ✅ cue installed.' && echo '  Next: run `cue shell install`  (activates the claude/codex shim — required to load profiles)' && echo '        then `cue init`        (pin a profile to this directory)' && echo '  Docs: https://github.com/opencue/cuecards' && echo ''"
+    "postinstall": "echo '' && echo '  ✅ cue installed.' && echo '  Next: run `cue setup`  — installs the shim, scans this project, pins a profile' && echo '  Docs: https://github.com/opencue/cuecards' && echo ''"
   },
   "keywords": [
     "claude-code",
@@ -68,6 +74,7 @@
     "install.sh",
     "get.sh",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "dependencies": {

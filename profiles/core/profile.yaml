@@ -2,8 +2,80 @@ name: core
 icon: "🧠"
 iconImage: "logo.png"
 description: Baseline shared by every cue profile — essentials only
+# Default launch behavior: drop MCP servers no active skill needs and that
+# aren't pinned — including unused GLOBAL servers from the runtime .claude.json
+# (the `all` mode). Fans out to every core-inheriting profile; composite merge
+# keeps the most aggressive part's mode. This is why a bare launch doesn't boot
+# a dozen global daemons it will never call. Escape hatches: `CUE_PRUNE_MCPS=off`
+# for one launch, or the interactive picker (`--cue-pick-mcps`) to persist a set.
+mcpPrune: all
+# Startup context budget baseline, fans out to every inheriting profile.
+# cue can't pin the main-session model (that's a per-launch /model choice), so
+# this just tells the model-aware budget (lib/token-budget.ts) which window to
+# size against: the always-on load (skill frontmatter + MCP tool schemas) should
+# stay under 50% of it, leaving the other half free for the conversation. At
+# 256K that's a ~128K startup ceiling; `cue launch` and `cue profile suggest`
+# warn when a profile blows past it. Override per-profile by redeclaring
+# `contextWindow`/`model`, or per-launch via CUE_CONTEXT_WINDOW / CUE_MODEL.
+contextWindow: 256000
+# Compact well before Codex reaches the expensive tail of its context window.
+# This profile override wins over a larger value inherited from
+# ~/.codex/config.toml and fans out to every core-based profile.
+codex:
+  model_auto_compact_token_limit: 180000
+  # Balanced default for routine execution. Native `/reasoning` can raise the
+  # current chat to xhigh before a genuinely hard turn; the agent cannot safely
+  # mutate the effort of a turn that is already running.
+  model_reasoning_effort: high
+  # Automatic, bounded cross-session continuity. Codex feeds lifecycle payloads
+  # to `cue handoff hook`; the command stores per-repo/profile/session state and
+  # injects only the newest matching checkpoint at a later startup/resume.
+  hooks:
+    SessionStart:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+            additionalContextLimit: 1800
+    UserPromptSubmit:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+    Stop:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+    PreCompact:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+    SessionEnd:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            # Codex caps SessionEnd hooks at three seconds.
+            timeout: 3
+# Cost knob, fans out to every inheriting profile. Surfaced into the runtime
+# settings.json `env` block by buildClaudeSettings (allowlisted). Pins Task/Agent
+# subagents (code-reviewer, Explore, file-read/grep/summarize) to Sonnet —
+# ~50-60% cheaper than Opus, capable enough for review/exploration. The main
+# session model is unaffected (set it per-launch / via /model); see the
+# "Model selection" persona block below for when to reach for Opus vs Sonnet.
+env:
+  CLAUDE_CODE_SUBAGENT_MODEL: claude-sonnet-4-6
 persona_includes:
-  - integrity-protocol     # resources/personas/integrity-protocol.md — fans out via inheritance
+  - integrity-protocol-compact  # resources/personas/integrity-protocol-compact.md — compact 7-tag system inline; full protocol + examples load on demand (integrity-protocol.md / meta/integrity-tags). Fans out via inheritance.
+  - codegraph-routing    # resources/personas/codegraph-routing.md — compact source-navigation rule: use CodeGraph before broad repo reads/grep so code exploration burns fewer tokens. Fans out via inheritance.
+  - codex-token-discipline  # resources/personas/codex-token-discipline.md — avoid repeated image ingestion and tight write_stdin polling in Codex.
+  - skill-evolution        # resources/personas/skill-evolution.md — post-task learning capture via bin/cue-learnings, fans out to every core-inheriting profile
+  - fable-5-prompting-compact  # resources/personas/fable-5-prompting-compact.md — Fable 5 / Mythos 5 behavioral deltas (effort, longer turns, grounding, boundaries); full guide on demand at fable-5-prompting.md. Fans out via inheritance.
+persona_routing:
+  - capability: Fetch, download, clone, or inspect an external GitHub repository or package source
+    skill: tools/opensrc
+    note: Use `opensrc path owner/repo[@ref|#ref]` before generic `git clone`.
 persona: |
   You're a careful, experienced collaborator. You operate by these defaults
   every time, regardless of which specialized profile inherits from you:
@@ -43,24 +115,46 @@ persona: |
     incrementally. Don't accumulate a 400-line patch you can't bisect.
   - **Voice: terse and specific.** Drop filler. Lead sentences with the verb
     or the answer. Don't summarize what's visible in the diff.
+  - **Prefer /compact over /clear.** `/compact` preserves the prompt cache; `/clear` cold-starts it and loses the cache that saves ~$7K/session. Compact at natural task boundaries instead of clearing.
+
+  ## Model routing — route by task hardness, delegate the cheap work
+
+  Spend the expensive model only where it changes the outcome. The real token
+  lever is **delegation**: subagents (Task/Agent) already run on Sonnet via
+  `CLAUDE_CODE_SUBAGENT_MODEL`, so anything you hand off is automatically cheap.
+  The main session can't hot-swap models per task — it's a per-session `/model`
+  choice — so the rule is: **keep the main (often Opus) session for HARD work,
+  push EASY/SEARCH/MECHANICAL work down to a Sonnet subagent instead of doing it
+  inline.** A `model-route-nudge` hook prints a one-line reminder on clear cases.
+
+  Classify the task before you act on it:
+
+  | Class | What it looks like | Route |
+  |---|---|---|
+  | 🧠 **HARD** | planning, architecture, design decisions, root-cause debugging, security-critical code, refactors spanning 5+ files, genuinely ambiguous problems | **Main session / Opus.** Don't delegate the judgment. |
+  | 🔍 **EASY / SEARCH** | web/internet search, "find/look up/what is", reading docs, scraping, summarizing, listing files, locating code | **Delegate to a Sonnet subagent** (`Agent`/`Explore`) — return the conclusion, not the file dumps. |
+  | ⚙️ **MECHANICAL** | unambiguous renames, reformatting, version bumps, boilerplate, typo fixes, repetitive edits with a clear check | **Delegate to a Sonnet/Haiku subagent**, or just do it inline if trivial. |
+
+  - HARD → main session / Opus. EASY/SEARCH/MECHANICAL → delegate to `Agent` (Sonnet). `/model` switches cold-start the prompt cache — batch model-appropriate work, then switch.
 
   ## The cue sprint
 
   Bigger-than-one-line work runs through a sprint: **think → plan → build →
   review → test → ship → reflect**. Each stage feeds the next. Skip stages
-  that don't apply, never skip review/test.
+  that don't apply, never skip tests.
 
-  ## Independent review before finishing
+  ## Review is opt-in — do NOT auto-run it
 
-  After a substantive code change (you used Edit/Write or a mutating command
-  this turn), don't sign off on your own work. Spawn a fresh reviewer subagent
-  — the `Agent` tool (e.g. `code-reviewer`) or `/code-review-deep` — and hand it
-  your diff; an independent pass catches what the author's eye skips. Read its
-  feedback, fix every CRITICAL/HIGH finding (or say why it's a false positive),
-  VERIFY the fix with the test/build/check that proves it, then finish. One
-  review round suffices for most diffs — don't loop forever. (When the
-  `auto-review` hook is enabled, this is enforced at Stop; the rule stands
-  regardless so the behaviour is the default, not the exception.)
+  Do NOT spawn a reviewer subagent or run `/code-review` / `/code-review-deep`
+  on your own at the end of a turn. Independent review runs ONLY when the user
+  explicitly asks for it ("review this", `/code-review`, `/code-review-deep`).
+  Never launch the multi-agent `/code-review ultra` path automatically — it is
+  expensive (many cloud agents, ~1M tokens) and must stay under the user's
+  explicit control. Signing off on your own diff is fine; if you want to flag
+  risk, say so in prose and offer to review, don't just run one. (The
+  `auto-review` Stop hook remains fully opt-in via
+  `~/.config/cue/auto-review-enabled`; with that flag absent — the default —
+  nothing reviews automatically.)
 
   ## Skill routing
 
@@ -73,6 +167,7 @@ persona: |
   - Pre-landing diff review → `/code-review-deep`
   - Touching prod or want safety rails → `/careful`, `/freeze <dir>`, `/guard <dir>`
   - Larger work — read `playbooks/sprint.md` first
+  - User asks to load/summon another profile into this Claude/Codex session → run `cue summon <profile> --with-active --json`, soft-load the returned persona/skill paths, and use `reexec_cmd` for MCP fidelity
   - Topic mentions a tool/platform NOT in the loaded skills list (coolify, resend, hostinger, sanity, security/cso, etc.) → `/smart-loader` to locate and soft-load the matching SKILL.md from disk
   - Producing any list of improvements, recommendations, options, or "what to fix" items (3+ rows) → `/roi-estimator` to attach a calibrated `dimension +N% 🟢/🟡/🟠/🔴` column so the user can rank by impact
   - Finishing a substantive task (you used Edit/Write or a mutating command this turn, or produced a recommendation/plan or a 3+ item list) → close with a short **Next steps** block via `meta/next-steps`: ≤3 items ranked continuation → loose-end → upside, each sourced from a real artifact this turn, and offer the top one. Skip trivial turns and brief/caveman mode.
@@ -91,19 +186,33 @@ skills:
     - meta/liedetector          # confidence-calibration tags (🟢🟡🟠🔴) on every claim
     - meta/integrity-tags       # explains the 7-tag confidence system the liedetector applies
     - meta/smart-loader         # soft-loads non-profile skills from disk when topic matches (coolify, resend, cso, etc.)
+    - meta/profile-summon       # live Claude/Codex profile soft-load; full MCPs use an agent-specific warm handoff
     - meta/roi-estimator        # auto-attaches ROI column (dimension, %, confidence tier) to any improvement list
     - meta/next-steps           # closes substantive tasks with a short, ranked Next steps block + offers the top one
     - meta/ralph-loop           # /ralph-loop — autonomous "work longer" loop (re-feed prompt until tests pass), guarded by stop-check + iteration cap
+    # ── GitGuardex collaboration — active only in managed repos ──
+    - id: github/gitguardex
+      when:
+        has_dir: .omx
+    - id: github/gx-agents
+      when:
+        has_dir: .omx
     # ── Plan / debug (the rest of the plan cluster soft-loads via autoplan + smart-loader) ──
     - plan/investigate          # /investigate — root-cause debugging
     - plan/autoplan             # /autoplan — chains office-hours → ceo → eng on demand
     # ── Review ──
     - review/code-review-deep   # /code-review-deep — two-pass diff review (sole baseline reviewer)
+    # ── Security ──
+    - security/trivy-scan       # /trivy-scan — pre-merge supply-chain gate (Trivy: dependency CVEs + secrets + IaC misconfig). Hard-blocks HIGH/CRITICAL. Invoked by code-review-deep Pass 0 + ship Step 9.0.
     # ── Browser ──
-    - browser/lightpanda        # Lightpanda — fast headless browser for scraping, DOM dump, CDP. Pairs with lightpanda MCP.
+    - browser/ego-browser       # DEFAULT browser path. One JS heredoc drives a real Chromium (navigate, forms, clicks, snapshot, screenshots) instead of many MCP tool-call round trips — chosen for token cost. Reuses the user's real logins. Linux port lives in ~/Documents/ego-lite-linux (package/ego-linux).
     # ── Source-fetching ──
-    - tools/opensrc             # opensrc — fetch dependency source (npm/PyPI/crates/GitHub) so agents read implementations, not just types
+    - tools/opensrc             # ALWAYS-ON: persona_routing sends GitHub/package source fetches here instead of generic git clone
     - tools/context7            # context7 — fetch up-to-date, version-specific library/API docs. Pairs with the context7 MCP (in core's mcps).
+    # ── Usage & cost ──
+    - tools/ccusage             # ccusage — analyze coding-agent token usage & cost from local logs (Claude Code, Codex, Gemini, Copilot, +more). Zero setup; `bunx ccusage`. Fans out to every profile.
+    # ── Context compression ──
+    - tools/headroom            # headroom — opt-in context compression guidance. The MCP is enabled only by the dedicated headroom profile and needs `pip install "headroom-ai[mcp]"`.
     # ── Trimmed 2026-06-01 (lean-core pass) — moved to disk, reachable via smart-loader ──
     # Cut as non-universal / 0-telemetry: meta/just, meta/kiro-powers, meta/mcp-finder,
     # plan/office-hours, plan/plan-ceo-review, plan/plan-eng-review, review/code-review
@@ -122,12 +231,21 @@ skills:
     # decks all gain doc-format capability without per-profile wiring.
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
+    # ── Langfuse LLM observability (langfuse/skills) ──
+    # Added to core: Langfuse tracing / prompt-management / eval guidance plus
+    # langfuse-cli API access (traces, prompts, datasets, scores) and docs lookup.
+    # Lets any inheriting profile instrument an LLM app with best-practice tracing
+    # and query Langfuse on demand. Skill id = SKILL.md `name:` field (langfuse),
+    # per `npx skills add langfuse/skills --skill langfuse`.
+    - repo: langfuse/skills
+      skills: [langfuse]
     # github-actions-docs dropped from core 2026-06-01 — CI-docs is not universal
     # baseline. Add it back per-profile (ops, the deploy-touching ones) if needed.
 mcps:
-  - cue-tty-watch    # Claude's eyes inside X displays / tmux panes (screenshot, capture-pane, send-keys)
-  - lightpanda       # Fast headless browser MCP — fetch/render/scrape URLs without Chromium. Pairs with browser/lightpanda skill.
-  - context7         # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
+  # pin: true marks an MCP the agent uses directly (not via a skill), so the
+  # launcher's smart-prune keeps it always-on instead of dropping it.
+  - { id: codegraph, pin: true }   # Repo code intelligence MCP — use before broad Read/Grep for architecture, feature, bug-context, symbol, caller/callee, and impact questions. Available to Claude and Codex runtimes via the sanitized registry snapshots.
+  - { id: context7, pin: true }    # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
 plugins:
   - claude-mem@thedotmack
   # Disabled 2026-05-30: OMC's PreToolUse auto-mode classifier was intermittently
@@ -175,6 +293,22 @@ hooks:
   - secrets-guard.json
   # Reject low-effort `git commit -m "wip"` / "fix" / "update" messages.
   - commit-message-guard.json
+  # UserPromptSubmit hook: token-cost guard — one display-only nudge per size
+  # tier (3MB/8MB transcript) suggesting /clear between tasks or /compact
+  # mid-task. Cache reads scale with context length and dominate spend (97% in
+  # the 2026-06 audit). Fail-open; disable with CUE_CONTEXT_NUDGE_OFF=1.
+  - context-size-nudge.json
+  # PreToolUse(Read) hook: token-cost guard — one display-only nudge at 25
+  # main-session Read calls suggesting Explore/Agent delegation (subagent
+  # context dies with it instead of being re-read every turn). Never blocks.
+  # Fail-open; disable with CUE_READ_NUDGE_OFF=1.
+  - read-delegate-nudge.json
+  # SessionStart hook: once-a-day coding-agent spend digest via ccusage —
+  # one display-only systemMessage line (today / yesterday / last-7d cost) on
+  # the first session of the day. Pairs with tools/ccusage (ask-for-details)
+  # and the ccusage statusline (live view). Fail-open; stamp-throttled;
+  # disable with CUE_CCUSAGE_DAILY_OFF=1.
+  - ccusage-daily-report.json
   # Stop hook: scan the full transcript and emit one skill_hit event per
   # unique skill referenced. Replaces the 50KB regex scrape with a full scan.
   # Feeds `cue profile evolve` with accurate per-skill firing data.
@@ -206,6 +340,13 @@ hooks:
   # block so Claude can offer them instead of needing to "notice" the gap.
   # Pairs with meta/smart-loader — this is the proactive trigger.
   - smart-loader-suggest.json
+  # UserPromptSubmit hook: classify the prompt by task hardness and print a
+  # one-line model-routing reminder — HARD work stays on Opus, EASY/SEARCH and
+  # MECHANICAL work gets delegated to a Sonnet subagent (already pinned via
+  # CLAUDE_CODE_SUBAGENT_MODEL). Pairs with the "Model routing" persona block.
+  # Confident-match-only + throttled (~5 min/session) so it adds ~0 per-message
+  # tokens. Non-blocking. Suppress a single turn with [skip-route].
+  - model-route-nudge.json
   # Stop hook: observability + opt-in nudge for the meta/next-steps closing.
   # Always appends one next_steps event per turn to analytics.jsonl (did a
   # substantive turn end with a Next steps block?). Only NUDGES (stderr, never
@@ -226,3 +367,16 @@ hooks:
   # Edit-scope guard, opt-in via /freeze <dir>. No-op until
   # ~/.config/cue/freeze-dir exists.
   - freeze-edit-scope.json
+  # Stop hook: cue self-learner CAPTURE. Records where the active profile's skills
+  # fell short (friction signals + an optional once-per-session live critic) as
+  # skill_gap events in ~/.config/cue/analytics.jsonl. Promoted from the
+  # skill-writer pilot to core so every profile learns. Never blocks Stop, fail-
+  # open. OFF until BOTH `touch ~/.config/cue/.auto-improve-enabled` and telemetry
+  # consent exist. See docs/self-learner.md.
+  - profile-self-improve.json
+  # Stop hook: cue self-learner ACT. Picks the most-flagged skill from the
+  # captured skill_gap signals and evolves it (single-shot writer→lint→critic
+  # loop, propose-only). 24h cooldown, canary auto-revert, never blocks Stop.
+  # OFF until ALSO `touch ~/.config/cue/.auto-evolve-enabled`. See
+  # docs/self-evolution-upgrade-plan.md.
+  - auto-evolve.json

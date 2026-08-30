@@ -152,8 +152,10 @@ CUE_BYPASS=1 claude --version
 /usr/local/bin/claude --version
 ```
 
-Expected: both print Claude's version string without triggering the profile
-picker or materializer.
+Expected: both print Claude's version string and nothing else — no `▸ claude ·
+<profile>` banner, no loadout/MCP lines, no picker, no materializer. Under
+`CUE_BYPASS=1` cue execs the real binary and gets out of the way; anything cue
+prints here means the short-circuit in `launch.run()` was missed.
 
 ---
 

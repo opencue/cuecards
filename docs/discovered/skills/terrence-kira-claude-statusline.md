@@ -2,7 +2,7 @@
 title: "terrence-kira/claude-statusline — Claude Code skill discovered by cue"
 description: "A Claude Code statusline with gradient progress bars, color-graded session effort, and worktree-aware paths"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-05-28
+- 🗓️ Last pushed: 2026-06-05
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

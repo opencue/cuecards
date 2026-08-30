@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://github.com/opencue/cuecards",
+      "name": "cuecards",
+      "alternateName": ["cue", "cue-ai", "cuecards"],
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "AI Agent Tooling",
+      "operatingSystem": "Linux, macOS, Windows (WSL2)",
+      "description": "cuecards is an open-source agent profile manager for Claude Code, OpenAI Codex, Cursor, Cline, Gemini CLI, GitHub Copilot, Windsurf, Roo Code, Sourcegraph Amp, and Aider. One cuecard per directory — skills, MCPs, plugins, persona, playbooks, gates. Cuts per-message token cost 10–25×.",
+      "url": "https://github.com/opencue/cuecards",
+      "downloadUrl": "https://www.npmjs.com/package/cue-ai",
+      "installUrl": "https://www.npmjs.com/package/cue-ai",
+      "codeRepository": "https://github.com/opencue/cuecards",
+      "license": "https://github.com/opencue/cuecards/blob/main/LICENSE",
+      "programmingLanguage": "TypeScript",
+      "runtimePlatform": "Bun, Node.js",
+      "softwareVersion": "latest",
+      "releaseNotes": "https://github.com/opencue/cuecards/blob/main/CHANGELOG.md",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Per-directory profile pinning via .cue.profile",
+        "Materialised CLAUDE_CONFIG_DIR isolation per profile",
+        "Hash-cached rebuilds — warm start <5 ms",
+        "Skills + MCPs + plugins composed together",
+        "Profile inheritance with merge semantics",
+        "Shim-based interception — user types claude, not cue claude",
+        "10 AI coding agents supported: Claude Code, Codex, Cursor, Cline, Gemini CLI, Copilot, Windsurf, Roo Code, Amp, Aider",
+        "cue optimizer dashboard — visual per-skill token audit",
+        "Zero telemetry, no daemon, no background process"
+      ],
+      "keywords": [
+        "claude code profile manager",
+        "AI coding agent profiles",
+        "claude code skills",
+        "MCP server manager",
+        "codex profile manager",
+        "per-directory AI config",
+        "claude code token cost reduction",
+        "agent profile isolation",
+        "cue-ai",
+        "cuecards"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://github.com/opencue",
+      "name": "opencue",
+      "url": "https://github.com/opencue",
+      "sameAs": [
+        "https://github.com/opencue/cuecards",
+        "https://www.npmjs.com/package/cue-ai"
+      ]
+    }
+  ]
+}

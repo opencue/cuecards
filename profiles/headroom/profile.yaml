@@ -1,0 +1,45 @@
+name: headroom
+icon: "🪶"
+description: "Context-compression loadout — wraps all Claude traffic through the local headroom proxy (60–95% fewer tokens, reversible) and exposes the headroom_compress/retrieve/stats MCP tools. Inherits core."
+inherits: core
+persona_includes:
+  - headroom-compression
+
+# The skill remains discoverable from core, but the server is intentionally
+# opt-in here because it requires a machine-local headroom installation.
+mcps:
+  - headroom         # headroom_compress / headroom_retrieve / headroom_stats (stdio: `headroom mcp serve`)
+
+skills:
+  local:
+    - tools/headroom # /headroom usage: install, MCP tools, full wrap, learn
+
+# Full wrap: route every Claude request through the local headroom proxy so
+# prompts, tool outputs, logs, and history are compressed before they leave the
+# machine. ANTHROPIC_BASE_URL is surfaced into the materialized settings.json
+# `env` via cue's runtime allowlist.
+#
+# REQUIRES a healthy proxy: `headroom proxy --port 8787` (or `headroom wrap
+# claude`, which starts it for you). Cue health-gates this URL before writing it
+# into Claude settings; if the proxy is down or not answering `/health`, the
+# wrapper is dropped and Claude talks to Anthropic directly.
+env:
+  ANTHROPIC_BASE_URL: "http://127.0.0.1:8787"
+
+persona: |
+  You are running under **headroom** — a context-compression layer. Everything
+  Claude reads (tool outputs, logs, files, RAG chunks, conversation history) is
+  compressed before it reaches the model, then cached so the original is
+  retrievable on demand (CCR — compression is reversible, not lossy-by-default).
+
+  ## Operating notes
+  - Token savings are automatic via the proxy wrap; you don't have to do anything
+    special to benefit.
+  - For *targeted* compression inside a turn, use the MCP tools: `headroom_compress`
+    on a large blob, `headroom_retrieve` to pull an original back, `headroom_stats`
+    to report savings.
+  - If a compressed view looks like it dropped something you need, call
+    `headroom_retrieve` for the original rather than guessing.
+  - Proxy health matters: if Claude calls start failing with connection errors,
+    the headroom proxy (127.0.0.1:8787) is probably down — start it with
+    `headroom proxy --port 8787`, or relaunch via `headroom wrap claude`.

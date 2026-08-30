@@ -13,8 +13,7 @@
 import { spawnSync } from "node:child_process";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { styleText } from "node:util";
 
 import { parse as parseYaml } from "yaml";
@@ -24,10 +23,10 @@ import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { listAllSkillIds } from "../lib/resolver-local";
 import { fetchCompanionFiles, readSourceFile, findIncompleteSkills } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
+import { unavailableNote, formatVerdict } from "../lib/skillspector";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 // ---------------------------------------------------------------------------
 // Skill metadata parsing
@@ -219,7 +218,7 @@ async function cmdSearch(query: string, json: boolean): Promise<number> {
 async function cmdAddToProfile(id: string, preview = false): Promise<number> {
   const profileName = await getActiveProfileName();
   if (!profileName) {
-    process.stderr.write("No active profile. Pin one with `echo <name> > .cue-profile`\n");
+    process.stderr.write("No active profile. Pin one with `echo <name> > .cue.profile`\n");
     return 1;
   }
 
@@ -338,6 +337,7 @@ async function cmdRemoveFromProfile(id: string): Promise<number> {
 import * as p from "@clack/prompts";
 import { copyFileSync } from "node:fs";
 import { homedir } from "node:os";
+import { repoRoot } from "../lib/repo-root";
 
 const INSTALL_DIRS = [
   join(homedir(), ".claude", "skills"),
@@ -495,12 +495,16 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
   if (newSkills.length === 0) return 0;
 
   // Security gate: scan freshly-fetched skills before the profile hook below
-  // registers any into profile.yaml. Block criticals (SEC1-3) unless
-  // --allow-unsafe; flagged skills stay on disk but are dropped from the set.
+  // registers any into profile.yaml. NVIDIA SkillSpector's DO_NOT_INSTALL and
+  // cue's own criticals (SEC1-3) block unless --allow-unsafe; flagged skills
+  // stay on disk but are dropped from the set.
   {
+    process.stdout.write(`🔍 Scanning ${newSkills.length} new skill(s) with NVIDIA SkillSpector…\n`);
     const blocked: string[] = [];
     for (const slug of newSkills) {
       const gate = gateFreshSkill(slug, { allowUnsafe });
+      const note = unavailableNote(gate.skillspector);
+      if (note) process.stderr.write(`   ${note}\n`);
       if (!gate.ok) {
         blocked.push(slug);
         process.stderr.write(`🔴 BLOCKED ${slug}: ${gate.critical.length} critical security finding(s)\n`);
@@ -509,6 +513,10 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
         }
       } else if (!gate.scanned) {
         process.stderr.write(`⚠️  ${slug}: no SKILL.md found to scan — review manually.\n`);
+      } else if (gate.skillspector.recommendation === "CAUTION") {
+        process.stderr.write(`🟡 ${slug}: ${formatVerdict(gate.skillspector)} — registered, review it.\n`);
+      } else if (gate.skillspector.recommendation === "SAFE") {
+        process.stdout.write(`🟢 ${slug}: SkillSpector SAFE\n`);
       }
     }
     if (blocked.length > 0) {
@@ -808,8 +816,8 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     // #2: Auto-pin option
     const pin = await p.confirm({ message: `Pin "${name}" to current directory?`, initialValue: true });
     if (!p.isCancel(pin) && pin) {
-      await writeFile(join(process.cwd(), ".cue-profile"), `${name}\n`);
-      p.log.success(`Pinned → .cue-profile`);
+      await writeFile(join(process.cwd(), ".cue.profile"), `${name}\n`);
+      p.log.success(`Pinned → .cue.profile`);
     }
 
     // #10: Post-create launch prompt
@@ -817,7 +825,12 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     if (!p.isCancel(launch) && launch) {
       p.outro(`Launching claude with profile "${name}"…`);
       const { execSync } = await import("node:child_process");
-      execSync("claude", { stdio: "inherit", env: { ...process.env } });
+      // The profile is already created; this launch is a convenience. A non-zero
+      // exit (incl. the user quitting claude) throws from execSync — swallow it so
+      // the wizard ends cleanly instead of dumping a stack trace.
+      try {
+        execSync("claude", { stdio: "inherit", env: { ...process.env } });
+      } catch { /* claude exited non-zero — nothing to recover */ }
     } else {
       p.outro(`Profile "${name}" created with ${selectedSkills.length} skills. Run \`cue use ${name}\` to activate.`);
     }

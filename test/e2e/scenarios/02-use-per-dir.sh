@@ -15,11 +15,11 @@ if echo "$output" | grep -q "not yet implemented"; then
   exit 0
 fi
 
-# `cue use <profile>` pins the per-directory profile by writing a `.cue-profile`
+# `cue use <profile>` pins the per-directory profile by writing a `.cue.profile`
 # marker in the CWD (see src/commands/use.ts). It does NOT materialize a runtime
 # under the repo — that lives in ~/.config/cue/runtime/ and is built on launch.
-marker="$repo/.cue-profile"
+marker="$repo/.cue.profile"
 assert_file "$marker"
-grep -q "medusa-dev" "$marker" || fail ".cue-profile should record 'medusa-dev', got: $(cat "$marker")"
+grep -q "medusa-dev" "$marker" || fail ".cue.profile should record 'medusa-dev', got: $(cat "$marker")"
 
-log "use medusa-dev writes .cue-profile marker in the directory"
+log "use medusa-dev writes .cue.profile marker in the directory"

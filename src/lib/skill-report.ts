@@ -9,9 +9,9 @@
  *   - `cue skill-report` — surfaces the table to the user
  *   - `cue prune --dead` — converts zombie list into profile.yaml edits
  *
- * Reads are best-effort: missing log, malformed lines, telemetry disabled all
- * yield an empty hits map. The report still renders, just with everything
- * marked zombie (which is honest given the data).
+ * Reads are best-effort: missing logs, malformed lines, and disabled telemetry
+ * yield unknown usage. A skill becomes unused/zombie only after enough
+ * observed profile launches without a hit.
  */
 
 import { readEvents } from "./analytics";
@@ -24,9 +24,15 @@ export interface SkillUsageRow {
   hits: number;
   /** ISO timestamp of last hit, null when never seen. */
   lastUsed: string | null;
-  /** True when 0 hits AND the skill is declared in the profile. */
+  /** Evidence-aware state: no observation, observed use, or observed non-use. */
+  status: "unknown" | "used" | "unused";
+  /** Distinct profile launches observed in the usage window. */
+  exposures: number;
+  /** True only after enough launches were observed with zero hits. */
   zombie: boolean;
 }
+
+export const MIN_SKILL_USAGE_EXPOSURES = 3;
 
 export interface SkillReportOptions {
   /** How far back (in days) to count hits. Default 30. */
@@ -39,7 +45,10 @@ export interface SkillReportOptions {
     profile?: string;
     skill?: string;
     ts: string;
+    session_id?: string;
   }>;
+  /** Launches required before zero hits become evidence of non-use. Default 3. */
+  minExposureSessions?: number;
 }
 
 /**
@@ -56,6 +65,7 @@ export function computeSkillUsage(
   const now = opts.now ?? new Date();
   const cutoff = new Date(now.getTime() - windowDays * 24 * 60 * 60 * 1000);
   const source = opts.source ?? (() => readEvents(cutoff));
+  const minExposureSessions = opts.minExposureSessions ?? MIN_SKILL_USAGE_EXPOSURES;
 
   // Sum hits by skill id, restricted to events that could plausibly belong
   // to this profile. A composite like `a+b+c` accepts events tagged with
@@ -65,7 +75,13 @@ export function computeSkillUsage(
   // mis-flag a real-use skill as zombie.
   const acceptedProfiles = new Set<string>([profile.name, ...profile.name.split("+")]);
   const hits = new Map<string, { count: number; last: string }>();
+  const exposures = new Set<string>();
   for (const e of source()) {
+    if (e.event === "start") {
+      if (!e.profile || !acceptedProfiles.has(e.profile)) continue;
+      exposures.add(e.session_id || `${e.profile}|${e.ts}`);
+      continue;
+    }
     if (e.event !== "skill_hit" && e.event !== "skill_invoked") continue;
     if (!e.skill) continue;
     if (e.profile && !acceptedProfiles.has(e.profile)) continue;
@@ -89,11 +105,19 @@ export function computeSkillUsage(
     // zombie. The expanded ids land via the materialized profile's skill list.
     if (id.includes("*")) continue;
     const h = hits.get(id) ?? { count: 0, last: "" };
+    const status: SkillUsageRow["status"] =
+      h.count > 0
+        ? "used"
+        : exposures.size >= minExposureSessions
+          ? "unused"
+          : "unknown";
     rows.push({
       id,
       hits: h.count,
       lastUsed: h.last || null,
-      zombie: h.count === 0,
+      status,
+      exposures: exposures.size,
+      zombie: status === "unused",
     });
   }
   rows.sort((a, b) => b.hits - a.hits || a.id.localeCompare(b.id));

@@ -2,21 +2,21 @@
 title: "heal-dev/heal-playwright-tracer — Claude Code skill discovered by cue"
 description: "Open-source statement-level Playwright tracer, purpose-built for AI agents. Analyzes test runs with increased accuracy."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [heal-dev/heal-playwright-tracer](https://github.com/heal-dev/heal-playwright-tracer)
 
-**★ 38** · exceptional (score 9.8) · TypeScript · automation, claude-code, claude-skill, playwright, qa-automation
+**★ 39** · exceptional (score 9.8) · TypeScript · automation, claude-code, claude-skill, playwright, qa-automation
 
 > Open-source statement-level Playwright tracer, purpose-built for AI agents. Analyzes test runs with increased accuracy.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 38 stars
-- 🗓️ Last pushed: 2026-06-03
+- ⭐ 39 stars
+- 🗓️ Last pushed: 2026-06-19
 - 🏷️ Tags: automation, claude-code, claude-skill, playwright, qa-automation, tracing
 
 ## Best fit cue profiles

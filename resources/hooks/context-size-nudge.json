@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/context-size-nudge.sh",
+            "description": "Token-cost guard: one display-only nudge per size tier (default 3MB / 8MB transcript) suggesting /clear between tasks or /compact mid-task — cache reads scale with context length and dominate spend. Fail-open; disable with CUE_CONTEXT_NUDGE_OFF=1.",
+            "id": "cue:userpromptsubmit:context-size-nudge"
+          }
+        ]
+      }
+    ]
+  }
+}

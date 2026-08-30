@@ -7,7 +7,29 @@ export default defineConfig({
     port: 5173,
     // Proxy /api/* to the local Bun dashboard server during dev so the
     // app fetches real data instead of hitting Vite's dev server.
+    //
+    // Auth lives on a separate server (the BetterAuth dev server, or
+    // `vercel dev`). More specific keys are listed first so /api/auth and
+    // /api/v1/me reach the auth server while everything else under /api/*
+    // still hits the dashboard server. Override the auth target with
+    // AUTH_TARGET when running on a non-default port.
     proxy: {
+      "/api/auth": {
+        target: process.env.AUTH_TARGET ?? "http://127.0.0.1:3000",
+        changeOrigin: true,
+      },
+      "/api/v1/me": {
+        target: process.env.AUTH_TARGET ?? "http://127.0.0.1:3000",
+        changeOrigin: true,
+      },
+      // The community marketplace (publish + community catalog) lives on the
+      // auth server too — it shares BetterAuth's session/token + Postgres.
+      // Kept distinct from /api/v1/market (the local dashboard's browse
+      // catalog), so both coexist.
+      "/api/v1/community": {
+        target: process.env.AUTH_TARGET ?? "http://127.0.0.1:3000",
+        changeOrigin: true,
+      },
       "/api": {
         target: "http://127.0.0.1:7891",
         changeOrigin: true,

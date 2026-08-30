@@ -67,4 +67,4 @@ bun run ~/Documents/cue/src/index.ts current
 - Always show the user what you're about to run before executing
 - For `discover install`, default to `--dry-run` first and ask before applying
 - For `evolve --apply`, show the proposal first and confirm
-- The active profile is determined by `.cue-profile` in the current directory
+- The active profile is determined by `.cue.profile` in the current directory

@@ -7,7 +7,14 @@
 
 import { describe, expect, test } from "bun:test";
 
-import { handleProfileDetail, handleMcpCatalog, handleMcpAdd, handleMarket, createHandler, semverGt, computeVersionInfo } from "./dashboard-server";
+import { handleProfileDetail, handleMcpCatalog, handleMcpAdd, handleMarket, handleMarketInstall, createHandler, semverGt, computeVersionInfo, buildTimeline, handleHooks, handleHookSource } from "./dashboard-server";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
+// `resources/skills` is a git submodule. The catalogue test below asserts real
+// on-disk skill bodies (e.g. meta/analyze), so skip it when the submodule isn't
+// checked out (`git submodule update --init`) — a setup gap, not a regression.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 function detail(profile: string) {
   return handleProfileDetail(new URLSearchParams({ profile }));
@@ -47,7 +54,7 @@ describe("version banner logic", () => {
 });
 
 describe("handleProfileDetail", () => {
-  test("returns a real, grouped skill catalogue for gstack", async () => {
+  test.skipIf(!SKILLS_PRESENT)("returns a real, grouped skill catalogue for gstack", async () => {
     const res = await detail("gstack");
     expect(res.ok).toBe(true);
     if (!res.ok) return;
@@ -282,5 +289,104 @@ describe("handleMcpAdd validation", () => {
     const res = await handleMcpAdd({ id: "not-a-real-mcp-xyz", profile: "core" });
     expect(res.ok).toBe(false);
     if (!res.ok) expect(res.error).toMatch(/unknown-mcp/);
+  });
+});
+
+describe("handleMarketInstall validation", () => {
+  test("rejects a missing id", async () => {
+    const res = await handleMarketInstall({ addKind: "skill", profile: "core" });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.error).toBe("missing-id");
+  });
+
+  test("rejects an unknown add kind", async () => {
+    const res = await handleMarketInstall({ id: "skill:x", addKind: "bogus", profile: "core" });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.error).toBe("invalid-add-kind");
+  });
+
+  test("rejects a missing profile", async () => {
+    const res = await handleMarketInstall({ id: "skill:x", addKind: "skill" });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.error).toBe("missing-profile");
+  });
+
+  test("returns a manual command for a CLI without touching a profile", async () => {
+    const res = await handleMarketInstall({ id: "cli:ripgrep", addKind: "cli", profile: "core" });
+    expect(res.ok).toBe(true);
+    if (res.ok) {
+      const data = res.data as { manual?: { command: string }; changed: boolean };
+      expect(data.changed).toBe(false);
+      expect(data.manual?.command).toBeTruthy();
+    }
+  });
+});
+
+describe("buildTimeline", () => {
+  test("returns gap-filled daily buckets spanning the window", () => {
+    const t = buildTimeline(7);
+    expect(t.windowDays).toBe(7);
+    expect(t.daily).toHaveLength(7);
+    expect(t.daily.every((d) => typeof d.sessions === "number" && /^\d{4}-\d{2}-\d{2}$/.test(d.date))).toBe(true);
+    expect(Array.isArray(t.profiles)).toBe(true);
+  });
+});
+
+describe("GET /api/v1/hook-source", () => {
+  test("rejects a missing path", async () => {
+    const r = await handleHookSource(new URLSearchParams());
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error).toBe("missing-path");
+  });
+
+  test("rejects an arbitrary path — only enumerated hook scripts are readable", async () => {
+    const r = await handleHookSource(new URLSearchParams({ path: "/etc/passwd" }));
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error).toBe("not-a-hook-script");
+  });
+
+  test("rejects a path traversal that escapes the hooks dir", async () => {
+    const r = await handleHookSource(new URLSearchParams({ path: "/x/hooks/../../../../etc/passwd" }));
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error).toBe("not-a-hook-script");
+  });
+
+  test("serves a real enumerated hook script's source", async () => {
+    const hk = await handleHooks(new URLSearchParams());
+    if (!hk.ok) return; // telemetry/profile unresolved in this env — security cases still cover it
+    const events = (hk.data as { events: { hooks: { scriptPath: string | null }[] }[] }).events;
+    // A hook can be declared in settings.json with a scriptPath that points at a
+    // file not materialized on disk (e.g. a pruned/planned hook). handleHookSource
+    // correctly refuses to serve a missing file, so pick a hook whose script
+    // actually exists — that's the real-source case this test is asserting.
+    const withScript = events.flatMap((e) => e.hooks).find((h) => h.scriptPath && existsSync(h.scriptPath));
+    if (!withScript?.scriptPath) return; // no materialized hook scripts here
+    const r = await handleHookSource(new URLSearchParams({ path: withScript.scriptPath }));
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      const d = r.data as { filename: string; content: string; language: string };
+      expect(d.filename.length).toBeGreaterThan(0);
+      expect(typeof d.content).toBe("string");
+      expect(d.language.length).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe("GET /api/v1/telemetry/stream (SSE)", () => {
+  test("responds as an event-stream and pushes an initial frame", async () => {
+    const handler = createHandler();
+    const res = await handler(new Request("http://localhost/api/v1/telemetry/stream?since=7"));
+    expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toContain("text/event-stream");
+    expect(res.body).not.toBeNull();
+    // Read just the first frame, then cancel so the stream's interval timers
+    // stop and the test process can exit.
+    const reader = res.body!.getReader();
+    const { value, done } = await reader.read();
+    expect(done).toBe(false);
+    const text = new TextDecoder().decode(value);
+    // A real timeline frame when telemetry is on, or the disabled error frame.
+    expect(text).toMatch(/event: (timeline|error)/);
+    await reader.cancel();
   });
 });

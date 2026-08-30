@@ -16,13 +16,16 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.13
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Run tests
         run: bun test --timeout 30000
+
+      - name: Enforce critical-path coverage
+        run: bun run test:critical:coverage
 
       - name: Verify CLI boots
         run: bun src/index.ts --version
@@ -34,9 +37,11 @@ jobs:
           # Stub authmux so install.sh's Step 5 doesn't run `npm install -g`.
           printf '#!/usr/bin/env bash\necho 0.0.0\n' > "$PREFIX/authmux"
           chmod +x "$PREFIX/authmux"
-          SHIM_DIR="$PREFIX" CUE_DIR="$GITHUB_WORKSPACE" PATH="$PREFIX:$PATH" bash ./install.sh --yes
+          # CUE_SHIMS is where the agent shims land; without it they go to
+          # ~/.config/cue/shims and the assertions below test an empty prefix.
+          SHIM_DIR="$PREFIX" CUE_SHIMS="$PREFIX" CUE_DIR="$GITHUB_WORKSPACE" PATH="$PREFIX:$PATH" bash ./install.sh --yes
           test -L "$PREFIX/cue" -o -f "$PREFIX/cue"
-          grep -q 'exec cue launch claude' "$PREFIX/claude"
+          grep -Eq 'exec .*bin/cue" launch claude' "$PREFIX/claude"
           PATH="$PREFIX:$PATH" "$PREFIX/cue" --version
 
       - name: Verify bundled CLI boots
@@ -54,10 +59,10 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.13
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Type check
         run: bun x tsc --noEmit --skipLibCheck
@@ -65,9 +70,7 @@ jobs:
       - name: Lint (biome)
         run: bun run lint
 
-      # Advisory until the skill-hygiene backlog (duplicate slugs etc.) is
-      # cleared; `skills lint --all` currently reports 174 errors the
-      # materializer tolerates via last-wins. Fixed the command (was a silent
-      # no-op: bare `skills-lint` exits 1 on usage, masked by `|| true`).
+      # Ratchet the inherited/vendor skill backlog: existing debt is tolerated,
+      # but a PR cannot increase the error count. Lower MAX_ERRORS as cleanup lands.
       - name: Lint skills
-        run: bun src/index.ts skills lint --all || true
+        run: bun run lint:skills:baseline

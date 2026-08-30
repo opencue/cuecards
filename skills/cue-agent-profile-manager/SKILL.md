@@ -5,7 +5,7 @@ tags: [agent, profiles, skills, mcp, claude-code, codex, configuration]
 category: meta
 version: 0.3.0
 author: NagyVikt
-repository: https://github.com/opencue/claude-code-skills
+repository: https://github.com/opencue/cuecards
 ---
 
 # cue — Agent Profile Manager for Claude Code & Codex
@@ -15,9 +15,9 @@ Pick a profile. Launch with the right skills, MCPs, and plugins. Nothing else.
 ## Install
 
 ```bash
-npm install -g @opencue/claude-code-skills
+npm install -g cue-ai
 # or
-gh repo clone opencue/claude-code-skills ~/Documents/cue && ~/Documents/cue/install.sh
+gh repo clone opencue/cuecards ~/Documents/cue && ~/Documents/cue/install.sh
 ```
 
 ## Quick Start

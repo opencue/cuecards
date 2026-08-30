@@ -1,10 +1,10 @@
 /**
- * `cue submit-profile <path>` — fork opencue/claude-code-skills, branch, commit the profile,
+ * `cue submit-profile <path>` — fork opencue/cuecards, branch, commit the profile,
  * open a PR. Lowers contribution friction for community profiles.
  *
  * Workflow:
  *   1. Validate the input profile.yaml via the existing linter (no E-errors)
- *   2. `gh repo fork opencue/claude-code-skills --clone` into a tmp dir (or use existing fork)
+ *   2. `gh repo fork opencue/cuecards --clone` into a tmp dir (or use existing fork)
  *   3. Copy profile.yaml into profiles/<name>/ on a new branch
  *   4. Commit + push + `gh pr create`
  *
@@ -26,7 +26,7 @@ const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
 const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
 const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
 
-const UPSTREAM_REPO = "opencue/claude-code-skills";
+const UPSTREAM_REPO = "opencue/cuecards";
 
 interface ProfileMeta {
   name: string;
@@ -188,7 +188,7 @@ cue validate ${meta.name}
 
 ---
 
-<sub>Opened with [\`cue submit-profile\`](https://github.com/opencue/claude-code-skills/blob/main/src/commands/submit-profile.ts).</sub>`;
+<sub>Opened with [\`cue submit-profile\`](https://github.com/opencue/cuecards/blob/main/src/commands/submit-profile.ts).</sub>`;
 
   if (dryRun) {
     process.stdout.write(`\n  ${bold("─── DRY RUN ───")}\n`);

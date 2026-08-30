@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# cue-review-watch — live view of a code review in progress. Run it in a second
+# pane and watch the reviewer move file-by-file, dimension-by-dimension, with
+# findings as they land — instead of an opaque "Precipitating…" spinner.
+#
+# Reads the JSONL written by cue-review-progress (and the auto-review Stop hook).
+#
+# Usage:
+#   cue-review-watch                # follow the latest review, live
+#   cue-review-watch --id <id>      # follow a specific review
+#   cue-review-watch --once         # print what's there so far and exit (no follow)
+set -euo pipefail
+
+DIR="${XDG_CONFIG_HOME:-$HOME/.config}/cue/review-progress"
+ID="" ONCE=0
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --id)   ID="$2"; shift 2 ;;
+    --once) ONCE=1; shift ;;
+    -h|--help) grep '^#' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    *) echo "cue-review-watch: unknown flag $1" >&2; exit 1 ;;
+  esac
+done
+
+# Colors only on a tty.
+if [[ -t 1 ]]; then
+  B=$'\033[1m'; D=$'\033[2m'; R=$'\033[31m'; Y=$'\033[33m'; G=$'\033[32m'; C=$'\033[36m'; M=$'\033[35m'; Z=$'\033[0m'
+else
+  B="" D="" R="" Y="" G="" C="" M="" Z=""
+fi
+
+have_jq=0; command -v jq >/dev/null 2>&1 && have_jq=1
+
+get() { # $1=field  (reads $line); jq if present, grep fallback
+  if [[ $have_jq -eq 1 ]]; then
+    printf '%s' "$line" | jq -r --arg f "$1" '.[$f] // ""' 2>/dev/null
+  else
+    printf '%s' "$line" | grep -oE "\"$1\"[[:space:]]*:[[:space:]]*\"[^\"]*\"" | head -1 \
+      | sed -E "s/.*\"$1\"[[:space:]]*:[[:space:]]*\"([^\"]*)\".*/\1/"
+  fi
+}
+
+hhmmss() { printf '%s' "${1:-}" | sed -E 's/.*T([0-9:]{8}).*/\1/'; }
+
+render() { # reads $line
+  local kind ts t file dim sev title detail
+  kind="$(get kind)"; [[ -z "$kind" ]] && return 0
+  ts="$(get ts)"; t="$(hhmmss "$ts")"
+  file="$(get file)"; dim="$(get dim)"; sev="$(get severity)"; title="$(get title)"; detail="$(get detail)"
+  case "$kind" in
+    start)   printf '%s%s▶ review started%s %s%s%s\n' "$D$t  $Z" "$B$C" "$Z" "$D" "${detail:+($detail files) }${title}" "$Z" ;;
+    file)    printf '%s%s📄 %s%s\n' "$D$t  $Z" "$B" "$file" "$Z" ;;
+    dim)     printf '%s   %s→ %s%s\n' "$D$t  $Z" "$C" "$dim" "$Z" ;;
+    finding)
+      local col gl
+      case "$sev" in
+        CRITICAL) col="$R$B"; gl="🔴" ;;
+        HIGH)     col="$R";   gl="🟠" ;;
+        MEDIUM)   col="$Y";   gl="🟡" ;;
+        *)        col="$D";   gl="⚪" ;;
+      esac
+      printf '%s     %s%s %s%s %s%s\n' "$D$t  $Z" "$col" "$gl" "${sev:-NOTE}" "$Z" "${file:+$file${dim:+ · $dim}  }" "$title"
+      [[ -n "$detail" ]] && printf '          %s%s%s\n' "$D" "$detail" "$Z"
+      ;;
+    note)    printf '%s   %s· %s%s\n' "$D$t  $Z" "$D" "${title}${detail:+: $detail}" "$Z" ;;
+    end)     printf '%s%s✅ review complete%s %s%s%s\n' "$D$t  $Z" "$B$G" "$Z" "$D" "$title" "$Z" ;;
+  esac
+}
+
+# Resolve the review id / file.
+[[ -z "$ID" && -r "$DIR/latest" ]] && ID="$(head -1 "$DIR/latest")"
+if [[ -z "$ID" ]]; then
+  echo "${D}cue-review-watch: no review yet. Start one, or a reviewer will.${Z}" >&2
+fi
+
+# Wait for the file to appear (a reviewer may not have started yet).
+file_path="$DIR/${ID:-__none__}.jsonl"
+if [[ ! -e "$file_path" ]]; then
+  printf '%swaiting for a review to start (%s)…%s\n' "$D" "$DIR" "$Z"
+  while [[ ! -e "$file_path" ]]; do
+    # latest may update to a new id while we wait
+    [[ -r "$DIR/latest" ]] && ID="$(head -1 "$DIR/latest")" && file_path="$DIR/$ID.jsonl"
+    sleep 1
+  done
+fi
+
+printf '%swatching %s%s\n\n' "$D" "$file_path" "$Z"
+
+if [[ $ONCE -eq 1 ]]; then
+  while IFS= read -r line; do render; done < "$file_path"
+  exit 0
+fi
+
+# Follow live. -F keeps following across truncation/rotation.
+tail -n +1 -F "$file_path" 2>/dev/null | while IFS= read -r line; do
+  render
+  printf '%s' "$(get kind)" | grep -q '^end$' && break || true
+done

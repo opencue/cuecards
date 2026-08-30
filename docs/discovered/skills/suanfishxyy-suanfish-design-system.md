@@ -2,19 +2,19 @@
 title: "SuanFishXYY/suanfish-design-system — Claude Code skill discovered by cue"
 description: "🐟 Suanfish Design System — 33 specialized AI design agents across 7 tiers with REJECT mechanism. Multi-agent design language SKILL for Claude Code / Codex CLI "
 layout: page
-updated: 2026-06-03
+updated: 2026-06-08
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [SuanFishXYY/suanfish-design-system](https://github.com/SuanFishXYY/suanfish-design-system)
 
-**★ 6** · exceptional (score 10.9) · JavaScript · agent-skills, agent-ui, ai, ai-native, anthropic
+**★ 6** · exceptional (score 10.6) · JavaScript · agent-skills, agent-ui, ai, ai-native, anthropic
 
 > 🐟 Suanfish Design System — 33 specialized AI design agents across 7 tiers with REJECT mechanism. Multi-agent design language SKILL for Claude Code / Codex CLI / Copilot CLI. v2.5 adds AI-native Path G (streaming · tool-calls · reasoning · citations · artifacts).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
 - ✅ Contains SKILL.md
 - ⭐ 6 stars
 - 🗓️ Last pushed: 2026-06-01

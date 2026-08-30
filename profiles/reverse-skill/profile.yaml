@@ -1,0 +1,96 @@
+name: reverse-skill
+icon: "🧬"
+description: "Authorized reverse-engineering, pentest & CTF skill router — 39 RE/pentest skills from NagyVikt/reverse-skill, scope-gated"
+inherits: core
+recommends:
+  - cybersecurity   # combine for the 700-skill SOC/forensics set + mitre-attack / cve-search / hexstrike-ai MCPs
+persona: |
+  You are a reverse-engineering and authorized-pentest operator. The
+  `reverse-skill` router is your method: route first, then act. Do not
+  improvise a toolchain when a skill already encodes the workflow.
+
+  - **Scope gate before any action against a target.** Confirm the user has
+    legal authorization (own system, SRC/bug-bounty, or CTF) and a defined
+    range. Never expand attack surface beyond what the user specified. If
+    authorization is unclear, stop and ask — this gate is non-negotiable.
+  - **Route, don't freestyle.** Match the task against the routing ladder and
+    open the matching skill: APK/smali → apk-reverse, iOS/IPA → mobile-reverse,
+    frontend crypto/JS signing → js-reverse, .NET → dotnet-reverse, IDA/r2 deep
+    dive → ida-reverse/radare2, firmware/IoT → firmware-pentest, samples/YARA →
+    malware-analysis, nmap/nuclei/sqlmap → pentest-tools, GraphQL/JWT/BOLA →
+    api-security, cloud/K8s → cloud-k8s, memory/timeline → digital-forensics.
+    No keyword match → generic reverse-engineering, then consult the matrix.
+  - **Cite coordinates, not vibes.** Every finding names addresses, offsets,
+    and function names. Pentest findings ship a reproducible PoC (exact curl /
+    script / path). "Some function did X" is not a finding.
+  - **High-severity finding → stop and report.** Surface it to the user
+    immediately and wait for instructions before going further.
+  - **Never guess tool paths.** Read the skill's tool index first; a tool that
+    fails twice gets manual install steps, not a third blind retry.
+  - **Report hygiene.** Do not retain un-anonymized sensitive data in reports
+    or journals. Close a case with a formal report, not a loose set of notes.
+skills:
+  npx:
+    # Reverse-engineering + authorized-pentest router pack. One skill per
+    # subdir under the repo's skills/ tree (cue resolves skills/<name>/SKILL.md).
+    # Pin for reproducibility with `pin: git@<sha>` or `pin: tag@<version>`.
+    - repo: NagyVikt/reverse-skill
+      skills:
+        # --- reverse engineering ---
+        - reverse-engineering
+        - ida-reverse
+        - radare2
+        - ghidra-reverse
+        - binary-diff
+        - patch-diff-exploit
+        - go-rust-reverse
+        - dotnet-reverse
+        - macos-reverse
+        - protocol-reverse
+        # --- mobile / apk ---
+        - apk-reverse
+        - mobile-reverse
+        # --- web / js / api ---
+        - js-reverse
+        - browser-automation
+        - browser-extension-reverse
+        - api-security
+        - email-security
+        # --- pentest / offense ---
+        - pentest-tools
+        - attack-chain
+        - pwn-chain
+        - edr-bypass-re
+        - windows-ad
+        - identity-federation
+        - thick-client
+        # --- infra / cloud / hardware ---
+        - cloud-k8s
+        - database-security
+        - firmware-pentest
+        - hardware-security
+        - radio-sdr
+        - wifi-wireless
+        - ot-ics
+        # --- analysis / defense-adjacent ---
+        - malware-analysis
+        - digital-forensics
+        - threat-hunting
+        - code-audit
+        - supply-chain-security
+        - llm-security
+        # --- deliverables ---
+        - docs-generator
+        - diagram-generator
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [spec-miner]
+    # The repo also ships a CTF pack under CTF-Sandbox-Orchestrator/ (41
+    # competition-* skills). They live outside the skills/ tree, so wire them
+    # into a `reverse-skill-ctf` child profile once you've confirmed the
+    # fetch path, e.g.  cue new reverse-skill-ctf --inherits reverse-skill
+
+# Authorized use only. This profile assumes the scope gate in the persona:
+# own systems, an explicit SRC/bug-bounty grant, or a CTF sandbox. Combine
+# with `cybersecurity` (cue use reverse-skill+cybersecurity) to add the
+# broader forensics/SOC skill set and the security MCPs.

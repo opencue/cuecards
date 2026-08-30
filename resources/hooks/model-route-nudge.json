@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/model-route-nudge.sh",
+            "description": "Classify a user prompt by task hardness and inject a one-line model-routing reminder: HARD work stays on Opus, EASY/SEARCH and MECHANICAL work gets delegated to a Sonnet subagent. Pairs with the core 'Model routing' persona block. Non-blocking, confident-match-only, throttled to once per ~5 min per session, suppressible with [skip-route].",
+            "id": "cue:userpromptsubmit:model-route-nudge"
+          }
+        ]
+      }
+    ]
+  }
+}

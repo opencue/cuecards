@@ -21,7 +21,7 @@ skills:
 YAML
 
 # A mock `npx` that records every invocation. `cue use` is a pure per-directory
-# pin (writes .cue-profile) — it must NEVER shell out to npx to fetch skills.
+# pin (writes .cue.profile) — it must NEVER shell out to npx to fetch skills.
 # (npx skills are resolved later, at materialize/launch time — not on pin.)
 mock_bin="$SOUL_E2E_WORK/mock-bin"
 log_file="$SOUL_E2E_WORK/07-npx.log"

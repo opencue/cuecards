@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/ccusage-daily-report.sh",
+            "description": "Once-a-day coding-agent spend digest via ccusage: one systemMessage line (today / yesterday / last-7d cost) on the first session of the day. Display-only, no context tokens. Fail-open; throttled by ~/.config/cue/ccusage-daily-stamp; disable with CUE_CCUSAGE_DAILY_OFF=1.",
+            "id": "cue:sessionstart:ccusage-daily-report"
+          }
+        ]
+      }
+    ]
+  }
+}

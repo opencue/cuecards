@@ -64,7 +64,7 @@ A **Claude Code plugin** is a published bundle of skills, commands, and hooks di
 <a id="profile"></a>
 ## Profile
 
-A **cue profile** is a directory under `profiles/<name>/` containing a `profile.yaml` that declares which skills, MCPs, plugins, rules, commands, hooks, persona, playbooks, quality gates, and evals are scoped to that profile. A profile inherits from at most one parent via `inherits:`, composing up to 3 levels deep. The active profile for a directory is resolved from `.cue-profile`, a repo-level default, a global default, or an interactive TUI picker — in that precedence order.
+A **cue profile** is a directory under `profiles/<name>/` containing a `profile.yaml` that declares which skills, MCPs, plugins, rules, commands, hooks, persona, playbooks, quality gates, and evals are scoped to that profile. A profile inherits from at most one parent via `inherits:`, composing up to 3 levels deep. The active profile for a directory is resolved from `.cue.profile`, a repo-level default, a global default, or an interactive TUI picker — in that precedence order.
 
 <a id="profile-yaml"></a>
 ## profile.yaml

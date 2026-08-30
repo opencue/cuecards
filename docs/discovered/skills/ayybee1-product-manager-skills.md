@@ -2,7 +2,7 @@
 title: "ayybee1/product-manager-skills — Claude Code skill discovered by cue"
 description: "Enable AI tools to perform product management tasks like critiquing PRDs, analyzing SaaS metrics, and planning roadmaps using pure Markdown prompts."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-16
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: ai, ai-agent, ai-agent-skill, ai-tools, business-analysis, career-coaching, claude-ai, claude-code, claude-skills, claudeskills, discovery, jtbd, open-source, openclaw-skill, pm-tools, prd, product-manager, roadmap, saas-metrics, user-stories
 
 ## Best fit cue profiles

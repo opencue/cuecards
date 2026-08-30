@@ -15,6 +15,7 @@
 import { useEffect, useState } from "react";
 
 import { useHooks, type HookEntry } from "../api";
+import { HookSourceModal } from "./HookSource";
 
 // Per-event colour + one-line blurb (presentation only).
 const EVENTS: Record<string, { color: string; blurb: string }> = {
@@ -43,6 +44,9 @@ export function HooksView({ profile }: { profile: string | null }) {
   });
   useEffect(() => { try { localStorage.setItem("cue-hooks-off", JSON.stringify(off)); } catch { /* ignore */ } }, [off]);
   const toggle = (id: string) => setOff((o) => ({ ...o, [id]: !o[id] }));
+
+  // The hook whose script is open in the source viewer (null = closed).
+  const [viewing, setViewing] = useState<HookEntry | null>(null);
 
   const events = data?.events ?? [];
   const total = data?.total ?? 0;
@@ -88,7 +92,14 @@ export function HooksView({ profile }: { profile: string | null }) {
                       <span className="hk-matcher" style={{ borderColor: e.color + "55", color: e.color }}>{h.matcher}</span>
                       <span className="hk-desc">{h.description || h.id}</span>
                     </div>
-                    <div className="hk-cmd"><span className="hk-cmd-prompt">$</span>{h.command}</div>
+                    {h.scriptPath ? (
+                      <button className="hk-cmd hk-cmd-btn" onClick={() => setViewing(h)} title="view script source">
+                        <span className="hk-cmd-prompt">$</span>{h.command}
+                        <span className="hk-view">view ↗</span>
+                      </button>
+                    ) : (
+                      <div className="hk-cmd"><span className="hk-cmd-prompt">$</span>{h.command}</div>
+                    )}
                   </div>
                   <div className="hk-meta">
                     <span className={"hk-src" + (h.source === "global" ? " global" : "")}>{h.source}</span>
@@ -99,6 +110,8 @@ export function HooksView({ profile }: { profile: string | null }) {
           </div>
         );
       })}
+
+      {viewing && <HookSourceModal hook={viewing} profile={profile} onClose={() => setViewing(null)} />}
     </div>
   );
 }

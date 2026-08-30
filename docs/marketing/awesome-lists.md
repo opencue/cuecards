@@ -18,23 +18,16 @@ Highest ROI of any growth task. Each PR is durable inbound traffic for years.
 
 ## The canonical entry to paste
 
-Keep it under 200 chars. The recipe most awesome-lists follow:
+One variant, everywhere. Three variants is how the pitch split in the first
+place. The wording is the searchable descriptor from
+[`positioning.md`](./positioning.md) — do not improvise a per-list rewrite.
 
 ```markdown
-- [cue](https://github.com/opencue/cuecards) — Agent profile manager for Claude Code, Codex, and 10+ AI coding agents. Discover, install, and organize skills, MCPs, and plugins per-project. [![Stars](https://img.shields.io/github/stars/opencue/cuecards?style=social)](https://github.com/opencue/cuecards)
+- [cue](https://github.com/opencue/cuecards) — Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory. [![Stars](https://img.shields.io/github/stars/opencue/cuecards?style=social)](https://github.com/opencue/cuecards)
 ```
 
-Variant emphasizing **discovery** (for awesome-mcp-servers):
-
-```markdown
-- [cue](https://github.com/opencue/cuecards) — Discover MCP servers + skills via GitHub Code Search, score by quality signal, install into per-profile bundles. CLI, MIT-licensed. [![Stars](https://img.shields.io/github/stars/opencue/cuecards?style=social)](https://github.com/opencue/cuecards)
-```
-
-Variant for **CLI tools** lists:
-
-```markdown
-- [cue](https://github.com/opencue/cuecards) `npm install -g cue-ai` — Profile manager + skill discovery for AI coding agents. One CLI, 10+ agents, automatic per-project profile resolution.
-```
+If a list caps entry length below what this fits, trim from the right (drop the
+badge first, then `— scopes which…`). Never swap in a different pitch.
 
 ## Workflow per list
 

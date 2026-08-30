@@ -12,17 +12,16 @@
  *   2  internal error (uncaught exception, missing dep)
  */
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import { resolve } from "node:path";
 import { COMMANDS, type CommandName } from "./commands/_index";
+import { runCommand } from "./lib/command-runner";
+import { repoRoot } from "./lib/repo-root";
 
-const HERE = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(HERE, "..");
 
 function readVersion(): string {
   try {
     const pkg = JSON.parse(
-      readFileSync(resolve(REPO_ROOT, "package.json"), "utf8"),
+      readFileSync(resolve(repoRoot(), "package.json"), "utf8"),
     ) as { version?: string };
     return pkg.version ?? "0.0.0";
   } catch {
@@ -30,72 +29,30 @@ function readVersion(): string {
   }
 }
 
-function printHelp(): void {
-  const groups: Record<string, [string, string][]> = {
-    "Profile Management": [
-      ["list", "List available profiles"],
-      ["use", "Activate a profile for the current directory"],
-      ["current", "Show the active profile"],
-      ["tui", "Three-pane interactive viewer: profiles, skills, preview"],
-      ["new", "Scaffold a new profile"],
-      ["create-profile", "Create profile from skills/MCPs list"],
-      ["icon", "Pick an emoji icon for a profile"],
-      ["init", "Interactive project scanner + profile wizard"],
-      ["auto-detect", "Detect project type and suggest a profile"],
-      ["diff", "Compare two profiles side-by-side"],
-      ["tree", "Visualize profile inheritance tree"],
-      ["lock", "Lock a profile to prevent modifications"],
-      ["unlock", "Unlock a previously locked profile"],
-    ],
-    "Skills": [
-      ["skills", "Manage skills: list, search, rank, add/remove"],
-      ["skills add", "Install skills from GitHub with profile hook"],
-      ["skills rank", "Show skill usage leaderboard"],
-      ["packs", "Manage skill packs (grouped bundles)"],
-    ],
-    "MCPs & Marketplace": [
-      ["mcps", "Manage MCP servers: list, add, remove"],
-      ["marketplace", "Search and install from remote registry"],
-      ["sources", "Show GitHub repos providing skills"],
-    ],
-    "Diagnostics & Optimization": [
-      ["optimizer", "Review profiles: skills, MCPs, CLIs dashboard"],
-      ["doctor", "Diff declared vs actual state; --fix repairs"],
-      ["validate", "Schema + lint checks for profiles"],
-      ["cost", "Estimate token budget for a profile"],
-      ["stats", "Profile usage analytics"],
-      ["scan", "Tree of installed skills/plugins by domain"],
-      ["why", "Trace why a skill/MCP is loaded"],
-      ["mem", "Inspect/manage per-profile claude-mem stores"],
-    ],
-    "Launch & Shell": [
-      ["launch", "Resolve + materialize + exec claude/codex"],
-      ["shell", "Install/uninstall shims (~/.local/bin)"],
-      ["update", "Self-update: git pull + bun install"],
-      ["upgrade", "Pull new skills from the registry"],
-      ["clean", "Prune stale runtimes and cache"],
-      ["migrate", "Auto-migrate profiles to latest schema"],
-    ],
-    "Multi-Agent": [
-      ["colony-dispatch", "Resolve profile for a Colony task"],
-      ["handoff", "Pass skill context between agents"],
-      ["trace", "Live session inspector"],
-      ["replay", "Replay session with different profile"],
-      ["replay --what-if", "Simulate session with alternate profile"],
-    ],
-    "Intelligence": [
-      ["ai", "Create profile from natural language"],
-      ["suggest", "Usage-based profile recommendations"],
-      ["score", "Profile efficiency score (A+ to F)"],
-      ["benchmark", "Measure token usage from transcripts"],
-    ],
-    "Import / Export": [
-      ["import", "Import profile from URL, file, or repo"],
-      ["export", "Export profile as portable YAML"],
-      ["snapshot", "Export/restore current profile state"],
-      ["share", "Publish/browse community profiles"],
-    ],
-  };
+const ESSENTIAL_COMMANDS: CommandName[] = [
+  "setup",
+  "use",
+  "current",
+  "status",
+  "list",
+  "launch",
+  "skills",
+  "mcps",
+  "auth",
+  "doctor",
+  "validate",
+  "sync",
+  "tui",
+];
+
+function printCommandRows(names: CommandName[]): void {
+  const width = Math.max(...names.map((name) => name.length)) + 2;
+  for (const name of names) {
+    process.stdout.write(`  ${name.padEnd(width)}${COMMANDS[name].summary}\n`);
+  }
+}
+
+function printHelp(all = false): void {
 
   process.stdout.write(
     "\x1b[1mcue\x1b[0m — Agent Profile Manager for Claude Code & Codex\n" +
@@ -103,17 +60,17 @@ function printHelp(): void {
     "\x1b[1mUsage:\x1b[0m cue <command> [args...]\n\n"
   );
 
-  for (const [group, cmds] of Object.entries(groups)) {
-    process.stdout.write(`\x1b[1m${group}:\x1b[0m\n`);
-    for (const [name, desc] of cmds) {
-      process.stdout.write(`  ${name.padEnd(18)}${desc}\n`);
-    }
-    process.stdout.write("\n");
-  }
+  const commands = all
+    ? (Object.keys(COMMANDS).sort() as CommandName[])
+    : ESSENTIAL_COMMANDS;
+  process.stdout.write(`\x1b[1m${all ? "All commands" : "Core commands"}:\x1b[0m\n`);
+  printCommandRows(commands);
+  process.stdout.write("\n");
 
   process.stdout.write(
     "\x1b[1mGlobal flags:\x1b[0m\n" +
     "  -h, --help       Show this help\n" +
+    "      --all        Show the full command catalogue\n" +
     "  -v, --version    Print version\n\n"
   );
 
@@ -128,6 +85,7 @@ function printHelp(): void {
 
   process.stdout.write(
     "\x1b[1mLearn more:\x1b[0m\n" +
+    (all ? "" : "  Run `cue --help --all` for every command.\n") +
     "  Run `cue <command> --help` for command-specific usage.\n" +
     "  Run `cue status` for the current-directory dashboard.\n"
   );
@@ -226,7 +184,8 @@ async function main(argv: string[]): Promise<number> {
   const skipUpdateCheck =
     AGENT_LAUNCH_COMMANDS.has(args[0] ?? "") ||
     TRIVIAL_ARGS.has(args[0] ?? "") ||
-    process.env.CUE_LAUNCHING === "1" ||
+    // Any depth counts — CUE_LAUNCHING carries a number now, not just "1".
+    !!process.env.CUE_LAUNCHING ||
     !!process.env.CI ||
     !process.stdin.isTTY ||
     !process.stdout.isTTY;
@@ -234,18 +193,11 @@ async function main(argv: string[]): Promise<number> {
 
   if (args.length === 0) {
     // Show status dashboard by default (like `git status`)
-    const statusCmd = COMMANDS["status"];
-    try {
-      const mod = await statusCmd.load();
-      return await mod.run([]);
-    } catch {
-      printHelp();
-      return 0;
-    }
+    return runCommand("status", [], COMMANDS.status);
   }
 
   if (args[0] === "-h" || args[0] === "--help" || args[0] === "help") {
-    printHelp();
+    printHelp(args.includes("--all"));
     return 0;
   }
 
@@ -275,20 +227,16 @@ async function main(argv: string[]): Promise<number> {
     return 1;
   }
 
-  try {
-    const mod = await cmd.load();
-    return await mod.run(args.slice(1));
-  } catch (err) {
-    const msg = err instanceof Error ? err.stack ?? err.message : String(err);
-    process.stderr.write(`cue: internal error in "${name}": ${msg}\n`);
-    return 2;
-  }
+  return runCommand(name, args.slice(1), cmd);
 }
 
 main(process.argv).then(
-  (code) => process.exit(code),
+  // Let stdout/stderr drain before Node/Bun exits. Calling process.exit()
+  // truncates large machine-readable responses (notably `cue list --json`)
+  // when the CLI is piped into jq or another consumer.
+  (code) => { process.exitCode = code; },
   (err) => {
     process.stderr.write(`cue: fatal: ${err}\n`);
-    process.exit(2);
+    process.exitCode = 2;
   },
 );

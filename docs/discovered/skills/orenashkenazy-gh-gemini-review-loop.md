@@ -2,7 +2,7 @@
 title: "OrenAshkenazy/gh-gemini-review-loop — Claude Code skill discovered by cue"
 description: "Opinionated Gemini Code Assist PR review loop for Claude Code. Thread-state-aware, severity-filtered, 3-cycle cap, sticky-receipt visibility. No CI coupling."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-06-09
 - 🏷️ Tags: claude-code-plugin, claude-code-skill, claude-skill, code-review, gemini, gemini-code-assist, plugin-marketplace, pull-request
 
 ## Best fit cue profiles

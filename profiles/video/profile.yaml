@@ -33,7 +33,11 @@ skills:
       skills: [ffmpeg]                       # 3.6K installs — top ffmpeg skill
     - repo: mindmorass/reflex
       skills: [ffmpeg-patterns]              # 269 installs — pattern library complement
+    # Discovered 2026-06-08: Gemini-backed video understanding.
+    - repo: sandypoli-boop/claude-gemini-video
+      skills: [claude-gemini-video]
 plugins:
   - claude-video-vision@jordanrendric
 mcps:
   - Higgsfield
+  - cue-tty-watch   # design/headless-gif-demo records terminal GIFs via the TTY-watch MCP

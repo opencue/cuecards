@@ -1,0 +1,38 @@
+# Redirect rules for cuecards.
+# Apply these in your hosting config (Vercel, Nginx, GitHub Pages _redirects).
+# Format: from → to, with HTTP status.
+
+redirects:
+  # Short vanity URLs → canonical long-form docs
+  - from: /install
+    to: https://github.com/opencue/cuecards/blob/main/setup/lean-cue.md
+    status: 302
+
+  - from: /docs
+    to: https://github.com/opencue/cuecards/tree/main/docs
+    status: 302
+
+  - from: /get
+    to: https://github.com/opencue/cuecards/blob/main/get.sh
+    status: 302
+
+  - from: /npm
+    to: https://www.npmjs.com/package/cue-ai
+    status: 302
+
+  # Old path → new path (keep when renaming docs)
+  - from: /docs/profiles
+    to: /docs/concepts/profiles
+    status: 301
+
+  - from: /docs/comparison/cue-vs-manual
+    to: /docs/comparison/cue-vs-manual-claude-config
+    status: 301
+
+# Vercel vercel.json equivalent (generate with scripts/generate-robots.ts):
+# {
+#   "redirects": [
+#     { "source": "/install", "destination": "...", "permanent": false },
+#     ...
+#   ]
+# }

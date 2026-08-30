@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+import fs from "node:fs"; import { diffPicoclawProfiles, highestSeverity, severityAtOrAbove } from "../lib/drift.mjs"; import { stableStringify } from "../lib/profile.mjs";
+function parse(argv){const a={failOn:"critical"}; for(let i=0;i<argv.length;i++){const t=argv[i]; if(t==="--baseline") a.baseline=argv[++i]; else if(t==="--current") a.current=argv[++i]; else if(t==="--fail-on") a.failOn=argv[++i]; else throw new Error(`Unknown argument: ${t}`);} if(!a.baseline||!a.current) throw new Error("--baseline and --current are required"); return a;}
+const a=parse(process.argv.slice(2)); const result=diffPicoclawProfiles(JSON.parse(fs.readFileSync(a.baseline,"utf8")), JSON.parse(fs.readFileSync(a.current,"utf8"))); console.log(stableStringify(result)); const hi=highestSeverity(result.findings); if(severityAtOrAbove(hi,a.failOn)) process.exit(2);

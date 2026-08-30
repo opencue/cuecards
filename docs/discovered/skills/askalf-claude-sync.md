@@ -1,23 +1,23 @@
 ---
 title: "askalf/claude-sync — Claude Code skill discovered by cue"
-description: "Sync Claude Code sessions across machines. Pack a local CC session into a portable .ccsync file, ship it via Dropbox / iCloud / Syncthing / USB stick, unpack on"
+description: "own your sessions — move Claude Code sessions across machines via a shared folder (Dropbox/iCloud/Syncthing) or SSH to a remote host. git-remote-url canonical k"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-24
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [askalf/claude-sync](https://github.com/askalf/claude-sync)
+# ✨ [askalf/claude-sync](https://github.com/askalf/claude-sync)
 
-**★ 1** · potential (score 3.3) · TypeScript
+**★ 1** · strong (score 5.3) · JavaScript · automation, claude-code, cli, developer-tools, session
 
-> Sync Claude Code sessions across machines. Pack a local CC session into a portable .ccsync file, ship it via Dropbox / iCloud / Syncthing / USB stick, unpack on the other side. Path-hash mismatches solved via git-remote-url as canonical project key. Zero runtime deps.
+> own your sessions — move Claude Code sessions across machines via a shared folder (Dropbox/iCloud/Syncthing) or SSH to a remote host. git-remote-url canonical key fixes path-hash mismatches, a watch-mode daemon auto-syncs on change, and per-machine files keep concurrent edits from colliding. Zero runtime deps. Part of Own Your Stack.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-03
-- 🏷️ Tags: (none)
+- 🗓️ Last pushed: 2026-06-23
+- 🏷️ Tags: automation, claude-code, cli, developer-tools, session, ssh, sync
 
 ## Best fit cue profiles
 

@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { computeDailyActivity } from "./analytics";
+import { computeDailyActivity, computeStats } from "./analytics";
 
 // A fixed "now" so the day-bucket math is deterministic regardless of when the
 // suite runs. 10:00 UTC means the boundary cases below straddle a UTC midnight.
@@ -33,6 +33,64 @@ afterEach(() => {
   if (prevXdg === undefined) delete process.env.XDG_CONFIG_HOME;
   else process.env.XDG_CONFIG_HOME = prevXdg;
   try { rmSync(scratch, { recursive: true, force: true }); } catch { /* ignore */ }
+});
+
+describe("computeStats — per-repo scoping", () => {
+  /** Pretend every path under /home/u/<name> belongs to repo /home/u/<name>. */
+  const fakeRepoRootOf = (dir: string): string | undefined => {
+    const m = /^(\/home\/u\/[^/]+)(\/|$)/.exec(dir);
+    return m ? m[1] : undefined;
+  };
+  const start = (profile: string, cwd?: string) => ({
+    ts: "2026-06-01T00:00:00.000Z",
+    event: "start",
+    profile,
+    ...(cwd === undefined ? {} : { cwd }),
+  });
+  const sessions = (rows: ReturnType<typeof computeStats>, profile: string): number =>
+    rows.find((r) => r.profile === profile)?.sessions ?? 0;
+
+  test("a session from the repo root counts when launching in a subdirectory", () => {
+    writeAnalytics([start("rust", "/home/u/api"), start("shop", "/home/u/other")]);
+    writeSessionLog([]);
+    const out = computeStats({ cwd: "/home/u/api/packages/core", repoRootOf: fakeRepoRootOf });
+    expect(sessions(out, "rust")).toBe(1);
+    expect(sessions(out, "shop")).toBe(0);
+  });
+
+  test("the Stop-hook session log is scoped the same way", () => {
+    writeAnalytics([]);
+    writeSessionLog([
+      { ts: "2026-06-01T00:00:00.000Z", cwd: "/home/u/api/src", profile: "rust", session_id: "A" },
+      { ts: "2026-06-01T00:00:00.000Z", cwd: "/home/u/other", profile: "shop", session_id: "B" },
+    ]);
+    const out = computeStats({ cwd: "/home/u/api", repoRootOf: fakeRepoRootOf });
+    expect(sessions(out, "rust")).toBe(1);
+    expect(sessions(out, "shop")).toBe(0);
+  });
+
+  test("a session with no recorded directory is excluded under a scope", () => {
+    writeAnalytics([start("rust")]);
+    writeSessionLog([]);
+    const out = computeStats({ cwd: "/home/u/api", repoRootOf: fakeRepoRootOf });
+    expect(sessions(out, "rust")).toBe(0);
+  });
+
+  test("without a scope every session counts", () => {
+    writeAnalytics([start("rust", "/home/u/api"), start("shop", "/home/u/other")]);
+    writeSessionLog([]);
+    const out = computeStats({});
+    expect(sessions(out, "rust")).toBe(1);
+    expect(sessions(out, "shop")).toBe(1);
+  });
+
+  test("outside any repository, scoping falls back to the directory subtree", () => {
+    writeAnalytics([start("notes", "/scratch/nb/sub"), start("other", "/scratch/elsewhere")]);
+    writeSessionLog([]);
+    const out = computeStats({ cwd: "/scratch/nb", repoRootOf: () => undefined });
+    expect(sessions(out, "notes")).toBe(1);
+    expect(sessions(out, "other")).toBe(0);
+  });
 });
 
 describe("computeDailyActivity", () => {

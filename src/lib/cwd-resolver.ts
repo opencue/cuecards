@@ -3,7 +3,7 @@
  *
  * Resolution precedence (stop at first hit):
  *   1. `opts.override` (matches the --cue-profile CLI flag)
- *   2. `.cue-profile` file walking up from cwd; stops at git repo root or homeDir
+ *   2. `.cue.profile` file walking up from cwd; stops at git repo root or homeDir
  *   3. `<configDir>/repo-defaults.json` keyed by git repo root absolute path
  *   4. `<configDir>/default-profile` (composition list: one profile per line
  *      and/or `+`-joined; composed into a `core+...` selector)
@@ -81,7 +81,7 @@ async function findGitRoot(startDir: string, stopAt: string): Promise<string | n
 export async function resolveProfileForCwd(opts: ResolveOptions): Promise<ResolveResult> {
   if (opts.override) return { source: "flag", profile: opts.override };
 
-  const pinPath = await findUpward(opts.cwd, ".cue-profile", opts.homeDir);
+  const pinPath = await findUpward(opts.cwd, ".cue.profile", opts.homeDir);
   if (pinPath) {
     const profile = (await readFile(pinPath, "utf8")).trim();
     if (profile) return { source: "pin-file", profile, pinPath };
@@ -91,9 +91,11 @@ export async function resolveProfileForCwd(opts: ResolveOptions): Promise<Resolv
   if (repoRoot) {
     const repoDefaultsPath = join(opts.configDir, "repo-defaults.json");
     if (await exists(repoDefaultsPath)) {
-      const map = JSON.parse(await readFile(repoDefaultsPath, "utf8")) as Record<string, string>;
-      const profile = map[repoRoot];
-      if (profile) return { source: "repo-default", profile };
+      try {
+        const map = JSON.parse(await readFile(repoDefaultsPath, "utf8")) as Record<string, string>;
+        const profile = map[repoRoot];
+        if (profile) return { source: "repo-default", profile };
+      } catch { /* malformed repo-defaults.json — skip to the next resolution step */ }
     }
   }
 

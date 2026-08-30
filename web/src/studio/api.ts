@@ -120,6 +120,8 @@ export interface ProfileDetail {
   subagents: SubagentRef[];
   /** External CLI tools the profile's skills declare (frontmatter Bash refs). */
   clis: ProfileCli[];
+  /** Companion profiles this profile recommends pairing with. */
+  recommends: string[];
 }
 
 export interface PartSummary {
@@ -205,6 +207,35 @@ export interface MarketData {
   counts: Record<string, number>;
 }
 
+/** Result of POST /market/install — the profile.yaml edit that backs "Add to profile". */
+export interface MarketInstallResult {
+  id: string;
+  profile: string;
+  addKind: MarketItem["addKind"];
+  /** True when the profile.yaml was actually edited. */
+  changed: boolean;
+  /** True when the item was already wired into the profile. */
+  alreadyPresent: boolean;
+  detail: string;
+  /** Present for a bare CLI (no profile.yaml home) — the command to run instead. */
+  manual?: { command: string };
+}
+
+/**
+ * Install a marketplace item into one of the user's profiles. Edits the target
+ * profile.yaml server-side (skill → skills.npx, mcp → mcps, plugin → plugins,
+ * profile → inherits, workflow → playbooks). A bare CLI comes back with
+ * `manual` set so the caller can show the command instead.
+ */
+export function installMarketItem(item: Pick<MarketItem, "id" | "addKind" | "add">, profile: string) {
+  return postJson<MarketInstallResult>("/market/install", {
+    id: item.id,
+    addKind: item.addKind,
+    add: item.add,
+    profile,
+  });
+}
+
 export interface SkillUsageRow {
   id: string;
   hits: number;
@@ -224,6 +255,18 @@ export interface HookEntry {
   description: string;
   id: string;
   source: "profile" | "global";
+  /** Absolute path of the script the command runs, or null when it isn't one. */
+  scriptPath: string | null;
+}
+
+/** One hook's resolved script source, for the studio's source viewer. */
+export interface HookSource {
+  path: string;
+  displayPath: string;
+  filename: string;
+  dir: string;
+  language: string;
+  content: string;
 }
 export interface HooksData {
   profile: string | null;
@@ -245,6 +288,21 @@ export interface PermissionsData {
   counts: Record<PermMode, number>;
   defaultMode: string | null;
   sources: PermSourceFile[];
+}
+
+/** A GitHub source repo for a profile's components, with a live star count. */
+export type RepoKind = "profile" | "skill" | "mcp" | "plugin" | "workflow" | "cli";
+export interface RepoEntry {
+  repo: string;
+  url: string;
+  desc: string;
+  kinds: RepoKind[];
+  /** Live stargazer count, or null when GitHub couldn't be reached. */
+  stars: number | null;
+}
+export interface ReposData {
+  profile: string;
+  repos: RepoEntry[];
 }
 
 // ---------------------------------------------------------------------------
@@ -359,11 +417,37 @@ export function useHooks(profile?: string) {
   });
 }
 
+/** One hook's script source for the viewer. Only fetches when a path is set. */
+export function useHookSource(scriptPath: string | null, profile?: string) {
+  const qs = `?path=${encodeURIComponent(scriptPath ?? "")}` + (profile ? `&profile=${encodeURIComponent(profile)}` : "");
+  return useQuery({
+    queryKey: ["hook-source", scriptPath],
+    queryFn: () => fetcher<HookSource>(`/hook-source${qs}`),
+    enabled: !!scriptPath,
+    staleTime: 30_000,
+  });
+}
+
 /** Real Claude Code tool-permission rules (allow/ask/deny) from settings.json. */
 export function usePermissions() {
   return useQuery({
     queryKey: ["permissions"],
     queryFn: () => fetcher<PermissionsData>("/permissions"),
+  });
+}
+
+/**
+ * GitHub source repos for a profile's components, with live star counts. The
+ * server caches stars 6h; the hook refetches hourly so counts auto-update
+ * without a reload.
+ */
+export function useRepos(profile?: string) {
+  const qs = profile ? `?profile=${encodeURIComponent(profile)}` : "";
+  return useQuery({
+    queryKey: ["repos", profile ?? "@active"],
+    queryFn: () => fetcher<ReposData>(`/repos${qs}`),
+    staleTime: 60 * 60 * 1000,
+    refetchInterval: 60 * 60 * 1000,
   });
 }
 
@@ -413,9 +497,9 @@ export function useEnvFolders() {
   });
 }
 
-/** Parsed vars for one folder's .env — ALWAYS masked. Revealing (per-row or
- *  global) goes through the one-shot fetchers below, never this cached query,
- *  so plaintext secrets never enter the react-query store. Empty folder → no fetch. */
+/** Parsed vars for one folder's .env. ALWAYS masked — revealed plaintext is
+ *  never cached. Both per-row and global reveal go through the one-shot
+ *  fetch* helpers below into transient component state. Empty folder → no fetch. */
 export function useEnv(folder: string | null) {
   return useQuery({
     queryKey: ["env", folder],
@@ -425,9 +509,9 @@ export function useEnv(folder: string | null) {
 }
 
 /**
- * One-shot fetch of a single secret's RAW value (per-row reveal click). Kept off
- * the react-query cache so revealed plaintext never lingers; the caller holds it
- * transiently in component state and drops it on hide / folder change.
+ * One-shot fetch of a single secret's RAW value (reveal click). Kept off the
+ * react-query cache so revealed plaintext never lingers in the query store; the
+ * caller holds it transiently in component state.
  */
 export async function fetchEnvReveal(folder: string, key: string): Promise<string> {
   const data = await fetcher<EnvData>(`/env?folder=${encodeURIComponent(folder)}&reveal=${encodeURIComponent(key)}`);
@@ -435,10 +519,10 @@ export async function fetchEnvReveal(folder: string, key: string): Promise<strin
 }
 
 /**
- * One-shot fetch of EVERY secret's raw value (global "Reveal secrets" toggle).
- * Also bypasses the query cache — returns a {key: rawValue} map the caller holds
- * transiently and clears on hide / folder change. This is the fix for the
- * cache-poisoning path where a cached reveal=* response lingered after hide.
+ * One-shot fetch of EVERY secret's RAW value (the global "Reveal secrets"
+ * toggle). Like fetchEnvReveal, plaintext is returned for transient component
+ * state and never enters the react-query cache. Returns a key→raw-value map of
+ * the secret rows only (non-secrets are already unmasked in the cached query).
  */
 export async function fetchEnvRevealAll(folder: string): Promise<Record<string, string>> {
   const data = await fetcher<EnvData>(`/env?folder=${encodeURIComponent(folder)}&reveal=*`);

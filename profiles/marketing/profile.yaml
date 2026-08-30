@@ -85,9 +85,9 @@ skills:
     - repo: affaan-m/everything-claude-code
       skills: [seo]
 mcps:
-  - google-ads-mcp
   - mapi-devdocs
   - Higgsfield
   - trendradar
+  - cue-tty-watch   # marketing/cue-rec records terminal demos via the TTY-watch MCP
 plugins:
   - marketing-skills@claude-code-skills

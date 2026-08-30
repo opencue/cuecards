@@ -44,11 +44,11 @@ beforeEach(async () => {
   git(["init", "-q"], repo);
   git(["config", "user.email", "t@t.test"], repo);
   git(["config", "user.name", "t"], repo);
-  await writeFile(join(repo, "f.txt"), "version one\n");
+  await writeFile(join(repo, "f.js"), "version one\n");
   git(["add", "."], repo);
   git(["commit", "-qm", "base"], repo);
   // Create an uncommitted change → a diff vs HEAD exists.
-  await writeFile(join(repo, "f.txt"), "version two has a bug\n");
+  await writeFile(join(repo, "f.js"), "version two has a bug\n");
 });
 
 afterEach(async () => {
@@ -72,11 +72,11 @@ describe("auto-review Stop hook", () => {
 
   test("blocks (decision:block) and feeds findings back on CRITICAL/HIGH", async () => {
     await enableFlag();
-    const out = runHook({ env: { CUE_AUTO_REVIEW_CMD: "printf 'CRITICAL: null deref in f.txt\\n'" } });
+    const out = runHook({ env: { CUE_AUTO_REVIEW_CMD: "printf 'CRITICAL: null deref in f.js\\n'" } });
     expect(out.code).toBe(0);
     const decision = JSON.parse(out.stdout);
     expect(decision.decision).toBe("block");
-    expect(decision.reason).toContain("CRITICAL: null deref in f.txt");
+    expect(decision.reason).toContain("CRITICAL: null deref in f.js");
     expect(decision.reason).toContain("VERIFY");
   });
 
@@ -99,7 +99,7 @@ describe("auto-review Stop hook", () => {
 
   test("no-op when there is nothing to review (clean tree)", async () => {
     await enableFlag();
-    git(["checkout", "--", "f.txt"], repo); // revert the uncommitted change
+    git(["checkout", "--", "f.js"], repo); // revert the uncommitted change
     const out = runHook({ env: { CUE_AUTO_REVIEW_CMD: "printf 'CRITICAL: x\\n'" } });
     expect(out.code).toBe(0);
     expect(out.stdout.trim()).toBe("");

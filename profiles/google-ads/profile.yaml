@@ -11,6 +11,40 @@ skills:
   local:
     - content/pdf              # PDF form filling, extraction, merging — includes scripts/
   npx:
+    # --- google/skills: official Google Cloud skill library ---
+    - repo: google/skills
+      skills:
+        - gcloud
+        - gemini-api
+        - gemini-agents-api
+        - gemini-interactions-api
+        - google-cloud-recipe-auth
+        - google-cloud-recipe-onboarding
+        - bigquery-basics
+        - agent-platform-deploy
+        - agent-platform-endpoint-management
+        - agent-platform-eval-flywheel
+        - agent-platform-inference
+        - agent-platform-migrate-from-ai-studio
+        - agent-platform-model-registry
+        - agent-platform-prompt-management
+        - agent-platform-rag-engine-management
+        - agent-platform-skill-registry
+        - agent-platform-tuning
+        - agent-platform-tuning-management
+        - alloydb-basics
+        - cloud-run-basics
+        - cloud-sql-basics
+        - firebase-basics
+        - gke-basics
+        - google-cloud-networking-observability
+        - google-cloud-waf-cost-optimization
+        - google-cloud-waf-operational-excellence
+        - google-cloud-waf-performance-optimization
+        - google-cloud-waf-reliability
+        - google-cloud-waf-security
+        - google-cloud-waf-sustainability
+
     # --- Official Google Ads MCP skill ---
     - repo: googleads/google-ads-mcp
       skills: [account-performance-diagnostics]
@@ -60,6 +94,7 @@ skills:
 
 mcps:
   - google-ads-mcp             # Official Google Ads MCP (GAQL search, metadata, resources)
+  - facebook-ads-mcp           # Meta Graph API reads (gomarble clone, BM system-user token)
 
 plugins:
   - claude-ads@agricidaniel-claude-ads   # Claude Code plugin (auto-updates, namespace isolation)
@@ -95,6 +130,10 @@ persona: |
   - list_accessible_customers — list customer IDs the auth principal can reach
   - discovery-document — full Google Ads API surface
   - metrics / segments / release-notes — reporting metadata
+
+  Meta side (facebook-ads-mcp, read-only): list_ad_accounts, campaign/adset/ad
+  listing and insights for the active workspace's FB_AD_ACCOUNT_ID. State which
+  ad account you are reading at session start.
 
   ## /ads Commands (audit & strategy)
 

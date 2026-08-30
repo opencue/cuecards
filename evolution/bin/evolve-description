@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Discoverable entry point for the cue description-evolution CLI.
+#
+# Runs `python -m evolution.descriptions.evolve_description` via the package's
+# own .venv when present (so DSPy/the optimize extra are available), else the
+# system python3 with the package on PYTHONPATH. All args pass through.
+#
+#   bin/evolve-description --skill meta/smart-loader --target skill \
+#       --profile coolify --dry-run
+#   bin/evolve-description --target persona --profile coolify --dry-run
+#
+# (A first-class `cue evolve-description` subcommand is intentionally deferred:
+#  it would touch the TypeScript main CLI + depend on this venv path. This shell
+#  wrapper gives discoverability without that coupling.)
+set -euo pipefail
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"   # the evolution/ package root
+py="$here/.venv/bin/python"
+if [ ! -x "$py" ]; then
+  py="$(command -v python3 || true)"
+  export PYTHONPATH="$here:${PYTHONPATH:-}"
+fi
+[ -n "$py" ] || { echo "evolve-description: no python found" >&2; exit 127; }
+
+exec "$py" -m evolution.descriptions.evolve_description "$@"

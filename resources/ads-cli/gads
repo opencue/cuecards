@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+"""gads — run a GAQL query for a client via gaarf.
+
+Usage: gads <client> "<GAQL>" [--csv] [--dry-run]
+Clients come from profiles/google-ads/workspaces.yaml (cue workspaces).
+"""
+import os
+import shutil
+import subprocess
+import sys
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+from _adslib import fail, resolve_client  # noqa: E402
+
+
+def main() -> None:
+    args = [a for a in sys.argv[1:]]
+    flags = {a for a in args if a.startswith("--")}
+    pos = [a for a in args if not a.startswith("--")]
+    if len(pos) != 2:
+        fail('usage: gads <client> "<GAQL query>" [--csv] [--dry-run]')
+    client, query = pos
+    c = resolve_client(client)
+    if not c["google_customer_id"]:
+        fail(f"client '{client}' has no GOOGLE_ADS_CUSTOMER_ID (check ~/.env.cue)")
+    cmd = [
+        "gaarf", query,
+        "--input=console",
+        f"--ads-config={c['ads_yaml_path']}",
+        f"--account={c['google_customer_id']}",
+        "--output=csv" if "--csv" in flags else "--output=console",
+    ]
+    if "--dry-run" in flags:
+        print(f"client={client} name={c['name']} account={c['google_customer_id']} "
+              f"login_customer_id={c['login_customer_id'] or '-'}")
+        print("would run: " + " ".join(cmd))
+        return
+    if not c["ads_yaml_path"] or not os.path.isfile(c["ads_yaml_path"]):
+        fail(f"missing gaarf config {c['ads_yaml_path'] or '<unset>'} — run: ads-gen-yaml <login-slug>")
+    if not shutil.which("gaarf"):
+        fail("gaarf not installed — run: npm i -g google-ads-api-report-fetcher")
+    sys.exit(subprocess.call(cmd))
+
+
+if __name__ == "__main__":
+    main()

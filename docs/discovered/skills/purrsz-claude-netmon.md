@@ -2,19 +2,19 @@
 title: "purrsZ/claude-netmon — Claude Code skill discovered by cue"
 description: "A tiny macOS HUD that measures the REAL latency of your proxy path to the Claude API (floating desktop widget or menu-bar item). Stops your proxy from lying abo"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-10
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [purrsZ/claude-netmon](https://github.com/purrsZ/claude-netmon)
 
-**★ 1** · strong (score 6.3) · Swift · anthropic, clash, clash-verge, claude-code, macos
+**★ 1** · strong (score 6) · Swift · anthropic, clash, clash-verge, claude-code, macos
 
 > A tiny macOS HUD that measures the REAL latency of your proxy path to the Claude API (floating desktop widget or menu-bar item). Stops your proxy from lying about when Claude will retry.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-03
 - 🏷️ Tags: anthropic, clash, clash-verge, claude-code, macos, menubar, mihomo, network-monitor, statusbar, swift

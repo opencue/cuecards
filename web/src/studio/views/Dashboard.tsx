@@ -5,11 +5,12 @@
  * every number is live from /status, /telemetry/timeline, /active-sessions.
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { useProfileDetail, useTimeline, useActiveSessions, postJson, type StatusData } from "../api";
+import { useProfileDetail, useTimeline, useActiveSessions, postJson, type StatusData, type TimelineData } from "../api";
 import { partEmoji, fmtDuration, fmtAge, abbrev } from "../curated";
+import { isDemoMode } from "../../lib/fetcher";
 
 /** Honor the OS "reduce motion" setting: no pulsing dot, no radar ping. */
 const REDUCED_MOTION =
@@ -96,8 +97,25 @@ export function Dashboard({ profile, status }: { profile: string | null; status?
   const [paused, setPaused] = useState(false);
   const chartLive = !paused && !REDUCED_MOTION;
   const detail = useProfileDetail(profile ?? undefined);
-  const timeline = useTimeline(range, paused ? false : 5000);
+  // SSE drives live updates; the poll is just a slow safety net (and the only
+  // source in demo mode / if EventSource is unavailable). Frozen when paused.
+  const timeline = useTimeline(range, paused ? false : 30000);
   const sessions = useActiveSessions();
+
+  // Live activity push: stream timeline updates over SSE straight into the query
+  // cache. The "live"/"paused" pill opens/closes the socket. EventSource
+  // auto-reconnects on transient errors; the 30s poll above covers a hard drop.
+  useEffect(() => {
+    if (paused || isDemoMode() || typeof EventSource === "undefined") return;
+    const es = new EventSource(`/api/v1/telemetry/stream?since=${range}`);
+    es.addEventListener("timeline", (ev) => {
+      try {
+        const data = JSON.parse((ev as MessageEvent).data) as TimelineData;
+        qc.setQueryData(["timeline", range], data);
+      } catch { /* ignore a malformed frame; the next one replaces it */ }
+    });
+    return () => es.close();
+  }, [paused, range, qc]);
 
   const counts = detail.data?.counts;
   const daily = timeline.data?.daily ?? [];
@@ -275,20 +293,33 @@ export function Dashboard({ profile, status }: { profile: string | null; status?
         ) : live.length === 0 ? (
           <div className="ap-note">No live cue-launched sessions right now.</div>
         ) : (
-          <table className="sess-table">
-            <thead><tr><th>profile</th><th>agent cwd</th><th>pid</th><th>up</th><th></th></tr></thead>
-            <tbody>
-              {live.map((s) => (
-                <tr key={s.pid}>
-                  <td><span className="live-dot sm"></span><span className="mono sess-prof">{s.profile}</span></td>
-                  <td className="mono dim">{s.cwd ?? "—"}</td>
-                  <td className="mono">{s.pid}</td>
-                  <td className="dim">{fmtAge(s.startedAt)}</td>
-                  <td><button className="stop" onClick={() => stop(s.pid)}>stop</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="sess-list">
+            <div className="sess-head">
+              <span>profile</span><span>working dir</span><span>pid</span><span>uptime</span><span></span>
+            </div>
+            {live.map((s) => {
+              const cwd = s.cwd ?? "";
+              const folder = cwd.split("/").pop() ?? "";
+              const base = cwd.slice(0, cwd.length - folder.length);
+              const up = fmtAge(s.startedAt);
+              // green only for sub-30-minute sessions; the "^\d+m$" guard keeps
+              // "1h 04m" out (parseInt would otherwise read the leading hour as <30).
+              const fresh = up.includes("now") || (/^\d+m$/.test(up) && parseInt(up) < 30);
+              return (
+                <div className="srow" key={s.pid}>
+                  <div className="sr-prof"><span className="sr-pulse"></span><span className="sr-pname" title={s.profile}>{s.profile}</span></div>
+                  <div className="sr-cwd" title={cwd || undefined}>
+                    {cwd
+                      ? <><span className="sr-base">{base}</span><span className="sr-folder">{folder}</span></>
+                      : <span className="sr-base">—</span>}
+                  </div>
+                  <div className="sr-pid">{s.pid}</div>
+                  <div className="sr-up"><span className={"sr-upbadge" + (fresh ? " fresh" : "")}>{up}</span></div>
+                  <div className="sr-act"><button className="sr-stop" onClick={() => stop(s.pid)}>stop</button></div>
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </div>

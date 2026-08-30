@@ -2,22 +2,22 @@
 title: "martellevaliant19/grant-thinking-cn-biology — Claude Code skill discovered by cue"
 description: "Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnost"
 layout: page
-updated: 2026-06-03
+updated: 2026-08-25
 tags: [claude-code, skill, niche]
 ---
 
 # 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 0** · exceptional (score 10.5) · biology, china-grants, claude-code, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 12) · biology, china-grants, claude-code, claude-code-skill, claude-skills
 
 > Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-08-25
 - 🏷️ Tags: biology, china-grants, claude-code, claude-code-skill, claude-skills, feasibility, grant-thinking, grant-writing, mechanism, nsfc, proposal, research-funding, reviewer-thinking, skill-md, skillsmp
 
 ## Best fit cue profiles

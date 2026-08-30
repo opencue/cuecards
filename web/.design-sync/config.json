@@ -1,0 +1,25 @@
+{
+  "pkg": "cue-studio",
+  "globalName": "CueStudio",
+  "shape": "package",
+  "projectId": "f365e97e-550c-4d0a-a1bb-aeb4cb621f52",
+  "srcDir": "src/studio/components",
+  "cssEntry": "src/studio/styles.css",
+  "runtimeFontPrefixes": ["IBM Plex Sans", "JetBrains Mono"],
+  "tsconfig": "tsconfig.json",
+  "componentSrcMap": {
+    "Dot": "src/studio/components/index.tsx",
+    "LiveDot": "src/studio/components/index.tsx",
+    "Pill": "src/studio/components/index.tsx",
+    "McpBadge": "src/studio/components/index.tsx",
+    "StatTile": "src/studio/components/index.tsx",
+    "Band": "src/studio/components/index.tsx",
+    "Card": "src/studio/components/index.tsx",
+    "GhostButton": "src/studio/components/index.tsx",
+    "SegmentedControl": "src/studio/components/index.tsx",
+    "EmptyState": "src/studio/components/index.tsx",
+    "PageHeader": "src/studio/components/index.tsx",
+    "McpCard": "src/studio/components/index.tsx",
+    "MonoTag": "src/studio/components/index.tsx"
+  }
+}

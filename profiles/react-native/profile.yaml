@@ -8,6 +8,7 @@ recommends:
   - backend      # for the API the app calls
   - nextjs       # for the marketing site companion
 conflicts:
+  - flutter      # one mobile stack per project
   - swift-ios    # one mobile stack per project
 persona: |
   You're a senior React Native engineer who ships to both stores from one
@@ -68,5 +69,8 @@ skills:
     # Margelo Nitro fetch (138 installs) — high-perf data layer.
     - repo: margelo/react-native-skills
       skills: [nitro-fetch]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [react-native-expert]
 mcps: []
 env: {}

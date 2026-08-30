@@ -37,10 +37,12 @@ env:
 | `skills.local`| array of strings (paths relative to `cue/skills/`)           | no       | `[]`    | E.g. `medusa/building-with-medusa` → resolves to `cue/skills/skills/medusa/building-with-medusa/`. |
 | `skills.npx`  | array of `NpxSkillRef`                                        | no       | `[]`    | See "NpxSkillRef" below.                                                                           |
 | `skills.plugins` | array of strings (Claude Code plugin names)                | no       | `[]`    | Resolved from `~/.claude/plugins/<name>/skills/`. Targets are namespaced as `<plugin>:<skill>`.    |
-| `mcps`        | array of strings (MCP server IDs)                             | no       | `[]`    | Must match a key in `cue/mcps/configs/claude.sanitized.json` (or the codex counterpart).          |
+| `mcps`        | array of strings or `{id, agents?, when?}` objects            | no       | `[]`    | Each id must match a key in `cue/mcps/configs/claude.sanitized.json` (or the codex counterpart). Object form adds optional `agents:` scoping and a `when:` activation gate — see "Conditional activation (`when:`)" below. |
 | `env`         | map<string, string>                                           | no       | `{}`    | Plain string values. Placeholders like `"${HOSTINGER_API_TOKEN}"` are substituted at materialize-time. |
+| `codex_config` | map<string, any>                                             | no       | `{}`    | Extra keys merged into the Codex runtime's `config.toml` next to this profile's MCP servers. cue repoints `CODEX_HOME` at the materialized runtime, so the user's own `~/.codex/config.toml` is **never read** — `sandbox_mode`, `sandbox_workspace_write`, `approval_policy`, `shell_environment_policy` and friends have to come through here. Emitted verbatim as TOML; ignored for non-Codex agents. See "codex_config example" below. |
 | `rules`       | array of strings                                              | no       | `[]`    | Markdown rule files under `resources/rules/` (or absolute paths). Symlinked into `<runtime>/rules/` and indexed in CLAUDE.md — Claude reads on demand, no full-body inline. |
 | `commands`    | array of strings                                              | no       | `[]`    | Slash-command markdown files under `resources/commands/`. Symlinked into `<runtime>/commands/` so the user can invoke `/<name>`. Listed in CLAUDE.md's "Available Commands" section. |
+| `codex`       | map<string, string \| number \| bool> (+ `features` map<string, bool>) | no       | `{}`    | Codex-only `config.toml` overrides, written on top of the inherited `~/.codex/config.toml`. See "Codex config overrides" below. |
 | `hooks`       | array of strings                                              | no       | `[]`    | Hook bundle JSON files under `resources/hooks/`. Each declares `{ "hooks": { "PreToolUse": [...], "Stop": [...], ... } }` — merged into `settings.json` so hooks run per Claude Code's lifecycle. Sibling `.sh`/`.py` scripts are symlinked into `<runtime>/hooks/` and invoked via `${CLAUDE_CONFIG_DIR}/hooks/...`. |
 
 ### rules / commands / hooks example
@@ -67,6 +69,82 @@ time and reported as `E3` by `cue validate`.
 
 Inheritance merges all three with `concat + dedupe`; a child can't remove a
 parent's entry — fork the parent if you need a smaller set.
+
+## Codex config overrides (`codex:`)
+
+cue points `CODEX_HOME` at the per-profile runtime, so `<runtime>/codex/config.toml`
+is the only config a cue-launched Codex reads. That file is built from three
+layers, last wins:
+
+1. **base** — top-level keys and `[features]` from `~/.codex/config.toml`. This is
+   what keeps a Codex session running at the reasoning effort, context window and
+   auto-compact limit the user configured; without it the session silently falls
+   back to model defaults and turns end much sooner.
+2. **the profile's `codex:` block** — merged key by key, so a profile overrides
+   one knob without dropping the rest.
+3. **`[mcp_servers.*]`** — always cue-owned. Base-config MCP servers are never
+   inherited; other base tables (`[projects.*]`, `[model_providers.*]`, …) are
+   dropped as machine-local state.
+
+```yaml
+# profiles/careful-codex/profile.yaml
+name: careful-codex
+inherits: core
+codex:
+  model_reasoning_effort: xhigh
+  sandbox_mode: workspace-write     # tighten what the base config allows
+  model_auto_compact_token_limit: 320000
+  features:
+    goals: true
+```
+
+Keys are passed through verbatim, so cue needs no allowlist tracking Codex's
+config surface — run `codex --strict-config` to catch a typo. Inheritance merges
+key by key (leaf wins); across a composite `a+b`, later parts win, like `env`.
+The base config's content is part of the runtime hash, so editing
+`~/.codex/config.toml` rebuilds the runtime on the next launch.
+
+## Conditional activation (`when:`)
+
+Both `skills.local` entries and `mcps` entries accept an object form with a
+`when:` gate, so an entry only materializes when its condition holds in the
+launch cwd/env. This keeps an MCP server's tool schema (and a skill's router
+rows) off the startup budget until the integration is actually in play — the
+whole point of cue being per-directory.
+
+```yaml
+mcps:
+  - coolify                      # string form — always active
+  - id: postgres                 # object form — only when a DB is configured
+    when:
+      env: DATABASE_URL
+  - id: obsidian-vault           # only inside an Obsidian vault
+    when:
+      has_dir: .obsidian
+skills:
+  local:
+    - review/security-review     # always
+    - id: pdf/fill-forms         # only when a PDF is in cwd
+      when:
+        has_file: "*.pdf"
+```
+
+`when:` keys (at least one required):
+
+| Key        | Meaning                                                                 |
+|------------|-------------------------------------------------------------------------|
+| `has_file` | string or list; passes if **at least one** exists in cwd. A leading `*.ext` matches by extension. |
+| `has_dir`  | string or list; passes if **at least one** directory exists in cwd.     |
+| `env`      | string or list; passes if **all** named env vars are set.               |
+
+Keys within one `when:` are AND-ed (all must pass). Prefer a single
+unambiguous signal — for a credential-dependent server, gate on the token
+(`env:`) since the server is inert without it.
+
+Evaluation happens at materialize time against the launch cwd, mirroring the
+conditional-skill path. A condition that newly *passes* activates the entry on
+the next launch; like conditional skills, a condition that newly *fails* takes
+full effect on the next rebuild.
 
 ## NpxSkillRef
 
@@ -132,6 +210,9 @@ mcps:
 
 - **arrays** (`skills.local`, `skills.npx`, `skills.plugins`, `mcps`, `agents`) — concat parent then child, dedupe by identity (string for plain arrays; `repo` for `NpxSkillRef`)
 - **objects** (`skills`, `env`) — child keys override parent keys; nested arrays merge per the rule above
+- **`codex_config`** — same, but one level deeper: a child that sets only
+  `sandbox_workspace_write.network_access` keeps the parent's sibling keys in
+  that table instead of replacing it
 - **scalars** (`name`, `description`) — child overrides parent
 
 **Constraints:**
@@ -155,6 +236,7 @@ The `name:` field must equal the directory name. Two profiles with the same
 | `skills.plugins`| `[]`                               |
 | `mcps`          | `[]`                               |
 | `env`           | `{}`                               |
+| `codex`         | `{}` (base `~/.codex/config.toml` still inherited) |
 
 A profile with only `name` and `description` is legal but useless — it
 materializes an empty workspace. The linter flags this as `W5` (vacuous

@@ -65,11 +65,12 @@ export async function dashFetch<T = unknown>(
   args: Pick<DashArgs, "host" | "port">,
   path: string,
   opts: { query?: Record<string, string>; method?: "GET" | "POST"; body?: unknown } = {},
+  fetchImpl: typeof fetch = fetch,
 ): Promise<T> {
   const url = dashUrl(args.host, args.port, path, opts.query);
   let res: Response;
   try {
-    res = await fetch(url, {
+    res = await fetchImpl(url, {
       method: opts.method ?? "GET",
       headers: opts.body ? { "content-type": "application/json" } : undefined,
       body: opts.body ? JSON.stringify(opts.body) : undefined,

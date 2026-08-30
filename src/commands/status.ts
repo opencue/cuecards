@@ -14,11 +14,12 @@ import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { computeStats } from "../lib/analytics";
 import { readGateStatus, type GateRun } from "../lib/gate-status";
+import { countProfileSkills } from "../lib/profile-capabilities";
 
 const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
 const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
-const RUNTIME_ROOT = join(process.env.HOME ?? "~", ".config", "cue", "runtime");
+const RUNTIME_ROOT = join(process.env.HOME ?? homedir(), ".config", "cue", "runtime");
 
 
 export interface Warning {
@@ -44,6 +45,18 @@ export function quickDiagnose(profileName: string, profile: any): Warning[] {
         if (existsSync(join(SKILLS_ROOT, cat.name, id, "SKILL.md"))) { found = true; break; }
       }
     } catch { /* skip */ }
+    // Also check plugin marketplace paths (for npx-promoted skills).
+    if (!found) {
+      const mpDir = join(homedir(), ".claude", "plugins", "marketplaces");
+      if (existsSync(mpDir)) {
+        try {
+          for (const mp of readdirSync(mpDir, { withFileTypes: true })) {
+            if (!mp.isDirectory()) continue;
+            if (existsSync(join(mpDir, mp.name, "skills", id, "SKILL.md"))) { found = true; break; }
+          }
+        } catch { /* skip */ }
+      }
+    }
     if (!found) {
       warnings.push({ code: "D1", message: `skill "${id}" not found on disk` });
     }
@@ -137,7 +150,7 @@ export async function run(args: string[]): Promise<number> {
     const out = {
       profile: hasProfile ? resolved.profile : null,
       source: resolved.source,
-      skills: profile ? profile.skills.local.length + profile.skills.npx.length : 0,
+      skills: profile ? countProfileSkills(profile) : 0,
       mcps: profile ? profile.mcps.length : 0,
       plugins: profile ? profile.plugins.length : 0,
       subagents: profile ? (profile.subagents?.length ?? 0) : 0,
@@ -182,7 +195,7 @@ export async function run(args: string[]): Promise<number> {
   if (hasProfile) {
     process.stdout.write(`  ${bold("Profile")}  ${green(resolved.profile)} ${dim(`(${resolved.source})`)}\n`);
     if (profile) {
-      const skillCount = profile.skills.local.length + profile.skills.npx.length;
+      const skillCount = countProfileSkills(profile);
       const subagentCount = profile.subagents?.length ?? 0;
       const subagentPart = subagentCount > 0 ? `    ${bold("Subagents")} ${subagentCount}` : "";
       process.stdout.write(`  ${bold("Skills")}   ${skillCount}    ${bold("MCPs")} ${profile.mcps.length}    ${bold("Plugins")} ${profile.plugins.length}${subagentPart}\n`);

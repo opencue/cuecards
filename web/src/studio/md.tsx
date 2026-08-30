@@ -54,6 +54,7 @@ export function MdEditor({ text, highlightLine }: { text: string; highlightLine?
     <div className="editor-body">
       {lines.map((ln, idx) => {
         let cls = "md-p";
+        let rowCls = "";
         let content: ReactNode = ln;
         if (ln === "---") { fmCount++; inFm = fmCount === 1; cls = "md-fm"; content = ln; }
         else if (inFm && fmCount < 2) {
@@ -61,8 +62,16 @@ export function MdEditor({ text, highlightLine }: { text: string; highlightLine?
           if (c > 0) { content = <><span className="md-key">{ln.slice(0, c)}</span><span className="md-fm">:</span><span className="md-val">{ln.slice(c + 1)}</span></>; cls = "md-fmline"; }
           else { content = ln; cls = "md-val"; }
         }
-        else if (ln.startsWith("```")) { inCode = !inCode; cls = "md-fence"; content = ln; }
-        else if (inCode) { cls = "md-codeblock"; content = ln || " "; }
+        else if (ln.startsWith("```")) {
+          const opening = !inCode; inCode = !inCode;
+          rowCls = opening ? " cb cb-open" : " cb cb-close";
+          cls = "md-fence";
+          const lang = ln.slice(3).trim();
+          // Hide the literal fence markers; show the language as a chip on the
+          // opening fence so the block reads like a GitHub code block.
+          content = opening && lang ? <span className="md-lang">{lang}</span> : "​";
+        }
+        else if (inCode) { cls = "md-codeblock"; content = ln || " "; rowCls = " cb"; }
         else if (ln.startsWith("# ")) { cls = "md-h1"; content = ln.slice(2); }
         else if (ln.startsWith("## ")) { cls = "md-h2"; content = ln.slice(3); }
         else if (ln.startsWith("### ")) { cls = "md-h3"; content = ln.slice(4); }
@@ -73,7 +82,7 @@ export function MdEditor({ text, highlightLine }: { text: string; highlightLine?
         else if (ln === "") { cls = "md-blank"; content = " "; }
         else { content = inlineMd(ln); }
         return (
-          <div className={"ed-row" + (idx === highlightLine ? " hl" : "")} key={idx}>
+          <div className={"ed-row" + rowCls + (idx === highlightLine ? " hl" : "")} key={idx}>
             <span className="ed-gutter">{idx + 1}</span>
             <span className={"ed-line " + cls}>{content}</span>
           </div>

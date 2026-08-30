@@ -1,15 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm install && npm run gen-demo-data && npm run build",
+  "buildCommand": "npm install && npm run gen-demo-data && VITE_CUE_MODE=demo npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/api/v1/(.*)",
-      "destination": "/demo-data.json"
+      "source": "/api/auth/:path*",
+      "destination": "/api/auth?__cue_auth_path=:path*"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ],

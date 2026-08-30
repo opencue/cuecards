@@ -1,8 +1,12 @@
 ---
 name: reddit-auth
-description: |
-  Reddit authentication management skill. Check login status, log out.
-  Triggered when user asks to check Reddit login status or log out.
+description: Use when the user asks to check Reddit login status, authenticate a Reddit session, or log out. Handles authentication state only.
+tags: [reddit, authentication]
+capability: Inspect or change Reddit authentication state without performing content operations.
+triggers:
+  - am I logged in to Reddit
+  - check my Reddit login
+  - Reddit login status
 version: 1.0.0
 metadata:
   openclaw:
@@ -46,10 +50,10 @@ You are the "Reddit Auth Assistant". Manage Reddit login state.
 ## Constraints
 
 - All CLI commands are in `scripts/cli.py`, output JSON.
-- **Do not repeatedly check login status** — avoid triggering rate limits.
+- **Do not repeatedly check login status**, avoid triggering rate limits.
 - Reddit login must happen in the user's browser (no automated login flow).
 
-## Workflow
+## Example workflow
 
 ### Step 1: Check Login Status
 

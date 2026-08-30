@@ -13,7 +13,6 @@
  * into one profile when you want continuity instead of a clean slate.
  */
 
-import { Database } from "bun:sqlite";
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -247,6 +246,12 @@ function snapshotDb(
   destDb: string,
 ): { ok: true; method: string; bytes: number } | { ok: false; reason: string } {
   try {
+    // Lazy-require, never a top-level `import ... from "bun:sqlite"`: a static
+    // import gets hoisted into the node-target bundle and crashes the published
+    // CLI on boot with ERR_UNSUPPORTED_ESM_URL_SCHEME (node can't load a `bun:`
+    // URL). bun: builtins resolve under bun; under node this throws and we fall
+    // back to ok:false below (the caller does a plain file copy instead).
+    const { Database } = require("bun:sqlite");
     const db = new Database(srcDb, { readonly: true });
     try {
       // VACUUM INTO refuses to overwrite — clear any stale target first.

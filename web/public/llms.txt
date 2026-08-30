@@ -1,0 +1,36 @@
+# cuecards (cue)
+
+cuecards is an open-source agent profile manager for Claude Code, OpenAI Codex, Cursor, Cline, Gemini CLI, GitHub Copilot, Windsurf, Roo Code, Sourcegraph Amp, and Aider. One cuecard per directory — skills, MCPs, plugins, persona, playbooks, gates. Cuts per-message token cost 10–25×.
+
+Install: `npm install -g cue-ai`
+Pin a profile: `echo <profile> > .cue-profile` (or `cue use <profile>`)
+Then type `claude` or `codex` — the shim scopes the runtime to only that profile's tools.
+
+## What it solves
+
+Without cue every `claude` session loads every skill, MCP, and plugin you've ever installed — the model picks the wrong tool and tokens evaporate. cue materialises a per-directory `CLAUDE_CONFIG_DIR` containing only the current project's loadout.
+
+## Core docs
+
+- [README](https://github.com/opencue/cuecards/blob/main/README.md) — quickstart, comparison matrix, architecture diagram
+- [llms-full.txt](https://github.com/opencue/cuecards/blob/main/docs/llms-full.txt) — dense plaintext mirror optimised for LLM ingestion
+- [launch.md](https://github.com/opencue/cuecards/blob/main/docs/launch.md) — full resolve → materialize → exec flow
+- [AGENTS.md](https://github.com/opencue/cuecards/blob/main/AGENTS.md) — bootstrap contract for AI agents installing cue
+
+## Setup guides
+
+- [macOS](https://github.com/opencue/cuecards/blob/main/setup/macos.md)
+- [Linux / WSL2](https://github.com/opencue/cuecards/blob/main/setup/linux.md)
+- [Windows](https://github.com/opencue/cuecards/blob/main/setup/windows.md)
+
+## Comparisons
+
+- [cue vs claude-code-switcher](https://github.com/opencue/cuecards/blob/main/docs/comparison/cue-vs-claude-code-switcher.md)
+- [cue vs skillport](https://github.com/opencue/cuecards/blob/main/docs/comparison/cue-vs-skillport.md)
+- [cue vs Kiro Powers](https://github.com/opencue/cuecards/blob/main/docs/comparison/cue-vs-kiro-powers.md)
+
+## Repository
+
+- GitHub: https://github.com/opencue/cuecards
+- npm: https://www.npmjs.com/package/cue-ai
+- License: MIT

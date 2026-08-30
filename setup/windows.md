@@ -158,7 +158,7 @@ rtk init -g
 rtk --version
 ```
 
-**Caveats** — Only hooks **Bash** tool calls (works through PowerShell when Claude Code spawns commands). Telemetry **opt-in only**. Restart Claude Code after `rtk init -g`.
+**Caveats** — Only hooks **Bash** tool calls (works through PowerShell when Claude Code spawns commands). Telemetry **opt-in only**. Restart Claude Code after `rtk init -g`. The URL above is **x86_64** (Windows on ARM runs it under emulation); if you want a native build, check the [RTK releases page](https://github.com/rtk-ai/rtk/releases).
 
 ---
 

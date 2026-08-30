@@ -40,7 +40,7 @@ skills:
     - github/gh-fix-ci
     - gstack/canary
     - gstack/health
-    - gstack/investigate
+    # gstack/investigate removed — duplicate of plan/investigate (inherited from core)
     - gstack/ship
     - gstack/review
     - gstack/retro
@@ -50,20 +50,20 @@ skills:
     - design/image-to-code
     - design/ui-ux-pro-max
     - design/minimalist-ui
-    - browser/playwright
+    - browser/agent-browser   # browser automation (vercel-labs/agent-browser CLI)
     - design/taste-skill
     - design/taste-skill-v1
-    - design/gpt-tasteskill
-    - design/image-to-code-skill
+    - design/gpt-taste
+    - design/image-to-code
     - design/imagegen-frontend-web
     - design/imagegen-frontend-mobile
     - design/brandkit
-    - design/redesign-skill
-    - design/soft-skill
-    - design/output-skill
-    - design/minimalist-skill
-    - design/brutalist-skill
-    - design/stitch-skill
+    - design/redesign-existing-projects
+    - design/high-end-visual-design
+    - meta/full-output-enforcement
+    - design/minimalist-ui
+    - design/industrial-brutalist-ui
+    - design/stitch-design-taste
     - design/industrial-brutalist-ui
     - design/redesign-existing-projects
     - gstack/design-consultation
@@ -74,7 +74,6 @@ skills:
     - higgsfield/higgsfield-marketplace-cards
     - higgsfield/higgsfield-soul-id
     - medusa/higgsfield-to-medusa-products
-    - secrets/envoult
     - gstack/setup-deploy
     - private/myvps
     - hostinger/dns
@@ -106,23 +105,26 @@ skills:
       skills: [postgres-best-practices]
     - repo: sickn33/antigravity-awesome-skills
       skills: [neon-postgres]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [shopify-expert]
 plugins:
   - claude-mem@thedotmack
-  - oh-my-claudecode@omc
   - resend@claude-plugins-official
   - frontend-design@claude-plugins-official
   - webwright@webwright
 mcps:
   - cue-tty-watch
-  - lightpanda
   - coolify
   - envoult
-  - playwright
   - Higgsfield
   - gbrain
   - hostinger-api
-  - secret-mcp
-  - postgres
+  # postgres MCP needs a connection string to do anything — gate on it so the
+  # server (and its query tool schema) only loads when a DB is configured.
+  - id: postgres
+    when:
+      env: DATABASE_URL
 env:
   RESEND_API_KEY: "${RESEND_API_KEY}"
   STRIPE_API_KEY: "${STRIPE_API_KEY}"
@@ -135,6 +137,29 @@ persona: |
   Vite + TanStack storefront, Stripe payments, Resend email, Higgsfield
   visuals, and Coolify + Hostinger deploy on Postgres. Route work by
   surface to the lead skill family, don't blur layers.
+
+  ## Browser stack — which tool when
+
+  Three browser engines, distinct sweet spots — pick by the job, don't
+  default to one:
+
+  - **ego-browser** (JS heredoc) — the default, inherited from core. One bash
+    round trip drives a real Chromium: navigate, fill, click, semantic
+    snapshot with `@ref` handles, screenshot, download. Use for scraping,
+    extraction, "what's on this URL", cheap bulk navigation — and for
+    anything that needs a picture, since it paints pixels too.
+  - **agent-browser** (CLI) — the interactive default. `snapshot -i` →
+    act on `@ref` → `screenshot`. Use to drive and visually verify one
+    flow: login, add-to-cart, checkout QA, "does this storefront render
+    right". Real pixels, persistent daemon so steps chain cheaply.
+  - **webwright** (plugin) — the heaviest. Hand off a long-horizon,
+    multi-page goal; it plans → acts → screenshot-self-verifies → logs
+    artifacts to `final_runs/`. Use for autonomous end-to-end missions,
+    not a handful of commands.
+
+  Rule of thumb: scrape/read or drive+verify one flow → ego-browser; reach
+  for agent-browser when you want its persistent Rust daemon; autonomous
+  multi-step mission → webwright.
 
   ## Surface router
 

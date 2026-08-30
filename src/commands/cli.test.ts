@@ -5,7 +5,15 @@
  */
 
 import { describe, expect, test, beforeEach } from "bun:test";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { run as cliRun } from "./cli";
+
+// `resources/skills` is a git submodule and the CLI catalog is derived from
+// skill frontmatter, so without it checked out (`git submodule update --init`)
+// the catalog-backed assertions see an empty set. Skip rather than fail
+// spuriously; the pure-unit blocks below (parseCLIs, usage) always run.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 beforeEach(() => {
   delete process.env.CUE_PROFILES_DIR;
@@ -24,7 +32,7 @@ async function capture<T>(fn: () => Promise<T>): Promise<{ stdout: string; value
   }
 }
 
-describe("cue cli list", () => {
+describe.skipIf(!SKILLS_PRESENT)("cue cli list", () => {
   test("--json shape: rows with cli + installed + plan", async () => {
     const { stdout, value } = await capture(() => cliRun(["list", "full", "--json"]));
     expect(value).toBe(0);
@@ -46,17 +54,17 @@ describe("cue cli list", () => {
     expect(installable.length).toBeGreaterThan(5);
   });
 
-  test("no positional + no .cue-profile → usage error", async () => {
+  test("no positional + no .cue.profile → usage error", async () => {
     const orig = process.stderr.write.bind(process.stderr);
     let err = "";
     (process.stderr as any).write = (c: string | Uint8Array) => { err += String(c); return true; };
     try {
-      // run from /tmp so no .cue-profile lookup succeeds
+      // run from /tmp so no .cue.profile lookup succeeds
       const cwd = process.cwd();
       process.chdir("/tmp");
       try {
         const exit = await cliRun(["list"]);
-        // either succeeds via parent .cue-profile resolution, or returns 1 with usage
+        // either succeeds via parent .cue.profile resolution, or returns 1 with usage
         if (exit !== 0) expect(err).toContain("Usage");
       } finally {
         process.chdir(cwd);
@@ -67,7 +75,7 @@ describe("cue cli list", () => {
   });
 });
 
-describe("cue cli install", () => {
+describe.skipIf(!SKILLS_PRESENT)("cue cli install", () => {
   test("dry-run --all is the default (no execution) and produces a plan", async () => {
     const { stdout, value } = await capture(() => cliRun(["install", "--all", "full", "--json"]));
     expect(value).toBe(0);
@@ -95,11 +103,27 @@ describe("cue cli install", () => {
 
   test("install <known-tool> dry-run produces apt or pip plan", async () => {
     const { stdout } = await capture(() => cliRun(["install", "nmap", "--json"]));
-    const out = JSON.parse(stdout) as { plans: Array<{ cli: string; mode: string; command?: string }> };
+    const out = JSON.parse(stdout) as { plans: Array<{ cli: string; mode: string; command?: string; argv?: string[] }> };
     expect(out.plans).toHaveLength(1);
     expect(out.plans[0]!.cli).toBe("nmap");
     // On Linux with apt available, mode should be apt; otherwise some other available manager.
     expect(["apt", "brew", "dnf", "pacman", "winget", "manual"]).toContain(out.plans[0]!.mode);
+    if (out.plans[0]!.command) expect(out.plans[0]!.argv?.length).toBeGreaterThan(0);
+  });
+
+  test("script recipes are manual unless explicitly allowed", async () => {
+    const blocked = JSON.parse((await capture(() => cliRun(["install", "metasploit", "--json"]))).stdout) as {
+      plans: Array<{ mode: string; command?: string; argv?: string[]; hint?: string }>;
+    };
+    expect(blocked.plans[0]!.mode).toBe("manual");
+    expect(blocked.plans[0]!.command).toBeUndefined();
+    expect(blocked.plans[0]!.hint).toContain("--allow-scripts");
+
+    const allowed = JSON.parse((await capture(() => cliRun(["install", "metasploit", "--allow-scripts", "--json"]))).stdout) as {
+      plans: Array<{ mode: string; command?: string; argv?: string[] }>;
+    };
+    expect(allowed.plans[0]!.mode).toBe("script");
+    expect(allowed.plans[0]!.argv?.[0]).toBe("bash");
   });
 
   test("install <unknown-tool> dry-run reports no recipe", async () => {
@@ -110,7 +134,7 @@ describe("cue cli install", () => {
   });
 });
 
-describe("cue cli list --all-profiles", () => {
+describe.skipIf(!SKILLS_PRESENT)("cue cli list --all-profiles", () => {
   test("--json returns flat array with profileCount across all profiles", async () => {
     const { stdout, value } = await capture(() => cliRun(["list", "--all-profiles", "--json"]));
     expect(value).toBe(0);

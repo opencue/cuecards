@@ -81,9 +81,15 @@ export function buildPermissions(blocks: { label: string; perms: RawPerms | null
   return { rules, counts, defaultMode };
 }
 
-/** Claude Code's user config dir — honors CLAUDE_CONFIG_DIR like CC does. */
+/**
+ * The user's GLOBAL Claude config dir — always ~/.claude, NOT CLAUDE_CONFIG_DIR.
+ * cue sets CLAUDE_CONFIG_DIR to a per-profile runtime when it launches the
+ * dashboard; honoring it here would surface the materialized runtime defaults
+ * (Bash/Read/Write/Edit *) instead of the real global permission rules the user
+ * manages. CUE_CLAUDE_HOME stays as a test-injection override.
+ */
 function claudeUserDir(): string {
-  return process.env.CUE_CLAUDE_HOME ?? process.env.CLAUDE_CONFIG_DIR ?? join(homedir(), ".claude");
+  return process.env.CUE_CLAUDE_HOME ?? join(homedir(), ".claude");
 }
 
 function readPermsFile(path: string): RawPerms | null {

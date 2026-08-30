@@ -15,7 +15,9 @@
 #
 # Usage:
 #   cue-learnings log --type <T> --key <K> --insight <S> --confidence <N> \
-#                     --source <S> [--files <comma,list>]
+#                     --source <S> [--files <comma,list>] [--skill <cat/slug>]
+#     --skill: for a pitfall/pattern, also enqueue a skill_gap in analytics.jsonl
+#              so the auto-evolve loop improves that skill (closes learning→skill).
 #   cue-learnings search [pattern]    # most-recent first; jq if present, grep otherwise
 #   cue-learnings list                # same as search with no pattern
 #   cue-learnings path                # print the jsonl path for this project
@@ -24,8 +26,16 @@
 #   resources/skills/skills/meta/skill-reviewer/references/learnings.md
 set -euo pipefail
 
-# Resolve cue-slug — same directory as this script.
-SCRIPT_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Resolve symlinks before locating cue-slug. Global npm/source installs invoke
+# this script through a bin-directory symlink, while cue-slug stays beside the
+# real script inside the package or checkout.
+src="${BASH_SOURCE[0]}"
+while [ -h "$src" ]; do
+  dir="$(cd -P "$(dirname "$src")" && pwd)"
+  src="$(readlink "$src")"
+  [[ "$src" != /* ]] && src="$dir/$src"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$src")" && pwd)"
 SLUG_BIN="$SCRIPT_DIR/cue-slug"
 
 if [[ ! -x "$SLUG_BIN" ]]; then
@@ -41,7 +51,7 @@ cmd="${1:-}"
 case "$cmd" in
   log)
     shift
-    TYPE="" KEY="" INSIGHT="" CONFIDENCE="" SOURCE="" FILES=""
+    TYPE="" KEY="" INSIGHT="" CONFIDENCE="" SOURCE="" FILES="" SKILL=""
     while [[ $# -gt 0 ]]; do
       case "$1" in
         --type)        TYPE="$2"; shift 2 ;;
@@ -50,6 +60,7 @@ case "$cmd" in
         --confidence)  CONFIDENCE="$2"; shift 2 ;;
         --source)      SOURCE="$2"; shift 2 ;;
         --files)       FILES="$2"; shift 2 ;;
+        --skill)       SKILL="$2"; shift 2 ;;
         *) echo "cue-learnings log: unknown flag $1" >&2; exit 1 ;;
       esac
     done
@@ -73,9 +84,13 @@ case "$cmd" in
     fi
 
     # Sanitize key — JSONL is line-delimited; newlines break the format
+    # Strip ALL C0 control chars (not just CR/LF): a raw tab in any field would
+    # make the JSONL line unparseable, and every downstream reader silently skips
+    # a malformed line — losing the learning AND its bridged skill_gap signal.
     KEY=$(printf '%s' "$KEY" | tr -cd 'a-zA-Z0-9._-')
-    INSIGHT=$(printf '%s' "$INSIGHT" | tr -d '\n\r')
-    FILES=$(printf '%s' "$FILES" | tr -d '\n\r')
+    INSIGHT=$(printf '%s' "$INSIGHT" | tr -d '\000-\037')
+    FILES=$(printf '%s' "$FILES" | tr -d '\000-\037')
+    SKILL=$(printf '%s' "$SKILL" | tr -d '\000-\037')
 
     mkdir -p "$PROJECT_DIR"
     TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
@@ -108,6 +123,25 @@ case "$cmd" in
       >> "$LEARNINGS_FILE"
 
     echo "logged: $TYPE/$KEY ($CONFIDENCE/10) → $LEARNINGS_FILE"
+
+    # Bridge to the evolution loop: when a pitfall/pattern names a skill, also
+    # append a skill_gap event to analytics.jsonl so auto-evolve can pick that
+    # skill up. Closes the formerly-open learnings→skill-improvement loop. Only
+    # actionable types (pitfall/pattern) bridge; preferences/operational notes
+    # are about the user/process, not the skill, so they stay out of the queue.
+    if [[ -n "$SKILL" ]] && { [[ "$TYPE" == "pitfall" ]] || [[ "$TYPE" == "pattern" ]]; }; then
+      ANALYTICS="${XDG_CONFIG_HOME:-$HOME/.config}/cue/analytics.jsonl"
+      mkdir -p "$(dirname "$ANALYTICS")" 2>/dev/null || true
+      ATS=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
+      # The learning is already safely written; a bridge-write failure (disk full,
+      # perms) must NOT make this command exit non-zero — degrade to a warning.
+      if printf '{"ts":"%s","event":"skill_gap","agent":"claude-code","source":"learning","skill":"%s","gap_type":"weak-body","suggestion":"%s","confidence":%d}\n' \
+          "$ATS" "$(esc "$SKILL")" "$(esc "$INSIGHT")" "$CONFIDENCE" >> "$ANALYTICS" 2>/dev/null; then
+        echo "bridged: skill_gap for '$SKILL' → $ANALYTICS"
+      else
+        echo "cue-learnings: warning — could not bridge skill_gap to analytics (learning still logged)" >&2
+      fi
+    fi
     ;;
 
   search|list)

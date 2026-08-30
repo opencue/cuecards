@@ -136,7 +136,7 @@ RTK is a **standalone Rust binary**, not a Claude Code plugin. It installs a `Pr
 Already installed in the "Easiest macOS path" block above (`brew install rtk && rtk init -g`). If you ran the long-form prereqs instead, do it now:
 
 ```bash
-brew install rtk             # or curl install: https://github.com/rtk-ai/rtk
+brew install rtk             # Homebrew picks the native arm64/x86_64 build; if the formula is missing, grab a darwin binary from https://github.com/rtk-ai/rtk/releases
 rtk init -g                  # writes the Claude Code hook + RTK.md guidance
 # verify:
 rtk --version

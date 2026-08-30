@@ -2,21 +2,21 @@
 title: "julilaoshi/flowmotion-skill — Claude Code skill discovered by cue"
 description: "FlowMotion Skill / 头脑风暴动态流程图 Skill: turn voice notes, SRT transcripts, and messy ideas into structured flow specs, connection specs, and motion-ready diagram br"
 layout: page
-updated: 2026-06-03
+updated: 2026-08-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [julilaoshi/flowmotion-skill](https://github.com/julilaoshi/flowmotion-skill)
 
-**★ 26** · exceptional (score 9.6) · ai-workflow, claude-code-skill, codex-skill, flowchart, flowmotion-skill
+**★ 31** · exceptional (score 10.6) · ai-workflow, claude-code-skill, codex-skill, flowchart, flowmotion-skill
 
 > FlowMotion Skill / 头脑风暴动态流程图 Skill: turn voice notes, SRT transcripts, and messy ideas into structured flow specs, connection specs, and motion-ready diagram briefs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
-- ⭐ 26 stars
-- 🗓️ Last pushed: 2026-06-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
+- ⭐ 31 stars
+- 🗓️ Last pushed: 2026-08-20
 - 🏷️ Tags: ai-workflow, claude-code-skill, codex-skill, flowchart, flowmotion-skill, motion-diagram, presentation-workflow, srt-to-flowchart, visual-thinking, voice-to-flowchart
 
 ## Best fit cue profiles

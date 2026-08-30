@@ -13,9 +13,19 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { useProfilesFull, useProfileDetail, type ProfileDetail, type StudioSkill, type SubagentRef } from "../api";
+import { useProfilesFull, useProfileDetail, useRepos, type ProfileDetail, type StudioSkill, type SubagentRef, type RepoKind } from "../api";
 import { nsColor, nsLabel, mcpInfo, partEmoji, WORKFLOWS } from "../curated";
 import type { OpenTarget } from "../StudioApp";
+
+/** Per-kind tag colour for repo cards (matches the design). */
+const KIND_COLOR: Record<RepoKind, string> = {
+  profile: "#8b7bf0", workflow: "#e0913a", skill: "#3ecf8e", cli: "#56b6c2", mcp: "#5b9cf0", plugin: "#c264c2",
+};
+/** "18400" → "18.4k"; counts under 1000 stay literal; null → "—". */
+function fmtStars(n: number | null): string {
+  if (n === null) return "—";
+  return n >= 1000 ? (n / 1000).toFixed(1) + "k" : String(n);
+}
 
 function MiniStat({ n, l, accent }: { n: React.ReactNode; l: string; accent?: string }) {
   return <div className="pi-stat"><div className={"pi-n" + (accent ? " " + accent : "")}>{n}</div><div className="pi-l">{l}</div></div>;
@@ -56,7 +66,7 @@ function inspect(d: ProfileDetail) {
   return { groups, wfs, overhead, maxCtx };
 }
 
-type Tab = "skills" | "mcps" | "plugins" | "subagents" | "workflows" | "commands" | "clis";
+type Tab = "skills" | "mcps" | "plugins" | "subagents" | "workflows" | "commands" | "clis" | "repos";
 
 export function ProfilesView({ active, setProfile, onOpen }: {
   active: string | null;
@@ -77,6 +87,8 @@ export function ProfilesView({ active, setProfile, onOpen }: {
   const d = detail.data;
   const ins = useMemo(() => (d ? inspect(d) : null), [d]);
   const selRow = rows.find((r) => r.name === sel);
+  const reposQ = useRepos(sel ?? undefined);
+  const repos = reposQ.data?.repos ?? [];
 
   const openItem = (kind: OpenTarget["kind"], key: string, highlightCli?: string) => {
     if (sel) setProfile(sel);
@@ -92,6 +104,7 @@ export function ProfilesView({ active, setProfile, onOpen }: {
     ["workflows", "Workflows", readyCount],
     ["commands", "Commands", d?.counts.commands ?? 0],
     ["clis", "CLIs", d?.counts.clis ?? 0],
+    ["repos", "Repos", repos.length],
   ];
 
   return (
@@ -141,6 +154,16 @@ export function ProfilesView({ active, setProfile, onOpen }: {
               <div className="pd-parts">
                 {d.parts.map((p) => <span key={p} className="pd-chip"><span className="pdc-e">{partEmoji(p)}</span>{p}</span>)}
               </div>
+              {d.recommends.length > 0 && (
+                <div className="pd-recommends">
+                  <span className="pd-rec-label">Pair with</span>
+                  {d.recommends.map((r) => (
+                    <button key={r} className="pd-rec-chip" onClick={() => setSel(r)} title={`Switch to ${r} profile`}>
+                      <span className="pdc-e">{partEmoji(r)}</span>{r}
+                    </button>
+                  ))}
+                </div>
+              )}
               <div className="pd-stats">
                 <MiniStat n={d.counts.skills} l="SKILLS" accent="violet" />
                 <MiniStat n={d.counts.mcps} l="MCPS" />
@@ -260,6 +283,25 @@ export function ProfilesView({ active, setProfile, onOpen }: {
                     </div>
                   ))}
                   {!d.clis.length && <div className="pr-hint" style={{ padding: 4 }}>No skills in this profile declare a CLI dependency (frontmatter <code>allowed-tools: Bash(…)</code>).</div>}
+                </div>
+              )}
+              {tab === "repos" && (
+                <div className="pd-repos">
+                  <div className="pd-repos-note">GitHub repositories these skills, MCPs, plugins and workflows originate from. Stars are live and refresh hourly.</div>
+                  {repos.map((r) => (
+                    <a key={r.repo} className="repo-row" href={r.url} target="_blank" rel="noopener noreferrer">
+                      <span className="repo-gh"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" /></svg></span>
+                      <div className="repo-mid">
+                        <div className="repo-name">{r.repo}<span className="repo-ext">↗</span></div>
+                        <div className="repo-desc">{r.desc}</div>
+                        <div className="repo-kinds">{r.kinds.map((k) => <span key={k} className="repo-kind" style={{ color: KIND_COLOR[k], borderColor: KIND_COLOR[k] + "44" }}>{k}</span>)}</div>
+                      </div>
+                      <span className="repo-stars" title={r.stars === null ? "star count unavailable (GitHub unreachable)" : `${r.stars.toLocaleString()} stars`}><span className="repo-star-ic">★</span>{fmtStars(r.stars)}</span>
+                    </a>
+                  ))}
+                  {reposQ.isLoading && <div className="pm-empty">Loading source repos…</div>}
+                  {reposQ.isError && <div className="pm-empty">Couldn't load repos: {(reposQ.error as Error).message}</div>}
+                  {!reposQ.isLoading && !reposQ.isError && repos.length === 0 && <div className="pm-empty">No source repos detected for this profile.</div>}
                 </div>
               )}
             </div>

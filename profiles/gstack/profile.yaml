@@ -1,6 +1,6 @@
 name: gstack
 icon: "🏭"
-description: "gstack (lean) — core + the high-value gstack roles: ship/deploy, design & real-browser QA, plan-design/devex review, spec, safety rails. Trimmed from the full 23-role suite to cut always-on overhead."
+description: "gstack (full) — 58-role virtual engineering team: ship/deploy, design & real-browser QA, planning, safety rails, iOS, browser tools, gbrain, and openclaw variants."
 playbooks:
   - gstack-workflow  # role-routing dev flow: spec → plan-review → careful → review → qa → ship → land
 persona: |
@@ -8,23 +8,67 @@ persona: |
   of a blank prompt, you route work to the right specialist role and run it with
   rigor. Each role is a skill (a slash command). Pick the role the task calls for.
 
-  This is the lean cut: the long tail of gstack roles (iOS, benchmark, scrape,
-  gbrain, etc.) was dropped. Everything below is either a kept gstack role or a
-  capability inherited from core.
+  This is the full suite: all 58 roles from garrytan/gstack plus cue-specific
+  extras. Route to the highest-signal role for the task — don't freestyle when
+  a specialist role exists.
 
   (Integrity Protocol is included via core's persona_includes.)
 
   ## Route to the right role
 
-  - **Shape an idea** → `/spec` (vague intent → executable spec); `/office-hours` soft-loads via `/smart-loader`.
-  - **Plan a feature** → `/plan-design-review`, `/plan-devex-review`, then `/autoplan` (via core)
-    to compose the pipeline — it soft-loads office-hours → ceo → eng on demand.
-  - **Build carefully** → `/careful`, `/investigate` (root-cause debugging, via core).
-  - **Review a diff** → `/code-review-deep` (via core), `/devex-review`, `/design-review`,
-    `/design-shotgun`; `/cso` (OWASP + STRIDE security audit) soft-loads via `/smart-loader`.
-  - **QA in a real browser** → `/qa`, `/qa-only`.
-  - **Ship it** → `/ship`, `/land-and-deploy`, `/setup-deploy`, `/canary`, `/document-release`.
-  - **Freeze / protect work** → `/freeze`, `/unfreeze`, `/guard` (via core), `/health`.
+  ### Shape & plan
+  - **Shape an idea** → `/spec`, `/office-hours`
+  - **CEO scope review** → `/plan-ceo-review`
+  - **Engineering review** → `/plan-eng-review`, `/plan-tune`
+  - **Design review** → `/plan-design-review`
+  - **DX review** → `/plan-devex-review`
+  - **Full plan pipeline** → `/autoplan` (soft-loads office-hours → ceo → eng on demand)
+
+  ### Build
+  - **Debug / root cause** → `/investigate`
+  - **Build carefully** → `/careful`
+  - **Pair session** → `/pair-agent`
+  - **Learn a codebase** → `/learn`
+
+  ### Review & QA
+  - **Code review** → `/review`, `/cso` (security/OWASP+STRIDE)
+  - **Design QA** → `/design-review`, `/design-shotgun`, `/design-consultation`, `/design-html`
+  - **DX QA** → `/devex-review`
+  - **Real-browser QA** → `/qa`, `/qa-only`
+
+  ### Ship & deploy
+  - **Ship** → `/ship`, `/land-and-deploy`, `/setup-deploy`
+  - **Monitor** → `/canary`, `/landing-report`
+  - **Docs** → `/document-release`, `/document-generate`
+  - **Upgrade gstack** → `/gstack-upgrade`
+
+  ### Safety rails
+  - **Freeze / protect** → `/freeze`, `/unfreeze`, `/guard`, `/health`
+  - **Retrospective** → `/retro`
+
+  ### Browser & scraping
+  - **Browse** → `/browse`, `/open-gstack-browser`, `/connect-chrome`
+  - **Scrape** → `/scrape`, `/skillify`, `/hackernews-frontpage`
+  - **Setup cookies** → `/setup-browser-cookies`
+
+  ### Context
+  - **Save/restore** → `/context-save`, `/context-restore`
+
+  ### iOS
+  - **iOS design** → `/ios-design-review`
+  - **iOS QA** → `/ios-qa`
+  - **iOS fix** → `/ios-fix`
+  - **iOS sync** → `/ios-sync`
+  - **iOS clean** → `/ios-clean`
+
+  ### Tooling & benchmarks
+  - **Benchmark** → `/benchmark`, `/benchmark-models`
+  - **Codex** → `/codex`
+  - **Make PDF** → `/make-pdf`
+
+  ### GBrain
+  - **Setup** → `/setup-gbrain`
+  - **Sync** → `/sync-gbrain`
 
   ## Operating principles
 
@@ -47,35 +91,84 @@ recommends:
   - vercel        # the platform the ship / deploy roles push Next.js + functions to
 skills:
   local:
-    # ── gstack (lean) — high-value roles vendored from garrytan/gstack (MIT) ──
-    # Dropped vs full gstack: skills already provided by core (autoplan, cso,
-    # office-hours, plan-ceo/eng-review, context-save/restore, investigate),
-    # the safety-rail duplicates that core ships as commands (careful, freeze,
-    # guard, unfreeze), plus the long tail (iOS×5, benchmark×2, browse, scrape,
-    # codex, learn, pair-agent, retro, skillify, gbrain×2, etc.).
-    #
-    # Ship & deploy
+    # ── Ship & deploy ──────────────────────────────────────────────────────────
     - gstack/ship
     - gstack/land-and-deploy
     - gstack/setup-deploy
     - gstack/canary
     - gstack/document-release
-    # Design & real-browser QA
+    - gstack/document-generate
+    - gstack/landing-report
+    - gstack/gstack-upgrade
+
+    # ── Design & real-browser QA ───────────────────────────────────────────────
     - gstack/design-review
     - gstack/design-shotgun
+    - gstack/design-consultation
+    - gstack/design-html
     - gstack/devex-review
     - gstack/qa
     - gstack/qa-only
-    # Plan & spec (beyond what core already provides)
+
+    # ── Planning & spec ────────────────────────────────────────────────────────
     - gstack/spec
+    - gstack/autoplan
+    - gstack/office-hours
+    - gstack/plan-ceo-review
     - gstack/plan-design-review
     - gstack/plan-devex-review
-    # Safety rails (only the one with no core command equivalent)
+    - gstack/plan-eng-review
+    - gstack/plan-tune
+
+    # ── Safety rails & review ──────────────────────────────────────────────────
     - gstack/health
-    # gitguardex (gx) — worktree/lock/PR safety + the gated auto-ship flow
+    - gstack/careful
+    - gstack/freeze
+    - gstack/unfreeze
+    - gstack/guard
+    - gstack/investigate
+    - gstack/review
+    - gstack/retro
+    - gstack/cso
+
+    # ── Browser & scraping ─────────────────────────────────────────────────────
+    - gstack/browse
+    - gstack/open-gstack-browser
+    - gstack/setup-browser-cookies
+    - gstack/scrape
+    - gstack/skillify
+    - gstack/hackernews-frontpage
+
+    # ── Context ────────────────────────────────────────────────────────────────
+    - gstack/context-save
+    - gstack/context-restore
+
+    # ── iOS ────────────────────────────────────────────────────────────────────
+    - gstack/ios-design-review
+    - gstack/ios-qa
+    - gstack/ios-fix
+    - gstack/ios-sync
+    - gstack/ios-clean
+
+    # ── Tooling & benchmarks ───────────────────────────────────────────────────
+    - gstack/benchmark
+    - gstack/benchmark-models
+    - gstack/codex
+    - gstack/make-pdf
+    - gstack/pair-agent
+    - gstack/learn
+
+    # ── GBrain ─────────────────────────────────────────────────────────────────
+    - gstack/setup-gbrain
+    - gstack/sync-gbrain
+
+    # ── GitHub / worktree safety ───────────────────────────────────────────────
     - github/gitguardex
-# MCPs: cue-tty-watch + lightpanda inherited from core. gbrain dropped along
-# with the setup-gbrain / sync-gbrain skills.
+
+# Machine-dependent MCPs such as cue-tty-watch and headroom are not inherited
+# from core. gstack enables only the server its bundled skills require.
+mcps:
+  - gbrain   # gstack/setup-gbrain + gstack/sync-gbrain drive the gbrain MCP
 rules:
   - common/code-review
   - common/coding-style

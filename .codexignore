@@ -1,0 +1,20 @@
+# Local/generated content that should not be loaded into Codex context by default.
+resources/skills/catalog/*.json
+resources/skills/skills/**/test/fixtures/
+resources/skills/skills/**/fixtures/
+docs/assets/*.svg
+
+# Build, dependency, and cache output.
+node_modules/
+**/node_modules/
+dist/
+build/
+coverage/
+.turbo/
+.bun/
+.pnpm-store/
+.yarn/cache/
+
+# Local cue runtime/log state.
+.config/cue/analytics.jsonl
+.config/cue/session-log.jsonl

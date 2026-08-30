@@ -9,7 +9,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -97,6 +97,33 @@ describe("loadProfile", () => {
     expect(resolved.inheritanceChain).toEqual(["minimal"]);
   });
 
+  test("catalog metadata validates and survives profile resolution", async () => {
+    await writeProfile(
+      "catalogued",
+      [
+        "name: catalogued",
+        "description: generated catalog profile",
+        "catalog:",
+        "  source: agentic-awesome-skills",
+        "  group: backend",
+        "  capability: authentication",
+        "  generated: true",
+        "  discoverability: search",
+        "",
+      ].join("\n"),
+    );
+
+    const resolved = await loadProfile("catalogued");
+
+    expect(resolved.catalog).toEqual({
+      source: "agentic-awesome-skills",
+      group: "backend",
+      capability: "authentication",
+      generated: true,
+      discoverability: "search",
+    });
+  });
+
   test("valid w/inheritance: arrays concat+dedupe, env overrides, child wins on scalars", async () => {
     // Parent — "core" — supplies a baseline set of skills, mcps, env.
     await writeProfile(
@@ -158,6 +185,32 @@ describe("loadProfile", () => {
     // Agents: child declared [claude-code]; parent did not declare. Merge =
     // [claude-code]. (No fallback to default — child was explicit.)
     expect(resolved.agents).toEqual(["claude-code"]);
+  });
+
+  test("mcps: when: gate is parsed and survives the inheritance merge", async () => {
+    await writeProfile(
+      "mcp-when",
+      [
+        "name: mcp-when",
+        "description: profile with a conditional MCP",
+        "mcps:",
+        "  - always-on", // string form — no gate
+        "  - id: gated", // object form with a when: condition
+        "    when:",
+        "      env: SOME_TOKEN",
+        "  - id: cwd-gated",
+        "    when:",
+        "      has_dir: .obsidian",
+        "",
+      ].join("\n"),
+    );
+
+    const resolved = await loadProfile("mcp-when");
+    expect(resolved.mcps).toEqual([
+      { id: "always-on" },
+      { id: "gated", when: { env: "SOME_TOKEN" } },
+      { id: "cwd-gated", when: { has_dir: ".obsidian" } },
+    ]);
   });
 
   test("subagents fold through inheritance: parent first, child appended, deduped", async () => {
@@ -511,6 +564,102 @@ describe("loadProfile (composite)", () => {
     expect(merged.inherits).toBeUndefined();
   });
 
+  test("a+b unions npx skill lists when both profiles use the same pinned repo", async () => {
+    const pin = "git@0123456789abcdef0123456789abcdef01234567";
+    await writeProfile(
+      "alpha",
+      [
+        "name: alpha",
+        "description: Alpha",
+        "skills:",
+        "  npx:",
+        "    - repo: owner/catalog",
+        `      pin: ${pin}`,
+        "      skills: [one, shared]",
+      ].join("\n"),
+    );
+    await writeProfile(
+      "beta",
+      [
+        "name: beta",
+        "description: Beta",
+        "skills:",
+        "  npx:",
+        "    - repo: owner/catalog",
+        `      pin: ${pin}`,
+        "      skills: [shared, two]",
+      ].join("\n"),
+    );
+
+    const merged = await loadProfile("alpha+beta");
+
+    expect(merged.skills.npx).toEqual([{
+      repo: "owner/catalog",
+      pin,
+      skills: ["one", "shared", "two"],
+    }]);
+  });
+
+  test("codex_config merges two levels deep across a composite", async () => {
+    // The failure this guards: beta sets only network_access. A shallow merge
+    // would replace alpha's whole sandbox_workspace_write table and silently
+    // drop writable_roots — invisible until Codex fails to launch a browser.
+    await writeProfile(
+      "alpha",
+      [
+        "name: alpha",
+        "description: Alpha",
+        "codex_config:",
+        '  sandbox_mode: "workspace-write"',
+        "  sandbox_workspace_write:",
+        "    writable_roots:",
+        '      - "/home/u/.local/share/ego-lite-linux"',
+      ].join("\n"),
+    );
+    await writeProfile(
+      "beta",
+      [
+        "name: beta",
+        "description: Beta",
+        "codex_config:",
+        '  approval_policy: "never"',
+        "  sandbox_workspace_write:",
+        "    network_access: true",
+      ].join("\n"),
+    );
+
+    const merged = await loadProfile("alpha+beta");
+
+    expect(merged.codexConfig).toEqual({
+      sandbox_mode: "workspace-write",
+      approval_policy: "never",
+      sandbox_workspace_write: {
+        writable_roots: ["/home/u/.local/share/ego-lite-linux"],
+        network_access: true,
+      },
+    });
+  });
+
+  test("codex_config collision is later-wins at the leaf", async () => {
+    await writeProfile(
+      "alpha",
+      ["name: alpha", "description: Alpha", "codex_config:", '  sandbox_mode: "read-only"'].join("\n"),
+    );
+    await writeProfile(
+      "beta",
+      ["name: beta", "description: Beta", "codex_config:", '  sandbox_mode: "workspace-write"'].join("\n"),
+    );
+
+    const merged = await loadProfile("alpha+beta");
+    expect(merged.codexConfig.sandbox_mode).toBe("workspace-write");
+  });
+
+  test("profiles without codex_config resolve to an empty object", async () => {
+    await writeProfile("alpha", "name: alpha\ndescription: Alpha\n");
+    const merged = await loadProfile("alpha");
+    expect(merged.codexConfig).toEqual({});
+  });
+
   test("missing component throws ProfileNotFound for that part", async () => {
     await writeProfile(
       "alpha",
@@ -531,5 +680,171 @@ describe("loadProfile (composite)", () => {
     const merged = await loadProfile("alpha+");
     expect(merged.name).toBe("alpha"); // not "alpha+"; collapses to single-part
     expect(merged.icon).toBe("🅰️");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Real-profile guards. These point the loader at the repo's actual profiles/
+// (not a scratch fixture) to pin cross-profile persona policy that fans out
+// from core. beforeEach set CUE_PROFILES_DIR to a temp dir; we override it
+// here and afterEach restores it, so isolation holds.
+// ---------------------------------------------------------------------------
+describe("core persona_includes fan-out (real profiles)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+
+  test("core carries the compact integrity and Codex token-discipline includes", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const core = await loadProfile("core");
+    expect(core.personaIncludes).toContain("integrity-protocol-compact");
+    expect(core.personaIncludes).toContain("codex-token-discipline");
+    expect(core.personaIncludes).not.toContain("headroom-compression");
+    expect(core.codex?.model_auto_compact_token_limit).toBe(180000);
+    expect(core.codex?.model_reasoning_effort).toBe("high");
+    expect(core.codex?.hooks).toBeDefined();
+    expect(core.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+  });
+
+  test("core keeps machine-dependent MCP servers opt-in", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const core = await loadProfile("core");
+    const ids = core.mcps.map((m) => m.id);
+
+    expect(ids).toContain("codegraph");
+    expect(ids).toContain("context7");
+    expect(ids).not.toContain("dataforseo");
+    expect(ids).not.toContain("kroschuorder");
+    expect(ids).not.toContain("cue-tty-watch");
+    expect(ids).not.toContain("headroom");
+  });
+
+  test("headroom profile opts into the proxy wrap include", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const headroom = await loadProfile("headroom");
+    expect(headroom.personaIncludes).toContain("headroom-compression");
+    expect(headroom.mcps.map((m) => m.id)).toContain("headroom");
+    expect(headroom.env?.ANTHROPIC_BASE_URL).toBe("http://127.0.0.1:8787");
+  });
+
+  test("codegraph auto-loads across every built-in profile", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const entries = await readdir(REAL_PROFILES, { withFileTypes: true });
+    const names: string[] = [];
+    for (const entry of entries) {
+      if (!entry.isDirectory() || entry.name.startsWith("_") || entry.name.startsWith(".")) continue;
+      try {
+        await access(join(REAL_PROFILES, entry.name, "profile.yaml"));
+        names.push(entry.name);
+      } catch {
+        // Reserved or incomplete profile dirs are ignored by the real loader too.
+      }
+    }
+
+    const missingMcp: string[] = [];
+    const missingRouting: string[] = [];
+    for (const name of names.sort()) {
+      const profile = await loadProfile(name);
+      if (!profile.mcps.some((m) => m.id === "codegraph")) missingMcp.push(name);
+      if (!profile.personaIncludes.includes("codegraph-routing")) missingRouting.push(name);
+    }
+
+    expect(missingMcp).toEqual([]);
+    expect(missingRouting).toEqual([]);
+  });
+
+  test("core persona includes fan out to a child that defines its own persona", async () => {
+    // gstack overrides persona (leaf-wins), so this proves persona_includes is
+    // additive — a child keeping its own persona still inherits core's policy
+    // includes. Guards against a core edit silently dropping it everywhere.
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const gstack = await loadProfile("gstack");
+    expect(gstack.persona).toBeTruthy(); // gstack has its own persona block
+    expect(gstack.personaIncludes).toContain("integrity-protocol-compact");
+    expect(gstack.personaIncludes).not.toContain("headroom-compression");
+    expect(gstack.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+  });
+});
+
+describe("TanStack skill propagation (real profiles)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+  const TANSTACK_SOURCE = {
+    repo: "DeckardGer/tanstack-agent-skills",
+    pin: "git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a",
+    skills: [
+      "tanstack-integration-best-practices",
+      "tanstack-query-best-practices",
+      "tanstack-router-best-practices",
+      "tanstack-start-best-practices",
+    ],
+  };
+
+  test.each(["tanstack", "vite", "medusa-vite"])(
+    "%s always resolves the pinned TanStack skill bundle",
+    async (name) => {
+      process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+      const profile = await loadProfile(name);
+
+      expect(
+        profile.skills.npx.find((entry) => entry.repo === TANSTACK_SOURCE.repo),
+      ).toEqual(TANSTACK_SOURCE);
+    },
+  );
+});
+
+describe("opensrc routing (real profiles)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+  const OPENSRC_ROUTE = {
+    capability:
+      "Fetch, download, clone, or inspect an external GitHub repository or package source",
+    skill: "tools/opensrc",
+    note: "Use `opensrc path owner/repo[@ref|#ref]` before generic `git clone`.",
+  };
+
+  test.each(["core", "opensrc"])(
+    "%s keeps opensrc loaded and routes repository fetching through it",
+    async (name) => {
+      process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+      const profile = await loadProfile(name);
+
+      expect(profile.skills.local).toContainEqual({ id: "tools/opensrc" });
+      expect(profile.personaRouting).toContainEqual(OPENSRC_ROUTE);
+    },
+  );
+});
+
+describe("mcpPrune resolution", () => {
+  test("unset by default", async () => {
+    await writeProfile("np", "name: np\ndescription: no prune declared\n");
+    const r = await loadProfile("np");
+    expect(r.mcpPrune).toBeUndefined();
+  });
+
+  test("parsed from a single profile", async () => {
+    await writeProfile("pp", "name: pp\ndescription: prune all\nmcpPrune: all\n");
+    const r = await loadProfile("pp");
+    expect(r.mcpPrune).toBe("all");
+  });
+
+  test("leaf wins through single inheritance", async () => {
+    await writeProfile("base-prune", "name: base-prune\ndescription: base\nmcpPrune: profile\n");
+    await writeProfile(
+      "leaf-prune",
+      "name: leaf-prune\ndescription: leaf\ninherits: base-prune\nmcpPrune: all\n",
+    );
+    expect((await loadProfile("leaf-prune")).mcpPrune).toBe("all");
+    // Child without its own setting inherits the parent's.
+    await writeProfile("leaf-inherit", "name: leaf-inherit\ndescription: leaf2\ninherits: base-prune\n");
+    expect((await loadProfile("leaf-inherit")).mcpPrune).toBe("profile");
+  });
+
+  test("most-aggressive wins across a composite (off < profile < all)", async () => {
+    await writeProfile("cp-off", "name: cp-off\ndescription: off\n");
+    await writeProfile("cp-prof", "name: cp-prof\ndescription: profile\nmcpPrune: profile\n");
+    await writeProfile("cp-all", "name: cp-all\ndescription: all\nmcpPrune: all\n");
+    expect((await loadProfile("cp-off+cp-prof")).mcpPrune).toBe("profile");
+    expect((await loadProfile("cp-prof+cp-all")).mcpPrune).toBe("all");
+    expect((await loadProfile("cp-off+cp-all")).mcpPrune).toBe("all");
+    // No part declares one → undefined.
+    await writeProfile("cp-off2", "name: cp-off2\ndescription: off2\n");
+    expect((await loadProfile("cp-off+cp-off2")).mcpPrune).toBeUndefined();
   });
 });

@@ -2,21 +2,21 @@
 title: "renefichtmueller/adaptive-llm-gateway — Claude Code skill discovered by cue"
 description: "Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible"
 layout: page
-updated: 2026-06-03
+updated: 2026-08-30
 tags: [claude-code, skill, backend]
 ---
 
-# ✨ [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+# 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 4** · strong (score 5.8) · TypeScript · ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 11** · exceptional (score 8) · TypeScript · ai-gateway, anthropic, apache-2, chatgpt, claude
 
 > Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-06-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-08-30
 - 🏷️ Tags: ai-gateway, anthropic, apache-2, chatgpt, claude, codex, copilot, fastify, llm, llm-gateway, mcp, mcp-server, oauth-passthrough, ollama, openai, pii-redaction, prompt-injection, self-hosted, subscription-management, typescript
 
 ## Best fit cue profiles

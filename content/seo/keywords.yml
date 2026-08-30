@@ -1,0 +1,65 @@
+# SEO keyword themes for cuecards (cue)
+# Organised by intent cluster. Use for page targeting, title construction,
+# and meta-description copy. Primary keywords anchor each cluster.
+
+clusters:
+
+  # Core product identity
+  product_identity:
+    primary: "claude code profile manager"
+    secondary:
+      - "agent profile manager"
+      - "cue-ai"
+      - "cuecards"
+      - "AI coding profile manager"
+      - "claude code skills manager"
+
+  # Problem-aware (users know their pain, not yet the solution)
+  problem_aware:
+    primary: "reduce claude code token cost"
+    secondary:
+      - "too many claude code skills"
+      - "claude code loads wrong tools"
+      - "manage claude code configuration"
+      - "claude code per project config"
+      - "AI agent context window bloat"
+
+  # Solution-aware (users know the category)
+  solution_aware:
+    primary: "per-directory AI agent profiles"
+    secondary:
+      - "claude code MCP manager"
+      - "claude code plugin manager"
+      - "codex profile manager"
+      - "AI agent skill isolation"
+      - "claude code config per repo"
+
+  # Competitor / comparison (high-intent)
+  comparison:
+    primary: "cue vs claude code switcher"
+    secondary:
+      - "claude code switcher alternative"
+      - "skillport alternative"
+      - "kiro powers alternative"
+      - "best claude code profile tool"
+      - "claude code dotfiles alternative"
+
+  # Use-case (long-tail, high-conversion)
+  use_cases:
+    primary: "claude code for teams profile sharing"
+    secondary:
+      - "claude code monorepo profile"
+      - "claude code medusa development"
+      - "claude code cybersecurity setup"
+      - "claude code agency workflow"
+      - "open source maintainer AI tools"
+
+  # Technical (developer audience)
+  technical:
+    primary: "CLAUDE_CONFIG_DIR per directory"
+    secondary:
+      - "claude code MCP isolation"
+      - "claude code skill inheritance"
+      - "cue materialize"
+      - "claude code shim"
+      - "cue shell install"

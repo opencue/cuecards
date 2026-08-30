@@ -11,12 +11,11 @@ conflicts:
   - designer-medusa-vite   # same conflict via the designer variant
 skills:
   local:
-    # Frontend essentials (design/*, browser/playwright) now via web-frontend-base
+    # Frontend essentials (design/*, browser/agent-browser) now via web-frontend-base
     # Visual generation for product/hero shots that flow into the storefront
     - higgsfield/higgsfield-product-photoshoot
 mcps:
   - coolify     # inherited from medusa-dev, listed for clarity
-  - playwright
 plugins: []
 persona: |
   You are a Medusa v2 + Next.js storefront engineer. The canonical
@@ -89,7 +88,7 @@ persona: |
   After non-trivial storefront work: run `next dev`, screenshot the
   route, confirm region pricing renders correctly for the cookie-set
   region, confirm cart flow end-to-end (add to cart, checkout step 1,
-  checkout step 2, complete). The screenshot + playwright skills are
+  checkout step 2, complete). The screenshot + agent-browser skills are
   the canonical tools.
 
   ## Out of scope (route to a different profile)

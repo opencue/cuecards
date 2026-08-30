@@ -1,120 +1,100 @@
-# AGENTS — cue bootstrap contract
+# AGENTS - cue bootstrap contract
 
-If you are an AI coding agent (Claude Code, Codex, etc.) helping a human install
-cue on their machine, this file is your instruction sheet. Read it before
-touching the shell.
-
----
+Keep this file lean. It is read by coding agents that help install or maintain
+cue. Detailed context-budget and install notes live in
+`docs/agent-context-budget.md`; open that doc only when the task needs it.
 
 ## What cue is
 
-**cue — Agent Profile Manager for Claude Code & Codex.**
+cue is an agent profile manager for Claude Code and Codex. It sits between the
+user's shell and the real `claude` / `codex` binary, resolves the active profile
+from cwd, materializes a per-profile runtime under `~/.config/cue/runtime/`, and
+then execs the real agent.
 
-A thin layer between the user's shell and the real `claude` / `codex` binary.
-The user types `claude`, `cue` resolves which profile applies to their cwd,
-materializes a per-profile `CLAUDE_CONFIG_DIR` (or `CODEX_HOME`) with just that
-profile's skills, MCPs, and plugins, then exec's the real agent. Profiles live
-under `profiles/`; the runtime is built on-demand under `~/.config/cue/runtime/`.
+Key paths:
+- `profiles/` - bundled profile definitions.
+- `resources/skills/` - installable skills.
+- `resources/mcps/` - MCP server configs.
+- `resources/rules/` - shared rule library; `cue ruler` distributes a profile's
+  `rules[]` into every agent's native rule file (CLAUDE.md, AGENTS.md, .cursorrules, …).
+  Set `CUE_RULER_AUTO=1` to sync them on every `cue launch` (safe mode: never
+  overwrites a hand-written file).
+- `setup/` - per-OS install prompts.
+- `docs/launch.md` - resolve -> materialize -> exec flow.
 
-The repo also ships a library of pre-built resources:
-- `resources/skills/` — 110+ installable skills (slash-commands + runnable docs)
-- `resources/mcps/` — MCP server configs (gbrain, excel-mcp, word-mcp, plus snapshots)
-- `setup/` — per-OS phased install prompts
+## Bootstrap Rules
 
-See [docs/launch.md](./docs/launch.md) for the resolve → materialize → exec flow.
+1. Detect the OS before shell work: `uname -s` for Linux/macOS and `$OS` /
+   `$env:OS` for Windows.
+2. Pick one setup file and load only that file:
+   - lean stack: `setup/lean-cue.md`
+   - macOS: `setup/macos.md`
+   - Linux: `setup/linux.md`
+   - Windows: `setup/windows.md`
+   - WSL2: use `setup/linux.md` inside WSL
+   - parallel agents: `setup/parallel-agents.md`, only after lean stack works
+3. Ask before hard-to-reverse or external steps: shell profile edits, existing
+   Claude/Codex config merges, global package installs, `sudo`, or downloads.
+4. Run one setup phase at a time and verify after each phase.
+5. Keep installs idempotent. Guard each install with an existence check.
+6. Do not auto-enable plugins until the user confirms the exact settings write.
+7. Default profile should stay `core` unless the user explicitly chooses a
+   broader composite.
 
-The user can choose **direct shell install** (one block, runs end-to-end) or **agent-driven phased install** (you walk them through it, verifying each step). This document covers the agent-driven path.
+## Repo Work Rules
 
----
+- Preserve user work. Do not revert, reset, or overwrite unrelated changes.
+- Prefer small, source-backed changes over broad rewrites.
+- For repo architecture, feature-flow, or symbol-impact questions, use
+  CodeGraph before broad file reads or grep.
+- For context-heavy files, inspect with `wc`, narrow `rg`, `sed -n`, `head`,
+  or `tail` before reading more.
+- Do not paste large fixtures, catalogs, generated files, full logs, or full
+  setup manuals into chat.
+- Verify with the smallest check that proves the touched surface. For profile
+  edits, start with `cue validate <profile>` plus targeted tests; run
+  `cue validate --all` only when requested or when a shared loader/materializer
+  change creates real cross-profile risk.
+- For default-profile behavior, source of truth is `src/commands/init.ts` and
+  profile resolution tests under `src/lib/cwd-resolver.test.ts`.
 
-## Bootstrap contract — non-negotiable
+## Context Traps
 
-1. **Detect the OS first.** Don't assume — Linux/macOS look similar at the surface but `brew` vs `apt`, `/opt/homebrew` vs `/usr/local`, and shell vs PowerShell flow differently. Use `uname -s` (macOS = Darwin, Linux = Linux) and `$OS` / `$env:OS` on Windows.
+Avoid reading these by default:
+- `resources/skills/catalog/*.json`
+- `resources/skills/skills/**/test/fixtures/*`
+- `resources/skills/skills/**/fixtures/*`
+- `docs/assets/*.svg`
+- `dist/`, `node_modules/`, coverage output, generated output, submodule
+  dependency trees, package-manager caches
+- `~/.config/cue/analytics.jsonl`, `~/.config/cue/session-log.jsonl`
 
-2. **Pick the right setup file** and load it:
-   - macOS → `setup/macos.md`
-   - Linux → `setup/linux.md`
-   - Windows → `setup/windows.md`
-   - WSL2 → tell user to use `setup/linux.md` inside the WSL distro
-   - **Parallel-agents add-on** (Colony + gitguardex) → `setup/parallel-agents.md`. Only after the lean stack is verified. Linux/macOS/WSL2 only — native Windows PowerShell can't run `gx`.
+If one is required, sample it first and cap output. For broad `rg`, use
+explicit `--glob` excludes for these traps.
 
-3. **Ask the §9 questions before any shell work:**
-   - macOS: Apple Silicon (`/opt/homebrew`) or Intel (`/usr/local`)?
-   - Linux: which package manager (apt / dnf / pacman / other)?
-   - Windows: native PowerShell or WSL2?
-   - All: claude-mem + gbrain, or one only?
-   - All: RTK telemetry — leave disabled (default) or opt in?
+## After Bootstrap
 
-4. **Run one phase at a time.** The setup files split the install into Phase 1–8. After each phase, run the verification command at the bottom of that phase and show the output to the user before moving on. If verification fails, stop and diagnose — don't barrel into the next phase.
+When `claude --version` or `codex --version` works through cue:
+- Start a fresh agent session so runtime changes register.
+- Verify `cue current`.
+- Test only the capabilities the user installed.
+- Keep the next session on `core` unless a task needs a broader profile.
 
-5. **Ask before destructive or hard-to-reverse steps:**
-   - Adding to `~/.bashrc` / `~/.zshrc` / PowerShell profile
-   - Editing existing `~/.claude.json` or `~/.claude/settings.json` (we merge, don't clobber, but confirm the merge plan)
-   - Installing global npm/bun packages
-   - Running anything with `sudo`
+<!-- multiagent-safety:START -->
+## Multi-Agent Safety (minimal)
 
-6. **Network access requires confirmation.** Mention each external download before running it (Homebrew, Bun, Claude Code, RTK, gbrain, uvx packages). User can deny a specific one and you skip that capability.
+Guardex is enabled by default. Disable via repo-root `.env` with `GUARDEX_ON=0`.
+Worktrees default to strict `always` mode. Repositories that prefer a faster
+single-agent path may opt in with `GUARDEX_WORKTREE_MODE=adaptive` in `.env` (or
+`git config --local multiagent.worktreeMode adaptive`).
 
-7. **Idempotency.** Every phase must be safely re-runnable. Use `[ -x "$(command -v X)" ] || install-X` style guards. Never assume the user is starting from zero.
+- In adaptive mode, small single-agent work may stay on the current checkout only after `gx status`, `gx mcp list-agents --no-prs`, and `gx mcp who-owns <file>` show no competing writer or target-file ownership.
+- Direct protected-main shell work is limited to `git add`/ordinary commit/push and bounded test/lint/build commands; custom executors or history rewrites use an isolated lane.
+- Pivot to an isolated lane when the task is substantial/long-lived, another writer is active in the repo, a target path is dirty or owned elsewhere, or scope expands. Use `gx branch start --new --no-transfer "<task>" "<agent-name>"`, then `cd` into the printed worktree.
+- In strict `always` mode, work from an `agent/*` branch + worktree and never edit the protected base (`main`/`dev`) directly.
+- In an isolated lane, claim files before editing: `gx locks claim --branch "<agent-branch>" <file...>`.
+- Finish isolated work via PR + cleanup: `gx branch finish --branch "<agent-branch>" --via-pr --wait-for-merge --cleanup` (or `gx finish --all`). Direct adaptive work uses the repository's ordinary commit/push flow.
+- For isolated lanes, default to the self-repairing gated ship — add `--gate-review --gate-autofix` so blocking findings are fixed and re-verified before the merge instead of leaving the PR open. Add `--gate-baseline` only where the base branch CI is already red. CI waits until the review is clean by default; `--no-gate-serial-ci` opts into overlap. Codex code-assist defaults to bounded `medium` effort (override with `GUARDEX_REVIEW_CODEX_EFFORT`). Posting a review is not merging: `gx pr-review` posts and exits; only `gx branch finish` merges.
 
-8. **Don't auto-enable plugins until the user confirms.** Phase 6 of each setup file shows the `enabledPlugins` JSON — display it, get an explicit OK before writing.
-
-9. **Token discipline.** Once the install lands, push the user to start their next Claude Code session with `/caveman` enabled. RTK + caveman together are the bulk of the cost savings — pair them.
-
----
-
-## Failure modes — common gotchas
-
-| Symptom | Likely cause | Action |
-|---|---|---|
-| `uvx: command not found` after `uv` install | Shell PATH didn't update | Source the shell profile or have user open a fresh terminal |
-| `bun: command not found` from gbrain wrapper | Wrapper used `which bun` at install time but Claude Code env has different PATH | Edit wrapper to use absolute path (`/opt/homebrew/bin/bun`, `$HOME/.bun/bin/bun`, etc.) |
-| Plugin install hangs at marketplace fetch | Network glitch | Cancel, re-run `/plugin marketplace add <name>` |
-| gbrain process orphans to PID 1 | Wrapper's parent-watcher not running | Check wrapper has the `kill -0 "$parent_pid"` loop |
-| `npm install -g` permission denied on Linux | Global npm needs sudo or a prefix change | Prefer `bun install -g` or fix the npm prefix |
-| `winget` not found on older Windows 10 | App Installer outdated | Install from Microsoft Store: "App Installer" |
-
----
-
-## After bootstrap — what to tell the user
-
-When the user finishes Phase 8 and `claude --version` works:
-
-1. **Restart Claude Code** so the plugin marketplaces + MCP servers register cleanly.
-2. **Test gbrain**: in the new Claude Code session, ask "save a page titled 'install-success' with today's date". The agent should call `mcp__gbrain__put_page`. If the tool is missing, the wrapper path in `~/.claude.json` is wrong.
-3. **Test Excel/Word**: ask "create a blank spreadsheet at /tmp/test.xlsx". The agent should call `mcp__excel__create_workbook` (or similar). First call may take 30 s while `uvx` downloads the package.
-4. **Test claude-mem**: end the session and start a new one in the same directory. Run `/mem-search` for a topic from the prior session — it should surface observations.
-5. **Verify RTK is active**: have the user run `rtk gain` after a few minutes of normal use — should show non-zero savings.
-
-If any of those fail, walk back to the relevant phase in the setup file and diagnose. The §8 troubleshooting table in each per-OS file covers the common cases.
-
----
-
-## Optional follow-ups
-
-After the baseline lean stack is working, the user may want:
-- **Parallel-agents tier** — Colony MCP + gitguardex (`gx`). For running 2+ Codex/Claude windows on the same repo without stomp. Walk them through `setup/parallel-agents.md` only after they confirm they actually want concurrent agents. Linux/macOS/WSL2.
-- The claude-mem `--smol` patch (§7 in each setup file) — only if running 4+ concurrent sessions
-- More skills from `resources/skills/skills/` — they all live in this repo and get picked up automatically once the symlinks are installed (`resources/skills/scripts/install-claude.sh` and `install-codex.sh`)
-- The auto-sync workflow (`resources/skills/scripts/sync-all.sh` + systemd timer or launchd agent) so updates land without manual `git pull`
-
-Point them at the relevant `resources/skills/scripts/` files when they ask, not before — keep the bootstrap minimal.
-
----
-
-## Parallel-agents tier — extra contract clauses
-
-If the user opts into `setup/parallel-agents.md`, add these clauses to your operating contract:
-
-1. **Never edit on the primary checkout.** Always `gx branch start` first, then `cd` into the printed worktree path. The primary tree stays clean.
-2. **Claim before editing.** Call `mcp__colony__task_claim_file` (or `gx locks claim --branch <br> <files...>`) for every file you're about to touch. Two agents touching the same file is the entire failure mode this tier exists to prevent.
-3. **Read Colony state before assuming.** On every resume / follow-up: `mcp__colony__hivemind_context` → `mcp__colony__attention_inbox` → `mcp__colony__task_ready_for_agent`. Don't search by `task_list` as your default — that's an inventory tool.
-4. **Finish through `gx`, not raw git.** `gx branch finish --branch <br> --via-pr --wait-for-merge --cleanup` is the only sanctioned exit. It owns commit, push, PR open, merge wait, and worktree prune.
-5. **Don't simplify shared infrastructure.** If you're about to delete or rewrite something on a path that other agents touch (Colony helpers, gx wrappers, sync scripts), stop and post a Colony handoff first.
-6. **OMX fallback only when Colony is unreachable.** `.omx/notepad.md` is the legacy path — don't write to it unless `mcp__colony__*` calls fail.
-
----
-
-## Maintainer note
-
-The contributor docs (how to add a skill / MCP) live in `README.md § Contributing`. This file is scoped to the bootstrap contract above — what an agent doing installs needs to know.
+Want the full multi-agent contract (Colony coordination, OpenSpec, token discipline, recovery)? Run `gx setup --contract`.
+<!-- multiagent-safety:END -->

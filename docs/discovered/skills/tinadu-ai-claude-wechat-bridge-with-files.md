@@ -2,19 +2,19 @@
 title: "TinaDu-AI/claude-wechat-bridge-with-files — Claude Code skill discovered by cue"
 description: "Claude Code ↔ WeChat bridge with image/file/voice/video patch — files arrive at ~/.wechat-claude/media/ and inject as [图片:path] / [文件:path]"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-09
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [TinaDu-AI/claude-wechat-bridge-with-files](https://github.com/TinaDu-AI/claude-wechat-bridge-with-files)
 
-**★ 1** · exceptional (score 9.3) · JavaScript
+**★ 1** · exceptional (score 9) · JavaScript
 
 > Claude Code ↔ WeChat bridge with image/file/voice/video patch — files arrive at ~/.wechat-claude/media/ and inject as [图片:path] / [文件:path]
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-06-02

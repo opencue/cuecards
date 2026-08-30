@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/read-delegate-nudge.sh",
+            "description": "Token-cost guard: counts Read calls per session and prints one display-only nudge at 25 (default) suggesting an Explore/Agent subagent for broad file exploration — subagent context dies with it instead of being re-read every turn. Never blocks the Read. Fail-open; disable with CUE_READ_NUDGE_OFF=1.",
+            "id": "cue:pretooluse:read-delegate-nudge"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -2,19 +2,19 @@
 title: "haoyiyin/account-operations — Claude Code skill discovered by cue"
 description: "Universal account cultivation skill for any website. Uses Camoufox for Cloudflare bypass, UI interaction, and content humanization."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [haoyiyin/account-operations](https://github.com/haoyiyin/account-operations)
 
-**★ 0** · exceptional (score 8.8) · Python · account-cultivation, ai-agent-skill, ai-agents, anti-bot, automation
+**★ 0** · exceptional (score 8.4) · Python · account-cultivation, ai-agent-skill, ai-agents, anti-bot, automation
 
 > Universal account cultivation skill for any website. Uses Camoufox for Cloudflare bypass, UI interaction, and content humanization.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-05-30

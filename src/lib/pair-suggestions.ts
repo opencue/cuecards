@@ -14,6 +14,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { readComboHistoryLines } from "./combo-history";
+import { repoScopeMatcher, type RepoScopeOptions } from "./repo-scope";
 
 /** Resolved path mirrors `lib/telemetry-consent` to avoid a circular import. */
 function sessionLogPath(): string {
@@ -25,6 +26,8 @@ function sessionLogPath(): string {
 interface SessionLogRow {
   ts?: string;
   profile?: string;
+  /** Directory the session/combo was recorded in. Absent on older rows. */
+  cwd?: string;
 }
 
 /**
@@ -84,11 +87,18 @@ export function parseComposite(selector: string): string[] {
  * pick contributes one increment to each constituent profile's `picks` and
  * one to every ordered pair's partner count.
  *
+ * With `scope.cwd` set, only rows recorded in that repository are folded in —
+ * so "you usually pair X with Y" means *here*, not "somewhere on this machine".
+ * A partner grafted onto a suggested stack has to have earned it in the project
+ * you're actually opening. Unscoped callers see every row, as before.
+ *
  * `readLines` is exposed for tests so we don't have to write a tempfile.
  */
 export function computeAffinityMap(
   readLines: () => string[] = defaultReadLines,
+  scope: RepoScopeOptions = {},
 ): Map<string, ProfileAffinity> {
+  const isInScope = repoScopeMatcher(scope);
   const map = new Map<string, ProfileAffinity>();
   for (const line of readLines()) {
     if (!line.trim()) continue;
@@ -99,6 +109,9 @@ export function computeAffinityMap(
       continue; // malformed JSONL line — skip
     }
     if (!row.profile) continue;
+    // Unattributed rows drop out under a scope rather than being credited to
+    // whichever repo happens to be open.
+    if (isInScope && !isInScope(row.cwd)) continue;
     const parts = parseComposite(row.profile);
     if (parts.length === 0) continue;
     // Increment own picks for every part.
@@ -172,13 +185,14 @@ export interface UniversalSuggestion {
 /**
  * Profiles offered as a combine companion under *every* primary, independent of
  * the curated featured set, session frequency, the picked profile's
- * `recommends:`, or cwd content. gstack is the engineering-team layer (ship /
- * QA / deploy / review) that pairs with whatever stack you're building, so the
- * picker always offers to stack it on. Emitted as the `pinned` origin by
- * `buildUniversalSuggestions` (the single "offered under every primary" path)
- * and surfaced unchecked — offered, never forced into the pin.
+ * `recommends:`, or cwd content.
+ *
+ * Keep this empty by default. Broad profiles such as `gstack` can add tens of
+ * thousands of always-on tokens when accepted casually; they should surface via
+ * explicit choice, profile `recommends:`, featured suggestions, or real session
+ * frequency instead.
  */
-export const UNIVERSAL_COMPANIONS: readonly string[] = ["gstack"];
+export const UNIVERSAL_COMPANIONS: readonly string[] = [];
 
 export interface BuildUniversalOptions {
   /** Curated featured slugs, in display order (from `_featured.yaml`). */
@@ -187,6 +201,8 @@ export interface BuildUniversalOptions {
   affinity: Map<string, ProfileAffinity>;
   /** Installed profile names — both sources are filtered to these. */
   known: Set<string>;
+  /** Optional global pins. Defaults to `UNIVERSAL_COMPANIONS`. */
+  pinnedCompanions?: readonly string[];
   /** Max curated featured suggestions. Default 5. */
   maxFeatured?: number;
   /** Max session-frequency suggestions. Default 2. */
@@ -196,7 +212,7 @@ export interface BuildUniversalOptions {
 }
 
 const UNIVERSAL_DEFAULTS: Required<Omit<BuildUniversalOptions, "featured" | "affinity" | "known">> =
-  { maxFeatured: 5, maxFrequent: 2, minFrequentPicks: 3 };
+  { pinnedCompanions: UNIVERSAL_COMPANIONS, maxFeatured: 5, maxFrequent: 2, minFrequentPicks: 3 };
 
 /**
  * Cross-profile combine suggestions surfaced under *every* primary: the curated
@@ -232,11 +248,11 @@ export function buildUniversalSuggestions(opts: BuildUniversalOptions): Universa
     out.push({ name, origin: "frequent" });
   }
 
-  // Pinned companions (gstack) close the list: always offered under every
-  // primary, after featured/frequent so those keep their slots. De-duped (a
-  // pinned profile that's also featured keeps the earlier featured origin) and
-  // known-filtered like the rest, so an uninstalled pin silently drops.
-  for (const name of UNIVERSAL_COMPANIONS) {
+  // Pinned companions close the list: always offered under every primary, after
+  // featured/frequent so those keep their slots. De-duped (a pinned profile
+  // that's also featured keeps the earlier featured origin) and known-filtered
+  // like the rest, so an uninstalled pin silently drops.
+  for (const name of (opts.pinnedCompanions ?? UNIVERSAL_COMPANIONS)) {
     if (seen.has(name) || !o.known.has(name)) continue;
     seen.add(name);
     out.push({ name, origin: "pinned" });

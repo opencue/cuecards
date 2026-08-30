@@ -13,7 +13,7 @@
  * which already understands `CUE_SHARED_PROFILES_DIR` as an extra search path.
  */
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { cacheDir } from "./config-paths";
@@ -170,7 +170,9 @@ export async function fetchProfileYaml(
   for (const url of urls) {
     let res: Response;
     try {
-      res = await fetcher(url);
+      // Bound each request so a hung raw.githubusercontent.com response can't
+      // stall the install indefinitely; a timeout throws → try the next URL.
+      res = await fetcher(url, { signal: AbortSignal.timeout(10_000) });
     } catch {
       continue;
     }
@@ -318,7 +320,11 @@ export function writeIndexCache(entries: RegistryEntry[], source: string): void 
     source,
     entries,
   };
-  writeFileSync(path, JSON.stringify(payload, null, 2) + "\n");
+  // Atomic (tmp + rename, same dir) so concurrent `cue share search` readers
+  // never see a partial write — matches this function's own doc comment.
+  const tmp = `${path}.tmp.${process.pid}`;
+  writeFileSync(tmp, JSON.stringify(payload, null, 2) + "\n");
+  renameSync(tmp, path);
 }
 
 /**

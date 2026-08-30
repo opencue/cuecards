@@ -1,16 +1,18 @@
 ---
 layout: default
-title: "cue — Discover Claude Code Skills"
-description: "Find hidden gem skills for Claude Code, Codex, and 8 more AI agents. One command to search, score, and install."
-image: https://opencue.github.io/cuecards/assets/hero.svg
+title: "cue — Per-project profile manager for Claude Code & Codex"
+description: "Your agent reads every skill you own, on every message. cue loads only the ones that project needs. Install: npm install -g cue-ai"
+image: https://opencue.github.io/cuecards/assets/og-card.png
 ---
 
-# Discover skills your AI agent is missing
+# Your agent reads every skill you own, on every message
 
-**cue** scans GitHub for skill-compatible repos, scores them, and installs the best ones into your agent profile — Claude Code, Codex, Cursor, Cline, Gemini, Copilot, Windsurf, Roo Code, Amp, and Aider.
+**cue loads only the ones that project needs.** Per-project profiles scope which
+skills, MCP servers, and persona load — automatically, before Claude Code or
+Codex launches. Ten agents supported from one profile.
 
 ```bash
-npm install -g cue-ai && cue discover search
+npm install -g cue-ai && cue setup
 ```
 
 ---
@@ -46,10 +48,12 @@ npm install -g cue-ai && cue discover search
 ## Install
 
 ```bash
-npm install -g cue-ai
-cue discover search                    # find gems
-cue discover install --min-score 8     # install top gems
-cue use backend                        # switch profile
+npm install -g cue-ai && cue setup
 ```
+
+`cue setup` installs the `claude`/`codex` shim, scans this project, and pins
+the matching profile. Already have an agent open? Paste the
+[agent install prompt](https://github.com/opencue/cuecards/blob/main/setup/agent-prompt.md)
+into it instead — it does the same thing, asking before it touches anything.
 
 [GitHub →](https://github.com/opencue/cuecards)

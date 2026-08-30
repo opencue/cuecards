@@ -1,0 +1,49 @@
+# Canonical URL map for cuecards content.
+# Maps logical content IDs to their canonical URL.
+# Use this when content appears in multiple forms (GitHub, GitHub Pages, npm).
+
+base_url: https://opencue.github.io/cuecards
+
+pages:
+  home:
+    canonical: https://opencue.github.io/cuecards/
+    also_at:
+      - https://github.com/opencue/cuecards
+      - https://www.npmjs.com/package/cue-ai
+
+  readme:
+    canonical: https://github.com/opencue/cuecards/blob/main/README.md
+    note: GitHub renders README at repo root; treat github.com/<repo> as canonical
+
+  llms_txt:
+    canonical: https://opencue.github.io/cuecards/llms.txt
+    also_at:
+      - https://github.com/opencue/cuecards/blob/main/llms.txt
+
+  llms_full:
+    canonical: https://github.com/opencue/cuecards/blob/main/docs/llms-full.txt
+
+  agents_md:
+    canonical: https://github.com/opencue/cuecards/blob/main/AGENTS.md
+
+  install_macos:
+    canonical: https://github.com/opencue/cuecards/blob/main/setup/macos.md
+
+  install_linux:
+    canonical: https://github.com/opencue/cuecards/blob/main/setup/linux.md
+
+  install_windows:
+    canonical: https://github.com/opencue/cuecards/blob/main/setup/windows.md
+
+  compare_switcher:
+    canonical: https://github.com/opencue/cuecards/blob/main/docs/comparison/cue-vs-claude-code-switcher.md
+
+  compare_skillport:
+    canonical: https://github.com/opencue/cuecards/blob/main/docs/comparison/cue-vs-skillport.md
+
+  compare_kiro:
+    canonical: https://github.com/opencue/cuecards/blob/main/docs/comparison/cue-vs-kiro-powers.md
+
+  discovered_profiles:
+    canonical: https://opencue.github.io/cuecards/discovered/
+    note: Nightly-refreshed auto-detected profile suggestions

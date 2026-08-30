@@ -245,6 +245,29 @@ describe("buildCompanionOptions", () => {
     expect(companionOptions.find((o) => o.value === "higgsfield")!.recommended).toBeFalsy();
   });
 
+  test("two mutually-conflicting companions don't both start checked (A1: WYSIWYG pre-check)", () => {
+    const { companionOptions, initialValues } = build({
+      // both detected above threshold, but they conflict with each other
+      companions: [sig("medusa-next", 0.9), sig("medusa-vite", 0.9)],
+    });
+    const values = companionOptions.map((o) => o.value);
+    expect(values).toContain("medusa-next"); // both still offered as rows
+    expect(values).toContain("medusa-vite");
+    expect(initialValues).toContain("medusa-next"); // first-seen wins the check
+    expect(initialValues).not.toContain("medusa-vite"); // conflicts with checked → unchecked
+  });
+
+  test("two autoSelect entries that conflict: first checked, second offered unchecked (A1)", () => {
+    const { companionOptions, initialValues } = build({
+      autoSelect: ["medusa-next", "medusa-vite"], // both declared, but mutually exclusive
+    });
+    const values = companionOptions.map((o) => o.value);
+    expect(values).toContain("medusa-next");
+    expect(values).toContain("medusa-vite");
+    expect(initialValues).toContain("medusa-next"); // first autoSelect wins the slot
+    expect(initialValues).not.toContain("medusa-vite"); // suppressed — would be pruned at confirm anyway
+  });
+
   test("autoSelect companions start checked with no detection signal", () => {
     const { companionOptions, initialValues } = build({
       autoSelect: ["blog-writer", "trendradar"],
@@ -295,7 +318,7 @@ describe("buildCompanionOptions", () => {
     const full = buildConflictMap([...companionOptions, ...overflowOptions]);
     expect(resolveConflicts(["medusa-next", "medusa-vite"], full)).toEqual(["medusa-next"]);
     // Regression guard: the old curated-only map (the CRITICAL bug) let BOTH survive
-    // into the written .cue-profile while the live UI showed the conflict blocked.
+    // into the written .cue.profile while the live UI showed the conflict blocked.
     const stale = buildConflictMap(companionOptions);
     expect(resolveConflicts(["medusa-next", "medusa-vite"], stale)).toEqual([
       "medusa-next",
@@ -384,76 +407,77 @@ describe("buildCompanionOptions", () => {
     expect(solo.overflowOptions).toEqual([]);
   });
 
-  // gstack is the sole pinned companion: emitted by buildUniversalSuggestions
-  // as the `pinned` origin (tested in pair-suggestions.test) and rendered here
-  // through the one universalSuggestions path — no separate picker injection.
-  const WITH_GSTACK: PickerOption[] = [
+  // Pinned companions, when configured, flow through the same
+  // universalSuggestions path as featured/frequent rows. Production defaults
+  // to no pinned companions so heavy profiles such as gstack are not offered
+  // under every primary.
+  const WITH_PINNED: PickerOption[] = [
     ...OPTS,
-    { value: "gstack", label: "🏭 gstack", hint: "engineering team", conflicts: ["vite"] },
+    { value: "lightweight-helper", label: "helper", hint: "small helper", conflicts: ["vite"] },
     { value: "vite", label: "vite", hint: "spa" },
   ];
-  const PINNED: UniversalSuggestion[] = UNIVERSAL_COMPANIONS.map((name) => ({
-    name,
-    origin: "pinned",
-  }));
+  const PINNED: UniversalSuggestion[] = [{ name: "lightweight-helper", origin: "pinned" }];
 
-  test("a pinned companion is offered (unchecked) under a primary that never names it", () => {
-    expect(UNIVERSAL_COMPANIONS).toContain("gstack");
+  test("gstack is not pinned as a universal companion by default", () => {
+    expect(UNIVERSAL_COMPANIONS).not.toContain("gstack");
+  });
+
+  test("a configured pinned companion is offered (unchecked) under a primary that never names it", () => {
     const { companionOptions, initialValues } = buildCompanionOptions({
       primary: "postizz",
       primaryLabel: "postizz",
-      options: WITH_GSTACK,
+      options: WITH_PINNED,
       recommends: [],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(companionOptions.map((o) => o.value)).toContain("gstack");
-    expect(initialValues).not.toContain("gstack"); // offered, never forced
+    expect(companionOptions.map((o) => o.value)).toContain("lightweight-helper");
+    expect(initialValues).not.toContain("lightweight-helper"); // offered, never forced
     // Pinned-origin rows get the UNIVERSAL_HINT tag, not the verbose profile
     // description — consistent with featured/frequent rows.
-    expect(companionOptions.find((o) => o.value === "gstack")!.hint).toBe(UNIVERSAL_HINT);
+    expect(companionOptions.find((o) => o.value === "lightweight-helper")!.hint).toBe(UNIVERSAL_HINT);
   });
 
   test("the pinned companion is dropped when it is the primary or conflicts with it", () => {
     const asPrimary = buildCompanionOptions({
-      primary: "gstack",
-      primaryLabel: "gstack",
-      options: WITH_GSTACK,
+      primary: "lightweight-helper",
+      primaryLabel: "lightweight-helper",
+      options: WITH_PINNED,
       recommends: [],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(asPrimary.companionOptions.map((o) => o.value)).not.toContain("gstack");
+    expect(asPrimary.companionOptions.map((o) => o.value)).not.toContain("lightweight-helper");
 
     const conflicting = buildCompanionOptions({
       primary: "vite",
       primaryLabel: "vite",
-      options: WITH_GSTACK,
+      options: WITH_PINNED,
       recommends: [],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(conflicting.companionOptions.map((o) => o.value)).not.toContain("gstack");
+    expect(conflicting.companionOptions.map((o) => o.value)).not.toContain("lightweight-helper");
   });
 
   test("an explicit recommend for a pinned companion is not duplicated", () => {
     const { companionOptions } = buildCompanionOptions({
       primary: "postizz",
       primaryLabel: "postizz",
-      options: WITH_GSTACK,
-      recommends: ["gstack"],
+      options: WITH_PINNED,
+      recommends: ["lightweight-helper"],
       pairSuggested: [],
       companions: [],
       universalSuggestions: PINNED,
       autoCheckThreshold: 0.7,
     });
-    expect(companionOptions.filter((o) => o.value === "gstack")).toHaveLength(1);
+    expect(companionOptions.filter((o) => o.value === "lightweight-helper")).toHaveLength(1);
   });
 
   // Featured + frequently-used cross-profile suggestions (buildUniversalSuggestions).
@@ -675,13 +699,13 @@ describe("combine-preview tallies", () => {
     test("renders only non-empty categories, with singular/plural", () => {
       expect(
         formatTallyDelta(tally({ skills: ["a", "b"], mcps: ["m"] })),
-      ).toBe("+2 skills · +1 mcp");
+      ).toBe("2 skills · 1 mcp");
     });
 
     test("one of each reads singular", () => {
       expect(
         formatTallyDelta(tally({ skills: ["a"], mcps: ["m"], plugins: ["p"], commands: ["c"] })),
-      ).toBe("+1 skill · +1 mcp · +1 plugin · +1 cmd");
+      ).toBe("1 skill · 1 mcp · 1 plugin · 1 cmd");
     });
 
     test("a profile that adds nothing is the empty string", () => {
@@ -791,7 +815,7 @@ describe("renderCombineFrame", () => {
   test("a checked companion shows its always-on contribution delta", () => {
     const out = frame({ selected: ["vercel"], cursor: 0 });
     expect(out).toContain("[x] 🔺 vercel");
-    expect(out).toContain("+17 skills · +1 mcp · +1 plugin");
+    expect(out).toContain("17 skills · 1 mcp · 1 plugin");
   });
 
   test("staged combo: action row mirrors the combination + points at enter", () => {
@@ -922,15 +946,15 @@ describe("renderCombineFrame · density + compression", () => {
   ]);
   const preview = { primary: "gstack", tallies };
 
-  test("an unfocused row shows only the '+N skills' headline (no wrap)", () => {
+  test("an unfocused row shows only the 'N skills' headline (no wrap)", () => {
     const options: AsciiMSOption[] = [
       { value: "commerce", label: "🛒 commerce", hint: "shop" },
       { value: SKIP_COMBINE, label: "use gstack alone", hint: "", kind: "action", primaryLabel: "🏭 gstack" },
     ];
     // cursor on the action row (idx 1), so the commerce row is unfocused.
     const out = strip(renderCombineFrame({ message: "m", options, cursor: 1, selected: ["commerce"], preview, ascii: false }));
-    expect(out).toContain("+96 skills");
-    expect(out).not.toContain("+2 mcps"); // breakdown hidden when unfocused
+    expect(out).toContain("96 skills");
+    expect(out).not.toContain("2 mcps"); // breakdown hidden when unfocused
   });
 
   test("the focused row expands to the full breakdown", () => {
@@ -939,7 +963,7 @@ describe("renderCombineFrame · density + compression", () => {
       { value: SKIP_COMBINE, label: "use gstack alone", hint: "", kind: "action", primaryLabel: "🏭 gstack" },
     ];
     const out = strip(renderCombineFrame({ message: "m", options, cursor: 0, selected: ["commerce"], preview, ascii: false }));
-    expect(out).toContain("+96 skills · +2 mcps · +1 plugin · +1 cmd");
+    expect(out).toContain("96 skills · 2 mcps · 1 plugin · 1 cmd");
   });
 
   test("a long combo collapses the confirm row to 'first +N more'", () => {

@@ -5,6 +5,7 @@
 
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
 import { mkdtemp, writeFile, rm, readFile, readdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -17,6 +18,11 @@ const CUE_BIN = join(import.meta.dir, "../index.ts");
 // Skip the whole describe when a child `bun` can't be spawned. CI installs bun
 // via setup-bun, so this only skips in constrained local/sandbox runs.
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
+// `resources/skills` is a git submodule. On a fresh clone without
+// `git submodule update --init --recursive` it's an empty tree, so the
+// materializer has no skills to symlink and `cue launch` exits non-zero — a
+// setup gap, not a regression. Skip rather than fail spuriously.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> } = {}): { status: number; stdout: string; stderr: string } {
   // Strip env vars set when the test runner itself is running inside a cue
@@ -24,9 +30,15 @@ function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> 
   // ways that have nothing to do with the test:
   //   CUE_LAUNCHING=1       → triggers the shim-recursion guard
   //   CLAUDE_CONFIG_DIR=... → triggers isAccountAlias → forces picker → fails on non-TTY
-  const cleanEnv = { ...process.env, ...opts.env };
+  //   CUE_BYPASS=1          → short-circuits straight to exec, so nothing below
+  //                           would resolve or materialize anything
+  // Order matters: strip from the inherited env FIRST, then layer opts.env on
+  // top, so a test that wants one of these can still set it.
+  const cleanEnv: Record<string, string | undefined> = { ...process.env };
   delete cleanEnv.CUE_LAUNCHING;
   delete cleanEnv.CLAUDE_CONFIG_DIR;
+  delete cleanEnv.CUE_BYPASS;
+  Object.assign(cleanEnv, opts.env);
   const res = spawnSync("bun", ["run", CUE_BIN, ...args], {
     encoding: "utf8",
     timeout: 15000,
@@ -36,20 +48,25 @@ function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> 
   return { status: res.status ?? 1, stdout: res.stdout ?? "", stderr: res.stderr ?? "" };
 }
 
-describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
+describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
   let tmpDir: string;
+  let oldXdgConfigHome: string | undefined;
 
   beforeEach(async () => {
     tmpDir = await mkdtemp(join(tmpdir(), "cue-e2e-launch-"));
+    oldXdgConfigHome = process.env.XDG_CONFIG_HOME;
+    process.env.XDG_CONFIG_HOME = join(tmpDir, "xdg");
   });
 
   afterEach(async () => {
+    if (oldXdgConfigHome === undefined) delete process.env.XDG_CONFIG_HOME;
+    else process.env.XDG_CONFIG_HOME = oldXdgConfigHome;
     await rm(tmpDir, { recursive: true, force: true });
   });
 
-  test("launch --rematerialize with .cue-profile resolves and builds runtime", async () => {
-    // Create a .cue-profile pointing to a real profile
-    await writeFile(join(tmpDir, ".cue-profile"), "caveman-quick\n");
+  test("launch --rematerialize with .cue.profile resolves and builds runtime", async () => {
+    // Create a .cue.profile pointing to a real profile
+    await writeFile(join(tmpDir, ".cue.profile"), "caveman-quick\n");
 
     const res = cue(["launch", "claude", "--rematerialize"], { cwd: tmpDir });
 
@@ -67,7 +84,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
   });
 
   test("launch --rematerialize second call is cache hit (rebuilt=false)", async () => {
-    await writeFile(join(tmpDir, ".cue-profile"), "core\n");
+    await writeFile(join(tmpDir, ".cue.profile"), "core\n");
 
     const first = cue(["launch", "claude", "--rematerialize"], { cwd: tmpDir });
     expect(first.status).toBe(0);
@@ -83,12 +100,12 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
     expect(secondJson.profile).toBe("core");
   });
 
-  test("launch resolves profile from .cue-profile in parent directory", async () => {
-    // Create a subdirectory and put .cue-profile in parent
+  test("launch resolves profile from .cue.profile in parent directory", async () => {
+    // Create a subdirectory and put .cue.profile in parent
     const { mkdir } = await import("node:fs/promises");
     const subDir = join(tmpDir, "src", "lib");
     await mkdir(subDir, { recursive: true });
-    await writeFile(join(tmpDir, ".cue-profile"), "rust\n");
+    await writeFile(join(tmpDir, ".cue.profile"), "rust\n");
 
     const res = cue(["launch", "claude", "--rematerialize"], { cwd: subDir });
     expect(res.status).toBe(0);
@@ -97,7 +114,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
   });
 
   test("launch produces CLAUDE.md with profile stamp in runtime dir", async () => {
-    await writeFile(join(tmpDir, ".cue-profile"), "backend\n");
+    await writeFile(join(tmpDir, ".cue.profile"), "backend\n");
 
     const res = cue(["launch", "claude", "--rematerialize"], { cwd: tmpDir });
     expect(res.status).toBe(0);
@@ -109,7 +126,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
   });
 
   test("launch produces settings.json with MCPs and plugins", async () => {
-    await writeFile(join(tmpDir, ".cue-profile"), "backend\n");
+    await writeFile(join(tmpDir, ".cue.profile"), "backend\n");
 
     const res = cue(["launch", "claude", "--rematerialize"], { cwd: tmpDir });
     expect(res.status).toBe(0);
@@ -121,7 +138,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
   });
 
   test("launch creates skills/ symlinks in runtime dir", async () => {
-    await writeFile(join(tmpDir, ".cue-profile"), "backend\n");
+    await writeFile(join(tmpDir, ".cue.profile"), "backend\n");
 
     const res = cue(["launch", "claude", "--rematerialize"], { cwd: tmpDir });
     expect(res.status).toBe(0);
@@ -130,5 +147,63 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch e2e", () => {
     const skillsDir = join(output.runtimeDir, "skills");
     const entries = await readdir(skillsDir);
     expect(entries.length).toBeGreaterThan(0);
+  });
+
+  // CUE_BYPASS=1 is documented in docs/launch.md and docs/shell-install.md as
+  // "exec the real binary directly; no resolve, no materialize, no profile".
+  // For a long time nothing implemented that: the flag only suppressed the
+  // loader spinner and (after #133) the CUE_SMART_SUBSET fold, while the full
+  // pipeline still ran. Both arms below run the SAME argv against a fake
+  // `claude` first on PATH — the only variable is the flag.
+  test("CUE_BYPASS=1 execs the real binary instead of resolving/materializing", async () => {
+    const { mkdir } = await import("node:fs/promises");
+    const binDir = join(tmpDir, "fakebin");
+    await mkdir(binDir, { recursive: true });
+    // Must not read as a cue shim, or findRealAgentBin() skips it by content.
+    await writeFile(join(binDir, "claude"), '#!/usr/bin/env bash\necho "FAKE-CLAUDE $*"\n', { mode: 0o755 });
+    await writeFile(join(tmpDir, ".cue.profile"), "core\n");
+    const fakePath = `${binDir}:${process.env.PATH}`;
+
+    // Control: cue resolves the pin and reports the runtime it built.
+    const normal = cue(["launch", "claude", "--rematerialize"], {
+      cwd: tmpDir,
+      env: { PATH: fakePath },
+    });
+    expect(normal.status).toBe(0);
+    expect(normal.stdout).toContain("runtimeDir");
+    expect(normal.stdout).not.toContain("FAKE-CLAUDE");
+
+    // Bypassed: straight to exec. No profile line, no runtime JSON — and the
+    // cue-only flag is stripped rather than forwarded to the agent.
+    const bypassed = cue(["launch", "claude", "--rematerialize"], {
+      cwd: tmpDir,
+      env: { PATH: fakePath, CUE_BYPASS: "1" },
+    });
+    expect(bypassed.status).toBe(0);
+    expect(bypassed.stdout).toContain("FAKE-CLAUDE");
+    expect(bypassed.stdout).not.toContain("--rematerialize");
+    expect(bypassed.stdout).not.toContain("runtimeDir");
+    expect(bypassed.stdout).not.toContain("core");
+  });
+
+  test("CUE_BYPASS=1 forwards passthrough args and the exit code verbatim", async () => {
+    const { mkdir } = await import("node:fs/promises");
+    const binDir = join(tmpDir, "fakebin");
+    await mkdir(binDir, { recursive: true });
+    await writeFile(
+      join(binDir, "claude"),
+      '#!/usr/bin/env bash\necho "FAKE-CLAUDE $*"\nexit 42\n',
+      { mode: 0o755 },
+    );
+
+    // No .cue.profile anywhere and stdin is not a TTY, so the normal path would
+    // bail with "no profile resolved" long before exec.
+    const res = cue(["launch", "claude", "--print", "-p", "hello"], {
+      cwd: tmpDir,
+      env: { PATH: `${binDir}:${process.env.PATH}`, CUE_BYPASS: "1" },
+    });
+
+    expect(res.status).toBe(42);
+    expect(res.stdout.trim()).toBe("FAKE-CLAUDE --print -p hello");
   });
 });

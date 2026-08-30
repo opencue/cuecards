@@ -2,7 +2,7 @@
 title: "Orderchlorococcalesdresswhites76/bb-bash — Claude Code skill discovered by cue"
 description: "Control Bitbucket Cloud via terminal or AI agents with this zero-config, single-file bash script for seamless PR management and automated workflow integration."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-16
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-06-16
 - 🏷️ Tags: automation, bash, bash-scripting, bbs, bitbucket, bitbucket-api, bugbounty, claude-skill, code-review, developer-tools, github-config, penetration-testing, penetration-testing-tools, pull-request, telnet, telnet-server, xinetd
 
 ## Best fit cue profiles

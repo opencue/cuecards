@@ -1,0 +1,112 @@
+{
+  "name": "clawsec-clawhub-checker",
+  "version": "0.0.4",
+  "description": "ClawHub reputation checker for clawsec-suite. Adds a standalone reputation gate before guarded skill installation.",
+  "author": "abutbul",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://clawsec.prompt.security/",
+  "keywords": [
+    "security",
+    "reputation",
+    "clawhub",
+    "virustotal",
+    "skills",
+    "installer",
+    "verification",
+    "defense-in-depth",
+    "openclaw"
+  ],
+  "sbom": {
+    "files": [
+      {
+        "path": "SKILL.md",
+        "required": true,
+        "description": "Skill documentation and usage guide"
+      },
+      {
+        "path": "scripts/enhanced_guarded_install.mjs",
+        "required": true,
+        "description": "Enhanced guarded installer with reputation checks"
+      },
+      {
+        "path": "scripts/check_clawhub_reputation.mjs",
+        "required": true,
+        "description": "ClawHub reputation checking logic"
+      },
+      {
+        "path": "scripts/setup_reputation_hook.mjs",
+        "required": true,
+        "description": "Non-mutating preflight helper that validates paths and prints recommended commands"
+      },
+      {
+        "path": "hooks/clawsec-advisory-guardian/lib/reputation.mjs",
+        "required": false,
+        "description": "Optional reputation module for advisory guardian integrations"
+      },
+      {
+        "path": "README.md",
+        "required": false,
+        "description": "Additional documentation and development guide"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "required": true,
+        "description": "Version history and release notes"
+      }
+    ]
+  },
+  "dependencies": {
+    "clawsec-suite": ">=0.0.10"
+  },
+  "integration": {
+    "clawsec-suite": {
+      "enhances": [
+        "guarded_skill_install.mjs via external wrapper invocation",
+        "optional manual advisory-guardian hook wiring for reputation annotations"
+      ],
+      "adds_exit_codes": {
+        "43": "Reputation warning - requires --confirm-reputation"
+      },
+      "adds_arguments": [
+        "--confirm-reputation",
+        "--reputation-threshold"
+      ]
+    }
+  },
+  "openclaw": {
+    "emoji": "🛡️",
+    "category": "security",
+    "requires": {
+      "bins": [
+        "node",
+        "clawhub",
+        "openclaw"
+      ]
+    },
+    "runtime": {
+      "required_env": [],
+      "optional_env": [
+        "CLAWHUB_REPUTATION_THRESHOLD"
+      ]
+    },
+    "execution": {
+      "always": false,
+      "persistence": "No automatic persistence; setup helper performs validation only and does not rewrite other skills.",
+      "network_egress": "Reputation checks query ClawHub inspect/search endpoints for metadata and scanner summaries."
+    },
+    "operator_review": [
+      "Requires an installed clawsec-suite checkout because the enhanced installer delegates to suite guarded install flow.",
+      "This release does not auto-wire advisory-guardian hook annotations; if needed, wire hooks/clawsec-advisory-guardian/lib/reputation.mjs manually into the suite hook.",
+      "Reputation results are heuristic and can produce false positives; installation still requires explicit user confirmation for risky skills.",
+      "Run the setup helper to confirm local paths before using the enhanced installer command."
+    ],
+    "triggers": [
+      "clawhub reputation",
+      "skill reputation check",
+      "virustotal skill check",
+      "safe skill install",
+      "check skill safety",
+      "skill security score"
+    ]
+  }
+}

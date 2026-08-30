@@ -10,7 +10,7 @@
  *   b. CLAUDE_CONFIG_DIR matches `<runtimeRoot>/<profile>/claude`
  *      — works for plain `claude` wrappers like claude-account2 that
  *        bypass `cue launch` but still point at a cue runtime
- *   c. `.cue-profile` file in the process's cwd
+ *   c. `.cue.profile` file in the process's cwd
  *   d. "(unpinned)" — agent is running but isn't using a cue profile
  *
  * Linux-only. macOS exposes env via `ps eww` but with different escaping;
@@ -115,13 +115,13 @@ export function profileFromConfigDir(configDir: string | undefined): string | nu
 }
 
 /**
- * Read `.cue-profile` from a cwd (process-cwd fallback). Trimmed first line.
+ * Read `.cue.profile` from a cwd (process-cwd fallback). Trimmed first line.
  * Exported for tests.
  */
 export function profileFromCwdPin(cwd: string | null): string | null {
   if (!cwd) return null;
   try {
-    const raw = readFileSync(join(cwd, ".cue-profile"), "utf8");
+    const raw = readFileSync(join(cwd, ".cue.profile"), "utf8");
     const first = raw.split("\n")[0]?.trim();
     return first && first.length > 0 ? first : null;
   } catch {
@@ -192,7 +192,7 @@ export function listActiveSessions(): ActiveSession[] {
 
     // Profile resolution. CUE_PROFILE wins; otherwise sniff CLAUDE_CONFIG_DIR
     // (covers wrappers like `claude-account2` that bypass `cue launch` but
-    // still point at a cue runtime); otherwise read .cue-profile from cwd.
+    // still point at a cue runtime); otherwise read .cue.profile from cwd.
     const env = readEnviron(pid);
     let profile: string | null = null;
     let profileSource: ActiveSession["profileSource"] = "unpinned";

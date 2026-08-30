@@ -5,7 +5,7 @@ description: "AWS — IAM, S3, Lambda, CloudFront, SES, CloudWatch, aws-cli, off
 inherits: core
 recommends:
   - backend      # the API that calls AWS services
-  - medusa-dev   # AWS S3 image rehosting (secret-mcp pairs here)
+  - medusa-dev   # AWS S3 image rehosting
   - postgres     # if Postgres is on RDS / Aurora
   - coolify      # for the EC2/Lightsail VPS coolify runs on
 persona: |
@@ -65,7 +65,7 @@ skills:
     # Official AWS agent toolkit (1.4K installs) — IAM patterns.
     - repo: aws/agent-toolkit-for-aws
       skills: [aws-iam]
-    # S3 management (465 installs) — pairs with secret-mcp's S3 surface in medusa-dev.
+    # S3 management (465 installs).
     - repo: aj-geddes/useful-ai-prompts
       skills: [aws-s3-management]
     # AWS MCP setup (325 installs) — wiring guide.
@@ -74,6 +74,60 @@ skills:
     # General AWS CLI patterns (127 installs).
     - repo: oldwinter/skills
       skills: [aws-cli]
+    # Expanded AWS toolkit fork — full installable catalog. This repo is a
+    # Claude plugin marketplace; the `skills` CLI only resolves skills that are
+    # packaged into a plugin (plugins/*/skills/), NOT the top-level skills/ tree.
+    # So this list is the union of all four plugins (aws-core, aws-data-analytics,
+    # aws-agents, aws-agents-for-devsecops), verified resolvable via
+    # `npx skills add`. aws-iam is intentionally omitted: the upstream entry above
+    # already maps it to .claude/skills/aws-iam and two entries → one target collide.
+    - repo: NagyVikt/agent-toolkit-for-aws
+      skills:
+        # plugin: aws-core
+        - amazon-bedrock
+        - aws-billing-and-cost-management
+        - aws-blocks
+        - aws-cdk
+        - aws-cloudformation
+        - aws-containers
+        - aws-messaging-and-streaming
+        - aws-observability
+        - aws-sdk-js-v3-usage
+        - aws-sdk-python-usage
+        - aws-sdk-swift-usage
+        - aws-secrets-manager
+        - aws-serverless
+        - signing-in-to-aws
+        # plugin: aws-data-analytics
+        - amazon-opensearch-service
+        - connecting-to-data-source
+        - creating-data-lake-table
+        - exploring-data-catalog
+        - finding-data-lake-assets
+        - ingesting-into-data-lake
+        - querying-data-lake
+        - storing-and-querying-vectors
+        # plugin: aws-agents
+        - agents-build
+        - agents-connect
+        - agents-debug
+        - agents-deploy
+        - agents-get-started
+        - agents-harden
+        - agents-optimize
+        # plugin: aws-agents-for-devsecops
+        - analyzing-release-readiness
+        - chatting-with-aws-devops-agent
+        - coordinating-multi-space-devops-agent
+        - diff-scanning-with-aws-security-agent
+        - investigating-incidents-with-aws-devops-agent
+        - pentesting-with-aws-security-agent
+        - remediating-with-aws-security-agent
+        - running-release-tests
+        - scanning-with-aws-security-agent
+        - setup-devops-agent
+        - setup-security-agent
+        - threat-modeling-with-aws-security-agent
 mcps:
   - aws-docs   # awslabs.aws-documentation-mcp-server (uvx) — read-only AWS docs lookup, no credentials needed
 env:

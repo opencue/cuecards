@@ -2,7 +2,7 @@
 title: "cy94q5pb7v-rgb/agent-skills — Claude Code skill discovered by cue"
 description: "Переиспользуемые скиллы для Claude Code. Первый — drawio: генерация редактируемых диаграмм draw.io / diagrams.net из текста."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-06-10
 - 🏷️ Tags: anthropic, claude-code, claude-skill, diagrams, drawio
 
 ## Best fit cue profiles

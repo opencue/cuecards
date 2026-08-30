@@ -2,22 +2,22 @@
 title: "memtomem/memtomem — Claude Code skill discovered by cue"
 description: "Markdown-first, long-term memory infrastructure for AI agents. Hybrid BM25 + semantic search across markdown/code files via MCP."
 layout: page
-updated: 2026-06-03
+updated: 2026-08-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [memtomem/memtomem](https://github.com/memtomem/memtomem)
 
-**★ 6** · exceptional (score 9.1) · Python · agent, ai, bm25, claude, embedding
+**★ 10** · exceptional (score 10.9) · Python · agent, agent-harness, agent-memory, ai, bm25
 
 > Markdown-first, long-term memory infrastructure for AI agents. Hybrid BM25 + semantic search across markdown/code files via MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-06-03
-- 🏷️ Tags: agent, ai, bm25, claude, embedding, harness-engineering, harness-framework, knowledge-management, llm, markdown, mcp, mcp-server, memory, python, rag, semantic-search
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-08-05
+- 🏷️ Tags: agent, agent-harness, agent-memory, ai, bm25, claude, embedding, harness-engineering, harness-framework, knowledge-management, llm, markdown, mcp, mcp-server, memory, python, rag, semantic-search
 
 ## Best fit cue profiles
 

@@ -1,57 +1,81 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-03
+updated: 2026-08-30
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="suanfishxyy-suanfish-design-system"></a>
-## 💎 [SuanFishXYY/suanfish-design-system](https://github.com/SuanFishXYY/suanfish-design-system)
+<a id="secondsky-claude-skills"></a>
+## 💎 [secondsky/claude-skills](https://github.com/secondsky/claude-skills)
 
-**★ 6** · exceptional (score 10.9) · JavaScript · tags: agent-skills, agent-ui, ai, ai-native, anthropic
+**★ 212** · exceptional (score 16.8) · TypeScript · tags: claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins
 
-🐟 Suanfish Design System — 33 specialized AI design agents across 7 tiers with REJECT mechanism. Multi-agent design language SKILL for Claude Code / Codex CLI / Copilot CLI. v2.5 adds AI-native Path G (streaming · tool-calls · reasoning · citations · artifacts).
-
-✅ SKILL.md
+Production-ready skills for Claude Code CLI - Cloudflare, React, Tailwind v4, and AI integrations
 
 ```bash
-cue skills add SuanFishXYY/suanfish-design-system --profile frontend
+cue skills add secondsky/claude-skills --profile frontend
 ```
 
 ---
 
-<a id="byrobertocumbane-glitch-lottie-marketplace"></a>
-## 💎 [byrobertocumbane-glitch/lottie-marketplace](https://github.com/byrobertocumbane-glitch/lottie-marketplace)
+<a id="ezra-y-awesome-claude-ui-armory"></a>
+## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: app, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills
+**★ 2** · exceptional (score 11) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
-Search, fetch, and integrate Lottie animations into React, Vue, Flutter, and other frameworks using two Claude Code commands.
+Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ```bash
-cue skills add byrobertocumbane-glitch/lottie-marketplace --profile frontend
+cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 ```
 
 ---
 
-<a id="aiatelie-ai-atelie"></a>
-## ✨ [aiatelie/ai-atelie](https://github.com/aiatelie/ai-atelie)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 6** · strong (score 5.8) · TypeScript · tags: agent-skills, ai-agents, ai-design, bun, byok
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
-Local-first, open-source alternative to Anthropic's Claude Design. MIT-licensed, BYO agent CLI — Claude Code, Kimi, Codex, or any SDK-compatible model. Composable skills · three edit paths · designs as plain HTML/JSX/CSS folders · run locally, no cloud round-trip. Generate banners, thumbnails, websites, animations, design systems.
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add aiatelie/ai-atelie --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="libraz-hashidate"></a>
+## ✨ [libraz/hashidate](https://github.com/libraz/hashidate)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: avatar, character-animation, mcp, mcp-server, obs
+
+Avatar runtime for an AI VTuber: a browser-rendered character driven over a local HTTP API, one turn of dialogue at a time. No model provider, no API key, no prompt state.
+
+```bash
+cue skills add libraz/hashidate --profile frontend
 ```
 
 ---

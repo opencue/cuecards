@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cue-skill-evolution"
+version = "0.1.0"
+description = "Skill-content self-evolution for cue — GEPA-optimize SKILL.md bodies from real session usage, gated by `cue lint-skill`. Ported and adapted from NousResearch/hermes-agent-self-evolution."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+keywords = ["llm", "optimization", "evolution", "dspy", "gepa", "cue", "skills"]
+
+# Heavy deps (dspy + an LLM client) are only needed for an ACTUAL optimization
+# run. The dry-run / lint-gate path imports none of them, so `--dry-run` works
+# with zero install. Install the `optimize` extra to run GEPA for real.
+dependencies = [
+    "pyyaml>=6.0",
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+optimize = [
+    "dspy>=3.0.0",
+]
+dev = [
+    "pytest>=7.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["evolution*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

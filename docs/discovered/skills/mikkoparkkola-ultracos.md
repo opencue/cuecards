@@ -2,7 +2,7 @@
 title: "MikkoParkkola/ultracos — Claude Code skill discovered by cue"
 description: "Lossless, on-device token-cost reduction for Claude Code and LLM coding agents. Free plugin: compresses tool-result output, dedups context, compacts the system "
 layout: page
-updated: 2026-06-03
+updated: 2026-06-04
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-02
+- 🗓️ Last pushed: 2026-06-04
 - 🏷️ Tags: agentic, ai-agents, anthropic, claude, claude-code, context-compression, cost-optimization, developer-tools, llm, llm-tools, mcp, prompt-compression, rust, token-compression, token-optimization
 
 ## Best fit cue profiles

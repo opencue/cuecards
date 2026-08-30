@@ -1,4 +1,9 @@
 [test]
+# Strip ambient cue runtime env (CUE_REPO_ROOT, CUE_PROFILE, ...) before any test
+# loads, so local/worktree runs resolve against the code under test like CI's
+# fresh checkout does. See test/preload.ts for the rationale and the full list.
+preload = ["./test/preload.ts"]
+
 # Scope `bun test` to cue's own suite. The excluded trees are vendored or
 # local-only (git-ignored on a fresh clone) and ship their own toolchains, so
 # running their tests here only adds noise/failures unrelated to cue:

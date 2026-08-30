@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/profile-self-improve.sh",
+            "description": "cue self-learner: capture where the profile's skills fell short (friction signals + optional live critic agent); append skill_gap events to ~/.config/cue/analytics.jsonl. OFF by default; never blocks Stop.",
+            "id": "cue:stop:profile-self-improve"
+          }
+        ]
+      }
+    ]
+  }
+}

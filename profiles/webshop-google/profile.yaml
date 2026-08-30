@@ -13,6 +13,7 @@ skills:
   local:
     - content/pdf       # PDF report generation for stakeholder deliverables
   npx:
+    # google/skills inherited via bundled google-ads + google-analytics
     # --- Official Google Ads MCP skill ---
     - repo: googleads/google-ads-mcp
       skills: [account-performance-diagnostics]
@@ -47,7 +48,6 @@ plugins:
 mcps:
   - google-ads-mcp
   - google-analytics-mcp
-  - secret-mcp
 env:
   GOOGLE_APPLICATION_CREDENTIALS: "${GOOGLE_APPLICATION_CREDENTIALS}"
   GOOGLE_PROJECT_ID: "${GOOGLE_PROJECT_ID}"

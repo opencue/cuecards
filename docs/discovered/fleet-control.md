@@ -1,24 +1,52 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-03
+updated: 2026-08-30
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## ✨ [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
+## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 0** · strong (score 7.5) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+**★ 118** · exceptional (score 13.3) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+
+Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
+
+```bash
+cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="jaywavfeng-tiered-agent-orchestrator"></a>
+## 💎 [jaywavfeng/tiered-agent-orchestrator](https://github.com/jaywavfeng/tiered-agent-orchestrator)
+
+**★ 1** · exceptional (score 11.3) · Python · tags: agent-orchestration, agent-skills, claude-code-skill, claude-skills, codex-skills
+
+Use strong models for decisions, economy models for execution, and repository-backed state for long-running engineering.
+
+✅ SKILL.md
+
+```bash
+cue skills add jaywavfeng/tiered-agent-orchestrator --profile fleet-control
+```
+
+---
+
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+
+**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
 
 2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
 
@@ -29,11 +57,11 @@ cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ---
 
 <a id="nuttaruj-rolepod"></a>
-## ✨ [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
+## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 1** · strong (score 6.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 3** · exceptional (score 8.1) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
-Universal AI dev team workflow system for Claude Code — 18 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
+Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
@@ -41,15 +69,15 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 
 ---
 
-<a id="raydenai-queen-protocol"></a>
-## ✨ [raydenai/queen-protocol](https://github.com/raydenai/queen-protocol)
+<a id="eduardo-salvador-agent-harness-kit"></a>
+## ✨ [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
 
-**★ 1** · strong (score 5) · Shell · tags: agent-protocol, anthropic, claude-code, claude-mesh, codex
+**★ 5** · strong (score 7.8) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
 
-Queen Protocol v2.14.0 — Auto-acquire dispatch-lock from prompt-file path. Closes v2.13's adoption gap (one queen acquiring + other queen bypassing). kimi-task.sh now refuses dispatch when another queen holds the shard lock. Plus colony-watcher daemon + 10 named operator-discipline patterns from production. Workers: claude/kimi/codex/gemma4-local.
+An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to verified delivery.
 
 ```bash
-cue skills add raydenai/queen-protocol --profile fleet-control
+cue skills add Eduardo-Salvador/Agent-Harness-Kit --profile fleet-control
 ```
 
 ---

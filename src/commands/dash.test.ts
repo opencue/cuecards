@@ -1,5 +1,4 @@
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
-import { createServer, type Server } from "node:http";
 
 import { parseDashArgs, dashUrl, dashFetch, ROUTES } from "./dash";
 
@@ -79,32 +78,22 @@ describe("ROUTES.build", () => {
   });
 });
 
-describe("dashFetch (stub server)", () => {
-  let server: Server;
-  let port = 0;
-  beforeAll(async () => {
-    server = createServer((req, res) => {
-      const url = req.url ?? "";
-      res.setHeader("content-type", "application/json");
-      if (url.startsWith("/api/v1/ok")) { res.end(JSON.stringify({ ok: true, data: { hello: "world" } })); return; }
-      if (url.startsWith("/api/v1/bad")) { res.statusCode = 400; res.end(JSON.stringify({ ok: false, error: "missing-profile" })); return; }
-      res.end("not json");
-    });
-    await new Promise<void>((r) => server.listen(0, "127.0.0.1", () => r()));
-    port = (server.address() as { port: number }).port;
-  });
-  afterAll(() => { server.close(); });
+describe("dashFetch", () => {
+  const args = { host: "127.0.0.1", port: 7891 };
+  const respond = (body: string, status = 200): typeof fetch =>
+    (async () => new Response(body, { status, headers: { "content-type": "application/json" } })) as typeof fetch;
 
   test("unwraps the {ok,data} envelope", async () => {
-    expect(await dashFetch({ host: "127.0.0.1", port }, "/ok")).toEqual({ hello: "world" });
+    expect(await dashFetch(args, "/ok", {}, respond(JSON.stringify({ ok: true, data: { hello: "world" } })))).toEqual({ hello: "world" });
   });
   test("throws the server's error message on {ok:false}", async () => {
-    await expect(dashFetch({ host: "127.0.0.1", port }, "/bad")).rejects.toThrow("missing-profile");
+    await expect(dashFetch(args, "/bad", {}, respond(JSON.stringify({ ok: false, error: "missing-profile" }), 400))).rejects.toThrow("missing-profile");
   });
   test("throws a clear message on non-JSON", async () => {
-    await expect(dashFetch({ host: "127.0.0.1", port }, "/other")).rejects.toThrow(/non-JSON/);
+    await expect(dashFetch(args, "/other", {}, respond("not json"))).rejects.toThrow(/non-JSON/);
   });
   test("refused connection points at `cue dashboard`", async () => {
-    await expect(dashFetch({ host: "127.0.0.1", port: 1 }, "/ok")).rejects.toThrow(/cue dashboard/);
+    const refused = (async () => { throw new Error("connection refused"); }) as typeof fetch;
+    await expect(dashFetch(args, "/ok", {}, refused)).rejects.toThrow(/cue dashboard/);
   });
 });

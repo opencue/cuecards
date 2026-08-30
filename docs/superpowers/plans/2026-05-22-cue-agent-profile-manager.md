@@ -391,18 +391,18 @@ describe("resolveProfileForCwd", () => {
     expect(out).toEqual({ source: "none" });
   });
 
-  test("reads .cue-profile in cwd", async () => {
-    await writeFile(join(root, ".cue-profile"), "frontend\n");
+  test("reads .cue.profile in cwd", async () => {
+    await writeFile(join(root, ".cue.profile"), "frontend\n");
     const out = await resolveProfileForCwd({
       cwd: root,
       homeDir: root,
       configDir: join(root, ".config", "cue"),
     });
-    expect(out).toEqual({ source: "pin-file", profile: "frontend", pinPath: join(root, ".cue-profile") });
+    expect(out).toEqual({ source: "pin-file", profile: "frontend", pinPath: join(root, ".cue.profile") });
   });
 
-  test("walks up to find .cue-profile", async () => {
-    await writeFile(join(root, ".cue-profile"), "backend\n");
+  test("walks up to find .cue.profile", async () => {
+    await writeFile(join(root, ".cue.profile"), "backend\n");
     const child = join(root, "a", "b", "c");
     await mkdir(child, { recursive: true });
     const out = await resolveProfileForCwd({
@@ -410,11 +410,11 @@ describe("resolveProfileForCwd", () => {
       homeDir: root,
       configDir: join(root, ".config", "cue"),
     });
-    expect(out).toEqual({ source: "pin-file", profile: "backend", pinPath: join(root, ".cue-profile") });
+    expect(out).toEqual({ source: "pin-file", profile: "backend", pinPath: join(root, ".cue.profile") });
   });
 
   test("stops walking at homeDir", async () => {
-    await writeFile(join(root, ".cue-profile"), "should-not-find");
+    await writeFile(join(root, ".cue.profile"), "should-not-find");
     const home = join(root, "home");
     const child = join(home, "user");
     await mkdir(child, { recursive: true });
@@ -454,7 +454,7 @@ describe("resolveProfileForCwd", () => {
   });
 
   test("--cue-profile flag (passed via override) wins over everything", async () => {
-    await writeFile(join(root, ".cue-profile"), "frontend");
+    await writeFile(join(root, ".cue.profile"), "frontend");
     const out = await resolveProfileForCwd({
       cwd: root,
       homeDir: root,
@@ -483,7 +483,7 @@ Expected: module not found.
  *
  * Resolution precedence (stop at first hit):
  *   1. `opts.override` (matches the --cue-profile CLI flag)
- *   2. `.cue-profile` file walking up from cwd; stops at git repo root or homeDir
+ *   2. `.cue.profile` file walking up from cwd; stops at git repo root or homeDir
  *   3. `<configDir>/repo-defaults.json` keyed by git repo root absolute path
  *   4. `<configDir>/default-profile` (single-line file)
  *   5. none — caller should open the picker
@@ -540,7 +540,7 @@ async function findGitRoot(startDir: string, stopAt: string): Promise<string | n
 export async function resolveProfileForCwd(opts: ResolveOptions): Promise<ResolveResult> {
   if (opts.override) return { source: "flag", profile: opts.override };
 
-  const pinPath = await findUpward(opts.cwd, ".cue-profile", opts.homeDir);
+  const pinPath = await findUpward(opts.cwd, ".cue.profile", opts.homeDir);
   if (pinPath) {
     const profile = (await readFile(pinPath, "utf8")).trim();
     if (profile) return { source: "pin-file", profile, pinPath };
@@ -580,7 +580,7 @@ Expected: 7 pass.
 ```bash
 cd /home/deadpool/Documents/soul
 git add bin/cli/lib/cwd-resolver.ts bin/cli/lib/cwd-resolver.test.ts
-git commit -m "feat(cwd-resolver): walk-up .cue-profile + repo/global defaults"
+git commit -m "feat(cwd-resolver): walk-up .cue.profile + repo/global defaults"
 ```
 
 ---
@@ -657,7 +657,7 @@ Expected: module not found.
  *   - renderProfileList(): pure formatter (testable)
  *   - runPicker(): interactive TUI driven by @clack/prompts; opens stdin/stdout
  *
- * Picker writes the chosen profile to ./.cue-profile unless --no-pin is passed.
+ * Picker writes the chosen profile to ./.cue.profile unless --no-pin is passed.
  * Cancel (esc / Ctrl-C) → exit code 130 (caller handles).
  */
 
@@ -694,7 +694,7 @@ export function renderProfileList(opts: PickerOption[], render: RenderOptions): 
 export interface PickerInput {
   cwd: string;
   options: PickerOption[];
-  /** Skip writing .cue-profile if true. */
+  /** Skip writing .cue.profile if true. */
   noPin?: boolean;
 }
 
@@ -724,7 +724,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
       process.exit(130);
     }
     if (pinChoice === true) {
-      await writeFile(join(input.cwd, ".cue-profile"), `${choice}\n`);
+      await writeFile(join(input.cwd, ".cue.profile"), `${choice}\n`);
       pinned = true;
     }
   }
@@ -1091,7 +1091,7 @@ describe("soul launch --dry-run", () => {
 
   test("dry-run with pinned profile prints resolved env and exits 0", async () => {
     const cwd = await mkdtemp(join(tmpdir(), "cue-launch-cwd-"));
-    await writeFile(join(cwd, ".cue-profile"), "core\n");
+    await writeFile(join(cwd, ".cue.profile"), "core\n");
     process.chdir(cwd);
     // Note: the 'core' profile must exist under profiles/core/profile.yaml in the
     // repo root pointed to by SOUL_REPO_ROOT. The repo's existing core profile fits.
@@ -1101,7 +1101,7 @@ describe("soul launch --dry-run", () => {
 
   test("--cue-profile flag overrides any pin", async () => {
     const cwd = await mkdtemp(join(tmpdir(), "cue-launch-cwd-"));
-    await writeFile(join(cwd, ".cue-profile"), "core");
+    await writeFile(join(cwd, ".cue.profile"), "core");
     process.chdir(cwd);
     const rc = await run(["claude", "--cue-profile", "frontend", "--dry-run"]);
     expect(rc).toBe(0);
@@ -1619,7 +1619,7 @@ Create `plugins/cue/commands/cue.md`:
 description: List cue profiles and pick one to switch the current cwd to
 ---
 
-Run `cue list --json` via Bash to enumerate profiles, then present them as a numbered markdown list to the user. After the user replies with a number or name, write the chosen name to `./.cue-profile` with `printf '%s\n' <name> > ./.cue-profile`. Verify the profile name matches one returned by `cue list --json` before writing — reject typos. Finish by printing the line: "Profile pinned. Run `/cue reload` to apply, or restart claude."
+Run `cue list --json` via Bash to enumerate profiles, then present them as a numbered markdown list to the user. After the user replies with a number or name, write the chosen name to `./.cue.profile` with `printf '%s\n' <name> > ./.cue.profile`. Verify the profile name matches one returned by `cue list --json` before writing — reject typos. Finish by printing the line: "Profile pinned. Run `/cue reload` to apply, or restart claude."
 ```
 
 - [ ] **Step 3: `/cue switch` command**
@@ -1634,7 +1634,7 @@ arguments:
     description: Profile name (or list number from /cue current)
 ---
 
-Validate that `{{profile}}` matches a name returned by `cue list --json`. If valid, write it to `./.cue-profile`. If not, surface the error and suggest `/cue` to pick from a list.
+Validate that `{{profile}}` matches a name returned by `cue list --json`. If valid, write it to `./.cue.profile`. If not, surface the error and suggest `/cue` to pick from a list.
 ```
 
 - [ ] **Step 4: `/cue reload` command**
@@ -1646,7 +1646,7 @@ Create `plugins/cue/commands/cue-reload.md`:
 description: Restart claude under the currently pinned cue profile
 ---
 
-Run `exec ~/.local/bin/claude` via Bash. This replaces the current claude process with a fresh one that resolves the current `.cue-profile`. The user's transcript is preserved.
+Run `exec ~/.local/bin/claude` via Bash. This replaces the current claude process with a fresh one that resolves the current `.cue.profile`. The user's transcript is preserved.
 
 If `~/.local/bin/claude` does not exist, instead print: "shim not installed; run `cue shell install` in a terminal first."
 ```
@@ -1678,7 +1678,7 @@ Create `bin/cli/commands/current.ts`:
  * `soul current` — print the active profile and resolved capability list.
  *
  * Reads CUE_PROFILE env if set (we plan to inject it in launch.ts later) or
- * falls back to .cue-profile / repo-default / global-default via cwd-resolver.
+ * falls back to .cue.profile / repo-default / global-default via cwd-resolver.
  */
 
 import { homedir } from "node:os";
@@ -1733,9 +1733,9 @@ Add `current` to `bin/cli/commands/_index.ts`:
 
 ```bash
 cd /home/deadpool/Documents/soul
-echo core > .cue-profile
+echo core > .cue.profile
 bun bin/cli/index.ts current
-rm .cue-profile
+rm .cue.profile
 ```
 
 Expected: prints `Profile: core (pin-file)`, plus counts.
@@ -2224,7 +2224,7 @@ claude
 Expected:
 - Picker opens
 - Arrow-key navigation works
-- After picking, `.cue-profile` exists in `/tmp/cue-smoke/`
+- After picking, `.cue.profile` exists in `/tmp/cue-smoke/`
 - Claude launches with that profile's skills
 
 ## 2. Re-launch — picker is skipped
@@ -2251,7 +2251,7 @@ Expected: picker opens despite pin file.
 claude --cue-profile frontend
 ```
 
-Expected: launches under `frontend` even though `.cue-profile` says otherwise. Pin file unchanged.
+Expected: launches under `frontend` even though `.cue.profile` says otherwise. Pin file unchanged.
 
 ## 5. In-session switch
 
@@ -2347,5 +2347,5 @@ If any cell is empty, file a follow-up task before declaring the plan complete.
 - **Existing libs assume `SOUL_*` env vars.** Task 11 adds `CUE_*` aliases without removing the old names. Remove the `SOUL_*` fallbacks in a follow-up PR ≥ 2 weeks after Task 11 lands.
 - **The cwd changes in Task 11 Step 7.** All commands after that step use `/home/deadpool/Documents/cue/` as the working directory.
 - **Existing helper exports may need surfacing.** Task 6 imports `loadProfile`, `listProfiles`, and `resolveLocalSkill` from `lib/`. If `profile-loader.ts` doesn't already export `listProfiles` or `resolver-local.ts` doesn't export `resolveLocalSkill`, add a minimal export at the top of each file — the logic to enumerate `profiles/*/profile.yaml` and to resolve a local skill id to a source path already exists internally for the existing `list`/`use` commands and just needs to be made public. This is an export reshuffle, not new logic.
-- **`bin/cli/commands/use.ts` is a stub today.** The plugin commands in Task 8 deliberately bypass `cue use` and write `.cue-profile` directly via Bash, so the stub does not block Task 8. Wiring `cue use` to call `materializeRuntime` is a follow-up task — file it separately if you want eager materialization from the shell.
+- **`bin/cli/commands/use.ts` is a stub today.** The plugin commands in Task 8 deliberately bypass `cue use` and write `.cue.profile` directly via Bash, so the stub does not block Task 8. Wiring `cue use` to call `materializeRuntime` is a follow-up task — file it separately if you want eager materialization from the shell.
 - **Task 8 plugin is dormant until Task 11.** The plugin lives under `plugins/cue/` and only activates when a profile's `plugins:` includes `cue@<marketplace>`. Until the rename and marketplace registration land, it's just files on disk. Don't worry that `/cue` "doesn't work" before Task 11 — that's expected.

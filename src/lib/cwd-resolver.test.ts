@@ -23,18 +23,18 @@ describe("resolveProfileForCwd", () => {
     expect(out).toEqual({ source: "none" });
   });
 
-  test("reads .cue-profile in cwd", async () => {
-    await writeFile(join(root, ".cue-profile"), "frontend\n");
+  test("reads .cue.profile in cwd", async () => {
+    await writeFile(join(root, ".cue.profile"), "frontend\n");
     const out = await resolveProfileForCwd({
       cwd: root,
       homeDir: root,
       configDir: join(root, ".config", "cue"),
     });
-    expect(out).toEqual({ source: "pin-file", profile: "frontend", pinPath: join(root, ".cue-profile") });
+    expect(out).toEqual({ source: "pin-file", profile: "frontend", pinPath: join(root, ".cue.profile") });
   });
 
-  test("walks up to find .cue-profile", async () => {
-    await writeFile(join(root, ".cue-profile"), "backend\n");
+  test("walks up to find .cue.profile", async () => {
+    await writeFile(join(root, ".cue.profile"), "backend\n");
     const child = join(root, "a", "b", "c");
     await mkdir(child, { recursive: true });
     const out = await resolveProfileForCwd({
@@ -42,11 +42,11 @@ describe("resolveProfileForCwd", () => {
       homeDir: root,
       configDir: join(root, ".config", "cue"),
     });
-    expect(out).toEqual({ source: "pin-file", profile: "backend", pinPath: join(root, ".cue-profile") });
+    expect(out).toEqual({ source: "pin-file", profile: "backend", pinPath: join(root, ".cue.profile") });
   });
 
   test("stops walking at homeDir", async () => {
-    await writeFile(join(root, ".cue-profile"), "should-not-find");
+    await writeFile(join(root, ".cue.profile"), "should-not-find");
     const home = join(root, "home");
     const child = join(home, "user");
     await mkdir(child, { recursive: true });
@@ -100,7 +100,7 @@ describe("resolveProfileForCwd", () => {
   });
 
   test("--cue-profile flag (passed via override) wins over everything", async () => {
-    await writeFile(join(root, ".cue-profile"), "frontend");
+    await writeFile(join(root, ".cue.profile"), "frontend");
     const out = await resolveProfileForCwd({
       cwd: root,
       homeDir: root,

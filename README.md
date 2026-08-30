@@ -1,493 +1,416 @@
-<!--
-  Structured data for AI search engines (ChatGPT, Perplexity, Google AI Overviews)
-  and traditional crawlers. GitHub renders the README as raw HTML on github.com/<repo>
-  and via GitHub Pages, so the JSON-LD blocks below are picked up by both Google's
-  rich-results parser and LLM scrapers.
--->
-<!--
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "cuecards",
-  "alternateName": ["cue", "cue-ai"],
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Linux, macOS, Windows (WSL2)",
-  "description": "cuecards is an open-source agent profile manager for Claude Code, OpenAI Codex, Cursor, Cline, Gemini CLI, GitHub Copilot, Windsurf, Roo Code, Sourcegraph Amp, and Aider. One cuecard per directory — skills, MCPs, plugins, persona, playbooks, gates. Cut per-message token cost 10–25×.",
-  "url": "https://github.com/opencue/cuecards",
-  "downloadUrl": "https://www.npmjs.com/package/cue-ai",
-  "codeRepository": "https://github.com/opencue/cuecards",
-  "license": "https://github.com/opencue/cuecards/blob/main/LICENSE",
-  "programmingLanguage": "TypeScript",
-  "runtimePlatform": "Bun",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}
-</script>
--->
+<div align="center">
 
-<br>
+# cuecards
+
+**Your agent reads every skill you own, on every message. cue loads only the ones that project needs.**
 
 <p align="center">
-  <img src="./docs/assets/hero.svg" alt="cuecards — Agent Profile Manager for AI coding agents" width="820">
-</p>
-
-<br>
-
-<h1 align="center">cuecards.</h1>
-
-<p align="center">
-  <strong>The agent profile manager for AI coding agents.</strong>
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/hero.svg" alt="cuecards — agent profile manager for Claude Code and Codex" width="820">
 </p>
 
 <p align="center">
-  <sub>Your agent walks into a directory. The cuecard tells it who to be.</sub>
-</p>
-
-<br>
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/v/cue-ai?style=flat-square&label=npm&color=1d1d1f&labelColor=f5f5f7" alt="npm"></a>&nbsp;
-  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/dw/cue-ai?style=flat-square&label=downloads&color=1d1d1f&labelColor=f5f5f7" alt="downloads"></a>&nbsp;
-  <a href="https://github.com/opencue/cuecards/stargazers"><img src="https://img.shields.io/github/stars/opencue/cuecards?style=flat-square&label=stars&color=1d1d1f&labelColor=f5f5f7" alt="stars"></a>&nbsp;
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/opencue/cuecards?style=flat-square&label=license&color=1d1d1f&labelColor=f5f5f7" alt="MIT"></a>&nbsp;
-  <img src="https://img.shields.io/badge/telemetry-none-1d1d1f?style=flat-square&labelColor=f5f5f7" alt="zero telemetry">
-</p>
-
-<br>
-
-<p align="center">
-  <code>npm install -g cue-ai</code>
+  <a href="https://github.com/opencue/cuecards/stargazers"><img src="https://img.shields.io/github/stars/opencue/cuecards?style=for-the-badge&logo=github&label=%E2%AD%90%20Star%20this%20repo&color=yellow" alt="Star cuecards on GitHub"></a>
 </p>
 
 <p align="center">
-  <sub>Requires Node ≥20 and an existing <a href="https://github.com/anthropics/claude-code">Claude Code</a> or <a href="https://github.com/openai/codex">Codex</a> install — cue is a thin shim that exec's your agent, not a replacement.</sub>
-  <br>
-  <sub>package <code>cue-ai</code> &nbsp;·&nbsp; command <code>cue</code> &nbsp;·&nbsp; repo <a href="https://github.com/opencue/cuecards"><code>opencue/cuecards</code></a></sub>
+  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/v/cue-ai?style=for-the-badge&logo=npm&logoColor=white&label=npm&color=cb3837" alt="npm version"></a>
+  &nbsp;
+  <a href="https://www.npmjs.com/package/cue-ai"><img src="https://img.shields.io/npm/dw/cue-ai?style=for-the-badge&label=downloads&color=2b3137" alt="npm downloads"></a>
+  &nbsp;
+  <a href="https://github.com/opencue/cuecards/blob/main/LICENSE"><img src="https://img.shields.io/github/license/opencue/cuecards?style=for-the-badge&label=license&color=4c1" alt="MIT license"></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/node-%E2%89%A520-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node 20+">
+  &nbsp;
+  <img src="https://img.shields.io/badge/telemetry-none-success?style=for-the-badge" alt="zero telemetry">
 </p>
 
-<br>
-<br>
+[Install](#install) · [How it works](#how-it-works) · [Profiles](#85-ready-made-cuecards) · [Multi-agent](#one-cuecard-ten-agents) · [FAQ](#faq) · [Contributing](#contributing)
+
+</div>
 
 ---
 
-## what is a cuecard.
+## Install
 
-A **cuecard** is everything your AI coding agent needs to be useful in one directory — the skills it loads, the MCP servers it connects to, the plugins it boots with, the persona it adopts, the playbooks it follows, the quality gates that block its "done" claim.
+**Already have an agent open?** Paste this into Claude Code, Codex, Cursor, or
+whatever you use — it installs cue and sets up this project, asking before it
+touches anything:
 
-One cuecard per project. Your agent reads the right one the moment you launch.
+```text
+Install cue (https://github.com/opencue/cuecards) on this machine and set it up
+for this project.
 
-| layer | what's on the cuecard |
-|---|---|
-| **skills** | only the ones this project actually needs |
-| **MCPs** | scoped per directory, no global sprawl |
-| **plugins** | the Claude Code plugins this project wants — no more |
-| **persona** | how the agent thinks, writes, and self-edits |
-| **playbooks** | the steps the agent follows for known tasks |
-| **gates** | what must pass before the agent says "done" |
+1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
+2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
+3. Ask me before installing anything, then run: `npm install -g cue-ai`
+4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
+   each one is for, and let me pick one — don't choose for me.
+5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile,
+   installs the shim that makes `claude`/`codex` load it, and — if needed —
+   configures the shim directory on PATH (shell rc on Linux/macOS, Current User
+   PATH on native Windows) so the shim takes effect. It will not enable telemetry and will not install
+   third-party skills. If it exits non-zero, stop and show me the output
+   instead of continuing to step 6.
+6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+   line is added.
+7. Report which profile got pinned and whether the shim is active. Mention that
+   `install.sh --uninstall` undoes it.
 
-<br>
-
----
-
-## quickstart.
-
-```bash
-npm install -g cue-ai                          # 1. install
-cue shell install                              # 2. activate the claude shim (one-time; --codex adds codex)
-cue discover search "code review"              # 3. find a skill
-cue discover install review/code-review        # 4. add it
-claude                                         # 5. launch — the cuecard is loaded
+Do not install anything without asking me first.
 ```
 
-> Step 2 is what makes `claude` load your cuecard: it installs a `~/.local/bin/claude`
-> shim that hands off to `cue launch`. Skip it and `claude` just runs vanilla Claude Code.
-
-Search. Install. Use. No config files to edit. Works the same with `codex`, `cursor`, `cline`, `gemini`, and five other agents.
-
-<p align="center">
-  <img src="./docs/assets/demo.gif" alt="cuecards demo — discover, install, and launch a skill on a cuecard in 30 seconds" width="820" onerror="this.style.display='none'">
-</p>
-
-<p align="center">
-  <img src="./docs/assets/interactive-tui.svg" alt="cuecards interactive TUI — browse profiles, skills, and skill detail side by side" width="820">
-</p>
-
-<br>
-
----
-
-## works with.
-
-<p align="center">
-  <a href="https://github.com/anthropics/claude-code"><img src="https://img.shields.io/badge/Claude_Code-cc785c?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code"></a>&nbsp;
-  <a href="https://github.com/openai/codex"><img src="https://img.shields.io/badge/Codex-000000?style=flat-square&logo=openai&logoColor=white" alt="Codex"></a>&nbsp;
-  <a href="https://cursor.sh"><img src="https://img.shields.io/badge/Cursor-000000?style=flat-square&logo=cursor&logoColor=white" alt="Cursor"></a>&nbsp;
-  <a href="https://github.com/cline/cline"><img src="https://img.shields.io/badge/Cline-5A45FF?style=flat-square" alt="Cline"></a>&nbsp;
-  <a href="https://github.com/google-gemini/gemini-cli"><img src="https://img.shields.io/badge/Gemini-4285F4?style=flat-square&logo=google&logoColor=white" alt="Gemini"></a>&nbsp;
-  <a href="https://github.com/features/copilot"><img src="https://img.shields.io/badge/Copilot-000000?style=flat-square&logo=github&logoColor=white" alt="Copilot"></a>&nbsp;
-  <a href="https://windsurf.com"><img src="https://img.shields.io/badge/Windsurf-06B6D4?style=flat-square" alt="Windsurf"></a>&nbsp;
-  <a href="https://github.com/RooVetGit/Roo-Code"><img src="https://img.shields.io/badge/Roo-7C3AED?style=flat-square" alt="Roo"></a>&nbsp;
-  <a href="https://sourcegraph.com/amp"><img src="https://img.shields.io/badge/Amp-FF4500?style=flat-square&logo=sourcegraph&logoColor=white" alt="Amp"></a>&nbsp;
-  <a href="https://aider.chat"><img src="https://img.shields.io/badge/Aider-14B8A6?style=flat-square" alt="Aider"></a>
-</p>
-
-<p align="center">
-  <sub>One cuecard. Ten supported agents.</sub>
-</p>
-
-<br>
-
----
-
-## by the numbers.
-
-<p align="center">
-  <strong>up to ~16×</strong>&nbsp;&nbsp;leaner always-on context
-  <br><br>
-  <strong>&lt; 5 ms</strong>&nbsp;&nbsp;warm launch overhead
-  <br><br>
-  <strong>69</strong>&nbsp;&nbsp;pre-built cuecards · <strong>330+</strong> local skills
-  <br><br>
-  <strong>10</strong>&nbsp;&nbsp;AI coding agents supported
-  <br><br>
-  <strong>MIT</strong>&nbsp;&nbsp;open source · zero telemetry · no daemon
-</p>
-
-<br>
-
----
-
-## the money shot.
-
-> Loading everything costs you tokens on every single message. cuecards cut your always-on context ~9–16× — and you can reproduce every number below with `cue cost --compare`.
-
-| Loadout | Always-on context | Cost / 100 msgs (Sonnet input) |
-|---|---|---|
-| **Without cuecards** — `full` (every skill + MCP) | ~81k tokens | ~$24 😱 |
-| **With cuecards** — `backend` profile | ~9k tokens | ~$2.70 ✅ |
-| **With cuecards** — `caveman-quick` | ~6.8k tokens | ~$2.00 🚀 |
-
-That's **~9× fewer always-on tokens** on a backend loadout (≈12× on `caveman-quick`, up to ≈16× on the leanest profiles) versus loading everything. Your model also picks the right tool faster because it's not scanning irrelevant descriptions on every message.
+**Rather type it yourself?**
 
 ```bash
-cue cost                      # token budget for your active profile
-cue cost --compare            # full table: every profile ranked vs the `full` baseline
+npm install -g cue-ai && cue setup
 ```
 
-<br>
+`cue setup` installs the `claude`/`codex` shim, scans this project, shows what
+the matching profile costs against loading everything, and pins it. Requires
+Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code)
+or [Codex](https://github.com/openai/codex) install — cue is a thin shim that
+hands off to your real agent, not a replacement for it.
 
----
+After setup, a bare interactive `codex` opens Cue's profile suggestion picker
+on Linux, macOS, PowerShell, and cmd.exe. `codex <args>` remains non-interactive
+unless you pass `--cue-pick`.
 
-## why cuecards.
+> package `cue-ai` · command `cue` · repo [opencue/cuecards](https://github.com/opencue/cuecards)
 
-- **Cut always-on context up to ~16×.** Skills, MCPs, and plugins scoped per directory, not globally loaded into every session — reproduce it with `cue cost --compare`.
-- **Five-dimensional agents.** Persona + playbooks + quality gates + evals + failure loop. Not just "more tools loaded" — composable expertise.
-- **One cuecard, ten agents.** The same `profile.yaml` materializes into Claude Code, Codex, Cursor, Cline, Gemini, Copilot, Windsurf, Roo, Amp, and Aider native formats.
+Three things happen when you type `claude` afterwards:
+
+1. The shim resolves this directory's `.cue.profile`.
+2. cue materializes only that profile's skills, MCPs, and persona into a runtime.
+3. The real Claude Code binary starts against it.
+
+Pin a different project to a different profile:
+
+```bash
+cd ~/projects/my-shop
+cue use medusa-dev      # writes .cue.profile in this directory
+claude                  # launches with the medusa-dev loadout
+```
+
+Not sure which fits? `cue auto-detect` reads your project (package.json,
+pyproject.toml, Cargo.toml, …) and suggests one.
 
 <details>
-<summary><b>Other wins</b></summary>
-
-<br>
-
-- **Discover real skills, not awesome-lists.** `cue discover search` queries GitHub Code Search for `filename:SKILL.md`, scores results, maps each repo to a cuecard.
-- **Install every CLI the cuecard needs in one command.** `cue cli install --all <cuecard>` auto-detects apt / brew / snap / pipx / npm per OS.
-- **Block "done" claims with quality gates.** Stop-hook validators auto-run tests, lint, and build before the agent can declare a task complete.
-- **Open safe, meaningful PRs on skill repos.** Built-in 90-day per-repo cooldown, 25-PRs/day cap, and `<!-- cue: ignore -->` opt-out marker.
-- **Failure-feedback loop.** `cue failures --propose` reads recent session failures and asks Claude to draft profile improvements.
-
-</details>
-
-<br>
-
----
-
-## reading cue's output — the colored tags.
-
-cuecards-managed agents tag every research- or decision-relevant claim with a colored confidence marker so you can scan trust at a glance:
-
-| Tier | Tag | Meaning |
-|---|---|---|
-| 🟢 Green | `[VERIFIED]` / `[KNOWN]` | Trust it (~90–99%) |
-| 🟡 Yellow | `[INFERRED]` / `[ASSUMED]` | Verify if stakes matter (~50–85%) |
-| 🟠 Orange | `[GUESSED]` / `[STALE]` | Verify before acting (~20–45%) |
-| 🔴 Red | `[UNKNOWN]` | Don't trust; agent refused to fabricate |
-
-Optional decile calibration on yellow/orange: `🟡 [INFERRED ~80%]`, `🟠 [GUESSED ~30%]`. The `~` signals it's a rough self-estimate, not a true probability.
-
-Full system + when each tag fires: **[`resources/skills/skills/meta/integrity-tags/SKILL.md`](./resources/skills/skills/meta/integrity-tags/SKILL.md)** · Canonical protocol: **[`resources/personas/integrity-protocol.md`](./resources/personas/integrity-protocol.md)** (auto-injected into every profile via `persona_includes`).
-
-<br>
-
----
-
-## the catalog.
-
-> One repo. 69 pre-built expert agents. Pin one with `cue use <name>` and `claude` launches with that cuecard's skills, MCPs, hooks, and commands materialized.
-
-```bash
-cue list                      # show everything
-cue auto-detect               # suggest the right one for cwd
-cue use medusa-dev            # pin to current directory
-claude                        # launches with that cuecard's loadout
-```
-
-### Foundation
-
-| Profile | What it's for |
-|---|---|
-| 🐢 **core** | Baseline shared by every cue profile — essentials only |
-| 🦄 **full** | Diagnostic fallback that loads every local skill and MCP |
-
-### Backend & Languages
-
-| Profile | What it's for |
-|---|---|
-| 🐻 **backend** | APIs, webhooks, security review, CI, packaging, database, deploy |
-| 🐹 **go-api** | Go API development — net/http, gin/echo/chi, GORM, testing |
-| 🐍 **python** | FastAPI/Django/Flask APIs, SQLAlchemy/Alembic, pytest |
-| 🦀 **rust** | All-in-one Rust — async, web, CLI/TUI, embedded, FFI, WASM, perf |
-
-### Frontend
-
-| Profile | What it's for |
-|---|---|
-| 🦋 **frontend** | Frontend UI implementation, redesign, screenshots, testing |
-| ▲ **nextjs** | Next.js full-stack — App Router, Server Components, Vercel |
-| ⚡ **vite** | Vite + React + TanStack ecosystem |
-| 🎲 **threejs** | Three.js 3D — geometry, materials, shaders, animation |
-
-### Security · Media · Growth · Verticals
-
-| Profile | What it's for |
-|---|---|
-| 🔒 **cybersecurity** | 754 red/blue team skills + agentshield auditor |
-| 🦉 **research** | Source-backed lookup, extraction, browser/market research |
-| 🦚 **creative-media** | Image, video, product asset, brand workflows |
-| 🎬 **video** | Frame extraction, audio transcription, visual understanding |
-| 🐝 **docs-writer** | Documentation, Markdown, PDF, Obsidian, structured writing |
-| 🦜 **marketing** | Copywriting, SEO, CRO, growth, channels, X/Twitter automation |
-| 💼 **career** | Job hunting, resume, interview prep, salary negotiation |
-| 🦊 **medusa-dev** | Medusa v2 backend, storefront, admin, migration |
-| 🐺 **fleet-control** | Multi-agent orchestration, Colony coordination, gx safety |
-| 🏢 **agency** | A full agency on tap — 63 delegatable subagents (design, sales, product, PM, finance, game dev, XR, paid media, QA) |
-
-<sub>Full machine-readable list (all 69): **[`docs/data/profiles.md`](./docs/data/profiles.md)**. Don't see a fit? Run `cue auto-detect` or `cue ai "describe your stack"` to scaffold a new one.</sub>
-
-<br>
-
----
-
-## one cuecard, every agent.
-
-The same `profile.yaml` materializes into each agent's native format — `.cursorrules`, `.clinerules`, `~/.gemini/skills/*.md`, `.github/copilot-instructions.md`, etc.
-
-```bash
-cue materialize cursor --profile backend     # → .cursorrules + .cursor/mcp.json
-cue materialize --all --profile backend      # → all 10 agents at once
-```
-
-<details>
-<summary><b>Full materialization matrix</b></summary>
-
-| Agent | `cue materialize` command | Output |
-|---|---|---|
-| Claude Code | (default — shim) | `~/.config/cue/runtime/<profile>/claude/` |
-| OpenAI Codex | (default — shim) | `~/.config/cue/runtime/<profile>/codex/` |
-| Cursor | `cue materialize cursor` | `.cursorrules` · `.cursor/mcp.json` |
-| Cline | `cue materialize cline` | `.clinerules` · `cline_mcp_settings.json` |
-| Gemini CLI | `cue materialize gemini` | `~/.gemini/skills/*.md` |
-| GitHub Copilot | `cue materialize copilot` | `.github/copilot-instructions.md` |
-| Windsurf | `cue materialize windsurf` | `.windsurfrules` · `.windsurf/mcp.json` |
-| Roo Code | `cue materialize roo` | `.roo/rules/*.md` · `.roo/mcp.json` |
-| Sourcegraph Amp | `cue materialize amp` | `AGENTS.md` · `.amp/mcp.json` |
-| Aider | `cue materialize aider` | `.aider.conventions.md` |
-
-</details>
-
-<br>
-
----
-
-## daily commands.
-
-```bash
-# Pick a profile
-cue use <profile>             # switch profile for this directory
-cue list                      # see all available profiles
-
-# Measure
-cue cost                      # token budget for active profile
-cue cost --compare            # every profile ranked vs the `full` baseline
-
-# System dependencies
-cue cli install --all --yes   # install every missing CLI
-
-# Quality + discovery
-cue lint-skill <path> [--fix]            # validate SKILL.md against R001-R008
-cue marketplace discover --cli-aware     # find skill repos on GitHub
-cue failures --propose [profile]         # Claude drafts profile improvements
-
-# Audit
-cue optimizer                 # dashboard: skills, MCPs, CLIs, usage per profile
-cue doctor --fix              # diff declared vs actual state, auto-repair
-```
-
-`cue --help` shows the full ~50-subcommand surface. The set above covers everything you'll touch weekly.
-
-<br>
-
----
-
-## install.
-
-```bash
-npm install -g cue-ai
-```
-
-Then activate the shim once, and pin a profile in any project:
-
-```bash
-cue shell install             # one-time: installs the claude shim (--codex for codex)
-cd ~/projects/q4-launch
-echo marketing > .cue-profile
-claude                        # launches with the marketing cuecard
-```
-
-<details>
-<summary><b>Other install paths</b></summary>
+<summary>Other install paths (script, clone, guided)</summary>
 
 | Path | Command |
 |---|---|
 | One-line script | `curl -fsSL https://raw.githubusercontent.com/opencue/cuecards/main/get.sh \| bash` |
-| Manual clone | `git clone https://github.com/opencue/cuecards.git ~/Documents/cue && ~/Documents/cue/install.sh` |
-| Per-OS bootstrap | paste [`setup/macos.md`](./setup/macos.md) · [`setup/linux.md`](./setup/linux.md) · [`setup/windows.md`](./setup/windows.md) into Claude Code |
+| Manual clone | `git clone https://github.com/opencue/cuecards.git && ./cuecards/install.sh` |
+| Per-OS notes (Homebrew, WSL2, PowerShell PATH) | [setup/macos.md](https://github.com/opencue/cuecards/blob/main/setup/macos.md) · [setup/linux.md](https://github.com/opencue/cuecards/blob/main/setup/linux.md) · [setup/windows.md](https://github.com/opencue/cuecards/blob/main/setup/windows.md) |
+
+All paths are idempotent — safe to re-run. `install.sh --help` lists `--yes`,
+`--codex`, `--uninstall`.
 
 </details>
 
-`install.sh --help` lists `--yes`, `--codex`, `--uninstall`. Idempotent — safe to re-run.
+---
 
-<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="cue picking a cuecard and launching the agent" width="820">
+</p>
+
+## Why this exists
+
+If you've been using AI coding agents for a while, you've probably collected a pile of skills, MCP servers, and custom instructions. Maybe hundreds. Here's the problem:
+
+**your agent re-reads all of them, on every single message** — including the 95% that have nothing to do with the task in front of it.
+
+That hurts twice:
+
+1. **You pay for it.** Every always-loaded skill description and MCP schema is input tokens, billed on every turn of every session.
+2. **Your agent gets dumber.** Picking the right tool out of 330 irrelevant ones is harder than picking it out of 12 relevant ones.
+
+cue fixes this by scoping everything per directory. Your Medusa shop loads the Medusa cuecard. Your Rust CLI loads the Rust cuecard. Nothing else comes along for the ride.
+
+### Before vs after — in numbers
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/isolation-comparison.svg" alt="Everything-loaded vs a scoped cuecard — always-on context compared" width="820">
+</p>
+
+| Loadout | Always-on context | Cost / 100 msgs (Sonnet input) |
+|---|---|---|
+| Everything loaded (`full` profile) | ~81k tokens | ~$24 |
+| `backend` cuecard | ~9k tokens | ~$2.70 |
+| `caveman-quick` cuecard | ~6.8k tokens | ~$2.00 |
+
+That's **9–16× less always-on context**, compounding on every message. Reproduce the numbers yourself:
+
+```bash
+cue cost              # token budget for your active profile
+cue cost --compare    # every profile ranked against the `full` baseline
+```
 
 ---
 
-## FAQ.
+## What is a cuecard?
+
+A cuecard (also called a *profile*) is everything your agent needs to be useful in one project, bundled into a single `profile.yaml`:
+
+| Layer | What it controls |
+|---|---|
+| **Skills** | Only the ones this project actually needs |
+| **MCP servers** | Scoped per directory — no global sprawl |
+| **Plugins** | The Claude Code plugins this project wants, no more |
+| **Persona** | How the agent thinks, writes, and self-edits |
+| **Playbooks** | Step-by-step procedures for known tasks |
+| **Gates** | What must pass before the agent can claim "done" |
+
+One cuecard per project. Your agent reads the right one the moment you launch it. That's what makes a cuecard more than a skills list — it's composable expertise, not just "more tools loaded."
+
+---
+
+## How it works
+
+No daemon, no background process. cue intercepts the *call* to your agent, resolves the directory's cuecard, materializes it once, then hands off to the real binary:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/architecture.svg" alt="cue resolve to materialize to exec flow" width="820">
+</p>
+
+```
+you type `claude`
+       │
+       ▼
+ ~/.config/cue/shims/claude ──► cue launch
+       │
+       ▼
+ resolve  ──►  which cuecard owns this directory?  (.cue.profile / auto-detect)
+       │
+       ▼
+ materialize ──►  build the runtime (skills + MCPs + persona + gates)
+       │           sha256-cached — rebuilds only when something changed
+       ▼
+ exec  ──►  the real Claude Code / Codex, scoped to this project
+```
+
+Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow: [docs/launch.md](https://github.com/opencue/cuecards/blob/main/docs/launch.md).
+
+---
+
+## 190 ready-made cuecards
+
+cue ships with 95 focused primary profiles plus 93 opt-in AAS overlays. A taste:
+
+| Profile | What it's for |
+|---|---|
+| 🐢 **core** | Minimal baseline shared by every profile |
+| 🐻 **backend** | APIs, webhooks, security review, CI, databases, deploys |
+| 🦋 **frontend** | UI implementation, redesigns, screenshots, browser testing |
+| ▲ **nextjs** | Next.js App Router, Server Components, Vercel |
+| 🐍 **python** | FastAPI/Django/Flask, SQLAlchemy, pytest |
+| 🦀 **rust** | Async, web, CLI/TUI, embedded, FFI, WASM |
+| 🦊 **medusa-dev** | Medusa v2 backend, storefront, admin |
+| 🔒 **cybersecurity** | 754 red/blue-team skills + audit tooling |
+| 🦜 **marketing** | Copywriting, SEO, CRO, growth |
+| 🐝 **docs-writer** | Documentation, Markdown, PDF, structured writing |
+| 🏢 **agency** | 63 delegatable subagents — design, sales, product, PM, QA |
+
+```bash
+cue list           # see all 190
+cue auto-detect    # suggest the right one for the current directory
+cue use <name>     # pin it
+```
+
+Full machine-readable catalog: [docs/data/profiles.md](https://github.com/opencue/cuecards/blob/main/docs/data/profiles.md). Nothing fits? `cue ai "describe your stack"` scaffolds a new one.
+
+---
+
+## One cuecard, ten agents
+
+The same `profile.yaml` materializes into each agent's native config format — write your setup once, use it everywhere:
+
+| Agent | Output |
+|---|---|
+| Claude Code / Codex | runtime dirs under `~/.config/cue/runtime/` (via the shim) |
+| Cursor | `.cursorrules` + `.cursor/mcp.json` |
+| Cline | `.clinerules` + `cline_mcp_settings.json` |
+| Gemini CLI | `~/.gemini/skills/*.md` |
+| GitHub Copilot | `.github/copilot-instructions.md` |
+| Windsurf | `.windsurfrules` + `.windsurf/mcp.json` |
+| Roo Code | `.roo/rules/*.md` + `.roo/mcp.json` |
+| Sourcegraph Amp | `AGENTS.md` + `.amp/mcp.json` |
+| Aider | `.aider.conventions.md` |
+
+```bash
+cue materialize cursor --profile backend   # one agent
+cue materialize --all --profile backend    # all ten at once
+```
+
+---
+
+## Built-in rigor
+
+cuecards don't just load tools — they hold your agent to a standard.
+
+**The reviewer gate.** Profiles can enable an independent review gate: when the agent finishes a code-producing turn, cue spawns a *fresh, separate* reviewer agent over the diff before the turn is allowed to finish. A real catch from a live session: the reviewer flagged a unit bug where a product's `weight` was kilograms in one place and grams in two others — left in, carts would have displayed `20000 kg`. The gate held the merge until it was fixed.
+
+Enable it with `touch ~/.config/cue/auto-review-enabled`, watch reviews live with `cue-review-watch`, and skip one turn with `[skip-auto-review]`. Details: [docs/review-visibility.md](https://github.com/opencue/cuecards/blob/main/docs/review-visibility.md).
+
+**The install gate.** Every path that lands a new skill on disk — `cue skills add`, `cue discover install`, `cue marketplace install-skill` — is scanned by [NVIDIA SkillSpector](https://github.com/NVIDIA/SkillSpector) before the skill is registered to a profile. Research behind that scanner puts 26.1% of published skills at "contains vulnerabilities" and 5.2% at "likely malicious intent", so a skill you found on GitHub 30 seconds ago does not get to run on trust.
+
+A `DO_NOT_INSTALL` verdict blocks: the files stay on disk for review but never reach your `profile.yaml`. `CAUTION` registers with a warning. `SAFE` passes silently. Override a block with `--allow-unsafe`, scan anything by hand with `cue security scan <path>`, and turn the gate off with `CUE_SKILLSPECTOR=0`.
+
+```console
+$ cue security scan ./notes-organizer/
+🔴 SkillSpector: DO_NOT_INSTALL (risk 85/100, CRITICAL) — 6 finding(s): Anti-Refusal, Privilege Escalation, Prompt Injection, YARA Match
+   [HIGH] AR3 Anti-Refusal SKILL.md:8
+   [HIGH] PE3 Privilege Escalation SKILL.md:13
+   [HIGH] P1  Prompt Injection SKILL.md:8
+```
+
+No setup needed: cue uses `skillspector` if it's on your PATH, otherwise runs it through `uvx` (cached after the first run), otherwise a local docker image. If none of those exist the gate says so out loud and falls back to cue's own SEC1-7 rules rather than silently passing. Scans run with `--no-llm`, so skill contents never leave your machine.
+
+**Baselines for reviewed false positives.** Pattern scanners produce noise — one of cue's own skills got flagged for "Env Variable Harvesting" because a comment contains the word *token*. `cue security baseline <path>` records the current findings with a written reason so later scans surface only new ones. Suppression is exact: fingerprints bind to the scanner version and the skill's full source, so editing the skill reactivates the finding until someone re-reviews it. Baselines apply to this repo's own skills only, never to a fetched remote skill — its id is chosen by whoever wrote it.
+
+**Confidence tags.** cue-managed agents tag research- and decision-relevant claims with colored confidence markers so you can scan trust at a glance:
+
+| Tier | Tags | Meaning |
+|---|---|---|
+| 🟢 | `[VERIFIED]` `[KNOWN]` | Checked firsthand / well-documented fact |
+| 🟡 | `[INFERRED]` `[ASSUMED]` | Deduced or assumed — verify if stakes matter |
+| 🟠 | `[GUESSED]` `[STALE]` | Pattern-match or possibly outdated — verify first |
+| 🔴 | `[UNKNOWN]` | The agent said "I don't know" instead of making it up |
+
+---
+
+## Everyday commands
+
+```bash
+# Profiles
+cue use <profile>            # pin a profile to this directory
+cue list                     # all available profiles
+cue auto-detect              # suggest one for the current project
+
+# Cost
+cue cost                     # token budget for the active profile
+cue cost --compare           # all profiles ranked vs `full`
+
+# Skills & discovery
+cue discover search <query>  # find skills on GitHub
+cue discover install <skill> # install one (SkillSpector-gated)
+cue lint-skill <path> --fix  # validate a SKILL.md
+
+# Security
+cue security                 # scan the active profile's skills
+cue security scan <path>     # deep NVIDIA SkillSpector scan of any skill
+cue security --all --json    # every skill, machine-readable
+
+# Marketplace (push your own to cuecards.cc)
+cue marketplace login --token <t>          # save the API token from the studio → API view
+cue marketplace publish profile ship-fast  # push a profile / skill / mcp for everyone
+
+# Health
+cue doctor --fix             # diff declared vs actual state, auto-repair
+cue optimizer                # dashboard: skills, MCPs, CLIs, usage per profile
+cue failures --propose       # let Claude draft profile improvements from failures
+```
+
+`cue --help` shows the full ~50-subcommand surface; the set above covers a typical week.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/optimizer-dashboard.svg" alt="cue optimizer dashboard — skills, MCPs, CLIs, and usage per profile" width="820">
+</p>
+
+---
+
+## FAQ
 
 <details>
 <summary><b>Does this break Claude Code's auto-update?</b></summary>
 
-No. cue doesn't touch the `claude` binary — it intercepts the *call* via a one-line bash shim in `~/.local/bin/claude`, sets `CLAUDE_CONFIG_DIR`, and `exec`s the real binary. Claude Code's update mechanism still runs identically.
+No. cue never touches the `claude` binary, and never writes to `~/.local/bin` where the native installer keeps it. It intercepts the *call* via a one-line bash shim in its own `~/.config/cue/shims/`, sets `CLAUDE_CONFIG_DIR`, and `exec`s the real binary. Updates work exactly as before — the installer rewrites its symlink, the shim is untouched, and the next launch picks up the new version.
 </details>
 
 <details>
 <summary><b>Is this a daemon?</b></summary>
 
-No. Pure CLI. When you type `claude`, the shim runs `cue launch`, does a sha256 compare, materializes only if anything changed, then `exec`s. Nothing stays resident.
+No. Pure CLI. When you type `claude`, the shim runs `cue launch`, compares a sha256, materializes only if something changed, then `exec`s. Nothing stays resident.
 </details>
 
 <details>
-<summary><b>How fast is the overhead?</b></summary>
+<summary><b>How much overhead does it add?</b></summary>
 
-Cold start: 50–200 ms. Warm start: <5 ms (sha256 compare + `exec`). Imperceptible next to Claude Code's own startup.
+Cold start 50–200 ms; warm start under 5 ms. Imperceptible next to your agent's own startup.
 </details>
 
 <details>
 <summary><b>Does cue send telemetry?</b></summary>
 
-No. Everything cue computes (including the per-skill usage bars in `cue optimizer`) reads from your local `~/.claude/projects/**/*.jsonl` transcripts. Nothing leaves the machine.
+No. Everything cue computes — including the per-skill usage bars in `cue optimizer` — reads from your local transcript files. Nothing leaves your machine.
 </details>
 
 <details>
-<summary><b>What's the difference between cue and skillport / Kiro Powers?</b></summary>
+<summary><b>What does cue NOT do?</b></summary>
 
-| | cue | skillport / agent-skills-cli | Kiro Powers |
+- It doesn't modify or repackage the Claude Code / Codex binaries.
+- It doesn't lock you in — skills live in your repo or come from open source; the optional [cuecards.cc marketplace](https://github.com/opencue/cuecards/blob/main/docs/marketplace-api.md) is just a sharing layer you push to with your own token, never a requirement.
+- It doesn't coordinate multi-agent runs (that's [colony](https://github.com/recodeee/colony) + [gitguardex](https://github.com/recodeee/gitguardex), layered on top via the parallel-agents tier).
+</details>
+
+---
+
+## How it compares
+
+|  | cuecards | skillport / agent-skills-cli | Kiro Powers |
 |---|---|---|---|
 | Skills | ✅ | ✅ | ✅ |
 | MCPs | ✅ | — | ✅ |
 | Plugins | ✅ | — | — |
 | Per-directory profiles | ✅ | — | ◐ (IDE-only) |
 | Inheritance | ✅ | — | — |
-| Persona / playbooks / gates / evals | ✅ | — | — |
-| Multi-agent (Cursor/Cline/Copilot/etc.) | ✅ (10) | Claude only | IDE-only |
-| CLI installer | ✅ | — | — |
+| Persona / playbooks / gates | ✅ | — | — |
+| Multi-agent (Cursor/Cline/Copilot/…) | ✅ (10) | Claude only | IDE-only |
 | Failure-feedback loop | ✅ | — | — |
-| Daemon required | None | None | IDE process |
-
-cuecards is the only one that treats agent expertise as a composable system.
-</details>
-
-<details>
-<summary><b>What does cue NOT do?</b></summary>
-
-- It does not modify or repackage the Claude Code / Codex binary.
-- It does not host a remote skill marketplace — skills live in your repo or come from open-source sources.
-- It does not coordinate multi-agent runs (that's [`recodeee/colony`](https://github.com/recodeee/colony) + [`gitguardex`](https://github.com/recodeee/gitguardex), layered via the parallel-agents tier).
-
-</details>
-
-<br>
+| Daemon required | none | none | IDE process |
 
 ---
 
-## deep dives.
-
-The bits that didn't fit on the landing page:
+## Deep dives
 
 | Topic | Read |
 |---|---|
-| Launch flow (resolve → materialize → exec) | [`docs/launch.md`](./docs/launch.md) |
-| Profile catalog (all 69, machine-readable) | [`docs/data/profiles.md`](./docs/data/profiles.md) |
-| Bootstrap contract for AI agents installing cue | [`AGENTS.md`](./AGENTS.md) |
-| Parallel agents tier (Colony + gitguardex) | [`setup/parallel-agents.md`](./setup/parallel-agents.md) |
-| Confidence-tag system (`[VERIFIED]`, `[INFERRED]`, `[GUESSED]`, etc.) | [`resources/skills/skills/meta/integrity-tags/SKILL.md`](./resources/skills/skills/meta/integrity-tags/SKILL.md) |
-
-<sub>Topics like the 5-dimensional expert agent model, system CLI installer mechanics, marketplace discovery, SKILL.md linter rules, and the `cue optimizer` dashboard are tracked in git history at the old README until they get their own pages — `git log --diff-filter=D -- README.md` finds them.</sub>
-
-<br>
+| Launch flow (resolve → materialize → exec) | [docs/launch.md](https://github.com/opencue/cuecards/blob/main/docs/launch.md) |
+| Full profile catalog | [docs/data/profiles.md](https://github.com/opencue/cuecards/blob/main/docs/data/profiles.md) |
+| Bootstrap contract for AI agents installing cue | [AGENTS.md](https://github.com/opencue/cuecards/blob/main/AGENTS.md) |
+| Parallel agents tier (Colony + gitguardex) | [setup/parallel-agents.md](https://github.com/opencue/cuecards/blob/main/setup/parallel-agents.md) |
+| Confidence-tag system | [integrity-tags/SKILL.md](https://github.com/opencue/cuecards/blob/main/resources/skills/skills/meta/integrity-tags/SKILL.md) |
+| Publish profiles, skills, and MCPs with an API token | [docs/marketplace-api.md](https://github.com/opencue/cuecards/blob/main/docs/marketplace-api.md) |
+| How the shims work, per shell | [docs/shell-setup.md](https://github.com/opencue/cuecards/blob/main/docs/shell-setup.md) |
 
 ---
 
-## who uses cue.
-
-| Project | Profile | What they do |
-|---|---|---|
-| [opencue/cuecards](https://github.com/opencue/cuecards) | `full`, `skill-writer` | Dogfooding cue on itself |
-| [recodeee/colony](https://github.com/recodeee/colony) | `fleet-control` | Multi-agent coordination MCP |
-| [recodeee/gitguardex](https://github.com/recodeee/gitguardex) | `backend` | Branch + worktree isolation for parallel agents |
-
-> **Using cue?** Open a PR or drop a link in [Discussions](https://github.com/opencue/cuecards/discussions).
-
-<br>
-
----
-
-## star history.
-
-<a href="https://star-history.com/#opencue/cuecards&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=opencue/cuecards&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=opencue/cuecards&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=opencue/cuecards&type=Date" width="720" />
-  </picture>
-</a>
-
-<br>
-
----
-
-## contributing.
+## Contributing
 
 ```bash
 git clone https://github.com/opencue/cuecards.git
-cd cue && bun install
-bun test                                      # tests (lib + commands)
-bun run src/index.ts --help                   # run locally
+cd cuecards && bun install
+bun test                          # tests (lib + commands)
+bun run src/index.ts --help       # run locally
 ```
 
 | Want to | Run |
 |---|---|
-| Add a skill | `cue skills-new <name>` then edit `resources/skills/skills/<category>/<name>/SKILL.md` |
-| Add a profile | `cue new <name>` then `cue validate <name>` |
+| Add a skill | `cue skills-new <name>`, then edit `resources/skills/skills/<category>/<name>/SKILL.md` |
+| Add a profile | `cue new <name>`, then `cue validate <name>` |
 | Share your profile | `cue share publish --profile <name>` |
 | Report a bug | [Open an issue](https://github.com/opencue/cuecards/issues) |
 
-License: [MIT](./LICENSE).
+---
+
+<div align="center">
+
+Built by [Viktor Nagy](https://github.com/NagyVikt) at [opencue](https://github.com/opencue) · [opencue.github.io/cuecards](https://opencue.github.io/cuecards/)
+
+**If cue saves you tokens, star it — that's how other people find it.**
+
+<a href="https://github.com/opencue/cuecards/stargazers"><img src="https://img.shields.io/github/stars/opencue/cuecards?style=for-the-badge&logo=github&label=%E2%AD%90%20Star%20this%20repo&color=yellow" alt="Star cuecards on GitHub"></a>
+
+License: [MIT](https://github.com/opencue/cuecards/blob/main/LICENSE) · zero telemetry · no daemon
+
+</div>

@@ -17,3 +17,7 @@ Subcommands (parse from user input after `/cue-skills`):
 After any add/remove, remind the user: "Run `/cue-reload` to apply changes to this session."
 
 If the user just types `/cue-skills` with no args, default to **list**.
+
+Before running any `cue` command, check `command -v cue`. If it exits non-zero,
+stop and tell the user: "cue isn't installed yet — run `/cue-setup` first." Do
+not surface a raw `command not found`.

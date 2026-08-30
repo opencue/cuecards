@@ -123,7 +123,7 @@ rust-wasm      → wasm-pack/trunk
 2/ The split is via `inherits:` — same skills on disk, no duplication, but
 each profile only loads what's relevant to that subdomain.
 
-Working on a wasm SPA? `echo rust-wasm > .cue-profile` and cue loads
+Working on a wasm SPA? `echo rust-wasm > .cue.profile` and cue loads
 exactly that subset.
 ```
 

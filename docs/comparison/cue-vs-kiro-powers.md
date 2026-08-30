@@ -16,7 +16,7 @@ Pick **Kiro Powers** if you're already in the Kiro IDE and want the integrated e
 | **MCP servers** | ✅ | ✅ |
 | **Claude Code plugins** | ✅ | — |
 | **IDE-agnostic** (CLI, works in any terminal) | ✅ | ❌ (Kiro IDE only) |
-| **Per-directory automatic profile** | ✅ (`.cue-profile`) | ◐ (workspace-scoped) |
+| **Per-directory automatic profile** | ✅ (`.cue.profile`) | ◐ (workspace-scoped) |
 | **Profile inheritance** | ✅ | — |
 | **Persona / playbooks / quality gates / evals** | ✅ (5 expert-agent dimensions) | — |
 | **Failure-feedback loop** | ✅ (`cue failures --propose`) | — |

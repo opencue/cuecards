@@ -47,7 +47,7 @@ skills:
     - github/gh-fix-ci
     - gstack/canary
     - gstack/health
-    - gstack/investigate
+    # gstack/investigate removed — duplicate of plan/investigate (inherited from core)
     - gstack/ship
     - gstack/review
     - gstack/retro
@@ -58,21 +58,21 @@ skills:
     - design/image-to-code
     - design/ui-ux-pro-max
     - design/minimalist-ui
-    - browser/playwright
+    - browser/agent-browser   # browser automation (vercel-labs/agent-browser CLI)
     # --- designer: premium UI + brand kit + redesign ---
     - design/taste-skill
     - design/taste-skill-v1
-    - design/gpt-tasteskill
-    - design/image-to-code-skill
+    - design/gpt-taste
+    - design/image-to-code
     - design/imagegen-frontend-web
     - design/imagegen-frontend-mobile
     - design/brandkit
-    - design/redesign-skill
-    - design/soft-skill
-    - design/output-skill
-    - design/minimalist-skill
-    - design/brutalist-skill
-    - design/stitch-skill
+    - design/redesign-existing-projects
+    - design/high-end-visual-design
+    - meta/full-output-enforcement
+    - design/minimalist-ui
+    - design/industrial-brutalist-ui
+    - design/stitch-design-taste
     - design/industrial-brutalist-ui
     - design/redesign-existing-projects
     - gstack/design-consultation
@@ -85,7 +85,6 @@ skills:
     - higgsfield/higgsfield-soul-id
     - medusa/higgsfield-to-medusa-products
     # --- coolify deploy + secrets + myvps ---
-    - secrets/envoult
     - gstack/setup-deploy
     - private/myvps
     # --- hostinger DNS/domains/VPS/hosting ---
@@ -107,11 +106,9 @@ plugins:
 mcps:
   - coolify
   - envoult
-  - playwright
   - Higgsfield
   - gbrain
   - hostinger-api
-  - secret-mcp
 env:
   RESEND_API_KEY: "${RESEND_API_KEY}"
 persona: |
@@ -124,15 +121,35 @@ persona: |
   | Task                                                       | Lead surface     |
   |------------------------------------------------------------|------------------|
   | Medusa core modules, migrations, admin extensions, shop setup | medusa/*      |
-  | Vite + TanStack storefront, region/cart, payment redirect  | medusa/* + design/* + playwright |
+  | Vite + TanStack storefront, region/cart, payment redirect  | medusa/* + design/* + agent-browser |
   | API endpoints, webhooks, security review, CI               | review/*, stripe/*, gstack/* |
-  | Storefront UI implementation, visual polish, a11y          | design/* + browser/playwright |
+  | Storefront UI implementation, visual polish, a11y          | design/* + browser/agent-browser |
   | Premium visual design, brand kit, redesign                 | design/taste-* + design/brandkit |
   | Long-horizon browser automation, e2e flows                 | webwright plugin |
+  | Scrape / headless read, page snapshot, screenshots          | browser/ego-browser |
   | Product photos, hero shots, marketplace cards, Soul ID     | higgsfield/*     |
   | Transactional + marketing email, React Email, deliverability | resend plugin  |
   | Containers, env vars, reverse proxy, zero-downtime deploy  | deployment/coolify + gstack/setup-deploy |
   | DNS, domain, VPS firewall, TLS                             | hostinger/*      |
+
+  ## Browser stack — which tool when
+
+  Three browser engines, distinct sweet spots — pick by the job:
+
+  - **ego-browser** (JS heredoc) — the default, inherited from core. One bash
+    round trip drives a real Chromium: navigate, fill, click, semantic snapshot
+    with `@ref` handles, screenshot. Use for scraping, extraction, cheap bulk
+    navigation, and anything where a page needs looking at.
+  - **agent-browser** (CLI) — the interactive default. `snapshot -i` → act on
+    `@ref` → `screenshot`. Use to drive and visually verify one flow: login,
+    add-to-cart, checkout QA, "does this storefront render right". Real pixels.
+  - **webwright** (plugin) — the heaviest. Hand off a long-horizon, multi-page
+    goal; it plans → acts → screenshot-self-verifies → logs to `final_runs/`.
+    Use for autonomous end-to-end missions, not a handful of commands.
+
+  Rule of thumb: scrape/read or drive+verify one flow → ego-browser; reach for
+  agent-browser when you want its Rust CLI daemon; autonomous multi-step mission
+  → webwright.
 
   ## Defaults across the stack
 

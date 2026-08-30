@@ -18,14 +18,16 @@ import { McpsView } from "./views/Mcps";
 import { PluginsView } from "./views/Plugins";
 import { MarketView } from "./views/Market";
 import { HooksView } from "./views/Hooks";
+import { PermissionsView } from "./views/Permissions";
 import { EnvView } from "./views/Env";
 import { SettingsView } from "./views/Settings";
 import { ProfilesView } from "./views/Profiles";
+import { ApiView } from "./views/Api";
 import { OfflineBanner } from "./views/OfflineBanner";
 
 export type View =
   | "explorer" | "dashboard" | "profiles" | "search" | "merge"
-  | "workflows" | "mcps" | "plugins" | "market" | "hooks" | "env" | "settings";
+  | "workflows" | "mcps" | "plugins" | "market" | "hooks" | "permissions" | "env" | "api" | "settings";
 
 export interface OpenTarget { kind: "skill" | "mcp" | "plugin" | "command"; key: string; ts: number; highlightCli?: string }
 
@@ -40,10 +42,11 @@ const RAIL_ICONS: Record<string, string> = {
   profiles: "M12 2 3 7v10l9 5 9-5V7l-9-5z M12 2v20 M3 7l9 5 9-5",
   market: "M4 4h16l-1 5H5L4 4z M5 9v10a1 1 0 001 1h12a1 1 0 001-1V9 M9 13h6",
   hook: "M18 7v6a6 6 0 01-12 0V7 M18 7a2 2 0 100-4 2 2 0 000 4z M12 19v2",
+  lock: "M5 11h14v10H5z M8 11V7a4 4 0 018 0v4 M12 15v3",
   panel: "M4 4h16v16H4z M9 4v16",
   gear: "M12 9a3 3 0 100 6 3 3 0 000-6zM19 12a7 7 0 00-.1-1l2-1.6-2-3.4-2.4 1a7 7 0 00-1.7-1L14.4 2H9.6L9.2 4.6a7 7 0 00-1.7 1l-2.4-1-2 3.4L5.1 11a7 7 0 000 2l-2 1.6 2 3.4 2.4-1a7 7 0 001.7 1l.4 2.6h4.8l.4-2.6a7 7 0 001.7-1l2.4 1 2-3.4-2-1.6c.1-.3.1-.7.1-1z",
-  git: "M6 3v12M6 21a3 3 0 100-6 3 3 0 000 6zM6 6a3 3 0 100-6 3 3 0 000 6zM18 12a3 3 0 100-6 3 3 0 000 6zM18 9c0 4-6 2-6 9",
   key: "M7 18a3 3 0 100-6 3 3 0 000 6z M9.2 13.8 19 4 M16 5l2 2 M18.5 5.5l1.5 1.5",
+  api: "M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12",
 };
 
 function Ico({ name }: { name: string }) {
@@ -229,12 +232,13 @@ export function StudioApp() {
     setView("explorer");
   };
 
+  // Top rail mirrors the design's `rail` array. hooks + permissions live in the
+  // bottom group (next to settings), not here — see the rail-sp block below.
   const rail: [string, View, string][] = [
     ["explorer", "explorer", "Explorer"], ["dashboard", "dashboard", "Dashboard"],
     ["profiles", "profiles", "Profiles"], ["search", "search", "Search"],
     ["merge", "merge", "Merge studio"], ["flow", "workflows", "Workflows"],
     ["plug", "mcps", "MCP servers"], ["puzzle", "plugins", "Plugins"],
-    ["hook", "hooks", "Hooks"], ["key", "env", "Environment"],
     ["market", "market", "Marketplace"],
   ];
 
@@ -252,7 +256,9 @@ export function StudioApp() {
       case "plugins": return <>extensions · <b>plugins</b></>;
       case "market": return <>community · <b>marketplace</b></>;
       case "hooks": return <>automation · <b>hooks</b></>;
+      case "permissions": return <>security · <b>permissions</b></>;
       case "env": return <>secrets · <b>environment</b></>;
+      case "api": return <>account · <b>API tokens</b></>;
       case "search": return <>search · <b>workspace</b></>;
       case "settings": return <>preferences · <b>settings</b></>;
       default: return <>workspace · <b>overview</b></>;
@@ -307,12 +313,19 @@ export function StudioApp() {
             </div>
           ))}
           <div className="rail-sp"></div>
-          <div className="rail-btn" data-label="Gates"><Ico name="git" /><span className="rail-label">Gates</span></div>
+          <div className={"rail-btn" + (view === "hooks" ? " on" : "")} data-label="Hooks" onClick={() => setView("hooks")}><Ico name="hook" /><span className="rail-label">Hooks</span></div>
+          <div className={"rail-btn" + (view === "permissions" ? " on" : "")} data-label="Permissions" onClick={() => setView("permissions")}><Ico name="lock" /><span className="rail-label">Permissions</span></div>
+          <div className={"rail-btn" + (view === "env" ? " on" : "")} data-label="Environment" onClick={() => setView("env")}><Ico name="key" /><span className="rail-label">Environment</span></div>
+          <div className={"rail-btn" + (view === "api" ? " on" : "")} data-label="API tokens" onClick={() => setView("api")}><Ico name="api" /><span className="rail-label">API tokens</span></div>
           <div className={"rail-btn" + (view === "settings" ? " on" : "")} data-label="Settings" onClick={() => setView("settings")}><Ico name="gear" /><span className="rail-label">Settings</span></div>
         </div>
 
         <div className="view">
-          {offline ? (
+          {view === "api" ? (
+            // Auth/token management is independent of the local dashboard
+            // server, so it stays available even when that server is offline.
+            <ApiView />
+          ) : offline ? (
             <OfflineBanner message={(status.error as Error).message} />
           ) : (
             <>
@@ -327,6 +340,7 @@ export function StudioApp() {
               {view === "plugins" && <PluginsView profile={profile} />}
               {view === "market" && <MarketView />}
               {view === "hooks" && <HooksView profile={profile} />}
+              {view === "permissions" && <PermissionsView />}
               {view === "env" && <EnvView profile={profile} />}
               {view === "settings" && <SettingsView />}
               {view === "search" && <SearchView profile={profile} onOpen={handleOpen} setView={setView} />}

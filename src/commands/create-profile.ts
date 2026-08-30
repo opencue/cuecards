@@ -13,10 +13,9 @@
  */
 
 import { mkdir, writeFile, access } from "node:fs/promises";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 interface ParsedArgs {
   name: string | null;
@@ -101,7 +100,7 @@ export async function run(args: string[]): Promise<number> {
     return 1;
   }
 
-  const profilesDir = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
+  const profilesDir = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
   const profileDir = join(profilesDir, parsed.name);
   const yamlPath = join(profileDir, "profile.yaml");
 
@@ -118,11 +117,11 @@ export async function run(args: string[]): Promise<number> {
   await writeFile(yamlPath, renderYaml(parsed));
 
   if (parsed.pin) {
-    await writeFile(join(process.cwd(), ".cue-profile"), `${parsed.name}\n`);
+    await writeFile(join(process.cwd(), ".cue.profile"), `${parsed.name}\n`);
   }
 
   process.stdout.write(`✓ created ${yamlPath}\n`);
-  if (parsed.pin) process.stdout.write(`✓ pinned to ${process.cwd()}/.cue-profile\n`);
+  if (parsed.pin) process.stdout.write(`✓ pinned to ${process.cwd()}/.cue.profile\n`);
   process.stdout.write(`launch with: claude\n`);
   return 0;
 }

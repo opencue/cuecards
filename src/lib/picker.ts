@@ -5,7 +5,7 @@
  *   - renderProfileList(): pure formatter (testable)
  *   - runPicker(): interactive TUI driven by @clack/prompts; opens stdin/stdout
  *
- * Picker writes the chosen profile to ./.cue-profile unless --no-pin is passed.
+ * Picker writes the chosen profile to ./.cue.profile unless --no-pin is passed.
  * Cancel (esc / Ctrl-C) → exit code 130 (caller handles).
  */
 
@@ -15,52 +15,63 @@ import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { styleText } from "node:util";
 import type { CompanionSignal } from "./companion-detect";
-import { tokenLevelEmoji } from "./token-budget";
 import type { UniversalSuggestion, UniversalOrigin } from "./pair-suggestions";
 import { recordCombo } from "./combo-history";
+import { recordProfileChoice } from "./profile-choice-feedback";
+import { buildConflictMap, resolveConflicts } from "./profile-conflicts";
+import { SHOW_ALL, SKIP_COMBINE, compressCombo, dedupeSelectorParts } from "./picker/selector";
+import {
+  asciiIconsEnabled,
+  displayWidth,
+  stripIconIfAscii,
+  windowOptions,
+} from "./picker/render-util";
+import {
+  EMPTY_TALLY,
+  formatCombinedPreview,
+  formatOverheadBadge,
+  formatTallyDelta,
+  unionTallyCounts,
+  type ProfileTally,
+} from "./picker/tally";
+import type { PickerInput, PickerOption, PickerOutput, RenderOptions } from "./picker/types";
+import { COMBINE_CATEGORY_ORDER, combineCategoryOf } from "./picker/categories";
+import { pickerV2Enabled, runPickerV2 } from "./picker/flow";
 
-export interface PickerOption {
-  value: string;
-  label: string;
-  hint: string;
-  /** When true, sort this option above every other (used for the Default entry). */
-  top?: boolean;
-  /** When true, this is a non-selectable visual header. Selecting it re-prompts. */
-  divider?: boolean;
-  /**
-   * Other profile `value`s that pair well with this one. Drives the post-pick
-   * multiselect ("combine google-analytics with…"). Only names that resolve to
-   * real options in the same list are offered.
-   */
-  recommends?: string[];
-  /**
-   * Companion profile `value`s that start CHECKED when this option is the
-   * combine primary, regardless of cwd detection (the profile's `autoSelect:`).
-   * Stronger than `recommends`; still opt-out (the user can uncheck).
-   */
-  autoSelect?: string[];
-  /**
-   * Other profile `value`s that are mutually exclusive with this one. In the
-   * combine multiselect, checking this option auto-disables every conflict
-   * (and vice versa). Used to stop e.g. medusa-vite + medusa-next being
-   * stacked together.
-   */
-  conflicts?: string[];
-  /**
-   * Pre-check this option when the combine multiselect opens. Set by
-   * launch.ts when cwd autodetection has high confidence in a recommended
-   * partner (e.g. detect a Medusa storefront → auto-check medusa-vite).
-   */
-  preselect?: boolean;
-}
-
-/** Sentinel-value prefix used by divider options (see `divider`). */
-export const DIVIDER_PREFIX = "__divider_";
-
-export interface RenderOptions {
-  cwd: string;
-  includeFooter?: boolean;
-}
+// Back-compat surface. These used to live in this file; call sites and tests
+// import them from "./picker", so re-export instead of churning every import.
+export { buildConflictMap, resolveConflicts } from "./profile-conflicts";
+export {
+  DIVIDER_PREFIX,
+  SHOW_ALL,
+  SKIP_COMBINE,
+  compressCombo,
+  dedupeSelectorParts,
+} from "./picker/selector";
+export {
+  asciiIconsEnabled,
+  displayWidth,
+  stripIconIfAscii,
+  windowOptions,
+} from "./picker/render-util";
+export {
+  EMPTY_TALLY,
+  OVERHEAD_WARN_TOKENS,
+  formatCombinedPreview,
+  formatOverheadBadge,
+  formatTallyDelta,
+  unionTallyCounts,
+} from "./picker/tally";
+export type { ProfileTally, TallyCounts } from "./picker/tally";
+export type {
+  PickerInput,
+  PickerOption,
+  PickerOutput,
+  PickerRecent,
+  PickerCombo,
+  RenderOptions,
+} from "./picker/types";
+export { COMBINE_CATEGORY_ORDER, combineCategoryOf } from "./picker/categories";
 
 export function renderProfileList(opts: PickerOption[], render: RenderOptions): string {
   const lines: string[] = [];
@@ -75,74 +86,6 @@ export function renderProfileList(opts: PickerOption[], render: RenderOptions): 
     lines.push("  ⓘ details (d) · pick once, no pin (n) · cancel (esc)");
   }
   return lines.join("\n");
-}
-
-export interface PickerInput {
-  cwd: string;
-  options: PickerOption[];
-  /** Skip writing .cue-profile if true. */
-  noPin?: boolean;
-  /**
-   * Optional hook invoked after the user picks a profile (and pin confirm),
-   * but before the outro line. Returned strings are emitted as `log.message`
-   * inside the picker box, so they line up visually with the rest of the
-   * prompt. Each string may contain its own newlines for multi-line entries.
-   *
-   * Failures inside the callback are caught and surfaced as a yellow warning
-   * line — the picker still completes and returns the chosen profile.
-   */
-  details?: (profile: string) => Promise<string[]> | string[];
-  /**
-   * Pair affinity mined from local session history: for a given primary
-   * profile, the list of partner profiles the user has frequently picked
-   * alongside it. The combine multiselect surfaces these as additional
-   * companion rows (beyond `recommends`) and pre-checks them.
-   *
-   * Keyed by primary profile `value`. Empty / missing keys = no historical
-   * signal for that profile, fall back to recommends-only.
-   */
-  pairSuggestions?: Map<string, string[]>;
-  /**
-   * Raw cwd-autodetect results. The picker uses these to surface a
-   * "switch profile?" nudge when the user's first pick has a conflict
-   * with a profile the cwd actually matches (e.g. picked `medusa-next`
-   * in a directory that has `vite.config.ts` → suggest `medusa-vite`).
-   * The Suggested section already shows these as picker rows; this field
-   * lets the post-pick nudge cite the reason that triggered the conflict.
-   */
-  detected?: ReadonlyArray<{ name: string; reasons: string[]; confidence: number }>;
-  /**
-   * Content-detected combine companions (see `lib/companion-detect`). Flat and
-   * primary-independent: signals come from the cwd's contents (image/video
-   * assets → higgsfield, markdown drafts → blog-writer, a registered brand
-   * folder → postizz), not from which profile the user picks. Folded into the
-   * combine multiselect alongside `recommends`/`pairSuggestions`; high-
-   * confidence entries start checked. `buildCompanionOptions` drops any that
-   * equal — or conflict with — the picked primary.
-   */
-  companions?: CompanionSignal[];
-  /**
-   * Cross-profile combine suggestions offered under *every* primary: the curated
-   * featured set (where profiles like `improver` live) plus the user's
-   * most-frequently-picked profiles, mined from session history (see
-   * `buildUniversalSuggestions`). Folded into the combine multiselect after
-   * recommends/history/detected, de-duped, and surfaced *unchecked* — a hint,
-   * never an auto-pin. Empty/missing = recommends + universal-companion only.
-   */
-  universalSuggestions?: UniversalSuggestion[];
-  /**
-   * Optional resolver for a single profile value's own resources, used to drive
-   * the combine multiselect's per-row "+N skills" hints and the live combined-
-   * total preview. Called once per offered profile (primary + companions)
-   * before the multiselect opens; failures degrade gracefully (that row simply
-   * shows no counts). Omitted in tests → no preview, identical prior behavior.
-   */
-  resourceTally?: (profileValue: string) => Promise<ProfileTally> | ProfileTally;
-}
-
-export interface PickerOutput {
-  profile: string;
-  pinned: boolean;
 }
 
 // clack's built-in multiselect uses U+25FB/U+25FC squares for the toggle box,
@@ -180,49 +123,6 @@ export type AsciiMSOption = {
   danger?: string;
 };
 
-// Profile categories for the grouped combine list (from the cue-combine design):
-// turn the flat 40-item wall into scannable groups. Names not listed fall into
-// "other", which sorts last so the catalogue still shows everything.
-export const COMBINE_CATEGORY_ORDER = [
-  "orchestrators",
-  "content & research",
-  "frontend & design",
-  "backend & infra",
-  "commerce",
-  "integrations",
-  "other",
-] as const;
-
-const COMBINE_CATEGORY_OF: Record<string, string> = {
-  growth: "orchestrators", builder: "orchestrators", studio: "orchestrators",
-  maker: "orchestrators", improver: "orchestrators", agency: "orchestrators", full: "orchestrators",
-  "blog-writer": "content & research", "docs-writer": "content & research",
-  marketing: "content & research", research: "content & research", "readme-writer": "content & research",
-  frontend: "frontend & design", nextjs: "frontend & design", vite: "frontend & design",
-  "react-native": "frontend & design", designer: "frontend & design",
-  "designer-medusa-next": "frontend & design", "designer-medusa-vite": "frontend & design",
-  threejs: "frontend & design", browser: "frontend & design", wordpress: "frontend & design",
-  "web-frontend-base": "frontend & design", "creative-media": "frontend & design", "event-design": "frontend & design",
-  backend: "backend & infra", postgres: "backend & infra", supabase: "backend & infra",
-  strapi: "backend & infra", aws: "backend & infra", vercel: "backend & infra",
-  resend: "backend & infra", secops: "backend & infra", ops: "backend & infra",
-  coolify: "backend & infra", hostinger: "backend & infra", "backend-base": "backend & infra",
-  python: "backend & infra", "go-api": "backend & infra", rust: "backend & infra", "rust-core": "backend & infra",
-  cybersecurity: "backend & infra",
-  commerce: "commerce", webshop: "commerce", "webshop-google": "commerce", stripe: "commerce",
-  finance: "commerce", "medusa-stack": "commerce", "medusa-dev": "commerce",
-  "medusa-next": "commerce", "medusa-vite": "commerce",
-  slack: "integrations", linear: "integrations", "claude-api": "integrations", ssh: "integrations",
-  video: "integrations", postizz: "integrations", higgsfield: "integrations",
-  "google-ads": "integrations", "google-analytics": "integrations", "google-drive": "integrations",
-  instagram: "integrations", nvidia: "integrations",
-};
-
-/** Bucket a profile into a combine category. Unknown names → "other" (sorts last). */
-export function combineCategoryOf(name: string): string {
-  return COMBINE_CATEGORY_OF[name] ?? "other";
-}
-
 /** Stable sort an option list into category order (see COMBINE_CATEGORY_ORDER),
  *  preserving the incoming order within each category. Tags each option's
  *  `category` so the renderer can emit group headers. */
@@ -243,53 +143,7 @@ export function groupByCategory(opts: AsciiMSOption[]): AsciiMSOption[] {
   return [...lead, ...middle, ...trail];
 }
 
-/**
- * Build a symmetric conflict map from a list of options. Declaring `A.conflicts
- * = [B]` on either side blocks both A→B and B→A so authors only have to write
- * the relationship once.
- */
-export function buildConflictMap(options: AsciiMSOption[]): Map<string, Set<string>> {
-  const map = new Map<string, Set<string>>();
-  for (const o of options) {
-    for (const c of o.conflicts ?? []) {
-      if (!map.has(o.value)) map.set(o.value, new Set());
-      map.get(o.value)!.add(c);
-      if (!map.has(c)) map.set(c, new Set());
-      map.get(c)!.add(o.value);
-    }
-  }
-  return map;
-}
-
-/**
- * Resolve conflicts in a candidate selection. First-toggled wins: if A and
- * its conflict B are both in the list, the entry appearing later is dropped.
- * Used both by the live render (to mask blocked toggles) and at confirm time
- * (to guarantee the returned list never contains a conflict pair).
- */
-export function resolveConflicts(
-  selection: readonly string[],
-  conflictMap: Map<string, Set<string>>,
-): string[] {
-  const out: string[] = [];
-  for (const v of selection) {
-    const blocked = out.some((kept) => conflictMap.get(kept)?.has(v));
-    if (!blocked) out.push(v);
-  }
-  return out;
-}
-
-/** Sentinel for the combine multiselect's "use <primary> alone" escape hatch. */
-export const SKIP_COMBINE = "__skip_combine__";
-
-/**
- * Sentinel for the "show all profiles" expand row. Toggling it reveals every
- * non-curated profile as a combine companion (one-way). Stripped from the
- * returned selection like `SKIP_COMBINE` — it's a control, not a profile.
- */
-export const SHOW_ALL = "__show_all__";
-
-// Always-on combine companions (gstack) now flow through the single
+// Optional always-on combine companions flow through the single
 // `buildUniversalSuggestions` path as the `pinned` origin — re-exported here so
 // existing `import { UNIVERSAL_COMPANIONS } from "./picker"` call sites keep
 // resolving. The canonical definition lives in `./pair-suggestions`.
@@ -350,9 +204,8 @@ export interface BuildCompanionArgs {
  * Assemble the combine multiselect's rows + which start checked.
  *
  * Candidates = the primary's `recommends:` ∪ historical pairings ∪ content-
- * detected companions ∪ featured/frequently-used profiles ∪
- * `UNIVERSAL_COMPANIONS` (offered under every primary), de-duped by profile
- * (that order). A candidate is
+ * detected companions ∪ featured/frequently-used profiles ∪ optional
+ * `UNIVERSAL_COMPANIONS` pins, de-duped by profile (that order). A candidate is
  * dropped when it is the primary itself, a profile that conflicts with the
  * primary (either side of the declaration), a divider, a composite (`+`)
  * value, or not a real option. A detected candidate shows its reason as the
@@ -405,7 +258,7 @@ export function buildCompanionOptions(args: BuildCompanionArgs): {
   for (const r of recommends) addCandidate(r, "recommends");
   for (const r of pairSuggested) addCandidate(r, "history");
   for (const c of companions) addCandidate(c.profile, "detected");
-  // Featured + frequent + pinned (gstack) all arrive via the one universal path.
+  // Featured + frequent + optional pinned companions all arrive via one path.
   for (const u of universalSuggestions) addCandidate(u.name, u.origin);
 
   const companionOptions: AsciiMSOption[] = [];
@@ -449,7 +302,15 @@ export function buildCompanionOptions(args: BuildCompanionArgs): {
     // History partners (a remembered combo) are *offered unchecked* — a
     // recommendation surfaced with the HISTORY_HINT, never silently re-pinned.
     const checkByFrequent = origin === "frequent" && frequentChecked < MAX_FREQUENT_AUTOCHECK;
-    if (checkByAutoSelect || checkByPreselect || checkByDetect || checkByFrequent) {
+    // Don't pre-check a companion that conflicts with one already checked: the
+    // final selection runs through resolveConflicts, which would silently drop
+    // it at confirm. Leaving the row checked here lies about the outcome — so
+    // surface it unchecked and let the user choose. Conflicts are symmetric, so
+    // check both directions (this candidate's list and the already-checked's).
+    const conflictsWithChecked = initialValues.some(
+      (v) => (opt.conflicts ?? []).includes(v) || (options.find((o) => o.value === v)?.conflicts ?? []).includes(name),
+    );
+    if ((checkByAutoSelect || checkByPreselect || checkByDetect || checkByFrequent) && !conflictsWithChecked) {
       initialValues.push(name);
       if (checkByFrequent) frequentChecked += 1;
     }
@@ -515,92 +376,6 @@ export function buildCompanionOptions(args: BuildCompanionArgs): {
 }
 
 /**
- * A single profile's own resource identifiers, as lists so combined-profile
- * previews can union them exactly (a skill/mcp/plugin shared by two stacked
- * profiles is counted once). Skills mirror the picker headline: one entry per
- * local skill + one per npx repo.
- */
-export interface ProfileTally {
-  skills: string[];
-  mcps: string[];
-  plugins: string[];
-  commands: string[];
-  /**
-   * This profile's own always-on token cost (skill-description frontmatter that
-   * loads into the skill router every session). Optional — when present, the
-   * combine preview sums it across the selection and soft-warns on a heavy
-   * stack. Summing slightly overcounts skills shared by two companions, so the
-   * displayed figure is an upper-bound estimate (rendered with a leading `~`).
-   */
-  alwaysOn?: number;
-}
-
-export interface TallyCounts {
-  skills: number;
-  mcps: number;
-  plugins: number;
-  commands: number;
-}
-
-const EMPTY_TALLY: ProfileTally = { skills: [], mcps: [], plugins: [], commands: [] };
-
-/**
- * "+17 skills · +1 mcp" — the per-row hint showing what a companion adds.
- * Omits zero categories; returns "" for a profile that adds nothing. Pure.
- */
-export function formatTallyDelta(t: ProfileTally): string {
-  const parts: string[] = [];
-  const add = (n: number, one: string, many: string) => {
-    if (n > 0) parts.push(`+${n} ${n === 1 ? one : many}`);
-  };
-  add(t.skills.length, "skill", "skills");
-  add(t.mcps.length, "mcp", "mcps");
-  add(t.plugins.length, "plugin", "plugins");
-  add(t.commands.length, "cmd", "cmds");
-  return parts.join(" · ");
-}
-
-/** Count of the de-duped union across several profile tallies. Pure. */
-export function unionTallyCounts(tallies: ProfileTally[]): TallyCounts {
-  const skills = new Set<string>();
-  const mcps = new Set<string>();
-  const plugins = new Set<string>();
-  const commands = new Set<string>();
-  for (const t of tallies) {
-    for (const s of t.skills) skills.add(s);
-    for (const m of t.mcps) mcps.add(m);
-    for (const p of t.plugins) plugins.add(p);
-    for (const c of t.commands) commands.add(c);
-  }
-  return { skills: skills.size, mcps: mcps.size, plugins: plugins.size, commands: commands.size };
-}
-
-/**
- * The live "what you're about to pin" line under the combine list. Each segment
- * reads `skills 31→48` when a companion changes the total, or `skills 31` when
- * it doesn't; zero-count categories are dropped. Returns [] when there's nothing
- * to show. Pure (no color) so it's directly testable.
- */
-export function formatCombinedPreview(baseline: TallyCounts, combined: TallyCounts): string[] {
-  const seg = (label: string, base: number, comb: number): string | null => {
-    if (comb === 0) return null;
-    return base === comb ? `${label} ${comb}` : `${label} ${base}→${comb}`;
-  };
-  const segs = [
-    seg("skills", baseline.skills, combined.skills),
-    seg("mcps", baseline.mcps, combined.mcps),
-    seg("plugins", baseline.plugins, combined.plugins),
-    seg("cmds", baseline.commands, combined.commands),
-  ].filter((s): s is string => s !== null);
-  return segs.length > 0 ? [segs.join("  ·  ")] : [];
-}
-
-/** Always-on token cost above which the combine preview soft-warns. Mirrors the
- *  🟠 band in `tokenLevelEmoji` — the point at which the agent's own perf
- *  warning starts to fire. */
-export const OVERHEAD_WARN_TOKENS = 10_000;
-
-/**
  * Column where a category header's count sits. The header rule fills out to here
  * so every group's count lands in one stable column regardless of label width —
  * a long name ("content & research") no longer collapses the rule to its 4-dash
@@ -608,112 +383,6 @@ export const OVERHEAD_WARN_TOKENS = 10_000;
  * the 28-wide section dividers for a consistent right edge.
  */
 export const CATEGORY_RULE_COL = 30;
-
-/**
- * Soft-warning line for a heavy combined stack — "⚠ heavy: ~32k always-on 🔴 —
- * slows the agent". Returns "" below the warn threshold so light combos stay
- * uncluttered. The `~` flags it as an upper-bound estimate. Pure.
- */
-export function formatOverheadBadge(alwaysOnTokens: number): string {
-  if (alwaysOnTokens <= OVERHEAD_WARN_TOKENS) return "";
-  const k =
-    alwaysOnTokens >= 10_000
-      ? String(Math.round(alwaysOnTokens / 1000))
-      : (alwaysOnTokens / 1000).toFixed(1);
-  return `⚠ heavy: ~${k}k always-on ${tokenLevelEmoji(alwaysOnTokens)} — slows the agent`;
-}
-
-/**
- * Whether to render profile icons in ASCII-safe mode. Emoji and Private-Use
- * glyphs (vite ⚡, nextjs ▲, vercel 🔺) show as tofu boxes in fonts that lack
- * them. We can't probe a font's glyph coverage from Node — only the locale — so
- * the env var `CUE_ASCII_ICONS=1` is the reliable opt-in; a non-UTF-8 locale
- * flips it on automatically. Default off (icons shown).
- */
-export function asciiIconsEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
-  if (/^(1|true|yes)$/i.test(env.CUE_ASCII_ICONS ?? "")) return true;
-  const loc = env.LC_ALL || env.LC_CTYPE || env.LANG || "";
-  return loc !== "" && !/utf-?8/i.test(loc);
-}
-
-/**
- * Strip a leading icon cluster (emoji + variation selectors / ZWJ) from a label
- * when `ascii` is on, so "🔺 vercel" → "vercel". Pure-ASCII labels and labels
- * that are *entirely* non-ASCII (e.g. CJK names) are returned unchanged. Pure.
- */
-export function stripIconIfAscii(label: string, ascii: boolean): string {
-  if (!ascii) return label;
-  const stripped = label.replace(/^[^\x00-\x7F]+\s*/u, "").trimStart();
-  return stripped.length > 0 ? stripped : label;
-}
-
-/**
- * Approximate the rendered cell width of a string in a monospace terminal.
- * Emoji and CJK glyphs occupy two cells; variation selectors, ZWJ, and skin-
- * tone modifiers occupy none; everything else one. Good enough to column-align
- * the combine rows (whose labels carry leading emoji icons) — not a full
- * grapheme segmenter. Pure.
- */
-export function displayWidth(s: string): number {
-  let w = 0;
-  for (const ch of s) {
-    const cp = ch.codePointAt(0)!;
-    // zero-width: ZWJ, variation selectors, skin-tone modifiers
-    if (cp === 0x200d || (cp >= 0xfe00 && cp <= 0xfe0f) || (cp >= 0x1f3fb && cp <= 0x1f3ff)) {
-      continue;
-    }
-    // wide: CJK blocks, fullwidth forms, and the emoji/supplementary planes
-    if (
-      (cp >= 0x1100 && cp <= 0x115f) ||
-      (cp >= 0x2e80 && cp <= 0xa4cf) ||
-      (cp >= 0xac00 && cp <= 0xd7a3) ||
-      (cp >= 0xf900 && cp <= 0xfaff) ||
-      (cp >= 0xfe30 && cp <= 0xfe4f) ||
-      (cp >= 0xff00 && cp <= 0xff60) ||
-      (cp >= 0xffe0 && cp <= 0xffe6) ||
-      cp >= 0x1f000
-    ) {
-      w += 2;
-      continue;
-    }
-    w += 1;
-  }
-  return w;
-}
-
-/**
- * Collapse a profile combo to "first +N more" once it exceeds `max` parts, so
- * the confirm row never wraps. `<= max` parts render in full. Used for the
- * skip-combine action label, where the primary may itself be a composite
- * (`a + b + c`) and a handful of companions push the line off-screen. Pure.
- */
-export function compressCombo(parts: string[], max = 3): string {
-  if (parts.length <= max) return parts.join(" + ");
-  return `${parts[0]} +${parts.length - 1} more`;
-}
-
-/**
- * Flatten composite picks (`"a+b"`) to their parts and drop duplicates,
- * preserving first-seen order. The combine picker's primary may already be a
- * composite, so a companion inside it — or one picked twice — must not double
- * up in the final selector, the runtime dir name, or the summary. Pure.
- *
- * Control sentinels (SHOW_ALL / SKIP_COMBINE) are dropped here as a write-
- * boundary backstop: the upstream filters (asciiMultiselect strips SHOW_ALL,
- * runPicker guards on SKIP_COMBINE) are the primary defense, but this is the
- * last transform before the selector is joined and persisted to .cue-profile,
- * so a sentinel must never survive it even if an upstream path regresses.
- */
-const CONTROL_SENTINELS = new Set<string>([SHOW_ALL, SKIP_COMBINE]);
-export function dedupeSelectorParts(picks: string[]): string[] {
-  const out: string[] = [];
-  for (const pick of picks) {
-    for (const part of pick.split("+")) {
-      if (part.length > 0 && !CONTROL_SENTINELS.has(part) && !out.includes(part)) out.push(part);
-    }
-  }
-  return out;
-}
 
 /** State the combine multiselect frame is rendered from. Decoupled from the
  *  live @clack prompt so the frame is unit-testable without a TTY. */
@@ -757,7 +426,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
   const skipping = effective.has(SKIP_COMBINE);
   const ascii = state.ascii ?? asciiIconsEnabled();
   const icon = (s: string) => stripIconIfAscii(s, ascii);
-  // Column where every companion's "+N skills" delta starts. Measured across
+  // Column where every companion's "N skills" delta starts. Measured across
   // the full companion set (not just the visible window) so the deltas line up
   // in a stable column as the list scrolls. Capped so one long name can't push
   // the whole table off a narrow terminal.
@@ -851,15 +520,15 @@ export function renderCombineFrame(state: CombineFrameState): string {
     const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
     const rawLabel = icon(o.label);
     const labelStyled = isSel || isCursor ? rawLabel : styleText("dim", rawLabel);
-    // Contribution at a glance: every row shows just the headline "+N skills"
+    // Contribution at a glance: every row shows just the headline "N skills"
     // (one token, never wraps); the focused row expands to the full
-    // "+N skills · +M mcps · …" breakdown so detail is one keystroke away.
+    // "N skills · M mcps · …" breakdown so detail is one keystroke away.
     const tally = state.preview ? state.preview.tallies.get(o.value) ?? EMPTY_TALLY : null;
     const delta = tally
       ? isCursor
         ? formatTallyDelta(tally)
         : tally.skills.length > 0
-          ? `+${tally.skills.length} skills`
+          ? `${tally.skills.length} skills`
           : ""
       : "";
     // The verbose reason / description (detection signal, profile blurb)
@@ -868,7 +537,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
     // A dim trailing tag labels the `→` marker, so it reads "recommended" even
     // when the cursor sits on the row (gutter shows `›`, not `→`).
     const recTag = isRecommended ? styleText("dim", "  recommended") : "";
-    // Pad the label out to the shared delta column so every "+N skills" lines
+    // Pad the label out to the shared delta column so every "N skills" lines
     // up in a clean table (≥2-space gap even for an over-long name). Skip the
     // pad entirely when there's no trailer, so bare rows carry no trailing
     // whitespace.
@@ -1029,7 +698,7 @@ async function asciiMultiselect(opts: {
   initialValues?: string[];
   required?: boolean;
   /**
-   * When provided, render per-row "+N skills" hints and a live combined-total
+   * When provided, render per-row "N skills" hints and a live combined-total
    * preview line. `primary` is the always-present base profile; `tallies` maps
    * each profile value (primary + every companion) to its own resources.
    */
@@ -1050,7 +719,7 @@ async function asciiMultiselect(opts: {
   // after "show all" is revealed. resolveConflicts acts only on values actually
   // selected, so seeding the map with not-yet-revealed options is harmless — and
   // skipping them is the CRITICAL bug where medusa-vite + medusa-next both
-  // survive into the written .cue-profile.
+  // survive into the written .cue.profile.
   const conflictMap = buildConflictMap([
     ...opts.options,
     ...(opts.overflow?.options ?? []),
@@ -1152,34 +821,6 @@ export function filterOptions(
   return { display: pool, selectable: pool };
 }
 
-/**
- * Slice a list down to a scrolling window of at most `max` rows, centered on
- * `activeIndex`. Returns the visible slice plus how many rows are hidden above
- * and below (for "↑/↓ N more" indicators). When everything fits, the whole
- * list is returned with zero hidden. The active row stays centered until the
- * window hits either end, then it pins so the last/first rows stay reachable.
- *
- * Pure + exported so the scroll math is unit-testable without a TTY.
- */
-export function windowOptions<T>(
-  items: T[],
-  activeIndex: number,
-  max: number,
-): { items: T[]; start: number; hiddenAbove: number; hiddenBelow: number } {
-  if (max <= 0 || items.length <= max) {
-    return { items, start: 0, hiddenAbove: 0, hiddenBelow: 0 };
-  }
-  let start = activeIndex - Math.floor(max / 2);
-  start = Math.max(0, Math.min(start, items.length - max));
-  const end = start + max;
-  return {
-    items: items.slice(start, end),
-    start,
-    hiddenAbove: start,
-    hiddenBelow: items.length - end,
-  };
-}
-
 // Interactive single-select with type-to-filter. clack's built-in `p.select`
 // has no live filtering, so we drive @clack/core's base Prompt directly: with
 // key-tracking on, printable keys buffer into `this.userInput` (readline owns
@@ -1243,12 +884,13 @@ export class FilterSelectPrompt extends Prompt<string> {
 
   // Rows available for option rows, derived from terminal height. Reserve space
   // for the intro line, our 2-line header, the footer, and the pin-confirm +
-  // outro clack draws below — plus the two scroll indicators. Floor at 5 so a
+  // outro clack draws below — plus the two scroll indicators and a few blank
+  // spacer lines now drawn above each in-window group header. Floor at 5 so a
   // short terminal still shows a usable window.
   private visibleRows(): number {
     const rows =
       (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
-    return Math.max(5, rows - 10);
+    return Math.max(5, rows - 13);
   }
 
   // Block submit on an empty result set so enter can't return undefined.
@@ -1294,16 +936,37 @@ export class FilterSelectPrompt extends Prompt<string> {
     if (win.hiddenAbove > 0) {
       lines.push(`${BAR}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
     }
+    // Terminal width, used to clip an over-long cursor hint to one line so a
+    // verbose profile blurb (e.g. seo's 25-skill description) never wraps across
+    // the whole screen and shoves the rest of the list down.
+    const cols =
+      (this.output as { columns?: number } | undefined)?.columns ?? process.stdout.columns ?? 80;
+    let rendered = false;
     for (const o of win.items) {
       if (o.divider === true) {
-        lines.push(`${BAR}  ${styleText("dim", icon(o.label))}`);
+        // Blank spacer above each section header (never as the window's first
+        // line) so groups read as distinct blocks instead of one running wall —
+        // mirrors the combine frame's grouped layout. Bold + bright-blue header
+        // pops above the dim option rows.
+        if (rendered) lines.push(`${BAR}`);
+        lines.push(`${BAR}  ${styleText("bold", styleText("blueBright", icon(o.label).trimStart()))}`);
+        rendered = true;
         continue;
       }
       const isCursor = o === active;
       const bullet = isCursor ? styleText("green", "●") : styleText("dim", "○");
       const label = isCursor ? icon(o.label) : styleText("dim", icon(o.label));
-      const hint = isCursor && o.hint ? styleText("dim", `  ${o.hint}`) : "";
+      let hint = "";
+      if (isCursor && o.hint) {
+        // Prefix = bar + 2 pad + bullet + space + label + 2-space gap. Clip the
+        // hint to whatever's left so the row stays on one line.
+        const prefix = 2 + 2 + displayWidth(icon(o.label)) + 2;
+        const avail = Math.max(20, cols - prefix - 1);
+        const text = o.hint.length > avail ? `${o.hint.slice(0, avail - 1)}…` : o.hint;
+        hint = styleText("dim", `  ${text}`);
+      }
       lines.push(`${BAR}  ${bullet} ${label}${hint}`);
+      rendered = true;
     }
     if (win.hiddenBelow > 0) {
       lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
@@ -1336,8 +999,24 @@ async function selectSkipDividers(
   return result as string;
 }
 
+/**
+ * Interactive profile chooser. Delegates to the v2 suggestion-first flow (a
+ * ranked stack card backed by one unified palette) unless the user opts back
+ * into the classic two-screen picker with `CUE_PICKER=classic`.
+ */
 export async function runPicker(input: PickerInput): Promise<PickerOutput> {
+  if (pickerV2Enabled()) return runPickerV2(input);
+  return runPickerClassic(input);
+}
+
+/** The classic flow: filtered single-select list → combine multiselect. */
+export async function runPickerClassic(input: PickerInput): Promise<PickerOutput> {
   p.intro(`cue · pick a profile for ${input.cwd}`);
+
+  const shownSuggestions = input.options
+    .filter((option) => option.divider !== true)
+    .slice(0, 3)
+    .map((option) => option.value);
 
   let first = await selectSkipDividers(input.options, "Profile");
 
@@ -1373,6 +1052,13 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
     }
   }
 
+  // Normalize the selected primary: it may arrive as a composite ("a+b+c") —
+  // from a stacked Recent/Featured row, a pinned .cue.profile, or an explicit
+  // override — and legacy data can carry repeated parts. Collapse to first-seen
+  // order so the combine prompt, the pin, and the launched profile never echo a
+  // profile twice (e.g. "Combine gstack+…+gstack with…").
+  first = dedupeSelectorParts([first]).join("+");
+
   const picks: string[] = [first];
 
   // Suggested companions for the combine multiselect, drawn from three sources
@@ -1395,7 +1081,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
   });
   if (companionOptions.length > 0) {
     // Precompute each offered profile's resources (primary + companions, small
-    // N) so the live render stays synchronous: per-row "+N skills" hints and
+    // N) so the live render stays synchronous: per-row "N skills" hints and
     // the combined-total preview both read from this map. Absent resolver (or a
     // failing load) just means no preview — the multiselect works regardless.
     const tallies = new Map<string, ProfileTally>();
@@ -1438,7 +1124,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
           ? {
               options: overflowOptions,
               // Fill in the revealed profiles' resource counts so their rows
-              // and the live preview show "+N skills" once shown.
+              // and the live preview show "N skills" once shown.
               onReveal: () => loadTallies(overflowOptions.map((o) => o.value)),
             }
           : undefined,
@@ -1468,7 +1154,13 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
   // time — unchecked, as a "you paired these before" hint. Local + best-effort;
   // recordCombo no-ops on a single-profile pick and never throws.
   try {
-    recordCombo(choiceParts, new Date().toISOString());
+    recordCombo(choiceParts, new Date().toISOString(), undefined, input.cwd);
+    recordProfileChoice({
+      cwd: input.cwd,
+      choice: choiceParts,
+      suggested: shownSuggestions,
+      surface: "picker-classic",
+    });
   } catch { /* logging must never block a launch */ }
 
   // Build a display label with icon(s) for the outro line, per deduped part.
@@ -1484,7 +1176,7 @@ export async function runPicker(input: PickerInput): Promise<PickerOutput> {
       process.exit(130);
     }
     if (pinChoice === true) {
-      await writeFile(join(input.cwd, ".cue-profile"), `${choice}\n`);
+      await writeFile(join(input.cwd, ".cue.profile"), `${choice}\n`);
       pinned = true;
     }
   }

@@ -3,17 +3,18 @@
  * against a throwaway HOME/PATH without touching the real machine.
  */
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { existsSync, lstatSync, mkdtempSync, mkdirSync, readFileSync, symlinkSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { checkActivation } from "./doctor";
+import { applyRuntimeFix, checkActivation, missingMcpIssue } from "./doctor";
+import { shimDir } from "../lib/shim-dir";
 
 let home: string;
 let binDir: string;
 beforeEach(() => {
   home = mkdtempSync(join(tmpdir(), "cue-doctor-"));
-  binDir = join(home, ".local", "bin");
+  binDir = shimDir(home);
   mkdirSync(binDir, { recursive: true });
 });
 afterEach(() => rmSync(home, { recursive: true, force: true }));
@@ -32,7 +33,7 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.fix).toBe("cue shell install");
   });
 
-  test("shim + real bin + ~/.local/bin first on PATH → healthy", () => {
+  test("shim + real bin + shim dir first on PATH → healthy", () => {
     writeShim();
     const issues = checkActivation({ homeDir: home, realBin: "/usr/bin/claude", pathDirs: [binDir, "/usr/bin"] });
     expect(issues).toHaveLength(0);
@@ -47,6 +48,17 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.message).toContain("shadowed");
   });
 
+  test("shim installed but the shim dir is not on PATH → D9 error", () => {
+    // New failure mode: cue's shim dir is a directory nothing else puts on
+    // PATH, so "installed but never runs" is a real state to catch.
+    writeShim();
+    const issues = checkActivation({ homeDir: home, realBin: "/usr/bin/claude", pathDirs: ["/usr/bin"] });
+    expect(issues).toHaveLength(1);
+    expect(issues[0]!.code).toBe("D9");
+    expect(issues[0]!.severity).toBe("error");
+    expect(issues[0]!.message).toContain("not on PATH");
+  });
+
   test("shim but no real claude binary → D9 warning", () => {
     writeShim();
     const issues = checkActivation({ homeDir: home, realBin: null, pathDirs: [binDir] });
@@ -54,5 +66,76 @@ describe("checkActivation (D9)", () => {
     expect(issues[0]!.code).toBe("D9");
     expect(issues[0]!.severity).toBe("warning");
     expect(issues[0]!.message).toContain("not found");
+  });
+});
+
+describe("missingMcpIssue (D2)", () => {
+  test("registered MCPs are healthy", () => {
+    expect(missingMcpIssue("commerce", "github", new Set(["github"]), home)).toBeNull();
+  });
+
+  test("local-only MCP sources are warnings, not CI-blocking errors", () => {
+    const sources = join(home, "mcp-sources");
+    mkdirSync(join(sources, "envoult"), { recursive: true });
+    const issue = missingMcpIssue("commerce", "envoult", new Set(), sources);
+    expect(issue?.severity).toBe("warning");
+    expect(issue?.message).toContain("local-only");
+  });
+
+  test("unknown MCPs remain errors", () => {
+    const issue = missingMcpIssue("commerce", "missing", new Set(), home);
+    expect(issue?.severity).toBe("error");
+    expect(issue?.message).toContain("not in any registry");
+  });
+});
+
+describe("applyRuntimeFix (D5/D6)", () => {
+  test("D6 removes only the broken symlink and preserves Claude auth files", async () => {
+    const runtimeRoot = join(home, "runtime");
+    const runtimeDir = join(runtimeRoot, "gstack+ros2", "claude");
+    mkdirSync(runtimeDir, { recursive: true });
+    writeFileSync(join(runtimeDir, ".credentials.json"), "token");
+    writeFileSync(join(runtimeDir, ".cue-hash"), "hash");
+    const cacheLink = join(runtimeDir, "cache");
+    symlinkSync(cacheLink, cacheLink);
+
+    const ok = await applyRuntimeFix({
+      code: "D6",
+      severity: "error",
+      profile: "gstack+ros2",
+      message: "Broken symlink: cache",
+      fix: "Remove broken symlink",
+      runtimeDir,
+      path: cacheLink,
+    }, runtimeRoot);
+
+    expect(ok).toBe(true);
+    expect(() => lstatSync(cacheLink)).toThrow();
+    expect(readFileSync(join(runtimeDir, ".credentials.json"), "utf8")).toBe("token");
+    expect(existsSync(join(runtimeDir, ".cue-hash"))).toBe(false);
+  });
+
+  test("D5 removes only the stale hash and preserves the runtime directory", async () => {
+    const runtimeRoot = join(home, "runtime");
+    const runtimeDir = join(runtimeRoot, "core", "claude");
+    mkdirSync(runtimeDir, { recursive: true });
+    writeFileSync(join(runtimeDir, ".credentials.json"), "token");
+    const hashPath = join(runtimeDir, ".cue-hash");
+    writeFileSync(hashPath, "hash");
+
+    const ok = await applyRuntimeFix({
+      code: "D5",
+      severity: "warning",
+      profile: "core",
+      message: "stale",
+      fix: "Remove stale hash",
+      runtimeDir,
+      path: hashPath,
+    }, runtimeRoot);
+
+    expect(ok).toBe(true);
+    expect(existsSync(hashPath)).toBe(false);
+    expect(lstatSync(runtimeDir).isDirectory()).toBe(true);
+    expect(readFileSync(join(runtimeDir, ".credentials.json"), "utf8")).toBe("token");
   });
 });

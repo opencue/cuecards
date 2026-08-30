@@ -140,9 +140,38 @@ describe("lintProfile", () => {
     expect(result.checks.map((check) => check.name)).toContain("MCPs");
   });
 
+  test("demotes a local-only MCP (source dir present, absent from sanitized registry) to W9, not E3", async () => {
+    // An MCP with a source manifest dir but no sanitized-registry entry is a
+    // private/local-only server (wired into the user's own ~/.claude.json), not
+    // a dangling reference — warn (W9), like W5 demotes an uninstalled plugin.
+    await mkdir(join(root, "mcps", "mcps", "envoult"), { recursive: true });
+    await writeFile(join(root, "mcps", "mcps", "envoult", "skills.md"), "# envoult\n", "utf8");
+    await writeProfile(
+      "priv",
+      ["name: priv", "description: private mcp profile", "mcps: [envoult]", ""].join("\n"),
+    );
+
+    const result = await lintProfile("priv", opts());
+
+    expect(rules(result).filter((rule) => rule === "W9")).toHaveLength(1);
+    expect(rules(result).filter((rule) => rule === "E3")).toHaveLength(0);
+  });
+
+  test("still reports E3 for an MCP with neither a registry entry nor a source dir", async () => {
+    await writeProfile(
+      "dangling",
+      ["name: dangling", "description: dangling mcp ref", "mcps: [no-such-mcp]", ""].join("\n"),
+    );
+
+    const result = await lintProfile("dangling", opts());
+
+    expect(rules(result).filter((rule) => rule === "E3")).toHaveLength(1);
+    expect(rules(result).filter((rule) => rule === "W9")).toHaveLength(0);
+  });
+
   test("reports W1, W2, W3, and W4 warnings", async () => {
     const localRefs: string[] = [];
-    for (let i = 0; i < 41; i++) {
+    for (let i = 0; i < 121; i++) {
       const ref = `bulk/skill-${i}`;
       localRefs.push(ref);
       await writeLocalSkill(ref);

@@ -271,29 +271,101 @@ function ruleR004(content: string): Diagnostic[] {
  * R005 — `allowed-tools:` must use Anthropic's `Bash(name:*)` / `Read(path)`
  * syntax. Common mistake: comma-separated bare names like `allowed-tools: nmap, curl`.
  */
+/** Top-level tools that are legitimately written bare, without a `Tool(...)` wrapper. */
+const BARE_OK_TOOLS = new Set([
+  // `Bash` bare means "any command" — wrapping it yields the nonsense
+  // `Bash(Bash:*)`, so it belongs here alongside the rest.
+  "Bash", "BashOutput", "KillBash",
+  "Read", "Write", "Edit", "MultiEdit", "Glob", "Grep", "LS",
+  "WebFetch", "WebSearch", "Task", "Agent", "Skill", "TodoWrite",
+  "NotebookEdit", "NotebookRead", "ExitPlanMode",
+]);
+
+/** A name that needs no wrapping: a top-level tool, or an MCP tool id. */
+function isBareOkTool(name: string): boolean {
+  return BARE_OK_TOOLS.has(name) || name.startsWith("mcp__");
+}
+
+/** Already in `Tool(...)` form, or fine bare. Anything else gets wrapped. */
+function isWellFormedTool(name: string): boolean {
+  return /\w\s*\(/.test(name) || isBareOkTool(name);
+}
+
+function wrapTool(name: string): string {
+  return isWellFormedTool(name) ? name : `Bash(${name}:*)`;
+}
+
+/**
+ * Split an inline `allowed-tools:` value into names. Commas are the documented
+ * separator, but bare names have also been written space-separated, so a
+ * comma-part that is plainly several bare names splits further. A part
+ * containing `(` is left whole: `Bash(git diff:*)` is one tool, not two.
+ */
+function splitToolNames(raw: string): string[] {
+  return raw
+    .replace(/^\[|\]$/g, "")
+    .split(/\s*,\s*/)
+    .flatMap((part) => (part.includes("(") ? [part] : part.split(/\s+/)))
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/**
+ * Read `allowed-tools:` in either YAML shape: an inline scalar/flow sequence
+ * (`allowed-tools: a, b` / `[a, b]`) or a block sequence spanning the lines
+ * below the key. Returns the item names plus the exact line span to replace,
+ * so a fix can rewrite the WHOLE construct instead of orphaning list items
+ * under a scalar (which YAML then folds into one garbage string).
+ */
+function readAllowedTools(
+  yaml: string,
+): { names: string[]; startLine: number; endLine: number } | null {
+  const lines = yaml.split("\n");
+  const keyLine = lines.findIndex((l) => /^allowed-tools:/.test(l));
+  if (keyLine === -1) return null;
+
+  const inline = lines[keyLine]!.replace(/^allowed-tools:/, "").trim();
+  if (inline) {
+    return { names: splitToolNames(inline), startLine: keyLine, endLine: keyLine };
+  }
+
+  // Block sequence: consume the contiguous `  - item` lines beneath the key.
+  const names: string[] = [];
+  let end = keyLine;
+  for (let i = keyLine + 1; i < lines.length; i++) {
+    const m = /^\s+-\s*(.+?)\s*$/.exec(lines[i]!);
+    if (!m) break;
+    names.push(m[1]!);
+    end = i;
+  }
+  return names.length ? { names, startLine: keyLine, endLine: end } : null;
+}
+
 function ruleR005(content: string): Diagnostic[] {
   const fm = getFrontmatter(content);
   if (!fm) return [];
-  const raw = fmField(fm.yaml, "allowed-tools");
-  if (!raw) return [];
-  // Strip array brackets/braces if present.
-  const value = raw.replace(/^\[|\]$/g, "").trim();
-  // Valid form has at least one Tool(...) wrapper.
-  if (/\b(Bash|Read|Write|Edit|Glob|Grep|WebFetch|WebSearch)\s*\(/.test(value)) return [];
+  const parsed = readAllowedTools(fm.yaml);
+  if (!parsed) return [];
 
-  // Common malformation: comma-separated bare names. Auto-fix by wrapping.
-  const bareNames = value.split(/[,\s]+/).filter(Boolean);
-  if (bareNames.length === 0) return [];
-  const fixed = bareNames.map((n) => `Bash(${n}:*)`).join(", ");
+  // Already-wrapped entries and legitimately-bare ones (top-level tools,
+  // mcp__* ids) are fine. Only genuinely bare CLI names need wrapping — a
+  // pure-MCP skill is valid as written and must not be dressed in Bash(...).
+  const needsWrap = parsed.names.filter((n) => !isWellFormedTool(n));
+  if (needsWrap.length === 0) return [];
+
   return [{
     rule: "R005",
     severity: "error",
-    message: `\`allowed-tools:\` must use \`Bash(name:*)\` / \`Read(path)\` syntax; got bare names "${value}".`,
+    message: `\`allowed-tools:\` must use \`Bash(name:*)\` / \`Read(path)\` syntax; got bare names "${needsWrap.join(", ")}".`,
     fix: (c) => {
       const fmm = getFrontmatter(c);
       if (!fmm) return c;
-      const newYaml = fmm.yaml.replace(/^allowed-tools:.*$/m, `allowed-tools: ${fixed}`);
-      return `---\n${newYaml}\n---` + c.slice(fmm.end);
+      const p = readAllowedTools(fmm.yaml);
+      if (!p) return c;
+      const lines = fmm.yaml.split("\n");
+      const rewritten = p.names.map(wrapTool);
+      lines.splice(p.startLine, p.endLine - p.startLine + 1, `allowed-tools: ${rewritten.join(", ")}`);
+      return `---\n${lines.join("\n")}\n---` + c.slice(fmm.end);
     },
   }];
 }
@@ -365,7 +437,9 @@ function ruleR008(content: string): Diagnostic[] {
   }
   const broken: string[] = [];
   for (const m of content.matchAll(/\[([^\]]+)\]\(#([^)]+)\)/g)) {
-    if (!headings.has(m[2]!.toLowerCase())) broken.push(m[2]!);
+    // Slugify the anchor ref the SAME way headings were slugified, else a ref to
+    // a heading containing `&`/`(`/`)` etc. never matches → false-positive error.
+    if (!headings.has(slugify(m[2]!))) broken.push(m[2]!);
   }
   if (broken.length === 0) return [];
   return [{
@@ -433,8 +507,13 @@ function fixEmDashesInProse(content: string): string {
     }
     let start = idx;
     let end = idx + 1;
-    while (start > i && /[ \t]/.test(masked[start - 1] ?? "")) start--;
-    while (end < masked.length && /[ \t]/.test(masked[end] ?? "")) end++;
+    // Collapse surrounding whitespace against the ORIGINAL content, not the
+    // mask. stripCodeAndFrontmatter is length-preserving but blanks inline
+    // code to spaces, so walking `masked` treats a whole `` `code span` `` as
+    // whitespace and the slice below swallows it. Only the SEARCH above may
+    // use the mask; every offset arithmetic here is on real characters.
+    while (start > i && /[ \t]/.test(content[start - 1] ?? "")) start--;
+    while (end < content.length && /[ \t]/.test(content[end] ?? "")) end++;
     out.push(content.slice(i, start));
     out.push(", ");
     i = end;
@@ -677,7 +756,6 @@ function ruleR013(content: string): Diagnostic[] {
   const desc = fmField(fm.yaml, "description");
   if (!desc) return [];
 
-  const body = bodyAfterFrontmatter(content);
   // Strip code blocks from body before extracting words — code identifiers
   // shouldn't count toward conceptual coherence.
   const bodyProse = stripCodeAndFrontmatter(content).slice(fm.end);
@@ -729,10 +807,76 @@ function ruleR011(content: string): Diagnostic[] {
 }
 
 // ---------------------------------------------------------------------------
+// R015 — security: dangerous markdown constructs + invisible characters
+// ---------------------------------------------------------------------------
+
+/** Invisible / bidirectional control chars: zero-width (200B-200F), bidi
+ *  overrides/embeds (202A-202E), word-joiner + invisible math (2060-2064),
+ *  isolates (2066-2069), BOM (FEFF), soft hyphen (00AD). No legitimate use in
+ *  a SKILL.md, so detection runs over the whole file (code blocks included). */
+const INVISIBLE_CHARS = /[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff\u00ad]/;
+const INVISIBLE_CHARS_G = /[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff\u00ad]/g;
+
+/** Live data-exfiltration vectors, checked in PROSE only (fenced/inline code is
+ *  documentation, not a live vector — same prose/code split R009 uses). */
+const DANGEROUS_PROSE: { re: RegExp; what: string }[] = [
+  { re: /\]\(\s*(?:javascript|vbscript|data:text\/html|data:application|data:image\/svg)/i, what: "dangerous URL scheme in a markdown link/image" },
+  { re: /<\s*(?:javascript|vbscript):/i, what: "dangerous URL scheme in an autolink" },
+  { re: /(?:href|src|action)\s*=\s*["']?\s*(?:javascript|vbscript|data:text\/html)/i, what: "dangerous URL scheme in a raw href/src/action" },
+  { re: /<\s*(?:script|iframe|object|embed|base|form|portal|template)\b/i, what: "raw HTML element that enables script execution or exfiltration" },
+  // Event handler must sit inside an HTML tag (`<… on*=`), so prose like
+  // `once = 'daily'` or `online = 'false'` does NOT false-positive. The quote
+  // is optional, which also catches unquoted `<img onerror=fn()>`. The lazy
+  // `[^>]*?` keeps this linear (no `>` crossing, no catastrophic backtracking).
+  { re: /<[^>]*?\son[a-z]+\s*=/i, what: "inline event handler (on*=) in raw HTML" },
+];
+
+/**
+ * R015 — security. A SKILL.md is untrusted content (skills come from many
+ * marketplaces) that gets loaded into the model's context, so it carries the
+ * same markdown->exfiltration risk that vercel-labs/markdown-sanitizers hardens
+ * against. Flags, as errors:
+ *   - dangerous URL schemes (javascript:/vbscript:/data:text-html) and raw
+ *     <script>/<iframe>/<object>/on*= handlers in PROSE (code examples exempt);
+ *   - invisible / bidirectional control characters ANYWHERE (zero-width space,
+ *     word-joiner, RLO/LRO, BOM, soft hyphen) — a prompt-injection obfuscation
+ *     vector the markdown sanitizer itself does not strip.
+ * Invisible chars are auto-fixable (removed); dangerous URLs/HTML are not —
+ * deleting them changes meaning, so a human decides (fence it or drop it).
+ */
+function ruleR015(content: string): Diagnostic[] {
+  const out: Diagnostic[] = [];
+  const prose = stripCodeAndFrontmatter(content);
+  for (const { re, what } of DANGEROUS_PROSE) {
+    const m = prose.match(re);
+    if (m && typeof m.index === "number") {
+      out.push({
+        rule: "R015",
+        severity: "error",
+        line: lineOf(content, m.index),
+        message: `Security: ${what} outside a code block — a live data-exfiltration vector. Remove it, or move the example into a fenced code block.`,
+      });
+    }
+  }
+  const inv = INVISIBLE_CHARS.exec(content);
+  if (inv) {
+    const cp = content.codePointAt(inv.index)!.toString(16).toUpperCase().padStart(4, "0");
+    out.push({
+      rule: "R015",
+      severity: "error",
+      line: lineOf(content, inv.index),
+      message: `Security: invisible/bidirectional character U+${cp} — a prompt-injection obfuscation with no legitimate use in a SKILL.md. Auto-fixable (removed).`,
+      fix: (c) => c.replace(INVISIBLE_CHARS_G, ""),
+    });
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
 
-const ALL_RULES = [ruleR001, ruleR002, ruleR003, ruleR004, ruleR005, ruleR006, ruleR007, ruleR008, ruleR009, ruleR010, ruleR011, ruleR013];
+const ALL_RULES = [ruleR001, ruleR002, ruleR003, ruleR004, ruleR005, ruleR006, ruleR007, ruleR008, ruleR009, ruleR010, ruleR011, ruleR013, ruleR015];
 
 /** Run every rule against the SKILL.md content. */
 export function lint(content: string): LintResult {
@@ -912,6 +1056,7 @@ const RULE_SUMMARIES: Record<string, string> = {
   R012: "Flagged possible duplicate skill (high keyword overlap with another skill)",
   R013: "Flagged description/body word-overlap mismatch (possible stale description)",
   R014: "Flagged zombie skill (0 invocations in telemetry window)",
+  R015: "Flagged security risk (dangerous markdown construct or invisible/bidi character)",
 };
 
 const RULE_TITLE_PHRASES: Record<string, string> = {
@@ -929,6 +1074,7 @@ const RULE_TITLE_PHRASES: Record<string, string> = {
   R012: "flag possible duplicate skills",
   R013: "flag stale description (low body overlap)",
   R014: "flag zombie skill (no telemetry invocations)",
+  R015: "flag security risk (dangerous markdown / invisible chars)",
 };
 
 /**
@@ -974,7 +1120,6 @@ function renderInlineDiff(path: string, before: string, after: string): string {
   // Show a small context window before/after
   const ctx = 2;
   const ctxStart = Math.max(0, firstDiff - ctx);
-  const ctxEndBefore = Math.min(beforeLines.length, lastDiffBefore + 1 + ctx);
   const ctxEndAfter = Math.min(afterLines.length, lastDiffAfter + 1 + ctx);
 
   const lines: string[] = [];
@@ -1013,7 +1158,7 @@ export function buildPrBody(input: PrBodyInput): { title: string; body: string }
 
   const body = `# SKILL.md quality fixes from \`cue\`
 
-Hi! [\`cue\`](https://github.com/opencue/claude-code-skills) is an open-source agent profile manager that auto-discovers Claude Code skills via GitHub Code Search. We indexed **${skillPathDesc}** in [${input.repo}](https://github.com/${input.repo}) and ran our SKILL.md linter against it.
+Hi! [\`cue\`](https://github.com/opencue/cuecards) is an open-source agent profile manager that auto-discovers Claude Code skills via GitHub Code Search. We indexed **${skillPathDesc}** in [${input.repo}](https://github.com/${input.repo}) and ran our SKILL.md linter against it.
 
 This PR applies the **safe, mechanical fixes** below. It does **not** add any branding, badges, or marketing — only spec-compliance changes that improve how Claude's skill discovery sees your skill.
 
@@ -1062,12 +1207,12 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: opencue/claude-code-skills/skill-md-lint-action@main
+      - uses: opencue/cuecards/skill-md-lint-action@main
 \`\`\`
 
 ---
 
-🤖 Generated by \`cue\` · [report a bad fix](https://github.com/opencue/claude-code-skills/issues/new?title=cue+lint+bad+fix:+${encodeURIComponent(input.repo)})
+🤖 Generated by \`cue\` · [report a bad fix](https://github.com/opencue/cuecards/issues/new?title=cue+lint+bad+fix:+${encodeURIComponent(input.repo)})
 `;
 
   return { title, body };

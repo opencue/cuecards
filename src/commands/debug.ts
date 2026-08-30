@@ -2,7 +2,7 @@
  * `cue debug [profile]` — trace why skills/MCPs aren't loading.
  *
  * Walks the full resolution chain and reports at each step:
- * - Profile resolution (which .cue-profile, inheritance chain)
+ * - Profile resolution (which .cue.profile, inheritance chain)
  * - Skill resolution (found/missing, path, size)
  * - MCP resolution (in registry or not, env vars set)
  * - Plugin resolution (installed or not)
@@ -11,15 +11,14 @@
 
 import { resolve, join, dirname } from "node:path";
 import { existsSync, readFileSync, lstatSync, readlinkSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { homedir } from "node:os";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
 const RUNTIME_ROOT = join(homedir(), ".config", "cue", "runtime");
 
 export async function run(args: string[]): Promise<number> {
@@ -45,7 +44,7 @@ export async function run(args: string[]): Promise<number> {
       const resolved = await resolveProfileForCwd({ cwd, homeDir: homedir(), configDir: join(homedir(), ".config", "cue") });
       if (resolved.source === "none") {
         process.stdout.write(`    ${red("✗")} No profile found for ${cwd}\n`);
-        process.stdout.write(`    ${dim("Fix: echo <profile> > .cue-profile or pass a profile name")}\n\n`);
+        process.stdout.write(`    ${dim("Fix: echo <profile> > .cue.profile or pass a profile name")}\n\n`);
         return 1;
       }
       profileName = (resolved as any).profile;
@@ -119,7 +118,7 @@ export async function run(args: string[]): Promise<number> {
   }
 
   // 4b. Rules / Commands / Hooks
-  const RESOURCES_ROOT = join(REPO_ROOT, "resources");
+  const RESOURCES_ROOT = join(repoRoot(), "resources");
   let resourceIssues = 0;
   for (const [kind, refs, base] of [
     ["Rules", profile.rules, join(RESOURCES_ROOT, "rules")],

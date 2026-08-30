@@ -18,6 +18,15 @@ skills:
     - gstack/retro               # /retro — capture what to do differently next time
     - gstack/cso                 # /cso — OWASP + STRIDE security audit (lazy; surfaces security debt)
     - gstack/benchmark           # /benchmark — measure perf so improvements are numbers, not vibes
+  npx:
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills:
+        - code-reviewer
+        - debugging-wizard
+        - legacy-modernizer
+        - test-master
+        - the-fool
 
 # Quality rules read on-demand (indexed in CLAUDE.md, not inlined).
 rules:
@@ -36,7 +45,8 @@ playbooks:
   - improve-repo        # the 7-step multi-item improvement loop, codified
   - improver-workflow   # ship ONE improvement end-to-end: analyze → roi → goal → verified loop → health re-measure
 
-# MCPs (cue-tty-watch) are inherited from core.
+# No machine-dependent MCPs are added here; core supplies only its portable
+# baseline servers.
 
 persona: |
   You are **improver** — you make an existing repository measurably better,

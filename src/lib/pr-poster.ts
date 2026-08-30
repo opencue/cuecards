@@ -23,7 +23,7 @@ import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, } from "node:path";
+import { join, resolve, sep } from "node:path";
 
 /**
  * Build a deterministic branch name keyed by today's date + a hash of the
@@ -112,8 +112,12 @@ export interface FileChange { path: string; before: string; after: string; }
 /** Apply fixes to the cloned fork's working tree. Returns paths that actually changed. */
 export function writeFilesToWorktree(dir: string, changes: FileChange[]): string[] {
   const written: string[] = [];
+  const root = resolve(dir);
   for (const c of changes) {
-    const full = join(dir, c.path);
+    const full = resolve(dir, c.path);
+    // Refuse paths that escape the worktree (e.g. "../../.bashrc"): resolve
+    // normalizes "..", so a traversal lands outside `root` and is skipped.
+    if (full !== root && !full.startsWith(root + sep)) continue;
     if (!existsSync(full)) continue;
     const current = readFileSync(full, "utf8");
     if (current === c.after) continue;

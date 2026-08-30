@@ -12,17 +12,18 @@
  */
 
 import { spawn, spawnSync } from "node:child_process";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { readFileSync, existsSync } from "node:fs";
 
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
+import { gateFreshSkill, resolveSkillDir } from "./security";
+import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import type { FileChange } from "../lib/pr-poster";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const REGISTRY_PATH = join(REPO_ROOT, "docs", "registry", "index.json");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const REGISTRY_PATH = join(repoRoot(), "docs", "registry", "index.json");
 const REGISTRY_URL = "https://opencue.github.io/cue/registry/index.json";
 
 // ---------------------------------------------------------------------------
@@ -235,13 +236,48 @@ async function cmdInstallMcp(id: string): Promise<number> {
   return 0;
 }
 
-async function cmdInstallSkill(repo: string): Promise<number> {
+/**
+ * Post-install security gate for `install-skill`. Unlike `cue skills add` there
+ * is no profile registration to withhold here — the files are already on disk —
+ * so a block reports the findings, leaves the files for review, and exits
+ * non-zero rather than deleting anything.
+ */
+function gateInstalledSkill(skillName: string, allowUnsafe: boolean): number {
+  process.stdout.write(`🔍 Scanning "${skillName}" with NVIDIA SkillSpector…\n`);
+  const gate = gateFreshSkill(skillName, { allowUnsafe });
+  const note = unavailableNote(gate.skillspector);
+  if (note) process.stderr.write(`   ${note}\n`);
+
+  if (!gate.ok) {
+    process.stderr.write(`🔴 BLOCKED "${skillName}": ${gate.critical.length} critical security finding(s)\n`);
+    for (const c of gate.critical) {
+      process.stderr.write(`   [${c.code}] ${c.message}${c.line ? ` (line ${c.line})` : ""}\n`);
+    }
+    const dir = resolveSkillDir(skillName);
+    if (dir) process.stderr.write(`   Files left for review at ${dir} — remove them or re-run with --allow-unsafe.\n`);
+    return 1;
+  }
+  if (!gate.scanned) {
+    process.stderr.write(`⚠️  ${skillName}: no SKILL.md found to scan — review manually.\n`);
+  } else if (gate.skillspector.recommendation === "CAUTION") {
+    process.stderr.write(`🟡 ${formatVerdict(gate.skillspector)} — installed, review it.\n`);
+  } else if (gate.skillspector.recommendation === "SAFE") {
+    process.stdout.write(`🟢 SkillSpector SAFE\n`);
+  }
+  return 0;
+}
+
+async function cmdInstallSkill(repo: string, allowUnsafe = false): Promise<number> {
+  const installedName = repo.split("/").pop() ?? repo;
+
   // Try smithery first
   if (hasSmithery()) {
     process.stdout.write(`Installing skill "${repo}" via Smithery...\n`);
     const res = smithery(["skill", "add", repo, "--agent", "claude-code"]);
     if (res.ok) {
       process.stdout.write(res.stdout);
+      const gated = gateInstalledSkill(installedName, allowUnsafe);
+      if (gated !== 0) return gated;
       process.stdout.write(`✅ Skill installed.\n`);
       return 0;
     }
@@ -261,7 +297,7 @@ async function cmdInstallSkill(repo: string): Promise<number> {
 
   // Fetch companion files (scripts/, forms.md, reference.md, etc.)
   const { homedir } = await import("node:os");
-  const skillName = repo.split("/").pop() ?? repo;
+  const skillName = installedName;
   const skillsDir = join(homedir(), ".claude", "skills");
   const localDir = join(skillsDir, skillName);
   if (existsSync(localDir)) {
@@ -273,6 +309,10 @@ async function cmdInstallSkill(repo: string): Promise<number> {
       }
     }
   }
+
+  // Scan after companion files land so scripts/ is covered by the same pass.
+  const gated = gateInstalledSkill(skillName, allowUnsafe);
+  if (gated !== 0) return gated;
 
   process.stdout.write(`✅ Skill installed.\n`);
   return 0;
@@ -1030,6 +1070,185 @@ async function cmdDiscover(
   return 0;
 }
 
+// ---------------------------------------------------------------------------
+// Hosted marketplace: login / whoami / publish
+//
+// "Get an API token on cuecards.cc, then push your skills / profiles / mcps
+// from your own machine." These talk to the hosted API (not Smithery), using
+// the user's bearer token. Install commands are derived server-side, so a
+// submission can never inject an arbitrary install string.
+// ---------------------------------------------------------------------------
+
+const PUBLISH_TYPES = ["profile", "workflow", "skill", "cli", "mcp", "plugin"] as const;
+type PublishType = (typeof PUBLISH_TYPES)[number];
+
+/** Pull the value of `--flag value` out of an arg list (returns null if absent). */
+function flagValue(args: string[], flag: string): string | null {
+  const i = args.indexOf(flag);
+  return i >= 0 && args[i + 1] && !args[i + 1]!.startsWith("--") ? args[i + 1]! : null;
+}
+
+async function apiFetch(
+  url: string,
+  token: string | null,
+  init: { method?: string; body?: unknown } = {},
+): Promise<{ status: number; json: any; error?: string }> {
+  const headers: Record<string, string> = { "content-type": "application/json" };
+  if (token) headers.authorization = `Bearer ${token}`;
+  try {
+    const res = await fetch(url, {
+      method: init.method ?? "GET",
+      headers,
+      body: init.body !== undefined ? JSON.stringify(init.body) : undefined,
+      signal: AbortSignal.timeout(10_000),
+    });
+    let json: any = null;
+    try { json = await res.json(); } catch { /* non-JSON */ }
+    return { status: res.status, json };
+  } catch (err) {
+    return {
+      status: 0,
+      json: null,
+      error: err instanceof Error ? err.message : String(err),
+    };
+  }
+}
+
+/** `cue marketplace login --token <t>` — save the token to ~/.config/cue. */
+async function cmdLogin(args: string[]): Promise<number> {
+  const { resolveApiUrl, saveCredentials, loadCredentials } = await import("../lib/cue-credentials");
+  const token = flagValue(args, "--token") ?? process.env.CUE_API_TOKEN ?? null;
+  if (!token) {
+    process.stderr.write(
+      "Usage: cue marketplace login --token <token>\n\n" +
+      "Create a token in the cuecards.cc studio → API view, then paste it here.\n" +
+      "(or set CUE_API_TOKEN in your environment.)\n",
+    );
+    return 1;
+  }
+  const apiUrl = resolveApiUrl(loadCredentials());
+
+  // Verify the token works before persisting it.
+  const me = await apiFetch(`${apiUrl}/api/v1/me`, token);
+  if (me.status === 0) {
+    process.stderr.write(`${red("✗")} cannot reach ${apiUrl}: ${me.error}\n`);
+    return 1;
+  }
+  if (me.status !== 200 || !me.json?.ok) {
+    process.stderr.write(`${red("✗")} token rejected by ${apiUrl} (HTTP ${me.status}). Not saved.\n`);
+    return 1;
+  }
+  const path = saveCredentials({ apiUrl, token });
+  process.stdout.write(`${green("✓")} logged in as ${bold(me.json.data.email)} — token saved to ${dim(path)}\n`);
+  return 0;
+}
+
+/** `cue marketplace whoami` — print the authenticated account. */
+async function cmdWhoami(args: string[]): Promise<number> {
+  const { resolveApiUrl, resolveToken, loadCredentials } = await import("../lib/cue-credentials");
+  const token = resolveToken(flagValue(args, "--token"));
+  const apiUrl = resolveApiUrl(loadCredentials());
+  if (!token) {
+    process.stderr.write(`${yellow("not logged in")} — run ${bold("cue marketplace login --token <token>")}\n`);
+    return 1;
+  }
+  const me = await apiFetch(`${apiUrl}/api/v1/me`, token);
+  if (me.status === 0) {
+    process.stderr.write(`${red("✗")} cannot reach ${apiUrl}: ${me.error}\n`);
+    return 1;
+  }
+  if (me.status !== 200 || !me.json?.ok) {
+    process.stderr.write(`${red("✗")} token invalid or expired (HTTP ${me.status}).\n`);
+    return 1;
+  }
+  process.stdout.write(`${green("✓")} ${bold(me.json.data.email)} ${dim(`(${me.json.data.id})`)} @ ${apiUrl}\n`);
+  return 0;
+}
+
+/** Best-effort description for a local profile (used when --desc is omitted). */
+async function deriveProfileDescription(name: string): Promise<string> {
+  try {
+    const { loadProfile } = await import("../lib/profile-loader");
+    const p = await loadProfile(name);
+    return p.description ?? "";
+  } catch { return ""; }
+}
+
+/**
+ * `cue marketplace publish <type> <name>` — push one item to the marketplace.
+ * Flags: --desc, --tags a,b,c, --source-url, --token, --api.
+ */
+async function cmdPublish(args: string[], json: boolean): Promise<number> {
+  const { resolveApiUrl, resolveToken, loadCredentials } = await import("../lib/cue-credentials");
+
+  // type + name are the first two non-flag args that aren't the value of a
+  // preceding --flag.
+  const flagsWithValues = new Set(["--desc", "--tags", "--source-url", "--token", "--api"]);
+  const pos: string[] = [];
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i]!;
+    if (a.startsWith("--")) { if (flagsWithValues.has(a)) i++; continue; }
+    pos.push(a);
+  }
+
+  const type = pos[0] as PublishType | undefined;
+  const name = pos[1];
+  if (!type || !PUBLISH_TYPES.includes(type) || !name) {
+    process.stderr.write(
+      "Usage: cue marketplace publish <type> <name> [--desc <text>] [--tags a,b,c] [--source-url <https://…>]\n\n" +
+      `  <type>  one of: ${PUBLISH_TYPES.join(", ")}\n` +
+      "  <name>  the profile / skill / mcp name to publish\n\n" +
+      "Examples:\n" +
+      "  cue marketplace publish profile ship-fast --tags build,review\n" +
+      "  cue marketplace publish skill seo-audit --source-url https://github.com/me/skills\n",
+    );
+    return 1;
+  }
+
+  const token = resolveToken(flagValue(args, "--token"));
+  if (!token) {
+    process.stderr.write(
+      `${yellow("not logged in")} — run ${bold("cue marketplace login --token <token>")} first\n` +
+      `(create the token in the cuecards.cc studio → API view, or set CUE_API_TOKEN).\n`,
+    );
+    return 1;
+  }
+
+  const apiUrl = (flagValue(args, "--api") ?? resolveApiUrl(loadCredentials())).replace(/\/+$/, "");
+  let description = flagValue(args, "--desc") ?? "";
+  if (!description && type === "profile") description = await deriveProfileDescription(name);
+  const tags = (flagValue(args, "--tags") ?? "").split(",").map((t) => t.trim()).filter(Boolean);
+  const sourceUrl = flagValue(args, "--source-url") ?? undefined;
+
+  if (!json) process.stdout.write(`Publishing ${bold(type)} "${bold(name)}" to ${apiUrl}…\n`);
+
+  const res = await apiFetch(`${apiUrl}/api/v1/community`, token, {
+    method: "POST",
+    body: { type, name, description, tags, sourceUrl },
+  });
+
+  if (res.status === 0) {
+    const err = `cannot reach ${apiUrl}: ${res.error}`;
+    if (json) process.stdout.write(JSON.stringify({ ok: false, error: err }) + "\n");
+    else process.stderr.write(`${red("✗ publish failed:")} ${err}\n`);
+    return 1;
+  }
+  if (res.status !== 200 || !res.json?.ok) {
+    const err = res.json?.error ?? `HTTP ${res.status}`;
+    if (json) process.stdout.write(JSON.stringify({ ok: false, error: err }) + "\n");
+    else process.stderr.write(`${red("✗ publish failed:")} ${err}\n`);
+    return 1;
+  }
+
+  if (json) { process.stdout.write(JSON.stringify(res.json.data, null, 2) + "\n"); return 0; }
+
+  const item = res.json.data;
+  process.stdout.write(`\n${green("✓ published")} as ${bold(item.handle + "/" + item.name)}\n`);
+  process.stdout.write(`  install: ${dim(item.add)}\n`);
+  process.stdout.write(`  it's now in the community marketplace — anyone running cue can find and install it.\n\n`);
+  return 0;
+}
+
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {
     process.stdout.write(`cue marketplace — search and install MCPs + skills
@@ -1053,15 +1272,27 @@ Subcommands:
   cleanup-forks          Delete cue's forks for PRs that are merged/closed.
                          Use --dry-run to see what would be deleted.
   install-mcp <id>       Install MCP via Smithery
-  install-skill <repo>   Install skill from GitHub
+  install-skill <repo>   Install skill from GitHub. Scanned with NVIDIA
+                         SkillSpector before it is accepted; a DO_NOT_INSTALL
+                         verdict fails the command (--allow-unsafe overrides).
   list-mcps              List connected Smithery MCPs
   list-tools [conn]      List tools from connected MCPs
   find-tools <query>     Search tools by intent
+
+Publish (push to the hosted marketplace at cuecards.cc):
+  login --token <t>      Save your API token (create it in the studio → API view,
+                         or set CUE_API_TOKEN). Verifies before saving.
+  whoami                 Show the account your token authenticates as.
+  publish <type> <name>  Push a profile / skill / mcp to the marketplace.
+                         Flags: --desc <text>, --tags a,b,c, --source-url <url>,
+                         --token <t>, --api <url>. Types: ${PUBLISH_TYPES.join(", ")}.
 
 Examples:
   cue marketplace search "github"
   cue marketplace install-mcp exa
   cue marketplace search-skills "kubernetes"
+  cue marketplace login --token cue_sk_…
+  cue marketplace publish profile ship-fast --tags build,review
 `);
     return 0;
   }
@@ -1079,14 +1310,23 @@ Examples:
       return cmdSearchSkills(rest.slice(1).join(" ") || "", json);
     case "install-mcp":
       return cmdInstallMcp(rest[1] ?? "");
-    case "install-skill":
-      return cmdInstallSkill(rest[1] ?? "");
+    case "install-skill": {
+      // Take the first non-flag so `--allow-unsafe` can appear on either side.
+      const repo = rest.slice(1).find((a) => !a.startsWith("-")) ?? "";
+      return cmdInstallSkill(repo, args.includes("--allow-unsafe"));
+    }
     case "list-mcps":
       return cmdListMcps(json);
     case "list-tools":
       return cmdListTools(rest[1] ?? "", json);
     case "find-tools":
       return cmdFindTools(rest.slice(1).join(" ") || "", json);
+    case "login":
+      return cmdLogin(rest.slice(1));
+    case "whoami":
+      return cmdWhoami(rest.slice(1));
+    case "publish":
+      return cmdPublish(rest.slice(1), json);
     case "discover": {
       const previewIdx = rest.indexOf("--pr-preview");
       if (previewIdx >= 0) {

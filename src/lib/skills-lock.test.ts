@@ -15,11 +15,13 @@ import * as lockMod from "./skills-lock";
 
 describe("skills-lock", () => {
   beforeEach(() => {
+    process.env.CUE_SKILLS_LOCK_PATH = LOCK_PATH;
     // Remove any existing lockfile from prior test
     try { rmSync(LOCK_PATH, { force: true }); } catch {}
   });
 
   afterAll(() => {
+    delete process.env.CUE_SKILLS_LOCK_PATH;
     rmSync(TEST_DIR, { recursive: true, force: true });
   });
 

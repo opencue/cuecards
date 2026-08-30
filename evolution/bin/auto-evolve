@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Discoverable entry point for the cue auto-evolve trigger.
+#
+# Reads accumulated skill_gap signals (~/.config/cue/analytics.jsonl), picks the
+# most-flagged real skill, and evolves it via the single-shot optimizer. Runs
+# `python -m evolution.auto_evolve` via the package's .venv when present, else
+# system python3 with the package on PYTHONPATH. All args pass through.
+#
+#   bin/auto-evolve --dry-run            # just show the selection (no flags needed)
+#   bin/auto-evolve                      # propose-only (needs the opt-in flags)
+#   bin/auto-evolve --apply              # allow auto-apply (lint + self-judge gated)
+#
+# auto_evolve + single-shot are DSPy-free, so the system python3 works fine here.
+set -euo pipefail
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"   # the evolution/ package root
+py="$here/.venv/bin/python"
+if [ ! -x "$py" ]; then
+  py="$(command -v python3 || true)"
+  export PYTHONPATH="$here:${PYTHONPATH:-}"
+fi
+[ -n "$py" ] || { echo "auto-evolve: no python found" >&2; exit 127; }
+
+exec "$py" -m evolution.auto_evolve "$@"

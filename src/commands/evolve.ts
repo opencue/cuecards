@@ -76,13 +76,26 @@ function parseSessionLines(files: string[]): any[] {
 // Pattern detection
 // ---------------------------------------------------------------------------
 
+// Safely extract searchable text from a session-log line. Claude JSONL stores
+// `message` as an object ({ role, content }), so a naive `l.message ?? ""` yields
+// an object and crashes on `.toLowerCase()`. Mirror detectErrors' JSON.stringify
+// fallback so non-string payloads degrade to text instead of throwing.
+export function lineText(l: any): string {
+  if (typeof l?.content === "string") return l.content;
+  if (typeof l?.message === "string") return l.message;
+  const c = l?.message?.content ?? l?.content;
+  if (typeof c === "string") return c;
+  if (c != null) return JSON.stringify(c);
+  return "";
+}
+
 function detectGaps(lines: any[]): Map<string, number> {
   const topics = new Map<string, number>();
   const gapPatterns = /\b(can you|how do i|how to|help me|is there a way)\b/i;
 
   for (const msg of lines) {
     if (msg.role !== "user" && msg.type !== "human") continue;
-    const text = typeof msg.content === "string" ? msg.content : msg.message ?? "";
+    const text = lineText(msg);
     if (!gapPatterns.test(text)) continue;
     // Extract topic: first 3-4 meaningful words after the pattern
     const match = text.match(gapPatterns);
@@ -93,22 +106,8 @@ function detectGaps(lines: any[]): Map<string, number> {
   return topics;
 }
 
-function detectErrors(lines: any[]): string[] {
-  const errors: string[] = [];
-  for (const msg of lines) {
-    if (msg.type === "tool_result" && msg.is_error) {
-      const text = typeof msg.content === "string" ? msg.content : JSON.stringify(msg.content ?? "");
-      if (text.length > 5) errors.push(text.slice(0, 120));
-    }
-  }
-  return errors;
-}
-
 function checkSkillUsage(lines: any[], skills: string[]): { used: string[]; unused: string[] } {
-  const content = lines.map(l => {
-    const t = typeof l.content === "string" ? l.content : l.message ?? "";
-    return t.toLowerCase();
-  }).join("\n");
+  const content = lines.map(l => lineText(l).toLowerCase()).join("\n");
 
   const used: string[] = [];
   const unused: string[] = [];
@@ -156,9 +155,6 @@ async function generateProposal(profileName: string): Promise<Proposal> {
   // Detect gaps (asked 3+ times, no skill covers it)
   const gaps = detectGaps(recentLines);
   const significantGaps = [...gaps.entries()].filter(([, count]) => count >= 3).map(([topic]) => topic);
-
-  // Detect errors
-  const errors = detectErrors(recentLines);
 
   // Check skill usage over 30 days
   const { unused } = checkSkillUsage(allLines, skills);

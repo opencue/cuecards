@@ -5,10 +5,13 @@ import {
   computeTokenBreakdown,
   formatDoctorWarnings,
   formatProfileSummary,
+  formatStartupBanner,
   formatTmuxTitle,
-  formatTokenWarning,
   getDefaultSelector,
+  mergeProfileSuggestions,
+  ownsPaneBadge,
   relativeTime,
+  shouldAppendUserClaudeMd,
   sortProfileOptions,
   splitSkillBytes,
   tokenLevelEmoji,
@@ -95,6 +98,46 @@ describe("sortProfileOptions", () => {
   });
 });
 
+describe("mergeProfileSuggestions", () => {
+  test("puts agreement first and combines distinct reasons", () => {
+    const advised = [
+      { profile: "nextjs", confidence: 0.82, reasons: ["primary web app"] },
+      { profile: "gstack", confidence: 0.7, reasons: ["agent workflow"] },
+    ];
+    const deterministic = [
+      { profile: "nextjs", confidence: 0.9, reasons: ["next.config.ts"] },
+      { profile: "typescript", confidence: 0.8, reasons: ["tsconfig.json"] },
+    ];
+
+    const merged = mergeProfileSuggestions(advised, deterministic);
+    expect(merged.map((item) => item.profile)).toEqual([
+      "nextjs",
+      "gstack",
+      "typescript",
+    ]);
+    expect(merged[0]?.confidence).toBe(0.9);
+    expect(merged[0]?.reasons).toEqual(["primary web app", "next.config.ts"]);
+  });
+
+  test("preserves one AI and one deterministic choice when they disagree", () => {
+    const merged = mergeProfileSuggestions(
+      [
+        { profile: "google-ads", confidence: 0.9, reasons: ["GAQL scripts"] },
+        { profile: "marketing", confidence: 0.8, reasons: ["campaign copy"] },
+      ],
+      [
+        { profile: "coolify", confidence: 0.85, reasons: ["Dockerfile"] },
+        { profile: "nextjs", confidence: 0.75, reasons: ["next.config.ts"] },
+      ],
+    );
+
+    expect(merged.slice(0, 2).map((item) => item.profile)).toEqual([
+      "google-ads",
+      "coolify",
+    ]);
+  });
+});
+
 describe("relativeTime", () => {
   const now = new Date("2026-05-26T12:00:00Z").getTime();
 
@@ -145,6 +188,32 @@ describe("buildPickerSections", () => {
       `${DIVIDER_PREFIX}all`,
       "core",
     ]);
+  });
+
+  test("dedupes repeated parts in a composite Recent row (legacy analytics)", () => {
+    // Legacy analytics can carry a snowballed selector with parts repeated many
+    // times (an old pre-dedup picker path appended companions to the resolved
+    // profile each launch). The synthesized Recent row must show each profile
+    // exactly once — in BOTH value and label — never "gstack + … + gstack".
+    const all = [opt("gstack"), opt("core"), opt("improver"), opt("commerce")];
+    const recent = [
+      {
+        name: "gstack+core+improver+commerce+core+gstack+improver",
+        sessions: 4,
+        lastUsed: "2026-05-26T08:00:00Z",
+      },
+    ];
+    const out = buildPickerSections(opt("__default"), all, recent, 3, now);
+    const row = out.find((o) => o.value.startsWith("gstack+"))!;
+    expect(row).toBeDefined();
+    // value: each part once, first-seen order preserved — this is what gets
+    // pinned to .cue.profile and launched, so it must be clean.
+    expect(row.value).toBe("gstack+core+improver+commerce");
+    const valueParts = row.value.split("+");
+    expect(new Set(valueParts).size).toBe(valueParts.length);
+    // label: no icon/name repeated either (this is the row the user reads).
+    const labelParts = row.label.split(" + ");
+    expect(new Set(labelParts).size).toBe(labelParts.length);
   });
 
   test("Recent shows the N most recently used profiles, sorted by lastUsed not by session count", () => {
@@ -414,6 +483,26 @@ describe("buildPickerSections", () => {
     ];
     const out = buildPickerSections(opt("__default"), all, [], 3, now, suggested);
     expect(out.some((o) => o.value === `${DIVIDER_PREFIX}suggested`)).toBe(false);
+  });
+
+  test("AI suggestions get a distinct advisor heading", () => {
+    const out = buildPickerSections(opt("__default"), [opt("google-ads")], [], 3, now, [
+      { name: "google-ads", confidence: 0.9, reasons: ["GAQL scripts"], source: "ai" },
+    ]);
+    expect(out[0]?.label).toContain("AI profile advisor");
+    expect(out.find((o) => o.value === "google-ads")?.hint).toBe("90% match — GAQL scripts");
+  });
+
+  test("hybrid suggestions disclose repository-signal merging and stale reuse", () => {
+    const hybrid = buildPickerSections(opt("__default"), [opt("nextjs")], [], 3, now, [
+      { name: "nextjs", confidence: 0.9, reasons: ["next.config.ts"], source: "hybrid" },
+    ]);
+    expect(hybrid[0]?.label).toContain("AI + repository signals");
+
+    const stale = buildPickerSections(opt("__default"), [opt("nextjs")], [], 3, now, [
+      { name: "nextjs", confidence: 0.9, reasons: ["next.config.ts"], source: "stale-hybrid" },
+    ]);
+    expect(stale[0]?.label).toContain("Recent AI + repository signals");
   });
 });
 
@@ -750,108 +839,44 @@ describe("tokenLevelEmoji", () => {
     expect(tokenLevelEmoji(50000)).toBe("🔴");
   });
 
-  test("matches the dot used by formatTokenWarning's header", () => {
-    // Cross-check: if the helper and formatTokenWarning ever drift, this fails.
-    const out = formatTokenWarning({
-      alwaysOn: 12000,
-      maxIfAllActivate: 80000,
-      totalSkills: 30,
-      byProfile: [],
-      heaviestBodies: [],
-    });
-    expect(out[0]).toContain(tokenLevelEmoji(12000));
+  test("matches the dot used by formatStartupBanner's token segment", () => {
+    // Cross-check: if the helper and the banner ever drift, this fails.
+    const out = formatStartupBanner({ title: "x", skills: 30, mcps: 0, alwaysOn: 12000 });
+    expect(out).toContain(tokenLevelEmoji(12000));
   });
 });
 
-describe("formatTokenWarning", () => {
-  test("returns no lines below the 2K always-on floor", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 1500, maxIfAllActivate: 50000, totalSkills: 20, byProfile: [], heaviestBodies: [],
-    });
-    expect(out).toEqual([]);
-  });
-
-  test("composite: emits always-on header, By profile, max-if-active, heaviest, and Drop hint", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 8000,
-      maxIfAllActivate: 230000,
-      totalSkills: 53,
-      byProfile: [
-        { name: "skill-writer", tokens: 1500, skillCount: 8 },
-        { name: "core", tokens: 1800, skillCount: 12 },
-        { name: "ecc", tokens: 4700, skillCount: 33 },
-      ],
-      heaviestBodies: [
-        { id: "meta/skill-reviewer", tokens: 18000 },
-        { id: "review/code-review-deep", tokens: 12000 },
-        { id: "plan/autoplan", tokens: 9000 },
-      ],
-    });
-    expect(out).toEqual([
-      "🟡 Skill overhead: ~8.0K always-on (53 skills)",
-      "   By profile:  skill-writer 1.5K  ·  core 1.8K  ·  ecc 4.7K ← heaviest",
-      "   ~230K max if every skill activates (bodies load on demand)",
-      "   Heaviest bodies:  skill-reviewer (18.0K), code-review-deep (12.0K), autoplan (9.0K)",
-      `   💡 Drop "ecc" to save ~4.7K always-on`,
-    ]);
-  });
-
-  test("By profile line prefixes each part with its icon when set", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 6000,
-      maxIfAllActivate: 80000,
-      totalSkills: 20,
-      byProfile: [
-        { name: "writer", icon: "🧬", tokens: 1500, skillCount: 6 },
-        { name: "core", icon: "🐢", tokens: 1500, skillCount: 6 },
-        { name: "ecc", icon: "🦅", tokens: 3000, skillCount: 8 },
-      ],
-      heaviestBodies: [],
-    });
-    expect(out[1]).toBe(
-      "   By profile:  🧬 writer 1.5K  ·  🐢 core 1.5K  ·  🦅 ecc 3.0K ← heaviest",
+describe("formatStartupBanner", () => {
+  // colorFns() disables ANSI when stdout isn't a TTY (the test env), so these
+  // assertions are plain text.
+  test("identity-only line for a light profile (no token info)", () => {
+    expect(formatStartupBanner({ title: "claude · 🦊 core", skills: 3, mcps: 0 })).toBe(
+      "▸ claude · 🦊 core · 3 skills",
     );
   });
 
-  test("primary is heaviest: never suggests dropping it, falls back to audit hint when warranted", () => {
-    // Scenario: user picked `postizz` (heaviest) and combined with blog-writer
-    // + trendradar. Suggesting "Drop postizz" would be nonsensical.
-    const out = formatTokenWarning({
-      alwaysOn: 11000,
-      maxIfAllActivate: 49000,
-      totalSkills: 39,
-      byProfile: [
-        { name: "postizz", icon: "📮", tokens: 3700, skillCount: 12 },
-        { name: "blog-writer", icon: "✍️", tokens: 0, skillCount: 0 },
-        { name: "trendradar", icon: "📡", tokens: 1000, skillCount: 4 },
-      ],
-      heaviestBodies: [{ id: "meta/skill-reviewer", tokens: 4000 }],
-    });
-    expect(out.join("\n")).not.toContain(`Drop "postizz"`);
-    expect(out).toContain("   💡 Run `cue skills audit` to trim unused skills.");
+  test("singular skill/MCP words and an MCP segment when present", () => {
+    expect(formatStartupBanner({ title: "codex · 🧪 x", skills: 1, mcps: 1 })).toBe(
+      "▸ codex · 🧪 x · 1 skill · 1 MCP",
+    );
   });
 
-  test("primary is heaviest but a companion is also above 3K: suggests dropping the companion", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 12000,
-      maxIfAllActivate: 80000,
-      totalSkills: 40,
-      byProfile: [
-        { name: "primary", tokens: 6000, skillCount: 20 },
-        { name: "companion", tokens: 4000, skillCount: 15 },
-      ],
-      heaviestBodies: [],
-    });
-    expect(out).toContain(`   💡 Drop "companion" to save ~4.0K always-on`);
-    expect(out.join("\n")).not.toContain(`Drop "primary"`);
+  test("omits the token segment under the 2K always-on floor", () => {
+    expect(
+      formatStartupBanner({ title: "claude · core", skills: 20, mcps: 0, alwaysOn: 1500 }),
+    ).toBe("▸ claude · core · 20 skills");
   });
 
-  test("single profile above 10K always-on: shows audit hint, not Drop hint", () => {
-    const out = formatTokenWarning({
-      alwaysOn: 12000, maxIfAllActivate: 200000, totalSkills: 80, byProfile: [],
-      heaviestBodies: [{ id: "x/y", tokens: 5000 }],
-    });
-    expect(out).toContain("   💡 Run `cue skills audit` to trim unused skills.");
+  test("shows the level dot and ~NK, but no pointer below the 10K heavy mark", () => {
+    expect(
+      formatStartupBanner({ title: "claude · core", skills: 53, mcps: 7, alwaysOn: 8000 }),
+    ).toBe("▸ claude · core · 53 skills · 7 MCPs · 🟡 ~8K always-on");
+  });
+
+  test("appends → cue cost for heavy profiles (>=10K always-on)", () => {
+    expect(
+      formatStartupBanner({ title: "claude · 🏭 gstack +4", skills: 96, mcps: 7, alwaysOn: 22845 }),
+    ).toBe("▸ claude · 🏭 gstack +4 · 96 skills · 7 MCPs · 🔴 ~23K always-on · → cue cost");
   });
 });
 
@@ -860,16 +885,12 @@ describe("formatDoctorWarnings", () => {
     expect(formatDoctorWarnings([])).toEqual([]);
   });
 
-  test("singular 'warning' for exactly one", () => {
+  test("single compact line, singular 'warning' for exactly one", () => {
     const out = formatDoctorWarnings([{ code: "D1", message: `skill "meta/foo" not found on disk` }]);
-    expect(out).toEqual([
-      "⚠ cue doctor (1 warning):",
-      `   D1  skill "meta/foo" not found on disk`,
-      "   → cue doctor --fix",
-    ]);
+    expect(out).toEqual(["⚠ 1 cue-doctor warning → cue doctor --fix"]);
   });
 
-  test("shows top 3 inline plus a '…and N more' footer when over 3", () => {
+  test("single compact line, plural for more than one", () => {
     const out = formatDoctorWarnings([
       { code: "D1", message: `skill "meta/foo" not found on disk` },
       { code: "D2", message: `MCP "obsidian" not in registry` },
@@ -877,14 +898,7 @@ describe("formatDoctorWarnings", () => {
       { code: "D2", message: `MCP "extra" not in registry` },
       { code: "D5", message: `runtime missing hash (may be stale)` },
     ]);
-    expect(out).toEqual([
-      "⚠ cue doctor (5 warnings):",
-      `   D1  skill "meta/foo" not found on disk`,
-      `   D2  MCP "obsidian" not in registry`,
-      `   D4  skill "vps" needs MCP "hostinger" (from profile)`,
-      "   …and 2 more",
-      "   → cue doctor --fix",
-    ]);
+    expect(out).toEqual(["⚠ 5 cue-doctor warnings → cue doctor --fix"]);
   });
 });
 
@@ -917,5 +931,62 @@ describe("formatTmuxTitle", () => {
   test("empty/whitespace profile name degrades to just the agent label", () => {
     expect(formatTmuxTitle("claude", "", [])).toBe("claude");
     expect(formatTmuxTitle("claude", "   ", [])).toBe("claude");
+  });
+});
+
+describe("shouldAppendUserClaudeMd", () => {
+  const home = "/home/u";
+
+  test("claude-code under $HOME → skip (harness already loads ~/.claude/CLAUDE.md)", () => {
+    expect(shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/home/u/proj/x", home })).toBe(false);
+  });
+
+  test("claude-code exactly at $HOME → skip", () => {
+    expect(shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/home/u", home })).toBe(false);
+  });
+
+  test("claude-code outside $HOME → append (cue is the only source)", () => {
+    expect(shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/tmp/proj", home })).toBe(true);
+  });
+
+  test("sibling dir sharing a name prefix is NOT inside $HOME", () => {
+    expect(shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/home/u2", home })).toBe(true);
+  });
+
+  test("codex always appends (its memory-load model is unverified here)", () => {
+    expect(shouldAppendUserClaudeMd({ agent: "codex", cwd: "/home/u/proj", home })).toBe(true);
+  });
+
+  test("pathological home === '/' falls back to append (safe default)", () => {
+    expect(shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/home/u/proj", home: "/" })).toBe(true);
+  });
+
+  test("CUE_APPEND_USER_CLAUDEMD=1 forces the legacy always-append behavior", () => {
+    expect(
+      shouldAppendUserClaudeMd({ agent: "claude-code", cwd: "/home/u/proj", home, env: { CUE_APPEND_USER_CLAUDEMD: "1" } }),
+    ).toBe(true);
+  });
+});
+
+describe("ownsPaneBadge", () => {
+  test("an interactive launch inside tmux owns the badge", () => {
+    expect(ownsPaneBadge({ TMUX: "/tmp/tmux-1000/default,123,0" }, true)).toBe(true);
+  });
+
+  test("a piped launch does not — it is the --print helper sharing the pane", () => {
+    // The skill-selector cue spawns on every session start inherits TMUX_PANE
+    // from the session it helps. Announcing there would overwrite that
+    // session's badge and clear it again on exit seconds later.
+    expect(ownsPaneBadge({ TMUX: "/tmp/tmux-1000/default,123,0" }, false)).toBe(false);
+  });
+
+  test("outside tmux nobody owns a badge", () => {
+    expect(ownsPaneBadge({}, true)).toBe(false);
+  });
+
+  test("CUE_TMUX_TITLE=0 opts out even when interactive", () => {
+    expect(
+      ownsPaneBadge({ TMUX: "/tmp/tmux-1000/default,123,0", CUE_TMUX_TITLE: "0" }, true),
+    ).toBe(false);
   });
 });

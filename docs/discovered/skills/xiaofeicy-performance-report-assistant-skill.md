@@ -2,21 +2,21 @@
 title: "XiaofeiCY/performance-report-assistant-skill — Claude Code skill discovered by cue"
 description: "Performance Report Assistant Skill: an open-source Claude Code / Codex skill for guided performance reviews, work reports, git commit summaries, and Excel templ"
 layout: page
-updated: 2026-06-03
+updated: 2026-07-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [XiaofeiCY/performance-report-assistant-skill](https://github.com/XiaofeiCY/performance-report-assistant-skill)
 
-**★ 0** · exceptional (score 10.5) · Python · agent-skill, ai-agent, ai-skill, ai-skills, chinese
+**★ 1** · exceptional (score 10.8) · Python · agent-skill, ai-agent, ai-skill, ai-skills, chinese
 
 > Performance Report Assistant Skill: an open-source Claude Code / Codex skill for guided performance reviews, work reports, git commit summaries, and Excel template filling.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-07-06
 - 🏷️ Tags: agent-skill, ai-agent, ai-skill, ai-skills, chinese, claude-code, claude-code-skill, claude-skill, codex, codex-skill, excel-automation, excel-template, git-commits, performance-review, self-review, wecom, weekly-report, work-report, workplace
 
 ## Best fit cue profiles

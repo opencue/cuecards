@@ -40,17 +40,17 @@ skills:
   local:
     - design/taste-skill
     - design/taste-skill-v1
-    - design/gpt-tasteskill
-    - design/image-to-code-skill
+    - design/gpt-taste
+    - design/image-to-code
     - design/imagegen-frontend-web
     - design/imagegen-frontend-mobile
     - design/brandkit
-    - design/redesign-skill
-    - design/soft-skill
-    - design/output-skill
-    - design/minimalist-skill
-    - design/brutalist-skill
-    - design/stitch-skill
+    - design/redesign-existing-projects
+    - design/high-end-visual-design
+    - meta/full-output-enforcement
+    - design/minimalist-ui
+    - design/industrial-brutalist-ui
+    - design/stitch-design-taste
     - design/industrial-brutalist-ui
     - design/redesign-existing-projects
     # gstack
@@ -66,4 +66,12 @@ skills:
       skills: [ui-ux-designer]
 plugins:
   - frontend-design@claude-plugins-official
-mcps: []
+mcps:
+  # Figma layout/design-token context (GLips/Figma-Context-MCP, 15K★). Give it a
+  # Figma file URL/node → grounds image-to-code and redesigns in the real design.
+  # Needs FIGMA_API_KEY in the environment.
+  - figma
+env:
+  # Figma personal access token (file-read scope). Resolved from the shell at
+  # launch; declared here so cue validate knows it's an expected placeholder.
+  FIGMA_API_KEY: "${FIGMA_API_KEY}"

@@ -106,34 +106,140 @@ if [ "$rounds" -ge "$MAX_ROUNDS" ]; then
   exit 0
 fi
 
+# ─── Triviality gate (conservative): comment/whitespace/docs-only → skip ───
+# An independent reviewer agent on a stale-comment fix or a docs tweak is pure
+# overhead. Skip ONLY when every changed line is a comment, blank, or lone
+# punctuation — any real code line falls through to review. Untracked (new)
+# files are never trivial, so the gate is bypassed when any exist.
+if [ -z "$(git -C "$cwd" ls-files --others --exclude-standard 2>/dev/null)" ]; then
+  # (a) Docs/prose-only: every changed file is markdown/text → skip regardless
+  # of content (a reworded README needs no code review).
+  changed_files="$(git -C "$cwd" diff HEAD --name-only 2>/dev/null || git -C "$cwd" diff --name-only 2>/dev/null)"
+  if [ -n "$changed_files" ] && ! printf '%s\n' "$changed_files" \
+      | grep -qivE '\.(md|mdx|markdown|txt|rst|adoc)$|(^|/)(CHANGELOG|LICENSE|AUTHORS|NOTICE|README)([.-][^/]*)?$'; then
+    printf '%s\n0\n' "$diff_hash" > "$sfile"
+    exit 0
+  fi
+  # (b) Comment/whitespace-only across code files.
+  # Changed content lines (added/removed), minus the +++/--- file headers,
+  # with the leading +/- and surrounding whitespace stripped.
+  bodies="$(printf '%s\n' "$diff" \
+    | grep -E '^[+-]' | grep -Ev '^(\+\+\+|---)' \
+    | sed -E 's/^[+-]//; s/^[[:space:]]+//; s/[[:space:]]+$//')"
+  # Drop blanks, lone brackets/punctuation, and the common comment-line shapes
+  # (//, #, /* */, leading-* JSDoc continuations, <!-- -->, SQL/Lua --). What
+  # remains is "substantive code"; if nothing remains, the diff is trivial.
+  code_lines="$(printf '%s\n' "$bodies" \
+    | grep -vE '^$' \
+    | grep -vE '^[][(){},;:]+$' \
+    | grep -vE '^(//|#)' \
+    | grep -vE '^/\*|\*/$' \
+    | grep -vE '^\*( |$)' \
+    | grep -vE '^(<!--|-->)' \
+    | grep -vE '^--( |$)')"
+  if [ -z "$(printf '%s' "$code_lines" | tr -d '[:space:]')" ]; then
+    printf '%s\n0\n' "$diff_hash" > "$sfile"
+    exit 0
+  fi
+fi
+
+# ─── Live progress channel (best-effort; see docs/review-visibility.md) ─────
+# A second pane running `cue-review-watch` renders these events live, so the user
+# sees which file/dimension is under review and findings as they land instead of
+# an opaque spinner. Every write is fail-open (errors ignored).
+rp_dir="${HOME}/.config/cue/review-progress"
+rp_id="rev-$(date -u +%Y%m%dT%H%M%SZ)-$$"
+rp_file="$rp_dir/$rp_id.jsonl"
+rp_esc() { printf '%s' "${1:-}" | tr -d '\000-\037' | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+rp_now() { date -u +%Y-%m-%dT%H:%M:%S.000Z; }
+rp_write() { printf '%s\n' "$1" >> "$rp_file" 2>/dev/null || true; }
+if mkdir -p "$rp_dir" 2>/dev/null; then
+  printf '%s' "$rp_id" > "$rp_dir/latest" 2>/dev/null || true
+  : > "$rp_file" 2>/dev/null || true
+  rp_write "$(printf '{"ts":"%s","id":"%s","kind":"start","title":"auto-review","detail":"%s"}' "$(rp_now)" "$rp_id" "$(rp_esc "$cwd")")"
+fi
+# Parse one streamed reviewer line into a progress event.
+#   PROGRESS: <file> | <what is being checked>
+#   FOUND: <CRITICAL|HIGH> | <file>:<line> | <short title>
+rp_line() {
+  local ln="$1" rest sev loc title file dim
+  case "$ln" in
+    PROGRESS:*)
+      rest="${ln#PROGRESS:}"; file="${rest%%|*}"; dim="${rest#*|}"
+      [ "$dim" = "$rest" ] && dim=""
+      file="$(printf '%s' "$file" | sed 's/^ *//; s/ *$//')"
+      dim="$(printf '%s' "$dim" | sed 's/^ *//; s/ *$//')"
+      rp_write "$(printf '{"ts":"%s","id":"%s","kind":"dim","file":"%s","dim":"%s"}' "$(rp_now)" "$rp_id" "$(rp_esc "$file")" "$(rp_esc "$dim")")"
+      ;;
+    FOUND:*)
+      rest="${ln#FOUND:}"; sev="${rest%%|*}"; rest="${rest#*|}"; loc="${rest%%|*}"; title="${rest#*|}"
+      [ "$loc" = "$rest" ] && { title=""; }
+      sev="$(printf '%s' "$sev" | tr -d ' ' | tr '[:lower:]' '[:upper:]')"
+      loc="$(printf '%s' "$loc" | sed 's/^ *//; s/ *$//')"
+      title="$(printf '%s' "$title" | sed 's/^ *//; s/ *$//')"
+      rp_write "$(printf '{"ts":"%s","id":"%s","kind":"finding","file":"%s","severity":"%s","title":"%s"}' "$(rp_now)" "$rp_id" "$(rp_esc "$loc")" "$(rp_esc "$sev")" "$(rp_esc "$title")")"
+      ;;
+  esac
+}
+
 # ─── Run the independent reviewer ──────────────────────────────────────────
 review_prompt="You are an INDEPENDENT code reviewer running the code-review-deep pass.
 Review ONLY the diff below. Report blocking issues only:
   CRITICAL: security holes, data loss, crashes, injection, broken auth.
   HIGH:     real bugs, broken contracts, race conditions, wrong logic.
-Output one terse bullet per finding, each prefixed with 'CRITICAL:' or 'HIGH:'.
-If there are no CRITICAL or HIGH issues, output exactly: REVIEW_CLEAN
-Do not restate the diff. Do not praise. Do not list LOW/style nits. Max 12 bullets.
+
+While you work, EMIT LIVE PROGRESS so the user can watch — print these as you go:
+  PROGRESS: <file> | <what you are checking now>     (when you start on a file/area)
+  FOUND: <CRITICAL|HIGH> | <file>:<line> | <short title>   (the moment you spot one)
+
+THEN, as the LAST thing you output, give the verdict:
+  one terse bullet per finding, each prefixed with 'CRITICAL:' or 'HIGH:',
+  or exactly REVIEW_CLEAN if there are no CRITICAL or HIGH issues.
+Do not restate the diff. Do not praise. Do not list LOW/style nits. Max 12 verdict bullets.
 
 --- DIFF ---
 ${diff}
 --- END DIFF ---"
 
-if [ -n "${CUE_AUTO_REVIEW_CMD:-}" ]; then
-  verdict="$(printf '%s' "$diff" | timeout 180 bash -c "$CUE_AUTO_REVIEW_CMD" 2>/dev/null)"
+run_reviewer() {
+  if [ -n "${CUE_AUTO_REVIEW_CMD:-}" ]; then
+    printf '%s' "$diff" | timeout 180 bash -c "$CUE_AUTO_REVIEW_CMD" 2>/dev/null
+  else
+    command -v claude >/dev/null 2>&1 || return 1
+    CUE_AUTO_REVIEW_INNER=1 timeout 240 claude -p --model sonnet "$review_prompt" 2>/dev/null
+  fi
+}
+
+# Capture the reviewer output IN FULL first — verdict integrity is must-have, and
+# under-blocking is the dangerous direction, so we never risk a broken pipe
+# truncating the verdict. Then replay PROGRESS/FOUND lines to the live log. The
+# side-channel is best-effort here; the Agent-subagent reviewer streams in real
+# time by calling cue-review-progress directly (see docs/review-visibility.md).
+verdict=""
+out_tmp="$(mktemp 2>/dev/null || true)"
+if [ -n "$out_tmp" ]; then
+  run_reviewer > "$out_tmp" 2>/dev/null || true
+  verdict="$(cat "$out_tmp" 2>/dev/null)"
+  grep -E '^(PROGRESS|FOUND):' "$out_tmp" 2>/dev/null | while IFS= read -r ln; do rp_line "$ln"; done || true
+  rm -f "$out_tmp"
 else
-  command -v claude >/dev/null 2>&1 || exit 0
-  verdict="$(CUE_AUTO_REVIEW_INNER=1 timeout 240 claude -p --model sonnet "$review_prompt" 2>/dev/null)"
+  verdict="$(run_reviewer)"
 fi
+rp_write "$(printf '{"ts":"%s","id":"%s","kind":"end","title":"review done"}' "$(rp_now)" "$rp_id")"
 [ -z "$verdict" ] && exit 0   # reviewer failed → fail-open, allow stop
 
+# Strip the live-progress side-channel before verdict parsing, so a PROGRESS/FOUND
+# line whose text mentions "CRITICAL:"/"HIGH:" can't be misread as a verdict bullet
+# (which would spuriously block a clean turn).
+verdict_only="$(printf '%s' "$verdict" | grep -vE '^(PROGRESS|FOUND):' || true)"
+
 # Clean → record this diff and allow stop.
-if printf '%s' "$verdict" | grep -qF "REVIEW_CLEAN"; then
+if printf '%s' "$verdict_only" | grep -qF "REVIEW_CLEAN"; then
   printf '%s\n0\n' "$diff_hash" > "$sfile"
   exit 0
 fi
 # No real findings parsed → don't block on noise.
-if ! printf '%s' "$verdict" | grep -qE 'CRITICAL:|HIGH:'; then
+if ! printf '%s' "$verdict_only" | grep -qE 'CRITICAL:|HIGH:'; then
   printf '%s\n0\n' "$diff_hash" > "$sfile"
   exit 0
 fi
@@ -141,7 +247,7 @@ fi
 # ─── Block: feed the reviewer's findings back to the main agent ────────────
 rounds=$((rounds + 1))
 printf '%s\n%s\n' "$diff_hash" "$rounds" > "$sfile"
-findings="$(printf '%s' "$verdict" | grep -E 'CRITICAL:|HIGH:' | head -12)"
+findings="$(printf '%s' "$verdict_only" | grep -E 'CRITICAL:|HIGH:' | head -12)"
 reason="An independent reviewer agent (code-review-deep on Sonnet, round ${rounds}/${MAX_ROUNDS}) flagged issues in your diff:
 
 ${findings}

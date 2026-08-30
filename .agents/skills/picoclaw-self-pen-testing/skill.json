@@ -1,0 +1,91 @@
+{
+  "name": "picoclaw-self-pen-testing",
+  "version": "0.0.2",
+  "description": "Picoclaw-only local posture-review skill focused on read-only findings and safe operator remediation guidance.",
+  "author": "prompt-security",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://clawsec.prompt.security/",
+  "platform": "picoclaw",
+  "keywords": [
+    "security",
+    "picoclaw",
+    "posture-review",
+    "read-only-audit",
+    "mcp",
+    "auth"
+  ],
+  "sbom": {
+    "files": [
+      {
+        "path": "SKILL.md",
+        "required": true,
+        "description": "Skill documentation and operator guidance"
+      },
+      {
+        "path": "README.md",
+        "required": true,
+        "description": "Quickstart overview"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "required": true,
+        "description": "Version history"
+      },
+      {
+        "path": "lib/self_pen_test.mjs",
+        "required": true,
+        "description": "Local posture-review finding engine"
+      },
+      {
+        "path": "lib/format.mjs",
+        "required": true,
+        "description": "Stable JSON formatter for deterministic output"
+      },
+      {
+        "path": "scripts/self_pen_test.mjs",
+        "required": true,
+        "description": "Run posture-review checks on a profile"
+      }
+    ]
+  },
+  "picoclaw": {
+    "emoji": "🦐",
+    "category": "security",
+    "requires": {
+      "bins": [
+        "node"
+      ]
+    },
+    "runtime": {
+      "required_env": [],
+      "optional_env": [
+        "PICOCLAW_HOME"
+      ]
+    },
+    "capabilities": {
+      "security_feed": false,
+      "config_drift": false,
+      "agent_self_pen_testing": true,
+      "supply_chain_install_verification": false
+    },
+    "execution": {
+      "always": false,
+      "persistence": "Read-only/on-demand; no scheduler is installed.",
+      "network_egress": "None"
+    },
+    "operator_review": [
+      "This package is intentionally isolated so posture-review checks can be independently published or withheld.",
+      "Treat findings as operator review guidance; do not auto-remediate without explicit approval."
+    ],
+    "triggers": [
+      "picoclaw posture review",
+      "picoclaw local security review",
+      "picoclaw auth exposure review"
+    ],
+    "test_requires": {
+      "bins": [
+        "node"
+      ]
+    }
+  }
+}

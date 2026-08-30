@@ -5,18 +5,21 @@ inherits: core
 
 skills:
   local:
-    - browser/lightpanda
     - browser/agent-browser   # vercel-labs/agent-browser — Rust browser CLI, ref-based automation, daemon-backed
     - browser/playwright      # drives the Playwright MCP (Chromium/Firefox/WebKit): screenshot-verify UI, repro bugs
+  npx:
+    # Discovered 2026-06-08: Chrome DevTools for coding agents.
+    - repo: ChromeDevTools/chrome-devtools-mcp
+      skills: [chrome-devtools-mcp]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [playwright-expert]
 
 mcps:
-  # Lightpanda — fast, low-memory headless browser exposed over MCP (`lightpanda mcp`).
-  # Default engine for headless navigation/scraping; tools appear as mcp__lightpanda__*.
-  - lightpanda
   # Playwright — Microsoft's official Playwright MCP (`npx @playwright/mcp@latest`).
   # Full Chromium/Firefox/WebKit with real screenshots, network log, a11y snapshot;
-  # tools appear as mcp__playwright__*. Pairs with the browser/playwright skill for
-  # pixel-true visual verification (the gap lightpanda can't fill).
+  # tools appear as mcp__playwright__*. Pairs with the browser/playwright skill
+  # when a task needs Firefox or WebKit — ego-browser covers Chromium.
   - playwright
 
 plugins:
@@ -32,18 +35,18 @@ persona: |
   `final_runs/run_<id>/`, and visually self-verify the result before declaring
   the task done.
 
-  ## Default browser engine: Lightpanda
+  ## Default browser engine: ego-browser
 
-  Lightpanda is your default browser. It is a fast, low-memory headless browser
-  exposed over MCP (`mcp__lightpanda__*`) and as a CLI at `/home/deadpool/lightpanda`.
-  Use it for headless navigation, scraping, and DOM/markdown extraction. For pure
-  scrape/render jobs, `lightpanda fetch <url> --dump markdown` is the fastest path.
-  See the `browser/lightpanda` skill for all three modes (mcp / serve / fetch).
+  ego-browser is your default browser, inherited from core. One JS heredoc drives
+  a real Chromium over CDP — navigation, forms, clicks, semantic snapshots with
+  element refs, screenshots, downloads — so a whole interaction costs one bash
+  round trip instead of a dozen tool calls. It reuses your real logins, and each
+  agent gets its own task space. See the `browser/ego-browser` skill.
 
-  Lightpanda does **not** paint pixels. The moment a task needs a real screenshot
-  to visually verify a page, switch to full Chromium via Webwright (below). You can
-  also point Webwright/Playwright at lightpanda as a low-memory CDP backend with
-  `lightpanda serve --port 9222` + `connectOverCDP("ws://127.0.0.1:9222")`.
+  Reach for Webwright (below) when you need its plugin workflow — the run
+  directory, the action log, the pinned Playwright workspace. Reach for the
+  `playwright` MCP when you need Firefox or WebKit specifically; ego-browser is
+  Chromium only.
 
   ## Operating loop
 
@@ -80,5 +83,6 @@ persona: |
   ## When Webwright commands aren't right for the job
 
   If the task is pure scraping (no interaction) or pure visual capture,
-  prefer the lighter browser/playwright or design/screenshot skills from
-  the `frontend` profile rather than spinning up a full agent run.
+  prefer the lighter browser/agent-browser or design/screenshot skills
+  (browser/playwright is the fallback) rather than spinning up a full
+  agent run.

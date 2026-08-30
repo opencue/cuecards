@@ -14,7 +14,7 @@ import { describe, expect, test } from "bun:test";
 import { readdirSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 
-import { SIGNALS } from "./auto-detect";
+import { DEP_PROFILE_RULES } from "./auto-detect";
 import { STACK_PROFILES, PROFILE_KEYWORDS as DISCOVER_KEYWORDS } from "../commands/discover";
 import { PROFILE_KEYWORDS as AI_KEYWORDS } from "../commands/ai";
 
@@ -36,8 +36,8 @@ describe("profile-name references resolve to real profiles", () => {
     expect(real.size).toBeGreaterThan(10);
   });
 
-  test("auto-detect SIGNALS reference only real profiles", () => {
-    const missing = [...new Set(SIGNALS.map((s) => s.profile))].filter((p) => !real.has(p));
+  test("auto-detect DEP_PROFILE_RULES reference only real profiles", () => {
+    const missing = [...new Set(DEP_PROFILE_RULES.map((r) => r.profile))].filter((p) => !real.has(p));
     expect(missing).toEqual([]);
   });
 

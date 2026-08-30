@@ -2,21 +2,21 @@
 title: "aiatelie/ai-atelie — Claude Code skill discovered by cue"
 description: "Local-first, open-source alternative to Anthropic's Claude Design. MIT-licensed, BYO agent CLI — Claude Code, Kimi, Codex, or any SDK-compatible model. Composab"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-10
 tags: [claude-code, skill, creative-media, frontend]
 ---
 
 # ✨ [aiatelie/ai-atelie](https://github.com/aiatelie/ai-atelie)
 
-**★ 6** · strong (score 5.8) · TypeScript · agent-skills, ai-agents, ai-design, bun, byok
+**★ 6** · strong (score 5.7) · TypeScript · agent-skills, ai-agents, ai-design, bun, byok
 
 > Local-first, open-source alternative to Anthropic's Claude Design. MIT-licensed, BYO agent CLI — Claude Code, Kimi, Codex, or any SDK-compatible model. Composable skills · three edit paths · designs as plain HTML/JSX/CSS folders · run locally, no cloud round-trip. Generate banners, thumbnails, websites, animations, design systems.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-05-29
+- 🗓️ Last pushed: 2026-06-03
 - 🏷️ Tags: agent-skills, ai-agents, ai-design, bun, byok, claude-code, claude-design, claude-design-alternative, coding-agents, design-systems, design-tools, figma-alternative, generative-ai, kimi-cli, local-first, open-source, prototyping, typescript, ui-generator, vibe-coding
 
 ## Best fit cue profiles

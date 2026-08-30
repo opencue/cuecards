@@ -7,6 +7,7 @@ import { appendFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { homedir } from "node:os";
 
+import { repoScopeMatcher, type RepoScopeOptions } from "./repo-scope";
 import { isEnabled as telemetryEnabled } from "./telemetry-consent";
 
 /**
@@ -69,10 +70,15 @@ function readSessionLog(since?: Date): SessionLogEntry[] {
  *   - `skill_invoked` (structured `Skill` tool_use): skill, session_id, tool_use_id
  *   - `skill_miss` (trigger matched but skill wasn't fired): session_id,
  *     prompt_redacted (first 80 chars, secret-masked), matched_skills
+ *   - `skill_gap` (self-learner — profile-self-improve.sh Stop hook): where the
+ *     active profile's skills fell short. `source:"hook"` carries cheap friction
+ *     `signals`; `source:"critic"` carries a critic-agent verdict (`skill`,
+ *     `gap_type`, `suggestion`, `confidence`). Consumed by `cue profile
+ *     self-improve`; inert to existing readers.
  */
 export interface SessionEvent {
   ts: string;
-  event: "start" | "end" | "skill_hit" | "skill_invoked" | "skill_miss";
+  event: "start" | "end" | "skill_hit" | "skill_invoked" | "skill_miss" | "skill_gap";
   profile?: string;
   agent?: "claude-code" | "codex";
   cwd?: string;
@@ -82,6 +88,13 @@ export interface SessionEvent {
   tool_use_id?: string;
   prompt_redacted?: string;
   matched_skills?: string[];
+  // skill_gap variant
+  source?: "hook" | "critic";
+  signals?: string[];
+  gap_type?: "missing-skill" | "weak-description" | "weak-body" | "profile-composition";
+  suggestion?: string;
+  confidence?: number;
+  first_prompt?: string;
 }
 
 /**
@@ -143,18 +156,35 @@ export function recordSkillUsage(profile: string, agent: "claude-code" | "codex"
   } catch { /* non-fatal */ }
 }
 
+// Process-level cache keyed by resolved file path + mtime.
+// Two computeStats() calls in the same picker prep share one read; a new
+// path (tests using XDG_CONFIG_HOME overrides) or a file write (new events
+// appended) both bust the cache automatically.
+interface EventsCache { path: string; mtimeMs: number; events: SessionEvent[] }
+let _eventsCache: EventsCache | undefined;
+
 export function readEvents(since?: Date): SessionEvent[] {
-  if (!existsSync(analyticsPath())) return [];
-  const lines = readFileSync(analyticsPath(), "utf8").split("\n").filter(Boolean);
-  const events: SessionEvent[] = [];
-  for (const line of lines) {
-    try {
-      const e = JSON.parse(line) as SessionEvent;
-      if (since && new Date(e.ts) < since) continue;
-      events.push(e);
-    } catch { /* skip malformed */ }
+  const path = analyticsPath();
+  let mtimeMs = 0;
+  try {
+    const { statSync } = require("node:fs") as typeof import("node:fs");
+    mtimeMs = statSync(path).mtimeMs;
+  } catch { /* file missing — mtimeMs stays 0 */ }
+
+  if (!_eventsCache || _eventsCache.path !== path || _eventsCache.mtimeMs !== mtimeMs) {
+    const events: SessionEvent[] = [];
+    if (mtimeMs > 0) {
+      const lines = readFileSync(path, "utf8").split("\n").filter(Boolean);
+      for (const line of lines) {
+        try { events.push(JSON.parse(line) as SessionEvent); } catch { /* skip malformed */ }
+      }
+    }
+    _eventsCache = { path, mtimeMs, events };
   }
-  return events;
+
+  const all = _eventsCache.events;
+  if (!since) return all;
+  return all.filter((e) => new Date(e.ts) >= since);
 }
 
 export interface ProfileStats {
@@ -165,15 +195,15 @@ export interface ProfileStats {
   last_used: string | null;
 }
 
-export interface ComputeStatsOptions {
+export interface ComputeStatsOptions extends RepoScopeOptions {
   since?: Date;
   /**
-   * When set, only count events whose `cwd` equals this path OR is a
-   * descendant of it. Lets the picker scope Recent to the current project
-   * subtree so launches from $HOME (auto-pinned profiles) don't squat in
-   * the Recent slots of unrelated project directories.
+   * `cwd` (inherited) scopes Recent to the repository being launched in, so
+   * launches from $HOME — or from an unrelated project — don't squat in the
+   * Recent slots here. Repository rather than raw subtree, matching how combo
+   * history and pair affinity scope: a launch in `packages/core` and one at the
+   * repo root are the same project, and Recent should say so.
    */
-  cwdPrefix?: string;
 }
 
 /**
@@ -185,12 +215,9 @@ export function computeStats(optsOrSince: Date | ComputeStatsOptions = {}): Prof
   const opts: ComputeStatsOptions = optsOrSince instanceof Date
     ? { since: optsOrSince }
     : optsOrSince;
-  const { since, cwdPrefix } = opts;
-  const matchesCwd = (cwd?: string): boolean => {
-    if (!cwdPrefix) return true;
-    if (!cwd) return false;
-    return cwd === cwdPrefix || cwd.startsWith(`${cwdPrefix}/`);
-  };
+  const { since } = opts;
+  // undefined when unscoped — then every event counts, as before.
+  const matchesCwd = repoScopeMatcher(opts) ?? ((): boolean => true);
 
   const events = readEvents(since);
   const map = new Map<string, { sessions: number; total_s: number; last: string; seenIds: Set<string> }>();

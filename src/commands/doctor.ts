@@ -18,7 +18,6 @@
 import { readFileSync, existsSync, lstatSync, readlinkSync, readdirSync } from "node:fs";
 import { readFile, writeFile, rm } from "node:fs/promises";
 import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 import { listProfiles, loadProfile } from "../lib/profile-loader";
@@ -26,22 +25,25 @@ import { listAllSkillIds } from "../lib/resolver-local";
 import { findIncompleteSkills, fetchCompanionFiles, readSourceFile } from "../lib/companion-fetch";
 import { detectMissingDependencies } from "../lib/skill-dependencies";
 import { shimInstalled, runInstall } from "./shell";
+import { shimDir, shimDirPosition } from "../lib/shim-dir";
 import { findRealClaudeBin } from "../lib/claude-binary";
-import { homedir } from "node:os";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
-const QUALITY_GATES_DIR = join(REPO_ROOT, "resources", "quality-gates");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
+const MCP_SOURCES_DIR = join(repoRoot(), "resources", "mcps", "mcps");
+const QUALITY_GATES_DIR = join(repoRoot(), "resources", "quality-gates");
 const RUNTIME_ROOT = join(process.env.HOME ?? "~", ".config", "cue", "runtime");
 
-interface Issue {
+export interface Issue {
   code: string;
   severity: "error" | "warning";
   profile: string;
   message: string;
   fix?: string;
+  runtimeDir?: string;
+  path?: string;
 }
 
 function loadAllMcpIds(): Set<string> {
@@ -53,6 +55,33 @@ function loadAllMcpIds(): Set<string> {
     } catch { /* skip */ }
   }
   return ids;
+}
+
+export function missingMcpIssue(
+  profile: string,
+  id: string,
+  registeredIds: ReadonlySet<string>,
+  sourcesDir = MCP_SOURCES_DIR,
+): Issue | null {
+  if (registeredIds.has(id)) return null;
+  const hasLocalSource =
+    /^[A-Za-z0-9._-]+$/.test(id) && existsSync(join(sourcesDir, id));
+  if (hasLocalSource) {
+    return {
+      code: "D2",
+      severity: "warning",
+      profile,
+      message: `MCP "${id}" is local-only and absent from the sanitized registry`,
+      fix: `Configure "${id}" in the user's agent MCP settings`,
+    };
+  }
+  return {
+    code: "D2",
+    severity: "error",
+    profile,
+    message: `MCP "${id}" declared but not in any registry config`,
+    fix: `Remove "${id}" from ${profile}/profile.yaml mcps section`,
+  };
 }
 
 async function checkProfile(profileName: string, allSkillIds: Set<string>, allMcpIds: Set<string>): Promise<Issue[]> {
@@ -86,15 +115,8 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
 
   // D2: MCP in profile but not in registry
   for (const id of profileMcpIds) {
-    if (!allMcpIds.has(id)) {
-      issues.push({
-        code: "D2",
-        severity: "error",
-        profile: profileName,
-        message: `MCP "${id}" declared but not in any registry config`,
-        fix: `Remove "${id}" from ${profileName}/profile.yaml mcps section`,
-      });
-    }
+    const issue = missingMcpIssue(profileName, id, allMcpIds);
+    if (issue) issues.push(issue);
   }
 
   // D4: Skill requires MCP not in profile (explicit requires_mcps + implicit
@@ -130,7 +152,9 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
               severity: "warning",
               profile: profileName,
               message: `Runtime for ${agent} may be stale (profile.yaml newer than hash)`,
-              fix: `Run \`cue launch --rematerialize\` or next launch will rebuild`,
+              fix: `Remove stale .cue-hash; next launch will rebuild`,
+              runtimeDir: dirname(hashFile),
+              path: hashFile,
             });
           }
         }
@@ -157,7 +181,9 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
                 severity: "error",
                 profile: profileName,
                 message: `Broken symlink: ${entry} → ${target} (in ${agent} runtime)`,
-                fix: `Rematerialize profile`,
+                fix: `Remove broken symlink and stale hash; next launch will rebuild`,
+                runtimeDir,
+                path: entryPath,
               });
             }
           }
@@ -206,8 +232,8 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
 
 /**
  * D9 — Activation health (environment-scoped, runs once, not per profile).
- * Verifies the claude shim is installed, the real binary resolves, and
- * ~/.local/bin precedes it on PATH. Injectable for testing.
+ * Verifies the claude shim is installed, the real binary resolves, and cue's
+ * shim dir precedes it on PATH. Injectable for testing.
  */
 export function checkActivation(
   opts: { homeDir?: string; pathDirs?: string[]; realBin?: string | null } = {},
@@ -225,7 +251,7 @@ export function checkActivation(
       code: "D9",
       severity: "warning",
       profile: PROF,
-      message: "~/.local/bin/claude shim missing or not a cue shim — `claude` won't load profiles (run `cue shell install`)",
+      message: "claude shim missing or not a cue shim — `claude` won't load profiles (run `cue shell install`)",
       fix: "cue shell install",
     });
     return issues;
@@ -244,25 +270,59 @@ export function checkActivation(
     return issues;
   }
 
-  // 3. ~/.local/bin must precede the real binary's dir on PATH (else the real
-  //    binary shadows the shim). Only meaningful when both dirs are on PATH.
-  const home = opts.homeDir ?? homedir();
-  const shimDir = join(home, ".local", "bin");
+  // 3. cue's shim dir must be on PATH, ahead of the real binary's dir.
+  //    "Absent" is its own failure now that the shims live in a directory
+  //    nothing else puts on PATH: the shim exists but never runs.
+  const dir = shimDir(opts.homeDir);
   const pathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(":");
-  const shimIdx = pathDirs.indexOf(shimDir);
-  const realDir = resolve(realBin, "..");
-  const realIdx = pathDirs.indexOf(realDir);
-  if (shimIdx >= 0 && realIdx >= 0 && shimIdx > realIdx) {
+  const position = shimDirPosition(pathDirs, realBin, dir);
+  if (position === "absent") {
     issues.push({
       code: "D9",
       severity: "error",
       profile: PROF,
-      message: `Real binary dir ${realDir} precedes ${shimDir} on PATH — the shim is shadowed`,
-      fix: "Reorder PATH so ~/.local/bin comes before the real claude/codex",
+      message: `${dir} is not on PATH — the shim is installed but never runs`,
+      fix: `Add ${dir} to the front of PATH (cue shell install writes the line for you)`,
+    });
+  } else if (position === "after") {
+    issues.push({
+      code: "D9",
+      severity: "error",
+      profile: PROF,
+      message: `Real binary dir ${resolve(realBin, "..")} precedes ${dir} on PATH — the shim is shadowed`,
+      fix: `Reorder PATH so ${dir} comes before the real claude/codex`,
     });
   }
 
   return issues;
+}
+
+export async function applyRuntimeFix(issue: Issue, runtimeRoot = RUNTIME_ROOT): Promise<boolean> {
+  if (issue.code === "D5") {
+    const hashPath = issue.path ?? join(runtimeRoot, issue.profile, "claude", ".cue-hash");
+    try {
+      await rm(hashPath, { force: true });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  if (issue.code === "D6") {
+    if (!issue.path) return false;
+    try {
+      const st = lstatSync(issue.path);
+      if (!st.isSymbolicLink()) return false;
+      await rm(issue.path, { recursive: true, force: true });
+      const runtimeDir = issue.runtimeDir ?? dirname(issue.path);
+      await rm(join(runtimeDir, ".cue-hash"), { force: true });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
 }
 
 async function applyFix(issue: Issue): Promise<boolean> {
@@ -324,16 +384,8 @@ async function applyFix(issue: Issue): Promise<boolean> {
       return false;
     }
     case "D5":
-    case "D6": {
-      // Delete stale runtime to force rebuild on next launch
-      for (const agent of ["claude", "codex"]) {
-        const runtimeDir = join(RUNTIME_ROOT, issue.profile, agent);
-        if (existsSync(runtimeDir)) {
-          await rm(runtimeDir, { recursive: true, force: true });
-        }
-      }
-      return true;
-    }
+    case "D6":
+      return applyRuntimeFix(issue);
     case "D7": {
       // Fetch missing companion files for incomplete skill
       const idMatch = issue.message.match(/Skill "([^"]+)"/);
@@ -382,7 +434,7 @@ Checks:
   D6  Broken symlink in runtime
   D7  Incomplete skill (companions declared but missing)
   D8  Quality gate declared but the .sh under resources/quality-gates/ is missing
-  D9  Activation: claude shim installed, real claude resolves, ~/.local/bin precedes it
+  D9  Activation: claude shim installed, real claude resolves, shim dir precedes it on PATH
 
 Flags:
   --fix             Auto-repair issues
@@ -555,7 +607,7 @@ async function runCliDoctor(profileName: string | null, json: boolean): Promise<
   }
 
   // Load the optimizer's CLI extraction logic
-  const SKILLS_ROOT_PATH = join(REPO_ROOT, "resources", "skills", "skills");
+  const SKILLS_ROOT_PATH = join(repoRoot(), "resources", "skills", "skills");
   const HOME_SKILLS_PATH = join(process.env.HOME ?? "~", ".claude", "skills");
 
   // Load profile to get skills

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://opencue.github.io/cuecards/sitemap.xml

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/opencue/claude-code-skills/profiles/schema.json",
+  "$id": "https://github.com/opencue/cuecards/profiles/schema.json",
   "title": "Soul Profile",
   "description": "Schema for profiles/<name>/profile.yaml — bundles skills, MCPs, and env for a Claude Code or Codex session.",
   "type": "object",
@@ -18,6 +18,38 @@
       "maxLength": 200,
       "description": "One-line description shown in `cue list` and embedded in the materialized CLAUDE.md stamp."
     },
+    "kind": {
+      "type": "string",
+      "enum": ["primary", "overlay", "internal"],
+      "default": "primary",
+      "description": "Discovery visibility. primary profiles appear in default lists; overlay profiles are opt-in extensions surfaced by matching/search; internal profiles are hidden implementation details."
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "group", "capability", "generated", "discoverability"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "group": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "capability": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "generated": { "type": "boolean" },
+        "discoverability": {
+          "type": "string",
+          "enum": ["catalogue", "search"]
+        },
+        "reviewRequired": { "type": "boolean" }
+      },
+      "description": "Provenance, semantic grouping, and picker discoverability for generated or imported profile catalogs."
+    },
     "icon": {
       "type": "string",
       "maxLength": 2,
@@ -26,6 +58,20 @@
     "iconImage": {
       "type": "string",
       "description": "Path to a PNG/JPG logo, relative to the profile dir. Rendered inline in Kitty terminals via the graphics protocol; falls back to `icon` emoji elsewhere."
+    },
+    "model": {
+      "type": "string",
+      "description": "Advisory target main-session model id (e.g. 'claude-opus-4-8'). cue can't pin the main session model (per-launch /model choice); the model-aware startup budget uses it to resolve the context window for the over-budget warning. Leaf-wins; env CUE_MODEL overrides."
+    },
+    "mcpPrune": {
+      "type": "string",
+      "enum": ["off", "profile", "all"],
+      "description": "Default non-interactive MCP prune mode at launch. off (default): keep all MCPs. profile: drop unused profile-declared MCPs. all: also drop unused global servers from the runtime .claude.json. Only ever drops MCPs no active skill needs and that aren't pinned. Leaf-wins through inheritance; most-aggressive wins across composite parts; env CUE_PRUNE_MCPS overrides."
+    },
+    "contextWindow": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Explicit context window (tokens) to budget the startup load against, when the model id alone isn't enough. Takes precedence over `model`. Leaf-wins; env CUE_CONTEXT_WINDOW overrides."
     },
     "bundles": {
       "type": "array",
@@ -84,10 +130,10 @@
           "items": {
             "oneOf": [
               { "type": "string", "minLength": 1 },
-              { "$ref": "#/$defs/AgentScopedRef" }
+              { "$ref": "#/$defs/ConditionalRef" }
             ]
           },
-          "description": "Paths relative to cue/skills/ (e.g. 'medusa/building-with-medusa')."
+          "description": "Paths relative to cue/skills/ (e.g. 'medusa/building-with-medusa'). Object form accepts optional `agents` and `when:` (cwd/env gate)."
         },
         "npx": {
           "type": "array",
@@ -100,11 +146,11 @@
       "items": {
         "oneOf": [
           { "type": "string", "minLength": 1 },
-          { "$ref": "#/$defs/AgentScopedRef" }
+          { "$ref": "#/$defs/McpRef" }
         ]
       },
       "default": [],
-      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts plain string or {id, agents} object."
+      "description": "MCP server IDs that must exist in cue/mcps/configs/. Accepts a plain string or a {id, agents?, when?, pin?} object — `when:` gates activation on a cwd/env condition; `pin: true` keeps the server through smart-prune (used directly by the agent, not via a skill)."
     },
     "plugins": {
       "type": "array",
@@ -124,6 +170,10 @@
       "type": "object",
       "additionalProperties": { "type": "string" },
       "description": "Env vars set when this profile is materialized; values may contain ${VAR} placeholders."
+    },
+    "codex_config": {
+      "type": "object",
+      "description": "Extra keys merged into the Codex runtime's config.toml alongside this profile's MCP servers. cue repoints CODEX_HOME at the materialized runtime, so the user's own ~/.codex/config.toml is never read — put sandbox_mode, sandbox_workspace_write, approval_policy, shell_environment_policy and similar here. Emitted verbatim as TOML; ignored for non-Codex agents."
     },
     "rules": {
       "type": "array",
@@ -171,6 +221,24 @@
       "default": [],
       "description": "Phase 3: Stop-hook validator scripts (relative to resources/quality-gates/) that veto 'done' if work doesn't meet the profile's bar (tests pass, lint clean, etc.)."
     },
+    "codex": {
+      "type": "object",
+      "description": "Codex-only config.toml overrides, written verbatim into the runtime config.toml on top of the inherited ~/.codex/config.toml. Use for per-profile autonomy knobs (model_reasoning_effort, approval_policy, sandbox_mode, model_auto_compact_token_limit). Keys are not validated here — Codex owns that surface; run `codex --strict-config` to catch typos. Merged key-by-key across the chain, leaf-wins.",
+      "properties": {
+        "features": {
+          "type": "object",
+          "additionalProperties": { "type": "boolean" },
+          "description": "Codex [features] flags (goals, memories, hooks, …)."
+        },
+        "hooks": {
+          "type": "object",
+          "description": "Native Codex lifecycle hooks keyed by event name (SessionStart, UserPromptSubmit, Stop, PreCompact, SessionEnd, etc.)."
+        }
+      },
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      }
+    },
     "evals": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },
@@ -197,6 +265,64 @@
         "agents": {
           "type": "array",
           "items": { "$ref": "#/$defs/AgentKind" }
+        }
+      }
+    },
+    "SkillCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "description": "cwd/env gate. has_file/has_dir: at least one must exist in cwd (has_file supports a leading '*.ext' glob). env: all named vars must be set. Checks are AND-ed.",
+      "properties": {
+        "has_file": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        },
+        "has_dir": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        },
+        "env": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 } }
+          ]
+        }
+      }
+    },
+    "ConditionalRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "description": "Agent-scoped ref with an optional `when:` activation gate. Used for skills so an entry only materializes when its cwd/env condition holds.",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        },
+        "when": { "$ref": "#/$defs/SkillCondition" }
+      }
+    },
+    "McpRef": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "description": "MCP server ref: optional `when:` activation gate plus `pin:` (smart-prune always keeps it).",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "agents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/AgentKind" }
+        },
+        "when": { "$ref": "#/$defs/SkillCondition" },
+        "pin": {
+          "type": "boolean",
+          "description": "When true, the launcher's smart-prune always keeps this MCP loaded (used by the agent directly, not via a skill)."
         }
       }
     },

@@ -2,21 +2,21 @@
 title: "raydenai/queen-protocol — Claude Code skill discovered by cue"
 description: "Queen Protocol v2.14.0 — Auto-acquire dispatch-lock from prompt-file path. Closes v2.13's adoption gap (one queen acquiring + other queen bypassing). kimi-task."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-10
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [raydenai/queen-protocol](https://github.com/raydenai/queen-protocol)
 
-**★ 1** · strong (score 5) · Shell · agent-protocol, anthropic, claude-code, claude-mesh, codex
+**★ 2** · strong (score 5.3) · Shell · agent-protocol, anthropic, claude-code, claude-mesh, codex
 
 > Queen Protocol v2.14.0 — Auto-acquire dispatch-lock from prompt-file path. Closes v2.13's adoption gap (one queen acquiring + other queen bypassing). kimi-task.sh now refuses dispatch when another queen holds the shard lock. Plus colony-watcher daemon + 10 named operator-discipline patterns from production. Workers: claude/kimi/codex/gemma4-local.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-05-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-06-05
 - 🏷️ Tags: agent-protocol, anthropic, claude-code, claude-mesh, codex, colony, cross-shard-audit, kimi, lightning-speed, local-llm, max-mode, mesh-trio, meshboard, meshterm, multi-agent, multi-queen, ollama, orchestration, queen-worker-pattern, tmux
 
 ## Best fit cue profiles

@@ -1,0 +1,75 @@
+# Page title templates for cuecards documentation and landing pages.
+# Format: "<primary keyword> | cuecards" or "<topic> — cuecards"
+# Max 60 characters. Use the first variant that fits.
+
+pages:
+  home:
+    title: "cuecards — Agent Profile Manager for Claude Code & Codex"
+    alt:   "cuecards: Per-Directory AI Agent Profiles"
+
+  getting_started:
+    title: "Getting Started with cuecards | cue-ai"
+    alt:   "Install & Use cue — Agent Profile Manager"
+
+  installation:
+    title: "Install cuecards (cue-ai) — macOS, Linux, Windows"
+    alt:   "cuecards Installation Guide"
+
+  quickstart:
+    title: "Quickstart — cuecards Agent Profile Manager"
+
+  concepts_profiles:
+    title: "Profiles — cuecards Concepts"
+    alt:   "How cue Profiles Work | cuecards"
+
+  concepts_skills:
+    title: "Skills — cuecards Concepts"
+    alt:   "Claude Code Skills with cuecards"
+
+  concepts_mcp:
+    title: "MCP Servers — cuecards Concepts"
+    alt:   "Managing MCP Servers with cue"
+
+  guide_claude_code:
+    title: "Using cuecards with Claude Code"
+    alt:   "Claude Code Profile Manager — cuecards Guide"
+
+  guide_codex:
+    title: "Using cuecards with OpenAI Codex"
+
+  guide_team_profiles:
+    title: "Sharing cue Profiles with Your Team"
+
+  guide_monorepo:
+    title: "Monorepo Profiles with cuecards"
+
+  compare_switcher:
+    title: "cuecards vs claude-code-switcher"
+    alt:   "cue vs claude-code-switcher — Comparison"
+
+  compare_dotfiles:
+    title: "cuecards vs Dotfiles for Claude Code Config"
+
+  compare_skillport:
+    title: "cuecards vs skillport — Comparison"
+
+  use_case_solo:
+    title: "cuecards for Solo Developers"
+
+  use_case_agency:
+    title: "cuecards for Agencies — Multi-Project AI Profiles"
+
+  use_case_oss:
+    title: "cuecards for Open-Source Maintainers"
+
+  use_case_enterprise:
+    title: "cuecards for Enterprise Teams"
+
+  reference_cli:
+    title: "CLI Reference — cuecards"
+
+  reference_cue_profile:
+    title: ".cue.profile File Reference — cuecards"
+
+  faq:
+    title: "FAQ — cuecards Agent Profile Manager"

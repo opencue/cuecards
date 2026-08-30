@@ -32,7 +32,7 @@ skills:
     - deployment/coolify
     - gstack/canary
     - gstack/health
-    - gstack/investigate
+    # gstack/investigate removed — duplicate of plan/investigate (inherited from core)
     - gstack/ship
     - gstack/review
     - gstack/retro
@@ -42,7 +42,7 @@ skills:
     - design/image-to-code
     - design/ui-ux-pro-max
     - design/minimalist-ui
-    - browser/playwright
+    - browser/agent-browser   # browser automation (vercel-labs/agent-browser CLI)
     - research/awesome-rust-search
     - rust/cargo-basics
     - rust/clippy-and-fmt
@@ -90,8 +90,6 @@ skills:
       skills: [pdf, docx, pptx]
     - repo: xixu-me/skills
       skills: [github-actions-docs]
-    - repo: oakoss/agent-skills
-      skills: [playwright]
     - repo: vercel/vercel-plugin
       skills: [auth]
     - repo: getsentry/sentry-for-ai
@@ -115,7 +113,8 @@ skills:
     - repo: margelo/react-native-skills
       skills: [nitro-fetch]
     - repo: jeffallan/claude-skills
-      skills: [wordpress-pro]
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [cli-developer, feature-forge, fullstack-guardian, wordpress-pro]
     - repo: mindrally/skills
       skills: [wordpress]
     - repo: jezweb/claude-skills
@@ -136,9 +135,7 @@ plugins:
   - resend@claude-plugins-official
 mcps:
   - cue-tty-watch
-  - lightpanda
   - coolify
-  - playwright
 env:
   WORDPRESS_URL: "${WORDPRESS_URL}"
   WORDPRESS_ADMIN_USER: "${WORDPRESS_ADMIN_USER}"

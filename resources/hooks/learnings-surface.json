@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/learnings-surface.sh",
+            "description": "cue learnings surfacer: inject the most recent cross-session learnings (from cue-learnings) into context at session start so the model reads them automatically. Safe no-op when none exist; disable with CUE_LEARNINGS_SURFACE_OFF=1.",
+            "id": "cue:sessionstart:learnings-surface"
+          }
+        ]
+      }
+    ]
+  }
+}

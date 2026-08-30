@@ -1,7 +1,7 @@
 /**
  * Smoke test for install.sh — proves the shell install path that every new
- * user depends on: it symlinks `cue` onto PATH, writes a working `claude`
- * shim, and `cue --version` runs through the shim dir.
+ * user depends on: it symlinks cue's commands onto PATH, writes a working
+ * `claude` shim, and `cue --version` runs through the shim dir.
  *
  * Hermetic: installs into a throwaway SHIM_DIR with a stub `authmux` on PATH so
  * install.sh's Step 5 never runs `npm install -g authmux` (no network).
@@ -24,21 +24,29 @@ const CAN_RUN =
 
 describe.skipIf(!CAN_RUN)("install.sh smoke", () => {
   let shimDir: string;
+  let cueShims: string;
   beforeEach(() => {
     shimDir = mkdtempSync(join(tmpdir(), "cue-installsh-"));
+    // Agent shims land in their own dir, separate from the `cue` symlink —
+    // ~/.local/bin belongs to the native Claude installer.
+    cueShims = mkdtempSync(join(tmpdir(), "cue-installsh-shims-"));
     // Stub authmux so `command -v authmux` short-circuits Step 5 (no npm -g).
     const stub = join(shimDir, "authmux");
     writeFileSync(stub, "#!/usr/bin/env bash\necho 0.0.0\n");
     chmodSync(stub, 0o755);
   });
-  afterEach(() => rmSync(shimDir, { recursive: true, force: true }));
+  afterEach(() => {
+    rmSync(shimDir, { recursive: true, force: true });
+    rmSync(cueShims, { recursive: true, force: true });
+  });
 
-  test("symlinks cue, writes a working claude shim, and cue --version runs through it", () => {
+  test("symlinks cue commands, writes a working claude shim, and cue --version runs through it", () => {
     const env = {
       ...process.env,
       SHIM_DIR: shimDir,
+      CUE_SHIMS: cueShims,
       CUE_DIR: REPO_ROOT,
-      PATH: `${shimDir}:${process.env.PATH ?? ""}`,
+      PATH: `${cueShims}:${shimDir}:${process.env.PATH ?? ""}`,
     };
     const res = spawnSync("bash", [join(REPO_ROOT, "install.sh"), "--yes"], {
       encoding: "utf8",
@@ -49,11 +57,16 @@ describe.skipIf(!CAN_RUN)("install.sh smoke", () => {
 
     // cue is exposed on PATH (symlink to bin/cue).
     expect(existsSync(join(shimDir, "cue"))).toBe(true);
+    expect(existsSync(join(shimDir, "cue-learnings"))).toBe(true);
 
-    // claude shim routes through cue.
-    const claudeShim = join(shimDir, "claude");
+    // The claude shim routes through cue, and lives in cue's own shim dir —
+    // never in SHIM_DIR, which on a native install holds the real binary.
+    const claudeShim = join(cueShims, "claude");
     expect(existsSync(claudeShim)).toBe(true);
-    expect(readFileSync(claudeShim, "utf8")).toContain("exec cue launch claude");
+    // Assert on `launch claude`, present in both the bare-`cue` and
+    // absolute-path invocation forms, rather than one exact spelling.
+    expect(readFileSync(claudeShim, "utf8")).toContain("launch claude");
+    expect(existsSync(join(shimDir, "claude"))).toBe(false);
 
     // `cue --version` works through the installed symlink and matches package.json.
     const pkgVersion = JSON.parse(readFileSync(join(REPO_ROOT, "package.json"), "utf8")).version;

@@ -6,12 +6,11 @@
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import { homedir } from "node:os";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const PIN_HISTORY_PATH = join(
   process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
   "cue",
@@ -35,7 +34,7 @@ function saveHistory(h: PinHistory): void {
 function getCurrentCommit(skillId: string): string | null {
   const skillDir = join(SKILLS_ROOT, skillId);
   const res = spawnSync("git", ["log", "-1", "--format=%H", "--", skillDir], {
-    cwd: join(REPO_ROOT, "resources", "skills"),
+    cwd: join(repoRoot(), "resources", "skills"),
     encoding: "utf8",
   });
   return res.status === 0 ? res.stdout.trim().slice(0, 7) : null;

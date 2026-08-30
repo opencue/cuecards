@@ -9,12 +9,24 @@ recommends:
   - frontend      # UI implementation that ships to Vercel
   - backend       # API routes / serverless functions
 skills:
+  local:
+    # vercel-labs/agent-browser — fast native Rust browser CLI (installed globally
+    # via `npm i -g agent-browser`). Ref-based automation for previewing and QA-ing
+    # Vercel deploys: open the preview URL, snapshot, click/fill, screenshot. Pairs
+    # with the preview-first deploy default below.
+    - browser/agent-browser
   # The official Vercel plugin (below) bundles these 26 skills; wiring them via
   # npx from the same repo (vercel/vercel-plugin) makes them explicit and
   # visible in the profile, not only loaded through the plugin.
   npx:
     - repo: vercel/vercel-plugin
       skills: [vercel-cli, deployments-cicd, env-vars, vercel-functions, vercel-storage, vercel-firewall, vercel-sandbox, vercel-agent, ai-sdk, ai-gateway, chat-sdk, nextjs, next-upgrade, next-forge, next-cache-components, turbopack, routing-middleware, runtime-cache, react-best-practices, shadcn, auth, bootstrap, marketplace, workflow, verification, knowledge-update]
+    # Vercel's open-source skills collection (github.com/vercel-labs/agent-skills).
+    # IDs are the SKILL.md `name:` values (several carry a vercel- prefix), NOT the
+    # folder names. vercel-react-best-practices is omitted — redundant with
+    # react-best-practices already provided by the vercel/vercel-plugin block above.
+    - repo: vercel-labs/agent-skills
+      skills: [vercel-composition-patterns, deploy-to-vercel, vercel-react-native-skills, vercel-react-view-transitions, vercel-cli-with-tokens, vercel-optimize, web-design-guidelines, writing-guidelines]
 plugins:
   # Official Vercel plugin (github.com/vercel/vercel-plugin). Bundles the hosted
   # MCP (mcp.vercel.com, OAuth), 26 skills (vercel-cli, deployments-cicd,
@@ -42,11 +54,15 @@ persona: |
     `ai-sdk`, `ai-gateway`, `nextjs`, `next-upgrade`, `turbopack`,
     `routing-middleware`, `runtime-cache`, `shadcn`, `workflow`, …
   - **Commands**: `/deploy`, `/env`, `/status`, `/bootstrap`, `/marketplace`.
+  - **Browser QA** (`agent-browser`): drive a real browser over the preview URL
+    to verify a deploy before promoting — `open`, `snapshot -i`, click/fill,
+    `screenshot`. See the `agent-browser` skill.
 
   ## Defaults
 
   - **Preview-first.** Deploy to a preview URL and verify before promoting to
-    production. `vercel` = preview, `vercel --prod` = production.
+    production (`agent-browser open <preview-url>` + `snapshot`/`screenshot`).
+    `vercel` = preview, `vercel --prod` = production.
   - **Env vars are per-environment.** Manage Development / Preview / Production
     separately via `vercel env` or the dashboard — never bake secrets into the
     build. Pull with `vercel env pull` for local dev.

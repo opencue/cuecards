@@ -11,14 +11,19 @@ export interface AgentScoped {
   agents?: AgentKind[];
 }
 
-// String form is sugar for { id: string }.
-export type MCPRef = string | (AgentScoped & { id: string });
-
 export interface SkillCondition {
   has_file?: string | string[];
   has_dir?: string | string[];
   env?: string | string[];
 }
+
+// String form is sugar for { id: string }. The object form accepts an optional
+// `when:` condition (same shape as skills) so a server only activates when the
+// cwd/env warrants it — keeping per-profile MCP schema cost off until needed.
+// `pin: true` marks an MCP the agent uses directly (not via a skill), so the
+// launcher's smart-prune never drops it. `when:` gates activation on a cwd/env
+// condition. Both are independent and may combine.
+export type MCPRef = string | (AgentScoped & { id: string; pin?: boolean; when?: SkillCondition });
 
 export type SkillRef = string | (AgentScoped & { id: string; when?: SkillCondition });
 
@@ -38,11 +43,59 @@ export interface ProfileSkills {
   // Using it will throw a SchemaViolation.
 }
 
+/** Machine-readable provenance and discovery metadata for catalog-generated profiles. */
+export interface ProfileCatalog {
+  /** Stable source identifier, e.g. `agentic-awesome-skills`. */
+  source: string;
+  /** Broad semantic domain used to group profiles in discovery surfaces. */
+  group: string;
+  /** Narrow capability within the broad group. */
+  capability: string;
+  /** True when the profile is owned by a generator rather than hand-authored. */
+  generated: boolean;
+  /** `search` keeps large generated catalogs out of the empty picker view. */
+  discoverability: "catalogue" | "search";
+  /** True when one or more assignments need a human taxonomy decision. */
+  reviewRequired?: boolean;
+}
+
+/**
+ * Default MCP prune mode applied at launch when no `CUE_PRUNE_MCPS` env override
+ * is set. `off` keeps all MCPs (fail-open, the global default); `profile` drops
+ * unused profile-declared MCPs; `all` also drops unused global servers from the
+ * runtime .claude.json. Leaf-wins through single inheritance; most-aggressive
+ * wins across composite parts (off < profile < all). Pruning only ever drops
+ * MCPs no active skill needs and that aren't pinned, so a higher mode is safe.
+ */
+export type McpPruneMode = "off" | "profile" | "all";
+
+/** How prominently a profile appears in human-facing discovery surfaces. */
+export type ProfileKind = "primary" | "overlay" | "internal";
+
 export interface Profile {
   name: string;
   description: string;
+  catalog?: ProfileCatalog;
+  /** Primary profiles lead discovery; overlays are opt-in extensions. */
+  kind?: ProfileKind;
   icon?: string;
   iconImage?: string;
+  /** Default non-interactive prune mode; `CUE_PRUNE_MCPS` overrides per launch. */
+  mcpPrune?: McpPruneMode;
+  /**
+   * Target main-session model id (e.g. "claude-opus-4-8"). Advisory only — cue
+   * can't pin the main session model (that's a per-launch `/model` choice) — but
+   * the model-aware startup budget (lib/token-budget.ts) uses it to resolve the
+   * context window so the over-budget warning knows what window to size against.
+   * Leaf-wins through inheritance. Env `CUE_MODEL` overrides per launch.
+   */
+  model?: string;
+  /**
+   * Explicit context window (tokens) to budget the startup load against, when
+   * the model id alone isn't enough (custom/long-context deployments). Takes
+   * precedence over `model`. Leaf-wins; env `CUE_CONTEXT_WINDOW` overrides.
+   */
+  contextWindow?: number;
   agents?: AgentKind[];
   inherits?: string | string[];
   // Companion profiles surfaced at `cue use` time as suggestions. Activating
@@ -81,6 +134,13 @@ export interface Profile {
   mcps?: MCPRef[];
   plugins?: PluginRef[];
   env?: Record<string, string>;
+  // Extra keys merged into the Codex runtime's config.toml alongside the
+  // profile's MCP servers. cue repoints CODEX_HOME at the materialized runtime,
+  // so a user's own ~/.codex/config.toml is never read — anything Codex needs
+  // beyond MCP servers (sandbox_mode, sandbox_workspace_write, approval_policy,
+  // shell_environment_policy) has to come through here. Values are emitted
+  // verbatim as TOML. Ignored for non-Codex agents. Shallow merge, later wins.
+  codex_config?: Record<string, unknown>;
   rules?: string[];
   commands?: string[];
   hooks?: string[];
@@ -110,12 +170,34 @@ export interface Profile {
   // "for task X this profile should be able to handle it". `cue eval-behavior`
   // checks structural fit.
   evals?: string[];
+  // Codex-only `config.toml` overrides. cue redirects CODEX_HOME at the runtime
+  // dir, so the runtime config.toml is the only one Codex reads; keys here are
+  // written into it verbatim, on top of the inherited ~/.codex/config.toml.
+  // Use it to pin autonomy knobs per profile (`model_reasoning_effort`,
+  // `approval_policy`, `sandbox_mode`, `model_auto_compact_token_limit`).
+  codex?: CodexProfileConfig;
   // Phase 5: Skill router overrides — hand-tuned rows the auto-built router
   // can't (or shouldn't) produce. Merged into the materialized CLAUDE.md
   // router section under a "Skill overrides (manual)" sub-section so it's
   // obvious which rows are author-edited vs auto-parsed. Use sparingly —
   // the auto-router covers most cases.
   persona_routing?: PersonaRoutingEntry[];
+}
+
+/** A value a profile may set for a top-level Codex `config.toml` key. */
+export type CodexScalar = string | number | boolean;
+
+/**
+ * A profile's `codex:` block. Keys are written into the runtime `config.toml`
+ * verbatim, so cue needs no allowlist tracking Codex's config surface (Codex's
+ * own `--strict-config` is what catches typos). `features` is special-cased
+ * because it renders as a `[features]` table instead of a top-level key.
+ */
+export interface CodexProfileConfig {
+  features?: Record<string, boolean>;
+  /** Native Codex lifecycle hooks, rendered as a top-level TOML inline table. */
+  hooks?: Record<string, unknown>;
+  [key: string]: CodexScalar | Record<string, unknown> | undefined;
 }
 
 /**
@@ -135,11 +217,20 @@ export interface PersonaRoutingEntry {
 }
 
 // In the resolved (post-inherit) form every ref is normalized to its object shape.
-export interface ResolvedMCP { id: string; agents?: AgentKind[]; }
+export interface ResolvedMCP { id: string; agents?: AgentKind[]; pin?: boolean; when?: SkillCondition; }
 export interface ResolvedSkill { id: string; agents?: AgentKind[]; when?: SkillCondition; }
 export interface ResolvedPlugin { id: string; agents?: AgentKind[]; }
 
+/**
+ * A skill the project loadout excluded from the runtime skills dir. The
+ * materializer renders these into one generated index skill
+ * (`cue-deferred-skills`) so the agent can still discover and load them on
+ * demand — deferral is "defer, not drop".
+ */
+export interface DeferredSkillEntry { id: string; description: string; path: string; }
+
 export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plugins"> {
+  kind: ProfileKind;
   agents: AgentKind[];
   skills: {
     local: ResolvedSkill[];
@@ -148,6 +239,7 @@ export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plug
   mcps: ResolvedMCP[];
   plugins: ResolvedPlugin[];
   env: Record<string, string>;
+  codexConfig: Record<string, unknown>;
   rules: string[];
   commands: string[];
   hooks: string[];
@@ -162,6 +254,9 @@ export interface ResolvedProfile extends Omit<Profile, "skills" | "mcps" | "plug
   conflicts: string[];
   inheritanceChain: string[];
   personaRouting: PersonaRoutingEntry[];
+  /** Set at launch by the project loadout; absent on a full load. Part of the
+   *  materializer content hash, so a loadout change rebuilds the runtime. */
+  deferredSkills?: DeferredSkillEntry[];
 }
 
 export interface LinkPlan {

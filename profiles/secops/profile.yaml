@@ -40,13 +40,15 @@ skills:
       skills: [ctf-osint]
     - repo: davila7/claude-code-templates
       skills: [red-team-tools-and-methodology]
+    # Discovered 2026-06-08: CI guardrail for prompt-injection paths in agentic workflows.
+    - repo: CheekyCodexConjurer/prompttaint-ci
+      skills: [prompttaint-ci]
 plugins:
   - claude-mem@thedotmack
   - oh-my-claudecode@omc
   - resend@claude-plugins-official
 mcps:
   - cue-tty-watch
-  - lightpanda
   - agentshield
   - mitre-attack
   - cve-search

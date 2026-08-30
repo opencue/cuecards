@@ -13,6 +13,7 @@ set -euo pipefail
 payload="$(cat -)"
 log_dir="${HOME}/.config/cue"
 log="${log_dir}/analytics.jsonl"
+journal="${log_dir}/skill-resolve.jsonl"
 mkdir -p "$log_dir"
 
 # Extract fields from payload — best-effort, no jq.
@@ -72,6 +73,8 @@ while IFS= read -r skill; do
   [[ -z "$skill" ]] && continue
   printf '{"ts":"%s","event":"skill_hit","profile":"%s","agent":"%s","cwd":"%s","skill":"%s","session_id":"%s","first_prompt":"%s","source":"hook"}\n' \
     "$ts" "$profile" "$agent" "$cwd" "$skill" "$session_id" "$first_prompt" >> "$log"
+  printf '{"ts":"%s","id":"%s","cwd":"%s","profile":"%s","stage":"loaded"}\n' \
+    "$ts" "$skill" "$cwd" "$profile" >> "$journal"
 done <<< "$skills"
 
 exit 0

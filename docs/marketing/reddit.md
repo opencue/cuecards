@@ -22,7 +22,7 @@ The problem: Claude Code loads every skill globally, but I work on ~6 projects
 with different stacks (Rust, Next.js, FastAPI, etc.). I don't want my Rust skills
 loaded when I'm in a marketing project. Wastes context tokens.
 
-What cue does: per-cwd profile resolution. A `.cue-profile` file (one word) in
+What cue does: per-cwd profile resolution. A `.cue.profile` file (one word) in
 your project root tells cue which profile to materialize. cue then writes a
 per-profile CLAUDE_CONFIG_DIR with just that profile's skills/MCPs/plugins and
 execs the real claude binary.

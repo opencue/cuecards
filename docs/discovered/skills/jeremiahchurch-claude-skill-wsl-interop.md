@@ -2,19 +2,19 @@
 title: "JeremiahChurch/claude-skill-wsl-interop — Claude Code skill discovered by cue"
 description: "Claude Code skill for seamless WSL/Windows interoperability — path conversion, SSH agent, clipboard, filesystem quirks"
 layout: page
-updated: 2026-06-03
+updated: 2026-06-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [JeremiahChurch/claude-skill-wsl-interop](https://github.com/JeremiahChurch/claude-skill-wsl-interop)
 
-**★ 16** · exceptional (score 10.6)
+**★ 16** · exceptional (score 11.8)
 
 > Claude Code skill for seamless WSL/Windows interoperability — path conversion, SSH agent, clipboard, filesystem quirks
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 16 stars
 - 🗓️ Last pushed: 2026-06-02

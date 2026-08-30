@@ -15,6 +15,7 @@ import { join } from "node:path";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { loadProfile } from "../lib/profile-loader";
 import { configDir } from "../lib/config-paths";
+import { countProfileSkills } from "../lib/profile-capabilities";
 
 interface InspectResult {
   profile: string;
@@ -100,7 +101,7 @@ export async function run(args: string[]): Promise<number> {
   const out: InspectResult = {
     profile: resolved.profile,
     source: resolved.source,
-    skills: profile.skills.local.length + profile.skills.npx.length,
+    skills: countProfileSkills(profile),
     mcps: profile.mcps.length,
     plugins: profile.plugins.length,
     runtimeDir,

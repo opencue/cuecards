@@ -1,6 +1,6 @@
 ---
 title: "almightyYantao/it-iai — Claude Code skill discovered by cue"
-description: "Internal one-click deploy platform. Tell Claude "deploy this" → SSO-protected HTTPS URL in 3 min. Auto-provisions per-project Postgres/Redis/S3."
+description: "Internal one-click deploy platform. Tell Claude \"deploy this\" → SSO-protected HTTPS URL in 3 min. Auto-provisions per-project Postgres/Redis/S3."
 layout: page
 updated: 2026-05-26
 tags: [claude-code, skill, backend]

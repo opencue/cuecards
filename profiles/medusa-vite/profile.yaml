@@ -10,10 +10,17 @@ conflicts:
   - medusa-next            # one Medusa storefront framework per project
   - designer-medusa-next   # same conflict via the designer variant
 skills:
-  local: []   # Frontend essentials (design/*, browser/playwright) now via web-frontend-base
+  local: []   # Frontend essentials (design/*, browser/agent-browser) now via web-frontend-base
+  npx:
+    - repo: DeckardGer/tanstack-agent-skills
+      pin: git@0e8bcdc6af4959739e0f6a2dfb35dc70d513940a
+      skills:
+        - tanstack-integration-best-practices
+        - tanstack-query-best-practices
+        - tanstack-router-best-practices
+        - tanstack-start-best-practices
 mcps:
   - coolify     # inherited from medusa-dev, listed for clarity
-  - playwright
 plugins: []
 persona: |
   You are a Medusa v2 + Vite + TanStack storefront engineer. You picked
@@ -41,40 +48,7 @@ persona: |
 
   ## Medusa JS SDK setup with TanStack
 
-  Create one SDK instance for the app:
-
-  ```ts
-  // src/lib/medusa.ts
-  import Medusa from "@medusajs/js-sdk"
-  export const sdk = new Medusa({
-    baseUrl: import.meta.env.VITE_MEDUSA_BACKEND_URL,
-    publishableKey: import.meta.env.VITE_MEDUSA_PUBLISHABLE_KEY,
-  })
-  ```
-
-  In a router loader:
-
-  ```ts
-  // src/routes/products.$handle.tsx
-  export const Route = createFileRoute("/products/$handle")({
-    loader: ({ params }) => sdk.store.product.retrieve(params.handle),
-    component: ProductDetail,
-  })
-  function ProductDetail() {
-    const product = Route.useLoaderData()
-    return <ProductCard product={product} />
-  }
-  ```
-
-  In a mutation component (TanStack Query):
-
-  ```ts
-  const addLine = useMutation({
-    mutationFn: (variantId: string) =>
-      sdk.store.cart.createLineItem(cartId, { variant_id: variantId, quantity: 1 }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] }),
-  })
-  ```
+  See `playbooks/medusa-dev-workflow.md` for the SDK instance, router loader, and mutation examples.
 
   ## Region resolution
 
@@ -152,7 +126,7 @@ persona: |
   After non-trivial storefront work: run `vite dev`, screenshot the
   route, confirm region pricing renders, confirm the loader pending
   state shows on slow networks, confirm cart flow end-to-end. The
-  screenshot + playwright skills are the canonical tools.
+  screenshot + agent-browser skills are the canonical tools.
 
   ## Out of scope (route to a different profile)
 

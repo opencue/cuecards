@@ -16,6 +16,8 @@
 import { readdirSync } from "node:fs";
 import { basename, extname } from "node:path";
 
+import { DEP_PROFILE_RULES, type DetectionResultV2 } from "./auto-detect";
+
 export interface CompanionSignal {
   /** Companion profile to surface in the combine multiselect. */
   profile: string;
@@ -137,4 +139,37 @@ export function detectCompanions(input: CompanionDetectInput): CompanionSignal[]
       reason: reasons.join(", "),
     }))
     .sort((a, b) => b.confidence - a.confidence || a.profile.localeCompare(b.profile));
+}
+
+/**
+ * Floor applied to dep-detected service companions. In the *main picker* a
+ * service dep deliberately sits below the auto-pick line (it must never
+ * hijack Enter), but in the combine multiselect a direct package.json
+ * dependency is a strong "you'll want this alongside" signal — and a
+ * pre-checked row costs one keystroke to drop. 0.75 clears the picker's
+ * COMBINE_AUTO_CHECK_CONFIDENCE (0.7) so these rows start checked.
+ */
+const SERVICE_COMPANION_CONF = 0.75;
+
+/**
+ * Convert dep-based profile detections (see `DEP_PROFILE_RULES`) into combine
+ * companions: a repo with `stripe` in package.json gets the stripe profile
+ * offered — pre-checked — when the user picks any primary. Only rules marked
+ * `companion: true` qualify (primary stacks like react-native are excluded),
+ * and only profiles installed in this cue install survive.
+ */
+export function serviceCompanions(
+  detections: ReadonlyArray<DetectionResultV2>,
+  knownProfiles: ReadonlySet<string>,
+): CompanionSignal[] {
+  const eligible = new Set(
+    DEP_PROFILE_RULES.filter((r) => r.companion === true).map((r) => r.profile),
+  );
+  return detections
+    .filter((d) => eligible.has(d.profile) && knownProfiles.has(d.profile))
+    .map((d) => ({
+      profile: d.profile,
+      confidence: Math.max(d.confidence, SERVICE_COMPANION_CONF),
+      reason: d.reasons.join(", "),
+    }));
 }

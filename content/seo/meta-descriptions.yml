@@ -1,0 +1,56 @@
+# Meta-descriptions for cuecards pages.
+# Max 155 characters. Front-load the primary benefit.
+
+pages:
+  home: >
+    cuecards pins an AI agent profile to each directory. Claude Code, Codex
+    & 8 more agents load only that project's skills + MCPs. npm i -g cue-ai
+
+  getting_started: >
+    Install cue-ai and pin your first profile in under 5 minutes. Works with
+    Claude Code, Codex, Cursor, and 7 more AI coding agents. Free, MIT,
+    no telemetry.
+
+  installation: >
+    Step-by-step install guide for cuecards on macOS, Linux, WSL2, and
+    Windows. npm install -g cue-ai or one-line curl installer.
+
+  concepts_profiles: >
+    A cue profile declares which skills, MCPs, and plugins to load for a
+    project type. Profiles inherit from core; compose with + for hybrid setups.
+
+  concepts_skills: >
+    cue skills are Markdown files that give AI agents task-specific knowledge.
+    Ships 110+ skills. Scoped per profile — irrelevant skills never load.
+
+  concepts_mcp: >
+    cue loads only the MCP servers in the active profile — no global sprawl.
+    Each project's claude sees exactly the servers it needs.
+
+  guide_claude_code: >
+    Use cuecards with Claude Code to scope skills, MCPs, and plugins
+    per-project. Cut per-message token cost 10–25× vs a global ~/.claude
+    install.
+
+  guide_team_profiles: >
+    Commit a profiles/ directory to your repo and share cue profiles with
+    your team. Everyone gets the same AI tools for the project, no manual
+    config.
+
+  compare_switcher: >
+    cuecards vs claude-code-switcher: cue adds skill + plugin isolation and
+    inheritance. The switcher handles MCP/auth config only. Side-by-side
+    comparison.
+
+  compare_dotfiles: >
+    Why cuecards beats dotfiles for Claude Code config: per-directory
+    isolation, inheritance, and one-command install vs manual symlinks.
+
+  use_case_agency: >
+    Agencies can give each client project its own cue profile — right skills,
+    MCPs, and persona loaded automatically. No cross-project contamination.
+
+  faq: >
+    Common questions about cuecards: what it is, how to install it, what
+    .cue.profile does, how it reduces token costs, and how it compares to
+    alternatives.

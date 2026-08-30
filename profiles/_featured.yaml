@@ -15,6 +15,15 @@
 featured:
   # --- focused workflow profiles ---
   - improver   # 📈 plan → rank by ROI → goal-with-a-check → improve existing repos
+  - headroom   # 🪶 context compression — 60–95% fewer tokens (MCP tools + full Claude-traffic wrap)
+  - gstack     # 🏭 58-role virtual engineering team: ship/deploy, design & real-browser QA, planning, safety rails
+  # Featured is the right home for gstack specifically because it is a
+  # WORKFLOW profile, not a domain one. The generic repo→profile matcher
+  # (lib/profile-match) now covers all 85 profiles, but it can only match what
+  # a directory reveals about itself — a `.urdf` says "robotics", a
+  # `Cargo.toml` says "rust". Nothing on disk says "I want role-routed
+  # engineering", so gstack scored 0.27 at rank #6 across the test repos.
+  # Always-available is the honest mechanism for a profile the repo can't ask for.
   # --- consolidation target: the 8 (appear once created) ---
   - commerce
   - growth

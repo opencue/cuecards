@@ -145,14 +145,14 @@ mcps: []
 
 ```
 cue auto-detect              → print what would be picked and why
-cue auto-detect --apply      → write .cue-profile with the detected profile
+cue auto-detect --apply      → write .cue.profile with the detected profile
 cue config set auto-detect true  → enable as fallback in resolve chain
 ```
 
 ### Resolve Chain (updated)
 
 1. `--cue-profile` flag (explicit override)
-2. `.cue-profile` file (walk up to $HOME)
+2. `.cue.profile` file (walk up to $HOME)
 3. **Auto-detect** (if enabled) — scan cwd for signals
 4. Global default (`~/.config/cue/default-profile`)
 5. TUI picker
@@ -526,7 +526,7 @@ cd ~/new-project && cue init
 
    Pick [1-3], or 'n' for new profile, or 'skip':
    ```
-4. **Pin** — write `.cue-profile` with the chosen profile
+4. **Pin** — write `.cue.profile` with the chosen profile
 5. **Optional** — offer to create a new profile if no good match
 
 ### Detection Signals (weighted)

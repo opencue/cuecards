@@ -48,6 +48,32 @@ async function toWebRequest(req: IncomingMessage, origin: string): Promise<Reque
 async function writeWebResponse(res: Response, out: ServerResponse): Promise<void> {
   const headers: Record<string, string> = {};
   res.headers.forEach((v, k) => { headers[k] = v; });
+
+  // Streaming bodies (Server-Sent Events) must be piped chunk-by-chunk, not
+  // buffered — `await res.arrayBuffer()` on a never-ending stream would hang
+  // forever and the client would never see an event.
+  const isStream = (headers["content-type"] ?? "").includes("text/event-stream");
+  if (isStream && res.body) {
+    out.writeHead(res.status, headers);
+    out.flushHeaders();
+    const reader = res.body.getReader();
+    // Client disconnect → cancel the reader so the stream's interval timers stop.
+    const onClose = () => { void reader.cancel().catch(() => { /* already gone */ }); };
+    out.on("close", onClose);
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        out.write(Buffer.from(value));
+      }
+    } catch { /* client went away mid-write */ }
+    finally {
+      out.off("close", onClose);
+      out.end();
+    }
+    return;
+  }
+
   out.writeHead(res.status, headers);
   const buf = Buffer.from(await res.arrayBuffer());
   out.end(buf);

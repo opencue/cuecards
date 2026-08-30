@@ -12,16 +12,21 @@ import { fileURLToPath } from "node:url";
 
 import { createHandler } from "./dashboard-server";
 
-// Sibling test files set CUE_PROFILES_DIR / SOUL_PROFILES_DIR to a temp dir;
-// clear any leak so the dashboard resolves the repo's real profiles/ tree.
-beforeEach(() => {
-  delete process.env.CUE_PROFILES_DIR;
-  delete process.env.SOUL_PROFILES_DIR;
-});
-
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const TEST_PROFILE = "dash-merge-test";
 const TEST_DIR = join(REPO_ROOT, "profiles", TEST_PROFILE);
+
+// Sibling test files set CUE_PROFILES_DIR / SOUL_PROFILES_DIR to a temp dir;
+// clear any leak so the dashboard resolves the repo's real profiles/ tree.
+// Also clean a leftover TEST_DIR up front: the save test expects a clean slate
+// (first save → created), so a dir left behind by an interrupted prior run
+// would make the first save return 400 "already exists" and fail. afterAll
+// alone doesn't cover that — a crashed run never reaches it. (race fix)
+beforeEach(() => {
+  delete process.env.CUE_PROFILES_DIR;
+  delete process.env.SOUL_PROFILES_DIR;
+  rmSync(TEST_DIR, { recursive: true, force: true });
+});
 
 function post(path: string, body: unknown): Promise<Response> {
   const handler = createHandler();

@@ -111,7 +111,7 @@ cd ~/Documents/some-project
 cue use <profile>   # pins this profile for this cwd
 ```
 
-Or commit a `.cue-profile` file in each project (repo-level pin, survives
+Or commit a `.cue.profile` file in each project (repo-level pin, survives
 the move).
 
 ### 6. Verify
@@ -129,5 +129,5 @@ bash ~/Documents/cue/resources/skills/skills/meta/smart-loader/scripts/smart-loo
 - **Submodule not initialized.** Catalog is empty / smart-lookup returns
   nothing. Fix: `cd resources/skills && git submodule update --init --recursive`.
 - **Profile pin to wrong path.** Old machine's pin file references the
-  old `$HOME`. Re-pin per project or use `.cue-profile`.
+  old `$HOME`. Re-pin per project or use `.cue.profile`.
 - **direnv prompts on every `cd`.** Run `direnv allow` once per shop.

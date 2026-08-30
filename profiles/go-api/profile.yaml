@@ -24,4 +24,7 @@ skills:
     # samber's triple-pack covers code style, perf, and design patterns end-to-end (~11K combined installs).
     - repo: samber/cc-skills-golang
       skills: [golang-code-style, golang-performance, golang-design-patterns]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [golang-pro]
 mcps: []

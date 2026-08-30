@@ -253,6 +253,19 @@ export function clearKittyImagesSequence(): string {
 }
 
 /**
+ * Build the escape sequence to delete a SINGLE Kitty image by its id, leaving
+ * every other placement on screen untouched. Used by the launch loader to tear
+ * down only its own logo (id assigned by the caller) without nuking images the
+ * picker may have left on the graphics layer.
+ *
+ * `a=d, d=i, i=<id>` = delete placements for image <id>. tmux-wrapped when needed.
+ */
+export function clearKittyImageByIdSequence(imageId: number): string {
+  const seq = `\x1b_Ga=d,d=i,i=${imageId},q=2\x1b\\`;
+  return isInsideTmux() ? tmuxPassthrough(seq) : seq;
+}
+
+/**
  * Write the clear-images sequence to stdout. Safe to call unconditionally —
  * non-Kitty terminals ignore unknown APC sequences.
  */

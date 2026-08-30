@@ -94,10 +94,10 @@ describe("profileFromConfigDir", () => {
 });
 
 describe("profileFromCwdPin", () => {
-  test("returns the first line of .cue-profile when present", () => {
+  test("returns the first line of .cue.profile when present", () => {
     const dir = mkdtempSync(join(tmpdir(), "cue-pin-test-"));
     try {
-      writeFileSync(join(dir, ".cue-profile"), "skill-writer+ecc\n# comment line\n");
+      writeFileSync(join(dir, ".cue.profile"), "skill-writer+ecc\n# comment line\n");
       expect(profileFromCwdPin(dir)).toBe("skill-writer+ecc");
     } finally {
       rmSync(dir, { recursive: true, force: true });
@@ -108,7 +108,7 @@ describe("profileFromCwdPin", () => {
     const dir = mkdtempSync(join(tmpdir(), "cue-pin-test-"));
     try {
       expect(profileFromCwdPin(dir)).toBeNull();
-      writeFileSync(join(dir, ".cue-profile"), "");
+      writeFileSync(join(dir, ".cue.profile"), "");
       expect(profileFromCwdPin(dir)).toBeNull();
     } finally {
       rmSync(dir, { recursive: true, force: true });

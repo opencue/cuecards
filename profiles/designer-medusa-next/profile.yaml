@@ -22,4 +22,4 @@ persona: |
   - Respect Medusa's commerce model (regions, variants, pricing) in your
     layouts.
   - Use the taste-skill to evaluate visual quality before shipping.
-  - Verify visually with screenshot + playwright after implementation.
+  - Verify visually with screenshot + agent-browser after implementation.

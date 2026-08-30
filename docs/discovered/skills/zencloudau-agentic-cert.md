@@ -2,21 +2,21 @@
 title: "ZenCloudAU/agentic-cert — Claude Code skill discovered by cue"
 description: "Agentic AI certification study hub for Claude, GitHub, architecture foundations, practice questions, and cross-certification learning paths."
 layout: page
-updated: 2026-06-03
+updated: 2026-06-18
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [ZenCloudAU/agentic-cert](https://github.com/ZenCloudAU/agentic-cert)
 
-**★ 1** · potential (score 4.2) · HTML · agentic-ai, ai-assisted-delivery, ai-certification, certification, claude
+**★ 1** · potential (score 4) · HTML · agentic-ai, ai-assisted-delivery, ai-certification, certification, claude
 
 > Agentic AI certification study hub for Claude, GitHub, architecture foundations, practice questions, and cross-certification learning paths.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-01
+- 🗓️ Last pushed: 2026-06-10
 - 🏷️ Tags: agentic-ai, ai-assisted-delivery, ai-certification, certification, claude, enterprise-architecture, github, learning
 
 ## Best fit cue profiles

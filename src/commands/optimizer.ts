@@ -8,18 +8,17 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 
 import { listProfiles } from "../lib/profile-loader";
 import { isKittyTerminal, transmitKittyImage, kittyPlaceholderLabel } from "../lib/kitty-image";
 import { getSkillIcon, getMcpIcon, getRepoIcon, getCliIcon } from "../lib/brand-icons";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const HOME_SKILLS = join(homedir(), ".claude", "skills");
 
 // ---------------------------------------------------------------------------
@@ -69,7 +68,7 @@ const KNOWN_CLIS = new Set([
   "release-plz", "typos", "cargo-chef", "cargo-msrv", "cargo-readme",
   "maturin", "napi", "uniffi-bindgen", "bindgen", "cbindgen",
   "probe-rs", "cargo-embed", "cargo-binutils", "chisel",
-  "chromium", "chrome", "google-chrome", "microsoft-edge",
+  "chromium", "chrome", "google-chrome", "microsoft-edge", "ego-browser",
   "openssl", "ssh", "ncat", "netcat", "socat",
   "splunk", "elastic", "kibana", "logstash",
   "peepdf", "pdfid", "pdf-parser", "olevba", "oletools",
@@ -604,7 +603,7 @@ Examples:
     if (repoSkillMap.size > 0 || localCount > 0) {
       process.stdout.write(`│\n│   ┌─ 🐙 Sources\n`);
       if (localCount > 0) {
-        process.stdout.write(`│   │  📁 opencue/claude-code-skills (${localCount} skills)\n`);
+        process.stdout.write(`│   │  📁 opencue/cuecards (${localCount} skills)\n`);
       }
       for (const [repo, count] of [...repoSkillMap.entries()].sort((a, b) => b[1] - a[1])) {
         let repoIconStr = "";

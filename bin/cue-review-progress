@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# cue-review-progress — emit live code-review progress events to a tail-able JSONL
+# so `cue-review-watch` (or a dashboard panel) can show what a reviewer is doing
+# in REAL TIME instead of an opaque spinner. No external deps.
+#
+# Any reviewer (the auto-review Stop hook, a code-reviewer subagent, /ship Step 9,
+# a review workflow) appends one event per file / dimension / finding. The shared
+# schema is the contract — see docs/review-visibility.md.
+#
+# Storage: ~/.config/cue/review-progress/<id>.jsonl   (append-only)
+#          ~/.config/cue/review-progress/latest        (pointer file holding <id>)
+#
+# Event schema (one JSON object per line):
+#   ts        ISO-8601 UTC (auto)
+#   id        review id
+#   kind      start | file | dim | finding | note | end
+#   file      path under review            (file/dim/finding)
+#   dim       dimension/lens being checked (dim/finding)
+#   severity  CRITICAL|HIGH|MEDIUM|LOW     (finding)
+#   title     short text                   (finding/note/start/end)
+#   detail    longer text                  (optional)
+#
+# Usage:
+#   cue-review-progress start  [--id <id>] [--label <text>] [--files <n>]   # prints id
+#   cue-review-progress emit   [--id <id>] --kind <file|dim|finding|note> \
+#                              [--file <p>] [--dim <d>] [--severity <S>] \
+#                              [--title <t>] [--detail <x>]
+#   cue-review-progress end    [--id <id>] [--summary <text>]
+#   cue-review-progress path   [--id <id>]        # print the jsonl path
+#   cue-review-progress latest                    # print current latest id
+set -euo pipefail
+
+DIR="${XDG_CONFIG_HOME:-$HOME/.config}/cue/review-progress"
+mkdir -p "$DIR"
+
+# JSON string escape: drop C0 control chars (a raw tab/newline breaks the line),
+# then escape backslash and double-quote.
+esc() { printf '%s' "${1:-}" | tr -d '\000-\037' | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+now() { date -u +%Y-%m-%dT%H:%M:%S.000Z; }
+
+resolve_id() { # $1 = explicit id (may be empty)
+  if [[ -n "${1:-}" ]]; then printf '%s' "$1"; return; fi
+  if [[ -r "$DIR/latest" ]]; then head -1 "$DIR/latest"; return; fi
+  printf ''
+}
+
+cmd="${1:-}"; shift || true
+ID="" KIND="" FILE="" DIM="" SEV="" TITLE="" DETAIL="" LABEL="" FILES="" SUMMARY=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --id)       ID="$2"; shift 2 ;;
+    --kind)     KIND="$2"; shift 2 ;;
+    --file)     FILE="$2"; shift 2 ;;
+    --dim)      DIM="$2"; shift 2 ;;
+    --severity) SEV="$2"; shift 2 ;;
+    --title)    TITLE="$2"; shift 2 ;;
+    --detail)   DETAIL="$2"; shift 2 ;;
+    --label)    LABEL="$2"; shift 2 ;;
+    --files)    FILES="$2"; shift 2 ;;
+    --summary)  SUMMARY="$2"; shift 2 ;;
+    *) echo "cue-review-progress: unknown flag $1" >&2; exit 1 ;;
+  esac
+done
+
+append() { # $1 = full json object (without trailing newline)
+  printf '%s\n' "$1" >> "$DIR/$RID.jsonl"
+}
+
+case "$cmd" in
+  start)
+    RID="${ID:-rev-$(date -u +%Y%m%dT%H%M%SZ)-$$}"
+    printf '%s' "$RID" > "$DIR/latest"
+    : > "$DIR/$RID.jsonl"
+    append "$(printf '{"ts":"%s","id":"%s","kind":"start","title":"%s","detail":"%s"}' \
+      "$(now)" "$(esc "$RID")" "$(esc "$LABEL")" "$(esc "$FILES")")"
+    printf '%s\n' "$RID"
+    ;;
+  emit)
+    RID="$(resolve_id "$ID")"
+    [[ -z "$RID" ]] && { echo "cue-review-progress emit: no review id (run 'start' first or pass --id)" >&2; exit 1; }
+    case "$KIND" in
+      file|dim|finding|note) ;;
+      "") echo "cue-review-progress emit: --kind required (file|dim|finding|note)" >&2; exit 1 ;;
+      *)  echo "cue-review-progress emit: invalid --kind '$KIND'" >&2; exit 1 ;;
+    esac
+    append "$(printf '{"ts":"%s","id":"%s","kind":"%s","file":"%s","dim":"%s","severity":"%s","title":"%s","detail":"%s"}' \
+      "$(now)" "$(esc "$RID")" "$KIND" "$(esc "$FILE")" "$(esc "$DIM")" "$(esc "$SEV")" "$(esc "$TITLE")" "$(esc "$DETAIL")")"
+    ;;
+  end)
+    RID="$(resolve_id "$ID")"
+    [[ -z "$RID" ]] && exit 0
+    append "$(printf '{"ts":"%s","id":"%s","kind":"end","title":"%s"}' \
+      "$(now)" "$(esc "$RID")" "$(esc "$SUMMARY")")"
+    ;;
+  path)
+    RID="$(resolve_id "$ID")"; [[ -z "$RID" ]] && { echo "no review yet" >&2; exit 1; }
+    printf '%s\n' "$DIR/$RID.jsonl"
+    ;;
+  latest)
+    [[ -r "$DIR/latest" ]] && head -1 "$DIR/latest" || { echo "no review yet" >&2; exit 1; }
+    ;;
+  ""|-h|--help|help)
+    sed -n '2,/^set -e/p' "$0" | sed 's/^# \{0,1\}//; s/^set -.*//'
+    ;;
+  *)
+    echo "cue-review-progress: unknown subcommand '$cmd' (start|emit|end|path|latest)" >&2; exit 1 ;;
+esac

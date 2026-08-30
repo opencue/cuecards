@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-03
+updated: 2026-08-30
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kagura-ai-memory-cloud"></a>
-## 💎 [kagura-ai/memory-cloud](https://github.com/kagura-ai/memory-cloud)
+<a id="cyrax321-continuum"></a>
+## ✨ [Cyrax321/CONTINUUM](https://github.com/Cyrax321/CONTINUUM)
 
-**★ 5** · exceptional (score 9) · Python · tags: adaptive-memory, ai-agents, docker, fastapi, hybrid-search
+**★ 27** · strong (score 7.7) · Python · tags: agent-framework, ai-agents, checkpointing, crash-recovery, durable-execution
 
-Adaptive AI Agent Memory — Self-hosted MCP server that gets smarter as you use it. Hybrid search, neural memory graph, AI reranking, and web UI. Built with FastAPI, Next.js, PostgreSQL, and Qdrant.
+CONTINUUM: Verifiable semantic recovery for long-running AI agents. Semantic checkpoints (not conversation dumps), an idempotent action ledger that refuses duplicate side effects, and a hash-chained tamper-evident event log, all exposed as a deny-by-default MCP server. Framework-agnostic, Python 3.11+.
 
 ```bash
-cue skills add kagura-ai/memory-cloud --profile python
+cue skills add Cyrax321/CONTINUUM --profile python
+```
+
+---
+
+<a id="anirudhlath-alfred"></a>
+## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+
+**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+
+```bash
+cue skills add anirudhlath/alfred --profile python
 ```
 
 ---

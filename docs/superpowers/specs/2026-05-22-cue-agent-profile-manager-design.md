@@ -96,10 +96,10 @@ shell                                                cue (Bun)              real
 ─────                                                ─────────              ──────────
 ~/.local/bin/claude  ─exec─►  cue launch claude $@   ─►  resolve(cwd)
                                                          │
-                                                         ├─ .cue-profile pin?   ──yes──►  profile
+                                                         ├─ .cue.profile pin?   ──yes──►  profile
                                                          ├─ git-repo default?   ──yes──►  profile
                                                          ├─ global default?     ──yes──►  profile
-                                                         └─ TUI picker          ──pick──►  profile + write .cue-profile
+                                                         └─ TUI picker          ──pick──►  profile + write .cue.profile
                                                                                             │
                                                                                             ▼
                                                                                        materialize(profile)
@@ -117,11 +117,11 @@ shell                                                cue (Bun)              real
 In order, stop at the first hit:
 
 1. `--cue-profile <name>` CLI flag.
-2. `.cue-profile` file found while walking up from cwd. Walk stops at the
+2. `.cue.profile` file found while walking up from cwd. Walk stops at the
    git repo root, then at `$HOME`, whichever comes first.
 3. `~/.config/cue/repo-defaults.json` — keyed by git-repo-root absolute path,
    value is the profile name. Only consulted when cwd is inside a git repo
-   and no `.cue-profile` was found above.
+   and no `.cue.profile` was found above.
 4. `~/.config/cue/default-profile` — single-line file with the global default
    profile name.
 5. TUI picker.
@@ -236,7 +236,7 @@ Bun TUI driven by `@clack/prompts` (or equivalent):
     ⓘ details (d) · pick once, no pin (n) · cancel (esc)
 ```
 
-- `Enter` — pin to `./.cue-profile` and launch.
+- `Enter` — pin to `./.cue.profile` and launch.
 - `n Enter` — launch without pinning (this session only).
 - `d` — show resolved skills/MCPs/plugins for the highlighted profile before
   committing.
@@ -250,7 +250,7 @@ slash command, enabled in every profile by default:
 
 | Command            | Behaviour                                                                                                              |
 |--------------------|------------------------------------------------------------------------------------------------------------------------|
-| `/cue`                       | Prints profiles as a numbered list (no TUI in-session). User replies with a number or name. Updates `.cue-profile` in cwd. |
+| `/cue`                       | Prints profiles as a numbered list (no TUI in-session). User replies with a number or name. Updates `.cue.profile` in cwd. |
 | `/cue switch <name\|number>` | Same as `/cue` with the choice pre-supplied.                                                                                |
 | `/cue reload`      | Executes `exec ~/.local/bin/claude` from the agent shell. The shim resolves the new pin and re-launches.               |
 | `/cue current`     | Prints the active profile name and the resolved skill/MCP/plugin list.                                                  |

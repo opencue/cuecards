@@ -5,7 +5,7 @@
  *   eval "$(cue watch bash)"   # add to ~/.bashrc
  *   eval "$(cue watch zsh)"    # add to ~/.zshrc
  *
- * The hook runs after every `cd` and checks if the .cue-profile changed.
+ * The hook runs after every `cd` and checks if the .cue.profile changed.
  * If it did, it shows a notification with the new profile.
  */
 
@@ -18,10 +18,10 @@ __cue_watch() {
   local profile_file=""
   local dir="$PWD"
 
-  # Walk up to find .cue-profile
+  # Walk up to find .cue.profile
   while [[ "$dir" != "/" && "$dir" != "$HOME" ]]; do
-    if [[ -f "$dir/.cue-profile" ]]; then
-      profile_file="$dir/.cue-profile"
+    if [[ -f "$dir/.cue.profile" ]]; then
+      profile_file="$dir/.cue.profile"
       break
     fi
     dir="$(dirname "$dir")"
@@ -71,10 +71,10 @@ function zshHook(): string {
     '  local profile_file=""',
     '  local dir="$PWD"',
     "",
-    "  # Walk up to find .cue-profile",
+    "  # Walk up to find .cue.profile",
     '  while [[ "$dir" != "/" && "$dir" != "$HOME" ]]; do',
-    '    if [[ -f "$dir/.cue-profile" ]]; then',
-    '      profile_file="$dir/.cue-profile"',
+    '    if [[ -f "$dir/.cue.profile" ]]; then',
+    '      profile_file="$dir/.cue.profile"',
     "      break",
     "    fi",
     '    dir="${dir:h}"',
@@ -125,7 +125,7 @@ export async function run(args: string[]): Promise<number> {
       "Usage:\n" +
       '  eval "$(cue watch bash)"   # add to ~/.bashrc\n' +
       '  eval "$(cue watch zsh)"    # add to ~/.zshrc\n\n' +
-      "When you cd into a directory with a .cue-profile, it shows:\n" +
+      "When you cd into a directory with a .cue.profile, it shows:\n" +
       "  ⚡ cue: profile switched frontend → backend\n"
     );
   } else {

@@ -1,19 +1,13 @@
 ---
 name: hydra
-description: >
-  Multi-perspective code review council: advisors analyze, reviewers
-  cross-examine, chairman synthesizes verdict.
-  USE for: architecture decisions, security audits, tradeoff analysis,
-  "what am I missing" questions, pre-merge deep reviews, iterative
-  re-reviews after fixes.
-  DO NOT USE for: simple code generation, syntax fixes, single-file
-  refactors, or factual lookups.
-  TRIGGERS: 'hydra', 'hydra this', 'hydra review', 'run hydra',
-  'hydra deep', 'Hydra starten',
-  'hydra iterate', 'hydra re-review', 'hydra follow-up',
-  'hydra history', 'hydra pr', 'hydra branch',
-  'hydra ?', 'hydra auto', 'fix #', 'verify',
-  'hydra explain', 'hydra details', 'hydra tensions', 'hydra blind-spots'.
+description: Use when the user asks for Hydra, a deep multi-perspective code review, architecture or security tradeoffs, blind spots, or iterative re-review. Avoid for simple fixes and lookups.
+tags: [code-review, architecture, security, multi-perspective]
+capability: Run a multi-perspective review council for architecture, security, and hidden risks.
+triggers:
+  - run Hydra
+  - Hydra review
+  - deep multi-perspective review
+  - review blind spots
 ---
 
 <!-- v2.0: per ADR docs/adr/0001-execution-substrate.md (Option C, accepted 2026-05-23),
@@ -24,6 +18,12 @@ description: >
      replace this runtime. Design context: docs/specs/2026-04-17-hydra-2.0-core-design-v2.md. -->
 
 # Hydra
+
+## Example invocation
+
+```text
+Run Hydra for a deep security and architecture review of this branch.
+```
 
 Four advisors analyze your code from different angles by default (standard mode) --
 including Echo, which reviews AI-assisted-development failure modes. Escalate to deep
@@ -240,18 +240,30 @@ for f in "${reviewed_files[@]}"; do
     echo "[Hydra] Invalid filename in reviewed_files: $f -- aborting" >&2; exit 1
   }
 done
+```
 
+Validate the saved timestamp before interpolation:
+
+```bash
 # PREV_TIMESTAMP must match YYYYMMDDTHHMMSS (matches the report-slug convention); if
 # state.json was tampered or carries garbage, discard the field rather than interpolate.
 if [[ -n "$PREV_TIMESTAMP" && ! "$PREV_TIMESTAMP" =~ ^[0-9]{8}T[0-9]{6}$ ]]; then
   echo "[Hydra] Invalid PREV_TIMESTAMP '$PREV_TIMESTAMP' -- falling back to full diff" >&2
   unset PREV_TIMESTAMP
 fi
+```
 
+Build branch or pull-request context:
+
+```bash
 # hydra branch / hydra pr: hunks against base branch (note `--` separator enforces pathspec)
 BASE=$(git merge-base HEAD main)  # fallback: master, develop
 git diff -U30 "$BASE"...HEAD -- "${reviewed_files[@]}"
+```
 
+Build iteration context:
+
+```bash
 # hydra iterate: hunks since previous report (PREV_TIMESTAMP already validated above)
 git diff -U30 "@{$PREV_TIMESTAMP}" -- "${reviewed_files[@]}"
 ```
@@ -383,7 +395,11 @@ Then for each Codex advisor (one Bash call per advisor, set Bash tool timeout to
 ```bash
 HYDRA_TMP="{{HYDRA_TMP_PATH}}"
 CODEX="{{CODEX_SCRIPT_PATH}}"
+```
 
+Select the available timeout command:
+
+```bash
 # Timeout: gtimeout (brew coreutils) > timeout (linux) > perl fallback
 if command -v gtimeout >/dev/null 2>&1; then
   TIMEOUT_CMD="gtimeout 60"
@@ -392,13 +408,21 @@ elif command -v timeout >/dev/null 2>&1; then
 else
   TIMEOUT_CMD="perl -e 'alarm(60); exec @ARGV' --"
 fi
+```
 
+Run the advisor:
+
+```bash
 $TIMEOUT_CMD node "$CODEX" task \
   --prompt-file "$HYDRA_TMP/prompt-{{ADVISOR_NAME}}.md" \
   --effort {{EFFORT_LEVEL}} \
   > "$HYDRA_TMP/output-{{ADVISOR_NAME}}.txt" 2>"$HYDRA_TMP/stderr-{{ADVISOR_NAME}}.txt"
 EXIT_CODE=$?
+```
 
+Report the outcome:
+
+```bash
 if [ $EXIT_CODE -eq 124 ]; then
   echo "HYDRA_STATUS=TIMEOUT"
 elif [ $EXIT_CODE -ne 0 ]; then
@@ -435,7 +459,7 @@ After each advisor completes, validate the response (structured output first, pr
 
 **Structured output extraction:** Search for the LAST occurrence of
 `---HYDRA-STRUCTURED [{{BOUNDARY_A}}]---` / `---END-HYDRA-STRUCTURED [{{BOUNDARY_A}}]---`
-in the response (use `rfind` / last-match — prevents user-code injection from matching).
+in the response (use `rfind` / last-match, prevents user-code injection from matching).
 Extract the JSON between delimiters.
 
 **Validation states (canonical enum -- exactly one per advisor response):**
@@ -587,7 +611,7 @@ label is consistent with the displayed number in either mode.
 Print after confidence line: `SCOPE {{DIFF_LINES}}/{{EST_TOTAL_LINES}} lines ({{SCOPE_PCT}}%) -- diff-anchored review`
 If 0 findings + windowed: append warning: `Note: 0 findings on limited scope does NOT validate unreviewed code.`
 
-**Display format:** `Confidence: {{SCORE}}% ({{LABEL}})` — e.g., `Confidence: 78% (HIGH)`.
+**Display format:** `Confidence: {{SCORE}}% ({{LABEL}})`, e.g., `Confidence: 78% (HIGH)`.
 
 Inject into PANEL SUMMARY as `CONFIDENCE: {{SCORE}}% ({{LABEL}})` for chairman consumption.
 The chairman uses this value as-is and does not recompute.
@@ -609,7 +633,7 @@ Print: `[Hydra] Verdict path: {{deterministic|focused chairman}} ({{reason}}).`
 No chairman agent spawned. Orchestrator assembles verdict from pre-computed data:
 1. Verdict position from unanimous tally (APPROVE or CONCERN).
 2. Confidence line: emit `**Confidence:** {{CONFIDENCE_SCORE}}% ({{CONFIDENCE_LABEL}})` immediately
-   after the position — using the pre-computed PANEL SUMMARY values, matching the chairman-path
+   after the position, using the pre-computed PANEL SUMMARY values, matching the chairman-path
    verdict template so deterministic and chairman outputs are indistinguishable to downstream consumers.
 3. Findings ordered by Reviewer 2's Effort-Risk Ranking (if available) or severity desc.
 4. Summary block: Top Actions from ranking, Key Tensions = "None", Insight = omit.

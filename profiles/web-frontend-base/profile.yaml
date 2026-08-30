@@ -1,6 +1,6 @@
 name: web-frontend-base
 icon: "🎨"
-description: Shared baseline for web frontend profiles — design taste, screenshot, playwright, common UI skills used across frontend, nextjs, vite, medusa storefronts.
+description: Shared baseline for web frontend profiles — design taste, screenshot, agent-browser (default browser automation), common UI skills used across frontend, nextjs, vite, medusa storefronts.
 inherits: core
 skills:
   local:
@@ -9,6 +9,13 @@ skills:
     - design/image-to-code
     - design/ui-ux-pro-max
     - design/minimalist-ui
-    - browser/playwright
-mcps:
-  - playwright
+    # Browser automation: vercel-labs/agent-browser CLI (npm i -g agent-browser).
+    # Ref-based snapshot → click/fill → screenshot. The only browser stack here;
+    # use it for visual verification of frontends.
+    - browser/agent-browser
+  npx:
+    # Addy Osmani's production-grade agent skills (addyosmani/agent-skills, 48K★).
+    # Cherry-picked the two highest-signal, framework-agnostic skills; they
+    # propagate to frontend/nextjs/vite/medusa storefronts via inheritance.
+    - repo: addyosmani/agent-skills
+      skills: [frontend-ui-engineering, performance-optimization]

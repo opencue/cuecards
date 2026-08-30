@@ -21,12 +21,11 @@
  */
 
 import { readFileSync, existsSync, } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { configDir } from "./config-paths";
+import { repoRoot } from "./repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-export const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+export const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 export function estimateTokens(text: string): number {
   return Math.ceil(text.length / 4);

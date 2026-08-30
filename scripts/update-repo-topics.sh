@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Update GitHub topics on opencue/claude-code-skills (or any repo via REPO env var).
+# Update GitHub topics on opencue/cuecards (or any repo via REPO env var).
 #
 # GitHub caps topics at 20 per repo. The list below is curated for highest
 # search intent: claude/anthropic/codex/openai surfaces in both ai-agent and
@@ -7,12 +7,12 @@
 # topic feeds.
 #
 # Usage:
-#   bash scripts/update-repo-topics.sh           # update opencue/claude-code-skills
+#   bash scripts/update-repo-topics.sh           # update opencue/cuecards
 #   REPO=org/other-repo bash scripts/update-repo-topics.sh
 #   DRY_RUN=1 bash scripts/update-repo-topics.sh
 set -euo pipefail
 
-REPO="${REPO:-opencue/claude-code-skills}"
+REPO="${REPO:-opencue/cuecards}"
 
 TOPICS=(
   ai-agents

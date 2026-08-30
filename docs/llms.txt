@@ -1,0 +1,22 @@
+# cue
+
+> Your agent reads every skill you own, on every message. cue loads only the ones that project needs.
+
+Per-project profile manager for Claude Code, Codex, and 8 other AI coding agents — scopes which skills and MCP servers load, per directory.
+
+cue is a thin shim that sits between your shell and your AI coding agent (Claude Code, Codex, Cursor, Cline, Gemini Copilot, Windsurf, and others). You pick — or auto-detect — a *profile* for each project directory. When you launch your agent, cue materializes that profile into a typed, validated runtime and execs the real agent with only the right context loaded. No globals. No token bloat.
+
+Install: `npm install -g cue-ai`
+
+## Key links
+
+- [Homepage](https://opencue.github.io/cuecards/) — quick-start and top community skills
+- [Discovered Skills](https://opencue.github.io/cuecards/discovered/) — 100+ community skills curated across 12 profiles
+- [GitHub — opencue/cuecards](https://github.com/opencue/cuecards) — source, issues, contributing
+- [npm package `cue-ai`](https://www.npmjs.com/package/cue-ai) — `npm install -g cue-ai`
+- [Launch flow](https://opencue.github.io/cuecards/launch) — how cue resolves, materializes, and execs
+- [Glossary](https://opencue.github.io/cuecards/glossary) — profiles, skills, MCPs, personas, quality-gates
+
+## Optional
+
+- [Full discovered skills markdown](https://opencue.github.io/cuecards/discovered.md) — raw list for programmatic use

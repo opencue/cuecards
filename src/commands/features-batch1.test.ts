@@ -54,10 +54,10 @@ describe("cue suggest", () => {
 
   test("returns 1 with no active profile", async () => {
     const { run } = await import("./suggest");
-    // Without a .cue-profile in cwd, should fail gracefully
+    // Without a .cue.profile in cwd, should fail gracefully
     const origCwd = process.cwd();
     process.chdir(tmp);
-    const { code, stderr } = await capture(() => run([]));
+    const { code } = await capture(() => run([]));
     process.chdir(origCwd);
     // Either returns 1 (no profile) or 0 (if there's a global default)
     expect(code === 0 || code === 1).toBe(true);

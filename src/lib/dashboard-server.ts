@@ -27,6 +27,7 @@ import { computeAffinityMap, suggestionsByProfile } from "./pair-suggestions";
 import { computeSkillUsage } from "./skill-report";
 import { computeTriggerGaps } from "./trigger-gaps";
 import { loadProfile, listProfiles } from "./profile-loader";
+import { countProfileSkills } from "./profile-capabilities";
 import {
   mergeProfiles,
   renderMerged,
@@ -37,14 +38,19 @@ import {
 } from "./profile-merge";
 import { validateProfileName } from "./profile-generator";
 import { loadMcpCatalog, addMcpToProfile } from "./mcp-catalog";
+import { installMarketItem, type MarketAddKind } from "./market-install";
 import { aggregateProfileClis, type ProfileCli } from "./skill-clis";
 import { collectPermissions } from "./permissions";
+import { reposForProfile, resolveRepoStars } from "./repos";
 import { parseSkillFromContent, parseSkillFromDir } from "./skill-router";
 import { resolveLocalSkill } from "./resolver-local";
 import { resolveProfileForCwd } from "./cwd-resolver";
 import { quickDiagnose } from "../commands/status";
 import { isEnabled as telemetryEnabled } from "./telemetry-consent";
 import { collectUserPrompts } from "../commands/trigger-gaps";
+import { computeVersionInfo, type NoticePayload, type VersionInfo } from "./dashboard-version";
+
+export { computeVersionInfo, semverGt } from "./dashboard-version";
 
 const REPO_ROOT = resolve(new URL(import.meta.url).pathname, "..", "..", "..");
 const WEB_DIST = join(REPO_ROOT, "web", "dist");
@@ -60,7 +66,7 @@ export type ApiResult<T> = { ok: true; data: T } | { ok: false; error: string };
  */
 function resolveProfileQuery(explicit: string | null): string | null {
   if (explicit) return explicit;
-  const pin = join(process.cwd(), ".cue-profile");
+  const pin = join(process.cwd(), ".cue.profile");
   if (existsSync(pin)) {
     try {
       const txt = readFileSync(pin, "utf8").trim().split("\n")[0]?.trim();
@@ -108,7 +114,7 @@ export async function handleStatus(): Promise<ApiResult<unknown>> {
       profile = {
         name: loaded.name,
         description: loaded.description,
-        skills: loaded.skills.local.length + loaded.skills.npx.length,
+        skills: countProfileSkills(loaded),
         mcps: loaded.mcps.length,
         plugins: loaded.plugins.length,
       };
@@ -129,7 +135,7 @@ export async function handleStatus(): Promise<ApiResult<unknown>> {
             parts.push({
               name: part.name,
               description: part.description,
-              skills: part.skills.local.length + part.skills.npx.length,
+              skills: countProfileSkills(part),
               mcps: part.mcps.length,
               plugins: part.plugins.length,
             });
@@ -421,6 +427,8 @@ interface ProfileDetail {
   subagents: SubagentRef[];
   /** External CLI tools the profile's skills declare (frontmatter Bash refs). */
   clis: ProfileCli[];
+  /** Companion profiles the active profile recommends pairing with. */
+  recommends: string[];
 }
 
 /** Pull a `uses:` (or `mcps:`) frontmatter list out of a SKILL.md, if present. */
@@ -726,6 +734,7 @@ export async function handleProfileDetail(params: URLSearchParams): Promise<ApiR
     playbooks,
     subagents,
     clis,
+    recommends: profile.recommends ?? [],
   };
 
   profileDetailCache.set(name, { ts: Date.now(), data });
@@ -746,6 +755,8 @@ interface FlatHook {
   description: string;
   id: string;
   source: "profile" | "global";
+  /** Absolute path of the script the command runs, if it resolves to one. */
+  scriptPath: string | null;
 }
 
 interface SettingsHookEntry {
@@ -753,8 +764,43 @@ interface SettingsHookEntry {
   hooks?: { type?: string; command?: string; description?: string; id?: string }[];
 }
 
+/** The Claude config dir a hook's `${CLAUDE_CONFIG_DIR}` expands to, by source. */
+function claudeDirForSource(source: FlatHook["source"], profileName: string | null): string | null {
+  if (source === "global") return join(homedir(), ".claude");
+  return profileName ? join(configDir(), "runtime", profileName, "claude") : null;
+}
+
+/**
+ * Resolve the script file a hook command runs, if any. Expands the env vars cue
+ * bakes into materialized hook commands (`${CLAUDE_CONFIG_DIR}` and `~`) and
+ * returns an absolute path — or null when the command isn't a script invocation
+ * or the path can't be fully resolved (so the UI hides the "view source" link).
+ */
+function resolveHookScript(command: string, source: FlatHook["source"], profileName: string | null): string | null {
+  const m = command.match(/(\S+\.(?:sh|bash|zsh|js|mjs|cjs|ts|py|rb|pl))\b/);
+  if (!m) return null;
+  const claudeDir = claudeDirForSource(source, profileName);
+  let p = m[1]!
+    .replace(/\$\{CLAUDE_CONFIG_DIR\}|\$CLAUDE_CONFIG_DIR/g, claudeDir ?? "\0")
+    .replace(/^~(?=\/)/, homedir());
+  if (p.includes("\0") || p.includes("$")) return null; // unresolved variable
+  if (!p.startsWith("/")) return null;                  // only absolute paths
+  return resolve(p);
+}
+
+/** Extension → human language label for the source viewer's badge + highlighter. */
+function hookLanguage(path: string): string {
+  const ext = path.slice(path.lastIndexOf(".") + 1).toLowerCase();
+  const map: Record<string, string> = {
+    sh: "bash", bash: "bash", zsh: "bash",
+    js: "javascript", mjs: "javascript", cjs: "javascript",
+    ts: "typescript", py: "python", rb: "ruby", pl: "perl",
+  };
+  return map[ext] ?? ext ?? "text";
+}
+
 /** Parse the `hooks` map out of one settings.json, tagging each with `source`. */
-function readHooksFile(path: string, source: FlatHook["source"]): FlatHook[] {
+function readHooksFile(path: string, source: FlatHook["source"], profileName: string | null): FlatHook[] {
   if (!existsSync(path)) return [];
   let parsed: { hooks?: Record<string, SettingsHookEntry[]> };
   try {
@@ -779,6 +825,7 @@ function readHooksFile(path: string, source: FlatHook["source"]): FlatHook[] {
           description: h.description ?? "",
           id: h.id ?? `${event}:${matcher}:${h.command}`,
           source,
+          scriptPath: resolveHookScript(h.command, source, profileName),
         });
       }
     }
@@ -786,34 +833,32 @@ function readHooksFile(path: string, source: FlatHook["source"]): FlatHook[] {
   return out;
 }
 
-export async function handleHooks(params: URLSearchParams): Promise<ApiResult<unknown>> {
-  let name = resolveProfileQuery(params.get("profile"));
-  if (!name) {
-    const resolved = await resolveProfileForCwd({
-      cwd: process.cwd(),
-      homeDir: homedir(),
-      configDir: configDir(),
-    });
-    if (resolved.source !== "none") name = (resolved as { profile: string }).profile;
-  }
+/** Resolve the profile a hooks query targets — explicit param, else cwd. */
+async function resolveHooksProfile(profileParam: string | null): Promise<string | null> {
+  const explicit = resolveProfileQuery(profileParam);
+  if (explicit) return explicit;
+  const resolved = await resolveProfileForCwd({ cwd: process.cwd(), homeDir: homedir(), configDir: configDir() });
+  return resolved.source !== "none" ? (resolved as { profile: string }).profile : null;
+}
 
-  // The materialized runtime settings are what Claude Code actually loads for
-  // this profile; the global file is the user-wide baseline.
+/** All hooks (global + this profile's runtime), deduped by id — the shared
+ *  source of truth for both the hooks list and the source-viewer allowlist. */
+function enumerateHooks(profileName: string | null): FlatHook[] {
   const globalPath = join(homedir(), ".claude", "settings.json");
-  const runtimePath = name
-    ? join(configDir(), "runtime", name, "claude", "settings.json")
-    : null;
-
+  const runtimePath = profileName ? join(configDir(), "runtime", profileName, "claude", "settings.json") : null;
   const flat: FlatHook[] = [
-    ...readHooksFile(globalPath, "global"),
-    ...(runtimePath ? readHooksFile(runtimePath, "profile") : []),
+    ...readHooksFile(globalPath, "global", null),
+    ...(runtimePath ? readHooksFile(runtimePath, "profile", profileName) : []),
   ];
-
-  // Dedup by id (a profile hook overriding a global one keeps the profile copy,
-  // which appears later in the array).
+  // Dedup by id (a profile hook overriding a global one wins — it appears later).
   const byId = new Map<string, FlatHook>();
   for (const h of flat) byId.set(h.id, h);
-  const deduped = [...byId.values()];
+  return [...byId.values()];
+}
+
+export async function handleHooks(params: URLSearchParams): Promise<ApiResult<unknown>> {
+  const name = await resolveHooksProfile(params.get("profile"));
+  const deduped = enumerateHooks(name);
 
   // Group by event in a stable lifecycle order; unknown events sort last.
   const EVENT_ORDER = [
@@ -832,12 +877,42 @@ export async function handleHooks(params: URLSearchParams): Promise<ApiResult<un
     })
     .map((event) => ({ event, hooks: byEvent.get(event)! }));
 
+  return { ok: true, data: { profile: name, total: deduped.length, events } };
+}
+
+const HOOK_SOURCE_MAX_BYTES = 256 * 1024;
+
+/**
+ * Read one hook's script source for the studio's source viewer. Security: the
+ * requested path must be one of the *enumerated* hook script paths for this
+ * profile (an allowlist rebuilt per request) — an arbitrary path, or any
+ * `../` traversal, fails the membership check before any file is read.
+ */
+export async function handleHookSource(params: URLSearchParams): Promise<ApiResult<unknown>> {
+  const requested = params.get("path");
+  if (!requested) return { ok: false, error: "missing-path" };
+
+  const name = await resolveHooksProfile(params.get("profile"));
+  const allow = new Set(
+    enumerateHooks(name).map((h) => h.scriptPath).filter((p): p is string => !!p),
+  );
+  const abs = resolve(requested);
+  if (!allow.has(abs)) return { ok: false, error: "not-a-hook-script" };
+  if (!existsSync(abs) || !statSync(abs).isFile()) return { ok: false, error: "not-found" };
+  if (statSync(abs).size > HOOK_SOURCE_MAX_BYTES) return { ok: false, error: "too-large" };
+
+  const home = homedir();
+  const displayPath = abs.startsWith(home) ? "~" + abs.slice(home.length) : abs;
+  const slash = displayPath.lastIndexOf("/");
   return {
     ok: true,
     data: {
-      profile: name,
-      total: deduped.length,
-      events,
+      path: abs,
+      displayPath,
+      filename: displayPath.slice(slash + 1),
+      dir: displayPath.slice(0, slash + 1),
+      language: hookLanguage(abs),
+      content: readFileSync(abs, "utf8"),
     },
   };
 }
@@ -1080,24 +1155,92 @@ export async function handleKillSession(
   }
 }
 
-export async function handleTelemetryTimeline(params: URLSearchParams): Promise<ApiResult<unknown>> {
-  if (!telemetryEnabled()) return { ok: false, error: "telemetry-disabled" };
-  const sinceDays = parseSinceDays(params.get("since"));
+/**
+ * The activity-chart payload (gap-filled sessions-per-day + per-profile counts)
+ * for a window. Shared by the polling GET and the SSE stream so both emit the
+ * exact same shape — the stream is just this, pushed on change.
+ */
+export function buildTimeline(sinceDays: number): {
+  windowDays: number;
+  daily: ReturnType<typeof computeDailyActivity>;
+  profiles: { profile: string; sessions: number; lastUsed: string | null }[];
+} {
   const cutoff = new Date(Date.now() - sinceDays * 24 * 60 * 60 * 1000);
   const events = computeStats({ since: cutoff });
   return {
-    ok: true,
-    data: {
-      windowDays: sinceDays,
-      // Gap-filled sessions-per-day for the activity area chart.
-      daily: computeDailyActivity(sinceDays),
-      profiles: events.map((e) => ({
-        profile: e.profile,
-        sessions: e.sessions,
-        lastUsed: e.last_used,
-      })),
-    },
+    windowDays: sinceDays,
+    daily: computeDailyActivity(sinceDays),
+    profiles: events.map((e) => ({
+      profile: e.profile,
+      sessions: e.sessions,
+      lastUsed: e.last_used,
+    })),
   };
+}
+
+export async function handleTelemetryTimeline(params: URLSearchParams): Promise<ApiResult<unknown>> {
+  if (!telemetryEnabled()) return { ok: false, error: "telemetry-disabled" };
+  return { ok: true, data: buildTimeline(parseSinceDays(params.get("since"))) };
+}
+
+// SSE response headers — no caching, and X-Accel-Buffering: no so any reverse
+// proxy (or vite's dev proxy) forwards each event instead of buffering it.
+const SSE_HEADERS = {
+  "Content-Type": "text/event-stream; charset=utf-8",
+  "Cache-Control": "no-cache, no-transform",
+  "Connection": "keep-alive",
+  "X-Accel-Buffering": "no",
+} as const;
+const STREAM_TICK_MS = 3000;
+const STREAM_HEARTBEAT_MS = 20000;
+
+/**
+ * Live activity stream (Server-Sent Events). Sends the timeline payload on
+ * connect, then re-sends it whenever it changes (recompute + diff every few
+ * seconds; identical payloads are suppressed). A periodic comment heartbeat
+ * keeps the connection from going idle. One-way + read-only; the browser's
+ * EventSource handles reconnection. Returns a streaming Response —
+ * `writeWebResponse` pipes text/event-stream bodies instead of buffering them.
+ */
+export function handleTelemetryStream(params: URLSearchParams): Response {
+  const sinceDays = parseSinceDays(params.get("since"));
+  const enabled = telemetryEnabled();
+  const enc = new TextEncoder();
+  let tick: ReturnType<typeof setInterval> | null = null;
+  let beat: ReturnType<typeof setInterval> | null = null;
+  let lastSent = "";
+
+  const stop = () => {
+    if (tick) { clearInterval(tick); tick = null; }
+    if (beat) { clearInterval(beat); beat = null; }
+  };
+
+  const stream = new ReadableStream<Uint8Array>({
+    start(controller) {
+      const emit = (frame: string) => {
+        try { controller.enqueue(enc.encode(frame)); } catch { stop(); }
+      };
+      if (!enabled) {
+        // Keep the connection open (heartbeat only) so EventSource doesn't
+        // reconnect-spam; the polling GET surfaces "telemetry-disabled" itself.
+        emit("event: error\ndata: telemetry-disabled\n\n");
+      } else {
+        const send = () => {
+          let json: string;
+          try { json = JSON.stringify(buildTimeline(sinceDays)); } catch { return; }
+          if (json === lastSent) return; // suppress unchanged payloads
+          lastSent = json;
+          emit(`event: timeline\ndata: ${json}\n\n`);
+        };
+        send(); // initial snapshot, immediately
+        tick = setInterval(send, STREAM_TICK_MS);
+      }
+      beat = setInterval(() => emit(": ping\n\n"), STREAM_HEARTBEAT_MS);
+    },
+    cancel() { stop(); },
+  });
+
+  return new Response(stream, { status: 200, headers: SSE_HEADERS });
 }
 
 /**
@@ -1115,15 +1258,6 @@ export async function handleDiscoveredPlugins(): Promise<ApiResult<unknown>> {
 // the npm registry. No user data leaves the box; it's cached ~1h and fail-soft
 // (any error → no banner), mirroring the CLI's existing 24h update check.
 
-/** Maintainer-authored broadcast, baked into the published `package.json`. */
-interface NoticePayload { message?: string; command?: string }
-interface VersionInfo {
-  current: string;
-  latest: string | null;
-  updateAvailable: boolean;
-  notice: NoticePayload | null;
-}
-
 const NPM_LATEST_URL = "https://registry.npmjs.org/cue-ai/latest";
 const VERSION_TTL_MS = 60 * 60 * 1000; // 1h — matches the answer's "cached ~1h".
 let versionCache: { ts: number; data: VersionInfo } | null = null;
@@ -1136,32 +1270,6 @@ function localVersion(): string {
   } catch {
     return "0.0.0";
   }
-}
-
-/** True when semver `a` is strictly newer than `b` (major.minor.patch only). */
-export function semverGt(a: string, b: string): boolean {
-  const pa = a.split(".").map((n) => parseInt(n, 10) || 0);
-  const pb = b.split(".").map((n) => parseInt(n, 10) || 0);
-  for (let i = 0; i < 3; i++) {
-    const x = pa[i] ?? 0, y = pb[i] ?? 0;
-    if (x !== y) return x > y;
-  }
-  return false;
-}
-
-/**
- * Pure shaping of the version banner from the local version + the registry's
- * `latest` doc (its published package.json). Split out so it's unit-testable
- * without a network round-trip. `doc` is null when the fetch failed.
- */
-export function computeVersionInfo(
-  current: string,
-  doc: { version?: string; cue?: { notice?: NoticePayload } } | null,
-): VersionInfo {
-  const latest = doc?.version ?? null;
-  const n = doc?.cue?.notice;
-  const notice = n && (n.message || n.command) ? { message: n.message, command: n.command } : null;
-  return { current, latest, updateAvailable: !!latest && semverGt(latest, current), notice };
 }
 
 export async function handleVersion(): Promise<ApiResult<unknown>> {
@@ -1515,6 +1623,34 @@ export async function handleMarket(): Promise<ApiResult<unknown>> {
   return { ok: true, data };
 }
 
+const MARKET_ADD_KINDS = new Set<MarketAddKind>(["mcp", "skill", "profile", "cli", "workflow", "plugin"]);
+
+/**
+ * Install a marketplace item into a profile (the studio's "Add to profile"
+ * picker). Validates the body, edits the target profile.yaml via
+ * installMarketItem, and busts the market cache so the next browse reflects any
+ * new profile membership. Returns `manual` for kinds with no profile.yaml home
+ * (a bare CLI) so the studio can show the command instead of claiming success.
+ */
+export async function handleMarketInstall(
+  body: { id?: unknown; addKind?: unknown; profile?: unknown; add?: unknown } | null,
+): Promise<ApiResult<unknown>> {
+  const id = typeof body?.id === "string" ? body.id : "";
+  const addKind = typeof body?.addKind === "string" ? (body.addKind as MarketAddKind) : "";
+  const profile = typeof body?.profile === "string" ? body.profile : "";
+  const add = typeof body?.add === "string" ? body.add : undefined;
+  if (!id) return { ok: false, error: "missing-id" };
+  if (!addKind || !MARKET_ADD_KINDS.has(addKind as MarketAddKind)) return { ok: false, error: "invalid-add-kind" };
+  if (!profile) return { ok: false, error: "missing-profile" };
+  try {
+    const result = await installMarketItem({ id, addKind: addKind as MarketAddKind, profile, add });
+    if (result.changed) marketCache = null; // counts/membership may have shifted
+    return { ok: true, data: result };
+  } catch (err) {
+    return { ok: false, error: (err as Error).message };
+  }
+}
+
 // ── Workflows: the n8n-style canvas's saved DAGs (resources/workflows/*.json) ──
 export async function handleWorkflows(): Promise<ApiResult<unknown>> {
   return { ok: true, data: listWorkflows() };
@@ -1620,6 +1756,44 @@ export async function handleEnv(params: URLSearchParams): Promise<ApiResult<unkn
   return { ok: true, data: { folder: def.path, tag: def.tag, exists: true, vars: parseEnvText(raw, reveal) } };
 }
 
+/**
+ * GitHub source repos a profile's skills / MCPs / plugins originate from, with
+ * live star counts. Derives the profile's namespace / MCP / plugin sets from
+ * the resolved profile, filters the curated catalog to what it actually
+ * contains, then resolves each repo's stargazers (cached 6h, fail-soft).
+ */
+export async function handleRepos(params: URLSearchParams): Promise<ApiResult<unknown>> {
+  let name = resolveProfileQuery(params.get("profile"));
+  if (!name) {
+    const resolved = await resolveProfileForCwd({
+      cwd: process.cwd(),
+      homeDir: homedir(),
+      configDir: configDir(),
+    });
+    if (resolved.source !== "none") name = (resolved as { profile: string }).profile;
+  }
+  if (!name) return { ok: false, error: "no-profile" };
+
+  let profile;
+  try {
+    profile = await loadProfile(name);
+  } catch (err) {
+    return { ok: false, error: (err as Error).message };
+  }
+
+  const namespaces = new Set<string>();
+  for (const s of profile.skills.local) {
+    namespaces.add(s.id.includes("/") ? s.id.split("/")[0]! : "skills");
+  }
+  if (profile.skills.npx.length) namespaces.add("npx");
+  const mcpIds = profile.mcps.map((m) => m.id);
+  const pluginIds = profile.plugins.map((p) => p.id);
+
+  const matched = reposForProfile({ namespaces, mcpIds, pluginIds });
+  const repos = await resolveRepoStars(matched, Date.now());
+  return { ok: true, data: { profile: name, repos } };
+}
+
 const ROUTES: Record<string, (params: URLSearchParams) => Promise<ApiResult<unknown>>> = {
   "/api/v1/status":             () => handleStatus(),
   "/api/v1/env/folders":        () => handleEnvFolders(),
@@ -1631,6 +1805,7 @@ const ROUTES: Record<string, (params: URLSearchParams) => Promise<ApiResult<unkn
   "/api/v1/profiles/full":      () => handleProfilesFull(),
   "/api/v1/profile-detail":     (p) => handleProfileDetail(p),
   "/api/v1/hooks":              (p) => handleHooks(p),
+  "/api/v1/hook-source":        (p) => handleHookSource(p),
   "/api/v1/skill-report":       (p) => handleSkillReport(p),
   "/api/v1/pairs":              (p) => handlePairs(p),
   "/api/v1/gates":              (p) => handleGates(p),
@@ -1641,6 +1816,7 @@ const ROUTES: Record<string, (params: URLSearchParams) => Promise<ApiResult<unkn
   "/api/v1/market":             () => handleMarket(),
   "/api/v1/version":            () => handleVersion(),
   "/api/v1/permissions":        () => Promise.resolve({ ok: true, data: collectPermissions() }),
+  "/api/v1/repos":              (p) => handleRepos(p),
 };
 
 function contentTypeFor(path: string): string {
@@ -1693,11 +1869,24 @@ export function createHandler(): (req: Request) => Promise<Response> {
       return Response.json(result, { status: result.ok ? 200 : 400 });
     }
 
+    if (req.method === "POST" && url.pathname === "/api/v1/market/install") {
+      let body: unknown = null;
+      try { body = await req.json(); } catch { /* malformed */ }
+      const result = await handleMarketInstall(body as Parameters<typeof handleMarketInstall>[0]);
+      return Response.json(result, { status: result.ok ? 200 : 400 });
+    }
+
     if (req.method === "POST" && url.pathname === "/api/v1/workflows/save") {
       let body: unknown = null;
       try { body = await req.json(); } catch { /* malformed */ }
       const result = await handleWorkflowSave(body);
       return Response.json(result, { status: result.ok ? 200 : 400 });
+    }
+
+    // Live activity stream (Server-Sent Events, not JSON): pushes the timeline
+    // payload on change so the dashboard chart auto-updates without polling.
+    if (req.method === "GET" && url.pathname === "/api/v1/telemetry/stream") {
+      return handleTelemetryStream(url.searchParams);
     }
 
     // Profile logo bytes (not JSON): GET /api/v1/profile-icon?profile=<name>.

@@ -142,7 +142,7 @@ rtk --version
 rtk gain
 ```
 
-**Caveats** — Only hooks **Bash** tool calls. Telemetry is **opt-in only**. Restart Claude Code after `rtk init -g`.
+**Caveats** — Only hooks **Bash** tool calls. Telemetry is **opt-in only**. Restart Claude Code after `rtk init -g`. The URL above is **x86_64**; on ARM Linux (aarch64) grab the matching `aarch64` asset from the [RTK releases page](https://github.com/rtk-ai/rtk/releases) instead.
 
 ---
 

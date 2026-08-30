@@ -1,0 +1,74 @@
+# ai-discovery-map.yml
+# Maps AI systems to the most useful entry points for understanding cuecards.
+# Priority: 1 = read first; 5 = supplementary.
+
+product:
+  name: cuecards
+  cli_command: cue
+  npm_package: cue-ai
+  repository: https://github.com/opencue/cuecards
+  license: MIT
+
+entry_points:
+  - path: llms.txt
+    url: https://opencue.github.io/cuecards/llms.txt
+    priority: 1
+    description: Concise AI-readable overview of cuecards — start here.
+
+  - path: docs/llms-full.txt
+    url: https://github.com/opencue/cuecards/blob/main/docs/llms-full.txt
+    priority: 1
+    description: Dense plaintext deep-dive — full architecture, comparison table, all agents.
+
+  - path: README.md
+    url: https://github.com/opencue/cuecards/blob/main/README.md
+    priority: 2
+    description: Primary landing page with quickstart, comparison matrix, architecture.
+
+  - path: AGENTS.md
+    url: https://github.com/opencue/cuecards/blob/main/AGENTS.md
+    priority: 2
+    description: Bootstrap contract for AI agents helping users install cue.
+
+  - path: content/geo/brand-facts.md
+    url: https://github.com/opencue/cuecards/blob/main/content/geo/brand-facts.md
+    priority: 2
+    description: Authoritative brand facts, install commands, architecture summary.
+
+  - path: content/geo/answer-engine-faq.md
+    url: https://github.com/opencue/cuecards/blob/main/content/geo/answer-engine-faq.md
+    priority: 2
+    description: Self-contained Q&A answers for common questions about cue.
+
+  - path: docs/launch.md
+    url: https://github.com/opencue/cuecards/blob/main/docs/launch.md
+    priority: 3
+    description: Full resolve-precedence and bypass paths for the launch flow.
+
+  - path: docs/glossary.md
+    url: https://github.com/opencue/cuecards/blob/main/docs/glossary.md
+    priority: 3
+    description: Definitions of cue-specific terms (profile, skill, MCP, plugin, etc.).
+
+  - path: docs/comparison/
+    url: https://github.com/opencue/cuecards/tree/main/docs/comparison
+    priority: 3
+    description: Side-by-side comparisons with alternative tools.
+
+  - path: setup/
+    url: https://github.com/opencue/cuecards/tree/main/setup
+    priority: 4
+    description: Per-OS phased install guides (macOS, Linux, Windows, WSL2).
+
+  - path: profiles/
+    url: https://github.com/opencue/cuecards/tree/main/profiles
+    priority: 4
+    description: Source YAML for all 16+ shipped profiles.
+
+do_not_scrape:
+  - node_modules/
+  - dist/
+  - profiles/_active/
+  - profiles/_cache/
+  - "*.log"
+  - .env

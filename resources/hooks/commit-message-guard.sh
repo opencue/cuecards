@@ -21,9 +21,24 @@ if [[ ! "$cmd" =~ ^[[:space:]]*git[[:space:]]+commit ]]; then exit 0; fi
 if [[ "$cmd" == *"--amend"* || "$cmd" == *"--fixup"* || "$cmd" == *"--squash"* ]]; then exit 0; fi
 if [[ "$cmd" != *"-m"* && "$cmd" != *"--message"* ]]; then exit 0; fi
 
-# Extract the -m / --message argument. Handle both quote styles.
-msg="$(printf '%s' "$cmd" | grep -oE '(-m|--message)[[:space:]]+("[^"]*"|'"'"'[^'"'"']*'"'"'|[^[:space:]]+)' | head -1 \
-  | sed -E 's/^(-m|--message)[[:space:]]+//; s/^["'"'"']//; s/["'"'"']$//')"
+# Extract the -m / --message argument with shlex so multi-line quoted
+# messages parse whole. (grep -oE works line-by-line: on a multi-line
+# `-m "subject\n\nbody"` it matched only `"subject` → a false "too short"
+# block on perfectly good messages.) Unparseable → empty → allowed.
+msg="$(printf '%s' "$cmd" | python3 -c '
+import sys, shlex
+try:
+    toks = shlex.split(sys.stdin.read(), posix=True)
+except ValueError:
+    sys.exit(0)
+for i, t in enumerate(toks):
+    if t in ("-m", "--message") and i + 1 < len(toks):
+        print(toks[i + 1]); break
+    if t.startswith("--message="):
+        print(t.split("=", 1)[1]); break
+    if t.startswith("-m") and len(t) > 2 and not t.startswith("--"):
+        print(t[2:]); break
+' 2>/dev/null)"
 
 # HEREDOC indirection — `git commit -m "$(cat <<EOF ... EOF)"` — let it through.
 if [[ "$msg" == *'$('* || "$msg" == *'`'* ]]; then exit 0; fi

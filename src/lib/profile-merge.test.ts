@@ -44,6 +44,14 @@ describe("mergeProfiles", () => {
     expect(p.skills.some((id) => id.startsWith("design/"))).toBe(true);
   });
 
+  test("core pins subagents to Sonnet (cost-knob regression guard)", async () => {
+    // A future core edit must not silently drop this — it fans out to every
+    // inheriting profile and is the one automatic Opus→Sonnet lever. Surfaced
+    // into settings.json `env` by buildClaudeSettings (runtime-materializer).
+    const core = await loadProfile("core");
+    expect(core.env.CLAUDE_CODE_SUBAGENT_MODEL).toBe("claude-sonnet-4-6");
+  });
+
   test("skill conflicts are deduped to unique pairs (not per-directive)", async () => {
     const p = await mergeProfiles(["medusa-dev", "designer"]);
     const keys = p.skillConflicts.map((c) => [c.skillA, c.skillB].sort().join("|") + c.domain);
@@ -71,7 +79,7 @@ describe("optimizeMerge", () => {
       rules: [], commands: [], hooks: [], persona: "",
       profileConflicts: [], skillConflicts: [], resolutions: [],
       usage: skills.map((id) => ({ id, references: usage[id] ?? 0, lastSeen: null })),
-      estTokens: 0, appliedOptimizations: [],
+      mcpTokens: 0, estTokens: 0, appliedOptimizations: [],
     };
   }
 
@@ -134,6 +142,35 @@ describe("renderMerged", () => {
     expect(doc.name).toBe("builder");
     expect(doc.inherits).toEqual(["backend", "frontend"]);
     expect(doc.skills).toBeUndefined(); // alias carries no inlined skills
+  });
+
+  test("dedupe collapses same-slug skills last-wins, matching runtime (M2)", () => {
+    const p: MergePreview = {
+      names: ["a", "b"], name: "m", icon: "🧩", description: "d",
+      skills: ["plan/investigate", "x/ship", "gstack/investigate"],
+      dropped: [], npx: [], mcps: [], plugins: [], env: {},
+      rules: [], commands: [], hooks: [], persona: "",
+      profileConflicts: [], skillConflicts: [], resolutions: [],
+      usage: [], mcpTokens: 0, estTokens: 0, appliedOptimizations: [],
+    };
+    const out = optimizeMerge(p, ["dedupe"]);
+    expect(out.skills).toEqual(["x/ship", "gstack/investigate"]); // last investigate wins
+    expect(out.dropped).toEqual([{ id: "plan/investigate", reason: "dedupe" }]);
+    expect(out.appliedOptimizations).toContain("dedupe");
+  });
+
+  test("static mode emits non-core rules/commands/hooks (M1: no silent drop)", () => {
+    const p: MergePreview = {
+      names: ["a", "b"], name: "merged", icon: "🧩", description: "d",
+      skills: ["x/one"], dropped: [], npx: [], mcps: [], plugins: [], env: {},
+      rules: ["typescript/patterns"], commands: ["ship", "qa"], hooks: ["auto-review"],
+      persona: "", profileConflicts: [], skillConflicts: [], resolutions: [],
+      usage: [], mcpTokens: 0, estTokens: 0, appliedOptimizations: [],
+    };
+    const doc = parseYaml(renderMerged(p, "static")) as any;
+    expect(doc.rules).toEqual(["typescript/patterns"]);
+    expect(doc.commands).toEqual(["ship", "qa"]);
+    expect(doc.hooks).toEqual(["auto-review"]);
   });
 
   test("buildSurfaceRouter is deterministic", () => {

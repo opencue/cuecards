@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/auto-evolve.sh",
+            "description": "cue auto-evolve: pick the most-flagged skill from skill_gap signals and evolve it (single-shot, propose-only). OFF by default; needs .auto-improve-enabled + .auto-evolve-enabled + CUE_EVOLUTION_DIR; cooldown-limited; never blocks Stop.",
+            "id": "cue:stop:auto-evolve"
+          }
+        ]
+      }
+    ]
+  }
+}

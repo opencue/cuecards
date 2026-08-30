@@ -297,3 +297,41 @@ describe("renderRouter zombie compaction", () => {
     expect(md).toContain("Rarely-used skills (3)");
   });
 });
+
+describe("renderRouter capability cap", () => {
+  function manySkills(n: number): ParsedSkill[] {
+    return Array.from({ length: n }, (_, i) =>
+      parseSkillFromContent(
+        `cat/skill-${i}`,
+        `---\ndescription: Does useful thing number ${i} for the pipeline workflow.\n---`,
+      ),
+    );
+  }
+
+  test("no cap → every capability row renders", () => {
+    const md = renderRouter(manySkills(60));
+    const rows = md.split("\n").filter((l) => l.startsWith("| Does useful thing"));
+    expect(rows.length).toBe(60);
+  });
+
+  test("cap truncates capability rows and emits an on-demand note", () => {
+    const md = renderRouter(manySkills(60), { maxCapabilityRows: 50 });
+    const rows = md.split("\n").filter((l) => l.startsWith("| Does useful thing"));
+    expect(rows.length).toBe(50);
+    expect(md).toMatch(/\+10 more skills/);
+    expect(md).toContain("loadable via the Skill tool on demand");
+  });
+
+  test("cap is a no-op when row count is at or below the cap", () => {
+    const md = renderRouter(manySkills(50), { maxCapabilityRows: 50 });
+    expect(md).not.toMatch(/more skill.* loadable via the Skill tool/);
+  });
+
+  test("manual persona_routing rows survive the cap", () => {
+    const md = renderRouter(manySkills(60), {
+      maxCapabilityRows: 50,
+      overrides: [{ capability: "ALWAYS-KEEP this manual row", skill: "x/manual" }],
+    });
+    expect(md).toContain("ALWAYS-KEEP this manual row");
+  });
+});

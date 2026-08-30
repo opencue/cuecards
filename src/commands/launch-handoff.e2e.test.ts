@@ -8,13 +8,19 @@
  * file is being edited concurrently.
  */
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, rm } from "node:fs/promises";
+import { chmod, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
+// `resources/skills` is a git submodule; even `--dry-run` materializes a runtime
+// that symlinks skills, so the exec-handoff probes exit non-zero without it
+// checked out (`git submodule update --init`). Skip rather than fail spuriously.
+// The help/recursion probes below don't materialize, so they stay on.
+const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
 
 function cue(args: string[], env: Record<string, string> = {}): { status: number; stdout: string; stderr: string } {
   const cleanEnv = { ...process.env, ...env };
@@ -28,7 +34,7 @@ function plan(stdout: string): any {
   return JSON.parse(stdout.match(/\{[\s\S]*\}/)![0]);
 }
 
-describe.skipIf(!BUN_SPAWNABLE)("cue launch --dry-run exec handoff", () => {
+describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec handoff", () => {
   let xdg: string;
   beforeEach(async () => {
     xdg = await mkdtemp(join(tmpdir(), "cue-handoff-"));
@@ -70,19 +76,77 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch --dry-run exec handoff", () => {
   });
 });
 
+describe.skipIf(!BUN_SPAWNABLE)("cue launch help passthrough", () => {
+  let tmp: string;
+
+  beforeEach(async () => {
+    tmp = await mkdtemp(join(tmpdir(), "cue-help-"));
+  });
+
+  afterEach(async () => {
+    await rm(tmp, { recursive: true, force: true });
+  });
+
+  test("agent --help bypasses runtime materialization", async () => {
+    const binDir = join(tmp, "bin");
+    await mkdir(binDir);
+    const fakeClaude = join(binDir, "claude");
+    await writeFile(fakeClaude, "#!/usr/bin/env sh\necho fake-claude-help \"$@\"\nexit 42\n");
+    await chmod(fakeClaude, 0o755);
+
+    const blockedXdg = join(tmp, "xdg-file");
+    await writeFile(blockedXdg, "not a directory\n");
+    const r = cue(["launch", "claude", "--help"], {
+      PATH: `${binDir}:${process.env.PATH ?? ""}`,
+      XDG_CONFIG_HOME: blockedXdg,
+    });
+
+    expect(r.status).toBe(42);
+    expect(r.stdout).toContain("fake-claude-help --help");
+    expect(r.stderr).not.toContain("materialize");
+    expect(r.stderr).not.toContain("ENOTDIR");
+  });
+});
+
 describe.skipIf(!BUN_SPAWNABLE)("cue launch recursion guard", () => {
-  test("CUE_LAUNCHING=1 aborts with exit 2 (shim recursion)", () => {
-    // Must NOT use the cue() helper — it strips CUE_LAUNCHING. Spawn directly
-    // with CUE_LAUNCHING=1 set (and CLAUDE_CONFIG_DIR cleared to avoid the
-    // unrelated account-alias → picker path).
-    const env = { ...process.env, CUE_LAUNCHING: "1" };
+  let xdg: string;
+  beforeEach(async () => {
+    xdg = await mkdtemp(join(tmpdir(), "cue-recursion-"));
+  });
+  afterEach(async () => {
+    await rm(xdg, { recursive: true, force: true });
+  });
+  // Must NOT use the cue() helper — it strips CUE_LAUNCHING. Spawn directly
+  // with the depth set (and CLAUDE_CONFIG_DIR cleared to avoid the unrelated
+  // account-alias → picker path).
+  const launchAtDepth = (depth: string) => {
+    const env = { ...process.env, CUE_LAUNCHING: depth, XDG_CONFIG_HOME: xdg };
     delete env.CLAUDE_CONFIG_DIR;
-    const res = spawnSync("bun", ["run", CUE_BIN, "launch", "claude", "--cue-profile", "core", "--dry-run"], {
+    return spawnSync("bun", ["run", CUE_BIN, "launch", "claude", "--cue-profile", "core", "--dry-run"], {
       encoding: "utf8",
       timeout: 15000,
       env,
     });
+  };
+
+  test("aborts with exit 2 once nesting reaches the cap", () => {
+    const res = launchAtDepth("3");
     expect(res.status).toBe(2);
-    expect(res.stderr).toContain("shim recursion detected");
+    expect(res.stderr).toContain("refusing to go further");
+  });
+
+  // The case that made the counter necessary: an agent, or a tool it runs,
+  // invoking `claude` for a subtask — an AI code review, say. That is one level
+  // of honest nesting and must not be mistaken for a shim loop.
+  test("a single nested launch is allowed", () => {
+    const res = launchAtDepth("1");
+    expect(res.status).not.toBe(2);
+    expect(res.stderr).not.toContain("refusing to go further");
+  });
+
+  // Pre-counter cue wrote the literal "1"; it must keep meaning depth 1.
+  test("a non-numeric marker from an older cue reads as depth 1", () => {
+    const res = launchAtDepth("yes");
+    expect(res.status).not.toBe(2);
   });
 });

@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-06-03
+updated: 2026-08-30
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zhitongblog-solomd"></a>
-## 💎 [zhitongblog/solomd](https://github.com/zhitongblog/solomd)
+<a id="dmitrax-second-brain-setup"></a>
+## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
 
-**★ 349** · exceptional (score 11.5) · TypeScript · tags: agent, autogit, byok, knowledge-base, markdown
+**★ 1** · exceptional (score 14.3) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
 
-A markdown editor — and the bridge to your LLM. Local-first, MIT, ~15 MB. Bundled MCP server lets Claude Code / Codex / Cursor drive your vault directly. 14 AI providers BYOK.
+Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
+
+✅ SKILL.md
 
 ```bash
-cue skills add zhitongblog/solomd --profile docs-writer
+cue skills add dmitrax/second-brain-setup --profile docs-writer
+```
+
+---
+
+<a id="netresearch-typo3-docs-skill"></a>
+## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+
+**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+
+Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
+
+```bash
+cue skills add netresearch/typo3-docs-skill --profile docs-writer
 ```
 
 ---

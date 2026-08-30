@@ -1,20 +1,19 @@
 /**
  * `cue watch-live [--profile <name>]` — file watcher for auto-rematerialization.
  *
- * Monitors profile.yaml, referenced SKILL.md files, and .cue-profile in cwd.
+ * Monitors profile.yaml, referenced SKILL.md files, and .cue.profile in cwd.
  * On change: re-runs materialization with 500ms debounce.
  */
 
 import { watch, existsSync, } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
+const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
+const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 
 export async function run(args: string[]): Promise<number> {
   if (args.includes("-h") || args.includes("--help")) {
@@ -25,7 +24,7 @@ Usage: cue watch-live [--profile <name>]
 Monitors:
   • Active profile's profile.yaml
   • All SKILL.md files referenced by the profile
-  • .cue-profile in cwd
+  • .cue.profile in cwd
 
 On any change, re-runs materialization (500ms debounce).
 Press Ctrl+C to stop.
@@ -43,7 +42,7 @@ Press Ctrl+C to stop.
   }
 
   if (!profileName) {
-    process.stderr.write("No active profile. Use --profile <name> or set .cue-profile.\n");
+    process.stderr.write("No active profile. Use --profile <name> or set .cue.profile.\n");
     return 1;
   }
 
@@ -68,8 +67,8 @@ Press Ctrl+C to stop.
     if (existsSync(skillMd)) watchPaths.push(skillMd);
   }
 
-  // 3. .cue-profile in cwd
-  const cueProfile = join(process.cwd(), ".cue-profile");
+  // 3. .cue.profile in cwd
+  const cueProfile = join(process.cwd(), ".cue.profile");
   if (existsSync(cueProfile)) watchPaths.push(cueProfile);
 
   if (watchPaths.length === 0) {
@@ -84,7 +83,7 @@ Press Ctrl+C to stop.
   let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   const rematerialize = async (changedPath: string) => {
-    const rel = changedPath.replace(REPO_ROOT + "/", "");
+    const rel = changedPath.replace(repoRoot() + "/", "");
     process.stdout.write(`[watch] Detected change in ${rel} → rematerializing...\n`);
     try {
       const { materializeRuntime } = await import("../lib/runtime-materializer");

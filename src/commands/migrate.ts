@@ -3,12 +3,11 @@
  */
 
 import { existsSync, readFileSync, writeFileSync, readdirSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = join(REPO_ROOT, "profiles");
+const PROFILES_DIR = join(repoRoot(), "profiles");
 const CURRENT_SCHEMA_VERSION = 2;
 
 interface Migration {

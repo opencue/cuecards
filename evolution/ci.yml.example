@@ -1,0 +1,25 @@
+# Ready-to-use CI for the cue evolution package.
+#
+# To enable: copy this file to the repo root at .github/workflows/evolution.yml
+# (kept here, not auto-installed, so it doesn't touch the parent repo's CI until
+# you opt in). It runs the OFFLINE test suite — no DSPy native stack, no LLM key —
+# on every change under evolution/.
+name: evolution-tests
+on:
+  push:
+    paths: ['evolution/**']
+  pull_request:
+    paths: ['evolution/**']
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: evolution
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e '.[dev]'
+      - run: python -m pytest tests/ -q

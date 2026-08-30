@@ -16,16 +16,15 @@
 
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { join, dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { homedir, platform } from "node:os";
 
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { requiredClisFor } from "../lib/cli-extractor";
 import { listProfiles } from "../lib/profile-loader";
+import { repoRoot } from "../lib/repo-root";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const RECIPES_PATH = join(REPO_ROOT, "resources", "cli-recipes.json");
+const RECIPES_PATH = join(repoRoot(), "resources", "cli-recipes.json");
 
 type Recipe = Partial<Record<"apt" | "brew" | "dnf" | "pacman" | "snap" | "winget" | "pip" | "pipx" | "npm" | "script" | "manual" | "needs", string>>;
 
@@ -40,7 +39,12 @@ function which(cmd: string): boolean {
 }
 
 function readRecipes(): Record<string, Recipe> {
-  try { return JSON.parse(readFileSync(RECIPES_PATH, "utf8")); }
+  try {
+    const raw = JSON.parse(readFileSync(RECIPES_PATH, "utf8")) as Record<string, unknown>;
+    return Object.fromEntries(
+      Object.entries(raw).filter(([, v]) => v && typeof v === "object" && !Array.isArray(v)),
+    ) as Record<string, Recipe>;
+  }
   catch { return {}; }
 }
 
@@ -52,28 +56,34 @@ interface InstallPlan {
   cli: string;
   mode: "apt" | "brew" | "dnf" | "pacman" | "snap" | "winget" | "pip" | "pipx" | "npm" | "script" | "manual" | "unknown";
   command?: string;
+  argv?: string[];
   hint?: string;
   needs?: string;
 }
 
-function planInstall(cli: string, recipe: Recipe | undefined): InstallPlan {
+function shellDisplay(argv: string[]): string {
+  return argv.map((part) => /^[a-zA-Z0-9_./:@%+=,-]+$/.test(part) ? part : JSON.stringify(part)).join(" ");
+}
+
+function planInstall(cli: string, recipe: Recipe | undefined, opts: { allowScripts?: boolean } = {}): InstallPlan {
   if (!recipe) return { cli, mode: "unknown", hint: `no recipe for "${cli}" in resources/cli-recipes.json` };
   const os = platform();
-  const tries: Array<[InstallPlan["mode"], string]> = [];
+  const tries: Array<[InstallPlan["mode"], string[]]> = [];
+  const words = (s: string) => s.split(/\s+/).filter(Boolean);
   if (os === "linux") {
-    if (recipe.apt && which("apt"))       tries.push(["apt",    `sudo apt install -y ${recipe.apt}`]);
-    if (recipe.dnf && which("dnf"))       tries.push(["dnf",    `sudo dnf install -y ${recipe.dnf}`]);
-    if (recipe.pacman && which("pacman")) tries.push(["pacman", `sudo pacman -S --noconfirm ${recipe.pacman}`]);
+    if (recipe.apt && which("apt"))       tries.push(["apt",    ["sudo", "apt", "install", "-y", ...words(recipe.apt)]]);
+    if (recipe.dnf && which("dnf"))       tries.push(["dnf",    ["sudo", "dnf", "install", "-y", ...words(recipe.dnf)]]);
+    if (recipe.pacman && which("pacman")) tries.push(["pacman", ["sudo", "pacman", "-S", "--noconfirm", ...words(recipe.pacman)]]);
     // snap as a fallback for tools that aren't in distro repos (helm, terraform, etc.)
     if (recipe.snap && which("snap")) {
       const classic = recipe.snap.includes("--classic") ? "" : " --classic";
       const pkg = recipe.snap.replace(/--classic\s*/, "").trim();
-      tries.push(["snap", `sudo snap install ${pkg}${classic}`]);
+      tries.push(["snap", ["sudo", "snap", "install", pkg, ...words(classic)]]);
     }
   } else if (os === "darwin") {
-    if (recipe.brew && which("brew"))     tries.push(["brew",   `brew install ${recipe.brew}`]);
+    if (recipe.brew && which("brew"))     tries.push(["brew",   ["brew", "install", ...words(recipe.brew)]]);
   } else if (os === "win32") {
-    if (recipe.winget && which("winget")) tries.push(["winget", `winget install --id ${recipe.winget} -e`]);
+    if (recipe.winget && which("winget")) tries.push(["winget", ["winget", "install", "--id", recipe.winget, "-e"]]);
   }
   // Cross-platform language pkg managers as fallback.
   // For Python packages: prefer pipx (isolated, ships its own pip), then pip3
@@ -83,21 +93,23 @@ function planInstall(cli: string, recipe: Recipe | undefined): InstallPlan {
   // available — most pip recipes here are CLI tools, which is exactly what
   // pipx is designed for.
   if (recipe.pipx && which("pipx")) {
-    tries.push(["pipx", `pipx install ${recipe.pipx}`]);
+    tries.push(["pipx", ["pipx", "install", ...words(recipe.pipx)]]);
   } else if (recipe.pip) {
-    if (which("pipx"))     tries.push(["pipx", `pipx install ${recipe.pip}`]);
-    else if (which("pip3")) tries.push(["pip",  `pip3 install --user ${recipe.pip}`]);
-    else                    tries.push(["pip",  `python3 -m pip install --user ${recipe.pip}`]);
+    if (which("pipx"))     tries.push(["pipx", ["pipx", "install", ...words(recipe.pip)]]);
+    else if (which("pip3")) tries.push(["pip",  ["pip3", "install", "--user", ...words(recipe.pip)]]);
+    else                    tries.push(["pip",  ["python3", "-m", "pip", "install", "--user", ...words(recipe.pip)]]);
   }
-  if (recipe.npm && which("npm"))    tries.push(["npm",  `npm install -g ${recipe.npm}`]);
-  if (recipe.script)                 tries.push(["script", recipe.script]);
+  if (recipe.npm && which("npm"))    tries.push(["npm",  ["npm", "install", "-g", ...words(recipe.npm)]]);
+  if (recipe.script && opts.allowScripts) tries.push(["script", ["bash", "-c", recipe.script]]);
 
   if (tries.length === 0) {
-    const manual = recipe.manual ?? `no installer for this OS/recipe`;
+    const manual = recipe.manual ?? (recipe.script
+      ? `script installer requires --allow-scripts: ${recipe.script}`
+      : `no installer for this OS/recipe`);
     return { cli, mode: "manual", hint: manual, needs: recipe.needs };
   }
-  const [mode, command] = tries[0]!;
-  return { cli, mode, command, needs: recipe.needs };
+  const [mode, argv] = tries[0]!;
+  return { cli, mode, argv, command: shellDisplay(argv), needs: recipe.needs };
 }
 
 async function resolveProfileArg(args: string[]): Promise<string | undefined> {
@@ -210,6 +222,7 @@ async function listCmd(args: string[]): Promise<number> {
 async function installCmd(args: string[]): Promise<number> {
   const all = args.includes("--all");
   const yes = args.includes("--yes");
+  const allowScripts = args.includes("--allow-scripts");
   const dryRun = !yes;
   const asJson = args.includes("--json");
   const positional = args.filter((a) => !a.startsWith("-"));
@@ -237,7 +250,7 @@ async function installCmd(args: string[]): Promise<number> {
     return 0;
   }
 
-  const plans = targets.map((cli) => planInstall(cli, recipes[cli]));
+  const plans = targets.map((cli) => planInstall(cli, recipes[cli], { allowScripts }));
   const installable = plans.filter((p) => p.command);
   const manual = plans.filter((p) => !p.command);
 
@@ -271,7 +284,8 @@ async function installCmd(args: string[]): Promise<number> {
   let failed = 0;
   for (const p of installable) {
     process.stdout.write(`\n  ${bold(`→ Installing ${p.cli}`)}\n  ${dim("$ " + p.command)}\n`);
-    const res = spawnSync("bash", ["-c", p.command!], { stdio: "inherit" });
+    const argv = p.argv!;
+    const res = spawnSync(argv[0]!, argv.slice(1), { stdio: "inherit" });
     if (res.status !== 0) {
       process.stdout.write(`  ${red(`✗ ${p.cli} install failed (exit ${res.status})`)}\n`);
       failed++;
@@ -298,6 +312,7 @@ export async function run(args: string[]): Promise<number> {
       process.stderr.write("  cue cli list [profile]\n");
       process.stderr.write("  cue cli install <tool>\n");
       process.stderr.write("  cue cli install --all [profile] [--yes] [--json]\n");
+      process.stderr.write("  cue cli install --all [profile] [--yes] [--allow-scripts]\n");
       return sub ? 1 : 0;
   }
 }

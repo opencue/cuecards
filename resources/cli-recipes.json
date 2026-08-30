@@ -2,6 +2,7 @@
   "$schema-comment": "Per-tool install recipes. Each tool may declare: apt (Debian/Ubuntu), brew (macOS), dnf (Fedora), pacman (Arch), winget (Windows), pip (Python pkg), npm (Node pkg), pipx (isolated Python tool), script (one-line bash installer), manual (URL — needs human intervention), needs (free-text caveat). The cli installer tries package managers first in OS-appropriate order, then falls back to pip/npm if declared, then prints the manual hint.",
 
   "acpx":         { "npm": "acpx@latest", "needs": "Headless ACP client — delegate to other coding agents (codex, claude, pi, etc.) instead of PTY scraping. Session state lives in ~/.acpx/" },
+  "ccusage":      { "npm": "ccusage@latest", "needs": "Analyze coding-agent token usage & cost from local logs (Claude Code, Codex, Gemini, Copilot, +more). No install needed: prefer `bunx ccusage` or `npx ccusage@latest`. Pairs with the tools/ccusage skill." },
 
   "nmap":         { "apt": "nmap", "brew": "nmap", "pacman": "nmap", "dnf": "nmap" },
   "tcpdump":      { "apt": "tcpdump", "brew": "tcpdump", "pacman": "tcpdump", "dnf": "tcpdump" },
@@ -21,6 +22,7 @@
   "subfinder":    { "brew": "subfinder", "pacman": "subfinder", "manual": "go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest" },
   "httpx":        { "brew": "httpx", "pacman": "httpx", "manual": "go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest" },
   "nuclei":       { "brew": "nuclei", "pacman": "nuclei", "manual": "go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest" },
+  "trivy":        { "brew": "trivy", "pacman": "trivy", "script": "curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/v0.71.0/contrib/install.sh | sh -s -- -b $HOME/.local/bin", "needs": "Aqua Security scanner: dependency CVEs + committed secrets + IaC/Dockerfile misconfig. Pre-merge gate behind the security/trivy-scan skill. Not in default apt/dnf — those need the Aqua repo; the script installer is the cross-distro fallback. https://trivy.dev/latest/getting-started/installation/" },
 
   "yara":         { "apt": "yara", "brew": "yara", "pacman": "yara", "dnf": "yara" },
   "suricata":     { "apt": "suricata", "brew": "suricata", "pacman": "suricata", "dnf": "suricata" },

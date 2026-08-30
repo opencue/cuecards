@@ -43,6 +43,31 @@ describe("parseClaudeKeep — output parser", () => {
     const out = "\n\nKEEP:   rust/serde  ,    backend/auth\n\nREASON: ...";
     expect(parseClaudeKeep(out, allIds)).toEqual(["rust/serde", "backend/auth"]);
   });
+
+  // buildPrompt renders a NUMBERED list ("1. <id> — <desc>"), which reliably
+  // invites a positional answer. Observed live: `KEEP: 1, 3, 10, 12`. Rejecting
+  // it made classification fail open to "kept all skills" — indistinguishable
+  // from the classifier being unavailable.
+  test("accepts 1-based list positions, not just ids", () => {
+    const out = "KEEP: 2, 3\nREASON: rust and react";
+    expect(parseClaudeKeep(out, allIds)).toEqual(["rust/serde", "frontend/react"]);
+  });
+
+  test("accepts a mix of positions and ids", () => {
+    expect(parseClaudeKeep("KEEP: 2, backend/auth", allIds)).toEqual(["rust/serde", "backend/auth"]);
+  });
+
+  test("ignores out-of-range positions", () => {
+    expect(parseClaudeKeep("KEEP: 2, 99, 0", allIds)).toEqual(["rust/serde"]);
+  });
+
+  test("dedupes when a skill is named twice by both forms", () => {
+    expect(parseClaudeKeep("KEEP: 2, rust/serde", allIds)).toEqual(["rust/serde"]);
+  });
+
+  test("still returns null when nothing resolves", () => {
+    expect(parseClaudeKeep("KEEP: imaginary/skill, 99", allIds)).toBeNull();
+  });
 });
 
 describe("ALWAYS_KEEP — operational primitives never get pruned", () => {

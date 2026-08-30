@@ -1,23 +1,23 @@
 ---
 title: "yvgude/lean-ctx — Claude Code skill discovered by cue"
-description: "LeanCTX — the Context OS for AI development. One local binary that compresses, remembers, routes, and verifies every token between your code and the model. 63 M"
+description: "Control what your AI can see. LeanCTX (Lean Context) is the context intelligence layer for AI agents — one local Rust binary that decides what they read, rememb"
 layout: page
-updated: 2026-06-03
+updated: 2026-07-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yvgude/lean-ctx](https://github.com/yvgude/lean-ctx)
 
-**★ 2383** · exceptional (score 16.9) · Rust · agentic-coding, ai, ai-coding, claude-code, context-engineering
+**★ 3299** · exceptional (score 17.5) · Rust · agentic-coding, ai, ai-agents, ai-coding, claude-code
 
-> LeanCTX — the Context OS for AI development. One local binary that compresses, remembers, routes, and verifies every token between your code and the model. 63 MCP tools, 10 read modes, up to 99% token savings. Works with Cursor, Claude Code, Copilot, Windsurf, Codex, Gemini.
+> Control what your AI can see. LeanCTX (Lean Context) is the context intelligence layer for AI agents — one local Rust binary that decides what they read, remembers what they learn, guards what they touch, and proves what they save. 60–90% fewer tokens as the receipt. 76 MCP tools, 30+ agents, local-first.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.9 based on:
-- ⭐ 2383 stars
-- 🗓️ Last pushed: 2026-06-03
-- 🏷️ Tags: agentic-coding, ai, ai-coding, claude-code, context-engineering, context-layer, copilot, cursor, developer-tools, gemini-cli, llm, mcp, mcp-server, reduce-token-costs, rust, token-optimization
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
+- ⭐ 3299 stars
+- 🗓️ Last pushed: 2026-07-20
+- 🏷️ Tags: agentic-coding, ai, ai-agents, ai-coding, claude-code, context-engineering, context-intelligence, context-layer, copilot, cursor, developer-tools, gemini-cli, lean-context, llm, mcp, mcp-server, reduce-token-costs, rust, token-optimization
 
 ## Best fit cue profiles
 

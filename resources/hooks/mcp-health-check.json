@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_CONFIG_DIR}/hooks/mcp-health-check.sh",
+            "description": "Once-a-day MCP liveness probe for the active profile: spawns each server and runs the real MCP handshake, then names any that are down — plus the skills that declare a dependency on them — so the agent knows a capability is broken rather than concluding it does not exist. Fail-open; throttled by ~/.config/cue/mcp-health-stamp; disable with CUE_MCP_HEALTH_OFF=1.",
+            "id": "cue:sessionstart:mcp-health-check"
+          }
+        ]
+      }
+    ]
+  }
+}

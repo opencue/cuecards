@@ -15,7 +15,7 @@ Pick **claude-code-switcher** if your only need is "different MCPs per project."
 | **MCP server management** | ✅ | ✅ |
 | **Skills management** | ✅ | — |
 | **Claude Code plugins** | ✅ | — |
-| **Per-directory automatic switching** (no manual command) | ✅ (via `.cue-profile`) | ❌ (manual `switch <name>`) |
+| **Per-directory automatic switching** (no manual command) | ✅ (via `.cue.profile`) | ❌ (manual `switch <name>`) |
 | **Profile inheritance** | ✅ | ❌ |
 | **Persona / playbooks / quality gates** | ✅ | — |
 | **CLI dependency installer** | ✅ | — |
@@ -61,8 +61,8 @@ cue new my-frontend
 # (cue resolves MCP IDs against resources/mcps/configs/)
 
 # 4. Pin profiles to directories
-cd ~/repos/backend  && echo my-backend  > .cue-profile
-cd ~/repos/frontend && echo my-frontend > .cue-profile
+cd ~/repos/backend  && echo my-backend  > .cue.profile
+cd ~/repos/frontend && echo my-frontend > .cue.profile
 
 # Now `claude` in each repo automatically picks the right loadout — no switch command needed
 ```
@@ -73,4 +73,4 @@ cd ~/repos/frontend && echo my-frontend > .cue-profile
 
 - [cue vs skillport](./cue-vs-skillport.md) — skill-installer comparison
 - [cue vs Kiro Powers](./cue-vs-kiro-powers.md) — IDE-locked alternative
-- [How profile resolution works](../launch.md) — `.cue-profile` walking + precedence rules
+- [How profile resolution works](../launch.md) — `.cue.profile` walking + precedence rules

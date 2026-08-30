@@ -15,7 +15,7 @@ Pick **skillport** if you want a Homebrew-for-Claude-Code skill index. Pick **cu
 | **Skills install** | ✅ | ✅ |
 | **MCP server management** | ✅ | — |
 | **Claude Code plugin management** | ✅ | — |
-| **Per-directory profile pinning** (`.cue-profile`) | ✅ | — |
+| **Per-directory profile pinning** (`.cue.profile`) | ✅ | — |
 | **Profile inheritance** (`core → backend → medusa-dev`) | ✅ | — |
 | **Materialized config isolation** (per-profile `CLAUDE_CONFIG_DIR`) | ✅ | — (writes globally to `~/.claude/`) |
 | **Persona** (defines who the agent IS) | ✅ | — |
@@ -63,7 +63,7 @@ cue init   # scans ~/.claude/skills/ + your repo, suggests a profile
 
 # 3. Pin the profile to your project
 cd ~/projects/my-repo
-echo my-profile > .cue-profile
+echo my-profile > .cue.profile
 
 # 4. Test
 claude   # boots with just my-profile's skills, instead of all of them

@@ -324,6 +324,16 @@ export interface RouterRenderOptions {
    * push the file past Claude Code's 40KB perf-warning threshold.
    */
   omitTriggerPhrases?: boolean;
+  /**
+   * Cap the number of rows in the capability table. On heavy profiles (60+
+   * skills) the auto-built capability table is the single largest block in
+   * the materialized CLAUDE.md. Beyond the cap, the lowest-signal skills
+   * (weak metadata first) drop their capability row and collapse into a
+   * single "+N more loadable on demand" note — they stay listed under
+   * "Available Skills" and remain invokable via the Skill tool. Manual
+   * `persona_routing:` rows are always kept. 0 / undefined → no cap.
+   */
+  maxCapabilityRows?: number;
 }
 
 /**
@@ -370,15 +380,23 @@ export function renderRouter(
   // Capability rows: any skill with a capability blurb OR explicit
   // when_to_invoke entries. We surface up to 3 task-shapes per skill;
   // skills with only a capability blurb render a single "any X work" row.
-  const capabilityRows: { task: string; skill: string; manual?: boolean; note?: string }[] = [];
+  const capabilityRows: {
+    task: string;
+    skill: string;
+    manual?: boolean;
+    note?: string;
+    quality?: ParseQuality;
+  }[] = [];
   for (const s of activeSkills) {
     if (s.whenToInvoke.length > 0) {
-      for (const task of s.whenToInvoke.slice(0, 3)) {
-        capabilityRows.push({ task, skill: s.name });
+      // Two task-shapes per skill is enough to prime routing; a third row
+      // rarely adds signal and inflates the table on heavy profiles.
+      for (const task of s.whenToInvoke.slice(0, 2)) {
+        capabilityRows.push({ task, skill: s.name, quality: s.quality });
       }
     } else if (s.capability) {
       const summary = truncate(s.capability, 70);
-      capabilityRows.push({ task: summary, skill: s.name });
+      capabilityRows.push({ task: summary, skill: s.name, quality: s.quality });
     }
   }
 
@@ -409,6 +427,44 @@ export function renderRouter(
         note: ovr.note,
       });
     }
+  }
+
+  // Capability-table cap. On heavy profiles this table is the largest block
+  // in the materialized CLAUDE.md. Keep manual (persona_routing) rows plus the
+  // highest-signal skills; collapse the overflow into a single on-demand note.
+  // The dropped skills stay listed under "Available Skills" and invokable via
+  // the Skill tool — only their capability hint is omitted.
+  let capOverflowSkills = 0;
+  const cap = options.maxCapabilityRows ?? 0;
+  if (cap > 0 && capabilityRows.length > cap) {
+    const qualityRank: Record<ParseQuality, number> = { good: 0, partial: 1, none: 2 };
+    const ordered = capabilityRows
+      .map((row, idx) => ({ row, idx }))
+      .sort((a, b) => {
+        // Manual rows first (always kept), then by metadata quality, then
+        // stable on original order so a skill's rows stay together.
+        const am = a.row.manual ? 0 : 1;
+        const bm = b.row.manual ? 0 : 1;
+        if (am !== bm) return am - bm;
+        const aq = qualityRank[a.row.quality ?? "none"];
+        const bq = qualityRank[b.row.quality ?? "none"];
+        if (aq !== bq) return aq - bq;
+        return a.idx - b.idx;
+      });
+    const keptSet = new Set(ordered.slice(0, cap).map((e) => e.idx));
+    const keptSkills = new Set<string>();
+    const droppedSkills = new Set<string>();
+    capabilityRows.forEach((row, idx) => {
+      if (keptSet.has(idx)) keptSkills.add(row.skill);
+    });
+    capabilityRows.forEach((row, idx) => {
+      if (!keptSet.has(idx) && !keptSkills.has(row.skill)) droppedSkills.add(row.skill);
+    });
+    capOverflowSkills = droppedSkills.size;
+    // Re-filter in original order so kept rows read naturally.
+    const filtered = capabilityRows.filter((_, idx) => keptSet.has(idx));
+    capabilityRows.length = 0;
+    capabilityRows.push(...filtered);
   }
 
   // Tail: skills that yielded nothing or are missing on disk. Zombies that
@@ -448,6 +504,11 @@ export function renderRouter(
       "These wrap the underlying tools with prompt-enhancement, house " +
       "style, or correct CLI invocations. Freestyling around them produces " +
       "worse output.\n\n";
+    if (capOverflowSkills > 0) {
+      out +=
+        `_+${capOverflowSkills} more skill${capOverflowSkills === 1 ? "" : "s"} in this profile — ` +
+        "listed under \"Available Skills\" and loadable via the Skill tool on demand._\n\n";
+    }
   }
 
   if (triggerRows.length > 0 && !options.omitTriggerPhrases) {

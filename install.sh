@@ -6,7 +6,7 @@
 # Usage:
 #   ./install.sh                # interactive: prompts for shim install
 #   ./install.sh --yes          # non-interactive; install claude shim
-#   ./install.sh --yes --codex  # also install codex shim (clobbers existing codex on PATH)
+#   ./install.sh --yes --codex  # also install the codex shim
 #   ./install.sh --uninstall    # remove symlinks + shims; leaves the repo
 #
 # Pre-reqs the installer verifies (but does NOT auto-install):
@@ -15,7 +15,9 @@
 #
 # Sources read for config (with defaults):
 #   CUE_DIR        repo location  (default: dir of this script)
-#   SHIM_DIR       where ~/.local/bin lives  (default: $HOME/.local/bin)
+#   SHIM_DIR       where the `cue` symlink goes  (default: $HOME/.local/bin)
+#   CUE_SHIMS      where the agent shims go
+#                  (default: ${XDG_CONFIG_HOME:-$HOME/.config}/cue/shims)
 
 set -euo pipefail
 
@@ -28,6 +30,10 @@ while [ -h "$__src" ]; do
 done
 CUE_DIR="${CUE_DIR:-$(cd -P "$(dirname "$__src")" && pwd)}"
 SHIM_DIR="${SHIM_DIR:-$HOME/.local/bin}"
+# Agent shims live in a dir cue owns outright. ~/.local/bin belongs to the
+# native Claude installer: its `claude` is a symlink to the real binary, often
+# the only one on PATH, and it gets rewritten on every Claude update.
+CUE_SHIMS="${CUE_SHIMS:-${XDG_CONFIG_HOME:-$HOME/.config}/cue/shims}"
 
 say()  { printf '%s\n' "$*" >&2; }
 ok()   { say "  ${GREEN}✓${RESET} $*"; }
@@ -60,16 +66,18 @@ done
 # ---------- uninstall ----------
 if [ "$UNINSTALL" = "1" ]; then
   say "${DIM}→ Removing cue shims and symlinks${RESET}"
-  for f in cue claude codex; do
-    if [ -L "$SHIM_DIR/$f" ] || [ -e "$SHIM_DIR/$f" ]; then
-      target="$(readlink "$SHIM_DIR/$f" 2>/dev/null || true)"
-      # Only remove if it points into the cue repo or is one of our shims
-      if [[ "$target" == "$CUE_DIR"* ]] || grep -q "exec cue launch $f" "$SHIM_DIR/$f" 2>/dev/null; then
-        rm "$SHIM_DIR/$f"
-        ok "Removed $SHIM_DIR/$f"
-      else
-        warn "Skipped $SHIM_DIR/$f — not managed by cue (target: $target)"
-      fi
+  for f in "$SHIM_DIR/cue" "$SHIM_DIR/cue-learnings" "$CUE_SHIMS/claude" "$CUE_SHIMS/codex" "$SHIM_DIR/claude" "$SHIM_DIR/codex"; do
+    [ -L "$f" ] || [ -e "$f" ] || continue
+    agent="$(basename "$f")"
+    target="$(readlink "$f" 2>/dev/null || true)"
+    # Only remove what is provably ours: a symlink into the cue repo, or a
+    # shim whose body calls `cue launch`. A bare symlink is NOT proof —
+    # ~/.local/bin/claude is a symlink on every native Claude install.
+    if [[ "$target" == "$CUE_DIR"* ]] || { grep -q "launch $agent" "$f" 2>/dev/null && grep -qi "cue" "$f" 2>/dev/null; }; then
+      rm "$f"
+      ok "Removed $f"
+    else
+      warn "Skipped $f — not managed by cue (target: ${target:-<file>})"
     fi
   done
   say ""
@@ -103,18 +111,26 @@ say "${DIM}Step 3/6 — verifying cue binary${RESET}"
 "$CUE_DIR/bin/cue" --version >/dev/null || die "cue binary failed self-check"
 ok "cue $("$CUE_DIR/bin/cue" --version) works"
 
-# 4. Symlink cue into ~/.local/bin
+# 4. Symlink cue's commands into ~/.local/bin
 say ""
-say "${DIM}Step 4/6 — exposing cue on PATH${RESET}"
+say "${DIM}Step 4/6 — exposing cue commands on PATH${RESET}"
 mkdir -p "$SHIM_DIR"
-if [ -L "$SHIM_DIR/cue" ] && [ "$(readlink "$SHIM_DIR/cue")" = "$CUE_DIR/bin/cue" ]; then
-  ok "$SHIM_DIR/cue already points at $CUE_DIR/bin/cue"
-elif [ -e "$SHIM_DIR/cue" ]; then
-  warn "$SHIM_DIR/cue exists and is not a cue symlink — skipping (remove manually if you want cue here)"
-else
-  ln -s "$CUE_DIR/bin/cue" "$SHIM_DIR/cue"
-  ok "symlinked $SHIM_DIR/cue → $CUE_DIR/bin/cue"
-fi
+install_cli_link() {
+  local name="$1"
+  local target="$CUE_DIR/bin/$name"
+  local link="$SHIM_DIR/$name"
+  if [ -L "$link" ] && [ "$(readlink "$link")" = "$target" ]; then
+    ok "$link already points at $target"
+  elif [ -e "$link" ] || [ -L "$link" ]; then
+    warn "$link exists and is not a cue symlink — skipping (remove manually if you want $name here)"
+  else
+    ln -s "$target" "$link"
+    ok "symlinked $link → $target"
+  fi
+}
+
+install_cli_link cue
+install_cli_link cue-learnings
 
 case ":$PATH:" in
   *":$SHIM_DIR:"*) ok "$SHIM_DIR is on PATH" ;;
@@ -148,44 +164,51 @@ say "${DIM}Step 6/6 — agent shims${RESET}"
 
 install_shim() {
   local agent="$1"
-  local shim_path="$SHIM_DIR/$agent"
+  local shim_path="$CUE_SHIMS/$agent"
 
-  if [ -L "$shim_path" ] || grep -q "exec cue launch $agent" "$shim_path" 2>/dev/null; then
-    ok "$shim_path already routes through cue"
-    return 0
-  fi
-
-  if [ -e "$shim_path" ]; then
-    warn "$shim_path exists and is not a cue shim (target: $(readlink "$shim_path" 2>/dev/null || echo '<file>'))"
-    say "   to install the cue shim, back up the existing file first, then re-run with --yes"
-    return 1
-  fi
-
+  mkdir -p "$CUE_SHIMS"
   cat > "$shim_path" <<EOF
 #!/usr/bin/env bash
-exec cue launch $agent "\$@"
+exec "$CUE_DIR/bin/cue" launch $agent "\$@"
 EOF
   chmod +x "$shim_path"
   ok "wrote $shim_path"
+
+  # Migrate: older installers wrote the shim into ~/.local/bin, where it now
+  # shadows the real binary. Remove only what is provably ours — never a
+  # native-installer symlink.
+  # ...but only when it is a DIFFERENT file. With SHIM_DIR and CUE_SHIMS set to
+  # the same directory, `legacy` is the shim written three lines up, and this
+  # migration deletes the thing it was asked to install.
+  local legacy="$SHIM_DIR/$agent"
+  if [ "$legacy" != "$shim_path" ] \
+     && grep -q "launch $agent" "$legacy" 2>/dev/null && grep -qi "cue" "$legacy" 2>/dev/null; then
+    rm -f "$legacy"
+    ok "removed legacy cue shim at $legacy"
+  fi
+
+  case ":$PATH:" in
+    *":$CUE_SHIMS:"*) ;;
+    *)
+      warn "$CUE_SHIMS is NOT on PATH — the $agent shim is inert until it is"
+      say "     bash/zsh: export PATH=\"$CUE_SHIMS:\$PATH\""
+      say "     fish:     fish_add_path -g -p $CUE_SHIMS"
+      ;;
+  esac
 }
 
 want_claude=1
 want_codex="$INSTALL_CODEX"
 
 if [ "$ASSUME_YES" = "0" ] && [ -t 0 ] && [ -t 1 ]; then
-  printf "  Install $SHIM_DIR/claude shim now? [Y/n] " >&2
+  printf "  Install $CUE_SHIMS/claude shim now? [Y/n] " >&2
   read -r ans
   case "$ans" in [Nn]*) want_claude=0 ;; esac
 
   if [ "$want_codex" = "0" ]; then
-    if [ -e "$SHIM_DIR/codex" ]; then
-      say "  ${DIM}codex shim: $SHIM_DIR/codex already exists ($(readlink "$SHIM_DIR/codex" 2>/dev/null || echo '<file>'))${RESET}"
-      say "  ${DIM}skipping — pass --codex if you want to clobber it${RESET}"
-    else
-      printf "  Install $SHIM_DIR/codex shim too? [y/N] " >&2
-      read -r ans
-      case "$ans" in [Yy]*) want_codex=1 ;; esac
-    fi
+    printf "  Install $CUE_SHIMS/codex shim too? [y/N] " >&2
+    read -r ans
+    case "$ans" in [Yy]*) want_codex=1 ;; esac
   fi
 fi
 

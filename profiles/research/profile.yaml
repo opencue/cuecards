@@ -51,7 +51,7 @@ skills:
     - gstack/document-generate
     - gstack/document-release
     - gstack/make-pdf
-    - content/playwright
+    - browser/agent-browser   # browser automation (vercel-labs/agent-browser CLI)
   npx:
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
@@ -68,7 +68,6 @@ plugins:
   - oh-my-claudecode@omc
 mcps:
   - cue-tty-watch
-  - lightpanda
   - gbrain
   - polymarket-live
   - obsidian-vault

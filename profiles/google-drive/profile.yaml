@@ -11,6 +11,40 @@ skills:
   local:
     - google-workspace/google-drive
   npx:
+    # --- google/skills: official Google Cloud skill library ---
+    - repo: google/skills
+      skills:
+        - gcloud
+        - gemini-api
+        - gemini-agents-api
+        - gemini-interactions-api
+        - google-cloud-recipe-auth
+        - google-cloud-recipe-onboarding
+        - bigquery-basics
+        - agent-platform-deploy
+        - agent-platform-endpoint-management
+        - agent-platform-eval-flywheel
+        - agent-platform-inference
+        - agent-platform-migrate-from-ai-studio
+        - agent-platform-model-registry
+        - agent-platform-prompt-management
+        - agent-platform-rag-engine-management
+        - agent-platform-skill-registry
+        - agent-platform-tuning
+        - agent-platform-tuning-management
+        - alloydb-basics
+        - cloud-run-basics
+        - cloud-sql-basics
+        - firebase-basics
+        - gke-basics
+        - google-cloud-networking-observability
+        - google-cloud-waf-cost-optimization
+        - google-cloud-waf-operational-excellence
+        - google-cloud-waf-performance-optimization
+        - google-cloud-waf-reliability
+        - google-cloud-waf-security
+        - google-cloud-waf-sustainability
+
     # Top community Google Drive skill (1.4K installs).
     - repo: membranedev/application-skills
       skills: [google-drive]

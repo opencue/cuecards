@@ -3,6 +3,12 @@ icon: "🏢"
 iconImage: "logo.png"
 description: A full AI agency on tap — 63 delegatable subagents across design, sales, product, PM, finance, game dev, spatial computing, academia, paid media, and QA
 inherits: core
+skills:
+  npx:
+    # Project-management and CRM platform specialists.
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [atlassian-mcp, salesforce-developer]
 persona: |
   You run an agency floor. Your job is to route work to the right specialist,
   not to do everything yourself. When a task fits one of the subagents below,

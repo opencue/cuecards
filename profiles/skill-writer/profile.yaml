@@ -94,6 +94,19 @@ skills:
     - meta/soul                      # soul identity management
     - meta/upgrade-stack             # upgrade cue stack
     - meta/cue-dashboard             # query/drive the live cue studio dashboard (cue dash CLI + cue-dashboard MCP)
+  npx:
+    # Discovered 2026-06-08: typed/contracts/tests layer for productionizing skills.
+    - repo: e01n0/skillspec
+      skills: [skillspec]
+    # Discovered 2026-06-08: context-budget and compaction hygiene.
+    - repo: gerrict/ghost-token-hunter
+      skills: [ghost-token-hunter]
+    # Discovered 2026-06-08: maintainability pressure for agent-authored code.
+    - repo: ScienceIsNeato/slop-mop
+      skills: [slop-mop]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills: [mcp-developer, prompt-engineer]
 
 playbooks:
   - write-skill-from-scratch
@@ -118,6 +131,15 @@ commands:
 
 hooks:
   - skill-frontmatter-guard.json
+  # cue self-learner (pilot) — captures where this profile's skills fall short
+  # and (with the live critic) judges the gap, feeding `cue profile self-improve`.
+  # OFF until `touch ~/.config/cue/.auto-improve-enabled`. See docs/self-learner.md.
+  - profile-self-improve.json
+  # SessionStart hook: surface the most recent cross-session learnings (from
+  # bin/cue-learnings) into context so the model reads them automatically — the
+  # read-back half of the learnings loop. Read-only, fail-open, no-op when none
+  # exist. Disable with CUE_LEARNINGS_SURFACE_OFF=1.
+  - learnings-surface.json
 
 mcps:
   - gbrain

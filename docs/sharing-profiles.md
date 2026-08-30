@@ -148,7 +148,7 @@ This creates `profiles/backend/profile.yaml` in your cue directory. Then:
 ```bash
 # Pin it to a project
 cd ~/my-project
-echo backend > .cue-profile
+echo backend > .cue.profile
 
 # Launch
 claude

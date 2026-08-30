@@ -11,14 +11,12 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
+import { repoRoot } from "../lib/repo-root";
 
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const PROFILES_DIR = join(REPO_ROOT, "profiles");
-const REGISTRY_PATH = join(REPO_ROOT, "docs", "registry", "index.json");
+const PROFILES_DIR = join(repoRoot(), "profiles");
 
 interface MatchedProfile {
   name: string;
@@ -129,7 +127,7 @@ Options:
     }
 
     if (apply) {
-      writeFileSync(join(process.cwd(), ".cue-profile"), best.name + "\n");
+      writeFileSync(join(process.cwd(), ".cue.profile"), best.name + "\n");
       process.stdout.write(`  ${green("✓")} Pinned ${bold(best.name)} to this directory.\n\n`);
     } else {
       process.stdout.write(`  Use it:  ${bold(`cue use ${best.name}`)}\n`);
@@ -164,7 +162,7 @@ Options:
     const profileDir = join(PROFILES_DIR, profileName);
     mkdirSync(profileDir, { recursive: true });
     writeFileSync(join(profileDir, "profile.yaml"), output);
-    writeFileSync(join(process.cwd(), ".cue-profile"), profileName + "\n");
+    writeFileSync(join(process.cwd(), ".cue.profile"), profileName + "\n");
     process.stdout.write(`\n  ${green("✓")} Created ${bold(profileName)} (inherits from ${inheritsFrom})\n`);
     process.stdout.write(`  ${green("✓")} Pinned to this directory.\n`);
     process.stdout.write(`  Edit: profiles/${profileName}/profile.yaml\n\n`);

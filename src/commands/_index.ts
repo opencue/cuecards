@@ -1,12 +1,10 @@
 /**
  * Subcommand registry.
  *
- * Each entry declares a one-line summary (for `cue --help`) and a lazy
- * loader that returns the command module. Lazy loading keeps cold start
- * fast — only the command actually invoked is imported.
- *
- * Owning agent for each subcommand is noted alongside; stubs live here until
- * those agents land their real implementations.
+ * Each entry declares a one-line summary (shown in shell tab-completion and
+ * `cue --help`) and a lazy loader that returns the command module. Lazy
+ * loading keeps cold start fast — only the command actually invoked is
+ * imported. Keep summaries user-facing: no internal owner/agent IDs.
  */
 
 export interface Command {
@@ -18,19 +16,19 @@ export interface Command {
 
 export const COMMANDS = {
   use: {
-    summary: "Materialize a profile into CWD or ~/.claude (owned by A14)",
+    summary: "Materialize a profile into the current directory or ~/.claude",
     load: () => import("./use"),
   },
   list: {
-    summary: "List available profiles with counts and active marker (A14)",
+    summary: "List available profiles with counts and the active marker",
     load: () => import("./list"),
   },
   new: {
-    summary: "Scaffold a new profile; --from-scan buckets discovered skills (A12)",
+    summary: "Scaffold a new profile; --from-scan buckets discovered skills",
     load: () => import("./new"),
   },
   scan: {
-    summary: "Print a tree of installed skills/plugins grouped by domain (A10/A11)",
+    summary: "Print a tree of installed skills/plugins grouped by domain",
     load: () => import("./scan"),
   },
   score: {
@@ -38,11 +36,11 @@ export const COMMANDS = {
     load: () => import("./score"),
   },
   doctor: {
-    summary: "Diff declared profile vs actual disk state; --fix repairs (A15)",
+    summary: "Diff declared profile vs actual disk state; --fix repairs",
     load: () => import("./doctor"),
   },
   validate: {
-    summary: "Schema + lint checks for a profile (or --all) (A13)",
+    summary: "Schema + lint checks for a profile (or --all)",
     load: () => import("./validate"),
   },
   router: {
@@ -57,36 +55,68 @@ export const COMMANDS = {
     summary: "Resolve+materialize a profile then exec claude/codex (hot path)",
     load: () => import("./launch"),
   },
+  loadout: {
+    summary: "Inspect/edit the project's skill loadout (keep/defer/on/off/reset)",
+    load: () => import("./loadout"),
+  },
+  install: {
+    summary: "Prepare profile runtimes and optionally install required CLIs",
+    load: () => import("./install"),
+  },
+  sync: {
+    summary: "Refresh materialized runtimes after editing a profile source (--dry-run to preview)",
+    load: () => import("./sync"),
+  },
+  gc: {
+    summary: "Remove materialized runtimes idle past the age threshold (--dry-run, --days N)",
+    load: () => import("./gc"),
+  },
   materialize: {
     summary: "Write skills + MCPs for any agent (cursor, cline, gemini, copilot, etc.)",
     load: () => import("./materialize"),
+  },
+  ruler: {
+    summary: "Distribute the active profile's rules into every agent's native rule file (--revert undoes)",
+    load: () => import("./ruler"),
+  },
+  summon: {
+    summary: "Soft-load a profile into live Claude/Codex; pin + warm handoff for MCPs",
+    load: () => import("./summon"),
+  },
+  resolve: {
+    summary: "Find library skills matching a query, loaded or not; --deep for an LLM pass",
+    load: () => import("./resolve"),
   },
   quick: {
     summary: "One-shot bare launch — no profile, no skills, fastest cold start",
     load: () => import("./quick"),
   },
+  auth: {
+    summary: "Check, repair, log in, or log out agent authentication",
+    load: () => import("./auth"),
+  },
   login: {
-    summary: "Authenticate with cue cloud (GitHub OAuth)",
+    summary: "Alias for marketplace login with a cuecards.cc API token",
     load: () => import("./cloud"),
   },
   logout: {
-    summary: "Clear cue cloud credentials",
+    summary: "Clear hosted marketplace credentials",
     load: () => import("./cloud"),
   },
   push: {
-    summary: "Upload a profile to cue cloud",
+    summary: "Alias for marketplace publish profile",
     load: () => import("./cloud"),
   },
   pull: {
-    summary: "Download a profile from cue cloud",
+    summary: "Retired cloud pull alias with migration guidance",
     load: () => import("./cloud"),
   },
   whoami: {
-    summary: "Show current cue cloud user",
+    summary: "Alias for marketplace whoami",
     load: () => import("./cloud"),
   },
   shell: {
-    summary: "Install/uninstall ~/.local/bin/{claude,codex} shims",
+    summary: "Install/uninstall the {claude,codex} shims",
     load: () => import("./shell"),
   },
   current: {
@@ -134,7 +164,7 @@ export const COMMANDS = {
     load: () => import("./marketplace"),
   },
   stats: {
-    summary: "Profile usage analytics dashboard",
+    summary: "Profile usage and picker suggestion quality dashboard",
     load: () => import("./stats"),
   },
   status: {
@@ -205,6 +235,10 @@ export const COMMANDS = {
     summary: "Project scanner + profile wizard. First run also walks default-profile and telemetry opt-in (replay with --re-onboard)",
     load: () => import("./init"),
   },
+  setup: {
+    summary: "One-command install: shim, project scan, and profile pin (alias of init). Non-interactive: --profile <name> / --yes (-y) — never opts into telemetry or installs gems",
+    load: () => import("./init"),
+  },
   import: {
     summary: "Import a profile from URL, file, or org/repo",
     load: () => import("./import-profile"),
@@ -218,7 +252,7 @@ export const COMMANDS = {
           return run(args.filter(a => a !== "--docker"));
         }
         const { run } = await import("./import-profile");
-        return run(args);
+        return run(["export", ...args]);
       },
     }),
   },
@@ -302,6 +336,10 @@ export const COMMANDS = {
     summary: "Measure profile efficiency: tokens, skill usage, cost",
     load: () => import("./benchmark"),
   },
+  brief: {
+    summary: "Show this directory's verified facts as handed to the agent; --write persists them",
+    load: () => import("./brief"),
+  },
   tree: {
     summary: "Visualize profile inheritance tree with resources",
     load: () => import("./tree"),
@@ -351,7 +389,7 @@ export const COMMANDS = {
     load: () => import("./feedback"),
   },
   "submit-profile": {
-    summary: "Fork opencue/claude-code-skills, branch, commit your profile.yaml, open PR (community contribution)",
+    summary: "Fork opencue/cuecards, branch, commit your profile.yaml, open PR (community contribution)",
     load: () => import("./submit-profile"),
   },
   telemetry: {
@@ -379,7 +417,7 @@ export const COMMANDS = {
     load: () => import("./trigger-gaps"),
   },
   dashboard: {
-    summary: "Boot the local read-only dashboard server (JSON endpoints; React UI in next turn)",
+    summary: "Boot the local read-only dashboard server (JSON endpoints)",
     load: () => import("./dashboard"),
   },
   dash: {

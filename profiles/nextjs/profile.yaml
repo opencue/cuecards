@@ -9,7 +9,7 @@ recommends:
 conflicts:
   - vite          # pick one React build tool per project
 skills:
-  local: []   # browser/playwright + design/screenshot inherited via frontend → web-frontend-base
+  local: []   # browser/agent-browser + design/screenshot inherited via frontend → web-frontend-base
   npx:
     # Auth patterns from Vercel team (306 installs) — NextAuth/Clerk wiring on App Router.
     - repo: vercel/vercel-plugin
@@ -17,8 +17,7 @@ skills:
     # Sentry React SDK patterns (1.6K installs) — error tracking for App Router with Server Components.
     - repo: getsentry/sentry-for-ai
       skills: [sentry-react-sdk]
-mcps:
-  - playwright
+mcps: []   # browser automation via the agent-browser CLI (no MCP needed)
 plugins: []
 persona: |
   You are a Next.js full-stack engineer. App Router is the default — Pages

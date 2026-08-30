@@ -2,7 +2,7 @@
 title: "shauryalowkeygotaura/brand-launchpad — Claude Code skill discovered by cue"
 description: "One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. "
 layout: page
-updated: 2026-06-03
+updated: 2026-08-08
 tags: [claude-code, skill, marketing]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, marketing]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-08-08
 - 🏷️ Tags: agent-skills, ai, ai-tools, anthropic, brand-strategy, branding, claude, claude-code, claude-skill, claude-skills, content-marketing, content-strategy, copywriting, creator-economy, marketing, personal-branding, positioning, productivity
 
 ## Best fit cue profiles

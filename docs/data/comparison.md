@@ -17,7 +17,7 @@ Legend: `yes` = supported · `partial` = partial / IDE-locked · `no` = not in s
 
 ## Where cue is the only one
 
-1. `.cue-profile` per-directory pinning — `cd` into a repo, the right loadout loads automatically.
+1. `.cue.profile` per-directory pinning — `cd` into a repo, the right loadout loads automatically.
 2. Materialized isolation — builds a real `CLAUDE_CONFIG_DIR` per profile, not just a config swap.
 3. Hash-cached rebuilds — content-addressed sha256 check, <5 ms when unchanged.
 4. Three dimensions as one unit — skills + MCPs + plugins composed together. Others manage one at a time.

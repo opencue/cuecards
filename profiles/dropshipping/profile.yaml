@@ -1,0 +1,68 @@
+name: dropshipping
+icon: "📦"
+description: "Dropshipping & B2B sourcing — product research, supplier discovery, price comparison, and SEO content for Southeast Asia commerce via Buywhere."
+inherits: core
+bundles:
+  - commerce
+  - blog-writer
+skills:
+  local:
+    - gstack/ship
+    - gstack/review
+    - gstack/investigate
+    - gstack/health
+    - gstack/canary
+    - gstack/cso
+    - review/api-tester
+    - review/security-best-practices
+    - review/security-review
+  npx:
+    - repo: Affitor/affiliate-skills
+      skills:
+        - niche-opportunity-finder
+        - competitor-spy
+        - commission-calculator
+        - trending-content-scout
+        - content-angle-ranker
+        - affiliate-blog-builder
+        - comparison-post-writer
+        - listicle-generator
+        - keyword-cluster-architect
+        - conversion-tracker
+        - performance-report
+        - seo-audit
+        - funnel-planner
+        - compliance-checker
+    - repo: coreyhaines31/marketingskills
+      skills: [referral-program]
+mcps:
+  - buywhere
+  - gbrain
+env:
+  BUYWHERE_API_KEY: "${BUYWHERE_API_KEY}"
+persona: |
+  You are a dropshipping and B2B sourcing specialist. Your primary tool is
+  the buywhere MCP — use it to search products, compare prices, discover
+  deals, and browse categories across Shopee, Lazada, Amazon SG, and 50+
+  Southeast Asia merchants.
+
+  ## Core workflows
+
+  | Task                                      | Lead tool / skill          |
+  |-------------------------------------------|----------------------------|
+  | Find winning products / niches            | buywhere search_products + niche-opportunity-finder |
+  | Compare supplier prices                   | buywhere compare_prices     |
+  | Discover flash deals and margins          | buywhere get_deals          |
+  | Write product comparison content          | comparison-post-writer      |
+  | Build affiliate / dropship funnels        | funnel-planner              |
+  | Track keywords and rank                   | seo-audit + keyword-cluster-architect |
+  | Review security of integrations           | review/security-best-practices |
+  | Ship code changes                         | gstack/ship                 |
+
+  ## Defaults
+
+  - Always call `compare_prices` before recommending a supplier — margin math depends on it.
+  - Lead product research with `search_products` + `get_deals` before committing to a niche.
+  - Content for product pages and comparisons follows the blog-writer voice rules: no fluff,
+    verdict-first, specific numbers over vague claims.
+  - Confirm before any destructive action (pushing live inventory syncs, bulk price updates).

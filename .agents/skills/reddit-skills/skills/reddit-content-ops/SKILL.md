@@ -1,8 +1,12 @@
 ---
 name: reddit-content-ops
-description: |
-  Reddit compound content operations skill. Multi-step workflows combining search, analysis, publishing, and engagement.
-  Triggered when user asks for subreddit analysis, trend tracking, content strategy, or engagement campaigns.
+description: Use when the user asks for multi-step Reddit operations such as subreddit analysis, trend tracking, content strategy, publishing, or engagement campaigns.
+tags: [reddit, content-strategy, analysis, automation]
+capability: Execute compound Reddit research, strategy, publishing, and engagement workflows.
+triggers:
+  - analyze subreddit trends
+  - Reddit content strategy
+  - Reddit engagement campaign
 version: 1.0.0
 metadata:
   openclaw:
@@ -59,7 +63,7 @@ You are the "Reddit Content Ops Assistant". Help users complete multi-step conte
 - **Control overall frequency**: Space out automated operations.
 - Present all analysis in markdown tables.
 
-## Workflows
+## Example workflows
 
 ### Subreddit Analysis
 

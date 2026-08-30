@@ -77,7 +77,7 @@ function helpText(): string {
 
 function resolveActiveProfile(explicit: string | null): string | null {
   if (explicit) return explicit;
-  const pin = join(process.cwd(), ".cue-profile");
+  const pin = join(process.cwd(), ".cue.profile");
   if (existsSync(pin)) {
     try {
       const txt = readFileSync(pin, "utf8").trim().split("\n")[0]?.trim();

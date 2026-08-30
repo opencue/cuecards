@@ -17,7 +17,6 @@ skills:
     - github/github
     - github/gh-fix-ci
     - review/security-review
-    - secrets/envoult
     - gstack/setup-deploy
     - private/myvps
     - hostinger/dns
@@ -58,20 +57,37 @@ skills:
       skills: [linear]
     - repo: davila7/claude-code-templates
       skills: [linear]
+    - repo: jeffallan/claude-skills
+      pin: git@882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf
+      skills:
+        - chaos-engineer
+        - cloud-architect
+        - devops-engineer
+        - kubernetes-specialist
+        - monitoring-expert
+        - sre-engineer
+        - terraform-engineer
 plugins:
   - claude-mem@thedotmack
   - oh-my-claudecode@omc
   - vercel@claude-plugins-official
 mcps:
   - cue-tty-watch
-  - lightpanda
   - aws-docs
   - coolify
   - gbrain
   - hostinger-api
-  - google-drive-mcp
-  - slack
-  - linear
+  # Credential-gated SaaS servers: each is inert without its token, so they
+  # only load (and only cost tool schema) when that integration is configured.
+  - id: google-drive-mcp
+    when:
+      env: GOOGLE_DRIVE_OAUTH_CREDENTIALS
+  - id: slack
+    when:
+      env: SLACK_BOT_TOKEN
+  - id: linear
+    when:
+      env: LINEAR_API_KEY
 env:
   AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
   AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
@@ -98,7 +114,7 @@ persona: |
   | DNS, domains, VPS firewall, shared hosting, TLS       | hostinger/*           |
   | Self-hosted VPS schema and server ops                 | private/myvps         |
   | Repo automation, Actions, CI failures                 | github/*              |
-  | Secrets and env injection                             | secrets/envoult       |
+  | Secrets and env injection                             | Coolify env + envoult MCP |
   | One-shot deploy bootstrap                             | gstack/setup-deploy   |
   | Diff and dependency security audit                    | review/security-review|
   | Drive, Docs, Sheets, Slides, Calendar                 | google-workspace/*    |

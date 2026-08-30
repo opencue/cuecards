@@ -21,6 +21,31 @@ Otherwise:
 
 ---
 
+## Live progress (do this in both modes)
+
+A review can run for minutes as an opaque spinner. Emit progress so the user can
+watch in a second pane with `cue-review-watch`. At the start of the REVIEW phase:
+
+```bash
+cue-review-progress start --label "<what you're reviewing>" --files <N>
+```
+
+Then, as you go: one `file` event when you open a file, a `dim` event per
+dimension you check, and a `finding` event the moment you spot one:
+
+```bash
+cue-review-progress emit --kind file --file "<path>"
+cue-review-progress emit --kind dim  --file "<path>" --dim "<category, e.g. Security>"
+cue-review-progress emit --kind finding --file "<path>" --dim "<category>" \
+  --severity <CRITICAL|HIGH|MEDIUM|LOW> --title "<short>"
+```
+
+End with `cue-review-progress end --summary "<n CRITICAL, n HIGH>"`. Best-effort —
+if the command isn't on PATH (use `bin/cue-review-progress` from a checkout), skip it
+and review normally. See `docs/review-visibility.md`.
+
+---
+
 ## Local Review Mode
 
 Comprehensive security and quality review of uncommitted changes.
