@@ -118,12 +118,8 @@ export function isCommandAvailable(
   const candidates = commandCandidates(expanded, env, platform);
 
   if (/[\\/]/.test(expanded)) {
-    return candidates.some((candidate) => {
-      const path = pathApi.isAbsolute(candidate)
-        ? candidate
-        : pathApi.resolve(cwd, candidate);
-      return isExecutable(path);
-    });
+    if (!pathApi.isAbsolute(expanded)) return true;
+    return candidates.some((candidate) => isExecutable(candidate));
   }
 
   const pathValue = envValue(env, "PATH", platform) ?? "";

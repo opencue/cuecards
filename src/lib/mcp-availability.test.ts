@@ -70,4 +70,13 @@ describe("filterUnavailableMcpServers", () => {
 
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
+
+  test("keeps relative command paths for resolution in the MCP launch cwd", () => {
+    const filtered = filterUnavailableMcpServers(
+      { local: { command: "./node_modules/.bin/mcp-server" } },
+      { isExecutable: () => false },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
 });
