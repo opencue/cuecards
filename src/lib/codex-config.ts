@@ -280,7 +280,7 @@ export function buildCodexConfigToml(input: BuildCodexConfigInput): string {
       }
       continue;
     }
-    top.set(key, tomlValue(value as CodexScalar));
+    top.set(key, tomlValue(value));
   }
 
   const out: string[] = [];

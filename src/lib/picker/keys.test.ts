@@ -144,6 +144,28 @@ describe("CardPrompt keys", () => {
 });
 
 describe("StackPalettePrompt keys", () => {
+  test("keeps a large grouped palette within the terminal height", () => {
+    const { input, output } = wire();
+    output.rows = 40;
+    const groupedRows: PaletteRow[] = Array.from({ length: 80 }, (_, index) => ({
+      value: `profile-${index}`,
+      label: `profile-${index}`,
+      section: index === 0 ? "suggested" : `section-${Math.floor((index - 1) / 2)}`,
+      recommended: index === 0,
+    }));
+    const prompt = new StackPalettePrompt({
+      rows: groupedRows,
+      selected: ["profile-0"],
+      input,
+      output,
+    });
+
+    const frame = prompt.renderFrame();
+
+    expect(frame.split("\n").length).toBeLessThanOrEqual(output.rows);
+    expect(frame).toContain("profile-0");
+  });
+
   test("space toggles the focused row and enter returns the stack", async () => {
     const { input, output, press } = wire();
     const prompt = new StackPalettePrompt({ rows, input, output });

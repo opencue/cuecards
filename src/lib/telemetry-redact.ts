@@ -49,14 +49,20 @@ const SECRET_PATTERNS: RegExp[] = [
  * telemetry log. Idempotent: running twice produces the same output.
  */
 export function redactPrompt(raw: string): string {
-  let s = raw;
-  for (const pattern of SECRET_PATTERNS) {
-    s = s.replace(pattern, "<redacted>");
-  }
+  let s = redactSensitiveText(raw);
   // Collapse whitespace so logs stay scannable.
   s = s.replace(/\s+/g, " ").trim();
   if (s.length > MAX_PROMPT_LENGTH) {
     s = s.slice(0, MAX_PROMPT_LENGTH - 1) + "…";
+  }
+  return s;
+}
+
+/** Redact credential-shaped substrings without truncating the surrounding text. */
+export function redactSensitiveText(raw: string): string {
+  let s = raw;
+  for (const pattern of SECRET_PATTERNS) {
+    s = s.replace(pattern, "<redacted>");
   }
   return s;
 }

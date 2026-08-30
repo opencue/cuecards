@@ -195,7 +195,9 @@ export type CodexScalar = string | number | boolean;
  */
 export interface CodexProfileConfig {
   features?: Record<string, boolean>;
-  [key: string]: CodexScalar | Record<string, boolean> | undefined;
+  /** Native Codex lifecycle hooks, rendered as a top-level TOML inline table. */
+  hooks?: Record<string, unknown>;
+  [key: string]: CodexScalar | Record<string, unknown> | undefined;
 }
 
 /**
