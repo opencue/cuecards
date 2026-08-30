@@ -613,12 +613,43 @@ export class StackPalettePrompt extends Prompt<string[]> {
     return (this.value ?? []).length > 0;
   }
 
-  private visibleWindow(): number {
-    const rows = (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
-    // Reserve the header + search field (5), section spacers (2), the footer's
-    // stack / totals / meter / keys (5) and the scroll markers (2); floor at 5
-    // so a short terminal still lists something.
-    return Math.max(5, rows - 14);
+  /**
+   * Render the largest option window that still fits in the terminal. Counting
+   * only profile rows is not enough: a broad catalogue can add dozens of
+   * section headers and spacers, which previously pushed the seeded suggestion
+   * above the viewport and made it appear impossible to deselect.
+   */
+  private renderActiveFrame(): string {
+    const terminalRows =
+      (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
+    const render = (maxRows: number): string =>
+      renderPaletteFrame({
+        rows: this.rows,
+        query: this.query,
+        cursor: this.cursor,
+        selected: this.selected,
+        tallies: this.tallies,
+        help: this.help,
+        maxRows,
+        cols: (this.output as { columns?: number } | undefined)?.columns,
+      });
+
+    if (this.help) return render(1);
+
+    let low = 1;
+    let high = Math.max(1, Math.min(this.visibleRows().length, terminalRows));
+    let best = render(1);
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const frame = render(mid);
+      if (frame.split("\n").length <= terminalRows) {
+        best = frame;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return best;
   }
 
   renderFrame(this: StackPalettePrompt): string {
@@ -631,15 +662,6 @@ export class StackPalettePrompt extends Prompt<string[]> {
       );
       return `${BAR}  ${styleText("green", "◇")}  ${labels.join(" + ")}`;
     }
-    return renderPaletteFrame({
-      rows: this.rows,
-      query: this.query,
-      cursor: this.cursor,
-      selected: this.selected,
-      tallies: this.tallies,
-      help: this.help,
-      maxRows: this.visibleWindow(),
-      cols: (this.output as { columns?: number } | undefined)?.columns,
-    });
+    return this.renderActiveFrame();
   }
 }

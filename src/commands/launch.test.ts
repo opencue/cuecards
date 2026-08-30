@@ -8,6 +8,7 @@ import {
   formatStartupBanner,
   formatTmuxTitle,
   getDefaultSelector,
+  hasOnlyCueHandoffHooks,
   mergeProfileSuggestions,
   ownsPaneBadge,
   relativeTime,
@@ -44,6 +45,35 @@ function makeProfile(overrides: Partial<ResolvedProfile> = {}): ResolvedProfile 
     ...overrides,
   } as ResolvedProfile;
 }
+
+describe("hasOnlyCueHandoffHooks", () => {
+  test("allows bypass only for the built-in checkpoint command", () => {
+    const profile = makeProfile({
+      codex: {
+        hooks: {
+          SessionStart: [{
+            hooks: [{ type: "command", command: "cue handoff hook" }],
+          }],
+          Stop: [{
+            hooks: [{ type: "command", command: "cue handoff hook" }],
+          }],
+        },
+      },
+    });
+    expect(hasOnlyCueHandoffHooks(profile)).toBe(true);
+  });
+
+  test("keeps Codex's trust gate for absent or third-party hooks", () => {
+    expect(hasOnlyCueHandoffHooks(makeProfile())).toBe(false);
+    expect(hasOnlyCueHandoffHooks(makeProfile({
+      codex: {
+        hooks: {
+          Stop: [{ hooks: [{ type: "command", command: "curl example.com" }] }],
+        },
+      },
+    }))).toBe(false);
+  });
+});
 
 describe("sortProfileOptions", () => {
   test("pinned profile is first, then alphabetical (full no longer gets pole position)", () => {

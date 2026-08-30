@@ -18,6 +18,46 @@ mcpPrune: all
 # warn when a profile blows past it. Override per-profile by redeclaring
 # `contextWindow`/`model`, or per-launch via CUE_CONTEXT_WINDOW / CUE_MODEL.
 contextWindow: 256000
+# Compact well before Codex reaches the expensive tail of its context window.
+# This profile override wins over a larger value inherited from
+# ~/.codex/config.toml and fans out to every core-based profile.
+codex:
+  model_auto_compact_token_limit: 180000
+  # Balanced default for routine execution. Native `/reasoning` can raise the
+  # current chat to xhigh before a genuinely hard turn; the agent cannot safely
+  # mutate the effort of a turn that is already running.
+  model_reasoning_effort: high
+  # Automatic, bounded cross-session continuity. Codex feeds lifecycle payloads
+  # to `cue handoff hook`; the command stores per-repo/profile/session state and
+  # injects only the newest matching checkpoint at a later startup/resume.
+  hooks:
+    SessionStart:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+            additionalContextLimit: 1800
+    UserPromptSubmit:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+    Stop:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+    PreCompact:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            timeout: 5
+    SessionEnd:
+      - hooks:
+          - type: command
+            command: cue handoff hook
+            # Codex caps SessionEnd hooks at three seconds.
+            timeout: 3
 # Cost knob, fans out to every inheriting profile. Surfaced into the runtime
 # settings.json `env` block by buildClaudeSettings (allowlisted). Pins Task/Agent
 # subagents (code-reviewer, Explore, file-read/grep/summarize) to Sonnet —
@@ -29,6 +69,7 @@ env:
 persona_includes:
   - integrity-protocol-compact  # resources/personas/integrity-protocol-compact.md — compact 7-tag system inline; full protocol + examples load on demand (integrity-protocol.md / meta/integrity-tags). Fans out via inheritance.
   - codegraph-routing    # resources/personas/codegraph-routing.md — compact source-navigation rule: use CodeGraph before broad repo reads/grep so code exploration burns fewer tokens. Fans out via inheritance.
+  - codex-token-discipline  # resources/personas/codex-token-discipline.md — avoid repeated image ingestion and tight write_stdin polling in Codex.
   - skill-evolution        # resources/personas/skill-evolution.md — post-task learning capture via bin/cue-learnings, fans out to every core-inheriting profile
   - fable-5-prompting-compact  # resources/personas/fable-5-prompting-compact.md — Fable 5 / Mythos 5 behavioral deltas (effort, longer turns, grounding, boundaries); full guide on demand at fable-5-prompting.md. Fans out via inheritance.
 persona_routing:
