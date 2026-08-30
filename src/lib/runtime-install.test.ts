@@ -1,8 +1,12 @@
 import { describe, test, expect, afterEach } from "bun:test";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
   isCueManagedClaudeRuntimeDir,
   isRuntimeAgent,
   isSelfOverlaySource,
+  loadMcpRegistry,
   pickClaudeCredentialsSource,
   runtimeAgentSubdir,
   runtimeDirFor,
@@ -162,5 +166,48 @@ describe("pickClaudeCredentialsSource", () => {
   test("keeps CLAUDE_CONFIG_DIR when the caller passes no runtime dir", async () => {
     process.env.CLAUDE_CONFIG_DIR = target;
     expect(await pickClaudeCredentialsSource()).toBe(target);
+  });
+});
+
+describe("loadMcpRegistry", () => {
+  test("omits MCPs whose launch command is unavailable on the target machine", async () => {
+    const root = await mkdtemp(join(tmpdir(), "cue-mcp-registry-"));
+    try {
+      const configs = join(root, "resources", "mcps", "configs");
+      await mkdir(configs, { recursive: true });
+      await writeFile(
+        join(configs, "codex.sanitized.json"),
+        JSON.stringify({
+          servers: {
+            codegraph: { command: "codegraph", args: ["serve", "--mcp"] },
+            headroom: { command: "headroom", args: ["mcp", "serve"] },
+            "cue-tty-watch": {
+              command:
+                "/home/deadpool/Documents/cue/resources/mcps/cue-tty-watch/bin/cue-tty-watch",
+            },
+            context7: {
+              command:
+                "/home/deadpool/.nvm/versions/node/v22.22.0/bin/context7-mcp",
+            },
+          },
+        }),
+      );
+
+      const registry = await loadMcpRegistry("codex", {
+        root,
+        availability: {
+          platform: "win32",
+          env: {
+            Path: String.raw`C:\Program Files\nodejs`,
+            PATHEXT: ".COM;.EXE;.BAT;.CMD",
+          },
+          isExecutable: () => false,
+        },
+      });
+
+      expect(Object.keys(registry)).toEqual([]);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
   });
 });

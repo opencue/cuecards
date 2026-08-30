@@ -15,6 +15,10 @@ import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
 import { canonicalCodexConfigPath } from "./codex-config";
 import { configDir } from "./config-paths";
 import { debug } from "./debug-log";
+import {
+  filterUnavailableMcpServers,
+  type CommandAvailabilityOptions,
+} from "./mcp-availability";
 import { listAllSkillIds, resolveLocalSkill } from "./resolver-local";
 import {
   materializeRuntime,
@@ -26,6 +30,11 @@ import {
 export type RuntimeAgent = Extract<AgentKind, "claude-code" | "codex">;
 
 export const RUNTIME_AGENTS: RuntimeAgent[] = ["claude-code", "codex"];
+
+export interface LoadMcpRegistryOptions {
+  root?: string;
+  availability?: CommandAvailabilityOptions;
+}
 
 export function isRuntimeAgent(
   agent: AgentKind | string,
@@ -78,11 +87,13 @@ export async function expandSkillWildcards(
 
 export async function loadMcpRegistry(
   agent: RuntimeAgent,
+  options: LoadMcpRegistryOptions = {},
 ): Promise<Record<string, McpServerConfig>> {
   const root =
-    process.env.CUE_REPO_ROOT ??
-    process.env.SOUL_REPO_ROOT ??
-    resolve(import.meta.dirname, "..", "..");
+    options.root ??
+    (process.env.CUE_REPO_ROOT ??
+      process.env.SOUL_REPO_ROOT ??
+      resolve(import.meta.dirname, "..", ".."));
   const files =
     agent === "claude-code"
       ? ["claude_runtime.sanitized.json", "claude.sanitized.json"]
@@ -124,7 +135,15 @@ export async function loadMcpRegistry(
     debug("runtime-install:master-config", err);
   }
 
-  return merged;
+  const available = filterUnavailableMcpServers(
+    merged,
+    options.availability,
+  );
+  const skipped = Object.keys(merged).filter((id) => !(id in available));
+  if (skipped.length > 0) {
+    debug("runtime-install:unavailable-mcps", { agent, skipped });
+  }
+  return available;
 }
 
 export async function readUserAgentMemory(
