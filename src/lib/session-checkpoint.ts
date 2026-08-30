@@ -82,7 +82,7 @@ function storageRoot(options: CheckpointOptions): string {
 }
 
 function profileName(options: CheckpointOptions): string {
-  return options.profile ?? process.env.CUE_PROFILE ?? "unknown";
+  return options.profile ?? process.env.CUE_PROFILE ?? "";
 }
 
 function scopeDir(cwd: string, profile: string, options: CheckpointOptions): string {
@@ -156,6 +156,19 @@ function latestCheckpoint(
   return checkpoints[0] ?? null;
 }
 
+function isCheckpointFresh(
+  checkpoint: SessionCheckpoint,
+  options: CheckpointOptions,
+): boolean {
+  const now = (options.now ?? (() => new Date()))().getTime();
+  const updatedAt = new Date(checkpoint.updated_at).getTime();
+  const maxAgeHours = finiteNonNegative(
+    options.maxAgeHours ?? process.env.CUE_CHECKPOINT_MAX_AGE_HOURS,
+    DEFAULT_MAX_AGE_HOURS,
+  );
+  return Number.isFinite(updatedAt) && now - updatedAt <= maxAgeHours * 3_600_000;
+}
+
 function isContinuationPrompt(prompt: string): boolean {
   return /^(?:mehet|folytasd|continue|go ahead|proceed|igen|yes|ok|okay)[.! ]*$/i.test(
     prompt.trim(),
@@ -173,9 +186,10 @@ function recordEvent(
   const now = (options.now ?? (() => new Date()))().toISOString();
   const existing = readSessionCheckpoint(cwd, profile, sessionId, options);
   const prompt = compactText(payload.prompt, 2_000);
-  const prior = !existing && prompt && isContinuationPrompt(prompt)
+  const candidate = !existing && prompt && isContinuationPrompt(prompt)
     ? latestCheckpoint(cwd, profile, sessionId, options)
     : null;
+  const prior = candidate && isCheckpointFresh(candidate, options) ? candidate : null;
   const base: SessionCheckpoint = existing ?? {
     version: 1,
     updated_at: now,
@@ -194,7 +208,7 @@ function recordEvent(
     source_event: event,
   };
   if (event === "UserPromptSubmit" && prompt) {
-    if (!next.objective) next.objective = prompt;
+    if (!isContinuationPrompt(prompt) || !next.objective) next.objective = prompt;
     next.last_request = prompt;
   }
   if (event === "Stop") {
@@ -267,16 +281,7 @@ export function handleCheckpointHook(
   }
   const checkpoint = latestCheckpoint(cwd, profile, sessionId, options);
   if (!checkpoint) return null;
-
-  const now = (options.now ?? (() => new Date()))().getTime();
-  const updatedAt = new Date(checkpoint.updated_at).getTime();
-  const maxAgeHours = finiteNonNegative(
-    options.maxAgeHours ?? process.env.CUE_CHECKPOINT_MAX_AGE_HOURS,
-    DEFAULT_MAX_AGE_HOURS,
-  );
-  if (!Number.isFinite(updatedAt) || now - updatedAt > maxAgeHours * 3_600_000) {
-    return null;
-  }
+  if (!isCheckpointFresh(checkpoint, options)) return null;
 
   const maxContextChars = finiteNonNegative(
     options.maxContextChars ?? process.env.CUE_CHECKPOINT_MAX_CHARS,

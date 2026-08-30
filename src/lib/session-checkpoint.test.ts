@@ -201,4 +201,95 @@ describe("automatic session checkpoint lifecycle", () => {
     expect(context).toContain("```json");
     expect(context).toEndWith("\n\n```\n…");
   });
+
+  test("does not persist checkpoints without a profile identity", () => {
+    const previousProfile = process.env.CUE_PROFILE;
+    delete process.env.CUE_PROFILE;
+    try {
+      const storageRoot = root();
+      const options = {
+        storageRoot,
+        now: () => new Date("2026-08-28T10:00:00.000Z"),
+      };
+      handleCheckpointHook({
+        hook_event_name: "UserPromptSubmit",
+        cwd: "/repo/app",
+        session_id: "old-session",
+        prompt: "Profile-specific task",
+      }, options);
+
+      expect(handleCheckpointHook({
+        hook_event_name: "SessionStart",
+        cwd: "/repo/app",
+        session_id: "new-session",
+        source: "startup",
+      }, options)).toBeNull();
+    } finally {
+      if (previousProfile === undefined) delete process.env.CUE_PROFILE;
+      else process.env.CUE_PROFILE = previousProfile;
+    }
+  });
+
+  test("does not revive expired state through a continuation prompt", () => {
+    const storageRoot = root();
+    let now = new Date("2026-08-28T10:00:00.000Z");
+    const options = {
+      storageRoot,
+      profile: "backend",
+      maxAgeHours: 72,
+      now: () => now,
+    };
+    handleCheckpointHook({
+      hook_event_name: "UserPromptSubmit",
+      cwd: "/repo/app",
+      session_id: "expired-session",
+      prompt: "Expired task",
+    }, options);
+
+    now = new Date("2026-09-01T10:01:00.000Z");
+    handleCheckpointHook({
+      hook_event_name: "UserPromptSubmit",
+      cwd: "/repo/app",
+      session_id: "continuation-session",
+      prompt: "continue",
+    }, options);
+
+    const output = handleCheckpointHook({
+      hook_event_name: "SessionStart",
+      cwd: "/repo/app",
+      session_id: "new-session",
+      source: "startup",
+    }, options);
+    expect(output?.hookSpecificOutput.additionalContext ?? "").not.toContain("Expired task");
+  });
+
+  test("updates the objective when a session moves to a new task", () => {
+    const storageRoot = root();
+    let now = new Date("2026-08-28T10:00:00.000Z");
+    const options = { storageRoot, profile: "backend", now: () => now };
+    handleCheckpointHook({
+      hook_event_name: "UserPromptSubmit",
+      cwd: "/repo/app",
+      session_id: "old-session",
+      prompt: "First task",
+    }, options);
+
+    now = new Date("2026-08-28T10:05:00.000Z");
+    handleCheckpointHook({
+      hook_event_name: "UserPromptSubmit",
+      cwd: "/repo/app",
+      session_id: "old-session",
+      prompt: "Replacement task",
+    }, options);
+
+    const output = handleCheckpointHook({
+      hook_event_name: "SessionStart",
+      cwd: "/repo/app",
+      session_id: "new-session",
+      source: "startup",
+    }, options);
+    const context = output?.hookSpecificOutput.additionalContext ?? "";
+    expect(context).toContain("Replacement task");
+    expect(context).not.toContain("First task");
+  });
 });
