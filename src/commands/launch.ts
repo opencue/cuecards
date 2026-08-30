@@ -112,30 +112,6 @@ export {
   shouldInheritSessionProfile,
 } from "../lib/launch-guards";
 
-/**
- * Cue may bypass Codex's interactive hook-trust prompt only when every native
- * hook in the resolved profile is the built-in, fail-open checkpoint command.
- * Any third-party or additional command keeps Codex's normal trust gate intact.
- */
-export function hasOnlyCueHandoffHooks(profile: ResolvedProfile): boolean {
-  const hooks = profile.codex?.hooks;
-  if (!hooks || typeof hooks !== "object" || Array.isArray(hooks)) return false;
-  const groups = Object.values(hooks);
-  if (groups.length === 0) return false;
-
-  return groups.every((eventGroups) =>
-    Array.isArray(eventGroups) && eventGroups.length > 0 && eventGroups.every((group) => {
-      if (!group || typeof group !== "object" || Array.isArray(group)) return false;
-      const handlers = (group as { hooks?: unknown }).hooks;
-      return Array.isArray(handlers) && handlers.length > 0 && handlers.every((handler) => {
-        if (!handler || typeof handler !== "object" || Array.isArray(handler)) return false;
-        const value = handler as { type?: unknown; command?: unknown };
-        return value.type === "command" && value.command === "cue handoff hook";
-      });
-    })
-  );
-}
-
 // ---------------------------------------------------------------------------
 // Arg parsing
 // ---------------------------------------------------------------------------
@@ -3203,9 +3179,6 @@ export async function run(args: string[]): Promise<number> {
           },
           command: [
             parsed.agent,
-            ...(agentKind === "codex" && hasOnlyCueHandoffHooks(profile)
-              ? ["--dangerously-bypass-hook-trust"]
-              : []),
             ...parsed.passthrough,
           ],
         },
@@ -3500,12 +3473,9 @@ export async function run(args: string[]): Promise<number> {
   }
   let exitCode: number;
   try {
-    const codexHookTrustArgs = agentKind === "codex" && hasOnlyCueHandoffHooks(profile)
-      ? ["--dangerously-bypass-hook-trust"]
-      : [];
     exitCode = await execAgent(
       realBin.bin,
-      [...codexHookTrustArgs, ...briefArgs, ...parsed.passthrough],
+      [...briefArgs, ...parsed.passthrough],
       realBin.viaOverride ? wrapperEnv(childEnv) : childEnv,
     );
   } finally {
