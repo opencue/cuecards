@@ -20,7 +20,7 @@ payload="$(cat -)"
 
 # Best-effort extract; payload is JSON.
 extract() {
-  printf '%s' "$payload" | grep -oE "\"$1\"[[:space:]]*:[[:space:]]*\"[^\"]*\"" | head -1 | sed "s/.*\"$1\"[[:space:]]*:[[:space:]]*\"//; s/\"$//"
+  printf '%s' "$payload" | grep -oE "\"$1\"[[:space:]]*:[[:space:]]*\"[^\"]*\"" | head -1 | sed "s/.*\"$1\"[[:space:]]*:[[:space:]]*\"//; s/\"$//" || true
 }
 
 prompt="$(extract prompt)"
