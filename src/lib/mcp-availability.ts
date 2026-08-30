@@ -113,11 +113,13 @@ function commandCandidates(
   platform: NodeJS.Platform,
 ): string[] {
   if (platform !== "win32") return [command];
-  const extensions = (
+  const configuredExtensions = (
     envValue(env, "PATHEXT", platform) ?? ".COM;.EXE;.BAT;.CMD"
   )
     .split(";")
+    .map((extension) => extension.trim().toUpperCase())
     .filter(Boolean);
+  const extensions = Array.from(new Set([".EXE", ...configuredExtensions]));
   const explicitExtension = command
     .match(/(\.[^.\\/]+)$/)?.[1]
     ?.toLowerCase();
@@ -154,6 +156,13 @@ export function isCommandAvailable(
         : pathApi.resolve(cwd, candidate);
       return isExecutable(path);
     });
+  }
+
+  if (
+    platform === "win32" &&
+    candidates.some((name) => isExecutable(pathApi.join(cwd, name)))
+  ) {
+    return true;
   }
 
   const pathValue = envValue(env, "PATH", platform) ?? "";

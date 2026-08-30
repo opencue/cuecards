@@ -148,6 +148,32 @@ describe("filterUnavailableMcpServers", () => {
     expect(Object.keys(filtered)).toEqual([]);
   });
 
+  test("finds bare Windows executables when PATHEXT omits EXE", () => {
+    const filtered = filterUnavailableMcpServers(
+      { local: { command: "mcp-server" } },
+      {
+        platform: "win32",
+        env: { Path: String.raw`C:\Tools`, PATHEXT: ".CMD" },
+        isExecutable: (path) => path === String.raw`C:\Tools\mcp-server.EXE`,
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
+
+  test("searches the Windows MCP launch cwd before PATH", () => {
+    const filtered = filterUnavailableMcpServers(
+      { local: { command: "mcp-server", cwd: String.raw`C:\Project` } },
+      {
+        platform: "win32",
+        env: { Path: String.raw`C:\Windows`, PATHEXT: ".EXE" },
+        isExecutable: (path) => path === String.raw`C:\Project\mcp-server.EXE`,
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
+
   test("does not expand Windows percent variables on POSIX", () => {
     const command = "/opt/%HOME%/mcp-server";
     const filtered = filterUnavailableMcpServers(
