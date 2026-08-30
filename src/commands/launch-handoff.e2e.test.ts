@@ -64,7 +64,7 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec ha
     const expected = join(xdg, "cue", "runtime", "core", "codex");
     expect(p.agent).toBe("codex");
     expect(p.env.CODEX_HOME).toBe(expected);
-    expect(p.command).toEqual(["codex"]);
+    expect(p.command).toEqual(["codex", "--dangerously-bypass-hook-trust"]);
     expect(p.env.CLAUDE_CONFIG_DIR).toBeUndefined();
   });
 
