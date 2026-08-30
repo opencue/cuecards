@@ -3177,7 +3177,10 @@ export async function run(args: string[]): Promise<number> {
             CLAUDE_MEM_WORKER_PORT: childEnv.CLAUDE_MEM_WORKER_PORT,
             CLAUDE_MEM_SERVER_PORT: childEnv.CLAUDE_MEM_SERVER_PORT,
           },
-          command: [parsed.agent, ...parsed.passthrough],
+          command: [
+            parsed.agent,
+            ...parsed.passthrough,
+          ],
         },
         null,
         2,

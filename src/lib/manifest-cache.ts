@@ -27,7 +27,30 @@ interface ManifestEntry {
   /** Map of source file path → mtime (ms). */
   sources: Record<string, number>;
   /** Cache format version. */
-  version: 1;
+  version: 2;
+}
+
+function collectSources(
+  profile: ResolvedProfile,
+  profilesDir: string,
+): Record<string, number> {
+  const sources: Record<string, number> = {};
+  const names = new Set<string>();
+
+  // Composite profiles encode each component's resolved chain as a `+`-joined
+  // entry (for example `core+backend`). Split both the selector and every
+  // chain entry so parent edits invalidate the cached composite manifest.
+  for (const value of [profile.name, ...profile.inheritanceChain]) {
+    for (const name of value.split("+")) {
+      if (name) names.add(name);
+    }
+  }
+
+  for (const name of names) {
+    const path = join(profilesDir, name, "profile.yaml");
+    if (existsSync(path)) sources[path] = statSync(path).mtimeMs;
+  }
+  return sources;
 }
 
 /**
@@ -43,7 +66,7 @@ export function getCachedManifest(
 
   try {
     const raw = JSON.parse(readFileSync(cachePath, "utf8")) as ManifestEntry;
-    if (raw.version !== 1) return null;
+    if (raw.version !== 2) return null;
 
     // Validate all source mtimes still match
     for (const [path, expectedMtime] of Object.entries(raw.sources)) {
@@ -68,30 +91,17 @@ export function putCachedManifest(
   profile: ResolvedProfile,
   profilesDir: string,
 ): void {
-  // Collect source file mtimes from the inheritance chain
-  const sources: Record<string, number> = {};
-
-  // The profile itself
-  const selfYaml = join(profilesDir, profile.name, "profile.yaml");
-  if (existsSync(selfYaml)) {
-    sources[selfYaml] = statSync(selfYaml).mtimeMs;
-  }
-
-  // Inherited profiles (if the chain is available)
-  if ((profile as any).inheritanceChain) {
-    for (const ancestor of (profile as any).inheritanceChain) {
-      if (ancestor === profile.name) continue;
-      const p = join(profilesDir, ancestor, "profile.yaml");
-      if (existsSync(p)) {
-        sources[p] = statSync(p).mtimeMs;
-      }
-    }
-  }
-
-  const entry: ManifestEntry = { profile, sources, version: 1 };
+  const entry: ManifestEntry = {
+    profile,
+    sources: collectSources(profile, profilesDir),
+    version: 2,
+  };
 
   try {
     mkdirSync(CACHE_DIR, { recursive: true });
     writeFileSync(join(CACHE_DIR, `${profile.name}.json`), JSON.stringify(entry));
   } catch { /* non-fatal — cache write failure is fine */ }
 }
+
+/** Test-only surface for the pure source collector. */
+export const __test = { collectSources };

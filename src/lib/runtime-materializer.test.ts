@@ -49,6 +49,68 @@ const sampleProfile: ResolvedProfile = {
 };
 
 describe("materializeRuntime", () => {
+  test("materializes the CodeGraph auto-init policy for Claude and Codex", async () => {
+    const profile = {
+      ...sampleProfile,
+      name: "test-codegraph-auto-init",
+      agents: ["claude-code", "codex"],
+      skills: { local: [], npx: [] },
+      mcps: [{ id: "codegraph" }],
+      personaIncludes: ["codegraph-routing"],
+      inheritanceChain: ["test-codegraph-auto-init"],
+    } as unknown as ResolvedProfile;
+
+    for (const agent of ["claude-code", "codex"] as const) {
+      const out = await materializeRuntime({
+        profile,
+        agent,
+        runtimeRoot: join(root, "runtime"),
+        skillSourceLookup: async (id) => `/fake/skills/${id}`,
+        mcpRegistry: {
+          codegraph: { command: "codegraph", args: ["serve", "--mcp"] },
+        },
+        userClaudeMd: "",
+      });
+      const memoryFile = agent === "claude-code" ? "CLAUDE.md" : "AGENTS.md";
+      const content = await readFile(join(out.runtimeDir, memoryFile), "utf8");
+
+      expect(content).toContain("`codegraph init -i`");
+      expect(content).toContain("retry the CodeGraph call once");
+    }
+  });
+
+  test("re-materializes when an included persona changes", async () => {
+    const personaPath = join(root, "shared-persona.md");
+    await writeFile(personaPath, "first persona policy\n");
+    const profile = {
+      ...sampleProfile,
+      name: "test-persona-content-hash",
+      skills: { local: [], npx: [] },
+      mcps: [],
+      plugins: [],
+      personaIncludes: [personaPath],
+      inheritanceChain: ["test-persona-content-hash"],
+    } as unknown as ResolvedProfile;
+    const input = {
+      profile,
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    };
+
+    const first = await materializeRuntime(input);
+    expect(first.rebuilt).toBe(true);
+    await writeFile(personaPath, "second persona policy\n");
+
+    const second = await materializeRuntime(input);
+    expect(second.rebuilt).toBe(true);
+    expect(
+      await readFile(join(second.runtimeDir, "CLAUDE.md"), "utf8"),
+    ).toContain("second persona policy");
+  });
+
   test("shortens oversized composite profile names to a stable runtime key", async () => {
     const profile = {
       ...sampleProfile,

@@ -125,6 +125,24 @@ describe("buildCodexConfigToml", () => {
     expect(toml).toContain("model_auto_compact_token_limit = 320000");
   });
 
+  test("renders native Codex lifecycle hooks from a profile override", () => {
+    const toml = buildCodexConfigToml({
+      overrides: {
+        hooks: {
+          SessionStart: [{
+            hooks: [{ type: "command", command: "cue handoff hook", timeout: 5 }],
+          }],
+          Stop: [{
+            hooks: [{ type: "command", command: "cue handoff hook", timeout: 5 }],
+          }],
+        },
+      },
+      mcpServers: {},
+    });
+
+    expect(toml).toContain('hooks = { "SessionStart" = [{ "hooks" = [{ "type" = "command", "command" = "cue handoff hook", "timeout" = 5 }] }], "Stop" = [{ "hooks" = [{ "type" = "command", "command" = "cue handoff hook", "timeout" = 5 }] }] }');
+  });
+
   test("without a base it renders exactly the pre-inheritance MCP-only shape", () => {
     const toml = buildCodexConfigToml({
       mcpServers: {

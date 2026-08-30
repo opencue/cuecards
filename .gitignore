@@ -57,6 +57,10 @@ vibecode-pro-max-kit/
 .agents/skills/hirelens-showcase/
 .agents/skills/jdfit/
 .agents/skills/job-hunter/
+# Local source checkout used by `bun run profiles:aas`; generated profiles pin
+# the remote Git revision, so the 390 MB catalog clone is build input, not repo content.
+/resources/agentic-awesome-skills/
+/resources/ai-memory/
 
 # multiagent-safety:START
 .omx/

@@ -7,9 +7,11 @@
  *   list                — list recent handoffs
  *   show <id>           — show a specific handoff
  *   inject              — output the latest handoff formatted for agent injection
+ *   hook                — internal native Codex lifecycle hook entrypoint
  */
 
 import { createHandoff, getLatestHandoff, getHandoff, listHandoffs, formatHandoffForAgent } from "../lib/handoff";
+import { handleCheckpointHook, type CheckpointHookPayload } from "../lib/session-checkpoint";
 
 export async function run(args: string[]): Promise<number> {
   const sub = args[0] ?? "latest";
@@ -21,8 +23,23 @@ export async function run(args: string[]): Promise<number> {
     case "list": return cmdList(json);
     case "show": return cmdShow(args[1] ?? "", json);
     case "inject": return cmdInject();
+    case "hook": return cmdHook();
     default: return cmdLatest(json);
   }
+}
+
+async function cmdHook(): Promise<number> {
+  try {
+    let raw = "";
+    for await (const chunk of process.stdin) raw += String(chunk);
+    if (!raw.trim()) return 0;
+    const output = handleCheckpointHook(JSON.parse(raw) as CheckpointHookPayload);
+    if (output) process.stdout.write(`${JSON.stringify(output)}\n`);
+  } catch {
+    // Lifecycle continuity is best-effort and must never block Codex startup,
+    // compaction, or shutdown because of malformed/missing hook state.
+  }
+  return 0;
 }
 
 function cmdCreate(args: string[]): number {

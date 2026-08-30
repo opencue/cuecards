@@ -692,11 +692,15 @@ describe("loadProfile (composite)", () => {
 describe("core persona_includes fan-out (real profiles)", () => {
   const REAL_PROFILES = join(REPO_ROOT, "profiles");
 
-  test("core carries the compact integrity include", async () => {
+  test("core carries the compact integrity and Codex token-discipline includes", async () => {
     process.env.CUE_PROFILES_DIR = REAL_PROFILES;
     const core = await loadProfile("core");
     expect(core.personaIncludes).toContain("integrity-protocol-compact");
+    expect(core.personaIncludes).toContain("codex-token-discipline");
     expect(core.personaIncludes).not.toContain("headroom-compression");
+    expect(core.codex?.model_auto_compact_token_limit).toBe(180000);
+    expect(core.codex?.model_reasoning_effort).toBe("high");
+    expect(core.codex?.hooks).toBeDefined();
     expect(core.env?.ANTHROPIC_BASE_URL).toBeUndefined();
   });
 

@@ -269,6 +269,23 @@ function computeHash(
   return createHash("sha256").update(canonical).digest("hex");
 }
 
+async function readPersonaIncludes(profile: ResolvedProfile): Promise<string> {
+  const refs = profile.personaIncludes ?? [];
+  let text = "";
+  for (const ref of refs) {
+    const path = isAbsolute(ref)
+      ? ref
+      : join(RESOURCES_PERSONAS, ref.endsWith(".md") ? ref : `${ref}.md`);
+    try {
+      const content = (await readFile(path, "utf8")).trim();
+      if (content) text += content + "\n\n";
+    } catch {
+      // Missing snippet — skip silently; cue validate will surface it.
+    }
+  }
+  return text;
+}
+
 function effectiveCodexOverrides(
   profile: ResolvedProfile,
 ): CodexProfileConfig | undefined {
@@ -444,7 +461,15 @@ async function materializeRuntimeUnlocked(
     agent === "codex" && effectiveInput.codexExternalSkillPaths
       ? JSON.stringify([...effectiveInput.codexExternalSkillPaths].sort())
       : "";
-  const hash = computeHash(profile, agent, `${codexBaseText}\n${codexSkillScopeText}`);
+  // Included persona bodies are generated into CLAUDE.md / AGENTS.md, so their
+  // source text must participate in the content hash. Otherwise editing a
+  // shared policy leaves already-materialized runtimes stale indefinitely.
+  const personaIncludesText = await readPersonaIncludes(profile);
+  const hash = computeHash(
+    profile,
+    agent,
+    `${codexBaseText}\n${codexSkillScopeText}\n${personaIncludesText}`,
+  );
 
   // Collect profile MCP entries once — used by both cache-hit and rebuild paths
   // for the .claude.json sync.
@@ -816,21 +841,7 @@ async function materializeRuntimeUnlocked(
   // persona_includes: shared snippets prepended to the persona. Lets
   // cross-profile policies (Integrity Protocol, voice rules) live in one
   // file in resources/personas/ and fan out via the profile chain.
-  const personaIncludes: string[] = (profile as any).personaIncludes ?? [];
-  let includesText = "";
-  for (const ref of personaIncludes) {
-    const path = isAbsolute(ref)
-      ? ref
-      : join(RESOURCES_PERSONAS, ref.endsWith(".md") ? ref : `${ref}.md`);
-    try {
-      const content = (await readFile(path, "utf8")).trim();
-      if (content) includesText += content + "\n\n";
-    } catch {
-      // missing snippet — skip silently; cue validate will surface it
-    }
-  }
-
-  const fullPersona = (includesText + profilePersona).trim();
+  const fullPersona = (personaIncludesText + profilePersona).trim();
   if (fullPersona) {
     stamp += `## Your Expertise\n\n${fullPersona}\n\n`;
   }
