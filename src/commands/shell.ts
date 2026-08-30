@@ -155,6 +155,8 @@ export interface ShimOptions {
     dir: string,
     action: "add" | "remove",
   ) => boolean | Promise<boolean>;
+  /** Test seam for reading User + Machine PATH from the Windows environment store. */
+  readWindowsPathDirs?: () => string[];
   out?: (s: string) => void;
   err?: (s: string) => void;
 }
@@ -181,6 +183,35 @@ function updateWindowsUserPath(dir: string, action: "add" | "remove"): boolean {
     if (result.status === 0) return true;
   }
   return false;
+}
+
+/**
+ * Read the persisted Windows PATH rather than trusting only the current
+ * process. Installers update User PATH in the registry, but an already-open
+ * PowerShell keeps its old environment until the next terminal starts.
+ */
+function readWindowsPathDirs(): string[] {
+  const script = [
+    "$p=@([Environment]::GetEnvironmentVariable('Path','User'),[Environment]::GetEnvironmentVariable('Path','Machine'))",
+    "$p=$p|Where-Object{$_}",
+    "[Console]::Out.Write([Environment]::ExpandEnvironmentVariables(($p-join ';')))",
+  ].join("; ");
+
+  for (const command of ["powershell.exe", "pwsh.exe"]) {
+    const result = spawnSync(
+      command,
+      ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
+      {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+        windowsHide: true,
+      },
+    );
+    if (result.status === 0 && result.stdout) {
+      return result.stdout.split(";").map((dir) => dir.trim()).filter(Boolean);
+    }
+  }
+  return [];
 }
 
 function windowsPathGuidance(dir: string): string {
@@ -328,7 +359,11 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   const platform = opts.platform ?? process.platform;
   const dir = shimDir(opts.homeDir);
   const separator = platform === "win32" ? ";" : ":";
-  const pathDirs = (opts.pathDirs ?? (process.env.PATH ?? "").split(separator)).filter(Boolean);
+  const processPathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(separator);
+  const persistedPathDirs = platform === "win32"
+    ? (opts.readWindowsPathDirs ?? readWindowsPathDirs)()
+    : [];
+  const pathDirs = [...processPathDirs, ...persistedPathDirs].filter(Boolean);
   const agents = opts.agents ?? SHIM_AGENTS;
   const { mkdirSync, writeFileSync, chmodSync, unlinkSync } = await import("node:fs");
 
@@ -339,7 +374,9 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   };
   const real = new Map<ShimAgent, string>();
   for (const agent of agents) {
-    const bin = injected[agent] !== undefined ? injected[agent] : findRealAgentBin(agent);
+    const bin = injected[agent] !== undefined
+      ? injected[agent]
+      : findRealAgentBin(agent, { platform, pathValue: pathDirs.join(separator) });
     if (bin) real.set(agent, bin);
   }
   if (real.size === 0) {

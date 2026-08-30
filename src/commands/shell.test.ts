@@ -188,6 +188,34 @@ describe("shell install", () => {
     expect(pathUpdates).toEqual([[shimDir(fakeHome), "add"]]);
   });
 
+  test("finds a freshly installed Windows agent from persisted PATH", async () => {
+    const stalePath = join(fakeHome, "stale-path");
+    const npmBin = join(fakeHome, "AppData", "Roaming", "npm");
+    await mkdir(stalePath, { recursive: true });
+    await mkdir(npmBin, { recursive: true });
+    await writeFile(join(npmBin, "claude.cmd"), "@echo off\r\n");
+
+    const originalPath = process.env.PATH;
+    process.env.PATH = stalePath;
+    let rc: number;
+    try {
+      rc = await runInstall({
+        homeDir: fakeHome,
+        platform: "win32",
+        pathDirs: [stalePath],
+        realCodex: null,
+        readWindowsPathDirs: () => [npmBin],
+        updateWindowsPath: () => true,
+        ...sinks(),
+      });
+    } finally {
+      process.env.PATH = originalPath;
+    }
+
+    expect(rc).toBe(0);
+    expect(await readFile(windowsShim("claude"), "utf8")).toContain("launch claude %*");
+  });
+
   test("--no-rc leaves Windows User PATH unchanged and prints manual guidance", async () => {
     let updates = 0;
     await runInstall({
