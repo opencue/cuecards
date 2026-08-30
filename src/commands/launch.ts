@@ -54,7 +54,10 @@ import {
   type ProfileTally,
 } from "../lib/picker";
 import type { ComboUsage } from "../lib/combo-history";
-import { materializeRuntime } from "../lib/runtime-materializer";
+import {
+  materializeRuntime,
+  runtimePathKey,
+} from "../lib/runtime-materializer";
 import {
   agentLaunchAccent,
   agentLaunchMessage,
@@ -2438,7 +2441,9 @@ export async function run(args: string[]): Promise<number> {
   // this launch will write in order to refuse it as its own overlay source.
   const accountTag =
     agentKind === "claude-code" ? authmuxAccountTag(ccd, homedir()) : undefined;
-  const runtimeKey = accountTag ? `${profileName}@${accountTag}` : profileName;
+  const runtimeKey = runtimePathKey(
+    accountTag ? `${profileName}@${accountTag}` : profileName,
+  );
   if (accountTag)
     debug("launch:account-runtime", { profileName, accountTag, runtimeKey });
 

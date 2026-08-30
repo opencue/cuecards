@@ -11,7 +11,7 @@ import {
   symlink,
 } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { basename, dirname, join } from "node:path";
 
 import { utimes } from "node:fs/promises";
 
@@ -49,6 +49,34 @@ const sampleProfile: ResolvedProfile = {
 };
 
 describe("materializeRuntime", () => {
+  test("shortens oversized composite profile names to a stable runtime key", async () => {
+    const profile = {
+      ...sampleProfile,
+      name: `medusa-next+${"aas-development-functional-typescript+".repeat(8)}`,
+      skills: { local: [], npx: [] },
+      mcps: [],
+      plugins: [],
+      inheritanceChain: [],
+    } as ResolvedProfile;
+    const input = {
+      profile,
+      agent: "codex" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    };
+
+    const first = await materializeRuntime(input);
+    const second = await materializeRuntime(input);
+    const runtimeKey = basename(dirname(first.runtimeDir));
+
+    expect(Buffer.byteLength(runtimeKey)).toBeLessThanOrEqual(120);
+    expect(runtimeKey).not.toBe(profile.name);
+    expect(second.runtimeDir).toBe(first.runtimeDir);
+    expect(second.rebuilt).toBe(false);
+  });
+
   test("codex renders MCP env maps as TOML inline tables", async () => {
     const profile: ResolvedProfile = {
       ...sampleProfile,
