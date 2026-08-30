@@ -18,6 +18,7 @@ import { debug } from "./debug-log";
 import { listAllSkillIds, resolveLocalSkill } from "./resolver-local";
 import {
   materializeRuntime,
+  runtimePathKey,
   type McpServerConfig,
   type MaterializeOutput,
 } from "./runtime-materializer";
@@ -41,7 +42,11 @@ export function runtimeDirFor(
   agent: RuntimeAgent,
   runtimeRoot = join(configDir(), "runtime"),
 ): string {
-  return join(runtimeRoot, profileName, runtimeAgentSubdir(agent));
+  return join(
+    runtimeRoot,
+    runtimePathKey(profileName),
+    runtimeAgentSubdir(agent),
+  );
 }
 
 export function isCueManagedClaudeRuntimeDir(

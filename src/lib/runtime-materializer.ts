@@ -65,6 +65,30 @@ const RESOURCES_PERSONAS = join(REPO_ROOT, "resources", "personas");
 
 /** Char count past which Claude Code warns about (and is slowed by) a memory file. */
 const MEMORY_FILE_WARN_CHARS = 40_000;
+const RUNTIME_KEY_MAX_BYTES = 120;
+
+/**
+ * Keep a logical profile/composite key usable as one filesystem component.
+ * Short keys stay unchanged; oversized keys retain a readable prefix plus a
+ * stable hash so distinct composites cannot collapse onto the same runtime.
+ */
+export function runtimePathKey(runtimeKey: string): string {
+  if (Buffer.byteLength(runtimeKey, "utf8") <= RUNTIME_KEY_MAX_BYTES) {
+    return runtimeKey;
+  }
+
+  const suffix = `~${createHash("sha256").update(runtimeKey).digest("hex").slice(0, 16)}`;
+  const prefixBudget = RUNTIME_KEY_MAX_BYTES - Buffer.byteLength(suffix, "utf8");
+  let prefix = "";
+  let prefixBytes = 0;
+  for (const char of runtimeKey) {
+    const charBytes = Buffer.byteLength(char, "utf8");
+    if (prefixBytes + charBytes > prefixBudget) break;
+    prefix += char;
+    prefixBytes += charBytes;
+  }
+  return `${prefix}${suffix}`;
+}
 
 function resolveResourcePath(ref: string, base: string): string {
   return isAbsolute(ref) ? ref : join(base, ref);
@@ -152,7 +176,11 @@ export async function isRuntimeStale(
   runtimeRoot: string,
   runtimeKey: string = profileName,
 ): Promise<boolean> {
-  const runtimeDir = join(runtimeRoot, runtimeKey, agentSubdir(agent));
+  const runtimeDir = join(
+    runtimeRoot,
+    runtimePathKey(runtimeKey),
+    agentSubdir(agent),
+  );
   const hashFile = join(runtimeDir, ".cue-hash");
   let hashMtime: number;
   try {
@@ -370,7 +398,7 @@ export async function materializeRuntime(
 ): Promise<MaterializeOutput> {
   const runtimeDir = join(
     input.runtimeRoot,
-    input.runtimeKey ?? input.profile.name,
+    runtimePathKey(input.runtimeKey ?? input.profile.name),
     agentSubdir(input.agent),
   );
   return withMaterializeLock(runtimeDir, () =>
@@ -384,7 +412,7 @@ async function materializeRuntimeUnlocked(
   const { profile, agent, runtimeRoot } = input;
   const runtimeDir = join(
     runtimeRoot,
-    input.runtimeKey ?? profile.name,
+    runtimePathKey(input.runtimeKey ?? profile.name),
     agentSubdir(agent),
   );
 
