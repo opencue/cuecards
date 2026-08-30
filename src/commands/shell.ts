@@ -8,7 +8,7 @@
 
 import { existsSync, readFileSync, statSync, accessSync, constants } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { join, dirname } from "node:path";
+import { join, dirname, win32 } from "node:path";
 import { homedir } from "node:os";
 
 import { findRealAgentBin } from "../lib/claude-binary";
@@ -155,6 +155,8 @@ export interface ShimOptions {
     dir: string,
     action: "add" | "remove",
   ) => boolean | Promise<boolean>;
+  /** Test seam for reading User + Machine PATH from the Windows environment store. */
+  readWindowsPathDirs?: () => string[];
   out?: (s: string) => void;
   err?: (s: string) => void;
 }
@@ -170,9 +172,19 @@ function windowsPathScript(action: "add" | "remove"): string {
   ].join("; ");
 }
 
+/** Absolute PowerShell paths only; never let cwd/PATH choose an executable. */
+function resolveTrustedPowerShellExecutables(): string[] {
+  const systemRoot = process.env.SystemRoot ?? process.env.WINDIR ?? "C:\\Windows";
+  const programFiles = process.env.ProgramFiles ?? "C:\\Program Files";
+  return [
+    win32.join(systemRoot, "System32", "WindowsPowerShell", "v1.0", "powershell.exe"),
+    win32.join(programFiles, "PowerShell", "7", "pwsh.exe"),
+  ].filter((path) => isExecutableFile(path, "win32"));
+}
+
 function updateWindowsUserPath(dir: string, action: "add" | "remove"): boolean {
   const env = { ...process.env, CUE_SHIM_DIR: dir };
-  for (const command of ["powershell.exe", "pwsh.exe"]) {
+  for (const command of resolveTrustedPowerShellExecutables()) {
     const result = spawnSync(
       command,
       ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", windowsPathScript(action)],
@@ -181,6 +193,35 @@ function updateWindowsUserPath(dir: string, action: "add" | "remove"): boolean {
     if (result.status === 0) return true;
   }
   return false;
+}
+
+/**
+ * Read the persisted Windows PATH rather than trusting only the current
+ * process. Installers update User PATH in the registry, but an already-open
+ * PowerShell keeps its old environment until the next terminal starts.
+ */
+function readWindowsPathDirs(): string[] {
+  const script = [
+    "$p=@([Environment]::GetEnvironmentVariable('Path','User'),[Environment]::GetEnvironmentVariable('Path','Machine'))",
+    "$p=$p|Where-Object{$_}",
+    "[Console]::Out.Write([Environment]::ExpandEnvironmentVariables(($p-join ';')))",
+  ].join("; ");
+
+  for (const command of resolveTrustedPowerShellExecutables()) {
+    const result = spawnSync(
+      command,
+      ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
+      {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+        windowsHide: true,
+      },
+    );
+    if (result.status === 0 && result.stdout) {
+      return result.stdout.split(";").map((dir) => dir.trim()).filter(Boolean);
+    }
+  }
+  return [];
 }
 
 function windowsPathGuidance(dir: string): string {
@@ -328,7 +369,11 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   const platform = opts.platform ?? process.platform;
   const dir = shimDir(opts.homeDir);
   const separator = platform === "win32" ? ";" : ":";
-  const pathDirs = (opts.pathDirs ?? (process.env.PATH ?? "").split(separator)).filter(Boolean);
+  const processPathDirs = opts.pathDirs ?? (process.env.PATH ?? "").split(separator);
+  const persistedPathDirs = platform === "win32"
+    ? (opts.readWindowsPathDirs ?? readWindowsPathDirs)()
+    : [];
+  const pathDirs = [...processPathDirs, ...persistedPathDirs].filter(Boolean);
   const agents = opts.agents ?? SHIM_AGENTS;
   const { mkdirSync, writeFileSync, chmodSync, unlinkSync } = await import("node:fs");
 
@@ -339,7 +384,9 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   };
   const real = new Map<ShimAgent, string>();
   for (const agent of agents) {
-    const bin = injected[agent] !== undefined ? injected[agent] : findRealAgentBin(agent);
+    const bin = injected[agent] !== undefined
+      ? injected[agent]
+      : findRealAgentBin(agent, { platform, pathValue: pathDirs.join(separator) });
     if (bin) real.set(agent, bin);
   }
   if (real.size === 0) {
