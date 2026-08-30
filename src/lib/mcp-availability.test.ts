@@ -71,10 +71,37 @@ describe("filterUnavailableMcpServers", () => {
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
 
-  test("keeps relative command paths for resolution in the MCP launch cwd", () => {
+  test("resolves relative command paths in the MCP launch cwd", () => {
     const filtered = filterUnavailableMcpServers(
-      { local: { command: "./node_modules/.bin/mcp-server" } },
-      { isExecutable: () => false },
+      {
+        local: {
+          command: "./bin/mcp-server",
+          cwd: String.raw`C:\Project`,
+        },
+        missing: {
+          command: "./bin/missing-server",
+          cwd: String.raw`C:\Project`,
+        },
+      },
+      {
+        platform: "win32",
+        env: { Path: "", PATHEXT: ".EXE" },
+        isExecutable: (path) => path === String.raw`C:\Project\bin\mcp-server.EXE`,
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
+
+  test("probes explicit Windows extensions even when PATHEXT omits them", () => {
+    const command = String.raw`C:\Tools\mcp-server.exe`;
+    const filtered = filterUnavailableMcpServers(
+      { local: { command } },
+      {
+        platform: "win32",
+        env: { Path: "", PATHEXT: ".CMD" },
+        isExecutable: (path) => path === command,
+      },
     );
 
     expect(Object.keys(filtered)).toEqual(["local"]);

@@ -3,6 +3,7 @@ import { posix, win32 } from "node:path";
 
 interface McpLaunchConfig {
   command?: unknown;
+  cwd?: unknown;
   enabled?: unknown;
   env?: unknown;
   url?: unknown;
@@ -72,6 +73,21 @@ function environmentForServer(
   return merged;
 }
 
+function workingDirectoryForServer(
+  serverCwd: unknown,
+  env: Record<string, string | undefined>,
+  options: CommandAvailabilityOptions,
+): string {
+  const platform = options.platform ?? process.platform;
+  const pathApi = platform === "win32" ? win32 : posix;
+  const base = options.cwd ?? process.cwd();
+  if (typeof serverCwd !== "string" || serverCwd.length === 0) return base;
+  const expanded = expandEnvironmentPath(serverCwd, env, platform);
+  return pathApi.isAbsolute(expanded)
+    ? expanded
+    : pathApi.resolve(base, expanded);
+}
+
 function defaultExecutableProbe(
   path: string,
   platform: NodeJS.Platform,
@@ -96,10 +112,8 @@ function commandCandidates(
   )
     .split(";")
     .filter(Boolean);
-  const hasKnownExtension = extensions.some((extension) =>
-    command.toLowerCase().endsWith(extension.toLowerCase()),
-  );
-  return hasKnownExtension
+  const hasExtension = /\.[^\\/]+$/.test(command);
+  return hasExtension
     ? [command]
     : extensions.map((extension) => `${command}${extension}`);
 }
@@ -118,8 +132,12 @@ export function isCommandAvailable(
   const candidates = commandCandidates(expanded, env, platform);
 
   if (/[\\/]/.test(expanded)) {
-    if (!pathApi.isAbsolute(expanded)) return true;
-    return candidates.some((candidate) => isExecutable(candidate));
+    return candidates.some((candidate) => {
+      const path = pathApi.isAbsolute(candidate)
+        ? candidate
+        : pathApi.resolve(cwd, candidate);
+      return isExecutable(path);
+    });
   }
 
   const pathValue = envValue(env, "PATH", platform) ?? "";
@@ -144,16 +162,16 @@ export function filterUnavailableMcpServers<T extends object>(
     const launch = config as McpLaunchConfig;
     const isRemote = typeof launch.url === "string" && launch.url.length > 0;
     const isDisabled = launch.enabled === false;
-    if (
-      isRemote ||
-      isDisabled ||
-      (typeof launch.command === "string" &&
-        launch.command.length > 0 &&
-        isCommandAvailable(launch.command, {
-          ...options,
-          env: environmentForServer(launch.env, options),
-        }))
-    ) {
+    const env = environmentForServer(launch.env, options);
+    const commandAvailable =
+      typeof launch.command === "string" &&
+      launch.command.length > 0 &&
+      isCommandAvailable(launch.command, {
+        ...options,
+        env,
+        cwd: workingDirectoryForServer(launch.cwd, env, options),
+      });
+    if (isRemote || isDisabled || commandAvailable) {
       available[id] = config;
     }
   }
