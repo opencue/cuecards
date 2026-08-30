@@ -71,6 +71,26 @@ describe("filterUnavailableMcpServers", () => {
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
 
+  test("resolves relative PATH entries in the MCP launch cwd", () => {
+    const filtered = filterUnavailableMcpServers(
+      {
+        local: {
+          command: "mcp-server",
+          cwd: "/project",
+          env: { PATH: "bin" },
+        },
+      },
+      {
+        platform: "linux",
+        cwd: "/workspace",
+        env: { PATH: "/usr/bin" },
+        isExecutable: (path) => path === "/project/bin/mcp-server",
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
+
   test("resolves relative command paths in the MCP launch cwd", () => {
     const filtered = filterUnavailableMcpServers(
       {
@@ -100,6 +120,20 @@ describe("filterUnavailableMcpServers", () => {
       {
         platform: "win32",
         env: { Path: "", PATHEXT: ".CMD" },
+        isExecutable: (path) => path === command,
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
+
+  test("does not expand Windows percent variables on POSIX", () => {
+    const command = "/opt/%HOME%/mcp-server";
+    const filtered = filterUnavailableMcpServers(
+      { local: { command } },
+      {
+        platform: "linux",
+        env: { HOME: "/home/test", PATH: "" },
         isExecutable: (path) => path === command,
       },
     );

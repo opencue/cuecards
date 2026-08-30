@@ -33,13 +33,15 @@ function expandEnvironmentPath(
   env: Record<string, string | undefined>,
   platform: NodeJS.Platform,
 ): string {
-  const expanded = value
-    .replace(/\$\{([A-Za-z_][A-Za-z0-9_]*)\}/g, (match, key: string) =>
-      envValue(env, key, platform) ?? match,
-    )
-    .replace(/%([^%]+)%/g, (match, key: string) =>
+  let expanded = value.replace(
+    /\$\{([A-Za-z_][A-Za-z0-9_]*)\}/g,
+    (match, key: string) => envValue(env, key, platform) ?? match,
+  );
+  if (platform === "win32") {
+    expanded = expanded.replace(/%([^%]+)%/g, (match, key: string) =>
       envValue(env, key, platform) ?? match,
     );
+  }
   if (!/^~[\\/]/.test(expanded)) return expanded;
   const home =
     envValue(env, "HOME", platform) ??
@@ -145,7 +147,10 @@ export function isCommandAvailable(
 
   for (const rawDir of pathValue.split(pathSeparator)) {
     const unquoted = rawDir.replace(/^"|"$/g, "");
-    const dir = expandEnvironmentPath(unquoted || cwd, env, platform);
+    const expandedDir = expandEnvironmentPath(unquoted || cwd, env, platform);
+    const dir = pathApi.isAbsolute(expandedDir)
+      ? expandedDir
+      : pathApi.resolve(cwd, expandedDir);
     if (candidates.some((name) => isExecutable(pathApi.join(dir, name)))) {
       return true;
     }
