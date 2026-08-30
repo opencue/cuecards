@@ -66,15 +66,19 @@ function environmentForServer(
   ) {
     return merged;
   }
-  for (const [key, value] of Object.entries(serverEnv)) {
-    if (typeof value !== "string") continue;
-    const expanded = expandEnvironmentPath(value, merged, platform);
+  const overrides = Object.entries(serverEnv).filter(
+    (entry): entry is [string, string] => typeof entry[1] === "string",
+  );
+  for (const [key, value] of overrides) {
     if (platform === "win32") {
       for (const existing of Object.keys(merged)) {
         if (existing.toLowerCase() === key.toLowerCase()) delete merged[existing];
       }
     }
-    merged[key] = expanded;
+    merged[key] = value;
+  }
+  for (const [key, value] of overrides) {
+    merged[key] = expandEnvironmentPath(value, merged, platform);
   }
   return merged;
 }

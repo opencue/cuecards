@@ -205,4 +205,26 @@ describe("filterUnavailableMcpServers", () => {
 
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
+
+  test("expands server environment references regardless of property order", () => {
+    const filtered = filterUnavailableMcpServers(
+      {
+        local: {
+          command: "mcp-server",
+          env: {
+            PATH: "$MCP_HOME/bin",
+            MCP_HOME: "$ROOT/mcp",
+            ROOT: "/opt",
+          },
+        },
+      },
+      {
+        platform: "linux",
+        env: { PATH: "/usr/bin" },
+        isExecutable: (path) => path === "/opt/mcp/bin/mcp-server",
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
 });
