@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 

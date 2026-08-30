@@ -2,21 +2,21 @@
 title: "DaizeDong/skill-smith — Claude Code skill discovered by cue"
 description: "Research-first meta-skill that creates other Claude Code skills to an industry-leading, tested-real bar: scaffold to Skill-Repo-Spec, gate on evals/budget/dedup"
 layout: page
-updated: 2026-07-31
+updated: 2026-08-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DaizeDong/skill-smith](https://github.com/DaizeDong/skill-smith)
 
-**★ 0** · exceptional (score 9.5) · Python · agent, ai, ai-agent, claude, claude-code
+**★ 1** · exceptional (score 9.8) · Python · agent, ai, ai-agent, claude, claude-code
 
 > Research-first meta-skill that creates other Claude Code skills to an industry-leading, tested-real bar: scaffold to Skill-Repo-Spec, gate on evals/budget/dedup, then iterate via self-evolve. Thin orchestrator delegating research to market-intel and iteration to self-evolve.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-31
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-08-30
 - 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, evals, llm, meta-skill, scaffolding, skill, skill-authoring, skill-generator
 
 ## Best fit cue profiles

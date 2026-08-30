@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="rahozosman-security-claude"></a>
+## 💎 [rahozosman/security-claude](https://github.com/rahozosman/security-claude)
+
+**★ 1** · exceptional (score 14.8) · tags: ai, ai-agent, ai-agents, ai-coding, ai-safety
+
+A Claude Code skill for security architecture intelligence — analyzes codebases for security design flaws, threat modeling gaps, and architectural weaknesses, then recommends verified, evidence-based fixes instead of generic security advice.
+
+✅ SKILL.md
+
+```bash
+cue skills add rahozosman/security-claude --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2350** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
+**★ 2354** · exceptional (score 14) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="sandbaseai-sandbase-harness"></a>
+## 💎 [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness)
+
+**★ 638** · exceptional (score 13.5) · TypeScript · tags: agent-harness, agent-memory, agent-observability, agent-runtime, agent-sandbox
+
+Local-first, self-hosted AI agent runtime with MCP tools, sandboxed sessions, memory, credentials, audit/replay, and a local Console.
+
+```bash
+cue skills add sandbaseai/sandbase-harness --profile cybersecurity
 ```
 
 ---
@@ -54,10 +82,36 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="braydos-h-breachpilot"></a>
+## 💎 [braydos-h/BreachPilot](https://github.com/braydos-h/BreachPilot)
+
+**★ 3** · exceptional (score 8.2) · Python · tags: agent, ai, bug-bounty, cybersecurity, mcp-server
+
+Autonomous Offensive Security Agent for Red Team Operations
+
+```bash
+cue skills add braydos-h/BreachPilot --profile cybersecurity
+```
+
+---
+
+<a id="hybridindie-comfyui-mcp"></a>
+## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
+
+**★ 2** · exceptional (score 8) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+
+Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
+
+```bash
+cue skills add hybridindie/comfyui_mcp --profile cybersecurity
+```
+
+---
+
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 

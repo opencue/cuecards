@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 <a id="sepinetam-mcp-for-stata"></a>
 ## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
 
-**★ 251** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
+**★ 253** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
 
 A MCP server for Stata to integrate Stata into your agent. 
 
@@ -28,10 +28,53 @@ cue skills add SepineTam/mcp-for-stata --profile research
 
 ---
 
-<a id="rakib-nyc-skillassay"></a>
-## ✨ [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
+<a id="daizedong-small-cap-deepdive"></a>
+## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
 
-**★ 2** · strong (score 5) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 0** · exceptional (score 14.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
+
+Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
+
+✅ SKILL.md
+
+```bash
+cue skills add DaizeDong/small-cap-deepdive --profile research
+```
+
+---
+
+<a id="chendengji-scientific-writing"></a>
+## 💎 [chendengji/scientific-writing](https://github.com/chendengji/scientific-writing)
+
+**★ 0** · exceptional (score 13) · Python · tags: academic-writing, claude-code, claude-skill, english-for-academic-purposes, llm-skill
+
+Structure-aware scientific English writing skill for research agents (POLISH/REWRITE/GENERATE). MIT, contributions welcome.
+
+✅ SKILL.md
+
+```bash
+cue skills add chendengji/scientific-writing --profile research
+```
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="rakib-nyc-skillassay"></a>
+## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
+
+**★ 2** · potential (score 4.9) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

@@ -2,7 +2,7 @@
 title: "malkreide/swiss-procurement-mcp — Claude Code skill discovered by cue"
 description: "MCP server for the simap.ch Swiss public procurement API — all cantons, read-only"
 layout: page
-updated: 2026-08-17
+updated: 2026-08-30
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-17
+- 🗓️ Last pushed: 2026-08-30
 - 🏷️ Tags: llm, mcp, mcp-server, model-context-protocol, open-data, public-procurement, python, simap, swiss-open-data, swiss-public-data-mcp, switzerland
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,19 +24,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
-```
-
----
-
-<a id="rogueduda-marketread"></a>
-## ✨ [rogueduda/marketread](https://github.com/rogueduda/marketread)
-
-**★ 0** · strong (score 7) · tags: agent-skills, claude-code, claude-skill, codex, copywriting
-
-Free market research skill for Claude, Codex, and any AI assistant. It interviews you, mines what your buyers actually say in public, and returns evidence-labeled findings with a ranked action plan. No signup.
-
-```bash
-cue skills add rogueduda/marketread --profile marketing
 ```
 
 ---

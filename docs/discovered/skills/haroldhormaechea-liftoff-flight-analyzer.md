@@ -2,7 +2,7 @@
 title: "HaroldHormaechea/liftoff-flight-analyzer — Claude Code skill discovered by cue"
 description: "Turn a saved Liftoff FPV replay into a flight debrief: sideslip, corner geometry, and every slow-down classified by cause. Ships as a Claude Code skill."
 layout: page
-updated: 2026-08-28
+updated: 2026-08-30
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-28
+- 🗓️ Last pushed: 2026-08-30
 - 🏷️ Tags: claude-code-skill, drone-racing, liftoff
 
 ## Best fit cue profiles

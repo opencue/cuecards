@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="secondsky-claude-skills"></a>
+## 💎 [secondsky/claude-skills](https://github.com/secondsky/claude-skills)
+
+**★ 212** · exceptional (score 16.8) · TypeScript · tags: claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins
+
+Production-ready skills for Claude Code CLI - Cloudflare, React, Tailwind v4, and AI integrations
+
+```bash
+cue skills add secondsky/claude-skills --profile frontend
+```
 
 ---
 
@@ -50,6 +63,19 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="libraz-hashidate"></a>
+## ✨ [libraz/hashidate](https://github.com/libraz/hashidate)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: avatar, character-animation, mcp, mcp-server, obs
+
+Avatar runtime for an AI VTuber: a browser-rendered character driven over a local HTTP API, one turn of dialogue at a time. No model provider, no API key, no prompt state.
+
+```bash
+cue skills add libraz/hashidate --profile frontend
 ```
 
 ---

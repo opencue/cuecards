@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="eugeniughelbur-clearmode"></a>
-## 💎 [eugeniughelbur/clearmode](https://github.com/eugeniughelbur/clearmode)
+<a id="dmitrax-second-brain-setup"></a>
+## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
 
-**★ 1** · exceptional (score 12.3) · Python · tags: agent-skills, agents-md, ai-slop, ai-writing, anti-ai-slop
+**★ 1** · exceptional (score 14.3) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
 
-An anti-AI-slop writing standard and checker for AI-drafted text. Scores any document 0-100 against 43 rules on four axes: plain words, human voice, structure, information density. One JSON rule pack compiles to 18 targets - Claude Code skill, AGENTS.md, Cursor rule, system prompt, Vale style. Zero dependencies, runs offline.
+Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add eugeniughelbur/clearmode --profile docs-writer
+cue skills add dmitrax/second-brain-setup --profile docs-writer
+```
+
+---
+
+<a id="netresearch-typo3-docs-skill"></a>
+## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+
+**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+
+Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
+
+```bash
+cue skills add netresearch/typo3-docs-skill --profile docs-writer
 ```
 
 ---

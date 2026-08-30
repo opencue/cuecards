@@ -2,20 +2,20 @@
 title: "Eduardo-Salvador/Agent-Harness-Kit — Claude Code skill discovered by cue"
 description: "An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to "
 layout: page
-updated: 2026-08-29
+updated: 2026-08-30
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
 
-**★ 4** · strong (score 6.8) · Python · agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
+**★ 5** · strong (score 7.8) · Python · agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
 
 > An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to verified delivery.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
-- ⭐ 4 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 5 stars
 - 🗓️ Last pushed: 2026-08-28
 - 🏷️ Tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code, cli, codex, context-engineering, developer-tools, hackathon, harness-engineering, multi-agent, multi-agent-systems, python, task-graph
 

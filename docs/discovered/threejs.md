@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-07-20
+updated: 2026-08-30
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="ciroautuori-r3f-production"></a>
-## 💎 [ciroautuori/r3f-production](https://github.com/ciroautuori/r3f-production)
+<a id="libraz-hashidate"></a>
+## ✨ [libraz/hashidate](https://github.com/libraz/hashidate)
 
-**★ 0** · exceptional (score 12.5) · Python · tags: 3d-web, accessibility, agent-skill, awwwards, best-practices
+**★ 1** · strong (score 6.3) · TypeScript · tags: avatar, character-animation, mcp, mcp-server, obs
 
-Production governance skill for React Three Fiber (r3f v9 + three r183 + Zustand + Next.js): 13 hard rules, three-speed state, polish chain, 88/100 audit scorecard, headless Blender->GLB, self-hosted CI on one VPS. MIT, EN-only.
-
-✅ SKILL.md
+Avatar runtime for an AI VTuber: a browser-rendered character driven over a local HTTP API, one turn of dialogue at a time. No model provider, no API key, no prompt state.
 
 ```bash
-cue skills add ciroautuori/r3f-production --profile threejs
+cue skills add libraz/hashidate --profile threejs
 ```
 
 ---
