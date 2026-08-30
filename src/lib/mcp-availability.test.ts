@@ -52,4 +52,22 @@ describe("filterUnavailableMcpServers", () => {
 
     expect(Object.keys(filtered)).toEqual(["remote", "disabled"]);
   });
+
+  test("resolves commands against the MCP server's PATH override", () => {
+    const filtered = filterUnavailableMcpServers(
+      {
+        local: {
+          command: "mcp-server",
+          env: { Path: String.raw`C:\Mcp` },
+        },
+      },
+      {
+        platform: "win32",
+        env: { Path: String.raw`C:\Windows`, PATHEXT: ".EXE" },
+        isExecutable: (path) => path === String.raw`C:\Mcp\mcp-server.EXE`,
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
 });

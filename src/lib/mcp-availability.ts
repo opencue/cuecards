@@ -4,6 +4,7 @@ import { posix, win32 } from "node:path";
 interface McpLaunchConfig {
   command?: unknown;
   enabled?: unknown;
+  env?: unknown;
   url?: unknown;
 }
 
@@ -43,6 +44,32 @@ function expandEnvironmentPath(
     envValue(env, "HOME", platform) ??
     envValue(env, "USERPROFILE", platform);
   return home === undefined ? expanded : `${home}${expanded.slice(1)}`;
+}
+
+function environmentForServer(
+  serverEnv: unknown,
+  options: CommandAvailabilityOptions,
+): Record<string, string | undefined> {
+  const platform = options.platform ?? process.platform;
+  const merged = { ...(options.env ?? process.env) };
+  if (
+    serverEnv === null ||
+    typeof serverEnv !== "object" ||
+    Array.isArray(serverEnv)
+  ) {
+    return merged;
+  }
+  for (const [key, value] of Object.entries(serverEnv)) {
+    if (typeof value !== "string") continue;
+    const expanded = expandEnvironmentPath(value, merged, platform);
+    if (platform === "win32") {
+      for (const existing of Object.keys(merged)) {
+        if (existing.toLowerCase() === key.toLowerCase()) delete merged[existing];
+      }
+    }
+    merged[key] = expanded;
+  }
+  return merged;
 }
 
 function defaultExecutableProbe(
@@ -126,7 +153,10 @@ export function filterUnavailableMcpServers<T extends object>(
       isDisabled ||
       (typeof launch.command === "string" &&
         launch.command.length > 0 &&
-        isCommandAvailable(launch.command, options))
+        isCommandAvailable(launch.command, {
+          ...options,
+          env: environmentForServer(launch.env, options),
+        }))
     ) {
       available[id] = config;
     }
