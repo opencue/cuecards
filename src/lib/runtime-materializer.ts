@@ -461,6 +461,15 @@ async function materializeRuntimeUnlocked(
     agent === "codex" && effectiveInput.codexExternalSkillPaths
       ? JSON.stringify([...effectiveInput.codexExternalSkillPaths].sort())
       : "";
+  // Collect profile MCP entries once. Codex embeds these in config.toml, so the
+  // effective registry must participate in its runtime hash: installing or
+  // removing a command must rebuild the file instead of retaining stale MCPs.
+  const mcpServers = collectProfileMcps(
+    profile,
+    agent,
+    effectiveInput.mcpRegistry,
+  );
+  const codexMcpText = agent === "codex" ? sortedJson(mcpServers) : "";
   // Included persona bodies are generated into CLAUDE.md / AGENTS.md, so their
   // source text must participate in the content hash. Otherwise editing a
   // shared policy leaves already-materialized runtimes stale indefinitely.
@@ -468,15 +477,7 @@ async function materializeRuntimeUnlocked(
   const hash = computeHash(
     profile,
     agent,
-    `${codexBaseText}\n${codexSkillScopeText}\n${personaIncludesText}`,
-  );
-
-  // Collect profile MCP entries once — used by both cache-hit and rebuild paths
-  // for the .claude.json sync.
-  const mcpServers = collectProfileMcps(
-    profile,
-    agent,
-    effectiveInput.mcpRegistry,
+    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
   );
 
   // Short-circuit if hash matches.

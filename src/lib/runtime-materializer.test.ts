@@ -172,6 +172,39 @@ describe("materializeRuntime", () => {
     expect(toml).not.toContain('"GOOGLE_PROJECT_ID":"my-project"');
   });
 
+  test("codex rebuilds when the effective MCP registry changes", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      name: "test-codex-mcp-registry-hash",
+      agents: ["codex"],
+      mcps: [{ id: "codegraph" }],
+      inheritanceChain: ["test-codex-mcp-registry-hash"],
+    };
+    const input = {
+      profile,
+      agent: "codex" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: {
+        codegraph: { command: "codegraph-v1", args: ["serve", "--mcp"] },
+      },
+      userClaudeMd: "",
+    };
+
+    await materializeRuntime(input);
+    const second = await materializeRuntime({
+      ...input,
+      mcpRegistry: {
+        codegraph: { command: "codegraph-v2", args: ["serve", "--mcp"] },
+      },
+    });
+
+    expect(second.rebuilt).toBe(true);
+    expect(
+      await readFile(join(second.runtimeDir, "config.toml"), "utf8"),
+    ).toContain('command = "codegraph-v2"');
+  });
+
   test("codex config.toml inherits the base config and applies profile overrides", async () => {
     const base = join(root, "base-config.toml");
     await writeFile(
