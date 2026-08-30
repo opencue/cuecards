@@ -161,4 +161,22 @@ describe("filterUnavailableMcpServers", () => {
 
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
+
+  test("expands bare environment variables in POSIX PATH entries", () => {
+    const filtered = filterUnavailableMcpServers(
+      {
+        local: {
+          command: "mcp-server",
+          env: { PATH: "$HOME/bin:$PATH" },
+        },
+      },
+      {
+        platform: "linux",
+        env: { HOME: "/home/test", PATH: "/usr/bin" },
+        isExecutable: (path) => path === "/home/test/bin/mcp-server",
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
 });

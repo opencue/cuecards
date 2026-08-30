@@ -34,8 +34,12 @@ function expandEnvironmentPath(
   platform: NodeJS.Platform,
 ): string {
   let expanded = value.replace(
-    /\$\{([A-Za-z_][A-Za-z0-9_]*)\}/g,
-    (match, key: string) => envValue(env, key, platform) ?? match,
+    /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/g,
+    (
+      match,
+      bracedKey: string | undefined,
+      bareKey: string | undefined,
+    ) => envValue(env, bracedKey ?? bareKey ?? "", platform) ?? match,
   );
   if (platform === "win32") {
     expanded = expanded.replace(/%([^%]+)%/g, (match, key: string) =>
