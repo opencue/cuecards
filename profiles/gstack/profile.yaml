@@ -165,8 +165,8 @@ skills:
     # ── GitHub / worktree safety ───────────────────────────────────────────────
     - github/gitguardex
 
-# cue-tty-watch is NOT inherited from core — core ships dataforseo, codegraph,
-# context7 and headroom. (It used to ship lightpanda; that MCP is gone.)
+# Machine-dependent MCPs such as cue-tty-watch and headroom are not inherited
+# from core. gstack enables only the server its bundled skills require.
 mcps:
   - gbrain   # gstack/setup-gbrain + gstack/sync-gbrain drive the gbrain MCP
 rules:
