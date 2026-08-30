@@ -227,4 +227,22 @@ describe("filterUnavailableMcpServers", () => {
 
     expect(Object.keys(filtered)).toEqual(["local"]);
   });
+
+  test("preserves inherited values in self-referencing server environment overrides", () => {
+    const filtered = filterUnavailableMcpServers(
+      {
+        local: {
+          command: "mcp-server",
+          env: { PATH: "$HOME/bin:$PATH" },
+        },
+      },
+      {
+        platform: "linux",
+        env: { HOME: "/home/test", PATH: "/usr/bin" },
+        isExecutable: (path) => path === "/usr/bin/mcp-server",
+      },
+    );
+
+    expect(Object.keys(filtered)).toEqual(["local"]);
+  });
 });

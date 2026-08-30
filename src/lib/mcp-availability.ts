@@ -58,7 +58,8 @@ function environmentForServer(
   options: CommandAvailabilityOptions,
 ): Record<string, string | undefined> {
   const platform = options.platform ?? process.platform;
-  const merged = { ...(options.env ?? process.env) };
+  const inherited = options.env ?? process.env;
+  const merged = { ...inherited };
   if (
     serverEnv === null ||
     typeof serverEnv !== "object" ||
@@ -77,8 +78,24 @@ function environmentForServer(
     }
     merged[key] = value;
   }
-  for (const [key, value] of overrides) {
-    merged[key] = expandEnvironmentPath(value, merged, platform);
+  for (let pass = 0; pass < overrides.length; pass += 1) {
+    for (const [key, value] of overrides) {
+      const expansionEnv = { ...merged };
+      const inheritedValue = envValue(inherited, key, platform);
+      for (const existing of Object.keys(expansionEnv)) {
+        const isCurrentKey =
+          platform === "win32"
+            ? existing.toLowerCase() === key.toLowerCase()
+            : existing === key;
+        if (isCurrentKey) delete expansionEnv[existing];
+      }
+      if (inheritedValue !== undefined) expansionEnv[key] = inheritedValue;
+      merged[key] = expandEnvironmentPath(
+        pass === 0 ? value : (merged[key] ?? value),
+        expansionEnv,
+        platform,
+      );
+    }
   }
   return merged;
 }
