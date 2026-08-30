@@ -8,7 +8,7 @@
 
 import { existsSync, readFileSync, statSync, accessSync, constants } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { join, dirname } from "node:path";
+import { join, dirname, win32 } from "node:path";
 import { homedir } from "node:os";
 
 import { findRealAgentBin } from "../lib/claude-binary";
@@ -172,9 +172,19 @@ function windowsPathScript(action: "add" | "remove"): string {
   ].join("; ");
 }
 
+/** Absolute PowerShell paths only; never let cwd/PATH choose an executable. */
+function resolveTrustedPowerShellExecutables(): string[] {
+  const systemRoot = process.env.SystemRoot ?? process.env.WINDIR ?? "C:\\Windows";
+  const programFiles = process.env.ProgramFiles ?? "C:\\Program Files";
+  return [
+    win32.join(systemRoot, "System32", "WindowsPowerShell", "v1.0", "powershell.exe"),
+    win32.join(programFiles, "PowerShell", "7", "pwsh.exe"),
+  ].filter((path) => isExecutableFile(path, "win32"));
+}
+
 function updateWindowsUserPath(dir: string, action: "add" | "remove"): boolean {
   const env = { ...process.env, CUE_SHIM_DIR: dir };
-  for (const command of ["powershell.exe", "pwsh.exe"]) {
+  for (const command of resolveTrustedPowerShellExecutables()) {
     const result = spawnSync(
       command,
       ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", windowsPathScript(action)],
@@ -197,7 +207,7 @@ function readWindowsPathDirs(): string[] {
     "[Console]::Out.Write([Environment]::ExpandEnvironmentVariables(($p-join ';')))",
   ].join("; ");
 
-  for (const command of ["powershell.exe", "pwsh.exe"]) {
+  for (const command of resolveTrustedPowerShellExecutables()) {
     const result = spawnSync(
       command,
       ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
