@@ -68,6 +68,89 @@ export interface GlobalOnboardingOptions {
    * for is not consent. Never throws, never blocks on stdin.
    */
   nonInteractive?: boolean;
+  /** Test seam for the optional, consent-gated recommended tooling install. */
+  recommendedTooling?: RecommendedToolingDeps;
+}
+
+export interface RecommendedToolingCommand {
+  command: string;
+  args: string[];
+  cwd: string;
+}
+
+export interface RecommendedToolingDeps {
+  cwd?: string;
+  commandExists?: (command: string) => boolean;
+  runCommand?: (command: RecommendedToolingCommand) => {
+    status: number | null;
+    stderr?: string;
+  };
+}
+
+export interface RecommendedToolingResult {
+  installed: boolean;
+  initialized: boolean;
+}
+
+function commandExists(command: string): boolean {
+  const resolver = process.platform === "win32" ? "where.exe" : "which";
+  return spawnSync(resolver, [command], {
+    stdio: "ignore",
+    timeout: 2_000,
+    windowsHide: true,
+  }).status === 0;
+}
+
+function runRecommendedToolingCommand(command: RecommendedToolingCommand): {
+  status: number | null;
+  stderr?: string;
+} {
+  const result = spawnSync(command.command, command.args, {
+    cwd: command.cwd,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+    timeout: 120_000,
+    windowsHide: true,
+  });
+  return { status: result.status, stderr: result.stderr };
+}
+
+/**
+ * Install cue's recommended local code-intelligence dependency and initialize
+ * the current repository. The MCP registrations themselves already come from
+ * the core profile (CodeGraph + Context7); this function only ensures the one
+ * required standalone executable exists and has an index to serve.
+ */
+export function installRecommendedTooling(
+  deps: RecommendedToolingDeps = {},
+): RecommendedToolingResult {
+  const cwd = deps.cwd ?? process.cwd();
+  const exists = deps.commandExists ?? commandExists;
+  const runCommand = deps.runCommand ?? runRecommendedToolingCommand;
+  let installed = false;
+
+  if (!exists("codegraph")) {
+    const install = runCommand({
+      command: "npm",
+      args: ["install", "-g", "@colbymchenry/codegraph"],
+      cwd,
+    });
+    if (install.status !== 0) return { installed: false, initialized: false };
+    installed = true;
+  }
+
+  // A just-finished global npm install can update the persisted Windows PATH
+  // without updating this already-open PowerShell process. Route the first
+  // invocation through npm's global executable resolver so setup works in the
+  // same terminal; established installs use the direct command on later runs.
+  const init = installed
+    ? runCommand({
+        command: "npm",
+        args: ["exec", "--global", "--", "codegraph", "init", "-i"],
+        cwd,
+      })
+    : runCommand({ command: "codegraph", args: ["init", "-i"], cwd });
+  return { installed, initialized: init.status === 0 };
 }
 
 /**
@@ -102,6 +185,9 @@ export async function runGlobalOnboarding(
         "Local analytics left OFF (non-interactive — this was never asked). Opt in anytime: `cue telemetry enable`.",
       );
     }
+    p.log.message(
+      "Recommended tooling left unchanged (non-interactive — global installs require explicit consent). Run `cue setup --re-onboard` to review it.",
+    );
     return true;
   }
 
@@ -162,7 +248,39 @@ export async function runGlobalOnboarding(
     p.log.message("Default profile left at `core`. Change anytime with `cue use --set-default`.");
   }
 
-  // Step 2: local analytics opt-in. Skipped when already enabled.
+  // Step 2: optional recommended local tooling. The profile already carries
+  // CodeGraph + Context7 MCP definitions; only CodeGraph needs a standalone
+  // executable. This is a global npm install, so it always requires an
+  // explicit interactive yes — `--yes` returns above without reaching it.
+  p.log.info(
+    "🔎 Recommended tooling:\n" +
+    "    • CodeGraph — local repository index + MCP code intelligence\n" +
+    "    • Context7 — current library docs via the core MCP configuration\n" +
+    "  cue configures both MCPs automatically; only CodeGraph needs a local CLI install.",
+  );
+  const installTools = await p.confirm({
+    message: "Install and initialize the recommended tooling now?",
+    initialValue: true,
+  });
+  if (p.isCancel(installTools)) return false;
+  if (installTools) {
+    p.log.step("Installing recommended tooling and indexing this repository...");
+    const result = installRecommendedTooling(opts.recommendedTooling);
+    if (result.initialized) {
+      const toolingCwd = opts.recommendedTooling?.cwd ?? process.cwd();
+      p.log.success(
+        `${result.installed ? "Installed CodeGraph and initialized" : "Initialized CodeGraph for"} ${toolingCwd}. CodeGraph + Context7 MCPs will load through the core profile.`,
+      );
+    } else {
+      p.log.warn(
+        "Couldn't install or initialize CodeGraph. Continue setup now, then retry with `cue setup --re-onboard`.",
+      );
+    }
+  } else {
+    p.log.message("Skipped — run `cue setup --re-onboard` anytime to install the recommended tooling.");
+  }
+
+  // Step 3: local analytics opt-in. Skipped when already enabled.
   // Default is YES — every active cue feature (skill-report, prune,
   // pair-suggestions, CLAUDE.md compaction that just cut your medusa
   // profile by 76%) reads from this log. Nothing leaves the machine.

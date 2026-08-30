@@ -66,10 +66,17 @@ npm install -g cue-ai && cue setup
 ```
 
 `cue setup` installs the `claude`/`codex` shim, scans this project, shows what
-the matching profile costs against loading everything, and pins it. Requires
-Node ≥ 20 and an existing [Claude Code](https://github.com/anthropics/claude-code)
-or [Codex](https://github.com/openai/codex) install — cue is a thin shim that
-hands off to your real agent, not a replacement for it.
+the matching profile costs against loading everything, and pins it. On the
+first interactive run it also asks before installing the recommended local
+tooling: CodeGraph (`@colbymchenry/codegraph`), a repository index, and the
+CodeGraph + Context7 MCP configuration supplied by the core profile. Declining
+is safe, and `cue setup --re-onboard` offers it again. Non-interactive `--yes`
+runs never perform this global third-party install without explicit consent.
+
+Setup requires Node ≥ 20 and an existing
+[Claude Code](https://github.com/anthropics/claude-code) or
+[Codex](https://github.com/openai/codex) install — cue is a thin shim that hands
+off to your real agent, not a replacement for it.
 
 After setup, a bare interactive `codex` opens Cue's profile suggestion picker
 on Linux, macOS, PowerShell, and cmd.exe. `codex <args>` remains non-interactive
