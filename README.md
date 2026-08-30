@@ -193,7 +193,7 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ---
 
-## 97 ready-made cuecards
+## 190 ready-made cuecards
 
 cue ships with 95 focused primary profiles plus 93 opt-in AAS overlays. A taste:
 
@@ -212,7 +212,7 @@ cue ships with 95 focused primary profiles plus 93 opt-in AAS overlays. A taste:
 | 🏢 **agency** | 63 delegatable subagents — design, sales, product, PM, QA |
 
 ```bash
-cue list           # see all 97
+cue list           # see all 190
 cue auto-detect    # suggest the right one for the current directory
 cue use <name>     # pin it
 ```
