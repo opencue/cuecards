@@ -704,10 +704,24 @@ describe("core persona_includes fan-out (real profiles)", () => {
     expect(core.env?.ANTHROPIC_BASE_URL).toBeUndefined();
   });
 
+  test("core keeps machine-dependent MCP servers opt-in", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const core = await loadProfile("core");
+    const ids = core.mcps.map((m) => m.id);
+
+    expect(ids).toContain("codegraph");
+    expect(ids).toContain("context7");
+    expect(ids).not.toContain("dataforseo");
+    expect(ids).not.toContain("kroschuorder");
+    expect(ids).not.toContain("cue-tty-watch");
+    expect(ids).not.toContain("headroom");
+  });
+
   test("headroom profile opts into the proxy wrap include", async () => {
     process.env.CUE_PROFILES_DIR = REAL_PROFILES;
     const headroom = await loadProfile("headroom");
     expect(headroom.personaIncludes).toContain("headroom-compression");
+    expect(headroom.mcps.map((m) => m.id)).toContain("headroom");
     expect(headroom.env?.ANTHROPIC_BASE_URL).toBe("http://127.0.0.1:8787");
   });
 

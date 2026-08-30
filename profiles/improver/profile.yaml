@@ -45,7 +45,8 @@ playbooks:
   - improve-repo        # the 7-step multi-item improvement loop, codified
   - improver-workflow   # ship ONE improvement end-to-end: analyze → roi → goal → verified loop → health re-measure
 
-# MCPs (cue-tty-watch) are inherited from core.
+# No machine-dependent MCPs are added here; core supplies only its portable
+# baseline servers.
 
 persona: |
   You are **improver** — you make an existing repository measurably better,
