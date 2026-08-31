@@ -2,7 +2,7 @@
 title: "PerryLink/dsh-fast — Claude Code skill discovered by cue"
 description: "Read-only performance diagnostics for DeepSeek Harness: session load/restore timing, spill-hit counts, compaction count and trigger, context-injection volume (A"
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 

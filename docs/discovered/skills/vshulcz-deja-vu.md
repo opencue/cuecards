@@ -2,21 +2,21 @@
 title: "vshulcz/deja-vu — Claude Code skill discovered by cue"
 description: "Search your past AI coding sessions — Claude Code, Codex, Cursor and 17 more. Indexes the session history they already wrote to disk, including months from befo"
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vshulcz/deja-vu](https://github.com/vshulcz/deja-vu)
 
-**★ 740** · exceptional (score 17) · Go · agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-plugins
+**★ 742** · exceptional (score 17) · Go · agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-plugins
 
 > Search your past AI coding sessions — Claude Code, Codex, Cursor and 17 more. Indexes the session history they already wrote to disk, including months from before you installed it, and recalls it in any of them. No LLM, no embeddings, one local Go binary.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 740 stars
-- 🗓️ Last pushed: 2026-08-30
+- ⭐ 742 stars
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-plugins, claude-code-skill, codex, coding-agents, conversation-history, deepseek-harness, dsh-plugin, gemini-cli-extension, kimi-code, mcp, mcp-server, opencode, qwen-code, session-history, session-search, zed-extension
 
 ## Best fit cue profiles

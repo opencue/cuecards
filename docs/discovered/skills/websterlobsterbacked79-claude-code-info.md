@@ -2,7 +2,7 @@
 title: "websterlobsterbacked79/claude-code-info — Claude Code skill discovered by cue"
 description: "Explore Claude Code info, docs, and setup details in a simple Next.js app for quick access and clear guidance"
 layout: page
-updated: 2026-07-25
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-25
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: claude, claude-ai, claude-code-leaked, claude-code-skill, claude-desktop, claude-leak, claude-leaked, cli, codex-cli, content-design, dashboard, editorial, mcp, open-source, status-line, text-scoring, typography
 
 ## Best fit cue profiles

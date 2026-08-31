@@ -2,22 +2,22 @@
 title: "yanliudesign/mono-color-skill — Claude Code skill discovered by cue"
 description: "One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography."
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [yanliudesign/mono-color-skill](https://github.com/yanliudesign/mono-color-skill)
 
-**★ 7** · exceptional (score 16.5) · Python · agent-skill, ai-agent, claude-skill, editorial-design, generative-art
+**★ 925** · exceptional (score 23) · Python · agent-skill, ai-agent, claude-skill, editorial-design, generative-art
 
 > One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 23 based on:
 - ✅ Contains SKILL.md
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-08-30
+- ⭐ 925 stars
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: agent-skill, ai-agent, claude-skill, editorial-design, generative-art, halftone, image-generation, monochrome, poster-design, prompt-engineering, risograph, zine
 
 ## Best fit cue profiles

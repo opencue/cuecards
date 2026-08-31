@@ -2,7 +2,7 @@
 title: "broneq/bdk — Claude Code skill discovered by cue"
 description: "BDK — Broneq Dev Kit. Reusable Claude Code workflows: skills, agents, and hooks for TDD, planning, code review, and architecture documentation."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-27
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: ai-agents, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, claude-workflows, code-review, developer-tools, tdd, workflows
 
 ## Best fit cue profiles

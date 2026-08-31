@@ -2,7 +2,7 @@
 title: "Codevena/reviewgate — Claude Code skill discovered by cue"
 description: "Fail-closed independent review loop for Claude Code and Codex. Native hooks, six reviewer paths (Codex, Gemini, Claude, OpenCode, OpenRouter, Ollama), LKG polic"
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 

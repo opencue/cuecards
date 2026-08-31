@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="secondsky-claude-skills"></a>
-## 💎 [secondsky/claude-skills](https://github.com/secondsky/claude-skills)
-
-**★ 212** · exceptional (score 16.8) · TypeScript · tags: claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins
-
-Production-ready skills for Claude Code CLI - Cloudflare, React, Tailwind v4, and AI integrations
-
-```bash
-cue skills add secondsky/claude-skills --profile frontend
-```
 
 ---
 
@@ -41,41 +28,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
+## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
 
 ```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
 ```
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="sandraschi-uitars-mcp"></a>
+## 💎 [sandraschi/uitars-mcp](https://github.com/sandraschi/uitars-mcp)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 2** · exceptional (score 8) · Python · tags: browser-automation, computer-use, desktop-automation, fastmcp, gui-agent
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="libraz-hashidate"></a>
-## ✨ [libraz/hashidate](https://github.com/libraz/hashidate)
-
-**★ 1** · strong (score 6.3) · TypeScript · tags: avatar, character-animation, mcp, mcp-server, obs
-
-Avatar runtime for an AI VTuber: a browser-rendered character driven over a local HTTP API, one turn of dialogue at a time. No model provider, no API key, no prompt state.
+Desktop + browser GUI agent MCP server. VLM-powered automation: screenshot → vision model → mouse/keyboard/Playwright actions. 9 MCP tools. Fits RTX 4090.
 
 ```bash
-cue skills add libraz/hashidate --profile frontend
+cue skills add sandraschi/uitars-mcp --profile frontend
 ```
 
 ---

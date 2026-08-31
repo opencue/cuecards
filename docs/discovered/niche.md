@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-27
+updated: 2026-08-31
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="muippt-mu-mbti-job"></a>
-## ✨ [muippt/mu-mbti-job](https://github.com/muippt/mu-mbti-job)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 0** · strong (score 6.5) · Python · tags: ai-agent-skill, bilingual, career-development, mbti, offline-first
+**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-三档深度 MBTI 人格与职业测评，中英双语 PDF 报告，团队分析，纯本地零遥测。
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add muippt/mu-mbti-job --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 ```
 
 ---

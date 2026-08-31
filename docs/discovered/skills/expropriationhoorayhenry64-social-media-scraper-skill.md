@@ -2,21 +2,21 @@
 title: "expropriationhoorayhenry64/social-media-scraper-skill — Claude Code skill discovered by cue"
 description: "Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code."
 layout: page
-updated: 2026-07-18
+updated: 2026-08-31
 tags: [claude-code, skill, video, creative-media]
 ---
 
 # 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 3** · exceptional (score 8.7) · ai, automation, claude-code, claude-skill, content-analysis
+**★ 6** · exceptional (score 11.6) · ai, automation, claude-code, claude-skill, content-analysis
 
 > Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: ai, automation, claude-code, claude-skill, content-analysis, data-extraction, gemini, instagram, multimodal-ai, open-source, osint, scraper, social-media, tiktok, transcription, twitter, video-analysis, web-scraping, whisper, youtube
 
 ## Best fit cue profiles

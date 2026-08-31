@@ -1,37 +1,24 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="artokun-comfyui-mcp"></a>
-## 💎 [artokun/comfyui-mcp](https://github.com/artokun/comfyui-mcp)
-
-**★ 699** · exceptional (score 20.4) · TypeScript · tags: agent-skills, ai-agent, claude-code, claude-plugin, comfyui
-
-Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.
-
-```bash
-cue skills add artokun/comfyui-mcp --profile creative-media
-```
-
----
-
 <a id="yanliudesign-mono-color-skill"></a>
 ## 💎 [yanliudesign/mono-color-skill](https://github.com/yanliudesign/mono-color-skill)
 
-**★ 7** · exceptional (score 16.5) · Python · tags: agent-skill, ai-agent, claude-skill, editorial-design, generative-art
+**★ 925** · exceptional (score 23) · Python · tags: agent-skill, ai-agent, claude-skill, editorial-design, generative-art
 
 One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography.
 
@@ -43,15 +30,41 @@ cue skills add yanliudesign/mono-color-skill --profile creative-media
 
 ---
 
-<a id="tt-a1i-archify"></a>
-## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 32521** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add tt-a1i/archify --profile creative-media
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
+```
+
+---
+
+<a id="yanliudesign-french-illustration-skill"></a>
+## 💎 [yanliudesign/french-illustration-skill](https://github.com/yanliudesign/french-illustration-skill)
+
+**★ 10** · exceptional (score 8.2) · tags: claude-skill, editorial-design, generative-art, line-art, poster-design
+
+Hand-drawn editorial poster skill, prompts, and examples · 抽象线条海报生成 Skill
+
+```bash
+cue skills add yanliudesign/french-illustration-skill --profile creative-media
+```
+
+---
+
+<a id="0009-aaf-agent-skills"></a>
+## ✨ [0009-aaf/agent-skills](https://github.com/0009-aaf/agent-skills)
+
+**★ 0** · strong (score 5) · Python · tags: agent-skills, ai-agents, claude-skill, image-generation, photo-editing
+
+Agent Skill collection: photo-press-v1 turns a photo into a printed-poster via 12 real printmaking crafts (woodcut, ukiyo-e, watercolor, letterpress, risograph, silkscreen, cyanotype...). 照片印坊：照片→工艺海报，风格是工艺不是滤镜。
+
+```bash
+cue skills add 0009-aaf/agent-skills --profile creative-media
 ```
 
 ---

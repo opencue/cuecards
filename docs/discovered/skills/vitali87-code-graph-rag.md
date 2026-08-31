@@ -2,21 +2,21 @@
 title: "vitali87/code-graph-rag — Claude Code skill discovered by cue"
 description: "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs"
 layout: page
-updated: 2026-08-09
+updated: 2026-08-31
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [vitali87/code-graph-rag](https://github.com/vitali87/code-graph-rag)
 
-**★ 2632** · exceptional (score 16.5) · Python · ai, ast, claude-code, code-analysis, code-understanding
+**★ 4886** · exceptional (score 16.5) · Python · ai, ast, claude-code, code-analysis, code-understanding
 
 > The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
-- ⭐ 2632 stars
-- 🗓️ Last pushed: 2026-08-09
+- ⭐ 4886 stars
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: ai, ast, claude-code, code-analysis, code-understanding, codebase-search, developer-tools, graph-database, knowledge-graph, llm, mcp, mcp-server, memgraph, monorepo, multi-language, python, rag, retrieval-augmented-generation, semantic-search, tree-sitter
 
 ## Best fit cue profiles

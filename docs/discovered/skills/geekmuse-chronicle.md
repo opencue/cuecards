@@ -2,7 +2,7 @@
 title: "geekmuse/chronicle — Claude Code skill discovered by cue"
 description: "Sync AI coding agent session history (Pi, Claude Code) across machines using path canonicalization and Git-backed CRDT merge"
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-08-30
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: ai, canonicalization, claude-code, cli, developer-tools, git, pi-agent, rust, session-history, session-management, sync
 
 ## Best fit cue profiles

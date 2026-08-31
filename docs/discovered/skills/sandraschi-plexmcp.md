@@ -2,7 +2,7 @@
 title: "sandraschi/plexmcp — Claude Code skill discovered by cue"
 description: "Plex library automation via FastMCP — libraries, metadata, playback hooks for agents. For Cursor / Claude Desktop."
 layout: page
-updated: 2026-08-18
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-18
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: fastmcp, lancedb, mcp, mcp-server, model-context-protocol, plex, rag, webapp
 
 ## Best fit cue profiles

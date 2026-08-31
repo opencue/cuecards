@@ -1,23 +1,23 @@
 ---
 title: "sandbaseai/sandbase-harness — Claude Code skill discovered by cue"
-description: "Local-first, self-hosted AI agent runtime with MCP tools, sandboxed sessions, memory, credentials, audit/replay, and a local Console."
+description: "Local-first, self-hosted AI agent runtime and MCP bridge with sandboxed sessions, memory, credentials, audit/replay, and a local Console."
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, backend, cybersecurity]
 ---
 
 # 💎 [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness)
 
-**★ 638** · exceptional (score 13.5) · TypeScript · agent-harness, agent-memory, agent-observability, agent-runtime, agent-sandbox
+**★ 641** · exceptional (score 13.5) · TypeScript · agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox
 
-> Local-first, self-hosted AI agent runtime with MCP tools, sandboxed sessions, memory, credentials, audit/replay, and a local Console.
+> Local-first, self-hosted AI agent runtime and MCP bridge with sandboxed sessions, memory, credentials, audit/replay, and a local Console.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
-- ⭐ 638 stars
-- 🗓️ Last pushed: 2026-08-30
-- 🏷️ Tags: agent-harness, agent-memory, agent-observability, agent-runtime, agent-sandbox, ai-agents, ai-infrastructure, audit-logging, deepseek, deepseek-harness, docker, dsh-plugin, harness-engineering, local-first, mcp-client, mcp-gateway, mcp-server, model-context-protocol, sandbox, self-hosted
+- ⭐ 641 stars
+- 🗓️ Last pushed: 2026-08-31
+- 🏷️ Tags: agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox, ai-agents, ai-infrastructure, audit-logging, deepseek-harness, devops, docker, dsh-plugin, harness-engineering, kubernetes, local-first, mcp-gateway, mcp-server, model-context-protocol, sandboxed-execution, self-hosted
 
 ## Best fit cue profiles
 

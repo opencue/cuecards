@@ -2,20 +2,20 @@
 title: "WatsonTsai/pdf-text-router — Claude Code skill discovered by cue"
 description: "A Claude Code hook that routes each Read on a PDF to the path that actually works: text layer to UTF-8 text, scans to vision, and neither one through poppler."
 layout: page
-updated: 2026-08-30
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [WatsonTsai/pdf-text-router](https://github.com/WatsonTsai/pdf-text-router)
 
-**★ 5** · strong (score 6.9) · Python · claude-code, claude-code-hooks, claude-code-plugin, pdf, poppler
+**★ 7** · strong (score 7) · Python · claude-code, claude-code-hooks, claude-code-plugin, pdf, poppler
 
 > A Claude Code hook that routes each Read on a PDF to the path that actually works: text layer to UTF-8 text, scans to vision, and neither one through poppler.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
-- ⭐ 5 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+- ⭐ 7 stars
 - 🗓️ Last pushed: 2026-08-29
 - 🏷️ Tags: claude-code, claude-code-hooks, claude-code-plugin, pdf, poppler, token-optimization
 

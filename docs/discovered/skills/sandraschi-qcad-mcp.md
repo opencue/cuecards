@@ -1,22 +1,22 @@
 ---
 title: "sandraschi/qcad-mcp — Claude Code skill discovered by cue"
-description: "fastmcp 3.2 server plus webapp for qcad pro architectural cad"
+description: "fastmcp 3.4 server plus webapp for qcad pro architectural cad"
 layout: page
-updated: 2026-06-21
+updated: 2026-08-31
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [sandraschi/qcad-mcp](https://github.com/sandraschi/qcad-mcp)
+# 💎 [sandraschi/qcad-mcp](https://github.com/sandraschi/qcad-mcp)
 
-**★ 2** · strong (score 6.5) · Python · 3d-extrusion, agent, ai, architecture-cad, autocad
+**★ 12** · exceptional (score 9) · Python · 3d-extrusion, agent, ai, architecture-cad, autocad
 
-> fastmcp 3.2 server plus webapp for qcad pro architectural cad
+> fastmcp 3.4 server plus webapp for qcad pro architectural cad
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-06-21
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 12 stars
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: 3d-extrusion, agent, ai, architecture-cad, autocad, autolisp, cad, dwg, dxf, ecmascript, fastmcp, fastmcp-3, floor-plan, mcp, mcp-server, python, qcad, webapp
 
 ## Best fit cue profiles
