@@ -4,6 +4,7 @@ icon: "◈"
 description: Codex-only GitNexus MCP overlay for the KFB Wireless Clip Tester GUI repository
 agents:
   - codex
+inherits: core
 codex_config:
   mcp_servers.gitnexus:
     command: pnpm
