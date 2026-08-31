@@ -12,7 +12,7 @@ import { basename, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 
 import type { AgentKind, ResolvedProfile } from "../../profiles/_types";
-import { canonicalCodexConfigPath } from "./codex-config";
+import { canonicalCodexConfigPath, canonicalCodexHome } from "./codex-config";
 import { configDir } from "./config-paths";
 import { debug } from "./debug-log";
 import {
@@ -152,7 +152,7 @@ export async function readUserAgentMemory(
   const path =
     agent === "claude-code"
       ? join(homedir(), ".claude", "CLAUDE.md")
-      : join(homedir(), ".codex", "AGENTS.md");
+      : join(canonicalCodexHome(), "AGENTS.md");
   try {
     return await readFile(path, "utf8");
   } catch {

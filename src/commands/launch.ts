@@ -26,7 +26,9 @@ import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
 import { syncCodexAuth } from "../lib/codex-auth";
 import {
+  canonicalCodexAuthPath,
   canonicalCodexConfigPath,
+  canonicalCodexHome,
   discoverCodexSkillFiles,
 } from "../lib/codex-config";
 import {
@@ -1737,7 +1739,7 @@ async function getProfileListForStamp(): Promise<string> {
 
 /**
  * Decide whether cue should append the user's global agent memory file
- * (`~/.claude/CLAUDE.md` for claude-code, `~/.codex/AGENTS.md` for codex) into
+ * (`~/.claude/CLAUDE.md` for claude-code, `$CODEX_HOME/AGENTS.md` for codex) into
  * the materialized runtime memory file.
  *
  * Claude Code already loads `~/.claude/CLAUDE.md` on its own whenever the launch
@@ -1785,7 +1787,7 @@ async function readUserClaudeMd(
   const path =
     agent === "claude-code"
       ? join(homedir(), ".claude", "CLAUDE.md")
-      : join(homedir(), ".codex", "AGENTS.md");
+      : join(canonicalCodexHome(), "AGENTS.md");
   try {
     return await readFile(path, "utf8");
   } catch {
@@ -3130,9 +3132,14 @@ export async function run(args: string[]): Promise<number> {
 
   const envKey =
     agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
+  const persistentCodexHome =
+    agentKind === "codex" ? canonicalCodexHome() : undefined;
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
     [envKey]: runtime.runtimeDir,
+    ...(persistentCodexHome
+      ? { CUE_CANONICAL_CODEX_HOME: persistentCodexHome }
+      : {}),
     // Depth, not a boolean — see launchDepth(). The agent's whole process tree
     // inherits this, so a subtask that shells out to `claude` lands one deeper
     // rather than being refused.
@@ -3172,6 +3179,7 @@ export async function run(args: string[]): Promise<number> {
           hash: runtime.hash,
           env: {
             [envKey]: childEnv[envKey],
+            CUE_CANONICAL_CODEX_HOME: childEnv.CUE_CANONICAL_CODEX_HOME,
             CLAUDE_MEM_DATA_DIR: childEnv.CLAUDE_MEM_DATA_DIR,
             CLAUDE_MEM_CHROMA_ENABLED: childEnv.CLAUDE_MEM_CHROMA_ENABLED,
             CLAUDE_MEM_WORKER_PORT: childEnv.CLAUDE_MEM_WORKER_PORT,
@@ -3466,7 +3474,7 @@ export async function run(args: string[]): Promise<number> {
     agentKind === "claude-code"
       ? startCredentialReconciler(runtimeKey)
       : undefined;
-  const canonicalCodexAuth = join(homedir(), ".codex", "auth.json");
+  const canonicalCodexAuth = canonicalCodexAuthPath();
   const runtimeCodexAuth = join(runtime.runtimeDir, "auth.json");
   if (agentKind === "codex") {
     await syncCodexAuth(canonicalCodexAuth, runtimeCodexAuth);
