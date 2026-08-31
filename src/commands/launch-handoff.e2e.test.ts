@@ -58,12 +58,17 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec ha
   });
 
   test("codex → CODEX_HOME points at the codex runtime", () => {
-    const r = cue(["launch", "codex", "--cue-profile", "core", "--dry-run"], { XDG_CONFIG_HOME: xdg });
+    const persistentCodexHome = join(xdg, "persistent-codex");
+    const r = cue(["launch", "codex", "--cue-profile", "core", "--dry-run"], {
+      XDG_CONFIG_HOME: xdg,
+      CODEX_HOME: persistentCodexHome,
+    });
     expect(r.status).toBe(0);
     const p = plan(r.stdout);
     const expected = join(xdg, "cue", "runtime", "core", "codex");
     expect(p.agent).toBe("codex");
     expect(p.env.CODEX_HOME).toBe(expected);
+    expect(p.env.CUE_CANONICAL_CODEX_HOME).toBe(persistentCodexHome);
     expect(p.command).toEqual(["codex"]);
     expect(p.env.CLAUDE_CONFIG_DIR).toBeUndefined();
   });

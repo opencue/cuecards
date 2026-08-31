@@ -70,7 +70,8 @@ function isInsideRuntime(
  * Honor an explicit `CODEX_HOME` so installs that keep credentials outside
  * `~/.codex` continue using the same account. A cue-managed runtime is never a
  * persistent source: nested launches inherit that temporary `CODEX_HOME`, so
- * accepting it would make generated state inherit from itself.
+ * accepting it would make generated state inherit from itself. The outer
+ * launch carries the original home in `CUE_CANONICAL_CODEX_HOME` for that case.
  */
 export function canonicalCodexHome(
   options: CanonicalCodexHomeOptions = {},
@@ -83,9 +84,12 @@ export function canonicalCodexHome(
   if (!configured) return fallback;
 
   const runtimeRoot = options.runtimeRoot ?? join(configDir(), "runtime");
-  return isInsideRuntime(configured, runtimeRoot, platform)
-    ? fallback
-    : configured;
+  if (!isInsideRuntime(configured, runtimeRoot, platform)) return configured;
+
+  const preserved = env.CUE_CANONICAL_CODEX_HOME?.trim();
+  return preserved && !isInsideRuntime(preserved, runtimeRoot, platform)
+    ? preserved
+    : fallback;
 }
 
 /** The user's own `config.toml` — the base a runtime config inherits from. */

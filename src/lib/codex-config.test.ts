@@ -73,6 +73,17 @@ describe("canonicalCodexHome", () => {
     })).toBe("/home/user/.codex");
   });
 
+  test("recovers the persistent Codex home during a nested cue launch", () => {
+    expect(canonicalCodexHome({
+      env: {
+        CODEX_HOME: "/home/user/.config/cue/runtime/backend/codex",
+        CUE_CANONICAL_CODEX_HOME: "/accounts/codex",
+      },
+      homeDir: "/home/user",
+      runtimeRoot: "/home/user/.config/cue/runtime",
+    })).toBe("/accounts/codex");
+  });
+
   test("detects cue runtimes case-insensitively on Windows", () => {
     expect(canonicalCodexHome({
       env: { CODEX_HOME: "C:\\Users\\User\\.config\\CUE\\runtime\\backend\\codex" },

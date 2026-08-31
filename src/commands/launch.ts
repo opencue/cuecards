@@ -3132,9 +3132,14 @@ export async function run(args: string[]): Promise<number> {
 
   const envKey =
     agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
+  const persistentCodexHome =
+    agentKind === "codex" ? canonicalCodexHome() : undefined;
   const childEnv: NodeJS.ProcessEnv = {
     ...process.env,
     [envKey]: runtime.runtimeDir,
+    ...(persistentCodexHome
+      ? { CUE_CANONICAL_CODEX_HOME: persistentCodexHome }
+      : {}),
     // Depth, not a boolean — see launchDepth(). The agent's whole process tree
     // inherits this, so a subtask that shells out to `claude` lands one deeper
     // rather than being refused.
@@ -3174,6 +3179,7 @@ export async function run(args: string[]): Promise<number> {
           hash: runtime.hash,
           env: {
             [envKey]: childEnv[envKey],
+            CUE_CANONICAL_CODEX_HOME: childEnv.CUE_CANONICAL_CODEX_HOME,
             CLAUDE_MEM_DATA_DIR: childEnv.CLAUDE_MEM_DATA_DIR,
             CLAUDE_MEM_CHROMA_ENABLED: childEnv.CLAUDE_MEM_CHROMA_ENABLED,
             CLAUDE_MEM_WORKER_PORT: childEnv.CLAUDE_MEM_WORKER_PORT,
