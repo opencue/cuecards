@@ -26,7 +26,9 @@ import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
 import { syncCodexAuth } from "../lib/codex-auth";
 import {
+  canonicalCodexAuthPath,
   canonicalCodexConfigPath,
+  canonicalCodexHome,
   discoverCodexSkillFiles,
 } from "../lib/codex-config";
 import {
@@ -1737,7 +1739,7 @@ async function getProfileListForStamp(): Promise<string> {
 
 /**
  * Decide whether cue should append the user's global agent memory file
- * (`~/.claude/CLAUDE.md` for claude-code, `~/.codex/AGENTS.md` for codex) into
+ * (`~/.claude/CLAUDE.md` for claude-code, `$CODEX_HOME/AGENTS.md` for codex) into
  * the materialized runtime memory file.
  *
  * Claude Code already loads `~/.claude/CLAUDE.md` on its own whenever the launch
@@ -1785,7 +1787,7 @@ async function readUserClaudeMd(
   const path =
     agent === "claude-code"
       ? join(homedir(), ".claude", "CLAUDE.md")
-      : join(homedir(), ".codex", "AGENTS.md");
+      : join(canonicalCodexHome(), "AGENTS.md");
   try {
     return await readFile(path, "utf8");
   } catch {
@@ -3466,7 +3468,7 @@ export async function run(args: string[]): Promise<number> {
     agentKind === "claude-code"
       ? startCredentialReconciler(runtimeKey)
       : undefined;
-  const canonicalCodexAuth = join(homedir(), ".codex", "auth.json");
+  const canonicalCodexAuth = canonicalCodexAuthPath();
   const runtimeCodexAuth = join(runtime.runtimeDir, "auth.json");
   if (agentKind === "codex") {
     await syncCodexAuth(canonicalCodexAuth, runtimeCodexAuth);

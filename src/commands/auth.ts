@@ -1,12 +1,12 @@
 /** Unified authentication UX for the Claude and Codex CLIs used through cue. */
 import { spawnSync } from "node:child_process";
 import { readdir } from "node:fs/promises";
-import { homedir } from "node:os";
 import { join } from "node:path";
 
 import { findRealAgentBin, needsWindowsCommandShell } from "../lib/claude-binary";
 import { configDir } from "../lib/config-paths";
 import { codexAuthFreshness, syncCodexAuth } from "../lib/codex-auth";
+import { canonicalCodexAuthPath, canonicalCodexHome } from "../lib/codex-config";
 import { syncSourceToRuntimes } from "../lib/credentials-sync";
 import { resolveClaudeCredentialsSource } from "../lib/runtime-install";
 
@@ -26,7 +26,7 @@ function usage(): void {
 function canonicalEnv(agent: Agent, claudeSource: string): NodeJS.ProcessEnv {
   return {
     ...process.env,
-    ...(agent === "claude" ? { CLAUDE_CONFIG_DIR: claudeSource } : { CODEX_HOME: join(homedir(), ".codex") }),
+    ...(agent === "claude" ? { CLAUDE_CONFIG_DIR: claudeSource } : { CODEX_HOME: canonicalCodexHome() }),
   };
 }
 
@@ -47,7 +47,7 @@ function runAgent(agent: Agent, args: string[], claudeSource: string): number {
 async function status(claudeSource: string): Promise<number> {
   process.stdout.write(`Claude (${claudeSource})\n`);
   const claude = runAgent("claude", ["auth", "status"], claudeSource);
-  process.stdout.write(`\nCodex (${join(homedir(), ".codex")})\n`);
+  process.stdout.write(`\nCodex (${canonicalCodexHome()})\n`);
   const codex = runAgent("codex", ["login", "status"], claudeSource);
   return claude === 0 && codex === 0 ? 0 : 1;
 }
@@ -63,7 +63,7 @@ export async function repair(
   // Calling with healFromRuntime performs Claude's UUID-guarded freshness sweep.
   await (options.healClaude ?? (() => resolveClaudeCredentialsSource({ healFromRuntime: true })))();
 
-  const canonical = options.canonical ?? join(homedir(), ".codex", "auth.json");
+  const canonical = options.canonical ?? canonicalCodexAuthPath();
   const runtimeRoot = options.runtimeRoot ?? join(configDir(), "runtime");
   const claudeSync = await syncSourceToRuntimes(claudeSource, runtimeRoot);
   if (claudeSync.failed.length > 0) {

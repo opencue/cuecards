@@ -13,7 +13,7 @@
  *
  * The file is rebuilt from three layers, last wins:
  *   1. base — top-level scalars, `[features]`, and `[[skills.config]]` from
- *      `~/.codex/config.toml`
+ *      the user's persistent `$CODEX_HOME/config.toml`
  *   2. the profile's `codex:` block (per-profile override)
  *   3. cue-owned `[mcp_servers.*]` — never inherited, cue owns MCP wiring
  *
@@ -30,21 +30,78 @@ import {
   type Dirent,
 } from "node:fs";
 import { homedir } from "node:os";
-import { dirname, join, relative, resolve, sep } from "node:path";
+import { dirname, join, posix, relative, resolve, sep, win32 } from "node:path";
 
 import type { CodexProfileConfig, CodexScalar } from "../../profiles/_types";
+import { configDir } from "./config-paths";
 
 export type { CodexProfileConfig, CodexScalar };
 
+export interface CanonicalCodexHomeOptions {
+  env?: NodeJS.ProcessEnv;
+  homeDir?: string;
+  runtimeRoot?: string;
+  platform?: NodeJS.Platform;
+}
+
+function isInsideRuntime(
+  candidate: string,
+  runtimeRoot: string,
+  platform: NodeJS.Platform,
+): boolean {
+  const pathApi = platform === "win32" ? win32 : posix;
+  let root = pathApi.resolve(runtimeRoot);
+  let path = pathApi.resolve(candidate);
+  if (platform === "win32") {
+    root = root.toLowerCase();
+    path = path.toLowerCase();
+  }
+  const rel = pathApi.relative(root, path);
+  return rel === "" || (
+    rel !== ".." &&
+    !rel.startsWith(`..${pathApi.sep}`) &&
+    !pathApi.isAbsolute(rel)
+  );
+}
+
 /**
- * The user's own `config.toml` — the base a runtime config inherits from.
+ * The user's persistent Codex home.
  *
- * Deliberately NOT `$CODEX_HOME/config.toml`: by the time a launch materializes,
- * CODEX_HOME may already point at a cue runtime (nested launch), and reading
- * that would make the runtime inherit cue's own generated output.
+ * Honor an explicit `CODEX_HOME` so installs that keep credentials outside
+ * `~/.codex` continue using the same account. A cue-managed runtime is never a
+ * persistent source: nested launches inherit that temporary `CODEX_HOME`, so
+ * accepting it would make generated state inherit from itself.
  */
-export function canonicalCodexConfigPath(): string {
-  return join(homedir(), ".codex", "config.toml");
+export function canonicalCodexHome(
+  options: CanonicalCodexHomeOptions = {},
+): string {
+  const env = options.env ?? process.env;
+  const platform = options.platform ?? process.platform;
+  const pathApi = platform === "win32" ? win32 : posix;
+  const fallback = pathApi.join(options.homeDir ?? homedir(), ".codex");
+  const configured = env.CODEX_HOME?.trim();
+  if (!configured) return fallback;
+
+  const runtimeRoot = options.runtimeRoot ?? join(configDir(), "runtime");
+  return isInsideRuntime(configured, runtimeRoot, platform)
+    ? fallback
+    : configured;
+}
+
+/** The user's own `config.toml` — the base a runtime config inherits from. */
+export function canonicalCodexConfigPath(
+  options: CanonicalCodexHomeOptions = {},
+): string {
+  const pathApi = (options.platform ?? process.platform) === "win32" ? win32 : posix;
+  return pathApi.join(canonicalCodexHome(options), "config.toml");
+}
+
+/** The user's persistent Codex authentication file. */
+export function canonicalCodexAuthPath(
+  options: CanonicalCodexHomeOptions = {},
+): string {
+  const pathApi = (options.platform ?? process.platform) === "win32" ? win32 : posix;
+  return pathApi.join(canonicalCodexHome(options), "auth.json");
 }
 
 /** Inheritable slice of a base `config.toml`: raw value text, keyed by key. */

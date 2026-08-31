@@ -20,7 +20,7 @@ async function fakeAgentEnv(): Promise<NodeJS.ProcessEnv> {
   tempDirs.push(home);
   for (const agent of ["claude", "codex"]) {
     const bin = join(home, agent);
-    await writeFile(bin, `#!/bin/sh\necho "${agent}:$*"\n`);
+    await writeFile(bin, `#!/bin/sh\necho "${agent}:$*:CODEX_HOME=$CODEX_HOME"\n`);
     await chmod(bin, 0o755);
   }
   return {
@@ -71,5 +71,16 @@ describe("cue auth CLI", () => {
     expect(claudeLogin.stdout.toString()).toContain("claude:auth login");
     expect(codexLogout.exitCode).toBe(0);
     expect(codexLogout.stdout.toString()).toContain("codex:logout");
+  });
+
+  test("Codex auth commands use the existing CODEX_HOME", async () => {
+    const env = await fakeAgentEnv();
+    const codexHome = join(env.HOME!, "persistent-codex");
+    const result = cue(["auth", "login", "codex"], {
+      ...env,
+      CODEX_HOME: codexHome,
+    });
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout.toString()).toContain(`CODEX_HOME=${codexHome}`);
   });
 });

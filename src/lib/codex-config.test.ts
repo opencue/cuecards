@@ -4,6 +4,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   buildCodexConfigToml,
+  canonicalCodexAuthPath,
+  canonicalCodexConfigPath,
+  canonicalCodexHome,
   discoverCodexSkillFiles,
   parseBaseCodexConfig,
 } from "./codex-config";
@@ -34,6 +37,51 @@ trust_level = "trusted"
 name = "unused-global-skill"
 enabled = false
 `;
+
+describe("canonicalCodexHome", () => {
+  test("honors a user-provided CODEX_HOME", () => {
+    expect(canonicalCodexHome({
+      env: { CODEX_HOME: "/accounts/codex" },
+      homeDir: "/home/user",
+      runtimeRoot: "/home/user/.config/cue/runtime",
+    })).toBe("/accounts/codex");
+    expect(canonicalCodexConfigPath({
+      env: { CODEX_HOME: "/accounts/codex" },
+      homeDir: "/home/user",
+      runtimeRoot: "/home/user/.config/cue/runtime",
+    })).toBe("/accounts/codex/config.toml");
+    expect(canonicalCodexAuthPath({
+      env: { CODEX_HOME: "/accounts/codex" },
+      homeDir: "/home/user",
+      runtimeRoot: "/home/user/.config/cue/runtime",
+    })).toBe("/accounts/codex/auth.json");
+  });
+
+  test("falls back to ~/.codex when CODEX_HOME is unset", () => {
+    expect(canonicalCodexHome({
+      env: {},
+      homeDir: "/home/user",
+      runtimeRoot: "/home/user/.config/cue/runtime",
+    })).toBe("/home/user/.codex");
+  });
+
+  test("does not reuse a cue runtime as the canonical Codex home", () => {
+    expect(canonicalCodexHome({
+      env: { CODEX_HOME: "/home/user/.config/cue/runtime/backend/codex" },
+      homeDir: "/home/user",
+      runtimeRoot: "/home/user/.config/cue/runtime",
+    })).toBe("/home/user/.codex");
+  });
+
+  test("detects cue runtimes case-insensitively on Windows", () => {
+    expect(canonicalCodexHome({
+      env: { CODEX_HOME: "C:\\Users\\User\\.config\\CUE\\runtime\\backend\\codex" },
+      homeDir: "C:\\Users\\User",
+      runtimeRoot: "c:\\users\\user\\.config\\cue\\runtime",
+      platform: "win32",
+    })).toBe("C:\\Users\\User\\.codex");
+  });
+});
 
 describe("parseBaseCodexConfig", () => {
   test("keeps top-level scalars, [features], and skill overrides", () => {
