@@ -2,21 +2,21 @@
 title: "INo-xious/stockbit-mcp — Claude Code skill discovered by cue"
 description: "Model Context Protocol (MCP) server for Stockbit (Indonesian / IDX market) — broker summary / bandarmology, quotes, top movers, orderbook, fundamentals, sentime"
 layout: page
-updated: 2026-08-27
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [INo-xious/stockbit-mcp](https://github.com/INo-xious/stockbit-mcp)
 
-**★ 8** · exceptional (score 12.6) · TypeScript · claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills
+**★ 14** · exceptional (score 11.9) · TypeScript · claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills
 
-> Model Context Protocol (MCP) server for Stockbit (Indonesian / IDX market) — broker summary / bandarmology, quotes, top movers, orderbook, fundamentals, sentiment, your portfolio, and your real chart.
+> Model Context Protocol (MCP) server for Stockbit (Indonesian / IDX market) — broker summary / bandarmology, quotes, top movers, orderbook, fundamentals, sentiment, your portfolio, and your real chart. (Work In Progress)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-08-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.9 based on:
+- ⭐ 14 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills, cli, indonesia, mcp, mcp-client, mcp-server, mcp-tools, saham, saham-indonesia, stock, stock-market, stockbit, stocks
 
 ## Best fit cue profiles

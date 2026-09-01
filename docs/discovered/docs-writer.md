@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-30
+updated: 2026-09-01
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="dmitrax-second-brain-setup"></a>
-## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
+<a id="onourimpram-mneme"></a>
+## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 1** · exceptional (score 14.3) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
+**★ 2** · exceptional (score 10.5) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
-Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
-
-✅ SKILL.md
+Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ```bash
-cue skills add dmitrax/second-brain-setup --profile docs-writer
-```
-
----
-
-<a id="netresearch-typo3-docs-skill"></a>
-## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
-
-**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
-
-Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
-
-```bash
-cue skills add netresearch/typo3-docs-skill --profile docs-writer
+cue skills add OnourImpram/mneme --profile docs-writer
 ```
 
 ---

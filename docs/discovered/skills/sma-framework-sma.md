@@ -2,19 +2,19 @@
 title: "sma-framework/sma — Claude Code skill discovered by cue"
 description: "Memory and accountability for AI coding agents. Layered memory that arrives at the moment of action, multi-terminal coordination without a server, and a trust s"
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [sma-framework/sma](https://github.com/sma-framework/sma)
 
-**★ 7** · strong (score 7) · JavaScript · agent-framework, agent-memory, ai-agents, ai-coding-assistant, ai-memory
+**★ 7** · strong (score 6.9) · JavaScript · agent-framework, agent-memory, ai-agents, ai-coding-assistant, ai-memory
 
 > Memory and accountability for AI coding agents. Layered memory that arrives at the moment of action, multi-terminal coordination without a server, and a trust spine where every "done" is settled by a re-runnable check. Local-first: plain files + git, zero LLM in the hot path. Works with Claude Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
 - ⭐ 7 stars
 - 🗓️ Last pushed: 2026-08-30
 - 🏷️ Tags: agent-framework, agent-memory, ai-agents, ai-coding-assistant, ai-memory, anthropic, claude, claude-code, cli-tool, coding-agent, context-management, developer-tools, llm-tools, local-first, multi-agent, persistent-memory

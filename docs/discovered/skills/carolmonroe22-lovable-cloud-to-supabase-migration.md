@@ -2,22 +2,22 @@
 title: "CarolMonroe22/lovable-cloud-to-supabase-migration — Claude Code skill discovered by cue"
 description: "Migrate from Lovable Cloud to your own Supabase. Official export path, 33 steps, every trap documented. Claude Code skill."
 layout: page
-updated: 2026-07-13
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [CarolMonroe22/lovable-cloud-to-supabase-migration](https://github.com/CarolMonroe22/lovable-cloud-to-supabase-migration)
 
-**★ 13** · exceptional (score 11.2)
+**★ 31** · exceptional (score 13.6)
 
 > Migrate from Lovable Cloud to your own Supabase. Official export path, 33 steps, every trap documented. Claude Code skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-07-07
+- ⭐ 31 stars
+- 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

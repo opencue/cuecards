@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -28,17 +28,17 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 
 ---
 
-<a id="nocchen-antigravity-dispatch"></a>
-## 💎 [NocChen/antigravity-dispatch](https://github.com/NocChen/antigravity-dispatch)
+<a id="eesiz-apm"></a>
+## 💎 [EESIZ/APM](https://github.com/EESIZ/APM)
 
-**★ 0** · exceptional (score 13) · Python · tags: agent-orchestration, ai-agents, ai-coding-assistant, antigravity, automation
+**★ 0** · exceptional (score 12.5) · JavaScript · tags: a2a, agent-orchestration, agent-skill, claude-skill, manager-agent
 
-Dispatch, monitor and audit Google Antigravity background coding agents from the CLI or Claude Code — with a coworking convention that leaves a paper trail you can verify.
+AI Plantation Management
 
 ✅ SKILL.md
 
 ```bash
-cue skills add NocChen/antigravity-dispatch --profile fleet-control
+cue skills add EESIZ/APM --profile fleet-control
 ```
 
 ---
@@ -72,7 +72,7 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 <a id="eduardo-salvador-agent-harness-kit"></a>
 ## ✨ [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
 
-**★ 5** · strong (score 7.9) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
+**★ 5** · strong (score 7.8) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
 
 An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to verified delivery.
 

@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="yanliudesign-mono-color-skill"></a>
-## 💎 [yanliudesign/mono-color-skill](https://github.com/yanliudesign/mono-color-skill)
+<a id="swaylq-ruxi-skill"></a>
+## 💎 [swaylq/ruxi-skill](https://github.com/swaylq/ruxi-skill)
 
-**★ 925** · exceptional (score 23) · Python · tags: agent-skill, ai-agent, claude-skill, editorial-design, generative-art
+**★ 0** · exceptional (score 15.5) · Python · tags: ai-agent, anthropic, book-adaptation, claude-code, claude-skill
 
-One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography.
+入戏.skill — 把一本书变成你能玩进去的视觉小说 | Turn any book into a playable visual novel. Every branch traces back to a sentence in the original.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add yanliudesign/mono-color-skill --profile creative-media
+cue skills add swaylq/ruxi-skill --profile creative-media
 ```
 
 ---
@@ -39,32 +39,6 @@ Extract and summarize social media content from platforms like Instagram, TikTok
 
 ```bash
 cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
-```
-
----
-
-<a id="yanliudesign-french-illustration-skill"></a>
-## 💎 [yanliudesign/french-illustration-skill](https://github.com/yanliudesign/french-illustration-skill)
-
-**★ 10** · exceptional (score 8.2) · tags: claude-skill, editorial-design, generative-art, line-art, poster-design
-
-Hand-drawn editorial poster skill, prompts, and examples · 抽象线条海报生成 Skill
-
-```bash
-cue skills add yanliudesign/french-illustration-skill --profile creative-media
-```
-
----
-
-<a id="0009-aaf-agent-skills"></a>
-## ✨ [0009-aaf/agent-skills](https://github.com/0009-aaf/agent-skills)
-
-**★ 0** · strong (score 5) · Python · tags: agent-skills, ai-agents, claude-skill, image-generation, photo-editing
-
-Agent Skill collection: photo-press-v1 turns a photo into a printed-poster via 12 real printmaking crafts (woodcut, ukiyo-e, watercolor, letterpress, risograph, silkscreen, cyanotype...). 照片印坊：照片→工艺海报，风格是工艺不是滤镜。
-
-```bash
-cue skills add 0009-aaf/agent-skills --profile creative-media
 ```
 
 ---

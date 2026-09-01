@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 

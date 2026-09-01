@@ -1,24 +1,24 @@
 ---
 title: "vassiliylakhonin/global-think-tank-analyst — Claude Code skill discovered by cue"
-description: "A reusable skill for AI agents that write strategic-risk memos with explicit facts, assumptions, scenarios, confidence, and watch indicators."
+description: "Experimental strategic-risk reasoning framework for AI agents with versioned memo contracts, CLI, and MCP."
 layout: page
-updated: 2026-08-14
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vassiliylakhonin/global-think-tank-analyst](https://github.com/vassiliylakhonin/global-think-tank-analyst)
 
-**★ 6** · exceptional (score 15.7) · Python · agent-skill, ai-agents, decision-support, geopolitical-risk, human-in-the-loop
+**★ 7** · exceptional (score 17.8) · Python · agent-skill, ai-agents, decision-support, evidence-aware, geopolitical-risk
 
-> A reusable skill for AI agents that write strategic-risk memos with explicit facts, assumptions, scenarios, confidence, and watch indicators.
+> Experimental strategic-risk reasoning framework for AI agents with versioned memo contracts, CLI, and MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-08-14
-- 🏷️ Tags: agent-skill, ai-agents, decision-support, geopolitical-risk, human-in-the-loop, llm, policy-analysis, risk-analysis, scenario-planning, strategic-risk
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-09-01
+- 🏷️ Tags: agent-skill, ai-agents, decision-support, evidence-aware, geopolitical-risk, geopolitics, human-in-the-loop, langgraph, llm, mcp, mcp-server, policy-analysis, python, regulatory-risk, risk-analysis, sanctions, scenario-planning, strategic-risk, structured-output, trade-risk
 
 ## Best fit cue profiles
 

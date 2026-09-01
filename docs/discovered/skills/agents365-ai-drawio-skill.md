@@ -1,22 +1,22 @@
 ---
 title: "Agents365-ai/drawio-skill — Claude Code skill discovered by cue"
-description: "Generate draw.io diagrams from natural language — 11 presets (UML, SysML/MBSE, BPMN, network, C4…), 39 tools: codebase/CI/infra-to-diagram, image→editable diagr"
+description: "From text & real sources to maintainable .drawio architecture models: Diagram IR, incremental sync preserving manual layout, multi-view projection, architecture"
 layout: page
-updated: 2026-08-27
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Agents365-ai/drawio-skill](https://github.com/Agents365-ai/drawio-skill)
 
-**★ 8071** · exceptional (score 14) · Python · agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill
+**★ 8907** · exceptional (score 14) · Python · agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill
 
-> Generate draw.io diagrams from natural language — 11 presets (UML, SysML/MBSE, BPMN, network, C4…), 39 tools: codebase/CI/infra-to-diagram, image→editable diagram, Databricks product icons, mind maps, build-up animation, exec-view compression, click-through runbooks, PR diff bot. Vision self-check, 10,000+ shapes. Exports PNG/SVG/PDF/JPG.
+> From text & real sources to maintainable .drawio architecture models: Diagram IR, incremental sync preserving manual layout, multi-view projection, architecture-as-test, query/review, what-if failure propagation, accessible Story Mode
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 8071 stars
-- 🗓️ Last pushed: 2026-08-27
+- ⭐ 8907 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: agent-skills, architecture-diagram, bpmn, claude-code, claude-code-skill, claude-skills, databricks, diagram, drawio, erd, flowchart, image-to-diagram, mbse, mindmap, network-topology, openclaw, openclaw-skills, skillsmp, sysml, uml
 
 ## Best fit cue profiles

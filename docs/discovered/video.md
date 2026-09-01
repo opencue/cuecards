@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,19 @@ Extract and summarize social media content from platforms like Instagram, TikTok
 
 ```bash
 cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+```
+
+---
+
+<a id="augustusw-audio-tldr-skill"></a>
+## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+
+**★ 35** · exceptional (score 9.8) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+
+Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+
+```bash
+cue skills add AugustusW/audio-tldr-skill --profile video
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 
 ---
 
-<a id="intutic-intutic"></a>
-## 💎 [intutic/intutic](https://github.com/intutic/intutic)
+<a id="systempromptio-systemprompt-core"></a>
+## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
 
-**★ 7** · exceptional (score 8) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
 
-The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
+AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
 
 ```bash
-cue skills add intutic/intutic --profile rust
+cue skills add systempromptio/systemprompt-core --profile rust
 ```
 
 ---

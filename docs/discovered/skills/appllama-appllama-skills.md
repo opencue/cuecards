@@ -2,21 +2,21 @@
 title: "Appllama/appllama-skills — Claude Code skill discovered by cue"
 description: "A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens."
 layout: page
-updated: 2026-08-14
+updated: 2026-09-01
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [Appllama/appllama-skills](https://github.com/Appllama/appllama-skills)
 
-**★ 2** · exceptional (score 8.5) · agent-skills, ai-agents, claude, claude-code, claude-code-skill
+**★ 430** · exceptional (score 13.5) · agent-skills, ai-agents, claude, claude-code, claude-code-skill
 
 > A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+- ⭐ 430 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: agent-skills, ai-agents, claude, claude-code, claude-code-skill, claude-skills, codex, codex-skill, cursor, design-system, expo, mcp, mobile-app-development, mobile-design, mobile-ui, model-context-protocol, react-native, skills, ui-design
 
 ## Best fit cue profiles

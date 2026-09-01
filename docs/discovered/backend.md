@@ -1,146 +1,94 @@
 ---
 title: "Claude Code Skills for backend"
-description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vitali87-code-graph-rag"></a>
-## 💎 [vitali87/code-graph-rag](https://github.com/vitali87/code-graph-rag)
+<a id="stickerdaniel-linkedin-mcp-server"></a>
+## 💎 [stickerdaniel/linkedin-mcp-server](https://github.com/stickerdaniel/linkedin-mcp-server)
 
-**★ 4886** · exceptional (score 16.5) · Python · tags: ai, ast, claude-code, code-analysis, code-understanding
+**★ 3293** · exceptional (score 19.5) · Python · tags: ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
 
-The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs
+Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages.
 
 ```bash
-cue skills add vitali87/code-graph-rag --profile backend
+cue skills add stickerdaniel/linkedin-mcp-server --profile backend
 ```
 
 ---
 
-<a id="sandbaseai-sandbase-harness"></a>
-## 💎 [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness)
+<a id="alibaizhanov-mengram"></a>
+## 💎 [alibaizhanov/mengram](https://github.com/alibaizhanov/mengram)
 
-**★ 641** · exceptional (score 13.5) · TypeScript · tags: agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox
+**★ 191** · exceptional (score 14.7) · Python · tags: agent-memory, ai-agents, ai-memory, claude-desktop, cognitive-architecture
 
-Local-first, self-hosted AI agent runtime and MCP bridge with sandboxed sessions, memory, credentials, audit/replay, and a local Console.
+Human-like memory for AI agents — semantic, episodic & procedural. Experience-driven procedures that learn from failures. Free API, Python & JS SDKs, LangChain, CrewAI & OpenClaw integrations.
 
 ```bash
-cue skills add sandbaseai/sandbase-harness --profile backend
+cue skills add alibaizhanov/mengram --profile backend
 ```
 
 ---
 
-<a id="star-ga-mind-mem"></a>
-## 💎 [star-ga/mind-mem](https://github.com/star-ga/mind-mem)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 15** · exceptional (score 11.7) · Python · tags: agent-memory, ai-agents, ai-memory, bm25, claude-code
+**★ 203001** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Persistent AI memory for Claude Code, OpenClaw, and any MCP-compatible agent. BM25F + vector hybrid, governance-aware, local-first, zero-infrastructure.
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add star-ga/mind-mem --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="sandraschi-sdr-mcp"></a>
-## 💎 [sandraschi/sdr-mcp](https://github.com/sandraschi/sdr-mcp)
+<a id="systempromptio-systemprompt-core"></a>
+## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
 
-**★ 6** · exceptional (score 10.6) · Python · tags: docker, fastmcp, gnuradio, hackrf, mcp
+**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
 
-RTL-SDR + MCP server: spectrum, waterfall, FM audio, station DB, GNU Radio demod — web dashboard and AI control via FastMCP 3.4
+AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
 
 ```bash
-cue skills add sandraschi/sdr-mcp --profile backend
+cue skills add systempromptio/systemprompt-core --profile backend
 ```
 
 ---
 
-<a id="sandraschi-worldlabs-mcp"></a>
-## 💎 [sandraschi/worldlabs-mcp](https://github.com/sandraschi/worldlabs-mcp)
+<a id="kirbah-mcp-youtube"></a>
+## 💎 [kirbah/mcp-youtube](https://github.com/kirbah/mcp-youtube)
 
-**★ 22** · exceptional (score 9.4) · TypeScript · tags: marble, mcp-server, webapp, worldlabs
+**★ 29** · exceptional (score 11.7) · TypeScript · tags: mcp, mcp-server, youtube-api
 
-FastMCP 3.2 server and webapp  wrapping the World Labs Marble API — generate navigable 3D worlds from text, images, and video
+High-efficiency YouTube MCP server: Get token-optimized, structured data for your LLMs using the YouTube Data API v3.
 
 ```bash
-cue skills add sandraschi/worldlabs-mcp --profile backend
+cue skills add kirbah/mcp-youtube --profile backend
 ```
 
 ---
 
-<a id="thisis-najeeb-api-test-mcp"></a>
-## 💎 [thisis-najeeb/api-test-mcp](https://github.com/thisis-najeeb/api-test-mcp)
+<a id="ruialexrib-denarius-ai"></a>
+## 💎 [ruialexrib/denarius-ai](https://github.com/ruialexrib/denarius-ai)
 
-**★ 0** · exceptional (score 8.5) · JavaScript · tags: ai-agents, api, api-testing, claude, claude-code
+**★ 0** · exceptional (score 8) · C# · tags: ai-agent, csharp, docker, mcp-server, mistral
 
-MCP server that calls your real API and checks the response against your OpenAPI spec — contract testing, auth presets, spec diffing, and health checks for Claude Code, Cursor, and Windsurf.
-
-```bash
-cue skills add thisis-najeeb/api-test-mcp --profile backend
-```
-
----
-
-<a id="luqueee-kivgraph"></a>
-## 💎 [Luqueee/kivgraph](https://github.com/Luqueee/kivgraph)
-
-**★ 15** · exceptional (score 8.4) · Go · tags: code-graph, code-intelligence, cross-repository, golang, graph-database
-
-A local MCP server for cross-repository semantic code intelligence in TypeScript and Go, backed by a persistent LadybugDB graph.
+Personal and family finance management platform with double-entry accounting, budgeting, reconciliation, analytics, savings tracking and AI-powered financial insights.
 
 ```bash
-cue skills add Luqueee/kivgraph --profile backend
-```
-
----
-
-<a id="sandraschi-yahboom-mcp"></a>
-## 💎 [sandraschi/yahboom-mcp](https://github.com/sandraschi/yahboom-mcp)
-
-**★ 4** · exceptional (score 8.3) · Python · tags: agentic-ai, autonomous, boomy, docker, fastapi
-
-FastMCP 3.2 server plus Webapp for Yahboom Raspbot v2 robot car, ros2, raspberry pi 
-
-```bash
-cue skills add sandraschi/yahboom-mcp --profile backend
-```
-
----
-
-<a id="sandraschi-steam-mcp"></a>
-## ✨ [sandraschi/steam-mcp](https://github.com/sandraschi/steam-mcp)
-
-**★ 1** · strong (score 7.8) · Python · tags: fastmcp, game-development, godot, mcp, mcp-server
-
-MCP server for Valve's Steam — profile, library, stats, store, Workshop. 14 tools, React dashboard, REST bridge.
-
-```bash
-cue skills add sandraschi/steam-mcp --profile backend
-```
-
----
-
-<a id="codesbyfebin-rust-stark-zkvm"></a>
-## ✨ [CodesbyFebin/rust-stark-zkvm](https://github.com/CodesbyFebin/rust-stark-zkvm)
-
-**★ 1** · strong (score 5.3) · HTML · tags: blockchain, crypto-donations, cryptography, foundry, gitcoin-grants
-
-Open-source Rust zkVM for STARK-based verifiable computation, powered by Winterfell. Custom VM ISA with branching and registers, STARK prover/verifier, CLI, MCP server, HTTP proving API, CI proof gates, and on-chain attestation.
-
-```bash
-cue skills add CodesbyFebin/rust-stark-zkvm --profile backend
+cue skills add ruialexrib/denarius-ai --profile backend
 ```
 
 ---

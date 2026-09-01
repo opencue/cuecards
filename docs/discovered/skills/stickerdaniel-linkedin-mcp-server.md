@@ -2,21 +2,21 @@
 title: "stickerdaniel/linkedin-mcp-server — Claude Code skill discovered by cue"
 description: "Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages."
 layout: page
-updated: 2026-06-27
+updated: 2026-09-01
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [stickerdaniel/linkedin-mcp-server](https://github.com/stickerdaniel/linkedin-mcp-server)
 
-**★ 2525** · exceptional (score 19.5) · Python · ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
+**★ 3293** · exceptional (score 19.5) · Python · ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
 
 > Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.5 based on:
-- ⭐ 2525 stars
-- 🗓️ Last pushed: 2026-06-27
+- ⭐ 3293 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: ai-agents, anthropic, chatgpt, chatgpt-desktop, claude, claude-ai, claude-code, claude-desktop, desktop-extension, dxt, linkedin, linkedin-api, linkedin-mcp, linkedin-profile-scraper, linkedin-scraper, mcp, mcp-server, model-context-protocol, python
 
 ## Best fit cue profiles

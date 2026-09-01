@@ -1,8 +1,8 @@
 ---
 title: "gregkozakiewicz/roast-my-design-system — Claude Code skill discovered by cue"
-description: "v5.4.0 · Try it: npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payo"
+description: "v5.6.2 · npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff each "
 layout: page
-updated: 2026-08-27
+updated: 2026-09-01
 tags: [claude-code, skill, frontend]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, frontend]
 
 **★ 12** · exceptional (score 10.8) · JavaScript · ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
 
-> v5.4.0 · Try it: npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff, rules via --apply, a local MCP server via --mcp (verified in Claude Code, Cursor and Windsurf/Devin), and Claude's read of your numbers embedded in the shareable report.
+> v5.6.2 · npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff each with a copy-paste fix prompt, agent rules via --apply, and a local MCP server via --mcp, verified in Claude Code, Cursor and Windsurf/Devin.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-08-27
-- 🏷️ Tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality, codex, design-system, design-tokens, developer-tools, linter, mcp, mcp-server, model-context-protocol, skill, tailwind
+- 🗓️ Last pushed: 2026-09-01
+- 🏷️ Tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality, codex, cursor, design-system, design-tokens, developer-tools, devin, linter, mcp, mcp-server, model-context-protocol, skill, tailwind, windsurf
 
 ## Best fit cue profiles
 

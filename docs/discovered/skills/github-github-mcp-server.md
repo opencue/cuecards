@@ -2,21 +2,21 @@
 title: "github/github-mcp-server — Claude Code skill discovered by cue"
 description: "GitHub's official MCP Server"
 layout: page
-updated: 2026-06-27
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [github/github-mcp-server](https://github.com/github/github-mcp-server)
 
-**★ 30996** · exceptional (score 16) · Go · github, mcp, mcp-server
+**★ 32638** · exceptional (score 16) · Go · github, mcp, mcp-server
 
 > GitHub's official MCP Server
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 30996 stars
-- 🗓️ Last pushed: 2026-06-27
+- ⭐ 32638 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: github, mcp, mcp-server
 
 ## Best fit cue profiles

@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="appllama-appllama-skills"></a>
+## 💎 [Appllama/appllama-skills](https://github.com/Appllama/appllama-skills)
+
+**★ 430** · exceptional (score 13.5) · tags: agent-skills, ai-agents, claude, claude-code, claude-code-skill
+
+A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.
+
+```bash
+cue skills add Appllama/appllama-skills --profile frontend
+```
 
 ---
 
@@ -28,6 +41,19 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
+<a id="gregkozakiewicz-roast-my-design-system"></a>
+## 💎 [gregkozakiewicz/roast-my-design-system](https://github.com/gregkozakiewicz/roast-my-design-system)
+
+**★ 12** · exceptional (score 10.8) · JavaScript · tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
+
+v5.6.2 · npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff each with a copy-paste fix prompt, agent rules via --apply, and a local MCP server via --mcp, verified in Claude Code, Cursor and Windsurf/Devin.
+
+```bash
+cue skills add gregkozakiewicz/roast-my-design-system --profile frontend
+```
+
+---
+
 <a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
 ## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
 
@@ -37,19 +63,6 @@ Build production-grade mobile apps faster with simulator-verified skills tested 
 
 ```bash
 cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
-```
-
----
-
-<a id="sandraschi-uitars-mcp"></a>
-## 💎 [sandraschi/uitars-mcp](https://github.com/sandraschi/uitars-mcp)
-
-**★ 2** · exceptional (score 8) · Python · tags: browser-automation, computer-use, desktop-automation, fastmcp, gui-agent
-
-Desktop + browser GUI agent MCP server. VLM-powered automation: screenshot → vision model → mouse/keyboard/Playwright actions. 9 MCP tools. Fits RTX 4090.
-
-```bash
-cue skills add sandraschi/uitars-mcp --profile frontend
 ```
 
 ---

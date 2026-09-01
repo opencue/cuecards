@@ -2,7 +2,7 @@
 title: "pianoteachervandegraaffgenerator47/appllama-skills — Claude Code skill discovered by cue"
 description: "Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-31
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills, codex, codex-skill, cursor, design-system, expo, mcp, mobile-app-development, mobile-design, mobile-ui, react-native, skills, ui-design
 
 ## Best fit cue profiles

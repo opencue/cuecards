@@ -2,23 +2,23 @@
 title: "manavmishra/ZeroSlop — Claude Code skill discovered by cue"
 description: "An open-source skill that finds AI slop in your writing and strips it out without changing the facts, scoring the draft before and after."
 layout: page
-updated: 2026-08-26
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [manavmishra/ZeroSlop](https://github.com/manavmishra/ZeroSlop)
 
-**★ 10** · exceptional (score 15.2) · Python · agent-skills, ai-detection, ai-slop, ai-writing, chatgpt
+**★ 24** · exceptional (score 14.6) · Python · agent-skills, ai-detection, ai-humanizer, ai-slop, ai-slop-detection
 
 > An open-source skill that finds AI slop in your writing and strips it out without changing the facts, scoring the draft before and after.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 10 stars
-- 🗓️ Last pushed: 2026-08-26
-- 🏷️ Tags: agent-skills, ai-detection, ai-slop, ai-writing, chatgpt, claude-code, claude-skill, cli, codex, content-writing, de-slop, editing, humanize-ai-text, humanizer, linkedin, nlp, prose, python, text-analysis, writing-tools
+- ⭐ 24 stars
+- 🗓️ Last pushed: 2026-09-01
+- 🏷️ Tags: agent-skills, ai-detection, ai-humanizer, ai-slop, ai-slop-detection, anti-slop, claude-code, claude-skill, codex, de-slop, editing, humanize-ai-text, humanizer, prose, prose-linter, skills, slop-detector, text-analysis, writing-score, writing-tools
 
 ## Best fit cue profiles
 

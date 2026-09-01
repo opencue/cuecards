@@ -1,29 +1,31 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sepinetam-mcp-for-stata"></a>
-## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
+<a id="ronronner02-paper-innovation-analyst"></a>
+## 💎 [ronronner02/paper-innovation-analyst](https://github.com/ronronner02/paper-innovation-analyst)
 
-**★ 253** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
+**★ 2** · exceptional (score 13) · Python · tags: academic-writing, claude-skill, llm, paper-analysis, research
 
-A MCP server for Stata to integrate Stata into your agent. 
+A Claude Skill for evidence-aware academic paper analysis: technical decomposition, novelty assessment, limitation mining, innovation point generation, literature synthesis, and experiment design.
+
+✅ SKILL.md
 
 ```bash
-cue skills add SepineTam/mcp-for-stata --profile research
+cue skills add ronronner02/paper-innovation-analyst --profile research
 ```
 
 ---
@@ -37,19 +39,6 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="helena-bioinformatics-noodle-mcp"></a>
-## 💎 [helena-bioinformatics/noodle-mcp](https://github.com/helena-bioinformatics/noodle-mcp)
-
-**★ 0** · exceptional (score 8) · Python · tags: agent-skill, bioinformatics, biomedical-literature, citation-graph, mcp-server
-
-Noodle Biomedical Literature Discovery MCP — search papers and traverse citation or semantic literature graphs.
-
-```bash
-cue skills add helena-bioinformatics/noodle-mcp --profile research
 ```
 
 ---

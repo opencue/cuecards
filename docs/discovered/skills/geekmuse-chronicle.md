@@ -2,7 +2,7 @@
 title: "geekmuse/chronicle — Claude Code skill discovered by cue"
 description: "Sync AI coding agent session history (Pi, Claude Code) across machines using path canonicalization and Git-backed CRDT merge"
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 

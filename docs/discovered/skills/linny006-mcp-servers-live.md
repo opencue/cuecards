@@ -2,7 +2,7 @@
 title: "linny006/mcp-servers-live — Claude Code skill discovered by cue"
 description: "Auto-updated index of MCP servers shipping on GitHub, refreshed every 15 minutes"
 layout: page
-updated: 2026-08-31
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-08-31
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: ai-agents, ai-infrastructure, ai-protocol, ai-tools, anthropic-mcp, auto-updated, awesome-list, awesome-mcp, claude-integration, developer-tools, github-actions, live-data, llm-integration, llm-tools, mcp, mcp-server, model-context-protocol
 
 ## Best fit cue profiles

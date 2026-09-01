@@ -2,21 +2,21 @@
 title: "benwu95/prospec — Claude Code skill discovered by cue"
 description: "Progressive Spec-Driven Development (SDD) toolkit for AI coding agents — Claude Code, Copilot, Codex. Slash-command Skills + structured AI Knowledge + MCP serve"
 layout: page
-updated: 2026-06-22
+updated: 2026-09-01
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [benwu95/prospec](https://github.com/benwu95/prospec)
+# 💎 [benwu95/prospec](https://github.com/benwu95/prospec)
 
-**★ 1** · strong (score 7.8) · TypeScript · agentic-coding, ai-agents, ai-coding-assistant, ai-knowledge, brownfield
+**★ 5** · exceptional (score 10) · TypeScript · agentic-coding, ai-agents, ai-coding-assistant, ai-knowledge, brownfield
 
 > Progressive Spec-Driven Development (SDD) toolkit for AI coding agents — Claude Code, Copilot, Codex. Slash-command Skills + structured AI Knowledge + MCP server; Progressive Disclosure cuts 70–80% tokens. Brownfield & greenfield.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: agentic-coding, ai-agents, ai-coding-assistant, ai-knowledge, brownfield, claude, claude-code, codex, developer-tools, github-copilot, llm, mcp, mcp-server, progressive-disclosure, sdd, spec-driven-development
 
 ## Best fit cue profiles
