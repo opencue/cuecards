@@ -30,9 +30,6 @@ skills:
     # gstack/plan-design-review, gstack/scrape, gstack/skillify,
     # gstack/setup-browser-cookies
   npx:
-    # Discovered 2026-06-08: Storybook component/story/screenshot access for UI work.
-    - repo: ansariwaqqas/storybook-mcp-server
-      skills: [storybook-mcp-server]
     # Browser-framework and typed JavaScript specialists. nextjs inherits this
     # profile, so keep nextjs-developer here to avoid a repo-level child override.
     - repo: jeffallan/claude-skills

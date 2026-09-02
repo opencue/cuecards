@@ -255,8 +255,6 @@ skills:
       skills: [slop-mop]
     - repo: addyosmani/agent-skills
       skills: [frontend-ui-engineering, performance-optimization]
-    - repo: ansariwaqqas/storybook-mcp-server
-      skills: [storybook-mcp-server]
     - repo: AgriciDaniel/claude-ads
       skills: [claude-ads, ads-audit, ads-google, ads-meta, ads-youtube, ads-linkedin, ads-tiktok, ads-microsoft, ads-apple, ads-amazon, ads-attribution, ads-server-side-tracking, ads-creative, ads-landing, ads-budget, ads-plan, ads-competitor, ads-math, ads-test, ads-dna, ads-create, ads-generate, ads-photoshoot]
     - repo: coreyhaines31/marketingskills
@@ -287,8 +285,6 @@ skills:
       skills: [python-design-patterns]
     - repo: fastapi/fastapi
       skills: [fastapi]
-    - repo: dagster-io/skills
-      skills: [dignified-python]
     - repo: github/awesome-copilot
       skills: [pytest-coverage]
     - repo: nextlevelbuilder/ui-ux-pro-max-skill
