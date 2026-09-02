@@ -50,13 +50,9 @@ function makeProfile(overrides: Partial<ResolvedProfile> = {}): ResolvedProfile 
 }
 
 describe("resolveNpxSkillSources", () => {
-  test("ignores same-named marketplace skills and resolves pinned npx skills", async () => {
+  test("resolves pinned npx skills through cache sources", async () => {
     const root = mkdtempSync(join(tmpdir(), "cue-launch-npx-"));
-    const installed = join(root, "marketplaces", "vendor", "skills", "installed");
-    mkdirSync(installed, { recursive: true });
-    writeFileSync(join(installed, "SKILL.md"), "# Installed\n");
-
-    const resolved = join(root, "cache", "missing");
+    const resolved = join(root, "cache", "skill");
     mkdirSync(resolved, { recursive: true });
     writeFileSync(join(resolved, "SKILL.md"), "# Missing\n");
 
@@ -70,7 +66,6 @@ describe("resolveNpxSkillSources", () => {
           },
         }),
         {
-          marketplacesDir: join(root, "marketplaces"),
           resolveNpx: async (profile) => {
             requested = profile.skills.npx.flatMap((entry) => entry.skills);
             return profile.skills.npx[0]!.skills.map((skill) => ({

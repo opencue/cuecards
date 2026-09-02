@@ -2016,7 +2016,6 @@ export function authmuxAccountTag(
 }
 
 interface ResolveNpxSkillSourcesOptions {
-  marketplacesDir?: string;
   resolveNpx?: (profile: ResolvedProfile) => Promise<LinkPlan[]>;
 }
 
@@ -2026,49 +2025,11 @@ export async function resolveNpxSkillSources(
   opts: ResolveNpxSkillSourcesOptions = {},
 ): Promise<Map<string, string>> {
   const sources = new Map<string, string>();
-  const marketplacesDir = opts.marketplacesDir ?? join(
-    homedir(),
-    ".claude",
-    "plugins",
-    "marketplaces",
-  );
-
-  // Prefer existing marketplace copies so normal launches stay offline and
-  // avoid duplicating an already-installed skill in Cue's cache.
-  if (existsSync(marketplacesDir)) {
-    const marketplaceSkillDirs = readdirSync(marketplacesDir, {
-      withFileTypes: true,
-    })
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => join(marketplacesDir, entry.name, "skills"));
-
-    for (const ref of profile.skills.npx) {
-      for (const skill of ref.skills) {
-        for (const skillsDir of marketplaceSkillDirs) {
-          const skillDir = join(skillsDir, skill);
-          if (existsSync(join(skillDir, "SKILL.md"))) {
-            // Do not trust a same-named marketplace skill without verifying that
-            // it originates from ref.repo at ref.pin.
-            continue;
-          }
-        }
-      }
-    }
-  }
-
-  const missingRefs = profile.skills.npx
-    .map((ref) => ({
-      ...ref,
-      skills: ref.skills.filter((skill) => !sources.has(skill)),
-    }))
-    .filter((ref) => ref.skills.length > 0);
-
-  if (missingRefs.length > 0) {
+  if (profile.skills.npx.length > 0) {
     const resolver = opts.resolveNpx ?? resolveNpx;
-    const plans = await resolver({
-      ...profile,
-      skills: { ...profile.skills, npx: missingRefs },
-    });
+    // Always honor the profile's repo+pin through Cue's cache. A same-named
+    // marketplace skill has no trustworthy provenance and must not override it.
+    const plans = await resolver(profile);
     for (const plan of plans) {
       sources.set(basename(plan.target), plan.source);
     }
