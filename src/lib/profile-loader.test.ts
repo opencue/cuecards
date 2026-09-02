@@ -790,6 +790,32 @@ describe("TanStack skill propagation (real profiles)", () => {
   );
 });
 
+describe("Stripe skill source (real profiles)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+
+  test.each([
+    "stripe",
+    "medusa-dev",
+    "webshop",
+    "commerce",
+    "ego-lite-stack",
+    "medusa-next+stripe",
+  ])("%s resolves stripe-projects from stripe/ai", async (name) => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const profile = await loadProfile(name);
+
+    expect(profile.skills.npx).not.toContainEqual(
+      expect.objectContaining({ repo: "docs.stripe.com" }),
+    );
+    expect(profile.skills.npx).toContainEqual(
+      expect.objectContaining({
+        repo: "stripe/ai",
+        skills: expect.arrayContaining(["stripe-projects"]),
+      }),
+    );
+  });
+});
+
 describe("Jetson skill propagation (real profile)", () => {
   const REAL_PROFILES = join(REPO_ROOT, "profiles");
   const JETSON_SOURCE = {

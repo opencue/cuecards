@@ -85,8 +85,6 @@ skills:
       skills: [pdf, docx, pptx]
     - repo: xixu-me/skills
       skills: [github-actions-docs]
-    - repo: docs.stripe.com
-      skills: [stripe-projects]
     - repo: mindrally/skills
       skills: [docker]
     - repo: stripe/ai
