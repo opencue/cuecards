@@ -2,21 +2,21 @@
 title: "FlorianBruniaux/ctxharness — Claude Code skill discovered by cue"
 description: "Catch stale versions, broken paths, and missing scripts in your AI instruction files (CLAUDE.md, rules)"
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [FlorianBruniaux/ctxharness](https://github.com/FlorianBruniaux/ctxharness)
 
-**★ 20** · exceptional (score 10.3) · TypeScript · ai, claude-code, cli, context-engineering, developer-tools
+**★ 21** · exceptional (score 10.3) · TypeScript · ai, claude-code, cli, context-engineering, developer-tools
 
 > Catch stale versions, broken paths, and missing scripts in your AI instruction files (CLAUDE.md, rules)
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
-- ⭐ 20 stars
-- 🗓️ Last pushed: 2026-08-31
+- ⭐ 21 stars
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: ai, claude-code, cli, context-engineering, developer-tools, documentation, drift-detection, github-action, testing, typescript
 
 ## Best fit cue profiles

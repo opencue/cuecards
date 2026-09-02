@@ -2,21 +2,21 @@
 title: "caiyo-slim/Higgs_v3-TTS-ComfyUI — Claude Code skill discovered by cue"
 description: "Integrate Higgs v3 TTS into ComfyUI for multilingual speech synthesis, zero-shot voice cloning, emotional control, and dialogue generation."
 layout: page
-updated: 2026-08-06
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [caiyo-slim/Higgs_v3-TTS-ComfyUI](https://github.com/caiyo-slim/Higgs_v3-TTS-ComfyUI)
 
-**★ 1** · strong (score 6.3) · Python · claude-skill, cluster-management, comfyui-nodes, higgs-audio, inference
+**★ 2** · strong (score 6.5) · Python · claude-skill, cluster-management, comfyui-nodes, higgs-audio, inference
 
 > Integrate Higgs v3 TTS into ComfyUI for multilingual speech synthesis, zero-shot voice cloning, emotional control, and dialogue generation.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: claude-skill, cluster-management, comfyui-nodes, higgs-audio, inference, llama, llama2, llm, machine-learning, motion-control, python, soul-id, tts, v, veo
 
 ## Best fit cue profiles

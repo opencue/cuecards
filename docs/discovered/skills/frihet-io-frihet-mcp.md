@@ -2,7 +2,7 @@
 title: "Frihet-io/frihet-mcp — Claude Code skill discovered by cue"
 description: "Official MCP server for Frihet ERP — 157 tools for AI-powered invoicing, tax & e-invoicing compliance (VeriFactu, TicketBAI, Facturae), banking, CRM, HR/payroll"
 layout: page
-updated: 2026-07-21
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.4 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-07-21
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: accounting, ai, ai-agent, ai-native, automation, billing, business-management, claude, claude-code-plugin, claude-code-skill, cloudflare-workers, erp, fintech, invoicing, llm, mcp, mcp-server, saas, tax-compliance, typescript
 
 ## Best fit cue profiles

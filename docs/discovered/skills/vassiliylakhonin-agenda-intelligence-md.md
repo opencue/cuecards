@@ -1,8 +1,8 @@
 ---
 title: "vassiliylakhonin/agenda-intelligence-md — Claude Code skill discovered by cue"
-description: "Checks AI claim/source packets before human review: missing references, quote mismatches, weak lexical support, and unmatched numbers. CLI, Python API, and MCP."
+description: "Deterministic evidence-packet linter for claim-backed AI output. Reports packet completeness, not truth. CLI, Python API, MCP, A2A, Cloudflare Workers."
 layout: page
-updated: 2026-08-14
+updated: 2026-09-02
 tags: [claude-code, skill, backend]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, backend]
 
 **★ 6** · exceptional (score 9.6) · Python · ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema
 
-> Checks AI claim/source packets before human review: missing references, quote mismatches, weak lexical support, and unmatched numbers. CLI, Python API, and MCP.
+> Deterministic evidence-packet linter for claim-backed AI output. Reports packet completeness, not truth. CLI, Python API, MCP, A2A, Cloudflare Workers.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-08-14
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema, llm-evaluation, mcp-server, python, source-grounding
 
 ## Best fit cue profiles

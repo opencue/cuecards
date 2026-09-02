@@ -1,27 +1,27 @@
 ---
 title: "forger-labs-hq/researchforge — Claude Code skill discovered by cue"
-description: "Autonomous AI agent & benchmarking CLI for Claude Code and Cursor. Build, validate, and ship research hypotheses repos — entirely locally."
+description: "A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or"
 layout: page
-updated: 2026-08-30
-tags: [claude-code, skill, core]
+updated: 2026-09-02
+tags: [claude-code, skill, backend]
 ---
 
 # 💎 [forger-labs-hq/researchforge](https://github.com/forger-labs-hq/researchforge)
 
-**★ 6** · exceptional (score 11.5) · Python · ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
+**★ 7** · exceptional (score 10.5) · Python · ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
 
-> Autonomous AI agent & benchmarking CLI for Claude Code and Cursor. Build, validate, and ship research hypotheses repos — entirely locally.
+> A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or a direct API key (Gemini/Anthropic/openAI).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-08-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher, claude-code, claude-code-skill, claude-code-skills, cursor-ide, cursor-ide-mcp, dashboard, hypothesis-testing, llm-agent, llm-tools, llmops, mcp-server, python3
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add forger-labs-hq/researchforge --profile core
+cue skills add forger-labs-hq/researchforge --profile backend
 ```
 
 ## About

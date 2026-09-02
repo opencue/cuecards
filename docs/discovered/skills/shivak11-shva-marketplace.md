@@ -2,7 +2,7 @@
 title: "Shivak11/shva-marketplace — Claude Code skill discovered by cue"
 description: "Shiva's personal Claude Code plugins. v0.1.0 ships /shva:brief-me — domain-agnostic pre-project vocabulary briefing for any GenAI build."
 layout: page
-updated: 2026-08-28
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-28
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-skill, genai, prompt-engineering, vocabulary
 
 ## Best fit cue profiles

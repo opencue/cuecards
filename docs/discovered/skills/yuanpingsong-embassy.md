@@ -2,21 +2,21 @@
 title: "YuanpingSong/embassy — Claude Code skill discovered by cue"
 description: " Local, single-user message gateway between Claude Code sessions and Codex desktop tasks — bidirectional, consent-first pairing, bounded delivery with receipts,"
 layout: page
-updated: 2026-08-17
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [YuanpingSong/embassy](https://github.com/YuanpingSong/embassy)
 
-**★ 1** · exceptional (score 8.8) · TypeScript · agent-collaboration, ai-agent, anthropic-claude, claude-ai, claude-code-skill
+**★ 4** · exceptional (score 9.3) · TypeScript · agent-collaboration, ai-agent, anthropic-claude, claude-ai, claude-code-skill
 
 >  Local, single-user message gateway between Claude Code sessions and Codex desktop tasks — bidirectional, consent-first pairing, bounded delivery with receipts, bilingual live dashboard
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-17
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: agent-collaboration, ai-agent, anthropic-claude, claude-ai, claude-code-skill, cli-tool, codex-skill, developer-tool, local-first-ai, macosx, message-brokers, multi-agents, openai-codex
 
 ## Best fit cue profiles

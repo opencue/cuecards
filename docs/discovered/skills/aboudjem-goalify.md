@@ -2,21 +2,21 @@
 title: "Aboudjem/goalify — Claude Code skill discovered by cue"
 description: "/goal takes a condition, not a file path. goalify locks the few real decisions, writes the brief, and derives the condition a fresh Claude Code or Codex session"
 layout: page
-updated: 2026-08-15
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Aboudjem/goalify](https://github.com/Aboudjem/goalify)
+# 💎 [Aboudjem/goalify](https://github.com/Aboudjem/goalify)
 
-**★ 1** · strong (score 7.1) · Python · agent-skills, agentic-workflow, ai-agents, ai-productivity, anthropic
+**★ 1** · exceptional (score 8.8) · Python · agent-skills, agentic-workflow, ai-agents, ai-productivity, anthropic
 
 > /goal takes a condition, not a file path. goalify locks the few real decisions, writes the brief, and derives the condition a fresh Claude Code or Codex session has to prove before it calls a big task done.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-10
+- 🗓️ Last pushed: 2026-09-01
 - 🏷️ Tags: agent-skills, agentic-workflow, ai-agents, ai-productivity, anthropic, automation, autonomous-agents, claude, claude-code, claude-code-plugin, claude-skill, cli, codex, context-management, developer-tools, goalify, llm, oh-my-claudecode, productivity, prompt-engineering
 
 ## Best fit cue profiles

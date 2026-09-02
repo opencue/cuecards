@@ -1,50 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="stickerdaniel-linkedin-mcp-server"></a>
-## 💎 [stickerdaniel/linkedin-mcp-server](https://github.com/stickerdaniel/linkedin-mcp-server)
-
-**★ 3293** · exceptional (score 19.5) · Python · tags: ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
-
-Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages.
-
-```bash
-cue skills add stickerdaniel/linkedin-mcp-server --profile backend
-```
-
----
-
-<a id="alibaizhanov-mengram"></a>
-## 💎 [alibaizhanov/mengram](https://github.com/alibaizhanov/mengram)
-
-**★ 191** · exceptional (score 14.7) · Python · tags: agent-memory, ai-agents, ai-memory, claude-desktop, cognitive-architecture
-
-Human-like memory for AI agents — semantic, episodic & procedural. Experience-driven procedures that learn from failures. Free API, Python & JS SDKs, LangChain, CrewAI & OpenClaw integrations.
-
-```bash
-cue skills add alibaizhanov/mengram --profile backend
-```
-
----
-
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 203001** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 203096** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
@@ -54,41 +28,82 @@ cue skills add n8n-io/n8n --profile backend
 
 ---
 
-<a id="systempromptio-systemprompt-core"></a>
-## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
+<a id="navidmoazzez-bluesky-mcp-cli"></a>
+## 💎 [navidmoazzez/bluesky-mcp-cli](https://github.com/navidmoazzez/bluesky-mcp-cli)
 
-**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
+**★ 0** · exceptional (score 13.5) · TypeScript · tags: ai-agents, anthropic, at-protocol, atproto, bluesky
 
-AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
+Bluesky MCP server and CLI for Claude Code and AI agents. 41 tools for posting, threads, replies, timeline, search, custom feeds, lists, notifications and the social graph.
+
+✅ SKILL.md
 
 ```bash
-cue skills add systempromptio/systemprompt-core --profile backend
+cue skills add navidmoazzez/bluesky-mcp-cli --profile backend
 ```
 
 ---
 
-<a id="kirbah-mcp-youtube"></a>
-## 💎 [kirbah/mcp-youtube](https://github.com/kirbah/mcp-youtube)
+<a id="githits-com-githits-cli"></a>
+## 💎 [githits-com/githits-cli](https://github.com/githits-com/githits-cli)
 
-**★ 29** · exceptional (score 11.7) · TypeScript · tags: mcp, mcp-server, youtube-api
+**★ 92** · exceptional (score 13.3) · TypeScript · tags: ai-coding-tools, ai-tools, cli, code-graph, code-search
 
-High-efficiency YouTube MCP server: Get token-optimized, structured data for your LLMs using the YouTube Data API v3.
+CLI & MCP for GitHits - The Code Context Layer for AI Coding Agents
 
 ```bash
-cue skills add kirbah/mcp-youtube --profile backend
+cue skills add githits-com/githits-cli --profile backend
 ```
 
 ---
 
-<a id="ruialexrib-denarius-ai"></a>
-## 💎 [ruialexrib/denarius-ai](https://github.com/ruialexrib/denarius-ai)
+<a id="tsukumohq-wrai-th"></a>
+## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
 
-**★ 0** · exceptional (score 8) · C# · tags: ai-agent, csharp, docker, mcp-server, mistral
+**★ 27** · exceptional (score 13.1) · Go · tags: ai-agents, claude, claude-code, golang, mcp
 
-Personal and family finance management platform with double-entry accounting, budgeting, reconciliation, analytics, savings tracking and AI-powered financial insights.
+Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
 
 ```bash
-cue skills add ruialexrib/denarius-ai --profile backend
+cue skills add TsukumoHQ/WRAI.TH --profile backend
+```
+
+---
+
+<a id="forger-labs-hq-researchforge"></a>
+## 💎 [forger-labs-hq/researchforge](https://github.com/forger-labs-hq/researchforge)
+
+**★ 7** · exceptional (score 10.5) · Python · tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
+
+A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or a direct API key (Gemini/Anthropic/openAI).
+
+```bash
+cue skills add forger-labs-hq/researchforge --profile backend
+```
+
+---
+
+<a id="vassiliylakhonin-agenda-intelligence-md"></a>
+## 💎 [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
+
+**★ 6** · exceptional (score 9.6) · Python · tags: ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema
+
+Deterministic evidence-packet linter for claim-backed AI output. Reports packet completeness, not truth. CLI, Python API, MCP, A2A, Cloudflare Workers.
+
+```bash
+cue skills add vassiliylakhonin/agenda-intelligence-md --profile backend
+```
+
+---
+
+<a id="cammac-creator-ibanforge"></a>
+## 💎 [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
+
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: ai-agents, api, banking, bic, compliance
+
+IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents
+
+```bash
+cue skills add cammac-creator/ibanforge --profile backend
 ```
 
 ---

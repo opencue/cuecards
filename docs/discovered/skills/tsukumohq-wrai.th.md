@@ -2,21 +2,21 @@
 title: "TsukumoHQ/WRAI.TH — Claude Code skill discovered by cue"
 description: "Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config."
 layout: page
-updated: 2026-06-26
+updated: 2026-09-02
 tags: [claude-code, skill, fleet-control, backend]
 ---
 
 # 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
 
-**★ 22** · exceptional (score 13.9) · Go · ai-agents, claude, claude-code, golang, mcp
+**★ 27** · exceptional (score 13.1) · Go · ai-agents, claude, claude-code, golang, mcp
 
 > Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
-- ⭐ 22 stars
-- 🗓️ Last pushed: 2026-06-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.1 based on:
+- ⭐ 27 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: ai-agents, claude, claude-code, golang, mcp, mcp-server, multi-agent, orchestration, pixel-art, sqlite
 
 ## Best fit cue profiles

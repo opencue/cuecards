@@ -2,7 +2,7 @@
 title: "Sequenzy/mcp — Claude Code skill discovered by cue"
 description: "MCP server for AI agents to operate Sequenzy lifecycle, campaign, and transactional email workflows."
 layout: page
-updated: 2026-08-22
+updated: 2026-09-02
 tags: [claude-code, skill, marketing]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-22
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: ai-agents, email-marketing, lifecycle-email, marketing-automation, mcp-server, model-context-protocol, sequenzy, transactional-email
 
 ## Best fit cue profiles

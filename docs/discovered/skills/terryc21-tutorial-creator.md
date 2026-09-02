@@ -2,20 +2,20 @@
 title: "Terryc21/tutorial-creator — Claude Code skill discovered by cue"
 description: "Generate personalized coding lessons from your own codebase. A Claude Code skill: three surfaces (tutorial / vocab / status), six writing-to-learn entries, audi"
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Terryc21/tutorial-creator](https://github.com/Terryc21/tutorial-creator)
 
-**★ 33** · exceptional (score 11.1) · claude-code, claude-code-skill, code-reading, developer-education, learning
+**★ 39** · exceptional (score 11.2) · claude-code, claude-code-skill, code-reading, developer-education, learning
 
 > Generate personalized coding lessons from your own codebase. A Claude Code skill: three surfaces (tutorial / vocab / status), six writing-to-learn entries, audience-facing path with six venue templates. v2.0.0 released 2026-05-10.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
-- ⭐ 33 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+- ⭐ 39 stars
 - 🗓️ Last pushed: 2026-08-31
 - 🏷️ Tags: claude-code, claude-code-skill, code-reading, developer-education, learning, learning-tools, productivity, python, rust, spaced-repetition, swift, swiftui, tutorial, tutorials, typescript, vocabulary
 

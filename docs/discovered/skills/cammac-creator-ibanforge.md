@@ -2,21 +2,21 @@
 title: "cammac-creator/ibanforge — Claude Code skill discovered by cue"
 description: "IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents"
 layout: page
-updated: 2026-07-01
+updated: 2026-09-02
 tags: [claude-code, skill, backend]
 ---
 
-# ✨ [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
+# 💎 [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
 
-**★ 0** · strong (score 7.5) · TypeScript · ai-agents, api, banking, bic, compliance
+**★ 3** · exceptional (score 8.2) · TypeScript · ai-agents, api, banking, bic, compliance
 
 > IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: ai-agents, api, banking, bic, compliance, fintech, hono, iban, iban-validation, mcp, mcp-server, micropayments, neobank, sepa, sqlite, swift, typescript, validation, viban, x402
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,12 +18,25 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2429** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2490** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+
+**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+
+```bash
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---
@@ -37,45 +50,6 @@ Open-source security for AI agents: kernel-enforced egress control on macOS and 
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
-```
-
----
-
-<a id="hybridindie-comfyui-mcp"></a>
-## ✨ [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
-
-**★ 2** · strong (score 7.9) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
-
-Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
-
-```bash
-cue skills add hybridindie/comfyui_mcp --profile cybersecurity
-```
-
----
-
-<a id="gesh75-argus"></a>
-## ✨ [gesh75/argus](https://github.com/gesh75/argus)
-
-**★ 2** · strong (score 5.4) · Python · tags: active-directory, ai-agent, guardrails, llm, offensive-security
-
-Agentic AI penetration tester — reasons, chains, and adapts across network/host/AD/web, read-only by default behind a fail-closed 7-layer guardrail. Proof-annotated attack paths, HMAC-audited, Claude/Ollama/offline.
-
-```bash
-cue skills add gesh75/argus --profile cybersecurity
-```
-
----
-
-<a id="dogrucanemek-alt-cedulon"></a>
-## ✨ [dogrucanemek-alt/cedulon](https://github.com/dogrucanemek-alt/cedulon)
-
-**★ 0** · strong (score 5) · TypeScript · tags: agent-commerce, agentic-payments, audit-log, cbor, cose
-
-An audit layer for agent-to-agent commerce: signed trade manifests, default-deny spend policy, COSE_Sign1 receipts, epoch checkpoints, and rail-extract reconciliation. Specified in IETF Internet-Drafts.
-
-```bash
-cue skills add dogrucanemek-alt/cedulon --profile cybersecurity
 ```
 
 ---

@@ -2,22 +2,22 @@
 title: "ZeKaiNie/universal-examprep-skill — Claude Code skill discovered by cue"
 description: "Last-night exam-cram coach as a Claude Agent Skill: turns your slides, notes and past papers into a chaptered knowledge base + quiz bank, teaches only what's in"
 layout: page
-updated: 2026-07-16
+updated: 2026-09-02
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [ZeKaiNie/universal-examprep-skill](https://github.com/ZeKaiNie/universal-examprep-skill)
 
-**★ 255** · exceptional (score 20) · Python · agent-skill, ai-tutor, anthropic, anti-hallucination, claude
+**★ 278** · exceptional (score 20.6) · Python · agent-skill, ai-tutor, anthropic, anti-hallucination, claude
 
 > Last-night exam-cram coach as a Claude Agent Skill: turns your slides, notes and past papers into a chaptered knowledge base + quiz bank, teaches only what's in your materials, and never fabricates (measured 100% out-of-scope abstention). Bilingual EN/中文 — the 期末极速备考 skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 255 stars
-- 🗓️ Last pushed: 2026-07-16
+- ⭐ 278 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: agent-skill, ai-tutor, anthropic, anti-hallucination, claude, claude-code, claude-skill, cram, edtech, education, exam-prep, llm, quiz, rag, study-tool
 
 ## Best fit cue profiles

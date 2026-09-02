@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="swaylq-ruxi-skill"></a>
-## 💎 [swaylq/ruxi-skill](https://github.com/swaylq/ruxi-skill)
+<a id="beatapi-beatdesign"></a>
+## ✨ [BeatAPI/BeatDesign](https://github.com/BeatAPI/BeatDesign)
 
-**★ 0** · exceptional (score 15.5) · Python · tags: ai-agent, anthropic, book-adaptation, claude-code, claude-skill
+**★ 1** · strong (score 6.3) · TypeScript · tags: ai-canvas, ai-image-generation, ai-video-generation, beatapi, canvas
 
-入戏.skill — 把一本书变成你能玩进去的视觉小说 | Turn any book into a playable visual novel. Every branch traces back to a sentence in the original.
-
-✅ SKILL.md
+Local-first AI canvas and timeline. Any MCP agent. Open-source alternative to Higgsfield.
 
 ```bash
-cue skills add swaylq/ruxi-skill --profile creative-media
-```
-
----
-
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
-
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
-
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
-
-```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
+cue skills add BeatAPI/BeatDesign --profile creative-media
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "coff33ninja/ai-skills — Claude Code skill discovered by cue"
 description: "A single-source catalog of “AI skills” (Markdown SKILL.md files) plus a PowerShell sync tool that pushes those skills into local/global AI tool skill paths and "
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 

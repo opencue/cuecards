@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ronronner02-paper-innovation-analyst"></a>
-## 💎 [ronronner02/paper-innovation-analyst](https://github.com/ronronner02/paper-innovation-analyst)
+<a id="zekainie-universal-examprep-skill"></a>
+## 💎 [ZeKaiNie/universal-examprep-skill](https://github.com/ZeKaiNie/universal-examprep-skill)
 
-**★ 2** · exceptional (score 13) · Python · tags: academic-writing, claude-skill, llm, paper-analysis, research
+**★ 278** · exceptional (score 20.6) · Python · tags: agent-skill, ai-tutor, anthropic, anti-hallucination, claude
 
-A Claude Skill for evidence-aware academic paper analysis: technical decomposition, novelty assessment, limitation mining, innovation point generation, literature synthesis, and experiment design.
+Last-night exam-cram coach as a Claude Agent Skill: turns your slides, notes and past papers into a chaptered knowledge base + quiz bank, teaches only what's in your materials, and never fabricates (measured 100% out-of-scope abstention). Bilingual EN/中文 — the 期末极速备考 skill.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add ronronner02/paper-innovation-analyst --profile research
+cue skills add ZeKaiNie/universal-examprep-skill --profile research
+```
+
+---
+
+<a id="sepinetam-mcp-for-stata"></a>
+## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
+
+**★ 255** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
+
+A MCP server for integrating Stata into your agent loop with a safety-first design.
+
+```bash
+cue skills add SepineTam/mcp-for-stata --profile research
 ```
 
 ---
@@ -46,7 +59,7 @@ cue skills add aemro-motors/popper-scope --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4.9) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 4.8) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

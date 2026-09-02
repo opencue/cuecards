@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,45 @@ Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before
 
 ```bash
 cue skills add OnourImpram/mneme --profile docs-writer
+```
+
+---
+
+<a id="adelaidasofia-claude-daily-journal"></a>
+## 💎 [adelaidasofia/claude-daily-journal](https://github.com/adelaidasofia/claude-daily-journal)
+
+**★ 2** · exceptional (score 10) · Python · tags: anthropic, claude-code, claude-skill, journaling, mental-health
+
+Conversational daily journaling for Claude Code. 34-floor emotional altitude scale, optional advisory panel, Obsidian markdown.
+
+```bash
+cue skills add adelaidasofia/claude-daily-journal --profile docs-writer
+```
+
+---
+
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+
+**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+
+```bash
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
+```
+
+---
+
+<a id="jordiboehme-crystalline"></a>
+## ✨ [jordiboehme/crystalline](https://github.com/jordiboehme/crystalline)
+
+**★ 10** · strong (score 6.3) · Rust · tags: agent-memory, ai-agents, ai-memory, claude-desktop, cli
+
+Local-first crystalline intelligence for AI agents: the knowledge that endures across sessions, taught as Markdown Domains and captured as Engrams. One Rust binary with MCP server, CLI and hybrid search.
+
+```bash
+cue skills add jordiboehme/crystalline --profile docs-writer
 ```
 
 ---

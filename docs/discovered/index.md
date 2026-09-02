@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-09-01 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
+> Last updated: 2026-09-02 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 71 | `vibe-resume-skill`, `global-think-tank-analyst`, `deja-vu` |
-| [**backend**](./backend.md) | 7 | `linkedin-mcp-server`, `mengram`, `n8n` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `sanctuary-framework`, `comfyui_mcp` |
-| [**fleet-control**](./fleet-control.md) | 5 | `opencouncil-contract-inspector`, `APM`, `multi-agent-revenue-orchestrator` |
-| [**frontend**](./frontend.md) | 4 | `appllama-skills`, `awesome-claude-ui-armory`, `roast-my-design-system` |
-| [**creative-media**](./creative-media.md) | 3 | `ruxi-skill`, `social-media-scraper-skill`, `redesigned-pancake` |
-| [**research**](./research.md) | 3 | `paper-innovation-analyst`, `popper-scope`, `skillassay` |
-| [**video**](./video.md) | 2 | `social-media-scraper-skill`, `audio-tldr-skill` |
-| [**rust**](./rust.md) | 1 | `systemprompt-core` |
-| [**niche**](./niche.md) | 1 | `grant-thinking-skill` |
-| [**docs-writer**](./docs-writer.md) | 1 | `mneme` |
+| [**core**](./core.md) | 73 | `humanizer-de`, `trace-mcp`, `claude-with-leetcode` |
+| [**backend**](./backend.md) | 8 | `n8n`, `bluesky-mcp-cli`, `githits-cli` |
+| [**research**](./research.md) | 4 | `universal-examprep-skill`, `mcp-for-stata`, `popper-scope` |
+| [**docs-writer**](./docs-writer.md) | 4 | `mneme`, `claude-daily-journal`, `llm-wiki` |
+| [**cybersecurity**](./cybersecurity.md) | 3 | `Claude-OSINT`, `claude-security-research-skill`, `sanctuary-framework` |
+| [**fleet-control**](./fleet-control.md) | 3 | `WRAI.TH`, `rolepod`, `Agent-Harness-Kit` |
+| [**marketing**](./marketing.md) | 3 | `website-build-kit`, `sticky-switcher-funnel-playbook`, `mcp` |
+| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
+| [**creative-media**](./creative-media.md) | 2 | `BeatDesign`, `redesigned-pancake` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
 
 ## How scoring works
 

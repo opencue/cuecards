@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-01
+updated: 2026-09-02
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="appllama-appllama-skills"></a>
-## 💎 [Appllama/appllama-skills](https://github.com/Appllama/appllama-skills)
-
-**★ 430** · exceptional (score 13.5) · tags: agent-skills, ai-agents, claude, claude-code, claude-code-skill
-
-A builder, not just a researcher. Agent skills that turn top-grossing app patterns into native-quality mobile screens.
-
-```bash
-cue skills add Appllama/appllama-skills --profile frontend
-```
 
 ---
 
@@ -41,28 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="gregkozakiewicz-roast-my-design-system"></a>
-## 💎 [gregkozakiewicz/roast-my-design-system](https://github.com/gregkozakiewicz/roast-my-design-system)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 12** · exceptional (score 10.8) · JavaScript · tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-v5.6.2 · npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff each with a copy-paste fix prompt, agent rules via --apply, and a local MCP server via --mcp, verified in Claude Code, Cursor and Windsurf/Devin.
-
-```bash
-cue skills add gregkozakiewicz/roast-my-design-system --profile frontend
-```
-
----
-
-<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
-## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
-
-Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---

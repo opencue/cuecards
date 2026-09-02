@@ -2,21 +2,21 @@
 title: "osaurus-ai/osaurus — Claude Code skill discovered by cue"
 description: "Own your AI. The native macOS harness for AI agents -- any model, persistent memory, autonomous execution, cryptographic identity. Built in Swift. Fully offline"
 layout: page
-updated: 2026-08-20
+updated: 2026-09-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [osaurus-ai/osaurus](https://github.com/osaurus-ai/osaurus)
 
-**★ 7651** · exceptional (score 16) · Swift · anthropic, apple-foundation-models, apple-intelligence, apple-neural-engine, llm
+**★ 7758** · exceptional (score 16) · Swift · anthropic, apple-foundation-models, apple-intelligence, apple-neural-engine, llm
 
 > Own your AI. The native macOS harness for AI agents -- any model, persistent memory, autonomous execution, cryptographic identity. Built in Swift. Fully offline. Open source.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 7651 stars
-- 🗓️ Last pushed: 2026-08-20
+- ⭐ 7758 stars
+- 🗓️ Last pushed: 2026-09-02
 - 🏷️ Tags: anthropic, apple-foundation-models, apple-intelligence, apple-neural-engine, llm, mcp, mcp-server, mlx, openai, swift
 
 ## Best fit cue profiles
