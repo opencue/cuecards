@@ -179,4 +179,14 @@ export const PROFILE_SUGGESTION_FIXTURES: ProfileSuggestionFixture[] = [
       "apps/web/next.config.ts": "export default {}",
     },
   },
+  {
+    id: "nvidia-jetson-device",
+    expected: ["jetson"],
+    expectedStack: ["jetson", "python"],
+    expectAutoSelect: true,
+    files: {
+      "requirements.txt": "jetson-stats==4.3.2\njetson-containers==0.4.2\n",
+      "src/device_probe.py": "from jtop import jtop\n",
+    },
+  },
 ];

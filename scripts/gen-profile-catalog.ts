@@ -87,7 +87,7 @@ const CATEGORIES: Category[] = [
     slug: "vertical",
     title: "🦊 Verticals",
     blurb: "Domain-specific bundles.",
-    members: ["medusa-dev", "nvidia", "ecc"],
+    members: ["medusa-dev", "nvidia", "jetson", "ecc"],
   },
   {
     slug: "modes",

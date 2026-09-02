@@ -67,6 +67,7 @@ import {
 } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
 import { resolveLocalSkill } from "../lib/resolver-local";
+import { resolveNpx } from "../lib/resolver-npx";
 import {
   expandSkillWildcards,
   loadMcpRegistry,
@@ -86,7 +87,7 @@ import {
   serviceCompanions,
   type CompanionSignal,
 } from "../lib/companion-detect";
-import type { ResolvedProfile } from "../../profiles/_types";
+import type { LinkPlan, ResolvedProfile } from "../../profiles/_types";
 import type {
   ProfileAffinity,
   UniversalSuggestion,
@@ -2014,6 +2015,67 @@ export function authmuxAccountTag(
   return undefined;
 }
 
+interface ResolveNpxSkillSourcesOptions {
+  marketplacesDir?: string;
+  resolveNpx?: (profile: ResolvedProfile) => Promise<LinkPlan[]>;
+}
+
+/** Locate profile npx skills for either Claude Code or Codex materialization. */
+export async function resolveNpxSkillSources(
+  profile: ResolvedProfile,
+  opts: ResolveNpxSkillSourcesOptions = {},
+): Promise<Map<string, string>> {
+  const sources = new Map<string, string>();
+  const marketplacesDir = opts.marketplacesDir ?? join(
+    homedir(),
+    ".claude",
+    "plugins",
+    "marketplaces",
+  );
+
+  // Prefer existing marketplace copies so normal launches stay offline and
+  // avoid duplicating an already-installed skill in Cue's cache.
+  if (existsSync(marketplacesDir)) {
+    const marketplaceSkillDirs = readdirSync(marketplacesDir, {
+      withFileTypes: true,
+    })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => join(marketplacesDir, entry.name, "skills"));
+
+    for (const ref of profile.skills.npx) {
+      for (const skill of ref.skills) {
+        for (const skillsDir of marketplaceSkillDirs) {
+          const skillDir = join(skillsDir, skill);
+          if (existsSync(join(skillDir, "SKILL.md"))) {
+            sources.set(skill, skillDir);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  const missingRefs = profile.skills.npx
+    .map((ref) => ({
+      ...ref,
+      skills: ref.skills.filter((skill) => !sources.has(skill)),
+    }))
+    .filter((ref) => ref.skills.length > 0);
+
+  if (missingRefs.length > 0) {
+    const resolver = opts.resolveNpx ?? resolveNpx;
+    const plans = await resolver({
+      ...profile,
+      skills: { ...profile.skills, npx: missingRefs },
+    });
+    for (const plan of plans) {
+      sources.set(basename(plan.target), plan.source);
+    }
+  }
+
+  return sources;
+}
+
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
@@ -2931,53 +2993,22 @@ export async function run(args: string[]): Promise<number> {
     if (agentKind === "claude-code")
       await rescueRuntimeCredsToOwner(runtimeKey);
 
-    // Promote npx skills to local via installed plugin marketplaces.
-    // The materializer only symlinks profile.skills.local; npx refs are
-    // metadata that never reach the runtime unless resolved here. We probe
-    // ~/.claude/plugins/marketplaces/*/skills/<name>/ — the path where
-    // `claude plugin marketplace add` installs skills — so a profile that
-    // lists skills.npx works without a network fetch on every launch.
-    const npxSkillMap = new Map<string, string>(); // skill id → dir path
-    if (profile.skills.npx.length > 0) {
-      const pluginMarketplacesDir = join(
-        homedir(),
-        ".claude",
-        "plugins",
-        "marketplaces",
-      );
-      if (existsSync(pluginMarketplacesDir)) {
-        const mpSkillsDirs = readdirSync(pluginMarketplacesDir, {
-          withFileTypes: true,
-        })
-          .filter((d) => d.isDirectory())
-          .map((d) => join(pluginMarketplacesDir, d.name, "skills"));
-        for (const npxRef of profile.skills.npx) {
-          for (const skillName of npxRef.skills ?? []) {
-            if (npxSkillMap.has(skillName)) continue;
-            for (const skillsDir of mpSkillsDirs) {
-              const skillDir = join(skillsDir, skillName);
-              if (existsSync(join(skillDir, "SKILL.md"))) {
-                npxSkillMap.set(skillName, skillDir);
-                break;
-              }
-            }
-          }
-        }
-      }
-      if (npxSkillMap.size > 0) {
-        const existingIds = new Set(profile.skills.local.map((s) => s.id));
-        const newSkills = [...npxSkillMap.keys()]
-          .filter((id) => !existingIds.has(id))
-          .map((id) => ({ id }));
-        if (newSkills.length > 0) {
-          profile = {
-            ...profile,
-            skills: {
-              ...profile.skills,
-              local: [...profile.skills.local, ...newSkills],
-            },
-          };
-        }
+    // The materializer only symlinks profile.skills.local, so resolve remote
+    // npx entries and promote their concrete source paths before materializing.
+    const npxSkillMap = await resolveNpxSkillSources(profile);
+    if (npxSkillMap.size > 0) {
+      const existingIds = new Set(profile.skills.local.map((skill) => skill.id));
+      const newSkills = [...npxSkillMap.keys()]
+        .filter((id) => !existingIds.has(id))
+        .map((id) => ({ id }));
+      if (newSkills.length > 0) {
+        profile = {
+          ...profile,
+          skills: {
+            ...profile.skills,
+            local: [...profile.skills.local, ...newSkills],
+          },
+        };
       }
     }
 

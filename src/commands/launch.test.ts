@@ -1,4 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
   buildPickerSections,
   categoryBreakdown,
@@ -11,6 +14,7 @@ import {
   mergeProfileSuggestions,
   ownsPaneBadge,
   relativeTime,
+  resolveNpxSkillSources,
   shouldAppendUserClaudeMd,
   sortProfileOptions,
   splitSkillBytes,
@@ -44,6 +48,44 @@ function makeProfile(overrides: Partial<ResolvedProfile> = {}): ResolvedProfile 
     ...overrides,
   } as ResolvedProfile;
 }
+
+describe("resolveNpxSkillSources", () => {
+  test("uses installed marketplace skills and resolves only missing npx skills", async () => {
+    const root = mkdtempSync(join(tmpdir(), "cue-launch-npx-"));
+    const installed = join(root, "marketplaces", "vendor", "skills", "installed");
+    mkdirSync(installed, { recursive: true });
+    writeFileSync(join(installed, "SKILL.md"), "# Installed\n");
+
+    const resolved = join(root, "cache", "missing");
+    mkdirSync(resolved, { recursive: true });
+    writeFileSync(join(resolved, "SKILL.md"), "# Missing\n");
+
+    let requested: string[] = [];
+    try {
+      const sources = await resolveNpxSkillSources(
+        makeProfile({
+          skills: {
+            local: [],
+            npx: [{ repo: "owner/repo", pin: "git@abc", skills: ["installed", "missing"] }],
+          },
+        }),
+        {
+          marketplacesDir: join(root, "marketplaces"),
+          resolveNpx: async (profile) => {
+            requested = profile.skills.npx.flatMap((entry) => entry.skills);
+            return [{ source: resolved, target: ".claude/skills/missing", origin: "npx" }];
+          },
+        },
+      );
+
+      expect(requested).toEqual(["missing"]);
+      expect(sources.get("installed")).toBe(installed);
+      expect(sources.get("missing")).toBe(resolved);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
 
 describe("sortProfileOptions", () => {
   test("pinned profile is first, then alphabetical (full no longer gets pole position)", () => {

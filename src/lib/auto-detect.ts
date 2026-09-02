@@ -85,6 +85,9 @@ export const DEP_PROFILE_RULES: DepProfileRule[] = [
   { profile: "strapi", prefixes: ["@strapi/"], confidence: 0.65, reason: "package.json has @strapi/*", companion: true },
   { profile: "threejs", deps: ["three"], confidence: 0.65, reason: "package.json has three", companion: true },
   { profile: "browser", deps: ["playwright", "@playwright/test"], prefixes: ["@playwright/"], confidence: 0.65, reason: "package.json has Playwright" },
+  // Jetson packages identify the target hardware/domain, not a secondary
+  // service integration, so they must outrank the generic Python manifest.
+  { profile: "jetson", deps: ["jetson-stats", "jetson-containers"], pyDeps: ["jetson-stats", "jetson-containers"], confidence: 0.9, reason: "dependencies target NVIDIA Jetson" },
   // react-native is a primary stack, not a service: an RN repo also has
   // `react`, which the framework chain reads as plain `frontend` (0.8) — so
   // this one rule sits above the band to outrank that misread.
