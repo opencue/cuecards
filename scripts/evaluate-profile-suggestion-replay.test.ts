@@ -34,7 +34,7 @@ describe("profile suggestion replay fixture eval", () => {
     expect(output.cohort).toEqual({
       source: "offline-labeled-fixtures",
       choices: 30,
-      uniqueFixtures: 27,
+      uniqueFixtures: 28,
       persisted: false,
     });
     expect(output.replay.records).toBe(30);
