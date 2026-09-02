@@ -223,8 +223,6 @@ skills:
       skills: [pdf, docx, pptx]
     - repo: langfuse/skills
       skills: [langfuse]
-    - repo: zcebupelka/graphql-mcp-bridge
-      skills: [graphql-mcp-bridge]
     - repo: xixu-me/skills
       skills: [github-actions-docs]
     - repo: docs.stripe.com
