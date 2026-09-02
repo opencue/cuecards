@@ -50,7 +50,7 @@ function makeProfile(overrides: Partial<ResolvedProfile> = {}): ResolvedProfile 
 }
 
 describe("resolveNpxSkillSources", () => {
-  test("uses installed marketplace skills and resolves only missing npx skills", async () => {
+  test("ignores same-named marketplace skills and resolves pinned npx skills", async () => {
     const root = mkdtempSync(join(tmpdir(), "cue-launch-npx-"));
     const installed = join(root, "marketplaces", "vendor", "skills", "installed");
     mkdirSync(installed, { recursive: true });
@@ -73,13 +73,17 @@ describe("resolveNpxSkillSources", () => {
           marketplacesDir: join(root, "marketplaces"),
           resolveNpx: async (profile) => {
             requested = profile.skills.npx.flatMap((entry) => entry.skills);
-            return [{ source: resolved, target: ".claude/skills/missing", origin: "npx" }];
+            return profile.skills.npx[0]!.skills.map((skill) => ({
+              source: resolved,
+              target: `.claude/skills/${skill}`,
+              origin: "npx" as const,
+            }));
           },
         },
       );
 
-      expect(requested).toEqual(["missing"]);
-      expect(sources.get("installed")).toBe(installed);
+      expect(requested).toEqual(["installed", "missing"]);
+      expect(sources.get("installed")).toBe(resolved);
       expect(sources.get("missing")).toBe(resolved);
     } finally {
       rmSync(root, { recursive: true, force: true });

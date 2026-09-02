@@ -2047,8 +2047,9 @@ export async function resolveNpxSkillSources(
         for (const skillsDir of marketplaceSkillDirs) {
           const skillDir = join(skillsDir, skill);
           if (existsSync(join(skillDir, "SKILL.md"))) {
-            sources.set(skill, skillDir);
-            break;
+            // Do not trust a same-named marketplace skill without verifying that
+            // it originates from ref.repo at ref.pin.
+            continue;
           }
         }
       }
