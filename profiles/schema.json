@@ -380,7 +380,7 @@
         "repo": {
           "type": "string",
           "pattern": "^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)?$",
-          "description": "Skill source passed to `npx skills add`: a GitHub 'org/repo' coordinate or a bare host that distributes skills (e.g. 'docs.stripe.com')."
+          "description": "Skill source passed to `npx skills add`, normally a GitHub 'org/repo' coordinate."
         },
         "pin": {
           "type": "string",

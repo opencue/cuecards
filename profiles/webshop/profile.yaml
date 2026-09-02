@@ -93,8 +93,8 @@ skills:
     - hostinger/hosting
     - hostinger/vps
   npx:
-    # Stripe official patterns (25.5K installs) — webshops sell; this is the canonical Stripe skill on the registry.
-    - repo: docs.stripe.com
+    # Stripe's official AI skills repository.
+    - repo: stripe/ai
       skills: [stripe-projects]
     # Supabase patterns (532 installs) — pairs with self-hosted Supabase via myvps.
     - repo: mindrally/skills

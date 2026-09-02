@@ -52,10 +52,7 @@ persona: |
 skills:
   local: []
   npx:
-    # Official Stripe docs skill (25.5K installs) — by far the highest-installed Stripe skill on the registry.
-    - repo: docs.stripe.com
-      skills: [stripe-projects]
-    # Stripe's own AI team skill (1.1K installs) — official complementary patterns.
+    # Stripe's official AI skills repository.
     - repo: stripe/ai
       skills: [stripe-projects]
 mcps: []

@@ -46,8 +46,8 @@ skills:
     # Supabase patterns (532 installs) — pairs with the local myvps-managed self-hosted Supabase used as auth/storage backend.
     - repo: mindrally/skills
       skills: [supabase]
-    # Stripe official patterns (25.5K installs) — webshops sell, this is the canonical Stripe skill on the registry.
-    - repo: docs.stripe.com
+    # Stripe's official AI skills repository.
+    - repo: stripe/ai
       skills: [stripe-projects]
 plugins:
   - resend@claude-plugins-official
