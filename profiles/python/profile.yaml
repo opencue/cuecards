@@ -27,8 +27,6 @@ skills:
       skills: [python-design-patterns]       # 12.4K installs — top Python skill on the registry
     - repo: fastapi/fastapi
       skills: [fastapi]                      # 3.1K installs — official FastAPI patterns
-    - repo: dagster-io/skills
-      skills: [dignified-python]             # 1.5K installs — production Python conventions
     - repo: github/awesome-copilot
       skills: [pytest-coverage]              # 10.6K installs — pytest patterns matching the profile's testing rules
     - repo: jeffallan/claude-skills

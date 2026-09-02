@@ -117,8 +117,6 @@ skills:
       skills: [python-design-patterns]
     - repo: fastapi/fastapi
       skills: [fastapi]
-    - repo: dagster-io/skills
-      skills: [dignified-python]
     - repo: github/awesome-copilot
       skills: [pytest-coverage]
 plugins:
