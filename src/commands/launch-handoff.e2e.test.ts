@@ -13,6 +13,8 @@ import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
+import { loadProfile } from "../lib/profile-loader";
+import { cacheKey } from "../lib/resolver-npx";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
@@ -21,6 +23,18 @@ const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).stat
 // checked out (`git submodule update --init`). Skip rather than fail spuriously.
 // The help/recursion probes below don't materialize, so they stay on.
 const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
+
+async function seedCoreNpxCache(cacheHome: string): Promise<void> {
+  const profile = await loadProfile("core");
+  for (const entry of profile.skills.npx) {
+    const slot = join(cacheHome, "cue", "npx", cacheKey(entry.repo, entry.pin));
+    for (const skill of entry.skills) {
+      const skillDir = join(slot, skill);
+      await mkdir(skillDir, { recursive: true });
+      await writeFile(join(skillDir, "SKILL.md"), `# ${skill}\n`);
+    }
+  }
+}
 
 function cue(args: string[], env: Record<string, string> = {}): { status: number; stdout: string; stderr: string } {
   const cleanEnv = { ...process.env, ...env };
@@ -38,13 +52,17 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec ha
   let xdg: string;
   beforeEach(async () => {
     xdg = await mkdtemp(join(tmpdir(), "cue-handoff-"));
+    await seedCoreNpxCache(join(xdg, "cache"));
   });
   afterEach(async () => {
     await rm(xdg, { recursive: true, force: true });
   });
 
   test("claude → CLAUDE_CONFIG_DIR points at the materialized runtime", () => {
-    const r = cue(["launch", "claude", "--cue-profile", "core", "--dry-run"], { XDG_CONFIG_HOME: xdg });
+    const r = cue(["launch", "claude", "--cue-profile", "core", "--dry-run"], {
+      XDG_CONFIG_HOME: xdg,
+      XDG_CACHE_HOME: join(xdg, "cache"),
+    });
     expect(r.status).toBe(0);
     const p = plan(r.stdout);
     const expected = join(xdg, "cue", "runtime", "core", "claude");
@@ -61,6 +79,7 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec ha
     const persistentCodexHome = join(xdg, "persistent-codex");
     const r = cue(["launch", "codex", "--cue-profile", "core", "--dry-run"], {
       XDG_CONFIG_HOME: xdg,
+      XDG_CACHE_HOME: join(xdg, "cache"),
       CODEX_HOME: persistentCodexHome,
     });
     expect(r.status).toBe(0);
@@ -74,7 +93,10 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch --dry-run exec ha
   });
 
   test("passthrough args flow into the exec command", () => {
-    const r = cue(["launch", "claude", "--cue-profile", "core", "--dry-run", "--resume", "foo"], { XDG_CONFIG_HOME: xdg });
+    const r = cue(["launch", "claude", "--cue-profile", "core", "--dry-run", "--resume", "foo"], {
+      XDG_CONFIG_HOME: xdg,
+      XDG_CACHE_HOME: join(xdg, "cache"),
+    });
     expect(r.status).toBe(0);
     const p = plan(r.stdout);
     expect(p.command).toEqual(["claude", "--resume", "foo"]);
@@ -117,6 +139,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch recursion guard", () => {
   let xdg: string;
   beforeEach(async () => {
     xdg = await mkdtemp(join(tmpdir(), "cue-recursion-"));
+    await seedCoreNpxCache(join(xdg, "cache"));
   });
   afterEach(async () => {
     await rm(xdg, { recursive: true, force: true });
@@ -125,7 +148,12 @@ describe.skipIf(!BUN_SPAWNABLE)("cue launch recursion guard", () => {
   // with the depth set (and CLAUDE_CONFIG_DIR cleared to avoid the unrelated
   // account-alias → picker path).
   const launchAtDepth = (depth: string) => {
-    const env = { ...process.env, CUE_LAUNCHING: depth, XDG_CONFIG_HOME: xdg };
+    const env = {
+      ...process.env,
+      CUE_LAUNCHING: depth,
+      XDG_CONFIG_HOME: xdg,
+      XDG_CACHE_HOME: join(xdg, "cache"),
+    };
     delete env.CLAUDE_CONFIG_DIR;
     return spawnSync("bun", ["run", CUE_BIN, "launch", "claude", "--cue-profile", "core", "--dry-run"], {
       encoding: "utf8",
