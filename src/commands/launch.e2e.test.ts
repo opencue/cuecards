@@ -4,11 +4,13 @@
  */
 
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, writeFile, rm, readFile, readdir } from "node:fs/promises";
+import { mkdtemp, writeFile, rm, readFile, readdir, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
+import { loadProfile } from "../lib/profile-loader";
+import { cacheKey } from "../lib/resolver-npx";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 
@@ -23,6 +25,20 @@ const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).stat
 // materializer has no skills to symlink and `cue launch` exits non-zero — a
 // setup gap, not a regression. Skip rather than fail spuriously.
 const SKILLS_PRESENT = existsSync(join(import.meta.dir, "../../resources/skills/skills"));
+
+async function seedNpxCache(cacheHome: string, profileNames: string[]): Promise<void> {
+  for (const profileName of profileNames) {
+    const profile = await loadProfile(profileName);
+    for (const entry of profile.skills.npx) {
+      const slot = join(cacheHome, "cue", "npx", cacheKey(entry.repo, entry.pin));
+      for (const skill of entry.skills) {
+        const skillDir = join(slot, skill);
+        await mkdir(skillDir, { recursive: true });
+        await writeFile(join(skillDir, "SKILL.md"), `# ${skill}\n`);
+      }
+    }
+  }
+}
 
 function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> } = {}): { status: number; stdout: string; stderr: string } {
   // Strip env vars set when the test runner itself is running inside a cue
@@ -51,16 +67,25 @@ function cue(args: string[], opts: { cwd?: string; env?: Record<string, string> 
 describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
   let tmpDir: string;
   let oldXdgConfigHome: string | undefined;
+  let oldXdgCacheHome: string | undefined;
 
   beforeEach(async () => {
     tmpDir = await mkdtemp(join(tmpdir(), "cue-e2e-launch-"));
     oldXdgConfigHome = process.env.XDG_CONFIG_HOME;
+    oldXdgCacheHome = process.env.XDG_CACHE_HOME;
     process.env.XDG_CONFIG_HOME = join(tmpDir, "xdg");
+    process.env.XDG_CACHE_HOME = join(tmpDir, "cache");
+    // Launch now resolves pinned npx skills before materializing. Keep this
+    // e2e hermetic: exercise the real cache-hit path without relying on the
+    // network or mutating the developer's shared cache.
+    await seedNpxCache(process.env.XDG_CACHE_HOME, ["core", "caveman-quick", "rust", "backend"]);
   });
 
   afterEach(async () => {
     if (oldXdgConfigHome === undefined) delete process.env.XDG_CONFIG_HOME;
     else process.env.XDG_CONFIG_HOME = oldXdgConfigHome;
+    if (oldXdgCacheHome === undefined) delete process.env.XDG_CACHE_HOME;
+    else process.env.XDG_CACHE_HOME = oldXdgCacheHome;
     await rm(tmpDir, { recursive: true, force: true });
   });
 

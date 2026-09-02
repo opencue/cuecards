@@ -790,6 +790,40 @@ describe("TanStack skill propagation (real profiles)", () => {
   );
 });
 
+describe("Jetson skill propagation (real profile)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+  const JETSON_SOURCE = {
+    repo: "NVIDIA-AI-IOT/jetson-device-skills",
+    pin: "git@20137897aef549cc2fa36a18c10e45da94967c3e",
+    skills: [
+      "jetson-diagnostic",
+      "jetson-headless-mode",
+      "jetson-inference-mem-tune",
+      "jetson-llm-benchmark",
+      "jetson-llm-serve",
+      "jetson-memory-audit",
+      "jetson-package",
+      "jetson-print-device-info",
+      "jetson-speculative-decoding",
+      "jetson-video-benchmark",
+      "jetson-video-capability",
+      "jetson-video-pipeline",
+      "jetson-video-recipe",
+      "jetson-video-setup",
+    ],
+  };
+
+  test("jetson resolves the complete pinned NVIDIA skill bundle for Codex", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const profile = await loadProfile("jetson");
+
+    expect(profile.agents).toContain("codex");
+    expect(
+      profile.skills.npx.find((entry) => entry.repo === JETSON_SOURCE.repo),
+    ).toEqual(JETSON_SOURCE);
+  });
+});
+
 describe("opensrc routing (real profiles)", () => {
   const REAL_PROFILES = join(REPO_ROOT, "profiles");
   const OPENSRC_ROUTE = {

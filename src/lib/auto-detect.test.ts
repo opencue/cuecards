@@ -330,6 +330,23 @@ describe("detectProfileV2 — Python deps", () => {
     expect(python!.confidence).toBeGreaterThan(aws!.confidence);
   });
 
+  test("Jetson Python dependencies select jetson above generic python", () => {
+    writeFileSync(
+      join(tmp, "requirements.txt"),
+      "jetson-stats==4.3.2\njetson-containers==0.4.2\n",
+    );
+
+    const results = detectProfileV2(tmp);
+    const jetson = results.find((result) => result.profile === "jetson");
+    const python = results.find((result) => result.profile === "python");
+
+    expect(jetson).toBeDefined();
+    expect(python).toBeDefined();
+    expect(results[0]?.profile).toBe("jetson");
+    expect(jetson!.confidence).toBeGreaterThan(python!.confidence);
+    expect(jetson!.reasons.join(" ")).toContain("jetson");
+  });
+
   test("version specifiers, extras, and comments are stripped", () => {
     writeFileSync(join(tmp, "requirements.txt"), [
       "# payments",
