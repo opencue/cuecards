@@ -45,16 +45,12 @@ skills:
         - google-cloud-waf-security
         - google-cloud-waf-sustainability
 
-    # --- Official Google Ads MCP skill ---
-    - repo: googleads/google-ads-mcp
-      skills: [account-performance-diagnostics]
-
     # --- AgriciDaniel/claude-ads: 22 sub-skills + orchestrator ---
     # Full multi-platform paid ads audit & optimization skill suite (v1.7.1)
     # Source: https://github.com/AgriciDaniel/claude-ads
     - repo: AgriciDaniel/claude-ads
       skills:
-        - claude-ads            # main orchestrator (/ads router)
+        - ads                   # main orchestrator (/ads router)
         - ads-audit             # full multi-platform audit (6 parallel subagents)
         - ads-google            # Google Ads deep analysis (Search, PMax, AI Max, Demand Gen)
         - ads-meta              # Meta Ads (Andromeda + GEM + Lattice, ASC/AAC)

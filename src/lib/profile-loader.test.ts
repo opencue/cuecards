@@ -816,6 +816,32 @@ describe("Stripe skill source (real profiles)", () => {
   });
 });
 
+describe("Google Ads remote sources (real profile)", () => {
+  const REAL_PROFILES = join(REPO_ROOT, "profiles");
+
+  test("uses the actual ads orchestrator and keeps the MCP repo out of skill resolution", async () => {
+    process.env.CUE_PROFILES_DIR = REAL_PROFILES;
+    const profile = await loadProfile("google-ads");
+
+    expect(profile.skills.npx).not.toContainEqual(
+      expect.objectContaining({ repo: "googleads/google-ads-mcp" }),
+    );
+    expect(profile.skills.npx).toContainEqual(
+      expect.objectContaining({
+        repo: "AgriciDaniel/claude-ads",
+        skills: expect.arrayContaining(["ads"]),
+      }),
+    );
+    expect(profile.skills.npx).not.toContainEqual(
+      expect.objectContaining({
+        repo: "AgriciDaniel/claude-ads",
+        skills: expect.arrayContaining(["claude-ads"]),
+      }),
+    );
+    expect(profile.mcps.map((m) => m.id)).toContain("google-ads-mcp");
+  });
+});
+
 describe("Jetson skill propagation (real profile)", () => {
   const REAL_PROFILES = join(REPO_ROOT, "profiles");
   const JETSON_SOURCE = {
