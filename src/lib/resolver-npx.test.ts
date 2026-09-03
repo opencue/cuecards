@@ -17,8 +17,10 @@ import {
   NpxFetchFailed,
   PinNotFound,
   cacheKey,
+  needsCompanionRecovery,
   resolveNpx,
   resolveNpxDetailed,
+  type NpxBatchFetchFn,
   type NpxFetchFn,
 } from "./resolver-npx";
 import { cachePath, cacheSkillPath } from "./cache";
@@ -102,6 +104,36 @@ describe("cacheKey", () => {
 // --- cache hit / miss ------------------------------------------------------
 
 describe("resolveNpx — cache behavior", () => {
+  it("batches all cold skills from one repo into one production fetch", async () => {
+    const batches: string[][] = [];
+    const fetchMany: NpxBatchFetchFn = async (repo, pin, skills, destDir) => {
+      batches.push(skills);
+      for (const skill of skills) {
+        const dir = join(destDir, skill);
+        mkdirSync(dir, { recursive: true });
+        writeFileSync(
+          join(dir, "SKILL.md"),
+          `# ${skill} from ${repo}@${pin ?? "HEAD"}\n`,
+        );
+      }
+    };
+
+    const plans = await resolveNpx(
+      profile([
+        {
+          repo: "google/skills",
+          skills: ["gcloud", "bigquery-basics", "cloud-run-basics"],
+        },
+      ]),
+      { repoRoot, fetchMany },
+    );
+
+    expect(plans).toHaveLength(3);
+    expect(batches).toEqual([
+      ["gcloud", "bigquery-basics", "cloud-run-basics"],
+    ]);
+  });
+
   it("returns LinkPlans without calling fetch when cache is fully populated", async () => {
     seedCache("anthropics/skills", undefined, ["pdf", "xlsx"]);
     const plans = await resolveNpx(
@@ -150,6 +182,25 @@ describe("resolveNpx — cache behavior", () => {
       fetch: explodingFetcher,
     });
     expect(plans).toEqual([]);
+  });
+});
+
+describe("needsCompanionRecovery", () => {
+  it("skips the GitHub fallback when the skills CLI already copied companions", () => {
+    const skillDir = join(repoRoot, "complete-skill");
+    mkdirSync(join(skillDir, "references"), { recursive: true });
+    writeFileSync(join(skillDir, "SKILL.md"), "# complete\n");
+    writeFileSync(join(skillDir, "references", "guide.md"), "# guide\n");
+
+    expect(needsCompanionRecovery(skillDir)).toBe(false);
+  });
+
+  it("keeps the fallback for legacy SKILL.md-only installs", () => {
+    const skillDir = join(repoRoot, "legacy-skill");
+    mkdirSync(skillDir, { recursive: true });
+    writeFileSync(join(skillDir, "SKILL.md"), "# legacy\n");
+
+    expect(needsCompanionRecovery(skillDir)).toBe(true);
   });
 });
 

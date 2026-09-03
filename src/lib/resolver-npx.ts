@@ -6,16 +6,15 @@
  * containing one subdir per skill. The resolver returns a LinkPlan[] mapping
  * each cached skill dir into `.claude/skills/<skill>`.
  *
- * Fetching is delegated to an injectable function so tests never shell out
- * to the real `npx`. The production fetcher (`npxFetch`) executes
- *   npx skills add <repo> --skill <name> -a claude-code -y
- * into a temp dir and then hands the populated dir to `cachePut`.
+ * Fetching is delegated to injectable functions so tests never shell out to
+ * the real `npx`. The production batch fetcher (`npxFetchMany`) executes one
+ *   npx skills add <repo> --skill <name...> -a claude-code -y
+ * per repo entry, then hands the populated directory to `cachePut`.
  *
  * Environment:
  *   SOUL_OFFLINE=1   →  cache miss is a hard failure (NpxFetchFailed).
  *   CUE_REPO_ROOT    →  override repo root (legacy: SOUL_REPO_ROOT).
  *
- * Owned by agent A7. Touches only bin/cli/lib/resolver-npx*.ts and cache.ts.
  */
 
 import { spawnSync } from "node:child_process";
@@ -109,15 +108,39 @@ export type NpxFetchFn = (
   destDir: string,
 ) => Promise<void>;
 
+/** Fetch multiple skills from one repo checkout in a single CLI invocation. */
+export type NpxBatchFetchFn = (
+  repo: string,
+  pin: string | undefined,
+  skills: string[],
+  destDir: string,
+) => Promise<void>;
+
 /**
- * Production fetcher: shells out to `npx skills add ...`.
+ * Production batch fetcher: shells out to `npx skills add ...`.
  *
  * Exported so the default resolver can use it; tests inject a mock instead
- * and never reach this code path. We don't even import child_process lazily
- * because the tests pass their own fetcher.
+ * and never reach this code path.
  */
-export const npxFetch: NpxFetchFn = async (repo, pin, skill, destDir) => {
-  const args = ["-y", "skills@latest", "add", repo, "--skill", skill, "-a", "claude-code", "-y"];
+export const npxFetchMany: NpxBatchFetchFn = async (
+  repo,
+  pin,
+  skills,
+  destDir,
+) => {
+  if (skills.length === 0) return;
+
+  const args = [
+    "-y",
+    "skills@latest",
+    "add",
+    repo,
+    "--skill",
+    ...skills,
+    "-a",
+    "claude-code",
+    "-y",
+  ];
   if (pin) {
     // Pin format from schema: "git@<sha>" or "tag@<version>".
     // `npx skills add` accepts `--ref <ref>` for both shas and tags.
@@ -149,17 +172,25 @@ export const npxFetch: NpxFetchFn = async (repo, pin, skill, destDir) => {
     });
   }
 
-  flattenNpxLayout(destDir, skill);
+  for (const skill of skills) {
+    flattenNpxLayout(destDir, skill);
+  }
 
   // Fetch companion files (scripts/, forms.md, reference.md, etc.) so the
   // installed skill is a complete package, not just SKILL.md.
-  const skillDir = join(destDir, skill);
-  if (existsSync(skillDir)) {
-    const skillPath = detectSkillPath(repo, skill);
-    if (skillPath) {
-      fetchCompanionFiles(repo, skillPath, skillDir, { quiet: true });
+  for (const skill of skills) {
+    const skillDir = join(destDir, skill);
+    if (existsSync(skillDir) && needsCompanionRecovery(skillDir)) {
+      const skillPath = detectSkillPath(repo, skill);
+      if (skillPath) {
+        fetchCompanionFiles(repo, skillPath, skillDir, { quiet: true });
+      }
     }
   }
+};
+
+export const npxFetch: NpxFetchFn = async (repo, pin, skill, destDir) => {
+  await npxFetchMany(repo, pin, [skill], destDir);
 };
 
 /**
@@ -192,6 +223,20 @@ export function flattenNpxLayout(destDir: string, skill: string): void {
   } catch { /* cleanup is best-effort */ }
 }
 
+/**
+ * Modern versions of the `skills` CLI copy the complete skill directory.
+ * Only fall back to GitHub companion discovery for legacy SKILL.md-only
+ * payloads; probing every already-complete skill adds one network round trip
+ * per skill to cold profile launches.
+ */
+export function needsCompanionRecovery(skillDir: string): boolean {
+  try {
+    return !readdirSync(skillDir).some((entry) => entry !== "SKILL.md");
+  } catch {
+    return false;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Public resolver
 // ---------------------------------------------------------------------------
@@ -201,6 +246,8 @@ export interface ResolveNpxOptions {
   repoRoot?: string;
   /** Fetcher; defaults to the real `npx skills add` shellout. */
   fetch?: NpxFetchFn;
+  /** Batch fetcher used by production to resolve one repo in one shellout. */
+  fetchMany?: NpxBatchFetchFn;
   /** Override offline flag (defaults to CUE_OFFLINE / SOUL_OFFLINE env). */
   offline?: boolean;
 }
@@ -249,13 +296,21 @@ export async function resolveNpxDetailed(
   // install tree. Tests/legacy callers may still pin it via opts.repoRoot.
   const layout: CacheLayout = opts.repoRoot ? { repoRoot: opts.repoRoot } : {};
   const fetcher = opts.fetch ?? npxFetch;
+  const batchFetcher = opts.fetchMany ?? (opts.fetch ? undefined : npxFetchMany);
   const offline = opts.offline ?? (process.env.CUE_OFFLINE ?? process.env.SOUL_OFFLINE) === "1";
 
   for (const entry of entries) {
     const key = cacheKey(entry.repo, entry.pin);
     keys[entryId(entry)] = key;
 
-    await ensureCacheForEntry(layout, key, entry, fetcher, offline);
+    await ensureCacheForEntry(
+      layout,
+      key,
+      entry,
+      fetcher,
+      batchFetcher,
+      offline,
+    );
 
     for (const skill of entry.skills) {
       plans.push({
@@ -278,6 +333,7 @@ async function ensureCacheForEntry(
   key: string,
   entry: NpxSkillRef,
   fetcher: NpxFetchFn,
+  batchFetcher: NpxBatchFetchFn | undefined,
   offline: boolean,
 ): Promise<void> {
   if (cacheHit(layout, key)) {
@@ -291,7 +347,7 @@ async function ensureCacheForEntry(
       throw new CacheCorrupt(key, missing);
     }
     // Otherwise, fall through to re-populate the missing skills.
-    await fetchInto(layout, key, entry, missing, fetcher);
+    await fetchInto(layout, key, entry, missing, fetcher, batchFetcher);
     return;
   }
 
@@ -302,7 +358,7 @@ async function ensureCacheForEntry(
       `cache miss for key ${key} and SOUL_OFFLINE=1`,
     );
   }
-  await fetchInto(layout, key, entry, entry.skills, fetcher);
+  await fetchInto(layout, key, entry, entry.skills, fetcher, batchFetcher);
 }
 
 async function fetchInto(
@@ -311,6 +367,7 @@ async function fetchInto(
   entry: NpxSkillRef,
   skills: string[],
   fetcher: NpxFetchFn,
+  batchFetcher?: NpxBatchFetchFn,
 ): Promise<void> {
   // Stage into a tmp dir, then publish via cachePut (atomic-ish rename).
   // If the slot already exists (partial-hit repair), we merge skill subdirs
@@ -318,8 +375,14 @@ async function fetchInto(
   // skills warm.
   const staging = mkdtempSync(join(tmpdir(), "cue-npx-"));
   try {
+    if (batchFetcher) {
+      await batchFetcher(entry.repo, entry.pin, skills, staging);
+    } else {
+      for (const skill of skills) {
+        await fetcher(entry.repo, entry.pin, skill, staging);
+      }
+    }
     for (const skill of skills) {
-      await fetcher(entry.repo, entry.pin, skill, staging);
       const produced = join(staging, skill);
       if (!isNonEmptyDir(produced)) {
         throw new PinNotFound(entry.repo, entry.pin ?? "HEAD", skill);
