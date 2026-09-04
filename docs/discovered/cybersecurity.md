@@ -1,29 +1,72 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-02
+updated: 2026-09-04
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="matiaspalmac-fivem-security-audit"></a>
+## 💎 [matiaspalmac/fivem-security-audit](https://github.com/matiaspalmac/fivem-security-audit)
+
+**★ 4** · exceptional (score 14.3) · JavaScript · tags: anticheat, backdoor-detection, claude-code, claude-code-skill, esx
+
+Find the money dupe, not just the malware. A Claude Code skill that reviews FiveM and RedM resources for dupes, backdoors, crash vectors and supply-chain risk. Legacy + GTA V Enhanced, ESX/QBCore/QBox/ox.
+
+✅ SKILL.md
+
+```bash
+cue skills add matiaspalmac/fivem-security-audit --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2490** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2532** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="ai-martin-lau-x-account-teardown"></a>
+## 💎 [ai-martin-lau/x-account-teardown](https://github.com/ai-martin-lau/x-account-teardown)
+
+**★ 2** · exceptional (score 13.5) · Python · tags: analytics, claude-code, claude-skill, content-strategy, creator-economy
+
+Analyze any X/Twitter account's growth from exported tweet data and reconstruct what worked.
+
+✅ SKILL.md
+
+```bash
+cue skills add ai-martin-lau/x-account-teardown --profile cybersecurity
+```
+
+---
+
+<a id="sjkim1127-reversecore-mcp"></a>
+## 💎 [sjkim1127/Reversecore_MCP](https://github.com/sjkim1127/Reversecore_MCP)
+
+**★ 197** · exceptional (score 12.8) · Python · tags: ghidra, mcp, mcp-security, mcp-server, radare2
+
+A security-first MCP server that empowers AI agents to perform automated reverse engineering, malware analysis, forensics, vulnerability research, and SAST — powered by Radare2, YARA, LIEF, Capstone, and more.
+
+```bash
+cue skills add sjkim1127/Reversecore_MCP --profile cybersecurity
 ```
 
 ---

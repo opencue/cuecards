@@ -1,55 +1,31 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "3 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-02
+updated: 2026-09-04
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="nurkamol-website-build-kit"></a>
-## 💎 [nurkamol/website-build-kit](https://github.com/nurkamol/website-build-kit)
+<a id="ai-martin-lau-x-account-teardown"></a>
+## 💎 [ai-martin-lau/x-account-teardown](https://github.com/ai-martin-lau/x-account-teardown)
 
-**★ 21** · exceptional (score 10.5) · JavaScript · tags: ai-agents, astro, claude-code, claude-code-skill, cloudflare-workers
+**★ 2** · exceptional (score 13.5) · Python · tags: analytics, claude-code, claude-skill, content-strategy, creator-economy
 
-Build production marketing sites with Claude Code — an Astro + Cloudflare Workers template, a WordPress→Astro migration playbook, and 36 silent failures documented from real rebuilds.
+Analyze any X/Twitter account's growth from exported tweet data and reconstruct what worked.
 
-```bash
-cue skills add nurkamol/website-build-kit --profile marketing
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+✅ SKILL.md
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
-```
-
----
-
-<a id="sequenzy-mcp"></a>
-## 💎 [Sequenzy/mcp](https://github.com/Sequenzy/mcp)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: ai-agents, email-marketing, lifecycle-email, marketing-automation, mcp-server
-
-MCP server for AI agents to operate Sequenzy lifecycle, campaign, and transactional email workflows.
-
-```bash
-cue skills add Sequenzy/mcp --profile marketing
+cue skills add ai-martin-lau/x-account-teardown --profile marketing
 ```
 
 ---

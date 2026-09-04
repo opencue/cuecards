@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-02
+updated: 2026-09-04
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zekainie-universal-examprep-skill"></a>
-## 💎 [ZeKaiNie/universal-examprep-skill](https://github.com/ZeKaiNie/universal-examprep-skill)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 278** · exceptional (score 20.6) · Python · tags: agent-skill, ai-tutor, anthropic, anti-hallucination, claude
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Last-night exam-cram coach as a Claude Agent Skill: turns your slides, notes and past papers into a chaptered knowledge base + quiz bank, teaches only what's in your materials, and never fabricates (measured 100% out-of-scope abstention). Bilingual EN/中文 — the 期末极速备考 skill.
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add ZeKaiNie/universal-examprep-skill --profile research
+cue skills add jakubs2623/notebooklm-skill --profile research
 ```
 
 ---
 
-<a id="sepinetam-mcp-for-stata"></a>
-## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
+<a id="sveritg-metis-ph"></a>
+## ✨ [SVerITG/Metis_PH](https://github.com/SVerITG/Metis_PH)
 
-**★ 255** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
+**★ 1** · strong (score 6.8) · Python · tags: ai-assistant, anthropic, claude, epidemiology, knowledge-management
 
-A MCP server for integrating Stata into your agent loop with a safety-first design.
-
-```bash
-cue skills add SepineTam/mcp-for-stata --profile research
-```
-
----
-
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
-
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
-
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+A Research Cortex. A research companion for Claude. Your library, notes & memory stay on your machine; answers cited from your own library; 30+ specialist skills; auto cross-pollination across   papers, meetings, ideas, notes & journal; weekly self-review that drafts improvements for your approval. Reasoning runs on the Claude API.
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add SVerITG/Metis_PH --profile research
 ```
 
 ---

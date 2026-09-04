@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for backend"
-description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-02
+updated: 2026-09-04
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
+
+```bash
+cue skills add jakubs2623/notebooklm-skill --profile backend
+```
+
+---
+
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 203096** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 203286** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
@@ -28,56 +43,15 @@ cue skills add n8n-io/n8n --profile backend
 
 ---
 
-<a id="navidmoazzez-bluesky-mcp-cli"></a>
-## 💎 [navidmoazzez/bluesky-mcp-cli](https://github.com/navidmoazzez/bluesky-mcp-cli)
-
-**★ 0** · exceptional (score 13.5) · TypeScript · tags: ai-agents, anthropic, at-protocol, atproto, bluesky
-
-Bluesky MCP server and CLI for Claude Code and AI agents. 41 tools for posting, threads, replies, timeline, search, custom feeds, lists, notifications and the social graph.
-
-✅ SKILL.md
-
-```bash
-cue skills add navidmoazzez/bluesky-mcp-cli --profile backend
-```
-
----
-
 <a id="githits-com-githits-cli"></a>
 ## 💎 [githits-com/githits-cli](https://github.com/githits-com/githits-cli)
 
-**★ 92** · exceptional (score 13.3) · TypeScript · tags: ai-coding-tools, ai-tools, cli, code-graph, code-search
+**★ 94** · exceptional (score 13.4) · TypeScript · tags: ai-coding-tools, ai-tools, cli, code-graph, code-search
 
 CLI & MCP for GitHits - The Code Context Layer for AI Coding Agents
 
 ```bash
 cue skills add githits-com/githits-cli --profile backend
-```
-
----
-
-<a id="tsukumohq-wrai-th"></a>
-## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
-
-**★ 27** · exceptional (score 13.1) · Go · tags: ai-agents, claude, claude-code, golang, mcp
-
-Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
-
-```bash
-cue skills add TsukumoHQ/WRAI.TH --profile backend
-```
-
----
-
-<a id="forger-labs-hq-researchforge"></a>
-## 💎 [forger-labs-hq/researchforge](https://github.com/forger-labs-hq/researchforge)
-
-**★ 7** · exceptional (score 10.5) · Python · tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
-
-A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or a direct API key (Gemini/Anthropic/openAI).
-
-```bash
-cue skills add forger-labs-hq/researchforge --profile backend
 ```
 
 ---
@@ -95,15 +69,80 @@ cue skills add vassiliylakhonin/agenda-intelligence-md --profile backend
 
 ---
 
-<a id="cammac-creator-ibanforge"></a>
-## 💎 [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: ai-agents, api, banking, bic, compliance
+**★ 11** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add cammac-creator/ibanforge --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="xuantinhnbs-rgb-autocad-trimble-mcp"></a>
+## ✨ [xuantinhnbs-rgb/autocad-trimble-mcp](https://github.com/xuantinhnbs-rgb/autocad-trimble-mcp)
+
+**★ 1** · strong (score 7.8) · Python · tags: autocad, autocad-automation, bim, cad, claude
+
+MCP servers that let Claude and other AI tools drive AutoCAD 2022 (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
+
+```bash
+cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
+```
+
+---
+
+<a id="cristianbarragan-foundgine"></a>
+## ✨ [CristianBarragan/Foundgine](https://github.com/CristianBarragan/Foundgine)
+
+**★ 5** · strong (score 7.7) · C# · tags: agentic-ai, ai-agents, authorization, csharp, dotnet
+
+Foundgine is a semantic execution runtime for .NET. It lets applications expose capabilities as structured intent rather than exposing persistence APIs directly, then resolves authorization, planning and provider execution behind a stable boundary.
+
+```bash
+cue skills add CristianBarragan/Foundgine --profile backend
+```
+
+---
+
+<a id="pseudogiant-xr-pseudolife-mcp"></a>
+## ✨ [Pseudogiant-xr/Pseudolife-MCP](https://github.com/Pseudogiant-xr/Pseudolife-MCP)
+
+**★ 4** · strong (score 6.8) · Python · tags: agent-memory, claude, long-term-memory, mcp, mcp-server
+
+Persistent long-term memory for Agents — an MCP server with an associative memory bank, a canonical-fact cortex, sleep-like dream consolidation, and a web console. Not quite alive.
+
+```bash
+cue skills add Pseudogiant-xr/Pseudolife-MCP --profile backend
+```
+
+---
+
+<a id="sveritg-metis-ph"></a>
+## ✨ [SVerITG/Metis_PH](https://github.com/SVerITG/Metis_PH)
+
+**★ 1** · strong (score 6.8) · Python · tags: ai-assistant, anthropic, claude, epidemiology, knowledge-management
+
+A Research Cortex. A research companion for Claude. Your library, notes & memory stay on your machine; answers cited from your own library; 30+ specialist skills; auto cross-pollination across   papers, meetings, ideas, notes & journal; weekly self-review that drafts improvements for your approval. Reasoning runs on the Claude API.
+
+```bash
+cue skills add SVerITG/Metis_PH --profile backend
+```
+
+---
+
+<a id="anirudhlath-alfred"></a>
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+
+```bash
+cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---

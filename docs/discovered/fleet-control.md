@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-02
+updated: 2026-09-04
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="tsukumohq-wrai-th"></a>
-## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
+<a id="neomjs-neo"></a>
+## 💎 [neomjs/neo](https://github.com/neomjs/neo)
 
-**★ 27** · exceptional (score 13.1) · Go · tags: ai-agents, claude, claude-code, golang, mcp
+**★ 3265** · exceptional (score 14) · JavaScript · tags: agent-memory, ai, ai-agent, ai-memory, context-engineering
 
-Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
+Neo.mjs is a self-evolving software organism: a professional end-to-end AI engineering team whose cross-model swarm inhabits live apps via Neural Link, Active Hybrid GraphRAG, DreamService, and self-healing loops.
 
 ```bash
-cue skills add TsukumoHQ/WRAI.TH --profile fleet-control
+cue skills add neomjs/neo --profile fleet-control
 ```
 
 ---
@@ -42,9 +42,9 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 ---
 
 <a id="eduardo-salvador-agent-harness-kit"></a>
-## ✨ [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
+## 💎 [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
 
-**★ 5** · strong (score 7.9) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
+**★ 6** · exceptional (score 8) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
 
 An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to verified delivery.
 
