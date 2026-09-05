@@ -1,8 +1,8 @@
 ---
 title: "0nicell/data-deletion-skill — Claude Code skill discovered by cue"
-description: "A Claude skill for running structured personal-data erasure campaigns — 328 data brokers, OSINT tools and breach-search engines with verified privacy contacts, "
+description: "A Claude skill for running structured personal-data erasure campaigns — 329 data brokers, OSINT tools and breach-search engines with verified privacy contacts, "
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, core]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, core]
 
 **★ 9** · exceptional (score 10.1)
 
-> A Claude skill for running structured personal-data erasure campaigns — 328 data brokers, OSINT tools and breach-search engines with verified privacy contacts, request templates for 13 privacy regimes, and escalation paths to 21 regulators.
+> A Claude skill for running structured personal-data erasure campaigns — 329 data brokers, OSINT tools and breach-search engines with verified privacy contacts, request templates for 13 privacy regimes, and escalation paths to 21 regulators.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-09-04
+- 🗓️ Last pushed: 2026-09-05
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

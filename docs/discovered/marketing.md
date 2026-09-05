@@ -1,31 +1,42 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ai-martin-lau-x-account-teardown"></a>
-## 💎 [ai-martin-lau/x-account-teardown](https://github.com/ai-martin-lau/x-account-teardown)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 2** · exceptional (score 13.5) · Python · tags: analytics, claude-code, claude-skill, content-strategy, creator-economy
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Analyze any X/Twitter account's growth from exported tweet data and reconstruct what worked.
-
-✅ SKILL.md
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add ai-martin-lau/x-account-teardown --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+```
+
+---
+
+<a id="bearscloud-wildberries-agent-integration"></a>
+## 💎 [BearsCLOUD/wildberries-agent-integration](https://github.com/BearsCLOUD/wildberries-agent-integration)
+
+**★ 0** · exceptional (score 8) · Python · tags: ai-agents, chatgpt, chatgpt-plugin, claude, claude-plugin
+
+Русскоязычный бесплатный MCP-плагин Wildberries: аналитика, конкуренты, SEO, карточки, фото, калькуляторы и прогноз пополнения для Codex и Claude
+
+```bash
+cue skills add BearsCLOUD/wildberries-agent-integration --profile marketing
 ```
 
 ---

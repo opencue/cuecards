@@ -2,7 +2,7 @@
 title: "micheam/ai-assistant-console — Claude Code skill discovered by cue"
 description: "A Unix-friendly CLI for LLM chat and text generation. One interface for Anthropic Claude, OpenAI, Groq, and Cerebras — pipe stdin, reference files with `@path`,"
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.9 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-09-03
+- 🗓️ Last pushed: 2026-09-04
 - 🏷️ Tags: ai, ai-assistant, anthropic, claude, cli-app, command-line-tool, go, gpt, llm, openai, terminal
 
 ## Best fit cue profiles

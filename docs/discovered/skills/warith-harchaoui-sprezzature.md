@@ -2,20 +2,20 @@
 title: "warith-harchaoui/sprezzature — Claude Code skill discovered by cue"
 description: "sprezzature is a set of Claude / OpenCode skills with a curated design system for a front-end stack. It covers colors, accessibility, the user interface (UI), u"
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [warith-harchaoui/sprezzature](https://github.com/warith-harchaoui/sprezzature)
 
-**★ 9** · potential (score 4.2) · HTML
+**★ 10** · potential (score 4.1) · HTML
 
 > sprezzature is a set of Claude / OpenCode skills with a curated design system for a front-end stack. It covers colors, accessibility, the user interface (UI), user experience (UX), audio, vision, and the path from the command-line interface (CLI) to the graphical user interface (GUI).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
-- ⭐ 9 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
+- ⭐ 10 stars
 - 🗓️ Last pushed: 2026-09-04
 - 🏷️ Tags: (none)
 

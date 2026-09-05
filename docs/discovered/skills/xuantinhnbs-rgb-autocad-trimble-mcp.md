@@ -1,8 +1,8 @@
 ---
 title: "xuantinhnbs-rgb/autocad-trimble-mcp — Claude Code skill discovered by cue"
-description: "MCP servers that let Claude and other AI tools drive AutoCAD 2022 (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One i"
+description: "MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One "
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, backend]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, backend]
 
 **★ 1** · strong (score 7.8) · Python · autocad, autocad-automation, bim, cad, claude
 
-> MCP servers that let Claude and other AI tools drive AutoCAD 2022 (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
+> MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-03
+- 🗓️ Last pushed: 2026-09-04
 - 🏷️ Tags: autocad, autocad-automation, bim, cad, claude, claude-code, ifc, mcp, mcp-server, model-context-protocol, trimble-connect-project-permissions, windows
 
 ## Best fit cue profiles

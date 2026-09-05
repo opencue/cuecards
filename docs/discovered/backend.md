@@ -1,70 +1,107 @@
 ---
 title: "Claude Code Skills for backend"
-description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="doobidoo-mcp-memory-service"></a>
+## 💎 [doobidoo/mcp-memory-service](https://github.com/doobidoo/mcp-memory-service)
 
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 1925** · exceptional (score 17) · Python · tags: agent-memory, agentic-ai, ai-agents, autogen, claude
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation.
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
+cue skills add doobidoo/mcp-memory-service --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="rohananandpandit-trading212-mcp-server"></a>
+## 💎 [RohanAnandPandit/trading212-mcp-server](https://github.com/RohanAnandPandit/trading212-mcp-server)
 
-**★ 203286** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 58** · exceptional (score 13.2) · Python · tags: mcp, mcp-server
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+The Trading212 MCP server is a Model Context Protocol server implementation that provides seamless data connectivity to the Trading212 trading platform enabling advanced interaction capabilities via the public beta API.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add RohanAnandPandit/trading212-mcp-server --profile backend
 ```
 
 ---
 
-<a id="githits-com-githits-cli"></a>
-## 💎 [githits-com/githits-cli](https://github.com/githits-com/githits-cli)
+<a id="systempromptio-systemprompt-core"></a>
+## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
 
-**★ 94** · exceptional (score 13.4) · TypeScript · tags: ai-coding-tools, ai-tools, cli, code-graph, code-search
+**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
 
-CLI & MCP for GitHits - The Code Context Layer for AI Coding Agents
+AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
 
 ```bash
-cue skills add githits-com/githits-cli --profile backend
+cue skills add systempromptio/systemprompt-core --profile backend
 ```
 
 ---
 
-<a id="vassiliylakhonin-agenda-intelligence-md"></a>
-## 💎 [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
+<a id="retyc-retyc-cli"></a>
+## 💎 [retyc/retyc-cli](https://github.com/retyc/retyc-cli)
 
-**★ 6** · exceptional (score 9.6) · Python · tags: ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema
+**★ 22** · exceptional (score 12) · Go · tags: claude-code, claude-desktop, cli, cursor-builtin, dataroom
 
-Deterministic evidence-packet linter for claim-backed AI output. Reports packet completeness, not truth. CLI, Python API, MCP, A2A, Cloudflare Workers.
+Official CLI client for Retyc with MCP server
 
 ```bash
-cue skills add vassiliylakhonin/agenda-intelligence-md --profile backend
+cue skills add retyc/retyc-cli --profile backend
+```
+
+---
+
+<a id="coseto6125-egent-code-plexus"></a>
+## 💎 [coseto6125/egent-code-plexus](https://github.com/coseto6125/egent-code-plexus)
+
+**★ 7** · exceptional (score 10.7) · Rust · tags: ai-agent, ai-coding, code-graph, code-intelligence, codegraph-rust
+
+A high-performance code intelligence graph for LLMs and AI agents. Sub-second structural queries, impact analysis, and cross-repo API contracts for autonomous coding workflows.
+
+```bash
+cue skills add coseto6125/egent-code-plexus --profile backend
+```
+
+---
+
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+
+**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
+
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
+
+```bash
+cue skills add DaizeDong/schedule-reminder --profile backend
+```
+
+---
+
+<a id="greenstevester-db-architecture-reviewer"></a>
+## 💎 [greenstevester/db-architecture-reviewer](https://github.com/greenstevester/db-architecture-reviewer)
+
+**★ 0** · exceptional (score 8) · HTML · tags: claude-code, claude-skill, code-review, data-modeling, database
+
+Claude Code skill that documents a PostgreSQL schema and reviews its design in one run
+
+```bash
+cue skills add greenstevester/db-architecture-reviewer --profile backend
 ```
 
 ---
@@ -82,12 +119,38 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
+<a id="bearscloud-wildberries-agent-integration"></a>
+## 💎 [BearsCLOUD/wildberries-agent-integration](https://github.com/BearsCLOUD/wildberries-agent-integration)
+
+**★ 0** · exceptional (score 8) · Python · tags: ai-agents, chatgpt, chatgpt-plugin, claude, claude-plugin
+
+Русскоязычный бесплатный MCP-плагин Wildberries: аналитика, конкуренты, SEO, карточки, фото, калькуляторы и прогноз пополнения для Codex и Claude
+
+```bash
+cue skills add BearsCLOUD/wildberries-agent-integration --profile backend
+```
+
+---
+
+<a id="gordonkjlee-facthouse"></a>
+## 💎 [gordonkjlee/facthouse](https://github.com/gordonkjlee/facthouse)
+
+**★ 2** · exceptional (score 8) · TypeScript · tags: ai-memory, knowledge-engine, mcp, mcp-server, memory-system
+
+Local AI memory that consolidates - neuroscience-inspired Data → Information → Knowledge in SQLite you own.
+
+```bash
+cue skills add gordonkjlee/facthouse --profile backend
+```
+
+---
+
 <a id="xuantinhnbs-rgb-autocad-trimble-mcp"></a>
 ## ✨ [xuantinhnbs-rgb/autocad-trimble-mcp](https://github.com/xuantinhnbs-rgb/autocad-trimble-mcp)
 
 **★ 1** · strong (score 7.8) · Python · tags: autocad, autocad-automation, bim, cad, claude
 
-MCP servers that let Claude and other AI tools drive AutoCAD 2022 (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
+MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
 
 ```bash
 cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
@@ -95,41 +158,28 @@ cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
 
 ---
 
-<a id="cristianbarragan-foundgine"></a>
-## ✨ [CristianBarragan/Foundgine](https://github.com/CristianBarragan/Foundgine)
+<a id="ohneben-anytype-mcp"></a>
+## ✨ [ohneben/Anytype-MCP](https://github.com/ohneben/Anytype-MCP)
 
-**★ 5** · strong (score 7.7) · C# · tags: agentic-ai, ai-agents, authorization, csharp, dotnet
+**★ 1** · strong (score 7.8) · TypeScript · tags: anytype, anytype-api, claude, claude-code, cursor
 
-Foundgine is a semantic execution runtime for .NET. It lets applications expose capabilities as structured intent rather than exposing persistence APIs directly, then resolves authorization, planning and provider execution behind a stable boundary.
+ohneben's Anytype MCP — a self-hosted Anytype MCP server: the official tool set as an always-on Docker container with a Streamable-HTTP endpoint any MCP client can use. Health checks, optional token auth, 🟢/🟡/🔴 tool hints.
 
 ```bash
-cue skills add CristianBarragan/Foundgine --profile backend
+cue skills add ohneben/Anytype-MCP --profile backend
 ```
 
 ---
 
-<a id="pseudogiant-xr-pseudolife-mcp"></a>
-## ✨ [Pseudogiant-xr/Pseudolife-MCP](https://github.com/Pseudogiant-xr/Pseudolife-MCP)
+<a id="krzysztof318-mailfathom"></a>
+## ✨ [Krzysztof318/MailFathom](https://github.com/Krzysztof318/MailFathom)
 
-**★ 4** · strong (score 6.8) · Python · tags: agent-memory, claude, long-term-memory, mcp, mcp-server
+**★ 14** · strong (score 5.4) · C# · tags: ai, ai-agents, aspnet-core, clean-architecture, csharp
 
-Persistent long-term memory for Agents — an MCP server with an associative memory bank, a canonical-fact cortex, sleep-like dream consolidation, and a web console. Not quite alive.
-
-```bash
-cue skills add Pseudogiant-xr/Pseudolife-MCP --profile backend
-```
-
----
-
-<a id="sveritg-metis-ph"></a>
-## ✨ [SVerITG/Metis_PH](https://github.com/SVerITG/Metis_PH)
-
-**★ 1** · strong (score 6.8) · Python · tags: ai-assistant, anthropic, claude, epidemiology, knowledge-management
-
-A Research Cortex. A research companion for Claude. Your library, notes & memory stay on your machine; answers cited from your own library; 30+ specialist skills; auto cross-pollination across   papers, meetings, ideas, notes & journal; weekly self-review that drafts improvements for your approval. Reasoning runs on the Claude API.
+A brain for your mail: MailFathom turns IMAP mailboxes into a self-hosted, AI-native service. Mail synchronizes into your own PostgreSQL, is indexed for search and retrieval, and is served to AI agents over the Model Context Protocol. Semantic retrieval, answering, and gated write tools. .NET 10, AGPL-3.0-only.
 
 ```bash
-cue skills add SVerITG/Metis_PH --profile backend
+cue skills add Krzysztof318/MailFathom --profile backend
 ```
 
 ---

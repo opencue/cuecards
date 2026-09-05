@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="0xcjl-handmade-editorial-poster"></a>
+## 💎 [0xcjl/handmade-editorial-poster](https://github.com/0xcjl/handmade-editorial-poster)
+
+**★ 1** · exceptional (score 13.3) · tags: agent, ai-agents, claude-code, claude-code-skill, editorial-design
+
+Create one handcrafted editorial poster per photo with quiet paper texture and minimal illustrated composition.
+
+✅ SKILL.md
+
+```bash
+cue skills add 0xcjl/handmade-editorial-poster --profile creative-media
+```
 
 ---
 

@@ -1,23 +1,23 @@
 ---
 title: "Vladimir-Human/humanizer-ru — Claude Code skill discovered by cue"
-description: "Нормализация и диагностика русского текста: артефакты копипасты, типографика без правки смысла, детектор связок со статусом домена. Числа — в реестре фактов с э"
+description: "Находит следы машинного текста в русском и объясняет их вам"
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Vladimir-Human/humanizer-ru](https://github.com/Vladimir-Human/humanizer-ru)
 
-**★ 123** · exceptional (score 14.6) · Python · agent-skills, ai, ai-detection, ai-writing, claude
+**★ 123** · exceptional (score 15.6) · Python · agent-skills, ai, ai-detection, ai-writing, claude
 
-> Нормализация и диагностика русского текста: артефакты копипасты, типографика без правки смысла, детектор связок со статусом домена. Числа — в реестре фактов с эрратой. Не для английского, кода, юрдокументов и художественной прозы
+> Находит следы машинного текста в русском и объясняет их вам
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
 - ✅ Contains SKILL.md
 - ⭐ 123 stars
-- 🗓️ Last pushed: 2026-09-04
+- 🗓️ Last pushed: 2026-09-05
 - 🏷️ Tags: agent-skills, ai, ai-detection, ai-writing, claude, claude-skill, cli, github-action, humanizer, llm, llm-tools, nlp, pypi, python, russian, russian-language, skill, text-humanization, text-normalization, typography
 
 ## Best fit cue profiles

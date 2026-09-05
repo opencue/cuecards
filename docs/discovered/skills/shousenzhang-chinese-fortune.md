@@ -2,22 +2,22 @@
 title: "ShousenZHANG/chinese-fortune — Claude Code skill discovered by cue"
 description: "Comprehensive Chinese metaphysics & fortune-telling toolkit · Claude Skill · 20+ methods · MIT"
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ShousenZHANG/chinese-fortune](https://github.com/ShousenZHANG/chinese-fortune)
 
-**★ 6** · exceptional (score 15.6) · Python · ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics
+**★ 7** · exceptional (score 14.7) · Python · ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics
 
 > Comprehensive Chinese metaphysics & fortune-telling toolkit · Claude Skill · 20+ methods · MIT
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-09-04
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-09-05
 - 🏷️ Tags: ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics, claude-skill, divination, fengshui, fortune-telling, iching, lunar-calendar, tarot, zodiac
 
 ## Best fit cue profiles

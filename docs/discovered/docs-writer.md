@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,21 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="chaosx-space-god-of-the-void"></a>
+## 💎 [CHAOSX-SPACE/god-of-the-void](https://github.com/CHAOSX-SPACE/god-of-the-void)
+
+**★ 1** · exceptional (score 14.8) · Python · tags: agent-memory, ai-agent, anthropic, claude, claude-code
+
+A Claude Code skill with a BODY: persistent memory across sessions, ~0-token semantic search, an errarium that ambushes you before you repeat a bug, caged autonomy, and a local dashboard. 16 organs · 54 commands · 1,650 tests · zero dependencies.
+
+✅ SKILL.md
+
+```bash
+cue skills add CHAOSX-SPACE/god-of-the-void --profile docs-writer
+```
 
 ---
 
@@ -37,19 +52,6 @@ Automate your personal knowledge base in Obsidian using Claude. Feed raw content
 
 ```bash
 cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
-```
-
----
-
-<a id="cenmeow-markdown-new-skill"></a>
-## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
-
-**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
-
-Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
-
-```bash
-cue skills add CenMeow/markdown-new-skill --profile docs-writer
 ```
 
 ---

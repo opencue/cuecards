@@ -2,19 +2,19 @@
 title: "Eduardo-Salvador/Agent-Harness-Kit — Claude Code skill discovered by cue"
 description: "An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to "
 layout: page
-updated: 2026-09-04
+updated: 2026-09-05
 tags: [claude-code, skill, fleet-control]
 ---
 
-# 💎 [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
+# ✨ [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
 
-**★ 6** · exceptional (score 8) · Python · agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
+**★ 6** · strong (score 7.9) · Python · agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
 
 > An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to verified delivery.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
 - ⭐ 6 stars
 - 🗓️ Last pushed: 2026-09-04
 - 🏷️ Tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code, cli, codex, context-engineering, developer-tools, hackathon, harness-engineering, multi-agent, multi-agent-systems, python, task-graph
