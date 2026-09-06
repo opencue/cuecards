@@ -1,107 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-05
+updated: 2026-09-06
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="doobidoo-mcp-memory-service"></a>
-## 💎 [doobidoo/mcp-memory-service](https://github.com/doobidoo/mcp-memory-service)
+<a id="agentgamelab-mneme"></a>
+## 💎 [AgentGameLab/mneme](https://github.com/AgentGameLab/mneme)
 
-**★ 1925** · exceptional (score 17) · Python · tags: agent-memory, agentic-ai, ai-agents, autogen, claude
+**★ 7** · exceptional (score 10.7) · JavaScript · tags: agent-memory, ai-agents, claude-code, claude-skills, claudecode
 
-Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation.
+Persistent long-term memory for Claude Code agents — SQLite + FTS5 + sqlite-vec + RRF hybrid recall over MCP, with Chinese tokenization. Local-first, graceful degradation.
 
 ```bash
-cue skills add doobidoo/mcp-memory-service --profile backend
+cue skills add AgentGameLab/mneme --profile backend
 ```
 
 ---
 
-<a id="rohananandpandit-trading212-mcp-server"></a>
-## 💎 [RohanAnandPandit/trading212-mcp-server](https://github.com/RohanAnandPandit/trading212-mcp-server)
+<a id="fastprod-contextengine"></a>
+## 💎 [FASTPROD/ContextEngine](https://github.com/FASTPROD/ContextEngine)
 
-**★ 58** · exceptional (score 13.2) · Python · tags: mcp, mcp-server
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: ai-agents, claude-desktop, cursor, knowledge-base, local-first
 
-The Trading212 MCP server is a Model Context Protocol server implementation that provides seamless data connectivity to the Trading212 trading platform enabling advanced interaction capabilities via the public beta API.
-
-```bash
-cue skills add RohanAnandPandit/trading212-mcp-server --profile backend
-```
-
----
-
-<a id="systempromptio-systemprompt-core"></a>
-## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
-
-**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
-
-AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
+MCP server — AI agents that remember across sessions. Zero API keys, 100% local.
 
 ```bash
-cue skills add systempromptio/systemprompt-core --profile backend
-```
-
----
-
-<a id="retyc-retyc-cli"></a>
-## 💎 [retyc/retyc-cli](https://github.com/retyc/retyc-cli)
-
-**★ 22** · exceptional (score 12) · Go · tags: claude-code, claude-desktop, cli, cursor-builtin, dataroom
-
-Official CLI client for Retyc with MCP server
-
-```bash
-cue skills add retyc/retyc-cli --profile backend
-```
-
----
-
-<a id="coseto6125-egent-code-plexus"></a>
-## 💎 [coseto6125/egent-code-plexus](https://github.com/coseto6125/egent-code-plexus)
-
-**★ 7** · exceptional (score 10.7) · Rust · tags: ai-agent, ai-coding, code-graph, code-intelligence, codegraph-rust
-
-A high-performance code intelligence graph for LLMs and AI agents. Sub-second structural queries, impact analysis, and cross-repo API contracts for autonomous coding workflows.
-
-```bash
-cue skills add coseto6125/egent-code-plexus --profile backend
-```
-
----
-
-<a id="daizedong-schedule-reminder"></a>
-## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
-
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
-
-Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
-
-```bash
-cue skills add DaizeDong/schedule-reminder --profile backend
-```
-
----
-
-<a id="greenstevester-db-architecture-reviewer"></a>
-## 💎 [greenstevester/db-architecture-reviewer](https://github.com/greenstevester/db-architecture-reviewer)
-
-**★ 0** · exceptional (score 8) · HTML · tags: claude-code, claude-skill, code-review, data-modeling, database
-
-Claude Code skill that documents a PostgreSQL schema and reviews its design in one run
-
-```bash
-cue skills add greenstevester/db-architecture-reviewer --profile backend
+cue skills add FASTPROD/ContextEngine --profile backend
 ```
 
 ---
@@ -119,67 +54,15 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="bearscloud-wildberries-agent-integration"></a>
-## 💎 [BearsCLOUD/wildberries-agent-integration](https://github.com/BearsCLOUD/wildberries-agent-integration)
-
-**★ 0** · exceptional (score 8) · Python · tags: ai-agents, chatgpt, chatgpt-plugin, claude, claude-plugin
-
-Русскоязычный бесплатный MCP-плагин Wildberries: аналитика, конкуренты, SEO, карточки, фото, калькуляторы и прогноз пополнения для Codex и Claude
-
-```bash
-cue skills add BearsCLOUD/wildberries-agent-integration --profile backend
-```
-
----
-
-<a id="gordonkjlee-facthouse"></a>
-## 💎 [gordonkjlee/facthouse](https://github.com/gordonkjlee/facthouse)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: ai-memory, knowledge-engine, mcp, mcp-server, memory-system
-
-Local AI memory that consolidates - neuroscience-inspired Data → Information → Knowledge in SQLite you own.
-
-```bash
-cue skills add gordonkjlee/facthouse --profile backend
-```
-
----
-
 <a id="xuantinhnbs-rgb-autocad-trimble-mcp"></a>
 ## ✨ [xuantinhnbs-rgb/autocad-trimble-mcp](https://github.com/xuantinhnbs-rgb/autocad-trimble-mcp)
 
-**★ 1** · strong (score 7.8) · Python · tags: autocad, autocad-automation, bim, cad, claude
+**★ 1** · strong (score 7.7) · Python · tags: autocad, autocad-automation, bim, cad, claude
 
 MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
 
 ```bash
 cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
-```
-
----
-
-<a id="ohneben-anytype-mcp"></a>
-## ✨ [ohneben/Anytype-MCP](https://github.com/ohneben/Anytype-MCP)
-
-**★ 1** · strong (score 7.8) · TypeScript · tags: anytype, anytype-api, claude, claude-code, cursor
-
-ohneben's Anytype MCP — a self-hosted Anytype MCP server: the official tool set as an always-on Docker container with a Streamable-HTTP endpoint any MCP client can use. Health checks, optional token auth, 🟢/🟡/🔴 tool hints.
-
-```bash
-cue skills add ohneben/Anytype-MCP --profile backend
-```
-
----
-
-<a id="krzysztof318-mailfathom"></a>
-## ✨ [Krzysztof318/MailFathom](https://github.com/Krzysztof318/MailFathom)
-
-**★ 14** · strong (score 5.4) · C# · tags: ai, ai-agents, aspnet-core, clean-architecture, csharp
-
-A brain for your mail: MailFathom turns IMAP mailboxes into a self-hosted, AI-native service. Mail synchronizes into your own PostgreSQL, is indexed for search and retrieval, and is served to AI agents over the Model Context Protocol. Semantic retrieval, answering, and gated write tools. .NET 10, AGPL-3.0-only.
-
-```bash
-cue skills add Krzysztof318/MailFathom --profile backend
 ```
 
 ---
@@ -193,6 +76,19 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile backend
+```
+
+---
+
+<a id="namht4devlop-provenlens"></a>
+## ✨ [NamHT4Devlop/provenlens](https://github.com/NamHT4Devlop/provenlens)
+
+**★ 0** · strong (score 5) · JavaScript · tags: blast-radius, call-graph, cli, code-analysis, code-search
+
+Personal pre-indexed code knowledge graph for Java, Ruby, TypeScript and JavaScript — a call graph plus nine string-binding plugins for the wiring a call graph structurally cannot see: MyBatis, Camel, SQS, Kafka, HTTP routes, Spring events, GraphQL, gRPC, Flyway. Runs entirely offline.
+
+```bash
+cue skills add NamHT4Devlop/provenlens --profile backend
 ```
 
 ---

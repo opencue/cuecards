@@ -2,19 +2,19 @@
 title: "devondragon/unifi-network-ops — Claude Code skill discovered by cue"
 description: "Claude Code skills for auditing, tuning, and safely changing UniFi networks via the controller API — baseline capture, RF tuning, the write path, and security r"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-06
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [devondragon/unifi-network-ops](https://github.com/devondragon/unifi-network-ops)
 
-**★ 1** · potential (score 4.3) · Shell
+**★ 1** · potential (score 4.2) · Shell
 
 > Claude Code skills for auditing, tuning, and safely changing UniFi networks via the controller API — baseline capture, RF tuning, the write path, and security review.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-03
 - 🏷️ Tags: (none)

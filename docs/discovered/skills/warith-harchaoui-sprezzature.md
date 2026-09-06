@@ -2,7 +2,7 @@
 title: "warith-harchaoui/sprezzature — Claude Code skill discovered by cue"
 description: "sprezzature is a set of Claude / OpenCode skills with a curated design system for a front-end stack. It covers colors, accessibility, the user interface (UI), u"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-06
 tags: [claude-code, skill, core]
 ---
 

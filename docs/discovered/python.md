@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for python"
-description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-05
+updated: 2026-09-06
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="pipulate-pipulate"></a>
-## 💎 [pipulate/pipulate](https://github.com/pipulate/pipulate)
-
-**★ 14** · exceptional (score 10.4) · Python · tags: ai, fasthtml, htmx, machine-learning, mcp
-
-Local First AI SEO Software on Nix, FastHTML & HTMX
-
-```bash
-cue skills add pipulate/pipulate --profile python
-```
 
 ---
 

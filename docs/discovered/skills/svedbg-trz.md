@@ -2,7 +2,7 @@
 title: "svedbg/trz — Claude Code skill discovered by cue"
 description: "Bulgarian payroll (ТРЗ) audit skill for Claude Code and GitHub Copilot — checks ведомости against КТ, КСО, ЗДДФЛ and НСОРЗ"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-05
+- 🗓️ Last pushed: 2026-09-06
 - 🏷️ Tags: agent-plugins, agent-skills, bulgaria, claude-code, claude-skill, compliance, copilot-plugin, github-copilot, hr, labour-law, payroll
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "sma-framework/sma — Claude Code skill discovered by cue"
 description: "Memory and accountability for AI coding agents. Layered memory that arrives at the moment of action, multi-terminal coordination without a server, and a trust s"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-06
 tags: [claude-code, skill, core]
 ---
 
