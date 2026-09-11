@@ -2886,7 +2886,11 @@ export async function run(args: string[]): Promise<number> {
           };
           mcpDisabledIds = disabled;
           process.stderr.write(
-            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · --cue-pick-mcps to change\n`,
+            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · ${
+              parsed.forcePickMcps && isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS)
+                ? "asked every launch (CUE_ALWAYS_PICK_MCPS) · unset it to remember"
+                : "--cue-pick-mcps to change"
+            }\n`,
           );
         }
         // Persist whenever the user actively reviewed (keeps the remembered set

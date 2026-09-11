@@ -55,7 +55,7 @@ describe("parse: CUE_ALWAYS_PICK_MCPS", () => {
     expect(parse(["claude", "-p", "x"]).forcePickMcps).toBe(false);
   });
 
-  test("=1 forces the MCP toggle like --cue-pick-mcps, without forcing the profile picker", () => {
+  test("=1 sets forcePickMcps (the --cue-pick-mcps flag) without setting forcePick", () => {
     process.env.CUE_ALWAYS_PICK_MCPS = "1";
     const p = parse(["claude", "-p", "x"]);
     expect(p.forcePickMcps).toBe(true);
