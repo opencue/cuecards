@@ -1246,9 +1246,9 @@ async function materializeRuntimeUnlocked(
   // entirely and let the overlay's source state win.
   let sameAccount = true;
   if (input.credentialsSource) {
-    const srcUuid = await accountUuidAt(
-      join(input.credentialsSource, ".claude.json"),
-    );
+    const srcUuid =
+      (await accountUuidAt(join(input.credentialsSource, ".config.json"))) ??
+      (await accountUuidAt(join(input.credentialsSource, ".claude.json")));
     // 2.1.x keeps the identity in .config.json; older clients in .claude.json.
     const oldUuid =
       (await accountUuidAt(join(runtimeDir, ".config.json"))) ??
@@ -1503,13 +1503,24 @@ async function syncMcpsIntoConfigJson(
     return;
   }
   if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return;
+  const rawExisting = parsed.mcpServers;
   const existing =
-    (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
+    rawExisting && typeof rawExisting === "object" && !Array.isArray(rawExisting)
+      ? (rawExisting as Record<string, unknown>)
+      : {};
+  // Only `mcpServers` is touched; every other field is Claude's own state and
+  // is carried over as read. (Between the read above and the rename below a
+  // concurrently running Claude session could rewrite the file — accepted: the
+  // sync runs once per launch and Claude keeps the file read-only.)
   parsed.mcpServers = mergeMcpServers(existing, mcpServers, disabledIds);
 
   const tmp = `${target}.cue-${process.pid}.tmp`;
-  await writeFile(tmp, JSON.stringify(parsed, null, 2), { mode });
-  await rename(tmp, target);
+  try {
+    await writeFile(tmp, JSON.stringify(parsed, null, 2), { mode });
+    await rename(tmp, target);
+  } finally {
+    await rm(tmp, { force: true });
+  }
 }
 
 // Build the merged Claude Code settings.json content (string).
@@ -1608,6 +1619,7 @@ async function overlaySourceState(
   // as the entry list above: with no CLAUDE_CONFIG_DIR, Claude Code keeps
   // `oauthAccount` in `~/.claude.json`, not in `~/.claude/.claude.json`.
   const identityOf = async (dir: string): Promise<string | undefined> =>
+    (await accountUuidAt(join(dir, ".config.json"))) ??
     (await accountUuidAt(join(dir, ".claude.json"))) ??
     (basename(dir) === ".claude"
       ? await accountUuidAt(join(dirname(dir), ".claude.json"))
