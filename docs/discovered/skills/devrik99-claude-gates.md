@@ -2,7 +2,7 @@
 title: "DevRik99/claude-gates — Claude Code skill discovered by cue"
 description: "Installable deterministic gates (hooks) for Claude Code: block destructive commands, protected paths, and enforce delegation/spec/quality rules. Configurable pe"
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 

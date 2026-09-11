@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="rishabhrawat35-github-readme-writer"></a>
-## 💎 [rishabhrawat35/github-readme-writer](https://github.com/rishabhrawat35/github-readme-writer)
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 2** · exceptional (score 10.5) · Python · tags: claude-code-skill, claude-skills, developer-productivity, developer-tool, github
+**★ 490** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
 
-An AI agent skill that reads every file in a repo before writing a word, then produces a README with real commands, real output and only the sections that repo needs. Includes a file inventory script and a README linter.
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rishabhrawat35/github-readme-writer --profile docs-writer
+cue skills add Ikalus1988/MisakaNet --profile docs-writer
 ```
 
 ---
@@ -33,7 +33,7 @@ cue skills add rishabhrawat35/github-readme-writer --profile docs-writer
 <a id="onourimpram-mneme"></a>
 ## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 2** · exceptional (score 10.4) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
+**★ 2** · exceptional (score 10.5) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
 Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 

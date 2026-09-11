@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="pleaseprompto-google-ai-mode-skill"></a>
-## 💎 [PleasePrompto/google-ai-mode-skill](https://github.com/PleasePrompto/google-ai-mode-skill)
-
-**★ 295** · exceptional (score 21.8) · Python · tags: ai-search, browser-automation, citations, claude-code, claude-skill
-
-Claude Code skill for free Google AI Mode search with citations. Zero-config setup, persistent browser profile, query optimization. Token-efficient web research.
-
-✅ SKILL.md
-
-```bash
-cue skills add PleasePrompto/google-ai-mode-skill --profile research
-```
 
 ---
 
@@ -41,6 +26,19 @@ Connect NotebookLM research with Claude to generate structured content from URLs
 
 ```bash
 cue skills add jakubs2623/notebooklm-skill --profile research
+```
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

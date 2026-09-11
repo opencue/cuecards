@@ -2,19 +2,19 @@
 title: "sl-builds/sharpen-Claude-Prompt-Refiner — Claude Code skill discovered by cue"
 description: "A Claude skill that rewrites vague prompts into tight specs before any work starts. Locks the target, kills hallucinated facts, forces the shortest correct path"
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [sl-builds/sharpen-Claude-Prompt-Refiner](https://github.com/sl-builds/sharpen-Claude-Prompt-Refiner)
 
-**★ 1** · exceptional (score 8.2)
+**★ 1** · exceptional (score 8.1)
 
 > A Claude skill that rewrites vague prompts into tight specs before any work starts. Locks the target, kills hallucinated facts, forces the shortest correct path, and bans default AI aesthetics with a pre-ship slop audit. Fewer tokens, fewer wrong answers, output that does not look machine-made.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-07

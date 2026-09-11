@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="modelscope-funasr"></a>
-## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
+<a id="mao-data-vidcut"></a>
+## 💎 [mao-data/vidcut](https://github.com/mao-data/vidcut)
 
-**★ 20258** · exceptional (score 16) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
+**★ 1** · exceptional (score 10.8) · TypeScript · tags: agentic-ai, ai-agent, claude-code, ffmpeg, mcp
 
-Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
+AI-native local video timeline editor — AI edits via MCP while you watch in the browser
 
 ```bash
-cue skills add modelscope/FunASR --profile video
+cue skills add mao-data/vidcut --profile video
+```
+
+---
+
+<a id="husainzsabir53-dashboard-walkthrough"></a>
+## 💎 [HusainZSabir53/dashboard-walkthrough](https://github.com/HusainZSabir53/dashboard-walkthrough)
+
+**★ 0** · exceptional (score 8) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, playwright, tts
+
+Claude Code skill: record a narrated 1080p walkthrough video of a running web dashboard (Playwright + neural TTS + ffmpeg)
+
+```bash
+cue skills add HusainZSabir53/dashboard-walkthrough --profile video
 ```
 
 ---

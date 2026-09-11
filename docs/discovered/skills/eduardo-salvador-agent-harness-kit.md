@@ -2,7 +2,7 @@
 title: "Eduardo-Salvador/Agent-Harness-Kit — Claude Code skill discovered by cue"
 description: "An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to "
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skill, fleet-control]
 ---
 

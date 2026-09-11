@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,23 +11,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-09-10 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-09-11 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 62 | `humanizer-de`, `GodotMaker`, `inspector` |
-| [**backend**](./backend.md) | 17 | `notebooklm-skill`, `tabularis`, `trigger.dev` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `awesome-agent-skills`, `claude-security-research-skill` |
-| [**research**](./research.md) | 4 | `google-ai-mode-skill`, `notebooklm-skill`, `awesome-research-skills` |
-| [**docs-writer**](./docs-writer.md) | 4 | `github-readme-writer`, `mneme`, `llm-wiki` |
+| [**core**](./core.md) | 59 | `trace-mcp`, `promptfigure-skill`, `jmcomic-ai` |
+| [**backend**](./backend.md) | 14 | `MisakaNet`, `CloudBase-AI-Toolkit`, `notebooklm-skill` |
+| [**cybersecurity**](./cybersecurity.md) | 7 | `Claude-OSINT`, `skill-auditor`, `claude-security-research-skill` |
+| [**docs-writer**](./docs-writer.md) | 4 | `MisakaNet`, `mneme`, `llm-wiki` |
+| [**research**](./research.md) | 4 | `notebooklm-skill`, `popper-scope`, `awesome-research-skills` |
+| [**fleet-control**](./fleet-control.md) | 4 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
 | [**creative-media**](./creative-media.md) | 3 | `spotkit`, `archify`, `redesigned-pancake` |
-| [**fleet-control**](./fleet-control.md) | 3 | `rolepod`, `Agent-Harness-Kit`, `external-agents` |
-| [**frontend**](./frontend.md) | 2 | `google-fonts-skill`, `awesome-claude-ui-armory` |
-| [**python**](./python.md) | 2 | `portfolio-integration`, `alfred` |
-| [**video**](./video.md) | 1 | `FunASR` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `goodbarber-skills` |
+| [**frontend**](./frontend.md) | 3 | `google-fonts-skill`, `awesome-claude-ui-armory`, `claude-react-kit` |
+| [**marketing**](./marketing.md) | 3 | `etsy-seller-seo-system`, `strong-copy-skill`, `svg-design-intelligence-system` |
+| [**video**](./video.md) | 2 | `vidcut`, `dashboard-walkthrough` |
+| [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works
 

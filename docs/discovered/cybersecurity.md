@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2583** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
+**★ 2587** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,15 +28,17 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="khasky-awesome-agent-skills"></a>
-## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
+<a id="ki-stuff-skill-auditor"></a>
+## 💎 [ki-stuff/skill-auditor](https://github.com/ki-stuff/skill-auditor)
 
-**★ 8** · exceptional (score 11.8) · JavaScript · tags: agent, agent-skills, ai, ai-coding, ai-skill
+**★ 0** · exceptional (score 13) · Python · tags: ai-safety, anthropic, claude-code, claude-code-skill, claude-skills
 
- Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
+Security audit skill for Claude Code — scans other skills for prompt injection, data exfiltration, and privilege escalation before you install them.
+
+✅ SKILL.md
 
 ```bash
-cue skills add khasky/awesome-agent-skills --profile cybersecurity
+cue skills add ki-stuff/skill-auditor --profile cybersecurity
 ```
 
 ---
@@ -67,10 +69,36 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="manuacl-infra-audit"></a>
+## ✨ [manuacl/infra-audit](https://github.com/manuacl/infra-audit)
+
+**★ 0** · strong (score 7) · Shell · tags: claude-code, claude-skill, devops, hardening, infrastructure
+
+Read-only security audit of a deployed server, as a Claude Code skill: host, proxy, containers, datastore roles, DNS, CI pipeline and public HTTP surface. Evidence-backed report, ordered fix plan, guided remediation.
+
+```bash
+cue skills add manuacl/infra-audit --profile cybersecurity
+```
+
+---
+
+<a id="exploitintel-eip-mcp"></a>
+## ✨ [exploitintel/eip-mcp](https://github.com/exploitintel/eip-mcp)
+
+**★ 0** · strong (score 6) · Python · tags: cve, exploit, mcp, mcp-server, security
+
+Official MCP server for the Exploit Intelligence Platform
+
+```bash
+cue skills add exploitintel/eip-mcp --profile cybersecurity
+```
+
+---
+
 <a id="secblok-belay"></a>
 ## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
 
-**★ 4** · strong (score 5.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 4** · strong (score 5.6) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
 
 Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
 

@@ -2,19 +2,19 @@
 title: "Sebastilan/clipboard-img2file — Claude Code skill discovered by cue"
 description: "Auto-convert clipboard bitmap images to file paths for CLI tools like Claude Code"
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [Sebastilan/clipboard-img2file](https://github.com/Sebastilan/clipboard-img2file)
+# ✨ [Sebastilan/clipboard-img2file](https://github.com/Sebastilan/clipboard-img2file)
 
-**★ 10** · exceptional (score 8) · PowerShell
+**★ 10** · strong (score 7.9) · PowerShell
 
 > Auto-convert clipboard bitmap images to file paths for CLI tools like Claude Code
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
 - ⭐ 10 stars
 - 🗓️ Last pushed: 2026-09-10
 - 🏷️ Tags: (none)

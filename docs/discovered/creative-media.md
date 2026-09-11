@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 <a id="devesh-shirsath-spotkit"></a>
 ## 💎 [Devesh-Shirsath/spotkit](https://github.com/Devesh-Shirsath/spotkit)
 
-**★ 53** · exceptional (score 19) · HTML · tags: ai-tools, anthropic, claude-code, claude-skill, design-automation
+**★ 61** · exceptional (score 19.1) · HTML · tags: ai-tools, anthropic, claude-code, claude-skill, design-automation
 
 Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system.
 
@@ -33,7 +33,7 @@ cue skills add Devesh-Shirsath/spotkit --profile creative-media
 <a id="tt-a1i-archify"></a>
 ## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 56605** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 57907** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
 Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 

@@ -2,27 +2,27 @@
 title: "Ikalus1988/MisakaNet — Claude Code skill discovered by cue"
 description: "📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | http"
 layout: page
-updated: 2026-08-22
-tags: [claude-code, skill, backend]
+updated: 2026-09-11
+tags: [claude-code, skill, backend, docs-writer]
 ---
 
 # 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 421** · exceptional (score 22.7) · Python · ai-agent, ai-infra, claude, deepseek-harness, devops
+**★ 490** · exceptional (score 20.8) · Python · agents, ai-agents, cloudflare-workers, d1, documentation
 
 > 📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 22.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 421 stars
-- 🗓️ Last pushed: 2026-08-22
-- 🏷️ Tags: ai-agent, ai-infra, claude, deepseek-harness, devops, dsh-plugin, failure-analysis, failure-memory, git-based, knowledge-sharing, lesson-database, mcp, mcp-server, multi-agent, open-source, python
+- ⭐ 490 stars
+- 🗓️ Last pushed: 2026-09-11
+- 🏷️ Tags: agents, ai-agents, cloudflare-workers, d1, documentation, failure-memory, knowledge-base, llm, mcp, mcp-server, sqlite
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[backend](../backend.md), [docs-writer](../docs-writer.md)
 
 
 

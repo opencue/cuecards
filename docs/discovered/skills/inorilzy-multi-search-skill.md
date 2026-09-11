@@ -2,7 +2,7 @@
 title: "inorilzy/multi-search-skill — Claude Code skill discovered by cue"
 description: "Parallel aggregated search across 9+ sources (Brave, Tavily, SerpAPI, Exa, GitHub, Sourcegraph, Baidu, HN, StackOverflow, npm, PyPI). Consensus-weight ranking. "
 layout: page
-updated: 2026-09-09
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-09
+- 🗓️ Last pushed: 2026-09-11
 - 🏷️ Tags: aggregated-search, brave-search, claude-skill, cli, exa, github-copilot, multi-source, python, search, serpapi, sourcegraph, tavily
 
 ## Best fit cue profiles

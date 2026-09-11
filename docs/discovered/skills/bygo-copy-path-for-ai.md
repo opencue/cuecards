@@ -2,19 +2,19 @@
 title: "bygo/copy-path-for-ai — Claude Code skill discovered by cue"
 description: "JetBrains plugin: inject @path#line into the IDE Terminal for Claude Code, Codex, Grok, and other AI agents.    "
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [bygo/copy-path-for-ai](https://github.com/bygo/copy-path-for-ai)
 
-**★ 1** · strong (score 6.3) · Kotlin · ai, claude-code, codex, grok, intellij
+**★ 1** · strong (score 6.2) · Kotlin · ai, claude-code, codex, grok, intellij
 
 > JetBrains plugin: inject @path#line into the IDE Terminal for Claude Code, Codex, Grok, and other AI agents.    
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-09
 - 🏷️ Tags: ai, claude-code, codex, grok, intellij, jetbrain-plugin, terminal

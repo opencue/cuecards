@@ -2,13 +2,13 @@
 title: "rami-code-review/claude-code-marketplace — Claude Code skill discovered by cue"
 description: "Claude Code plugins for [Rami Code Review](https://rami.reviews)"
 layout: page
-updated: 2026-08-04
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rami-code-review/claude-code-marketplace](https://github.com/rami-code-review/claude-code-marketplace)
 
-**★ 0** · exceptional (score 12) · Shell · ai, ai-code-review, anthropic, claude-code, claude-code-plugin
+**★ 0** · exceptional (score 12) · Python · ai, ai-code-review, anthropic, claude-code, claude-code-plugin
 
 > Claude Code plugins for [Rami Code Review](https://rami.reviews)
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-04
+- 🗓️ Last pushed: 2026-09-11
 - 🏷️ Tags: ai, ai-code-review, anthropic, claude-code, claude-code-plugin, claude-skill, code-review, codex, cursor, github-app, mcp, mcp-server, model-context-protocol, pull-request
 
 ## Best fit cue profiles

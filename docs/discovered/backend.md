@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for backend"
-description: "17 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "14 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 17 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 14 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+
+**★ 490** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
+
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
+
+✅ SKILL.md
+
+```bash
+cue skills add Ikalus1988/MisakaNet --profile backend
+```
+
+---
+
+<a id="tencentcloudbase-cloudbase-ai-toolkit"></a>
+## 💎 [TencentCloudBase/CloudBase-AI-Toolkit](https://github.com/TencentCloudBase/CloudBase-AI-Toolkit)
+
+**★ 1103** · exceptional (score 19.5) · TypeScript · tags: agent-skills, ai, aicoding, claude-code, cloudbase
+
+Backend for AI coding agents on CloudBase — database, auth, functions via Plugin, Skills & MCP.
+
+```bash
+cue skills add TencentCloudBase/CloudBase-AI-Toolkit --profile backend
+```
 
 ---
 
@@ -30,93 +58,41 @@ cue skills add jakubs2623/notebooklm-skill --profile backend
 
 ---
 
-<a id="tabularisdb-tabularis"></a>
-## 💎 [TabularisDB/tabularis](https://github.com/TabularisDB/tabularis)
+<a id="taskade-mcp"></a>
+## 💎 [taskade/mcp](https://github.com/taskade/mcp)
 
-**★ 4885** · exceptional (score 17) · TypeScript · tags: ai-agent, ai-assistant, cross-platform, database-client, database-gui
+**★ 164** · exceptional (score 16.8) · TypeScript · tags: ai, ai-agent, ai-agents, autonomous-agents, genesis
 
-Open-source desktop SQL workspace for PostgreSQL, MySQL/MariaDB, SQLite and 15+ more databases like DuckDB, ClickHouse, Redis and Firestore. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
+🤖 Taskade MCP · Official MCP server and OpenAPI to MCP codegen. Build AI agent tools from any OpenAPI API and connect to Claude, Cursor, and more.
 
 ```bash
-cue skills add TabularisDB/tabularis --profile backend
+cue skills add taskade/mcp --profile backend
 ```
 
 ---
 
-<a id="triggerdotdev-trigger-dev"></a>
-## 💎 [triggerdotdev/trigger.dev](https://github.com/triggerdotdev/trigger.dev)
+<a id="masayukita-m365-copilot-companion-mcp"></a>
+## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
 
-**★ 16248** · exceptional (score 16) · TypeScript · tags: ai, ai-agent-framework, ai-agents, automation, background-jobs
+**★ 6** · exceptional (score 11.6) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
 
-Trigger.dev – build and deploy fully‑managed AI agents and workflows
+Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
 
 ```bash
-cue skills add triggerdotdev/trigger.dev --profile backend
+cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
 ```
 
 ---
 
-<a id="modelscope-funasr"></a>
-## 💎 [modelscope/FunASR](https://github.com/modelscope/FunASR)
+<a id="inssist-mcp"></a>
+## 💎 [inssist/mcp](https://github.com/inssist/mcp)
 
-**★ 20258** · exceptional (score 16) · Python · tags: asr, audio, chinese, emotion-recognition, funasr
+**★ 0** · exceptional (score 10.5) · TypeScript · tags: ai-agent, chrome-extension, claude, claude-code, codex
 
-Open-source speech recognition toolkit for training, inference, streaming ASR, VAD, punctuation, speaker diarization pipelines, and OpenAI-compatible/MCP serving.
-
-```bash
-cue skills add modelscope/FunASR --profile backend
-```
-
----
-
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
-
-**★ 203907** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
-
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+MCP server that lets AI agents (Claude Code, Codex, Cursor) work inside your own Instagram session through the INSSIST Chrome extension
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
-```
-
----
-
-<a id="sendmux-sendmux-sdk"></a>
-## 💎 [Sendmux/sendmux-sdk](https://github.com/Sendmux/sendmux-sdk)
-
-**★ 73** · exceptional (score 13.1) · PHP · tags: cli, cli-tool, email, email-automation, email-marketing
-
-Official monorepo of SDKs, CLI, and MCP servers for Sendmux email APIs across TypeScript, Python, Go, PHP, Rust, and Ruby.
-
-```bash
-cue skills add Sendmux/sendmux-sdk --profile backend
-```
-
----
-
-<a id="zipstack-unstract"></a>
-## 💎 [Zipstack/unstract](https://github.com/Zipstack/unstract)
-
-**★ 7230** · exceptional (score 13) · Python · tags: ai-agents, data-engineering, document-ai, generative-ai, idp
-
-LLM-Driven Extraction of Unstructured Data — Built for API Deployments & ETL Pipeline Workflows
-
-```bash
-cue skills add Zipstack/unstract --profile backend
-```
-
----
-
-<a id="daizedong-schedule-reminder"></a>
-## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
-
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
-
-Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
-
-```bash
-cue skills add DaizeDong/schedule-reminder --profile backend
+cue skills add inssist/mcp --profile backend
 ```
 
 ---
@@ -134,6 +110,32 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
+<a id="jmrplens-gitlab-mcp-server"></a>
+## 💎 [jmrplens/gitlab-mcp-server](https://github.com/jmrplens/gitlab-mcp-server)
+
+**★ 35** · exceptional (score 9.7) · Go · tags: ai-tools, gitlab, gitlab-api, go, llm
+
+Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 850+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only modes.
+
+```bash
+cue skills add jmrplens/gitlab-mcp-server --profile backend
+```
+
+---
+
+<a id="munhq-chat-recall"></a>
+## 💎 [munhq/chat-recall](https://github.com/munhq/chat-recall)
+
+**★ 2** · exceptional (score 8) · TypeScript · tags: agent-memory, ai-agents, antigravity, claude, claude-code
+
+Memory, secret alerts, ranked code findings and tracked tasks across every AI coding tool. Indexes Claude Code, Gemini CLI, Codex, OpenCode, Antigravity and Cursor sessions into one searchable history, and exposes it to your agent over MCP.
+
+```bash
+cue skills add munhq/chat-recall --profile backend
+```
+
+---
+
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
@@ -147,41 +149,15 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="giantswarm-mcp-kubernetes"></a>
-## 💎 [giantswarm/mcp-kubernetes](https://github.com/giantswarm/mcp-kubernetes)
+<a id="michaelegner-architecture-intelligence-platform"></a>
+## ✨ [michaelegner/architecture-intelligence-platform](https://github.com/michaelegner/architecture-intelligence-platform)
 
-**★ 2** · exceptional (score 8) · Go · tags: kubernetes, mcp-server
+**★ 0** · strong (score 6) · Python · tags: ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi
 
-Model Context Protocol (MCP) server for Kubernetes
-
-```bash
-cue skills add giantswarm/mcp-kubernetes --profile backend
-```
-
----
-
-<a id="ali-adel-nour-arbitra"></a>
-## ✨ [Ali-Adel-Nour/Arbitra](https://github.com/Ali-Adel-Nour/Arbitra)
-
-**★ 9** · strong (score 7.2) · TypeScript · tags: ai-agents, api, blockchain, economics, escrow
-
-The AI-operated escrow court and reputation protocol for the agentic economy.
+Trusted architecture context for AI agents: an evidence-backed architecture graph from OpenAPI, AsyncAPI and OpenTelemetry, served over MCP.
 
 ```bash
-cue skills add Ali-Adel-Nour/Arbitra --profile backend
-```
-
----
-
-<a id="impactmojo-impactmojo"></a>
-## ✨ [ImpactMojo/ImpactMojo](https://github.com/ImpactMojo/ImpactMojo)
-
-**★ 2** · strong (score 7) · HTML · tags: data-literacy, development-economics, edtech, education, games
-
-Free, open-source development education for South Asia — flagship & foundational courses, hands-on interactive labs, a browser-based game library, cited deep dives, and premium research tools. All free at the core. impactmojo.in
-
-```bash
-cue skills add ImpactMojo/ImpactMojo --profile backend
+cue skills add michaelegner/architecture-intelligence-platform --profile backend
 ```
 
 ---
@@ -195,19 +171,6 @@ Hardened Liferay DXP Integration SDK for Batch, Workflow, and API orchestration.
 
 ```bash
 cue skills add peterrichards-lr/liferay-accelerator-sdk --profile backend
-```
-
----
-
-<a id="3esign-ratchetx"></a>
-## ✨ [3esign/ratchetx](https://github.com/3esign/ratchetx)
-
-**★ 1** · strong (score 5.3) · JavaScript · tags: ai-agents, anchor, game, mcp, mcp-server
-
-A keyless prediction market arcade on Solana — sealed commit-reveal shots settled on Pyth oracle prices, 70% of every stake burned, 0% to the team, no custody. Public proof page, hash-chained log, agent API + MCP server: machines welcome.
-
-```bash
-cue skills add 3esign/ratchetx --profile backend
 ```
 
 ---

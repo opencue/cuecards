@@ -2,21 +2,21 @@
 title: "HunLuanZhiZhu/ZCode-Game-Studios — Claude Code skill discovered by cue"
 description: "Turn ZCode into a full AI game dev studio - 49 specialized agents, 73 workflow skills, path-scoped coding standards, and an optional hooks plugin for commit val"
 layout: page
-updated: 2026-09-09
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [HunLuanZhiZhu/ZCode-Game-Studios](https://github.com/HunLuanZhiZhu/ZCode-Game-Studios)
 
-**★ 4** · potential (score 3.6) · Shell
+**★ 4** · potential (score 3.8) · Shell
 
 > Turn ZCode into a full AI game dev studio - 49 specialized agents, 73 workflow skills, path-scoped coding standards, and an optional hooks plugin for commit validation and session recovery. ZCode-native adaptation of Claude-Code-Game-Studios.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-05
+- 🗓️ Last pushed: 2026-09-10
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
