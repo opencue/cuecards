@@ -11,6 +11,10 @@
  *   --cue-pick             always open picker (ignore pins)
  *                          (CUE_ALWAYS_PICK=1 also opens it for interactive
  *                           launches that pass agent arguments)
+ *   --cue-pick-mcps        always open the MCP toggle, ignoring a remembered
+ *                          choice (CUE_ALWAYS_PICK_MCPS=1 does the same for
+ *                          every interactive launch — "ask me about MCPs,
+ *                          never about the profile")
  *   --dry-run              everything except the final exec; prints env
  *
  * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
@@ -109,6 +113,7 @@ import {
   MAX_LAUNCH_DEPTH,
   shouldForcePicker,
   shouldInheritSessionProfile,
+  isAlwaysPickEnabled,
 } from "../lib/launch-guards";
 import { shimDir, stripShimDirFromPath } from "../lib/shim-dir";
 import { needsWindowsCommandShell } from "../lib/claude-binary";
@@ -195,7 +200,9 @@ function parse(args: string[]): ParsedArgs {
   let dryRun = false;
   let rematerialize = false;
   let subset: string | null = null;
-  let forcePickMcps = false;
+  // CUE_ALWAYS_PICK_MCPS=1 is the env form of --cue-pick-mcps: re-open the MCP
+  // toggle on every interactive launch while leaving the profile picker alone.
+  let forcePickMcps = isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS);
   let fullLoad = false;
   const disableMcp: string[] = [];
   const passthrough: string[] = [];

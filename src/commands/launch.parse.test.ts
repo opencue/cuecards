@@ -43,6 +43,31 @@ describe("parse: `--` separator", () => {
 // Regression lock for item C: a valid remembered MCP override keeps the toggle
 // CLOSED. Picking a profile interactively must NOT re-force the dialog; only
 // --cue-pick-mcps or a missing/invalid override opens it.
+describe("parse: CUE_ALWAYS_PICK_MCPS", () => {
+  const prev = process.env.CUE_ALWAYS_PICK_MCPS;
+  afterEach(() => {
+    if (prev === undefined) delete process.env.CUE_ALWAYS_PICK_MCPS;
+    else process.env.CUE_ALWAYS_PICK_MCPS = prev;
+  });
+
+  test("unset → the MCP toggle is not forced", () => {
+    delete process.env.CUE_ALWAYS_PICK_MCPS;
+    expect(parse(["claude", "-p", "x"]).forcePickMcps).toBe(false);
+  });
+
+  test("=1 forces the MCP toggle like --cue-pick-mcps, without forcing the profile picker", () => {
+    process.env.CUE_ALWAYS_PICK_MCPS = "1";
+    const p = parse(["claude", "-p", "x"]);
+    expect(p.forcePickMcps).toBe(true);
+    expect(p.forcePick).toBe(false);
+  });
+
+  test("=0 is off", () => {
+    process.env.CUE_ALWAYS_PICK_MCPS = "0";
+    expect(parse(["claude"]).forcePickMcps).toBe(false);
+  });
+});
+
 describe("shouldOpenMcpPicker", () => {
   const { shouldOpenMcpPicker } = __test;
 
