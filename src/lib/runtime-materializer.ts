@@ -20,6 +20,7 @@ import {
   mkdtemp,
   readdir,
   lstat,
+  stat,
 } from "node:fs/promises";
 import {
   dirname,
@@ -1245,14 +1246,20 @@ async function materializeRuntimeUnlocked(
   // entirely and let the overlay's source state win.
   let sameAccount = true;
   if (input.credentialsSource) {
-    const srcUuid = await accountUuidAt(
-      join(input.credentialsSource, ".claude.json"),
-    );
-    const oldUuid = await accountUuidAt(join(runtimeDir, ".claude.json"));
+    const srcUuid =
+      (await accountUuidAt(join(input.credentialsSource, ".config.json"))) ??
+      (await accountUuidAt(join(input.credentialsSource, ".claude.json")));
+    // 2.1.x keeps the identity in .config.json; older clients in .claude.json.
+    const oldUuid =
+      (await accountUuidAt(join(runtimeDir, ".config.json"))) ??
+      (await accountUuidAt(join(runtimeDir, ".claude.json")));
     if (srcUuid && oldUuid && srcUuid !== oldUuid) sameAccount = false;
   }
+  // `.config.json` is Claude Code 2.1.x's user config (session state, oauth
+  // account, mcpServers). Dropping it on a rebuild would hand a migrated client
+  // a runtime without its state — and the file cue syncs profile MCPs into.
   const preserveFiles = sameAccount
-    ? [".claude.json", ".credentials.json", "backups", "session-env", "tasks"]
+    ? [".claude.json", ".config.json", ".credentials.json", "backups", "session-env", "tasks"]
     : [];
   for (const name of preserveFiles) {
     const oldPath = join(runtimeDir, name);
@@ -1402,9 +1409,42 @@ function collectProfileMcps(
   return out;
 }
 
-// Claude Code reads MCP server definitions from .claude.json's top-level
+// Merge the profile's MCPs over whatever a Claude user-config file already
+// declares. Lazy-MCP removal: the rebuild preserves the OLD runtime's config
+// (session/auth state) and we merge additively onto it — so an MCP the user
+// disabled would otherwise linger across launches. Delete exactly the ids the
+// launcher disabled (case-insensitive), and only those, so user-added MCPs are
+// never touched.
+function mergeMcpServers(
+  existing: Record<string, unknown>,
+  mcpServers: Record<string, McpServerConfig>,
+  disabledIds: string[],
+): Record<string, unknown> {
+  const merged: Record<string, unknown> = { ...existing, ...mcpServers };
+  if (disabledIds.length > 0) {
+    const drop = new Set(disabledIds.map((id) => id.toLowerCase()));
+    // Never evict a key that's part of the current (kept) set — a kept MCP can't
+    // also be disabled. Keeps removal strictly to dropped ids.
+    const kept = new Set(Object.keys(mcpServers).map((k) => k.toLowerCase()));
+    for (const key of Object.keys(merged)) {
+      const lower = key.toLowerCase();
+      if (drop.has(lower) && !kept.has(lower)) delete merged[key];
+    }
+  }
+  return merged;
+}
+
+// Claude Code reads MCP server definitions from its user config's top-level
 // `mcpServers` field, not from settings.json. Without this sync, profile MCPs
 // declared in profile.yaml never get started.
+//
+// Two files, because Claude Code moved: up to 2.0 the user config was
+// `.claude.json`; since 2.1.x it is `.config.json` in the same directory, and
+// when THAT file exists Claude ignores `.claude.json` entirely — `mcpServers`
+// included. Syncing only the legacy file therefore silently starts zero
+// profile MCPs on a migrated runtime (codegraph / context7 / ego-browser were
+// all missing from every session, 2026-09-11). `.claude.json` is still written
+// for pre-2.1 clients and for cue's own readers (`readRuntimeMcpServerIds`).
 //
 // We dereference any symlink first and write a real file in its place so
 // per-profile MCP additions don't leak back into a shared account-level
@@ -1430,28 +1470,57 @@ async function syncMcpsIntoClaudeJson(
   }
   const existing =
     (parsed.mcpServers as Record<string, unknown> | undefined) ?? {};
-  const merged: Record<string, unknown> = { ...existing, ...mcpServers };
-
-  // Lazy-MCP removal: the rebuild preserves the OLD runtime's .claude.json
-  // (session/auth state) and we merge additively onto it — so an MCP the user
-  // disabled would otherwise linger across launches. Delete exactly the ids the
-  // launcher disabled (case-insensitive), and only those, so user-added MCPs
-  // are never touched.
-  if (disabledIds.length > 0) {
-    const drop = new Set(disabledIds.map((id) => id.toLowerCase()));
-    // Never evict a key that's part of the current (kept) set — a kept MCP can't
-    // also be disabled. Keeps removal strictly to dropped ids.
-    const kept = new Set(Object.keys(mcpServers).map((k) => k.toLowerCase()));
-    for (const key of Object.keys(merged)) {
-      const lower = key.toLowerCase();
-      if (drop.has(lower) && !kept.has(lower)) delete merged[key];
-    }
-  }
-  parsed.mcpServers = merged;
+  parsed.mcpServers = mergeMcpServers(existing, mcpServers, disabledIds);
 
   // Replace whatever's there (symlink or stale file) with a real file copy.
   await rm(target, { force: true });
   await writeFile(target, JSON.stringify(parsed, null, 2));
+
+  await syncMcpsIntoConfigJson(runtimeDir, mcpServers, disabledIds);
+}
+
+// The 2.1.x user config. Only ever UPDATED, never created: a runtime without
+// one is a pre-2.1 (or not-yet-migrated) client that reads `.claude.json`, and
+// an empty `.config.json` would make a newer client ignore that file. Written
+// via tmp + rename with the original mode preserved — Claude keeps the file
+// read-only (0444) and may re-read it while a session runs, so an in-place
+// truncating write is not safe.
+async function syncMcpsIntoConfigJson(
+  runtimeDir: string,
+  mcpServers: Record<string, McpServerConfig>,
+  disabledIds: string[],
+): Promise<void> {
+  const target = join(runtimeDir, ".config.json");
+  let parsed: Record<string, unknown>;
+  let mode: number;
+  try {
+    const [raw, info] = await Promise.all([readFile(target, "utf8"), stat(target)]);
+    parsed = JSON.parse(raw);
+    mode = info.mode & 0o777;
+  } catch {
+    // Missing, unreadable or corrupt: leave it alone. A corrupt file is
+    // Claude's own to repair; rewriting it from a stub would drop auth state.
+    return;
+  }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return;
+  const rawExisting = parsed.mcpServers;
+  const existing =
+    rawExisting && typeof rawExisting === "object" && !Array.isArray(rawExisting)
+      ? (rawExisting as Record<string, unknown>)
+      : {};
+  // Only `mcpServers` is touched; every other field is Claude's own state and
+  // is carried over as read. (Between the read above and the rename below a
+  // concurrently running Claude session could rewrite the file — accepted: the
+  // sync runs once per launch and Claude keeps the file read-only.)
+  parsed.mcpServers = mergeMcpServers(existing, mcpServers, disabledIds);
+
+  const tmp = `${target}.cue-${process.pid}.tmp`;
+  try {
+    await writeFile(tmp, JSON.stringify(parsed, null, 2), { mode });
+    await rename(tmp, target);
+  } finally {
+    await rm(tmp, { force: true });
+  }
 }
 
 // Build the merged Claude Code settings.json content (string).
@@ -1550,6 +1619,7 @@ async function overlaySourceState(
   // as the entry list above: with no CLAUDE_CONFIG_DIR, Claude Code keeps
   // `oauthAccount` in `~/.claude.json`, not in `~/.claude/.claude.json`.
   const identityOf = async (dir: string): Promise<string | undefined> =>
+    (await accountUuidAt(join(dir, ".config.json"))) ??
     (await accountUuidAt(join(dir, ".claude.json"))) ??
     (basename(dir) === ".claude"
       ? await accountUuidAt(join(dirname(dir), ".claude.json"))
