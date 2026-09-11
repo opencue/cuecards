@@ -227,6 +227,10 @@ Controls: `--cue-full` (this launch loads everything), `CUE_LOADOUT=off`
 
 - `claude --cue-profile frontend` — skip resolve, use `frontend` directly.
 - `claude --cue-pick` — always open the picker (ignore pin files).
+- `claude --cue-pick-mcps` — re-open the MCP toggle even with a remembered
+  choice. `CUE_ALWAYS_PICK_MCPS=1` does this on every interactive launch —
+  the "ask me about MCPs, never about the profile" setup (pair it with
+  `CUE_ALWAYS_PICK` unset).
 - `CUE_BYPASS=1 claude` — exec the real binary directly; no resolve, no
   materialize, no profile.
 - Absolute path (`/usr/local/bin/claude`) — bypasses the shim entirely via PATH.
