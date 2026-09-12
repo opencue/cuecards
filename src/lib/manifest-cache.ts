@@ -5,21 +5,49 @@
  * profile.yaml in the inheritance chain. On next load, if all mtimes match,
  * we return the cached result directly (< 1ms vs ~15ms for full resolution).
  *
- * Cache location: ~/.config/cue/cache/manifests/<profile>.json
+ * Cache location: ~/.config/cue/cache/manifests/<profile>.<profilesDir hash>.json
+ *
+ * The hash is load-bearing, not decoration. A profile NAME is only unique
+ * within one profiles dir, and cue is routinely run against several at once —
+ * the install tree plus one checkout per agent worktree, which AGENTS.md makes
+ * the default way to work here. Keyed by name alone, the first tree to resolve
+ * `ponytail` owns the entry, and every other tree gets a HIT on it: the stored
+ * `sources` point at the first tree's files, whose mtimes are unchanged, so the
+ * validation loop passes and hands back a profile the caller never asked for.
+ * Observed 2026-09-12: edits to a worktree's profile.yaml were silently ignored
+ * at launch while `loadProfile` (which skips this cache) returned them fine.
+ *
+ * Hashing the dir into the filename, rather than comparing it on read, also
+ * keeps two trees from evicting each other's entry on every launch.
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { homedir } from "node:os";
 
 import type { ResolvedProfile } from "../../profiles/_types";
 
-const CACHE_DIR = join(
-  process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
-  "cue",
-  "cache",
-  "manifests",
-);
+/**
+ * Resolved per call, never baked into a module-level const: XDG_CONFIG_HOME is
+ * what tests redirect to keep their writes out of the real user cache, and a
+ * const would freeze whatever the env held at first import. Same reasoning as
+ * `repoRoot()` in repo-root.ts, which documents the bug that pattern caused.
+ */
+function cacheDir(): string {
+  return join(
+    process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
+    "cue",
+    "cache",
+    "manifests",
+  );
+}
+
+/** Cache filename for a (profile, profilesDir) pair. */
+function cacheFile(profileName: string, profilesDir: string): string {
+  const scope = createHash("sha256").update(profilesDir).digest("hex").slice(0, 12);
+  return join(cacheDir(), `${profileName}.${scope}.json`);
+}
 
 interface ManifestEntry {
   /** Resolved profile data. */
@@ -61,7 +89,7 @@ export function getCachedManifest(
   profileName: string,
   profilesDir: string,
 ): ResolvedProfile | null {
-  const cachePath = join(CACHE_DIR, `${profileName}.json`);
+  const cachePath = cacheFile(profileName, profilesDir);
   if (!existsSync(cachePath)) return null;
 
   try {
@@ -98,10 +126,10 @@ export function putCachedManifest(
   };
 
   try {
-    mkdirSync(CACHE_DIR, { recursive: true });
-    writeFileSync(join(CACHE_DIR, `${profile.name}.json`), JSON.stringify(entry));
+    mkdirSync(cacheDir(), { recursive: true });
+    writeFileSync(cacheFile(profile.name, profilesDir), JSON.stringify(entry));
   } catch { /* non-fatal — cache write failure is fine */ }
 }
 
-/** Test-only surface for the pure source collector. */
-export const __test = { collectSources };
+/** Test-only surface for the pure source collector and the scoped path. */
+export const __test = { collectSources, cacheFile };
