@@ -59,6 +59,14 @@ describe("getCachedManifest", () => {
     ).not.toThrow();
   });
 
+  test("the cache dir follows XDG_CONFIG_HOME per call, not at import", () => {
+    // Guards the getter itself. Re-`const`ing cacheDir() keeps all 8 other
+    // tests passing while every write escapes this file's tmpdir into the
+    // developer's real ~/.config/cue/cache/manifests — a silent test leak
+    // with nothing to catch it. Assert the redirect actually takes effect.
+    expect(__test.cacheFile("x", "/d")).toStartWith(process.env.XDG_CONFIG_HOME!);
+  });
+
   test("round-trips a profile through the cache", () => {
     const { dir, profile } = makeTree("solo", "original");
     putCachedManifest(profile, dir);
