@@ -26,6 +26,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
+import { profilesDir } from "../lib/repo-root";
 import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
 import { syncCodexAuth } from "../lib/codex-auth";
@@ -2488,15 +2489,19 @@ export async function run(args: string[]): Promise<number> {
     profile = cachedProfile;
   } else {
     // Try manifest cache first (skips YAML parse + inheritance resolution)
-    const profilesDir = join(
-      process.env.CUE_REPO_ROOT ??
-        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-      "profiles",
-    );
+    // Must be the dir `loadProfile` actually reads, because it is the manifest
+    // cache key. Re-deriving it from CUE_REPO_ROOT dropped
+    // CUE_PROFILES_DIR/SOUL_PROFILES_DIR, so two different profiles dirs
+    // collapsed onto one key and silently served each other's profile — the
+    // very bug the hashed key exists to prevent, still reachable through the
+    // override. Worse, a profile that exists ONLY in the override dir collects
+    // no sources at all, so its entry validates vacuously and can never go
+    // stale. Every other profiles-root read in this file already uses this.
+    const profilesDirPath = profilesDir();
     let fromCache = false;
     try {
       const { getCachedManifest } = await import("../lib/manifest-cache");
-      const cached = getCachedManifest(profileName, profilesDir);
+      const cached = getCachedManifest(profileName, profilesDirPath);
       if (cached) {
         profile = cached;
         fromCache = true;
@@ -2517,7 +2522,7 @@ export async function run(args: string[]): Promise<number> {
       // Populate manifest cache for next launch
       try {
         const { putCachedManifest } = await import("../lib/manifest-cache");
-        putCachedManifest(profile, profilesDir);
+        putCachedManifest(profile, profilesDirPath);
       } catch {
         /* non-fatal */
       }
