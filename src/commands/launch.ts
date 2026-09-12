@@ -2869,8 +2869,15 @@ export async function run(args: string[]): Promise<number> {
               mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
             };
             mcpDisabledIds = [...drop];
+            // Name the pin exemption. `pin: true` silently makes prune a no-op
+            // for those servers, so "auto-pruned 2 unused" reads as if the rest
+            // were all needed — leaving no way to tell an MCP that survived
+            // because a skill wants it from one that survived because it is
+            // pinned. The pinned set is the first thing to look at when the
+            // question is "why is this still starting".
+            const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
             process.stderr.write(
-              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
             );
           }
         }
