@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+
+**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+
+✅ SKILL.md
+
+```bash
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2587** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
+**★ 2592** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="ki-stuff-skill-auditor"></a>
-## 💎 [ki-stuff/skill-auditor](https://github.com/ki-stuff/skill-auditor)
-
-**★ 0** · exceptional (score 13) · Python · tags: ai-safety, anthropic, claude-code, claude-code-skill, claude-skills
-
-Security audit skill for Claude Code — scans other skills for prompt injection, data exfiltration, and privilege escalation before you install them.
-
-✅ SKILL.md
-
-```bash
-cue skills add ki-stuff/skill-auditor --profile cybersecurity
-```
-
----
-
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
-
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
-
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
-
-```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---
@@ -69,28 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="manuacl-infra-audit"></a>
-## ✨ [manuacl/infra-audit](https://github.com/manuacl/infra-audit)
+<a id="elyshafresh21-claude-context-lint"></a>
+## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
 
-**★ 0** · strong (score 7) · Shell · tags: claude-code, claude-skill, devops, hardening, infrastructure
+**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
 
-Read-only security audit of a deployed server, as a Claude Code skill: host, proxy, containers, datastore roles, DNS, CI pipeline and public HTTP surface. Evidence-backed report, ordered fix plan, guided remediation.
-
-```bash
-cue skills add manuacl/infra-audit --profile cybersecurity
-```
-
----
-
-<a id="exploitintel-eip-mcp"></a>
-## ✨ [exploitintel/eip-mcp](https://github.com/exploitintel/eip-mcp)
-
-**★ 0** · strong (score 6) · Python · tags: cve, exploit, mcp, mcp-server, security
-
-Official MCP server for the Exploit Intelligence Platform
+Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
 
 ```bash
-cue skills add exploitintel/eip-mcp --profile cybersecurity
+cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
 ```
 
 ---

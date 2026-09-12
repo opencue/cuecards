@@ -1,106 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "14 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 14 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
-
-**★ 490** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
-
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
-
-✅ SKILL.md
-
-```bash
-cue skills add Ikalus1988/MisakaNet --profile backend
-```
-
----
-
-<a id="tencentcloudbase-cloudbase-ai-toolkit"></a>
-## 💎 [TencentCloudBase/CloudBase-AI-Toolkit](https://github.com/TencentCloudBase/CloudBase-AI-Toolkit)
-
-**★ 1103** · exceptional (score 19.5) · TypeScript · tags: agent-skills, ai, aicoding, claude-code, cloudbase
-
-Backend for AI coding agents on CloudBase — database, auth, functions via Plugin, Skills & MCP.
-
-```bash
-cue skills add TencentCloudBase/CloudBase-AI-Toolkit --profile backend
-```
-
----
-
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
-
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
-
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
-
-```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
-```
-
----
-
-<a id="taskade-mcp"></a>
-## 💎 [taskade/mcp](https://github.com/taskade/mcp)
-
-**★ 164** · exceptional (score 16.8) · TypeScript · tags: ai, ai-agent, ai-agents, autonomous-agents, genesis
-
-🤖 Taskade MCP · Official MCP server and OpenAPI to MCP codegen. Build AI agent tools from any OpenAPI API and connect to Claude, Cursor, and more.
-
-```bash
-cue skills add taskade/mcp --profile backend
-```
-
----
-
-<a id="masayukita-m365-copilot-companion-mcp"></a>
-## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
-
-**★ 6** · exceptional (score 11.6) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
-
-Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
-
-```bash
-cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
-```
-
----
-
-<a id="inssist-mcp"></a>
-## 💎 [inssist/mcp](https://github.com/inssist/mcp)
-
-**★ 0** · exceptional (score 10.5) · TypeScript · tags: ai-agent, chrome-extension, claude, claude-code, codex
-
-MCP server that lets AI agents (Claude Code, Codex, Cursor) work inside your own Instagram session through the INSSIST Chrome extension
-
-```bash
-cue skills add inssist/mcp --profile backend
-```
-
----
-
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 51** · exceptional (score 10.4) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 53** · exceptional (score 10.4) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -110,28 +28,15 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="jmrplens-gitlab-mcp-server"></a>
-## 💎 [jmrplens/gitlab-mcp-server](https://github.com/jmrplens/gitlab-mcp-server)
+<a id="rexnzm-mcp-rag-with-chromadb"></a>
+## 💎 [rexnzm/MCP-rag-with-Chromadb](https://github.com/rexnzm/MCP-rag-with-Chromadb)
 
-**★ 35** · exceptional (score 9.7) · Go · tags: ai-tools, gitlab, gitlab-api, go, llm
+**★ 3** · exceptional (score 8.2) · Python · tags: agentic-ai, chromadb, embeddings, fastmcp, langchain
 
-Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 850+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only modes.
-
-```bash
-cue skills add jmrplens/gitlab-mcp-server --profile backend
-```
-
----
-
-<a id="munhq-chat-recall"></a>
-## 💎 [munhq/chat-recall](https://github.com/munhq/chat-recall)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: agent-memory, ai-agents, antigravity, claude, claude-code
-
-Memory, secret alerts, ranked code findings and tracked tasks across every AI coding tool. Indexes Claude Code, Gemini CLI, Codex, OpenCode, Antigravity and Cursor sessions into one searchable history, and exposes it to your agent over MCP.
+🗂️ Build a versatile MCP server with RAG capabilities, supporting multiple document formats using LangChain and ChromaDB for efficient data retrieval.
 
 ```bash
-cue skills add munhq/chat-recall --profile backend
+cue skills add rexnzm/MCP-rag-with-Chromadb --profile backend
 ```
 
 ---
@@ -149,36 +54,75 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="michaelegner-architecture-intelligence-platform"></a>
-## ✨ [michaelegner/architecture-intelligence-platform](https://github.com/michaelegner/architecture-intelligence-platform)
+<a id="ariefalabbasi-mcp-audit"></a>
+## ✨ [ariefalabbasi/mcp-audit](https://github.com/ariefalabbasi/mcp-audit)
 
-**★ 0** · strong (score 6) · Python · tags: ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi
+**★ 1** · strong (score 7.8) · Python · tags: agent, agentic-ai, ai, ai-agents, aws
 
-Trusted architecture context for AI agents: an evidence-backed architecture graph from OpenAPI, AsyncAPI and OpenTelemetry, served over MCP.
+🌟 Track token consumption in real-time with MCP Audit. Diagnose context bloat and unexpected spikes across MCP servers and tools efficiently.
 
 ```bash
-cue skills add michaelegner/architecture-intelligence-platform --profile backend
+cue skills add ariefalabbasi/mcp-audit --profile backend
 ```
 
 ---
 
-<a id="peterrichards-lr-liferay-accelerator-sdk"></a>
-## ✨ [peterrichards-lr/liferay-accelerator-sdk](https://github.com/peterrichards-lr/liferay-accelerator-sdk)
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
 
-**★ 0** · strong (score 6) · JavaScript · tags: agentic-ai, integration, liferay, liferay-dxp, mcp-server
+**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
 
-Hardened Liferay DXP Integration SDK for Batch, Workflow, and API orchestration.
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
 
 ```bash
-cue skills add peterrichards-lr/liferay-accelerator-sdk --profile backend
+cue skills add shadow400x/claude-sh --profile backend
+```
+
+---
+
+<a id="mcp-tool-shop-org-repo-knowledge"></a>
+## ✨ [mcp-tool-shop-org/repo-knowledge](https://github.com/mcp-tool-shop-org/repo-knowledge)
+
+**★ 0** · strong (score 7.5) · TypeScript · tags: audit, cli, fts5, knowledge-catalog, mcp
+
+Repo knowledge system — relational catalog with full-text search, audit evidence, and MCP access
+
+```bash
+cue skills add mcp-tool-shop-org/repo-knowledge --profile backend
+```
+
+---
+
+<a id="tam1379-uspto-fpd-mcp"></a>
+## ✨ [Tam1379/uspto_fpd_mcp](https://github.com/Tam1379/uspto_fpd_mcp)
+
+**★ 3** · strong (score 7.2) · Python · tags: ai-integration, claude-ai, context-reduction, fastmcp, intellectual-property
+
+🚀 Improve patent analysis with a high-performance MCP server for USPTO Final Petition Decisions, featuring context reduction and customizable fields.
+
+```bash
+cue skills add Tam1379/uspto_fpd_mcp --profile backend
+```
+
+---
+
+<a id="ravisinghrajput95-kubewhy"></a>
+## ✨ [ravisinghrajput95/kubewhy](https://github.com/ravisinghrajput95/kubewhy)
+
+**★ 0** · strong (score 5) · Python · tags: aiops, fastapi, kubernetes, llm-agent, local-llm
+
+Air-gapped Kubernetes root-cause analysis. Everything tells you what is broken; kubewhy tells you why — a local LLM reads real logs, events and resource limits to find the cause. Read-only, verifies its own claims, nothing leaves your network.
+
+```bash
+cue skills add ravisinghrajput95/kubewhy --profile backend
 ```
 
 ---
 
 <a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

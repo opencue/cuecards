@@ -2,7 +2,7 @@
 title: "rokokol/versioning-skill — Claude Code skill discovered by cue"
 description: "What a repository says about itself over time: whether it has a version, what its changelog looks like either way, what earns an entry, and the ritual that cuts"
 layout: page
-updated: 2026-09-07
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-07
+- 🗓️ Last pushed: 2026-09-12
 - 🏷️ Tags: agent-skills, bash, changelog, claude-code, claude-skill, conventions, developer-tools, documentation, git-tags, keep-a-changelog, release, release-automation, semver, shell, skill, versioning
 
 ## Best fit cue profiles

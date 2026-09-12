@@ -2,21 +2,21 @@
 title: "shinpr/claude-code-workflows — Claude Code skill discovered by cue"
 description: "Development workflows for Claude Code that keep broad exploration focused on the outcome you approved."
 layout: page
-updated: 2026-09-05
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [shinpr/claude-code-workflows](https://github.com/shinpr/claude-code-workflows)
 
-**★ 679** · exceptional (score 19) · JavaScript · agent-skills, agentic-ai, agentic-coding, ai-agents, anthropic
+**★ 680** · exceptional (score 19) · JavaScript · agent-skills, agentic-ai, agentic-coding, ai-agents, anthropic
 
 > Development workflows for Claude Code that keep broad exploration focused on the outcome you approved.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19 based on:
-- ⭐ 679 stars
-- 🗓️ Last pushed: 2026-09-05
+- ⭐ 680 stars
+- 🗓️ Last pushed: 2026-09-12
 - 🏷️ Tags: agent-skills, agentic-ai, agentic-coding, ai-agents, anthropic, claude-code, claude-code-plugin, claude-code-skill, code-quality, code-review, developer-tools, development-workflow, llm-orchestration, productivity, subagents
 
 ## Best fit cue profiles

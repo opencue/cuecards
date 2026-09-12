@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="rokokol-papers-skill"></a>
+## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
 
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 1** · exceptional (score 13.3) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
+cue skills add rokokol/papers-skill --profile research
 ```
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="tam1379-uspto-fpd-mcp"></a>
+## ✨ [Tam1379/uspto_fpd_mcp](https://github.com/Tam1379/uspto_fpd_mcp)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 3** · strong (score 7.2) · Python · tags: ai-integration, claude-ai, context-reduction, fastmcp, intellectual-property
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
-
-```bash
-cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="neverbiasu-awesome-research-skills"></a>
-## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
-
-**★ 1** · strong (score 5.3) · tags: academic-research, agent-skills, ai-agents, ai-for-research, awesome
-
-146 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
+🚀 Improve patent analysis with a high-performance MCP server for USPTO Final Petition Decisions, featuring context reduction and customizable fields.
 
 ```bash
-cue skills add neverbiasu/awesome-research-skills --profile research
+cue skills add Tam1379/uspto_fpd_mcp --profile research
 ```
 
 ---

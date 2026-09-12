@@ -1,44 +1,59 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="devesh-shirsath-spotkit"></a>
-## 💎 [Devesh-Shirsath/spotkit](https://github.com/Devesh-Shirsath/spotkit)
-
-**★ 61** · exceptional (score 19.1) · HTML · tags: ai-tools, anthropic, claude-code, claude-skill, design-automation
-
-Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system.
-
-✅ SKILL.md
-
-```bash
-cue skills add Devesh-Shirsath/spotkit --profile creative-media
-```
-
----
-
 <a id="tt-a1i-archify"></a>
 ## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 57907** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 58905** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
 Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ```bash
 cue skills add tt-a1i/archify --profile creative-media
+```
+
+---
+
+<a id="petehottelet-yautja"></a>
+## 💎 [petehottelet/yautja](https://github.com/petehottelet/yautja)
+
+**★ 0** · exceptional (score 14.5) · Python · tags: agent-skill, audio-reactive, claude-code, claude-skill, codex
+
+Yautja is a sci-fi-styled image segmentation, re-skinning, and annotation skill for thermal-imaging-style output, part of an extended public art project. For entertainment only; colors are algorithmically generated with some randomness, not measured temperatures. https://yautja.ai
+
+✅ SKILL.md
+
+```bash
+cue skills add petehottelet/yautja --profile creative-media
+```
+
+---
+
+<a id="gkw77-paper-ink-charts"></a>
+## 💎 [gkw77/paper-ink-charts](https://github.com/gkw77/paper-ink-charts)
+
+**★ 0** · exceptional (score 12.5) · Python · tags: agent-skill, charts, claude-skill, data-visualization, design-system
+
+Scientific figures that look typeset, not generated. Warm paper, one ink, one accent, no grid — an Agent Skill plus a small Python renderer, with the signature constraint enforced mechanically rather than by convention.
+
+✅ SKILL.md
+
+```bash
+cue skills add gkw77/paper-ink-charts --profile creative-media
 ```
 
 ---

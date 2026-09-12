@@ -2,7 +2,7 @@
 title: "MercurieVV/ScalaSemantic — Claude Code skill discovered by cue"
 description: "MCP server for deep semantic analysis of Scala via SemanticDB — exact find-usages, class hierarchies, implicit resolution & call paths for AI coding agents like"
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 

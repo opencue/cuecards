@@ -1,55 +1,31 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "3 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="moiz-za-etsy-seller-seo-system"></a>
-## 💎 [moiz-za/etsy-seller-seo-system](https://github.com/moiz-za/etsy-seller-seo-system)
+<a id="shauryalowkeygotaura-brand-launchpad"></a>
+## 💎 [shauryalowkeygotaura/brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)
 
-**★ 18** · exceptional (score 9.8) · Markdown · tags: ai-skill, claude-skill, cricut, digital-products, etsy-api
+**★ 1** · exceptional (score 13.8) · HTML · tags: agent-skills, ai, ai-tools, anthropic, brand-strategy
 
-Etsy Seller SEO System - Evidence-driven Etsy listing optimization skill for AI tools using live autocomplete, competitor SERP analysis, tag validation, and 2026 Etsy policies.
+One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. Built on Caleb Ralston, Harry Dry, Oren John & Brier Cochran frameworks.
 
-```bash
-cue skills add moiz-za/etsy-seller-seo-system --profile marketing
-```
-
----
-
-<a id="marketing-lisitsa-strong-copy-skill"></a>
-## 💎 [marketing-lisitsa/strong-copy-skill](https://github.com/marketing-lisitsa/strong-copy-skill)
-
-**★ 0** · exceptional (score 8) · tags: claude-code, claude-skill, copywriting, landing-page, marketing
-
-Claude Code skill that writes social media posts and website/landing copy in English: business brief first, your own voice, facts only, no AI slop.
+✅ SKILL.md
 
 ```bash
-cue skills add marketing-lisitsa/strong-copy-skill --profile marketing
-```
-
----
-
-<a id="moiz-za-svg-design-intelligence-system"></a>
-## ✨ [moiz-za/svg-design-intelligence-system](https://github.com/moiz-za/svg-design-intelligence-system)
-
-**★ 2** · strong (score 6) · Markdown · tags: ai-skill, claude-skill, cricut, digital-products, etsy-api
-
-Etsy SVG Design Intelligence System (ESVG-DIS) - Research-first AI agent skill for original SVG product concepts, IP screening, Cricut vector optimization, and 2026 Etsy SEO.
-
-```bash
-cue skills add moiz-za/svg-design-intelligence-system --profile marketing
+cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
 ```
 
 ---

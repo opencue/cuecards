@@ -2,7 +2,7 @@
 title: "reddeer-tech/claude-account — Claude Code skill discovered by cue"
 description: "Claude Account - route Claude Code subscriptions per project path on macOS. Different account per folder, everything else shared."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 

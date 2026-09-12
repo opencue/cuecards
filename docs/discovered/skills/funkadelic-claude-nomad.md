@@ -2,7 +2,7 @@
 title: "funkadelic/claude-nomad — Claude Code skill discovered by cue"
 description: "Sync your full Claude Code setup across machines: skills, settings, and session history, with path remapping and per-host overrides"
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 

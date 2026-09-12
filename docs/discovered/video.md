@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,30 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="mao-data-vidcut"></a>
-## 💎 [mao-data/vidcut](https://github.com/mao-data/vidcut)
+<a id="petehottelet-yautja"></a>
+## 💎 [petehottelet/yautja](https://github.com/petehottelet/yautja)
 
-**★ 1** · exceptional (score 10.8) · TypeScript · tags: agentic-ai, ai-agent, claude-code, ffmpeg, mcp
+**★ 0** · exceptional (score 14.5) · Python · tags: agent-skill, audio-reactive, claude-code, claude-skill, codex
 
-AI-native local video timeline editor — AI edits via MCP while you watch in the browser
+Yautja is a sci-fi-styled image segmentation, re-skinning, and annotation skill for thermal-imaging-style output, part of an extended public art project. For entertainment only; colors are algorithmically generated with some randomness, not measured temperatures. https://yautja.ai
+
+✅ SKILL.md
 
 ```bash
-cue skills add mao-data/vidcut --profile video
+cue skills add petehottelet/yautja --profile video
 ```
 
 ---
 
-<a id="husainzsabir53-dashboard-walkthrough"></a>
-## 💎 [HusainZSabir53/dashboard-walkthrough](https://github.com/HusainZSabir53/dashboard-walkthrough)
+<a id="xixihhhh-hotclip"></a>
+## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, playwright, tts
+**★ 169** · exceptional (score 11.5) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
 
-Claude Code skill: record a narrated 1080p walkthrough video of a running web dashboard (Playwright + neural TTS + ffmpeg)
+免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频,直发抖音/快手/B站/小红书/视频号——AI 找高光金句、弹幕热度进爆点判断、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts for TikTok & YouTube Shorts. No credits, no watermark, no uploads. Win/macOS/Linux.
 
 ```bash
-cue skills add HusainZSabir53/dashboard-walkthrough --profile video
+cue skills add xixihhhh/hotclip --profile video
 ```
 
 ---

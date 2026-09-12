@@ -2,7 +2,7 @@
 title: "bygo/copy-path-for-ai — Claude Code skill discovered by cue"
 description: "JetBrains plugin: inject @path#line into the IDE Terminal for Claude Code, Codex, Grok, and other AI agents.    "
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Sebastilan/clipboard-img2file — Claude Code skill discovered by cue"
 description: "Auto-convert clipboard bitmap images to file paths for CLI tools like Claude Code"
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 

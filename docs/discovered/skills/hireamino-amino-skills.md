@@ -2,7 +2,7 @@
 title: "hireamino/amino-skills — Claude Code skill discovered by cue"
 description: "Free tools to assess and benchmark email sending domains, from Amino (hireamino.com)."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-11
+- 🗓️ Last pushed: 2026-09-12
 - 🏷️ Tags: claude-code, claude-skill, dkim, dmarc, email-deliverability, spf
 
 ## Best fit cue profiles

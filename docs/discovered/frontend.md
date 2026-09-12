@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="amohavarshansankar-google-fonts-skill"></a>
-## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
-
-**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
-
-Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
-
-✅ SKILL.md
-
-```bash
-cue skills add amohavarshansankar/google-fonts-skill --profile frontend
-```
 
 ---
 
@@ -43,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="wahmoh-claude-react-kit"></a>
-## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
+<a id="sidiqhadi-daisyui-mcp"></a>
+## 💎 [SidiqHadi/daisyui-mcp](https://github.com/SidiqHadi/daisyui-mcp)
 
-**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
+**★ 4** · exceptional (score 8.3) · Python · tags: ai, ai-agent-tools, ai-agents, component-library, components
 
-Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
+🌼 Build a token-friendly local MCP server for DaisyUI docs, ensuring efficient access to 60+ customizable components for your AI projects.
 
 ```bash
-cue skills add wahmoh/claude-react-kit --profile frontend
+cue skills add SidiqHadi/daisyui-mcp --profile frontend
 ```
 
 ---

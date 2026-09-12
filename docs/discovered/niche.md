@@ -1,31 +1,59 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-06
+updated: 2026-09-12
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+
+**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+
+✅ SKILL.md
+
+```bash
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+```
+
+---
+
 <a id="yizchu-patent-compose-skill"></a>
 ## 💎 [yizchu/patent-compose-skill](https://github.com/yizchu/patent-compose-skill)
 
-**★ 3** · exceptional (score 9.2) · Python · tags: claim-optimization, claim-tree, claude-code-skill, cnki, compose
+**★ 8** · exceptional (score 10.6) · Python · tags: claim-optimization, claim-tree, claude-code-skill, cnki, compose
 
-AI驱动的专利撰写工作流，自动化完成项目分析、查新检索、专利组合生成与优化、交底书和流程图撰写。
+AI驱动的专利撰写工作流，自动化完成项目分析、查新检索、专利组合生成与保护优化、交底书和流程图撰写、权利要求书及完整申请文件生成。
 
 ✅ SKILL.md
 
 ```bash
 cue skills add yizchu/patent-compose-skill --profile niche
+```
+
+---
+
+<a id="uoldady-kaoyan-burst-predictor"></a>
+## ✨ [Uoldady/kaoyan-burst-predictor](https://github.com/Uoldady/kaoyan-burst-predictor)
+
+**★ 17** · strong (score 6.7) · tags: ai-tools, claude-code-plugin, claude-code-skill, kaoyan, postgraduate
+
+帮助你在考研择校时避开易爆学校，上岸世界上性价比最高的顶尖学府。综合考量院校前三年各项指标，结合考生自生情况给出最优选择。世界上最好的考研引路人，你值得拥有。
+
+```bash
+cue skills add Uoldady/kaoyan-burst-predictor --profile niche
 ```
 
 ---

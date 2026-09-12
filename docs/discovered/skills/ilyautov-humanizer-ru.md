@@ -1,23 +1,23 @@
 ---
 title: "ilyautov/humanizer-ru — Claude Code skill discovered by cue"
-description: "humanizer-ru: очеловечить русский AI-текст для Claude Code, Cursor, Codex и других AI-агентов"
+description: "humanizer-ru: очеловечить русский AI-текст для Claude Code, Cursor, Codex и других AI-агентов. 64 признака нейросети, 21 жёсткий бан, сканер в комплекте. | Remo"
 layout: page
-updated: 2026-09-09
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ilyautov/humanizer-ru](https://github.com/ilyautov/humanizer-ru)
 
-**★ 301** · exceptional (score 15.7) · Python · agent-skills, ai-detection, anthropic, anti-ai-detector, claude
+**★ 339** · exceptional (score 14.8) · Python · agent-skills, ai-detection, anthropic, anti-ai-detector, claude
 
-> humanizer-ru: очеловечить русский AI-текст для Claude Code, Cursor, Codex и других AI-агентов
+> humanizer-ru: очеловечить русский AI-текст для Claude Code, Cursor, Codex и других AI-агентов. 64 признака нейросети, 21 жёсткий бан, сканер в комплекте. | Remove AI-generation markers from Russian text: open-source skill for Claude Code, Cursor, Codex and other agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
-- ⭐ 301 stars
-- 🗓️ Last pushed: 2026-09-09
-- 🏷️ Tags: agent-skills, ai-detection, anthropic, anti-ai-detector, claude, claude-code, claude-code-skills, claude-cowork, claude-skill, claude-skills, codex-cli, copywriting, cursor, gemini-cli, humanizer, humanizer-ru, russian, skill-md, text-humanizer, ux-writing
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
+- ⭐ 339 stars
+- 🗓️ Last pushed: 2026-09-12
+- 🏷️ Tags: agent-skills, ai-detection, anthropic, anti-ai-detector, claude, claude-code, claude-code-skills, claude-cowork, claude-skill, claude-skills, codex-cli, copywriting, cursor, gemini-cli-extension, humanizer, humanizer-ru, russian, skill-md, text-humanizer, ux-writing
 
 ## Best fit cue profiles
 

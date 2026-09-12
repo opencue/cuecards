@@ -2,19 +2,19 @@
 title: "hmennen90/claude-code-win32 — Claude Code skill discovered by cue"
 description: "Claude Code Plugin: hybrid bash→PowerShell transpiler for Windows. POSIX pass-through, targeted PS rewrites, MSYS path translation, per-command deny hints."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [hmennen90/claude-code-win32](https://github.com/hmennen90/claude-code-win32)
 
-**★ 1** · strong (score 7.7) · TypeScript · bash, claude-code, claude-code-plugin, claude-plugin, git-bash
+**★ 1** · strong (score 7.6) · TypeScript · bash, claude-code, claude-code-plugin, claude-plugin, git-bash
 
 > Claude Code Plugin: hybrid bash→PowerShell transpiler for Windows. POSIX pass-through, targeted PS rewrites, MSYS path translation, per-command deny hints.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.6 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-07
 - 🏷️ Tags: bash, claude-code, claude-code-plugin, claude-plugin, git-bash, hook, msys, powershell, transpiler, typescript, win32, windows

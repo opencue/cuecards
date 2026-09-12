@@ -2,19 +2,19 @@
 title: "mixocreative/ecommerce-cia — Claude Code skill discovered by cue"
 description: "Claude Code / Codex skill: audits an e-commerce system as a Viable System (Stafford Beer VSM). Payments, stock, orders, entitlements traced as channels; finds c"
 layout: page
-updated: 2026-09-11
+updated: 2026-09-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mixocreative/ecommerce-cia](https://github.com/mixocreative/ecommerce-cia)
 
-**★ 6** · exceptional (score 10) · agent-skills, ai-agents, claude-code, claude-skill, code-audit
+**★ 6** · exceptional (score 9.9) · agent-skills, ai-agents, claude-code, claude-skill, code-audit
 
 > Claude Code / Codex skill: audits an e-commerce system as a Viable System (Stafford Beer VSM). Payments, stock, orders, entitlements traced as channels; finds cross-boundary invariant violations in the money path. ECPay / NewebPay / Taiwan chapter included.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
 - ⭐ 6 stars
 - 🗓️ Last pushed: 2026-09-11
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-skill, code-audit, cybernetics, ecommerce, ecpay, newebpay, openai-codex, payment-gateway, payments, stafford-beer, viable-system-model
