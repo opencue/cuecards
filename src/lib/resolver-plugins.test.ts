@@ -141,9 +141,9 @@ describe("resolvePlugins", () => {
     const err = caught as PluginNotInstalled;
     expect(err.code).toBe("PLUGIN_NOT_INSTALLED");
     expect(err.plugin).toBe("does-not-exist");
-    expect(err.install_hint).toBe("/plugin marketplace add does-not-exist");
+    expect(err.install_hint).toBe("claude plugin install does-not-exist");
     expect(err.pluginsRoot).toBe(root);
-    expect(err.message).toContain("/plugin marketplace add does-not-exist");
+    expect(err.message).toContain("claude plugin install does-not-exist");
   });
 
   test("returns zero plans when the plugin exists but has an empty skills/ dir", async () => {

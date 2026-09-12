@@ -97,7 +97,7 @@ import {
   serviceCompanions,
   type CompanionSignal,
 } from "../lib/companion-detect";
-import type { LinkPlan, ResolvedProfile } from "../../profiles/_types";
+import type { AgentKind, LinkPlan, ResolvedProfile } from "../../profiles/_types";
 import type {
   ProfileAffinity,
   UniversalSuggestion,
@@ -1993,6 +1993,11 @@ interface ResolveNpxSkillSourcesOptions {
    * continuing without them. Not called on a clean resolve.
    */
   onDegraded?: (failures: NpxEntryFailure[]) => void;
+  /**
+   * Drop npx entries scoped to a different agent. Omit to resolve every entry,
+   * which is what the diagnostics callers (doctor, validate) want.
+   */
+  agent?: AgentKind;
 }
 
 /**
@@ -2003,24 +2008,40 @@ interface ResolveNpxSkillSourcesOptions {
  * degrades to whatever is already cached (often everything, since the cache is
  * keyed by repo+pin) and the launch proceeds. Missing skills are reported to
  * `onDegraded`, never thrown — losing one skill must not cost the session.
+ *
+ * `agents:` on an entry scopes it the same way it already scopes local skills,
+ * MCPs, and plugins in the materializer. Without this filter a profile that
+ * serves one agent from npx and the other from a plugin (ponytail) would link
+ * the same skills twice on the plugin side.
  */
 export async function resolveNpxSkillSources(
   profile: ResolvedProfile,
   opts: ResolveNpxSkillSourcesOptions = {},
 ): Promise<Map<string, string>> {
   const sources = new Map<string, string>();
-  if (profile.skills.npx.length === 0) return sources;
+  const scoped = opts.agent === undefined
+    ? profile
+    : {
+      ...profile,
+      skills: {
+        ...profile.skills,
+        npx: profile.skills.npx.filter((entry) =>
+          !entry.agents || entry.agents.length === 0 || entry.agents.includes(opts.agent!),
+        ),
+      },
+    };
+  if (scoped.skills.npx.length === 0) return sources;
 
   // Always honor the profile's repo+pin through Cue's cache. A same-named
   // marketplace skill has no trustworthy provenance and must not override it.
   if (opts.resolveNpx) {
-    for (const plan of await opts.resolveNpx(profile)) {
+    for (const plan of await opts.resolveNpx(scoped)) {
       sources.set(basename(plan.target), plan.source);
     }
     return sources;
   }
 
-  const { plans, failures } = await resolveNpxDetailed(profile, {
+  const { plans, failures } = await resolveNpxDetailed(scoped, {
     tolerateFetchFailure: true,
   });
   for (const plan of plans) {
@@ -3012,6 +3033,7 @@ export async function run(args: string[]): Promise<number> {
     // default guidance survives both, without changing the selected runtime key.
     profile = await withCodexPonytail(await applyWorkspaceOverrides(profile), agentKind);
     const npxSkillMap = await resolveNpxSkillSources(profile, {
+      agent: agentKind,
       onDegraded: (failures) => {
         // Deferred: the loader owns the terminal until the finally below.
         npxDegraded.push(...failures);
@@ -3075,8 +3097,27 @@ export async function run(args: string[]): Promise<number> {
   let healthBadge = "";
   try {
     const { quickDiagnose } = await import("./status");
-    const warnings = quickDiagnose(profileName, profile);
+    const warnings = quickDiagnose(profileName, profile, agentKind);
     if (warnings.length > 0) healthBadge = "!";
+
+    // D12 (declared plugin not installed) prints its own text on EVERY launch,
+    // outside the `.doctor-done` gate below. The gated path cannot carry it:
+    // it fires only when `runtime.rebuilt` AND the flag is absent, and nothing
+    // ever deletes that flag — so an existing runtime shows nothing at all.
+    // It also collapses every warning into one generic `⚠ N cue-doctor
+    // warnings` line, dropping the command the user needs.
+    //
+    // For a missing plugin that is the wrong trade. The capability is simply
+    // absent, silently, and hook-carrying plugins fail invisibly by design —
+    // so the one-time generic pointer is exactly what the user does not get.
+    // Every other D-code describes something still visible elsewhere.
+    const pluginWarnings = warnings.filter((w) => w.code === "D12");
+    if (pluginWarnings.length > 0) {
+      const c = colorFns();
+      for (const w of pluginWarnings) {
+        process.stderr.write(`${c.yellow("⚠")} ${w.message}\n`);
+      }
+    }
 
     if (runtime.rebuilt) {
       try {
@@ -3088,7 +3129,11 @@ export async function run(args: string[]): Promise<number> {
           ".doctor-done",
         );
         if (!existsSync(doctorFlag)) {
-          const lines = formatDoctorWarnings(warnings);
+          // D12 already printed its own text above; counting it again here
+          // would report it twice on a rebuild.
+          const lines = formatDoctorWarnings(
+            warnings.filter((w) => w.code !== "D12"),
+          );
           if (lines.length > 0) {
             process.stderr.write("\n");
             for (const l of lines) process.stderr.write(`${l}\n`);
