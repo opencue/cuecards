@@ -48,7 +48,13 @@ export class PluginNotInstalled extends ProfileError {
   public readonly pluginsRoot: string;
 
   constructor(plugin: string, pluginsRoot: string) {
-    const hint = `/plugin marketplace add ${plugin}`;
+    // `plugin` is a `name@marketplace` ref, which is what `plugin install`
+    // takes — not what `marketplace add` takes. The old hint fed the ref to
+    // `marketplace add`, which wants a SOURCE (`DietrichGebert/ponytail`, a URL
+    // or a path); a profile never records that, so cue cannot reconstruct it.
+    // `plugin install` is the step that actually applies once the marketplace
+    // is registered, and it fails with a usable message when it is not.
+    const hint = `claude plugin install ${plugin}`;
     super(
       "PLUGIN_NOT_INSTALLED",
       `Plugin "${plugin}" is not installed under "${pluginsRoot}". ` +

@@ -423,6 +423,10 @@ describe("materializeRuntime", () => {
       plugins: [
         { id: "claude-only@mp", agents: ["claude-code"] },
         { id: "everyone@mp" },
+        // The load-bearing case: without it every plugin in the fixture is
+        // expected to be present, and "enable everything" satisfies the
+        // assertion — the test passes even with the filter deleted.
+        { id: "codex-only@mp", agents: ["codex"] },
       ],
     } as unknown as ResolvedProfile;
     const out = await materializeRuntime({

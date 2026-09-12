@@ -774,11 +774,19 @@ function addResolverIssue(
   // user's machine just doesn't have the plugin yet) — demote to W5 warning
   // rather than failing validation with E3.
   if (err instanceof PluginNotInstalled) {
+    // Name the plugin, not a guess at its source. The old hint was
+    // `/plugin marketplace add ${ref.split("@")[0]}`, which takes the PLUGIN
+    // half of `plugin@marketplace` and passes it where a marketplace SOURCE
+    // belongs — so `claude-mem@thedotmack` produced `add claude-mem`, and
+    // `ponytail@ponytail` produced `add ponytail`. Neither resolves; the
+    // profile does not record the source repo, so cue cannot reconstruct it.
+    // `plugin install` is the step that actually applies once the marketplace
+    // is registered, and it fails with a usable message when it is not.
     addIssue(
       result,
       "W5",
       "warning",
-      `plugin "${ref}" is not installed locally — run /plugin marketplace add ${ref.split("@")[0]}`,
+      `plugin "${ref}" is not installed locally — run \`claude plugin install ${ref}\` (register its marketplace first if you have not)`,
       { subject: ref },
     );
     return;

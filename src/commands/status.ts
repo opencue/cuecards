@@ -77,6 +77,54 @@ export function quickDiagnose(profileName: string, profile: any): Warning[] {
     }
   }
 
+  // D6: a declared plugin must actually be installed.
+  //
+  // cue never installs plugins or registers marketplaces — it only writes
+  // `enabledPlugins` into the runtime's settings.json, unconditionally. So a
+  // profile that sources capability from a plugin gets NOTHING on a machine
+  // where that plugin is absent, and until this check existed, nothing said
+  // so: the payload is simply missing and the agent behaves as if the profile
+  // never declared it. `cue validate` reports W5, but no launch prompts for it.
+  //
+  // That silence is worse than it sounds for a plugin carrying hooks. Hook
+  // failures are invisible by design, so the only symptom is guidance that
+  // quietly never applies (observed 2026-09-12 with ponytail@ponytail).
+  for (const p of profile.plugins ?? []) {
+    const ref = typeof p === "string" ? p : p?.id;
+    if (typeof ref !== "string" || ref === "") continue;
+    const [pluginName, marketplace] = ref.split("@");
+    if (!pluginName || !marketplace) continue; // not a `plugin@marketplace` ref
+
+    const pluginsRoot =
+      process.env.SOUL_PLUGINS_ROOT ?? join(homedir(), ".claude", "plugins");
+    const readJson = (file: string): any => {
+      try {
+        return JSON.parse(readFileSync(join(pluginsRoot, file), "utf8"));
+      } catch {
+        return undefined; // absent or malformed — treat as "knows nothing"
+      }
+    };
+
+    const installed = readJson("installed_plugins.json")?.plugins ?? {};
+    if (Object.hasOwn(installed, ref)) continue;
+
+    // Name the step the user is actually missing. Registering the marketplace
+    // and installing the plugin are separate actions, and telling someone to
+    // install from a marketplace they have not added sends them into an error.
+    const known = readJson("known_marketplaces.json") ?? {};
+    warnings.push(
+      Object.hasOwn(known, marketplace)
+        ? {
+          code: "D6",
+          message: `plugin "${ref}" is not installed — run \`claude plugin install ${ref}\``,
+        }
+        : {
+          code: "D6",
+          message: `plugin "${ref}" is not installed — marketplace "${marketplace}" is not registered; add it, then \`claude plugin install ${ref}\``,
+        },
+    );
+  }
+
   // D4: Skill → MCP dependency check
   try {
     const { detectMissingDependencies } = require("../lib/skill-dependencies");
