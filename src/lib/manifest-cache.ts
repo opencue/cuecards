@@ -96,6 +96,20 @@ export function getCachedManifest(
     const raw = JSON.parse(readFileSync(cachePath, "utf8")) as ManifestEntry;
     if (raw.version !== 2) return null;
 
+    // An entry with no known sources can never be invalidated: the loop below
+    // has nothing to stat, so it passes vacuously and the entry is served
+    // forever. `collectSources` only looks under `profilesDir`, while
+    // `profileYamlPath` also resolves namespaced `user/repo` profiles to
+    // `<XDG>/cue/shared/...` — so every `cue share install` profile records
+    // `{}` and pins its first-ever resolution. Reproduced: re-installing an
+    // updated shared profile kept serving the old manifest until the cache
+    // file was deleted by hand.
+    //
+    // Treat that as a miss rather than teaching this module a second copy of
+    // the loader's path rules. Zero known sources means not safely cacheable,
+    // whatever the reason — the cost is one skipped cache hit.
+    if (Object.keys(raw.sources).length === 0) return null;
+
     // Validate all source mtimes still match
     for (const [path, expectedMtime] of Object.entries(raw.sources)) {
       try {

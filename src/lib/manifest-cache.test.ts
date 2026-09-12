@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, test, expect } from "bun:test";
-import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -64,7 +64,38 @@ describe("getCachedManifest", () => {
     // tests passing while every write escapes this file's tmpdir into the
     // developer's real ~/.config/cue/cache/manifests — a silent test leak
     // with nothing to catch it. Assert the redirect actually takes effect.
-    expect(__test.cacheFile("x", "/d")).toStartWith(process.env.XDG_CONFIG_HOME!);
+    // Pin the layout too, not just "somewhere under XDG_CONFIG_HOME": a
+    // mutation that kept per-call resolution but dropped the cue/cache/
+    // manifests segments — writing manifests straight into ~/.config — passed
+    // the looser prefix assertion.
+    expect(__test.cacheFile("x", "/d")).toStartWith(
+      join(process.env.XDG_CONFIG_HOME!, "cue", "cache", "manifests"),
+    );
+  });
+
+  test("an entry with no known sources is a miss, not a permanent hit", () => {
+    // `collectSources` only looks under profilesDir, but `profileYamlPath`
+    // also resolves namespaced `user/repo` profiles to <XDG>/cue/shared/… —
+    // so a `cue share install` profile records {} and, with nothing to stat,
+    // validates vacuously forever. Reinstalling an updated version kept
+    // serving the old manifest until the cache file was deleted by hand.
+    const { dir } = makeTree("sourceless", "v1");
+    // Neither the name nor the chain resolves to a profile.yaml under `dir` —
+    // the shape `cue share install` produces, where the YAML lives under
+    // <XDG>/cue/shared/ instead. Kept a flat slug so the cache file itself
+    // writes fine: the point is the empty `sources`, not a failed write.
+    const orphan = {
+      name: "installed-elsewhere",
+      description: "v1",
+      inheritanceChain: ["installed-elsewhere"],
+    } as ResolvedProfile;
+    putCachedManifest(orphan, dir);
+
+    expect(__test.collectSources(orphan, dir)).toEqual({});
+    // The entry IS on disk — proving this is the fail-safe rejecting it, not
+    // a plain cache miss.
+    expect(existsSync(__test.cacheFile("installed-elsewhere", dir))).toBe(true);
+    expect(getCachedManifest("installed-elsewhere", dir)).toBeNull();
   });
 
   test("round-trips a profile through the cache", () => {
