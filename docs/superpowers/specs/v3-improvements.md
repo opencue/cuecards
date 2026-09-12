@@ -454,9 +454,18 @@ mcps:
 > 2026-09-12 with N identical stdio servers that each sleep 3s before answering
 > `initialize`: 1 server 10.17s, 4 servers 10.72s, 12 servers 10.13s — the client
 > connects in parallel, so the wait is set by the single slowest server. The cost
-> that does scale is context, not time: each server's tool schemas. The effective
-> levers are therefore `mcpPrune` (fewer servers) and replacing `npx -y pkg@latest`
-> commands (1.5–3.5s each, measured) with pinned versions or installed binaries.
+> that does scale is context, not time: each server's tool schemas.
+>
+> What sets that slowest server is the `npx` wrapper, not the version spec.
+> Same package, same machine, median of 3 runs to answer `initialize`:
+> `npx -y @upstash/context7-mcp` 1.38s vs the installed `context7-mcp` binary
+> 0.22s — npx itself costs ~1.16s. Pinning the version does **not** help:
+> `@supabase/mcp-server-supabase@latest` 1.28s vs `@0.12.0` 1.29s, because npx
+> caches the `@latest` resolution too. (Pinning is still worth doing for
+> supply-chain reasons; it is just not a startup lever.)
+>
+> The effective levers are therefore `mcpPrune` (fewer servers) and replacing
+> `npx -y <pkg>` commands with a globally installed binary.
 
 ---
 
