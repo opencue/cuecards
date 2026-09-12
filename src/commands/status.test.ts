@@ -125,10 +125,10 @@ describe("quickDiagnose — D2 MCP registry", () => {
 });
 
 // ---------------------------------------------------------------------------
-// D6 — declared plugin not installed
+// D12 — declared plugin not installed
 // ---------------------------------------------------------------------------
 
-describe("quickDiagnose — D6 plugin install state", () => {
+describe("quickDiagnose — D12 plugin install state", () => {
   let pluginsRoot: string;
   let priorRoot: string | undefined;
 
@@ -159,14 +159,14 @@ describe("quickDiagnose — D6 plugin install state", () => {
   test("an installed plugin produces no warning", () => {
     seed(["ponytail@ponytail"], ["ponytail"]);
     const profile = fakeProfile({ plugins: [{ id: "ponytail@ponytail" }] });
-    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D6")).toEqual([]);
+    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D12")).toEqual([]);
   });
 
   test("a missing plugin whose marketplace IS registered says to install it", () => {
     seed([], ["ponytail"]);
     const profile = fakeProfile({ plugins: [{ id: "ponytail@ponytail" }] });
     const [warning, ...rest] = quickDiagnose(FAKE_NAME, profile)
-      .filter((w: Warning) => w.code === "D6");
+      .filter((w: Warning) => w.code === "D12");
     expect(rest).toEqual([]);
     expect(warning?.message).toContain("claude plugin install ponytail@ponytail");
     expect(warning?.message).not.toContain("not registered");
@@ -177,7 +177,7 @@ describe("quickDiagnose — D6 plugin install state", () => {
     // marketplace they never added sends them straight into an error.
     seed([], []);
     const profile = fakeProfile({ plugins: [{ id: "ponytail@ponytail" }] });
-    const [warning] = quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D6");
+    const [warning] = quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D12");
     expect(warning?.message).toContain('marketplace "ponytail" is not registered');
   });
 
@@ -185,13 +185,29 @@ describe("quickDiagnose — D6 plugin install state", () => {
     process.env.SOUL_PLUGINS_ROOT = join(pluginsRoot, "does", "not", "exist");
     const profile = fakeProfile({ plugins: [{ id: "ponytail@ponytail" }] });
     expect(() => quickDiagnose(FAKE_NAME, profile)).not.toThrow();
-    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D6")).toHaveLength(1);
+    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D12")).toHaveLength(1);
+  });
+
+  test("skipped entirely for codex, which cannot load a Claude Code plugin", () => {
+    // claude-mem@thedotmack lives in `core`, which every profile inherits, so
+    // warning on codex would put a permanent, un-actionable line and a "!"
+    // health badge on every codex launch there is.
+    seed([], []);
+    const profile = fakeProfile({ plugins: [{ id: "ponytail@ponytail" }] });
+    expect(quickDiagnose(FAKE_NAME, profile, "codex").filter((w: Warning) => w.code === "D12"))
+      .toEqual([]);
+    // Same profile, Claude Code: still warns.
+    expect(quickDiagnose(FAKE_NAME, profile, "claude-code").filter((w: Warning) => w.code === "D12"))
+      .toHaveLength(1);
+    // Agent-agnostic callers (cue status, the dashboard) keep the check.
+    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D12"))
+      .toHaveLength(1);
   });
 
   test("a bare plugin ref with no marketplace is skipped, not guessed at", () => {
     seed([], []);
     const profile = fakeProfile({ plugins: [{ id: "no-marketplace-here" }, "" as never] });
-    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D6")).toEqual([]);
+    expect(quickDiagnose(FAKE_NAME, profile).filter((w: Warning) => w.code === "D12")).toEqual([]);
   });
 });
 

@@ -15,6 +15,8 @@ import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { computeStats } from "../lib/analytics";
 import { readGateStatus, type GateRun } from "../lib/gate-status";
 import { countProfileSkills } from "../lib/profile-capabilities";
+import { resolvePluginsRoot } from "../lib/resolver-plugins";
+import type { AgentKind } from "../../profiles/_types";
 
 const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
@@ -27,7 +29,15 @@ export interface Warning {
   message: string;
 }
 
-export function quickDiagnose(profileName: string, profile: any): Warning[] {
+/**
+ * @param agent Which agent this launch is for. Omit for agent-agnostic callers
+ *   (`cue status`, the dashboard) — only the Claude-only plugin check reads it.
+ */
+export function quickDiagnose(
+  profileName: string,
+  profile: any,
+  agent?: AgentKind,
+): Warning[] {
   const warnings: Warning[] = [];
 
   // Check skills exist on disk
@@ -77,7 +87,7 @@ export function quickDiagnose(profileName: string, profile: any): Warning[] {
     }
   }
 
-  // D6: a declared plugin must actually be installed.
+  // D12: a declared plugin must actually be installed.
   //
   // cue never installs plugins or registers marketplaces — it only writes
   // `enabledPlugins` into the runtime's settings.json, unconditionally. So a
@@ -89,40 +99,44 @@ export function quickDiagnose(profileName: string, profile: any): Warning[] {
   // That silence is worse than it sounds for a plugin carrying hooks. Hook
   // failures are invisible by design, so the only symptom is guidance that
   // quietly never applies (observed 2026-09-12 with ponytail@ponytail).
-  for (const p of profile.plugins ?? []) {
-    const ref = typeof p === "string" ? p : p?.id;
-    if (typeof ref !== "string" || ref === "") continue;
-    const [pluginName, marketplace] = ref.split("@");
-    if (!pluginName || !marketplace) continue; // not a `plugin@marketplace` ref
-
-    const pluginsRoot =
-      process.env.SOUL_PLUGINS_ROOT ?? join(homedir(), ".claude", "plugins");
-    const readJson = (file: string): any => {
+  //
+  // Claude-only by construction: the materializer routes `profile.plugins` into
+  // buildClaudeSettings' `enabledPlugins`, and the Codex branch never reads
+  // them. Warning a Codex user about a plugin Codex cannot load would be
+  // permanent and un-actionable — and `claude-mem@thedotmack` sits in `core`,
+  // which every profile inherits, so it would hit every Codex launch there is.
+  if (agent !== "codex") {
+    const pluginsRoot = resolvePluginsRoot();
+    const readRegistry = (file: string): Record<string, unknown> => {
       try {
-        return JSON.parse(readFileSync(join(pluginsRoot, file), "utf8"));
+        const raw = JSON.parse(readFileSync(join(pluginsRoot, file), "utf8"));
+        return raw && typeof raw === "object" ? raw : {};
       } catch {
-        return undefined; // absent or malformed — treat as "knows nothing"
+        return {}; // absent or malformed — treat as "knows nothing"
       }
     };
+    // Both registries are per-root, not per-plugin: read them once.
+    const installedRaw = readRegistry("installed_plugins.json").plugins;
+    const installed = (installedRaw && typeof installedRaw === "object" ? installedRaw : {}) as Record<string, unknown>;
+    const known = readRegistry("known_marketplaces.json");
 
-    const installed = readJson("installed_plugins.json")?.plugins ?? {};
-    if (Object.hasOwn(installed, ref)) continue;
+    for (const p of profile.plugins ?? []) {
+      const ref = typeof p === "string" ? p : p?.id;
+      if (typeof ref !== "string" || ref === "") continue;
+      const [pluginName, marketplace] = ref.split("@");
+      if (!pluginName || !marketplace) continue; // not a `plugin@marketplace` ref
+      if (Object.hasOwn(installed, ref)) continue;
 
-    // Name the step the user is actually missing. Registering the marketplace
-    // and installing the plugin are separate actions, and telling someone to
-    // install from a marketplace they have not added sends them into an error.
-    const known = readJson("known_marketplaces.json") ?? {};
-    warnings.push(
-      Object.hasOwn(known, marketplace)
-        ? {
-          code: "D6",
-          message: `plugin "${ref}" is not installed — run \`claude plugin install ${ref}\``,
-        }
-        : {
-          code: "D6",
-          message: `plugin "${ref}" is not installed — marketplace "${marketplace}" is not registered; add it, then \`claude plugin install ${ref}\``,
-        },
-    );
+      // Name the step the user is actually missing. Registering the marketplace
+      // and installing the plugin are separate actions, and telling someone to
+      // install from a marketplace they have not added sends them into an error.
+      warnings.push({
+        code: "D12",
+        message: Object.hasOwn(known, marketplace)
+          ? `plugin "${ref}" is not installed — run \`claude plugin install ${ref}\``
+          : `plugin "${ref}" is not installed — marketplace "${marketplace}" is not registered; add it, then \`claude plugin install ${ref}\``,
+      });
+    }
   }
 
   // D4: Skill → MCP dependency check

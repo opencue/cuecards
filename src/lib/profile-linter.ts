@@ -90,7 +90,7 @@ export const PROFILE_LINT_RULES: Record<LintRuleId, RuleDoc> = {
   W5: {
     severity: "warning",
     title: "plugin not installed locally",
-    description: "A referenced plugin is not installed under ~/.claude/plugins (environmental — install with `/plugin marketplace add <name>`).",
+    description: "A referenced plugin is not installed under ~/.claude/plugins (environmental — install with `claude plugin install <plugin>@<marketplace>`).",
   },
   W6: {
     severity: "warning",
