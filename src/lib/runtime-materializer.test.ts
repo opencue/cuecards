@@ -411,6 +411,38 @@ describe("materializeRuntime", () => {
     expect(hash).toMatch(/^[a-f0-9]{64}$/);
   });
 
+  test("an agents-scoped plugin is enabled only for that agent", async () => {
+    // ponytail declares `{ id: ponytail@ponytail, agents: [claude-code] }` so
+    // Codex — which cannot load a Claude Code plugin — falls through to the
+    // pinned npx source instead of silently getting an entry it can't use.
+    const profile = {
+      ...sampleProfile,
+      name: "test-scoped-plugin",
+      agents: ["claude-code", "codex"],
+      inheritanceChain: ["test-scoped-plugin"],
+      plugins: [
+        { id: "claude-only@mp", agents: ["claude-code"] },
+        { id: "everyone@mp" },
+      ],
+    } as unknown as ResolvedProfile;
+    const out = await materializeRuntime({
+      profile,
+      agent: "claude-code",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+      userClaudeMd: "",
+    });
+
+    const settings = JSON.parse(
+      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
+    );
+    expect(settings.enabledPlugins).toEqual({
+      "claude-only@mp": true,
+      "everyone@mp": true,
+    });
+  });
+
   test("project-loadout deferred index: generated skill written, hashed, absent without", async () => {
     const opts = {
       agent: "claude-code" as const,

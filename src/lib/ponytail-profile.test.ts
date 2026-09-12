@@ -13,7 +13,12 @@ afterEach(() => {
   else process.env.CUE_PROFILES_DIR = priorProfilesDir;
 });
 
-test("Ponytail adds six pinned skills without changing core plugins or hooks", async () => {
+const PONYTAIL_SKILLS = [
+  "ponytail", "ponytail-review", "ponytail-audit",
+  "ponytail-debt", "ponytail-gain", "ponytail-help",
+];
+
+test("Ponytail adds six pinned skills without changing core hooks or MCPs", async () => {
   const core = await loadProfile("core");
   const profile = await loadProfile("ponytail");
   const upstream = profile.skills.npx.find((source) => source.repo === "DietrichGebert/ponytail");
@@ -21,15 +26,28 @@ test("Ponytail adds six pinned skills without changing core plugins or hooks", a
   expect(profile.kind).toBe("overlay");
   expect(profile.agents).toEqual(["claude-code", "codex"]);
   expect(upstream?.pin).toMatch(/^git@[a-f0-9]{40}$/);
-  expect(upstream?.skills).toEqual([
-    "ponytail", "ponytail-review", "ponytail-audit",
-    "ponytail-debt", "ponytail-gain", "ponytail-help",
-  ]);
-  expect(profile.plugins).toEqual(core.plugins);
+  expect(upstream?.skills).toEqual(PONYTAIL_SKILLS);
   expect(profile.codex).toEqual(core.codex);
   expect(profile.hooks).toEqual(core.hooks);
   expect(profile.mcps).toEqual(core.mcps);
   expect(core.skills.npx.some((source) => source.repo === "DietrichGebert/ponytail")).toBe(false);
+});
+
+test("each agent gets Ponytail from exactly one source, never both", async () => {
+  const core = await loadProfile("core");
+  const profile = await loadProfile("ponytail");
+  const upstream = profile.skills.npx.find((source) => source.repo === "DietrichGebert/ponytail");
+  const plugin = profile.plugins.find((entry) => entry.id === "ponytail@ponytail");
+
+  // Codex cannot load a Claude Code plugin, so it takes the pinned npx repo;
+  // Claude Code takes the plugin, which carries the same six skills plus the
+  // SessionStart/SubagentStart/UserPromptSubmit hooks. Scoping both is what
+  // keeps Claude from linking the six skills twice.
+  expect(upstream?.agents).toEqual(["codex"]);
+  expect(plugin?.agents).toEqual(["claude-code"]);
+  // The overlay adds the plugin on top of core's, it does not replace them.
+  for (const inherited of core.plugins) expect(profile.plugins).toContainEqual(inherited);
+  expect(core.plugins.some((entry) => entry.id === "ponytail@ponytail")).toBe(false);
 });
 
 for (const baseName of ["frontend", "nextjs"]) {

@@ -16,12 +16,17 @@ persona: |
   Reuse the repository's test tools; a small check does not replace required suites or delivery gates.
   Stop once the requested scope and required checks are complete; report any blocked verification instead of claiming success.
   Run the review/audit/debt skills only when requested; do not expand the task.
-  This is a skills-only integration, not the upstream lifecycle-hook plugin.
   Do not claim effectiveness gains without an A/B eval: same tasks and model, repeated runs, only the guidance changed.
   Compare success rate and regressions first, then tokens and elapsed time; fewer lines alone are not a win.
 skills:
   npx:
+    # Codex-only path. Codex cannot load a Claude Code plugin, so it takes the
+    # skills straight from the pinned upstream repo. Claude Code gets the same
+    # six skills from the plugin below — plus the lifecycle hooks the npx path
+    # cannot carry — so scoping this to codex is what keeps them from being
+    # linked twice on Claude.
     - repo: DietrichGebert/ponytail
+      agents: [codex]
       pin: git@974d940a1c5344210874150b98ff0d2c861fab6a
       skills:
         - ponytail
@@ -31,4 +36,25 @@ skills:
         - ponytail-gain
         - ponytail-help
 mcps: []
-plugins: []
+plugins:
+  # Claude Code path: the upstream plugin (v4.9.0) ships the same six skills
+  # AND the three lifecycle hooks that the skills alone cannot provide —
+  # SessionStart (re-emits the ruleset after every compact/resume/clear, so the
+  # guidance survives compaction), SubagentStart (subagents inherit it), and
+  # UserPromptSubmit (tracks the lite/full/ultra/off mode switch). The hooks are
+  # harness-only, so they cost no model context.
+  #
+  # Needs the marketplace registered once, THROUGH cue:
+  #   CLAUDE_CONFIG_DIR=~/.config/cue/runtime/ponytail/claude \
+  #     claude plugin marketplace add DietrichGebert/ponytail
+  # Registering it in a bare ~/.claude is not enough. The materializer symlinks
+  # the runtime's plugins/known_marketplaces.json from credentialsSource (see
+  # linkPluginCache), which on an authmux setup is another runtime, not
+  # ~/.claude — so a marketplace added there is invisible here and the hooks
+  # silently never fire (observed 2026-09-12: payload present in plugins/cache,
+  # enabledPlugins set, but the SessionStart hook never ran until the
+  # marketplace was registered through the runtime's own config dir).
+  #
+  # Until then `cue validate ponytail` reports W5 (plugin not installed) and the
+  # profile degrades to persona-only on Claude — it never blocks a launch.
+  - { id: ponytail@ponytail, agents: [claude-code] }

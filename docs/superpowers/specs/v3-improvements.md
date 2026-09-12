@@ -444,6 +444,20 @@ mcps:
 - Modify `runtime-materializer.ts` to emit wrapped commands for lazy MCPs
 - Extend `ResolvedMCP` type with `lazy?: boolean`
 
+> **Not implemented — wrapper deleted 2026-09-12.** The script existed but was
+> never imported from `src/`, and the premise does not hold: an MCP client sends
+> `initialize` as soon as the session starts, not on the first tool call, so a
+> wrapper that waits for the first byte on stdin unblocks immediately. It would
+> save RAM for never-used servers, never startup time.
+>
+> Startup time is not proportional to MCP count in the first place. Measured
+> 2026-09-12 with N identical stdio servers that each sleep 3s before answering
+> `initialize`: 1 server 10.17s, 4 servers 10.72s, 12 servers 10.13s — the client
+> connects in parallel, so the wait is set by the single slowest server. The cost
+> that does scale is context, not time: each server's tool schemas. The effective
+> levers are therefore `mcpPrune` (fewer servers) and replacing `npx -y pkg@latest`
+> commands (1.5–3.5s each, measured) with pinned versions or installed binaries.
+
 ---
 
 ## 21. Skill Packs (Grouped Skill Bundles)
