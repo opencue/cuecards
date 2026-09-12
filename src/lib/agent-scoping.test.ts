@@ -15,7 +15,10 @@
  *
  * So these tests are deliberately end-to-end per kind rather than unit tests
  * of `appliesToAgent`: that helper being correct is not the thing that broke.
- * Every assertion below was mutation-verified — deleting its filter fails it.
+ *
+ * Every assertion here is mutation-verified — deleting a filter fails exactly
+ * its own test — with one structural exception noted in the plugins test,
+ * where codex has no plugin surface to assert against at all.
  *
  * A fifth scoped kind belongs here too.
  */
@@ -81,7 +84,12 @@ async function materializeFor(
     plugins = Object.keys(settings.enabledPlugins ?? {});
   } else {
     const toml = await readFile(join(out.runtimeDir, "config.toml"), "utf8");
-    mcps = Object.keys(MCP_REGISTRY).filter((id) => toml.includes(`mcp_servers.${id}`));
+    // Line-anchored, not `includes`: a bare substring match false-POSITIVES on
+    // prefixes, so adding an id like `both` to MCP_REGISTRY would report it
+    // present whenever `both-mcp` is. Mirrors the regex in local-inventory.ts.
+    mcps = Object.keys(MCP_REGISTRY).filter((id) =>
+      new RegExp(`^\\s*\\[mcp_servers\\.${id}\\]`, "m").test(toml),
+    );
   }
   return { skills, mcps, plugins };
 }
@@ -119,8 +127,6 @@ describe("the agents: contract holds for every scoped ref kind", () => {
   });
 
   test("plugins", async () => {
-    // Claude-only by construction: the Codex branch never reads profile.plugins
-    // at all, so the meaningful assertion is the one inside the Claude runtime.
     const plugins = [
       { id: "claude-only@mp", agents: ["claude-code"] },
       { id: "codex-only@mp", agents: ["codex"] },
@@ -130,8 +136,14 @@ describe("the agents: contract holds for every scoped ref kind", () => {
     const claude = await materializeFor("claude-code", { plugins } as never);
     expect(claude.plugins.sort()).toEqual(["claude-only@mp", "unscoped@mp"]);
 
-    const codex = await materializeFor("codex", { plugins } as never);
-    expect(codex.plugins).toEqual([]);
+    // No codex assertion on purpose. Plugins are Claude-only by construction:
+    // the materializer gates settings.json on `agent === "claude-code"` and
+    // buildClaudeSettings is the sole reader of profile.plugins, so the codex
+    // branch has no surface to inspect. An `expect(codex.plugins).toEqual([])`
+    // here compares the helper's initializer to itself — it passes even with
+    // the plugin filter deleted for codex, so it would read as coverage that
+    // does not exist. If codex ever grows plugin support, add the codex half
+    // then; until then the honest statement is this comment.
   });
 
   test("npx skill sources", async () => {

@@ -2873,8 +2873,16 @@ export async function run(args: string[]): Promise<number> {
             // for those servers, so "auto-pruned 2 unused" reads as if the rest
             // were all needed — leaving no way to tell an MCP that survived
             // because a skill wants it from one that survived because it is
-            // pinned. The pinned set is the first thing to look at when the
-            // question is "why is this still starting".
+            // pinned.
+            //
+            // Scope, deliberately narrow: this counts ids DECLARED pinned, and
+            // "exempt" means exempt from prune — which is exactly true, since
+            // autoPrunableMcps skips every pinned id. It is not a count of
+            // servers that will start: collectProfileMcps later drops entries
+            // by `agents:`, `when:`, and registry presence, none of which this
+            // set knows about. No bundled profile combines `pin:` with those
+            // today. It also only prints when something was dropped; a profile
+            // where everything survives via pin still says nothing.
             const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
             process.stderr.write(
               `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
