@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-13
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="petehottelet-yautja"></a>
-## 💎 [petehottelet/yautja](https://github.com/petehottelet/yautja)
+<a id="hatemmsc-ops-html-to-mp4-skill"></a>
+## ✨ [hatemmsc-ops/html-to-mp4-skill](https://github.com/hatemmsc-ops/html-to-mp4-skill)
 
-**★ 0** · exceptional (score 14.5) · Python · tags: agent-skill, audio-reactive, claude-code, claude-skill, codex
+**★ 0** · strong (score 6) · Python · tags: ai-agent-skill, anthropic, automation, claude, claude-ai
 
-Yautja is a sci-fi-styled image segmentation, re-skinning, and annotation skill for thermal-imaging-style output, part of an extended public art project. For entertainment only; colors are algorithmically generated with some randomness, not measured temperatures. https://yautja.ai
-
-✅ SKILL.md
+Claude Code skill: convert animated HTML/CSS/JS pages into MP4/MOV video with synced sound effects, including transparent alpha-channel export
 
 ```bash
-cue skills add petehottelet/yautja --profile video
-```
-
----
-
-<a id="xixihhhh-hotclip"></a>
-## 💎 [xixihhhh/hotclip](https://github.com/xixihhhh/hotclip)
-
-**★ 169** · exceptional (score 11.5) · TypeScript · tags: ai, ai-clip-generator, auto-subtitles, bilibili, claude-skill
-
-免费开源的 AI 剪辑 / 直播切片工具:长视频、直播回放、播客一键切成爆款竖屏短视频,直发抖音/快手/B站/小红书/视频号——AI 找高光金句、弹幕热度进爆点判断、自动加字幕、横屏转竖屏,本地运行无水印不上传 | Free open-source Opus Clip alternative, 100% local: AI clips long videos & livestream VODs into viral 9:16 shorts for TikTok & YouTube Shorts. No credits, no watermark, no uploads. Win/macOS/Linux.
-
-```bash
-cue skills add xixihhhh/hotclip --profile video
+cue skills add hatemmsc-ops/html-to-mp4-skill --profile video
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "gangchen/epiage-skill — Claude Code skill discovered by cue"
 description: "24 epigenetic aging clocks (GrimAge V1/V2, Horvath, Hannum, PhenoAge, Ying, DunedinPoAm, DNAmTL…) as an installable, offline agent skill — pandas+numpy only."
 layout: page
-updated: 2026-06-30
+updated: 2026-09-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [gangchen/epiage-skill](https://github.com/gangchen/epiage-skill)
 
-**★ 0** · exceptional (score 10.5) · Python · agent-skill, aging, biological-age, claude-code, claude-skill
+**★ 2** · exceptional (score 11) · Python · agent-skill, aging, biological-age, claude-code, claude-skill
 
 > 24 epigenetic aging clocks (GrimAge V1/V2, Horvath, Hannum, PhenoAge, Ying, DunedinPoAm, DNAmTL…) as an installable, offline agent skill — pandas+numpy only.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-13
 - 🏷️ Tags: agent-skill, aging, biological-age, claude-code, claude-skill, dna-methylation, dunedinpace, epigenetic-clock, epigenetics, grimage, horvath-clock, methylation
 
 ## Best fit cue profiles

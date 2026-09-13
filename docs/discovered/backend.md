@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-13
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,10 +15,40 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+
+**★ 491** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
+
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
+
+✅ SKILL.md
+
+```bash
+cue skills add Ikalus1988/MisakaNet --profile backend
+```
+
+---
+
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
+
+```bash
+cue skills add jakubs2623/notebooklm-skill --profile backend
+```
+
+---
+
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 53** · exceptional (score 10.4) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 57** · exceptional (score 10.4) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -28,15 +58,15 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="rexnzm-mcp-rag-with-chromadb"></a>
-## 💎 [rexnzm/MCP-rag-with-Chromadb](https://github.com/rexnzm/MCP-rag-with-Chromadb)
+<a id="marketinglior-pixel-agentbill"></a>
+## 💎 [marketinglior-pixel/agentbill](https://github.com/marketinglior-pixel/agentbill)
 
-**★ 3** · exceptional (score 8.2) · Python · tags: agentic-ai, chromadb, embeddings, fastmcp, langchain
+**★ 7** · exceptional (score 9.7) · TypeScript · tags: agent-billing, ai-agents, fastify, langchain, llm-cost-control
 
-🗂️ Build a versatile MCP server with RAG capabilities, supporting multiple document formats using LangChain and ChromaDB for efficient data retrieval.
+Spend control & billing for AI agents. Prevent API bill shock with 3 lines of code. Supports OpenAI, Claude & MCP.
 
 ```bash
-cue skills add rexnzm/MCP-rag-with-Chromadb --profile backend
+cue skills add marketinglior-pixel/agentbill --profile backend
 ```
 
 ---
@@ -54,75 +84,49 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="ariefalabbasi-mcp-audit"></a>
-## ✨ [ariefalabbasi/mcp-audit](https://github.com/ariefalabbasi/mcp-audit)
+<a id="inderwish-formlex"></a>
+## ✨ [Inderwish/formlex](https://github.com/Inderwish/formlex)
 
-**★ 1** · strong (score 7.8) · Python · tags: agent, agentic-ai, ai, ai-agents, aws
+**★ 0** · strong (score 6) · JavaScript · tags: art-terminology, design-inspiration, frontend-design, mcp-server
 
-🌟 Track token consumption in real-time with MCP Audit. Diagnose context bloat and unexpected spikes across MCP servers and tools efficiently.
+形意词库 FormLex｜1,424 条设计灵感、10 份主题词库与个人自选，支持独立网站特色、冷暖筛选、HTTP API 和可选 MCP 工具。
 
 ```bash
-cue skills add ariefalabbasi/mcp-audit --profile backend
+cue skills add Inderwish/formlex --profile backend
 ```
 
 ---
 
-<a id="shadow400x-claude-sh"></a>
-## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+<a id="getmcpads-com-meta-ads-mcp-server"></a>
+## ✨ [getmcpads-com/meta-ads-mcp-server](https://github.com/getmcpads-com/meta-ads-mcp-server)
 
-**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+**★ 0** · strong (score 6) · TypeScript · tags: advertising, ai-agents, claude, facebook-ads, instagram-ads
 
-Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
+Open-source MCP server for the Facebook (Meta) Ads Marketing API. 44 tools, 190 metrics, self-hosted with your own token. Write tools preview before they apply. Apache-2.0.
 
 ```bash
-cue skills add shadow400x/claude-sh --profile backend
+cue skills add getmcpads-com/meta-ads-mcp-server --profile backend
 ```
 
 ---
 
-<a id="mcp-tool-shop-org-repo-knowledge"></a>
-## ✨ [mcp-tool-shop-org/repo-knowledge](https://github.com/mcp-tool-shop-org/repo-knowledge)
+<a id="getmcpads-com-google-analytics-mcp-server"></a>
+## ✨ [getmcpads-com/google-analytics-mcp-server](https://github.com/getmcpads-com/google-analytics-mcp-server)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: audit, cli, fts5, knowledge-catalog, mcp
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, analytics, claude, ga4, google-analytics
 
-Repo knowledge system — relational catalog with full-text search, audit evidence, and MCP access
-
-```bash
-cue skills add mcp-tool-shop-org/repo-knowledge --profile backend
-```
-
----
-
-<a id="tam1379-uspto-fpd-mcp"></a>
-## ✨ [Tam1379/uspto_fpd_mcp](https://github.com/Tam1379/uspto_fpd_mcp)
-
-**★ 3** · strong (score 7.2) · Python · tags: ai-integration, claude-ai, context-reduction, fastmcp, intellectual-property
-
-🚀 Improve patent analysis with a high-performance MCP server for USPTO Final Petition Decisions, featuring context reduction and customizable fields.
+Open-source MCP server for Google Analytics 4. 27 read-only tools across the Data and Admin APIs, identifiers redacted by default. Self-hosted. Apache-2.0.
 
 ```bash
-cue skills add Tam1379/uspto_fpd_mcp --profile backend
-```
-
----
-
-<a id="ravisinghrajput95-kubewhy"></a>
-## ✨ [ravisinghrajput95/kubewhy](https://github.com/ravisinghrajput95/kubewhy)
-
-**★ 0** · strong (score 5) · Python · tags: aiops, fastapi, kubernetes, llm-agent, local-llm
-
-Air-gapped Kubernetes root-cause analysis. Everything tells you what is broken; kubewhy tells you why — a local LLM reads real logs, events and resource limits to find the cause. Read-only, verifies its own claims, nothing leaves your network.
-
-```bash
-cue skills add ravisinghrajput95/kubewhy --profile backend
+cue skills add getmcpads-com/google-analytics-mcp-server --profile backend
 ```
 
 ---
 
 <a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

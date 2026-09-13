@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-13
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="shauryalowkeygotaura-brand-launchpad"></a>
-## 💎 [shauryalowkeygotaura/brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)
+<a id="getmcpads-com-google-search-console-mcp-server"></a>
+## ✨ [getmcpads-com/google-search-console-mcp-server](https://github.com/getmcpads-com/google-search-console-mcp-server)
 
-**★ 1** · exceptional (score 13.8) · HTML · tags: agent-skills, ai, ai-tools, anthropic, brand-strategy
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agents, claude, google-search-console, mcp, mcp-server
 
-One Claude Code skill that turns a single project into a complete brand launch — 12 files (positioning, hero line, 30-day calendar, content system) in one run. Built on Caleb Ralston, Harry Dry, Oren John & Brier Cochran frameworks.
-
-✅ SKILL.md
+Open-source MCP server for Google Search Console. 20 read-only tools with cannibalisation, query clustering and wins/losses analysis. Self-hosted. Apache-2.0.
 
 ```bash
-cue skills add shauryalowkeygotaura/brand-launchpad --profile marketing
+cue skills add getmcpads-com/google-search-console-mcp-server --profile marketing
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-13
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-09-12 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-09-13 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 71 | `claude-code-workflows`, `open-steps`, `app-store-connect-skill` |
-| [**backend**](./backend.md) | 10 | `free-proxy-list`, `MCP-rag-with-Chromadb`, `adaptive-llm-gateway` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `slowmist-security-cc`, `Claude-OSINT`, `sanctuary-framework` |
-| [**creative-media**](./creative-media.md) | 4 | `archify`, `yautja`, `paper-ink-charts` |
-| [**research**](./research.md) | 3 | `papers-skill`, `uspto_fpd_mcp`, `skillassay` |
-| [**niche**](./niche.md) | 3 | `grant-thinking-cn-biology`, `patent-compose-skill`, `kaoyan-burst-predictor` |
-| [**video**](./video.md) | 2 | `yautja`, `hotclip` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `daisyui-mcp` |
-| [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `Agent-Harness-Kit` |
-| [**marketing**](./marketing.md) | 1 | `brand-launchpad` |
+| [**core**](./core.md) | 67 | `xc-mcp`, `intervals-icu-mcp`, `build-skill` |
+| [**backend**](./backend.md) | 10 | `MisakaNet`, `notebooklm-skill`, `free-proxy-list` |
+| [**docs-writer**](./docs-writer.md) | 5 | `MisakaNet`, `llm-wiki`, `llm-knowledge-base` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `claude-security-research-skill`, `sanctuary-framework` |
+| [**fleet-control**](./fleet-control.md) | 5 | `opencouncil-contract-inspector`, `cmuxlayer`, `multi-agent-revenue-orchestrator` |
+| [**frontend**](./frontend.md) | 4 | `web-design-studio`, `google-fonts-skill`, `awesome-claude-ui-armory` |
+| [**research**](./research.md) | 3 | `notebooklm-skill`, `popper-scope`, `skillassay` |
+| [**threejs**](./threejs.md) | 1 | `web-design-studio` |
+| [**marketing**](./marketing.md) | 1 | `google-search-console-mcp-server` |
+| [**video**](./video.md) | 1 | `html-to-mp4-skill` |
+| [**niche**](./niche.md) | 1 | `douyin-viral-remake-free` |
 | [**python**](./python.md) | 1 | `alfred` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

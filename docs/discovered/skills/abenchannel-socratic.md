@@ -2,7 +2,7 @@
 title: "abenchannel/Socratic — Claude Code skill discovered by cue"
 description: "🧠 Automate knowledge synthesis for vertical LLM agents, turning unstructured data into structured, domain-specific knowledge bases effortlessly."
 layout: page
-updated: 2026-07-09
+updated: 2026-09-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-09
+- 🗓️ Last pushed: 2026-09-13
 - 🏷️ Tags: fine-tuning, in, llm, llm-in-analysis, mcp, mcp-openfoam, mcp-server, openfoam, openfoam-mcp, opensource-projects, optimization-problem-solvng, synthetic-data
 
 ## Best fit cue profiles

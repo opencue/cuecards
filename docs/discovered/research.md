@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-13
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,30 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="rokokol-papers-skill"></a>
-## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 1** · exceptional (score 13.3) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rokokol/papers-skill --profile research
+cue skills add jakubs2623/notebooklm-skill --profile research
 ```
 
 ---
 
-<a id="tam1379-uspto-fpd-mcp"></a>
-## ✨ [Tam1379/uspto_fpd_mcp](https://github.com/Tam1379/uspto_fpd_mcp)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 3** · strong (score 7.2) · Python · tags: ai-integration, claude-ai, context-reduction, fastmcp, intellectual-property
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-🚀 Improve patent analysis with a high-performance MCP server for USPTO Final Petition Decisions, featuring context reduction and customizable fields.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add Tam1379/uspto_fpd_mcp --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---
@@ -46,7 +46,7 @@ cue skills add Tam1379/uspto_fpd_mcp --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4.5) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 4.4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 
