@@ -38,6 +38,7 @@ import type {
 } from "../../profiles/_types";
 import { buildCodexConfigToml, extractRuntimeCodexState } from "./codex-config";
 import { reconcileCodexHooks } from "./codex-hooks";
+import { withContextMode } from "./context-mode";
 import { normalizeUvxGitServers } from "./uvx-installer";
 import { evaluateCondition } from "./conditional-skills";
 import {
@@ -421,6 +422,7 @@ async function withMaterializeLock<T>(
 export async function materializeRuntime(
   input: MaterializeInput,
 ): Promise<MaterializeOutput> {
+  input = await withContextMode(input);
   const runtimeDir = join(
     input.runtimeRoot,
     runtimePathKey(input.runtimeKey ?? input.profile.name),
