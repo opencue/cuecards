@@ -103,6 +103,27 @@ describe("shell install", () => {
     expect(await readFile(localBin("claude"), "utf8")).toBe(REAL_BINARY);
   });
 
+  // Observed 2026-09-14: the native Claude Code binary (200 MB+) contains the
+  // strings "cue" and "launch claude", so a content-only check mistook the
+  // installer's ~/.local/bin/claude symlink for a legacy shim and unlinked it.
+  test("never deletes a large ~/.local/bin/claude even if its bytes look like a shim", async () => {
+    const bigBinary = `${CUE_SHIM}\n${"\0".repeat(70_000)}`;
+    await writeFile(localBin("claude"), bigBinary);
+    await chmod(localBin("claude"), 0o755);
+
+    const rc = await runInstall({
+      homeDir: fakeHome,
+      pathDirs: [shimDir(fakeHome), join(fakeHome, ".local", "bin")],
+      realClaude: localBin("claude"),
+      realCodex: null,
+      writeRc: false,
+      ...sinks(),
+    });
+
+    expect(rc).toBe(0);
+    expect((await stat(localBin("claude"))).size).toBe(Buffer.byteLength(bigBinary));
+  });
+
   test("removes a legacy cue shim from ~/.local/bin", async () => {
     await writeFile(localBin("claude"), CUE_SHIM);
     await chmod(localBin("claude"), 0o755);
