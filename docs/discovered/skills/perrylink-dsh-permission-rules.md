@@ -2,7 +2,7 @@
 title: "PerryLink/dsh-permission-rules — Claude Code skill discovered by cue"
 description: "Claude Code-style declarative permission rules for DeepSeek Harness: ordered allow/deny/ask rules with tool-name, argument (glob/regex), and workspace-path matc"
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 

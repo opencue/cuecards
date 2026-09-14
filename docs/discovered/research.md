@@ -1,44 +1,57 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="rokokol-papers-skill"></a>
+## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
 
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
+cue skills add rokokol/papers-skill --profile research
 ```
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="ljx-chase-research-field-onboarding"></a>
+## 💎 [ljx-chase/research-field-onboarding](https://github.com/ljx-chase/research-field-onboarding)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 56** · exceptional (score 13.5) · Python · tags: academic-research, agent-skill, agent-skills, chatgpt-skills, claude-code-skill
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+A reusable research-onboarding skill for Claude, ChatGPT, Codex, and other instruction-following agents.
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add ljx-chase/research-field-onboarding --profile research
+```
+
+---
+
+<a id="lastsearch-hq-lastsearch"></a>
+## 💎 [LastSearch-HQ/lastsearch](https://github.com/LastSearch-HQ/lastsearch)
+
+**★ 20** · exceptional (score 12.4) · TypeScript · tags: agent-tools, ai-agent, anti-hallucination, citations, clarity
+
+Reliable research infrastructure for AI agents. Evidence-backed web search with citations, confidence scores, and Clarity anti-hallucination. MCP server, REST API, Python SDK.
+
+```bash
+cue skills add LastSearch-HQ/lastsearch --profile research
 ```
 
 ---

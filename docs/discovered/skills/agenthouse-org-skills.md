@@ -2,7 +2,7 @@
 title: "agenthouse-org/skills — Claude Code skill discovered by cue"
 description: "Open-source AI agent skills for agenthouse and compatible SKILL.md-based platforms."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 

@@ -2,21 +2,21 @@
 title: "giantswarm/muster — Claude Code skill discovered by cue"
 description: "MCP tool management and workflow proxy"
 layout: page
-updated: 2026-09-10
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [giantswarm/muster](https://github.com/giantswarm/muster)
 
-**★ 32** · exceptional (score 9.8) · Go · ai, development, development-tools, mcp, mcp-client
+**★ 33** · exceptional (score 9.8) · Go · ai, development, development-tools, mcp, mcp-client
 
 > MCP tool management and workflow proxy
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 32 stars
-- 🗓️ Last pushed: 2026-09-10
+- ⭐ 33 stars
+- 🗓️ Last pushed: 2026-09-14
 - 🏷️ Tags: ai, development, development-tools, mcp, mcp-client, mcp-proxy, mcp-server, mcp-tools
 
 ## Best fit cue profiles

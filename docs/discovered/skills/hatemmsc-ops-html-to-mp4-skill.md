@@ -2,7 +2,7 @@
 title: "hatemmsc-ops/html-to-mp4-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill: convert animated HTML/CSS/JS pages into MP4/MOV video with synced sound effects, including transparent alpha-channel export"
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, skill, video]
 ---
 

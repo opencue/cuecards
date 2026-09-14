@@ -2,21 +2,21 @@
 title: "kharmanskyi/open-steps — Claude Code skill discovered by cue"
 description: "Skills that translate your coding agent's output into plain language: honest reports, straight verdicts, steps you can follow. MIT."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kharmanskyi/open-steps](https://github.com/kharmanskyi/open-steps)
 
-**★ 376** · exceptional (score 17) · Shell · agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin
+**★ 392** · exceptional (score 17) · Shell · agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin
 
 > Skills that translate your coding agent's output into plain language: honest reports, straight verdicts, steps you can follow. MIT.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 376 stars
-- 🗓️ Last pushed: 2026-09-12
+- ⭐ 392 stars
+- 🗓️ Last pushed: 2026-09-14
 - 🏷️ Tags: agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin, claude-code-skills, claude-skill, prompt-optimization, vibe-coding
 
 ## Best fit cue profiles

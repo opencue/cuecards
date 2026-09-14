@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="xxjrq-douyin-viral-remake-free"></a>
-## ✨ [xxjrq/douyin-viral-remake-free](https://github.com/xxjrq/douyin-viral-remake-free)
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 0** · strong (score 5.5) · JavaScript · tags: ai-agent-skill, content-analysis, creator-tools, douyin, easy-webbridge
+**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
 
-免费抖音作品拆解与原创改写：基于真实文字和关键画面生成原创口播与分镜。
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add xxjrq/douyin-viral-remake-free --profile niche
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
 ```
 
 ---

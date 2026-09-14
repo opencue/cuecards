@@ -1,27 +1,27 @@
 ---
 title: "mcp-tool-shop-org/mcp-arcade-cabinets — Claude Code skill discovered by cue"
-description: "Ghost on the Menu: an arcade shooter that replays what your MCP server said on the wire. A cabinet on top of mcp-arcade that reads the tape and never touches th"
+description: "Ghost on the Menu: an arcade shooter where you are the agent, working through what MCP servers said on the wire. Take a shift of four recorded bouts with a clim"
 layout: page
-updated: 2026-09-11
-tags: [claude-code, skill, core]
+updated: 2026-09-14
+tags: [claude-code, skill, backend, creative-media]
 ---
 
 # ✨ [mcp-tool-shop-org/mcp-arcade-cabinets](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets)
 
-**★ 0** · strong (score 5) · TypeScript · arcade, canvas, galaga, game, kokoro
+**★ 0** · strong (score 5) · TypeScript · arcade, canvas, docker, galaga, game
 
-> Ghost on the Menu: an arcade shooter that replays what your MCP server said on the wire. A cabinet on top of mcp-arcade that reads the tape and never touches the score; itself an MCP server whose tools are the levers a model pulls, with a voice that every take is receipted for.
+> Ghost on the Menu: an arcade shooter where you are the agent, working through what MCP servers said on the wire. Take a shift of four recorded bouts with a climb in data and a four-word name. Reads mcp-arcade tapes, never the score; itself an MCP server (Docker image) whose tools a model pulls to sit in the boss.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-11
-- 🏷️ Tags: arcade, canvas, galaga, game, kokoro, mcp, mcp-server, model-context-protocol, ollama, pnpm, replay, retro, shooter, typescript, voice
+- 🗓️ Last pushed: 2026-09-14
+- 🏷️ Tags: arcade, canvas, docker, galaga, game, kokoro, mcp, mcp-server, model-context-protocol, ollama, pnpm, replay, retro, roguelite, shooter, typescript, voice
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md), [creative-media](../creative-media.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add mcp-tool-shop-org/mcp-arcade-cabinets --profile core
+cue skills add mcp-tool-shop-org/mcp-arcade-cabinets --profile backend
 ```
 
 ## About

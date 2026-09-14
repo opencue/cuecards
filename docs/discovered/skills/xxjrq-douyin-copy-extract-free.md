@@ -2,19 +2,19 @@
 title: "xxjrq/douyin-copy-extract-free — Claude Code skill discovered by cue"
 description: "免费抖音视频图文文案提取：免第三方 API Key，复用登录浏览器，支持 EasyBR 多账号隔离。"
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xxjrq/douyin-copy-extract-free](https://github.com/xxjrq/douyin-copy-extract-free)
 
-**★ 0** · exceptional (score 9) · JavaScript · ai-agent-skill, creator-tools, douyin, easy-webbridge, no-api-key
+**★ 0** · exceptional (score 8.9) · JavaScript · ai-agent-skill, creator-tools, douyin, easy-webbridge, no-api-key
 
 > 免费抖音视频图文文案提取：免第三方 API Key，复用登录浏览器，支持 EasyBR 多账号隔离。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-13

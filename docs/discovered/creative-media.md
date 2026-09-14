@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-14
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="mcp-tool-shop-org-mcp-arcade-cabinets"></a>
+## ✨ [mcp-tool-shop-org/mcp-arcade-cabinets](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets)
+
+**★ 0** · strong (score 5) · TypeScript · tags: arcade, canvas, docker, galaga, game
+
+Ghost on the Menu: an arcade shooter where you are the agent, working through what MCP servers said on the wire. Take a shift of four recorded bouts with a climb in data and a four-word name. Reads mcp-arcade tapes, never the score; itself an MCP server (Docker image) whose tools a model pulls to sit in the boss.
+
+```bash
+cue skills add mcp-tool-shop-org/mcp-arcade-cabinets --profile creative-media
+```
 
 ---
 
