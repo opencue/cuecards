@@ -24,7 +24,7 @@ async function fixture() {
   }
   expect(spawnSync("git", ["init", "-q", repo]).status).toBe(0);
   const output = join(dir, "agent.json");
-  const env = {
+  const env: NodeJS.ProcessEnv = {
     ...process.env,
     HOME: dir,
     XDG_CONFIG_HOME: join(dir, "config"),
@@ -39,6 +39,8 @@ async function fixture() {
     FM_HOME: "/another-home",
     FM_STATE_OVERRIDE: "/another-state",
     CI: "1",
+    TMUX: "",
+    TMUX_PANE: "",
   };
   const cli = (args: string[]) => spawnSync(process.execPath, [join(root, "src/index.ts"), "firstmate", ...args], {
     env, encoding: "utf8", timeout: 15_000,
@@ -57,6 +59,7 @@ describe("cue firstmate", () => {
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("--agent");
     expect(result.stdout).toContain("--setup");
+    expect(result.stdout).toContain("promote");
   });
 
   test("requires an explicit harness outside a terminal", async () => {
@@ -159,5 +162,39 @@ describe("cue firstmate", () => {
     const result = f.cli(["--setup", "--repo", f.bins]);
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("Firstmate checkout");
+  });
+
+  test("promotion prepares a cooperative handoff without starting a harness or bootstrap", async () => {
+    const f = await fixture();
+    await f.agent("codex");
+    const result = f.cli(["promote", "--repo", f.repo]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("NOT YET ACTIVE");
+    expect(result.stdout).toContain("fm-session-start.sh");
+    expect(result.stdout).toContain("--accept");
+    expect(result.stdout).toContain("higher-priority");
+    expect(result.stdout).toContain("foreground");
+    expect(result.stdout).toContain("No hooks");
+    expect(await Bun.file(f.output).exists()).toBe(false);
+    expect(await Bun.file(join(f.repo, "state/.lock")).exists()).toBe(false);
+  });
+
+  test("promotion cannot be combined with launch/setup options", async () => {
+    const f = await fixture();
+    for (const args of [["promote", "--agent", "codex"], ["promote", "--setup"],
+      ["promote", "--", "--model", "x"], ["--accept"], ["promote", "unexpected"]]) {
+      expect(f.cli(args).status).toBe(2);
+    }
+  });
+
+  test("acceptance outside tmux fails without starting a replacement", async () => {
+    const f = await fixture();
+    f.env.TMUX = "";
+    f.env.TMUX_PANE = "";
+    await f.agent("codex");
+    const result = f.cli(["promote", "--accept", "--repo", f.repo]);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("FIRSTMATE_TMUX_REQUIRED");
+    expect(await Bun.file(f.output).exists()).toBe(false);
   });
 });

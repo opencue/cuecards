@@ -1,4 +1,4 @@
-/** Firstmate owns orchestration; Cue only selects and launches its primary harness. */
+/** Firstmate owns orchestration; Cue selects its primary or offers live adoption. */
 import { spawn, spawnSync } from "node:child_process";
 import { existsSync, statSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
@@ -20,8 +20,10 @@ function usage(): void {
   process.stdout.write(
     "cue firstmate [--agent <harness>] [--repo <path>] [-- <agent args>]\n" +
     "cue firstmate --setup [--repo <path>]\n\n" +
+    "cue firstmate promote [--accept] [--repo <path>]\n\n" +
     `Harnesses: ${HARNESSES.join(", ")}\n` +
     "Without --agent, opens an interactive coordinator picker.\n" +
+    "promote prints a no-restart handoff for the running agent; --accept verifies adoption and adds its tmux badge.\n" +
     "--setup explicitly downloads NagyVikt/firstmate; it never installs tools or launches agents.\n" +
     "Checkout: --repo, then CUE_FIRSTMATE_REPO, then <cue config>/firstmate.\n" +
     "Firstmate runs from its own checkout, without a Cue profile or OMX wrapper.\n" +
@@ -41,6 +43,8 @@ function isCheckout(repo: string): boolean {
 }
 
 export async function run(args: string[]): Promise<number> {
+  const promote = args[0] === "promote";
+  if (promote) args = args.slice(1);
   const separator = args.indexOf("--");
   const passthrough = separator < 0 ? [] : args.slice(separator + 1);
   let values;
@@ -50,9 +54,13 @@ export async function run(args: string[]): Promise<number> {
       options: {
         agent: { type: "string" }, repo: { type: "string" },
         setup: { type: "boolean" }, help: { type: "boolean", short: "h" },
+        accept: { type: "boolean" },
       },
       strict: true, allowPositionals: false,
     }));
+    if ((promote && (values.setup || values.agent !== undefined || separator >= 0)) || (!promote && values.accept)) {
+      throw new Error("promote [--accept] is separate from launch/--setup and takes no agent arguments");
+    }
     if (values.agent !== undefined && !HARNESSES.includes(values.agent)) {
       throw new Error(`--agent must be one of: ${HARNESSES.join(", ")}`);
     }
@@ -96,6 +104,10 @@ export async function run(args: string[]): Promise<number> {
     process.stdout.write(`Firstmate ready: ${repo}\nRun cue firstmate --repo ${JSON.stringify(repo)} to select the coordinator.\n`);
     return 0;
   }
+  if (promote) {
+    const { promoteFirstmate } = await import("../lib/firstmate-live");
+    return promoteFirstmate(repo, values.accept ?? false);
+  }
 
   let agent = values.agent;
   if (!agent) {
@@ -132,8 +144,14 @@ export async function run(args: string[]): Promise<number> {
   // Also protects crew launches through legacy Cue shims left elsewhere on PATH.
   env.CUE_BYPASS = "1";
   process.stderr.write(`⚓ Firstmate — ${agent} coordinator in ${repo}\n`);
+  const { setFirstmateBadge } = await import("../lib/firstmate-live");
   return new Promise(resolveExit => {
     const child = spawn(bin, passthrough, { cwd: repo, env, stdio: "inherit" });
+    child.on("spawn", () => {
+      if (!process.env.TMUX_PANE || !child.pid) return;
+      try { setFirstmateBadge(child.pid); }
+      catch (error) { process.stderr.write(`cue firstmate: badge unavailable (${error instanceof Error ? error.message : "tmux error"}); agent launch unchanged.\n`); }
+    });
     child.on("error", error => {
       process.stderr.write(`cue firstmate: failed to launch ${agent}: ${error.message}\n`);
       resolveExit(127);
