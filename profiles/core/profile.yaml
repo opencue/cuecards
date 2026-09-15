@@ -246,7 +246,6 @@ mcps:
   # launcher's smart-prune keeps it always-on instead of dropping it.
   - { id: codegraph, pin: true }   # Repo code intelligence MCP — use before broad Read/Grep for architecture, feature, bug-context, symbol, caller/callee, and impact questions. Available to Claude and Codex runtimes via the sanitized registry snapshots.
   - { id: context7, pin: true }    # Up-to-date, version-specific library docs (Upstash @upstash/context7-mcp). No API key needed; set CONTEXT7_API_KEY for higher limits. Pairs with tools/context7 skill.
-  - { id: ego-browser, pin: true } # Latest MCP protocol server for the installed Ego Lite browser harness; always keep the one-tool browser bridge available.
 plugins:
   - claude-mem@thedotmack
   # Disabled 2026-05-30: OMC's PreToolUse auto-mode classifier was intermittently
