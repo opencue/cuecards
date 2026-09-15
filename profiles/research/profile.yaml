@@ -55,8 +55,6 @@ skills:
   npx:
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
-    - repo: xixu-me/skills
-      skills: [github-actions-docs]
     - repo: beggarticksarthurtatum121/reddit-skills
       skills: [reddit-skills]
     - repo: aradotso/trending-skills

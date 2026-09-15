@@ -85,8 +85,6 @@ skills:
   npx:
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
-    - repo: xixu-me/skills
-      skills: [github-actions-docs]
     - repo: AgriciDaniel/claude-ads
       skills: [claude-ads, ads-audit, ads-google, ads-meta, ads-youtube, ads-linkedin, ads-tiktok, ads-microsoft, ads-apple, ads-amazon, ads-attribution, ads-server-side-tracking, ads-creative, ads-landing, ads-budget, ads-plan, ads-competitor, ads-math, ads-test, ads-dna, ads-create, ads-generate, ads-photoshoot]
     - repo: coreyhaines31/marketingskills

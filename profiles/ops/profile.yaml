@@ -27,8 +27,6 @@ skills:
   npx:
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
-    - repo: xixu-me/skills
-      skills: [github-actions-docs]
     - repo: aws/agent-toolkit-for-aws
       skills: [aws-iam]
     - repo: aj-geddes/useful-ai-prompts
