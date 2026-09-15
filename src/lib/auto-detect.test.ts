@@ -5,13 +5,20 @@ import { join } from "node:path";
 
 import { detectProfileV2 } from "./auto-detect";
 
+let tmpRoot: string;
 let tmp: string;
 
 beforeEach(() => {
-  tmp = mkdtempSync(join(tmpdir(), "cue-detect-"));
+  // detectProfileV2 reads the directory NAME as evidence, so a random mkdtemp
+  // suffix can itself trip a name signal — `cue-detect-ad4xy2` matched the ads
+  // regex and made "empty dir returns empty" fail intermittently. Detect inside
+  // a fixed-name child so the name under test is deterministic.
+  tmpRoot = mkdtempSync(join(tmpdir(), "cue-detect-"));
+  tmp = join(tmpRoot, "workspace");
+  mkdirSync(tmp);
 });
 afterEach(() => {
-  try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+  try { rmSync(tmpRoot, { recursive: true, force: true }); } catch {}
 });
 
 describe("detectProfileV2", () => {
@@ -100,6 +107,14 @@ describe("detectProfileV2", () => {
   test("empty dir returns empty", () => {
     const results = detectProfileV2(tmp);
     expect(results).toEqual([]);
+  });
+
+  test("a parent directory's name is not evidence about the repository", () => {
+    // `app` is the repository; `campaign-notes` is just where it happens to live.
+    expect(detectProfileV2("/home/dev/campaign-notes/app")).toEqual([]);
+    expect(detectProfileV2("/srv/ad/service")).toEqual([]);
+    // The repository's own name still counts.
+    expect(detectProfileV2("/srv/ad-service").map((r) => r.profile)).toContain("ads-manager");
   });
 
   test("generic OMX session state is not fleet-control repository evidence", () => {

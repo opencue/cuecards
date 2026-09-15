@@ -342,7 +342,11 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
   // (Docker/Coolify) but their primary job is campaign management. Keep
   // Google-specific terms separate from generic marketing language: a repo
   // named `marketing-campaign` is not evidence that it uses Google Ads.
-  const repoText = `${cwd} ${basename(cwd)}`.toLowerCase();
+  // Match the repository name only. Including the full path let a PARENT
+  // directory decide the profile: `~/campaign-notes/app` scored marketing 0.84
+  // purely because of its grandparent, and the evidence below still claimed
+  // `repository-name`. A repo is named by its own directory, not its ancestors.
+  const repoText = basename(cwd).toLowerCase();
   const repositoryNameEvidence = observed(
     "repository-name",
     basename(cwd),
