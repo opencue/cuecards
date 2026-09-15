@@ -223,8 +223,6 @@ skills:
       skills: [pdf, docx, pptx]
     - repo: langfuse/skills
       skills: [langfuse]
-    - repo: xixu-me/skills
-      skills: [github-actions-docs]
     - repo: mindrally/skills
       skills: [docker]
     - repo: stripe/ai
@@ -284,7 +282,7 @@ skills:
     - repo: github/awesome-copilot
       skills: [pytest-coverage]
     - repo: nextlevelbuilder/ui-ux-pro-max-skill
-      skills: [ckm:design]
+      skills: [ui-ux-pro-max]
     - repo: OSideMedia/higgsfield-ai-prompt-skill
       skills: [higgsfield-ai-prompt-skill]
     - repo: op7418/Seedance-Product-Video

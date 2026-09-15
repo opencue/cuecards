@@ -64,8 +64,6 @@ skills:
   npx:
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
-    - repo: xixu-me/skills
-      skills: [github-actions-docs]
 plugins:
   - claude-mem@thedotmack
   - oh-my-claudecode@omc
