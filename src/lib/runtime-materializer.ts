@@ -1260,9 +1260,27 @@ async function materializeRuntimeUnlocked(
   // `.config.json` is Claude Code 2.1.x's user config (session state, oauth
   // account, mcpServers). Dropping it on a rebuild would hand a migrated client
   // a runtime without its state — and the file cue syncs profile MCPs into.
+  //
+  // `projects` holds the user's session transcripts. Normally it is a symlink
+  // into the source config — the overlay recreates that link in tmpDir, and the
+  // lstat guard below skips symlinks, so the fresh link still wins. But when the
+  // source config has no projects/ of its own, Claude Code creates a REAL
+  // directory here, and the swap's `rm -rf` of the old runtime then destroys
+  // every transcript in it (observed 2026-09-10: a core@claude5 rebuild took 12
+  // sessions / ~130 MB of history with it). Transcripts are neither
+  // identity-bound nor regenerable, so a real directory is carried across even
+  // when the account changed — there is no identity to mispair.
   const preserveFiles = sameAccount
-    ? [".claude.json", ".config.json", ".credentials.json", "backups", "session-env", "tasks"]
-    : [];
+    ? [
+        ".claude.json",
+        ".config.json",
+        ".credentials.json",
+        "backups",
+        "session-env",
+        "tasks",
+        "projects",
+      ]
+    : ["projects"];
   for (const name of preserveFiles) {
     const oldPath = join(runtimeDir, name);
     const newPath = join(tmpDir, name);

@@ -1009,6 +1009,78 @@ describe("materializeRuntime", () => {
     ).toContain("active");
   });
 
+  test("claude rebuild preserves a real projects/ dir (session transcripts)", async () => {
+    // Source config with no projects/ of its own: the overlay has nothing to
+    // symlink, so Claude Code creates a REAL directory in the runtime and writes
+    // transcripts into it. The swap's `rm -rf` of the old runtime must not take
+    // them along (regression: a core@claude5 rebuild destroyed 12 sessions).
+    const credSrc = join(root, "creds-no-projects");
+    await mkdir(credSrc, { recursive: true });
+    const opts = {
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime-projects"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    };
+    const first = await materializeRuntime({ ...opts, profile: sampleProfile });
+    const transcript = join(
+      first.runtimeDir,
+      "projects",
+      "-home-user-repo",
+      "session.jsonl",
+    );
+    await mkdir(dirname(transcript), { recursive: true });
+    await writeFile(transcript, '{"type":"user"}\n');
+
+    const rebuilt = await materializeRuntime({
+      ...opts,
+      profile: { ...sampleProfile, description: "force rebuild" },
+    });
+
+    expect(
+      await readFile(
+        join(
+          rebuilt.runtimeDir,
+          "projects",
+          "-home-user-repo",
+          "session.jsonl",
+        ),
+        "utf8",
+      ),
+    ).toBe('{"type":"user"}\n');
+  });
+
+  test("claude rebuild keeps the fresh projects symlink when the source owns it", async () => {
+    // The common case. Preserving must not resurrect the OLD link: on an account
+    // switch that would leave the runtime pointing at the previous account's
+    // transcripts. lstat skips symlinks, so the overlay's fresh link survives.
+    const credSrc = join(root, "creds-with-projects");
+    await mkdir(join(credSrc, "projects"), { recursive: true });
+    const opts = {
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime-projects-link"),
+      skillSourceLookup: async (id: string) => `/fake/source/${id}`,
+      mcpRegistry: { "claude-mem": { command: "claude-mem" } },
+      userClaudeMd: "",
+      credentialsSource: credSrc,
+    };
+    const first = await materializeRuntime({ ...opts, profile: sampleProfile });
+    expect(
+      (await lstat(join(first.runtimeDir, "projects"))).isSymbolicLink(),
+    ).toBe(true);
+
+    const rebuilt = await materializeRuntime({
+      ...opts,
+      profile: { ...sampleProfile, description: "force rebuild" },
+    });
+
+    expect(await readlink(join(rebuilt.runtimeDir, "projects"))).toBe(
+      join(credSrc, "projects"),
+    );
+  });
+
   test("credentialsSource: preserves account-level settings but isolates MCPs + plugins per profile", async () => {
     const credSrc = join(root, "creds");
     const { mkdir, writeFile } = await import("node:fs/promises");
