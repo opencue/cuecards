@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-14
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="devesh-shirsath-spotkit"></a>
-## 💎 [Devesh-Shirsath/spotkit](https://github.com/Devesh-Shirsath/spotkit)
+<a id="mcp-tool-shop-org-mcp-arcade-cabinets"></a>
+## ✨ [mcp-tool-shop-org/mcp-arcade-cabinets](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets)
 
-**★ 53** · exceptional (score 19) · HTML · tags: ai-tools, anthropic, claude-code, claude-skill, design-automation
+**★ 0** · strong (score 5) · TypeScript · tags: arcade, canvas, docker, galaga, game
 
-Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system.
-
-✅ SKILL.md
+Ghost on the Menu: an arcade shooter where you are the agent, working through what MCP servers said on the wire. Take a shift of four recorded bouts with a climb in data and a four-word name. Reads mcp-arcade tapes, never the score; itself an MCP server (Docker image) whose tools a model pulls to sit in the boss.
 
 ```bash
-cue skills add Devesh-Shirsath/spotkit --profile creative-media
-```
-
----
-
-<a id="tt-a1i-archify"></a>
-## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
-
-**★ 56605** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
-
-Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
-
-```bash
-cue skills add tt-a1i/archify --profile creative-media
+cue skills add mcp-tool-shop-org/mcp-arcade-cabinets --profile creative-media
 ```
 
 ---

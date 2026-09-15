@@ -27,6 +27,20 @@ import {
   type ShimShell,
 } from "../lib/shim-dir";
 
+/** Largest file that can plausibly be a cue shim. A native Claude/Codex
+ *  install puts the real CLI (a 200 MB+ binary) at the same legacy path, and
+ *  that binary happens to contain both "cue" and "launch claude" — so a
+ *  content-only check would call it a shim and delete it. Mirrors the guard in
+ *  `findRealAgentBin`. */
+const MAX_SHIM_BYTES = 64_000;
+
+/** True when `path` exists, is small enough to be a shim, and its content proves cue wrote it. */
+function isCueShimFile(path: string, agent: ShimAgent): boolean {
+  if (!existsSync(path)) return false;
+  if (statSync(path).size >= MAX_SHIM_BYTES) return false;
+  return isCueShimContent(readFileSync(path, "utf8"), agent);
+}
+
 /** True when `p` is an executable regular file (mirrors how the shell resolves
  * a command on PATH — skips directories and non-executable files). */
 function isExecutableFile(p: string, platform: NodeJS.Platform = process.platform): boolean {
@@ -299,7 +313,7 @@ export function shimInstalled(
   ];
   for (const candidate of candidates) {
     try {
-      if (existsSync(candidate) && isCueShimContent(readFileSync(candidate, "utf8"), agent)) return true;
+      if (isCueShimFile(candidate, agent)) return true;
     } catch {
       // Unreadable — fall through and try the other location.
     }
@@ -412,7 +426,7 @@ export async function runInstall(opts: ShimOptions = {}): Promise<number> {
   for (const agent of platform === "win32" ? [] : real.keys()) {
     const legacy = join(home, ".local", "bin", agent);
     try {
-      if (existsSync(legacy) && isCueShimContent(readFileSync(legacy, "utf8"), agent)) {
+      if (isCueShimFile(legacy, agent)) {
         unlinkSync(legacy);
         out(`🧹 Removed legacy cue shim → ${legacy}\n`);
       }
@@ -512,7 +526,7 @@ export async function runUninstall(
   for (const agent of platform === "win32" ? [] : SHIM_AGENTS) {
     const legacy = join(home, ".local", "bin", agent);
     try {
-      if (existsSync(legacy) && isCueShimContent(readFileSync(legacy, "utf8"), agent)) {
+      if (isCueShimFile(legacy, agent)) {
         err(`⚠️  A legacy cue shim remains at ${legacy} — remove it by hand to fully deactivate.\n`);
       }
     } catch {

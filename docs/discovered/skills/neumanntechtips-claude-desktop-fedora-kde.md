@@ -2,22 +2,22 @@
 title: "NeumannTechTips/claude-desktop-fedora-kde — Claude Code skill discovered by cue"
 description: "Fedora is not a supported platform for Claude Desktop. This guide installs the official, unmodified Anthropic package manually, with full integrity verification"
 layout: page
-updated: 2026-08-13
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [NeumannTechTips/claude-desktop-fedora-kde](https://github.com/NeumannTechTips/claude-desktop-fedora-kde)
 
-**★ 1** · potential (score 3.2)
+**★ 1** · potential (score 3.3) · ai, anthropic, claude, claude-desktop, deb
 
 > Fedora is not a supported platform for Claude Desktop. This guide installs the official, unmodified Anthropic package manually, with full integrity verification, KDE integration steps, and a manifest-driven removal path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-09
-- 🏷️ Tags: (none)
+- 🗓️ Last pushed: 2026-09-13
+- 🏷️ Tags: ai, anthropic, claude, claude-desktop, deb, desktop, electron, fedora, guide, installation-guide, integrity-verification, kde-plasma, linux, packaging
 
 ## Best fit cue profiles
 

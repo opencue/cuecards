@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-09
+updated: 2026-09-14
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="emelia-io-claude-outreach"></a>
-## 💎 [emelia-io/claude-outreach](https://github.com/emelia-io/claude-outreach)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 6** · exceptional (score 8) · Python · tags: ai, ai-sdr, b2b, claude-code, claude-code-skill
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Universal B2B outreach skill for Claude Code. 16 sub-skills + 5 sub-agents: ICP targeting, lead sourcing, email finder, phone finder, verification, AI personalization, multichannel sequences, deliverability, campaign launch, reply handling and GDPR compliance.
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add emelia-io/claude-outreach --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+```
+
+---
+
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+
+```bash
+cue skills add priyanshu-yadav04/claude-youtube --profile marketing
 ```
 
 ---

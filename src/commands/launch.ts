@@ -11,6 +11,10 @@
  *   --cue-pick             always open picker (ignore pins)
  *                          (CUE_ALWAYS_PICK=1 also opens it for interactive
  *                           launches that pass agent arguments)
+ *   --cue-pick-mcps        always open the MCP toggle, ignoring a remembered
+ *                          choice (CUE_ALWAYS_PICK_MCPS=1 does the same for
+ *                          every interactive launch — "ask me about MCPs,
+ *                          never about the profile")
  *   --dry-run              everything except the final exec; prints env
  *
  * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
@@ -22,6 +26,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
+import { profilesDir } from "../lib/repo-root";
 import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
 import { debug } from "../lib/debug-log";
 import { syncCodexAuth } from "../lib/codex-auth";
@@ -93,7 +98,7 @@ import {
   serviceCompanions,
   type CompanionSignal,
 } from "../lib/companion-detect";
-import type { LinkPlan, ResolvedProfile } from "../../profiles/_types";
+import type { AgentKind, LinkPlan, ResolvedProfile } from "../../profiles/_types";
 import type {
   ProfileAffinity,
   UniversalSuggestion,
@@ -109,6 +114,7 @@ import {
   MAX_LAUNCH_DEPTH,
   shouldForcePicker,
   shouldInheritSessionProfile,
+  isAlwaysPickEnabled,
 } from "../lib/launch-guards";
 import { shimDir, stripShimDirFromPath } from "../lib/shim-dir";
 import { needsWindowsCommandShell } from "../lib/claude-binary";
@@ -195,7 +201,9 @@ function parse(args: string[]): ParsedArgs {
   let dryRun = false;
   let rematerialize = false;
   let subset: string | null = null;
-  let forcePickMcps = false;
+  // CUE_ALWAYS_PICK_MCPS=1 is the env form of --cue-pick-mcps: re-open the MCP
+  // toggle on every interactive launch while leaving the profile picker alone.
+  let forcePickMcps = isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS);
   let fullLoad = false;
   const disableMcp: string[] = [];
   const passthrough: string[] = [];
@@ -1986,6 +1994,11 @@ interface ResolveNpxSkillSourcesOptions {
    * continuing without them. Not called on a clean resolve.
    */
   onDegraded?: (failures: NpxEntryFailure[]) => void;
+  /**
+   * Drop npx entries scoped to a different agent. Omit to resolve every entry,
+   * which is what the diagnostics callers (doctor, validate) want.
+   */
+  agent?: AgentKind;
 }
 
 /**
@@ -1996,24 +2009,40 @@ interface ResolveNpxSkillSourcesOptions {
  * degrades to whatever is already cached (often everything, since the cache is
  * keyed by repo+pin) and the launch proceeds. Missing skills are reported to
  * `onDegraded`, never thrown — losing one skill must not cost the session.
+ *
+ * `agents:` on an entry scopes it the same way it already scopes local skills,
+ * MCPs, and plugins in the materializer. Without this filter a profile that
+ * serves one agent from npx and the other from a plugin (ponytail) would link
+ * the same skills twice on the plugin side.
  */
 export async function resolveNpxSkillSources(
   profile: ResolvedProfile,
   opts: ResolveNpxSkillSourcesOptions = {},
 ): Promise<Map<string, string>> {
   const sources = new Map<string, string>();
-  if (profile.skills.npx.length === 0) return sources;
+  const scoped = opts.agent === undefined
+    ? profile
+    : {
+      ...profile,
+      skills: {
+        ...profile.skills,
+        npx: profile.skills.npx.filter((entry) =>
+          !entry.agents || entry.agents.length === 0 || entry.agents.includes(opts.agent!),
+        ),
+      },
+    };
+  if (scoped.skills.npx.length === 0) return sources;
 
   // Always honor the profile's repo+pin through Cue's cache. A same-named
   // marketplace skill has no trustworthy provenance and must not override it.
   if (opts.resolveNpx) {
-    for (const plan of await opts.resolveNpx(profile)) {
+    for (const plan of await opts.resolveNpx(scoped)) {
       sources.set(basename(plan.target), plan.source);
     }
     return sources;
   }
 
-  const { plans, failures } = await resolveNpxDetailed(profile, {
+  const { plans, failures } = await resolveNpxDetailed(scoped, {
     tolerateFetchFailure: true,
   });
   for (const plan of plans) {
@@ -2460,15 +2489,19 @@ export async function run(args: string[]): Promise<number> {
     profile = cachedProfile;
   } else {
     // Try manifest cache first (skips YAML parse + inheritance resolution)
-    const profilesDir = join(
-      process.env.CUE_REPO_ROOT ??
-        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-      "profiles",
-    );
+    // Must be the dir `loadProfile` actually reads, because it is the manifest
+    // cache key. Re-deriving it from CUE_REPO_ROOT dropped
+    // CUE_PROFILES_DIR/SOUL_PROFILES_DIR, so two different profiles dirs
+    // collapsed onto one key and silently served each other's profile — the
+    // very bug the hashed key exists to prevent, still reachable through the
+    // override. Worse, a profile that exists ONLY in the override dir collects
+    // no sources at all, so its entry validates vacuously and can never go
+    // stale. Every other profiles-root read in this file already uses this.
+    const profilesDirPath = profilesDir();
     let fromCache = false;
     try {
       const { getCachedManifest } = await import("../lib/manifest-cache");
-      const cached = getCachedManifest(profileName, profilesDir);
+      const cached = getCachedManifest(profileName, profilesDirPath);
       if (cached) {
         profile = cached;
         fromCache = true;
@@ -2489,7 +2522,7 @@ export async function run(args: string[]): Promise<number> {
       // Populate manifest cache for next launch
       try {
         const { putCachedManifest } = await import("../lib/manifest-cache");
-        putCachedManifest(profile, profilesDir);
+        putCachedManifest(profile, profilesDirPath);
       } catch {
         /* non-fatal */
       }
@@ -2836,8 +2869,23 @@ export async function run(args: string[]): Promise<number> {
               mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
             };
             mcpDisabledIds = [...drop];
+            // Name the pin exemption. `pin: true` silently makes prune a no-op
+            // for those servers, so "auto-pruned 2 unused" reads as if the rest
+            // were all needed — leaving no way to tell an MCP that survived
+            // because a skill wants it from one that survived because it is
+            // pinned.
+            //
+            // Scope, deliberately narrow: this counts ids DECLARED pinned, and
+            // "exempt" means exempt from prune — which is exactly true, since
+            // autoPrunableMcps skips every pinned id. It is not a count of
+            // servers that will start: collectProfileMcps later drops entries
+            // by `agents:`, `when:`, and registry presence, none of which this
+            // set knows about. No bundled profile combines `pin:` with those
+            // today. It also only prints when something was dropped; a profile
+            // where everything survives via pin still says nothing.
+            const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
             process.stderr.write(
-              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")}) · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
             );
           }
         }
@@ -2879,7 +2927,11 @@ export async function run(args: string[]): Promise<number> {
           };
           mcpDisabledIds = disabled;
           process.stderr.write(
-            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · --cue-pick-mcps to change\n`,
+            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · ${
+              parsed.forcePickMcps && isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS)
+                ? "asked every launch (CUE_ALWAYS_PICK_MCPS) · unset it to remember"
+                : "--cue-pick-mcps to change"
+            }\n`,
           );
         }
         // Persist whenever the user actively reviewed (keeps the remembered set
@@ -3001,6 +3053,7 @@ export async function run(args: string[]): Promise<number> {
     // default guidance survives both, without changing the selected runtime key.
     profile = await withCodexPonytail(await applyWorkspaceOverrides(profile), agentKind);
     const npxSkillMap = await resolveNpxSkillSources(profile, {
+      agent: agentKind,
       onDegraded: (failures) => {
         // Deferred: the loader owns the terminal until the finally below.
         npxDegraded.push(...failures);
@@ -3064,8 +3117,27 @@ export async function run(args: string[]): Promise<number> {
   let healthBadge = "";
   try {
     const { quickDiagnose } = await import("./status");
-    const warnings = quickDiagnose(profileName, profile);
+    const warnings = quickDiagnose(profileName, profile, agentKind);
     if (warnings.length > 0) healthBadge = "!";
+
+    // D12 (declared plugin not installed) prints its own text on EVERY launch,
+    // outside the `.doctor-done` gate below. The gated path cannot carry it:
+    // it fires only when `runtime.rebuilt` AND the flag is absent, and nothing
+    // ever deletes that flag — so an existing runtime shows nothing at all.
+    // It also collapses every warning into one generic `⚠ N cue-doctor
+    // warnings` line, dropping the command the user needs.
+    //
+    // For a missing plugin that is the wrong trade. The capability is simply
+    // absent, silently, and hook-carrying plugins fail invisibly by design —
+    // so the one-time generic pointer is exactly what the user does not get.
+    // Every other D-code describes something still visible elsewhere.
+    const pluginWarnings = warnings.filter((w) => w.code === "D12");
+    if (pluginWarnings.length > 0) {
+      const c = colorFns();
+      for (const w of pluginWarnings) {
+        process.stderr.write(`${c.yellow("⚠")} ${w.message}\n`);
+      }
+    }
 
     if (runtime.rebuilt) {
       try {
@@ -3077,7 +3149,11 @@ export async function run(args: string[]): Promise<number> {
           ".doctor-done",
         );
         if (!existsSync(doctorFlag)) {
-          const lines = formatDoctorWarnings(warnings);
+          // D12 already printed its own text above; counting it again here
+          // would report it twice on a rebuild.
+          const lines = formatDoctorWarnings(
+            warnings.filter((w) => w.code !== "D12"),
+          );
           if (lines.length > 0) {
             process.stderr.write("\n");
             for (const l of lines) process.stderr.write(`${l}\n`);

@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-14
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="amohavarshansankar-google-fonts-skill"></a>
-## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
-
-**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
-
-Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
-
-✅ SKILL.md
-
-```bash
-cue skills add amohavarshansankar/google-fonts-skill --profile frontend
-```
 
 ---
 
@@ -39,6 +24,32 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="riqxa-skills-best-practices"></a>
+## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+
+**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+
+Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+
+```bash
+cue skills add riqxa/skills-best-practices --profile frontend
 ```
 
 ---

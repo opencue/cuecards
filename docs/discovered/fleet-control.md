@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-14
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,19 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="yoodaddy0311-artibot"></a>
+## 💎 [Yoodaddy0311/artibot](https://github.com/Yoodaddy0311/artibot)
+
+**★ 3** · exceptional (score 11.7) · JavaScript · tags: agent-orchestration, ai-agent, anthropic, autonomous-agent, claude
+
+Autonomous Agent OS for Claude Code — 28 agents, 114 skills, 72 commands. Dual-process cognition, lifelong learning, parallel agent teams, planning→PRD/ADR/TODO workflow, cross-platform install.
+
+```bash
+cue skills add Yoodaddy0311/artibot --profile fleet-control
+```
 
 ---
 
@@ -31,25 +44,12 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 <a id="eduardo-salvador-agent-harness-kit"></a>
 ## ✨ [Eduardo-Salvador/Agent-Harness-Kit](https://github.com/Eduardo-Salvador/Agent-Harness-Kit)
 
-**★ 6** · strong (score 7.9) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
+**★ 6** · strong (score 7.7) · Python · tags: agent-harness, agent-orchestration, agentic-workflows, ai-agents, claude-code
 
 An installable harness for Codex and Claude Code that gives coding agents durable context, scoped task graphs, bounded execution, and a clear path from idea to verified delivery.
 
 ```bash
 cue skills add Eduardo-Salvador/Agent-Harness-Kit --profile fleet-control
-```
-
----
-
-<a id="mrrlin-dev-external-agents"></a>
-## ✨ [mrrlin-dev/external-agents](https://github.com/mrrlin-dev/external-agents)
-
-**★ 0** · strong (score 6) · JavaScript · tags: agent-orchestration, codex, deepseek, gemini, groq
-
-One MCP server routes LLM calls across 20+ providers, using round-robin dispatch and fallback to reduce rate-limit interruptions and cut costs up to 100x.
-
-```bash
-cue skills add mrrlin-dev/external-agents --profile fleet-control
 ```
 
 ---

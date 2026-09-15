@@ -2,21 +2,21 @@
 title: "moiz-za/svg-design-intelligence-system — Claude Code skill discovered by cue"
 description: "Etsy SVG Design Intelligence System (ESVG-DIS) - Research-first AI agent skill for original SVG product concepts, IP screening, Cricut vector optimization, and "
 layout: page
-updated: 2026-08-01
+updated: 2026-09-11
 tags: [claude-code, skill, marketing]
 ---
 
 # ✨ [moiz-za/svg-design-intelligence-system](https://github.com/moiz-za/svg-design-intelligence-system)
 
-**★ 0** · strong (score 5.5) · Markdown · ai-skill, claude-skill, cricut, digital-products, etsy-api
+**★ 2** · strong (score 6) · Markdown · ai-skill, claude-skill, cricut, digital-products, etsy-api
 
 > Etsy SVG Design Intelligence System (ESVG-DIS) - Research-first AI agent skill for original SVG product concepts, IP screening, Cricut vector optimization, and 2026 Etsy SEO.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-11
 - 🏷️ Tags: ai-skill, claude-skill, cricut, digital-products, etsy-api, etsy-optimization, etsy-seller, etsy-seo, marketing-automation, prompt-engineering, svg-design
 
 ## Best fit cue profiles

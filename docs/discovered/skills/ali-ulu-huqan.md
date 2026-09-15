@@ -1,23 +1,23 @@
 ---
 title: "ali-ulu/huqan — Claude Code skill discovered by cue"
-description: "Local-first, deterministic verification layer for AI claims, memory writes, and risky actions."
+description: "Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or "
 layout: page
-updated: 2026-08-07
+updated: 2026-09-14
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # ✨ [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
 
-**★ 1** · strong (score 6.3) · JavaScript · agent-security, agentic-workflow, ai-agents, ai-governance, ai-safety
+**★ 3** · strong (score 6.7) · JavaScript · agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
 
-> Local-first, deterministic verification layer for AI claims, memory writes, and risky actions.
+> Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or action is trusted.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-07
-- 🏷️ Tags: agent-security, agentic-workflow, ai-agents, ai-governance, ai-safety, audit-log, deterministic, freetools, human-in-the-loop, llm-security, mcp, mcp-server, opensource, policy-enforcement, provenance, rust, trending-repositories, trust-layer, trust-receipts, typescript
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-09-14
+- 🏷️ Tags: agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance, ai-safety, audit-trail, deterministic, deterministic-ai, human-in-the-loop, knowledge-graph, llm-security, mcp, mcp-server, nodejs, open-source, provenance, trust-receipts
 
 ## Best fit cue profiles
 

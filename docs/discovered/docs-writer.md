@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-13
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rishabhrawat35-github-readme-writer"></a>
-## 💎 [rishabhrawat35/github-readme-writer](https://github.com/rishabhrawat35/github-readme-writer)
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 2** · exceptional (score 10.5) · Python · tags: claude-code-skill, claude-skills, developer-productivity, developer-tool, github
+**★ 491** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
 
-An AI agent skill that reads every file in a repo before writing a word, then produces a README with real commands, real output and only the sections that repo needs. Includes a file inventory script and a README linter.
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rishabhrawat35/github-readme-writer --profile docs-writer
-```
-
----
-
-<a id="onourimpram-mneme"></a>
-## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
-
-**★ 2** · exceptional (score 10.4) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
-
-Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
-
-```bash
-cue skills add OnourImpram/mneme --profile docs-writer
+cue skills add Ikalus1988/MisakaNet --profile docs-writer
 ```
 
 ---
@@ -65,6 +52,32 @@ Automate your personal knowledge base in Obsidian using Claude. Feed raw content
 
 ```bash
 cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+```
+
+---
+
+<a id="cenmeow-markdown-new-skill"></a>
+## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
+
+**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
+
+Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
+
+```bash
+cue skills add CenMeow/markdown-new-skill --profile docs-writer
+```
+
+---
+
+<a id="the-40-thieves-obsidian-tc"></a>
+## 💎 [The-40-Thieves/obsidian-tc](https://github.com/The-40-Thieves/obsidian-tc)
+
+**★ 5** · exceptional (score 9.5) · TypeScript · tags: ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol
+
+Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. 163 tools across 31 domains, multi-vault native, pluggable embeddings. TypeScript + Rust. AGPL-3.0-only.
+
+```bash
+cue skills add The-40-Thieves/obsidian-tc --profile docs-writer
 ```
 
 ---

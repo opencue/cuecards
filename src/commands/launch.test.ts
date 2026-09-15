@@ -86,6 +86,39 @@ describe("resolveNpxSkillSources", () => {
     }
   });
 
+  test("drops npx entries scoped to another agent, keeps unscoped ones", async () => {
+    // ponytail serves Codex from npx and Claude from the plugin. Without this
+    // filter Claude links the same six skills twice — once per source.
+    const profile = makeProfile({
+      skills: {
+        local: [],
+        npx: [
+          { repo: "owner/codex-only", agents: ["codex"], skills: ["codexish"] },
+          { repo: "owner/shared", skills: ["everywhere"] },
+          { repo: "owner/claude-only", agents: ["claude-code"], skills: ["claudeish"] },
+        ],
+      },
+    });
+    const seen = async (agent: "claude-code" | "codex" | undefined) => {
+      let repos: string[] = [];
+      await resolveNpxSkillSources(profile, {
+        agent,
+        resolveNpx: async (scoped) => {
+          repos = scoped.skills.npx.map((entry) => entry.repo);
+          return [];
+        },
+      });
+      return repos;
+    };
+
+    expect(await seen("claude-code")).toEqual(["owner/shared", "owner/claude-only"]);
+    expect(await seen("codex")).toEqual(["owner/codex-only", "owner/shared"]);
+    // Diagnostics callers pass no agent and must still see every entry.
+    expect(await seen(undefined)).toHaveLength(3);
+    // The caller's profile is never mutated by the filter.
+    expect(profile.skills.npx).toHaveLength(3);
+  });
+
   test("formats a degraded fetch as a warning, not a crash", () => {
     const lines = formatNpxDegraded([
       {

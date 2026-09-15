@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-08
+updated: 2026-09-14
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 
 ---
 
-<a id="systempromptio-systemprompt-core"></a>
-## 💎 [systempromptio/systemprompt-core](https://github.com/systempromptio/systemprompt-core)
+<a id="araneadev-chaos-mcp"></a>
+## 💎 [AraneaDev/Chaos-MCP](https://github.com/AraneaDev/Chaos-MCP)
 
-**★ 8** · exceptional (score 12.4) · Rust · tags: a2a, agent-orchestration, agentic-ai, ai-agents, ai-governance
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: claude, claude-code, cosmic-ray, infection, mcp
 
-AI governance infrastructure for agentic systems. Rust library behind systemprompt.io — MCP, A2A, OAuth2, audit trails, compile-time extensions. Evaluate with systemprompt-template.
+Local-first MCP server that runs isolated mutation testing against a codebase to expose the gaps its test suite does not cover. Wraps StrykerJS, cosmic-ray, cargo-mutants and Infection behind one tool surface.
 
 ```bash
-cue skills add systempromptio/systemprompt-core --profile rust
+cue skills add AraneaDev/Chaos-MCP --profile rust
 ```
 
 ---

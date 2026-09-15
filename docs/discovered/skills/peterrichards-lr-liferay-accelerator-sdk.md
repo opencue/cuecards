@@ -2,7 +2,7 @@
 title: "peterrichards-lr/liferay-accelerator-sdk — Claude Code skill discovered by cue"
 description: "Hardened Liferay DXP Integration SDK for Batch, Workflow, and API orchestration."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-11
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-10
+- 🗓️ Last pushed: 2026-09-11
 - 🏷️ Tags: agentic-ai, integration, liferay, liferay-dxp, mcp-server, sdk
 
 ## Best fit cue profiles

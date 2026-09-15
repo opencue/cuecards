@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, test } from "bun:test";
 import { fileURLToPath } from "node:url";
+import type { AgentKind } from "../../profiles/_types";
 import { loadProfile } from "./profile-loader";
 import { withCodexPonytail } from "./codex-ponytail";
 
@@ -13,7 +14,12 @@ afterEach(() => {
   else process.env.CUE_PROFILES_DIR = priorProfilesDir;
 });
 
-test("Ponytail adds six pinned skills without changing core plugins or hooks", async () => {
+const PONYTAIL_SKILLS = [
+  "ponytail", "ponytail-review", "ponytail-audit",
+  "ponytail-debt", "ponytail-gain", "ponytail-help",
+];
+
+test("Ponytail adds six pinned skills without changing core hooks or MCPs", async () => {
   const core = await loadProfile("core");
   const profile = await loadProfile("ponytail");
   const upstream = profile.skills.npx.find((source) => source.repo === "DietrichGebert/ponytail");
@@ -21,15 +27,53 @@ test("Ponytail adds six pinned skills without changing core plugins or hooks", a
   expect(profile.kind).toBe("overlay");
   expect(profile.agents).toEqual(["claude-code", "codex"]);
   expect(upstream?.pin).toMatch(/^git@[a-f0-9]{40}$/);
-  expect(upstream?.skills).toEqual([
-    "ponytail", "ponytail-review", "ponytail-audit",
-    "ponytail-debt", "ponytail-gain", "ponytail-help",
-  ]);
-  expect(profile.plugins).toEqual(core.plugins);
+  expect(upstream?.skills).toEqual(PONYTAIL_SKILLS);
   expect(profile.codex).toEqual(core.codex);
   expect(profile.hooks).toEqual(core.hooks);
   expect(profile.mcps).toEqual(core.mcps);
   expect(core.skills.npx.some((source) => source.repo === "DietrichGebert/ponytail")).toBe(false);
+});
+
+/** Mirrors `appliesToAgent` in runtime-materializer.ts. */
+function appliesTo(scoped: { agents?: AgentKind[] }, agent: AgentKind): boolean {
+  if (!scoped.agents || scoped.agents.length === 0) return true;
+  return scoped.agents.includes(agent);
+}
+
+test("each agent resolves Ponytail from exactly one source, never both", async () => {
+  const profile = await loadProfile("ponytail");
+
+  // Assert the RESOLVED outcome per agent, not the two YAML lines that produce
+  // it — the earlier version of this test re-read its own inputs and so could
+  // not tell "one source each" from "the plugin happens to be installed".
+  for (const agent of ["claude-code", "codex"] as const) {
+    const npxSkills = profile.skills.npx
+      .filter((entry) => entry.repo === "DietrichGebert/ponytail" && appliesTo(entry, agent))
+      .flatMap((entry) => entry.skills);
+    const plugins = profile.plugins
+      .filter((entry) => entry.id === "ponytail@ponytail" && appliesTo(entry, agent));
+
+    // Exactly one source carries the skills for this agent.
+    expect(npxSkills.length > 0 ? 1 : 0).toBe(plugins.length > 0 ? 0 : 1);
+    if (agent === "codex") {
+      // Codex cannot load a Claude Code plugin — npx is its only path.
+      expect(npxSkills).toEqual(PONYTAIL_SKILLS);
+      expect(plugins).toHaveLength(0);
+    } else {
+      // Claude Code takes the plugin, which carries the same six skills PLUS
+      // the SessionStart/SubagentStart/UserPromptSubmit hooks npx cannot.
+      expect(npxSkills).toEqual([]);
+      expect(plugins).toHaveLength(1);
+    }
+  }
+});
+
+test("the overlay adds its plugin on top of core's rather than replacing them", async () => {
+  const core = await loadProfile("core");
+  const profile = await loadProfile("ponytail");
+
+  for (const inherited of core.plugins) expect(profile.plugins).toContainEqual(inherited);
+  expect(core.plugins.some((entry) => entry.id === "ponytail@ponytail")).toBe(false);
 });
 
 for (const baseName of ["frontend", "nextjs"]) {

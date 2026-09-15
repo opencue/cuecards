@@ -1,27 +1,27 @@
 ---
 title: "EtanHey/cmuxlayer — Claude Code skill discovered by cue"
-description: "cmux MCP server — 25 tools for terminal agent lifecycle management. Spawn, monitor, and orchestrate Claude, Codex, Cursor, Gemini, Kiro agents. Thinking-state d"
+description: "10 public MCP tools for controlling cmux workspaces and managing Claude, Codex, Gemini, Kiro, and Cursor agents."
 layout: page
-updated: 2026-07-06
-tags: [claude-code, skill, core]
+updated: 2026-09-13
+tags: [claude-code, skill, fleet-control]
 ---
 
 # 💎 [EtanHey/cmuxlayer](https://github.com/EtanHey/cmuxlayer)
 
-**★ 17** · exceptional (score 11.7) · TypeScript · ai-agents, claude-code, mcp-server, model-context-protocol, orchestration
+**★ 26** · exceptional (score 13) · TypeScript · agent-infrastructure, agent-orchestration, ai-agents, ai-coding-agents, claude-code
 
-> cmux MCP server — 25 tools for terminal agent lifecycle management. Spawn, monitor, and orchestrate Claude, Codex, Cursor, Gemini, Kiro agents. Thinking-state detection, chunked input, layout management.
+> 10 public MCP tools for controlling cmux workspaces and managing Claude, Codex, Gemini, Kiro, and Cursor agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
-- ⭐ 17 stars
-- 🗓️ Last pushed: 2026-07-06
-- 🏷️ Tags: ai-agents, claude-code, mcp-server, model-context-protocol, orchestration, terminal-multiplexer
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+- ⭐ 26 stars
+- 🗓️ Last pushed: 2026-09-13
+- 🏷️ Tags: agent-infrastructure, agent-orchestration, ai-agents, ai-coding-agents, claude-code, developer-tools, mcp-server, model-context-protocol, multi-agent, orchestration, terminal-multiplexer
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[fleet-control](../fleet-control.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add EtanHey/cmuxlayer --profile core
+cue skills add EtanHey/cmuxlayer --profile fleet-control
 ```
 
 ## About

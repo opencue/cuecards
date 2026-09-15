@@ -48,7 +48,13 @@ export class PluginNotInstalled extends ProfileError {
   public readonly pluginsRoot: string;
 
   constructor(plugin: string, pluginsRoot: string) {
-    const hint = `/plugin marketplace add ${plugin}`;
+    // `plugin` is a `name@marketplace` ref, which is what `plugin install`
+    // takes — not what `marketplace add` takes. The old hint fed the ref to
+    // `marketplace add`, which wants a SOURCE (`DietrichGebert/ponytail`, a URL
+    // or a path); a profile never records that, so cue cannot reconstruct it.
+    // `plugin install` is the step that actually applies once the marketplace
+    // is registered, and it fails with a usable message when it is not.
+    const hint = `claude plugin install ${plugin}`;
     super(
       "PLUGIN_NOT_INSTALLED",
       `Plugin "${plugin}" is not installed under "${pluginsRoot}". ` +
@@ -118,10 +124,13 @@ export async function resolvePlugins(
  * Resolve the plugins root, expanding `~` if the caller (or env var) hands it
  * to us. Always returns an absolute path.
  *
- * Kept private — A11's scanner needs the same logic; per the fleet plan we
- * let the duplication appear here and extract later if/when it converges.
+ * Exported as of the third caller (quickDiagnose's plugin check), which is the
+ * convergence the note here used to anticipate. Skipping the `~` expansion
+ * matters: `SOUL_PLUGINS_ROOT=~/.claude/plugins` set in a config file rather
+ * than a shell is never expanded by the OS, so a naive `join`/`readFileSync`
+ * fails on the literal `~` and the caller silently reads nothing.
  */
-function resolvePluginsRoot(explicit?: string): string {
+export function resolvePluginsRoot(explicit?: string): string {
   const raw = explicit ?? process.env.SOUL_PLUGINS_ROOT ?? join(homedir(), ".claude", "plugins");
   return resolve(expandTilde(raw));
 }

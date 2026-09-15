@@ -1,27 +1,27 @@
 ---
 title: "moiz-za/etsy-seller-seo-system — Claude Code skill discovered by cue"
-description: "Honest, evidence-driven Etsy SEO optimization for AI tools"
+description: "Etsy Seller SEO System - Evidence-driven Etsy listing optimization skill for AI tools using live autocomplete, competitor SERP analysis, tag validation, and 202"
 layout: page
-updated: 2026-07-30
-tags: [claude-code, skill, core]
+updated: 2026-09-11
+tags: [claude-code, skill, marketing]
 ---
 
-# ✨ [moiz-za/etsy-seller-seo-system](https://github.com/moiz-za/etsy-seller-seo-system)
+# 💎 [moiz-za/etsy-seller-seo-system](https://github.com/moiz-za/etsy-seller-seo-system)
 
-**★ 0** · strong (score 6) · Markdown · ai-tools, chatgpt, claude, claude-skill, etsy
+**★ 18** · exceptional (score 9.8) · Markdown · ai-skill, claude-skill, cricut, digital-products, etsy-api
 
-> Honest, evidence-driven Etsy SEO optimization for AI tools
+> Etsy Seller SEO System - Evidence-driven Etsy listing optimization skill for AI tools using live autocomplete, competitor SERP analysis, tag validation, and 2026 Etsy policies.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-30
-- 🏷️ Tags: ai-tools, chatgpt, claude, claude-skill, etsy, etsy-seller, etsy-seo, gemini, marketplace-seo, perplexity, seo, seo-tools
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-09-11
+- 🏷️ Tags: ai-skill, claude-skill, cricut, digital-products, etsy-api, etsy-optimization, etsy-seller, etsy-seo, marketing-automation, prompt-engineering, svg-design
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[marketing](../marketing.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add moiz-za/etsy-seller-seo-system --profile core
+cue skills add moiz-za/etsy-seller-seo-system --profile marketing
 ```
 
 ## About

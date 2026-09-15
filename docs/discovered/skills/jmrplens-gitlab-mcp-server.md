@@ -2,21 +2,21 @@
 title: "jmrplens/gitlab-mcp-server — Claude Code skill discovered by cue"
 description: "Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 850+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only mode"
 layout: page
-updated: 2026-08-27
+updated: 2026-09-11
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [jmrplens/gitlab-mcp-server](https://github.com/jmrplens/gitlab-mcp-server)
 
-**★ 30** · exceptional (score 9.6) · Go · ai-tools, gitlab, gitlab-api, go, llm
+**★ 35** · exceptional (score 9.7) · Go · ai-tools, gitlab, gitlab-api, go, llm
 
 > Open source GitLab MCP server for AI assistants: 2-tool dynamic find/execute over 850+ GitLab actions (1,000+ Enterprise), stdio/HTTP/OAuth, safe/read-only modes.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
-- ⭐ 30 stars
-- 🗓️ Last pushed: 2026-08-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
+- ⭐ 35 stars
+- 🗓️ Last pushed: 2026-09-11
 - 🏷️ Tags: ai-tools, gitlab, gitlab-api, go, llm, mcp, mcp-server, model-context-protocol
 
 ## Best fit cue profiles

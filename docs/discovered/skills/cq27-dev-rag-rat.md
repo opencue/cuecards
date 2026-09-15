@@ -2,21 +2,21 @@
 title: "cq27-dev/rag-rat — Claude Code skill discovered by cue"
 description: "Local repo-intelligence index + MCP server: semantic search, symbol/graph navigation, impact-surface preflight, git + GitHub papertrail, and a source-anchored m"
 layout: page
-updated: 2026-07-22
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [cq27-dev/rag-rat](https://github.com/cq27-dev/rag-rat)
 
-**★ 10** · exceptional (score 8.2) · Rust · call-graph, local-first, mcp, mcp-server, papertrail
+**★ 20** · exceptional (score 11.3) · Rust · call-graph, local-first, mcp, mcp-server, papertrail
 
 > Local repo-intelligence index + MCP server: semantic search, symbol/graph navigation, impact-surface preflight, git + GitHub papertrail, and a source-anchored memory graph.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
-- ⭐ 10 stars
-- 🗓️ Last pushed: 2026-07-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
+- ⭐ 20 stars
+- 🗓️ Last pushed: 2026-09-14
 - 🏷️ Tags: call-graph, local-first, mcp, mcp-server, papertrail, repo-indexing, scip, semantic-search
 
 ## Best fit cue profiles

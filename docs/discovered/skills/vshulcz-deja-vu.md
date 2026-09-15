@@ -1,23 +1,23 @@
 ---
 title: "vshulcz/deja-vu — Claude Code skill discovered by cue"
-description: "Search your past AI coding sessions — Claude Code, Codex, Cursor and 17 more. Indexes the session history they already wrote to disk, including months from befo"
+description: "One memory shared by Claude Code, Codex, Cursor, Copilot CLI, OpenClaw and 20 more coding agents, built from the session history already on disk. A fix found in"
 layout: page
-updated: 2026-09-01
+updated: 2026-09-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vshulcz/deja-vu](https://github.com/vshulcz/deja-vu)
 
-**★ 747** · exceptional (score 17) · Go · agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-plugins
+**★ 802** · exceptional (score 15) · Go · agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-memory
 
-> Search your past AI coding sessions — Claude Code, Codex, Cursor and 17 more. Indexes the session history they already wrote to disk, including months from before you installed it, and recalls it in any of them. No LLM, no embeddings, one local Go binary.
+> One memory shared by Claude Code, Codex, Cursor, Copilot CLI, OpenClaw and 20 more coding agents, built from the session history already on disk. A fix found in one agent comes back in any of them, including months of sessions from before you installed it. No LLM, no embeddings, one local Go binary.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 747 stars
-- 🗓️ Last pushed: 2026-09-01
-- 🏷️ Tags: agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-plugins, claude-code-skill, codex, coding-agents, conversation-history, deepseek-harness, dsh-plugin, gemini-cli-extension, kimi-code, mcp, mcp-server, opencode, qwen-code, session-history, session-search, zed-extension
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
+- ⭐ 802 stars
+- 🗓️ Last pushed: 2026-09-11
+- 🏷️ Tags: agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-memory, claude-code-plugins, codex, coding-agents, conversation-history, deepseek-harness, dsh-plugin, gemini-cli-extension, kimi-code, mcp, mcp-server, opencode, qwen-code, session-history, session-search, zed-extension
 
 ## Best fit cue profiles
 

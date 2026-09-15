@@ -1,22 +1,22 @@
 ---
 title: "ljx-chase/research-field-onboarding — Claude Code skill discovered by cue"
-description: "A reusable research-onboarding skill for **Claude, ChatGPT, Codex, and other instruction-following agents**."
+description: "A reusable research-onboarding skill for Claude, ChatGPT, Codex, and other instruction-following agents."
 layout: page
-updated: 2026-09-09
+updated: 2026-09-14
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [ljx-chase/research-field-onboarding](https://github.com/ljx-chase/research-field-onboarding)
 
-**★ 12** · exceptional (score 9.8) · Python · academic-research, agent-skill, agent-skills, chatgpt-skills, claude-code-skill
+**★ 56** · exceptional (score 13.5) · Python · academic-research, agent-skill, agent-skills, chatgpt-skills, claude-code-skill
 
-> A reusable research-onboarding skill for **Claude, ChatGPT, Codex, and other instruction-following agents**.
+> A reusable research-onboarding skill for Claude, ChatGPT, Codex, and other instruction-following agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 12 stars
-- 🗓️ Last pushed: 2026-09-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+- ⭐ 56 stars
+- 🗓️ Last pushed: 2026-09-14
 - 🏷️ Tags: academic-research, agent-skill, agent-skills, chatgpt-skills, claude-code-skill, claude-skills, codex-skill, education, literature-review, research, research-tool
 
 ## Best fit cue profiles

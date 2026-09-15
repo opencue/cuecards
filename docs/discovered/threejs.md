@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-08-30
+updated: 2026-09-13
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="libraz-hashidate"></a>
-## ✨ [libraz/hashidate](https://github.com/libraz/hashidate)
+<a id="mustbesimo-web-design-studio"></a>
+## 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
 
-**★ 1** · strong (score 6.3) · TypeScript · tags: avatar, character-animation, mcp, mcp-server, obs
+**★ 34** · exceptional (score 17.1) · JavaScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
-Avatar runtime for an AI VTuber: a browser-rendered character driven over a local HTTP API, one turn of dialogue at a time. No model provider, no API key, no prompt state.
+Web Design Studio: free agent skill for distinctive websites, interactive 3D and motion. 28 live examples, art direction and accessible fallbacks. Formerly Cinematic Scroll.
+
+✅ SKILL.md
 
 ```bash
-cue skills add libraz/hashidate --profile threejs
+cue skills add MustBeSimo/web-design-studio --profile threejs
 ```
 
 ---

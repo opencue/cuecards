@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-14
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,45 +15,43 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="pleaseprompto-google-ai-mode-skill"></a>
-## 💎 [PleasePrompto/google-ai-mode-skill](https://github.com/PleasePrompto/google-ai-mode-skill)
+<a id="rokokol-papers-skill"></a>
+## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
 
-**★ 295** · exceptional (score 21.8) · Python · tags: ai-search, browser-automation, citations, claude-code, claude-skill
+**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
 
-Claude Code skill for free Google AI Mode search with citations. Zero-config setup, persistent browser profile, query optimization. Token-efficient web research.
-
-✅ SKILL.md
-
-```bash
-cue skills add PleasePrompto/google-ai-mode-skill --profile research
-```
-
----
-
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
-
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
-
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
+cue skills add rokokol/papers-skill --profile research
 ```
 
 ---
 
-<a id="neverbiasu-awesome-research-skills"></a>
-## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
+<a id="ljx-chase-research-field-onboarding"></a>
+## 💎 [ljx-chase/research-field-onboarding](https://github.com/ljx-chase/research-field-onboarding)
 
-**★ 1** · strong (score 5.3) · tags: academic-research, agent-skills, ai-agents, ai-for-research, awesome
+**★ 56** · exceptional (score 13.5) · Python · tags: academic-research, agent-skill, agent-skills, chatgpt-skills, claude-code-skill
 
-146 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
+A reusable research-onboarding skill for Claude, ChatGPT, Codex, and other instruction-following agents.
 
 ```bash
-cue skills add neverbiasu/awesome-research-skills --profile research
+cue skills add ljx-chase/research-field-onboarding --profile research
+```
+
+---
+
+<a id="lastsearch-hq-lastsearch"></a>
+## 💎 [LastSearch-HQ/lastsearch](https://github.com/LastSearch-HQ/lastsearch)
+
+**★ 20** · exceptional (score 12.4) · TypeScript · tags: agent-tools, ai-agent, anti-hallucination, citations, clarity
+
+Reliable research infrastructure for AI agents. Evidence-backed web search with citations, confidence scores, and Clarity anti-hallucination. MCP server, REST API, Python SDK.
+
+```bash
+cue skills add LastSearch-HQ/lastsearch --profile research
 ```
 
 ---
@@ -61,7 +59,7 @@ cue skills add neverbiasu/awesome-research-skills --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4.5) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 4.4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

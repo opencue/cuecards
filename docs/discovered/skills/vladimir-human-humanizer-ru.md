@@ -2,23 +2,23 @@
 title: "Vladimir-Human/humanizer-ru — Claude Code skill discovered by cue"
 description: "Проверяемая гигиена вставки из чата для русского текста"
 layout: page
-updated: 2026-09-09
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Vladimir-Human/humanizer-ru](https://github.com/Vladimir-Human/humanizer-ru)
 
-**★ 123** · exceptional (score 15.6) · Python · agent-skills, ai, claude, claude-skill, cli
+**★ 124** · exceptional (score 17.6) · Python · agent-skills, ai, claude, claude-code, claude-skill
 
 > Проверяемая гигиена вставки из чата для русского текста
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 123 stars
-- 🗓️ Last pushed: 2026-09-09
-- 🏷️ Tags: agent-skills, ai, claude, claude-skill, cli, github-action, humanizer, llm, llm-tools, nlp, pypi, python, russian, russian-language, skill, text-normalization, typography
+- ⭐ 124 stars
+- 🗓️ Last pushed: 2026-09-14
+- 🏷️ Tags: agent-skills, ai, claude, claude-code, claude-skill, cli, cursor, github-action, humanizer, llm, llm-tools, mcp, nlp, pypi, python, russian, russian-language, skill, text-normalization, typography
 
 ## Best fit cue profiles
 

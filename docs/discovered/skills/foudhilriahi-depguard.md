@@ -2,21 +2,21 @@
 title: "foudhilriahi/DepGuard — Claude Code skill discovered by cue"
 description: "AI Dependency Security MCP Server"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-14
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [foudhilriahi/DepGuard](https://github.com/foudhilriahi/DepGuard)
 
-**★ 0** · strong (score 5) · TypeScript · ai-tools, mcp-server, npm, osv
+**★ 0** · strong (score 6.5) · TypeScript · ai-tools, mcp-server, npm, osv
 
 > AI Dependency Security MCP Server
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-05
+- 🗓️ Last pushed: 2026-09-14
 - 🏷️ Tags: ai-tools, mcp-server, npm, osv
 
 ## Best fit cue profiles

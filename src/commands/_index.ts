@@ -55,6 +55,10 @@ export const COMMANDS = {
     summary: "Resolve+materialize a profile then exec claude/codex (hot path)",
     load: () => import("./launch"),
   },
+  firstmate: {
+    summary: "Select and launch a Firstmate coordinator in its own checkout",
+    load: () => import("./firstmate"),
+  },
   loadout: {
     summary: "Inspect/edit the project's skill loadout (keep/defer/on/off/reset)",
     load: () => import("./loadout"),
