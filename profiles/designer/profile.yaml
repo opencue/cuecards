@@ -60,7 +60,7 @@ skills:
   npx:
     # nextlevelbuilder UI/UX Pro Max (21.9K installs) — top UI/UX design skill on the registry.
     - repo: nextlevelbuilder/ui-ux-pro-max-skill
-      skills: ["ckm:design"]
+      skills: ["ui-ux-pro-max"]
     # Antigravity UI/UX (1.3K installs) — secondary coverage.
     - repo: sickn33/antigravity-awesome-skills
       skills: [ui-ux-designer]

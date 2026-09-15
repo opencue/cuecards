@@ -59,10 +59,8 @@ skills:
   npx:
     - repo: anthropics/skills
       skills: [pdf, docx, pptx]
-    - repo: xixu-me/skills
-      skills: [github-actions-docs]
     - repo: nextlevelbuilder/ui-ux-pro-max-skill
-      skills: [ckm:design]
+      skills: [ui-ux-pro-max]
     - repo: sickn33/antigravity-awesome-skills
       skills: [ui-ux-designer]
     - repo: OSideMedia/higgsfield-ai-prompt-skill
