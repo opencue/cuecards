@@ -101,7 +101,10 @@ test.skipIf(!hasTmux)("live acceptance preserves the process and existing pane f
   const render = () => spawnSync("sh", ["-c", badge.slice(2, -1)], { encoding: "utf8" }).stdout;
   expect(render()).toBe("⚓ Firstmate ");
   process.kill(f.pid, "SIGTERM");
-  for (let i = 0; i < 40 && f.tmux("display-message", "-p", "-t", f.pane, "#{pane_dead}") !== "1"; i++) await Bun.sleep(50);
+  // Poll the condition actually asserted. `#{pane_dead}` is only a proxy for it:
+  // tmux can flag the pane dead while the signalled process is still visible to
+  // the badge's own `ps -p`, so the badge had not cleared yet when this ran.
+  for (let i = 0; i < 100 && render() !== ""; i++) await Bun.sleep(50);
   expect(render()).toBe("");
   expect(f.tmux("show-options", "-g", "-w", "-v", "pane-border-status")).toBe("off");
 }, 15000);
