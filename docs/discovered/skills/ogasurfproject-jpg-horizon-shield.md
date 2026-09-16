@@ -1,23 +1,23 @@
 ---
 title: "ogasurfproject-jpg/horizon-shield — Claude Code skill discovered by cue"
-description: "「MCP server that audits Japanese construction estimates and returns Bitcoin-anchored, verifiable fair-price receipts.」"
+description: "NENRIN: tree rings for AI facing services. Bitcoin-anchored public ledger, open witnessing, and an MCP server for verifiable Japanese construction estimates. Th"
 layout: page
-updated: 2026-08-09
+updated: 2026-09-16
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [ogasurfproject-jpg/horizon-shield](https://github.com/ogasurfproject-jpg/horizon-shield)
 
-**★ 1** · strong (score 7.8) · HTML · a2a, gemini-cli-extension, mcp, mcp-server, model-context-protocol
+**★ 1** · strong (score 7.8) · HTML · a2a, ai-agents, bitcoin, gemini-cli-extension, mcp
 
-> 「MCP server that audits Japanese construction estimates and returns Bitcoin-anchored, verifiable fair-price receipts.」
+> NENRIN: tree rings for AI facing services. Bitcoin-anchored public ledger, open witnessing, and an MCP server for verifiable Japanese construction estimates. The operator cannot delete a valid record.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-09
-- 🏷️ Tags: a2a, gemini-cli-extension, mcp, mcp-server, model-context-protocol
+- 🗓️ Last pushed: 2026-09-16
+- 🏷️ Tags: a2a, ai-agents, bitcoin, gemini-cli-extension, mcp, mcp-server, model-context-protocol, opentimestamps, transparency-log
 
 ## Best fit cue profiles
 

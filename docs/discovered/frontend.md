@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="amohavarshansankar-google-fonts-skill"></a>
+## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
+
+**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
+
+Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
+
+✅ SKILL.md
+
+```bash
+cue skills add amohavarshansankar/google-fonts-skill --profile frontend
+```
+
+---
+
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
-**★ 2** · exceptional (score 11) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
+**★ 2** · exceptional (score 12.5) · Python · tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
 Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
@@ -28,28 +43,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="klarluft-gitwarren-app"></a>
+## 💎 [klarluft/gitwarren-app](https://github.com/klarluft/gitwarren-app)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 15** · exceptional (score 10.9) · TypeScript · tags: ai-agents, claude-code, code-review, codex, desktop-app
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Code review for your own machines and your own agents. Reviews live where the code does — reached over SSH, WSL or your own tailnet. Desktop app or just a browser tab. No server, no account.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add klarluft/gitwarren-app --profile frontend
 ```
 
 ---
 
-<a id="riqxa-skills-best-practices"></a>
-## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+<a id="wahmoh-claude-react-kit"></a>
+## 💎 [wahmoh/claude-react-kit](https://github.com/wahmoh/claude-react-kit)
 
-**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+**★ 2** · exceptional (score 10) · tags: agentic-ai, ai, ai-coding-assistant, anthropic, architecture
 
-Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+Enforce clean architecture and prevent technical debt in React projects with a drop-in Claude Code configuration that manages context and imports.
 
 ```bash
-cue skills add riqxa/skills-best-practices --profile frontend
+cue skills add wahmoh/claude-react-kit --profile frontend
 ```
 
 ---

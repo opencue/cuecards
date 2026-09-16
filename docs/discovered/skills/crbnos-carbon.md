@@ -1,22 +1,22 @@
 ---
 title: "crbnos/carbon — Claude Code skill discovered by cue"
-description: "Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, and configure to order manufacturing."
+description: "Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, high volume, and configure to order manufactu"
 layout: page
-updated: 2026-08-12
+updated: 2026-09-16
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
 
-**★ 2343** · exceptional (score 14) · TypeScript · business, erp, lean, management, manufacturing
+**★ 2412** · exceptional (score 14) · TypeScript · business, erp, lean, management, manufacturing
 
-> Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, and configure to order manufacturing.
+> Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, high volume, and configure to order manufacturing.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 2343 stars
-- 🗓️ Last pushed: 2026-08-12
+- ⭐ 2412 stars
+- 🗓️ Last pushed: 2026-09-16
 - 🏷️ Tags: business, erp, lean, management, manufacturing, mcp-server, mes, postgresql, qms, react-router, supabase, typescript
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "DarrenBenson/sdlc-studio — Claude Code skill discovered by cue"
 description: "Claude Code skill for managing the full software development lifecycle"
 layout: page
-updated: 2026-08-27
+updated: 2026-09-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DarrenBenson/sdlc-studio](https://github.com/DarrenBenson/sdlc-studio)
 
-**★ 21** · exceptional (score 12.4) · Python · bug-tracking, claude-code, claude-code-skill, code-generation, epics
+**★ 22** · exceptional (score 12.5) · Python · bug-tracking, claude-code, claude-code-skill, code-generation, epics
 
 > Claude Code skill for managing the full software development lifecycle
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
-- ⭐ 21 stars
-- 🗓️ Last pushed: 2026-08-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+- ⭐ 22 stars
+- 🗓️ Last pushed: 2026-09-16
 - 🏷️ Tags: bug-tracking, claude-code, claude-code-skill, code-generation, epics, prd, requirements-management, sdlc, test-automation, user-stories
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="mcp-tool-shop-org-mcp-arcade-cabinets"></a>
-## ✨ [mcp-tool-shop-org/mcp-arcade-cabinets](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets)
+<a id="tt-a1i-archify"></a>
+## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 0** · strong (score 5) · TypeScript · tags: arcade, canvas, docker, galaga, game
+**★ 64167** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
-Ghost on the Menu: an arcade shooter where you are the agent, working through what MCP servers said on the wire. Take a shift of four recorded bouts with a climb in data and a four-word name. Reads mcp-arcade tapes, never the score; itself an MCP server (Docker image) whose tools a model pulls to sit in the boss.
+Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ```bash
-cue skills add mcp-tool-shop-org/mcp-arcade-cabinets --profile creative-media
+cue skills add tt-a1i/archify --profile creative-media
 ```
 
 ---

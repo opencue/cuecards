@@ -2,21 +2,21 @@
 title: "blogminhquy/javis-os — Claude Code skill discovered by cue"
 description: "Claude Code skill from blogminhquy/javis-os"
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [blogminhquy/javis-os](https://github.com/blogminhquy/javis-os)
 
-**★ 196** · exceptional (score 12.1) · Python · agent-operations, agent-optimization, agent-orchestration, agent-orchestrator, agent-os
+**★ 195** · exceptional (score 12.1) · Python · agent-operations, agent-optimization, agent-orchestration, agent-orchestrator, agent-os
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
-- ⭐ 196 stars
-- 🗓️ Last pushed: 2026-09-14
+- ⭐ 195 stars
+- 🗓️ Last pushed: 2026-09-16
 - 🏷️ Tags: agent-operations, agent-optimization, agent-orchestration, agent-orchestrator, agent-os, ai-agent, ai-agents, harness, harness-ai, harness-engineering, harness-framework, jarvis, jarvis-ai, javis, llm, mcp, mcp-server, python, telegrambot, websocket
 
 ## Best fit cue profiles

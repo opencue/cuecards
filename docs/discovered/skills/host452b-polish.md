@@ -2,7 +2,7 @@
 title: "host452b/polish — Claude Code skill discovered by cue"
 description: "Claude Code skill/plugin that rewrites a raw question into a high-performing LLM prompt by auto-selecting research-backed prompt-engineering strategies."
 layout: page
-updated: 2026-07-09
+updated: 2026-09-16
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-09
+- 🗓️ Last pushed: 2026-09-16
 - 🏷️ Tags: agent-skills, ai, chain-of-thought, claude, claude-code, claude-code-plugin, claude-skill, llm, prompt-engineering, prompt-optimization, prompt-polish, prompt-rewriting, prompt-template, prompts
 
 ## Best fit cue profiles

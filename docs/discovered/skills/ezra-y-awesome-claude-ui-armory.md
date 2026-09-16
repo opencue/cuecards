@@ -2,21 +2,21 @@
 title: "ezra-y/awesome-claude-ui-armory — Claude Code skill discovered by cue"
 description: "Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only)."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
-**★ 2** · exceptional (score 11) · Python · agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
+**★ 2** · exceptional (score 12.5) · Python · agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill
 
 > Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory (links only).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-14
+- 🗓️ Last pushed: 2026-09-16
 - 🏷️ Tags: agent-skill, awesome-list, claude-code, claude-code-skill, claude-skill, curated, design, design-system, frontend, react, shadcn, swiftui, tailwind, ui, ux
 
 ## Best fit cue profiles

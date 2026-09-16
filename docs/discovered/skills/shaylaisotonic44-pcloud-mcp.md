@@ -2,21 +2,21 @@
 title: "shaylaisotonic44/pcloud-mcp — Claude Code skill discovered by cue"
 description: "Connect pCloud storage to AI agents using this Model Context Protocol server written in Go."
 layout: page
-updated: 2026-06-23
+updated: 2026-09-16
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [shaylaisotonic44/pcloud-mcp](https://github.com/shaylaisotonic44/pcloud-mcp)
 
-**★ 0** · strong (score 6) · Go · ai-tools, authentication, claude, cloud-storage, file-recovery
+**★ 0** · strong (score 7.5) · Go · ai-tools, authentication, claude, cloud-storage, file-recovery
 
 > Connect pCloud storage to AI agents using this Model Context Protocol server written in Go.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-23
+- 🗓️ Last pushed: 2026-09-16
 - 🏷️ Tags: ai-tools, authentication, claude, cloud-storage, file-recovery, file-storage, llm, mcp, mcp-server, model-context-protocol, nodejs, oauth, pcloud, sdk, security, typescript
 
 ## Best fit cue profiles

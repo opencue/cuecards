@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="paraself-video-downloader"></a>
+## 💎 [paraself/video-downloader](https://github.com/paraself/video-downloader)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 0** · exceptional (score 13) · Shell · tags: agent-skills, bilibili, claude-code, claude-skill, powershell
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+Agent skill: highest-quality video/audio downloads from YouTube, Bilibili and 1700+ yt-dlp sites. Self-bootstrapping setup so the user never touches a terminal.
+
+✅ SKILL.md
 
 ```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
+cue skills add paraself/video-downloader --profile video
 ```
 
 ---
@@ -31,7 +33,7 @@ cue skills add priyanshu-yadav04/claude-youtube --profile video
 <a id="hatemmsc-ops-html-to-mp4-skill"></a>
 ## ✨ [hatemmsc-ops/html-to-mp4-skill](https://github.com/hatemmsc-ops/html-to-mp4-skill)
 
-**★ 0** · strong (score 6) · Python · tags: ai-agent-skill, anthropic, automation, claude, claude-ai
+**★ 0** · strong (score 6) · TypeScript · tags: ai-agent-skill, anthropic, automation, claude, claude-ai
 
 Claude Code skill: convert animated HTML/CSS/JS pages into MP4/MOV video with synced sound effects, including transparent alpha-channel export
 

@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="leontynestirredup43-slowmist-security-cc"></a>
-## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+**★ 4** · exceptional (score 16.7) · JavaScript · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
-Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 ```
 
 ---
@@ -33,7 +33,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2605** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
+**★ 2616** · exceptional (score 13.3) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -43,15 +43,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="mcp-hangar-mcp-hangar"></a>
-## 💎 [mcp-hangar/mcp-hangar](https://github.com/mcp-hangar/mcp-hangar)
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
 
-**★ 14** · exceptional (score 11.2) · Python · tags: ai-agents, ai-security, kubernetes, llm-security, mcp
+**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
 
-MCP policy enforcement plane — deterministic policy on every Model Context Protocol call: identity, RFC 8707 audience binding, tool schema digest pinning, full audit trail. Python, self-hosted, MIT.
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
 
 ```bash
-cue skills add mcp-hangar/mcp-hangar --profile cybersecurity
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---
@@ -59,64 +59,12 @@ cue skills add mcp-hangar/mcp-hangar --profile cybersecurity
 <a id="eriknewton-sanctuary-framework"></a>
 ## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 8** · exceptional (score 10.3) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 9** · exceptional (score 10.4) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
-```
-
----
-
-<a id="elyshafresh21-claude-context-lint"></a>
-## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
-
-**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
-
-Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
-
-```bash
-cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
-```
-
----
-
-<a id="fedius01-cve-triage"></a>
-## 💎 [fedius01/cve-triage](https://github.com/fedius01/cve-triage)
-
-**★ 0** · exceptional (score 8.5) · Python · tags: agent-skills, cisa-kev, claude-code, claude-skill, codex
-
-Agent skill for Claude Code and OpenAI Codex that triages one CVE/GHSA/OSV id against a Python repo using RBVM: CVSS, EPSS, KEV, reachability and exposure → SSVC Deployer decision → CycloneDX/OpenVEX record Dependency-Track can ingest.
-
-```bash
-cue skills add fedius01/cve-triage --profile cybersecurity
-```
-
----
-
-<a id="ali-ulu-huqan"></a>
-## ✨ [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
-
-**★ 3** · strong (score 6.7) · JavaScript · tags: agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
-
-Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or action is trusted.
-
-```bash
-cue skills add ali-ulu/huqan --profile cybersecurity
-```
-
----
-
-<a id="presendapp-presend"></a>
-## ✨ [presendapp/presend](https://github.com/presendapp/presend)
-
-**★ 1** · strong (score 6.3) · HTML · tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools
-
-Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup.
-
-```bash
-cue skills add presendapp/presend --profile cybersecurity
 ```
 
 ---

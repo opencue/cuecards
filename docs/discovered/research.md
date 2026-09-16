@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,43 +15,45 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="rokokol-papers-skill"></a>
-## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rokokol/papers-skill --profile research
+cue skills add jakubs2623/notebooklm-skill --profile research
 ```
 
 ---
 
-<a id="ljx-chase-research-field-onboarding"></a>
-## 💎 [ljx-chase/research-field-onboarding](https://github.com/ljx-chase/research-field-onboarding)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 56** · exceptional (score 13.5) · Python · tags: academic-research, agent-skill, agent-skills, chatgpt-skills, claude-code-skill
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-A reusable research-onboarding skill for Claude, ChatGPT, Codex, and other instruction-following agents.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add ljx-chase/research-field-onboarding --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---
 
-<a id="lastsearch-hq-lastsearch"></a>
-## 💎 [LastSearch-HQ/lastsearch](https://github.com/LastSearch-HQ/lastsearch)
+<a id="wanzi-one-wanzi-research"></a>
+## ✨ [Wanzi-one/wanzi-research](https://github.com/Wanzi-one/wanzi-research)
 
-**★ 20** · exceptional (score 12.4) · TypeScript · tags: agent-tools, ai-agent, anti-hallucination, citations, clarity
+**★ 0** · strong (score 6.5) · Python · tags: agent-skills, ai-agent-skill, benchmark-analysis, competitive-analysis, content-strategy
 
-Reliable research infrastructure for AI agents. Evidence-backed web search with citations, confidence scores, and Clarity anti-hallucination. MCP server, REST API, Python SDK.
+碗子调研 · 全平台社媒调研与对标拆解技能：抖音 / 小红书博主账号级四维拆解（人设·人群·内容·商业），含采集、去重、归一化、低粉高数据筛选与报告模板
+
+✅ SKILL.md
 
 ```bash
-cue skills add LastSearch-HQ/lastsearch --profile research
+cue skills add Wanzi-one/wanzi-research --profile research
 ```
 
 ---

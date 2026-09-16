@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-16
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
-
-**★ 491** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
-
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
-
-✅ SKILL.md
-
-```bash
-cue skills add Ikalus1988/MisakaNet --profile docs-writer
-```
 
 ---
 
@@ -65,19 +50,6 @@ Convert public URLs to clean Markdown using selectable methods for versatile out
 
 ```bash
 cue skills add CenMeow/markdown-new-skill --profile docs-writer
-```
-
----
-
-<a id="the-40-thieves-obsidian-tc"></a>
-## 💎 [The-40-Thieves/obsidian-tc](https://github.com/The-40-Thieves/obsidian-tc)
-
-**★ 5** · exceptional (score 9.5) · TypeScript · tags: ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol
-
-Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. 163 tools across 31 domains, multi-vault native, pluggable embeddings. TypeScript + Rust. AGPL-3.0-only.
-
-```bash
-cue skills add The-40-Thieves/obsidian-tc --profile docs-writer
 ```
 
 ---

@@ -2,19 +2,19 @@
 title: "xxjrq/douyin-viral-remake-free — Claude Code skill discovered by cue"
 description: "免费抖音作品拆解与原创改写：基于真实文字和关键画面生成原创口播与分镜。"
 layout: page
-updated: 2026-09-13
+updated: 2026-09-16
 tags: [claude-code, skill, niche]
 ---
 
 # ✨ [xxjrq/douyin-viral-remake-free](https://github.com/xxjrq/douyin-viral-remake-free)
 
-**★ 0** · strong (score 5.5) · JavaScript · ai-agent-skill, content-analysis, creator-tools, douyin, easy-webbridge
+**★ 0** · strong (score 5.3) · JavaScript · ai-agent-skill, content-analysis, creator-tools, douyin, easy-webbridge
 
 > 免费抖音作品拆解与原创改写：基于真实文字和关键画面生成原创口播与分镜。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-13

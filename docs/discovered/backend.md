@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-16
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,54 +15,30 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="archestra-ai-archestra"></a>
-## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 4274** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
+
+✅ SKILL.md
 
 ```bash
-cue skills add archestra-ai/archestra --profile backend
+cue skills add jakubs2623/notebooklm-skill --profile backend
 ```
 
 ---
 
-<a id="hanyeol-model-compose"></a>
-## 💎 [hanyeol/model-compose](https://github.com/hanyeol/model-compose)
+<a id="crbnos-carbon"></a>
+## 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
 
-**★ 102** · exceptional (score 14.6) · Python · tags: agent-framework, ai-agents, ai-infrastructure, ai-workflow, anthropic
+**★ 2412** · exceptional (score 14) · TypeScript · tags: business, erp, lean, management, manufacturing
 
-Deploy production-ready AI services in minutes. One YAML file for agents, RAG pipelines, and MCP servers — run anywhere. Inspired by docker-compose.
-
-```bash
-cue skills add hanyeol/model-compose --profile backend
-```
-
----
-
-<a id="lastsearch-hq-lastsearch"></a>
-## 💎 [LastSearch-HQ/lastsearch](https://github.com/LastSearch-HQ/lastsearch)
-
-**★ 20** · exceptional (score 12.4) · TypeScript · tags: agent-tools, ai-agent, anti-hallucination, citations, clarity
-
-Reliable research infrastructure for AI agents. Evidence-backed web search with citations, confidence scores, and Clarity anti-hallucination. MCP server, REST API, Python SDK.
+Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, high volume, and configure to order manufacturing.
 
 ```bash
-cue skills add LastSearch-HQ/lastsearch --profile backend
-```
-
----
-
-<a id="mcp-hangar-mcp-hangar"></a>
-## 💎 [mcp-hangar/mcp-hangar](https://github.com/mcp-hangar/mcp-hangar)
-
-**★ 14** · exceptional (score 11.2) · Python · tags: ai-agents, ai-security, kubernetes, llm-security, mcp
-
-MCP policy enforcement plane — deterministic policy on every Model Context Protocol call: identity, RFC 8707 audience binding, tool schema digest pinning, full audit trail. Python, self-hosted, MIT.
-
-```bash
-cue skills add mcp-hangar/mcp-hangar --profile backend
+cue skills add crbnos/carbon --profile backend
 ```
 
 ---
@@ -70,7 +46,7 @@ cue skills add mcp-hangar/mcp-hangar --profile backend
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 58** · exceptional (score 10.4) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 60** · exceptional (score 12) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -80,28 +56,28 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
+**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
+cue skills add ni-c/mcp-hub --profile backend
 ```
 
 ---
 
-<a id="xuantinhnbs-rgb-autocad-trimble-mcp"></a>
-## 💎 [xuantinhnbs-rgb/autocad-trimble-mcp](https://github.com/xuantinhnbs-rgb/autocad-trimble-mcp)
+<a id="ebispot-grebi"></a>
+## 💎 [EBISPOT/GrEBI](https://github.com/EBISPOT/GrEBI)
 
-**★ 2** · exceptional (score 8) · Python · tags: autocad, autocad-automation, bim, cad, claude
+**★ 4** · exceptional (score 8.3) · Jupyter Notebook · tags: bioinformatics, data-integration, data-mining, knowledge-graphs, mcp
 
-MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
+HPC aggregation pipeline and API/MCP server for LLM-mediated biomedical data integration
 
 ```bash
-cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
+cue skills add EBISPOT/GrEBI --profile backend
 ```
 
 ---
@@ -119,54 +95,54 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="shadow400x-claude-sh"></a>
-## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+<a id="financial-reports-financial-reports-mcp-server"></a>
+## 💎 [financial-reports/financial-reports-mcp-server](https://github.com/financial-reports/financial-reports-mcp-server)
 
-**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+**★ 2** · exceptional (score 8) · Python · tags: filing, filings, finance, fundamental-analysis, mcp
 
-Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
+Official Model Context Protocol (MCP) server for the FinancialReports API. Provides LLM-native access to European company filings and financial data.
 
 ```bash
-cue skills add shadow400x/claude-sh --profile backend
+cue skills add financial-reports/financial-reports-mcp-server --profile backend
 ```
 
 ---
 
-<a id="presendapp-presend"></a>
-## ✨ [presendapp/presend](https://github.com/presendapp/presend)
+<a id="xuantinhnbs-rgb-autocad-trimble-mcp"></a>
+## ✨ [xuantinhnbs-rgb/autocad-trimble-mcp](https://github.com/xuantinhnbs-rgb/autocad-trimble-mcp)
 
-**★ 1** · strong (score 6.3) · HTML · tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools
+**★ 2** · strong (score 7.9) · Python · tags: autocad, autocad-automation, bim, cad, claude
 
-Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup.
+MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
 
 ```bash
-cue skills add presendapp/presend --profile backend
+cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
 ```
 
 ---
 
-<a id="110kc3-seo"></a>
-## ✨ [110kc3/seo](https://github.com/110kc3/seo)
+<a id="elvis-velez-google-ads-mcp"></a>
+## ✨ [elvis-velez/google-ads-mcp](https://github.com/elvis-velez/google-ads-mcp)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, ai-discovery, directory, llms-txt, mcp
+**★ 1** · strong (score 7.8) · Python · tags: advertising, analytics, codex, cursor, facebook-ads
 
-Open registry and discovery API for AI products, agent tools, and MCP services.
+Manage Google Ads accounts via MCP. Execute GAQL reads and secure two-phase mutations with full v24 API coverage for reliable ad campaign control.
 
 ```bash
-cue skills add 110kc3/seo --profile backend
+cue skills add elvis-velez/google-ads-mcp --profile backend
 ```
 
 ---
 
-<a id="gzchenhao-openhire"></a>
-## ✨ [gzchenhao/openhire](https://github.com/gzchenhao/openhire)
+<a id="vocametrix-vocametrix-mcp"></a>
+## ✨ [Vocametrix/vocametrix-mcp](https://github.com/Vocametrix/vocametrix-mcp)
 
-**★ 5** · strong (score 6) · Python · tags: ai-agents, ashby, ats, autonomous-driving, claude
+**★ 0** · strong (score 6.5) · TypeScript · tags: acoustic-analysis, agentic, ai-agents, avqi, claude
 
-Agent-native job search over employer ATS APIs (Greenhouse/Lever/Ashby/Beisen/Moka) — 139 employers across US/EU/China incl. robotics & autonomous-driving. Ghost-job scoring; your résumé never touches the server. Works with any MCP client.
+Official Model Context Protocol (MCP) server for Vocametrix — bring clinical voice analysis (AVQI, DSI, jitter/shimmer, pronunciation assessment, prosody similarity, and 40+ more) into Claude, Cursor, Zed, Windsurf, and any MCP-compatible agent.
 
 ```bash
-cue skills add gzchenhao/openhire --profile backend
+cue skills add Vocametrix/vocametrix-mcp --profile backend
 ```
 
 ---
@@ -184,15 +160,41 @@ cue skills add anirudhlath/alfred --profile backend
 
 ---
 
-<a id="mcp-tool-shop-org-mcp-arcade-cabinets"></a>
-## ✨ [mcp-tool-shop-org/mcp-arcade-cabinets](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets)
+<a id="kkazuhak-anteater-mcp"></a>
+## ✨ [KKazuhaK/anteater-mcp](https://github.com/KKazuhaK/anteater-mcp)
 
-**★ 0** · strong (score 5) · TypeScript · tags: arcade, canvas, docker, galaga, game
+**★ 0** · strong (score 5) · JavaScript · tags: academic-planning, anteater-api, anthropic, chatgpt, claude
 
-Ghost on the Menu: an arcade shooter where you are the agent, working through what MCP servers said on the wire. Take a shift of four recorded bouts with a climb in data and a four-word name. Reads mcp-arcade tapes, never the score; itself an MCP server (Docker image) whose tools a model pulls to sit in the boss.
+MCP server for UCI course search and registration planning — live section availability, grade distributions by professor, enrollment history, prerequisite checking, and schedule conflict detection. Works with both Claude and ChatGPT. Data from Anteater API.
 
 ```bash
-cue skills add mcp-tool-shop-org/mcp-arcade-cabinets --profile backend
+cue skills add KKazuhaK/anteater-mcp --profile backend
+```
+
+---
+
+<a id="mgd43b-manicule"></a>
+## ✨ [mgd43b/manicule](https://github.com/mgd43b/manicule)
+
+**★ 0** · strong (score 5) · Python · tags: air-gapped, citations, confluence, document-search, embeddings
+
+Self-hosted retrieval infrastructure for AI assistants. MCP-first search and grounded answers over a private corpus, with citations that resolve to a real location in a real document — a page, a heading, a line, a cell.
+
+```bash
+cue skills add mgd43b/manicule --profile backend
+```
+
+---
+
+<a id="jersyfi-hubtask"></a>
+## ✨ [Jersyfi/hubtask](https://github.com/Jersyfi/hubtask)
+
+**★ 0** · strong (score 5) · Go · tags: arc42, gdpr, golang, hexagonal-architecture, mcp-server
+
+Self-hostable task management for individuals and service providers: five levels from Hub to Activity, REST API, MCP server, offline sync, GDPR-ready audit trail. Go, PostgreSQL, hexagonal architecture. Source-available (BSL 1.1).
+
+```bash
+cue skills add Jersyfi/hubtask --profile backend
 ```
 
 ---
