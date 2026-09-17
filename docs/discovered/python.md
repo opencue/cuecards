@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for python"
-description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="mahashwetha-job-search-email-system-claude"></a>
-## 💎 [Mahashwetha/Job-search-email-system-claude](https://github.com/Mahashwetha/Job-search-email-system-claude)
-
-**★ 9** · exceptional (score 10.9) · Python · tags: automation, automation-python, claude-ai-generated-code, claude-code, claude-skill
-
-  Automated daily job search pipeline — aggregates company tracking, sends styled HTML email digests, tailors resumes with Gemini AI, drafts LinkedIn outreach    messages, and scans remote job APIs for given location. Hot jobs for the given role and many features are made as claude skills too newly.
-
-```bash
-cue skills add Mahashwetha/Job-search-email-system-claude --profile python
-```
 
 ---
 

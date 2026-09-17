@@ -2,7 +2,7 @@
 title: "ni-c/mcp-hub — Claude Code skill discovered by cue"
 description: "Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-16
+- 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: ai, chatgpt, claude, claude-code, docker, mcp, mcp-gateway, mcp-server, model-context-protocol, oauth2, selfhosted, streamable-http, typescript
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 <a id="tt-a1i-archify"></a>
 ## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 64167** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 65375** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
 Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 

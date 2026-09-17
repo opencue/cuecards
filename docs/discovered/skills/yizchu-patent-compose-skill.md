@@ -1,24 +1,24 @@
 ---
 title: "yizchu/patent-compose-skill — Claude Code skill discovered by cue"
-description: "AI驱动的专利撰写工作流，自动化完成项目分析、查新检索、专利组合生成与保护优化、交底书和流程图撰写、权利要求书及完整申请文件生成。"
+description: "AI驱动的专利撰写工作流，自动化完成项目分析、市场分析、查新检索、专利组合生成与保护优化、交底书和附图生成、权利要求书及完整申请文件生成。"
 layout: page
-updated: 2026-09-12
+updated: 2026-09-17
 tags: [claude-code, skill, niche]
 ---
 
 # 💎 [yizchu/patent-compose-skill](https://github.com/yizchu/patent-compose-skill)
 
-**★ 8** · exceptional (score 10.6) · Python · claim-optimization, claim-tree, claude-code-skill, cnki, compose
+**★ 9** · exceptional (score 10.6) · Python · claim-optimization, claim-tree, claude-code-skill, cnki, compose
 
-> AI驱动的专利撰写工作流，自动化完成项目分析、查新检索、专利组合生成与保护优化、交底书和流程图撰写、权利要求书及完整申请文件生成。
+> AI驱动的专利撰写工作流，自动化完成项目分析、市场分析、查新检索、专利组合生成与保护优化、交底书和附图生成、权利要求书及完整申请文件生成。
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-09-12
-- 🏷️ Tags: claim-optimization, claim-tree, claude-code-skill, cnki, compose, fpo, intellectual-property, patent, portfolio, python
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-09-17
+- 🏷️ Tags: claim-optimization, claim-tree, claude-code-skill, cnki, compose, fpo, intellectual-property, market, patent, portfolio, python
 
 ## Best fit cue profiles
 

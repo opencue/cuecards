@@ -2,7 +2,7 @@
 title: "CordilleraSarl/clearotron — Claude Code skill discovered by cue"
 description: "Trademark clearance engine. Searches the registers and the open web, rates the conflicts, and delivers a written report with the record behind every finding."
 layout: page
-updated: 2026-09-12
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-12
+- 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: brand-protection, intellectual-property, legal-tech, mcp-server, nodejs, trademark, trademark-clearance, trademark-search
 
 ## Best fit cue profiles

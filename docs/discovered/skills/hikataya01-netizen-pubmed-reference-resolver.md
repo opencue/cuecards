@@ -2,21 +2,21 @@
 title: "hikataya01-netizen/pubmed-reference-resolver — Claude Code skill discovered by cue"
 description: "PubMed reference resolver / 査読支援スキル (References → PubMed 逆引き + 統合監査レポート)"
 layout: page
-updated: 2026-06-03
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [hikataya01-netizen/pubmed-reference-resolver](https://github.com/hikataya01-netizen/pubmed-reference-resolver)
 
-**★ 1** · strong (score 6.3) · Python · bibliographic-audit, claude-skill, medical-references, peer-review, pubmed
+**★ 1** · strong (score 7.8) · Python · bibliographic-audit, claude-skill, medical-references, peer-review, pubmed
 
 > PubMed reference resolver / 査読支援スキル (References → PubMed 逆引き + 統合監査レポート)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-03
+- 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: bibliographic-audit, claude-skill, medical-references, peer-review, pubmed, reference-validation
 
 ## Best fit cue profiles

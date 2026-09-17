@@ -1,67 +1,24 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
-
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
-
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
-
-```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
-```
-
----
-
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
-
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
-
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
-
-```bash
-cue skills add aemro-motors/popper-scope --profile research
-```
-
----
-
-<a id="wanzi-one-wanzi-research"></a>
-## ✨ [Wanzi-one/wanzi-research](https://github.com/Wanzi-one/wanzi-research)
-
-**★ 0** · strong (score 6.5) · Python · tags: agent-skills, ai-agent-skill, benchmark-analysis, competitive-analysis, content-strategy
-
-碗子调研 · 全平台社媒调研与对标拆解技能：抖音 / 小红书博主账号级四维拆解（人设·人群·内容·商业），含采集、去重、归一化、低粉高数据筛选与报告模板
-
-✅ SKILL.md
-
-```bash
-cue skills add Wanzi-one/wanzi-research --profile research
-```
-
----
-
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4.4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 4.3) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

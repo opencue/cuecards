@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="elvis-velez-google-ads-mcp"></a>
-## ✨ [elvis-velez/google-ads-mcp](https://github.com/elvis-velez/google-ads-mcp)
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
 
-**★ 1** · strong (score 7.8) · Python · tags: advertising, analytics, codex, cursor, facebook-ads
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
 
-Manage Google Ads accounts via MCP. Execute GAQL reads and secure two-phase mutations with full v24 API coverage for reliable ad campaign control.
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
 
 ```bash
-cue skills add elvis-velez/google-ads-mcp --profile marketing
+cue skills add priyanshu-yadav04/claude-youtube --profile marketing
 ```
 
 ---

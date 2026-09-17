@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for rust"
-description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-17
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `rust`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **rust** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **rust** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="araneadev-chaos-mcp"></a>
-## 💎 [AraneaDev/Chaos-MCP](https://github.com/AraneaDev/Chaos-MCP)
+<a id="barbacane-dev-barbacane"></a>
+## 💎 [barbacane-dev/barbacane](https://github.com/barbacane-dev/barbacane)
 
-**★ 3** · exceptional (score 8.2) · TypeScript · tags: claude, claude-code, cosmic-ray, infection, mcp
+**★ 28** · exceptional (score 9.6) · Rust · tags: ai, ai-gateway, ai-gateways, api, api-gateway
 
-Local-first MCP server that runs isolated mutation testing against a codebase to expose the gaps its test suite does not cover. Wraps StrykerJS, cosmic-ray, cargo-mutants and Infection behind one tool surface.
+Barbacane API and Bidirectional AI Gateway
 
 ```bash
-cue skills add AraneaDev/Chaos-MCP --profile rust
+cue skills add barbacane-dev/barbacane --profile rust
+```
+
+---
+
+<a id="intutic-intutic"></a>
+## 💎 [intutic/intutic](https://github.com/intutic/intutic)
+
+**★ 7** · exceptional (score 8) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+
+The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
+
+```bash
+cue skills add intutic/intutic --profile rust
 ```
 
 ---

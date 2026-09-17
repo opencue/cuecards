@@ -1,23 +1,23 @@
 ---
 title: "the-long-ride/aevra — Claude Code skill discovered by cue"
-description: "ChatGPT, Claude, Grok, Langdock, etc now can control your device & server as an agent. Remote working with your project through mobile app of each platform."
+description: "ChatGPT, Claude, Grok, Langdock, etc now can control your device & server as an AI agents. Remote working with your project through mobile app of each platform."
 layout: page
-updated: 2026-08-25
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [the-long-ride/aevra](https://github.com/the-long-ride/aevra)
 
-**★ 1** · exceptional (score 8.8) · TypeScript · ai-chatweb, chatgpt, claude-code, grok, mcp-server
+**★ 2** · exceptional (score 9) · TypeScript · ai-chatweb, chatgpt, claude-code, gemini, gemini-spark
 
-> ChatGPT, Claude, Grok, Langdock, etc now can control your device & server as an agent. Remote working with your project through mobile app of each platform.
+> ChatGPT, Claude, Grok, Langdock, etc now can control your device & server as an AI agents. Remote working with your project through mobile app of each platform. Faster & safer.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-25
-- 🏷️ Tags: ai-chatweb, chatgpt, claude-code, grok, mcp-server
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-17
+- 🏷️ Tags: ai-chatweb, chatgpt, claude-code, gemini, gemini-spark, grok, langdock, manus, mcp-server
 
 ## Best fit cue profiles
 

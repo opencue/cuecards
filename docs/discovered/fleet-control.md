@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+
+**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+
+```bash
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
+```
 
 ---
 

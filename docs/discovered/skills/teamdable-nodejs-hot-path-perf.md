@@ -2,19 +2,19 @@
 title: "teamdable/nodejs-hot-path-perf — Claude Code skill discovered by cue"
 description: "Claude Code skill: find and remove escaping allocations on a Node.js server's per-request hot path"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [teamdable/nodejs-hot-path-perf](https://github.com/teamdable/nodejs-hot-path-perf)
 
-**★ 1** · exceptional (score 9.1) · JavaScript
+**★ 1** · exceptional (score 9) · JavaScript
 
 > Claude Code skill: find and remove escaping allocations on a Node.js server's per-request hot path
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-10

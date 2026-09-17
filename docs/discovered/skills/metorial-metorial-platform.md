@@ -2,7 +2,7 @@
 title: "metorial/metorial-platform — Claude Code skill discovered by cue"
 description: "The engine powering hundreds of thousands of MCP connections 🤖 🔥"
 layout: page
-updated: 2026-09-04
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.9 based on:
 - ⭐ 221 stars
-- 🗓️ Last pushed: 2026-09-04
+- 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: agentic-ai, ai, mcp, mcp-server, saas
 
 ## Best fit cue profiles

@@ -1,8 +1,8 @@
 ---
 title: "azmartone67/dchub-mcp-server — Claude Code skill discovered by cue"
-description: "Live data-center, power-grid, energy, interconnection-queue, fiber, natural-gas & M&A intelligence for AI agents — 82 tools, 18,000+ facilities, 300+ markets sc"
+description: "Live data-center, power-grid, energy, interconnection-queue, fiber, natural-gas & M&A intelligence for AI agents — 91 tools, 22,100+ facilities, 300+ markets sc"
 layout: page
-updated: 2026-08-19
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 2** · strong (score 7) · JavaScript · ai-tools, anthropic, claude, data-center, datacenter
 
-> Live data-center, power-grid, energy, interconnection-queue, fiber, natural-gas & M&A intelligence for AI agents — 82 tools, 18,000+ facilities, 300+ markets scored daily (DC Hub Power Index), 1,800+ tracked M&A deals, live grid telemetry across 49 regions. Remote MCP at dchub.cloud/mcp. DCPI & grid analysis CC-BY-4.0.
+> Live data-center, power-grid, energy, interconnection-queue, fiber, natural-gas & M&A intelligence for AI agents — 91 tools, 22,100+ facilities, 300+ markets scored daily (DCPI), 2,200+ tracked M&A deals, live grid telemetry across 49 regions. Off-market capacity via source_capacity. Remote MCP at dchub.cloud/mcp. Query & cite (CC-BY-4.0).
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-19
+- 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: ai-tools, anthropic, claude, data-center, datacenter, energy, fiber, infrastructure, market-intelligence, mcp, mcp-server, model-context-protocol, power-grid, real-estate, site-selection
 
 ## Best fit cue profiles

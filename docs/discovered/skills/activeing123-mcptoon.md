@@ -2,22 +2,22 @@
 title: "activeing123/mcptoon — Claude Code skill discovered by cue"
 description: "MCP tool discovery burns 71,929 tokens. mcptoon drops it to 581 (−99.2%, measured). Zero dependencies."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [activeing123/mcptoon](https://github.com/activeing123/mcptoon)
 
-**★ 195** · exceptional (score 13) · HTML · ai, ai-agents, ai-tools, claude, claude-code
+**★ 200** · exceptional (score 13) · HTML · ai, ai-agents, ai-tools, claude, claude-code
 
 > MCP tool discovery burns 71,929 tokens. mcptoon drops it to 581 (−99.2%, measured). Zero dependencies.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 195 stars
-- 🗓️ Last pushed: 2026-09-11
-- 🏷️ Tags: ai, ai-agents, ai-tools, claude, claude-code, claude-desktop, cli, codex, configuration-management, context-compression, cursor, developer-tools, llm, mcp, mcp-client, mcp-server, model-context-protocol, python, token-optimization, workflow-automation
+- ⭐ 200 stars
+- 🗓️ Last pushed: 2026-09-17
+- 🏷️ Tags: ai, ai-agents, ai-tools, claude, claude-code, claude-desktop, cli, codex, context-compression, cursor, developer-tools, gemini-cli-extension, llm, mcp, mcp-client, mcp-server, model-context-protocol, python, token-optimization, workflow-automation
 
 ## Best fit cue profiles
 

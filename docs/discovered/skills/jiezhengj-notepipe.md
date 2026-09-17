@@ -2,7 +2,7 @@
 title: "jiezhengj/NotePipe — Claude Code skill discovered by cue"
 description: "One-click copy from Obsidian with file path and line number context — paste directly into AI agent terminals (Claude Code, etc.).在 Obsidian 中选中文本，一键复制为 path:lin"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, skill, core]
 ---
 

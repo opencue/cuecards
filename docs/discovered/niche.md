@@ -1,31 +1,59 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-16
+updated: 2026-09-17
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="xxjrq-douyin-viral-remake-free"></a>
-## ✨ [xxjrq/douyin-viral-remake-free](https://github.com/xxjrq/douyin-viral-remake-free)
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 0** · strong (score 5.3) · JavaScript · tags: ai-agent-skill, content-analysis, creator-tools, douyin, easy-webbridge
+**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
 
-免费抖音作品拆解与原创改写：基于真实文字和关键画面生成原创口播与分镜。
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add xxjrq/douyin-viral-remake-free --profile niche
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+```
+
+---
+
+<a id="yizchu-patent-compose-skill"></a>
+## 💎 [yizchu/patent-compose-skill](https://github.com/yizchu/patent-compose-skill)
+
+**★ 9** · exceptional (score 10.6) · Python · tags: claim-optimization, claim-tree, claude-code-skill, cnki, compose
+
+AI驱动的专利撰写工作流，自动化完成项目分析、市场分析、查新检索、专利组合生成与保护优化、交底书和附图生成、权利要求书及完整申请文件生成。
+
+✅ SKILL.md
+
+```bash
+cue skills add yizchu/patent-compose-skill --profile niche
+```
+
+---
+
+<a id="rianbee-renhua"></a>
+## ✨ [RiAnBee/renhua](https://github.com/RiAnBee/renhua)
+
+**★ 0** · strong (score 5.5) · Python · tags: ai-writing, chinese, claude-code, claude-skill, editing
+
+中文去 AI 味。只做减法：删零信息句、说教式元评论与修辞超载，不新增事实、不改立场、不动结构。
+
+```bash
+cue skills add RiAnBee/renhua --profile niche
 ```
 
 ---
