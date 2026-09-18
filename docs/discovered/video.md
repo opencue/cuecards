@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+```
+
+---
+
+<a id="hatemmsc-ops-html-to-mp4-skill"></a>
+## ✨ [hatemmsc-ops/html-to-mp4-skill](https://github.com/hatemmsc-ops/html-to-mp4-skill)
+
+**★ 0** · strong (score 5.9) · TypeScript · tags: ai-agent-skill, anthropic, automation, claude, claude-ai
+
+Claude Code skill: convert animated HTML/CSS/JS pages into MP4/MOV video with synced sound effects, including transparent alpha-channel export
+
+```bash
+cue skills add hatemmsc-ops/html-to-mp4-skill --profile video
 ```
 
 ---

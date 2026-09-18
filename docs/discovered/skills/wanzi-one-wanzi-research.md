@@ -2,19 +2,19 @@
 title: "Wanzi-one/wanzi-research — Claude Code skill discovered by cue"
 description: "碗子调研 · 全平台社媒调研与对标拆解技能：抖音 / 小红书博主账号级四维拆解（人设·人群·内容·商业），含采集、去重、归一化、低粉高数据筛选与报告模板"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-18
 tags: [claude-code, skill, research]
 ---
 
 # ✨ [Wanzi-one/wanzi-research](https://github.com/Wanzi-one/wanzi-research)
 
-**★ 0** · strong (score 6.5) · Python · agent-skills, ai-agent-skill, benchmark-analysis, competitive-analysis, content-strategy
+**★ 0** · strong (score 6.4) · Python · agent-skills, ai-agent-skill, benchmark-analysis, competitive-analysis, content-strategy
 
 > 碗子调研 · 全平台社媒调研与对标拆解技能：抖音 / 小红书博主账号级四维拆解（人设·人群·内容·商业），含采集、去重、归一化、低粉高数据筛选与报告模板
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-15

@@ -2,7 +2,7 @@
 title: "ni-c/mcp-hub — Claude Code skill discovered by cue"
 description: "Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients"
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, skill, backend]
 ---
 

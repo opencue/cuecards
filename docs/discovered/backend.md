@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,12 +18,25 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 204737** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 205179** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
 cue skills add n8n-io/n8n --profile backend
+```
+
+---
+
+<a id="openstatushq-openstatus"></a>
+## 💎 [openstatusHQ/openstatus](https://github.com/openstatusHQ/openstatus)
+
+**★ 9125** · exceptional (score 13) · TypeScript · tags: alerting, incident-management, mcp, mcp-server, monitoring
+
+🫖 Status page with uptime monitoring & API monitoring as code   🫖
+
+```bash
+cue skills add openstatusHQ/openstatus --profile backend
 ```
 
 ---
@@ -41,45 +54,6 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
-
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
-
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
-
-```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
-```
-
----
-
-<a id="kalinbogatzevski-captain-memo"></a>
-## 💎 [kalinbogatzevski/captain-memo](https://github.com/kalinbogatzevski/captain-memo)
-
-**★ 3** · exceptional (score 9.7) · TypeScript · tags: ai-agents, antigravity, bun, chatgpt, claude-code
-
-Local, cross-AI memory for coding agents — Claude Code, Codex, Gemini, Antigravity, Cursor, Kimi & more share one private corpus. Hybrid search, auto-injected context, no-API-key summarizers, runs fully local via Ollama.
-
-```bash
-cue skills add kalinbogatzevski/captain-memo --profile backend
-```
-
----
-
-<a id="barbacane-dev-barbacane"></a>
-## 💎 [barbacane-dev/barbacane](https://github.com/barbacane-dev/barbacane)
-
-**★ 28** · exceptional (score 9.6) · Rust · tags: ai, ai-gateway, ai-gateways, api, api-gateway
-
-Barbacane API and Bidirectional AI Gateway
-
-```bash
-cue skills add barbacane-dev/barbacane --profile backend
-```
-
----
-
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
@@ -89,19 +63,6 @@ Serve multiple stdio MCP servers from one container: path routing, hub meta-tool
 
 ```bash
 cue skills add ni-c/mcp-hub --profile backend
-```
-
----
-
-<a id="orange-hanter-cod-doc"></a>
-## 💎 [Orange-hanter/cod-doc](https://github.com/Orange-hanter/cod-doc)
-
-**★ 0** · exceptional (score 9) · Python · tags: ai-agents, claude-code, developer-tools, docs-as-code, documentation
-
-Context Orchestrator for Documentation — MCP server + autonomous agent that keeps project docs honest. Docs, tasks, plans, stories, links, revisions in SQLite; markdown is a hash-verified projection, not the source of truth.
-
-```bash
-cue skills add Orange-hanter/cod-doc --profile backend
 ```
 
 ---
@@ -122,7 +83,7 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 <a id="xuantinhnbs-rgb-autocad-trimble-mcp"></a>
 ## ✨ [xuantinhnbs-rgb/autocad-trimble-mcp](https://github.com/xuantinhnbs-rgb/autocad-trimble-mcp)
 
-**★ 2** · strong (score 7.9) · Python · tags: autocad, autocad-automation, bim, cad, claude
+**★ 2** · strong (score 7.8) · Python · tags: autocad, autocad-automation, bim, cad, claude
 
 MCP servers that let Claude and other AI tools drive AutoCAD 2022+ (49 tools, via COM) and Trimble Connect for Desktop (34 tools, via .NET API) on Windows. One installer auto-detects your paths. Docs in Vietnamese.
 
@@ -132,15 +93,28 @@ cue skills add xuantinhnbs-rgb/autocad-trimble-mcp --profile backend
 
 ---
 
-<a id="shadow400x-claude-sh"></a>
-## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+<a id="deepanshupal-compute-cafe"></a>
+## ✨ [DeepanshuPal/compute-cafe](https://github.com/DeepanshuPal/compute-cafe)
 
-**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+**★ 0** · strong (score 7.5) · TypeScript · tags: ai-infrastructure, cloud-computing, gpu, gpu-computing, gpu-pricing
 
-Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
+GPU prices, with receipts. Live index of on-demand GPU pricing across 20 providers, tracked hourly. REST API + MCP server for agents.
 
 ```bash
-cue skills add shadow400x/claude-sh --profile backend
+cue skills add DeepanshuPal/compute-cafe --profile backend
+```
+
+---
+
+<a id="presendapp-presend"></a>
+## ✨ [presendapp/presend](https://github.com/presendapp/presend)
+
+**★ 1** · strong (score 6.3) · HTML · tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools
+
+Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup.
+
+```bash
+cue skills add presendapp/presend --profile backend
 ```
 
 ---
@@ -154,6 +128,19 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile backend
+```
+
+---
+
+<a id="jmshinhwa-readystack-themes"></a>
+## ✨ [jmshinhwa/readystack-themes](https://github.com/jmshinhwa/readystack-themes)
+
+**★ 0** · strong (score 5) · JavaScript · tags: compliance, cursor, devsecops, linter, mcp-server
+
+ReadyStack — regulation & deadline linters for VS Code / Cursor (Open VSX), npm CLI, Docker and MCP: DORA, NIS2, CRA, PCI DSS 6.4.3, WCAG 2.2, EU e-invoicing, GitHub Actions deprecations. Free file check; 7-day paid workspace sweep.
+
+```bash
+cue skills add jmshinhwa/readystack-themes --profile backend
 ```
 
 ---

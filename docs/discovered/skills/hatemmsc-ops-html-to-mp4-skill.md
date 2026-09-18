@@ -2,19 +2,19 @@
 title: "hatemmsc-ops/html-to-mp4-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill: convert animated HTML/CSS/JS pages into MP4/MOV video with synced sound effects, including transparent alpha-channel export"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-18
 tags: [claude-code, skill, video]
 ---
 
 # ✨ [hatemmsc-ops/html-to-mp4-skill](https://github.com/hatemmsc-ops/html-to-mp4-skill)
 
-**★ 0** · strong (score 6) · TypeScript · ai-agent-skill, anthropic, automation, claude, claude-ai
+**★ 0** · strong (score 5.9) · TypeScript · ai-agent-skill, anthropic, automation, claude, claude-ai
 
 > Claude Code skill: convert animated HTML/CSS/JS pages into MP4/MOV video with synced sound effects, including transparent alpha-channel export
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.9 based on:
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-15
 - 🏷️ Tags: ai-agent-skill, anthropic, automation, claude, claude-ai, claude-code, ffmpeg, html-to-video, motion-graphics, playwright, video-generation

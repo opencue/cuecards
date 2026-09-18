@@ -2,21 +2,21 @@
 title: "netresearch/typo3-testing-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for creating and managing TYPO3 extension tests | Claude Code compatible"
 layout: page
-updated: 2026-09-09
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/typo3-testing-skill](https://github.com/netresearch/typo3-testing-skill)
 
-**★ 4** · exceptional (score 10.8) · Shell · agent-skills, ai-agent, claude-code-skill, open-standard, skill
+**★ 5** · exceptional (score 11.2) · Shell · agent-skills, ai-agent, claude-code-skill, open-standard, skill
 
 > Agent Skill for creating and managing TYPO3 extension tests | Claude Code compatible
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-09-18
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, open-standard, skill, test-generator, testing, typo3, typo3-cms, typo3-extension
 
 ## Best fit cue profiles

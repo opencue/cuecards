@@ -2,7 +2,7 @@
 title: "mixocreative/cia — Claude Code skill discovered by cue"
 description: "Code Integrity Auditor AI skill — audits the wiring of any codebase (dead controls, TOCTOU, fail-open, blind watchdogs, unrendered states) on Stafford Beer's Vi"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-16
+- 🗓️ Last pushed: 2026-09-18
 - 🏷️ Tags: agent-skills, ai-agent, ai-agents, claude-code, claude-skill, code-audit, code-integrity, code-review, codex, cursor, cybernetics, llm-tools, openai-codex, software-architecture, software-integrity, stafford-beer, static-analysis, testing, viable-system-model
 
 ## Best fit cue profiles

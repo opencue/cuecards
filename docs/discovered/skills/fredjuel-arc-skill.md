@@ -2,21 +2,21 @@
 title: "Fredjuel/arc-skill — Claude Code skill discovered by cue"
 description: "Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently."
 layout: page
-updated: 2026-07-25
+updated: 2026-09-18
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
 
-**★ 1** · exceptional (score 9.8) · HTML · agent, ai, ai-skills, anthropic, bigdata
+**★ 0** · exceptional (score 9.5) · HTML · agent, ai, ai-skills, anthropic, bigdata
 
 > Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
+- ⭐ 0 stars
+- 🗓️ Last pushed: 2026-09-18
 - 🏷️ Tags: agent, ai, ai-skills, anthropic, bigdata, boilerplate, claude-code, claude-skill, cursor, mobile, prompt-engineering, prompt-frameworks, react-native, rustchain, silicon-stratigraphy, skillsmp, spark, vintage-computing, xuan-xing
 
 ## Best fit cue profiles

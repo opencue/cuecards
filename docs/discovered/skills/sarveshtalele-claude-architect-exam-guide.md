@@ -2,7 +2,7 @@
 title: "sarveshtalele/claude-architect-exam-guide — Claude Code skill discovered by cue"
 description: "The CCAR-F, CCAR-P prep guide built for non-technical learners and engineers alike. Curated resources, Claude skills, and a learning path that goes beyond the e"
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 

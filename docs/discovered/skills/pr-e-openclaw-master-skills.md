@@ -2,22 +2,22 @@
 title: "Pr-E/openclaw-master-skills — Claude Code skill discovered by cue"
 description: "Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants."
 layout: page
-updated: 2026-07-19
+updated: 2026-09-18
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
 
-**★ 2** · exceptional (score 15.5) · Python · agentskills, ai-agent, claude-code-skill, codex-skill, curated
+**★ 3** · exceptional (score 15.7) · Python · agentskills, ai-agent, claude-code-skill, codex-skill, curated
 
 > Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-19
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-09-18
 - 🏷️ Tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated, cursor-skill, github-config, image-generation, image-generation-skill, myclaw, nano-banana-pro-skill, openclaw, openclaw-skill, skill-collection, skills, video-generation, video-generation-skill, weekly
 
 ## Best fit cue profiles

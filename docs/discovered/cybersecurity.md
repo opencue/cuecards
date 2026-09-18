@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="leontynestirredup43-slowmist-security-cc"></a>
-## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+<a id="nsasoft-nsauditor-ai-agent-skill"></a>
+## 💎 [nsasoft/nsauditor-ai-agent-skill](https://github.com/nsasoft/nsauditor-ai-agent-skill)
 
-**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+**★ 4** · exceptional (score 16.8) · JavaScript · tags: ai-agent, ai-agent-skill, claude, claude-code, copilot
 
-Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+AI Agent Skill for NSAuditor AI — gives any AI coding agent built-in knowledge of NSAuditor's MCP tools, schemas, plugins, and security audit workflows. Works with Claude Code, Cursor, Windsurf, and any MCP-aware agent.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 ```
 
 ---
@@ -33,27 +33,12 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2621** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
+**★ 2625** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="bunlongheng-repo-audit"></a>
-## 💎 [bunlongheng/repo-audit](https://github.com/bunlongheng/repo-audit)
-
-**★ 0** · exceptional (score 13) · HTML · tags: architecture, claude-code, claude-skill, code-audit, code-review
-
-Reverse-engineer any repo through 10 audit lenses into 1 self-contained HTML report. A read-only Claude Code skill.
-
-✅ SKILL.md
-
-```bash
-cue skills add bunlongheng/repo-audit --profile cybersecurity
 ```
 
 ---
@@ -71,15 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="elyshafresh21-claude-context-lint"></a>
-## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
+<a id="presendapp-presend"></a>
+## ✨ [presendapp/presend](https://github.com/presendapp/presend)
 
-**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
+**★ 1** · strong (score 6.3) · HTML · tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools
 
-Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
+Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup.
 
 ```bash
-cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+cue skills add presendapp/presend --profile cybersecurity
 ```
 
 ---

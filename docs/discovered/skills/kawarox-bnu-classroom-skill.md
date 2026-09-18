@@ -2,19 +2,19 @@
 title: "KawaroX/bnu-classroom-skill — Claude Code skill discovered by cue"
 description: "北师大空闲教室查询Python脚本 + SKILL.md for AI Agent. "
 layout: page
-updated: 2026-09-16
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [KawaroX/bnu-classroom-skill](https://github.com/KawaroX/bnu-classroom-skill)
 
-**★ 0** · exceptional (score 11) · Python · ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, bnu
+**★ 0** · exceptional (score 10.9) · Python · ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, bnu
 
 > 北师大空闲教室查询Python脚本 + SKILL.md for AI Agent. 
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-15

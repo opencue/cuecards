@@ -2,19 +2,19 @@
 title: "jiezhengj/NotePipe — Claude Code skill discovered by cue"
 description: "One-click copy from Obsidian with file path and line number context — paste directly into AI agent terminals (Claude Code, etc.).在 Obsidian 中选中文本，一键复制为 path:lin"
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [jiezhengj/NotePipe](https://github.com/jiezhengj/NotePipe)
 
-**★ 1** · potential (score 4.2) · TypeScript
+**★ 1** · potential (score 4.1) · TypeScript
 
 > One-click copy from Obsidian with file path and line number context — paste directly into AI agent terminals (Claude Code, etc.).在 Obsidian 中选中文本，一键复制为 path:line 格式，直接粘贴到 AI 终端（如 Claude Code）。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-14
 - 🏷️ Tags: (none)

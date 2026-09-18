@@ -2,7 +2,7 @@
 title: "presendapp/presend — Claude Code skill discovered by cue"
 description: "Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-18
 tags: [claude-code, skill, backend, cybersecurity]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-14
+- 🗓️ Last pushed: 2026-09-18
 - 🏷️ Tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools, dns, exif-remover, free-api, mcp-server, model-context-protocol, no-signup, openapi, pdf-tools, privacy-tools, rest-api, security-tools, supply-chain-security, typosquatting, vulnerability-scanner, whois
 
 ## Best fit cue profiles

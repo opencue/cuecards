@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "1 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,45 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="fredjuel-arc-skill"></a>
+## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+
+**★ 0** · exceptional (score 9.5) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+
+Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+
+```bash
+cue skills add Fredjuel/arc-skill --profile frontend
+```
+
+---
+
+<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
+## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
+
+**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
+
+Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
+
+```bash
+cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
+```
+
+---
+
+<a id="ystherr-wechat-article-formatter-skill"></a>
+## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+
+**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+
+🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
+
+```bash
+cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 ```
 
 ---

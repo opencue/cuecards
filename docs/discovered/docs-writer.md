@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="orange-hanter-cod-doc"></a>
-## 💎 [Orange-hanter/cod-doc](https://github.com/Orange-hanter/cod-doc)
+<a id="ishenh-my-reflection"></a>
+## 💎 [IShenH/my_reflection](https://github.com/IShenH/my_reflection)
 
-**★ 0** · exceptional (score 9) · Python · tags: ai-agents, claude-code, developer-tools, docs-as-code, documentation
+**★ 0** · exceptional (score 10.9) · tags: agent-skill, agent-skills, ai-agent-skill, debrief, knowledge-management
 
-Context Orchestrator for Documentation — MCP server + autonomous agent that keeps project docs honest. Docs, tasks, plans, stories, links, revisions in SQLite; markdown is a hash-verified projection, not the source of truth.
+Turn a debugging, study, or build session into a long-term Markdown note — quick note, learning note, or project archive.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Orange-hanter/cod-doc --profile docs-writer
+cue skills add IShenH/my_reflection --profile docs-writer
+```
+
+---
+
+<a id="albegosu-second-brain"></a>
+## 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
+
+**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, design-inspiration, github-actions, ios-shortcuts
+
+Share a post from your phone; a vision model files it into a Markdown wiki your coding agent reads
+
+```bash
+cue skills add albegosu/second-brain --profile docs-writer
 ```
 
 ---

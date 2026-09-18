@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -37,6 +37,19 @@ Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, A
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
+```
+
+---
+
+<a id="sammyboi81-sentarion"></a>
+## ✨ [sammyboi81/SENTARION](https://github.com/sammyboi81/SENTARION)
+
+**★ 0** · strong (score 6.5) · Python · tags: ai-governance, ai-orchestration, ai-safety, anthropic, claude
+
+Sentarion — governed multi-agent orchestration for AI: a fail-closed policy gate (govern/veto), dependency-aware agent dispatch, cost estimation, and verifiable audit, exposed as an MCP server. Apache-2.0.
+
+```bash
+cue skills add sammyboi81/SENTARION --profile fleet-control
 ```
 
 ---

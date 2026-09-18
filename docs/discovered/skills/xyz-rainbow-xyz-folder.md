@@ -2,22 +2,22 @@
 title: "xyz-rainbow/xyz-folder — Claude Code skill discovered by cue"
 description: "AI agent skill & CLI engine to aesthetically organize and categorize directories and drives with zero data loss. Win/Linux/macOS."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xyz-rainbow/xyz-folder](https://github.com/xyz-rainbow/xyz-folder)
 
-**★ 0** · exceptional (score 9) · Python · agent-skills, ai-agent-skill, directory-organizer, file-organizer, folder-organizer
+**★ 1** · exceptional (score 9.3) · Python · agent-skills, ai-agent-skill, directory-organizer, file-organizer, folder-organizer
 
 > AI agent skill & CLI engine to aesthetically organize and categorize directories and drives with zero data loss. Win/Linux/macOS.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-11
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: agent-skills, ai-agent-skill, directory-organizer, file-organizer, folder-organizer, linux, macos, npx-skills-add, python, skills-sh, windows, zero-data-loss
 
 ## Best fit cue profiles

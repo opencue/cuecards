@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="wanzi-one-wanzi-research"></a>
+## ✨ [Wanzi-one/wanzi-research](https://github.com/Wanzi-one/wanzi-research)
+
+**★ 0** · strong (score 6.4) · Python · tags: agent-skills, ai-agent-skill, benchmark-analysis, competitive-analysis, content-strategy
+
+碗子调研 · 全平台社媒调研与对标拆解技能：抖音 / 小红书博主账号级四维拆解（人设·人群·内容·商业），含采集、去重、归一化、低粉高数据筛选与报告模板
+
+✅ SKILL.md
+
+```bash
+cue skills add Wanzi-one/wanzi-research --profile research
+```
 
 ---
 

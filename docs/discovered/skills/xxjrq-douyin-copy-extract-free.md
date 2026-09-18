@@ -2,7 +2,7 @@
 title: "xxjrq/douyin-copy-extract-free — Claude Code skill discovered by cue"
 description: "免费抖音视频图文文案提取：免第三方 API Key，复用登录浏览器，支持 EasyBR 多账号隔离。"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-18
 tags: [claude-code, skill, core]
 ---
 

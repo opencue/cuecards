@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-18
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,45 +15,47 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="martellevaliant19-grant-thinking-cn-biology"></a>
-## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
-
-✅ SKILL.md
-
-```bash
-cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
-```
-
----
-
-<a id="yizchu-patent-compose-skill"></a>
-## 💎 [yizchu/patent-compose-skill](https://github.com/yizchu/patent-compose-skill)
-
-**★ 9** · exceptional (score 10.6) · Python · tags: claim-optimization, claim-tree, claude-code-skill, cnki, compose
-
-AI驱动的专利撰写工作流，自动化完成项目分析、市场分析、查新检索、专利组合生成与保护优化、交底书和附图生成、权利要求书及完整申请文件生成。
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add yizchu/patent-compose-skill --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 ```
 
 ---
 
-<a id="rianbee-renhua"></a>
-## ✨ [RiAnBee/renhua](https://github.com/RiAnBee/renhua)
+<a id="xxjrq-douyin-viral-remake-free"></a>
+## ✨ [xxjrq/douyin-viral-remake-free](https://github.com/xxjrq/douyin-viral-remake-free)
 
-**★ 0** · strong (score 5.5) · Python · tags: ai-writing, chinese, claude-code, claude-skill, editing
+**★ 0** · strong (score 5.3) · JavaScript · tags: ai-agent-skill, content-analysis, creator-tools, douyin, easy-webbridge
 
-中文去 AI 味。只做减法：删零信息句、说教式元评论与修辞超载，不新增事实、不改立场、不动结构。
+免费抖音作品拆解与原创改写：基于真实文字和关键画面生成原创口播与分镜。
+
+✅ SKILL.md
 
 ```bash
-cue skills add RiAnBee/renhua --profile niche
+cue skills add xxjrq/douyin-viral-remake-free --profile niche
+```
+
+---
+
+<a id="xxjrq-douyin-hot-topic-maker-free"></a>
+## ✨ [xxjrq/douyin-hot-topic-maker-free](https://github.com/xxjrq/douyin-hot-topic-maker-free)
+
+**★ 0** · strong (score 5.3) · JavaScript · tags: ai-agent-skill, content-planning, douyin, easy-webbridge, no-api-key
+
+免费抖音热点选题助手：从当前可见热点和搜索结果生成 5 个带来源的可拍选题。
+
+✅ SKILL.md
+
+```bash
+cue skills add xxjrq/douyin-hot-topic-maker-free --profile niche
 ```
 
 ---
