@@ -2,21 +2,21 @@
 title: "open-agreements/open-agreements — Claude Code skill discovered by cue"
 description: "Open, primary-source-backed U.S. legal content — practice guides, 50-state surveys, reviewer checklists, and standard agreement templates. Built for legal teams"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [open-agreements/open-agreements](https://github.com/open-agreements/open-agreements)
 
-**★ 53** · exceptional (score 14) · TypeScript · anthropic, claude, contract-automation, docx, gemini-cli-extension
+**★ 56** · exceptional (score 14.1) · TypeScript · anthropic, claude, contract-automation, docx, gemini-cli-extension
 
 > Open, primary-source-backed U.S. legal content — practice guides, 50-state surveys, reviewer checklists, and standard agreement templates. Built for legal teams and the agents helping them.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 53 stars
-- 🗓️ Last pushed: 2026-09-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
+- ⭐ 56 stars
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: anthropic, claude, contract-automation, docx, gemini-cli-extension, legal-content, legal-research, legal-tech, legal-templates, mcp, mcp-server, nda-template, non-compete, open-source-legal, practice-guides, privacy-law, restrictive-covenants, safe-template, us-law
 
 ## Best fit cue profiles

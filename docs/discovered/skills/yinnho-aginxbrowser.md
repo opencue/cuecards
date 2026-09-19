@@ -2,23 +2,23 @@
 title: "yinnho/aginxbrowser — Claude Code skill discovered by cue"
 description: "The browser built for AI agents — fetch live pages as markdown, render JS/SPAs with built-in V8, take screenshots without Chromium, meta-search 5 engines, and d"
 layout: page
-updated: 2026-09-04
+updated: 2026-09-19
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [yinnho/aginxbrowser](https://github.com/yinnho/aginxbrowser)
 
-**★ 13** · exceptional (score 14) · Rust · agent-browser, ai-agents, anti-detect, antibot, browser-automation
+**★ 30** · exceptional (score 16) · Rust · agent-browser, ai-agents, antibot, browser-automation, browser-fingerprint
 
 > The browser built for AI agents — fetch live pages as markdown, render JS/SPAs with built-in V8, take screenshots without Chromium, meta-search 5 engines, and drive interactive login sessions. One Rust binary, stealth TLS fingerprints, MCP native for Claude Code & Cursor. Headless browser alternative to Puppeteer/Playwright.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-09-04
-- 🏷️ Tags: agent-browser, ai-agents, anti-detect, antibot, browser-automation, browser-fingerprint, claude-code, cursor, firecrawl, headless-browser, mcp, mcp-server, model-context-protocol, playwright-alternative, puppeteer-alternative, rust, stealth-browser, tls-fingerprint, v8, web-scraping
+- ⭐ 30 stars
+- 🗓️ Last pushed: 2026-09-19
+- 🏷️ Tags: agent-browser, ai-agents, antibot, browser-automation, browser-fingerprint, claude-code, cursor, dsh-plugin, firecrawl, headless-browser, mcp, mcp-server, model-context-protocol, playwright-alternative, puppeteer-alternative, rust, stealth-browser, tls-fingerprint, v8, web-scraping
 
 ## Best fit cue profiles
 

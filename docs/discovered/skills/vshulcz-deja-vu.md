@@ -1,22 +1,22 @@
 ---
 title: "vshulcz/deja-vu — Claude Code skill discovered by cue"
-description: "One memory shared by Claude Code, Codex, Cursor, Copilot CLI, OpenClaw and 20 more coding agents, built from the session history already on disk. A fix found in"
+description: "One memory shared by Claude Code, Codex, Cursor, Copilot CLI, OpenClaw and 28 more coding agents, built from the session history already on disk. A fix found in"
 layout: page
-updated: 2026-09-11
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vshulcz/deja-vu](https://github.com/vshulcz/deja-vu)
 
-**★ 802** · exceptional (score 15) · Go · agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-memory
+**★ 853** · exceptional (score 15.8) · Go · agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-memory
 
-> One memory shared by Claude Code, Codex, Cursor, Copilot CLI, OpenClaw and 20 more coding agents, built from the session history already on disk. A fix found in one agent comes back in any of them, including months of sessions from before you installed it. No LLM, no embeddings, one local Go binary.
+> One memory shared by Claude Code, Codex, Cursor, Copilot CLI, OpenClaw and 28 more coding agents, built from the session history already on disk. A fix found in one agent comes back in any of them, including months of sessions from before you installed it. No LLM, no embeddings, one local Go binary.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 802 stars
-- 🗓️ Last pushed: 2026-09-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+- ⭐ 853 stars
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: agent-memory, ai-memory, claude-code, claude-code-hooks, claude-code-memory, claude-code-plugins, codex, coding-agents, conversation-history, deepseek-harness, dsh-plugin, gemini-cli-extension, kimi-code, mcp, mcp-server, opencode, qwen-code, session-history, session-search, zed-extension
 
 ## Best fit cue profiles

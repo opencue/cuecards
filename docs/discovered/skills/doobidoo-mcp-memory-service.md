@@ -2,21 +2,21 @@
 title: "doobidoo/mcp-memory-service — Claude Code skill discovered by cue"
 description: "Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation."
 layout: page
-updated: 2026-09-05
+updated: 2026-09-19
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [doobidoo/mcp-memory-service](https://github.com/doobidoo/mcp-memory-service)
 
-**★ 1925** · exceptional (score 17) · Python · agent-memory, agentic-ai, ai-agents, autogen, claude
+**★ 1951** · exceptional (score 17) · Python · agent-memory, agentic-ai, ai-agents, autogen, claude
 
 > Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 1925 stars
-- 🗓️ Last pushed: 2026-09-05
+- ⭐ 1951 stars
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: agent-memory, agentic-ai, ai-agents, autogen, claude, crewai, knowledge-graph, langgraph, long-term-memory, mcp, mcp-server, memory, model-context-protocol, multi-agent, open-source, rag, semantic-search, sqlite-vec, vector-database, vector-storage
 
 ## Best fit cue profiles

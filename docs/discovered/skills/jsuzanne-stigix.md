@@ -2,21 +2,21 @@
 title: "jsuzanne/stigix — Claude Code skill discovered by cue"
 description: "Stigix is a lab platform to validate SD‑WAN and SASE. ​ It unifies SaaS traffic generation, security tests, convergence probes, and voice/IoT/VyOS simulations i"
 layout: page
-updated: 2026-07-30
+updated: 2026-09-19
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [jsuzanne/stigix](https://github.com/jsuzanne/stigix)
 
-**★ 15** · exceptional (score 11.2) · TypeScript · demo-app, digital-experience, docker, emulation, failover
+**★ 19** · exceptional (score 10.4) · TypeScript · demo-app, digital-experience, docker, emulation, failover
 
 > Stigix is a lab platform to validate SD‑WAN and SASE. ​ It unifies SaaS traffic generation, security tests, convergence probes, and voice/IoT/VyOS simulations in one web UI
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
-- ⭐ 15 stars
-- 🗓️ Last pushed: 2026-07-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
+- ⭐ 19 stars
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: demo-app, digital-experience, docker, emulation, failover, failover-automation, internet-of-things, iot-device, iot-emulation, mcp-server, network-testing, prisma-sdwan, probes, probing, sase, sd-wan, security-testing, traffic-generator, vyos, vyos-api
 
 ## Best fit cue profiles

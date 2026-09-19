@@ -2,7 +2,7 @@
 title: "IShenH/my_reflection — Claude Code skill discovered by cue"
 description: "Turn a debugging, study, or build session into a long-term Markdown note — quick note, learning note, or project archive."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, docs-writer]
 ---
 

@@ -2,7 +2,7 @@
 title: "xyz-rainbow/xyz-folder — Claude Code skill discovered by cue"
 description: "AI agent skill & CLI engine to aesthetically organize and categorize directories and drives with zero data loss. Win/Linux/macOS."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 

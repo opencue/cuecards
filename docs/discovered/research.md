@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -28,17 +28,15 @@ cue skills add aemro-motors/popper-scope --profile research
 
 ---
 
-<a id="wanzi-one-wanzi-research"></a>
-## ✨ [Wanzi-one/wanzi-research](https://github.com/Wanzi-one/wanzi-research)
+<a id="jmrplens-libgen-mcp"></a>
+## ✨ [jmrplens/libgen-mcp](https://github.com/jmrplens/libgen-mcp)
 
-**★ 0** · strong (score 6.4) · Python · tags: agent-skills, ai-agent-skill, benchmark-analysis, competitive-analysis, content-strategy
+**★ 13** · strong (score 6.5) · Go · tags: ai, arxiv, books, claude, cursor
 
-碗子调研 · 全平台社媒调研与对标拆解技能：抖音 / 小红书博主账号级四维拆解（人设·人群·内容·商业），含采集、去重、归一化、低粉高数据筛选与报告模板
-
-✅ SKILL.md
+MCP server in Go to search, download and read books, papers, comics and more from Library Genesis — plus keyless open-access discovery (arXiv, Crossref, OpenLibrary, Gutenberg, dblp, PubMed, ERIC) and article downloads via Unpaywall, Europe PMC, bioRxiv, CORE and OAPEN. Four focused tools, one static binary, no account required.
 
 ```bash
-cue skills add Wanzi-one/wanzi-research --profile research
+cue skills add jmrplens/libgen-mcp --profile research
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "netresearch/typo3-docs-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible"
 layout: page
-updated: 2026-08-30
+updated: 2026-09-19
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-08-30
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator, documentation-tool, open-standard, skill, typo3, typo3-cms, typo3-extension
 
 ## Best fit cue profiles

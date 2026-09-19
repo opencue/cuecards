@@ -2,21 +2,21 @@
 title: "hproxy-com/free-proxy-list — Claude Code skill discovered by cue"
 description: "Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several tim"
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 61** · exceptional (score 12) · ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 62** · exceptional (score 12) · ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 > Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 61 stars
-- 🗓️ Last pushed: 2026-09-18
+- ⭐ 62 stars
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api, free-proxy-list, http-proxy, https-proxy, mcp-server, proxies, proxy, proxy-api, proxy-checker, proxy-list, proxy-server, scraping, socks4, socks5, socks5-proxy, web-scraping
 
 ## Best fit cue profiles

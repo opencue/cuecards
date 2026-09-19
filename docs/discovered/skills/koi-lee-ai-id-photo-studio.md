@@ -2,19 +2,19 @@
 title: "koi-lee/ai-id-photo-studio — Claude Code skill discovered by cue"
 description: "把日常自拍变成合规、清晰、可交付的中国标准证件照。8 种规格（含结婚证横版）· 三底色 · 多通道生图编排 · 本地液化微调不磨皮 · 客观画质方法论｜An agent skill for Chinese ID photos."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [koi-lee/ai-id-photo-studio](https://github.com/koi-lee/ai-id-photo-studio)
 
-**★ 0** · exceptional (score 8.5) · Python · agent-skill, ai-agent-skill, china, claude-skill, id-photo
+**★ 0** · exceptional (score 8.4) · Python · agent-skill, ai-agent-skill, china, claude-skill, id-photo
 
 > 把日常自拍变成合规、清晰、可交付的中国标准证件照。8 种规格（含结婚证横版）· 三底色 · 多通道生图编排 · 本地液化微调不磨皮 · 客观画质方法论｜An agent skill for Chinese ID photos.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-18
 - 🏷️ Tags: agent-skill, ai-agent-skill, china, claude-skill, id-photo, id-photo-maker, image-processing, mediapipe, opencv, passport-photo, pillow, skill

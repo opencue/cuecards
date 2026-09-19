@@ -2,7 +2,7 @@
 title: "pro-vibe-coding/pvc-git-commit-message-local — Claude Code skill discovered by cue"
 description: "Claude Code skill that writes a git commit message in the PVC format (vX.Y.Z headline plus one bullet per real change, version bumped from the diff) and runs th"
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 

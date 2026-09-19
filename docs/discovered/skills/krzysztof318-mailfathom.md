@@ -2,7 +2,7 @@
 title: "Krzysztof318/MailFathom — Claude Code skill discovered by cue"
 description: "A brain for your mail: MailFathom turns IMAP mailboxes into a self-hosted, AI-native service. Mail synchronizes into your own PostgreSQL, is indexed for search "
 layout: page
-updated: 2026-09-05
+updated: 2026-09-19
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.4 based on:
 - ⭐ 14 stars
-- 🗓️ Last pushed: 2026-09-05
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: ai, ai-agents, aspnet-core, clean-architecture, csharp, dotnet, dotnet-aspire, email, email-search, imap, mcp, mcp-server, model-context-protocol, postgresql, privacy, rag, self-hosted, semantic-search, smtp
 
 ## Best fit cue profiles

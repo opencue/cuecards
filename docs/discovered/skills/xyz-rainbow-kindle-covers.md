@@ -2,7 +2,7 @@
 title: "xyz-rainbow/kindle-covers — Claude Code skill discovered by cue"
 description: "AI agent skill: fix Kindle Paperwhite sideload covers after Calibre send (EXTH 113 UUID, PDOC, thumbnails)."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 

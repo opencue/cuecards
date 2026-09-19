@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="yinnho-aginxbrowser"></a>
+## 💎 [yinnho/aginxbrowser](https://github.com/yinnho/aginxbrowser)
+
+**★ 30** · exceptional (score 16) · Rust · tags: agent-browser, ai-agents, antibot, browser-automation, browser-fingerprint
+
+The browser built for AI agents — fetch live pages as markdown, render JS/SPAs with built-in V8, take screenshots without Chromium, meta-search 5 engines, and drive interactive login sessions. One Rust binary, stealth TLS fingerprints, MCP native for Claude Code & Cursor. Headless browser alternative to Puppeteer/Playwright.
+
+✅ SKILL.md
+
+```bash
+cue skills add yinnho/aginxbrowser --profile frontend
+```
 
 ---
 
@@ -28,15 +43,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+<a id="gamedevpl-www-gamedev-pl"></a>
+## 💎 [gamedevpl/www.gamedev.pl](https://github.com/gamedevpl/www.gamedev.pl)
 
-**★ 0** · exceptional (score 9.5) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+**★ 15** · exceptional (score 10.7) · TypeScript · tags: ai, ai-agents, browser-games, fastify, game-development
 
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+Point Claude Code, Cursor, or any MCP-capable agent at this server and it builds a real, playable browser game for www.gamedev.pl. The platform itself is built by agents too — open source, shipped in public.
 
 ```bash
-cue skills add Fredjuel/arc-skill --profile frontend
+cue skills add gamedevpl/www.gamedev.pl --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---
@@ -54,15 +82,15 @@ cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile fron
 
 ---
 
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+<a id="aenix-io-aeman"></a>
+## ✨ [aenix-io/aeman](https://github.com/aenix-io/aeman)
 
-**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+**★ 32** · strong (score 7.1) · Go · tags: agile, ai-agents, github-projects, github-projects-v2, golang
 
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
+A short-term planning system for engineering teams — keep engineers focused, run daily sprints, and track unplanned work. Built on GitHub Projects v2 (no database of its own): one Go binary with an embedded React UI, REST API, MCP server for AI agents, and live board updates over WebSocket.
 
 ```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
+cue skills add aenix-io/aeman --profile frontend
 ```
 
 ---

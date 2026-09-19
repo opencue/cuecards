@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="netresearch-typo3-docs-skill"></a>
+## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+
+**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+
+Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
+
+```bash
+cue skills add netresearch/typo3-docs-skill --profile docs-writer
+```
+
+---
+
+<a id="netresearch-german-technical-writing-skill"></a>
+## 💎 [netresearch/german-technical-writing-skill](https://github.com/netresearch/german-technical-writing-skill)
+
+**★ 5** · exceptional (score 11.1) · tags: agent-skills, ai-agent, claude-code-skill, deutsch, german
+
+Agent Skill for natural German technical register in Jira tickets, internal German docs, and team chat to German-speaking colleagues — catches English→German anglicisms, enforces canonical technical lexicon | Claude Code compatible
+
+```bash
+cue skills add netresearch/german-technical-writing-skill --profile docs-writer
+```
 
 ---
 
@@ -26,19 +52,6 @@ Turn a debugging, study, or build session into a long-term Markdown note — qui
 
 ```bash
 cue skills add IShenH/my_reflection --profile docs-writer
-```
-
----
-
-<a id="albegosu-second-brain"></a>
-## 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, design-inspiration, github-actions, ios-shortcuts
-
-Share a post from your phone; a vision model files it into a Markdown wiki your coding agent reads
-
-```bash
-cue skills add albegosu/second-brain --profile docs-writer
 ```
 
 ---

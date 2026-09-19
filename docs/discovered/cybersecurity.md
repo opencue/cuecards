@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -33,7 +33,7 @@ cue skills add nsasoft/nsauditor-ai-agent-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2625** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
+**★ 2627** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -59,9 +59,9 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="presendapp-presend"></a>
 ## ✨ [presendapp/presend](https://github.com/presendapp/presend)
 
-**★ 1** · strong (score 6.3) · HTML · tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools
+**★ 1** · strong (score 6.3) · HTML · tags: browser-tools, client-side, cloudflare-pages, cosmos-sdk, cybersecurity
 
-Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup.
+Free privacy-first browser tools + a 42-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, Cosmos SDK tx decoding, OFAC checks, MCP server for AI agents). No signup.
 
 ```bash
 cue skills add presendapp/presend --profile cybersecurity

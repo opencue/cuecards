@@ -2,19 +2,19 @@
 title: "boydjohnson/osmflat-mapnik-skill — Claude Code skill discovered by cue"
 description: "AI agent skill for making maps from openstreetmap data"
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [boydjohnson/osmflat-mapnik-skill](https://github.com/boydjohnson/osmflat-mapnik-skill)
 
-**★ 0** · exceptional (score 9) · Shell · ai-agent-skill, openstreetmap
+**★ 0** · exceptional (score 8.9) · Shell · ai-agent-skill, openstreetmap
 
 > AI agent skill for making maps from openstreetmap data
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
 - 🗓️ Last pushed: 2026-09-18

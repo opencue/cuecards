@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for niche"
-description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,36 +26,6 @@ Evaluate project fundability and refine grant logic using AI agent skills to ide
 
 ```bash
 cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
-```
-
----
-
-<a id="xxjrq-douyin-viral-remake-free"></a>
-## ✨ [xxjrq/douyin-viral-remake-free](https://github.com/xxjrq/douyin-viral-remake-free)
-
-**★ 0** · strong (score 5.3) · JavaScript · tags: ai-agent-skill, content-analysis, creator-tools, douyin, easy-webbridge
-
-免费抖音作品拆解与原创改写：基于真实文字和关键画面生成原创口播与分镜。
-
-✅ SKILL.md
-
-```bash
-cue skills add xxjrq/douyin-viral-remake-free --profile niche
-```
-
----
-
-<a id="xxjrq-douyin-hot-topic-maker-free"></a>
-## ✨ [xxjrq/douyin-hot-topic-maker-free](https://github.com/xxjrq/douyin-hot-topic-maker-free)
-
-**★ 0** · strong (score 5.3) · JavaScript · tags: ai-agent-skill, content-planning, douyin, easy-webbridge, no-api-key
-
-免费抖音热点选题助手：从当前可见热点和搜索结果生成 5 个带来源的可拍选题。
-
-✅ SKILL.md
-
-```bash
-cue skills add xxjrq/douyin-hot-topic-maker-free --profile niche
 ```
 
 ---

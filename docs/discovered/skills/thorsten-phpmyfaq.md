@@ -1,22 +1,22 @@
 ---
 title: "thorsten/phpMyFAQ — Claude Code skill discovered by cue"
-description: "phpMyFAQ - Open Source FAQ web application for PHP 8.3+ and MySQL, PostgreSQL and other databases"
+description: "phpMyFAQ - Open Source FAQ web application for PHP 8.4+ and MySQL, PostgreSQL and other databases"
 layout: page
-updated: 2026-07-13
+updated: 2026-09-19
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [thorsten/phpMyFAQ](https://github.com/thorsten/phpMyFAQ)
 
-**★ 616** · exceptional (score 15) · PHP · database, docker, docker-compose, elasticsearch, faq
+**★ 620** · exceptional (score 15) · PHP · database, docker, docker-compose, elasticsearch, faq
 
-> phpMyFAQ - Open Source FAQ web application for PHP 8.3+ and MySQL, PostgreSQL and other databases
+> phpMyFAQ - Open Source FAQ web application for PHP 8.4+ and MySQL, PostgreSQL and other databases
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 616 stars
-- 🗓️ Last pushed: 2026-07-13
+- ⭐ 620 stars
+- 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: database, docker, docker-compose, elasticsearch, faq, frankenphp, kubernetes, mariadb, mcp-server, mssql, mysql, opensearch, php, phpmyfaq, postgresql, sqlite
 
 ## Best fit cue profiles

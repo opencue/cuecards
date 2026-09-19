@@ -1,27 +1,27 @@
 ---
 title: "wlsdks/ontology-atlas — Claude Code skill discovered by cue"
-description: "Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths."
+description: "Understand what your codebase builds, why it is structured that way, and what a change could affect.  One shared Markdown ontology for humans and coding agents—"
 layout: page
-updated: 2026-07-09
-tags: [claude-code, skill, docs-writer]
+updated: 2026-09-19
+tags: [claude-code, skill, core]
 ---
 
-# ✨ [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
+# 💎 [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
 
-**★ 5** · strong (score 6.7) · TypeScript · ai-agents, claude-code, codebase, cursor, frontmatter
+**★ 133** · exceptional (score 16) · TypeScript · ai-agents-framework, claude-code, code-visualization, codebase, codex
 
-> Local-first ontology memory for plain Codex/Claude Code via Atlas MCP/CLI: product meaning, code evidence, verification paths.
+> Understand what your codebase builds, why it is structured that way, and what a change could affect.  One shared Markdown ontology for humans and coding agents—visualized for people, accessible to agents through MCP, and reviewed with Git.  Local-first. Open source.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-03
-- 🏷️ Tags: ai-agents, claude-code, codebase, cursor, frontmatter, knowledge-graph, local-first, markdown, mcp, model-context-protocol, nextjs, obsidian, ontology, vault
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
+- ⭐ 133 stars
+- 🗓️ Last pushed: 2026-09-19
+- 🏷️ Tags: ai-agents-framework, claude-code, code-visualization, codebase, codex, coding-agents, developer-tools, impact-analysis, knowledge-graph, mcp-server, ontology, ontology-engineering, ontology-management-framework, software-architecture
 
 ## Best fit cue profiles
 
-[docs-writer](../docs-writer.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add wlsdks/ontology-atlas --profile docs-writer
+cue skills add wlsdks/ontology-atlas --profile core
 ```
 
 ## About

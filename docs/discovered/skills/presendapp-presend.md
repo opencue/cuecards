@@ -1,23 +1,23 @@
 ---
 title: "presendapp/presend — Claude Code skill discovered by cue"
-description: "Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup."
+description: "Free privacy-first browser tools + a 42-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, Cosmos SDK tx decoding, OFAC checks, MCP ser"
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, backend, cybersecurity]
 ---
 
 # ✨ [presendapp/presend](https://github.com/presendapp/presend)
 
-**★ 1** · strong (score 6.3) · HTML · browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools
+**★ 1** · strong (score 6.3) · HTML · browser-tools, client-side, cloudflare-pages, cosmos-sdk, cybersecurity
 
-> Free privacy-first browser tools + a 40-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, MCP server for AI agents). No signup.
+> Free privacy-first browser tools + a 42-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, Cosmos SDK tx decoding, OFAC checks, MCP server for AI agents). No signup.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-18
-- 🏷️ Tags: browser-tools, client-side, cloudflare-pages, cybersecurity, developer-tools, dns, exif-remover, free-api, mcp-server, model-context-protocol, no-signup, openapi, pdf-tools, privacy-tools, rest-api, security-tools, supply-chain-security, typosquatting, vulnerability-scanner, whois
+- 🗓️ Last pushed: 2026-09-19
+- 🏷️ Tags: browser-tools, client-side, cloudflare-pages, cosmos-sdk, cybersecurity, developer-tools, dns, free-api, mcp-server, model-context-protocol, no-signup, openapi, pdf-tools, privacy-tools, rest-api, security-tools, supply-chain-security, typosquatting, vulnerability-scanner, whois
 
 ## Best fit cue profiles
 

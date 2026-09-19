@@ -2,7 +2,7 @@
 title: "carloluisito/ship-faster-plugin — Claude Code skill discovered by cue"
 description: "Claude Code plugin: router CLAUDE.md, verified wiki, path-scoped rules, and a repo-aware shipping workflow"
 layout: page
-updated: 2026-09-18
+updated: 2026-09-19
 tags: [claude-code, skill, core]
 ---
 
