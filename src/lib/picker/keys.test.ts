@@ -4,7 +4,7 @@
  * drive the prompts by emitting readline `keypress` events.
  */
 
-import { describe, expect, test } from "bun:test";
+import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { PassThrough } from "node:stream";
 import { isCancel } from "@clack/core";
 
@@ -73,6 +73,7 @@ describe("CardPrompt keys", () => {
   test("e, / and a leave the card with their own action", async () => {
     for (const [char, action] of [
       ["e", "edit"],
+      ["E", "edit"],
       ["/", "search"],
       ["a", "all"],
     ] as const) {
@@ -82,6 +83,89 @@ describe("CardPrompt keys", () => {
       press(char);
       expect(await done).toBe(action);
     }
+  });
+
+  describe("edit hint animation", () => {
+    let saved: Record<string, string | undefined>;
+    beforeEach(() => {
+      saved = { TERM: process.env.TERM, NO_COLOR: process.env.NO_COLOR, ACCESSIBLE: process.env.ACCESSIBLE };
+      process.env.TERM = "xterm-256color";
+      delete process.env.NO_COLOR;
+      delete process.env.ACCESSIBLE;
+    });
+    afterEach(() => {
+      for (const [key, value] of Object.entries(saved)) {
+        if (value === undefined) delete process.env[key];
+        else process.env[key] = value;
+      }
+    });
+
+    test("animates without launching and stops on interaction", async () => {
+      const { input, output, press } = wire();
+      Object.assign(output, { isTTY: true });
+      const prompt = new CardPrompt({ cwd: "/p", suggestions, pin: true, input, output });
+      let settled = false;
+      const done = prompt.prompt().then((result) => { settled = true; return result; });
+      try {
+        const first = prompt.renderFrame();
+        await Bun.sleep(650);
+        expect(prompt.renderFrame()).not.toBe(first);
+        expect(settled).toBe(false);
+        press(undefined, { name: "tab" });
+        const stopped = prompt.renderFrame();
+        await Bun.sleep(650);
+        expect(prompt.renderFrame()).toBe(stopped);
+      } finally {
+        press("e");
+        await done;
+      }
+    });
+
+    test("does not animate redirected, dumb, no-color or accessible output", async () => {
+      for (const mode of ["redirected", "dumb", "no-color", "accessible"]) {
+        process.env.TERM = mode === "dumb" ? "dumb" : "xterm-256color";
+        delete process.env.NO_COLOR;
+        delete process.env.ACCESSIBLE;
+        if (mode === "no-color") process.env.NO_COLOR = "1";
+        if (mode === "accessible") process.env.ACCESSIBLE = "1";
+        const { input, output, press } = wire();
+        Object.assign(output, { isTTY: mode !== "redirected" });
+        let writes = 0;
+        output.on("data", () => { writes++; });
+        const prompt = new CardPrompt({ cwd: "/p", suggestions, pin: true, input, output });
+        const done = prompt.prompt();
+        try {
+          const initialWrites = writes;
+          await Bun.sleep(650);
+          expect(writes).toBe(initialWrites);
+          expect(prompt.renderFrame()).toContain("[e] change profiles");
+        } finally {
+          press(undefined, { name: "escape" });
+          await done;
+        }
+      }
+    });
+
+    test("finishes the animation while waiting and never writes after cancellation", async () => {
+      const { input, output, press } = wire();
+      Object.assign(output, { isTTY: true });
+      let writes = 0;
+      output.on("data", () => { writes++; });
+      const prompt = new CardPrompt({ cwd: "/p", suggestions, pin: true, input, output });
+      const done = prompt.prompt();
+      try {
+        await Bun.sleep(3700);
+        const stopped = writes;
+        await Bun.sleep(650);
+        expect(writes).toBe(stopped);
+      } finally {
+        press(undefined, { name: "escape" });
+        await done;
+      }
+      const cancelled = writes;
+      await Bun.sleep(650);
+      expect(writes).toBe(cancelled);
+    }, 7000);
   });
 
   test("p toggles the pin, and cannot when pinning is unavailable", async () => {
