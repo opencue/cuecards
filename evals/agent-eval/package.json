@@ -12,7 +12,12 @@
     "skill:smoke": "bun skill-ab/local.ts --smoke",
     "skill:eval": "bun skill-ab/local.ts --full",
     "skill:report": "bun skill-ab/report.ts",
-    "skill:test": "bun test skill-ab/contract.test.ts skill-ab/report.test.ts skill-ab/local.test.ts"
+    "skill:test": "bun test skill-ab/contract.test.ts skill-ab/report.test.ts skill-ab/local.test.ts",
+    "collaboration:test": "bun test collaboration-ab/contract.test.ts",
+    "collaboration:dry": "bun collaboration-ab/cli.ts --dry",
+    "collaboration:report": "bun collaboration-ab/cli.ts --report",
+    "collaboration:typecheck": "tsc -p collaboration-ab/tsconfig.json",
+    "collaboration:lint": "biome lint collaboration-ab"
   },
   "devDependencies": {
     "@vercel/agent-eval": "1.2.0",

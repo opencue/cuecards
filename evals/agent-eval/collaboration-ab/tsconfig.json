@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "types": ["node", "bun-types"]
+  },
+  "include": ["./*.ts", "./fixtures.json"]
+}
