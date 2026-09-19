@@ -25,6 +25,19 @@ const ANSI = new RegExp(`${String.fromCharCode(27)}\\[[0-9;]*m`, "g");
 const plain = (s: string) => s.replace(ANSI, "");
 
 describe("renderCardFrame", () => {
+  test("makes changing profiles a standalone action in every animation frame", () => {
+    for (const cols of [40, 80]) {
+      for (const editHintActive of [false, true]) {
+        const frame = plain(renderCardFrame({ ...base, cols, suggestions: [rust], editHintActive }));
+        const hint = frame.split("\n").find((line) => line.includes("[e] change profiles"));
+        expect(hint).toBeDefined();
+        expect(hint).not.toContain("launch");
+        expect(hint).toContain(editHintActive ? ">>" : "> ");
+        for (const line of frame.split("\n")) expect(displayWidth(line)).toBeLessThanOrEqual(cols);
+      }
+    }
+  });
+
   test("leads with the stack, its reasons and its cost", () => {
     const frame = renderCardFrame({ ...base, suggestions: [rust] });
     expect(frame).toContain("suggested stack");

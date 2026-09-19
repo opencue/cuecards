@@ -55,6 +55,8 @@ export interface CardState {
   pinDisabled?: boolean;
   /** Render the key-help overlay instead of the body. */
   help?: boolean;
+  /** Brief attention cue; the edit label stays visible in both frames. */
+  editHintActive?: boolean;
   /** Force ASCII icon mode. Defaults to `asciiIconsEnabled()`. */
   ascii?: boolean;
   /** Terminal width; used to clip long lines. Defaults to 80. */
@@ -197,27 +199,30 @@ export function renderCardFrame(state: CardState): string {
     )}`,
   );
 
+  const pointer = state.editHintActive ? ">>" : "> ";
+  lines.push(`${bar}  ${fitLine(
+    budget,
+    `${styleText("cyan", pointer)} ${button("[e] change profiles")}  ${styleText("dim", "add / remove / swap")}`,
+    `${styleText("cyan", pointer)} ${button("[e] change profiles")}`,
+  )}`);
+
   lines.push(
     `${bar}  ${fitLine(
       budget,
       keyHints([
-        ["e", "edit stack"],
         ["/", "search"],
         ["a", "all profiles"],
         ["?", "keys"],
         ["esc", "quit"],
       ]),
       keyHints([
-        ["e", "edit"],
         ["/", "search"],
         ["a", "all"],
         ["?", "keys"],
         ["esc", "quit"],
       ]),
-      // Last resort on a very narrow terminal: keep editing, the full
-      // catalogue, and the way out. `?` still lists everything else.
+      // Editing has its own row; keep the catalogue and way out here.
       keyHints([
-        ["e", "edit"],
         ["a", "all"],
         ["esc", "quit"],
       ]),
@@ -241,6 +246,7 @@ export class CardPrompt extends Prompt<CardAction> {
   help = false;
   /** True when the user pressed ctrl-c rather than esc. */
   hardCancel = false;
+  private editHintActive = false;
 
   constructor(opts: {
     cwd: string;
@@ -303,6 +309,34 @@ export class CardPrompt extends Prompt<CardAction> {
     });
   }
 
+  override async prompt(): ReturnType<Prompt<CardAction>["prompt"]> {
+    let timer: ReturnType<typeof setInterval> | undefined;
+    const stop = () => {
+      clearInterval(timer);
+      this.editHintActive = false;
+    };
+    this.once("key", stop);
+    try {
+      const done = super.prompt();
+      const tty = (stream: unknown) => (stream as { isTTY?: boolean }).isTTY === true;
+      if (tty(this.input) && tty(this.output) && process.env.TERM !== "dumb"
+        && process.env.NO_COLOR === undefined && !process.env.ACCESSIBLE) {
+        let ticks = 0;
+        timer = setInterval(() => {
+          this.editHintActive = ++ticks % 2 === 1;
+          if (ticks >= 6) stop();
+          // Clack's redraw is private in its types; use the same live-redraw
+          // seam as the classic picker's asynchronously loaded tallies.
+          (this as unknown as { render(): void }).render();
+        }, 600);
+        timer.unref();
+      }
+      return await done;
+    } finally {
+      stop();
+    }
+  }
+
   /** Enter can't launch what doesn't exist — with no suggestion the only ways
    *  out are the palette (`a` / `e` / `/`) and esc. */
   protected override _shouldSubmit(): boolean {
@@ -340,6 +374,7 @@ export class CardPrompt extends Prompt<CardAction> {
       pin: this.pin,
       pinDisabled: this.pinDisabled,
       help: this.help,
+      editHintActive: this.editHintActive,
       cols: (this.output as { columns?: number } | undefined)?.columns,
       rows: (this.output as { rows?: number } | undefined)?.rows,
     });
