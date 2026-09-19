@@ -1,3 +1,8 @@
+---
+summary: Cue profile resolution, runtime materialization, and agent execution.
+read_when: Changing or debugging launch, profile resolution, or runtime isolation.
+---
+
 # cue launch flow
 
 > **cue — Agent Profile Manager for Claude Code & Codex.** This doc explains the

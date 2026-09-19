@@ -1,3 +1,8 @@
+---
+summary: Repository task routing, ownership, observable jobs, and evidence-backed handoffs.
+read_when: Delegating, resuming, integrating, or handing off repository work.
+---
+
 # Agent collaboration in Cue
 
 Read when delegating, resuming, or handing off repository work. This is a
@@ -7,6 +12,9 @@ task guide, not another always-injected instruction file. The repository
 instructions and user permissions still apply.
 
 ## Read the relevant docs, not the whole repository
+
+For short summaries and reading conditions, use the on-demand
+[Agent documentation index](agent-docs-index.md).
 
 | Work | Start here | Smallest initial check |
 | --- | --- | --- |
@@ -52,6 +60,8 @@ Before ending or handing off, report any live process and who owns it. Stop only
 task-owned jobs that are no longer needed; never kill unrelated user processes.
 
 ## Handoff template
+
+For an explicit, repository-scoped CLI transfer, see [Agent handoffs](handoff.md).
 
 Use the coordinator's existing task state or a short message; do not create a
 second tracker or copy full agent transcripts. Fill unknown fields explicitly.

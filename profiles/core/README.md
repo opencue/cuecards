@@ -1,3 +1,8 @@
+---
+summary: Core profile purpose, bundled capabilities, and sample tasks.
+read_when: Inspecting or changing the core profile baseline.
+---
+
 # core
 
 Core is the baseline inherited by the first-install profiles. It keeps the always-on surface small: repo/file reading, skill lookup, quick-task routing, house-style brevity, and Lore-compatible commit help.

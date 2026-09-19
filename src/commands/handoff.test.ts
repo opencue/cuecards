@@ -19,7 +19,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, rmSync } from "node:fs";
+import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -68,6 +68,18 @@ afterEach(() => {
 });
 
 describe.skipIf(!BUN_SPAWNABLE)("cue handoff create", () => {
+  test("parallel processes publish distinct complete records", async () => {
+    const env = { ...process.env, XDG_CONFIG_HOME: xdg }; delete env.CUE_LAUNCHING;
+    const records = await Promise.all(Array.from({ length: 6 }, async (_, index) => {
+      const child = Bun.spawn(["bun", "run", CUE_BIN, "handoff", "create", "--task", `parallel ${index}`, "--json"], { env, stdout: "pipe", stderr: "pipe" });
+      const [stdout, , status] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text(), child.exited]);
+      expect(status).toBe(0); return JSON.parse(stdout);
+    }));
+    expect(new Set(records.map(record => record.id)).size).toBe(6);
+    const listed = JSON.parse(cue(["list", "--json"]).stdout);
+    expect(listed).toHaveLength(6);
+    expect(listed.every((record: { version: number }) => record.version === 1)).toBe(true);
+  });
   test("missing --task prints usage to stderr and returns 1", () => {
     const res = cue(["create", "--from", "core"]);
     expect(res.status).toBe(1);
@@ -85,22 +97,22 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff create", () => {
 
   test("--skills levels are parsed and routed to the right section", () => {
     seed();
-    const { stdout } = cue(["inject"]);
+    const { stdout } = cue(["inject", "--repo", process.cwd()]);
     expect(stdout).toContain("**Most useful skills:** meta/careful");
     expect(stdout).toContain("**Also helpful:** tools/context7");
   });
 
   test("a skill without an explicit level defaults to medium", () => {
     cue(["create", "--from", "core", "--task", "t", "--skills", "plan/autoplan"]);
-    const { stdout } = cue(["inject"]);
+    const { stdout } = cue(["inject", "--repo", process.cwd()]);
     expect(stdout).toContain("**Also helpful:** plan/autoplan");
     expect(stdout).not.toContain("Most useful");
   });
 
   test("--from defaults to 'unknown' when omitted", () => {
     cue(["create", "--task", "no from flag"]);
-    const { stdout } = cue(["inject"]);
-    expect(stdout).toContain('## Handoff from "unknown"');
+    const { stdout } = cue(["inject", "--repo", process.cwd()]);
+    expect(stdout).toContain('## Handoff from \\"unknown\\"');
   });
 });
 
@@ -115,8 +127,8 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff latest", () => {
     seed("Implement the auth feature");
     const res = cue(["latest"]);
     expect(res.status).toBe(0);
-    expect(res.stdout).toContain('## Handoff from "core" (claude-code)');
-    expect(res.stdout).toContain("> Implement the auth feature");
+    expect(res.stdout).toContain('## Handoff from \\"core\\" (unknown)');
+    expect(res.stdout).toContain("\\u003e Implement the auth feature");
     expect(res.stdout).toContain("**Notes:** check the env vars");
   });
 
@@ -178,7 +190,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff show", () => {
     const id = seed("show me");
     const res = cue(["show", id]);
     expect(res.status).toBe(0);
-    expect(res.stdout).toContain("> show me");
+    expect(res.stdout).toContain("\\u003e show me");
   });
 
   test("a missing id writes an error to stderr and returns 1", () => {
@@ -195,18 +207,41 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff show", () => {
 });
 
 describe.skipIf(!BUN_SPAWNABLE)("cue handoff inject", () => {
+  test("bare inject requires explicit selection, even with stored records", () => {
+    seed();
+    const res = cue(["inject", "--json"]);
+    expect(res.status).toBe(1);
+    expect(JSON.parse(res.stdout).error.code).toBe("HANDOFF_SELECTION_REQUIRED");
+  });
+  test("JSON errors cover unsafe IDs, invalid skills, missing option values and malformed context", () => {
+    for (const args of [["show", "../../secret"], ["create", "--task", "t", "--skills", "x:bogus"], ["create", "--task"], ["create", "--task", "t", "--bogus", "x"]]) {
+      const res = cue([...args, "--json"]);
+      expect(res.status).toBe(1); expect(JSON.parse(res.stdout).error.code).toMatch(/^HANDOFF_/);
+    }
+    const context = join(xdg, "context.json"); writeFileSync(context, '{"verification":"not-an-array"}');
+    const res = cue(["create", "--task", "t", "--context", context, "--json"]);
+    expect(res.status).toBe(1); expect(JSON.parse(res.stdout).error.code).toBe("HANDOFF_INVALID_INPUT");
+  });
+  test("legacy JSON inject remains explicitly unverified", () => {
+    const store = join(xdg, "cue", "handoffs"); mkdirSync(store, { recursive: true });
+    writeFileSync(join(store, "handoff-legacy.json"), JSON.stringify({ id: "handoff-legacy", ts: "2026-01-01T00:00:00Z", from_profile: "core", from_agent: "claude", task_summary: "legacy", skills_used: [], mcps_used: [], notes: "" }));
+    const res = cue(["inject", "handoff-legacy", "--json"]);
+    expect(res.status).toBe(0); const parsed = JSON.parse(res.stdout);
+    expect(parsed.assessment.status).toBe("legacy-unverified");
+    expect(parsed.handoff.repository).toBeUndefined(); expect(parsed.formatted).toContain("untrusted historical");
+  });
   test("with no handoffs writes an error to stderr and returns 1", () => {
-    const res = cue(["inject"]);
+    const res = cue(["inject", "--repo", process.cwd()]);
     expect(res.status).toBe(1);
     expect(res.stderr).toContain("No handoffs to inject.");
   });
 
   test("with a handoff emits the full formatted block on stdout", () => {
-    seed("inject me");
-    const res = cue(["inject"]);
+    const id = seed("inject me");
+    const res = cue(["inject", id]);
     expect(res.status).toBe(0);
-    expect(res.stdout).toContain('## Handoff from "core" (claude-code)');
-    expect(res.stdout).toContain("> inject me");
+    expect(res.stdout).toContain('## Handoff from \\"core\\" (unknown)');
+    expect(res.stdout).toContain("\\u003e inject me");
     expect(res.stdout).toContain("**Most useful skills:**");
     expect(res.stdout).toContain("**Notes:**");
     expect(res.stderr).not.toContain("No handoffs");
