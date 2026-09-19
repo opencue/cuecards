@@ -1,3 +1,8 @@
+---
+summary: Lean installation steps, optional tools, and setup verification.
+read_when: Planning a first installation or checking a lean setup step.
+---
+
 # cue — Lean install (core + caveman + RTK)
 
 > **For Claude Code (the CLI), not Claude Desktop.** This prompt needs shell access — only Claude Code has that.

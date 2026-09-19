@@ -1,3 +1,8 @@
+---
+summary: On-demand reading, startup context budgets, and portable core defaults.
+read_when: Changing prompt footprint, context limits, or onboarding defaults.
+---
+
 # Agent Context Budget
 
 This repo ships profile definitions, skills, MCP configs, setup manuals, test
