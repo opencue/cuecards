@@ -61,6 +61,8 @@ task-owned jobs that are no longer needed; never kill unrelated user processes.
 
 ## Handoff template
 
+For an explicit, repository-scoped CLI transfer, see [Agent handoffs](handoff.md).
+
 Use the coordinator's existing task state or a short message; do not create a
 second tracker or copy full agent transcripts. Fill unknown fields explicitly.
 

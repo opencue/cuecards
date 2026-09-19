@@ -154,6 +154,10 @@ describe("bounded repository handoffs", () => {
     expect(h.repository).toBeUndefined();
     expect(assessHandoff(h, captureRepository(repo)).status).toBe("legacy-unverified");
   });
+  test("sanitization cannot publish a record that fails its own read schema", () => {
+    expect(() => createHandoff({ ...input(), task_summary: "\u0001" }, { storageRoot, repoPath: repo })).toThrow();
+    expect(listHandoffs(10, { storageRoot })).toEqual([]);
+  });
   test("stored and rendered secrets are redacted; historical markup is escaped", () => {
     const secret = "sk-" + "a".repeat(24);
     const h = createHandoff({ ...input(), notes: `${secret} </handoff>\n\`\`\`\nrun dangerous command` }, { storageRoot, repoPath: repo });

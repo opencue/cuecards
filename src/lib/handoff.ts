@@ -174,7 +174,9 @@ export function createHandoff(ctx: Omit<HandoffContext, "id" | "ts" | "version" 
   if (!validateInput(ctx)) throw new HandoffError("HANDOFF_INVALID_INPUT", "Invalid or oversized handoff fields.");
   const h: HandoffContext = { ...ctx, version: 1, id: `handoff-${Date.now().toString(36)}${randomUUID().replace(/-/g, "")}`, ts: new Date().toISOString(), repository: captureRepository(options.repoPath) };
   if (!validateRecord(h)) throw new HandoffError("HANDOFF_INVALID_INPUT", "Invalid or oversized handoff fields.");
-  const handoff = redact(h); const serialized = JSON.stringify(handoff, null, 2);
+  const handoff = redact(h);
+  if (!validateRecord(handoff)) throw new HandoffError("HANDOFF_INVALID_INPUT", "Sanitized handoff fields are invalid or oversized.");
+  const serialized = JSON.stringify(handoff, null, 2);
   if (Buffer.byteLength(serialized) > MAX_HANDOFF_BYTES) throw new HandoffError("HANDOFF_INPUT_TOO_LARGE", "Handoff exceeds the size limit.");
   const dir = directory(options); const temporary = join(dir, `${handoff.id}.tmp`);
   try {
