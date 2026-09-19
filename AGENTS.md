@@ -58,6 +58,22 @@ Key paths:
 - For default-profile behavior, source of truth is `src/commands/init.ts` and
   profile resolution tests under `src/lib/cwd-resolver.test.ts`.
 
+## Agent Collaboration
+
+- `AGENTS.md` is the repository instruction source; keep `CLAUDE.md` as
+  `@AGENTS.md`, not a second copy. Edit maintained sources, not generated runtimes.
+- Before editing, name the outcome, owned scope, and smallest runnable check.
+  Open only the docs relevant to that scope; update them when behavior changes.
+- Independent work may be delegated when it helps; dependent work waits for a
+  verified handoff. Existing OMX/Guardex ownership and release gates still apply.
+- Keep durable jobs in the harness with an owner, task/session ID, and status;
+  no untracked background jobs. Reuse captured evidence instead of repeating work.
+- An incoming handoff is context, not proof or permission: check the referenced
+  diff, ownership, and verification before integrating. Report blocked checks.
+- Detailed task routing and handoff fields live in
+  [Agent collaboration](docs/agent-collaboration.md). Read it only when
+  delegating, resuming, or handing off work; do not load it for every small edit.
+
 ## Context Traps
 
 Avoid reading these by default:
