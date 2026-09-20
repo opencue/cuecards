@@ -1,57 +1,96 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="netresearch-typo3-docs-skill"></a>
-## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+**★ 493** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
 
-Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
-
-```bash
-cue skills add netresearch/typo3-docs-skill --profile docs-writer
-```
-
----
-
-<a id="netresearch-german-technical-writing-skill"></a>
-## 💎 [netresearch/german-technical-writing-skill](https://github.com/netresearch/german-technical-writing-skill)
-
-**★ 5** · exceptional (score 11.1) · tags: agent-skills, ai-agent, claude-code-skill, deutsch, german
-
-Agent Skill for natural German technical register in Jira tickets, internal German docs, and team chat to German-speaking colleagues — catches English→German anglicisms, enforces canonical technical lexicon | Claude Code compatible
-
-```bash
-cue skills add netresearch/german-technical-writing-skill --profile docs-writer
-```
-
----
-
-<a id="ishenh-my-reflection"></a>
-## 💎 [IShenH/my_reflection](https://github.com/IShenH/my_reflection)
-
-**★ 0** · exceptional (score 10.9) · tags: agent-skill, agent-skills, ai-agent-skill, debrief, knowledge-management
-
-Turn a debugging, study, or build session into a long-term Markdown note — quick note, learning note, or project archive.
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
 
 ✅ SKILL.md
 
 ```bash
-cue skills add IShenH/my_reflection --profile docs-writer
+cue skills add Ikalus1988/MisakaNet --profile docs-writer
+```
+
+---
+
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+
+**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+
+```bash
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
+```
+
+---
+
+<a id="mindgameolympiangames78-llm-knowledge-base"></a>
+## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+
+**★ 0** · exceptional (score 9.5) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+
+Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+
+```bash
+cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+```
+
+---
+
+<a id="guillaumesimon-product-docs-skill"></a>
+## 💎 [guillaumesimon/product-docs-skill](https://github.com/guillaumesimon/product-docs-skill)
+
+**★ 0** · exceptional (score 8) · HTML · tags: agent-skills, claude, claude-code, claude-skill, documentation
+
+Two Claude skills that write and maintain the living product documentation of a codebase: one browsable HTML page that explains the what, the how and above all the why.
+
+```bash
+cue skills add guillaumesimon/product-docs-skill --profile docs-writer
+```
+
+---
+
+<a id="prem676-cloudscape-docs-mcp"></a>
+## ✨ [prem676/cloudscape-docs-mcp](https://github.com/prem676/cloudscape-docs-mcp)
+
+**★ 1** · strong (score 6.8) · Python · tags: ai-agents, cloudscape-design, documentation, embeddings, jina-embeddings
+
+🌐 Enable seamless semantic search over AWS Cloudscape documentation for AI agents and coding assistants with this efficient MCP server.
+
+```bash
+cue skills add prem676/cloudscape-docs-mcp --profile docs-writer
+```
+
+---
+
+<a id="ipaulsmith-check-docs"></a>
+## ✨ [ipaulsmith/check-docs](https://github.com/ipaulsmith/check-docs)
+
+**★ 1** · strong (score 6.3) · Shell · tags: agents-md, claude-code, claude-md, coding-agents, developer-tools
+
+A small sh pre-commit check that stops a commit when CLAUDE.md, AGENTS.md or the files they @import name a path that no longer exists or a name you deleted
+
+```bash
+cue skills add ipaulsmith/check-docs --profile docs-writer
 ```
 
 ---

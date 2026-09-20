@@ -2,21 +2,21 @@
 title: "pro-vibe-coding/pvc-git-commit-message-local — Claude Code skill discovered by cue"
 description: "Claude Code skill that writes a git commit message in the PVC format (vX.Y.Z headline plus one bullet per real change, version bumped from the diff) and runs th"
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [pro-vibe-coding/pvc-git-commit-message-local](https://github.com/pro-vibe-coding/pvc-git-commit-message-local)
 
-**★ 2** · exceptional (score 12.5) · claude-code, claude-code-plugins, claude-code-skill, claude-code-skills, commit-message
+**★ 4** · exceptional (score 12.7) · claude-code, claude-code-plugins, claude-code-skill, claude-code-skills, commit-message
 
 > Claude Code skill that writes a git commit message in the PVC format (vX.Y.Z headline plus one bullet per real change, version bumped from the diff) and runs the commit locally on the named paths. Never pushes. Apache 2.0.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
+- ⭐ 4 stars
 - 🗓️ Last pushed: 2026-09-17
 - 🏷️ Tags: claude-code, claude-code-plugins, claude-code-skill, claude-code-skills, commit-message, commit-message-generator, commit-messages, pro-vibe-coding, semver, semver-cli, semver-format, semver-tag
 

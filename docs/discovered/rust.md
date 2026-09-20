@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for rust"
-description: "2 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-20
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `rust`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **rust** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **rust** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="barbacane-dev-barbacane"></a>
-## 💎 [barbacane-dev/barbacane](https://github.com/barbacane-dev/barbacane)
-
-**★ 28** · exceptional (score 9.6) · Rust · tags: ai, ai-gateway, ai-gateways, api, api-gateway
-
-Barbacane API and Bidirectional AI Gateway
-
-```bash
-cue skills add barbacane-dev/barbacane --profile rust
-```
 
 ---
 

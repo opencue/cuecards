@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-10
+updated: 2026-09-20
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="goodbarber-goodbarber-skills"></a>
-## 💎 [goodbarber/goodbarber-skills](https://github.com/goodbarber/goodbarber-skills)
+<a id="mark-c-827-product-description-writer"></a>
+## 💎 [Mark-C-827/product-description-writer](https://github.com/Mark-C-827/product-description-writer)
 
-**★ 2** · exceptional (score 10.5) · tags: agent-skills, ai-agents, anthropic, app-builder, chatgpt
+**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, claude-skill, conversion-copywriting, copywriting, ecommerce
 
-Claude Code plugin and 44 AI skills for the GoodBarber no-code app builder: manage your mobile app (shop, content, community, membership) through the GoodBarber MCP server from any MCP client.
+Benefit-led, scannable PDP master copy from a raw spec sheet — a four-part agent skill (SKILL.md + references + scripts + assets). Enhanced from the MIT original in SkillMedev/skills.
+
+✅ SKILL.md
 
 ```bash
-cue skills add goodbarber/goodbarber-skills --profile medusa-dev
+cue skills add Mark-C-827/product-description-writer --profile medusa-dev
 ```
 
 ---

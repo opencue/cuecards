@@ -2,21 +2,21 @@
 title: "ali-meoo/meoo-cli — Claude Code skill discovered by cue"
 description: "meoo cli 是秒悟（Meoo）官方推出的命令行工具，让 Claude Code、Codex、Cursor、Qoder等本地 agent 在帮你写完前端代码后，能直接接管「数据库、用户登录、文件存储、部署上线」的所有云端工作——你只需要在终端跑一条命令，剩下的交给 AI。"
 layout: page
-updated: 2026-08-18
+updated: 2026-09-20
 tags: [claude-code, skill, backend]
 ---
 
-# ✨ [ali-meoo/meoo-cli](https://github.com/ali-meoo/meoo-cli)
+# 💎 [ali-meoo/meoo-cli](https://github.com/ali-meoo/meoo-cli)
 
-**★ 21** · strong (score 7.8) · claude-code-skill, claude-skills, cli, deploy, dsh-plugin
+**★ 25** · exceptional (score 9.4) · claude-code-skill, claude-skills, cli, deploy, dsh-plugin
 
 > meoo cli 是秒悟（Meoo）官方推出的命令行工具，让 Claude Code、Codex、Cursor、Qoder等本地 agent 在帮你写完前端代码后，能直接接管「数据库、用户登录、文件存储、部署上线」的所有云端工作——你只需要在终端跑一条命令，剩下的交给 AI。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 21 stars
-- 🗓️ Last pushed: 2026-08-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
+- ⭐ 25 stars
+- 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: claude-code-skill, claude-skills, cli, deploy, dsh-plugin, edge-functions, fullstack, meoo, skill-md, supabase
 
 ## Best fit cue profiles

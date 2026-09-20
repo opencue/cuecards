@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="yinnho-aginxbrowser"></a>
-## 💎 [yinnho/aginxbrowser](https://github.com/yinnho/aginxbrowser)
-
-**★ 30** · exceptional (score 16) · Rust · tags: agent-browser, ai-agents, antibot, browser-automation, browser-fingerprint
-
-The browser built for AI agents — fetch live pages as markdown, render JS/SPAs with built-in V8, take screenshots without Chromium, meta-search 5 engines, and drive interactive login sessions. One Rust binary, stealth TLS fingerprints, MCP native for Claude Code & Cursor. Headless browser alternative to Puppeteer/Playwright.
-
-✅ SKILL.md
-
-```bash
-cue skills add yinnho/aginxbrowser --profile frontend
-```
 
 ---
 
@@ -43,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="gamedevpl-www-gamedev-pl"></a>
-## 💎 [gamedevpl/www.gamedev.pl](https://github.com/gamedevpl/www.gamedev.pl)
+<a id="0xjacky-nginx-ui"></a>
+## 💎 [0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
 
-**★ 15** · exceptional (score 10.7) · TypeScript · tags: ai, ai-agents, browser-games, fastify, game-development
+**★ 11521** · exceptional (score 12) · Go · tags: code-completion, copilot, cron, docker, go
 
-Point Claude Code, Cursor, or any MCP-capable agent at this server and it builds a real, playable browser game for www.gamedev.pl. The platform itself is built by agents too — open source, shipped in public.
+Yet another WebUI for Nginx
 
 ```bash
-cue skills add gamedevpl/www.gamedev.pl --profile frontend
+cue skills add 0xJacky/nginx-ui --profile frontend
 ```
 
 ---
@@ -65,32 +50,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
-## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
-
-Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
-
-```bash
-cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
-```
-
----
-
-<a id="aenix-io-aeman"></a>
-## ✨ [aenix-io/aeman](https://github.com/aenix-io/aeman)
-
-**★ 32** · strong (score 7.1) · Go · tags: agile, ai-agents, github-projects, github-projects-v2, golang
-
-A short-term planning system for engineering teams — keep engineers focused, run daily sprints, and track unplanned work. Built on GitHub Projects v2 (no database of its own): one Go binary with an embedded React UI, REST API, MCP server for AI agents, and live board updates over WebSocket.
-
-```bash
-cue skills add aenix-io/aeman --profile frontend
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "LiChangZheng10086/doyin_ai_video — Claude Code skill discovered by cue"
 description: "抖创工坊：本地 Electron 工具，抖音视频无水印下载 + Whisper 转录 + AI 洗稿 + 分镜 + HyperFrames 竖屏成片 + Claude Skill 蒸馏"
 layout: page
-updated: 2026-08-14
+updated: 2026-09-20
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [LiChangZheng10086/doyin_ai_video](https://github.com/LiChangZheng10086/doyin_ai_video)
+# 💎 [LiChangZheng10086/doyin_ai_video](https://github.com/LiChangZheng10086/doyin_ai_video)
 
-**★ 11** · strong (score 6.4) · TypeScript · ai-video, asr, claude-skill, content-creation, douyin
+**★ 18** · exceptional (score 8.3) · TypeScript · ai-video, asr, claude-skill, content-creation, douyin
 
 > 抖创工坊：本地 Electron 工具，抖音视频无水印下载 + Whisper 转录 + AI 洗稿 + 分镜 + HyperFrames 竖屏成片 + Claude Skill 蒸馏
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.4 based on:
-- ⭐ 11 stars
-- 🗓️ Last pushed: 2026-08-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: ai-video, asr, claude-skill, content-creation, douyin, electron, hyperframes, react, tiktok, typescript, whisper
 
 ## Best fit cue profiles

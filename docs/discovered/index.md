@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 14 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,27 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-09-19 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **14 profiles**.
+> Last updated: 2026-09-20 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 66 | `ontology-atlas`, `deja-vu`, `abide` |
-| [**backend**](./backend.md) | 14 | `mcp-memory-service`, `phpMyFAQ`, `canary` |
-| [**frontend**](./frontend.md) | 6 | `aginxbrowser`, `awesome-claude-ui-armory`, `www.gamedev.pl` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `nsauditor-ai-agent-skill`, `Claude-OSINT`, `sanctuary-framework` |
-| [**creative-media**](./creative-media.md) | 4 | `SageThumbs-2k`, `ai-id-photo-studio`, `FiMake` |
-| [**docs-writer**](./docs-writer.md) | 3 | `typo3-docs-skill`, `german-technical-writing-skill`, `my_reflection` |
-| [**research**](./research.md) | 3 | `popper-scope`, `libgen-mcp`, `skillassay` |
-| [**fleet-control**](./fleet-control.md) | 2 | `opencouncil-contract-inspector`, `rolepod` |
-| [**python**](./python.md) | 2 | `wenmai-search`, `alfred` |
-| [**niche**](./niche.md) | 1 | `grant-thinking-skill` |
-| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**core**](./core.md) | 67 | `storybloq`, `trace-mcp`, `easyeda-agent` |
+| [**backend**](./backend.md) | 15 | `MisakaNet`, `fli`, `free-proxy-list` |
+| [**docs-writer**](./docs-writer.md) | 6 | `MisakaNet`, `llm-wiki`, `llm-knowledge-base` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `claude-security-research-skill`, `sanctuary-framework` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `nginx-ui`, `sticky-switcher-funnel-playbook` |
+| [**marketing**](./marketing.md) | 2 | `product-description-writer`, `sticky-switcher-funnel-playbook` |
+| [**fleet-control**](./fleet-control.md) | 2 | `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `product-description-writer` |
+| [**rust**](./rust.md) | 1 | `intutic` |
+| [**video**](./video.md) | 1 | `web-youtube-summarizer-llm` |
+| [**niche**](./niche.md) | 1 | `duizuo-reading-companion-skill` |
+| [**python**](./python.md) | 1 | `alfred` |
+| [**research**](./research.md) | 1 | `skillassay` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

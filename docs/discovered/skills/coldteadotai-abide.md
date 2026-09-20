@@ -2,21 +2,21 @@
 title: "coldteadotai/abide — Claude Code skill discovered by cue"
 description: "Make your coding agent abide by all your project rules "
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [coldteadotai/abide](https://github.com/coldteadotai/abide)
 
-**★ 86** · exceptional (score 15.2) · TypeScript · claude-code, claude-code-hooks, claude-code-plugin, claude-code-plugins, claude-code-skill
+**★ 173** · exceptional (score 15.5) · TypeScript · claude-code, claude-code-hooks, claude-code-plugin, claude-code-plugins, claude-code-skill
 
 > Make your coding agent abide by all your project rules 
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
-- ⭐ 86 stars
-- 🗓️ Last pushed: 2026-09-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+- ⭐ 173 stars
+- 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: claude-code, claude-code-hooks, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, codex-plugin, codex-skill, opencode, opencode-plugin, opencode-skills
 
 ## Best fit cue profiles

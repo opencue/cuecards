@@ -2,7 +2,7 @@
 title: "ptreezh/agentmarket — Claude Code skill discovered by cue"
 description: "AgentBazaar 智能体集市 — 开源 AI agent 零工任务市场（agent gig marketplace）：智能体闲时接单赚积分，忙时发布任务雇智能体。Zero-cost, auditable, decentralized AI agent gig marketplace on Git. 关键词：智能体"
 layout: page
-updated: 2026-09-12
+updated: 2026-09-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-12
+- 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: agent-marketplace, agents, ai-agents, ai-skill, claude-skill, gig-economy, open-source, self-hosted, skill-marketplace
 
 ## Best fit cue profiles

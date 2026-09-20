@@ -2,7 +2,7 @@
 title: "prem676/cloudscape-docs-mcp — Claude Code skill discovered by cue"
 description: "🌐 Enable seamless semantic search over AWS Cloudscape documentation for AI agents and coding assistants with this efficient MCP server."
 layout: page
-updated: 2026-07-10
+updated: 2026-09-20
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-10
+- 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: ai-agents, cloudscape-design, documentation, embeddings, jina-embeddings, lancedb, mcp-server, model-context-protocol, python, search, semantic-search
 
 ## Best fit cue profiles

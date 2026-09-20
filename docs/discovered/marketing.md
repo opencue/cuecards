@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="mark-c-827-product-description-writer"></a>
+## 💎 [Mark-C-827/product-description-writer](https://github.com/Mark-C-827/product-description-writer)
+
+**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, claude-skill, conversion-copywriting, copywriting, ecommerce
+
+Benefit-led, scannable PDP master copy from a raw spec sheet — a four-part agent skill (SKILL.md + references + scripts + assets). Enhanced from the MIT original in SkillMedev/skills.
+
+✅ SKILL.md
+
+```bash
+cue skills add Mark-C-827/product-description-writer --profile marketing
+```
 
 ---
 

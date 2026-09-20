@@ -2,21 +2,21 @@
 title: "evb0110/evb-viewer — Claude Code skill discovered by cue"
 description: "Scanned-document workbench that AI agents can operate: clean, OCR, annotate PDF and DjVu, with a local MCP server. macOS, Windows, Linux, Web."
 layout: page
-updated: 2026-09-19
+updated: 2026-09-20
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [evb0110/evb-viewer](https://github.com/evb0110/evb-viewer)
+# 💎 [evb0110/evb-viewer](https://github.com/evb0110/evb-viewer)
 
-**★ 3** · strong (score 7.2) · TypeScript · ai-assistant, claude, codex, desktop-app, djvu
+**★ 5** · exceptional (score 9.6) · TypeScript · ai-assistant, claude, codex, desktop-app, djvu
 
 > Scanned-document workbench that AI agents can operate: clean, OCR, annotate PDF and DjVu, with a local MCP server. macOS, Windows, Linux, Web.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: ai-assistant, claude, codex, desktop-app, djvu, document-processing, electron, mcp, mcp-server, nuxt, ocr, pdf, pdf-converter, rust, scan, searchable-pdf, tesseract, vue
 
 ## Best fit cue profiles
