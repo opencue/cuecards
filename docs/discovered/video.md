@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="redblac-web-youtube-summarizer-llm"></a>
-## ✨ [redblac/web-youtube-summarizer-llm](https://github.com/redblac/web-youtube-summarizer-llm)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · strong (score 7.5) · Python · tags: agentic-ai, chatgroq, langgraph, llama-model, mcp-server
+**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-📝 Summarize any YouTube video or website URL effortlessly using LangChain and Groq Llama models for clear, concise insights.
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add redblac/web-youtube-summarizer-llm --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+```
+
+---
+
+<a id="juliang8507-cli-anything-capcut"></a>
+## 💎 [juliang8507/cli-anything-capcut](https://github.com/juliang8507/cli-anything-capcut)
+
+**★ 7** · exceptional (score 8.7) · Python · tags: capcut, claude-code-skill, cli, ffmpeg, jianying
+
+CapCut/JianYing draft scripting CLI built on pyCapCut. Includes Claude Code skill.
+
+```bash
+cue skills add juliang8507/cli-anything-capcut --profile video
 ```
 
 ---

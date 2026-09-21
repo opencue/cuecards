@@ -2,7 +2,7 @@
 title: "mpashka/timelimit-parent — Claude Code skill discovered by cue"
 description: "Parent console for a TimeLimit sync server: mobile web console, CLI and Claude Code skill"
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-20
+- 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: claude-code-skill, cli, parental-control, timelimit
 
 ## Best fit cue profiles

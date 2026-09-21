@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+<a id="yoodaddy0311-artibot"></a>
+## 💎 [Yoodaddy0311/artibot](https://github.com/Yoodaddy0311/artibot)
 
-**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+**★ 3** · exceptional (score 11.7) · JavaScript · tags: agent-orchestration, ai-agent, anthropic, autonomous-agent, claude
 
-2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+Autonomous Agent OS for Claude Code — 28 agents, 114 skills, 72 commands. Dual-process cognition, lifelong learning, parallel agent teams, planning→PRD/ADR/TODO workflow, cross-platform install.
 
 ```bash
-cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
+cue skills add Yoodaddy0311/artibot --profile fleet-control
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 <a id="nuttaruj-rolepod"></a>
 ## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 3** · exceptional (score 8.1) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 3** · exceptional (score 8.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
 Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 

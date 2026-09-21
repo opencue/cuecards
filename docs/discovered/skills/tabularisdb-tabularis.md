@@ -1,22 +1,22 @@
 ---
 title: "TabularisDB/tabularis — Claude Code skill discovered by cue"
-description: "Open-source desktop SQL workspace for PostgreSQL, MySQL/MariaDB, SQLite and 15+ more databases like DuckDB, ClickHouse, Redis and Firestore. Built-in MCP server"
+description: "Open-source desktop SQL workspace with 3 built-in database drivers and 16 shipped plugins, including SQL Server, DuckDB, ClickHouse and Redis. Built-in MCP serv"
 layout: page
-updated: 2026-09-10
+updated: 2026-09-21
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [TabularisDB/tabularis](https://github.com/TabularisDB/tabularis)
 
-**★ 4885** · exceptional (score 17) · TypeScript · ai-agent, ai-assistant, cross-platform, database-client, database-gui
+**★ 5014** · exceptional (score 17) · TypeScript · ai-agent, ai-assistant, cross-platform, database-client, database-gui
 
-> Open-source desktop SQL workspace for PostgreSQL, MySQL/MariaDB, SQLite and 15+ more databases like DuckDB, ClickHouse, Redis and Firestore. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
+> Open-source desktop SQL workspace with 3 built-in database drivers and 16 shipped plugins, including SQL Server, DuckDB, ClickHouse and Redis. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 4885 stars
-- 🗓️ Last pushed: 2026-09-10
+- ⭐ 5014 stars
+- 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: ai-agent, ai-assistant, cross-platform, database-client, database-gui, database-tool, er-diagram, mariadb, mcp, mcp-server, mysql, postgresql, rust, sql, sql-editor, sql-notebook, sqlite, tauri, typescript, visual-query-builder
 
 ## Best fit cue profiles

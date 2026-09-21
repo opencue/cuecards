@@ -1,23 +1,23 @@
 ---
 title: "shinpr/agent-clinic — Claude Code skill discovered by cue"
-description: "Diagnose a past Claude Code or Codex session and see what to change."
+description: "Diagnostic plugins for Claude Code and Codex: why a session went wrong, and whether a proposed change is too much or too little for the outcome."
 layout: page
-updated: 2026-09-19
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [shinpr/agent-clinic](https://github.com/shinpr/agent-clinic)
 
-**★ 1** · exceptional (score 10.3) · agent-skills, agentic-ai, ai-agents, anthropic, claude-code
+**★ 1** · exceptional (score 10.3) · Python · agent-skills, agentic-ai, ai-agents, anthropic, claude-code
 
-> Diagnose a past Claude Code or Codex session and see what to change.
+> Diagnostic plugins for Claude Code and Codex: why a session went wrong, and whether a proposed change is too much or too little for the outcome.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-19
-- 🏷️ Tags: agent-skills, agentic-ai, ai-agents, anthropic, claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin, codex-skill, developer-tools, diagnostics, openai, prompt-engineering
+- 🗓️ Last pushed: 2026-09-21
+- 🏷️ Tags: agent-skills, agentic-ai, ai-agents, anthropic, claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin, codex-skill, developer-tools, diagnostics, jev, openai, prompt-engineering, typesafe-ai
 
 ## Best fit cue profiles
 

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "6 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,9 +18,9 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 <a id="ikalus1988-misakanet"></a>
 ## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 493** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
+**★ 495** · exceptional (score 20.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
 
 ✅ SKILL.md
 
@@ -30,54 +30,17 @@ cue skills add Ikalus1988/MisakaNet --profile docs-writer
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="xinbenlv-agent-speak-readability"></a>
+## 💎 [xinbenlv/agent-speak-readability](https://github.com/xinbenlv/agent-speak-readability)
 
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 1** · exceptional (score 15.8) · tags: agent-skill, ai-agents, asd-ste100, chinese, claude-code
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+An agent skill that makes an agent's natural-language output readable to a human: cross-language rules plus a mandatory pre-send check. 让智能体写给人看的自然语言变得可读的技能。
 
-```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
-```
-
----
-
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
-
-**★ 0** · exceptional (score 9.5) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
-
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+✅ SKILL.md
 
 ```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
-```
-
----
-
-<a id="guillaumesimon-product-docs-skill"></a>
-## 💎 [guillaumesimon/product-docs-skill](https://github.com/guillaumesimon/product-docs-skill)
-
-**★ 0** · exceptional (score 8) · HTML · tags: agent-skills, claude, claude-code, claude-skill, documentation
-
-Two Claude skills that write and maintain the living product documentation of a codebase: one browsable HTML page that explains the what, the how and above all the why.
-
-```bash
-cue skills add guillaumesimon/product-docs-skill --profile docs-writer
-```
-
----
-
-<a id="prem676-cloudscape-docs-mcp"></a>
-## ✨ [prem676/cloudscape-docs-mcp](https://github.com/prem676/cloudscape-docs-mcp)
-
-**★ 1** · strong (score 6.8) · Python · tags: ai-agents, cloudscape-design, documentation, embeddings, jina-embeddings
-
-🌐 Enable seamless semantic search over AWS Cloudscape documentation for AI agents and coding assistants with this efficient MCP server.
-
-```bash
-cue skills add prem676/cloudscape-docs-mcp --profile docs-writer
+cue skills add xinbenlv/agent-speak-readability --profile docs-writer
 ```
 
 ---

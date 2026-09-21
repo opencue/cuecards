@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,10 +15,23 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
+<a id="smart-mcp-proxy-mcpproxy-go"></a>
+## 💎 [smart-mcp-proxy/mcpproxy-go](https://github.com/smart-mcp-proxy/mcpproxy-go)
+
+**★ 377** · exceptional (score 13.9) · Go · tags: ai, ai-agents, audit-logging, bm25, cli
+
+Supercharge AI Agents, Safely
+
+```bash
+cue skills add smart-mcp-proxy/mcpproxy-go --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2631** · exceptional (score 13.1) · Python · tags: agentskills, claude, skills
+**★ 2637** · exceptional (score 13.1) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,15 +41,17 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+<a id="sowadalmughni-rls-security-check"></a>
+## 💎 [sowadalmughni/rls-security-check](https://github.com/sowadalmughni/rls-security-check)
 
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+**★ 0** · exceptional (score 12) · Shell · tags: anthropic, claude-code, claude-skill, database-security, developer-tools
 
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+A Claude Code skill that audits Supabase and Postgres Row Level Security, then writes the exact policy to fix what it finds. Catches the USING (true) policy that looks secured but grants access to everyone, missing WITH CHECK clauses, and service role keys leaking into client code.
+
+✅ SKILL.md
 
 ```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+cue skills add sowadalmughni/rls-security-check --profile cybersecurity
 ```
 
 ---
@@ -50,19 +65,6 @@ Open-source security for AI agents: kernel-enforced egress control on macOS and 
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
-```
-
----
-
-<a id="sowadalmughni-ai-codebase-audit"></a>
-## ✨ [sowadalmughni/ai-codebase-audit](https://github.com/sowadalmughni/ai-codebase-audit)
-
-**★ 0** · strong (score 7) · Shell · tags: ai-generated-code, ai-security, anthropic, claude-code, claude-skill
-
-Audits AI-generated codebases for the six failure modes that cause production collapse: disconnected schema, missing RLS, exposed secrets, broken auth, unwired integrations, and N+1 queries. Outputs a severity-ranked remediation register, not inline fixes.
-
-```bash
-cue skills add sowadalmughni/ai-codebase-audit --profile cybersecurity
 ```
 
 ---

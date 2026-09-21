@@ -2,21 +2,21 @@
 title: "thdelmas/agent-nervous-system — Claude Code skill discovered by cue"
 description: "Agent Nervous System — a suite of Claude Code skills giving an AI agent self-maintenance organs: perception (octopus), memory (rem-sleep), defense (immune-check"
 layout: page
-updated: 2026-06-22
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [thdelmas/agent-nervous-system](https://github.com/thdelmas/agent-nervous-system)
 
-**★ 0** · exceptional (score 10.5) · Shell · agent-memory, agent-nervous-system, agent-skills, ai-agent, anthropic
+**★ 0** · exceptional (score 12) · Python · agent-memory, agent-nervous-system, agent-skills, ai-agent, anthropic
 
 > Agent Nervous System — a suite of Claude Code skills giving an AI agent self-maintenance organs: perception (octopus), memory (rem-sleep), defense (immune-check), grief (sunset). Each a submodule.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-22
+- 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: agent-memory, agent-nervous-system, agent-skills, ai-agent, anthropic, claude-code, claude-skill, codex, cognitive-architecture, cursor, developer-tools, git-submodules, llm, monorepo
 
 ## Best fit cue profiles

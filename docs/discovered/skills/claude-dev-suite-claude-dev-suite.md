@@ -2,7 +2,7 @@
 title: "claude-dev-suite/claude-dev-suite — Claude Code skill discovered by cue"
 description: "Point it at a repo and it configures your AI coding assistant for that stack: agents, framework skills, MCP servers, path-scoped rules. One install, seven assis"
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "preporato/claude-certification-guide — Claude Code skill discovered by cue"
 description: "Study guides for all Anthropic Claude certifications: CCA-F, CCDV-F, CCAO-F, and CCAR-P. Exam domains, comparison, study paths, free practice resources."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 

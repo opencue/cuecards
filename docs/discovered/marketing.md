@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mark-c-827-product-description-writer"></a>
-## 💎 [Mark-C-827/product-description-writer](https://github.com/Mark-C-827/product-description-writer)
+<a id="rogue-dev-studio-rogue-seo-audit-skill"></a>
+## 💎 [rogue-dev-studio/rogue-seo-audit-skill](https://github.com/rogue-dev-studio/rogue-seo-audit-skill)
 
-**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, claude-skill, conversion-copywriting, copywriting, ecommerce
+**★ 0** · exceptional (score 8) · tags: ai-agent-skill, marketing-automation, rogue-market-skills, seo-audit
 
-Benefit-led, scannable PDP master copy from a raw spec sheet — a four-part agent skill (SKILL.md + references + scripts + assets). Enhanced from the MIT original in SkillMedev/skills.
+Audit technical, on-page, and AI-search SEO for pages, sites, and content. Use when the user asks for `/seo-audit`, `/ai-seo`, SEO review, keyword targeting, heading structure, metadata, internal linking, content gaps, AEO, GEO, LLMO, or competitor SEO comparisons.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Mark-C-827/product-description-writer --profile marketing
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add rogue-dev-studio/rogue-seo-audit-skill --profile marketing
 ```
 
 ---

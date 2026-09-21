@@ -2,7 +2,7 @@
 title: "xirba13/battle-cats-gacha-explorer — Claude Code skill discovered by cue"
 description: "Web app to find the most resource-efficient Battle Cats gacha pull path to the units you don't own yet, using godfat seed data. Built with the help of Claude (A"
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 

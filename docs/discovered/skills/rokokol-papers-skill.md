@@ -2,7 +2,7 @@
 title: "rokokol/papers-skill — Claude Code skill discovered by cue"
 description: "Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp"
 layout: page
-updated: 2026-09-14
+updated: 2026-09-21
 tags: [claude-code, skill, research]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-14
+- 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: agent-skills, anthropic, arxiv, claude-code, claude-skill, home-manager, literature-review, literature-search, mcp, model-context-protocol, nix, nix-flake, ollama, openalex, paperqa, pubmed, research-tools, scientific-papers, semantic-scholar, skill
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-21
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -18,9 +18,9 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="ikalus1988-misakanet"></a>
 ## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 493** · exceptional (score 20.8) · Python · tags: agents, ai-agents, cloudflare-workers, d1, documentation
+**★ 495** · exceptional (score 20.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. Python stdlib only. | https://misakanet.org
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
 
 ✅ SKILL.md
 
@@ -30,54 +30,82 @@ cue skills add Ikalus1988/MisakaNet --profile backend
 
 ---
 
-<a id="punitarani-fli"></a>
-## 💎 [punitarani/fli](https://github.com/punitarani/fli)
+<a id="tabularisdb-tabularis"></a>
+## 💎 [TabularisDB/tabularis](https://github.com/TabularisDB/tabularis)
 
-**★ 3174** · exceptional (score 17) · Python · tags: api, flights-api, google-flights, google-flights-api, mcp
+**★ 5014** · exceptional (score 17) · TypeScript · tags: ai-agent, ai-assistant, cross-platform, database-client, database-gui
 
-Google Flights MCP, CLI and Python Library
+Open-source desktop SQL workspace with 3 built-in database drivers and 16 shipped plugins, including SQL Server, DuckDB, ClickHouse and Redis. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
 
 ```bash
-cue skills add punitarani/fli --profile backend
+cue skills add TabularisDB/tabularis --profile backend
 ```
 
 ---
 
-<a id="hproxy-com-free-proxy-list"></a>
-## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
+<a id="magicyuan876-mineru-tianshu"></a>
+## 💎 [magicyuan876/mineru-tianshu](https://github.com/magicyuan876/mineru-tianshu)
 
-**★ 62** · exceptional (score 12) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 810** · exceptional (score 16) · Python · tags: deepseek-ocr, markitdown, mcp-server, mineru, paddleocr-vl
 
-Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
+天枢 - 企业级 AI 一站式数据预处理平台 | PDF/Office转Markdown | 支持MCP协议AI助手集成 | Vue3+FastAPI全栈方案 | 文档解析 | 多模态信息提取
 
 ```bash
-cue skills add hproxy-com/free-proxy-list --profile backend
+cue skills add magicyuan876/mineru-tianshu --profile backend
 ```
 
 ---
 
-<a id="0xjacky-nginx-ui"></a>
-## 💎 [0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 11521** · exceptional (score 12) · Go · tags: code-completion, copilot, cron, docker, go
+**★ 205524** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Yet another WebUI for Nginx
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add 0xJacky/nginx-ui --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="ali-meoo-meoo-cli"></a>
-## 💎 [ali-meoo/meoo-cli](https://github.com/ali-meoo/meoo-cli)
+<a id="smart-mcp-proxy-mcpproxy-go"></a>
+## 💎 [smart-mcp-proxy/mcpproxy-go](https://github.com/smart-mcp-proxy/mcpproxy-go)
 
-**★ 25** · exceptional (score 9.4) · tags: claude-code-skill, claude-skills, cli, deploy, dsh-plugin
+**★ 377** · exceptional (score 13.9) · Go · tags: ai, ai-agents, audit-logging, bm25, cli
 
-meoo cli 是秒悟（Meoo）官方推出的命令行工具，让 Claude Code、Codex、Cursor、Qoder等本地 agent 在帮你写完前端代码后，能直接接管「数据库、用户登录、文件存储、部署上线」的所有云端工作——你只需要在终端跑一条命令，剩下的交给 AI。
+Supercharge AI Agents, Safely
 
 ```bash
-cue skills add ali-meoo/meoo-cli --profile backend
+cue skills add smart-mcp-proxy/mcpproxy-go --profile backend
+```
+
+---
+
+<a id="sowadalmughni-rls-security-check"></a>
+## 💎 [sowadalmughni/rls-security-check](https://github.com/sowadalmughni/rls-security-check)
+
+**★ 0** · exceptional (score 12) · Shell · tags: anthropic, claude-code, claude-skill, database-security, developer-tools
+
+A Claude Code skill that audits Supabase and Postgres Row Level Security, then writes the exact policy to fix what it finds. Catches the USING (true) policy that looks secured but grants access to everyone, missing WITH CHECK clauses, and service role keys leaking into client code.
+
+✅ SKILL.md
+
+```bash
+cue skills add sowadalmughni/rls-security-check --profile backend
+```
+
+---
+
+<a id="rafalpodles-board-planner"></a>
+## 💎 [rafalpodles/board-planner](https://github.com/rafalpodles/board-planner)
+
+**★ 0** · exceptional (score 10) · TypeScript · tags: agpl, ai-agents, claude-code, kanban, mcp
+
+One board. Your team works it. So do your agents. Kanban, sprints, REST API and MCP server — self-hosted, AGPL, with a PM agent and execution workers that run your tasks under your gates.
+
+```bash
+cue skills add rafalpodles/board-planner --profile backend
 ```
 
 ---
@@ -85,25 +113,12 @@ cue skills add ali-meoo/meoo-cli --profile backend
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 2** · exceptional (score 8.9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
 cue skills add ni-c/mcp-hub --profile backend
-```
-
----
-
-<a id="siddhushkya-anthropic-academy"></a>
-## 💎 [SiddhuShkya/Anthropic-Academy](https://github.com/SiddhuShkya/Anthropic-Academy)
-
-**★ 0** · exceptional (score 8) · Jupyter Notebook · tags: claude, claude-ai, claude-api, claude-code, claude-code-skill
-
-Get in the know with Anthropic resources. From API development guides to enterprise deployment best practices, the academy has you covered.
-
-```bash
-cue skills add SiddhuShkya/Anthropic-Academy --profile backend
 ```
 
 ---
@@ -121,67 +136,56 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="tahahussein-dotcom-mcp-encrypted-sqlite"></a>
-## ✨ [TahaHussein-dotcom/mcp-encrypted-sqlite](https://github.com/TahaHussein-dotcom/mcp-encrypted-sqlite)
+<a id="rogue-dev-studio-rogue-supabase-cli-skill"></a>
+## 💎 [rogue-dev-studio/rogue-supabase-cli-skill](https://github.com/rogue-dev-studio/rogue-supabase-cli-skill)
 
-**★ 1** · strong (score 7.8) · tags: crud, database, database-tools, encryption, gradle
+**★ 0** · exceptional (score 8) · tags: ai-agent-skill, database-management, rogue-market-skills, supabase-cli
 
-🔒 Access and manage encrypted SQLite databases effortlessly with this MCP server, designed for seamless integration with SQLCipher and various clients.
+Supabase CLI for local development, migrations, and edge functions. Use when the project needs this capability or the user / team manifest asks for it. Use for specialized `supabase-cli` work when listed in TEAM.yaml or explicitly requested.
+
+✅ SKILL.md
 
 ```bash
-cue skills add TahaHussein-dotcom/mcp-encrypted-sqlite --profile backend
+cue skills add rogue-dev-studio/rogue-supabase-cli-skill --profile backend
 ```
 
 ---
 
-<a id="kuuvahki-labs-sandrone"></a>
-## ✨ [kuuvahki-labs/sandrone](https://github.com/kuuvahki-labs/sandrone)
+<a id="agent360dk-computermcp"></a>
+## ✨ [Agent360dk/computerMCP](https://github.com/Agent360dk/computerMCP)
 
-**★ 5** · strong (score 7) · Go · tags: clash-meta, docker, golang, mcp-server, mihomo
+**★ 1** · strong (score 7.8) · JavaScript · tags: accessibility, accessibility-api, agentic-ai, ai-agents, anthropic
 
-Self-hosted proxy configuration workbench for aggregating subscriptions, probing nodes, and generating Mihomo, sing-box, and Shadowrocket configs.
+Computer use you can actually leave running. macOS MCP server where password fields are blacked out before the screenshot is written, writes need your consent, and every action is logged. 28 tools (12 read-only), menu bar and window control, no API key, MIT.
 
 ```bash
-cue skills add kuuvahki-labs/sandrone --profile backend
+cue skills add Agent360dk/computerMCP --profile backend
 ```
 
 ---
 
-<a id="auny-ai-grok-mcp-server"></a>
-## ✨ [auny-ai/grok-mcp-server](https://github.com/auny-ai/grok-mcp-server)
+<a id="ntlx-serverfs-mcp"></a>
+## ✨ [NTLx/ServerFS_MCP](https://github.com/NTLx/ServerFS_MCP)
 
-**★ 0** · strong (score 6.5) · TypeScript · tags: ai-agents, ai-tools, anthropic, claude, claude-mcp
+**★ 2** · strong (score 6.5) · Python · tags: ai-agents, chatgpt, docker, filesystem, mcp
 
-Remote MCP server exposing xAI Grok as 9 tools: live X search, web search, chat, reasoning, vision, and image and video generation. Deploy your own copy to Cloudflare Workers. Fail-closed auth, OAuth 2.0 + PKCE, single-use authorization codes.
+Read-only MCP server that exposes selected Linux directories to ChatGPT/OpenAI agents via Secure MCP Tunnel — list, find, search, read. No write, no shell, no escape.
 
 ```bash
-cue skills add auny-ai/grok-mcp-server --profile backend
+cue skills add NTLx/ServerFS_MCP --profile backend
 ```
 
 ---
 
-<a id="amrkhater0011-devops-server"></a>
-## ✨ [AmrKhater0011/devops_server](https://github.com/AmrKhater0011/devops_server)
+<a id="ramaaditya49-titen"></a>
+## ✨ [RamaAditya49/titen](https://github.com/RamaAditya49/titen)
 
-**★ 0** · strong (score 6.5) · JavaScript · tags: ai, azure-devops-extension, azure-repos, azuredevops-extension, claude
+**★ 15** · strong (score 6.4) · TypeScript · tags: agent-memory, ai-agents, bun, claude, cloudflare-workers
 
-🚀 Build and deploy a Node.js server with Kubernetes using k3d. Easily manage your application and serve static content seamlessly.
-
-```bash
-cue skills add AmrKhater0011/devops_server --profile backend
-```
-
----
-
-<a id="krzysztof318-mailfathom"></a>
-## ✨ [Krzysztof318/MailFathom](https://github.com/Krzysztof318/MailFathom)
-
-**★ 14** · strong (score 5.4) · C# · tags: ai, ai-agents, aspnet-core, clean-architecture, csharp
-
-A brain for your mail: MailFathom turns IMAP mailboxes into a self-hosted, AI-native service. Mail synchronizes into your own PostgreSQL, is indexed for search and retrieval, and is served to AI agents over the Model Context Protocol. Semantic retrieval, answering, and gated write tools. .NET 10, AGPL-3.0-only.
+Agent memory that needs no API key, no LLM, and no embedding provider. One command on Bun and it is serving MCP over stdio against a local SQLite store. Drop-in for the MCP reference memory server. Every memory keeps its source, who may read it, and the evidence that contradicts it.
 
 ```bash
-cue skills add Krzysztof318/MailFathom --profile backend
+cue skills add RamaAditya49/titen --profile backend
 ```
 
 ---
@@ -189,7 +193,7 @@ cue skills add Krzysztof318/MailFathom --profile backend
 <a id="anirudhlath-alfred"></a>
 ## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 2** · potential (score 4.9) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 2** · potential (score 4.8) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
 Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 

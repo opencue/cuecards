@@ -2,7 +2,7 @@
 title: "Yoodaddy0311/artibot — Claude Code skill discovered by cue"
 description: "Autonomous Agent OS for Claude Code — 28 agents, 114 skills, 72 commands. Dual-process cognition, lifelong learning, parallel agent teams, planning→PRD/ADR/TODO"
 layout: page
-updated: 2026-09-14
+updated: 2026-09-21
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-14
+- 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: agent-orchestration, ai-agent, anthropic, autonomous-agent, claude, claude-code, grpo, hierarchical-memory, llm-tools, mcp-server, plugin, typescript
 
 ## Best fit cue profiles

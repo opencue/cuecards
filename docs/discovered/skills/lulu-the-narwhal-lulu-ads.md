@@ -2,21 +2,21 @@
 title: "Lulu-The-Narwhal/lulu-ads — Claude Code skill discovered by cue"
 description: "Monetize MCP servers and AI agent tools with disclosed sponsored slots. Ships data, never directives. Fail-open by design."
 layout: page
-updated: 2026-07-27
+updated: 2026-09-21
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Lulu-The-Narwhal/lulu-ads](https://github.com/Lulu-The-Narwhal/lulu-ads)
 
-**★ 1** · strong (score 6.3) · Python · advertising, ai-agents, mcp, mcp-server, model-context-protocol
+**★ 3** · strong (score 6.7) · TypeScript · advertising, ai-agents, mcp, mcp-server, model-context-protocol
 
 > Monetize MCP servers and AI agent tools with disclosed sponsored slots. Ships data, never directives. Fail-open by design.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: advertising, ai-agents, mcp, mcp-server, model-context-protocol, monetization, sdk
 
 ## Best fit cue profiles
