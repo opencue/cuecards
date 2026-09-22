@@ -1,8 +1,8 @@
 ---
 title: "ariffazil/arifOS — Claude Code skill discovered by cue"
-description: "[L0 CONSTITUTION] arifOS — constitutional MCP kernel. Law, identity, F1–F13, VAULT999. Judges but never executes. DITEMPA BUKAN DIBERI."
+description: "Independent policy kernel for AI agents: judge before execute. F1–F13 floors, VAULT999 receipts. Not a model. Not a chatbot."
 layout: page
-updated: 2026-09-09
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 51** · exceptional (score 16.5) · Python · agentic-ai, agi, ai, ai-agents, ai-governance
 
-> [L0 CONSTITUTION] arifOS — constitutional MCP kernel. Law, identity, F1–F13, VAULT999. Judges but never executes. DITEMPA BUKAN DIBERI.
+> Independent policy kernel for AI agents: judge before execute. F1–F13 floors, VAULT999 receipts. Not a model. Not a chatbot.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
 - ⭐ 51 stars
-- 🗓️ Last pushed: 2026-09-09
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: agentic-ai, agi, ai, ai-agents, ai-governance, ai-safety, claude-code, constitutional-ai, fastmcp, governance, guardrails, llm, malaysia, mcp, mcp-client, mcp-server, model-context-protocol, multi-agent, prompt-engineering, python
 
 ## Best fit cue profiles

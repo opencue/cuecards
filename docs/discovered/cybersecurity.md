@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,43 +15,15 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="smart-mcp-proxy-mcpproxy-go"></a>
-## 💎 [smart-mcp-proxy/mcpproxy-go](https://github.com/smart-mcp-proxy/mcpproxy-go)
-
-**★ 377** · exceptional (score 13.9) · Go · tags: ai, ai-agents, audit-logging, bm25, cli
-
-Supercharge AI Agents, Safely
-
-```bash
-cue skills add smart-mcp-proxy/mcpproxy-go --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2637** · exceptional (score 13.1) · Python · tags: agentskills, claude, skills
+**★ 2642** · exceptional (score 13.1) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="sowadalmughni-rls-security-check"></a>
-## 💎 [sowadalmughni/rls-security-check](https://github.com/sowadalmughni/rls-security-check)
-
-**★ 0** · exceptional (score 12) · Shell · tags: anthropic, claude-code, claude-skill, database-security, developer-tools
-
-A Claude Code skill that audits Supabase and Postgres Row Level Security, then writes the exact policy to fix what it finds. Catches the USING (true) policy that looks secured but grants access to everyone, missing WITH CHECK clauses, and service role keys leaking into client code.
-
-✅ SKILL.md
-
-```bash
-cue skills add sowadalmughni/rls-security-check --profile cybersecurity
 ```
 
 ---
@@ -65,6 +37,32 @@ Open-source security for AI agents: kernel-enforced egress control on macOS and 
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
+```
+
+---
+
+<a id="mkarvan-agentshield"></a>
+## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
+
+**★ 3** · exceptional (score 9.7) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
+
+Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
+
+```bash
+cue skills add mkarvan/AgentShield --profile cybersecurity
+```
+
+---
+
+<a id="makash-feedmyagent-skill"></a>
+## ✨ [makash/feedmyagent-skill](https://github.com/makash/feedmyagent-skill)
+
+**★ 0** · strong (score 7.5) · JavaScript · tags: agent-skills, ai-agents, claude-skill, mcp, mcp-server
+
+
+
+```bash
+cue skills add makash/feedmyagent-skill --profile cybersecurity
 ```
 
 ---

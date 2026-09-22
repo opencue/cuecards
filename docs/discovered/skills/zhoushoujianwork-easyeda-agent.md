@@ -2,21 +2,22 @@
 title: "zhoushoujianwork/easyeda-agent — Claude Code skill discovered by cue"
 description: "嘉立创EDA专业版(EasyEDA Pro)自动化：给 AI harness 装上画板的「手」—— 一套 typed 原理图/PCB 动作，CLI / Agent Skill / stdio MCP 三形态融合接入。承接嘉立创「不以卖板赚钱，以培养中国工程师为己任」 | EasyEDA Pro automation: "
 layout: page
-updated: 2026-09-20
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [zhoushoujianwork/easyeda-agent](https://github.com/zhoushoujianwork/easyeda-agent)
 
-**★ 480** · exceptional (score 16.7) · Go · agent-skill, ai-agent, claude-code, dsh-plugin, easyeda
+**★ 509** · exceptional (score 21.7) · Go · agent-skill, ai-agent, claude-code, dsh-plugin, easyeda
 
 > 嘉立创EDA专业版(EasyEDA Pro)自动化：给 AI harness 装上画板的「手」—— 一套 typed 原理图/PCB 动作，CLI / Agent Skill / stdio MCP 三形态融合接入。承接嘉立创「不以卖板赚钱，以培养中国工程师为己任」 | EasyEDA Pro automation: the hands of your AI harness — typed schematic/PCB actions via CLI, Agent Skill and stdio MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
-- ⭐ 480 stars
-- 🗓️ Last pushed: 2026-09-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.7 based on:
+- ✅ Has `.claude/` directory
+- ⭐ 509 stars
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: agent-skill, ai-agent, claude-code, dsh-plugin, easyeda, eda, electronics, golang, hardware-design, jlceda, lceda, mcp, mcp-server, pcb, pcb-design, schematic
 
 ## Best fit cue profiles

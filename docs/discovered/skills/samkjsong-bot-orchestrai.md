@@ -2,19 +2,19 @@
 title: "samkjsong-bot/OrchestrAI — Claude Code skill discovered by cue"
 description: "Multi-model VSCode extension routing Claude + Codex + Gemini through subscription paths (no API billing) / Claude + Codex + Gemini를 한 사이드바에 통합한 VSCode 멀티모델 오케스트"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [samkjsong-bot/OrchestrAI](https://github.com/samkjsong-bot/OrchestrAI)
 
-**★ 3** · strong (score 6.2) · TypeScript
+**★ 3** · strong (score 6.1) · TypeScript
 
 > Multi-model VSCode extension routing Claude + Codex + Gemini through subscription paths (no API billing) / Claude + Codex + Gemini를 한 사이드바에 통합한 VSCode 멀티모델 오케스트레이터
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-09-20
 - 🏷️ Tags: (none)

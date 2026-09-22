@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+<a id="nathanaday-atlas-obsidian"></a>
+## 💎 [nathanaday/atlas-obsidian](https://github.com/nathanaday/atlas-obsidian)
 
-**★ 495** · exceptional (score 20.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
+**★ 0** · exceptional (score 8) · Go · tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-plugin
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
-
-✅ SKILL.md
+Organize *many* obsidian knowledge bases at once with the help of claude-code. Ingest new sources, prioritize tasks, and make sure nothing slips through the cracks.
 
 ```bash
-cue skills add Ikalus1988/MisakaNet --profile docs-writer
-```
-
----
-
-<a id="xinbenlv-agent-speak-readability"></a>
-## 💎 [xinbenlv/agent-speak-readability](https://github.com/xinbenlv/agent-speak-readability)
-
-**★ 1** · exceptional (score 15.8) · tags: agent-skill, ai-agents, asd-ste100, chinese, claude-code
-
-An agent skill that makes an agent's natural-language output readable to a human: cross-language rules plus a mandatory pre-send check. 让智能体写给人看的自然语言变得可读的技能。
-
-✅ SKILL.md
-
-```bash
-cue skills add xinbenlv/agent-speak-readability --profile docs-writer
+cue skills add nathanaday/atlas-obsidian --profile docs-writer
 ```
 
 ---
@@ -48,7 +31,7 @@ cue skills add xinbenlv/agent-speak-readability --profile docs-writer
 <a id="ipaulsmith-check-docs"></a>
 ## ✨ [ipaulsmith/check-docs](https://github.com/ipaulsmith/check-docs)
 
-**★ 1** · strong (score 6.3) · Shell · tags: agents-md, claude-code, claude-md, coding-agents, developer-tools
+**★ 1** · strong (score 6.2) · Shell · tags: agents-md, claude-code, claude-md, coding-agents, developer-tools
 
 A small sh pre-commit check that stops a commit when CLAUDE.md, AGENTS.md or the files they @import name a path that no longer exists or a name you deleted
 

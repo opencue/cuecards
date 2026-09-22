@@ -2,22 +2,22 @@
 title: "DaizeDong/small-cap-deepdive — Claude Code skill discovered by cue"
 description: "Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral "
 layout: page
-updated: 2026-08-30
+updated: 2026-09-22
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
 
-**★ 0** · exceptional (score 14.5) · Python · agent, ai, ai-agent, claude, claude-code
+**★ 0** · exceptional (score 16) · Python · agent, ai, ai-agent, claude, claude-code
 
 > Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-30
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, due-diligence, equity-research, finance, investing, llm, sec-filings, skill, small-cap, stock-analysis, value-investing
 
 ## Best fit cue profiles

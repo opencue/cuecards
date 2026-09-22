@@ -2,22 +2,22 @@
 title: "doughoseck/divi5-builder — Claude Code skill discovered by cue"
 description: "Build & edit Divi 5 WordPress pages via the WP REST API from a compact JSON spec — native, builder-editable modules, no inline CSS. Ships as a Claude Code skill"
 layout: page
-updated: 2026-09-09
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [doughoseck/divi5-builder](https://github.com/doughoseck/divi5-builder)
 
-**★ 1** · exceptional (score 13.3) · JavaScript · automation, claude-code, claude-skill, divi, divi-builder
+**★ 2** · exceptional (score 13.5) · JavaScript · automation, claude-code, claude-skill, divi, divi-builder
 
 > Build & edit Divi 5 WordPress pages via the WP REST API from a compact JSON spec — native, builder-editable modules, no inline CSS. Ships as a Claude Code skill; scripts are plain Node.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-09
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: automation, claude-code, claude-skill, divi, divi-builder, divi5, elegant-themes, nodejs, page-builder, rest-api, wordpress, wordpress-rest-api
 
 ## Best fit cue profiles

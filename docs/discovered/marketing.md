@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="rogue-dev-studio-rogue-seo-audit-skill"></a>
-## 💎 [rogue-dev-studio/rogue-seo-audit-skill](https://github.com/rogue-dev-studio/rogue-seo-audit-skill)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, marketing-automation, rogue-market-skills, seo-audit
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Audit technical, on-page, and AI-search SEO for pages, sites, and content. Use when the user asks for `/seo-audit`, `/ai-seo`, SEO review, keyword targeting, heading structure, metadata, internal linking, content gaps, AEO, GEO, LLMO, or competitor SEO comparisons.
-
-✅ SKILL.md
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add rogue-dev-studio/rogue-seo-audit-skill --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

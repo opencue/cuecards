@@ -2,7 +2,7 @@
 title: "DaizeDong/daily-hotspots — Claude Code skill discovered by cue"
 description: "每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档."
 layout: page
-updated: 2026-07-14
+updated: 2026-09-22
 tags: [claude-code, skill, niche]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, niche]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-14
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: agent, ai, ai-agent, automation, claude, claude-code, claude-plugin, claude-skill, discord, llm, market-research, opportunity-discovery, skill, trends, trends-business-intelligence-opportunity-discovery
 
 ## Best fit cue profiles

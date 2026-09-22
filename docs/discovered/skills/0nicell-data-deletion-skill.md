@@ -2,7 +2,7 @@
 title: "0nicell/data-deletion-skill — Claude Code skill discovered by cue"
 description: "A Claude skill for running structured personal-data erasure campaigns — 330 data brokers, OSINT tools and breach-search engines with verified privacy contacts, "
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 

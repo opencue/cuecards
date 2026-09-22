@@ -2,7 +2,7 @@
 title: "shindakun/herdr-llm-lint — Claude Code skill discovered by cue"
 description: "Lints CLAUDE.md, AGENTS.md, and agent instruction files for stale paths, commands, facts, and drift"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 

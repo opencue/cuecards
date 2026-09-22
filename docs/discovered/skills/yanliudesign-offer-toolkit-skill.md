@@ -2,23 +2,23 @@
 title: "yanliudesign/offer-toolkit-skill — Claude Code skill discovered by cue"
 description: "Full job-hunt Claude skill bundle — Job Description decoder + Resume builder (11 templates) + Behavioral Interview / story bank. Three self-contained sub-skills"
 layout: page
-updated: 2026-08-31
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yanliudesign/offer-toolkit-skill](https://github.com/yanliudesign/offer-toolkit-skill)
 
-**★ 355** · exceptional (score 21.6) · HTML · agent-skill, ai-agent, aijob, anthropic, behavioral-interview
+**★ 484** · exceptional (score 22.7) · HTML · agent-skill, ai-agent, aijob, behavioral-interview, bilingual
 
 > Full job-hunt Claude skill bundle — Job Description decoder + Resume builder (11 templates) + Behavioral Interview / story bank. Three self-contained sub-skills with a top-level router.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 22.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 355 stars
-- 🗓️ Last pushed: 2026-08-31
-- 🏷️ Tags: agent-skill, ai-agent, aijob, anthropic, behavioral-interview, bilingual, career, career-tools, claude, claude-code, claude-skill, interview-prep, job-description, job-hunt, llm-tools, offer-strategy, resume, resume-builder, resume-template, story-bank
+- ⭐ 484 stars
+- 🗓️ Last pushed: 2026-09-22
+- 🏷️ Tags: agent-skill, ai-agent, aijob, behavioral-interview, bilingual, career, career-tools, claude, claude-code, claude-skill, codex-skill, interview-prep, job-description, job-hunt, llm-tools, offer-strategy, resume, resume-builder, resume-template, story-bank
 
 ## Best fit cue profiles
 

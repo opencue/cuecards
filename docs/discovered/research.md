@@ -1,44 +1,72 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rokokol-papers-skill"></a>
-## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
+<a id="daizedong-small-cap-deepdive"></a>
+## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
 
-**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
+**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
 
-Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
+Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rokokol/papers-skill --profile research
+cue skills add DaizeDong/small-cap-deepdive --profile research
 ```
 
 ---
 
-<a id="u9401066-asset-aware-mcp"></a>
-## ✨ [u9401066/asset-aware-mcp](https://github.com/u9401066/asset-aware-mcp)
+<a id="2675149875-ppt-diagram"></a>
+## 💎 [2675149875/ppt-diagram](https://github.com/2675149875/ppt-diagram)
 
-**★ 0** · strong (score 6.5) · Python · tags: agent-assets, ai, citations, document-ai, document-editing
+**★ 1** · exceptional (score 13.3) · Python · tags: academic, claude-code, claude-skill, diagram, figure
 
-Agent document collaboration: versioned PDF pages/annotations, raster frames, DOCX/PPTX, spreadsheets and CSV/TSV, with checked edits, source provenance, CSL citations and wikilink evidence libraries
+用代码生成可编辑的学术示意图（方法框架图/流程图/技术路线图），在 PowerPoint 里微调后导出 600 DPI PNG 或矢量 SVG · Generate editable academic schematic figures as PPTX, then export print-ready PNG/SVG
+
+✅ SKILL.md
 
 ```bash
-cue skills add u9401066/asset-aware-mcp --profile research
+cue skills add 2675149875/ppt-diagram --profile research
+```
+
+---
+
+<a id="daizedong-market-intel"></a>
+## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
+
+**★ 2** · exceptional (score 11.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
+
+Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
+
+```bash
+cue skills add DaizeDong/market-intel --profile research
+```
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

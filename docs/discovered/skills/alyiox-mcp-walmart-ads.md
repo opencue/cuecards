@@ -1,23 +1,23 @@
 ---
 title: "alyiox/mcp-walmart-ads — Claude Code skill discovered by cue"
-description: "MCP server for Walmart Connect Ads (Sponsored Search + Display) — automatic RSA-SHA256 signing, multi-region config, and bundled API docs."
+description: "MCP server for Walmart Connect Ads, Walmart Marketplace, and Sam's Club Sponsored Ads behind one tool surface — 31 apis, 424 operations, RSA-SHA256 signing and "
 layout: page
-updated: 2026-08-14
+updated: 2026-09-22
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [alyiox/mcp-walmart-ads](https://github.com/alyiox/mcp-walmart-ads)
 
-**★ 1** · exceptional (score 9.8) · Python · advertising, ai-agent, display-ads, mcp, mcp-server
+**★ 1** · exceptional (score 9.8) · Python · advertising, ai-agent, display-ads, ecommerce, mcp
 
-> MCP server for Walmart Connect Ads (Sponsored Search + Display) — automatic RSA-SHA256 signing, multi-region config, and bundled API docs.
+> MCP server for Walmart Connect Ads, Walmart Marketplace, and Sam's Club Sponsored Ads behind one tool surface — 31 apis, 424 operations, RSA-SHA256 signing and OAuth2 handled for you.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-14
-- 🏷️ Tags: advertising, ai-agent, display-ads, mcp, mcp-server, model-context-protocol, sponsored-search, walmart
+- 🗓️ Last pushed: 2026-09-22
+- 🏷️ Tags: advertising, ai-agent, display-ads, ecommerce, mcp, mcp-server, model-context-protocol, openapi, python, retail-media, sams-club, sponsored-search, walmart, walmart-marketplace
 
 ## Best fit cue profiles
 

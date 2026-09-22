@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,58 +28,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 0** · exceptional (score 9.5) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add Fredjuel/arc-skill --profile frontend
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---
 
-<a id="rogue-dev-studio-rogue-web-artifacts-builder-skill"></a>
-## 💎 [rogue-dev-studio/rogue-web-artifacts-builder-skill](https://github.com/rogue-dev-studio/rogue-web-artifacts-builder-skill)
+<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
+## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
 
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, marketing-automation, rogue-market-skills, web-artifacts-builder
+**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
 
-Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.
-
-✅ SKILL.md
+Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
 
 ```bash
-cue skills add rogue-dev-studio/rogue-web-artifacts-builder-skill --profile frontend
-```
-
----
-
-<a id="rogue-dev-studio-rogue-ui-ux-design-skill"></a>
-## 💎 [rogue-dev-studio/rogue-ui-ux-design-skill](https://github.com/rogue-dev-studio/rogue-ui-ux-design-skill)
-
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, design-tools, rogue-market-skills, ui-ux-design
-
-Expert UI/UX design for product interfaces: user flows, information architecture, wireframes, interaction patterns, accessibility, and a mandatory theme/brand alignment gate against the active project (PROJECT.md, design docs, existing tokens/visual language). Use before or alongside frontend work when designing screens, reviewing mockups, or va...
-
-✅ SKILL.md
-
-```bash
-cue skills add rogue-dev-studio/rogue-ui-ux-design-skill --profile frontend
-```
-
----
-
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
-
-**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
-
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
-
-```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
+cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
 ```
 
 ---

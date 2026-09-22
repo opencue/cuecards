@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="mkarvan-agentshield"></a>
+## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
+
+**★ 3** · exceptional (score 9.7) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
+
+Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
+
+```bash
+cue skills add mkarvan/AgentShield --profile python
+```
 
 ---
 

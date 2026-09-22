@@ -1,42 +1,31 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="equalang-equalang-skill"></a>
+## 💎 [equalang/equalang-skill](https://github.com/equalang/equalang-skill)
 
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 0** · exceptional (score 13) · Python · tags: agent-skills, claude-code, claude-code-skill, codex, codex-skill
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Agent Skill for Equalang: translate PDF, DOCX, PPTX, XLSX, EPUB, subtitles, pictures, audio and video with the layout kept; transcribe recordings. For Claude Code, Codex, Cursor and more.
 
-```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
-```
-
----
-
-<a id="juliang8507-cli-anything-capcut"></a>
-## 💎 [juliang8507/cli-anything-capcut](https://github.com/juliang8507/cli-anything-capcut)
-
-**★ 7** · exceptional (score 8.7) · Python · tags: capcut, claude-code-skill, cli, ffmpeg, jianying
-
-CapCut/JianYing draft scripting CLI built on pyCapCut. Includes Claude Code skill.
+✅ SKILL.md
 
 ```bash
-cue skills add juliang8507/cli-anything-capcut --profile video
+cue skills add equalang/equalang-skill --profile video
 ```
 
 ---

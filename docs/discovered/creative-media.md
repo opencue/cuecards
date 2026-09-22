@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,30 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="tt-a1i-archify"></a>
+## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 69463** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
+cue skills add tt-a1i/archify --profile creative-media
 ```
 
 ---
 
-<a id="rogue-dev-studio-rogue-ui-ux-design-skill"></a>
-## 💎 [rogue-dev-studio/rogue-ui-ux-design-skill](https://github.com/rogue-dev-studio/rogue-ui-ux-design-skill)
+<a id="equalang-equalang-skill"></a>
+## 💎 [equalang/equalang-skill](https://github.com/equalang/equalang-skill)
 
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, design-tools, rogue-market-skills, ui-ux-design
+**★ 0** · exceptional (score 13) · Python · tags: agent-skills, claude-code, claude-code-skill, codex, codex-skill
 
-Expert UI/UX design for product interfaces: user flows, information architecture, wireframes, interaction patterns, accessibility, and a mandatory theme/brand alignment gate against the active project (PROJECT.md, design docs, existing tokens/visual language). Use before or alongside frontend work when designing screens, reviewing mockups, or va...
+Agent Skill for Equalang: translate PDF, DOCX, PPTX, XLSX, EPUB, subtitles, pictures, audio and video with the layout kept; transcribe recordings. For Claude Code, Codex, Cursor and more.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rogue-dev-studio/rogue-ui-ux-design-skill --profile creative-media
+cue skills add equalang/equalang-skill --profile creative-media
 ```
 
 ---

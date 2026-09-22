@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="yoodaddy0311-artibot"></a>
-## 💎 [Yoodaddy0311/artibot](https://github.com/Yoodaddy0311/artibot)
+<a id="wan-huiyan-agent-traffic-control"></a>
+## 💎 [wan-huiyan/agent-traffic-control](https://github.com/wan-huiyan/agent-traffic-control)
 
-**★ 3** · exceptional (score 11.7) · JavaScript · tags: agent-orchestration, ai-agent, anthropic, autonomous-agent, claude
+**★ 3** · exceptional (score 9.2) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, git-worktree, multi-agent
 
-Autonomous Agent OS for Claude Code — 28 agents, 114 skills, 72 commands. Dual-process cognition, lifelong learning, parallel agent teams, planning→PRD/ADR/TODO workflow, cross-platform install.
+Coordination toolkit for parallel Claude Code sessions sharing one repo — issue-pickup claim protocol, worktree isolation pitfalls, parallel-PR conflict recovery, subagent integrity, and squash/merge mechanics. 61 skills, Pattern B multi-skill plugin.
 
 ```bash
-cue skills add Yoodaddy0311/artibot --profile fleet-control
+cue skills add wan-huiyan/agent-traffic-control --profile fleet-control
 ```
 
 ---

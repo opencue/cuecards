@@ -1,111 +1,94 @@
 ---
 title: "Claude Code Skills for backend"
-description: "15 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 15 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+<a id="caura-ai-caura"></a>
+## 💎 [caura-ai/caura](https://github.com/caura-ai/caura)
 
-**★ 495** · exceptional (score 20.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
+**★ 528** · exceptional (score 15.8) · Python · tags: agent-memory, agentic-ai, ai-agents, ai-infrastructure, claude
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
-
-✅ SKILL.md
+Caura (formerly MemClaw) — governed shared memory for AI agent fleets. Multi-agent, multi-tenant, MCP-native. Trust tiers, keystone policies, audit trails, knowledge graph, self-improving retrieval. Apache 2.0.
 
 ```bash
-cue skills add Ikalus1988/MisakaNet --profile backend
+cue skills add caura-ai/caura --profile backend
 ```
 
 ---
 
-<a id="tabularisdb-tabularis"></a>
-## 💎 [TabularisDB/tabularis](https://github.com/TabularisDB/tabularis)
+<a id="skyhook-io-radar"></a>
+## 💎 [skyhook-io/radar](https://github.com/skyhook-io/radar)
 
-**★ 5014** · exceptional (score 17) · TypeScript · tags: ai-agent, ai-assistant, cross-platform, database-client, database-gui
+**★ 3419** · exceptional (score 15) · Go · tags: ai-agents, argocd, cloud-native, fluxcd, gitops
 
-Open-source desktop SQL workspace with 3 built-in database drivers and 16 shipped plugins, including SQL Server, DuckDB, ClickHouse and Redis. Built-in MCP server for Claude, Cursor and Devin, SQL notebooks and visual EXPLAIN.
+The missing open-source Kubernetes UI with a built-in MCP server for AI agents. See what's broken, why, and what changed. Issues, Topology, event timeline, Helm, GitOps, live service traffic, and cluster audits - all in one Go binary.
 
 ```bash
-cue skills add TabularisDB/tabularis --profile backend
+cue skills add skyhook-io/radar --profile backend
 ```
 
 ---
 
-<a id="magicyuan876-mineru-tianshu"></a>
-## 💎 [magicyuan876/mineru-tianshu](https://github.com/magicyuan876/mineru-tianshu)
+<a id="emercoin-emer-ai-tools"></a>
+## 💎 [emercoin/emer-ai-tools](https://github.com/emercoin/emer-ai-tools)
 
-**★ 810** · exceptional (score 16) · Python · tags: deepseek-ocr, markitdown, mcp-server, mineru, paddleocr-vl
+**★ 9** · exceptional (score 11.2) · Python · tags: ai-agents, blockchain, docker, emercoin, fastapi
 
-天枢 - 企业级 AI 一站式数据预处理平台 | PDF/Office转Markdown | 支持MCP协议AI助手集成 | Vue3+FastAPI全栈方案 | 文档解析 | 多模态信息提取
+Emercoin as an identity + memory layer for AI agents: node + adapter + the emercoin-agent MCP server (on-chain identity & durable memory via NVS).
 
 ```bash
-cue skills add magicyuan876/mineru-tianshu --profile backend
+cue skills add emercoin/emer-ai-tools --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
 
-**★ 205524** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add DaizeDong/schedule-reminder --profile backend
 ```
 
 ---
 
-<a id="smart-mcp-proxy-mcpproxy-go"></a>
-## 💎 [smart-mcp-proxy/mcpproxy-go](https://github.com/smart-mcp-proxy/mcpproxy-go)
+<a id="samarthanalytics-sj-samarth-analytics-mcp"></a>
+## 💎 [samarthanalytics-sj/samarth-analytics-mcp](https://github.com/samarthanalytics-sj/samarth-analytics-mcp)
 
-**★ 377** · exceptional (score 13.9) · Go · tags: ai, ai-agents, audit-logging, bm25, cli
+**★ 2** · exceptional (score 10) · TypeScript · tags: ai-agent, consent-mode, consent-mode-v2, cookie-consent, ga4
 
-Supercharge AI Agents, Safely
+MCP server for Samarth Analytics Google Tag Manager operations
 
 ```bash
-cue skills add smart-mcp-proxy/mcpproxy-go --profile backend
+cue skills add samarthanalytics-sj/samarth-analytics-mcp --profile backend
 ```
 
 ---
 
-<a id="sowadalmughni-rls-security-check"></a>
-## 💎 [sowadalmughni/rls-security-check](https://github.com/sowadalmughni/rls-security-check)
+<a id="alyiox-mcp-walmart-ads"></a>
+## 💎 [alyiox/mcp-walmart-ads](https://github.com/alyiox/mcp-walmart-ads)
 
-**★ 0** · exceptional (score 12) · Shell · tags: anthropic, claude-code, claude-skill, database-security, developer-tools
+**★ 1** · exceptional (score 9.8) · Python · tags: advertising, ai-agent, display-ads, ecommerce, mcp
 
-A Claude Code skill that audits Supabase and Postgres Row Level Security, then writes the exact policy to fix what it finds. Catches the USING (true) policy that looks secured but grants access to everyone, missing WITH CHECK clauses, and service role keys leaking into client code.
-
-✅ SKILL.md
+MCP server for Walmart Connect Ads, Walmart Marketplace, and Sam's Club Sponsored Ads behind one tool surface — 31 apis, 424 operations, RSA-SHA256 signing and OAuth2 handled for you.
 
 ```bash
-cue skills add sowadalmughni/rls-security-check --profile backend
-```
-
----
-
-<a id="rafalpodles-board-planner"></a>
-## 💎 [rafalpodles/board-planner](https://github.com/rafalpodles/board-planner)
-
-**★ 0** · exceptional (score 10) · TypeScript · tags: agpl, ai-agents, claude-code, kanban, mcp
-
-One board. Your team works it. So do your agents. Kanban, sprints, REST API and MCP server — self-hosted, AGPL, with a PM agent and execution workers that run your tasks under your gates.
-
-```bash
-cue skills add rafalpodles/board-planner --profile backend
+cue skills add alyiox/mcp-walmart-ads --profile backend
 ```
 
 ---
@@ -123,69 +106,54 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+<a id="soporte-defontsoft-delphi-ide-remote-mcp"></a>
+## 💎 [soporte-defontsoft/delphi-ide-remote-mcp](https://github.com/soporte-defontsoft/delphi-ide-remote-mcp)
 
-**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 9** · exceptional (score 8.2) · Pascal · tags: ai-agents, android, claude, delphi, desktop-automation
 
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
+[BETA] An MCP server that turns a Windows RAD Studio machine into a remote backend for programming agents: safe editing, real MSBuild builds, git, scaffolding, deploy & remote execution via PAServer, Android (adb) and Linux GNOME desktop control, DelphiLSP semantic navigation (8 of 42 tools). Per-workspace security.
 
 ```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+cue skills add soporte-defontsoft/delphi-ide-remote-mcp --profile backend
 ```
 
 ---
 
-<a id="rogue-dev-studio-rogue-supabase-cli-skill"></a>
-## 💎 [rogue-dev-studio/rogue-supabase-cli-skill](https://github.com/rogue-dev-studio/rogue-supabase-cli-skill)
+<a id="coservices-ee-airfreightprice-mcp"></a>
+## ✨ [coservices-ee/airfreightprice-mcp](https://github.com/coservices-ee/airfreightprice-mcp)
 
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, database-management, rogue-market-skills, supabase-cli
+**★ 0** · strong (score 6) · tags: ai-agents, air-cargo, air-freight, freight-api, logistics
 
-Supabase CLI for local development, migrations, and edge functions. Use when the project needs this capability or the user / team manifest asks for it. Use for specialized `supabase-cli` work when listed in TEAM.yaml or explicitly requested.
-
-✅ SKILL.md
+Public MCP server for air cargo routes, airports, carriers and dated rate reference. 10 tools, 11 languages, no API key, quote requests enabled.
 
 ```bash
-cue skills add rogue-dev-studio/rogue-supabase-cli-skill --profile backend
+cue skills add coservices-ee/airfreightprice-mcp --profile backend
 ```
 
 ---
 
-<a id="agent360dk-computermcp"></a>
-## ✨ [Agent360dk/computerMCP](https://github.com/Agent360dk/computerMCP)
+<a id="alyiox-mcp-openapix"></a>
+## ✨ [alyiox/mcp-openapix](https://github.com/alyiox/mcp-openapix)
 
-**★ 1** · strong (score 7.8) · JavaScript · tags: accessibility, accessibility-api, agentic-ai, ai-agents, anthropic
+**★ 0** · strong (score 6) · Python · tags: agent, api, llm, mcp, mcp-server
 
-Computer use you can actually leave running. macOS MCP server where password fields are blacked out before the screenshot is written, writes need your consent, and every action is logged. 28 tools (12 read-only), menu bar and window control, no API key, MIT.
+MCP server that fronts any OpenAPI service: discover operations from its spec and call them
 
 ```bash
-cue skills add Agent360dk/computerMCP --profile backend
+cue skills add alyiox/mcp-openapix --profile backend
 ```
 
 ---
 
-<a id="ntlx-serverfs-mcp"></a>
-## ✨ [NTLx/ServerFS_MCP](https://github.com/NTLx/ServerFS_MCP)
+<a id="casadesante-nuclide"></a>
+## ✨ [casadesante/Nuclide](https://github.com/casadesante/Nuclide)
 
-**★ 2** · strong (score 6.5) · Python · tags: ai-agents, chatgpt, docker, filesystem, mcp
+**★ 0** · strong (score 5) · TypeScript · tags: isotopes, knowledge-graph, mcp-server, nuclear-medicine, open-data
 
-Read-only MCP server that exposes selected Linux directories to ChatGPT/OpenAI agents via Secure MCP Tunnel — list, find, search, read. No write, no shell, no escape.
-
-```bash
-cue skills add NTLx/ServerFS_MCP --profile backend
-```
-
----
-
-<a id="ramaaditya49-titen"></a>
-## ✨ [RamaAditya49/titen](https://github.com/RamaAditya49/titen)
-
-**★ 15** · strong (score 6.4) · TypeScript · tags: agent-memory, ai-agents, bun, claude, cloudflare-workers
-
-Agent memory that needs no API key, no LLM, and no embedding provider. One command on Bun and it is serving MCP over stdio against a local SQLite store. Drop-in for the MCP reference memory server. Every memory keeps its source, who may read it, and the evidence that contradicts it.
+Nuclide: total information dominance on radiopharmaceuticals. An open, cited knowledge graph of theranostics and diagnostic nuclear medicine: 811 records, static JSON API, MCP server and CLI. Forked from OnCo.
 
 ```bash
-cue skills add RamaAditya49/titen --profile backend
+cue skills add casadesante/Nuclide --profile backend
 ```
 
 ---

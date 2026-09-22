@@ -1,23 +1,23 @@
 ---
 title: "Zaious/riftbound-chronicle — Claude Code skill discovered by cue"
-description: "AI agent skill (Claude Code) for Riftbound: deckbuilding + gameplay methodology, a generalized regional-legality model, and a bundled English card dataset. Unof"
+description: "A bounded Riftbound rules engine and AI-agent toolkit: Deck Coach, Rule Consult, and Player2 infrastructure with versioned grammar and re-runnable evidence for "
 layout: page
-updated: 2026-08-30
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Zaious/riftbound-chronicle](https://github.com/Zaious/riftbound-chronicle)
 
-**★ 2** · exceptional (score 11) · Python · ai-agent, claude-code, claude-skill, deckbuilder, riftbound
+**★ 3** · exceptional (score 10.2) · Python · ai-agent, claude-code, claude-skill, deckbuilder, game-rules
 
-> AI agent skill (Claude Code) for Riftbound: deckbuilding + gameplay methodology, a generalized regional-legality model, and a bundled English card dataset. Unofficial fan project.
+> A bounded Riftbound rules engine and AI-agent toolkit: Deck Coach, Rule Consult, and Player2 infrastructure with versioned grammar and re-runnable evidence for covered mechanics. Not a game simulator or official rules authority. Licensed card programs live in a private overlay. Unofficial fan project.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-30
-- 🏷️ Tags: ai-agent, claude-code, claude-skill, deckbuilder, riftbound, tcg
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-09-22
+- 🏷️ Tags: ai-agent, claude-code, claude-skill, deckbuilder, game-rules, riftbound, rules-engine, tcg
 
 ## Best fit cue profiles
 

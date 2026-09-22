@@ -2,7 +2,7 @@
 title: "ogasurfproject-jpg/horizon-shield — Claude Code skill discovered by cue"
 description: "NENRIN: tree rings for AI facing services. Bitcoin-anchored public ledger, open witnessing, and an MCP server for verifiable Japanese construction estimates. Th"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-16
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: a2a, ai-agents, bitcoin, gemini-cli-extension, mcp, mcp-server, model-context-protocol, opentimestamps, transparency-log
 
 ## Best fit cue profiles

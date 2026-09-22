@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-22
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,6 +26,34 @@ Evaluate project fundability and refine grant logic using AI agent skills to ide
 
 ```bash
 cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+```
+
+---
+
+<a id="daizedong-daily-hotspots"></a>
+## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
+
+**★ 0** · exceptional (score 8) · Python · tags: agent, ai, ai-agent, automation, claude
+
+每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
+
+```bash
+cue skills add DaizeDong/daily-hotspots --profile niche
+```
+
+---
+
+<a id="catcatuncle-ruanzhu-kit"></a>
+## ✨ [CatCatUncle/ruanzhu-kit](https://github.com/CatCatUncle/ruanzhu-kit)
+
+**★ 0** · strong (score 7.5) · JavaScript · tags: agent-skills, china, claude-skill, nodejs, pdf-generation
+
+中国软著登记材料生成器：源码进去，页数一页不差的 PDF 出来
+
+✅ SKILL.md
+
+```bash
+cue skills add CatCatUncle/ruanzhu-kit --profile niche
 ```
 
 ---
