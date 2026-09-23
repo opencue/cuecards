@@ -2,7 +2,7 @@
 title: "fredmayor88/acr-setup-engineer — Claude Code skill discovered by cue"
 description: "A free Claude Skill that turns Claude into your Assetto Corsa Rally (ACR) setup engineer. Describe how the car felt in plain words — no jargon needed — and get "
 layout: page
-updated: 2026-09-12
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-12
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: acr, ai-assistant, anthropic, assetto-corsa, assetto-corsa-rally, car-setup, car-setups, claude, claude-ai, claude-skill, notion, racing-games, rally, rally-racing, setup-tool, sim-racing, simracing, tuning, vehicle-dynamics
 
 ## Best fit cue profiles

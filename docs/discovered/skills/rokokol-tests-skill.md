@@ -2,7 +2,7 @@
 title: "rokokol/tests-skill — Claude Code skill discovered by cue"
 description: "A standard for tests that mean something when they are green: an honest verdict, logs read at exit 0, every check proven able to fail, and a suite measured by b"
 layout: page
-updated: 2026-09-16
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-16
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: agent-skills, bash, ci, claude-code, claude-skill, developer-tools, falsifiability, flaky-tests, git-bisect, golang, mutation-testing, nixos, pytest, quality-assurance, rust, shell, skill, tdd, test-automation, testing
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "CP-here/docx-formatter-skill — Claude Code skill discovered by cue"
 description: "Word 排版 / docx 排版 / 中文文档格式化 skill。将 Markdown 或纯文本排版为专业中文 Word (.docx) 文档，支持 OMML 数学公式、表格框图、目录与引用上标。Chinese Word (.docx) typesetting skill built with python-docx"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-22
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: agent-skill, chinese, chinese-typesetting, claude-code-skill, docx, docx-generator, dsh, dsh-skill, markdown, omml, python, typesetting, word, word-formatting
 
 ## Best fit cue profiles

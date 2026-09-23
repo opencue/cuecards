@@ -2,7 +2,7 @@
 title: "AlexisBalayre/claude-code-config — Claude Code skill discovered by cue"
 description: "Opinionated Claude Code config: path-scoped rules, 34 skills, 12 subagents, deterministic hooks, and a multi-agent PR review. Stack-agnostic; run /adapt-to-proj"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 

@@ -1,23 +1,23 @@
 ---
 title: "DaizeDong/self-evolve — Claude Code skill discovered by cue"
-description: "Methodology skill + deterministic harness for agents that self-iterate any skill/repo/project. Anti-self-deception by design — an un-gameable acceptance gate so"
+description: "Methodology and deterministic evaluation tools for iterative improvement of skills, repositories and agent workflows, with independent review and regression che"
 layout: page
-updated: 2026-08-20
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DaizeDong/self-evolve](https://github.com/DaizeDong/self-evolve)
 
-**★ 1** · exceptional (score 14.8) · Python · agent, agent-evolution, ai, ai-agent, ai-safety
+**★ 2** · exceptional (score 17.5) · Python · agent, agent-evolution, ai, ai-agent, ai-safety
 
-> Methodology skill + deterministic harness for agents that self-iterate any skill/repo/project. Anti-self-deception by design — an un-gameable acceptance gate so 'accepted = real improvement', not a fake score-up curve. Built for the open-ended, no-ground-truth domains the self-improving-agent literature skips. 521 tests.
+> Methodology and deterministic evaluation tools for iterative improvement of skills, repositories and agent workflows, with independent review and regression checks.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-20
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: agent, agent-evolution, ai, ai-agent, ai-safety, autonomous-agents, claude, claude-code, claude-plugin, claude-skill, evals, llm, mcp, reflection, reward-hacking, self-evolving-agents, self-improving-agents, skill
 
 ## Best fit cue profiles

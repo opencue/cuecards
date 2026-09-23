@@ -2,7 +2,7 @@
 title: "rogue-dev-studio/rogue-workspace-hygiene-skill — Claude Code skill discovered by cue"
 description: "Organize personal folders (Downloads, Desktop, Documents, arbitrary paths) by file category or by face clusters in photos. Modes: by-type, by-extension, by-face"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: ai-agent-skill, developer-tools, rogue-market-skills, workspace-hygiene
 
 ## Best fit cue profiles

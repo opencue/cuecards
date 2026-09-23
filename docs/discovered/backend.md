@@ -1,55 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="caura-ai-caura"></a>
-## 💎 [caura-ai/caura](https://github.com/caura-ai/caura)
+<a id="perpetualsoftware-pad"></a>
+## 💎 [PerpetualSoftware/pad](https://github.com/PerpetualSoftware/pad)
 
-**★ 528** · exceptional (score 15.8) · Python · tags: agent-memory, agentic-ai, ai-agents, ai-infrastructure, claude
+**★ 182** · exceptional (score 16.2) · Go · tags: agent-era, agent-tools, ai-agents, claude-code, cli
 
-Caura (formerly MemClaw) — governed shared memory for AI agent fleets. Multi-agent, multi-tenant, MCP-native. Trust tiers, keystone policies, audit trails, knowledge graph, self-improving retrieval. Apache 2.0.
+Project Management for the agent era
 
 ```bash
-cue skills add caura-ai/caura --profile backend
+cue skills add PerpetualSoftware/pad --profile backend
 ```
 
 ---
 
-<a id="skyhook-io-radar"></a>
-## 💎 [skyhook-io/radar](https://github.com/skyhook-io/radar)
+<a id="elsakkk-mnemos-mcp"></a>
+## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
 
-**★ 3419** · exceptional (score 15) · Go · tags: ai-agents, argocd, cloud-native, fluxcd, gitops
+**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
 
-The missing open-source Kubernetes UI with a built-in MCP server for AI agents. See what's broken, why, and what changed. Issues, Topology, event timeline, Helm, GitOps, live service traffic, and cluster audits - all in one Go binary.
-
-```bash
-cue skills add skyhook-io/radar --profile backend
-```
-
----
-
-<a id="emercoin-emer-ai-tools"></a>
-## 💎 [emercoin/emer-ai-tools](https://github.com/emercoin/emer-ai-tools)
-
-**★ 9** · exceptional (score 11.2) · Python · tags: ai-agents, blockchain, docker, emercoin, fastapi
-
-Emercoin as an identity + memory layer for AI agents: node + adapter + the emercoin-agent MCP server (on-chain identity & durable memory via NVS).
+🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
 
 ```bash
-cue skills add emercoin/emer-ai-tools --profile backend
+cue skills add ELSAKKK/mnemos-mcp --profile backend
 ```
 
 ---
@@ -67,28 +54,15 @@ cue skills add DaizeDong/schedule-reminder --profile backend
 
 ---
 
-<a id="samarthanalytics-sj-samarth-analytics-mcp"></a>
-## 💎 [samarthanalytics-sj/samarth-analytics-mcp](https://github.com/samarthanalytics-sj/samarth-analytics-mcp)
+<a id="daizedong-box-rclone-binder"></a>
+## 💎 [DaizeDong/box-rclone-binder](https://github.com/DaizeDong/box-rclone-binder)
 
-**★ 2** · exceptional (score 10) · TypeScript · tags: ai-agent, consent-mode, consent-mode-v2, cookie-consent, ga4
+**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, backup
 
-MCP server for Samarth Analytics Google Tag Manager operations
-
-```bash
-cue skills add samarthanalytics-sj/samarth-analytics-mcp --profile backend
-```
-
----
-
-<a id="alyiox-mcp-walmart-ads"></a>
-## 💎 [alyiox/mcp-walmart-ads](https://github.com/alyiox/mcp-walmart-ads)
-
-**★ 1** · exceptional (score 9.8) · Python · tags: advertising, ai-agent, display-ads, ecommerce, mcp
-
-MCP server for Walmart Connect Ads, Walmart Marketplace, and Sam's Club Sponsored Ads behind one tool surface — 31 apis, 424 operations, RSA-SHA256 signing and OAuth2 handled for you.
+Bind one Box drive across multiple servers via rclone with non-expiring server auth; idempotent deploy, health-check self-heal, cron, and Discord alerts.
 
 ```bash
-cue skills add alyiox/mcp-walmart-ads --profile backend
+cue skills add DaizeDong/box-rclone-binder --profile backend
 ```
 
 ---
@@ -96,7 +70,7 @@ cue skills add alyiox/mcp-walmart-ads --profile backend
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 2** · exceptional (score 8.9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -106,67 +80,54 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="soporte-defontsoft-delphi-ide-remote-mcp"></a>
-## 💎 [soporte-defontsoft/delphi-ide-remote-mcp](https://github.com/soporte-defontsoft/delphi-ide-remote-mcp)
+<a id="ninjacazul-hono-mcp-server"></a>
+## 💎 [ninjacazul/hono-mcp-server](https://github.com/ninjacazul/hono-mcp-server)
 
-**★ 9** · exceptional (score 8.2) · Pascal · tags: ai-agents, android, claude, delphi, desktop-automation
+**★ 2** · exceptional (score 8) · TypeScript · tags: aws, browser-extension, collaboration, deno, eclipseiot
 
-[BETA] An MCP server that turns a Windows RAD Studio machine into a remote backend for programming agents: safe editing, real MSBuild builds, git, scaffolding, deploy & remote execution via PAServer, Android (adb) and Linux GNOME desktop control, DelphiLSP semantic navigation (8 of 42 tools). Per-workspace security.
+🔧 Expose Hono API endpoints as MCP tools, simplifying integration and enhancing your API's functionality.
 
 ```bash
-cue skills add soporte-defontsoft/delphi-ide-remote-mcp --profile backend
+cue skills add ninjacazul/hono-mcp-server --profile backend
 ```
 
 ---
 
-<a id="coservices-ee-airfreightprice-mcp"></a>
-## ✨ [coservices-ee/airfreightprice-mcp](https://github.com/coservices-ee/airfreightprice-mcp)
+<a id="hasfo-deepsec"></a>
+## ✨ [hasfo/deepsec](https://github.com/hasfo/deepsec)
 
-**★ 0** · strong (score 6) · tags: ai-agents, air-cargo, air-freight, freight-api, logistics
+**★ 0** · strong (score 7.5) · Python · tags: adversarial-examples, ai, api-keys, auth0, authentication
 
-Public MCP server for air cargo routes, airports, carriers and dated rate reference. 10 tools, 11 languages, no API key, quote requests enabled.
+🔍 Enhance security audits with DeepSec, an AI-driven platform combining Static Application Security Testing and advanced analysis to detect vulnerabilities efficiently.
 
 ```bash
-cue skills add coservices-ee/airfreightprice-mcp --profile backend
+cue skills add hasfo/deepsec --profile backend
 ```
 
 ---
 
-<a id="alyiox-mcp-openapix"></a>
-## ✨ [alyiox/mcp-openapix](https://github.com/alyiox/mcp-openapix)
+<a id="dvorinka-cal"></a>
+## ✨ [Dvorinka/cal](https://github.com/Dvorinka/cal)
 
-**★ 0** · strong (score 6) · Python · tags: agent, api, llm, mcp, mcp-server
+**★ 2** · strong (score 6.5) · Go · tags: calendar, capacitor, golang, kanban, mcp-server
 
-MCP server that fronts any OpenAPI service: discover operations from its spec and call them
+Self-hosted daily toolkit — calendar, tasks, notes, links, files, kanban boards, time tracking, GitHub inbox. One Docker container.
 
 ```bash
-cue skills add alyiox/mcp-openapix --profile backend
+cue skills add Dvorinka/cal --profile backend
 ```
 
 ---
 
-<a id="casadesante-nuclide"></a>
-## ✨ [casadesante/Nuclide](https://github.com/casadesante/Nuclide)
+<a id="jmshinhwa-readystack-themes"></a>
+## ✨ [jmshinhwa/readystack-themes](https://github.com/jmshinhwa/readystack-themes)
 
-**★ 0** · strong (score 5) · TypeScript · tags: isotopes, knowledge-graph, mcp-server, nuclear-medicine, open-data
+**★ 0** · strong (score 5) · JavaScript · tags: compliance, cursor, devsecops, linter, mcp-server
 
-Nuclide: total information dominance on radiopharmaceuticals. An open, cited knowledge graph of theranostics and diagnostic nuclear medicine: 811 records, static JSON API, MCP server and CLI. Forked from OnCo.
-
-```bash
-cue skills add casadesante/Nuclide --profile backend
-```
-
----
-
-<a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
-
-**★ 2** · potential (score 4.8) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
-
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+ReadyStack — regulation & deadline linters for VS Code / Cursor (Open VSX), npm CLI, Docker and MCP: DORA, NIS2, CRA, PCI DSS 6.4.3, WCAG 2.2, EU e-invoicing, GitHub Actions deprecations. Free file check; 7-day paid workspace sweep.
 
 ```bash
-cue skills add anirudhlath/alfred --profile backend
+cue skills add jmshinhwa/readystack-themes --profile backend
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "PerryLink/dsh-fast — Claude Code skill discovered by cue"
 description: "Read-only performance diagnostics for DeepSeek Harness: session load/restore timing, spill-hit counts, compaction count and trigger, context-injection volume (A"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.9 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: context-engineering, cordis, deepseek, deepseek-harness, diagnostics, dsh, dsh-plugin, llm-cache, performance, profiling
 
 ## Best fit cue profiles

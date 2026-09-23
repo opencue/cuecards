@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-23
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mark-c-827-product-description-writer"></a>
-## 💎 [Mark-C-827/product-description-writer](https://github.com/Mark-C-827/product-description-writer)
+<a id="ericforge-localized-translation"></a>
+## 💎 [ericforge/localized-translation](https://github.com/ericforge/localized-translation)
 
-**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, claude-skill, conversion-copywriting, copywriting, ecommerce
+**★ 0** · exceptional (score 13.5) · tags: ai-agent, amazon-listing, claude-skill, cross-border-ecommerce, i18n
 
-Benefit-led, scannable PDP master copy from a raw spec sheet — a four-part agent skill (SKILL.md + references + scripts + assets). Enhanced from the MIT original in SkillMedev/skills.
+多语言本地化翻译流水线 Skill｜翻译 → 校对 → 本土化 → 润色 → 合规审核。Language-agnostic l10n pipeline for cross-border e-commerce & DTC.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Mark-C-827/product-description-writer --profile medusa-dev
+cue skills add ericforge/localized-translation --profile medusa-dev
+```
+
+---
+
+<a id="daizedong-shopping-aggregator"></a>
+## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
+
+**★ 3** · exceptional (score 11.7) · Python · tags: agent, ai, ai-agent, amazon, claude
+
+Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
+
+```bash
+cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
 ```
 
 ---

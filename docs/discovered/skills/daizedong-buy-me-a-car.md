@@ -1,8 +1,8 @@
 ---
 title: "DaizeDong/buy-me-a-car — Claude Code skill discovered by cue"
-description: "Claude Code plugin: end-to-end used car buying — multi-site research, mass dealer outreach, OTD negotiation with 50-state fee data, CARFAX analysis, decision tr"
+description: "Sixteen skills for US car research, verified OTD calculations, constrained dealer drafts, durable inbox imports and evidence-backed dossiers."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 8** · exceptional (score 13.3) · Python · agent, ai, ai-agent, automotive, car-buying
 
-> Claude Code plugin: end-to-end used car buying — multi-site research, mass dealer outreach, OTD negotiation with 50-state fee data, CARFAX analysis, decision tracking
+> Sixteen skills for US car research, verified OTD calculations, constrained dealer drafts, durable inbox imports and evidence-backed dossiers.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-09-22
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: agent, ai, ai-agent, automotive, car-buying, carfax, claude, claude-code, claude-plugin, claude-skill, cpo, dealer-negotiation, ev, insurance, lease, llm, otd, skill, trade-in, used-car
 
 ## Best fit cue profiles

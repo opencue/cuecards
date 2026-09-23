@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
+<a id="elsakkk-mnemos-mcp"></a>
+## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
+
+**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
+
+🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
+
+```bash
+cue skills add ELSAKKK/mnemos-mcp --profile python
+```
+
+---
+
 <a id="mkarvan-agentshield"></a>
 ## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
 
-**★ 3** · exceptional (score 9.7) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
+**★ 3** · exceptional (score 9.6) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
 
 Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
 
 ```bash
 cue skills add mkarvan/AgentShield --profile python
-```
-
----
-
-<a id="anirudhlath-alfred"></a>
-## 🔹 [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
-
-**★ 2** · potential (score 4.8) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
-
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
-
-```bash
-cue skills add anirudhlath/alfred --profile python
 ```
 
 ---

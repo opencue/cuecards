@@ -2,19 +2,19 @@
 title: "shindakun/herdr-llm-lint — Claude Code skill discovered by cue"
 description: "Lints CLAUDE.md, AGENTS.md, and agent instruction files for stale paths, commands, facts, and drift"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [shindakun/herdr-llm-lint](https://github.com/shindakun/herdr-llm-lint)
 
-**★ 1** · strong (score 6.3) · Rust · agents-md, ai-agents, claude-code, claude-md, cli
+**★ 1** · strong (score 6.2) · Rust · agents-md, ai-agents, claude-code, claude-md, cli
 
 > Lints CLAUDE.md, AGENTS.md, and agent instruction files for stale paths, commands, facts, and drift
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: agents-md, ai-agents, claude-code, claude-md, cli, herdr, herdr-plugin, linter, rust, tui

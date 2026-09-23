@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikramahmadmemon13-grant-thinking-skill"></a>
-## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+<a id="onemoh-html-explainer"></a>
+## 💎 [OneMoh/html-explainer](https://github.com/OneMoh/html-explainer)
 
-**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+**★ 16** · exceptional (score 15.4) · Python · tags: agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills
 
-Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
+把一个主题做成有配音、字幕、封面的讲解分析类视频 —— 全本地、用 HTML 写画面，稳定音画同步。 面向 AI 编程智能体的确定性 HTML → MP4 渲染流水线。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+cue skills add OneMoh/html-explainer --profile niche
 ```
 
 ---
@@ -39,21 +39,6 @@ cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 
 ```bash
 cue skills add DaizeDong/daily-hotspots --profile niche
-```
-
----
-
-<a id="catcatuncle-ruanzhu-kit"></a>
-## ✨ [CatCatUncle/ruanzhu-kit](https://github.com/CatCatUncle/ruanzhu-kit)
-
-**★ 0** · strong (score 7.5) · JavaScript · tags: agent-skills, china, claude-skill, nodejs, pdf-generation
-
-中国软著登记材料生成器：源码进去，页数一页不差的 PDF 出来
-
-✅ SKILL.md
-
-```bash
-cue skills add CatCatUncle/ruanzhu-kit --profile niche
 ```
 
 ---

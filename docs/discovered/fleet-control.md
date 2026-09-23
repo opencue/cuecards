@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="wan-huiyan-agent-traffic-control"></a>
-## 💎 [wan-huiyan/agent-traffic-control](https://github.com/wan-huiyan/agent-traffic-control)
+<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
+## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 3** · exceptional (score 9.2) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, git-worktree, multi-agent
+**★ 123** · exceptional (score 13.4) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
-Coordination toolkit for parallel Claude Code sessions sharing one repo — issue-pickup claim protocol, worktree isolation pitfalls, parallel-PR conflict recovery, subagent integrity, and squash/merge mechanics. 61 skills, Pattern B multi-skill plugin.
+Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
-cue skills add wan-huiyan/agent-traffic-control --profile fleet-control
+cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="aankirz-coordinator-mode"></a>
+## 💎 [Aankirz/coordinator-mode](https://github.com/Aankirz/coordinator-mode)
+
+**★ 3** · exceptional (score 8.7) · Shell · tags: agent-skills, claude, claude-code, claude-skill, multi-agent
+
+Claude Code skill: one session coordinates, spawns and reviews builder sessions across a multi-phase build
+
+```bash
+cue skills add Aankirz/coordinator-mode --profile fleet-control
 ```
 
 ---

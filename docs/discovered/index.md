@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,24 +11,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-09-22 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-09-23 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 66 | `offer-toolkit-skill`, `easyeda-agent`, `trace-mcp` |
-| [**backend**](./backend.md) | 13 | `caura`, `radar`, `emer-ai-tools` |
-| [**research**](./research.md) | 5 | `small-cap-deepdive`, `ppt-diagram`, `market-intel` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `AgentShield` |
-| [**creative-media**](./creative-media.md) | 3 | `archify`, `equalang-skill`, `redesigned-pancake` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook`, `appllama-skills` |
-| [**niche**](./niche.md) | 3 | `grant-thinking-skill`, `daily-hotspots`, `ruanzhu-kit` |
-| [**python**](./python.md) | 2 | `AgentShield`, `alfred` |
-| [**fleet-control**](./fleet-control.md) | 2 | `agent-traffic-control`, `rolepod` |
-| [**docs-writer**](./docs-writer.md) | 2 | `atlas-obsidian`, `check-docs` |
-| [**video**](./video.md) | 1 | `equalang-skill` |
-| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**core**](./core.md) | 67 | `trace-mcp`, `activepieces`, `self-evolve` |
+| [**backend**](./backend.md) | 10 | `pad`, `mnemos-mcp`, `schedule-reminder` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `Claude-OSINT`, `claude-security-research-skill`, `sanctuary-framework` |
+| [**research**](./research.md) | 4 | `small-cap-deepdive`, `market-intel`, `demand-mining` |
+| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `coordinator-mode`, `rolepod` |
+| [**docs-writer**](./docs-writer.md) | 3 | `llm-wiki`, `llm-knowledge-base`, `check-docs` |
+| [**creative-media**](./creative-media.md) | 2 | `archify`, `redesigned-pancake` |
+| [**niche**](./niche.md) | 2 | `html-explainer`, `daily-hotspots` |
+| [**medusa-dev**](./medusa-dev.md) | 2 | `localized-translation`, `shopping-aggregator` |
+| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
+| [**marketing**](./marketing.md) | 2 | `promotion-assistant`, `sticky-switcher-funnel-playbook` |
+| [**python**](./python.md) | 2 | `mnemos-mcp`, `AgentShield` |
 
 ## How scoring works
 

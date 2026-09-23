@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,27 +18,12 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 <a id="tt-a1i-archify"></a>
 ## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 69463** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 70262** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
 Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ```bash
 cue skills add tt-a1i/archify --profile creative-media
-```
-
----
-
-<a id="equalang-equalang-skill"></a>
-## 💎 [equalang/equalang-skill](https://github.com/equalang/equalang-skill)
-
-**★ 0** · exceptional (score 13) · Python · tags: agent-skills, claude-code, claude-code-skill, codex, codex-skill
-
-Agent Skill for Equalang: translate PDF, DOCX, PPTX, XLSX, EPUB, subtitles, pictures, audio and video with the layout kept; transcribe recordings. For Claude Code, Codex, Cursor and more.
-
-✅ SKILL.md
-
-```bash
-cue skills add equalang/equalang-skill --profile creative-media
 ```
 
 ---

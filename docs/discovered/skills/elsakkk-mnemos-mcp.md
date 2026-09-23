@@ -2,21 +2,21 @@
 title: "ELSAKKK/mnemos-mcp — Claude Code skill discovered by cue"
 description: "🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers."
 layout: page
-updated: 2026-07-03
+updated: 2026-09-23
 tags: [claude-code, skill, backend, python]
 ---
 
 # 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
 
-**★ 4** · exceptional (score 8.3) · Python · developer-tools, embeddings, fastapi, knowledge-base, mcp-server
+**★ 5** · exceptional (score 10.6) · Python · developer-tools, embeddings, fastapi, knowledge-base, mcp-server
 
 > 🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-07-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server, ollama, pgvector, private, python, rag, self-hosted, semantic-search, vector-database
 
 ## Best fit cue profiles

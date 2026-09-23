@@ -2,7 +2,7 @@
 title: "ipaulsmith/check-docs — Claude Code skill discovered by cue"
 description: "A small sh pre-commit check that stops a commit when CLAUDE.md, AGENTS.md or the files they @import name a path that no longer exists or a name you deleted"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, docs-writer]
 ---
 

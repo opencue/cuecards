@@ -2,21 +2,21 @@
 title: "DaizeDong/skill-smith — Claude Code skill discovered by cue"
 description: "Skill scaffolding and validation, a shared catalog, and runtime overlay policy for local agent environments."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DaizeDong/skill-smith](https://github.com/DaizeDong/skill-smith)
 
-**★ 1** · exceptional (score 10.8) · Python · agent, ai, ai-agent, claude, claude-code
+**★ 1** · exceptional (score 12.3) · Python · agent, ai, ai-agent, claude, claude-code
 
 > Skill scaffolding and validation, a shared catalog, and runtime overlay policy for local agent environments.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-22
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, evals, llm, meta-skill, scaffolding, skill, skill-authoring, skill-generator
 
 ## Best fit cue profiles

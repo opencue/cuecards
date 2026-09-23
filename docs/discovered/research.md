@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for research"
-description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-23
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -30,21 +30,6 @@ cue skills add DaizeDong/small-cap-deepdive --profile research
 
 ---
 
-<a id="2675149875-ppt-diagram"></a>
-## 💎 [2675149875/ppt-diagram](https://github.com/2675149875/ppt-diagram)
-
-**★ 1** · exceptional (score 13.3) · Python · tags: academic, claude-code, claude-skill, diagram, figure
-
-用代码生成可编辑的学术示意图（方法框架图/流程图/技术路线图），在 PowerPoint 里微调后导出 600 DPI PNG 或矢量 SVG · Generate editable academic schematic figures as PPTX, then export print-ready PNG/SVG
-
-✅ SKILL.md
-
-```bash
-cue skills add 2675149875/ppt-diagram --profile research
-```
-
----
-
 <a id="daizedong-market-intel"></a>
 ## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
 
@@ -58,15 +43,15 @@ cue skills add DaizeDong/market-intel --profile research
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="daizedong-demand-mining"></a>
+## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 1** · exceptional (score 8.3) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add DaizeDong/demand-mining --profile research
 ```
 
 ---

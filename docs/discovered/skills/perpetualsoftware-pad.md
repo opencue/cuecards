@@ -2,21 +2,21 @@
 title: "PerpetualSoftware/pad — Claude Code skill discovered by cue"
 description: "Project Management for the agent era"
 layout: page
-updated: 2026-08-26
+updated: 2026-09-23
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [PerpetualSoftware/pad](https://github.com/PerpetualSoftware/pad)
 
-**★ 137** · exceptional (score 16.1) · Go · agent-era, agent-tools, ai-agents, claude-code, cli
+**★ 182** · exceptional (score 16.2) · Go · agent-era, agent-tools, ai-agents, claude-code, cli
 
 > Project Management for the agent era
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
-- ⭐ 137 stars
-- 🗓️ Last pushed: 2026-08-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
+- ⭐ 182 stars
+- 🗓️ Last pushed: 2026-09-23
 - 🏷️ Tags: agent-era, agent-tools, ai-agents, claude-code, cli, codex, cursor, developer-tools, golang, issue-tracker, local-first, markdown, mcp-server, open-source, project-management, self-hosted, sqlite, sveltekit, task-management, windsurf
 
 ## Best fit cue profiles
