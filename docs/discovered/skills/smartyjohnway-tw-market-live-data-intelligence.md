@@ -1,23 +1,23 @@
 ---
 title: "SmartyJohnway/tw-market-live-data-intelligence — Claude Code skill discovered by cue"
-description: "Local-first Taiwan market context workbench for AI-assisted discussion, bounded live observation, source contracts, FastAPI, frontend, and MCP."
+description: "Local-first Taiwan market evidence workbench for AI agents — TWSE/TPEx, persistent Watchlists, governed MCP, auditable evidence, explicit execute-once."
 layout: page
-updated: 2026-07-08
+updated: 2026-09-24
 tags: [claude-code, skill, python, backend]
 ---
 
 # ✨ [SmartyJohnway/tw-market-live-data-intelligence](https://github.com/SmartyJohnway/tw-market-live-data-intelligence)
 
-**★ 0** · strong (score 6) · Python · fastapi, financial-data, local-first, market-data-ai-context, mcp-server
+**★ 0** · strong (score 7.5) · Python · ai-agents, fastapi, financial-data, fintech, local-first
 
-> Local-first Taiwan market context workbench for AI-assisted discussion, bounded live observation, source contracts, FastAPI, frontend, and MCP.
+> Local-first Taiwan market evidence workbench for AI agents — TWSE/TPEx, persistent Watchlists, governed MCP, auditable evidence, explicit execute-once.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-08
-- 🏷️ Tags: fastapi, financial-data, local-first, market-data-ai-context, mcp-server, python, source-contracts, stock-market-observation, taifex, taiwan-stock-market, tpex, twse
+- 🗓️ Last pushed: 2026-09-24
+- 🏷️ Tags: ai-agents, fastapi, financial-data, fintech, local-first, market-data, mcp, mcp-server, model-context-protocol, python, stock-market, taifex, taiwan-stock, taiwan-stock-market, tpex, twse
 
 ## Best fit cue profiles
 

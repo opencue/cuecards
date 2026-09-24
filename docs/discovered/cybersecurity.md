@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2646** · exceptional (score 13) · Python · tags: agentskills, claude, skills
+**★ 2654** · exceptional (score 13) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,15 +28,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+<a id="hahwul-gori"></a>
+## 💎 [hahwul/gori](https://github.com/hahwul/gori)
 
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+**★ 105** · exceptional (score 11.3) · Crystal · tags: bugbounty, cli, crystal, gori, mcp
 
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
 
 ```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+cue skills add hahwul/gori --profile cybersecurity
 ```
 
 ---
@@ -67,28 +67,28 @@ cue skills add mkarvan/AgentShield --profile cybersecurity
 
 ---
 
-<a id="hasfo-deepsec"></a>
-## ✨ [hasfo/deepsec](https://github.com/hasfo/deepsec)
-
-**★ 0** · strong (score 7.5) · Python · tags: adversarial-examples, ai, api-keys, auth0, authentication
-
-🔍 Enhance security audits with DeepSec, an AI-driven platform combining Static Application Security Testing and advanced analysis to detect vulnerabilities efficiently.
-
-```bash
-cue skills add hasfo/deepsec --profile cybersecurity
-```
-
----
-
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.8) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="azieleliab-aziel-runtime"></a>
+## ✨ [AzielEliab/aziel-runtime](https://github.com/AzielEliab/aziel-runtime)
+
+**★ 2** · strong (score 6.5) · JavaScript · tags: agent-orchestration, ai-agents, auditing, aziel-eliab, chain-of-custody
+
+Aziel Runtime by Aziel Eliab — FragGate MCP Softwares door. https://aziel-runtime.vibelock.workers.dev/ · OpenAPI+MCP · Glama · hubs azieleliab.com · corpus · godlock.uk · HDJ.
+
+```bash
+cue skills add AzielEliab/aziel-runtime --profile cybersecurity
 ```
 
 ---

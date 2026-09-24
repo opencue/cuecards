@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
+<a id="labsai-eddi"></a>
+## 💎 [labsai/EDDI](https://github.com/labsai/EDDI)
 
-**★ 123** · exceptional (score 13.4) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 380** · exceptional (score 15) · Java · tags: a2a, ai-agents, ai-orchestration, chatbot, conversation-memory
 
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="aankirz-coordinator-mode"></a>
-## 💎 [Aankirz/coordinator-mode](https://github.com/Aankirz/coordinator-mode)
-
-**★ 3** · exceptional (score 8.7) · Shell · tags: agent-skills, claude, claude-code, claude-skill, multi-agent
-
-Claude Code skill: one session coordinates, spawns and reviews builder sessions across a multi-phase build
+Config-driven engine that turns JSON into production-grade AI agents. Multi-agent orchestration, 12+ LLM providers, MCP/A2A protocols, RAG, persistent memory, and enterprise compliance (EU AI Act, GDPR, HIPAA). Built on Quarkus.
 
 ```bash
-cue skills add Aankirz/coordinator-mode --profile fleet-control
+cue skills add labsai/EDDI --profile fleet-control
 ```
 
 ---
@@ -50,6 +37,19 @@ Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, A
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
+```
+
+---
+
+<a id="linxuhao-aitelier"></a>
+## 💎 [linxuhao/AItelier](https://github.com/linxuhao/AItelier)
+
+**★ 3** · exceptional (score 8.2) · Python · tags: agent-orchestration, atomic-design, deepseek, deterministic-execution, dsh-plugin
+
+AI-Atelier, the all in one personal "atelier" (means handcraft studio in french) that can adapt to your need.
+
+```bash
+cue skills add linxuhao/AItelier --profile fleet-control
 ```
 
 ---

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,15 +28,43 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="fredjuel-arc-skill"></a>
+## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · exceptional (score 9.5) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add Fredjuel/arc-skill --profile frontend
+```
+
+---
+
+<a id="rogue-dev-studio-rogue-frontend-engineering-skill"></a>
+## 💎 [rogue-dev-studio/rogue-frontend-engineering-skill](https://github.com/rogue-dev-studio/rogue-frontend-engineering-skill)
+
+**★ 0** · exceptional (score 8) · tags: ai-agent-skill, frontend-engineering, marketing-automation, rogue-market-skills
+
+Expert frontend application engineering: accessible UI structure, state and data-fetching discipline, form/validation UX, responsive layouts, performance budgets, and integration with API contracts. Use when building or refining SPA/web screens, design-system consumption, client-side routing, or fixing UI reliability (loading, empty, and error s...
+
+✅ SKILL.md
+
+```bash
+cue skills add rogue-dev-studio/rogue-frontend-engineering-skill --profile frontend
+```
+
+---
+
+<a id="ystherr-wechat-article-formatter-skill"></a>
+## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+
+**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+
+🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
+
+```bash
+cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 ```
 
 ---

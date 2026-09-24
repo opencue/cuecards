@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,19 +15,6 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="elsakkk-mnemos-mcp"></a>
-## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
-
-**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
-
-🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
-
-```bash
-cue skills add ELSAKKK/mnemos-mcp --profile python
-```
-
----
-
 <a id="mkarvan-agentshield"></a>
 ## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
 
@@ -37,6 +24,19 @@ Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go ins
 
 ```bash
 cue skills add mkarvan/AgentShield --profile python
+```
+
+---
+
+<a id="smartyjohnway-tw-market-live-data-intelligence"></a>
+## ✨ [SmartyJohnway/tw-market-live-data-intelligence](https://github.com/SmartyJohnway/tw-market-live-data-intelligence)
+
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, fastapi, financial-data, fintech, local-first
+
+Local-first Taiwan market evidence workbench for AI agents — TWSE/TPEx, persistent Watchlists, governed MCP, auditable evidence, explicit execute-once.
+
+```bash
+cue skills add SmartyJohnway/tw-market-live-data-intelligence --profile python
 ```
 
 ---

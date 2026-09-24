@@ -2,19 +2,19 @@
 title: "ipaulsmith/check-docs — Claude Code skill discovered by cue"
 description: "A small sh pre-commit check that stops a commit when CLAUDE.md, AGENTS.md or the files they @import name a path that no longer exists or a name you deleted"
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, skill, docs-writer]
 ---
 
 # ✨ [ipaulsmith/check-docs](https://github.com/ipaulsmith/check-docs)
 
-**★ 1** · strong (score 6.2) · Shell · agents-md, claude-code, claude-md, coding-agents, developer-tools
+**★ 1** · strong (score 6.1) · Shell · agents-md, claude-code, claude-md, coding-agents, developer-tools
 
 > A small sh pre-commit check that stops a commit when CLAUDE.md, AGENTS.md or the files they @import name a path that no longer exists or a name you deleted
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-19
 - 🏷️ Tags: agents-md, claude-code, claude-md, coding-agents, developer-tools, documentation, git-hooks, linter, pre-commit, shell-script

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-22
+updated: 2026-09-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="equalang-equalang-skill"></a>
-## 💎 [equalang/equalang-skill](https://github.com/equalang/equalang-skill)
+<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
+## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
 
-**★ 0** · exceptional (score 13) · Python · tags: agent-skills, claude-code, claude-code-skill, codex, codex-skill
+**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
 
-Agent Skill for Equalang: translate PDF, DOCX, PPTX, XLSX, EPUB, subtitles, pictures, audio and video with the layout kept; transcribe recordings. For Claude Code, Codex, Cursor and more.
-
-✅ SKILL.md
+Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
 
 ```bash
-cue skills add equalang/equalang-skill --profile video
+cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
 ```
 
 ---

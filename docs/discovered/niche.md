@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="onemoh-html-explainer"></a>
-## 💎 [OneMoh/html-explainer](https://github.com/OneMoh/html-explainer)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 16** · exceptional (score 15.4) · Python · tags: agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills
+**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-把一个主题做成有配音、字幕、封面的讲解分析类视频 —— 全本地、用 HTML 写画面，稳定音画同步。 面向 AI 编程智能体的确定性 HTML → MP4 渲染流水线。
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add OneMoh/html-explainer --profile niche
-```
-
----
-
-<a id="daizedong-daily-hotspots"></a>
-## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
-
-**★ 0** · exceptional (score 8) · Python · tags: agent, ai, ai-agent, automation, claude
-
-每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
-
-```bash
-cue skills add DaizeDong/daily-hotspots --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 ```
 
 ---

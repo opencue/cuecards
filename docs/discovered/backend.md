@@ -1,68 +1,70 @@
 ---
 title: "Claude Code Skills for backend"
-description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="perpetualsoftware-pad"></a>
-## 💎 [PerpetualSoftware/pad](https://github.com/PerpetualSoftware/pad)
+<a id="ikalus1988-misakanet"></a>
+## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 182** · exceptional (score 16.2) · Go · tags: agent-era, agent-tools, ai-agents, claude-code, cli
+**★ 508** · exceptional (score 22.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
 
-Project Management for the agent era
+📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
+
+✅ SKILL.md
 
 ```bash
-cue skills add PerpetualSoftware/pad --profile backend
+cue skills add Ikalus1988/MisakaNet --profile backend
 ```
 
 ---
 
-<a id="elsakkk-mnemos-mcp"></a>
-## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
+<a id="labsai-eddi"></a>
+## 💎 [labsai/EDDI](https://github.com/labsai/EDDI)
 
-**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
+**★ 380** · exceptional (score 15) · Java · tags: a2a, ai-agents, ai-orchestration, chatbot, conversation-memory
 
-🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
+Config-driven engine that turns JSON into production-grade AI agents. Multi-agent orchestration, 12+ LLM providers, MCP/A2A protocols, RAG, persistent memory, and enterprise compliance (EU AI Act, GDPR, HIPAA). Built on Quarkus.
 
 ```bash
-cue skills add ELSAKKK/mnemos-mcp --profile backend
+cue skills add labsai/EDDI --profile backend
 ```
 
 ---
 
-<a id="daizedong-schedule-reminder"></a>
-## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 205826** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add DaizeDong/schedule-reminder --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="daizedong-box-rclone-binder"></a>
-## 💎 [DaizeDong/box-rclone-binder](https://github.com/DaizeDong/box-rclone-binder)
+<a id="noveum-orbit"></a>
+## 💎 [Noveum/orbit](https://github.com/Noveum/orbit)
 
-**★ 0** · exceptional (score 10.5) · Python · tags: agent, ai, ai-agent, automation, backup
+**★ 47** · exceptional (score 10.3) · TypeScript · tags: agile, bun, issue-tracker, jira-alternative, kanban
 
-Bind one Box drive across multiple servers via rclone with non-expiring server auth; idempotent deploy, health-check self-heal, cron, and Discord alerts.
+Free, open source, realtime task manager. Issues, boards, sprints, projects and docs that sync instantly. Keyboard-first, self-hostable, with an MCP server for AI agents. No pricing, ever.
 
 ```bash
-cue skills add DaizeDong/box-rclone-binder --profile backend
+cue skills add Noveum/orbit --profile backend
 ```
 
 ---
@@ -70,7 +72,7 @@ cue skills add DaizeDong/box-rclone-binder --profile backend
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 2** · exceptional (score 8.9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -80,54 +82,41 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="ninjacazul-hono-mcp-server"></a>
-## 💎 [ninjacazul/hono-mcp-server](https://github.com/ninjacazul/hono-mcp-server)
+<a id="meisterpilze-meistertracker"></a>
+## 💎 [meisterpilze/meistertracker](https://github.com/meisterpilze/meistertracker)
 
-**★ 2** · exceptional (score 8) · TypeScript · tags: aws, browser-extension, collaboration, deno, eclipseiot
+**★ 3** · exceptional (score 8.2) · JavaScript · tags: agpl, barcode-scanner, caldav, fungi, inventory-tracking
 
-🔧 Expose Hono API endpoints as MCP tools, simplifying integration and enhancing your API's functionality.
+Self-hosted lab management for specialty mushroom cultivation — barcode scanning, batch / culture / harvest tracking, label printing, CalDAV sync, MCP integration. Built at meisterpilze.de.
 
 ```bash
-cue skills add ninjacazul/hono-mcp-server --profile backend
+cue skills add meisterpilze/meistertracker --profile backend
 ```
 
 ---
 
-<a id="hasfo-deepsec"></a>
-## ✨ [hasfo/deepsec](https://github.com/hasfo/deepsec)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 0** · strong (score 7.5) · Python · tags: adversarial-examples, ai, api-keys, auth0, authentication
+**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-🔍 Enhance security audits with DeepSec, an AI-driven platform combining Static Application Security Testing and advanced analysis to detect vulnerabilities efficiently.
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add hasfo/deepsec --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 ```
 
 ---
 
-<a id="dvorinka-cal"></a>
-## ✨ [Dvorinka/cal](https://github.com/Dvorinka/cal)
+<a id="smartyjohnway-tw-market-live-data-intelligence"></a>
+## ✨ [SmartyJohnway/tw-market-live-data-intelligence](https://github.com/SmartyJohnway/tw-market-live-data-intelligence)
 
-**★ 2** · strong (score 6.5) · Go · tags: calendar, capacitor, golang, kanban, mcp-server
+**★ 0** · strong (score 7.5) · Python · tags: ai-agents, fastapi, financial-data, fintech, local-first
 
-Self-hosted daily toolkit — calendar, tasks, notes, links, files, kanban boards, time tracking, GitHub inbox. One Docker container.
-
-```bash
-cue skills add Dvorinka/cal --profile backend
-```
-
----
-
-<a id="jmshinhwa-readystack-themes"></a>
-## ✨ [jmshinhwa/readystack-themes](https://github.com/jmshinhwa/readystack-themes)
-
-**★ 0** · strong (score 5) · JavaScript · tags: compliance, cursor, devsecops, linter, mcp-server
-
-ReadyStack — regulation & deadline linters for VS Code / Cursor (Open VSX), npm CLI, Docker and MCP: DORA, NIS2, CRA, PCI DSS 6.4.3, WCAG 2.2, EU e-invoicing, GitHub Actions deprecations. Free file check; 7-day paid workspace sweep.
+Local-first Taiwan market evidence workbench for AI agents — TWSE/TPEx, persistent Watchlists, governed MCP, auditable evidence, explicit execute-once.
 
 ```bash
-cue skills add jmshinhwa/readystack-themes --profile backend
+cue skills add SmartyJohnway/tw-market-live-data-intelligence --profile backend
 ```
 
 ---

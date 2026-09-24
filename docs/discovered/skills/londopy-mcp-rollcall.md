@@ -2,19 +2,19 @@
 title: "Londopy/mcp-rollcall — Claude Code skill discovered by cue"
 description: "Take a roll call of your MCP servers across Claude Code, Codex, Cursor, Gemini CLI, Copilot, VS Code, Windsurf and OpenCode - which will fail to connect, exactl"
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Londopy/mcp-rollcall](https://github.com/Londopy/mcp-rollcall)
 
-**★ 1** · strong (score 5.3) · Python · agent-skills, ai-agents, claude-code, claude-code-plugin, claude-code-skills
+**★ 1** · strong (score 5.2) · Python · agent-skills, ai-agents, claude-code, claude-code-plugin, claude-code-skills
 
 > Take a roll call of your MCP servers across Claude Code, Codex, Cursor, Gemini CLI, Copilot, VS Code, Windsurf and OpenCode - which will fail to connect, exactly why (paths, env, ports, the server's own stderr), and what each one costs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-21
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-code-plugin, claude-code-skills, cli, codex, coding-agents, cursor, developer-tools, diagnostics, gemini-cli, github-copilot, mcp, mcp-servers, model-context-protocol, opencode, python, vscode, windsurf

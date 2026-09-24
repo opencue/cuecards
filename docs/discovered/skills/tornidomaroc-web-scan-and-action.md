@@ -2,7 +2,7 @@
 title: "tornidomaroc-web/scan-and-action — Claude Code skill discovered by cue"
 description: "Claude Code skill from tornidomaroc-web/scan-and-action"
 layout: page
-updated: 2026-06-27
+updated: 2026-09-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-27
+- 🗓️ Last pushed: 2026-09-24
 - 🏷️ Tags: ai, ai-tools, anthropic, claude, claude-code, claude-skill, cursor, gemini, nextjs, oprnai, python, scan, scan-action, scanner, typescript
 
 ## Best fit cue profiles

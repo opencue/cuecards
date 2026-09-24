@@ -2,19 +2,19 @@
 title: "jddev273/windows-to-wsl2-screenshots — Claude Code skill discovered by cue"
 description: "Automate Windows screenshots for Claude Code workflows in WSL2. Take screenshots (Win+Shift+S, Win+PrintScreen, Snipping Tool) and   instantly get file paths co"
 layout: page
-updated: 2026-09-23
+updated: 2026-09-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [jddev273/windows-to-wsl2-screenshots](https://github.com/jddev273/windows-to-wsl2-screenshots)
 
-**★ 95** · exceptional (score 11.5) · Shell · automation, bash, claude, claude-ai, claude-code
+**★ 95** · exceptional (score 11.4) · Shell · automation, bash, claude, claude-ai, claude-code
 
 > Automate Windows screenshots for Claude Code workflows in WSL2. Take screenshots (Win+Shift+S, Win+PrintScreen, Snipping Tool) and   instantly get file paths copied to clipboard for pasting into Claude Code (Terminal or running in VS Code). No more manual   save/copy/paste!
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
 - ⭐ 95 stars
 - 🗓️ Last pushed: 2026-09-22
 - 🏷️ Tags: automation, bash, claude, claude-ai, claude-code, clipboard, developer-tools, linux, powershell, powershell-script, productivity, screenshot, screenshot-automation, windows, windows-terminal, workflow, wsl2

@@ -2,7 +2,7 @@
 title: "ExaDev/documents.js — Claude Code skill discovered by cue"
 description: "A family of independent, MIT-licensed TypeScript packages for lossless, type-safe document conversion — OOXML (docx/pptx/xlsx), OpenDocument (odt/ods/odp), Mark"
 layout: page
-updated: 2026-09-20
+updated: 2026-09-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-20
+- 🗓️ Last pushed: 2026-09-24
 - 🏷️ Tags: cli, document-conversion, docx, epub, markdown, mcp-server, monorepo, odp, ods, odt, ooxml, opendocument, pdf, pptx, typescript, xlsx, zod
 
 ## Best fit cue profiles
