@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-25
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="mustbesimo-web-design-studio"></a>
-## 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
+<a id="kiselas-every-frame-is-code"></a>
+## 💎 [kiselas/every-frame-is-code](https://github.com/kiselas/every-frame-is-code)
 
-**★ 34** · exceptional (score 17.1) · JavaScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
+**★ 0** · exceptional (score 12) · JavaScript · tags: agent-skills, ai-agents, animation, canvas, chatgpt
 
-Web Design Studio: free agent skill for distinctive websites, interactive 3D and motion. 28 live examples, art direction and accessible fallbacks. Formerly Cinematic Scroll.
+Every frame is code: an Agent Skill for Claude Code, Codex and ChatGPT that makes motion graphics, 3D scenes and games in HTML/JS and renders them to MP4 frame by frame. Canvas 2D, WebGL, Three.js, GLSL, Web Audio.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add MustBeSimo/web-design-studio --profile threejs
+cue skills add kiselas/every-frame-is-code --profile threejs
 ```
 
 ---

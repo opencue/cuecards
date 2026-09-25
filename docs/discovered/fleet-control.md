@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="labsai-eddi"></a>
-## 💎 [labsai/EDDI](https://github.com/labsai/EDDI)
+<a id="jnmetacode-agency-orchestrator"></a>
+## 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
 
-**★ 380** · exceptional (score 15) · Java · tags: a2a, ai-agents, ai-orchestration, chatbot, conversation-memory
+**★ 2297** · exceptional (score 13) · TypeScript · tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
 
-Config-driven engine that turns JSON into production-grade AI agents. Multi-agent orchestration, 12+ LLM providers, MCP/A2A protocols, RAG, persistent memory, and enterprise compliance (EU AI Act, GDPR, HIPAA). Built on Quarkus.
+🚀 One sentence → your one-person company of AI experts → complete deliverable in minutes. 276 CN + 184 EN + 5 more languages (ko/ru/pt-BR/id/ar) · zero-code YAML · auto-verified acceptance · Web Studio / Desktop / Docker · 15 LLM providers (11 key-free). 一句话组建你的「一人公司」AI 专家团队，几分钟交付完整方案；验收自动核验，网页 / 桌面 / Docker 全渠道。
 
 ```bash
-cue skills add labsai/EDDI --profile fleet-control
+cue skills add jnMetaCode/agency-orchestrator --profile fleet-control
 ```
 
 ---
@@ -41,15 +41,15 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 
 ---
 
-<a id="linxuhao-aitelier"></a>
-## 💎 [linxuhao/AItelier](https://github.com/linxuhao/AItelier)
+<a id="shubharya-os-duet"></a>
+## ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
 
-**★ 3** · exceptional (score 8.2) · Python · tags: agent-orchestration, atomic-design, deepseek, deterministic-execution, dsh-plugin
+**★ 1** · strong (score 7.3) · Python · tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
 
-AI-Atelier, the all in one personal "atelier" (means handcraft studio in french) that can adapt to your need.
+Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
 
 ```bash
-cue skills add linxuhao/AItelier --profile fleet-control
+cue skills add shubharya-os/duet --profile fleet-control
 ```
 
 ---

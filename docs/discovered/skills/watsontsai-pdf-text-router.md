@@ -2,7 +2,7 @@
 title: "WatsonTsai/pdf-text-router — Claude Code skill discovered by cue"
 description: "A Claude Code hook that routes each Read on a PDF to the path that actually works: text layer to UTF-8 text, scans to vision, and neither one through poppler."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 

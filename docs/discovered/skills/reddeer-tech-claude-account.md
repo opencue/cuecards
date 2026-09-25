@@ -2,21 +2,21 @@
 title: "reddeer-tech/claude-account — Claude Code skill discovered by cue"
 description: "Claude Account - route Claude Code subscriptions per project path on macOS. Different account per folder, everything else shared."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [reddeer-tech/claude-account](https://github.com/reddeer-tech/claude-account)
 
-**★ 2** · potential (score 4.3) · Shell
+**★ 2** · potential (score 4.5) · Shell
 
 > Claude Account - route Claude Code subscriptions per project path on macOS. Different account per folder, everything else shared.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-18
+- 🗓️ Last pushed: 2026-09-24
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

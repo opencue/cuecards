@@ -2,7 +2,7 @@
 title: "DaizeDong/discord-history-export — Claude Code skill discovered by cue"
 description: "Claude Code skill: export full Discord server history (every channel + thread) into organized HTML + JSON. Powered by DiscordChatExporter + Playwright MCP."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent, ai, ai-agent, archive, chat-export, chat-history, claude, claude-code, claude-plugin, claude-skill, data-export, discord, discord-export, discordchatexporter, llm, playwright, skill
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "DaizeDong/screen-vision — Claude Code skill discovered by cue"
 description: "Screenshot and read on-screen UI elements/buttons with pixel coordinates (accessibility tree + OCR); optional click."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DaizeDong/screen-vision](https://github.com/DaizeDong/screen-vision)
 
-**★ 0** · exceptional (score 10.5) · Python · accessibility, agent, ai, ai-agent, claude
+**★ 0** · exceptional (score 12) · Python · accessibility, agent, ai, ai-agent, claude
 
 > Screenshot and read on-screen UI elements/buttons with pixel coordinates (accessibility tree + OCR); optional click.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: accessibility, agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, computer-use, desktop-automation, gui-automation, llm, ocr, screenshot, screenshot-ocr-ui-automation-computer-vision-acces, skill, ui-automation, windows
 
 ## Best fit cue profiles

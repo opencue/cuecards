@@ -1,72 +1,55 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+<a id="boykush-scraps"></a>
+## 💎 [boykush/scraps](https://github.com/boykush/scraps)
 
-**★ 508** · exceptional (score 22.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
+**★ 46** · exceptional (score 11.2) · Rust · tags: cli, knowledge-management, markdown, mcp, mcp-server
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
-
-✅ SKILL.md
+The Wiki-link doc compiler for the LLM era.
 
 ```bash
-cue skills add Ikalus1988/MisakaNet --profile docs-writer
+cue skills add boykush/scraps --profile docs-writer
 ```
 
 ---
 
-<a id="aritpal15-markdown-asset-doctor"></a>
-## 💎 [Aritpal15/markdown-asset-doctor](https://github.com/Aritpal15/markdown-asset-doctor)
+<a id="howdow698-ui-llm-wiki"></a>
+## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
 
-**★ 0** · exceptional (score 13) · Shell · tags: agent-skills, agent-skills-marketplace, claude-code, claude-code-skill, cursor-rules
+**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
 
-Deterministic, zero-token markdown documentation link and asset validator. Audits broken relative links and flags orphaned images across project repositories.
-
-✅ SKILL.md
+Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
 
 ```bash
-cue skills add Aritpal15/markdown-asset-doctor --profile docs-writer
+cue skills add howdow698-ui/llm-wiki --profile docs-writer
 ```
 
 ---
 
-<a id="ipaulsmith-check-docs"></a>
-## ✨ [ipaulsmith/check-docs](https://github.com/ipaulsmith/check-docs)
+<a id="mindgameolympiangames78-llm-knowledge-base"></a>
+## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
 
-**★ 1** · strong (score 6.1) · Shell · tags: agents-md, claude-code, claude-md, coding-agents, developer-tools
+**★ 0** · exceptional (score 9.5) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
 
-A small sh pre-commit check that stops a commit when CLAUDE.md, AGENTS.md or the files they @import name a path that no longer exists or a name you deleted
-
-```bash
-cue skills add ipaulsmith/check-docs --profile docs-writer
-```
-
----
-
-<a id="rogue-dev-studio-rogue-context7-mcp"></a>
-## ✨ [rogue-dev-studio/rogue-context7-mcp](https://github.com/rogue-dev-studio/rogue-context7-mcp)
-
-**★ 0** · strong (score 6) · tags: context7, developer-tools, documentation, http, library-docs
-
-Rogue Context7 MCP - remote library docs lookup for agents
+Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
 
 ```bash
-cue skills add rogue-dev-studio/rogue-context7-mcp --profile docs-writer
+cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
 ```
 
 ---

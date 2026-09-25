@@ -2,7 +2,7 @@
 title: "bhino50/finder-path — Claude Code skill discovered by cue"
 description: "A lightweight macOS menu bar utility that shows the frontmost Finder path — copy paths, run cd commands, open Terminal or Ghostty, and launch Codex, Claude, or "
 layout: page
-updated: 2026-09-08
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-07
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: appkit, developer-tools, finder, ghostty, hermes, macos, menubar, open-source, productivity, swift
 
 ## Best fit cue profiles

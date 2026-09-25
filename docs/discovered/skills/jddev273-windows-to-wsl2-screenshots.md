@@ -2,7 +2,7 @@
 title: "jddev273/windows-to-wsl2-screenshots — Claude Code skill discovered by cue"
 description: "Automate Windows screenshots for Claude Code workflows in WSL2. Take screenshots (Win+Shift+S, Win+PrintScreen, Snipping Tool) and   instantly get file paths co"
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 

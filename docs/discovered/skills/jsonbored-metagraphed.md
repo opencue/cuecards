@@ -2,21 +2,21 @@
 title: "JSONbored/metagraphed — Claude Code skill discovered by cue"
 description: "Bittensor didn't ship with a map. We drew one — chain-direct block explorer, developer registry, and an agent toolkit built right in."
 layout: page
-updated: 2026-08-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [JSONbored/metagraphed](https://github.com/JSONbored/metagraphed)
 
-**★ 12** · exceptional (score 9.5) · TypeScript · agent-skills, bittensor, bittensor-cli, bittensor-docs, bittensor-metagraph
+**★ 13** · exceptional (score 11.1) · TypeScript · agent-skills, bittensor, bittensor-cli, bittensor-docs, bittensor-metagraph
 
 > Bittensor didn't ship with a map. We drew one — chain-direct block explorer, developer registry, and an agent toolkit built right in.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 12 stars
-- 🗓️ Last pushed: 2026-08-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
+- ⭐ 13 stars
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent-skills, bittensor, bittensor-cli, bittensor-docs, bittensor-metagraph, bittensor-subnet, bittensor-subnets, block-explorer, endpoint-monitoring, mcp, mcp-server, metagraph, openapi, public-infrastructure, registry, schema-registry, staking, status-page, subtensor
 
 ## Best fit cue profiles

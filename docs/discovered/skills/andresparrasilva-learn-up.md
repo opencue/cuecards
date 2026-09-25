@@ -2,7 +2,7 @@
 title: "AndresParraSilva/learn-up — Claude Code skill discovered by cue"
 description: "Turn trusted sources into a local gamified study app with lessons, explained quizzes, labs, spaced repetition, multilingual content, badges, and progress tracki"
 layout: page
-updated: 2026-08-28
+updated: 2026-09-25
 tags: [claude-code, skill, frontend, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-28
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent-skills, ai-agents, badges, claude-code, claude-code-plugin, claude-code-skill, codex, codex-skill, duckdb, fastapi, gamified-learning, learning, notebooklm, open-source, react, spaced-repetition, study-app
 
 ## Best fit cue profiles

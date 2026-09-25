@@ -2,7 +2,7 @@
 title: "Sorcha-Platform/Sorcha — Claude Code skill discovered by cue"
 description: "Cryptographic-proof data infrastructure for multi-party & AI-driven workflows: verifiable credentials (SD-JWT VC, OpenID4VCI/VP, HAIP), Merkle-chained distribut"
 layout: page
-updated: 2026-08-29
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-29
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: aspire, bip32, decentralized-identity, did, distributed-ledger, dotnet, eudi, hd-wallet, mcp-server, merkle-tree, ml-dsa, ml-kem, model-context-protocol, openid4vci, openid4vp, post-quantum-cryptography, sd-jwt, selective-disclosure, self-sovereign-identity, verifiable-credentials
 
 ## Best fit cue profiles

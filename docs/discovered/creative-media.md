@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,70 +18,12 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 <a id="tt-a1i-archify"></a>
 ## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 70904** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 71399** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
 Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ```bash
 cue skills add tt-a1i/archify --profile creative-media
-```
-
----
-
-<a id="pr-e-openclaw-master-skills"></a>
-## 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
-
-**★ 3** · exceptional (score 15.7) · Python · tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated
-
-Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
-
-✅ SKILL.md
-
-```bash
-cue skills add Pr-E/openclaw-master-skills --profile creative-media
-```
-
----
-
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
-
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
-
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
-
-```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
-```
-
----
-
-<a id="rogue-dev-studio-rogue-instagram-posting-skill"></a>
-## 💎 [rogue-dev-studio/rogue-instagram-posting-skill](https://github.com/rogue-dev-studio/rogue-instagram-posting-skill)
-
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, instagram-posting, rogue-market-skills, social-media-management
-
-Automates the process of posting to an already logged-in Instagram account using a browser-capable agent. Use this skill when the user requests to post, upload, publish, or share a video or image to Instagram with provided content and tags.
-
-✅ SKILL.md
-
-```bash
-cue skills add rogue-dev-studio/rogue-instagram-posting-skill --profile creative-media
-```
-
----
-
-<a id="rogue-dev-studio-rogue-imagemagick-skill"></a>
-## 💎 [rogue-dev-studio/rogue-imagemagick-skill](https://github.com/rogue-dev-studio/rogue-imagemagick-skill)
-
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, design-tools, imagemagick, rogue-market-skills
-
-ImageMagick processing MCP server. Use when the project needs this capability or the user / team manifest asks for it. Use for specialized `imagemagick` work when listed in TEAM.yaml or explicitly requested.
-
-✅ SKILL.md
-
-```bash
-cue skills add rogue-dev-studio/rogue-imagemagick-skill --profile creative-media
 ```
 
 ---

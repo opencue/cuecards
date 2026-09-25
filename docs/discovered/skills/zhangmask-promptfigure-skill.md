@@ -2,22 +2,22 @@
 title: "zhangmask/promptfigure-skill — Claude Code skill discovered by cue"
 description: "Agent skill: AI auto-generates scientific figures via promptFigure API (Claude Code / WorkBuddy / Codex compatible)"
 layout: page
-updated: 2026-09-11
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [zhangmask/promptfigure-skill](https://github.com/zhangmask/promptfigure-skill)
 
-**★ 0** · exceptional (score 15.5) · agent-skill, ai-agent, claude-skill, figure-generation, scientific-figures
+**★ 1** · exceptional (score 15.8) · agent-skill, ai-agent, claude-skill, figure-generation, scientific-figures
 
 > Agent skill: AI auto-generates scientific figures via promptFigure API (Claude Code / WorkBuddy / Codex compatible)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-11
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent-skill, ai-agent, claude-skill, figure-generation, scientific-figures
 
 ## Best fit cue profiles

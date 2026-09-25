@@ -1,23 +1,23 @@
 ---
 title: "DanceNitra/inspeximus — Claude Code skill discovered by cue"
-description: "Zero-dependency agent memory + MCP server. Value-ranked recall, consolidation, and a first-class correction & erasure channel (revert, lineage-aware retraction,"
+description: "The self-correcting memory layer for AI agents. Zero-dependency Python memory and MCP server. Supersede, revert, or forget a value deterministically. Verifiable"
 layout: page
-updated: 2026-08-11
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [DanceNitra/inspeximus](https://github.com/DanceNitra/inspeximus)
+# 💎 [DanceNitra/inspeximus](https://github.com/DanceNitra/inspeximus)
 
-**★ 5** · strong (score 5.9) · Python · agent-memory, ai-memory, eu-ai-act, gdpr, llm
+**★ 6** · exceptional (score 9.6) · Python · agent-memory, ai-agent-memory, claude-code, conflict-resolution, data-erasure
 
-> Zero-dependency agent memory + MCP server. Value-ranked recall, consolidation, and a first-class correction & erasure channel (revert, lineage-aware retraction, tamper-evident receipts). Measured integrity vs mem0/Graphiti.
+> The self-correcting memory layer for AI agents. Zero-dependency Python memory and MCP server. Supersede, revert, or forget a value deterministically. Verifiable erasure, witness-backed tamper-evident receipts, EU AI Act ready.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.9 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-08-11
-- 🏷️ Tags: agent-memory, ai-memory, eu-ai-act, gdpr, llm, llm-memory, long-term-memory, mcp, mcp-server, mem0-alternative, model-context-protocol, rag, self-correcting-memory, zero-dependency
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-09-25
+- 🏷️ Tags: agent-memory, ai-agent-memory, claude-code, conflict-resolution, data-erasure, erasure, eu-ai-act, forget, gdpr, llm-memory, mcp, mcp-server, model-context-protocol, revert, right-to-be-forgotten, self-correcting, supersede, tamper-evident, witness, zero-dependency
 
 ## Best fit cue profiles
 

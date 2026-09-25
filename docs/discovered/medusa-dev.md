@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="ericforge-localized-translation"></a>
-## 💎 [ericforge/localized-translation](https://github.com/ericforge/localized-translation)
-
-**★ 0** · exceptional (score 13.5) · tags: ai-agent, amazon-listing, claude-skill, cross-border-ecommerce, i18n
-
-多语言本地化翻译流水线 Skill｜翻译 → 校对 → 本土化 → 润色 → 合规审核。Language-agnostic l10n pipeline for cross-border e-commerce & DTC.
-
-✅ SKILL.md
-
-```bash
-cue skills add ericforge/localized-translation --profile medusa-dev
-```
 
 ---
 

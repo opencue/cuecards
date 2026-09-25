@@ -2,7 +2,7 @@
 title: "dimitritholen/1337-claude — Claude Code skill discovered by cue"
 description: "Claude Code plugin: output styles, evaluate-before-you-build rules, opt-in orchestrator mode"
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills, orchestration, orchestration-framework, orchestrator, output-style
 
 ## Best fit cue profiles

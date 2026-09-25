@@ -2,7 +2,7 @@
 title: "Londopy/mcp-rollcall — Claude Code skill discovered by cue"
 description: "Take a roll call of your MCP servers across Claude Code, Codex, Cursor, Gemini CLI, Copilot, VS Code, Windsurf and OpenCode - which will fail to connect, exactl"
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Loufi49/property-testing-skill — Claude Code skill discovered by cue"
 description: "Generate property-based tests with fast-check for TypeScript and Hypothesis for Python, catching edge cases humans miss."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent-rules, ai-agent, claude, claude-code-skill, coding-agent, fast-check, fault-localization, gemini, genpark-skill, hypothesis, invariant-detection, rust, self-correction, solana, testing
 
 ## Best fit cue profiles

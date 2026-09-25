@@ -2,7 +2,7 @@
 title: "lazybean3/hinge — Claude Code skill discovered by cue"
 description: "Fold your MacBook display for a soft, blurring desktop effect—animated live at 60 fps with lid-angle smoothing on Apple Silicon."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: chatgpt, claude-code-skill, claude-skills, codex, dating, dating-profile, genome-assembly, hinge, hinge-loss, loader, machinery, mechanism, network-compression, pandas, profile-optimization, proximal-gradient-descent, python, roller, spring, support-vector-machine
 
 ## Best fit cue profiles

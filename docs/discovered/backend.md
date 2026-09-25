@@ -1,70 +1,94 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
+<a id="open-metadata-openmetadata"></a>
+## 💎 [open-metadata/OpenMetadata](https://github.com/open-metadata/OpenMetadata)
 
-**★ 508** · exceptional (score 22.8) · Python · tags: action, agents, ai-agents, cloudflare-workers, d1
+**★ 15328** · exceptional (score 17) · TypeScript · tags: context, context-layer, data-catalog, data-collaboration, data-contracts
 
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
-
-✅ SKILL.md
+The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.
 
 ```bash
-cue skills add Ikalus1988/MisakaNet --profile backend
+cue skills add open-metadata/OpenMetadata --profile backend
 ```
 
 ---
 
-<a id="labsai-eddi"></a>
-## 💎 [labsai/EDDI](https://github.com/labsai/EDDI)
+<a id="sylphxai-anymd"></a>
+## 💎 [SylphxAI/anymd](https://github.com/SylphxAI/anymd)
 
-**★ 380** · exceptional (score 15) · Java · tags: a2a, ai-agents, ai-orchestration, chatbot, conversation-memory
+**★ 934** · exceptional (score 16) · Rust · tags: ai-agents, claude, cli, document-parser, docx
 
-Config-driven engine that turns JSON into production-grade AI agents. Multi-agent orchestration, 12+ LLM providers, MCP/A2A protocols, RAG, persistent memory, and enterprise compliance (EU AI Act, GDPR, HIPAA). Built on Quarkus.
+Any file → clean Markdown for AI agents: PDF, Word, PowerPoint, Excel, EPUB, HTML, images. Fast Rust MCP server + CLI. Local, no API key.
 
 ```bash
-cue skills add labsai/EDDI --profile backend
+cue skills add SylphxAI/anymd --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="jnmetacode-agency-orchestrator"></a>
+## 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
 
-**★ 205826** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 2297** · exceptional (score 13) · TypeScript · tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+🚀 One sentence → your one-person company of AI experts → complete deliverable in minutes. 276 CN + 184 EN + 5 more languages (ko/ru/pt-BR/id/ar) · zero-code YAML · auto-verified acceptance · Web Studio / Desktop / Docker · 15 LLM providers (11 key-free). 一句话组建你的「一人公司」AI 专家团队，几分钟交付完整方案；验收自动核验，网页 / 桌面 / Docker 全渠道。
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add jnMetaCode/agency-orchestrator --profile backend
 ```
 
 ---
 
-<a id="noveum-orbit"></a>
-## 💎 [Noveum/orbit](https://github.com/Noveum/orbit)
+<a id="openstatushq-openstatus"></a>
+## 💎 [openstatusHQ/openstatus](https://github.com/openstatusHQ/openstatus)
 
-**★ 47** · exceptional (score 10.3) · TypeScript · tags: agile, bun, issue-tracker, jira-alternative, kanban
+**★ 9143** · exceptional (score 13) · TypeScript · tags: alerting, incident-management, mcp, mcp-server, monitoring
 
-Free, open source, realtime task manager. Issues, boards, sprints, projects and docs that sync instantly. Keyboard-first, self-hostable, with an MCP server for AI agents. No pricing, ever.
+🫖 Status page with uptime monitoring & API monitoring as code   🫖
 
 ```bash
-cue skills add Noveum/orbit --profile backend
+cue skills add openstatusHQ/openstatus --profile backend
+```
+
+---
+
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+
+**★ 0** · exceptional (score 12) · Python · tags: agent, ai, ai-agent, automation, claude
+
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
+
+```bash
+cue skills add DaizeDong/schedule-reminder --profile backend
+```
+
+---
+
+<a id="daizedong-box-rclone-binder"></a>
+## 💎 [DaizeDong/box-rclone-binder](https://github.com/DaizeDong/box-rclone-binder)
+
+**★ 0** · exceptional (score 12) · Python · tags: agent, ai, ai-agent, automation, backup
+
+Bind one Box drive across multiple servers via rclone with non-expiring server auth; idempotent deploy, health-check self-heal, cron, and Discord alerts.
+
+```bash
+cue skills add DaizeDong/box-rclone-binder --profile backend
 ```
 
 ---
@@ -82,19 +106,6 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="meisterpilze-meistertracker"></a>
-## 💎 [meisterpilze/meistertracker](https://github.com/meisterpilze/meistertracker)
-
-**★ 3** · exceptional (score 8.2) · JavaScript · tags: agpl, barcode-scanner, caldav, fungi, inventory-tracking
-
-Self-hosted lab management for specialty mushroom cultivation — barcode scanning, batch / culture / harvest tracking, label printing, CalDAV sync, MCP integration. Built at meisterpilze.de.
-
-```bash
-cue skills add meisterpilze/meistertracker --profile backend
-```
-
----
-
 <a id="renefichtmueller-adaptive-llm-gateway"></a>
 ## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
@@ -108,15 +119,15 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="smartyjohnway-tw-market-live-data-intelligence"></a>
-## ✨ [SmartyJohnway/tw-market-live-data-intelligence](https://github.com/SmartyJohnway/tw-market-live-data-intelligence)
+<a id="giulioder-re-call"></a>
+## 💎 [GiulioDER/RE-call](https://github.com/GiulioDER/RE-call)
 
-**★ 0** · strong (score 7.5) · Python · tags: ai-agents, fastapi, financial-data, fintech, local-first
+**★ 5** · exceptional (score 8) · Python · tags: abstention, agent-memory, ai-agents, claude, embeddings
 
-Local-first Taiwan market evidence workbench for AI agents — TWSE/TPEx, persistent Watchlists, governed MCP, auditable evidence, explicit execute-once.
+Memory that abstains instead of guessing: agent memory on your own Postgres with a verdict, confidence and provenance on every hit, and a calibrated refusal when nothing clears the threshold.
 
 ```bash
-cue skills add SmartyJohnway/tw-market-live-data-intelligence --profile backend
+cue skills add GiulioDER/RE-call --profile backend
 ```
 
 ---

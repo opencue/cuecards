@@ -2,7 +2,7 @@
 title: "fortnitenordarnaf-cloud/diet-workout-plan-as-if-you-were-an-athlete — Claude Code skill discovered by cue"
 description: "Generate a personalized athlete-grade diet and workout plan locally—no account, no internet needed."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: claude, claude-code-skill, claude-skills, diet, diet-managment, diet-planner, fitness, nutrition, nutrition-calculator, skill, skill-md, skills, workout, workout-generator, workout-planner
 
 ## Best fit cue profiles

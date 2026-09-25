@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-09-24 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-09-25 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 68 | `creative-director-skill`, `java-jacoco-coverage-backfill`, `strategic-advisor-orchestrator` |
-| [**backend**](./backend.md) | 9 | `MisakaNet`, `EDDI`, `n8n` |
-| [**creative-media**](./creative-media.md) | 6 | `archify`, `openclaw-master-skills`, `social-media-scraper-skill` |
-| [**cybersecurity**](./cybersecurity.md) | 6 | `Claude-OSINT`, `gori`, `sanctuary-framework` |
-| [**docs-writer**](./docs-writer.md) | 4 | `MisakaNet`, `markdown-asset-doctor`, `check-docs` |
-| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `arc-skill`, `rogue-frontend-engineering-skill` |
-| [**fleet-control**](./fleet-control.md) | 3 | `EDDI`, `rolepod`, `AItelier` |
-| [**python**](./python.md) | 2 | `AgentShield`, `tw-market-live-data-intelligence` |
-| [**niche**](./niche.md) | 1 | `grant-thinking-skill` |
-| [**video**](./video.md) | 1 | `social-media-scraper-skill` |
-| [**rust**](./rust.md) | 1 | `intutic` |
-| [**research**](./research.md) | 1 | `skillassay` |
+| [**core**](./core.md) | 68 | `self-evolve`, `promptfigure-skill`, `chinese-fortune` |
+| [**backend**](./backend.md) | 10 | `OpenMetadata`, `anymd`, `agency-orchestrator` |
+| [**research**](./research.md) | 5 | `small-cap-deepdive`, `market-intel`, `demand-mining` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `claude-security-research-skill`, `sanctuary-framework` |
+| [**fleet-control**](./fleet-control.md) | 3 | `agency-orchestrator`, `rolepod`, `duet` |
+| [**frontend**](./frontend.md) | 3 | `google-fonts-skill`, `awesome-claude-ui-armory`, `learn-up` |
+| [**docs-writer**](./docs-writer.md) | 3 | `scraps`, `llm-wiki`, `llm-knowledge-base` |
+| [**creative-media**](./creative-media.md) | 2 | `archify`, `redesigned-pancake` |
+| [**marketing**](./marketing.md) | 1 | `promotion-assistant` |
+| [**threejs**](./threejs.md) | 1 | `every-frame-is-code` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `shopping-aggregator` |
+| [**python**](./python.md) | 1 | `AgentShield` |
+| [**niche**](./niche.md) | 1 | `daily-hotspots` |
 
 ## How scoring works
 

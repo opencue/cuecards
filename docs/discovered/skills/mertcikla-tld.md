@@ -2,21 +2,21 @@
 title: "Mertcikla/tld — Claude Code skill discovered by cue"
 description: "Software architecture diagramming tool. Includes a modern easy to use Frontend + Backend + CLI to enable managing diagrams from the shell or in CI."
 layout: page
-updated: 2026-06-11
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Mertcikla/tld](https://github.com/Mertcikla/tld)
 
-**★ 250** · exceptional (score 8.5) · Go · agent-skill, claude-code-plugin, diagram, diagramming-as-code, diagramming-tool
+**★ 286** · exceptional (score 10.7) · Go · agent-skill, claude-code-plugin, diagram, diagramming-as-code, diagramming-tool
 
 > Software architecture diagramming tool. Includes a modern easy to use Frontend + Backend + CLI to enable managing diagrams from the shell or in CI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 250 stars
-- 🗓️ Last pushed: 2026-06-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+- ⭐ 286 stars
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent-skill, claude-code-plugin, diagram, diagramming-as-code, diagramming-tool
 
 ## Best fit cue profiles

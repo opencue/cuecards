@@ -2,21 +2,21 @@
 title: "DaizeDong/schedule-reminder — Claude Code skill discovered by cue"
 description: "Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills cal"
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
 
-**★ 0** · exceptional (score 10.5) · Python · agent, ai, ai-agent, automation, claude
+**★ 0** · exceptional (score 12) · Python · agent, ai, ai-agent, automation, claude
 
 > Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent, ai, ai-agent, automation, claude, claude-code, claude-plugin, claude-skill, cli, infrastructure, llm, reminder, scheduler, scheduling-reminders-task-management-productivity, skill, sqlite, task-management, todo
 
 ## Best fit cue profiles

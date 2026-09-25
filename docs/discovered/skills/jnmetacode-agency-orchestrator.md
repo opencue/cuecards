@@ -1,22 +1,22 @@
 ---
 title: "jnMetaCode/agency-orchestrator — Claude Code skill discovered by cue"
-description: "🚀 One sentence → multi-AI-role collaboration → complete plan in minutes. Built on the agency-agents role library (216+ experts), zero-code YAML, web Studio + d"
+description: "🚀 One sentence → your one-person company of AI experts → complete deliverable in minutes. 276 CN + 184 EN + 5 more languages (ko/ru/pt-BR/id/ar) · zero-code YA"
 layout: page
-updated: 2026-07-07
+updated: 2026-09-25
 tags: [claude-code, skill, fleet-control, backend]
 ---
 
 # 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
 
-**★ 1673** · exceptional (score 15.9) · TypeScript · agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
+**★ 2297** · exceptional (score 13) · TypeScript · agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
 
-> 🚀 One sentence → multi-AI-role collaboration → complete plan in minutes. Built on the agency-agents role library (216+ experts), zero-code YAML, web Studio + desktop app, 10 LLM providers (7 free). 基于 agency-agents 专家库，一句话调度多个 AI 专家自动协作，几分钟交付完整方案。
+> 🚀 One sentence → your one-person company of AI experts → complete deliverable in minutes. 276 CN + 184 EN + 5 more languages (ko/ru/pt-BR/id/ar) · zero-code YAML · auto-verified acceptance · Web Studio / Desktop / Docker · 15 LLM providers (11 key-free). 一句话组建你的「一人公司」AI 专家团队，几分钟交付完整方案；验收自动核验，网页 / 桌面 / Docker 全渠道。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
-- ⭐ 1673 stars
-- 🗓️ Last pushed: 2026-07-07
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+- ⭐ 2297 stars
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude, codex, copilot, crewai-alternative, cursor, deepseek, gemini-cli, langgraph-alternative, mcp-server, multi-agent, no-api-key, ollama, openai, orchestrator, workflow, yaml-workflow
 
 ## Best fit cue profiles

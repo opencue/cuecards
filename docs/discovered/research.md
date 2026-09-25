@@ -1,17 +1,71 @@
 ---
 title: "Claude Code Skills for research"
-description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-25
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="daizedong-small-cap-deepdive"></a>
+## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
+
+**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
+
+Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
+
+✅ SKILL.md
+
+```bash
+cue skills add DaizeDong/small-cap-deepdive --profile research
+```
+
+---
+
+<a id="daizedong-market-intel"></a>
+## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
+
+**★ 2** · exceptional (score 11.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
+
+Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
+
+```bash
+cue skills add DaizeDong/market-intel --profile research
+```
+
+---
+
+<a id="daizedong-demand-mining"></a>
+## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
+
+**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, automation, claude
+
+已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
+
+```bash
+cue skills add DaizeDong/demand-mining --profile research
+```
+
+---
+
+<a id="andresparrasilva-learn-up"></a>
+## 💎 [AndresParraSilva/learn-up](https://github.com/AndresParraSilva/learn-up)
+
+**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agents, badges, claude-code, claude-code-plugin
+
+Turn trusted sources into a local gamified study app with lessons, explained quizzes, labs, spaced repetition, multilingual content, badges, and progress tracking.
+
+```bash
+cue skills add AndresParraSilva/learn-up --profile research
+```
 
 ---
 

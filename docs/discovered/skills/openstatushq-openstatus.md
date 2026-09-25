@@ -2,21 +2,21 @@
 title: "openstatusHQ/openstatus — Claude Code skill discovered by cue"
 description: "🫖 Status page with uptime monitoring & API monitoring as code   🫖"
 layout: page
-updated: 2026-09-18
+updated: 2026-09-25
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [openstatusHQ/openstatus](https://github.com/openstatusHQ/openstatus)
 
-**★ 9125** · exceptional (score 13) · TypeScript · alerting, incident-management, mcp, mcp-server, monitoring
+**★ 9143** · exceptional (score 13) · TypeScript · alerting, incident-management, mcp, mcp-server, monitoring
 
 > 🫖 Status page with uptime monitoring & API monitoring as code   🫖
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 9125 stars
-- 🗓️ Last pushed: 2026-09-18
+- ⭐ 9143 stars
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: alerting, incident-management, mcp, mcp-server, monitoring, monitoring-as-code, observability, on-call, open-source, sre, status-page, statuspage, synthetic-monitoring, terraform, tinybird, turso, uptime, uptime-checker, uptime-monitor
 
 ## Best fit cue profiles

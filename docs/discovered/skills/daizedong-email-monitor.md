@@ -2,21 +2,21 @@
 title: "DaizeDong/email-monitor — Claude Code skill discovered by cue"
 description: "Incremental Gmail triage through read-only IMAP, importance classification and redacted alerts, with persistent message identity and progress tracking."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [DaizeDong/email-monitor](https://github.com/DaizeDong/email-monitor)
 
-**★ 0** · exceptional (score 10.5) · Python · agent, ai, ai-agent, automation, classification
+**★ 0** · exceptional (score 12) · Python · agent, ai, ai-agent, automation, classification
 
 > Incremental Gmail triage through read-only IMAP, importance classification and redacted alerts, with persistent message identity and progress tracking.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: agent, ai, ai-agent, automation, classification, claude, claude-code, claude-plugin, claude-skill, discord, email, email-imap-gmail-triage-automation-productivity-mo, gmail, imap, inbox, llm, monitoring, skill
 
 ## Best fit cue profiles
