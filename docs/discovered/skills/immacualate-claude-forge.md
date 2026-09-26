@@ -2,21 +2,21 @@
 title: "immacualate/claude-forge — Claude Code skill discovered by cue"
 description: "Transform Claude Code into a complete development environment for efficient coding and project management."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [immacualate/claude-forge](https://github.com/immacualate/claude-forge)
 
-**★ 4** · exceptional (score 10.3) · Shell · agentic-ai, agentic-workflow, agents, ai, ai-framework
+**★ 5** · exceptional (score 10.7) · Shell · agentic-ai, agentic-workflow, agents, ai, ai-framework
 
 > Transform Claude Code into a complete development environment for efficient coding and project management.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: agentic-ai, agentic-workflow, agents, ai, ai-framework, ai-gateway, ai-pair-programming, ai-tools, automation, claude, claude-code, claude-skill, developer-experience, macos, proxy, workflow
 
 ## Best fit cue profiles

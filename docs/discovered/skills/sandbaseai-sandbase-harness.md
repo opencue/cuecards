@@ -2,21 +2,21 @@
 title: "sandbaseai/sandbase-harness — Claude Code skill discovered by cue"
 description: "Local-first, self-hosted AI agent runtime and MCP bridge with sandboxed sessions, memory, credentials, audit/replay, and a local Console."
 layout: page
-updated: 2026-08-31
+updated: 2026-09-26
 tags: [claude-code, skill, backend, cybersecurity]
 ---
 
 # 💎 [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness)
 
-**★ 641** · exceptional (score 13.5) · TypeScript · agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox
+**★ 673** · exceptional (score 15.2) · TypeScript · agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox
 
 > Local-first, self-hosted AI agent runtime and MCP bridge with sandboxed sessions, memory, credentials, audit/replay, and a local Console.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
-- ⭐ 641 stars
-- 🗓️ Last pushed: 2026-08-31
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
+- ⭐ 673 stars
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox, ai-agents, ai-infrastructure, audit-logging, deepseek-harness, devops, docker, dsh-plugin, harness-engineering, kubernetes, local-first, mcp-gateway, mcp-server, model-context-protocol, sandboxed-execution, self-hosted
 
 ## Best fit cue profiles

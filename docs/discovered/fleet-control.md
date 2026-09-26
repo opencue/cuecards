@@ -1,29 +1,55 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jnmetacode-agency-orchestrator"></a>
-## 💎 [jnMetaCode/agency-orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
+<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
+## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 2297** · exceptional (score 13) · TypeScript · tags: agency-agents, agent-orchestration, ai-agents, autogen-alternative, claude
+**★ 123** · exceptional (score 13.4) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
-🚀 One sentence → your one-person company of AI experts → complete deliverable in minutes. 276 CN + 184 EN + 5 more languages (ko/ru/pt-BR/id/ar) · zero-code YAML · auto-verified acceptance · Web Studio / Desktop / Docker · 15 LLM providers (11 key-free). 一句话组建你的「一人公司」AI 专家团队，几分钟交付完整方案；验收自动核验，网页 / 桌面 / Docker 全渠道。
+Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
-cue skills add jnMetaCode/agency-orchestrator --profile fleet-control
+cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="tsukumohq-wrai-th"></a>
+## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
+
+**★ 31** · exceptional (score 13.2) · Go · tags: ai-agents, claude, claude-code, golang, mcp
+
+Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
+
+```bash
+cue skills add TsukumoHQ/WRAI.TH --profile fleet-control
+```
+
+---
+
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+
+**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+
+```bash
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---
@@ -41,15 +67,15 @@ cue skills add nuttaruj/rolepod --profile fleet-control
 
 ---
 
-<a id="shubharya-os-duet"></a>
-## ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
+<a id="vocion-vocion-core"></a>
+## 💎 [vocion/vocion-core](https://github.com/vocion/vocion-core)
 
-**★ 1** · strong (score 7.3) · Python · tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
+**★ 2** · exceptional (score 8) · TypeScript · tags: agent-framework, agent-orchestration, ai-agents, connectors, human-in-the-loop
 
-Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
+Open source agent workforce platform. Next.js + Postgres + MCP server for AI agent teams with human-in-the-loop review, built in.
 
 ```bash
-cue skills add shubharya-os/duet --profile fleet-control
+cue skills add vocion/vocion-core --profile fleet-control
 ```
 
 ---

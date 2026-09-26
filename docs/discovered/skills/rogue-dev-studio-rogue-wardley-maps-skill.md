@@ -2,7 +2,7 @@
 title: "rogue-dev-studio/rogue-wardley-maps-skill — Claude Code skill discovered by cue"
 description: "Strategic mapping visualization. Use when the project needs this capability or the user / team manifest asks for it. Use for specialized `wardley-maps` work whe"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agent-skill, developer-tools, rogue-market-skills, wardley-maps
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "jmshinhwa/readystack-themes — Claude Code skill discovered by cue"
 description: "ReadyStack — regulation & deadline linters for VS Code / Cursor (Open VSX), npm CLI, Docker and MCP: DORA, NIS2, CRA, PCI DSS 6.4.3, WCAG 2.2, EU e-invoicing, G"
 layout: page
-updated: 2026-09-23
+updated: 2026-09-26
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: compliance, cursor, devsecops, linter, mcp-server, open-vsx, vscode-extension
 
 ## Best fit cue profiles

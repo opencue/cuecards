@@ -2,7 +2,7 @@
 title: "cordanaLLM/praetor — Claude Code skill discovered by cue"
 description: "Enterprise Fleet Governance, Repository-as-Code & Universal AI Agent Engineering Engine"
 layout: page
-updated: 2026-09-19
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-19
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agent-governance, devcontainers, governance, hiss-16, mcp-server, paperclip, renovate-presets, repository-as-code, slsa-level-3
 
 ## Best fit cue profiles

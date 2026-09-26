@@ -2,7 +2,7 @@
 title: "Discovered Claude Code Skills"
 description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -11,25 +11,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
 > **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-09-25 · refreshed nightly via GitHub Code Search.
+> Last updated: 2026-09-26 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 68 | `self-evolve`, `promptfigure-skill`, `chinese-fortune` |
-| [**backend**](./backend.md) | 10 | `OpenMetadata`, `anymd`, `agency-orchestrator` |
-| [**research**](./research.md) | 5 | `small-cap-deepdive`, `market-intel`, `demand-mining` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `claude-security-research-skill`, `sanctuary-framework` |
-| [**fleet-control**](./fleet-control.md) | 3 | `agency-orchestrator`, `rolepod`, `duet` |
-| [**frontend**](./frontend.md) | 3 | `google-fonts-skill`, `awesome-claude-ui-armory`, `learn-up` |
-| [**docs-writer**](./docs-writer.md) | 3 | `scraps`, `llm-wiki`, `llm-knowledge-base` |
-| [**creative-media**](./creative-media.md) | 2 | `archify`, `redesigned-pancake` |
-| [**marketing**](./marketing.md) | 1 | `promotion-assistant` |
-| [**threejs**](./threejs.md) | 1 | `every-frame-is-code` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `shopping-aggregator` |
+| [**core**](./core.md) | 62 | `trace-mcp`, `app-store-connect-skill`, `ontology-atlas` |
+| [**backend**](./backend.md) | 17 | `sandbase-harness`, `WRAI.TH`, `boondmanager-mcp-server` |
+| [**cybersecurity**](./cybersecurity.md) | 8 | `sandbase-harness`, `slowmist-security-cc`, `Claude-OSINT` |
+| [**frontend**](./frontend.md) | 5 | `editor`, `awesome-claude-ui-armory`, `rogue-web-artifacts-builder-skill` |
+| [**fleet-control**](./fleet-control.md) | 5 | `opencouncil-contract-inspector`, `WRAI.TH`, `multi-agent-revenue-orchestrator` |
+| [**creative-media**](./creative-media.md) | 3 | `rogue-youtube-publishing-skill`, `rogue-ui-ux-design-skill`, `redesigned-pancake` |
+| [**niche**](./niche.md) | 2 | `html-explainer`, `grant-thinking-cn-biology` |
+| [**research**](./research.md) | 2 | `popper-scope`, `skillassay` |
+| [**video**](./video.md) | 2 | `rogue-youtube-publishing-skill`, `claude-youtube` |
+| [**marketing**](./marketing.md) | 2 | `claude-youtube`, `google-seo-mcp` |
+| [**threejs**](./threejs.md) | 1 | `editor` |
+| [**docs-writer**](./docs-writer.md) | 1 | `weave` |
 | [**python**](./python.md) | 1 | `AgentShield` |
-| [**niche**](./niche.md) | 1 | `daily-hotspots` |
 
 ## How scoring works
 

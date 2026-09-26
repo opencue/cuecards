@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="kiselas-every-frame-is-code"></a>
-## 💎 [kiselas/every-frame-is-code](https://github.com/kiselas/every-frame-is-code)
+<a id="pascalorg-editor"></a>
+## 💎 [pascalorg/editor](https://github.com/pascalorg/editor)
 
-**★ 0** · exceptional (score 12) · JavaScript · tags: agent-skills, ai-agents, animation, canvas, chatgpt
+**★ 24315** · exceptional (score 17) · TypeScript · tags: 3d, agent-skills, ai-agents, architecture, bim
 
-Every frame is code: an Agent Skill for Claude Code, Codex and ChatGPT that makes motion graphics, 3D scenes and games in HTML/JS and renders them to MP4 frame by frame. Canvas 2D, WebGL, Three.js, GLSL, Web Audio.
-
-✅ SKILL.md
+Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.
 
 ```bash
-cue skills add kiselas/every-frame-is-code --profile threejs
+cue skills add pascalorg/editor --profile threejs
 ```
 
 ---

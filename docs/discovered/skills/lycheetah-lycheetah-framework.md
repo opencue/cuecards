@@ -1,22 +1,22 @@
 ---
 title: "Lycheetah/Lycheetah-Framework — Claude Code skill discovered by cue"
-description: " AI alignment framework. Nine interdependent theories — CASCADE, AURA, LAMAGUE and six more — each mathematically   proven, each converging on the same constant"
+description: "Public method documents. How the work is thought and governed. Self-taught, in Dunedin. Not a commercial offer."
 layout: page
-updated: 2026-08-08
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Lycheetah/Lycheetah-Framework](https://github.com/Lycheetah/Lycheetah-Framework)
 
-**★ 5** · exceptional (score 11.5) · Python · ai, ai-agents, ai-safety, aiethics, claude-code
+**★ 5** · exceptional (score 12.6) · Python · ai, ai-agents, ai-safety, aiethics, claude-code
 
->  AI alignment framework. Nine interdependent theories — CASCADE, AURA, LAMAGUE and six more — each mathematically   proven, each converging on the same constants. Banach fixed points. Constitutional invariants. MCP extension for   Claude Code. Built by one self-taught researcher. Open. Testable. Human.
+> Public method documents. How the work is thought and governed. Self-taught, in Dunedin. Not a commercial offer.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-08-08
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai, ai-agents, ai-safety, aiethics, claude-code, claude-code-plugin, claude-code-skill, claude-skills, copilot, github-config, mystery, open-source, openclaw, philosophy, sovereign-computing, sovereign-infrastructure
 
 ## Best fit cue profiles

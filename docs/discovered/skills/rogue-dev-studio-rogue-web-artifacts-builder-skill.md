@@ -2,7 +2,7 @@
 title: "rogue-dev-studio/rogue-web-artifacts-builder-skill — Claude Code skill discovered by cue"
 description: "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-26
 tags: [claude-code, skill, frontend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, frontend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agent-skill, marketing-automation, rogue-market-skills, web-artifacts-builder
 
 ## Best fit cue profiles

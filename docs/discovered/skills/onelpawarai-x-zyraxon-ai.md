@@ -2,21 +2,21 @@
 title: "onelpawarai-X/ZYRAXON-AI — Claude Code skill discovered by cue"
 description: "ZYRAXON AI — The World's Most Advanced Desktop AI Agent."
 layout: page
-updated: 2026-09-20
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [onelpawarai-X/ZYRAXON-AI](https://github.com/onelpawarai-X/ZYRAXON-AI)
 
-**★ 4** · strong (score 6.8) · Python · ai, ai-agent, ai-agent-framework, ai-agent-security, ai-agent-skill
+**★ 5** · strong (score 6.9) · Python · ai, ai-agent, ai-agent-framework, ai-agent-security, ai-agent-skill
 
 > ZYRAXON AI — The World's Most Advanced Desktop AI Agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai, ai-agent, ai-agent-framework, ai-agent-security, ai-agent-skill, ai-agent-tools, ai-agents, ai-agents-automation, ai-agents-framework, ai-agents-platform, ai-coding, ai-governance, ai-model, ai-safety, ai-security, ai-tools, airflow, electron, next, pawar
 
 ## Best fit cue profiles

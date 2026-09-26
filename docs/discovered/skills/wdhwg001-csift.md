@@ -2,7 +2,7 @@
 title: "wdhwg001/csift — Claude Code skill discovered by cue"
 description: "The missing tool to sift your Claude Code sessions: regex search across all record types, recover files, extract images, inspect subagent topologies, match betw"
 layout: page
-updated: 2026-09-12
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 31 stars
-- 🗓️ Last pushed: 2026-09-12
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-skills, harness-engineering, jsonl, orchestration, orchestrator, session-management
 
 ## Best fit cue profiles

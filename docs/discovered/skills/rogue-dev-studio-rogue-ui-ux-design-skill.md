@@ -2,7 +2,7 @@
 title: "rogue-dev-studio/rogue-ui-ux-design-skill — Claude Code skill discovered by cue"
 description: "Expert UI/UX design for product interfaces: user flows, information architecture, wireframes, interaction patterns, accessibility, and a mandatory theme/brand a"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-26
 tags: [claude-code, skill, frontend, creative-media]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, frontend, creative-media]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agent-skill, design-tools, rogue-market-skills, ui-ux-design
 
 ## Best fit cue profiles

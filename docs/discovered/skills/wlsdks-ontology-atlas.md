@@ -2,21 +2,21 @@
 title: "wlsdks/ontology-atlas — Claude Code skill discovered by cue"
 description: "Understand what your codebase builds, why it is structured that way, and what a change could affect.  One shared Markdown ontology for humans and coding agents—"
 layout: page
-updated: 2026-09-19
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [wlsdks/ontology-atlas](https://github.com/wlsdks/ontology-atlas)
 
-**★ 133** · exceptional (score 16) · TypeScript · ai-agents-framework, claude-code, code-visualization, codebase, codex
+**★ 139** · exceptional (score 16.1) · TypeScript · ai-agents-framework, claude-code, code-visualization, codebase, codex
 
 > Understand what your codebase builds, why it is structured that way, and what a change could affect.  One shared Markdown ontology for humans and coding agents—visualized for people, accessible to agents through MCP, and reviewed with Git.  Local-first. Open source.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 133 stars
-- 🗓️ Last pushed: 2026-09-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
+- ⭐ 139 stars
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agents-framework, claude-code, code-visualization, codebase, codex, coding-agents, developer-tools, impact-analysis, knowledge-graph, mcp-server, ontology, ontology-engineering, ontology-management-framework, software-architecture
 
 ## Best fit cue profiles

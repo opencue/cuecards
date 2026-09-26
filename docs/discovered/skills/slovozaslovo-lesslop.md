@@ -2,7 +2,7 @@
 title: "slovozaslovo/lesslop — Claude Code skill discovered by cue"
 description: "Claude Code plugin: every claim the agent writes carries [proof: path:line] or {unverified} — a UserPromptSubmit hook, re-injected each turn. Codex and Cursor t"
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 

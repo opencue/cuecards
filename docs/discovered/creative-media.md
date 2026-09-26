@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="tt-a1i-archify"></a>
-## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
+<a id="rogue-dev-studio-rogue-youtube-publishing-skill"></a>
+## 💎 [rogue-dev-studio/rogue-youtube-publishing-skill](https://github.com/rogue-dev-studio/rogue-youtube-publishing-skill)
 
-**★ 71399** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 0** · exceptional (score 9) · tags: ai-agent-skill, oauth, publishing, rogue-market-skills, social-media-management
 
-Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
+Rogue skill: manual YouTube publishing with confirm-gated MCP upload
+
+✅ SKILL.md
 
 ```bash
-cue skills add tt-a1i/archify --profile creative-media
+cue skills add rogue-dev-studio/rogue-youtube-publishing-skill --profile creative-media
+```
+
+---
+
+<a id="rogue-dev-studio-rogue-ui-ux-design-skill"></a>
+## 💎 [rogue-dev-studio/rogue-ui-ux-design-skill](https://github.com/rogue-dev-studio/rogue-ui-ux-design-skill)
+
+**★ 0** · exceptional (score 8) · tags: ai-agent-skill, design-tools, rogue-market-skills, ui-ux-design
+
+Expert UI/UX design for product interfaces: user flows, information architecture, wireframes, interaction patterns, accessibility, and a mandatory theme/brand alignment gate against the active project (PROJECT.md, design docs, existing tokens/visual language). Use before or alongside frontend work when designing screens, reviewing mockups, or va...
+
+✅ SKILL.md
+
+```bash
+cue skills add rogue-dev-studio/rogue-ui-ux-design-skill --profile creative-media
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "mkarvan/AgentShield — Claude Code skill discovered by cue"
 description: "Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, "
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, skill, cybersecurity, python]
 ---
 

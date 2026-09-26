@@ -2,7 +2,7 @@
 title: "rogue-dev-studio/rogue-tmux-workspace-skill — Claude Code skill discovered by cue"
 description: "Tmux session management. Use when the project needs this capability or the user / team manifest asks for it. Use for specialized `tmux-workspace` work when list"
 layout: page
-updated: 2026-09-21
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agent-skill, deployment-devops, rogue-market-skills, tmux-workspace
 
 ## Best fit cue profiles

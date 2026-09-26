@@ -1,23 +1,23 @@
 ---
 title: "grunion-ai/weave — Claude Code skill discovered by cue"
-description: "Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp, built so AI agents are first-class users. Connected tables, relations, w"
+description: "Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first"
 layout: page
-updated: 2026-08-22
+updated: 2026-09-26
 tags: [claude-code, skill, backend, docs-writer]
 ---
 
-# ✨ [grunion-ai/weave](https://github.com/grunion-ai/weave)
+# 💎 [grunion-ai/weave](https://github.com/grunion-ai/weave)
 
-**★ 0** · strong (score 5) · JavaScript · ai-agents, airtable-alternative, clickup-alternative, database, fibery-alternative
+**★ 7** · exceptional (score 11.5) · JavaScript · agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code
 
-> Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp, built so AI agents are first-class users. Connected tables, relations, workflows, formulas, rollups and per-entity markdown/PDF documents in one SQLite file — with a REST API, CLI and MCP server. Zero dependencies, no build step, MIT.
+> Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first (Claude Code, Codex, Cursor, any MCP client). Tables, relations, formulas, rollups, workflows, markdown/PDF documents, one SQLite file. REST, CLI, MCP server. Zero dependencies, MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-22
-- 🏷️ Tags: ai-agents, airtable-alternative, clickup-alternative, database, fibery-alternative, knowledge-base, local-first, low-code, mcp, mcp-server, model-context-protocol, no-code, nodejs, notion-alternative, project-management, rest-api, self-hosted, selfhosted, sqlite, work-management
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-09-26
+- 🏷️ Tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code, clickup-alternative, database, knowledge-base, llm, local-first, low-code, mcp, mcp-server, no-code, notion-alternative, open-source, project-management, rest-api, self-hosted, sqlite
 
 ## Best fit cue profiles
 

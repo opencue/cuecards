@@ -2,7 +2,7 @@
 title: "rogue-dev-studio/rogue-vector-knowledge-tools-skill — Claude Code skill discovered by cue"
 description: "Canonical vector DB / knowledge-graph tooling for code and embeddings: RuVector CLI, RVF format, and GitNexus-style knowledge graphs."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: ai-agent-skill, developer-tools, rogue-market-skills, vector-knowledge-tools
 
 ## Best fit cue profiles

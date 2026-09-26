@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-26
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="rogue-dev-studio-rogue-youtube-publishing-skill"></a>
+## 💎 [rogue-dev-studio/rogue-youtube-publishing-skill](https://github.com/rogue-dev-studio/rogue-youtube-publishing-skill)
 
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 0** · exceptional (score 9) · tags: ai-agent-skill, oauth, publishing, rogue-market-skills, social-media-management
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Rogue skill: manual YouTube publishing with confirm-gated MCP upload
+
+✅ SKILL.md
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+cue skills add rogue-dev-studio/rogue-youtube-publishing-skill --profile video
+```
+
+---
+
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+
+```bash
+cue skills add priyanshu-yadav04/claude-youtube --profile video
 ```
 
 ---

@@ -1,31 +1,29 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="amohavarshansankar-google-fonts-skill"></a>
-## 💎 [amohavarshansankar/google-fonts-skill](https://github.com/amohavarshansankar/google-fonts-skill)
+<a id="pascalorg-editor"></a>
+## 💎 [pascalorg/editor](https://github.com/pascalorg/editor)
 
-**★ 1** · exceptional (score 12.8) · HTML · tags: claude-code-skill, css, css-grid, css-grid-layout, design-system
+**★ 24315** · exceptional (score 17) · TypeScript · tags: 3d, agent-skills, ai-agents, architecture, bim
 
-Generate Google Fonts typography systems with font search, pair suggestions, and CSS/Tailwind output from 1,923 curated fonts
-
-✅ SKILL.md
+Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.
 
 ```bash
-cue skills add amohavarshansankar/google-fonts-skill --profile frontend
+cue skills add pascalorg/editor --profile frontend
 ```
 
 ---
@@ -43,15 +41,45 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="andresparrasilva-learn-up"></a>
-## 💎 [AndresParraSilva/learn-up](https://github.com/AndresParraSilva/learn-up)
+<a id="rogue-dev-studio-rogue-web-artifacts-builder-skill"></a>
+## 💎 [rogue-dev-studio/rogue-web-artifacts-builder-skill](https://github.com/rogue-dev-studio/rogue-web-artifacts-builder-skill)
 
-**★ 0** · exceptional (score 8) · Python · tags: agent-skills, ai-agents, badges, claude-code, claude-code-plugin
+**★ 0** · exceptional (score 8) · tags: ai-agent-skill, marketing-automation, rogue-market-skills, web-artifacts-builder
 
-Turn trusted sources into a local gamified study app with lessons, explained quizzes, labs, spaced repetition, multilingual content, badges, and progress tracking.
+Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+
+✅ SKILL.md
 
 ```bash
-cue skills add AndresParraSilva/learn-up --profile frontend
+cue skills add rogue-dev-studio/rogue-web-artifacts-builder-skill --profile frontend
+```
+
+---
+
+<a id="rogue-dev-studio-rogue-ui-ux-design-skill"></a>
+## 💎 [rogue-dev-studio/rogue-ui-ux-design-skill](https://github.com/rogue-dev-studio/rogue-ui-ux-design-skill)
+
+**★ 0** · exceptional (score 8) · tags: ai-agent-skill, design-tools, rogue-market-skills, ui-ux-design
+
+Expert UI/UX design for product interfaces: user flows, information architecture, wireframes, interaction patterns, accessibility, and a mandatory theme/brand alignment gate against the active project (PROJECT.md, design docs, existing tokens/visual language). Use before or alongside frontend work when designing screens, reviewing mockups, or va...
+
+✅ SKILL.md
+
+```bash
+cue skills add rogue-dev-studio/rogue-ui-ux-design-skill --profile frontend
+```
+
+---
+
+<a id="riqxa-skills-best-practices"></a>
+## ✨ [riqxa/skills-best-practices](https://github.com/riqxa/skills-best-practices)
+
+**★ 1** · strong (score 7.8) · Python · tags: agentic-commerce, ai-skill, android, claude-skill, clean-code
+
+Provide clear guidelines for building, validating, and organizing efficient agent skills with focused context management.
+
+```bash
+cue skills add riqxa/skills-best-practices --profile frontend
 ```
 
 ---

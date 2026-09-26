@@ -2,7 +2,7 @@
 title: "cetusk/Glaux — Claude Code skill discovered by cue"
 description: "A Lightweight DAW for Making Music with AI"
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-09-26
 - 🏷️ Tags: daw, mcp-server, rust, svelte5, tauri
 
 ## Best fit cue profiles

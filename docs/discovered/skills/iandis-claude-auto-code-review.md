@@ -2,7 +2,7 @@
 title: "iandis/claude-auto-code-review — Claude Code skill discovered by cue"
 description: "Claude Auto Code Review is a lightweight, simple GitHub Action that uses Claude Code to analyze and provide feedback on your code. This GitHub Action helps impr"
 layout: page
-updated: 2026-09-25
+updated: 2026-09-26
 tags: [claude-code, skill, core]
 ---
 
