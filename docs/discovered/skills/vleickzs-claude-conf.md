@@ -2,7 +2,7 @@
 title: "Vleickzs/claude-conf — Claude Code skill discovered by cue"
 description: "Streamline Claude Code with a modular config toolkit for faster, cleaner terminal workflows"
 layout: page
-updated: 2026-07-19
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: ai, ai-agents, automation, claude, claude-ai, claude-code, cross-platform, developer-tool, developer-tools, development-tools, governance, llm, mcp-server, mcp-servers, mlops, no-dependencies, policy-as-code, productivity, python, template
 
 ## Best fit cue profiles

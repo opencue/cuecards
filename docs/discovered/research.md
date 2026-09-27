@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="o0000-code-paper-search-pro"></a>
+## 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 172** · exceptional (score 21.1) · HTML · tags: academic-research, agent-skill, arxiv, claude-code-skill, codex
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add O0000-code/paper-search-pro --profile research
+```
+
+---
+
+<a id="halftime-apricotsauce647-claude-research"></a>
+## 💎 [halftime-apricotsauce647/claude-research](https://github.com/halftime-apricotsauce647/claude-research)
+
+**★ 1** · exceptional (score 9.3) · HTML · tags: academic-pipeline, ai-agents, ai-powered, ai-tools, autonomous-agent
+
+Build AI-assisted scientific research in VS Code with literature review, citation tracking, and publication-ready export
+
+```bash
+cue skills add halftime-apricotsauce647/claude-research --profile research
 ```
 
 ---

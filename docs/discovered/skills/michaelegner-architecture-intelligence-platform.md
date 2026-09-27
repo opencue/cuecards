@@ -2,21 +2,21 @@
 title: "michaelegner/architecture-intelligence-platform — Claude Code skill discovered by cue"
 description: "Trusted architecture context for AI agents: an evidence-backed architecture graph from OpenAPI, AsyncAPI and OpenTelemetry, served over MCP."
 layout: page
-updated: 2026-09-11
+updated: 2026-09-27
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [michaelegner/architecture-intelligence-platform](https://github.com/michaelegner/architecture-intelligence-platform)
 
-**★ 0** · strong (score 6) · Python · ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi
+**★ 3** · strong (score 6.7) · Python · ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi
 
 > Trusted architecture context for AI agents: an evidence-backed architecture graph from OpenAPI, AsyncAPI and OpenTelemetry, served over MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi, dependency-analysis, knowledge-graph, llm-tools, mcp, mcp-server, microservices, model-context-protocol, neo4j, openapi, opentelemetry, platform-engineering, software-architecture
 
 ## Best fit cue profiles

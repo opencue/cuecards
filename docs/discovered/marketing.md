@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
-
-```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile marketing
-```
-
----
-
-<a id="akxan-google-seo-mcp"></a>
-## ✨ [Akxan/google-seo-mcp](https://github.com/Akxan/google-seo-mcp)
-
-**★ 3** · strong (score 5.7) · TypeScript · tags: ai-agents, claude, core-web-vitals, ga4, generative-engine-optimization
-
-SEO & GEO MCP server: Google Search Console, GA4, PageSpeed Insights, structured data, llms.txt, AI crawler checks, WordPress (Yoast, WP-CLI over SSH), GitHub (in-place edits, images) and Gmail attachments as 100 tools for AI agents; optional hosted mode with Google sign-in, per-user tokens and a GitHub App for editing users' own repositories
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add Akxan/google-seo-mcp --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

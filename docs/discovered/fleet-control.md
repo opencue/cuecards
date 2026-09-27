@@ -1,56 +1,17 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "5 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
-
-**★ 123** · exceptional (score 13.4) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
-
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="tsukumohq-wrai-th"></a>
-## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
-
-**★ 31** · exceptional (score 13.2) · Go · tags: ai-agents, claude, claude-code, golang, mcp
-
-Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
-
-```bash
-cue skills add TsukumoHQ/WRAI.TH --profile fleet-control
-```
-
----
-
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
-
-**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
-
-2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
-
-```bash
-cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
-```
 
 ---
 
@@ -63,19 +24,6 @@ Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, A
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
-```
-
----
-
-<a id="vocion-vocion-core"></a>
-## 💎 [vocion/vocion-core](https://github.com/vocion/vocion-core)
-
-**★ 2** · exceptional (score 8) · TypeScript · tags: agent-framework, agent-orchestration, ai-agents, connectors, human-in-the-loop
-
-Open source agent workforce platform. Next.js + Postgres + MCP server for AI agent teams with human-in-the-loop review, built in.
-
-```bash
-cue skills add vocion/vocion-core --profile fleet-control
 ```
 
 ---

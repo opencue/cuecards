@@ -2,7 +2,7 @@
 title: "qingzhuo-cn/agent-fix — Claude Code skill discovered by cue"
 description: "Universal repair skill & CLI for AI coding agents (Claude Code, Codex, OpenCode, Hermes) — npm postinstall, GUI PATH, Node version, registry, auth, DeepSeek pro"
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 

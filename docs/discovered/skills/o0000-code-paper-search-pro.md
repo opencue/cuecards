@@ -2,22 +2,22 @@
 title: "O0000-code/paper-search-pro — Claude Code skill discovered by cue"
 description: "Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report."
 layout: page
-updated: 2026-07-14
+updated: 2026-09-27
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
 
-**★ 101** · exceptional (score 18.8) · HTML · academic-research, agent-skill, arxiv, claude-code-skill, codex
+**★ 172** · exceptional (score 21.1) · HTML · academic-research, agent-skill, arxiv, claude-code-skill, codex
 
 > Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 101 stars
-- 🗓️ Last pushed: 2026-07-14
+- ⭐ 172 stars
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: academic-research, agent-skill, arxiv, claude-code-skill, codex, literature-search, openalex, prisma-s, pubmed, semantic-scholar, shadcn-ui, systematic-review
 
 ## Best fit cue profiles

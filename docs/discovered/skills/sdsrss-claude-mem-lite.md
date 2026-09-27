@@ -2,21 +2,21 @@
 title: "sdsrss/claude-mem-lite — Claude Code skill discovered by cue"
 description: "Persistent long-term memory for Claude Code via MCP — captures coding decisions, bugfixes, and context across sessions. Hybrid FTS5 + TF-IDF search with episode"
 layout: page
-updated: 2026-07-05
+updated: 2026-09-27
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [sdsrss/claude-mem-lite](https://github.com/sdsrss/claude-mem-lite)
 
-**★ 48** · exceptional (score 11.4) · JavaScript · agent-memory, ai-coding-assistant, ai-memory, anthropic, claude
+**★ 61** · exceptional (score 15.6) · JavaScript · agent-memory, ai-coding-assistant, ai-memory, anthropic, claude
 
 > Persistent long-term memory for Claude Code via MCP — captures coding decisions, bugfixes, and context across sessions. Hybrid FTS5 + TF-IDF search with episode batching. Single SQLite DB, no external services. Alternative to claude-mem with 600x lower cost.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
-- ⭐ 48 stars
-- 🗓️ Last pushed: 2026-07-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
+- ⭐ 61 stars
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: agent-memory, ai-coding-assistant, ai-memory, anthropic, claude, claude-code, claude-code-plugin, fts5, hooks, hybrid-search, llm-memory, long-term-memory, mcp, mcp-server, memory, model-context-protocol, persistence, rag, semantic-search, sqlite
 
 ## Best fit cue profiles

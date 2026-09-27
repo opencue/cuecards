@@ -2,19 +2,19 @@
 title: "iandis/claude-auto-code-review — Claude Code skill discovered by cue"
 description: "Claude Auto Code Review is a lightweight, simple GitHub Action that uses Claude Code to analyze and provide feedback on your code. This GitHub Action helps impr"
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [iandis/claude-auto-code-review](https://github.com/iandis/claude-auto-code-review)
 
-**★ 1** · potential (score 3.3) · JavaScript
+**★ 1** · potential (score 3.2) · JavaScript
 
 > Claude Auto Code Review is a lightweight, simple GitHub Action that uses Claude Code to analyze and provide feedback on your code. This GitHub Action helps improve code quality by automatically reviewing pull requests, focusing on specified file extensions, and excluding specific paths.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: (none)

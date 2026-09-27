@@ -2,21 +2,21 @@
 title: "blindlove200/sub-agents-skills — Claude Code skill discovered by cue"
 description: "🤖 Define and execute task-specific AI agents in markdown across various platforms with the Sub-Agents Skills for seamless integration and portability."
 layout: page
-updated: 2026-09-24
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [blindlove200/sub-agents-skills](https://github.com/blindlove200/sub-agents-skills)
 
-**★ 5** · exceptional (score 9.6) · Python · aeo, agents, android, appstore, automation
+**★ 5** · exceptional (score 10.6) · Python · aeo, agents, android, appstore, automation
 
 > 🤖 Define and execute task-specific AI agents in markdown across various platforms with the Sub-Agents Skills for seamless integration and portability.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-24
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: aeo, agents, android, appstore, automation, claude-ai, claude-code, claude-skill, codex, cursor, developer-tools, gemini-cli, github-cli, opencode-ai, playstore, skills, sub-agents
 
 ## Best fit cue profiles

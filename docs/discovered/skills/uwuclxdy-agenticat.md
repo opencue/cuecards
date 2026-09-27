@@ -2,21 +2,21 @@
 title: "uwuclxdy/agenticat — Claude Code skill discovered by cue"
 description: "Some of my Agents & Skills, compatible with most AI coding tools"
 layout: page
-updated: 2026-09-12
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [uwuclxdy/agenticat](https://github.com/uwuclxdy/agenticat)
 
-**★ 5** · exceptional (score 10.6) · TypeScript · agent-skills, agents, claude-code, claude-skill
+**★ 6** · exceptional (score 10.7) · TypeScript · agent-skills, agents, claude-code, claude-skill
 
 > Some of my Agents & Skills, compatible with most AI coding tools
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: agent-skills, agents, claude-code, claude-skill
 
 ## Best fit cue profiles

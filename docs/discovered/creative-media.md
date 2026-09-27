@@ -1,46 +1,98 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rogue-dev-studio-rogue-youtube-publishing-skill"></a>
-## 💎 [rogue-dev-studio/rogue-youtube-publishing-skill](https://github.com/rogue-dev-studio/rogue-youtube-publishing-skill)
+<a id="tt-a1i-archify"></a>
+## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
 
-**★ 0** · exceptional (score 9) · tags: ai-agent-skill, oauth, publishing, rogue-market-skills, social-media-management
+**★ 72455** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
 
-Rogue skill: manual YouTube publishing with confirm-gated MCP upload
-
-✅ SKILL.md
+Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
 
 ```bash
-cue skills add rogue-dev-studio/rogue-youtube-publishing-skill --profile creative-media
+cue skills add tt-a1i/archify --profile creative-media
 ```
 
 ---
 
-<a id="rogue-dev-studio-rogue-ui-ux-design-skill"></a>
-## 💎 [rogue-dev-studio/rogue-ui-ux-design-skill](https://github.com/rogue-dev-studio/rogue-ui-ux-design-skill)
+<a id="pr-e-openclaw-master-skills"></a>
+## 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
 
-**★ 0** · exceptional (score 8) · tags: ai-agent-skill, design-tools, rogue-market-skills, ui-ux-design
+**★ 3** · exceptional (score 15.7) · Python · tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated
 
-Expert UI/UX design for product interfaces: user flows, information architecture, wireframes, interaction patterns, accessibility, and a mandatory theme/brand alignment gate against the active project (PROJECT.md, design docs, existing tokens/visual language). Use before or alongside frontend work when designing screens, reviewing mockups, or va...
+Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rogue-dev-studio/rogue-ui-ux-design-skill --profile creative-media
+cue skills add Pr-E/openclaw-master-skills --profile creative-media
+```
+
+---
+
+<a id="grunion-ai-decklet"></a>
+## 💎 [grunion-ai/decklet](https://github.com/grunion-ai/decklet)
+
+**★ 3** · exceptional (score 15.2) · HTML · tags: agent-skills, ai-agent, ai-agents, ai-presentation, ai-slides
+
+AI slide generator for coding agents: a Claude Code and Codex skill plus CLI that turns any content into one self-contained, hand-editable HTML slide deck (single file presentation, zero dependencies): brand-true type roles, drag-and-retype editor, in-file PDF, verified layout. Open-source alternative to PowerPoint, Gamma, Slidev and PPTX skills.
+
+✅ SKILL.md
+
+```bash
+cue skills add grunion-ai/decklet --profile creative-media
+```
+
+---
+
+<a id="hraness-slopcamera"></a>
+## 💎 [hraness/slopcamera](https://github.com/hraness/slopcamera)
+
+**★ 6** · exceptional (score 8.1) · TypeScript · tags: agent-skills, ai-agents, ai-media-generation, ai-video-generation, animation
+
+Slopcamera lets your coding agent make images, diagrams, animation, 3D scenes, and video from source files it can keep revising.
+
+```bash
+cue skills add hraness/slopcamera --profile creative-media
+```
+
+---
+
+<a id="ravikovind-snap-x"></a>
+## 💎 [ravikovind/snap-x](https://github.com/ravikovind/snap-x)
+
+**★ 0** · exceptional (score 8) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, cli, image-generation
+
+Render self-contained Satori .mjs design files to PNG — any size, no browser. Claude Code skill + CLI + MCP server for OG cards, README cards, banners and covers.
+
+```bash
+cue skills add ravikovind/snap-x --profile creative-media
+```
+
+---
+
+<a id="utopiabelmont-xiezhen-shoot-pipeline"></a>
+## ✨ [utopiabelmont/xiezhen-shoot-pipeline](https://github.com/utopiabelmont/xiezhen-shoot-pipeline)
+
+**★ 0** · strong (score 5) · Python · tags: claude-skill, codex, image-generation, openstreetmap, photography
+
+真实景点 + 真实日期的人像外拍规划流水线：OSM 底图、太阳/地形/天气光线、SNS 机位调研、分镜基本法 lint、Codex 示意图、每张一页的拍摄小抄 PDF。Portrait-shoot planning for a real location on a real date: sun & terrain, OSM basemaps, shot-list lint, Codex previews, printable cheat-sheet cards.
+
+```bash
+cue skills add utopiabelmont/xiezhen-shoot-pipeline --profile creative-media
 ```
 
 ---

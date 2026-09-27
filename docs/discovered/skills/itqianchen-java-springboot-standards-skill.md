@@ -2,7 +2,7 @@
 title: "ItQianChen/java-springboot-standards-skill — Claude Code skill discovered by cue"
 description: "一套面向 Java Spring Boot 的跨平台通用 Agent 开发规范 Skill，遵循开放的 Agent Skills 标准（SKILL.md），可被 Claude Code、Codex、Cursor、Cline 等主流 Agent 直接加载使用。"
 layout: page
-updated: 2026-09-20
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-20
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: agent-skill, agent-skills, claude-code-skill, claude-skills, codex-skill, codex-skills
 
 ## Best fit cue profiles

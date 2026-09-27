@@ -2,7 +2,7 @@
 title: "ridzkyyyyy/apple-mail — Claude Code skill discovered by cue"
 description: "Control macOS Mail.app with AI to triage inboxes, draft replies, search, move, delete, and label email using natural language"
 layout: page
-updated: 2026-07-19
+updated: 2026-09-27
 tags: [claude-code, skill, frontend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, frontend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: ai, alert, animation, app, claude, controller, email-signature, email-template, gester, macos, mail, mcp-server, mimicrate, native, python, rwh, smtp, swift, ui, vue
 
 ## Best fit cue profiles

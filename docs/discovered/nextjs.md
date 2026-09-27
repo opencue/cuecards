@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-06
+updated: 2026-09-27
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="ditakebede1-personal-knowledge-nexus"></a>
-## 💎 [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
+<a id="dfadify-web-lizard-bits"></a>
+## 💎 [dfadify-web/lizard-bits](https://github.com/dfadify-web/lizard-bits)
 
-**★ 0** · exceptional (score 9) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
+**★ 1** · exceptional (score 8.3) · TypeScript · tags: claude-code, claude-skill, landing-page, nextjs, react-bits
 
-Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
+🦎 Skill de Claude Code: landings premium para negocios locales con React Bits + Emil Kowalski, optimizadas para móvil y desplegadas en Vercel
 
 ```bash
-cue skills add ditakebede1/personal-knowledge-nexus --profile nextjs
+cue skills add dfadify-web/lizard-bits --profile nextjs
 ```
 
 ---

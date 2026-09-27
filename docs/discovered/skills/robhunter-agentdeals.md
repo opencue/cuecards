@@ -1,28 +1,28 @@
 ---
 title: "robhunter/agentdeals — Claude Code skill discovered by cue"
-description: "MCP server aggregating free tiers, startup credits & developer tool deals. 4 tools, 54 categories, 1,525+ offers."
+description: "Catalogue of developer infrastructure free tiers, startup credits and pricing, with side-by-side vendor comparisons for hosting, databases and AI APIs. Website,"
 layout: page
-updated: 2026-09-14
-tags: [claude-code, skill, core]
+updated: 2026-09-27
+tags: [claude-code, skill, backend]
 ---
 
 # 💎 [robhunter/agentdeals](https://github.com/robhunter/agentdeals)
 
-**★ 16** · exceptional (score 15.3) · TypeScript · developer-tools, free-tier, mcp, mcp-server, model-context-protocol
+**★ 22** · exceptional (score 14.5) · TypeScript · cloud-pricing, developer-deals, developer-tools, free-tier, mcp
 
-> MCP server aggregating free tiers, startup credits & developer tool deals. 4 tools, 54 categories, 1,525+ offers.
+> Catalogue of developer infrastructure free tiers, startup credits and pricing, with side-by-side vendor comparisons for hosting, databases and AI APIs. Website, JSON API and MCP server, read by coding agents choosing a stack.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 16 stars
-- 🗓️ Last pushed: 2026-09-14
-- 🏷️ Tags: developer-tools, free-tier, mcp, mcp-server, model-context-protocol
+- ⭐ 22 stars
+- 🗓️ Last pushed: 2026-09-27
+- 🏷️ Tags: cloud-pricing, developer-deals, developer-tools, free-tier, mcp, mcp-server, model-context-protocol, startup-credits
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -30,7 +30,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add robhunter/agentdeals --profile core
+cue skills add robhunter/agentdeals --profile backend
 ```
 
 ## About

@@ -2,7 +2,7 @@
 title: "kenspc/kenspc-claude-plugin — Claude Code skill discovered by cue"
 description: "Principle-first software-development workflow for Claude Code — brief → plan → task → implement → review, built for current-gen models."
 layout: page
-updated: 2026-07-07
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-07
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: agentic-workflow, ai-coding, anthropic, claude, claude-code, claude-code-agents, claude-code-marketplace, claude-code-plugin, claude-code-skill, developer-tools, prompt-engineering
 
 ## Best fit cue profiles

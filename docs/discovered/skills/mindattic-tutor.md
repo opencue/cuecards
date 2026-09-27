@@ -2,20 +2,20 @@
 title: "mindattic/Tutor — Claude Code skill discovered by cue"
 description: "Blazor Server app that converts books and documents (PDF, EPUB, DOCX, HTML, MOBI, AZW, RTF, ODT) into structured courses. A multi-LLM pipeline (OpenAI, Claude, "
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [mindattic/Tutor](https://github.com/mindattic/Tutor)
 
-**★ 1** · potential (score 4.8) · HTML · software
+**★ 2** · potential (score 4.9) · HTML · software
 
 > Blazor Server app that converts books and documents (PDF, EPUB, DOCX, HTML, MOBI, AZW, RTF, ODT) into structured courses. A multi-LLM pipeline (OpenAI, Claude, DeepSeek, Gemini) extracts concepts, correlates them via LSH/SimHash into a knowledge graph, and generates a learning path with RAG retrieval, quizzes, and progress tracking.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.8 based on:
-- ⭐ 1 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.9 based on:
+- ⭐ 2 stars
 - 🗓️ Last pushed: 2026-09-24
 - 🏷️ Tags: software
 

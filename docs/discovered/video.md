@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rogue-dev-studio-rogue-youtube-publishing-skill"></a>
-## 💎 [rogue-dev-studio/rogue-youtube-publishing-skill](https://github.com/rogue-dev-studio/rogue-youtube-publishing-skill)
+<a id="hraness-slopcamera"></a>
+## 💎 [hraness/slopcamera](https://github.com/hraness/slopcamera)
 
-**★ 0** · exceptional (score 9) · tags: ai-agent-skill, oauth, publishing, rogue-market-skills, social-media-management
+**★ 6** · exceptional (score 8.1) · TypeScript · tags: agent-skills, ai-agents, ai-media-generation, ai-video-generation, animation
 
-Rogue skill: manual YouTube publishing with confirm-gated MCP upload
-
-✅ SKILL.md
+Slopcamera lets your coding agent make images, diagrams, animation, 3D scenes, and video from source files it can keep revising.
 
 ```bash
-cue skills add rogue-dev-studio/rogue-youtube-publishing-skill --profile video
-```
-
----
-
-<a id="priyanshu-yadav04-claude-youtube"></a>
-## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
-
-**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
-
-Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
-
-```bash
-cue skills add priyanshu-yadav04/claude-youtube --profile video
+cue skills add hraness/slopcamera --profile video
 ```
 
 ---

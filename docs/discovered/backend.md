@@ -1,94 +1,83 @@
 ---
 title: "Claude Code Skills for backend"
-description: "17 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-27
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 17 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sandbaseai-sandbase-harness"></a>
-## 💎 [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness)
+<a id="sdsrss-claude-mem-lite"></a>
+## 💎 [sdsrss/claude-mem-lite](https://github.com/sdsrss/claude-mem-lite)
 
-**★ 673** · exceptional (score 15.2) · TypeScript · tags: agent-harness, agent-observability, agent-plugin, agent-runtime, agent-sandbox
+**★ 61** · exceptional (score 15.6) · JavaScript · tags: agent-memory, ai-coding-assistant, ai-memory, anthropic, claude
 
-Local-first, self-hosted AI agent runtime and MCP bridge with sandboxed sessions, memory, credentials, audit/replay, and a local Console.
+Persistent long-term memory for Claude Code via MCP — captures coding decisions, bugfixes, and context across sessions. Hybrid FTS5 + TF-IDF search with episode batching. Single SQLite DB, no external services. Alternative to claude-mem with 600x lower cost.
 
 ```bash
-cue skills add sandbaseai/sandbase-harness --profile backend
+cue skills add sdsrss/claude-mem-lite --profile backend
 ```
 
 ---
 
-<a id="tsukumohq-wrai-th"></a>
-## 💎 [TsukumoHQ/WRAI.TH](https://github.com/TsukumoHQ/WRAI.TH)
+<a id="btschwertfeger-python-kraken-sdk"></a>
+## 💎 [btschwertfeger/python-kraken-sdk](https://github.com/btschwertfeger/python-kraken-sdk)
 
-**★ 31** · exceptional (score 13.2) · Go · tags: ai-agents, claude, claude-code, golang, mcp
+**★ 84** · exceptional (score 15.6) · Python · tags: agentic-ai, bitcoin, command-line, cryptocurrency, futures
 
-Multi-agent orchestration via MCP. Persistent memory, inter-agent messaging, goal cascade, context budget pruning. One binary, zero config.
+Command-line tool, MCP server, and SDK to access the Kraken Crypto Asset Exchange API (Spot, xStocks, and Futures, REST and Websocket API)
 
 ```bash
-cue skills add TsukumoHQ/WRAI.TH --profile backend
+cue skills add btschwertfeger/python-kraken-sdk --profile backend
 ```
 
 ---
 
-<a id="silamir-boondmanager-mcp-server"></a>
-## 💎 [silamir/boondmanager-mcp-server](https://github.com/silamir/boondmanager-mcp-server)
+<a id="robhunter-agentdeals"></a>
+## 💎 [robhunter/agentdeals](https://github.com/robhunter/agentdeals)
 
-**★ 20** · exceptional (score 12.9) · TypeScript · tags: agentic-ai, anthropic, boondmanager, claude, claude-code
+**★ 22** · exceptional (score 14.5) · TypeScript · tags: cloud-pricing, developer-deals, developer-tools, free-tier, mcp
 
-Serveur MCP pour l'API BoondManager (ERP/CRM des ESN) : 182 outils, 12 prompts et 22 ressources pour piloter candidats, consultants, opportunités, projets, CRA, notes de frais et facturation depuis Claude. TypeScript, transports stdio et HTTP (OAuth2). Un projet Silamir.
+Catalogue of developer infrastructure free tiers, startup credits and pricing, with side-by-side vendor comparisons for hosting, databases and AI APIs. Website, JSON API and MCP server, read by coding agents choosing a stack.
+
+✅ SKILL.md
 
 ```bash
-cue skills add silamir/boondmanager-mcp-server --profile backend
+cue skills add robhunter/agentdeals --profile backend
 ```
 
 ---
 
-<a id="masayukita-m365-copilot-companion-mcp"></a>
-## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+<a id="hproxy-com-free-proxy-list"></a>
+## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 8** · exceptional (score 11.8) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+**★ 64** · exceptional (score 12) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
-Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
 ```bash
-cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
+cue skills add hproxy-com/free-proxy-list --profile backend
 ```
 
 ---
 
-<a id="grunion-ai-weave"></a>
-## 💎 [grunion-ai/weave](https://github.com/grunion-ai/weave)
+<a id="ancientice-palace-rs"></a>
+## 💎 [AncientiCe/palace-rs](https://github.com/AncientiCe/palace-rs)
 
-**★ 7** · exceptional (score 11.5) · JavaScript · tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code
+**★ 8** · exceptional (score 9.8) · Rust · tags: ai, ai-memory, coding-agents, embeddings, knowledge-graph
 
-Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first (Claude Code, Codex, Cursor, any MCP client). Tables, relations, formulas, rollups, workflows, markdown/PDF documents, one SQLite file. REST, CLI, MCP server. Zero dependencies, MIT.
-
-```bash
-cue skills add grunion-ai/weave --profile backend
-```
-
----
-
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
-
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
-
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+Local-first memory for coding agents — MCP server, single SQLite file, local embeddings
 
 ```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
+cue skills add AncientiCe/palace-rs --profile backend
 ```
 
 ---
@@ -96,7 +85,7 @@ cue skills add mistertechie06/x402-payments-skill --profile backend
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 2** · exceptional (score 8.9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -106,119 +95,41 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+<a id="michaelegner-architecture-intelligence-platform"></a>
+## ✨ [michaelegner/architecture-intelligence-platform](https://github.com/michaelegner/architecture-intelligence-platform)
 
-**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 3** · strong (score 6.7) · Python · tags: ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi
 
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
+Trusted architecture context for AI agents: an evidence-backed architecture graph from OpenAPI, AsyncAPI and OpenTelemetry, served over MCP.
 
 ```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+cue skills add michaelegner/architecture-intelligence-platform --profile backend
 ```
 
 ---
 
-<a id="vocion-vocion-core"></a>
-## 💎 [vocion/vocion-core](https://github.com/vocion/vocion-core)
+<a id="lungenemptynester200-drift"></a>
+## ✨ [lungenemptynester200/drift](https://github.com/lungenemptynester200/drift)
 
-**★ 2** · exceptional (score 8) · TypeScript · tags: agent-framework, agent-orchestration, ai-agents, connectors, human-in-the-loop
+**★ 0** · strong (score 6.5) · Python · tags: aws, cli, concept-drift, csharp, dart-build-system
 
-Open source agent workforce platform. Next.js + Postgres + MCP server for AI agent teams with human-in-the-loop review, built in.
+Detect architecture drift in AI-assisted codebases with deterministic checks and clear signals
 
 ```bash
-cue skills add vocion/vocion-core --profile backend
+cue skills add lungenemptynester200/drift --profile backend
 ```
 
 ---
 
-<a id="shadow400x-claude-sh"></a>
-## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+<a id="benethos-hub-lexware-office-mcp"></a>
+## ✨ [benethos-hub/lexware-office-mcp](https://github.com/benethos-hub/lexware-office-mcp)
 
-**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+**★ 0** · strong (score 6) · Python · tags: accounting, bookkeeping, invoicing, lexoffice, lexware
 
-Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
-
-```bash
-cue skills add shadow400x/claude-sh --profile backend
-```
-
----
-
-<a id="symbiomind-memory-mcp-ce"></a>
-## ✨ [symbiomind/memory-mcp-ce](https://github.com/symbiomind/memory-mcp-ce)
-
-**★ 0** · strong (score 7.5) · Python · tags: ai-memory, bearer-token, conversational-ai, docker-container, embeddings
-
-Persistent conversational memory for AI via MCP — built by humans and AI, for humans and AI.
+Unofficial MCP server for the Lexware Office accounting API — runs over stdio or HTTP.
 
 ```bash
-cue skills add symbiomind/memory-mcp-ce --profile backend
-```
-
----
-
-<a id="dokmatiq-docgen-sdks"></a>
-## ✨ [dokmatiq/docgen-sdks](https://github.com/dokmatiq/docgen-sdks)
-
-**★ 0** · strong (score 7.5) · Python · tags: briefpapier, claude-code-plugin, codex-skill, datev, e-invoice
-
-Official SDKs for the Dokmatiq DocGen document generation API (Python, TypeScript, Java, PHP)
-
-```bash
-cue skills add dokmatiq/docgen-sdks --profile backend
-```
-
----
-
-<a id="presendapp-presend"></a>
-## ✨ [presendapp/presend](https://github.com/presendapp/presend)
-
-**★ 3** · strong (score 6.7) · HTML · tags: browser-tools, client-side, cloudflare-pages, cosmos-sdk, cybersecurity
-
-Free privacy-first browser tools + a 42-endpoint security/utility API (typosquat & vulnerability checks, WHOIS/DNS, Cosmos SDK tx decoding, OFAC checks, MCP server for AI agents). No signup.
-
-```bash
-cue skills add presendapp/presend --profile backend
-```
-
----
-
-<a id="echo-mem-echo-mem"></a>
-## ✨ [echo-mem/echo-mem](https://github.com/echo-mem/echo-mem)
-
-**★ 2** · strong (score 6.5) · Python · tags: agent-memory, ai-agents, apache-age, graph-database, knowledge-graph
-
-Shared memory for AI agents on your own Postgres. The server never calls an LLM to write.
-
-```bash
-cue skills add echo-mem/echo-mem --profile backend
-```
-
----
-
-<a id="artkruglov-polka"></a>
-## ✨ [artkruglov/polka](https://github.com/artkruglov/polka)
-
-**★ 1** · strong (score 5.3) · TypeScript · tags: ai-agents, artifacts, chatgpt, claude, codex
-
-Полка — сохраняйте отчёты, страницы и прототипы из Claude, ChatGPT, Claude Code и Codex и делитесь ими по ссылке. / A shelf for AI-made HTML artifacts: your agent saves work over MCP, recipients open it by link. AGPL-3.0, self-hostable.
-
-```bash
-cue skills add artkruglov/polka --profile backend
-```
-
----
-
-<a id="jmshinhwa-readystack-themes"></a>
-## ✨ [jmshinhwa/readystack-themes](https://github.com/jmshinhwa/readystack-themes)
-
-**★ 0** · strong (score 5) · JavaScript · tags: compliance, cursor, devsecops, linter, mcp-server
-
-ReadyStack — regulation & deadline linters for VS Code / Cursor (Open VSX), npm CLI, Docker and MCP: DORA, NIS2, CRA, PCI DSS 6.4.3, WCAG 2.2, EU e-invoicing, GitHub Actions deprecations. Free file check; 7-day paid workspace sweep.
-
-```bash
-cue skills add jmshinhwa/readystack-themes --profile backend
+cue skills add benethos-hub/lexware-office-mcp --profile backend
 ```
 
 ---

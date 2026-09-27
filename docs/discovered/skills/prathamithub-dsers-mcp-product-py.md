@@ -2,7 +2,7 @@
 title: "PrathamITHub/dsers-mcp-product-py — Claude Code skill discovered by cue"
 description: "Automate DSers product import, bulk variant edits, and Shopify push from AliExpress with AI using Python MCP server"
 layout: page
-updated: 2026-07-19
+updated: 2026-09-27
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-19
+- 🗓️ Last pushed: 2026-09-27
 - 🏷️ Tags: ai-agent, aliexpress, dropshipping, dsers, mcp, mcp-server, model-context-protocol, product-import, python, shopify, stdio
 
 ## Best fit cue profiles
