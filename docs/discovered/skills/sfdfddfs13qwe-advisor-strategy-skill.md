@@ -2,21 +2,21 @@
 title: "sfdfddfs13QWE/advisor-strategy-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill from sfdfddfs13QWE/advisor-strategy-skill"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [sfdfddfs13QWE/advisor-strategy-skill](https://github.com/sfdfddfs13QWE/advisor-strategy-skill)
 
-**★ 0** · exceptional (score 9) · HTML · advisor-strategy, ai-coding, anthropic, claude-advisor, claude-code
+**★ 0** · exceptional (score 10.5) · HTML · advisor-strategy, ai-coding, anthropic, claude-advisor, claude-code
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-22
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: advisor-strategy, ai-coding, anthropic, claude-advisor, claude-code, claude-code-plugin, claude-code-skill, claude-opus, claude-skill, cline, coding-agent, gemini-cli, multi-model, vibe-coding
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,12 +18,38 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2676** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
+**★ 2682** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="khasky-awesome-agent-skills"></a>
+## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
+
+**★ 10** · exceptional (score 12) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
+
+ Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
+
+```bash
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
+```
+
+---
+
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+
+**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+
+```bash
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---
@@ -41,10 +67,36 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="humanix-cybersecurity-humanix-academie"></a>
+## 💎 [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+
+**★ 4** · exceptional (score 8.3) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+
+🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
+
+```bash
+cue skills add Humanix-Cybersecurity/Humanix-Academie --profile cybersecurity
+```
+
+---
+
+<a id="privacyfence-privacyfence"></a>
+## ✨ [privacyfence/privacyfence](https://github.com/privacyfence/privacyfence)
+
+**★ 1** · strong (score 7.8) · Python · tags: ai-security, claude, human-in-the-loop, mcp, mcp-server
+
+Open-source privacy and approval gateway for AI assistants (MCP): human approval, local PII checks and audit for Gmail, Drive, Slack, Salesforce, Jira and more.
+
+```bash
+cue skills add privacyfence/privacyfence --profile cybersecurity
+```
+
+---
+
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.8) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 

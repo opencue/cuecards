@@ -2,21 +2,21 @@
 title: "Humanix-Cybersecurity/Humanix-Academie — Claude Code skill discovered by cue"
 description: "🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou "
 layout: page
-updated: 2026-07-28
+updated: 2026-09-28
 tags: [claude-code, skill, cybersecurity, backend]
 ---
 
-# ✨ [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+# 💎 [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
 
-**★ 3** · strong (score 6.7) · TypeScript · agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+**★ 4** · exceptional (score 8.3) · TypeScript · agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
 
 > 🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification, gdpr, hrm, mcp-server, nextjs, nis2, open-source, phishing-simulation, pme, prisma, rgpd, security-awareness-training, self-hosted, sovereign, typescript, vishing
 
 ## Best fit cue profiles

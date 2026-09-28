@@ -1,22 +1,22 @@
 ---
 title: "SepineTam/mcp-for-stata — Claude Code skill discovered by cue"
-description: "A MCP server for integrating Stata into your agent loop with a safety-first design."
+description: "Stata-MCP: A MCP server for integrating Stata into your agent loop with a safety-first design."
 layout: page
-updated: 2026-09-02
+updated: 2026-09-28
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
 
-**★ 255** · exceptional (score 18.9) · Python · claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
+**★ 261** · exceptional (score 18.9) · Python · claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
 
-> A MCP server for integrating Stata into your agent loop with a safety-first design.
+> Stata-MCP: A MCP server for integrating Stata into your agent loop with a safety-first design.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.9 based on:
-- ⭐ 255 stars
-- 🗓️ Last pushed: 2026-09-02
+- ⭐ 261 stars
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin, dsh-plugin, dsh-plugins, econometrics, empirical, empirical-research, llm, mcp, safety, security, social-science, social-science-research, stata, stata-mcp, statistical-analysis
 
 ## Best fit cue profiles

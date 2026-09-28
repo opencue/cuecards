@@ -1,44 +1,57 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="o0000-code-paper-search-pro"></a>
-## 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
+<a id="sepinetam-mcp-for-stata"></a>
+## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
 
-**★ 172** · exceptional (score 21.1) · HTML · tags: academic-research, agent-skill, arxiv, claude-code-skill, codex
+**★ 261** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
 
-Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
-
-✅ SKILL.md
+Stata-MCP: A MCP server for integrating Stata into your agent loop with a safety-first design.
 
 ```bash
-cue skills add O0000-code/paper-search-pro --profile research
+cue skills add SepineTam/mcp-for-stata --profile research
 ```
 
 ---
 
-<a id="halftime-apricotsauce647-claude-research"></a>
-## 💎 [halftime-apricotsauce647/claude-research](https://github.com/halftime-apricotsauce647/claude-research)
+<a id="rokokol-papers-skill"></a>
+## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
 
-**★ 1** · exceptional (score 9.3) · HTML · tags: academic-pipeline, ai-agents, ai-powered, ai-tools, autonomous-agent
+**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
 
-Build AI-assisted scientific research in VS Code with literature review, citation tracking, and publication-ready export
+Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
+
+✅ SKILL.md
 
 ```bash
-cue skills add halftime-apricotsauce647/claude-research --profile research
+cue skills add rokokol/papers-skill --profile research
+```
+
+---
+
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+
+```bash
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---
@@ -46,7 +59,7 @@ cue skills add halftime-apricotsauce647/claude-research --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4.1) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

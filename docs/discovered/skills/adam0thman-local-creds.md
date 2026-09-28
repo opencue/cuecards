@@ -2,21 +2,21 @@
 title: "adam0thman/local-creds — Claude Code skill discovered by cue"
 description: "Encrypted credential index for people who run many systems. One age-encrypted file, no command ever prints a password, production entries refuse to run without "
 layout: page
-updated: 2026-09-20
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [adam0thman/local-creds](https://github.com/adam0thman/local-creds)
+# ✨ [adam0thman/local-creds](https://github.com/adam0thman/local-creds)
 
-**★ 0** · exceptional (score 8) · Python · abap, age-encryption, ai-agents, claude-code, claude-skill
+**★ 0** · strong (score 7) · Python · abap, age-encryption, ai-agents, claude-code, claude-skill
 
-> Encrypted credential index for people who run many systems. One age-encrypted file, no command ever prints a password, production entries refuse to run without an explicit override.
+> Encrypted credential index for people who run many systems. One age-encrypted file, no command ever prints a password, production entries refuse to run without an explicit override. Browser extension and headless logon fill web forms without showing the secret. Built for SAP Basis, model is generic. Safe for AI agents — see AGENTS.md.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-20
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: abap, age-encryption, ai-agents, claude-code, claude-skill, cli, credentials, devops, netweaver, password-manager, rfc, s4hana, sap, sap-basis, sap-hana, secrets-management, sysadmin
 
 ## Best fit cue profiles

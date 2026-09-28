@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "8 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,99 +24,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="ridzkyyyyy-apple-mail"></a>
-## 💎 [ridzkyyyyy/apple-mail](https://github.com/ridzkyyyyy/apple-mail)
-
-**★ 0** · exceptional (score 12.5) · Python · tags: ai, alert, animation, app, claude
-
-Control macOS Mail.app with AI to triage inboxes, draft replies, search, move, delete, and label email using natural language
-
-✅ SKILL.md
-
-```bash
-cue skills add ridzkyyyyy/apple-mail --profile frontend
-```
-
----
-
-<a id="fredjuel-arc-skill"></a>
-## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
-
-**★ 0** · exceptional (score 9.5) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
-
-Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
-
-```bash
-cue skills add Fredjuel/arc-skill --profile frontend
-```
-
----
-
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
-
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="dfadify-web-lizard-bits"></a>
-## 💎 [dfadify-web/lizard-bits](https://github.com/dfadify-web/lizard-bits)
-
-**★ 1** · exceptional (score 8.3) · TypeScript · tags: claude-code, claude-skill, landing-page, nextjs, react-bits
-
-🦎 Skill de Claude Code: landings premium para negocios locales con React Bits + Emil Kowalski, optimizadas para móvil y desplegadas en Vercel
-
-```bash
-cue skills add dfadify-web/lizard-bits --profile frontend
-```
-
----
-
-<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
-## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
-
-Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
-
-```bash
-cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
-```
-
----
-
-<a id="ystherr-wechat-article-formatter-skill"></a>
-## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
-
-**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
-
-🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
-
-```bash
-cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 ```
 
 ---

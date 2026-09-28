@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="marcosmodly-marketing-skill"></a>
+## ✨ [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · strong (score 7) · Python · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add marcosmodly/marketing-skill --profile marketing
 ```
 
 ---

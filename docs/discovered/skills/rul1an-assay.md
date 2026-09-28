@@ -1,23 +1,23 @@
 ---
 title: "Rul1an/assay — Claude Code skill discovered by cue"
-description: "Policy-as-code for MCP agents: deny risky tool calls before they run, prove what ran with verifiable evidence, and enforce egress in the kernel (eBPF/LSM, Linux"
+description: "Open evidence profile for MCP tool actions. Enforce configured tool-call policies and record decisions and observations in offline-verifiable bundles. Optional "
 layout: page
-updated: 2026-07-26
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Rul1an/assay](https://github.com/Rul1an/assay)
 
-**★ 10** · exceptional (score 9) · Rust · agent-security, ai-agents, ai-security, ci, cyclonedx
+**★ 11** · exceptional (score 9.1) · Rust · agent-security, ai-agents, attestation, ebpf, evidence-bundles
 
-> Policy-as-code for MCP agents: deny risky tool calls before they run, prove what ran with verifiable evidence, and enforce egress in the kernel (eBPF/LSM, Linux). Deterministic, offline-first, bounded claims.
+> Open evidence profile for MCP tool actions. Enforce configured tool-call policies and record decisions and observations in offline-verifiable bundles. Optional Linux kernel controls. No hosted backend required.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
-- ⭐ 10 stars
-- 🗓️ Last pushed: 2026-07-26
-- 🏷️ Tags: agent-security, ai-agents, ai-security, ci, cyclonedx, ebpf, evidence-bundles, github-actions, llm-security, mcp, mcp-security, mcp-server, openfeature, policy-as-code, policy-enforcement, promptfoo, provenance, rust, sbom, supply-chain-security
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-09-28
+- 🏷️ Tags: agent-security, ai-agents, attestation, ebpf, evidence-bundles, github-actions, mcp, mcp-security, mcp-server, offline-verification, policy-as-code, policy-enforcement, provenance, rust
 
 ## Best fit cue profiles
 

@@ -2,21 +2,21 @@
 title: "genomoncology/biomcp — Claude Code skill discovered by cue"
 description: "BioMCP: Biomedical Model Context Protocol"
 layout: page
-updated: 2026-08-28
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [genomoncology/biomcp](https://github.com/genomoncology/biomcp)
 
-**★ 612** · exceptional (score 17) · Rust · ai, bioinformatics, clinical-trials, genomics, llm
+**★ 644** · exceptional (score 17) · Rust · ai, bioinformatics, clinical-trials, genomics, llm
 
 > BioMCP: Biomedical Model Context Protocol
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 612 stars
-- 🗓️ Last pushed: 2026-08-28
+- ⭐ 644 stars
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: ai, bioinformatics, clinical-trials, genomics, llm, mcp, mcp-server, medical, model-context-protocol, pubmed, pubmed-central
 
 ## Best fit cue profiles

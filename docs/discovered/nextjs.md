@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="dfadify-web-lizard-bits"></a>
-## 💎 [dfadify-web/lizard-bits](https://github.com/dfadify-web/lizard-bits)
+<a id="naveennnm13-fault-lines-the-program-manager-tool"></a>
+## 🔹 [Naveennnm13/Fault-Lines-The-Program-Manager-Tool](https://github.com/Naveennnm13/Fault-Lines-The-Program-Manager-Tool)
 
-**★ 1** · exceptional (score 8.3) · TypeScript · tags: claude-code, claude-skill, landing-page, nextjs, react-bits
+**★ 1** · potential (score 3.3) · TypeScript · tags: claude, critical-path, d3, dependency-graph, networkx
 
-🦎 Skill de Claude Code: landings premium para negocios locales con React Bits + Emil Kowalski, optimizadas para móvil y desplegadas en Vercel
+Finds the tasks that threaten a program's delivery date, simulates how a slip cascades across teams, and drafts the risk briefing. Critical path analysis in Python, Claude-written briefings, Next.js dashboard.
 
 ```bash
-cue skills add dfadify-web/lizard-bits --profile nextjs
+cue skills add Naveennnm13/Fault-Lines-The-Program-Manager-Tool --profile nextjs
 ```
 
 ---

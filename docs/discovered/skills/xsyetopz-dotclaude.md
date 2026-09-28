@@ -1,23 +1,23 @@
 ---
 title: "xsyetopz/dotclaude — Claude Code skill discovered by cue"
-description: "A plugin for Claude Code that also uses Codex a bit."
+description: "A very opinionated Claude Code plugin for software engineering"
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xsyetopz/dotclaude](https://github.com/xsyetopz/dotclaude)
 
-**★ 0** · exceptional (score 10.5) · JavaScript · agent-handoff, agent-hooks, agent-skill, agent-skills, claude
+**★ 0** · exceptional (score 10.5) · JavaScript · agent, agent-framework, agent-handoff, agent-hooks, agent-orchestration
 
-> A plugin for Claude Code that also uses Codex a bit.
+> A very opinionated Claude Code plugin for software engineering
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-27
-- 🏷️ Tags: agent-handoff, agent-hooks, agent-skill, agent-skills, claude, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, codex, codex-cli, hooks, openai-chatgpt, openai-codex, prompt, prompt-engineering, prompt-tuning
+- 🗓️ Last pushed: 2026-09-28
+- 🏷️ Tags: agent, agent-framework, agent-handoff, agent-hooks, agent-orchestration, agent-skill, agent-skills, agentic-workflow, agents, claude, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, hooks, openai-codex, prompt, prompt-engineering
 
 ## Best fit cue profiles
 

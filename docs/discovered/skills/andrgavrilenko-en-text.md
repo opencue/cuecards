@@ -2,7 +2,7 @@
 title: "andrgavrilenko/en-text — Claude Code skill discovered by cue"
 description: "English text quality for AI agents: AI-slop cleanup, clarity, usage. 74 rules, each with a test and a stated exception. Scores text 0-10."
 layout: page
-updated: 2026-09-21
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: agent-skills, ai-slop, claude-code, claude-skill, editing, english, plain-language, prose, style-guide, writing
 
 ## Best fit cue profiles

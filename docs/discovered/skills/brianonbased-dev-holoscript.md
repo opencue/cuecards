@@ -1,23 +1,23 @@
 ---
 title: "brianonbased-dev/HoloScript — Claude Code skill discovered by cue"
-description: "The semantic layer for spatial computing and AI agents — write once, run as VR, robotics, web, or game."
+description: "A general-purpose semantic systems programming language. Describe a system once; real compilers lower the same source into engine builds, backend services, robo"
 layout: page
-updated: 2026-07-27
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [brianonbased-dev/HoloScript](https://github.com/brianonbased-dev/HoloScript)
+# ✨ [brianonbased-dev/HoloScript](https://github.com/brianonbased-dev/HoloScript)
 
-**★ 5** · exceptional (score 8.6) · TypeScript · 3d, agents, ai-agents, compiler, digital-twin
+**★ 9** · strong (score 7.9) · TypeScript · 3d, ai-agents, code-generation, compiler, cross-platform
 
-> The semantic layer for spatial computing and AI agents — write once, run as VR, robotics, web, or game.
+> A general-purpose semantic systems programming language. Describe a system once; real compilers lower the same source into engine builds, backend services, robots, web runtimes, and headset apps. Not a scripting language.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-07-27
-- 🏷️ Tags: 3d, agents, ai-agents, compiler, digital-twin, gaussian-splatting, knowledge-graph, mcp, mcp-server, multi-agent, programming-language, robotics, ros2, semantic, simulation, spatial-computing, typescript, wasm, webgpu, webxr
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.9 based on:
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-09-28
+- 🏷️ Tags: 3d, ai-agents, code-generation, compiler, cross-platform, digital-twin, iot, mcp, mcp-server, parser, programming-language, robotics, ros2, semantic, simulation, spatial-computing, systems-programming, virtual-machine, wasm, webgpu
 
 ## Best fit cue profiles
 

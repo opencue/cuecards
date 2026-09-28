@@ -2,21 +2,21 @@
 title: "irfndi/oh-my-plumb — Claude Code skill discovered by cue"
 description: "Keep your AI coding agents true to spec: Tier1 fast-path + Tier2 guards + Tier3 micro-eval on every edit, for Claude Code, Codex, OpenCode and Pi"
 layout: page
-updated: 2026-09-27
+updated: 2026-09-28
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [irfndi/oh-my-plumb](https://github.com/irfndi/oh-my-plumb)
 
-**★ 3** · potential (score 4.6) · TypeScript
+**★ 3** · potential (score 4.7) · TypeScript
 
 > Keep your AI coding agents true to spec: Tier1 fast-path + Tier2 guards + Tier3 micro-eval on every edit, for Claude Code, Codex, OpenCode and Pi
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
