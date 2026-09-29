@@ -2,21 +2,21 @@
 title: "SebastiaWeb/cortex-cli — Claude Code skill discovered by cue"
 description: "Sync Claude Code sessions between machines with automatic path remapping"
 layout: page
-updated: 2026-09-14
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [SebastiaWeb/cortex-cli](https://github.com/SebastiaWeb/cortex-cli)
 
-**★ 1** · strong (score 5.5) · TypeScript
+**★ 1** · strong (score 5.8) · TypeScript
 
 > Sync Claude Code sessions between machines with automatic path remapping
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-08
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

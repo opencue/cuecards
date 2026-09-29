@@ -1,57 +1,42 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sepinetam-mcp-for-stata"></a>
-## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
+<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
+## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
 
-**★ 261** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
+**★ 4** · strong (score 7.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
 
-Stata-MCP: A MCP server for integrating Stata into your agent loop with a safety-first design.
+AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
 
 ```bash
-cue skills add SepineTam/mcp-for-stata --profile research
+cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
 ```
 
 ---
 
-<a id="rokokol-papers-skill"></a>
-## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
+<a id="neverbiasu-awesome-research-skills"></a>
+## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
 
-**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
+**★ 3** · strong (score 5.7) · tags: agent-skills, ai-for-science, awesome-list, claude-code, codex
 
-Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
-
-✅ SKILL.md
+149 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
 
 ```bash
-cue skills add rokokol/papers-skill --profile research
-```
-
----
-
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
-
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
-
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
-
-```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add neverbiasu/awesome-research-skills --profile research
 ```
 
 ---

@@ -2,22 +2,22 @@
 title: "dmitrax/second-brain-setup — Claude Code skill discovered by cue"
 description: "Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidia"
 layout: page
-updated: 2026-08-30
+updated: 2026-09-29
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
 
-**★ 1** · exceptional (score 14.3) · Shell · ai-agents, ai-second-brain, anthropic, claude, claude-code
+**★ 2** · exceptional (score 16) · Shell · ai-agents, ai-second-brain, anthropic, claude, claude-code
 
 > Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-30
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: ai-agents, ai-second-brain, anthropic, claude, claude-code, claude-code-skill, claude-skill, knowledge-base, knowledge-management, llm, long-term-memory, markdown, note-taking, obsidian, obsidian-vault, persistent-memory, personal-knowledge-management, pkm, second-brain, slash-commands
 
 ## Best fit cue profiles

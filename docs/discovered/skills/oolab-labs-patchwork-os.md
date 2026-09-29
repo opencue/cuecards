@@ -1,22 +1,22 @@
 ---
 title: "Oolab-labs/patchwork-os — Claude Code skill discovered by cue"
-description: "The decision layer for personal AI. Local-first runtime where agents automate across GitHub, Slack, Gmail & 45+ services — but every risky action stops for your"
+description: "The decision layer for personal AI. Local-first runtime where agents automate across GitHub, Slack, Gmail & 45+ services — but every risky action can stop for y"
 layout: page
-updated: 2026-08-05
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Oolab-labs/patchwork-os](https://github.com/Oolab-labs/patchwork-os)
 
-**★ 29** · exceptional (score 14) · TypeScript · ai-agent, anthropic, approval-queue, automation, claude
+**★ 30** · exceptional (score 14.1) · TypeScript · ai-agent, anthropic, approval-queue, automation, claude
 
-> The decision layer for personal AI. Local-first runtime where agents automate across GitHub, Slack, Gmail & 45+ services — but every risky action stops for your yes, workers (agents) earn autonomy from track record, and every decision leaves a receipt. Your models, your machine, your policy. Includes an MCP bridge: 177 IDE tools for Claude Code.
+> The decision layer for personal AI. Local-first runtime where agents automate across GitHub, Slack, Gmail & 45+ services — but every risky action can stop for your yes, workers (agents) earn autonomy from track record, and every decision leaves a receipt. Your models, your machine, your policy. Includes an MCP bridge: 180 IDE tools for Claude Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 29 stars
-- 🗓️ Last pushed: 2026-08-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
+- ⭐ 30 stars
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: ai-agent, anthropic, approval-queue, automation, claude, claude-code, ide, local-first, lsp, mcp, mcp-server, ollama, patchwork, recipes, vscode-extension
 
 ## Best fit cue profiles

@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-29
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="hraness-slopcamera"></a>
-## 💎 [hraness/slopcamera](https://github.com/hraness/slopcamera)
+<a id="beriki770-ship-it-code-animations"></a>
+## 💎 [beriki770-ship-it/code-animations](https://github.com/beriki770-ship-it/code-animations)
 
-**★ 6** · exceptional (score 8.1) · TypeScript · tags: agent-skills, ai-agents, ai-media-generation, ai-video-generation, animation
+**★ 0** · exceptional (score 13) · HTML · tags: animation, canvas, claude-code, claude-skill, ffmpeg
 
-Slopcamera lets your coding agent make images, diagrams, animation, 3D scenes, and video from source files it can keep revising.
+Claude Code skill: videos where a program draws every frame (Canvas 2D + Web Audio), rendered headless to MP4 in 16:9 / 9:16 / 4:5
+
+✅ SKILL.md
 
 ```bash
-cue skills add hraness/slopcamera --profile video
+cue skills add beriki770-ship-it/code-animations --profile video
+```
+
+---
+
+<a id="dauletbekalim-motion-ui-videos"></a>
+## 💎 [dauletbekalim/motion-ui-videos](https://github.com/dauletbekalim/motion-ui-videos)
+
+**★ 1** · exceptional (score 8.3) · JavaScript · tags: claude-code, claude-skill, motion-design, product-video, reels
+
+A Claude Code skill that makes product videos from your app's repo: reels, launch films, loops and covers, with the UI rebuilt in code and sound timed to the frame.
+
+```bash
+cue skills add dauletbekalim/motion-ui-videos --profile video
+```
+
+---
+
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+
+```bash
+cue skills add priyanshu-yadav04/claude-youtube --profile video
 ```
 
 ---

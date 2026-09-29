@@ -2,7 +2,7 @@
 title: "CultureClub-dev/alphabridge-mcp-free — Claude Code skill discovered by cue"
 description: "AlphaBridge MCP — the free WordPress plugin: a native MCP server with 39 structured tools. Source of the version published on WordPress.org."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-28
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: ai, claude, mcp, mcp-server, model-context-protocol, php, wordpress, wordpress-plugin
 
 ## Best fit cue profiles

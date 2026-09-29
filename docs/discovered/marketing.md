@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="marcosmodly-marketing-skill"></a>
-## ✨ [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
+<a id="agricidaniel-claude-seo"></a>
+## 💎 [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
 
-**★ 0** · strong (score 7) · Python · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
+**★ 17928** · exceptional (score 18) · Python · tags: ai, ai-seo, claude-code, claude-code-skill, marketing-automation
 
-Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions, including DataForSEO, Firecrawl, Ahrefs and Matomo.
 
 ```bash
-cue skills add marcosmodly/marketing-skill --profile marketing
+cue skills add AgriciDaniel/claude-seo --profile marketing
+```
+
+---
+
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+
+```bash
+cue skills add priyanshu-yadav04/claude-youtube --profile marketing
 ```
 
 ---

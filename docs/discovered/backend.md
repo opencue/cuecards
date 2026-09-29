@@ -1,81 +1,29 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "17 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 17 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kitfunso-hippo-memory"></a>
-## 💎 [kitfunso/hippo-memory](https://github.com/kitfunso/hippo-memory)
+<a id="shipstatic-mcp"></a>
+## 💎 [shipstatic/mcp](https://github.com/shipstatic/mcp)
 
-**★ 764** · exceptional (score 17.4) · TypeScript · tags: agent-memory, ai-agents, ai-memory, claude-code, claude-code-plugin
+**★ 7** · exceptional (score 13.3) · TypeScript · tags: agent-skills, ai, ai-agents, antigravity, claude
 
-Memory for AI agents that learns what is wrong and stops repeating it. Mark a memory wrong and it stops coming back; newer facts replace old ones. Local SQLite store and MCP server, persistent across sessions; hippo init wires it into Claude Code, Codex, Cursor, OpenClaw, OpenCode and Pi. Zero runtime deps, MIT, opt-in hosted TypeSafe Jev reranker.
-
-```bash
-cue skills add kitfunso/hippo-memory --profile backend
-```
-
----
-
-<a id="xpf0000-flyenv"></a>
-## 💎 [xpf0000/FlyEnv](https://github.com/xpf0000/FlyEnv)
-
-**★ 3247** · exceptional (score 15) · TypeScript · tags: dev-environment, developer-tools, development-environment, docker-alternative, docker-alternatives
-
-Native local development environment for Windows, macOS & Linux. A modern alternative to XAMPP, MAMP, Laragon and Laravel Herd, with runtimes, databases, web servers, local sites, HTTPS, AI coding tools and MCP.
+MCP server for instant static site deploys from AI agents — free, no account needed
 
 ```bash
-cue skills add xpf0000/FlyEnv --profile backend
-```
-
----
-
-<a id="icoretech-codex-pooler"></a>
-## 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
-
-**★ 216** · exceptional (score 14.7) · Elixir · tags: aider, api-gateway, cline, codex, continue
-
-The full featured self-hosted Codex gateway, for teams, agents and you
-
-```bash
-cue skills add icoretech/codex-pooler --profile backend
-```
-
----
-
-<a id="githits-com-githits-cli"></a>
-## 💎 [githits-com/githits-cli](https://github.com/githits-com/githits-cli)
-
-**★ 113** · exceptional (score 14.5) · TypeScript · tags: ai-coding-tools, ai-tools, cli, code-graph, code-search
-
-CLI & MCP for GitHits - The Code Context Layer for AI Coding Agents
-
-```bash
-cue skills add githits-com/githits-cli --profile backend
-```
-
----
-
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
-
-**★ 206175** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
-
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
-
-```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add shipstatic/mcp --profile backend
 ```
 
 ---
@@ -83,12 +31,77 @@ cue skills add n8n-io/n8n --profile backend
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 65** · exceptional (score 12) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 68** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
 ```bash
 cue skills add hproxy-com/free-proxy-list --profile backend
+```
+
+---
+
+<a id="grunion-ai-weave"></a>
+## 💎 [grunion-ai/weave](https://github.com/grunion-ai/weave)
+
+**★ 7** · exceptional (score 11.5) · JavaScript · tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code
+
+Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first (Claude Code, Codex, Cursor, any MCP client). Tables, relations, formulas, rollups, workflows, markdown/PDF documents, one SQLite file. REST, CLI, MCP server. Zero dependencies, MIT.
+
+```bash
+cue skills add grunion-ai/weave --profile backend
+```
+
+---
+
+<a id="wcatz-ghost"></a>
+## 💎 [wcatz/ghost](https://github.com/wcatz/ghost)
+
+**★ 2** · exceptional (score 10.5) · Go · tags: claude-code, golang, local-first, mcp, mcp-server
+
+GhostMem — a local-first MCP memory server for Claude Code, opencode, Cursor, and other MCP clients.
+
+```bash
+cue skills add wcatz/ghost --profile backend
+```
+
+---
+
+<a id="retospect-precis-mcp"></a>
+## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
+
+**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, claude, context-management, cursor, llm
+
+MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
+
+```bash
+cue skills add retospect/precis-mcp --profile backend
+```
+
+---
+
+<a id="mistertechie06-x402-payments-skill"></a>
+## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
+
+**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
+
+Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+
+```bash
+cue skills add mistertechie06/x402-payments-skill --profile backend
+```
+
+---
+
+<a id="navya-tecnologia-planka-v2-mcp"></a>
+## 💎 [Navya-Tecnologia/planka-v2-mcp](https://github.com/Navya-Tecnologia/planka-v2-mcp)
+
+**★ 7** · exceptional (score 9.8) · TypeScript · tags: ai-agents, antigravity, claude-desktop, cursor-ai, docker
+
+Official Model Context Protocol (MCP) server for Planka v2.x Kanban. Supports Stdio & HTTP SSE, Docker, and AI workflow automation with Cursor & Claude.
+
+```bash
+cue skills add Navya-Tecnologia/planka-v2-mcp --profile backend
 ```
 
 ---
@@ -106,15 +119,106 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="humanix-cybersecurity-humanix-academie"></a>
-## 💎 [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+<a id="marketinglior-pixel-agentbill"></a>
+## 💎 [marketinglior-pixel/agentbill](https://github.com/marketinglior-pixel/agentbill)
 
-**★ 4** · exceptional (score 8.3) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+**★ 7** · exceptional (score 8.7) · TypeScript · tags: agent-billing, ai-agents, fastify, langchain, llm-cost-control
 
-🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
+See what each AI agent, client and job costs, in dollars at list price, and give any job a spend ceiling: preflight answers approved: false past it, and your code decides. An SDK and an HTTP API, not a proxy.
 
 ```bash
-cue skills add Humanix-Cybersecurity/Humanix-Academie --profile backend
+cue skills add marketinglior-pixel/agentbill --profile backend
+```
+
+---
+
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+
+**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
+
+```bash
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+
+**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
+
+```bash
+cue skills add shadow400x/claude-sh --profile backend
+```
+
+---
+
+<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
+## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+
+**★ 4** · strong (score 7.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+
+AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+
+```bash
+cue skills add MrPeppersDev/agent-infrastructure-landscape --profile backend
+```
+
+---
+
+<a id="pandich93-youtube-niche-finder"></a>
+## ✨ [pandich93/youtube-niche-finder](https://github.com/pandich93/youtube-niche-finder)
+
+**★ 4** · strong (score 6.8) · Python · tags: claude, content-research, creator-tools, dashboard, docker
+
+Self-hosted YouTube niche & outlier-video research tool (NexLev/vidIQ alternative) — MCP server + HTTP API + worker on YouTube Data API v3 and PostgreSQL, with a zero-build ES-modules dashboard
+
+```bash
+cue skills add pandich93/youtube-niche-finder --profile backend
+```
+
+---
+
+<a id="otal-labs-nexul"></a>
+## ✨ [otal-labs/nexul](https://github.com/otal-labs/nexul)
+
+**★ 3** · strong (score 6.7) · Go · tags: agents, ai-agents, ci-cd, deployment, devops
+
+Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.
+
+```bash
+cue skills add otal-labs/nexul --profile backend
+```
+
+---
+
+<a id="luetzey-who2be"></a>
+## ✨ [luetzey/who2be](https://github.com/luetzey/who2be)
+
+**★ 0** · strong (score 6.5) · Python · tags: agent-configuration, ai-agents, fastapi, knowledge-base, llm
+
+Self-hosted hub for AI agent configuration: versioned personas, playbooks and knowledge with a mandatory review step, served to agents over MCP. Agent configuration you review — not behavior you hope for.
+
+```bash
+cue skills add luetzey/who2be --profile backend
+```
+
+---
+
+<a id="benethos-hub-lexware-office-mcp"></a>
+## ✨ [benethos-hub/lexware-office-mcp](https://github.com/benethos-hub/lexware-office-mcp)
+
+**★ 0** · strong (score 6) · Python · tags: accounting, bookkeeping, invoicing, lexoffice, lexware
+
+Unofficial MCP server for the Lexware Office accounting API — runs over stdio or HTTP.
+
+```bash
+cue skills add benethos-hub/lexware-office-mcp --profile backend
 ```
 
 ---

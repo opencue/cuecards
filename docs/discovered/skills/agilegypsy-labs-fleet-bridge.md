@@ -2,7 +2,7 @@
 title: "AgileGypsy-Labs/fleet-bridge — Claude Code skill discovered by cue"
 description: "Make Claude Code sessions on different machines and accounts work as one team: signed session-to-session relay, second-account agent delegation, path ownership,"
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 

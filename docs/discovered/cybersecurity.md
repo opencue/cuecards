@@ -1,55 +1,44 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+
+**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+
+✅ SKILL.md
+
+```bash
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2682** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
+**★ 2694** · exceptional (score 12.8) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="khasky-awesome-agent-skills"></a>
-## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
-
-**★ 10** · exceptional (score 12) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
-
- Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
-
-```bash
-cue skills add khasky/awesome-agent-skills --profile cybersecurity
-```
-
----
-
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
-
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
-
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
-
-```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 ```
 
 ---
@@ -67,28 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="humanix-cybersecurity-humanix-academie"></a>
-## 💎 [Humanix-Cybersecurity/Humanix-Academie](https://github.com/Humanix-Cybersecurity/Humanix-Academie)
+<a id="elyshafresh21-claude-context-lint"></a>
+## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
 
-**★ 4** · exceptional (score 8.3) · TypeScript · tags: agpl-3-0, cybersecurity, cybersecurity-awareness, french-tech, gamification
+**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
 
-🦊 Plateforme française open source de cybersensibilisation pour PME. AGPLv3 · souverain FR · phishing simulé · vishing IA · NIS2 · RGPD · self-host gratuit ou cloud à partir de 0 €.
-
-```bash
-cue skills add Humanix-Cybersecurity/Humanix-Academie --profile cybersecurity
-```
-
----
-
-<a id="privacyfence-privacyfence"></a>
-## ✨ [privacyfence/privacyfence](https://github.com/privacyfence/privacyfence)
-
-**★ 1** · strong (score 7.8) · Python · tags: ai-security, claude, human-in-the-loop, mcp, mcp-server
-
-Open-source privacy and approval gateway for AI assistants (MCP): human approval, local PII checks and audit for Gmail, Drive, Slack, Salesforce, Jira and more.
+Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
 
 ```bash
-cue skills add privacyfence/privacyfence --profile cybersecurity
+cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
 ```
 
 ---
@@ -102,6 +78,19 @@ Deterministic governance for Claude and MCP tool calls. Pin approved capabilitie
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="ardianryan-mikrotik-skill"></a>
+## ✨ [ardianryan/MikroTik-Skill](https://github.com/ardianryan/MikroTik-Skill)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: antigravity, cake-qos, cli, mcp, mcp-server
+
+Production-grade MikroTik RouterOS v7 automation skill, CLI toolkit, and MCP server for network engineers and AI agents.
+
+```bash
+cue skills add ardianryan/MikroTik-Skill --profile cybersecurity
 ```
 
 ---

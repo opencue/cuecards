@@ -1,42 +1,70 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="howdow698-ui-llm-wiki"></a>
-## 💎 [howdow698-ui/llm-wiki](https://github.com/howdow698-ui/llm-wiki)
+<a id="dmitrax-second-brain-setup"></a>
+## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
 
-**★ 0** · exceptional (score 10) · tags: agent-skill, claude-code-skill, cli, codex, gemini
+**★ 2** · exceptional (score 16) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
 
-Build a structured knowledge base with LLM agents to automate documentation, link concepts, and maintain long-term information retention in Markdown.
+Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
+
+✅ SKILL.md
 
 ```bash
-cue skills add howdow698-ui/llm-wiki --profile docs-writer
+cue skills add dmitrax/second-brain-setup --profile docs-writer
 ```
 
 ---
 
-<a id="mindgameolympiangames78-llm-knowledge-base"></a>
-## 💎 [mindgameolympiangames78/llm-knowledge-base](https://github.com/mindgameolympiangames78/llm-knowledge-base)
+<a id="grunion-ai-weave"></a>
+## 💎 [grunion-ai/weave](https://github.com/grunion-ai/weave)
 
-**★ 0** · exceptional (score 9.5) · tags: bert-models, biomedical-informatics, claude-code, claude-code-skill, gpt
+**★ 7** · exceptional (score 11.5) · JavaScript · tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code
 
-Automate your personal knowledge base in Obsidian using Claude. Feed raw content and let the LLM organize, link, and synthesize your notes.
+Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first (Claude Code, Codex, Cursor, any MCP client). Tables, relations, formulas, rollups, workflows, markdown/PDF documents, one SQLite file. REST, CLI, MCP server. Zero dependencies, MIT.
 
 ```bash
-cue skills add mindgameolympiangames78/llm-knowledge-base --profile docs-writer
+cue skills add grunion-ai/weave --profile docs-writer
+```
+
+---
+
+<a id="netresearch-typo3-docs-skill"></a>
+## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+
+**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+
+Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
+
+```bash
+cue skills add netresearch/typo3-docs-skill --profile docs-writer
+```
+
+---
+
+<a id="otal-labs-nexul"></a>
+## ✨ [otal-labs/nexul](https://github.com/otal-labs/nexul)
+
+**★ 3** · strong (score 6.7) · Go · tags: agents, ai-agents, ci-cd, deployment, devops
+
+Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.
+
+```bash
+cue skills add otal-labs/nexul --profile docs-writer
 ```
 
 ---

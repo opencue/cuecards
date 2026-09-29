@@ -2,21 +2,21 @@
 title: "VuDZ/RoslynMcpServer — Claude Code skill discovered by cue"
 description: "Roslyn-powered C# MCP server for AI agents. Enables semantic code analysis, precise diagnostics, and safe refactoring without full rebuilds."
 layout: page
-updated: 2026-09-13
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [VuDZ/RoslynMcpServer](https://github.com/VuDZ/RoslynMcpServer)
 
-**★ 7** · exceptional (score 11.7) · C# · ai-agent, csharp, cursor, dotnet, llm
+**★ 7** · exceptional (score 11.8) · C# · ai-agent, csharp, cursor, dotnet, llm
 
 > Roslyn-powered C# MCP server for AI agents. Enables semantic code analysis, precise diagnostics, and safe refactoring without full rebuilds.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-09-13
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: ai-agent, csharp, cursor, dotnet, llm, mcp, mcp-server, refactoring, roslyn
 
 ## Best fit cue profiles

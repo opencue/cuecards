@@ -2,21 +2,21 @@
 title: "mcp-box/mcpscore — Claude Code skill discovered by cue"
 description: "Lighthouse for MCP — score any MCP server 0–100."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mcp-box/mcpscore](https://github.com/mcp-box/mcpscore)
 
-**★ 34** · exceptional (score 9.7) · Python · cli, mcp, mcp-server, mcp-servers, mcp-tools
+**★ 40** · exceptional (score 9.8) · Python · cli, mcp, mcp-server, mcp-servers, mcp-tools
 
 > Lighthouse for MCP — score any MCP server 0–100.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-09-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 40 stars
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: cli, mcp, mcp-server, mcp-servers, mcp-tools, model-context-protocol, quality
 
 ## Best fit cue profiles

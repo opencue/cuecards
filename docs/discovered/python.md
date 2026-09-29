@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-09-29
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="mkarvan-agentshield"></a>
-## 💎 [mkarvan/AgentShield](https://github.com/mkarvan/AgentShield)
+<a id="pandich93-youtube-niche-finder"></a>
+## ✨ [pandich93/youtube-niche-finder](https://github.com/pandich93/youtube-niche-finder)
 
-**★ 3** · exceptional (score 9.5) · Python · tags: agent-security, ai-agents, claude-code, cve, llm-security
+**★ 4** · strong (score 6.8) · Python · tags: claude, content-research, creator-tools, dashboard, docker
 
-Security layer for AI agents: real-time interception of pip/npm/cargo/gem/go installs via Hermes & OpenClaw plugins, Claude Code/Codex hooks, MCP, shell guard, PATH shim, execve, and index proxy. Checks CVEs (OSV/NVD/GitHub), typosquats, malware, licenses, provenance, trust, lockfile hashes. Offline mirror, hash-chained audit, SBOM/SARIF.
+Self-hosted YouTube niche & outlier-video research tool (NexLev/vidIQ alternative) — MCP server + HTTP API + worker on YouTube Data API v3 and PostgreSQL, with a zero-build ES-modules dashboard
 
 ```bash
-cue skills add mkarvan/AgentShield --profile python
+cue skills add pandich93/youtube-niche-finder --profile python
 ```
 
 ---

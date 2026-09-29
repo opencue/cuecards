@@ -2,7 +2,7 @@
 title: "benethos-hub/lexware-office-mcp — Claude Code skill discovered by cue"
 description: "Unofficial MCP server for the Lexware Office accounting API — runs over stdio or HTTP."
 layout: page
-updated: 2026-09-27
+updated: 2026-09-29
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-27
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: accounting, bookkeeping, invoicing, lexoffice, lexware, lexware-office, mcp, mcp-server, model-context-protocol, python
 
 ## Best fit cue profiles

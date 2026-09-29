@@ -2,23 +2,23 @@
 title: "BryanBenner/de-ai-gate — Claude Code skill discovered by cue"
 description: "Read-only content gate that catches the typographic and phrase tells of AI-generated prose before it ships. No network, no credentials, no auto-run. Exit 1 on a"
 layout: page
-updated: 2026-07-11
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [BryanBenner/de-ai-gate](https://github.com/BryanBenner/de-ai-gate)
 
-**★ 1** · exceptional (score 13.8) · JavaScript · agent-skill, ai-content-detector, claude-skill, content-gate, de-ai
+**★ 2** · exceptional (score 15.5) · JavaScript · agent-skill, ai-content-detector, claude-skill, content-gate, de-ai
 
 > Read-only content gate that catches the typographic and phrase tells of AI-generated prose before it ships. No network, no credentials, no auto-run. Exit 1 on a hard tell.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-11
-- 🏷️ Tags: agent-skill, ai-content-detector, claude-skill, content-gate, de-ai
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-29
+- 🏷️ Tags: agent-skill, ai-content-detector, claude-skill, content-gate, de-ai, llm, pre-commit-hook, writing-tools
 
 ## Best fit cue profiles
 

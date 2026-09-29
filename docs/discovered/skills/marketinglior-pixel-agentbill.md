@@ -1,22 +1,22 @@
 ---
 title: "marketinglior-pixel/agentbill — Claude Code skill discovered by cue"
-description: "Spend control & billing for AI agents. Prevent API bill shock with 3 lines of code. Supports OpenAI, Claude & MCP."
+description: "See what each AI agent, client and job costs, in dollars at list price, and give any job a spend ceiling: preflight answers approved: false past it, and your co"
 layout: page
-updated: 2026-09-13
+updated: 2026-09-29
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [marketinglior-pixel/agentbill](https://github.com/marketinglior-pixel/agentbill)
 
-**★ 7** · exceptional (score 9.7) · TypeScript · agent-billing, ai-agents, fastify, langchain, llm-cost-control
+**★ 7** · exceptional (score 8.7) · TypeScript · agent-billing, ai-agents, fastify, langchain, llm-cost-control
 
-> Spend control & billing for AI agents. Prevent API bill shock with 3 lines of code. Supports OpenAI, Claude & MCP.
+> See what each AI agent, client and job costs, in dollars at list price, and give any job a spend ceiling: preflight answers approved: false past it, and your code decides. An SDK and an HTTP API, not a proxy.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-09-13
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: agent-billing, ai-agents, fastify, langchain, llm-cost-control, mcp-server, openai, preflight, python, spend-ceiling, typescript
 
 ## Best fit cue profiles

@@ -1,42 +1,57 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="tt-a1i-archify"></a>
-## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
+<a id="beriki770-ship-it-code-animations"></a>
+## 💎 [beriki770-ship-it/code-animations](https://github.com/beriki770-ship-it/code-animations)
 
-**★ 73195** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 0** · exceptional (score 13) · HTML · tags: animation, canvas, claude-code, claude-skill, ffmpeg
 
-Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
+Claude Code skill: videos where a program draws every frame (Canvas 2D + Web Audio), rendered headless to MP4 in 16:9 / 9:16 / 4:5
+
+✅ SKILL.md
 
 ```bash
-cue skills add tt-a1i/archify --profile creative-media
+cue skills add beriki770-ship-it/code-animations --profile creative-media
 ```
 
 ---
 
-<a id="marcosmodly-marketing-skill"></a>
-## ✨ [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
+<a id="ravikovind-snap-x"></a>
+## 💎 [ravikovind/snap-x](https://github.com/ravikovind/snap-x)
 
-**★ 0** · strong (score 7) · Python · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
+**★ 3** · exceptional (score 8.7) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, cli, image-generation
 
-Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+Render self-contained Satori .mjs design files to PNG — any size, no browser. Claude Code skill + CLI + MCP server for OG cards, README cards, banners and covers.
 
 ```bash
-cue skills add marcosmodly/marketing-skill --profile creative-media
+cue skills add ravikovind/snap-x --profile creative-media
+```
+
+---
+
+<a id="dauletbekalim-motion-ui-videos"></a>
+## 💎 [dauletbekalim/motion-ui-videos](https://github.com/dauletbekalim/motion-ui-videos)
+
+**★ 1** · exceptional (score 8.3) · JavaScript · tags: claude-code, claude-skill, motion-design, product-video, reels
+
+A Claude Code skill that makes product videos from your app's repo: reels, launch films, loops and covers, with the UI rebuilt in code and sound timed to the frame.
+
+```bash
+cue skills add dauletbekalim/motion-ui-videos --profile creative-media
 ```
 
 ---

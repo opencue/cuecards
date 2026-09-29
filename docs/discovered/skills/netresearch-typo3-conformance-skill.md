@@ -2,21 +2,21 @@
 title: "netresearch/typo3-conformance-skill — Claude Code skill discovered by cue"
 description: "Agent Skill: TYPO3 extension conformance checker - validates against official standards | Claude Code compatible"
 layout: page
-updated: 2026-08-29
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/typo3-conformance-skill](https://github.com/netresearch/typo3-conformance-skill)
 
-**★ 6** · exceptional (score 11.2) · Shell · agent-skills, ai-agent, claude-code-skill, open-standard, quality-assurance
+**★ 6** · exceptional (score 11.3) · Shell · agent-skills, ai-agent, claude-code-skill, open-standard, quality-assurance
 
 > Agent Skill: TYPO3 extension conformance checker - validates against official standards | Claude Code compatible
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-08-29
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, open-standard, quality-assurance, quality-control, skill, typo3, typo3-cms, typo3-extension
 
 ## Best fit cue profiles

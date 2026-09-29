@@ -2,7 +2,7 @@
 title: "grunion-ai/weave — Claude Code skill discovered by cue"
 description: "Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first"
 layout: page
-updated: 2026-09-26
+updated: 2026-09-29
 tags: [claude-code, skill, backend, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-09-26
+- 🗓️ Last pushed: 2026-09-29
 - 🏷️ Tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code, clickup-alternative, database, knowledge-base, llm, local-first, low-code, mcp, mcp-server, no-code, notion-alternative, open-source, project-management, rest-api, self-hosted, sqlite
 
 ## Best fit cue profiles

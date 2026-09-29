@@ -1,23 +1,23 @@
 ---
 title: "krzysztofdudek/RatatoskrSkill — Claude Code skill discovered by cue"
-description: "A translator between you and your codebase. It reads your request back in plain words so you see what the agent understood before it builds."
+description: "A communication layer between you and your codebase: it keeps your AI coding agent talking in plain language — no jargon, no invented timelines — with one clear"
 layout: page
-updated: 2026-06-07
+updated: 2026-09-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [krzysztofdudek/RatatoskrSkill](https://github.com/krzysztofdudek/RatatoskrSkill)
 
-**★ 0** · exceptional (score 8) · agentic-guardrails, ai-agents, ai-coding, anthropic, claude-code
+**★ 2** · exceptional (score 10) · Shell · agentic-guardrails, ai-agents, ai-coding, anthropic, architecture-as-code
 
-> A translator between you and your codebase. It reads your request back in plain words so you see what the agent understood before it builds.
+> A communication layer between you and your codebase: it keeps your AI coding agent talking in plain language — no jargon, no invented timelines — with one clear yes before anything irreversible.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-07
-- 🏷️ Tags: agentic-guardrails, ai-agents, ai-coding, anthropic, claude-code, claude-code-plugin, claude-skill, consent-gates, human-in-the-loop, intent-capture, non-technical-users, plain-language, ratatoskr, scope-control
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-09-29
+- 🏷️ Tags: agentic-guardrails, ai-agents, ai-coding, anthropic, architecture-as-code, claude-code, claude-code-plugin, claude-skill, communication-layer, human-in-the-loop, never-speak-in-code, no-estimates, non-technical-users, plain-language, ratatoskr, yggdrasil-family
 
 ## Best fit cue profiles
 
