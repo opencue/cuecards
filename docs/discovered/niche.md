@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="martellevaliant19-grant-thinking-cn-biology"></a>
-## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+<a id="catcatuncle-ruanzhu-kit"></a>
+## 💎 [CatCatUncle/ruanzhu-kit](https://github.com/CatCatUncle/ruanzhu-kit)
 
-**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+**★ 27** · exceptional (score 15.7) · JavaScript · tags: agent-skills, ai-agent, china, claude-code, claude-skill
 
-Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+中国软著登记材料生成器：源码进去，页数一页不差的 PDF 出来
 
 ✅ SKILL.md
 
 ```bash
-cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+cue skills add CatCatUncle/ruanzhu-kit --profile niche
 ```
 
 ---

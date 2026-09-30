@@ -1,58 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="dmitrax-second-brain-setup"></a>
-## 💎 [dmitrax/second-brain-setup](https://github.com/dmitrax/second-brain-setup)
-
-**★ 2** · exceptional (score 16) · Shell · tags: ai-agents, ai-second-brain, anthropic, claude, claude-code
-
-Personal knowledge management system for Claude Code. Obsidian vault as external memory that grows with every session. 5 slash commands, AI-First notes, Obsidian graph. Based on Karpathy's LLM Knowledge Bases.
-
-✅ SKILL.md
-
-```bash
-cue skills add dmitrax/second-brain-setup --profile docs-writer
-```
-
----
-
-<a id="grunion-ai-weave"></a>
-## 💎 [grunion-ai/weave](https://github.com/grunion-ai/weave)
-
-**★ 7** · exceptional (score 11.5) · JavaScript · tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code
-
-Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a database and work management platform built for AI agents, agent-first (Claude Code, Codex, Cursor, any MCP client). Tables, relations, formulas, rollups, workflows, markdown/PDF documents, one SQLite file. REST, CLI, MCP server. Zero dependencies, MIT.
-
-```bash
-cue skills add grunion-ai/weave --profile docs-writer
-```
-
----
-
-<a id="netresearch-typo3-docs-skill"></a>
-## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
-
-**★ 7** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
-
-Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
-
-```bash
-cue skills add netresearch/typo3-docs-skill --profile docs-writer
-```
 
 ---
 

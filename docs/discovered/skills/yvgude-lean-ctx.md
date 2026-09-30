@@ -2,21 +2,21 @@
 title: "yvgude/lean-ctx — Claude Code skill discovered by cue"
 description: "LeanCTX — Context Intelligence for AI systems."
 layout: page
-updated: 2026-09-23
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yvgude/lean-ctx](https://github.com/yvgude/lean-ctx)
 
-**★ 3825** · exceptional (score 15.5) · Rust · agentic-coding, ai, ai-agents, ai-coding, claude-code
+**★ 3838** · exceptional (score 15.5) · Rust · agentic-coding, ai, ai-agents, ai-coding, claude-code
 
 > LeanCTX — Context Intelligence for AI systems.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 3825 stars
-- 🗓️ Last pushed: 2026-09-23
+- ⭐ 3838 stars
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: agentic-coding, ai, ai-agents, ai-coding, claude-code, context-engineering, context-intelligence, context-layer, copilot, cursor, developer-tools, gemini-cli, lean-context, llm, mcp, mcp-server, reduce-token-costs, rust, token-optimization
 
 ## Best fit cue profiles

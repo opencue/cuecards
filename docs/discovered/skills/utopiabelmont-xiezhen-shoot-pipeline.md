@@ -2,7 +2,7 @@
 title: "utopiabelmont/xiezhen-shoot-pipeline — Claude Code skill discovered by cue"
 description: "真实景点 + 真实日期的人像外拍规划流水线：OSM 底图、太阳/地形/天气光线、SNS 机位调研、分镜基本法 lint、Codex 示意图、每张一页的拍摄小抄 PDF。Portrait-shoot planning for a real location on a real date: sun & terrain, O"
 layout: page
-updated: 2026-09-27
+updated: 2026-09-30
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-27
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: claude-skill, codex, image-generation, openstreetmap, photography, portrait, shoot-planning, shot-list, sun-position
 
 ## Best fit cue profiles

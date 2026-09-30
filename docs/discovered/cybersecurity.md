@@ -1,31 +1,59 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="leontynestirredup43-slowmist-security-cc"></a>
-## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+<a id="farenhytee-database-sentinel"></a>
+## 💎 [Farenhytee/database-sentinel](https://github.com/Farenhytee/database-sentinel)
 
-**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+**★ 47** · exceptional (score 14.9) · Python · tags: ai-security, audit, bolt, claude-skill, database-security
 
-Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+Claude Skill that audits your projects for RLS misconfigurations, exposed keys, auth bypasses, and storage vulnerabilities. 27 anti-patterns sourced from CVE-2025-48757 and 10 security studies. Safe for production.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
+cue skills add Farenhytee/database-sentinel --profile cybersecurity
+```
+
+---
+
+<a id="bunlongheng-repo-audit"></a>
+## 💎 [bunlongheng/repo-audit](https://github.com/bunlongheng/repo-audit)
+
+**★ 1** · exceptional (score 13.3) · Python · tags: architecture, claude-code, claude-skill, code-audit, code-review
+
+Reverse-engineer any repo through 10 audit lenses into 1 self-contained HTML report. A read-only Claude Code skill.
+
+✅ SKILL.md
+
+```bash
+cue skills add bunlongheng/repo-audit --profile cybersecurity
+```
+
+---
+
+<a id="hahwul-gori"></a>
+## 💎 [hahwul/gori](https://github.com/hahwul/gori)
+
+**★ 116** · exceptional (score 11.4) · Crystal · tags: bugbounty, cli, crystal, gori, mcp
+
+A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
+
+```bash
+cue skills add hahwul/gori --profile cybersecurity
 ```
 
 ---
@@ -33,7 +61,7 @@ cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2694** · exceptional (score 12.8) · Python · tags: agentskills, claude, skills
+**★ 2702** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,15 +84,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="elyshafresh21-claude-context-lint"></a>
-## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
+<a id="ali-ulu-huqan"></a>
+## 💎 [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
 
-**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
+**★ 6** · exceptional (score 9.1) · JavaScript · tags: agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
 
-Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
+Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or action is trusted.
 
 ```bash
-cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+cue skills add ali-ulu/huqan --profile cybersecurity
 ```
 
 ---
@@ -72,7 +100,7 @@ cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.8) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
@@ -82,15 +110,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="ardianryan-mikrotik-skill"></a>
-## ✨ [ardianryan/MikroTik-Skill](https://github.com/ardianryan/MikroTik-Skill)
+<a id="echelongraph-echelongraph-mcp"></a>
+## ✨ [echelongraph/echelongraph-mcp](https://github.com/echelongraph/echelongraph-mcp)
 
-**★ 1** · strong (score 6.3) · TypeScript · tags: antigravity, cake-qos, cli, mcp, mcp-server
+**★ 0** · strong (score 6) · JavaScript · tags: cve, mcp, mcp-server, model-context-protocol, security
 
-Production-grade MikroTik RouterOS v7 automation skill, CLI toolkit, and MCP server for network engineers and AI agents.
+EchelonGraph's MCP server: CVE intelligence (NVD, CISA KEV, EPSS, GHSA) and a Shodan-derived exposure footprint for any MCP client. Keyless, read-only.
 
 ```bash
-cue skills add ardianryan/MikroTik-Skill --profile cybersecurity
+cue skills add echelongraph/echelongraph-mcp --profile cybersecurity
 ```
 
 ---

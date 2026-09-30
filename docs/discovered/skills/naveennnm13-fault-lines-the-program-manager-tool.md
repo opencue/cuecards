@@ -2,19 +2,19 @@
 title: "Naveennnm13/Fault-Lines-The-Program-Manager-Tool — Claude Code skill discovered by cue"
 description: "Finds the tasks that threaten a program's delivery date, simulates how a slip cascades across teams, and drafts the risk briefing. Critical path analysis in Pyt"
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, skill, nextjs]
 ---
 
 # 🔹 [Naveennnm13/Fault-Lines-The-Program-Manager-Tool](https://github.com/Naveennnm13/Fault-Lines-The-Program-Manager-Tool)
 
-**★ 1** · potential (score 3.3) · TypeScript · claude, critical-path, d3, dependency-graph, networkx
+**★ 1** · potential (score 3.2) · TypeScript · claude, critical-path, d3, dependency-graph, networkx
 
 > Finds the tasks that threaten a program's delivery date, simulates how a slip cascades across teams, and drafts the risk briefing. Critical path analysis in Python, Claude-written briefings, Next.js dashboard.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-28
 - 🏷️ Tags: claude, critical-path, d3, dependency-graph, networkx, nextjs, program-management, python, risk-management, typescript

@@ -2,21 +2,21 @@
 title: "alex09x/prod-code — Claude Code skill discovered by cue"
 description: "Remote code intelligence server for AI coding agents (MCP): rust-analyzer, gopls, clangd, pyright and TypeScript run on a LAN build node — semantic navigation, "
 layout: page
-updated: 2026-09-27
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [alex09x/prod-code](https://github.com/alex09x/prod-code)
 
-**★ 3** · exceptional (score 8.2) · Rust · ai-agents, clangd, claude-code, code-intelligence, coding-agents
+**★ 4** · exceptional (score 8.3) · Rust · ai-agents, clangd, claude-code, code-intelligence, coding-agents
 
 > Remote code intelligence server for AI coding agents (MCP): rust-analyzer, gopls, clangd, pyright and TypeScript run on a LAN build node — semantic navigation, safe refactoring, edit validation, builds and tests without burning the laptop.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: ai-agents, clangd, claude-code, code-intelligence, coding-agents, developer-tools, go, gopls, language-server, lsp, mcp, mcp-server, model-context-protocol, pyright, refactoring, remote-development, rust, rust-analyzer, semantic-search, typescript
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="mrpeppersdev-agent-infrastructure-landscape"></a>
-## ✨ [MrPeppersDev/agent-infrastructure-landscape](https://github.com/MrPeppersDev/agent-infrastructure-landscape)
+<a id="ganggangstone-make-my-textbook"></a>
+## 💎 [ganggangstone/make-my-textbook](https://github.com/ganggangstone/make-my-textbook)
 
-**★ 4** · strong (score 7.3) · HTML · tags: agent-frameworks, agent-infrastructure, agent-memory, ai-agents, ai-memory-systems
+**★ 0** · exceptional (score 13) · CSS · tags: claude-code, claude-skill, learning, markdown, pdf
 
-AI agent memory & infrastructure landscape — comparative catalog of 912 systems × 68 columns covering memory layers, agent frameworks, runtimes, vector stores, knowledge graphs, MCP servers, benchmarks. Searchable with typed edges, lineages, citations.
+Custom textbooks for the AI era: turn code and papers into a study textbook at your level, with every sentence graded by source. Claude Code skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
+cue skills add ganggangstone/make-my-textbook --profile research
 ```
 
 ---
@@ -31,7 +33,7 @@ cue skills add MrPeppersDev/agent-infrastructure-landscape --profile research
 <a id="neverbiasu-awesome-research-skills"></a>
 ## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
 
-**★ 3** · strong (score 5.7) · tags: agent-skills, ai-for-science, awesome-list, claude-code, codex
+**★ 3** · strong (score 5.6) · tags: agent-skills, ai-for-science, awesome-list, claude-code, codex
 
 149 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
 
@@ -44,7 +46,7 @@ cue skills add neverbiasu/awesome-research-skills --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 3** · potential (score 4.1) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

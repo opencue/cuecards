@@ -2,19 +2,19 @@
 title: "qingzhuo-cn/agent-fix — Claude Code skill discovered by cue"
 description: "Universal repair skill & CLI for AI coding agents (Claude Code, Codex, OpenCode, Hermes) — npm postinstall, GUI PATH, Node version, registry, auth, DeepSeek pro"
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [qingzhuo-cn/agent-fix](https://github.com/qingzhuo-cn/agent-fix)
 
-**★ 2** · exceptional (score 13.9) · Python · ai-agents, ai-tools, claude-code, cli, codex
+**★ 2** · exceptional (score 13.8) · Python · ai-agents, ai-tools, claude-code, cli, codex
 
 > Universal repair skill & CLI for AI coding agents (Claude Code, Codex, OpenCode, Hermes) — npm postinstall, GUI PATH, Node version, registry, auth, DeepSeek provider
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-09-25

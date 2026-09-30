@@ -1,23 +1,23 @@
 ---
 title: "kharmanskyi/open-steps — Claude Code skill discovered by cue"
-description: "Skills that translate your coding agent's output into plain language: honest reports, straight verdicts, steps you can follow. MIT."
+description: "Plain-language agent skills for Claude Code, Codex, Cursor and Gemini CLI: honest session reports, straight verdicts, steps you can follow. MIT."
 layout: page
-updated: 2026-09-28
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kharmanskyi/open-steps](https://github.com/kharmanskyi/open-steps)
 
-**★ 990** · exceptional (score 18) · Shell · agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin
+**★ 1066** · exceptional (score 18) · Shell · agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin
 
-> Skills that translate your coding agent's output into plain language: honest reports, straight verdicts, steps you can follow. MIT.
+> Plain-language agent skills for Claude Code, Codex, Cursor and Gemini CLI: honest session reports, straight verdicts, steps you can follow. MIT.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18 based on:
-- ⭐ 990 stars
-- 🗓️ Last pushed: 2026-09-28
-- 🏷️ Tags: agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin, claude-code-skills, claude-skill, prompt-optimization, vibe-coding
+- ⭐ 1066 stars
+- 🗓️ Last pushed: 2026-09-30
+- 🏷️ Tags: agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin, claude-code-skills, claude-skill, codex, codex-cli, codex-skill, coding-agents, cursor, gemini-cli, plain-language, vibe-coding
 
 ## Best fit cue profiles
 

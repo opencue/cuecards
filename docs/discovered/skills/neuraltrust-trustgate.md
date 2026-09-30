@@ -2,21 +2,21 @@
 title: "NeuralTrust/TrustGate — Claude Code skill discovered by cue"
 description: "Open-source AI gateway for LLM and agent traffic — multi-provider routing, guardrails, semantic caching and MCP support. Written in Go."
 layout: page
-updated: 2026-09-14
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [NeuralTrust/TrustGate](https://github.com/NeuralTrust/TrustGate)
 
-**★ 9** · exceptional (score 10.8) · Go · agent-gateway, ai-gateway, anthropic, golang, guardrails
+**★ 10** · exceptional (score 10.9) · Go · agent-gateway, ai-gateway, anthropic, golang, guardrails
 
 > Open-source AI gateway for LLM and agent traffic — multi-provider routing, guardrails, semantic caching and MCP support. Written in Go.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-09-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: agent-gateway, ai-gateway, anthropic, golang, guardrails, llm-gateway, llm-proxy, llm-router, llm-routing, mcp, mcp-gateway, mcp-security, mcp-server, model-context-protocol, multi-tenant, openai-proxy
 
 ## Best fit cue profiles

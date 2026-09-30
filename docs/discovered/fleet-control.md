@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,19 +24,6 @@ Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, A
 
 ```bash
 cue skills add nuttaruj/rolepod --profile fleet-control
-```
-
----
-
-<a id="mssporto-orchestrate-skill"></a>
-## ✨ [mssporto/orchestrate-skill](https://github.com/mssporto/orchestrate-skill)
-
-**★ 0** · strong (score 7) · tags: claude-code, claude-skill, delegation, orchestration, subagents
-
-Turns Claude Code into a pure orchestrator: plans, decomposes, makes model-selection and review judgment calls, but delegates all production code writing to dispatched agents via a plan -> delegate -> review -> fix loop.
-
-```bash
-cue skills add mssporto/orchestrate-skill --profile fleet-control
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="pandich93-youtube-niche-finder"></a>
-## ✨ [pandich93/youtube-niche-finder](https://github.com/pandich93/youtube-niche-finder)
+<a id="pipulate-pipulate"></a>
+## 💎 [pipulate/pipulate](https://github.com/pipulate/pipulate)
 
-**★ 4** · strong (score 6.8) · Python · tags: claude, content-research, creator-tools, dashboard, docker
+**★ 14** · exceptional (score 10.4) · Python · tags: ai, fasthtml, htmx, machine-learning, mcp
 
-Self-hosted YouTube niche & outlier-video research tool (NexLev/vidIQ alternative) — MCP server + HTTP API + worker on YouTube Data API v3 and PostgreSQL, with a zero-build ES-modules dashboard
+Local First AI SEO Software on Nix, FastHTML & HTMX
 
 ```bash
-cue skills add pandich93/youtube-niche-finder --profile python
+cue skills add pipulate/pipulate --profile python
 ```
 
 ---

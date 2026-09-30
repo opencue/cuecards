@@ -1,23 +1,23 @@
 ---
 title: "vassiliylakhonin/agenda-intelligence-md — Claude Code skill discovered by cue"
-description: "Deterministic evidence-packet linter for claim-backed AI output. Reports packet completeness, not truth. CLI, Python API, MCP, A2A, Cloudflare Workers."
+description: "Check whether an AI-generated claim has a usable evidence trail before a person acts on it. CLI, Python API, MCP, A2A, Cloudflare Workers."
 layout: page
-updated: 2026-09-04
+updated: 2026-09-30
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
 
-**★ 6** · exceptional (score 9.6) · Python · ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema
+**★ 8** · exceptional (score 9.8) · JavaScript · a2a, ai-agents, claim-verification, evidence-validation, human-in-the-loop
 
-> Deterministic evidence-packet linter for claim-backed AI output. Reports packet completeness, not truth. CLI, Python API, MCP, A2A, Cloudflare Workers.
+> Check whether an AI-generated claim has a usable evidence trail before a person acts on it. CLI, Python API, MCP, A2A, Cloudflare Workers.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-09-04
-- 🏷️ Tags: ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema, llm-evaluation, mcp-server, python, source-grounding
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-09-30
+- 🏷️ Tags: a2a, ai-agents, claim-verification, evidence-validation, human-in-the-loop, json-schema, llm-evaluation, mcp, mcp-server, model-context-protocol, python, sanctions-compliance, source-grounding, trade-finance
 
 ## Best fit cue profiles
 

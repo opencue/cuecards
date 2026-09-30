@@ -2,21 +2,21 @@
 title: "tykisgod/quick-question — Claude Code skill discovered by cue"
 description: "The control plane for game-dev agents — close the loop with verified compile, test, and cross-model review across Unity, Godot, Unreal, and S&box. Lifecycle-awa"
 layout: page
-updated: 2026-08-18
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tykisgod/quick-question](https://github.com/tykisgod/quick-question)
 
-**★ 10** · exceptional (score 10.9) · Python · agent, auto-compile, claude-code, claude-code-plugin, claude-code-skill
+**★ 11** · exceptional (score 11) · Python · agent, auto-compile, claude-code, claude-code-plugin, claude-code-skill
 
 > The control plane for game-dev agents — close the loop with verified compile, test, and cross-model review across Unity, Godot, Unreal, and S&box. Lifecycle-aware /qq:go routing, 26 /qq:* slash commands. Claude Code-first, agent-agnostic via HTTP and MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
-- ⭐ 10 stars
-- 🗓️ Last pushed: 2026-08-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: agent, auto-compile, claude-code, claude-code-plugin, claude-code-skill, claude-skills, code-review, codex, csharp, game-development, gamedev, godot, hooks, macos, mcp, sbox, tykit, unity, unity-editor, unreal
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "pipulate/pipulate — Claude Code skill discovered by cue"
 description: "Local First AI SEO Software on Nix, FastHTML & HTMX"
 layout: page
-updated: 2026-09-05
+updated: 2026-09-30
 tags: [claude-code, skill, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
 - ⭐ 14 stars
-- 🗓️ Last pushed: 2026-09-05
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: ai, fasthtml, htmx, machine-learning, mcp, mcp-client, mcp-server, nix, python, seo
 
 ## Best fit cue profiles

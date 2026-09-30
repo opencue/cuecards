@@ -2,7 +2,7 @@
 title: "ravikovind/snap-x — Claude Code skill discovered by cue"
 description: "Render self-contained Satori .mjs design files to PNG — any size, no browser. Claude Code skill + CLI + MCP server for OG cards, README cards, banners and cover"
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-29
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-skill, cli, image-generation, mcp, og-image, satori, social-cards
 
 ## Best fit cue profiles

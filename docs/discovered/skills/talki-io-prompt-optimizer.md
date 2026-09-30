@@ -2,19 +2,19 @@
 title: "talki-io/prompt-optimizer — Claude Code skill discovered by cue"
 description: "Claude Code / Agent Skill: /prompt-optimizer polishes your existing AI prompts — fixes wording, grammar and structure without adding scope, changing constraints"
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [talki-io/prompt-optimizer](https://github.com/talki-io/prompt-optimizer)
 
-**★ 4** · exceptional (score 10.8) · agent-skills, ai-tools, anthropic, chatgpt, chinese
+**★ 4** · exceptional (score 10.7) · agent-skills, ai-tools, anthropic, chatgpt, chinese
 
 > Claude Code / Agent Skill: /prompt-optimizer polishes your existing AI prompts — fixes wording, grammar and structure without adding scope, changing constraints or touching commands, paths and code. 提示词优化技能：只改表达，不改语义。Works with Claude Code, Codex and any chat AI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 4 stars
 - 🗓️ Last pushed: 2026-09-29

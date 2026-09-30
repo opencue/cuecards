@@ -2,7 +2,7 @@
 title: "ciskonc/dsh-context-imports — Claude Code skill discovered by cue"
 description: "Claude Code-style @path imports for DeepSeek Harness: expands @imports in AGENTS.md/CLAUDE.md and injects referenced files into context at session start"
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-09-29
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: agents-md, claude-md, context-injection, deepseek-harness, dsh-plugin, llm-memory
 
 ## Best fit cue profiles

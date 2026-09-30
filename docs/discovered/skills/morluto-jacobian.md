@@ -1,23 +1,23 @@
 ---
 title: "morluto/jacobian — Claude Code skill discovered by cue"
-description: "A universal, atomic library of mathematics and tools for agents to compose them."
+description: "Composable mathematics tools for agents"
 layout: page
-updated: 2026-08-28
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [morluto/jacobian](https://github.com/morluto/jacobian)
 
-**★ 77** · exceptional (score 12.2) · Python · ai-agents, automated-theorem-proving, computer-algebra, cordis, dsh
+**★ 194** · exceptional (score 11) · Python · ai-agents, automated-theorem-proving, computer-algebra, cordis, dsh
 
-> A universal, atomic library of mathematics and tools for agents to compose them.
+> Composable mathematics tools for agents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
-- ⭐ 77 stars
-- 🗓️ Last pushed: 2026-08-28
-- 🏷️ Tags: ai-agents, automated-theorem-proving, computer-algebra, cordis, dsh, dsh-plugin, formal-methods, formal-verification, lean4, math, mcp, mcp-server, model-context-protocol, proof-assistant, python, smt-solver, symbolic-math, sympy, theorem-proving, z3
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+- ⭐ 194 stars
+- 🗓️ Last pushed: 2026-09-30
+- 🏷️ Tags: ai-agents, automated-theorem-proving, computer-algebra, cordis, dsh, dsh-plugin, erdos, erdos-problem, formal-methods, formal-verification, lean4, math, mcp, mcp-server, model-context-protocol, proof-assistant, python, symbolic-math, sympy, theorem-proving
 
 ## Best fit cue profiles
 

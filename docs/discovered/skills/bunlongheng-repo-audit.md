@@ -2,22 +2,22 @@
 title: "bunlongheng/repo-audit — Claude Code skill discovered by cue"
 description: "Reverse-engineer any repo through 10 audit lenses into 1 self-contained HTML report. A read-only Claude Code skill."
 layout: page
-updated: 2026-09-17
+updated: 2026-09-30
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [bunlongheng/repo-audit](https://github.com/bunlongheng/repo-audit)
 
-**★ 0** · exceptional (score 13) · HTML · architecture, claude-code, claude-skill, code-audit, code-review
+**★ 1** · exceptional (score 13.3) · Python · architecture, claude-code, claude-skill, code-audit, code-review
 
 > Reverse-engineer any repo through 10 audit lenses into 1 self-contained HTML report. A read-only Claude Code skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-17
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: architecture, claude-code, claude-skill, code-audit, code-review, developer-tools, python, security-audit, static-analysis
 
 ## Best fit cue profiles

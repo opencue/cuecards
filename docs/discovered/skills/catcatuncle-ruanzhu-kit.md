@@ -2,23 +2,23 @@
 title: "CatCatUncle/ruanzhu-kit — Claude Code skill discovered by cue"
 description: "中国软著登记材料生成器：源码进去，页数一页不差的 PDF 出来"
 layout: page
-updated: 2026-09-22
+updated: 2026-09-30
 tags: [claude-code, skill, niche]
 ---
 
-# ✨ [CatCatUncle/ruanzhu-kit](https://github.com/CatCatUncle/ruanzhu-kit)
+# 💎 [CatCatUncle/ruanzhu-kit](https://github.com/CatCatUncle/ruanzhu-kit)
 
-**★ 0** · strong (score 7.5) · JavaScript · agent-skills, china, claude-skill, nodejs, pdf-generation
+**★ 27** · exceptional (score 15.7) · JavaScript · agent-skills, ai-agent, china, claude-code, claude-skill
 
 > 中国软著登记材料生成器：源码进去，页数一页不差的 PDF 出来
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-22
-- 🏷️ Tags: agent-skills, china, claude-skill, nodejs, pdf-generation, ruanzhu, software-copyright
+- ⭐ 27 stars
+- 🗓️ Last pushed: 2026-09-30
+- 🏷️ Tags: agent-skills, ai-agent, china, claude-code, claude-skill, cli, copyright-registration, nodejs, pdf-generation, ruanzhu, software-copyright, zero-dependency
 
 ## Best fit cue profiles
 

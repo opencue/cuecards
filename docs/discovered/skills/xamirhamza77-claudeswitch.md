@@ -2,7 +2,7 @@
 title: "xAmirHamza77/ClaudeSwitch — Claude Code skill discovered by cue"
 description: "Native macOS utility for Claude Desktop 3P inference. Features HTTP/1.1 persistent keep-alive proxy, wire-model rewriting, lowercase UUID fix, and one-click pro"
 layout: page
-updated: 2026-09-24
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-24
+- 🗓️ Last pushed: 2026-09-30
 - 🏷️ Tags: claude, claude-ai, claude-api, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-desktop, claude-plugin, claude-skills
 
 ## Best fit cue profiles

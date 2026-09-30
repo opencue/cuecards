@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 <a id="naveennnm13-fault-lines-the-program-manager-tool"></a>
 ## 🔹 [Naveennnm13/Fault-Lines-The-Program-Manager-Tool](https://github.com/Naveennnm13/Fault-Lines-The-Program-Manager-Tool)
 
-**★ 1** · potential (score 3.3) · TypeScript · tags: claude, critical-path, d3, dependency-graph, networkx
+**★ 1** · potential (score 3.2) · TypeScript · tags: claude, critical-path, d3, dependency-graph, networkx
 
 Finds the tasks that threaten a program's delivery date, simulates how a slip cascades across teams, and drafts the risk briefing. Critical path analysis in Python, Claude-written briefings, Next.js dashboard.
 

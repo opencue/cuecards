@@ -2,19 +2,19 @@
 title: "AgileGypsy-Labs/fleet-bridge — Claude Code skill discovered by cue"
 description: "Make Claude Code sessions on different machines and accounts work as one team: signed session-to-session relay, second-account agent delegation, path ownership,"
 layout: page
-updated: 2026-09-29
+updated: 2026-09-30
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [AgileGypsy-Labs/fleet-bridge](https://github.com/AgileGypsy-Labs/fleet-bridge)
 
-**★ 1** · strong (score 6.2) · Python · ai-agents, claude-code, developer-tools, multi-agent, ssh
+**★ 1** · strong (score 6.1) · Python · ai-agents, claude-code, developer-tools, multi-agent, ssh
 
 > Make Claude Code sessions on different machines and accounts work as one team: signed session-to-session relay, second-account agent delegation, path ownership, fleet health checks.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-09-25
 - 🏷️ Tags: ai-agents, claude-code, developer-tools, multi-agent, ssh
