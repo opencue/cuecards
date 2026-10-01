@@ -2,21 +2,21 @@
 title: "JayPokale/Chisle — Claude Code skill discovered by cue"
 description: "Cut your AI coding agent's token bill on three axes: terse prose, YAGNI-first code, and tool-output compression. Claude Code, Pi, Cursor, Codex, Gemini + 4 more"
 layout: page
-updated: 2026-09-19
+updated: 2026-10-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [JayPokale/Chisle](https://github.com/JayPokale/Chisle)
 
-**★ 470** · exceptional (score 13.2) · JavaScript · anthropic, caveman, caveman-alternative, caveman2, claude
+**★ 588** · exceptional (score 16.8) · JavaScript · anthropic, caveman, caveman-alternative, caveman2, claude
 
 > Cut your AI coding agent's token bill on three axes: terse prose, YAGNI-first code, and tool-output compression. Claude Code, Pi, Cursor, Codex, Gemini + 4 more. Zero deps, published benchmarks including the runs it loses.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
-- ⭐ 470 stars
-- 🗓️ Last pushed: 2026-09-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.8 based on:
+- ⭐ 588 stars
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: anthropic, caveman, caveman-alternative, caveman2, claude, claude-ai, claude-api, claude-code, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, codex, cursor, developer-tools, gemini-cli, github-copilot, ponytail, token-optimization
 
 ## Best fit cue profiles

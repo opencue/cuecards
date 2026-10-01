@@ -2,7 +2,7 @@
 title: "QIU-Guanzong/CoProgrammer — Claude Code skill discovered by cue"
 description: "Coordinate AI coding agents across Git worktrees with atomic task claims, path leases, durable handoffs, MCP and reviewable PR digests. For Codex, Claude Code &"
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, skill, core]
 ---
 

@@ -2,22 +2,22 @@
 title: "sanshengai/sansheng-distill — Claude Code skill discovered by cue"
 description: "Claude Code skill: distill a book or video series into one interactive single-file HTML · 书籍/视频深度蒸馏"
 layout: page
-updated: 2026-09-27
+updated: 2026-10-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [sanshengai/sansheng-distill](https://github.com/sanshengai/sansheng-distill)
 
-**★ 45** · exceptional (score 18.4) · Python · agent-skills, ai-agent, book-summary, chinese, claude-code
+**★ 47** · exceptional (score 18.8) · Python · agent-skills, ai-agent, book-summary, chinese, claude-code
 
 > Claude Code skill: distill a book or video series into one interactive single-file HTML · 书籍/视频深度蒸馏
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 45 stars
-- 🗓️ Last pushed: 2026-09-27
+- ⭐ 47 stars
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: agent-skills, ai-agent, book-summary, chinese, claude-code, claude-skill, epub, knowledge-distillation, llm, reading-notes
 
 ## Best fit cue profiles

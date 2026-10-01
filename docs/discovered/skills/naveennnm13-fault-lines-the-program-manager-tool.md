@@ -2,7 +2,7 @@
 title: "Naveennnm13/Fault-Lines-The-Program-Manager-Tool — Claude Code skill discovered by cue"
 description: "Finds the tasks that threaten a program's delivery date, simulates how a slip cascades across teams, and drafts the risk briefing. Critical path analysis in Pyt"
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, skill, nextjs]
 ---
 

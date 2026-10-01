@@ -2,21 +2,21 @@
 title: "redhat-et/ripwire — Claude Code skill discovered by cue"
 description: "The ripgrep of AI context: a zero-dependency C++23 CLI + MCP server for coding agents. Find what you want without reading the repo, then check you built what yo"
 layout: page
-updated: 2026-09-17
+updated: 2026-10-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [redhat-et/ripwire](https://github.com/redhat-et/ripwire)
 
-**★ 2222** · exceptional (score 15) · C++ · ai-agents, call-graph, claude, claude-code, cli
+**★ 2378** · exceptional (score 15.9) · C++ · ai-agents, call-graph, claude, claude-code, cli
 
 > The ripgrep of AI context: a zero-dependency C++23 CLI + MCP server for coding agents. Find what you want without reading the repo, then check you built what you meant — blast radius, tests-to-run, quality deltas. Signatures at 74.7% fewer bytes than bodies; every guess labelled, every loss published. Paddle out with a map.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 2222 stars
-- 🗓️ Last pushed: 2026-09-17
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
+- ⭐ 2378 stars
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: ai-agents, call-graph, claude, claude-code, cli, code-navigation, codex, coding-agents, context-engineering, cpp, developer-tools, llm, mcp, mcp-server, python, rust, static-analysis, swift, tree-sitter, typescript
 
 ## Best fit cue profiles

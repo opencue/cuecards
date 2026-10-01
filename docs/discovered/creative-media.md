@@ -1,96 +1,57 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "7 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="tt-a1i-archify"></a>
-## 💎 [tt-a1i/archify](https://github.com/tt-a1i/archify)
+<a id="hoveychen-game-forge"></a>
+## 💎 [hoveychen/game-forge](https://github.com/hoveychen/game-forge)
 
-**★ 74762** · exceptional (score 16) · JavaScript · tags: agent-skills, architecture-as-code, architecture-diagram, claude-skill, code-visualization
+**★ 0** · exceptional (score 13) · tags: ai-agents, claude-code, claude-skill, game-design, game-development
 
-Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.
-
-```bash
-cue skills add tt-a1i/archify --profile creative-media
-```
-
----
-
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
-
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
-
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
-
-```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile creative-media
-```
-
----
-
-<a id="gutslfo-brand-book"></a>
-## 💎 [gutslfo/brand-book](https://github.com/gutslfo/brand-book)
-
-**★ 0** · exceptional (score 11) · HTML · tags: brand-book, brand-guidelines, claude-skill, design-system
-
-A Claude skill that builds brand guidelines the way the world's largest brands build theirs: colour and font proposals in a live picker, then a 27-page brand book.
+Claude Code skill for planning and building video games with AI agents — keeps multi-session builds playable, on-scope, and fun. Backed by ~90 case studies.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add gutslfo/brand-book --profile creative-media
+cue skills add hoveychen/game-forge --profile creative-media
 ```
 
 ---
 
-<a id="ravikovind-snap-x"></a>
-## 💎 [ravikovind/snap-x](https://github.com/ravikovind/snap-x)
+<a id="cpulxb-wsl-image-clipboard-helper"></a>
+## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
 
-**★ 3** · exceptional (score 8.7) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, cli, image-generation
+**★ 98** · exceptional (score 10.5) · Rust
 
-Render self-contained Satori .mjs design files to PNG — any size, no browser. Claude Code skill + CLI + MCP server for OG cards, README cards, banners and covers.
+该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
 
 ```bash
-cue skills add ravikovind/snap-x --profile creative-media
+cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
 ```
 
 ---
 
-<a id="iart-ai-javascript-animation-skills"></a>
-## 💎 [iart-ai/javascript-animation-skills](https://github.com/iart-ai/javascript-animation-skills)
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 11** · exceptional (score 8.2) · JavaScript · tags: canvas, claude-skill, generative-art, hand-drawn, javascript-animation
+**★ 1** · strong (score 7.8) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
-Every frame drawn in JavaScript — the Opus 5.5-style animation technique as agent skills: hand-drawn canvas animation, zero image assets, code-synthesized soundtrack, A/V sync check.
-
-```bash
-cue skills add iart-ai/javascript-animation-skills --profile creative-media
-```
-
----
-
-<a id="utopiabelmont-xiezhen-shoot-pipeline"></a>
-## ✨ [utopiabelmont/xiezhen-shoot-pipeline](https://github.com/utopiabelmont/xiezhen-shoot-pipeline)
-
-**★ 0** · strong (score 5) · Python · tags: claude-skill, codex, image-generation, openstreetmap, photography
-
-真实景点 + 真实日期的人像外拍规划流水线：OSM 底图、太阳/地形/天气光线、SNS 机位调研、分镜基本法 lint、Codex 示意图、每张一页的拍摄小抄 PDF。Portrait-shoot planning for a real location on a real date: sun & terrain, OSM basemaps, shot-list lint, Codex previews, printable cheat-sheet cards.
+Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
 ```bash
-cue skills add utopiabelmont/xiezhen-shoot-pipeline --profile creative-media
+cue skills add TanaTTV/lyt --profile creative-media
 ```
 
 ---

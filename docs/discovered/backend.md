@@ -1,44 +1,57 @@
 ---
 title: "Claude Code Skills for backend"
-description: "17 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 17 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="farenhytee-database-sentinel"></a>
-## 💎 [Farenhytee/database-sentinel](https://github.com/Farenhytee/database-sentinel)
+<a id="jakubs2623-notebooklm-skill"></a>
+## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
 
-**★ 47** · exceptional (score 14.9) · Python · tags: ai-security, audit, bolt, claude-skill, database-security
+**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
 
-Claude Skill that audits your projects for RLS misconfigurations, exposed keys, auth bypasses, and storage vulnerabilities. 27 anti-patterns sourced from CVE-2025-48757 and 10 security studies. Safe for production.
+Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Farenhytee/database-sentinel --profile backend
+cue skills add jakubs2623/notebooklm-skill --profile backend
 ```
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="archestra-ai-archestra"></a>
+## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
 
-**★ 206333** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 4334** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add archestra-ai/archestra --profile backend
+```
+
+---
+
+<a id="crbnos-carbon"></a>
+## 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
+
+**★ 2659** · exceptional (score 16) · TypeScript · tags: ai-agents, bill-of-materials, erp, inventory-management, lean
+
+Open-source manufacturing ERP, MES and QMS. Quoting, MRP, inventory, shop floor, quality and lot/serial traceability on one Postgres schema, with a REST API and MCP server. Self-host or use Carbon Cloud.
+
+```bash
+cue skills add crbnos/carbon --profile backend
 ```
 
 ---
@@ -56,171 +69,15 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="allrates-today-mcp-server"></a>
-## 💎 [AllRates-Today/mcp-server](https://github.com/AllRates-Today/mcp-server)
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 4** · exceptional (score 10.8) · TypeScript · tags: ai, claude, claude-code, currency-api, cursor
+**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
-MCP server bringing live FX rates, historical data, and multi-currency lookups from AllRatesToday to Claude Code, Cursor, Claude Desktop, and Windsurf. Free API key required.
-
-```bash
-cue skills add AllRates-Today/mcp-server --profile backend
-```
-
----
-
-<a id="retospect-precis-mcp"></a>
-## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
-
-**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, claude, context-management, cursor, llm
-
-MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
-cue skills add retospect/precis-mcp --profile backend
-```
-
----
-
-<a id="rangogamedev-codecks-cli"></a>
-## 💎 [rangogamedev/codecks-cli](https://github.com/rangogamedev/codecks-cli)
-
-**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, api-wrapper, cli, codecks, game-dev
-
-Less admin, more games. AI agent tools for Codecks.io — CLI-first for token efficiency, 52 MCP tools for power users. Also a standalone CLI and Python API.
-
-```bash
-cue skills add rangogamedev/codecks-cli --profile backend
-```
-
----
-
-<a id="allrates-today-realtime-exchange-rate-mcp"></a>
-## 💎 [AllRates-Today/realtime-exchange-rate-mcp](https://github.com/AllRates-Today/realtime-exchange-rate-mcp)
-
-**★ 0** · exceptional (score 10) · TypeScript · tags: ai, claude, claude-code, currency-api, cursor
-
-MCP server for realtime currency exchange rates, historical FX data, and multi-currency lookups. Works with Claude Code, Cursor, Claude Desktop, and Windsurf.
-
-```bash
-cue skills add AllRates-Today/realtime-exchange-rate-mcp --profile backend
-```
-
----
-
-<a id="vassiliylakhonin-agenda-intelligence-md"></a>
-## 💎 [vassiliylakhonin/agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md)
-
-**★ 8** · exceptional (score 9.8) · JavaScript · tags: a2a, ai-agents, claim-verification, evidence-validation, human-in-the-loop
-
-Check whether an AI-generated claim has a usable evidence trail before a person acts on it. CLI, Python API, MCP, A2A, Cloudflare Workers.
-
-```bash
-cue skills add vassiliylakhonin/agenda-intelligence-md --profile backend
-```
-
----
-
-<a id="samrusani-alicememory"></a>
-## 💎 [samrusani/AliceMemory](https://github.com/samrusani/AliceMemory)
-
-**★ 4** · exceptional (score 8.3) · Python · tags: ai-agents, ai-memory, llm, local-first, mcp
-
-Open-source, local-first memory for AI agents. An MCP server that keeps facts, decisions and open loops in one SQLite file on your machine. MIT, public alpha.
-
-```bash
-cue skills add samrusani/AliceMemory --profile backend
-```
-
----
-
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
-
-**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
-
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
-
-```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="furkiozknn-nvidia-nim-mcp"></a>
-## ✨ [Furkiozknn/nvidia-nim-mcp](https://github.com/Furkiozknn/nvidia-nim-mcp)
-
-**★ 1** · strong (score 7.8) · Python · tags: ai, cerebras, claude-code, fallback, free-tier
-
-Seven MCP tools on NVIDIA NIM's free tier - image, vision, translation, chat, content safety, embeddings, plus a health probe that tells you which models are still alive. Two of them need no API key at all. Falls through to Groq, Mistral, Gemini or Cerebras when a model is rate-limited or quietly retired. 80 tests.
-
-```bash
-cue skills add Furkiozknn/nvidia-nim-mcp --profile backend
-```
-
----
-
-<a id="exchange-rateapi-mcp-server"></a>
-## ✨ [Exchange-RateAPI/mcp-server](https://github.com/Exchange-RateAPI/mcp-server)
-
-**★ 0** · strong (score 7.5) · TypeScript · tags: ai, api, claude, currency, cursor
-
-MCP server for Exchange Rate API — real-time and historical currency exchange rates for Claude Code, Cursor, Claude Desktop, and Windsurf
-
-```bash
-cue skills add Exchange-RateAPI/mcp-server --profile backend
-```
-
----
-
-<a id="furkiozknn-voice-io-mcp"></a>
-## ✨ [Furkiozknn/voice-io-mcp](https://github.com/Furkiozknn/voice-io-mcp)
-
-**★ 0** · strong (score 7.5) · Python · tags: claude-code, groq, kokoro, local-first, mcp
-
-Speech in and speech out, needing no API key at all: Groq's free hosted tier when a key is set, Kokoro-82M and faster-whisper locally when it is not. Transcription checks extension and size before it ever opens the file, so "transcribe the audio at .env" is refused locally instead of uploaded. 4 tools, 35 tests.
-
-```bash
-cue skills add Furkiozknn/voice-io-mcp --profile backend
-```
-
----
-
-<a id="fezarecool-mcp-claude-hackernews"></a>
-## ✨ [FezAreCool/mcp-claude-hackernews](https://github.com/FezAreCool/mcp-claude-hackernews)
-
-**★ 0** · strong (score 7.5) · tags: ai, anthropic, api, claude, claude-desktop
-
-🚀 Connect Claude Desktop with Hacker News through the Model Context Protocol (MCP) for seamless interactions and enhanced information flow.
-
-```bash
-cue skills add FezAreCool/mcp-claude-hackernews --profile backend
-```
-
----
-
-<a id="otal-labs-nexul"></a>
-## ✨ [otal-labs/nexul](https://github.com/otal-labs/nexul)
-
-**★ 3** · strong (score 6.7) · Go · tags: agents, ai-agents, ci-cd, deployment, devops
-
-Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.
-
-```bash
-cue skills add otal-labs/nexul --profile backend
-```
-
----
-
-<a id="ilien-dev-muninn"></a>
-## ✨ [ilien-dev/muninn](https://github.com/ilien-dev/muninn)
-
-**★ 1** · strong (score 5.2) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
-
-Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hooks. Local-first: one Rust binary, SQLite + FTS5, no cloud, no API key, no LLM in the read path. Cue-anchored recall under a 700-token budget.
-
-```bash
-cue skills add ilien-dev/muninn --profile backend
+cue skills add ni-c/mcp-hub --profile backend
 ```
 
 ---

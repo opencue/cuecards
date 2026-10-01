@@ -1,23 +1,23 @@
 ---
 title: "crbnos/carbon — Claude Code skill discovered by cue"
-description: "Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, high volume, and configure to order manufactu"
+description: "Open-source manufacturing ERP, MES and QMS. Quoting, MRP, inventory, shop floor, quality and lot/serial traceability on one Postgres schema, with a REST API and"
 layout: page
-updated: 2026-09-16
+updated: 2026-10-01
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
 
-**★ 2412** · exceptional (score 14) · TypeScript · business, erp, lean, management, manufacturing
+**★ 2659** · exceptional (score 16) · TypeScript · ai-agents, bill-of-materials, erp, inventory-management, lean
 
-> Carbon is an open source ERP, MES and QMS for manufacturing. Perfect for complex assembly, contract manufacturing, high volume, and configure to order manufacturing.
+> Open-source manufacturing ERP, MES and QMS. Quoting, MRP, inventory, shop floor, quality and lot/serial traceability on one Postgres schema, with a REST API and MCP server. Self-host or use Carbon Cloud.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 2412 stars
-- 🗓️ Last pushed: 2026-09-16
-- 🏷️ Tags: business, erp, lean, management, manufacturing, mcp-server, mes, postgresql, qms, react-router, supabase, typescript
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
+- ⭐ 2659 stars
+- 🗓️ Last pushed: 2026-10-01
+- 🏷️ Tags: ai-agents, bill-of-materials, erp, inventory-management, lean, manufacturing, manufacturing-execution-system, mcp-server, mes, mrp, open-source-erp, postgresql, production-planning, qms, quality-management-system, react-router, self-hosted, supabase, traceability, typescript
 
 ## Best fit cue profiles
 

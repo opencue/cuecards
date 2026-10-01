@@ -2,13 +2,13 @@
 title: "makash/feedmyagent-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill from makash/feedmyagent-skill"
 layout: page
-updated: 2026-09-22
+updated: 2026-10-01
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # ✨ [makash/feedmyagent-skill](https://github.com/makash/feedmyagent-skill)
 
-**★ 0** · strong (score 7.5) · JavaScript · agent-skills, ai-agents, claude-skill, mcp, mcp-server
+**★ 0** · strong (score 7.5) · Python · agent-skills, ai-agents, claude-skill, mcp, mcp-server
 
 > A Claude Code skill repository discovered by cue.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-22
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: agent-skills, ai-agents, claude-skill, mcp, mcp-server, model-context-protocol, security-feed, threat-intelligence
 
 ## Best fit cue profiles

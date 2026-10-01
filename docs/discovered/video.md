@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="gyujeongion-youtube-caption-translator"></a>
-## 💎 [gyujeongion/youtube-caption-translator](https://github.com/gyujeongion/youtube-caption-translator)
+<a id="lunamos-paper-video"></a>
+## 💎 [Lunamos/paper-video](https://github.com/Lunamos/paper-video)
 
-**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, captions, claude-code, claude-skill, speech-to-text
+**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
 
-Claude Code skill: translate SRT (or auto-transcribe with speech-to-text when there is none) into multiple languages and upload them as YouTube caption tracks, with guided setup. 유튜브 다국어 자막 자동화 스킬
-
-✅ SKILL.md
+Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
 
 ```bash
-cue skills add gyujeongion/youtube-caption-translator --profile video
+cue skills add Lunamos/paper-video --profile video
 ```
 
 ---
 
-<a id="expropriationhoorayhenry64-social-media-scraper-skill"></a>
-## 💎 [expropriationhoorayhenry64/social-media-scraper-skill](https://github.com/expropriationhoorayhenry64/social-media-scraper-skill)
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 6** · exceptional (score 11.6) · tags: ai, automation, claude-code, claude-skill, content-analysis
+**★ 1** · strong (score 7.8) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
-Extract and summarize social media content from platforms like Instagram, TikTok, X, and YouTube using Claude Code.
+Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
 ```bash
-cue skills add expropriationhoorayhenry64/social-media-scraper-skill --profile video
+cue skills add TanaTTV/lyt --profile video
 ```
 
 ---

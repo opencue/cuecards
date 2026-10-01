@@ -1,67 +1,24 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "8 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="farenhytee-database-sentinel"></a>
-## 💎 [Farenhytee/database-sentinel](https://github.com/Farenhytee/database-sentinel)
-
-**★ 47** · exceptional (score 14.9) · Python · tags: ai-security, audit, bolt, claude-skill, database-security
-
-Claude Skill that audits your projects for RLS misconfigurations, exposed keys, auth bypasses, and storage vulnerabilities. 27 anti-patterns sourced from CVE-2025-48757 and 10 security studies. Safe for production.
-
-✅ SKILL.md
-
-```bash
-cue skills add Farenhytee/database-sentinel --profile cybersecurity
-```
-
----
-
-<a id="bunlongheng-repo-audit"></a>
-## 💎 [bunlongheng/repo-audit](https://github.com/bunlongheng/repo-audit)
-
-**★ 1** · exceptional (score 13.3) · Python · tags: architecture, claude-code, claude-skill, code-audit, code-review
-
-Reverse-engineer any repo through 10 audit lenses into 1 self-contained HTML report. A read-only Claude Code skill.
-
-✅ SKILL.md
-
-```bash
-cue skills add bunlongheng/repo-audit --profile cybersecurity
-```
-
----
-
-<a id="hahwul-gori"></a>
-## 💎 [hahwul/gori](https://github.com/hahwul/gori)
-
-**★ 116** · exceptional (score 11.4) · Crystal · tags: bugbounty, cli, crystal, gori, mcp
-
-A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
-
-```bash
-cue skills add hahwul/gori --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2702** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
+**★ 2708** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -84,15 +41,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="ali-ulu-huqan"></a>
-## 💎 [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
+<a id="makash-feedmyagent-skill"></a>
+## ✨ [makash/feedmyagent-skill](https://github.com/makash/feedmyagent-skill)
 
-**★ 6** · exceptional (score 9.1) · JavaScript · tags: agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
+**★ 0** · strong (score 7.5) · Python · tags: agent-skills, ai-agents, claude-skill, mcp, mcp-server
 
-Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or action is trusted.
+
 
 ```bash
-cue skills add ali-ulu/huqan --profile cybersecurity
+cue skills add makash/feedmyagent-skill --profile cybersecurity
 ```
 
 ---
@@ -106,19 +63,6 @@ Deterministic governance for Claude and MCP tool calls. Pin approved capabilitie
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="echelongraph-echelongraph-mcp"></a>
-## ✨ [echelongraph/echelongraph-mcp](https://github.com/echelongraph/echelongraph-mcp)
-
-**★ 0** · strong (score 6) · JavaScript · tags: cve, mcp, mcp-server, model-context-protocol, security
-
-EchelonGraph's MCP server: CVE intelligence (NVD, CISA KEV, EPSS, GHSA) and a Shodan-derived exposure footprint for any MCP client. Keyless, read-only.
-
-```bash
-cue skills add echelongraph/echelongraph-mcp --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-01
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="otal-labs-nexul"></a>
-## ✨ [otal-labs/nexul](https://github.com/otal-labs/nexul)
+<a id="cenmeow-markdown-new-skill"></a>
+## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
 
-**★ 3** · strong (score 6.7) · Go · tags: agents, ai-agents, ci-cd, deployment, devops
+**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
 
-Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.
+Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
 
 ```bash
-cue skills add otal-labs/nexul --profile docs-writer
+cue skills add CenMeow/markdown-new-skill --profile docs-writer
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "Hao0321/claude-skill-social-post — Claude Code skill discovered by cue"
 description: "A Claude Code skill by Hao (駱君昊) that learns your Facebook voice and auto-posts to FB / IG / Threads / X with a 14-day content calendar. Mega-viral validated: 8"
 layout: page
-updated: 2026-09-05
+updated: 2026-10-01
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Hao0321/claude-skill-social-post](https://github.com/Hao0321/claude-skill-social-post)
 
-**★ 658** · exceptional (score 19.3) · JavaScript · ai-agent, aigc, anthropic, chrome-mcp, claude-code
+**★ 677** · exceptional (score 19.4) · JavaScript · ai-agent, aigc, anthropic, chrome-mcp, claude-code
 
 > A Claude Code skill by Hao (駱君昊) that learns your Facebook voice and auto-posts to FB / IG / Threads / X with a 14-day content calendar. Mega-viral validated: 80K reach / 448 likes / 500 comments on first post. Includes Day 2 flop postmortem.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.3 based on:
-- ⭐ 658 stars
-- 🗓️ Last pushed: 2026-09-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.4 based on:
+- ⭐ 677 stars
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: ai-agent, aigc, anthropic, chrome-mcp, claude-code, claude-skill, content-calendar, facebook-automation, instagram, social-media, taiwan, threads, twitter, viral-content
 
 ## Best fit cue profiles
