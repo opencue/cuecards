@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="hoveychen-game-forge"></a>
-## 💎 [hoveychen/game-forge](https://github.com/hoveychen/game-forge)
-
-**★ 0** · exceptional (score 13) · tags: ai-agents, claude-code, claude-skill, game-design, game-development
-
-Claude Code skill for planning and building video games with AI agents — keeps multi-session builds playable, on-scope, and fun. Backed by ~90 case studies.
-
-✅ SKILL.md
-
-```bash
-cue skills add hoveychen/game-forge --profile creative-media
-```
-
----
-
 <a id="cpulxb-wsl-image-clipboard-helper"></a>
 ## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
 
-**★ 98** · exceptional (score 10.5) · Rust
+**★ 98** · exceptional (score 10.4) · Rust
 
 该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
 
 ```bash
 cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
+```
+
+---
+
+<a id="sibhimanyu-rasanai"></a>
+## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
+
+**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
+
+AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
+
+```bash
+cue skills add Sibhimanyu/rasanai --profile creative-media
 ```
 
 ---

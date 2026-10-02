@@ -2,7 +2,7 @@
 title: "Yang-woo/cani-c — Claude Code skill discovered by cue"
 description: "\"Can I clear? Can I compact?\" A Claude Code skill that decides, writes a handoff, and tells you what to type."
 layout: page
-updated: 2026-09-22
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-22
+- 🗓️ Last pushed: 2026-10-02
 - 🏷️ Tags: agent-skills, ai-skill, anthropic, claude, claude-code, claude-skill, context-management, developer-tools, llm, prompt-engineering
 
 ## Best fit cue profiles

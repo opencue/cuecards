@@ -1,24 +1,37 @@
 ---
 title: "Claude Code Skills for nextjs"
-description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `nextjs`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **nextjs** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **nextjs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="skygenesisenterprise-notploy"></a>
+## ✨ [skygenesisenterprise/notploy](https://github.com/skygenesisenterprise/notploy)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: agents, backup, cloud-native, databases, deployment
+
+Open Source Alternative to Dokploy, Vercel, Netlify and Heroku.
+
+```bash
+cue skills add skygenesisenterprise/notploy --profile nextjs
+```
+
+---
+
 <a id="naveennnm13-fault-lines-the-program-manager-tool"></a>
 ## 🔹 [Naveennnm13/Fault-Lines-The-Program-Manager-Tool](https://github.com/Naveennnm13/Fault-Lines-The-Program-Manager-Tool)
 
-**★ 1** · potential (score 3.2) · TypeScript · tags: claude, critical-path, d3, dependency-graph, networkx
+**★ 1** · potential (score 3.1) · TypeScript · tags: claude, critical-path, d3, dependency-graph, networkx
 
 Finds the tasks that threaten a program's delivery date, simulates how a slip cascades across teams, and drafts the risk briefing. Critical path analysis in Python, Claude-written briefings, Next.js dashboard.
 

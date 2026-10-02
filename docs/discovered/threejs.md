@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-26
+updated: 2026-10-02
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="pascalorg-editor"></a>
-## 💎 [pascalorg/editor](https://github.com/pascalorg/editor)
+<a id="elithril-blender-kiln"></a>
+## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 24315** · exceptional (score 17) · TypeScript · tags: 3d, agent-skills, ai-agents, architecture, bim
+**★ 15** · exceptional (score 16.2) · Python · tags: 3d, 3d-assets, agent-skills, asset-pipeline, blender
 
-Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.
+Blender skill and plugin for Claude Code — 3D asset pipeline from text brief to production GLB: Blender MCP, Hunyuan3D generation, texturing, rigging, batch mode
+
+✅ SKILL.md
 
 ```bash
-cue skills add pascalorg/editor --profile threejs
+cue skills add elithril/blender-kiln --profile threejs
 ```
 
 ---

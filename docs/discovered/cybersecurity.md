@@ -1,24 +1,50 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="1-3-7-disrobe"></a>
+## 💎 [1-3-7/disrobe](https://github.com/1-3-7/disrobe)
+
+**★ 141** · exceptional (score 12.6) · Rust · tags: android-reverse-engineering, apk-decompiler, ctf-tools, decompiler, deobfuscation
+
+Static decompiler, deobfuscator, and unpacker for reverse engineering and malware analysis: Python decompiler (3.8-3.15), PyInstaller extractor, PyArmor unpacker, JavaScript deobfuscator (obfuscator.io, JS-Confuser, webpack), Android APK and Java decompiler, .NET deobfuscator, UPX unpacker, Lua, PHP, WASM, PowerShell. MCP server.
+
+```bash
+cue skills add 1-3-7/disrobe --profile cybersecurity
+```
+
+---
+
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+
+**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+
+```bash
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2708** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
+**★ 2720** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -41,23 +67,10 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="makash-feedmyagent-skill"></a>
-## ✨ [makash/feedmyagent-skill](https://github.com/makash/feedmyagent-skill)
-
-**★ 0** · strong (score 7.5) · Python · tags: agent-skills, ai-agents, claude-skill, mcp, mcp-server
-
-
-
-```bash
-cue skills add makash/feedmyagent-skill --profile cybersecurity
-```
-
----
-
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 

@@ -2,7 +2,7 @@
 title: "slovozaslovo/lesslop — Claude Code skill discovered by cue"
 description: "Claude Code plugin: every claim the agent writes carries [proof: path:line] or {unverified} — a UserPromptSubmit hook, re-injected each turn. Codex and Cursor t"
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-30
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: agent-skills, agentskills, ai-agents, claude-code, claude-code-plugin, claude-skills, codex, codex-skills, cursor, evidence, hallucination, hooks, skill-md, verification
 
 ## Best fit cue profiles

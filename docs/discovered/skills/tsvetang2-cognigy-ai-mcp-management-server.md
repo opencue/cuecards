@@ -2,21 +2,21 @@
 title: "TsvetanG2/cognigy-ai-mcp-management-server — Claude Code skill discovered by cue"
 description: "MCP server for Cognigy.AI - 132 tools that let Claude, Cursor & other AI assistants build, configure, test & operate conversational AI agents via the Model Cont"
 layout: page
-updated: 2026-07-23
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [TsvetanG2/cognigy-ai-mcp-management-server](https://github.com/TsvetanG2/cognigy-ai-mcp-management-server)
 
-**★ 2** · exceptional (score 11) · TypeScript · agents, agentskills, claude, claude-code, claude-code-skill
+**★ 2** · exceptional (score 12.5) · TypeScript · agents, agentskills, claude, claude-code, claude-code-skill
 
 > MCP server for Cognigy.AI - 132 tools that let Claude, Cursor & other AI assistants build, configure, test & operate conversational AI agents via the Model Context Protocol.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-07-23
+- 🗓️ Last pushed: 2026-10-02
 - 🏷️ Tags: agents, agentskills, claude, claude-code, claude-code-skill, cognigy, cognigy-ai, conversational-ai, cursor-ai, llm-agents, llm-tools, llms, mcp, mcp-client, mcp-gateway, mcp-server, mcp-servers, model-context-protocol, modelcontextprotocol, openai
 
 ## Best fit cue profiles

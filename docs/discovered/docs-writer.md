@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="cenmeow-markdown-new-skill"></a>
-## 💎 [CenMeow/markdown-new-skill](https://github.com/CenMeow/markdown-new-skill)
+<a id="youndie-docs-bootstrap"></a>
+## 💎 [youndie/docs-bootstrap](https://github.com/youndie/docs-bootstrap)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: agent-skills, agentic-skill, azure, claude-code, claude-code-skill
+**★ 2** · exceptional (score 13.5) · Python · tags: agent-tools, claude-code, claude-skill, developer-tools, documentation
 
-Convert public URLs to clean Markdown using selectable methods for versatile output modes and improved content accuracy.
+Documentation format for codebases whose primary reader is a coding agent: layers linked by ids, paths into the code, and the checks that keep it honest
+
+✅ SKILL.md
 
 ```bash
-cue skills add CenMeow/markdown-new-skill --profile docs-writer
+cue skills add youndie/docs-bootstrap --profile docs-writer
 ```
 
 ---

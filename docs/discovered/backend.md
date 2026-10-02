@@ -1,57 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="n8n-io-n8n"></a>
+## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 206493** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile backend
+cue skills add n8n-io/n8n --profile backend
 ```
 
 ---
 
-<a id="archestra-ai-archestra"></a>
-## 💎 [archestra-ai/archestra](https://github.com/archestra-ai/archestra)
+<a id="voygr-tech-placecall"></a>
+## 💎 [voygr-tech/placecall](https://github.com/voygr-tech/placecall)
 
-**★ 4334** · exceptional (score 17) · TypeScript · tags: a2a, a2a-mcp, acp, agent, ai
+**★ 34** · exceptional (score 12.6) · Shell · tags: agent-skills, ai-agent, calls, claude-code, claude-code-plugins
 
-Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator
-
-```bash
-cue skills add archestra-ai/archestra --profile backend
-```
-
----
-
-<a id="crbnos-carbon"></a>
-## 💎 [crbnos/carbon](https://github.com/crbnos/carbon)
-
-**★ 2659** · exceptional (score 16) · TypeScript · tags: ai-agents, bill-of-materials, erp, inventory-management, lean
-
-Open-source manufacturing ERP, MES and QMS. Quoting, MRP, inventory, shop floor, quality and lot/serial traceability on one Postgres schema, with a REST API and MCP server. Self-host or use Carbon Cloud.
+The phone is your last API. Give your agent a voice to call any US business - reservations, inquiries, quotes. Verified outcome + transcript. First 250 calls free.
 
 ```bash
-cue skills add crbnos/carbon --profile backend
+cue skills add voygr-tech/placecall --profile backend
 ```
 
 ---
@@ -69,6 +54,19 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
+<a id="retospect-precis-mcp"></a>
+## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
+
+**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, claude, context-management, cursor, llm
+
+MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
+
+```bash
+cue skills add retospect/precis-mcp --profile backend
+```
+
+---
+
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
@@ -78,6 +76,71 @@ Serve multiple stdio MCP servers from one container: path routing, hub meta-tool
 
 ```bash
 cue skills add ni-c/mcp-hub --profile backend
+```
+
+---
+
+<a id="adder-factory-cartograph"></a>
+## 💎 [adder-factory/cartograph](https://github.com/adder-factory/cartograph)
+
+**★ 3** · exceptional (score 8.2) · Rust · tags: ai-agents, ai-coding-agents, bm25, code-analysis, code-intelligence
+
+Semantic code intelligence for AI coding agents — 45% fewer tool calls, 17% faster exploration, 100% local. A fork of codegraph.
+
+```bash
+cue skills add adder-factory/cartograph --profile backend
+```
+
+---
+
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+
+**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
+
+```bash
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="lucasmartins-ai-lookacrawler"></a>
+## ✨ [lucasmartins-ai/lookacrawler](https://github.com/lucasmartins-ai/lookacrawler)
+
+**★ 3** · strong (score 6.7) · TypeScript · tags: ai, ai-agents, context-engineering, crawler, firecrawl-alternative
+
+Free, open-source, token-efficient local alternative to Firecrawl with native MCP Server for LLMs (>73% token reduction).
+
+```bash
+cue skills add lucasmartins-ai/lookacrawler --profile backend
+```
+
+---
+
+<a id="skygenesisenterprise-notploy"></a>
+## ✨ [skygenesisenterprise/notploy](https://github.com/skygenesisenterprise/notploy)
+
+**★ 1** · strong (score 6.3) · TypeScript · tags: agents, backup, cloud-native, databases, deployment
+
+Open Source Alternative to Dokploy, Vercel, Netlify and Heroku.
+
+```bash
+cue skills add skygenesisenterprise/notploy --profile backend
+```
+
+---
+
+<a id="xentral-labs-reality"></a>
+## ✨ [Xentral-Labs/reality](https://github.com/Xentral-Labs/reality)
+
+**★ 0** · strong (score 5) · Python · tags: agentic-ai, ai-agents, audit-trail, business-operations, data-lineage
+
+Open-source operations core for AI agents: orders, stock, deliveries, invoices and money in one journal, each record kept exactly as the source sent it — so any number opens back to its origin. Runs alongside your ERP, shop and warehouse. Same tools for people and agents over API, CLI and MCP. Self-hosted, MIT.
+
+```bash
+cue skills add Xentral-Labs/reality --profile backend
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-10-01 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-10-02 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 75 | `vibe-skill`, `storybloq`, `claude-skill-social-post` |
-| [**backend**](./backend.md) | 6 | `notebooklm-skill`, `archestra`, `carbon` |
-| [**research**](./research.md) | 4 | `notebooklm-skill`, `paper-video`, `awesome-research-skills` |
-| [**creative-media**](./creative-media.md) | 4 | `game-forge`, `WSL-Image-Clipboard-Helper`, `lyt` |
-| [**frontend**](./frontend.md) | 4 | `google-fonts-skill`, `awesome-claude-ui-armory`, `claude-react-kit` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `feedmyagent-skill` |
-| [**marketing**](./marketing.md) | 3 | `google-analytics-agent`, `meta-ads-agents`, `sticky-switcher-funnel-playbook` |
-| [**video**](./video.md) | 2 | `paper-video`, `lyt` |
-| [**docs-writer**](./docs-writer.md) | 1 | `markdown-new-skill` |
-| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
-| [**nextjs**](./nextjs.md) | 1 | `Fault-Lines-The-Program-Manager-Tool` |
+| [**core**](./core.md) | 69 | `delegate-local`, `hypergrok-trading-desk`, `strategic-advisor-orchestrator` |
+| [**backend**](./backend.md) | 11 | `n8n`, `placecall`, `free-proxy-list` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `disrobe`, `claude-security-research-skill`, `Claude-OSINT` |
+| [**creative-media**](./creative-media.md) | 4 | `WSL-Image-Clipboard-Helper`, `rasanai`, `lyt` |
+| [**research**](./research.md) | 4 | `agent-kit`, `data-aggregator-mcp`, `awesome-research-skills` |
+| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `rolepod` |
+| [**nextjs**](./nextjs.md) | 2 | `notploy`, `Fault-Lines-The-Program-Manager-Tool` |
+| [**threejs**](./threejs.md) | 1 | `blender-kiln` |
+| [**marketing**](./marketing.md) | 1 | `ad-copy-agency-skill` |
+| [**docs-writer**](./docs-writer.md) | 1 | `docs-bootstrap` |
+| [**frontend**](./frontend.md) | 1 | `awesome-claude-ui-armory` |
+| [**video**](./video.md) | 1 | `lyt` |
+| [**python**](./python.md) | 1 | `reality` |
 
 ## How scoring works
 

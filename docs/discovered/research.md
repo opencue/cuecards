@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="jakubs2623-notebooklm-skill"></a>
-## 💎 [jakubs2623/notebooklm-skill](https://github.com/jakubs2623/notebooklm-skill)
+<a id="publishfun-agent-kit"></a>
+## 💎 [publishfun/agent-kit](https://github.com/publishfun/agent-kit)
 
-**★ 7** · exceptional (score 17.3) · Python · tags: agentic-skill, ai-agents, ai-research, antigravity, api
+**★ 0** · exceptional (score 8.5) · Python · tags: agent-skills, ai-agents, claude-code-plugin, claude-code-skill, claude-skills
 
-Connect NotebookLM research with Claude to generate structured content from URLs, PDFs, and trending topics for multi-platform publishing.
-
-✅ SKILL.md
+Connect AI agents to Publish.fun, the AI-reviewed research journal: Claude Code plugin, agent skill, MCP configs, examples
 
 ```bash
-cue skills add jakubs2623/notebooklm-skill --profile research
+cue skills add publishfun/agent-kit --profile research
 ```
 
 ---
 
-<a id="lunamos-paper-video"></a>
-## 💎 [Lunamos/paper-video](https://github.com/Lunamos/paper-video)
+<a id="musharna-data-aggregator-mcp"></a>
+## 💎 [musharna/data-aggregator-mcp](https://github.com/musharna/data-aggregator-mcp)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
+**★ 4** · exceptional (score 8.3) · Python · tags: bioinformatics, data-discovery, datacite, datasets, mcp
 
-Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
+Unified research-data acquisition MCP — search & fetch datasets across Zenodo, DataCite, NCBI omics (GEO/SRA/BioProject), and literature (PubMed/OpenAIRE) behind one normalized model.
 
 ```bash
-cue skills add Lunamos/paper-video --profile research
+cue skills add musharna/data-aggregator-mcp --profile research
 ```
 
 ---
@@ -46,7 +44,7 @@ cue skills add Lunamos/paper-video --profile research
 <a id="neverbiasu-awesome-research-skills"></a>
 ## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
 
-**★ 3** · strong (score 5.6) · tags: agent-skills, ai-for-science, awesome-list, claude-code, codex
+**★ 3** · strong (score 5.5) · tags: agent-skills, ai-for-science, awesome-list, claude-code, codex
 
 149 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
 
@@ -59,7 +57,7 @@ cue skills add neverbiasu/awesome-research-skills --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 3.9) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

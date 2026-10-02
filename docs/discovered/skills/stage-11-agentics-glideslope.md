@@ -2,7 +2,7 @@
 title: "Stage-11-Agentics/glideslope — Claude Code skill discovered by cue"
 description: "Every flat-fee coding plan you pay for, on one glide path: Claude, Codex, Kimi, Grok and OpenRouter usage in one table, with the ◆ even-burn mark."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-01
+- 🗓️ Last pushed: 2026-10-02
 - 🏷️ Tags: claude-code, cli, codex, coding-agents, rate-limits, subscriptions, usage
 
 ## Best fit cue profiles

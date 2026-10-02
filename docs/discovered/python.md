@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-02
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="pipulate-pipulate"></a>
-## 💎 [pipulate/pipulate](https://github.com/pipulate/pipulate)
+<a id="xentral-labs-reality"></a>
+## ✨ [Xentral-Labs/reality](https://github.com/Xentral-Labs/reality)
 
-**★ 14** · exceptional (score 10.4) · Python · tags: ai, fasthtml, htmx, machine-learning, mcp
+**★ 0** · strong (score 5) · Python · tags: agentic-ai, ai-agents, audit-trail, business-operations, data-lineage
 
-Local First AI SEO Software on Nix, FastHTML & HTMX
+Open-source operations core for AI agents: orders, stock, deliveries, invoices and money in one journal, each record kept exactly as the source sent it — so any number opens back to its origin. Runs alongside your ERP, shop and warehouse. Same tools for people and agents over API, CLI and MCP. Self-hosted, MIT.
 
 ```bash
-cue skills add pipulate/pipulate --profile python
+cue skills add Xentral-Labs/reality --profile python
 ```
 
 ---

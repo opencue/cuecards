@@ -2,7 +2,7 @@
 title: "QIU-Guanzong/CoProgrammer — Claude Code skill discovered by cue"
 description: "Coordinate AI coding agents across Git worktrees with atomic task claims, path leases, durable handoffs, MCP and reviewable PR digests. For Codex, Claude Code &"
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-30
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: agent-skills, ai-coding, claude-code, code-review, codex, coding-agents, deepseek, developer-tools, git-worktree, github-actions, github-copilot, glm, mcp, mcp-server, multi-agent, python
 
 ## Best fit cue profiles

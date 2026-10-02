@@ -2,22 +2,22 @@
 title: "LukeberryPi/skills — Claude Code skill discovered by cue"
 description: "My agent skills."
 layout: page
-updated: 2026-06-20
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [LukeberryPi/skills](https://github.com/LukeberryPi/skills)
+# 💎 [LukeberryPi/skills](https://github.com/LukeberryPi/skills)
 
-**★ 1** · strong (score 7.8) · agent-skill, claude-code-skill
+**★ 24** · exceptional (score 10.9) · JavaScript · agent-skill, agent-skills, claude-code-skill
 
 > My agent skills.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-19
-- 🏷️ Tags: agent-skill, claude-code-skill
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 24 stars
+- 🗓️ Last pushed: 2026-10-02
+- 🏷️ Tags: agent-skill, agent-skills, claude-code-skill
 
 ## Best fit cue profiles
 

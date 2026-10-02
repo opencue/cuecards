@@ -2,21 +2,21 @@
 title: "Shayneg-eng/Clocator — Claude Code skill discovered by cue"
 description: "Clocator seamlessly syncs local Claude Code sessions across devices by anchoring volatile, absolute folder paths to your repository's permanent Git remote URL."
 layout: page
-updated: 2026-06-14
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Shayneg-eng/Clocator](https://github.com/Shayneg-eng/Clocator)
 
-**★ 1** · strong (score 6.1) · Python · anthropic, claude-code, cli, dev-tools, developer-experience
+**★ 1** · strong (score 7.8) · Python · anthropic, claude-code, cli, dev-tools, developer-experience
 
 > Clocator seamlessly syncs local Claude Code sessions across devices by anchoring volatile, absolute folder paths to your repository's permanent Git remote URL.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-08
+- 🗓️ Last pushed: 2026-10-01
 - 🏷️ Tags: anthropic, claude-code, cli, dev-tools, developer-experience, multi-device-sync, python-cli, symlink
 
 ## Best fit cue profiles

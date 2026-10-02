@@ -1,8 +1,8 @@
 ---
 title: "FlyAIBox/design-diagrams — Claude Code skill discovered by cue"
-description: "Evidence-grounded diagram skill for Claude Code & Codex — business, data-flow, process/state, and architecture diagrams as editable SVG + high-res PNG. Model th"
+description: "Turn docs and code into clear, editable diagrams — business, data-flow, process/state, and architecture diagrams as SVG + high-res PNG. A skill for Claude Code "
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, core]
 
 **★ 1** · exceptional (score 13.3) · Python · agent-skills, architecture-diagrams, claude-code, claude-skill, codex
 
-> Evidence-grounded diagram skill for Claude Code & Codex — business, data-flow, process/state, and architecture diagrams as editable SVG + high-res PNG. Model the domain first, then make it beautiful.
+> Turn docs and code into clear, editable diagrams — business, data-flow, process/state, and architecture diagrams as SVG + high-res PNG. A skill for Claude Code & Codex.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-01
+- 🗓️ Last pushed: 2026-10-02
 - 🏷️ Tags: agent-skills, architecture-diagrams, claude-code, claude-skill, codex, diagram-generator, diagrams, svg
 
 ## Best fit cue profiles

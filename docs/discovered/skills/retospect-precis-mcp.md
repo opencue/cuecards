@@ -2,7 +2,7 @@
 title: "retospect/precis-mcp — Claude Code skill discovered by cue"
 description: "MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls"
 layout: page
-updated: 2026-09-30
+updated: 2026-10-02
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-30
+- 🗓️ Last pushed: 2026-10-02
 - 🏷️ Tags: ai-agent, claude, context-management, cursor, llm, markdown, mcp, mcp-server, model-context-protocol, patents, perplexity, pgvector, progressive-disclosure, python, scientific-papers, semantic-search, spaced-repetition, token-optimization, wolfram-alpha, youtube-transcripts
 
 ## Best fit cue profiles

@@ -1,55 +1,31 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "3 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="arcbaslow-google-analytics-agent"></a>
-## 💎 [arcbaslow/google-analytics-agent](https://github.com/arcbaslow/google-analytics-agent)
+<a id="5hyuns-ad-copy-agency-skill"></a>
+## 💎 [5hyuns/ad-copy-agency-skill](https://github.com/5hyuns/ad-copy-agency-skill)
 
-**★ 0** · exceptional (score 12) · Python · tags: ai-agent, analytics, attribution, claude-code, claude-skill
+**★ 2** · exceptional (score 13.5) · Python · tags: ad-copy-generator, advertising, agent-skills, ai-agents, ai-copywriting
 
-GA4 CLI and MCP server: data quality, configurable funnels, segment analysis, property management, and benchmarked Markdown audits.
+Claude Code skill that writes ad headlines by following an ad agency workflow (planner, CD, creative teams, client review) / 광고 대행사 작업 흐름을 따라 헤드라인을 쓰는 카피라이팅 스킬
 
-```bash
-cue skills add arcbaslow/google-analytics-agent --profile marketing
-```
-
----
-
-<a id="arcbaslow-meta-ads-agents"></a>
-## 💎 [arcbaslow/meta-ads-agents](https://github.com/arcbaslow/meta-ads-agents)
-
-**★ 0** · exceptional (score 12) · Python · tags: ai-agent, attribution, audience-insights, campaign-analysis, capi
-
-Read-only Meta Ads toolkit: campaign performance, creative fatigue, audience breakdowns, Pixel/CAPI event health, and reports.
+✅ SKILL.md
 
 ```bash
-cue skills add arcbaslow/meta-ads-agents --profile marketing
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add 5hyuns/ad-copy-agency-skill --profile marketing
 ```
 
 ---

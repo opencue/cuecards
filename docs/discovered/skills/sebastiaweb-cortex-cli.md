@@ -2,7 +2,7 @@
 title: "SebastiaWeb/cortex-cli — Claude Code skill discovered by cue"
 description: "Sync Claude Code sessions between machines with automatic path remapping"
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, skill, core]
 ---
 

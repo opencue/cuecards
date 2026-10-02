@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-02
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="lunamos-paper-video"></a>
-## 💎 [Lunamos/paper-video](https://github.com/Lunamos/paper-video)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
-
-Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
-
-```bash
-cue skills add Lunamos/paper-video --profile video
-```
 
 ---
 
