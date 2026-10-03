@@ -2,7 +2,7 @@
 title: "craaft/skill — Claude Code skill discovered by cue"
 description: "Claude Code Skill teaching Claude how to use the Craaft Kanban API correctly: bearer auth, error shapes, rate limits, and the bugs Claude reliably introduces if"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: ai-agent, anthropic, api, claude, claude-code, claude-skill, craaft, developer-tools, kanban
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Lycheetah/Lycheetah-Framework — Claude Code skill discovered by cue"
 description: "Public method documents. How the work is thought and governed. Self-taught, in Dunedin. Not a commercial offer."
 layout: page
-updated: 2026-09-26
+updated: 2026-10-03
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-26
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: ai, ai-agents, ai-safety, aiethics, claude-code, claude-code-plugin, claude-code-skill, claude-skills, copilot, github-config, mystery, open-source, openclaw, philosophy, sovereign-computing, sovereign-infrastructure
 
 ## Best fit cue profiles

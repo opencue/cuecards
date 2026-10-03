@@ -1,42 +1,57 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="publishfun-agent-kit"></a>
-## 💎 [publishfun/agent-kit](https://github.com/publishfun/agent-kit)
+<a id="rekin226-paper-agent"></a>
+## 💎 [Rekin226/paper-agent](https://github.com/Rekin226/paper-agent)
 
-**★ 0** · exceptional (score 8.5) · Python · tags: agent-skills, ai-agents, claude-code-plugin, claude-code-skill, claude-skills
+**★ 8** · exceptional (score 15.8) · Python · tags: academic-writing, claude-code, claude-skill, hydrogeology, hydrology
 
-Connect AI agents to Publish.fun, the AI-reviewed research journal: Claude Code plugin, agent skill, MCP configs, examples
+Claude Code plugin to draft, review, revise, proofread, and audit quantitative-science journal manuscripts at submission quality. Five strict modes, Semantic Scholar MCP citation integrity (no API key), .docx round-trip. Calibrated for hydrology (HJ, JHRS) and IEEE; generic profile for any field.
+
+✅ SKILL.md
 
 ```bash
-cue skills add publishfun/agent-kit --profile research
+cue skills add Rekin226/paper-agent --profile research
 ```
 
 ---
 
-<a id="musharna-data-aggregator-mcp"></a>
-## 💎 [musharna/data-aggregator-mcp](https://github.com/musharna/data-aggregator-mcp)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 4** · exceptional (score 8.3) · Python · tags: bioinformatics, data-discovery, datacite, datasets, mcp
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-Unified research-data acquisition MCP — search & fetch datasets across Zenodo, DataCite, NCBI omics (GEO/SRA/BioProject), and literature (PubMed/OpenAIRE) behind one normalized model.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add musharna/data-aggregator-mcp --profile research
+cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="lunamos-paper2video"></a>
+## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
+
+**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
+
+Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
+
+```bash
+cue skills add Lunamos/paper2video --profile research
 ```
 
 ---
@@ -44,7 +59,7 @@ cue skills add musharna/data-aggregator-mcp --profile research
 <a id="neverbiasu-awesome-research-skills"></a>
 ## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
 
-**★ 3** · strong (score 5.5) · tags: agent-skills, ai-for-science, awesome-list, claude-code, codex
+**★ 3** · strong (score 5.5) · tags: academic, academic-project, academic-research, academic-writing, agent-skills
 
 149 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
 

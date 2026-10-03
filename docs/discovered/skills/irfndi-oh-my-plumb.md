@@ -2,7 +2,7 @@
 title: "irfndi/oh-my-plumb — Claude Code skill discovered by cue"
 description: "Keep your AI coding agents true to spec: Tier1 fast-path + Tier2 guards + Tier3 micro-eval on every edit, for Claude Code, Codex, OpenCode and Pi"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, skill, core]
 ---
 

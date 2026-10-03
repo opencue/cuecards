@@ -2,21 +2,21 @@
 title: "hahwul/gori — Claude Code skill discovered by cue"
 description: "A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-03
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [hahwul/gori](https://github.com/hahwul/gori)
 
-**★ 116** · exceptional (score 11.4) · Crystal · bugbounty, cli, crystal, gori, mcp
+**★ 117** · exceptional (score 11.4) · Crystal · bugbounty, cli, crystal, gori, mcp
 
 > A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
-- ⭐ 116 stars
-- 🗓️ Last pushed: 2026-09-30
+- ⭐ 117 stars
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: bugbounty, cli, crystal, gori, mcp, mcp-server, mitm, pentesting, proxy, security, tui
 
 ## Best fit cue profiles

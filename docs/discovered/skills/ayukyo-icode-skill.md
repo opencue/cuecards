@@ -1,24 +1,24 @@
 ---
 title: "ayukyo/icode-skill — Claude Code skill discovered by cue"
-description: "A 6-step coding workflow for Claude Code — Plan → Review → Finalize → Code → Deep Check → Audit. Run all at once or step-by-step, switch models between steps.  "
+description: "AI coding workflow for Claude Code, Codex and CodeBuddy: ticket-based development, resumable steps, evidence-based verification and independent multi-model revi"
 layout: page
-updated: 2026-09-14
+updated: 2026-10-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ayukyo/icode-skill](https://github.com/ayukyo/icode-skill)
 
-**★ 3** · exceptional (score 16.7) · Python · ai-agent, ai-coding, ai-workflow, automation, claude-code
+**★ 3** · exceptional (score 17.7) · Python · ai-agent, ai-coding, ai-workflow, automation, claude-code
 
-> A 6-step coding workflow for Claude Code — Plan → Review → Finalize → Code → Deep Check → Audit. Run all at once or step-by-step, switch models between steps.          Claude Code 六步编码工作流：计划 → 审查 → 定稿 → 编码 → 复检 → 终审，一步到位或分步执行，步骤间可切换模型。
+> AI coding workflow for Claude Code, Codex and CodeBuddy: ticket-based development, resumable steps, evidence-based verification and independent multi-model review. AI 编码工作流：工单管理、断点续接、证据化验证、跨模型设计与代码复评。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-14
-- 🏷️ Tags: ai-agent, ai-coding, ai-workflow, automation, claude-code, claude-code-skill, claude-skills, code-review, codex, codex-plugin, codex-skill, coding-agent, coding-assistant, llm, mcp, skill, workflow
+- 🗓️ Last pushed: 2026-10-03
+- 🏷️ Tags: ai-agent, ai-coding, ai-workflow, automation, claude-code, claude-code-skill, claude-skills, code-review, codebuddy, codebuddy-skill, codex, codex-plugin, codex-skill, coding-agent, coding-assistant, llm, mcp, skill, workbuddy-skill, workflow
 
 ## Best fit cue profiles
 

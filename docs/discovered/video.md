@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="mbehtemam-montagent"></a>
+## 💎 [MBehtemam/Montagent](https://github.com/MBehtemam/Montagent)
+
+**★ 0** · exceptional (score 8.5) · Rust · tags: ai-agents, claude-code, cli, ffmpeg, mcp
+
+Agentic, MCP-native video editor for the command line. Cut, trim, and compose video through CLI commands or AI agent tool calls.
+
+```bash
+cue skills add MBehtemam/Montagent --profile video
+```
+
+---
+
+<a id="lunamos-paper2video"></a>
+## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
+
+**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
+
+Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
+
+```bash
+cue skills add Lunamos/paper2video --profile video
+```
 
 ---
 

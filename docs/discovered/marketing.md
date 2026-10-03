@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="5hyuns-ad-copy-agency-skill"></a>
-## 💎 [5hyuns/ad-copy-agency-skill](https://github.com/5hyuns/ad-copy-agency-skill)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 2** · exceptional (score 13.5) · Python · tags: ad-copy-generator, advertising, agent-skills, ai-agents, ai-copywriting
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Claude Code skill that writes ad headlines by following an ad agency workflow (planner, CD, creative teams, client review) / 광고 대행사 작업 흐름을 따라 헤드라인을 쓰는 카피라이팅 스킬
-
-✅ SKILL.md
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add 5hyuns/ad-copy-agency-skill --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

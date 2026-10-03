@@ -2,7 +2,7 @@
 title: "zhixuli0406/DuDuClaw — Claude Code skill discovered by cue"
 description: "Open-source AI Agent platform — 80+ MCP tools, 7 channels (Slack/Discord/LINE/Telegram), Rust + Python. Self-hostable Claude/GPT alternative for production mult"
 layout: page
-updated: 2026-09-29
+updated: 2026-10-03
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 49 stars
-- 🗓️ Last pushed: 2026-09-29
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: agent-platform, agentic-ai, ai-agent, claude, gemini, llm, llm-agent, mcp, mcp-server, model-context-protocol, multi-llm, openai, python, rag, rust, taiwan-oss
 
 ## Best fit cue profiles

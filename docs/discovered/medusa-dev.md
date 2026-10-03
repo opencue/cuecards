@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-03
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="qomvia-qomvia"></a>
-## ✨ [qomvia/qomvia](https://github.com/qomvia/qomvia)
+<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
+## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 0** · strong (score 6) · JavaScript · tags: agentic-commerce, ai-agents, ecommerce, mcp, mcp-server
+**★ 2** · exceptional (score 8.5) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
-QMP (Qomvia Market Protocol) spec, reference shop and conformance suite — plus REST/OpenAPI and MCP docs for Qomvia's agent-readiness and agentic checkout platform.
+Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 
 ```bash
-cue skills add qomvia/qomvia --profile medusa-dev
+cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
 ```
 
 ---

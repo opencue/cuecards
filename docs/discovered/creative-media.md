@@ -1,17 +1,47 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="polgarp-collage-design"></a>
+## 💎 [polgarp/collage-design](https://github.com/polgarp/collage-design)
+
+**★ 2** · exceptional (score 16) · Python · tags: agent-skill, agent-skills, claude, claude-code, claude-plugin
+
+A Claude skill that makes cut-and-layer collage art from real, open-licensed imagery.
+
+✅ SKILL.md
+
+```bash
+cue skills add polgarp/collage-design --profile creative-media
+```
+
+---
+
+<a id="jorgut-folio"></a>
+## 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
+
+**★ 2** · exceptional (score 13) · JavaScript · tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
+
+Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
+
+✅ SKILL.md
+
+```bash
+cue skills add Jorgut/folio --profile creative-media
+```
 
 ---
 
@@ -24,19 +54,6 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ```bash
 cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
-```
-
----
-
-<a id="sibhimanyu-rasanai"></a>
-## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
-
-**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
-
-AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
-
-```bash
-cue skills add Sibhimanyu/rasanai --profile creative-media
 ```
 
 ---

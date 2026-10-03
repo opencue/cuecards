@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="elithril-blender-kiln"></a>
-## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
+<a id="noisefactorllc-shade-mcp"></a>
+## ✨ [noisefactorllc/shade-mcp](https://github.com/noisefactorllc/shade-mcp)
 
-**★ 15** · exceptional (score 16.2) · Python · tags: 3d, 3d-assets, agent-skills, asset-pipeline, blender
+**★ 0** · strong (score 7.5) · TypeScript · tags: developer-tools, glsl, mcp, mcp-server, model-context-protocol
 
-Blender skill and plugin for Claude Code — 3D asset pipeline from text brief to production GLB: Blender MCP, Hunyuan3D generation, texturing, rigging, batch mode
-
-✅ SKILL.md
+MCP dev tools for Noisemaker and Portable shader effects
 
 ```bash
-cue skills add elithril/blender-kiln --profile threejs
+cue skills add noisefactorllc/shade-mcp --profile threejs
 ```
 
 ---

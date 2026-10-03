@@ -2,21 +2,21 @@
 title: "icoretech/codex-pooler — Claude Code skill discovered by cue"
 description: "The full featured self-hosted Codex gateway, for teams, agents and you"
 layout: page
-updated: 2026-09-28
+updated: 2026-10-03
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
 
-**★ 216** · exceptional (score 14.7) · Elixir · aider, api-gateway, cline, codex, continue
+**★ 218** · exceptional (score 14.7) · Elixir · aider, api-gateway, cline, codex, continue
 
 > The full featured self-hosted Codex gateway, for teams, agents and you
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
-- ⭐ 216 stars
-- 🗓️ Last pushed: 2026-09-28
+- ⭐ 218 stars
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: aider, api-gateway, cline, codex, continue, cursor, goose, hermes-agent, kilo, mcp-server, oh-my-pi, openai, openai-api, openai-node, openai-python, openclaw, opencode, openhands, pi, vercel-ai-sdk
 
 ## Best fit cue profiles

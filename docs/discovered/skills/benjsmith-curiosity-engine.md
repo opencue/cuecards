@@ -2,7 +2,7 @@
 title: "benjsmith/curiosity-engine — Claude Code skill discovered by cue"
 description: "Self-improving knowledge wiki as a coding-agent skill. Project-aware curation: drop sources in, run curate, occasionally archive. Companion skill curiosity-merg"
 layout: page
-updated: 2026-07-21
+updated: 2026-10-03
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-21
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: agent-skill, claude-code, claude-skill, knowledge-base, knowledge-management, kuzu, obsidian, pkm, python, wiki
 
 ## Best fit cue profiles

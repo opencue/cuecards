@@ -1,27 +1,27 @@
 ---
 title: "gregkozakiewicz/roast-my-design-system — Claude Code skill discovered by cue"
-description: "v5.6.2 · npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff each "
+description: "AI design system scanner + mcp server. Scores repos 0-100, writes fix prompts. 25K+ npm downloads."
 layout: page
-updated: 2026-09-01
-tags: [claude-code, skill, frontend]
+updated: 2026-10-03
+tags: [claude-code, skill, core]
 ---
 
 # 💎 [gregkozakiewicz/roast-my-design-system](https://github.com/gregkozakiewicz/roast-my-design-system)
 
-**★ 12** · exceptional (score 10.8) · JavaScript · ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
+**★ 26** · exceptional (score 12.4) · JavaScript · ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality
 
-> v5.6.2 · npx roast-my-design-system@latest · Your AI can write the UI. This makes sure it writes YOUR ui. A health score, receipts, fixes ranked by payoff each with a copy-paste fix prompt, agent rules via --apply, and a local MCP server via --mcp, verified in Claude Code, Cursor and Windsurf/Devin.
+> AI design system scanner + mcp server. Scores repos 0-100, writes fix prompts. 25K+ npm downloads.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 12 stars
-- 🗓️ Last pushed: 2026-09-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
+- ⭐ 26 stars
+- 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: ai-agents, claude-code, claude-code-plugin, claude-skill, code-quality, codex, cursor, design-system, design-tokens, developer-tools, devin, linter, mcp, mcp-server, model-context-protocol, skill, tailwind, windsurf
 
 ## Best fit cue profiles
 
-[frontend](../frontend.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add gregkozakiewicz/roast-my-design-system --profile frontend
+cue skills add gregkozakiewicz/roast-my-design-system --profile core
 ```
 
 ## About

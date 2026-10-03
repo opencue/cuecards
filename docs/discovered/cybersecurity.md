@@ -1,42 +1,57 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="1-3-7-disrobe"></a>
-## 💎 [1-3-7/disrobe](https://github.com/1-3-7/disrobe)
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
 
-**★ 141** · exceptional (score 12.6) · Rust · tags: android-reverse-engineering, apk-decompiler, ctf-tools, decompiler, deobfuscation
+**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
 
-Static decompiler, deobfuscator, and unpacker for reverse engineering and malware analysis: Python decompiler (3.8-3.15), PyInstaller extractor, PyArmor unpacker, JavaScript deobfuscator (obfuscator.io, JS-Confuser, webpack), Android APK and Java decompiler, .NET deobfuscator, UPX unpacker, Lua, PHP, WASM, PowerShell. MCP server.
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+
+✅ SKILL.md
 
 ```bash
-cue skills add 1-3-7/disrobe --profile cybersecurity
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 ```
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+<a id="khasky-awesome-agent-skills"></a>
+## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
 
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+**★ 11** · exceptional (score 12) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
 
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+ Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
 
 ```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
+```
+
+---
+
+<a id="hahwul-gori"></a>
+## 💎 [hahwul/gori](https://github.com/hahwul/gori)
+
+**★ 117** · exceptional (score 11.4) · Crystal · tags: bugbounty, cli, crystal, gori, mcp
+
+A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
+
+```bash
+cue skills add hahwul/gori --profile cybersecurity
 ```
 
 ---
@@ -44,7 +59,7 @@ cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2720** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
+**★ 2743** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -67,12 +82,25 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="elyshafresh21-claude-context-lint"></a>
+## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
+
+**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
+
+Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
+
+```bash
+cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+```
+
+---
+
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 6.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 5.8) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
-Deterministic governance for Claude and MCP tool calls. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
+Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity

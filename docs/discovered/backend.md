@@ -1,42 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
+<a id="doobidoo-mcp-memory-service"></a>
+## 💎 [doobidoo/mcp-memory-service](https://github.com/doobidoo/mcp-memory-service)
 
-**★ 206493** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 1980** · exceptional (score 17) · Python · tags: agent-memory, agentic-ai, ai-agents, autogen, claude
 
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation.
 
 ```bash
-cue skills add n8n-io/n8n --profile backend
+cue skills add doobidoo/mcp-memory-service --profile backend
 ```
 
 ---
 
-<a id="voygr-tech-placecall"></a>
-## 💎 [voygr-tech/placecall](https://github.com/voygr-tech/placecall)
+<a id="icoretech-codex-pooler"></a>
+## 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
 
-**★ 34** · exceptional (score 12.6) · Shell · tags: agent-skills, ai-agent, calls, claude-code, claude-code-plugins
+**★ 218** · exceptional (score 14.7) · Elixir · tags: aider, api-gateway, cline, codex, continue
 
-The phone is your last API. Give your agent a voice to call any US business - reservations, inquiries, quotes. Verified outcome + transcript. First 250 calls free.
+The full featured self-hosted Codex gateway, for teams, agents and you
 
 ```bash
-cue skills add voygr-tech/placecall --profile backend
+cue skills add icoretech/codex-pooler --profile backend
 ```
 
 ---
@@ -44,7 +44,7 @@ cue skills add voygr-tech/placecall --profile backend
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 69** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 70** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -54,23 +54,10 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="retospect-precis-mcp"></a>
-## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
-
-**★ 4** · exceptional (score 10.3) · Python · tags: ai-agent, claude, context-management, cursor, llm
-
-MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
-
-```bash
-cue skills add retospect/precis-mcp --profile backend
-```
-
----
-
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 2** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -80,15 +67,15 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="adder-factory-cartograph"></a>
-## 💎 [adder-factory/cartograph](https://github.com/adder-factory/cartograph)
+<a id="alidaram99-exactground"></a>
+## 💎 [alidaram99/exactground](https://github.com/alidaram99/exactground)
 
-**★ 3** · exceptional (score 8.2) · Rust · tags: ai-agents, ai-coding-agents, bm25, code-analysis, code-intelligence
+**★ 0** · exceptional (score 8.5) · JavaScript · tags: agent-hooks, ai-coding-agents, ai-safety, apify, claude-code
 
-Semantic code intelligence for AI coding agents — 45% fewer tool calls, 17% faster exploration, 100% local. A fork of codegraph.
+Stop AI coding agents (Claude Code, Codex, Gemini CLI, Cursor) from installing npm/PyPI packages that don't exist — slopsquatting guard + MCP API for version-exact checks
 
 ```bash
-cue skills add adder-factory/cartograph --profile backend
+cue skills add alidaram99/exactground --profile backend
 ```
 
 ---
@@ -106,41 +93,67 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="lucasmartins-ai-lookacrawler"></a>
-## ✨ [lucasmartins-ai/lookacrawler](https://github.com/lucasmartins-ai/lookacrawler)
+<a id="shadow400x-claude-sh"></a>
+## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
 
-**★ 3** · strong (score 6.7) · TypeScript · tags: ai, ai-agents, context-engineering, crawler, firecrawl-alternative
+**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
 
-Free, open-source, token-efficient local alternative to Firecrawl with native MCP Server for LLMs (>73% token reduction).
+Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
 
 ```bash
-cue skills add lucasmartins-ai/lookacrawler --profile backend
+cue skills add shadow400x/claude-sh --profile backend
 ```
 
 ---
 
-<a id="skygenesisenterprise-notploy"></a>
-## ✨ [skygenesisenterprise/notploy](https://github.com/skygenesisenterprise/notploy)
+<a id="memtether-memtether"></a>
+## ✨ [MemTether/MemTether](https://github.com/MemTether/MemTether)
 
-**★ 1** · strong (score 6.3) · TypeScript · tags: agents, backup, cloud-native, databases, deployment
+**★ 2** · strong (score 6.5) · Python · tags: agent-memory, ai-agents, apache-2, bi-temporal, cross-client
 
-Open Source Alternative to Dokploy, Vercel, Netlify and Heroku.
+Cross-client AI memory hub - one physical SQLite, many clients. File-level pointers, REST API, MCP. Zero cloud. Dual-timeline governance. PyPI: memtether
 
 ```bash
-cue skills add skygenesisenterprise/notploy --profile backend
+cue skills add MemTether/MemTether --profile backend
 ```
 
 ---
 
-<a id="xentral-labs-reality"></a>
-## ✨ [Xentral-Labs/reality](https://github.com/Xentral-Labs/reality)
+<a id="datakoot-domain-intel-mcp"></a>
+## ✨ [datakoot/domain-intel-mcp](https://github.com/datakoot/domain-intel-mcp)
 
-**★ 0** · strong (score 5) · Python · tags: agentic-ai, ai-agents, audit-trail, business-operations, data-lineage
+**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, ai-tools, claude, dns, domain-intelligence
 
-Open-source operations core for AI agents: orders, stock, deliveries, invoices and money in one journal, each record kept exactly as the source sent it — so any number opens back to its origin. Runs alongside your ERP, shop and warehouse. Same tools for people and agents over API, CLI and MCP. Self-hosted, MIT.
+Domain & company intelligence MCP server for AI agents: RDAP registration, DNS, email deliverability, tech-stack fingerprinting, subdomain discovery. Zero API keys. Dependency-free Cloudflare Worker.
 
 ```bash
-cue skills add Xentral-Labs/reality --profile backend
+cue skills add datakoot/domain-intel-mcp --profile backend
+```
+
+---
+
+<a id="datakoot-package-intel-mcp"></a>
+## ✨ [datakoot/package-intel-mcp](https://github.com/datakoot/package-intel-mcp)
+
+**★ 0** · strong (score 6) · JavaScript · tags: ai-agents, ai-tools, claude, crates, dependencies
+
+Keyless MCP server giving AI agents software supply-chain intel across npm, PyPI and crates.io — versions, popularity, dependencies, health and advisories. No API keys.
+
+```bash
+cue skills add datakoot/package-intel-mcp --profile backend
+```
+
+---
+
+<a id="datakoot-filings-intel-mcp"></a>
+## ✨ [datakoot/filings-intel-mcp](https://github.com/datakoot/filings-intel-mcp)
+
+**★ 0** · strong (score 6) · JavaScript · tags: ai-agents, ai-tools, claude, edgar, finance
+
+Keyless MCP server giving AI agents SEC EDGAR data — company filings, financials and insider trades. No API keys.
+
+```bash
+cue skills add datakoot/filings-intel-mcp --profile backend
 ```
 
 ---

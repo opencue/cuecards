@@ -2,7 +2,7 @@
 title: "talki-io/prompt-optimizer — Claude Code skill discovered by cue"
 description: "Claude Code / Agent Skill: /prompt-optimizer polishes your existing AI prompts — fixes wording, grammar and structure without adding scope, changing constraints"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, skill, core]
 ---
 

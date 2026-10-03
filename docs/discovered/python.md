@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-03
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="xentral-labs-reality"></a>
-## ✨ [Xentral-Labs/reality](https://github.com/Xentral-Labs/reality)
+<a id="pipeshub-ai-pipeshub-ai"></a>
+## 💎 [pipeshub-ai/pipeshub-ai](https://github.com/pipeshub-ai/pipeshub-ai)
 
-**★ 0** · strong (score 5) · Python · tags: agentic-ai, ai-agents, audit-trail, business-operations, data-lineage
+**★ 3809** · exceptional (score 18.5) · Python · tags: agentic-rag, ai, ai-agents, claude-code, context-engineering
 
-Open-source operations core for AI agents: orders, stock, deliveries, invoices and money in one journal, each record kept exactly as the source sent it — so any number opens back to its origin. Runs alongside your ERP, shop and warehouse. Same tools for people and agents over API, CLI and MCP. Self-hosted, MIT.
+The open-source context layer for AI agents. PipesHub turns your company's knowledge (Slack, Drive, Jira, GitHub, Microsoft 365 and 40+ connectors) into a permission-aware workspace that agents can search, grep, navigate and cite. MCP, SDKs and built-in agents. Self-hosted.
 
 ```bash
-cue skills add Xentral-Labs/reality --profile python
+cue skills add pipeshub-ai/pipeshub-ai --profile python
 ```
 
 ---
