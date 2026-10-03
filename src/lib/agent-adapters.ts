@@ -6,7 +6,7 @@
  */
 
 import { writeFileSync, mkdirSync, existsSync, readFileSync, } from "node:fs";
-import { join, } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 
@@ -201,6 +201,62 @@ export const gemini: AgentAdapter = {
 };
 
 // ---------------------------------------------------------------------------
+// Antigravity CLI adapter
+// ---------------------------------------------------------------------------
+
+function antigravityConfigDir(): string {
+  return process.env.ANTIGRAVITY_CONFIG_DIR ?? join(homedir(), ".gemini");
+}
+
+function isAntigravityGlobalTarget(targetDir: string): boolean {
+  return resolve(targetDir) === resolve(antigravityConfigDir());
+}
+
+export const antigravity: AgentAdapter = {
+  id: "antigravity",
+  name: "Antigravity CLI",
+  configDir: antigravityConfigDir,
+  writeSkills(skills, targetDir) {
+    const skillsDir = isAntigravityGlobalTarget(targetDir)
+      ? join(targetDir, "antigravity-cli", "skills")
+      : join(targetDir, ".agents", "skills");
+    mkdirSync(skillsDir, { recursive: true });
+    for (const skill of skills) {
+      const slug = skill.id.split("/").pop() ?? skill.id;
+      const skillPath = join(skillsDir, slug, "SKILL.md");
+      mkdirSync(dirname(skillPath), { recursive: true });
+      writeFileSync(skillPath, skill.content);
+    }
+  },
+  writeMcps(mcps, targetDir) {
+    const configPath = isAntigravityGlobalTarget(targetDir)
+      ? join(targetDir, "config", "mcp_config.json")
+      : join(targetDir, ".agents", "mcp_config.json");
+    mkdirSync(dirname(configPath), { recursive: true });
+    let existing: Record<string, unknown> = {};
+    if (existsSync(configPath)) {
+      try {
+        const parsed = JSON.parse(readFileSync(configPath, "utf8"));
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) existing = parsed;
+      } catch {}
+    }
+    const existingServers = existing.mcpServers && typeof existing.mcpServers === "object"
+      ? existing.mcpServers as Record<string, unknown>
+      : {};
+    writeFileSync(configPath, JSON.stringify({
+      ...existing,
+      mcpServers: { ...existingServers, ...mcps },
+    }, null, 2));
+  },
+  rulesFile(targetDir) {
+    return isAntigravityGlobalTarget(targetDir)
+      ? join(targetDir, "antigravity-cli", "rules", "cue-rules.md")
+      : join(targetDir, "AGENTS.md");
+  },
+  detectBinary: () => findBinary("agy"),
+};
+
+// ---------------------------------------------------------------------------
 // GitHub Copilot adapter
 // ---------------------------------------------------------------------------
 
@@ -306,6 +362,7 @@ export const ADAPTERS: Record<string, AgentAdapter> = {
   "cline": cline,
   "windsurf": windsurf,
   "gemini": gemini,
+  "antigravity": antigravity,
   "copilot": copilot,
   "roo": roo,
   "amp": amp,

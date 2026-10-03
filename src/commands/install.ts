@@ -95,7 +95,7 @@ Usage:
 Flags:
   --all-profiles       Prepare or audit every installed profile
   --profile <name>     Prepare a specific profile
-  --agents <list>      Agents: claude-code,codex,cursor,cline,windsurf,gemini,copilot,roo,amp,aider,all
+  --agents <list>      Agents: claude-code,codex,cursor,cline,windsurf,gemini,antigravity,copilot,roo,amp,aider,all
   --dir <path>         Target dir for project/global adapters outside cue runtime
   --preset <name>      skills-only | runtimes-and-clis | full
   --with-clis          Also run cue cli install --all for each profile

@@ -9,7 +9,7 @@ _Last updated: 2026-05-24_
 <a id="agent"></a>
 ## Agent
 
-In cue, an **agent** is any AI coding assistant cue can materialize a profile for: Claude Code, OpenAI Codex, Cursor, Cline, Google Gemini CLI, GitHub Copilot, Windsurf, Roo Code, Sourcegraph Amp, or Aider. cue translates a single `profile.yaml` into each agent's native config format (`.cursorrules`, `.clinerules`, `~/.gemini/skills/*.md`, etc.) via the `cue materialize <agent>` command.
+In cue, an **agent** is any AI coding assistant cue can materialize a profile for: Claude Code, OpenAI Codex, Cursor, Cline, Google Gemini CLI, Antigravity CLI, GitHub Copilot, Windsurf, Roo Code, Sourcegraph Amp, or Aider. cue translates a single `profile.yaml` into each agent's native config format (`.cursorrules`, `.clinerules`, `~/.gemini/skills/*.md`, etc.) via the `cue materialize <agent>` command.
 
 <a id="claude-code"></a>
 ## Claude Code

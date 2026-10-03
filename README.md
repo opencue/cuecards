@@ -228,7 +228,7 @@ Full machine-readable catalog: [docs/data/profiles.md](https://github.com/opencu
 
 ---
 
-## One cuecard, ten agents
+## One cuecard, eleven agents
 
 The same `profile.yaml` materializes into each agent's native config format — write your setup once, use it everywhere:
 
@@ -238,6 +238,7 @@ The same `profile.yaml` materializes into each agent's native config format — 
 | Cursor | `.cursorrules` + `.cursor/mcp.json` |
 | Cline | `.clinerules` + `cline_mcp_settings.json` |
 | Gemini CLI | `~/.gemini/skills/*.md` |
+| Antigravity CLI | `~/.gemini/antigravity-cli/skills/<name>/SKILL.md` + `~/.gemini/config/mcp_config.json` |
 | GitHub Copilot | `.github/copilot-instructions.md` |
 | Windsurf | `.windsurfrules` + `.windsurf/mcp.json` |
 | Roo Code | `.roo/rules/*.md` + `.roo/mcp.json` |

@@ -2,7 +2,7 @@
 
 _Last updated: 2026-05-24_
 
-**Short answer:** [Kiro Powers](https://kiro.dev) is the agent skill system inside Amazon's Kiro IDE — it ships skills and MCP integration as IDE features. [cue](https://github.com/opencue/cuecards) is an IDE-agnostic CLI that brings the same composition model (skills + MCPs + profiles) to Claude Code, Codex, Cursor, Cline, Gemini CLI, GitHub Copilot, and 4 other agents — without locking you to a specific IDE.
+**Short answer:** [Kiro Powers](https://kiro.dev) is the agent skill system inside Amazon's Kiro IDE — it ships skills and MCP integration as IDE features. [cue](https://github.com/opencue/cuecards) is an IDE-agnostic CLI that brings the same composition model (skills + MCPs + profiles) to Claude Code, Codex, Cursor, Cline, Gemini CLI, Antigravity CLI, GitHub Copilot, and 4 other agents — without locking you to a specific IDE.
 
 Pick **Kiro Powers** if you're already in the Kiro IDE and want the integrated experience. Pick **cue** if you use Claude Code / Codex / Cursor / etc. and want IDE-agnostic profile management.
 
@@ -39,7 +39,7 @@ Pick **Kiro Powers** if you're already in the Kiro IDE and want the integrated e
 
 ### Pick cue if
 
-- You use **Claude Code** or **Codex** or **Cursor** or **Cline** or **Gemini CLI** or **GitHub Copilot** (cue covers all 10 agents)
+- You use **Claude Code** or **Codex** or **Cursor** or **Cline** or **Gemini CLI** or **Antigravity CLI** or **GitHub Copilot** (cue covers all 11 agents)
 - Your team uses **different IDEs** but you want the same agent loadout
 - You want **per-directory automatic switching** that follows you across IDEs
 - You want **persona + playbooks + quality gates** — agent character, not just tools

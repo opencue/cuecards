@@ -8,6 +8,7 @@
  *   cue materialize cursor           # writes .cursorrules + .cursor/mcp.json
  *   cue materialize cline            # writes .clinerules + cline_mcp_settings.json
  *   cue materialize gemini           # writes ~/.gemini/skills/*.md
+ *   cue materialize antigravity      # writes ~/.gemini/antigravity-cli/skills/*.md
  *   cue materialize copilot          # writes .github/copilot-instructions.md
  *   cue materialize --all            # materialize for ALL agents in profile
  */
@@ -57,6 +58,7 @@ Examples:
   cue materialize cursor              # .cursorrules + .cursor/mcp.json
   cue materialize cline               # .clinerules + cline_mcp_settings.json
   cue materialize gemini              # ~/.gemini/skills/*.md
+  cue materialize antigravity         # ~/.gemini/antigravity-cli/skills/*.md
   cue materialize copilot             # .github/copilot-instructions.md
   cue materialize --all               # all agents in profile
 `);
@@ -116,7 +118,7 @@ Examples:
       return 1;
     }
 
-    const dir = dirIdx >= 0 ? targetDir : (id === "gemini" ? adapter.configDir() : targetDir);
+    const dir = dirIdx >= 0 ? targetDir : (["gemini", "antigravity"].includes(id) ? adapter.configDir() : targetDir);
 
     if (dryRun) {
       process.stdout.write(`[dry-run] ${adapter.name}:\n`);

@@ -9,6 +9,7 @@ Mirror of the table in the README's "Agents cue supports" section. The same `pro
 | Cursor | `cue materialize cursor` | `.cursorrules` · `.cursor/mcp.json` |
 | Cline | `cue materialize cline` | `.clinerules` · `cline_mcp_settings.json` |
 | Google Gemini CLI | `cue materialize gemini` | `~/.gemini/skills/*.md` |
+| Antigravity CLI | `cue materialize antigravity` | `~/.gemini/antigravity-cli/skills/<name>/SKILL.md` · `~/.gemini/config/mcp_config.json` (or project `.agents/`) |
 | GitHub Copilot | `cue materialize copilot` | `.github/copilot-instructions.md` |
 | Windsurf | `cue materialize windsurf` | `.windsurfrules` · `.windsurf/mcp.json` |
 | Roo Code | `cue materialize roo` | `.roo/rules/*.md` · `.roo/mcp.json` |

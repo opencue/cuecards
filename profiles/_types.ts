@@ -5,7 +5,7 @@
  *   import type { Profile, NpxSkillRef, MCPRef, SkillRef } from "../../profiles/_types";
  */
 
-export type AgentKind = "claude-code" | "codex" | "cursor" | "cline" | "windsurf" | "gemini" | "copilot" | "roo" | "amp" | "aider";
+export type AgentKind = "claude-code" | "codex" | "cursor" | "cline" | "windsurf" | "gemini" | "antigravity" | "copilot" | "roo" | "amp" | "aider";
 
 export interface AgentScoped {
   agents?: AgentKind[];
