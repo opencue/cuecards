@@ -31,7 +31,7 @@ env:
 |---------------|---------------------------------------------------------------|----------|---------|----------------------------------------------------------------------------------------------------|
 | `name`        | string (kebab-case, `[a-z][a-z0-9-]{1,63}`)                   | yes      | —       | Must equal the dirname `profiles/<name>/`.                                                         |
 | `description` | string (one-line, < 200 chars)                                | yes      | —       | Shown by `cue list` and embedded in the materialized `CLAUDE.md` stamp.                           |
-| `agents`      | array of `"claude-code" \| "codex"`                           | no       | `[claude-code, codex]` | Restricts which agent runtimes this profile materializes for.                          |
+| `agents`      | array of supported agent ids (`claude-code`, `codex`, `cursor`, `cline`, `windsurf`, `gemini`, `antigravity`, `copilot`, `roo`, `amp`, `aider`) | no | `[claude-code, codex]` | Restricts which agent runtimes or external adapters this profile materializes for. |
 | `inherits`    | string (name of another profile)                              | no       | —       | Single parent. Depth ≤ 3. Cycles are an error.                                                     |
 | `skills`      | object (see below)                                            | no       | `{}`    | At least one of `local`, `npx`, `plugins` should appear in a useful profile.                       |
 | `skills.local`| array of strings (paths relative to `cue/skills/`)           | no       | `[]`    | E.g. `medusa/building-with-medusa` → resolves to `cue/skills/skills/medusa/building-with-medusa/`. |
