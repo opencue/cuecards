@@ -2,21 +2,21 @@
 title: "DaizeDong/shopping-aggregator — Claude Code skill discovered by cue"
 description: "Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel"
 layout: page
-updated: 2026-09-25
+updated: 2026-10-04
 tags: [claude-code, skill, medusa-dev]
 ---
 
 # 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
 
-**★ 3** · exceptional (score 11.7) · Python · agent, ai, ai-agent, amazon, claude
+**★ 4** · exceptional (score 11.8) · Python · agent, ai, ai-agent, amazon, claude
 
 > Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent, ai, ai-agent, amazon, claude, claude-code, claude-plugin, claude-skill, consumer, coupon, deal-aggregator, ecommerce, llm, mcp, orchestration, price-comparison, shopping, skill
 
 ## Best fit cue profiles

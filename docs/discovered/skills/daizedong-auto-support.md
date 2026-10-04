@@ -2,7 +2,7 @@
 title: "DaizeDong/auto-support — Claude Code skill discovered by cue"
 description: "Answer product Discord questions from public docs only; fail-closed leak guards; escalate the unsure to founders."
 layout: page
-updated: 2026-09-25
+updated: 2026-10-04
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent, ai, ai-agent, claude, claude-code, claude-plugin, claude-skill, customer-support, customer-support-discord-bot-rag-llm-safety-dlp-se, discord, dlp, guardrails, llm, llm-safety, prompt-injection, rag, security, skill
 
 ## Best fit cue profiles

@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="eddyplolz-humanizer-pro"></a>
-## 💎 [eddyplolz/humanizer-pro](https://github.com/eddyplolz/humanizer-pro)
+<a id="atnode-ai-tn-skill-cstore-template"></a>
+## ✨ [atnode-ai/tn-skill-cstore-template](https://github.com/atnode-ai/tn-skill-cstore-template)
 
-**★ 3** · exceptional (score 17.2) · Python · tags: ai-detection, ai-writing, claude-code, claude-code-skill, claude-skill
+**★ 0** · strong (score 7) · Python · tags: claude-code, claude-code-skill, knowledge-management, obsidian, para-method
 
-Claude Code and Codex skill for AI-tell audits, artifact cleanup, fidelity checks, and restrained prose edits. Local, no API calls.
-
-✅ SKILL.md
+Claude Code skills and Python tools to fetch saved links and articles to markdown, summarise, tag and link them as Obsidian notes. Organised in PARA folders, with a health check. Start with /tn-cstore-init.
 
 ```bash
-cue skills add eddyplolz/humanizer-pro --profile docs-writer
-```
-
----
-
-<a id="benjsmith-curiosity-engine"></a>
-## 💎 [benjsmith/curiosity-engine](https://github.com/benjsmith/curiosity-engine)
-
-**★ 0** · exceptional (score 12) · Python · tags: agent-skill, claude-code, claude-skill, knowledge-base, knowledge-management
-
-Self-improving knowledge wiki as a coding-agent skill. Project-aware curation: drop sources in, run curate, occasionally archive. Companion skill curiosity-merge to merge in another wiki.
-
-```bash
-cue skills add benjsmith/curiosity-engine --profile docs-writer
+cue skills add atnode-ai/tn-skill-cstore-template --profile docs-writer
 ```
 
 ---

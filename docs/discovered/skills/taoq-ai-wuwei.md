@@ -2,22 +2,22 @@
 title: "taoq-ai/wuwei — Claude Code skill discovered by cue"
 description: "无为 WUWEI: a Claude Code plugin that runs a chartered agent team through your day, with guards that make the safe path the default one."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [taoq-ai/wuwei](https://github.com/taoq-ai/wuwei)
+# ✨ [taoq-ai/wuwei](https://github.com/taoq-ai/wuwei)
 
-**★ 1** · potential (score 4.3) · Python
+**★ 1** · strong (score 6.3) · Python · agentic-workflow, ai-agents, autonomous-agents, claude-code, claude-code-plugin
 
 > 无为 WUWEI: a Claude Code plugin that runs a chartered agent team through your day, with guards that make the safe path the default one.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-03
-- 🏷️ Tags: (none)
+- 🗓️ Last pushed: 2026-10-04
+- 🏷️ Tags: agentic-workflow, ai-agents, autonomous-agents, claude-code, claude-code-plugin, cluade-code, cluadecode-source, codex, developer-workflow, guardrails, harness-engineering, harness-framework, python, sdlc, sdlc-automation, sdlc-enforced, sdlc-tools, slack, spec-driven-development, stdlib-only
 
 ## Best fit cue profiles
 

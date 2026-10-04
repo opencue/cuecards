@@ -2,7 +2,7 @@
 title: "ciskonc/dsh-context-imports — Claude Code skill discovered by cue"
 description: "Claude Code-style @path imports for DeepSeek Harness: expands @imports in AGENTS.md/CLAUDE.md and injects referenced files into context at session start"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, skill, core]
 ---
 

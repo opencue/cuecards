@@ -2,7 +2,7 @@
 title: "DaizeDong/demand-mining — Claude Code skill discovered by cue"
 description: "已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序."
 layout: page
-updated: 2026-09-25
+updated: 2026-10-04
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent, ai, ai-agent, automation, claude, claude-code, claude-plugin, claude-skill, demand-mining, discord, llm, prioritization, product-management, product-management-user-research-demand-analysis-v, skill, user-research
 
 ## Best fit cue profiles

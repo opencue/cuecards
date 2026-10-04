@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="mbehtemam-montagent"></a>
-## 💎 [MBehtemam/Montagent](https://github.com/MBehtemam/Montagent)
+<a id="spacesheepboy-justcaptions-skill"></a>
+## 💎 [SpaceSheepBoy/justcaptions-skill](https://github.com/SpaceSheepBoy/justcaptions-skill)
 
-**★ 0** · exceptional (score 8.5) · Rust · tags: ai-agents, claude-code, cli, ffmpeg, mcp
+**★ 0** · exceptional (score 8) · Python · tags: captions, claude-code, claude-skill, codex, ffmpeg
 
-Agentic, MCP-native video editor for the command line. Cut, trim, and compose video through CLI commands or AI agent tool calls.
-
-```bash
-cue skills add MBehtemam/Montagent --profile video
-```
-
----
-
-<a id="lunamos-paper2video"></a>
-## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
-
-Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
+Open-source captions for Codex, Claude Code and MCP: 15 styles, local MP4 rendering, batch jobs and an optional transcription API
 
 ```bash
-cue skills add Lunamos/paper2video --profile video
+cue skills add SpaceSheepBoy/justcaptions-skill --profile video
 ```
 
 ---
@@ -50,6 +37,19 @@ Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file path
 
 ```bash
 cue skills add TanaTTV/lyt --profile video
+```
+
+---
+
+<a id="egsecda-vocaloid-style-mv-pipeline"></a>
+## ✨ [EGSECDA/vocaloid-style-mv-pipeline](https://github.com/EGSECDA/vocaloid-style-mv-pipeline)
+
+**★ 0** · strong (score 7) · JavaScript · tags: animation, anime, blender, canvas, claude-code
+
+Production pipeline and Claude Code skill for Vocaloid-style hand-drawn (手書き) lyric music videos: deterministic Canvas2D/WebGL2 animation engine, JIZURA lyric motion, AI illustration, Blender toon 3D, headless rendering to 16:9 and 9:16.
+
+```bash
+cue skills add EGSECDA/vocaloid-style-mv-pipeline --profile video
 ```
 
 ---

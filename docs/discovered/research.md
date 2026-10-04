@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,43 +15,43 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="rekin226-paper-agent"></a>
-## 💎 [Rekin226/paper-agent](https://github.com/Rekin226/paper-agent)
+<a id="daizedong-small-cap-deepdive"></a>
+## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
 
-**★ 8** · exceptional (score 15.8) · Python · tags: academic-writing, claude-code, claude-skill, hydrogeology, hydrology
+**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
 
-Claude Code plugin to draft, review, revise, proofread, and audit quantitative-science journal manuscripts at submission quality. Five strict modes, Semantic Scholar MCP citation integrity (no API key), .docx round-trip. Calibrated for hydrology (HJ, JHRS) and IEEE; generic profile for any field.
+Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Rekin226/paper-agent --profile research
+cue skills add DaizeDong/small-cap-deepdive --profile research
 ```
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="daizedong-market-intel"></a>
+## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 2** · exceptional (score 11.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add DaizeDong/market-intel --profile research
 ```
 
 ---
 
-<a id="lunamos-paper2video"></a>
-## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
+<a id="daizedong-demand-mining"></a>
+## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
+**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
+已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
 
 ```bash
-cue skills add Lunamos/paper2video --profile research
+cue skills add DaizeDong/demand-mining --profile research
 ```
 
 ---
@@ -59,7 +59,7 @@ cue skills add Lunamos/paper2video --profile research
 <a id="neverbiasu-awesome-research-skills"></a>
 ## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
 
-**★ 3** · strong (score 5.5) · tags: academic, academic-project, academic-research, academic-writing, agent-skills
+**★ 3** · strong (score 5.4) · tags: academic, academic-project, academic-research, academic-writing, agent-skills
 
 149 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
 

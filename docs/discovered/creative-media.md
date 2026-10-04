@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -12,36 +12,6 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="polgarp-collage-design"></a>
-## 💎 [polgarp/collage-design](https://github.com/polgarp/collage-design)
-
-**★ 2** · exceptional (score 16) · Python · tags: agent-skill, agent-skills, claude, claude-code, claude-plugin
-
-A Claude skill that makes cut-and-layer collage art from real, open-licensed imagery.
-
-✅ SKILL.md
-
-```bash
-cue skills add polgarp/collage-design --profile creative-media
-```
-
----
-
-<a id="jorgut-folio"></a>
-## 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
-
-**★ 2** · exceptional (score 13) · JavaScript · tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
-
-Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
-
-✅ SKILL.md
-
-```bash
-cue skills add Jorgut/folio --profile creative-media
-```
 
 ---
 
@@ -58,6 +28,19 @@ cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
 
 ---
 
+<a id="sibhimanyu-rasanai"></a>
+## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
+
+**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
+
+AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
+
+```bash
+cue skills add Sibhimanyu/rasanai --profile creative-media
+```
+
+---
+
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
@@ -67,6 +50,19 @@ Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file path
 
 ```bash
 cue skills add TanaTTV/lyt --profile creative-media
+```
+
+---
+
+<a id="egsecda-vocaloid-style-mv-pipeline"></a>
+## ✨ [EGSECDA/vocaloid-style-mv-pipeline](https://github.com/EGSECDA/vocaloid-style-mv-pipeline)
+
+**★ 0** · strong (score 7) · JavaScript · tags: animation, anime, blender, canvas, claude-code
+
+Production pipeline and Claude Code skill for Vocaloid-style hand-drawn (手書き) lyric music videos: deterministic Canvas2D/WebGL2 animation engine, JIZURA lyric motion, AI illustration, Blender toon 3D, headless rendering to 16:9 and 9:16.
+
+```bash
+cue skills add EGSECDA/vocaloid-style-mv-pipeline --profile creative-media
 ```
 
 ---

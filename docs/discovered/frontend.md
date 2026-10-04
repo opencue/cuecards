@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---

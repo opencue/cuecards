@@ -2,7 +2,7 @@
 title: "DaizeDong/box-rclone-binder — Claude Code skill discovered by cue"
 description: "Bind one Box drive across multiple servers via rclone with non-expiring server auth; idempotent deploy, health-check self-heal, cron, and Discord alerts."
 layout: page
-updated: 2026-09-25
+updated: 2026-10-04
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent, ai, ai-agent, automation, backup, box, claude, claude-code, claude-plugin, claude-skill, devops, llm, rclone, rclone-box-cloud-storage-oauth-multi-server-devops, self-hosted, skill, sysadmin
 
 ## Best fit cue profiles

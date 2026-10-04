@@ -2,7 +2,7 @@
 title: "devantler-tech/agent-skills — Claude Code skill discovered by cue"
 description: "Agent-neutral skills for Claude Code, Copilot, Cursor and Codex — install with `gh skill install` or `npx skills add`"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-03
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent-skill, agent-skills, ai-agents, claude-code, claude-skill, codex, cursor, github-copilot, gitops, kubernetes, skills
 
 ## Best fit cue profiles

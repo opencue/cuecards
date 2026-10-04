@@ -2,7 +2,7 @@
 title: "Sibhimanyu/rasanai — Claude Code skill discovered by cue"
 description: "AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your foota"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-04
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent-skills, ai-video, ai-video-generator, animation, anthropic, claude, claude-code, claude-code-skill, claude-skill, creative-direction, explainer-video, gsap, hyperframes, kinetic-typography, launch-video, motion-design, motion-graphics, product-video, video-editing, video-generation
 
 ## Best fit cue profiles

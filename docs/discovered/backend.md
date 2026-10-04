@@ -1,50 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "12 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 12 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="doobidoo-mcp-memory-service"></a>
-## 💎 [doobidoo/mcp-memory-service](https://github.com/doobidoo/mcp-memory-service)
-
-**★ 1980** · exceptional (score 17) · Python · tags: agent-memory, agentic-ai, ai-agents, autogen, claude
-
-Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation.
-
-```bash
-cue skills add doobidoo/mcp-memory-service --profile backend
-```
-
----
-
-<a id="icoretech-codex-pooler"></a>
-## 💎 [icoretech/codex-pooler](https://github.com/icoretech/codex-pooler)
-
-**★ 218** · exceptional (score 14.7) · Elixir · tags: aider, api-gateway, cline, codex, continue
-
-The full featured self-hosted Codex gateway, for teams, agents and you
-
-```bash
-cue skills add icoretech/codex-pooler --profile backend
-```
-
----
-
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 70** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 72** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -54,10 +28,36 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
+<a id="daizedong-box-rclone-binder"></a>
+## 💎 [DaizeDong/box-rclone-binder](https://github.com/DaizeDong/box-rclone-binder)
+
+**★ 0** · exceptional (score 12) · Python · tags: agent, ai, ai-agent, automation, backup
+
+Bind one Box drive across multiple servers via rclone with non-expiring server auth; idempotent deploy, health-check self-heal, cron, and Discord alerts.
+
+```bash
+cue skills add DaizeDong/box-rclone-binder --profile backend
+```
+
+---
+
+<a id="daizedong-schedule-reminder"></a>
+## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+
+**★ 0** · exceptional (score 12) · Python · tags: agent, ai, ai-agent, automation, claude
+
+Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
+
+```bash
+cue skills add DaizeDong/schedule-reminder --profile backend
+```
+
+---
+
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 3** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -67,15 +67,15 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="alidaram99-exactground"></a>
-## 💎 [alidaram99/exactground](https://github.com/alidaram99/exactground)
+<a id="barissozudogru-release-intel-mcp"></a>
+## 💎 [barissozudogru/release-intel-mcp](https://github.com/barissozudogru/release-intel-mcp)
 
-**★ 0** · exceptional (score 8.5) · JavaScript · tags: agent-hooks, ai-coding-agents, ai-safety, apify, claude-code
+**★ 3** · exceptional (score 8.2) · TypeScript · tags: changelog, ci, developer-tools, github, github-actions
 
-Stop AI coding agents (Claude Code, Codex, Gemini CLI, Cursor) from installing npm/PyPI packages that don't exist — slopsquatting guard + MCP API for version-exact checks
+Auditable release evidence from commits, pull requests, issues, and contributors between two Git refs, over MCP or CLI.
 
 ```bash
-cue skills add alidaram99/exactground --profile backend
+cue skills add barissozudogru/release-intel-mcp --profile backend
 ```
 
 ---
@@ -93,67 +93,54 @@ cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 
 ---
 
-<a id="shadow400x-claude-sh"></a>
-## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
+<a id="netmap-app-netmap"></a>
+## ✨ [netmap-app/netmap](https://github.com/netmap-app/netmap)
 
-**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
+**★ 0** · strong (score 6) · Python · tags: docker, fastapi, home-assistant, homelab, homelab-tools
 
-Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
+Self-hosted network inventory that checks itself against Docker, Proxmox, OPNsense, Pi-hole, UniFi, Cloudflare and more — read-only, with an MCP server.
 
 ```bash
-cue skills add shadow400x/claude-sh --profile backend
+cue skills add netmap-app/netmap --profile backend
 ```
 
 ---
 
-<a id="memtether-memtether"></a>
-## ✨ [MemTether/MemTether](https://github.com/MemTether/MemTether)
+<a id="martystev-octasql-landing"></a>
+## ✨ [MartyStev/octasql-landing](https://github.com/MartyStev/octasql-landing)
 
-**★ 2** · strong (score 6.5) · Python · tags: agent-memory, ai-agents, apache-2, bi-temporal, cross-client
+**★ 0** · strong (score 6) · HTML · tags: clickhouse, data-warehouse, duckdb, enterprise-ai, greenplum
 
-Cross-client AI memory hub - one physical SQLite, many clients. File-level pointers, REST API, MCP. Zero cloud. Dual-timeline governance. PyPI: memtether
+OctaSQL — Deterministic Deductive Analytics Engine for Enterprise Data Warehouses (Landing Page)
 
 ```bash
-cue skills add MemTether/MemTether --profile backend
+cue skills add MartyStev/octasql-landing --profile backend
 ```
 
 ---
 
-<a id="datakoot-domain-intel-mcp"></a>
-## ✨ [datakoot/domain-intel-mcp](https://github.com/datakoot/domain-intel-mcp)
+<a id="anirudhlath-alfred"></a>
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, ai-tools, claude, dns, domain-intelligence
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
-Domain & company intelligence MCP server for AI agents: RDAP registration, DNS, email deliverability, tech-stack fingerprinting, subdomain discovery. Zero API keys. Dependency-free Cloudflare Worker.
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 
 ```bash
-cue skills add datakoot/domain-intel-mcp --profile backend
+cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---
 
-<a id="datakoot-package-intel-mcp"></a>
-## ✨ [datakoot/package-intel-mcp](https://github.com/datakoot/package-intel-mcp)
+<a id="basitalisandhu-mcp-server-template"></a>
+## ✨ [basitalisandhu/mcp-server-template](https://github.com/basitalisandhu/mcp-server-template)
 
-**★ 0** · strong (score 6) · JavaScript · tags: ai-agents, ai-tools, claude, crates, dependencies
+**★ 0** · strong (score 5) · TypeScript · tags: agent-security, ai-agents, ai-security, devsecops, docker
 
-Keyless MCP server giving AI agents software supply-chain intel across npm, PyPI and crates.io — versions, popularity, dependencies, health and advisories. No API keys.
-
-```bash
-cue skills add datakoot/package-intel-mcp --profile backend
-```
-
----
-
-<a id="datakoot-filings-intel-mcp"></a>
-## ✨ [datakoot/filings-intel-mcp](https://github.com/datakoot/filings-intel-mcp)
-
-**★ 0** · strong (score 6) · JavaScript · tags: ai-agents, ai-tools, claude, edgar, finance
-
-Keyless MCP server giving AI agents SEC EDGAR data — company filings, financials and insider trades. No API keys.
+Secure MCP server template in TypeScript and Python: stdio by default, optional streamable HTTP behind bearer auth, rate limit and body cap, bound to 127.0.0.1; bounded file and network access with allowlists and SSRF protection; redacting JSON logs; health tool; tests, non-root pinned Docker images, Semgrep, gitleaks, CodeQL, SBOMs. Masoon.
 
 ```bash
-cue skills add datakoot/filings-intel-mcp --profile backend
+cue skills add basitalisandhu/mcp-server-template --profile backend
 ```
 
 ---

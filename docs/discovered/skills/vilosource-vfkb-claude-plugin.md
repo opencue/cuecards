@@ -2,7 +2,7 @@
 title: "vilosource/vfkb-claude-plugin — Claude Code skill discovered by cue"
 description: "Claude Code plugin for vfkb — the primary distribution path for the Claude Code harness face (ADR-0045)"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, skill, core]
 ---
 

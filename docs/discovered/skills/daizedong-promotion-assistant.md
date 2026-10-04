@@ -2,7 +2,7 @@
 title: "DaizeDong/promotion-assistant — Claude Code skill discovered by cue"
 description: "Automate multi-channel product promotion (email/posts/forum/DM), track conversion funnel, self-tune via feedback."
 layout: page
-updated: 2026-09-25
+updated: 2026-10-04
 tags: [claude-code, skill, marketing]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-10-04
 - 🏷️ Tags: agent, ai, ai-agent, analytics, bandit, claude, claude-code, claude-plugin, claude-skill, compliance, email, growth, llm, marketing-automation, marketing-growth-hacking-social-media-automation-m, outreach, skill, social-media
 
 ## Best fit cue profiles

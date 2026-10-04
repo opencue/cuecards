@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-04
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="minerva67-content-growth-flywheel"></a>
+## 💎 [Minerva67/content-growth-flywheel](https://github.com/Minerva67/content-growth-flywheel)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · exceptional (score 13) · tags: claude-code, claude-skill, content-marketing, social-media-growth
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+内容增长飞轮 Claude Skill：用户深潜/认知阶段/粉播比拆爆款/四变量实验/分级诊断/矩阵放大
+
+✅ SKILL.md
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add Minerva67/content-growth-flywheel --profile marketing
+```
+
+---
+
+<a id="daizedong-promotion-assistant"></a>
+## 💎 [DaizeDong/promotion-assistant](https://github.com/DaizeDong/promotion-assistant)
+
+**★ 2** · exceptional (score 12.5) · Python · tags: agent, ai, ai-agent, analytics, bandit
+
+Automate multi-channel product promotion (email/posts/forum/DM), track conversion funnel, self-tune via feedback.
+
+```bash
+cue skills add DaizeDong/promotion-assistant --profile marketing
 ```
 
 ---
