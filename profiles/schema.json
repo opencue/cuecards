@@ -80,7 +80,7 @@
     },
     "agents": {
       "type": "array",
-      "items": { "enum": ["claude-code", "codex"] },
+      "items": { "enum": ["claude-code", "codex", "cursor", "cline", "windsurf", "gemini", "antigravity", "copilot", "roo", "amp", "aider"] },
       "uniqueItems": true,
       "default": ["claude-code", "codex"]
     },
@@ -254,7 +254,7 @@
   },
   "$defs": {
     "AgentKind": {
-      "enum": ["claude-code", "codex"]
+      "enum": ["claude-code", "codex", "cursor", "cline", "windsurf", "gemini", "antigravity", "copilot", "roo", "amp", "aider"]
     },
     "AgentScopedRef": {
       "type": "object",
