@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="daizedong-daily-hotspots"></a>
-## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
 
-每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/daily-hotspots --profile niche
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+```
+
+---
+
+<a id="chestnuts-sisyphus-gittok"></a>
+## 🔹 [Chestnuts-Sisyphus/gittok](https://github.com/Chestnuts-Sisyphus/gittok)
+
+**★ 1** · potential (score 4.3) · TypeScript · tags: ai, chinese, github-actions, github-trending, llm
+
+开源版抖音信息流 — 用中文刷 GitHub 好项目
+
+```bash
+cue skills add Chestnuts-Sisyphus/gittok --profile niche
 ```
 
 ---

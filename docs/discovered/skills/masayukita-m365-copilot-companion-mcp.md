@@ -2,7 +2,7 @@
 title: "MasayukiTa/m365-copilot-companion-mcp — Claude Code skill discovered by cue"
 description: "Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily ex"
 layout: page
-updated: 2026-09-26
+updated: 2026-10-05
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-09-26
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: agent, ai-agent, automation, claude, copilot-studio, fastmcp, local-first, m365-copilot, mcp, mcp-server, microsoft-365, model-context-protocol, python, windows
 
 ## Best fit cue profiles

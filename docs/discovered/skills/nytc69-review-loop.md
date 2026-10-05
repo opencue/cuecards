@@ -2,7 +2,7 @@
 title: "NYTC69/review-loop — Claude Code skill discovered by cue"
 description: "Automates plan → implement → review iteration loops using multiple AI agents."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-01
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: agent-skills, agentic-coding, claude-code, claude-code-skill, claude-skills, code-review
 
 ## Best fit cue profiles

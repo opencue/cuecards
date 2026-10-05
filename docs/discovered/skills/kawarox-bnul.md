@@ -2,7 +2,7 @@
 title: "KawaroX/bnul — Claude Code skill discovered by cue"
 description: "北京师范大学图书馆座位预约 CLI 与 AI skill：自动登录、时段查询和预约"
 layout: page
-updated: 2026-09-19
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-18
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: ai-agent, ai-agent-skill, ai-agent-skills, ai-agents, bnu, skill-md, skills
 
 ## Best fit cue profiles

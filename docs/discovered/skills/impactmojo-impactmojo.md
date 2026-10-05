@@ -2,7 +2,7 @@
 title: "ImpactMojo/ImpactMojo — Claude Code skill discovered by cue"
 description: "Free, open-source development education for South Asia — flagship & foundational courses, hands-on interactive labs, a browser-based game library, cited deep di"
 layout: page
-updated: 2026-09-10
+updated: 2026-10-05
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-10
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: data-literacy, development-economics, edtech, education, games, gender-studies, india, interactive-learning, mcp-server, monitoring-evaluation, netlify, ngo, open-source, public-policy, research-methods, social-impact, south-asia, static-site, supabase, theory-of-change
 
 ## Best fit cue profiles

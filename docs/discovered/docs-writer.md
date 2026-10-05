@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="atnode-ai-tn-skill-cstore-template"></a>
-## ✨ [atnode-ai/tn-skill-cstore-template](https://github.com/atnode-ai/tn-skill-cstore-template)
+<a id="d3ucey-vectile"></a>
+## 💎 [d3uceY/vectile](https://github.com/d3uceY/vectile)
 
-**★ 0** · strong (score 7) · Python · tags: claude-code, claude-code-skill, knowledge-management, obsidian, para-method
+**★ 4** · exceptional (score 8.3) · Go · tags: claude-code, document-search, gui-application, hybrid-search, knowledge-base
 
-Claude Code skills and Python tools to fetch saved links and articles to markdown, summarise, tag and link them as Obsidian notes. Organised in PARA folders, with a health check. Start with /tn-cstore-init.
+A desktop search engine for everything you write, read, and keep. Connect your Obsidian vault, projects, Calibre library, and code repos, then find anything with local hybrid search and expose through MCP.
 
 ```bash
-cue skills add atnode-ai/tn-skill-cstore-template --profile docs-writer
+cue skills add d3uceY/vectile --profile docs-writer
 ```
 
 ---

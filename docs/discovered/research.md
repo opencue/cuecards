@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="daizedong-small-cap-deepdive"></a>
-## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
+<a id="rokokol-papers-skill"></a>
+## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
 
-**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
+**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
 
-Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
+Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
 
 ✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/small-cap-deepdive --profile research
+cue skills add rokokol/papers-skill --profile research
 ```
 
 ---
 
-<a id="daizedong-market-intel"></a>
-## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
+<a id="hylouis233-bibverify"></a>
+## 💎 [Hylouis233/bibverify](https://github.com/Hylouis233/bibverify)
 
-**★ 2** · exceptional (score 11.5) · Python · tags: agent, ai, ai-agent, claude, claude-code
+**★ 99** · exceptional (score 12.5) · Python · tags: bibliography, bibtex, citation-verification, cli, cross-platform
 
-Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
-
-```bash
-cue skills add DaizeDong/market-intel --profile research
-```
-
----
-
-<a id="daizedong-demand-mining"></a>
-## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
-
-**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, automation, claude
-
-已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
+Cross-platform BibTeX verification for researchers and AI assistants — CLI, Python API, MCP server, and explainable multi-source matching.
 
 ```bash
-cue skills add DaizeDong/demand-mining --profile research
+cue skills add Hylouis233/bibverify --profile research
 ```
 
 ---
@@ -59,9 +46,9 @@ cue skills add DaizeDong/demand-mining --profile research
 <a id="neverbiasu-awesome-research-skills"></a>
 ## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
 
-**★ 3** · strong (score 5.4) · tags: academic, academic-project, academic-research, academic-writing, agent-skills
+**★ 3** · strong (score 5.7) · tags: academic, academic-project, academic-research, academic-writing, agent-skills
 
-149 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
+143 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
 
 ```bash
 cue skills add neverbiasu/awesome-research-skills --profile research

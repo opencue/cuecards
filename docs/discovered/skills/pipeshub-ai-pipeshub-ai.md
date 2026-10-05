@@ -2,21 +2,21 @@
 title: "pipeshub-ai/pipeshub-ai — Claude Code skill discovered by cue"
 description: "The open-source context layer for AI agents. PipesHub turns your company's knowledge (Slack, Drive, Jira, GitHub, Microsoft 365 and 40+ connectors) into a permi"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-05
 tags: [claude-code, skill, python]
 ---
 
 # 💎 [pipeshub-ai/pipeshub-ai](https://github.com/pipeshub-ai/pipeshub-ai)
 
-**★ 3809** · exceptional (score 18.5) · Python · agentic-rag, ai, ai-agents, claude-code, context-engineering
+**★ 3810** · exceptional (score 18.5) · Python · agentic-rag, ai, ai-agents, claude-code, context-engineering
 
 > The open-source context layer for AI agents. PipesHub turns your company's knowledge (Slack, Drive, Jira, GitHub, Microsoft 365 and 40+ connectors) into a permission-aware workspace that agents can search, grep, navigate and cite. MCP, SDKs and built-in agents. Self-hosted.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.5 based on:
-- ⭐ 3809 stars
-- 🗓️ Last pushed: 2026-10-03
+- ⭐ 3810 stars
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: agentic-rag, ai, ai-agents, claude-code, context-engineering, context-layer, deep-research, enterprise-search, glean, graphrag, hybrid-search, knowledge-graph, llm, mcp, mcp-server, ollama, python, rag, self-hosted, workplace-ai
 
 ## Best fit cue profiles

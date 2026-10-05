@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,15 +28,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="0xjacky-nginx-ui"></a>
+## 💎 [0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 11569** · exceptional (score 12) · Go · tags: code-completion, copilot, cron, docker, go
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+Yet another WebUI for Nginx
 
 ```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+cue skills add 0xJacky/nginx-ui --profile frontend
 ```
 
 ---

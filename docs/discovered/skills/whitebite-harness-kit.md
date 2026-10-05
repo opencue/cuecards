@@ -2,19 +2,19 @@
 title: "WhiteBite/harness-kit — Claude Code skill discovered by cue"
 description: "Canonical registry and zero-dependency primitives for wiring AI coding harnesses (Claude Code, Codex, OpenCode 1.x/2.x, Gemini, Qwen, Cursor, Windsurf, Kiro, De"
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [WhiteBite/harness-kit](https://github.com/WhiteBite/harness-kit)
 
-**★ 2** · strong (score 5.5) · JavaScript · ai-harness, claude-code, codex-cli, cursor, developer-tools
+**★ 2** · strong (score 5.4) · JavaScript · ai-harness, claude-code, codex-cli, cursor, developer-tools
 
 > Canonical registry and zero-dependency primitives for wiring AI coding harnesses (Claude Code, Codex, OpenCode 1.x/2.x, Gemini, Qwen, Cursor, Windsurf, Kiro, Devin, Copilot, Crush, Cline, Aider): config paths, hook dialects, owner-scoped merges, skill symlinks, marker blocks.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.4 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-10-03
 - 🏷️ Tags: ai-harness, claude-code, codex-cli, cursor, developer-tools, gemini-cli, harness, kit, library, open-source, opencode, whitebite

@@ -1,23 +1,23 @@
 ---
 title: "samyama-ai/samyama-graph — Claude Code skill discovered by cue"
-description: "Graph-vector database that queried 1 billion edges for $2.50. Rust, OpenCypher, vector search, 14 graph algorithms. 74M nodes / 1B edges on a single machine."
+description: "Rust graph-vector database: OpenCypher (99.9% of evaluated TCK scenarios pass), vector search, graph algorithms, RESP + HTTP. LDBC SNB Interactive and BI comple"
 layout: page
-updated: 2026-08-16
+updated: 2026-10-05
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [samyama-ai/samyama-graph](https://github.com/samyama-ai/samyama-graph)
 
-**★ 167** · exceptional (score 10.7) · Rust · billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database
+**★ 176** · exceptional (score 10.7) · Rust · cypher, embedded-database, graph-algorithms, graph-analytics, graph-database
 
-> Graph-vector database that queried 1 billion edges for $2.50. Rust, OpenCypher, vector search, 14 graph algorithms. 74M nodes / 1B edges on a single machine.
+> Rust graph-vector database: OpenCypher (99.9% of evaluated TCK scenarios pass), vector search, graph algorithms, RESP + HTTP. LDBC SNB Interactive and BI complete; 1B edges on one machine.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
-- ⭐ 167 stars
-- 🗓️ Last pushed: 2026-08-16
-- 🏷️ Tags: billion-edges, cypher, cypher-query-language, graph-algorithms, graph-database, graph-rag, hnsw, knowledge-graph, mcp-server, opencypher, rust, vector-search
+- ⭐ 176 stars
+- 🗓️ Last pushed: 2026-10-05
+- 🏷️ Tags: cypher, embedded-database, graph-algorithms, graph-analytics, graph-database, graph-rag, hnsw, knowledge-graph, ldbc, mcp-server, opencypher, rust, vector-search
 
 ## Best fit cue profiles
 

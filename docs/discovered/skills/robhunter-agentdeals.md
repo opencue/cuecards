@@ -2,7 +2,7 @@
 title: "robhunter/agentdeals — Claude Code skill discovered by cue"
 description: "Catalogue of developer infrastructure free tiers, startup credits and pricing, with side-by-side vendor comparisons for hosting, databases and AI APIs. Website,"
 layout: page
-updated: 2026-09-27
+updated: 2026-10-05
 tags: [claude-code, skill, backend]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, backend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 22 stars
-- 🗓️ Last pushed: 2026-09-27
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: cloud-pricing, developer-deals, developer-tools, free-tier, mcp, mcp-server, model-context-protocol, startup-credits
 
 ## Best fit cue profiles

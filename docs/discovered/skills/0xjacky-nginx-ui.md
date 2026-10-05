@@ -2,21 +2,21 @@
 title: "0xJacky/nginx-ui — Claude Code skill discovered by cue"
 description: "Yet another WebUI for Nginx"
 layout: page
-updated: 2026-09-20
+updated: 2026-10-05
 tags: [claude-code, skill, backend, frontend]
 ---
 
 # 💎 [0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
 
-**★ 11521** · exceptional (score 12) · Go · code-completion, copilot, cron, docker, go
+**★ 11569** · exceptional (score 12) · Go · code-completion, copilot, cron, docker, go
 
 > Yet another WebUI for Nginx
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 11521 stars
-- 🗓️ Last pushed: 2026-09-20
+- ⭐ 11569 stars
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: code-completion, copilot, cron, docker, go, letsencrypt, linux, macos, mcp, mcp-server, nginx, self-hosted, vue, webui, windows
 
 ## Best fit cue profiles

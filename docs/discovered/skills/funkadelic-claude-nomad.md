@@ -2,21 +2,21 @@
 title: "funkadelic/claude-nomad — Claude Code skill discovered by cue"
 description: "Sync your full Claude Code setup across machines: skills, settings, and session history, with path remapping and per-host overrides"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [funkadelic/claude-nomad](https://github.com/funkadelic/claude-nomad)
 
-**★ 5** · exceptional (score 10.4) · TypeScript · anthropic, claude, claude-code, claudecode, cli
+**★ 5** · exceptional (score 10.5) · TypeScript · anthropic, claude, claude-code, claudecode, cli
 
 > Sync your full Claude Code setup across machines: skills, settings, and session history, with path remapping and per-host overrides
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-29
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: anthropic, claude, claude-code, claudecode, cli, config-sync, developer-tools, dotfiles, dotfiles-management, multi-machine, nodejs, settings-sync, typescript
 
 ## Best fit cue profiles

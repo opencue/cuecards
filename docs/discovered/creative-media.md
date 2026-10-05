@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,12 +18,25 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 <a id="cpulxb-wsl-image-clipboard-helper"></a>
 ## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
 
-**★ 98** · exceptional (score 10.4) · Rust
+**★ 98** · exceptional (score 10.3) · Rust
 
 该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
 
 ```bash
 cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
+```
+
+---
+
+<a id="pwnera-artbucket"></a>
+## 💎 [pwnera/artbucket](https://github.com/pwnera/artbucket)
+
+**★ 5** · exceptional (score 9.4) · TypeScript · tags: ai, ai-agents, asset-management, brand-assets, brand-guidelines
+
+Open-source, self-hosted DAM and brand manager: assets, guidelines as data and brand portals, for your team and AI agents (MCP, REST, CLI).
+
+```bash
+cue skills add pwnera/artbucket --profile creative-media
 ```
 
 ---
@@ -41,28 +54,28 @@ cue skills add Sibhimanyu/rasanai --profile creative-media
 
 ---
 
+<a id="ravikovind-snap-x"></a>
+## 💎 [ravikovind/snap-x](https://github.com/ravikovind/snap-x)
+
+**★ 4** · exceptional (score 8.8) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, cli, image-generation
+
+Render self-contained Satori .mjs design files to PNG — any size, no browser. Claude Code skill + CLI + MCP server for OG cards, README cards, banners and covers.
+
+```bash
+cue skills add ravikovind/snap-x --profile creative-media
+```
+
+---
+
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.8) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 7.7) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
 Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
 ```bash
 cue skills add TanaTTV/lyt --profile creative-media
-```
-
----
-
-<a id="egsecda-vocaloid-style-mv-pipeline"></a>
-## ✨ [EGSECDA/vocaloid-style-mv-pipeline](https://github.com/EGSECDA/vocaloid-style-mv-pipeline)
-
-**★ 0** · strong (score 7) · JavaScript · tags: animation, anime, blender, canvas, claude-code
-
-Production pipeline and Claude Code skill for Vocaloid-style hand-drawn (手書き) lyric music videos: deterministic Canvas2D/WebGL2 animation engine, JIZURA lyric motion, AI illustration, Blender toon 3D, headless rendering to 16:9 and 9:16.
-
-```bash
-cue skills add EGSECDA/vocaloid-style-mv-pipeline --profile creative-media
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-10-04 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-10-05 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 65 | `self-evolve`, `multi-agent-architecture-advisor`, `buy-me-a-car` |
-| [**backend**](./backend.md) | 11 | `free-proxy-list`, `box-rclone-binder`, `schedule-reminder` |
-| [**research**](./research.md) | 5 | `small-cap-deepdive`, `market-intel`, `demand-mining` |
-| [**creative-media**](./creative-media.md) | 5 | `WSL-Image-Clipboard-Helper`, `rasanai`, `lyt` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `comfyui_mcp` |
-| [**medusa-dev**](./medusa-dev.md) | 3 | `shopping-aggregator`, `skills`, `shopify-store-skills` |
-| [**video**](./video.md) | 3 | `justcaptions-skill`, `lyt`, `vocaloid-style-mv-pipeline` |
-| [**marketing**](./marketing.md) | 2 | `content-growth-flywheel`, `promotion-assistant` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns` |
-| [**niche**](./niche.md) | 1 | `daily-hotspots` |
-| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
-| [**docs-writer**](./docs-writer.md) | 1 | `tn-skill-cstore-template` |
-| [**python**](./python.md) | 1 | `alfred` |
+| [**core**](./core.md) | 59 | `app-store-connect-skill`, `Claude-Code-Everything-You-Need-to-Know`, `aurora-smart-home` |
+| [**backend**](./backend.md) | 17 | `linkedin-mcp-server`, `trigger.dev`, `agentdeals` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `slowmist-security-cc`, `Claude-OSINT`, `sanctuary-framework` |
+| [**creative-media**](./creative-media.md) | 6 | `WSL-Image-Clipboard-Helper`, `artbucket`, `rasanai` |
+| [**research**](./research.md) | 4 | `papers-skill`, `bibverify`, `awesome-research-skills` |
+| [**video**](./video.md) | 4 | `voiceover-motion-graphics`, `product-film`, `claude-youtube` |
+| [**fleet-control**](./fleet-control.md) | 2 | `agent-teams-ai`, `rolepod` |
+| [**python**](./python.md) | 2 | `pipeshub-ai`, `alfred` |
+| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `nginx-ui` |
+| [**niche**](./niche.md) | 2 | `grant-thinking-cn-biology`, `gittok` |
+| [**docs-writer**](./docs-writer.md) | 1 | `vectile` |
+| [**marketing**](./marketing.md) | 1 | `claude-youtube` |
 
 ## How scoring works
 

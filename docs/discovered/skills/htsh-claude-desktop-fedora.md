@@ -2,7 +2,7 @@
 title: "htsh/claude-desktop-fedora — Claude Code skill discovered by cue"
 description: "Unofficial RPM spec for Anthropic's Claude Desktop on Fedora — fixes Wayland/Vulkan crash and Cowork's QEMU firmware paths"
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 

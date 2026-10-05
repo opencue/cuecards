@@ -1,23 +1,23 @@
 ---
 title: "erayendes/app-store-connect-mcp — Claude Code skill discovered by cue"
-description: "Heimdall — MCP server for the Apple App Store Connect API and App Store Server API (StoreKit 2). 875 tools across 13 profiles, generated from Apple's official O"
+description: "Heimdall — MCP server for the Apple App Store Connect API and App Store Server API (StoreKit 2). 890 tools across 13 profiles, generated from Apple's OpenAPI sp"
 layout: page
-updated: 2026-08-06
+updated: 2026-10-05
 tags: [claude-code, skill, backend]
 ---
 
-# ✨ [erayendes/app-store-connect-mcp](https://github.com/erayendes/app-store-connect-mcp)
+# 💎 [erayendes/app-store-connect-mcp](https://github.com/erayendes/app-store-connect-mcp)
 
-**★ 46** · strong (score 6.9) · TypeScript · ai, app-reviews, app-store-connect, app-store-server-api, apple
+**★ 51** · exceptional (score 11.3) · TypeScript · ai, app-reviews, app-store, app-store-connect, app-store-server-api
 
-> Heimdall — MCP server for the Apple App Store Connect API and App Store Server API (StoreKit 2). 875 tools across 13 profiles, generated from Apple's official OpenAPI spec, plus review triage and reply drafting that runs on your own model, and confirm-before-write safety. Works with Claude, Codex, Cursor and any MCP client.
+> Heimdall — MCP server for the Apple App Store Connect API and App Store Server API (StoreKit 2). 890 tools across 13 profiles, generated from Apple's OpenAPI spec, plus one-call macros for worldwide pricing, submission readiness and metadata diffs, and confirm-before-write safety. Works with Claude, Codex, Cursor and any MCP client.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
-- ⭐ 46 stars
-- 🗓️ Last pushed: 2026-08-06
-- 🏷️ Tags: ai, app-reviews, app-store-connect, app-store-server-api, apple, appstoreconnect, claude, codex, cursor, heimdall, ios, mcp, mcp-server, model-context-protocol, storekit, testflight
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
+- ⭐ 51 stars
+- 🗓️ Last pushed: 2026-10-05
+- 🏷️ Tags: ai, app-reviews, app-store, app-store-connect, app-store-server-api, apple, appstoreconnect, claude, codex, cursor, heimdall, in-app-purchase, ios, mcp, mcp-server, model-context-protocol, openapi, storekit, subscription-pricing, testflight
 
 ## Best fit cue profiles
 

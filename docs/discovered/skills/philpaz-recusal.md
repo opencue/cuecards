@@ -2,7 +2,7 @@
 title: "philpaz/recusal — Claude Code skill discovered by cue"
 description: "Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe o"
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, skill, cybersecurity]
 ---
 

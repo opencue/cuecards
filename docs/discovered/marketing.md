@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="minerva67-content-growth-flywheel"></a>
-## 💎 [Minerva67/content-growth-flywheel](https://github.com/Minerva67/content-growth-flywheel)
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
 
-**★ 0** · exceptional (score 13) · tags: claude-code, claude-skill, content-marketing, social-media-growth
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
 
-内容增长飞轮 Claude Skill：用户深潜/认知阶段/粉播比拆爆款/四变量实验/分级诊断/矩阵放大
-
-✅ SKILL.md
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
 
 ```bash
-cue skills add Minerva67/content-growth-flywheel --profile marketing
-```
-
----
-
-<a id="daizedong-promotion-assistant"></a>
-## 💎 [DaizeDong/promotion-assistant](https://github.com/DaizeDong/promotion-assistant)
-
-**★ 2** · exceptional (score 12.5) · Python · tags: agent, ai, ai-agent, analytics, bandit
-
-Automate multi-channel product promotion (email/posts/forum/DM), track conversion funnel, self-tune via feedback.
-
-```bash
-cue skills add DaizeDong/promotion-assistant --profile marketing
+cue skills add priyanshu-yadav04/claude-youtube --profile marketing
 ```
 
 ---

@@ -2,22 +2,22 @@
 title: "xsyetopz/dotclaude — Claude Code skill discovered by cue"
 description: "A very opinionated Claude Code plugin designed by a Rustacean"
 layout: page
-updated: 2026-09-30
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xsyetopz/dotclaude](https://github.com/xsyetopz/dotclaude)
 
-**★ 0** · exceptional (score 10.5) · JavaScript · agent, agent-framework, agent-handoff, agent-hooks, agent-orchestration
+**★ 0** · exceptional (score 8) · JavaScript · agent, agent-handoff, agent-orchestration, agentic-workflow, claude
 
 > A very opinionated Claude Code plugin designed by a Rustacean
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-30
-- 🏷️ Tags: agent, agent-framework, agent-handoff, agent-hooks, agent-orchestration, agent-skill, agent-skills, agentic-workflow, agents, claude, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, hooks, openai-codex, prompt, prompt-engineering
+- 🗓️ Last pushed: 2026-10-05
+- 🏷️ Tags: agent, agent-handoff, agent-orchestration, agentic-workflow, claude, claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace, claude-code-mod, claude-code-mods, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill, claude-code-subagents, claude-plugin, dotclaude, hooks
 
 ## Best fit cue profiles
 

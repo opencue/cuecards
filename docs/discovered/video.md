@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for video"
-description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="spacesheepboy-justcaptions-skill"></a>
-## 💎 [SpaceSheepBoy/justcaptions-skill](https://github.com/SpaceSheepBoy/justcaptions-skill)
+<a id="thegreatlucy-voiceover-motion-graphics"></a>
+## 💎 [thegreatLUCY/voiceover-motion-graphics](https://github.com/thegreatLUCY/voiceover-motion-graphics)
 
-**★ 0** · exceptional (score 8) · Python · tags: captions, claude-code, claude-skill, codex, ffmpeg
+**★ 0** · exceptional (score 11) · JavaScript · tags: ai-agents, claude-skill, explainer-video, gsap, kinetic-typography
 
-Open-source captions for Codex, Claude Code and MCP: 15 styles, local MP4 rendering, batch jobs and an optional transcription API
+AI-agent skill: premium voiceover-synced motion graphics in HTML (SVG + CSS/GSAP), word-level sync with faster-whisper, frame-exact MP4 render
+
+✅ SKILL.md
 
 ```bash
-cue skills add SpaceSheepBoy/justcaptions-skill --profile video
+cue skills add thegreatLUCY/voiceover-motion-graphics --profile video
+```
+
+---
+
+<a id="display-dev-product-film"></a>
+## 💎 [display-dev/product-film](https://github.com/display-dev/product-film)
+
+**★ 0** · exceptional (score 10.5) · JavaScript · tags: agent-skill, claude-code, claude-code-skill, claude-skills, codex
+
+Make short product films from your product's real UI with AI coding agents.
+
+```bash
+cue skills add display-dev/product-film --profile video
+```
+
+---
+
+<a id="priyanshu-yadav04-claude-youtube"></a>
+## ✨ [priyanshu-yadav04/claude-youtube](https://github.com/priyanshu-yadav04/claude-youtube)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: automation, claude-code-skill, claudecode, clawdbot, content-strategy
+
+Provide data-driven YouTube growth insights with Claude Code, including channel audits, SEO, content strategy, and video optimization tools.
+
+```bash
+cue skills add priyanshu-yadav04/claude-youtube --profile video
 ```
 
 ---
@@ -31,25 +59,12 @@ cue skills add SpaceSheepBoy/justcaptions-skill --profile video
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.8) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 7.7) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
 
 Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
 
 ```bash
 cue skills add TanaTTV/lyt --profile video
-```
-
----
-
-<a id="egsecda-vocaloid-style-mv-pipeline"></a>
-## ✨ [EGSECDA/vocaloid-style-mv-pipeline](https://github.com/EGSECDA/vocaloid-style-mv-pipeline)
-
-**★ 0** · strong (score 7) · JavaScript · tags: animation, anime, blender, canvas, claude-code
-
-Production pipeline and Claude Code skill for Vocaloid-style hand-drawn (手書き) lyric music videos: deterministic Canvas2D/WebGL2 animation engine, JIZURA lyric motion, AI illustration, Blender toon 3D, headless rendering to 16:9 and 9:16.
-
-```bash
-cue skills add EGSECDA/vocaloid-style-mv-pipeline --profile video
 ```
 
 ---

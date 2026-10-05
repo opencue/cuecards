@@ -2,7 +2,7 @@
 title: "Shayneg-eng/Clocator — Claude Code skill discovered by cue"
 description: "Clocator seamlessly syncs local Claude Code sessions across devices by anchoring volatile, absolute folder paths to your repository's permanent Git remote URL."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-05
 tags: [claude-code, skill, core]
 ---
 
