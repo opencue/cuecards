@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="d3ucey-vectile"></a>
-## 💎 [d3uceY/vectile](https://github.com/d3uceY/vectile)
+<a id="muhlsteinovajemima439-design-memex"></a>
+## 💎 [muhlsteinovajemima439-design/memex](https://github.com/muhlsteinovajemima439-design/memex)
 
-**★ 4** · exceptional (score 8.3) · Go · tags: claude-code, document-search, gui-application, hybrid-search, knowledge-base
+**★ 2** · exceptional (score 8) · TypeScript · tags: ache, agent-memory, ai-coding, annotation, bookmarks
 
-A desktop search engine for everything you write, read, and keep. Connect your Obsidian vault, projects, Calibre library, and code repos, then find anything with local hybrid search and expose through MCP.
+Build a persistent personal wiki from your LLM sources to retain knowledge and prevent information loss across chat sessions.
 
 ```bash
-cue skills add d3uceY/vectile --profile docs-writer
+cue skills add muhlsteinovajemima439-design/memex --profile docs-writer
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "fusedio/skills — Claude Code skill discovered by cue"
 description: "Fused skills and plugins for AIs like Claude"
 layout: page
-updated: 2026-09-25
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-25
+- 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: claude-skill, codex-skill, data, data-science, fused, python, skills
 
 ## Best fit cue profiles

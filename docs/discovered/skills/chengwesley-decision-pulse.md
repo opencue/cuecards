@@ -2,22 +2,22 @@
 title: "chengwesley/decision-pulse — Claude Code skill discovered by cue"
 description: "A Claude Code skill: a one-page, research-backed dashboard of today's cognitive load while working with AI (Traditional Chinese)"
 layout: page
-updated: 2026-09-23
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [chengwesley/decision-pulse](https://github.com/chengwesley/decision-pulse)
 
-**★ 0** · exceptional (score 13) · Python · claude-code, claude-skill, cognitive-load, productivity
+**★ 2** · exceptional (score 13.5) · Python · claude-code, claude-skill, cognitive-load, productivity
 
 > A Claude Code skill: a one-page, research-backed dashboard of today's cognitive load while working with AI (Traditional Chinese)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: claude-code, claude-skill, cognitive-load, productivity
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "bim-ba/ycli — Claude Code skill discovered by cue"
 description: "Yandex 360 toolkit — Tracker, Wiki & Forms via CLI, MCP server, Python SDK & Claude Code plugin ✨"
 layout: page
-updated: 2026-06-29
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [bim-ba/ycli](https://github.com/bim-ba/ycli)
 
-**★ 0** · exceptional (score 8.5) · HTML · ai-agents, claude-code, cli, fastmcp, mcp
+**★ 4** · exceptional (score 10.8) · Python · ai-agents, claude-code, cli, fastmcp, mcp
 
 > Yandex 360 toolkit — Tracker, Wiki & Forms via CLI, MCP server, Python SDK & Claude Code plugin ✨
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: ai-agents, claude-code, cli, fastmcp, mcp, mcp-server, python, sdk, typer, yandex, yandex-360, yandex-forms, yandex-tracker, yandex-wiki
 
 ## Best fit cue profiles

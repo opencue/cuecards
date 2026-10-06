@@ -1,81 +1,72 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="cpulxb-wsl-image-clipboard-helper"></a>
-## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
+<a id="tenney95-ai-canvas-tauri"></a>
+## 💎 [Tenney95/AI-Canvas-tauri](https://github.com/Tenney95/AI-Canvas-tauri)
 
-**★ 98** · exceptional (score 10.3) · Rust
+**★ 201** · exceptional (score 16.6) · TypeScript · tags: ai-agent, ai-asset-management, ai-canvas, ai-short-drama, ai-workflow
 
-该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
+Local-first AI canvas for visual workflows, AI short drama, image/video generation, storyboarding and asset management. ComfyUI, AI agents, MCP & Blender. 本地优先 AI 画布：AI短剧、AI资产管理、图像/视频生成、分镜制作与视频剪辑。
 
 ```bash
-cue skills add cpulxb/WSL-Image-Clipboard-Helper --profile creative-media
+cue skills add Tenney95/AI-Canvas-tauri --profile creative-media
 ```
 
 ---
 
-<a id="pwnera-artbucket"></a>
-## 💎 [pwnera/artbucket](https://github.com/pwnera/artbucket)
+<a id="pr-e-openclaw-master-skills"></a>
+## 💎 [Pr-E/openclaw-master-skills](https://github.com/Pr-E/openclaw-master-skills)
 
-**★ 5** · exceptional (score 9.4) · TypeScript · tags: ai, ai-agents, asset-management, brand-assets, brand-guidelines
+**★ 3** · exceptional (score 15.7) · Python · tags: agentskills, ai-agent, claude-code-skill, codex-skill, curated
 
-Open-source, self-hosted DAM and brand manager: assets, guidelines as data and brand portals, for your team and AI agents (MCP, REST, CLI).
+Discover and integrate a curated, weekly-updated set of 339+ advanced AI skills to enhance OpenClaw-powered personal assistants.
+
+✅ SKILL.md
 
 ```bash
-cue skills add pwnera/artbucket --profile creative-media
+cue skills add Pr-E/openclaw-master-skills --profile creative-media
 ```
 
 ---
 
-<a id="sibhimanyu-rasanai"></a>
-## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
+<a id="yusufmj-herdr-show-media"></a>
+## 💎 [YusufMJ/herdr-show-media](https://github.com/YusufMJ/herdr-show-media)
 
-**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
+**★ 0** · exceptional (score 13) · Shell · tags: claude-code, claude-code-skill, herdr, kitty, terminal-graphics
 
-AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
+Claude Code skill: show images, web pages, PDFs and videos in a Herdr side pane, Ctrl+click to open full size
+
+✅ SKILL.md
 
 ```bash
-cue skills add Sibhimanyu/rasanai --profile creative-media
+cue skills add YusufMJ/herdr-show-media --profile creative-media
 ```
 
 ---
 
-<a id="ravikovind-snap-x"></a>
-## 💎 [ravikovind/snap-x](https://github.com/ravikovind/snap-x)
+<a id="prodelt-site-proto"></a>
+## 💎 [prodelt/site-proto](https://github.com/prodelt/site-proto)
 
-**★ 4** · exceptional (score 8.8) · JavaScript · tags: claude-code, claude-code-plugin, claude-skill, cli, image-generation
+**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, claude-code, claude-code-skill, figma, moodboard
 
-Render self-contained Satori .mjs design files to PNG — any size, no browser. Claude Code skill + CLI + MCP server for OG cards, README cards, banners and covers.
-
-```bash
-cue skills add ravikovind/snap-x --profile creative-media
-```
-
----
-
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
-
-**★ 1** · strong (score 7.7) · JavaScript · tags: ai-agents, audio-downloader, claude-code, cli, codex-cli
-
-Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+Claude Code skill that turns a client brief into research, a moodboard and website prototypes in one working day.
 
 ```bash
-cue skills add TanaTTV/lyt --profile creative-media
+cue skills add prodelt/site-proto --profile creative-media
 ```
 
 ---

@@ -2,22 +2,22 @@
 title: "OneMoh/html-explainer — Claude Code skill discovered by cue"
 description: "把一个主题做成有配音、字幕、封面的讲解分析类视频 —— 全本地、用 HTML 写画面，稳定音画同步。 面向 AI 编程智能体的确定性 HTML → MP4 渲染流水线。"
 layout: page
-updated: 2026-09-26
+updated: 2026-10-06
 tags: [claude-code, skill, niche]
 ---
 
 # 💎 [OneMoh/html-explainer](https://github.com/OneMoh/html-explainer)
 
-**★ 63** · exceptional (score 16.1) · Python · agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills
+**★ 146** · exceptional (score 16.5) · Python · agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills
 
 > 把一个主题做成有配音、字幕、封面的讲解分析类视频 —— 全本地、用 HTML 写画面，稳定音画同步。 面向 AI 编程智能体的确定性 HTML → MP4 渲染流水线。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 63 stars
-- 🗓️ Last pushed: 2026-09-26
+- ⭐ 146 stars
+- 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills, codex, codex-skill, codex-skills, explainer-video, explainer-videos, html-to-video, text-to-speech, tts, video-generation, workbuddy, workbuddy-skill, workbuddy-skills
 
 ## Best fit cue profiles

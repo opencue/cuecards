@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,15 +28,56 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="0xjacky-nginx-ui"></a>
-## 💎 [0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
+<a id="xaviersonski-ux-ui-taste"></a>
+## 💎 [xaviersonski/ux-ui-taste](https://github.com/xaviersonski/ux-ui-taste)
 
-**★ 11569** · exceptional (score 12) · Go · tags: code-completion, copilot, cron, docker, go
+**★ 0** · exceptional (score 11) · tags: accessibility, ai-skills, antigravity, audit-checklist, behavioral-economics
 
-Yet another WebUI for Nginx
+Research-backed library of cognitive principles, behavioral economics, and audit checklists for UX/UI that converts. Evidence-graded (A–D), zero dark patterns, AI skill ready.
+
+✅ SKILL.md
 
 ```bash
-cue skills add 0xJacky/nginx-ui --profile frontend
+cue skills add xaviersonski/ux-ui-taste --profile frontend
+```
+
+---
+
+<a id="fredjuel-arc-skill"></a>
+## 💎 [Fredjuel/arc-skill](https://github.com/Fredjuel/arc-skill)
+
+**★ 0** · exceptional (score 9.5) · HTML · tags: agent, ai, ai-skills, anthropic, bigdata
+
+Provide architecture guidelines and code templates for AI agents to scaffold and maintain production-ready React Native (Expo) projects consistently.
+
+```bash
+cue skills add Fredjuel/arc-skill --profile frontend
+```
+
+---
+
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+
+```bash
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
+<a id="ystherr-wechat-article-formatter-skill"></a>
+## ✨ [ystherr/wechat-article-formatter-skill](https://github.com/ystherr/wechat-article-formatter-skill)
+
+**★ 1** · strong (score 7.8) · CSS · tags: claude, claude-skill, crawler, data-science, demo
+
+🎨 Format Markdown to styled HTML for WeChat articles, with automatic image uploads and custom CSS for optimal readability.
+
+```bash
+cue skills add ystherr/wechat-article-formatter-skill --profile frontend
 ```
 
 ---

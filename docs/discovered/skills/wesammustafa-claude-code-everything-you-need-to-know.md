@@ -1,23 +1,23 @@
 ---
 title: "wesammustafa/Claude-Code-Everything-You-Need-to-Know — Claude Code skill discovered by cue"
-description: "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent team"
+description: "Claude Code guide in three levels. The Beginner path has hands-on lessons with checked exercises and cited facts; Intermediate and Advanced are being rebuilt. I"
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [wesammustafa/Claude-Code-Everything-You-Need-to-Know](https://github.com/wesammustafa/Claude-Code-Everything-You-Need-to-Know)
 
-**★ 3096** · exceptional (score 16) · Python · agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude
+**★ 3098** · exceptional (score 17) · JavaScript · agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude
 
-> A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featured in Awesome Claude Code.
+> Claude Code guide in three levels. The Beginner path has hands-on lessons with checked exercises and cited facts; Intermediate and Advanced are being rebuilt. Independent community guide.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
-- ⭐ 3096 stars
-- 🗓️ Last pushed: 2026-10-04
-- 🏷️ Tags: agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude, best-practices, claude, claude-ai, claude-code, claude-code-guide, claude-code-hooks, claude-code-skills, claude-code-tutorial, claude-skills, guide, mcp, mcp-servers, prompt-engineering, subagents, tutorial
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
+- ⭐ 3098 stars
+- 🗓️ Last pushed: 2026-10-06
+- 🏷️ Tags: agent-skills, agentic-coding, ai-agents, anthropic, anthropic-claude, best-practices, claude, claude-ai, claude-code, claude-code-guide, claude-code-hooks, claude-code-plugins, claude-code-skills, claude-code-tutorial, claude-code-workflows, guide, learn-claude-code, mcp, subagents, tutorial
 
 ## Best fit cue profiles
 

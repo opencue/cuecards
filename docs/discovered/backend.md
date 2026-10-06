@@ -1,78 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "17 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 17 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="stickerdaniel-linkedin-mcp-server"></a>
-## 💎 [stickerdaniel/linkedin-mcp-server](https://github.com/stickerdaniel/linkedin-mcp-server)
-
-**★ 3739** · exceptional (score 19.5) · Python · tags: ai-agents, anthropic, chatgpt, chatgpt-desktop, claude
-
-Open-source MCP server for LinkedIn. Give Claude and any MCP-compatible AI agent access to profiles, companies, jobs, and messages.
-
-```bash
-cue skills add stickerdaniel/linkedin-mcp-server --profile backend
-```
-
----
-
-<a id="triggerdotdev-trigger-dev"></a>
-## 💎 [triggerdotdev/trigger.dev](https://github.com/triggerdotdev/trigger.dev)
-
-**★ 16467** · exceptional (score 16) · TypeScript · tags: ai, ai-agent-framework, ai-agents, automation, background-jobs
-
-Trigger.dev – build and deploy durable AI agents and workflows
-
-```bash
-cue skills add triggerdotdev/trigger.dev --profile backend
-```
-
----
-
-<a id="robhunter-agentdeals"></a>
-## 💎 [robhunter/agentdeals](https://github.com/robhunter/agentdeals)
-
-**★ 22** · exceptional (score 14.5) · TypeScript · tags: cloud-pricing, developer-deals, developer-tools, free-tier, mcp
-
-Catalogue of developer infrastructure free tiers, startup credits and pricing, with side-by-side vendor comparisons for hosting, databases and AI APIs. Website, JSON API and MCP server, read by coding agents choosing a stack.
-
-✅ SKILL.md
-
-```bash
-cue skills add robhunter/agentdeals --profile backend
-```
-
----
-
-<a id="hylouis233-bibverify"></a>
-## 💎 [Hylouis233/bibverify](https://github.com/Hylouis233/bibverify)
-
-**★ 99** · exceptional (score 12.5) · Python · tags: bibliography, bibtex, citation-verification, cli, cross-platform
-
-Cross-platform BibTeX verification for researchers and AI assistants — CLI, Python API, MCP server, and explainable multi-source matching.
-
-```bash
-cue skills add Hylouis233/bibverify --profile backend
-```
-
----
-
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 72** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 73** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -82,80 +28,54 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="0xjacky-nginx-ui"></a>
-## 💎 [0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
+<a id="daidaij-websearch-mcpserver"></a>
+## 💎 [daidaiJ/websearch-mcpserver](https://github.com/daidaiJ/websearch-mcpserver)
 
-**★ 11569** · exceptional (score 12) · Go · tags: code-completion, copilot, cron, docker, go
+**★ 25** · exceptional (score 11.5) · Go · tags: academic-search, mcp-server, pdf-parser, web-fetch, websearch
 
-Yet another WebUI for Nginx
+一个轻量的ai websearch的自建个人方案，支持baidu / tavily / exa / anysearch / doubao api（支持池化使用）, bing/ddg 和学术搜索引擎
 
 ```bash
-cue skills add 0xJacky/nginx-ui --profile backend
+cue skills add daidaiJ/websearch-mcpserver --profile backend
 ```
 
 ---
 
-<a id="masayukita-m365-copilot-companion-mcp"></a>
-## 💎 [MasayukiTa/m365-copilot-companion-mcp](https://github.com/MasayukiTa/m365-copilot-companion-mcp)
+<a id="whiteknightonhorse-apibase"></a>
+## 💎 [whiteknightonhorse/APIbase](https://github.com/whiteknightonhorse/APIbase)
 
-**★ 8** · exceptional (score 11.8) · Python · tags: agent, ai-agent, automation, claude, copilot-studio
+**★ 10** · exceptional (score 11) · TypeScript · tags: agents, ai-agent-tools, ai-agents, ai-tools, api-aggregator
 
-Personal-use MCP server that gives Microsoft 365 Copilot real hands on your own laptop: files, Python, Office, SQL, Web. 100+ tools, autonomous relay, easily extensible, no extra licences.
+One MCP + REST endpoint to APIbase's live tool catalog (counts: https://apibase.pro/llms.txt). No signup, no subscription, no API key to start — pay per call in USDC (x402 on Base or MPP on Tempo).
 
 ```bash
-cue skills add MasayukiTa/m365-copilot-companion-mcp --profile backend
+cue skills add whiteknightonhorse/APIbase --profile backend
 ```
 
 ---
 
-<a id="erayendes-app-store-connect-mcp"></a>
-## 💎 [erayendes/app-store-connect-mcp](https://github.com/erayendes/app-store-connect-mcp)
+<a id="heymonth-kmp-api-lookup-mcp"></a>
+## 💎 [Heymonth/kmp-api-lookup-mcp](https://github.com/Heymonth/kmp-api-lookup-mcp)
 
-**★ 51** · exceptional (score 11.3) · TypeScript · tags: ai, app-reviews, app-store, app-store-connect, app-store-server-api
+**★ 0** · exceptional (score 10) · TypeScript · tags: claude-code, ios, klib, kmp, kotlin-multiplatform
 
-Heimdall — MCP server for the Apple App Store Connect API and App Store Server API (StoreKit 2). 890 tools across 13 profiles, generated from Apple's OpenAPI spec, plus one-call macros for worldwide pricing, submission readiness and metadata diffs, and confirm-before-write safety. Works with Claude, Codex, Cursor and any MCP client.
+Index Kotlin/Native iOS klib APIs with this MCP server for fast symbol lookup and local database management.
 
 ```bash
-cue skills add erayendes/app-store-connect-mcp --profile backend
+cue skills add Heymonth/kmp-api-lookup-mcp --profile backend
 ```
 
 ---
 
-<a id="samyama-ai-samyama-graph"></a>
-## 💎 [samyama-ai/samyama-graph](https://github.com/samyama-ai/samyama-graph)
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 176** · exceptional (score 10.7) · Rust · tags: cypher, embedded-database, graph-algorithms, graph-analytics, graph-database
+**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
-Rust graph-vector database: OpenCypher (99.9% of evaluated TCK scenarios pass), vector search, graph algorithms, RESP + HTTP. LDBC SNB Interactive and BI complete; 1B edges on one machine.
-
-```bash
-cue skills add samyama-ai/samyama-graph --profile backend
-```
-
----
-
-<a id="mistertechie06-x402-payments-skill"></a>
-## 💎 [mistertechie06/x402-payments-skill](https://github.com/mistertechie06/x402-payments-skill)
-
-**★ 0** · exceptional (score 10) · Shell · tags: agent, agent-skills, ai-agent-tools, ai-payments, batch-payments
-
-Enable AI agents to build and monetize x402 payment systems with seamless API integration and automated paid endpoint calls.
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
-cue skills add mistertechie06/x402-payments-skill --profile backend
-```
-
----
-
-<a id="vibopsai-vibops-mcp"></a>
-## 💎 [VibOpsai/vibops-mcp](https://github.com/VibOpsai/vibops-mcp)
-
-**★ 18** · exceptional (score 9.3) · Python · tags: agent-ops, ai, claude, devops, finops
-
-83 MCP tools for GPU infrastructure + Agent FinOps — deploy LLMs, manage VMs (Proxmox/XO/vSphere), track cost per agent, enforce budgets and model policies. Works with Claude, Cursor, n8n, LangChain 
-
-```bash
-cue skills add VibOpsai/vibops-mcp --profile backend
+cue skills add ni-c/mcp-hub --profile backend
 ```
 
 ---
@@ -169,45 +89,6 @@ Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, 
 
 ```bash
 cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="shadow400x-claude-sh"></a>
-## ✨ [shadow400x/claude-sh](https://github.com/shadow400x/claude-sh)
-
-**★ 0** · strong (score 7.5) · Shell · tags: ai-content, automation, aws-s3, chatgpt, claude-ai
-
-Run Claude Code in bash with no npm deps, real-time streaming, tool use, permissions, and session resume
-
-```bash
-cue skills add shadow400x/claude-sh --profile backend
-```
-
----
-
-<a id="impactmojo-impactmojo"></a>
-## ✨ [ImpactMojo/ImpactMojo](https://github.com/ImpactMojo/ImpactMojo)
-
-**★ 2** · strong (score 7) · HTML · tags: data-literacy, development-economics, edtech, education, games
-
-Free, open-source development education for South Asia — flagship & foundational courses, hands-on interactive labs, a browser-based game library, cited deep dives, and premium research tools. All free at the core. impactmojo.in
-
-```bash
-cue skills add ImpactMojo/ImpactMojo --profile backend
-```
-
----
-
-<a id="grandfatherpikhto-kicadstamp"></a>
-## ✨ [GrandFatherPikhto/KiCadStamp](https://github.com/GrandFatherPikhto/KiCadStamp)
-
-**★ 0** · strong (score 6) · Python · tags: cloning-tool, design-reuse, eda, electronics, ipc-api
-
-Clone PCB layout of schematic blocks and whole sheets in KiCad 10 over the IPC API — GUI, CLI and MCP server
-
-```bash
-cue skills add GrandFatherPikhto/KiCadStamp --profile backend
 ```
 
 ---

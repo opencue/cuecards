@@ -2,7 +2,7 @@
 title: "claude-dev-suite/claude-dev-suite — Claude Code skill discovered by cue"
 description: "Point it at a repo and it configures your AI coding assistant for that stack: agents, framework skills, MCP servers, path-scoped rules. One install, seven assis"
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 39 stars
-- 🗓️ Last pushed: 2026-10-03
+- 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: agent-skills, agents-md, ai-agents, ai-coding-assistant, anthropic, claude, claude-code, cline, code-assistant, codex-cli, cursor, developer-tools, gemini-cli, github-copilot, kimi-code, llm, mcp, mcp-servers, model-context-protocol, open-source
 
 ## Best fit cue profiles

@@ -1,65 +1,24 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rokokol-papers-skill"></a>
-## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
-
-**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
-
-Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
-
-✅ SKILL.md
-
-```bash
-cue skills add rokokol/papers-skill --profile research
-```
-
----
-
-<a id="hylouis233-bibverify"></a>
-## 💎 [Hylouis233/bibverify](https://github.com/Hylouis233/bibverify)
-
-**★ 99** · exceptional (score 12.5) · Python · tags: bibliography, bibtex, citation-verification, cli, cross-platform
-
-Cross-platform BibTeX verification for researchers and AI assistants — CLI, Python API, MCP server, and explainable multi-source matching.
-
-```bash
-cue skills add Hylouis233/bibverify --profile research
-```
-
----
-
-<a id="neverbiasu-awesome-research-skills"></a>
-## ✨ [neverbiasu/awesome-research-skills](https://github.com/neverbiasu/awesome-research-skills)
-
-**★ 3** · strong (score 5.7) · tags: academic, academic-project, academic-research, academic-writing, agent-skills
-
-143 Agent Skills (SKILL.md) for academic and scientific research, curated one directory at a time — literature, study design, experiments, statistics, figures, writing, peer review. Each entry links to one exact path, with its own license, freshness, and capability flags.
-
-```bash
-cue skills add neverbiasu/awesome-research-skills --profile research
-```
-
----
-
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 3.9) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 3.8) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

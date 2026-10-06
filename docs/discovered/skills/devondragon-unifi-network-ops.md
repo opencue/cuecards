@@ -2,7 +2,7 @@
 title: "devondragon/unifi-network-ops — Claude Code skill discovered by cue"
 description: "Claude Code skills for auditing, tuning, and safely changing UniFi networks via the controller API — baseline capture, RF tuning, the write path, and security r"
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 

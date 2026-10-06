@@ -1,23 +1,23 @@
 ---
 title: "whiteknightonhorse/APIbase — Claude Code skill discovered by cue"
-description: "Universal MCP gateway for AI agents — 1230 tools, 348 providers. One endpoint (https://apibase.pro/mcp), pay-per-call with x402 USDC on Base + MPP USDC on Tempo"
+description: "One MCP + REST endpoint to APIbase's live tool catalog (counts: https://apibase.pro/llms.txt). No signup, no subscription, no API key to start — pay per call in"
 layout: page
-updated: 2026-08-29
+updated: 2026-10-06
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [whiteknightonhorse/APIbase](https://github.com/whiteknightonhorse/APIbase)
 
-**★ 10** · exceptional (score 11) · TypeScript · ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers
+**★ 10** · exceptional (score 11) · TypeScript · agents, ai-agent-tools, ai-agents, ai-tools, api-aggregator
 
-> Universal MCP gateway for AI agents — 1230 tools, 348 providers. One endpoint (https://apibase.pro/mcp), pay-per-call with x402 USDC on Base + MPP USDC on Tempo.
+> One MCP + REST endpoint to APIbase's live tool catalog (counts: https://apibase.pro/llms.txt). No signup, no subscription, no API key to start — pay per call in USDC (x402 on Base or MPP on Tempo).
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ⭐ 10 stars
-- 🗓️ Last pushed: 2026-08-29
-- 🏷️ Tags: ai-agents, ai-tools, api-gateway, api-hub, awesome-mcp-servers, base-network, docker, mcp, mcp-server, micropayments, model-context-protocol, mpp, tempo, typescript, usdc, x402
+- 🗓️ Last pushed: 2026-10-06
+- 🏷️ Tags: agents, ai-agent-tools, ai-agents, ai-tools, api-aggregator, api-gateway, api-hub, awesome-mcp-servers, docker, mcp, mcp-gateway, mcp-server, micropayments, model-context-protocol, mpp, pay-per-call, typescript, x402
 
 ## Best fit cue profiles
 

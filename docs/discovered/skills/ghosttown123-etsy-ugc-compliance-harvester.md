@@ -2,21 +2,21 @@
 title: "ghosttown123/etsy-ugc-compliance-harvester — Claude Code skill discovered by cue"
 description: "Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-06
 tags: [claude-code, skill, medusa-dev]
 ---
 
 # 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 2** · exceptional (score 8.5) · HTML · ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
+**★ 5** · exceptional (score 11.1) · HTML · ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
 > Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd, ecommerce, etsy, etsy-ads, etsy-api, etsy-seo, indie-ecommerce, keepr, marketplace, reviews, shop-audit, ttrpg, ugc
 
 ## Best fit cue profiles

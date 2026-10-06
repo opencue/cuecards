@@ -2,21 +2,21 @@
 title: "xirba13/battle-cats-gacha-explorer — Claude Code skill discovered by cue"
 description: "Web app to find the most resource-efficient Battle Cats gacha pull path to the units you don't own yet, using godfat seed data. Built with the help of Claude (A"
 layout: page
-updated: 2026-09-24
+updated: 2026-10-06
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [xirba13/battle-cats-gacha-explorer](https://github.com/xirba13/battle-cats-gacha-explorer)
 
-**★ 1** · strong (score 5.6) · Python · battle-cats, gacha, rolls
+**★ 1** · strong (score 5.8) · Python · battle-cats, gacha, rolls
 
 > Web app to find the most resource-efficient Battle Cats gacha pull path to the units you don't own yet, using godfat seed data. Built with the help of Claude (Anthropic).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-19
+- 🗓️ Last pushed: 2026-10-05
 - 🏷️ Tags: battle-cats, gacha, rolls
 
 ## Best fit cue profiles

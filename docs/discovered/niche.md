@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-06
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,32 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="martellevaliant19-grant-thinking-cn-biology"></a>
-## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
+<a id="onemoh-html-explainer"></a>
+## 💎 [OneMoh/html-explainer](https://github.com/OneMoh/html-explainer)
 
-**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
+**★ 146** · exceptional (score 16.5) · Python · tags: agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills
 
-Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
+把一个主题做成有配音、字幕、封面的讲解分析类视频 —— 全本地、用 HTML 写画面，稳定音画同步。 面向 AI 编程智能体的确定性 HTML → MP4 渲染流水线。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
+cue skills add OneMoh/html-explainer --profile niche
 ```
 
 ---
 
-<a id="chestnuts-sisyphus-gittok"></a>
-## 🔹 [Chestnuts-Sisyphus/gittok](https://github.com/Chestnuts-Sisyphus/gittok)
+<a id="ikramahmadmemon13-grant-thinking-skill"></a>
+## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
 
-**★ 1** · potential (score 4.3) · TypeScript · tags: ai, chinese, github-actions, github-trending, llm
+**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
 
-开源版抖音信息流 — 用中文刷 GitHub 好项目
+Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Chestnuts-Sisyphus/gittok --profile niche
+cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
 ```
 
 ---

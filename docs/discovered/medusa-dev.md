@@ -1,55 +1,29 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "3 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-04
+updated: 2026-10-06
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="daizedong-shopping-aggregator"></a>
-## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
+<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
+## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 4** · exceptional (score 11.8) · Python · tags: agent, ai, ai-agent, amazon, claude
+**★ 5** · exceptional (score 11.1) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
-Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
-
-```bash
-cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
-```
-
----
-
-<a id="proskillpacks-skills"></a>
-## ✨ [proskillpacks/skills](https://github.com/proskillpacks/skills)
-
-**★ 0** · strong (score 6) · Python · tags: agent-skills, chatgpt-prompts, claude-code-skill, claude-skills, codex-skills
-
-Free, tested Agent Skills in plain SKILL.md format: store owners, freelancers, developers. Works in any assistant that reads skills.
+Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 
 ```bash
-cue skills add proskillpacks/skills --profile medusa-dev
-```
-
----
-
-<a id="proskillpacks-shopify-store-skills"></a>
-## ✨ [proskillpacks/shopify-store-skills](https://github.com/proskillpacks/shopify-store-skills)
-
-**★ 0** · strong (score 6) · Python · tags: accessibility, agent-skills, alt-text, claude-code-marketplace, claude-code-plugin
-
-Free, tested Agent Skills for Shopify store owners: image alt text, policy audit, title cleanup, review replies and an AI-agent readiness check.
-
-```bash
-cue skills add proskillpacks/shopify-store-skills --profile medusa-dev
+cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
 ```
 
 ---
