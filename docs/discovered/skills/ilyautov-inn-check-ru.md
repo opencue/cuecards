@@ -2,22 +2,22 @@
 title: "ilyautov/inn-check-ru — Claude Code skill discovered by cue"
 description: "Инструменты для AI-агента: даёте ИНН, агент обходит ЕГРЮЛ, ФНС, ЦБ, Федресурс и другие реестры. Цифры считает код, «пусто» и «не проверено» не путаются. Скилл, "
 layout: page
-updated: 2026-09-30
+updated: 2026-10-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ilyautov/inn-check-ru](https://github.com/ilyautov/inn-check-ru)
 
-**★ 4** · exceptional (score 16.3) · Python · agent-skill, agent-skills, claude-code, claude-skill, codex-cli
+**★ 5** · exceptional (score 16.4) · Python · agent-skill, agent-skills, claude-code, claude-skill, codex-cli
 
 > Инструменты для AI-агента: даёте ИНН, агент обходит ЕГРЮЛ, ФНС, ЦБ, Федресурс и другие реестры. Цифры считает код, «пусто» и «не проверено» не путаются. Скилл, MCP, CLI
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.4 based on:
 - ✅ Contains SKILL.md
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-09-30
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: agent-skill, agent-skills, claude-code, claude-skill, codex-cli, counterparty-check, cursor, due-diligence, egrul, fns, fssp, inn, kyc, mcp, model-context-protocol, open-source, python, russia, sanctions, small-business
 
 ## Best fit cue profiles

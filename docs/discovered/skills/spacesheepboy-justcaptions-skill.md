@@ -2,7 +2,7 @@
 title: "SpaceSheepBoy/justcaptions-skill — Claude Code skill discovered by cue"
 description: "Open-source captions for Codex, Claude Code and MCP: 15 styles, local MP4 rendering, batch jobs and an optional transcription API"
 layout: page
-updated: 2026-10-04
+updated: 2026-10-07
 tags: [claude-code, skill, video]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-04
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: captions, claude-code, claude-skill, codex, ffmpeg, mcp, subtitles, whisper
 
 ## Best fit cue profiles

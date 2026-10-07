@@ -2,21 +2,21 @@
 title: "openwong2kim/wmux — Claude Code skill discovered by cue"
 description: "Run Claude Code, Codex & Gemini in parallel on Windows & macOS — git worktree fan-out with atomic hunk adoption, approval gates, reboot-surviving sessions"
 layout: page
-updated: 2026-09-28
+updated: 2026-10-07
 tags: [claude-code, skill, fleet-control]
 ---
 
 # 💎 [openwong2kim/wmux](https://github.com/openwong2kim/wmux)
 
-**★ 400** · exceptional (score 19.3) · TypeScript · agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation
+**★ 412** · exceptional (score 19.3) · TypeScript · agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation
 
 > Run Claude Code, Codex & Gemini in parallel on Windows & macOS — git worktree fan-out with atomic hunk adoption, approval gates, reboot-surviving sessions
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.3 based on:
-- ⭐ 400 stars
-- 🗓️ Last pushed: 2026-09-28
+- ⭐ 412 stars
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation, claude, claude-code, coding-agent, developer-tools, electron, gemini, mcp-server, multi-agent, powershell, terminal-multiplexer, tmux, windows, workspace-multiplexer
 
 ## Best fit cue profiles

@@ -1,29 +1,70 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-06
+updated: 2026-10-07
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="augustusw-audio-tldr-skill"></a>
-## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 39** · exceptional (score 10.2) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+**★ 0** · exceptional (score 15.5) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
 
-Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add AugustusW/audio-tldr-skill --profile video
+cue skills add zyziyun/reelfold --profile video
+```
+
+---
+
+<a id="mbehtemam-montagent"></a>
+## 💎 [MBehtemam/Montagent](https://github.com/MBehtemam/Montagent)
+
+**★ 2** · exceptional (score 9) · Rust · tags: ai-agents, claude-code, cli, ffmpeg, mcp
+
+Agentic, MCP-native video editor for the command line. Cut, trim, and compose video through CLI commands or AI agent tool calls.
+
+```bash
+cue skills add MBehtemam/Montagent --profile video
+```
+
+---
+
+<a id="spacesheepboy-justcaptions-skill"></a>
+## 💎 [SpaceSheepBoy/justcaptions-skill](https://github.com/SpaceSheepBoy/justcaptions-skill)
+
+**★ 0** · exceptional (score 8) · Python · tags: captions, claude-code, claude-skill, codex, ffmpeg
+
+Open-source captions for Codex, Claude Code and MCP: 15 styles, local MP4 rendering, batch jobs and an optional transcription API
+
+```bash
+cue skills add SpaceSheepBoy/justcaptions-skill --profile video
+```
+
+---
+
+<a id="franzenzenhofer-openrouter-transcribe"></a>
+## ✨ [franzenzenhofer/openrouter-transcribe](https://github.com/franzenzenhofer/openrouter-transcribe)
+
+**★ 0** · strong (score 6) · Python · tags: claude-code-skill, openrouter, speaker-diarization, transcription, whisper
+
+Long recordings to a complete, reviewed, speaker-named transcript via OpenRouter, with local voice fingerprints for the names. Resumable batches, nothing gets lost.
+
+```bash
+cue skills add franzenzenhofer/openrouter-transcribe --profile video
 ```
 
 ---

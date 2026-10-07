@@ -1,23 +1,23 @@
 ---
 title: "xsyetopz/dotclaude — Claude Code skill discovered by cue"
-description: "A very opinionated Claude Code plugin designed by a Rustacean"
+description: "A very opinionated Claude Code plugin designed by a Rustacean obsessed with harness engineering"
 layout: page
-updated: 2026-10-05
+updated: 2026-10-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [xsyetopz/dotclaude](https://github.com/xsyetopz/dotclaude)
 
-**★ 0** · exceptional (score 8) · JavaScript · agent, agent-handoff, agent-orchestration, agentic-workflow, claude
+**★ 2** · exceptional (score 8.5) · JavaScript · anthropic, anthropic-ai, anthropic-claude, claude, claude-ai
 
-> A very opinionated Claude Code plugin designed by a Rustacean
+> A very opinionated Claude Code plugin designed by a Rustacean obsessed with harness engineering
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-05
-- 🏷️ Tags: agent, agent-handoff, agent-orchestration, agentic-workflow, claude, claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace, claude-code-mod, claude-code-mods, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill, claude-code-subagents, claude-plugin, dotclaude, hooks
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-07
+- 🏷️ Tags: anthropic, anthropic-ai, anthropic-claude, claude, claude-ai, claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace, claude-code-mod, claude-code-mods, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill, claude-code-skills, claude-code-subagents, claude-plugin, claude-skills, dotclaude
 
 ## Best fit cue profiles
 

@@ -2,13 +2,13 @@
 title: "Ikalus1988/MisakaNet — Claude Code skill discovered by cue"
 description: "📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org"
 layout: page
-updated: 2026-09-24
-tags: [claude-code, skill, backend, docs-writer]
+updated: 2026-10-07
+tags: [claude-code, skill, backend]
 ---
 
 # 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
 
-**★ 508** · exceptional (score 22.8) · Python · action, agents, ai-agents, cloudflare-workers, d1
+**★ 524** · exceptional (score 22.8) · Python · action, agents, cloudflare-workers, codex, cordis-plugin
 
 > 📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
 
@@ -16,13 +16,13 @@ tags: [claude-code, skill, backend, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 22.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 508 stars
-- 🗓️ Last pushed: 2026-09-24
-- 🏷️ Tags: action, agents, ai-agents, cloudflare-workers, d1, documentation, failure-memory, knowledge-base, llm, mcp, mcp-server, sqlite
+- ⭐ 524 stars
+- 🗓️ Last pushed: 2026-10-07
+- 🏷️ Tags: action, agents, cloudflare-workers, codex, cordis-plugin, d1, deepseek-harness, deepseek-harness-plugin, dsh, dsh-external, dsh-plugin, dsh-plugins, failure-memory, hermes-agent, knowledge-base, llm, mcp, mcp-server, opencode-plugin, sqlite
 
 ## Best fit cue profiles
 
-[backend](../backend.md), [docs-writer](../docs-writer.md)
+[backend](../backend.md)
 
 
 

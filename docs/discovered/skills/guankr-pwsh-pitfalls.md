@@ -2,7 +2,7 @@
 title: "GuanKr/pwsh-pitfalls — Claude Code skill discovered by cue"
 description: "Windows PowerShell failure-repair skill for AI coding agents: 7 measured traps (quoting, paths, encoding, execution policy, arg mangling), bash-to-pwsh Rosetta,"
 layout: page
-updated: 2026-10-06
+updated: 2026-10-07
 tags: [claude-code, skill, core]
 ---
 

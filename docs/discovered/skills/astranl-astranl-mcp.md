@@ -2,21 +2,21 @@
 title: "ASTRANL/astranl-mcp — Claude Code skill discovered by cue"
 description: "AstraNL — protocol-governed coordination infrastructure for the AI + robot + human economy. Live MCP server, Europe-wide robot & drone database."
 layout: page
-updated: 2026-08-29
+updated: 2026-10-07
 tags: [claude-code, skill, backend]
 ---
 
 # ✨ [ASTRANL/astranl-mcp](https://github.com/ASTRANL/astranl-mcp)
 
-**★ 0** · strong (score 6) · a2a, agent-economy, ai-agents, coordination, mcp
+**★ 0** · strong (score 7.5) · a2a, agent-economy, ai-agents, coordination, mcp
 
 > AstraNL — protocol-governed coordination infrastructure for the AI + robot + human economy. Live MCP server, Europe-wide robot & drone database.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-29
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: a2a, agent-economy, ai-agents, coordination, mcp, mcp-server, model-context-protocol, netherlands, openapi, x402
 
 ## Best fit cue profiles

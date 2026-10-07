@@ -1,22 +1,22 @@
 ---
 title: "dagucloud/dagu — Claude Code skill discovered by cue"
-description: "Local-first workflow engine for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, and AI agents; keep wor"
+description: "Self-hostable workflow orchestrator for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, etc; keep workf"
 layout: page
-updated: 2026-08-07
+updated: 2026-10-07
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [dagucloud/dagu](https://github.com/dagucloud/dagu)
 
-**★ 3706** · exceptional (score 15) · Go · agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron
+**★ 4290** · exceptional (score 12) · Go · agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron
 
-> Local-first workflow engine for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, and AI agents; keep workflows separate from business logic. One binary, no database. Airflow alternative.
+> Self-hostable workflow orchestrator for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, etc; keep workflows separate from business logic. One binary, no database, runs on limited H/W resources. Alternative to Airflow / Cron / Job Scheduler.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 3706 stars
-- 🗓️ Last pushed: 2026-08-07
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+- ⭐ 4290 stars
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron, dag, data-pipeline, devops, durable-execution, human-in-the-loop, job-scheduler, llm, mcp, mcp-gateway, mcp-server, self-hosted, task-automation, workflow-engine, workflow-orchestration, workflow-scheduler
 
 ## Best fit cue profiles

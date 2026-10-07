@@ -1,23 +1,23 @@
 ---
 title: "zhurong2020/pyobfus — Claude Code skill discovered by cue"
-description: "🛡️ Modern Python code obfuscator - Enterprise-grade protection at 50% lower cost than PyArmor"
+description: "AST-based Python obfuscator with reverse stack-trace mapping — obfuscate before shipping and keep production tracebacks AI-debuggable. MCP + VS Code."
 layout: page
-updated: 2026-08-17
+updated: 2026-10-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [zhurong2020/pyobfus](https://github.com/zhurong2020/pyobfus)
 
-**★ 3** · exceptional (score 9.7) · Python · ai-native, ast-obfuscation, claude-code, code-obfuscator, code-protection
+**★ 11** · exceptional (score 11.6) · Python · ai-native, apache-2-0, ast-obfuscation, claude-code, code-obfuscator
 
-> 🛡️ Modern Python code obfuscator - Enterprise-grade protection at 50% lower cost than PyArmor
+> AST-based Python obfuscator with reverse stack-trace mapping — obfuscate before shipping and keep production tracebacks AI-debuggable. MCP + VS Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-08-17
-- 🏷️ Tags: ai-native, ast-obfuscation, claude-code, code-obfuscator, code-protection, cursor, llm-tools, mcp-server, pyarmor-alternative, python-obfuscator, python-obfuscator-online, python-security, source-protection
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-10-07
+- 🏷️ Tags: ai-native, apache-2-0, ast-obfuscation, claude-code, code-obfuscator, code-protection, codebuddy, cursor, debuggable-obfuscation, github-copilot, llm-tools, mcp-server, provenance, pyarmor-alternative, python-obfuscator, python-security, reverse-mapping, source-protection, stack-trace-deobfuscation
 
 ## Best fit cue profiles
 

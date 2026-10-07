@@ -2,21 +2,21 @@
 title: "MBehtemam/Montagent — Claude Code skill discovered by cue"
 description: "Agentic, MCP-native video editor for the command line. Cut, trim, and compose video through CLI commands or AI agent tool calls."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-07
 tags: [claude-code, skill, video]
 ---
 
 # 💎 [MBehtemam/Montagent](https://github.com/MBehtemam/Montagent)
 
-**★ 0** · exceptional (score 8.5) · Rust · ai-agents, claude-code, cli, ffmpeg, mcp
+**★ 2** · exceptional (score 9) · Rust · ai-agents, claude-code, cli, ffmpeg, mcp
 
 > Agentic, MCP-native video editor for the command line. Cut, trim, and compose video through CLI commands or AI agent tool calls.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: ai-agents, claude-code, cli, ffmpeg, mcp, mcp-server, rust, skia, video, video-editor
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Mahashwetha/Job-search-email-system-claude — Claude Code skill discovered by cue"
 description: "  Automated daily job search pipeline — aggregates company tracking, sends styled HTML email digests, tailors resumes with Gemini AI, drafts LinkedIn outreach  "
 layout: page
-updated: 2026-09-16
+updated: 2026-10-07
 tags: [claude-code, skill, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-09-16
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: automation, automation-python, claude-ai-generated-code, claude-code, claude-skill, claude-skills, gemini-ai, job-search, job-search-automation, job-search-tools, jobsearch, linkedin, linkedin-scraper, python, python-automation, resume, resume-generator, windows-task-scheduler
 
 ## Best fit cue profiles

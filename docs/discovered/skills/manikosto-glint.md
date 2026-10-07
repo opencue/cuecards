@@ -2,21 +2,21 @@
 title: "manikosto/glint — Claude Code skill discovered by cue"
 description: "Colorful replies (forked from prismantis, MIT) with clickable links and file paths, files Claude changed highlighted, and a band of the last reply's links that "
 layout: page
-updated: 2026-10-06
+updated: 2026-10-07
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [manikosto/glint](https://github.com/manikosto/glint)
 
-**★ 1** · potential (score 4.3) · TypeScript
+**★ 2** · potential (score 4.5) · TypeScript
 
 > Colorful replies (forked from prismantis, MIT) with clickable links and file paths, files Claude changed highlighted, and a band of the last reply's links that open in the preview pane.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
