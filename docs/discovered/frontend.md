@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="nikolai-iakubovskii-app-paywall-pilot"></a>
-## 💎 [Nikolai-Iakubovskii/app-paywall-pilot](https://github.com/Nikolai-Iakubovskii/app-paywall-pilot)
-
-**★ 38** · exceptional (score 15.8) · Python · tags: adapty, android, app-store, apphud, appsflyer
-
-A framework for designing App Store-compliant subscription paywalls. 4 layers: AI skill (Claude/GPT/Cursor) + knowledge base (79 sourced benchmarks) + Python LTV tool + docs. 20-concept academic foundation (Kahneman + Layer 2). Flagship domain Paywall; expansion planned to Onboarding, Retention, Growth, Pricing, Reviews.
-
-✅ SKILL.md
-
-```bash
-cue skills add Nikolai-Iakubovskii/app-paywall-pilot --profile frontend
-```
 
 ---
 

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="zandereins-hydra"></a>
 ## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
 
-**★ 4** · exceptional (score 16.3) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+**★ 4** · exceptional (score 16.2) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
 
 Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
 
@@ -30,15 +30,32 @@ cue skills add Zandereins/hydra --profile cybersecurity
 
 ---
 
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+<a id="bartek-filipiuk-security-audit-skill"></a>
+## 💎 [bartek-filipiuk/security-audit-skill](https://github.com/bartek-filipiuk/security-audit-skill)
 
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+**★ 1** · exceptional (score 14.8) · JavaScript · tags: appsec, claude-code, claude-code-skill, security-audit
 
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+Claude Code skill: evidence-based security audit of your own code, with a verified-safe list, regression tests and a seeded-bug benchmark
+
+✅ SKILL.md
 
 ```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+cue skills add bartek-filipiuk/security-audit-skill --profile cybersecurity
+```
+
+---
+
+<a id="leontynestirredup43-slowmist-security-cc"></a>
+## 💎 [Leontynestirredup43/slowmist-security-cc](https://github.com/Leontynestirredup43/slowmist-security-cc)
+
+**★ 0** · exceptional (score 14.5) · tags: agent-security, aml, audit, blockchain, claude-code
+
+Audit Claude Code agents with this security framework to detect vulnerabilities, social engineering, and supply chain threats in adversarial environments.
+
+✅ SKILL.md
+
+```bash
+cue skills add Leontynestirredup43/slowmist-security-cc --profile cybersecurity
 ```
 
 ---
@@ -46,7 +63,7 @@ cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2786** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 2790** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -69,6 +86,19 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="elyshafresh21-claude-context-lint"></a>
+## 💎 [elyshafresh21/claude-context-lint](https://github.com/elyshafresh21/claude-context-lint)
+
+**★ 1** · exceptional (score 10.3) · tags: agents, ai, ai-agent, ai-coding, cer
+
+Audit Claude Code context usage and find wasted tokens in CLAUDE.md, skills, MCP schemas, and system prompts
+
+```bash
+cue skills add elyshafresh21/claude-context-lint --profile cybersecurity
+```
+
+---
+
 <a id="hybridindie-comfyui-mcp"></a>
 ## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
@@ -78,6 +108,45 @@ Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate l
 
 ```bash
 cue skills add hybridindie/comfyui_mcp --profile cybersecurity
+```
+
+---
+
+<a id="hasfo-deepsec"></a>
+## ✨ [hasfo/deepsec](https://github.com/hasfo/deepsec)
+
+**★ 0** · strong (score 7.5) · Python · tags: adversarial-examples, ai, api-keys, auth0, authentication
+
+🔍 Enhance security audits with DeepSec, an AI-driven platform combining Static Application Security Testing and advanced analysis to detect vulnerabilities efficiently.
+
+```bash
+cue skills add hasfo/deepsec --profile cybersecurity
+```
+
+---
+
+<a id="hermida95-second-opinion-skills"></a>
+## ✨ [Hermida95/second-opinion-skills](https://github.com/Hermida95/second-opinion-skills)
+
+**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-detection, ai-safety, c2pa, claude-code
+
+Second Opinion: Agent Skills for using AI with open eyes. An evidence-backed verdict on code you didn't write (code-teardown) and scored evidence that an image was made or edited with AI (ai-evidence).
+
+```bash
+cue skills add Hermida95/second-opinion-skills --profile cybersecurity
+```
+
+---
+
+<a id="strumbyte-mcp-writ"></a>
+## ✨ [strumbyte/mcp-writ](https://github.com/strumbyte/mcp-writ)
+
+**★ 0** · strong (score 6) · Rust · tags: mcp, mcp-security, mcp-server, mcp-servers
+
+Policy enforcement, OS sandboxing, and JSON-RPC auditing for MCP servers
+
+```bash
+cue skills add strumbyte/mcp-writ --profile cybersecurity
 ```
 
 ---

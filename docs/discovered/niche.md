@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-06
+updated: 2026-10-08
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,32 +15,30 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="onemoh-html-explainer"></a>
-## 💎 [OneMoh/html-explainer](https://github.com/OneMoh/html-explainer)
+<a id="martellevaliant19-grant-thinking-cn-biology"></a>
+## 💎 [martellevaliant19/grant-thinking-cn-biology](https://github.com/martellevaliant19/grant-thinking-cn-biology)
 
-**★ 146** · exceptional (score 16.5) · Python · tags: agent-skill, agent-skills, claude-code, claude-code-skill, claude-code-skills
+**★ 0** · exceptional (score 12) · tags: biology, china-grants, claude-code, claude-code-skill, claude-skills
 
-把一个主题做成有配音、字幕、封面的讲解分析类视频 —— 全本地、用 HTML 写画面，稳定音画同步。 面向 AI 编程智能体的确定性 HTML → MP4 渲染流水线。
+Evaluate biology grant proposals for Chinese funding agencies, identify structural gaps, and improve funding odds through logic assessment and research diagnostics.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add OneMoh/html-explainer --profile niche
+cue skills add martellevaliant19/grant-thinking-cn-biology --profile niche
 ```
 
 ---
 
-<a id="ikramahmadmemon13-grant-thinking-skill"></a>
-## 💎 [Ikramahmadmemon13/grant-thinking-skill](https://github.com/Ikramahmadmemon13/grant-thinking-skill)
+<a id="daizedong-daily-hotspots"></a>
+## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
 
-**★ 0** · exceptional (score 12) · tags: agent-skills, claude-code, claude-code-skill, claude-skills, feasibility
+**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Evaluate project fundability and refine grant logic using AI agent skills to identify innovation, assess feasibility, and reduce rejection risks.
-
-✅ SKILL.md
+每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
 
 ```bash
-cue skills add Ikramahmadmemon13/grant-thinking-skill --profile niche
+cue skills add DaizeDong/daily-hotspots --profile niche
 ```
 
 ---

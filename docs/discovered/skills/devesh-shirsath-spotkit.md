@@ -2,22 +2,22 @@
 title: "Devesh-Shirsath/spotkit — Claude Code skill discovered by cue"
 description: "Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system."
 layout: page
-updated: 2026-09-11
+updated: 2026-10-08
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [Devesh-Shirsath/spotkit](https://github.com/Devesh-Shirsath/spotkit)
 
-**★ 61** · exceptional (score 19.1) · HTML · ai-tools, anthropic, claude-code, claude-skill, design-automation
+**★ 79** · exceptional (score 19.2) · HTML · ai-tools, anthropic, claude-code, claude-skill, design-automation
 
 > Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 61 stars
-- 🗓️ Last pushed: 2026-09-11
+- ⭐ 79 stars
+- 🗓️ Last pushed: 2026-10-08
 - 🏷️ Tags: ai-tools, anthropic, claude-code, claude-skill, design-automation, design-system, design-tools, empty-state, figma, generative-design, illustration, product-design, product-illustration, saas, spot-illustration, svg, svg-illustrations, ui-design, ui-illustration
 
 ## Best fit cue profiles

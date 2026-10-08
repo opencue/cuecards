@@ -1,44 +1,59 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+<a id="devesh-shirsath-spotkit"></a>
+## 💎 [Devesh-Shirsath/spotkit](https://github.com/Devesh-Shirsath/spotkit)
 
-**★ 0** · exceptional (score 15.5) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 79** · exceptional (score 19.2) · HTML · tags: ai-tools, anthropic, claude-code, claude-skill, design-automation
 
-Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile creative-media
+cue skills add Devesh-Shirsath/spotkit --profile creative-media
 ```
 
 ---
 
-<a id="nodaroai-app-nodaro-ai"></a>
-## 💎 [nodaroai/app.nodaro.ai](https://github.com/nodaroai/app.nodaro.ai)
+<a id="jorgut-folio"></a>
+## 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
 
-**★ 8** · exceptional (score 9.8) · TypeScript · tags: ai-video, fair-code, generative-ai, image-generation, mcp
+**★ 3** · exceptional (score 13.2) · HTML · tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
 
-Node-based canvas for AI media workflows - chain 100+ image, video, voice & music models (Seedance, Veo, Kling, Flux, ElevenLabs, Suno) into pipelines that run on schedules, webhooks & Telegram, then publish to 20+ platforms. Self-hostable with your own API keys. MCP server (150+ tools), SDK & CLI.
+Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
+
+✅ SKILL.md
 
 ```bash
-cue skills add nodaroai/app.nodaro.ai --profile creative-media
+cue skills add Jorgut/folio --profile creative-media
+```
+
+---
+
+<a id="tanattv-lyt"></a>
+## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
+
+**★ 1** · strong (score 7.8) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
+
+yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JSON.
+
+```bash
+cue skills add TanaTTV/lyt --profile creative-media
 ```
 
 ---

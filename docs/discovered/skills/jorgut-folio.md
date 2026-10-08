@@ -2,22 +2,22 @@
 title: "Jorgut/folio — Claude Code skill discovered by cue"
 description: "Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-dr"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-08
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
 
-**★ 2** · exceptional (score 13) · JavaScript · claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
+**★ 3** · exceptional (score 13.2) · HTML · claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
 
 > Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-03
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-10-08
 - 🏷️ Tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx, magazine-layout, powerpoint, pptx-generator, presentation, presentation-design, presentation-tool, slide-deck
 
 ## Best fit cue profiles

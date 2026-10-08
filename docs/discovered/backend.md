@@ -1,39 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ikalus1988-misakanet"></a>
-## 💎 [Ikalus1988/MisakaNet](https://github.com/Ikalus1988/MisakaNet)
-
-**★ 524** · exceptional (score 22.8) · Python · tags: action, agents, cloudflare-workers, codex, cordis-plugin
-
-📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org
-
-✅ SKILL.md
-
-```bash
-cue skills add Ikalus1988/MisakaNet --profile backend
-```
-
----
-
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 73** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 74** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -43,41 +28,30 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="dagucloud-dagu"></a>
-## 💎 [dagucloud/dagu](https://github.com/dagucloud/dagu)
+<a id="elsakkk-mnemos-mcp"></a>
+## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
 
-**★ 4290** · exceptional (score 12) · Go · tags: agentic-workflows, ai-agents, ai-workflows, airflow-alternative, cron
+**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
 
-Self-hostable workflow orchestrator for teams whose main work isn't orchestration. Declarative YAML over your scripts, SSH commands, containers, etc; keep workflows separate from business logic. One binary, no database, runs on limited H/W resources. Alternative to Airflow / Cron / Job Scheduler.
+🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
 
 ```bash
-cue skills add dagucloud/dagu --profile backend
+cue skills add ELSAKKK/mnemos-mcp --profile backend
 ```
 
 ---
 
-<a id="ma2za-google-news-api"></a>
-## 💎 [ma2za/google-news-api](https://github.com/ma2za/google-news-api)
+<a id="inprojectspl-fastapi-test-design"></a>
+## 💎 [inprojectspl/fastapi-test-design](https://github.com/inprojectspl/fastapi-test-design)
 
-**★ 19** · exceptional (score 10.5) · Python · tags: async, async-python, feedparser, google-news, google-news-api
+**★ 1** · exceptional (score 9.8) · Python
 
-Google News API Python client for Google News RSS search, top stories, async clients, URL decoding, SearchAPI modes, and MCP tools.
+Claude Skill for designing robust, deterministic test strategies for FastAPI backends       with JWT auth and PostgreSQL, covering unit/integration boundaries, fixture architecture,    and security-focused failure paths.
 
-```bash
-cue skills add ma2za/google-news-api --profile backend
-```
-
----
-
-<a id="nodaroai-app-nodaro-ai"></a>
-## 💎 [nodaroai/app.nodaro.ai](https://github.com/nodaroai/app.nodaro.ai)
-
-**★ 8** · exceptional (score 9.8) · TypeScript · tags: ai-video, fair-code, generative-ai, image-generation, mcp
-
-Node-based canvas for AI media workflows - chain 100+ image, video, voice & music models (Seedance, Veo, Kling, Flux, ElevenLabs, Suno) into pipelines that run on schedules, webhooks & Telegram, then publish to 20+ platforms. Self-hostable with your own API keys. MCP server (150+ tools), SDK & CLI.
+✅ SKILL.md
 
 ```bash
-cue skills add nodaroai/app.nodaro.ai --profile backend
+cue skills add inprojectspl/fastapi-test-design --profile backend
 ```
 
 ---
@@ -95,67 +69,28 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="michaelegner-architecture-intelligence-platform"></a>
-## 💎 [michaelegner/architecture-intelligence-platform](https://github.com/michaelegner/architecture-intelligence-platform)
+<a id="ninjacazul-hono-mcp-server"></a>
+## 💎 [ninjacazul/hono-mcp-server](https://github.com/ninjacazul/hono-mcp-server)
 
-**★ 7** · exceptional (score 9) · Python · tags: ai-agents, architecture, architecture-drift, architecture-intelligence, asyncapi
+**★ 2** · exceptional (score 8) · TypeScript · tags: aws, browser-extension, collaboration, deno, eclipseiot
 
-Trusted architecture context for AI agents: an evidence-backed architecture graph from OpenAPI, AsyncAPI and OpenTelemetry, served over MCP.
+🔧 Expose Hono API endpoints as MCP tools, simplifying integration and enhancing your API's functionality.
 
 ```bash
-cue skills add michaelegner/architecture-intelligence-platform --profile backend
+cue skills add ninjacazul/hono-mcp-server --profile backend
 ```
 
 ---
 
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+<a id="hasfo-deepsec"></a>
+## ✨ [hasfo/deepsec](https://github.com/hasfo/deepsec)
 
-**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 0** · strong (score 7.5) · Python · tags: adversarial-examples, ai, api-keys, auth0, authentication
 
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
-
-```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="jabbertones-cloud-wwdc-mcp-server"></a>
-## ✨ [jabbertones-cloud/wwdc-mcp-server](https://github.com/jabbertones-cloud/wwdc-mcp-server)
-
-**★ 0** · strong (score 7.5) · TypeScript · tags: app-store, apple, apple-developer, claude, codex
-
-Apple developer intelligence for coding agents: WWDC20–WWDC26, HIG, Swift, App Review, API history, and source-grounded app audits — 45 read-only MCP tools.
+🔍 Enhance security audits with DeepSec, an AI-driven platform combining Static Application Security Testing and advanced analysis to detect vulnerabilities efficiently.
 
 ```bash
-cue skills add jabbertones-cloud/wwdc-mcp-server --profile backend
-```
-
----
-
-<a id="astranl-astranl-mcp"></a>
-## ✨ [ASTRANL/astranl-mcp](https://github.com/ASTRANL/astranl-mcp)
-
-**★ 0** · strong (score 7.5) · tags: a2a, agent-economy, ai-agents, coordination, mcp
-
-AstraNL — protocol-governed coordination infrastructure for the AI + robot + human economy. Live MCP server, Europe-wide robot & drone database.
-
-```bash
-cue skills add ASTRANL/astranl-mcp --profile backend
-```
-
----
-
-<a id="yaniv-golan-affinity-sdk"></a>
-## ✨ [yaniv-golan/affinity-sdk](https://github.com/yaniv-golan/affinity-sdk)
-
-**★ 0** · strong (score 7.5) · Python · tags: affinity, affinity-crm, ai-agents, api-client, async
-
-Unofficial strongly-typed Python SDK for the Affinity CRM API - full read/write coverage, Pydantic v2, MCP server included. For when you need more than Affinity's official MCP
-
-```bash
-cue skills add yaniv-golan/affinity-sdk --profile backend
+cue skills add hasfo/deepsec --profile backend
 ```
 
 ---
@@ -169,6 +104,19 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile backend
+```
+
+---
+
+<a id="christophe77-netatmo-energy-mcp"></a>
+## ✨ [christophe77/netatmo-energy-mcp](https://github.com/christophe77/netatmo-energy-mcp)
+
+**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, claude, claude-desktop, domotique, energy-efficiency
+
+Read-only MCP server for Netatmo smart thermostats and radiator valves: lets Claude, Cursor and other AI assistants read room temperatures, setpoints, boiler activity and heating history. In development.
+
+```bash
+cue skills add christophe77/netatmo-energy-mcp --profile backend
 ```
 
 ---

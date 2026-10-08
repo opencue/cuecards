@@ -1,23 +1,23 @@
 ---
 title: "TanaTTV/lyt — Claude Code skill discovered by cue"
-description: "Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills."
+description: "yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JS"
 layout: page
-updated: 2026-10-05
+updated: 2026-10-08
 tags: [claude-code, skill, video, creative-media]
 ---
 
 # ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.7) · JavaScript · ai-agents, audio-downloader, claude-code, cli, codex-cli
+**★ 1** · strong (score 7.8) · JavaScript · agent-skills, ai-agents, audio-downloader, claude-code, cli
 
-> Agent-ready local media CLI powered by yt-dlp — safe defaults, exact file paths, Codex and Claude skills.
+> yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JSON.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-02
-- 🏷️ Tags: ai-agents, audio-downloader, claude-code, cli, codex-cli, command-line-tool, downloader, ffmpeg, local-first, media-downloader, nodejs, video-downloader, youtube, youtube-downloader, youtube-to-mp3, youtube-to-mp4, yt-dlp
+- 🗓️ Last pushed: 2026-10-08
+- 🏷️ Tags: agent-skills, ai-agents, audio-downloader, claude-code, cli, codex-cli, command-line-tool, downloader, ffmpeg, gemini-cli, llm-tools, local-first, media-downloader, nodejs, video-downloader, youtube, youtube-downloader, youtube-to-mp3, youtube-to-mp4, yt-dlp
 
 ## Best fit cue profiles
 

@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for python"
-description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mahashwetha-job-search-email-system-claude"></a>
-## 💎 [Mahashwetha/Job-search-email-system-claude](https://github.com/Mahashwetha/Job-search-email-system-claude)
+<a id="elsakkk-mnemos-mcp"></a>
+## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
 
-**★ 9** · exceptional (score 10.9) · Python · tags: automation, automation-python, claude-ai-generated-code, claude-code, claude-skill
+**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
 
-  Automated daily job search pipeline — aggregates company tracking, sends styled HTML email digests, tailors resumes with Gemini AI, drafts LinkedIn outreach    messages, and scans remote job APIs for given location. Hot jobs for the given role and many features are made as claude skills too newly.
-
-```bash
-cue skills add Mahashwetha/Job-search-email-system-claude --profile python
-```
-
----
-
-<a id="yaniv-golan-affinity-sdk"></a>
-## ✨ [yaniv-golan/affinity-sdk](https://github.com/yaniv-golan/affinity-sdk)
-
-**★ 0** · strong (score 7.5) · Python · tags: affinity, affinity-crm, ai-agents, api-client, async
-
-Unofficial strongly-typed Python SDK for the Affinity CRM API - full read/write coverage, Pydantic v2, MCP server included. For when you need more than Affinity's official MCP
+🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
 
 ```bash
-cue skills add yaniv-golan/affinity-sdk --profile python
+cue skills add ELSAKKK/mnemos-mcp --profile python
 ```
 
 ---

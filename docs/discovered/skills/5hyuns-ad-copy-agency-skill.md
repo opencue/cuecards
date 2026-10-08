@@ -1,8 +1,8 @@
 ---
 title: "5hyuns/ad-copy-agency-skill — Claude Code skill discovered by cue"
-description: "Claude Code skill that writes ad headlines by following an ad agency workflow (planner, CD, creative teams, client review) / 광고 대행사 작업 흐름을 따라 헤드라인을 쓰는 카피라이팅 스킬"
+description: "Claude Code plugin & skill that writes ad headlines by following an ad agency workflow (planner, CD, creative teams, client review) / 광고 대행사 작업 흐름을 따라 헤드라인을 쓰는 "
 layout: page
-updated: 2026-10-02
+updated: 2026-10-08
 tags: [claude-code, skill, marketing]
 ---
 
@@ -10,15 +10,15 @@ tags: [claude-code, skill, marketing]
 
 **★ 2** · exceptional (score 13.5) · Python · ad-copy-generator, advertising, agent-skills, ai-agents, ai-copywriting
 
-> Claude Code skill that writes ad headlines by following an ad agency workflow (planner, CD, creative teams, client review) / 광고 대행사 작업 흐름을 따라 헤드라인을 쓰는 카피라이팅 스킬
+> Claude Code plugin & skill that writes ad headlines by following an ad agency workflow (planner, CD, creative teams, client review) / 광고 대행사 작업 흐름을 따라 헤드라인을 쓰는 카피라이팅 플러그인
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-02
-- 🏷️ Tags: ad-copy-generator, advertising, agent-skills, ai-agents, ai-copywriting, anthropic, claude, claude-code, claude-skill, claude-skills, copywriting, headline-generator, korean, llm, marketing, multi-agent, prompt-engineering
+- 🗓️ Last pushed: 2026-10-08
+- 🏷️ Tags: ad-copy-generator, advertising, agent-skills, ai-agents, ai-copywriting, anthropic, claude, claude-code, claude-code-plugin, claude-plugin, claude-skill, claude-skills, copywriting, headline-generator, korean, llm, marketing, multi-agent, plugin-marketplace, prompt-engineering
 
 ## Best fit cue profiles
 

@@ -2,19 +2,19 @@
 title: "GuanKr/pwsh-pitfalls — Claude Code skill discovered by cue"
 description: "Windows PowerShell failure-repair skill for AI coding agents: 7 measured traps (quoting, paths, encoding, execution policy, arg mangling), bash-to-pwsh Rosetta,"
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [GuanKr/pwsh-pitfalls](https://github.com/GuanKr/pwsh-pitfalls)
 
-**★ 2** · exceptional (score 10.5) · agent-skills, ai-agents, claude-code, powershell, windows
+**★ 2** · exceptional (score 10.4) · agent-skills, ai-agents, claude-code, powershell, windows
 
 > Windows PowerShell failure-repair skill for AI coding agents: 7 measured traps (quoting, paths, encoding, execution policy, arg mangling), bash-to-pwsh Rosetta, zero preflight. Claude Code / Codex compatible.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-10-06

@@ -2,7 +2,7 @@
 title: "ninjacazul/hono-mcp-server — Claude Code skill discovered by cue"
 description: "🔧 Expose Hono API endpoints as MCP tools, simplifying integration and enhancing your API's functionality."
 layout: page
-updated: 2026-09-23
+updated: 2026-10-08
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-10-08
 - 🏷️ Tags: aws, browser-extension, collaboration, deno, eclipseiot, file-sharing, mcp-host, mcp-server, mcp-tools, messaging, nodejs, open-source, server, sharing, typescript
 
 ## Best fit cue profiles

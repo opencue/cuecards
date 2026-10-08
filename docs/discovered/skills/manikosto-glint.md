@@ -2,7 +2,7 @@
 title: "manikosto/glint — Claude Code skill discovered by cue"
 description: "Colorful replies (forked from prismantis, MIT) with clickable links and file paths, files Claude changed highlighted, and a band of the last reply's links that "
 layout: page
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [claude-code, skill, core]
 ---
 

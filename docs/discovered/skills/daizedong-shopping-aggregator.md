@@ -2,7 +2,7 @@
 title: "DaizeDong/shopping-aggregator — Claude Code skill discovered by cue"
 description: "Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel"
 layout: page
-updated: 2026-10-04
+updated: 2026-10-08
 tags: [claude-code, skill, medusa-dev]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, medusa-dev]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-04
+- 🗓️ Last pushed: 2026-10-08
 - 🏷️ Tags: agent, ai, ai-agent, amazon, claude, claude-code, claude-plugin, claude-skill, consumer, coupon, deal-aggregator, ecommerce, llm, mcp, orchestration, price-comparison, shopping, skill
 
 ## Best fit cue profiles

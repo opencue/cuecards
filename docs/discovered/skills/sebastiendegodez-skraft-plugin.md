@@ -2,7 +2,7 @@
 title: "SebastienDegodez/skraft-plugin — Claude Code skill discovered by cue"
 description: "Specialized agents, adversarial reviewers, discipline skills (Outside-In TDD, Clean Architecture) and mechanical guardrails (hooks) for Claude Code and GitHub C"
 layout: page
-updated: 2026-09-26
+updated: 2026-10-08
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-09-26
+- 🗓️ Last pushed: 2026-10-08
 - 🏷️ Tags: ai-agents, bdd, claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills, clean-architecture, copilot, copilot-cli, cursor, github-copilot, outside-in-tdd, sdlc, semantic-release, tdd
 
 ## Best fit cue profiles
