@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,21 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+
+**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
+
+Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+
+✅ SKILL.md
+
+```bash
+cue skills add zyziyun/reelfold --profile video
+```
+
+---
+
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
@@ -24,19 +39,6 @@ yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any
 
 ```bash
 cue skills add TanaTTV/lyt --profile video
-```
-
----
-
-<a id="ostrichhermit-audio-transcribe-cli-mcp"></a>
-## ✨ [OstrichHermit/audio-transcribe-cli-mcp](https://github.com/OstrichHermit/audio-transcribe-cli-mcp)
-
-**★ 1** · strong (score 7.3) · Python · tags: aliyun, asr, audio-transcription, claude-code, claude-skill
-
-音视频转文字 CLI + Claude Code Skill —— 阿里云百炼录音文件识别，说话人分离，长音频免切片，微信语音 SILK 原生支持。  Audio/video transcription CLI + Claude Code Skill powered by Alibaba Cloud Bailian ASR, with speaker diarization, long-audio support and native WeChat SILK decoding.
-
-```bash
-cue skills add OstrichHermit/audio-transcribe-cli-mcp --profile video
 ```
 
 ---

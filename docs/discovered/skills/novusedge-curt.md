@@ -2,7 +2,7 @@
 title: "NovusEdge/curt — Claude Code skill discovered by cue"
 description: "Enforce clear technical prose. Remove AI slop."
 layout: page
-updated: 2026-08-19
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-19
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: anti-slop, clanker-control, claude-code, claude-code-plugin, claude-code-skill, claude-skills
 
 ## Best fit cue profiles

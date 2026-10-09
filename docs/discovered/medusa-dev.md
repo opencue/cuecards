@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-shopping-aggregator"></a>
-## 💎 [DaizeDong/shopping-aggregator](https://github.com/DaizeDong/shopping-aggregator)
+<a id="checkout-page-ecommerce-skills"></a>
+## 💎 [checkout-page/ecommerce-skills](https://github.com/checkout-page/ecommerce-skills)
 
-**★ 4** · exceptional (score 11.8) · Python · tags: agent, ai, ai-agent, amazon, claude
+**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, claude-skills
 
-Thin orchestration Claude skill for consumer shopping price comparison — Amazon / eBay / Walmart / Target / Taobao / JD + price-history (Keepa / Camelcamelcamel / 慢慢买) + coupon stacks (Capital One Shopping / Karma / 购物党). Sister skill to market-intel.
+19 agent skills for pricing, discounts, promotions, checkout UX, and conversion in online stores. Rules cite peer-reviewed studies by DOI.
 
 ```bash
-cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
+cue skills add checkout-page/ecommerce-skills --profile medusa-dev
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add DaizeDong/shopping-aggregator --profile medusa-dev
 <a id="gauravkr-io-cartridge-compass"></a>
 ## ✨ [gauravkr-io/cartridge-compass](https://github.com/gauravkr-io/cartridge-compass)
 
-**★ 1** · strong (score 6.3) · JavaScript · tags: ai-agents, b2c-cli, b2c-commerce, claude, claude-code
+**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, b2c-cli, b2c-commerce, claude, claude-code
 
 Gives AI coding agents a map of your Salesforce Commerce Cloud (SFCC) project: cartridge paths, hooks and site config. Claude Code plugin and CLI for SFRA, SiteGenesis, SCAPI and headless.
 

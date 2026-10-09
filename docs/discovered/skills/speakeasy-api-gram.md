@@ -2,21 +2,21 @@
 title: "speakeasy-api/gram — Claude Code skill discovered by cue"
 description: "Securely scale AI usage across your organization. A single stack to Connect, Secure, Observe and Distribute agents, MCPs, and Skills within your company."
 layout: page
-updated: 2026-10-02
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [speakeasy-api/gram](https://github.com/speakeasy-api/gram)
 
-**★ 272** · exceptional (score 14.9) · Go · agents, aisdk, clis, golang, mcp
+**★ 273** · exceptional (score 14.9) · Go · agents, aisdk, clis, golang, mcp
 
 > Securely scale AI usage across your organization. A single stack to Connect, Secure, Observe and Distribute agents, MCPs, and Skills within your company.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.9 based on:
-- ⭐ 272 stars
-- 🗓️ Last pushed: 2026-10-02
+- ⭐ 273 stars
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: agents, aisdk, clis, golang, mcp, mcp-gateway, mcp-server, mcp-servers, mcp-tools, openapi, openrouter, serverless, skills, typescript
 
 ## Best fit cue profiles

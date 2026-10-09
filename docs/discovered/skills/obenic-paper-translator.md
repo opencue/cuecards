@@ -2,22 +2,22 @@
 title: "obenic/paper-translator — Claude Code skill discovered by cue"
 description: "Claude Code skill: 把英文论文 PDF 完整翻译成中文，图和正文一起交付（含漏图交叉校验），输出 Markdown + PDF"
 layout: page
-updated: 2026-08-20
+updated: 2026-10-09
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [obenic/paper-translator](https://github.com/obenic/paper-translator)
 
-**★ 1** · exceptional (score 15.8) · Python · academic-papers, ai-agent, chinese-translation, claude-code, claude-skill
+**★ 0** · exceptional (score 15.5) · Python · academic-papers, ai-agent, chinese-translation, claude-code, claude-skill
 
 > Claude Code skill: 把英文论文 PDF 完整翻译成中文，图和正文一起交付（含漏图交叉校验），输出 Markdown + PDF
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-20
+- ⭐ 0 stars
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: academic-papers, ai-agent, chinese-translation, claude-code, claude-skill, ocr, paddleocr, pdf-extraction, pdf-translation, pymupdf
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,6 +28,19 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+
+```bash
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -37,6 +50,32 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
+## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
+
+**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
+
+Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
+
+```bash
+cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
+```
+
+---
+
+<a id="yassiinee-product-launch-motion-design-skill"></a>
+## ✨ [Yassiinee/product-launch-motion-design-skill](https://github.com/Yassiinee/product-launch-motion-design-skill)
+
+**★ 0** · strong (score 7) · JavaScript · tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, gsap
+
+Claude Code skill that makes showreel-grade product & feature launch videos in code: teasers, kinetic type, UI-motion hero reveals, feature drops, roundups, Reels and lit-3D showreels. HyperFrames + Three.js, exact brand colours, rebuilt UI, royalty-free music, verified MP4 + GIF.
+
+```bash
+cue skills add Yassiinee/product-launch-motion-design-skill --profile frontend
 ```
 
 ---

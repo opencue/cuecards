@@ -1,22 +1,22 @@
 ---
 title: "galleonlabs/hypergrok-trading-desk — Claude Code skill discovered by cue"
-description: "Turn your Grok Bot into a 7-agent Hyperliquid trading desk. Roles, system prompts and skills your Bots use to research, size, execute and review."
+description: "Open-source 7-agent Hyperliquid trading desk for Grok Bot, Claude Code and Cursor: roles, system prompts and 17 skills your agents use to research, size, execut"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [galleonlabs/hypergrok-trading-desk](https://github.com/galleonlabs/hypergrok-trading-desk)
 
-**★ 74** · exceptional (score 16.2) · Python · agent-plugin, agent-plugins, agent-skills, ai-agents, claude-code
+**★ 84** · exceptional (score 16.2) · Python · agent-plugin, agent-plugins, agent-skills, ai-agents, claude-code
 
-> Turn your Grok Bot into a 7-agent Hyperliquid trading desk. Roles, system prompts and skills your Bots use to research, size, execute and review.
+> Open-source 7-agent Hyperliquid trading desk for Grok Bot, Claude Code and Cursor: roles, system prompts and 17 skills your agents use to research, size, execute and review.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
-- ⭐ 74 stars
-- 🗓️ Last pushed: 2026-10-02
+- ⭐ 84 stars
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: agent-plugin, agent-plugins, agent-skills, ai-agents, claude-code, claude-code-skill, claude-plugin, claude-skill, claude-skills, cursor-plugin, defi, grok-bot, hypergrok, hyperliquid, open-source, trading, trading-desk
 
 ## Best fit cue profiles

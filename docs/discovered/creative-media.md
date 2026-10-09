@@ -1,46 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="devesh-shirsath-spotkit"></a>
-## 💎 [Devesh-Shirsath/spotkit](https://github.com/Devesh-Shirsath/spotkit)
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 79** · exceptional (score 19.2) · HTML · tags: ai-tools, anthropic, claude-code, claude-skill, design-automation
+**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
 
-Spotkit — a Claude Code skill that turns a feature description into minimal, abstract SVG product illustrations that all belong to one design system.
+Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Devesh-Shirsath/spotkit --profile creative-media
+cue skills add zyziyun/reelfold --profile creative-media
 ```
 
 ---
 
-<a id="jorgut-folio"></a>
-## 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
+<a id="sibhimanyu-rasanai"></a>
+## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
 
-**★ 3** · exceptional (score 13.2) · HTML · tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
+**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
 
-Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
-
-✅ SKILL.md
+AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
 
 ```bash
-cue skills add Jorgut/folio --profile creative-media
+cue skills add Sibhimanyu/rasanai --profile creative-media
 ```
 
 ---
@@ -54,6 +52,19 @@ yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any
 
 ```bash
 cue skills add TanaTTV/lyt --profile creative-media
+```
+
+---
+
+<a id="yassiinee-product-launch-motion-design-skill"></a>
+## ✨ [Yassiinee/product-launch-motion-design-skill](https://github.com/Yassiinee/product-launch-motion-design-skill)
+
+**★ 0** · strong (score 7) · JavaScript · tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, gsap
+
+Claude Code skill that makes showreel-grade product & feature launch videos in code: teasers, kinetic type, UI-motion hero reveals, feature drops, roundups, Reels and lit-3D showreels. HyperFrames + Three.js, exact brand colours, rebuilt UI, royalty-free music, verified MP4 + GIF.
+
+```bash
+cue skills add Yassiinee/product-launch-motion-design-skill --profile creative-media
 ```
 
 ---

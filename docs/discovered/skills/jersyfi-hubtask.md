@@ -1,8 +1,8 @@
 ---
 title: "Jersyfi/hubtask — Claude Code skill discovered by cue"
-description: "Self-hostable task management for individuals and service providers: five levels from Hub to Activity, REST API, MCP server, offline sync, GDPR-ready audit trai"
+description: "A task manager that is genuinely yours — for a person, a household, a team, or a provider running it for thousands. Five levels from Hub to Activity; one image "
 layout: page
-updated: 2026-09-16
+updated: 2026-10-09
 tags: [claude-code, skill, backend]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, backend]
 
 **★ 0** · strong (score 5) · Go · arc42, gdpr, golang, hexagonal-architecture, mcp-server
 
-> Self-hostable task management for individuals and service providers: five levels from Hub to Activity, REST API, MCP server, offline sync, GDPR-ready audit trail. Go, PostgreSQL, hexagonal architecture. Source-available (BSL 1.1).
+> A task manager that is genuinely yours — for a person, a household, a team, or a provider running it for thousands. Five levels from Hub to Activity; one image plus PostgreSQL; everything scriptable and agent-ready through REST and MCP; offline; backups, audit and privacy you can verify. Apache-2.0.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-16
-- 🏷️ Tags: arc42, gdpr, golang, hexagonal-architecture, mcp-server, multi-tenant, offline-first, openapi, postgresql, rest-api, self-hosted, task-management
+- 🗓️ Last pushed: 2026-10-09
+- 🏷️ Tags: arc42, gdpr, golang, hexagonal-architecture, mcp-server, multi-tenant, offline-first, open-source, openapi, postgresql, rest-api, self-hosted, task-management
 
 ## Best fit cue profiles
 

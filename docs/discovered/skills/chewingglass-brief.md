@@ -2,20 +2,20 @@
 title: "ChewingGlass/brief — Claude Code skill discovered by cue"
 description: "Review a PR or branch in VS Code as its diff reordered along the call path. A Claude Code plugin with a VS Code extension."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [ChewingGlass/brief](https://github.com/ChewingGlass/brief)
 
-**★ 2** · potential (score 4.5) · JavaScript
+**★ 4** · potential (score 4.7) · JavaScript
 
 > Review a PR or branch in VS Code as its diff reordered along the call path. A Claude Code plugin with a VS Code extension.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
+- ⭐ 4 stars
 - 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: (none)
 

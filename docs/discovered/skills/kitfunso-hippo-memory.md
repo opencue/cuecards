@@ -1,22 +1,22 @@
 ---
 title: "kitfunso/hippo-memory — Claude Code skill discovered by cue"
-description: "Memory for AI agents that learns what is wrong and stops repeating it. Mark a memory wrong and it stops coming back; newer facts replace old ones. Local SQLite "
+description: "Stop re-teaching your agent. Make your agent's memory work like a brain. Hippo is long-term memory for coding agents. It's a critical layer for your AI harness "
 layout: page
-updated: 2026-09-28
+updated: 2026-10-09
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [kitfunso/hippo-memory](https://github.com/kitfunso/hippo-memory)
 
-**★ 764** · exceptional (score 17.4) · TypeScript · agent-memory, ai-agents, ai-memory, claude-code, claude-code-plugin
+**★ 774** · exceptional (score 17.4) · TypeScript · agent-memory, ai-agents, ai-memory, claude-code, claude-code-plugin
 
-> Memory for AI agents that learns what is wrong and stops repeating it. Mark a memory wrong and it stops coming back; newer facts replace old ones. Local SQLite store and MCP server, persistent across sessions; hippo init wires it into Claude Code, Codex, Cursor, OpenClaw, OpenCode and Pi. Zero runtime deps, MIT, opt-in hosted TypeSafe Jev reranker.
+> Stop re-teaching your agent. Make your agent's memory work like a brain. Hippo is long-term memory for coding agents. It's a critical layer for your AI harness that connects across your different tools (Cursor, Claude Code, Codex). It keeps your proprietary data completely local, and it actually learns over time.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.4 based on:
-- ⭐ 764 stars
-- 🗓️ Last pushed: 2026-09-28
+- ⭐ 774 stars
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: agent-memory, ai-agents, ai-memory, claude-code, claude-code-plugin, codex, coding-agent, cursor, llm, llm-memory, local-first, long-term-memory, mcp, mcp-server, memory, model-context-protocol, openclaw, opencode, persistent-memory, sqlite
 
 ## Best fit cue profiles

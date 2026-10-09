@@ -2,19 +2,19 @@
 title: "gauravkr-io/cartridge-compass — Claude Code skill discovered by cue"
 description: "Gives AI coding agents a map of your Salesforce Commerce Cloud (SFCC) project: cartridge paths, hooks and site config. Claude Code plugin and CLI for SFRA, Site"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, medusa-dev]
 ---
 
 # ✨ [gauravkr-io/cartridge-compass](https://github.com/gauravkr-io/cartridge-compass)
 
-**★ 1** · strong (score 6.3) · JavaScript · ai-agents, b2c-cli, b2c-commerce, claude, claude-code
+**★ 1** · strong (score 6.2) · JavaScript · ai-agents, b2c-cli, b2c-commerce, claude, claude-code
 
 > Gives AI coding agents a map of your Salesforce Commerce Cloud (SFCC) project: cartridge paths, hooks and site config. Claude Code plugin and CLI for SFRA, SiteGenesis, SCAPI and headless.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-07
 - 🏷️ Tags: ai-agents, b2c-cli, b2c-commerce, claude, claude-code, claude-code-plugin, commerce-cloud, demandware, developer-tools, ecommerce, salesforce, salesforce-b2c-commerce, salesforce-commerce-cloud, scapi, sfcc, sfcc-cartridge, sfcc-tooling, sfra, sitegenesis, storefront-next

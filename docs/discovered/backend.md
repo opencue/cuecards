@@ -1,42 +1,68 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="colibird-ai-local-mcp-releases"></a>
+## 💎 [colibird-ai/local-mcp-releases](https://github.com/colibird-ai/local-mcp-releases)
+
+**★ 66** · exceptional (score 17.6) · JavaScript · tags: ai-tools, chatgpt, claude, claude-code, codex
+
+201+ local tools for Claude, ChatGPT, Cursor & Grok — Mail, iMessage, Teams, Slack, WhatsApp, OneDrive, Google Drive, Zoom, Outlook, Office. Native macOS and Windows, runs on your computer, no API keys.
+
+```bash
+cue skills add colibird-ai/local-mcp-releases --profile backend
+```
+
+---
+
+<a id="kitfunso-hippo-memory"></a>
+## 💎 [kitfunso/hippo-memory](https://github.com/kitfunso/hippo-memory)
+
+**★ 774** · exceptional (score 17.4) · TypeScript · tags: agent-memory, ai-agents, ai-memory, claude-code, claude-code-plugin
+
+Stop re-teaching your agent. Make your agent's memory work like a brain. Hippo is long-term memory for coding agents. It's a critical layer for your AI harness that connects across your different tools (Cursor, Claude Code, Codex). It keeps your proprietary data completely local, and it actually learns over time.
+
+```bash
+cue skills add kitfunso/hippo-memory --profile backend
+```
+
+---
+
+<a id="viewflow-seedkit"></a>
+## 💎 [viewflow/seedkit](https://github.com/viewflow/seedkit)
+
+**★ 66** · exceptional (score 15.1) · tags: claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
+
+Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI.
+
+```bash
+cue skills add viewflow/seedkit --profile backend
+```
+
+---
+
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 74** · exceptional (score 12.1) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 76** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
 ```bash
 cue skills add hproxy-com/free-proxy-list --profile backend
-```
-
----
-
-<a id="elsakkk-mnemos-mcp"></a>
-## 💎 [ELSAKKK/mnemos-mcp](https://github.com/ELSAKKK/mnemos-mcp)
-
-**★ 5** · exceptional (score 10.6) · Python · tags: developer-tools, embeddings, fastapi, knowledge-base, mcp-server
-
-🧠 Transform documentation chaos into a structured memory system with Mnemos, your self-hosted, multi-context knowledge server for developers.
-
-```bash
-cue skills add ELSAKKK/mnemos-mcp --profile backend
 ```
 
 ---
@@ -56,6 +82,19 @@ cue skills add inprojectspl/fastapi-test-design --profile backend
 
 ---
 
+<a id="luiacuaniello-perspectivegraph"></a>
+## 💎 [luiacuaniello/perspectivegraph](https://github.com/luiacuaniello/perspectivegraph)
+
+**★ 9** · exceptional (score 9.8) · Go · tags: apache-age, appsec, attack-graph, attack-path, aws
+
+Open-source attack-path engine for AWS and Kubernetes: correlates your scanners into one graph and blocks the pull request that opens a route to your data.
+
+```bash
+cue skills add luiacuaniello/perspectivegraph --profile backend
+```
+
+---
+
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
@@ -69,28 +108,41 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="ninjacazul-hono-mcp-server"></a>
-## 💎 [ninjacazul/hono-mcp-server](https://github.com/ninjacazul/hono-mcp-server)
+<a id="kanap-hq-kanap"></a>
+## 💎 [kanap-hq/KANAP](https://github.com/kanap-hq/KANAP)
 
-**★ 2** · exceptional (score 8) · TypeScript · tags: aws, browser-extension, collaboration, deno, eclipseiot
+**★ 6** · exceptional (score 8.7) · TypeScript · tags: ai-agents, application-portfolio-management, budget-management, contract-management, enterprise-architecture
 
-🔧 Expose Hono API endpoints as MCP tools, simplifying integration and enhancing your API's functionality.
+KANAP, the open source IT governance platform: IT budget (OPEX/CAPEX), application landscape, project portfolio, tasks and documentation in one governed record, with Plaid, a built-in AI agent. AGPL v3. Self-host free, or hosted.
 
 ```bash
-cue skills add ninjacazul/hono-mcp-server --profile backend
+cue skills add kanap-hq/KANAP --profile backend
 ```
 
 ---
 
-<a id="hasfo-deepsec"></a>
-## ✨ [hasfo/deepsec](https://github.com/hasfo/deepsec)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 0** · strong (score 7.5) · Python · tags: adversarial-examples, ai, api-keys, auth0, authentication
+**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-🔍 Enhance security audits with DeepSec, an AI-driven platform combining Static Application Security Testing and advanced analysis to detect vulnerabilities efficiently.
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add hasfo/deepsec --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="espetro-cauce"></a>
+## ✨ [espetro/cauce](https://github.com/espetro/cauce)
+
+**★ 1** · strong (score 6.3) · Rust · tags: ai-agents, exa, fastapi, mcp, mcp-server
+
+Local web-search proxy and cache for AI agents. Exa-compatible HTTP API + MCP, under 30MB RSS.
+
+```bash
+cue skills add espetro/cauce --profile backend
 ```
 
 ---
@@ -108,15 +160,15 @@ cue skills add anirudhlath/alfred --profile backend
 
 ---
 
-<a id="christophe77-netatmo-energy-mcp"></a>
-## ✨ [christophe77/netatmo-energy-mcp](https://github.com/christophe77/netatmo-energy-mcp)
+<a id="jersyfi-hubtask"></a>
+## ✨ [Jersyfi/hubtask](https://github.com/Jersyfi/hubtask)
 
-**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, claude, claude-desktop, domotique, energy-efficiency
+**★ 0** · strong (score 5) · Go · tags: arc42, gdpr, golang, hexagonal-architecture, mcp-server
 
-Read-only MCP server for Netatmo smart thermostats and radiator valves: lets Claude, Cursor and other AI assistants read room temperatures, setpoints, boiler activity and heating history. In development.
+A task manager that is genuinely yours — for a person, a household, a team, or a provider running it for thousands. Five levels from Hub to Activity; one image plus PostgreSQL; everything scriptable and agent-ready through REST and MCP; offline; backups, audit and privacy you can verify. Apache-2.0.
 
 ```bash
-cue skills add christophe77/netatmo-energy-mcp --profile backend
+cue skills add Jersyfi/hubtask --profile backend
 ```
 
 ---

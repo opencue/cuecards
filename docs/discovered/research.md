@@ -1,57 +1,31 @@
 ---
 title: "Claude Code Skills for research"
-description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="rokokol-papers-skill"></a>
-## 💎 [rokokol/papers-skill](https://github.com/rokokol/papers-skill)
+<a id="obenic-paper-translator"></a>
+## 💎 [obenic/paper-translator](https://github.com/obenic/paper-translator)
 
-**★ 2** · exceptional (score 13.5) · Shell · tags: agent-skills, anthropic, arxiv, claude-code, claude-skill
+**★ 0** · exceptional (score 15.5) · Python · tags: academic-papers, ai-agent, chinese-translation, claude-code, claude-skill
 
-Literature search and paper analysis for an agent: the papers skill and a packaged paper-search-mcp
+Claude Code skill: 把英文论文 PDF 完整翻译成中文，图和正文一起交付（含漏图交叉校验），输出 Markdown + PDF
 
 ✅ SKILL.md
 
 ```bash
-cue skills add rokokol/papers-skill --profile research
-```
-
----
-
-<a id="daizedong-market-intel"></a>
-## 💎 [DaizeDong/market-intel](https://github.com/DaizeDong/market-intel)
-
-**★ 3** · exceptional (score 11.7) · Python · tags: agent, ai, ai-agent, claude, claude-code
-
-Thin Claude Code skill for commercial/market research. Triages 15 specialized data domains, detects + auto-configures the right MCP sources, delegates heavy retrieval to deep-research. Curated source matrix, deterministic refresh pipeline (Discovery + adversarial verify + gh-api gate), companion-config auto-registration, citation guardrails.
-
-```bash
-cue skills add DaizeDong/market-intel --profile research
-```
-
----
-
-<a id="daizedong-demand-mining"></a>
-## 💎 [DaizeDong/demand-mining](https://github.com/DaizeDong/demand-mining)
-
-**★ 1** · exceptional (score 9.8) · Python · tags: agent, ai, ai-agent, automation, claude
-
-已发布产品每日用户需求挖掘+竞品/热点追踪+EOD 头脑风暴+RICE/Kano 量化迭代排序.
-
-```bash
-cue skills add DaizeDong/demand-mining --profile research
+cue skills add obenic/paper-translator --profile research
 ```
 
 ---

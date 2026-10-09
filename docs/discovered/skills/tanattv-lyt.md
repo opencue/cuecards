@@ -2,7 +2,7 @@
 title: "TanaTTV/lyt — Claude Code skill discovered by cue"
 description: "yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JS"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, video, creative-media]
 ---
 

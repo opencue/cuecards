@@ -2,21 +2,21 @@
 title: "PerryLink/dsh-fast — Claude Code skill discovered by cue"
 description: "Read-only performance diagnostics for DeepSeek Harness: session load/restore timing, spill-hit counts, compaction count and trigger, context-injection volume (A"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [PerryLink/dsh-fast](https://github.com/PerryLink/dsh-fast)
 
-**★ 8** · strong (score 6) · TypeScript · ai-agent, ai-agents, context-engineering, cordis, deepseek
+**★ 8** · strong (score 6.1) · TypeScript · ai-agent, ai-agents, context-engineering, cordis, deepseek
 
 > Read-only performance diagnostics for DeepSeek Harness: session load/restore timing, spill-hit counts, compaction count and trigger, context-injection volume (AGENTS.md/skills/tool-schema token share), and LLM cache hit rate — surfaced via /fast, persisted as reconstructable session events with async sampling off the model path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-10-07
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: ai-agent, ai-agents, context-engineering, cordis, deepseek, deepseek-harness, developer-tools, diagnostics, dsh, dsh-plugin, llm-cache, observability, performance, profiling
 
 ## Best fit cue profiles

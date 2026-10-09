@@ -2,20 +2,20 @@
 title: "Zproger/ConceptLoom — Claude Code skill discovered by cue"
 description: "AI-powered learning workflow for Codex, Claude Code, OpenCode and DeepSeek Harness that maps your knowledge, builds a personalized learning path, checks underst"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Zproger/ConceptLoom](https://github.com/Zproger/ConceptLoom)
 
-**★ 126** · exceptional (score 8.3) · JavaScript
+**★ 134** · exceptional (score 8.3) · JavaScript
 
 > AI-powered learning workflow for Codex, Claude Code, OpenCode and DeepSeek Harness that maps your knowledge, builds a personalized learning path, checks understanding, and saves progress across sessions.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 126 stars
+- ⭐ 134 stars
 - 🗓️ Last pushed: 2026-10-06
 - 🏷️ Tags: (none)
 

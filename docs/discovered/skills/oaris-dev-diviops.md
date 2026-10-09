@@ -2,7 +2,7 @@
 title: "oaris-dev/diviops — Claude Code skill discovered by cue"
 description: "AI harness and MCP server for WordPress. Plan, build and improve with Codex or Claude Code. Divi-native today, WordPress-wide by design."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
 - ⭐ 25 stars
-- 🗓️ Last pushed: 2026-10-07
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: claude-code, claude-skill, divi, divi-5, mcp-server, wordpress, wordpress-plugin
 
 ## Best fit cue profiles

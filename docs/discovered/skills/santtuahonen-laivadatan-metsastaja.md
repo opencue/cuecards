@@ -2,21 +2,21 @@
 title: "SanttuAhonen/laivadatan-metsastaja — Claude Code skill discovered by cue"
 description: "Tekoälytaito vanhojen suomalaisten laivojen tiedonhakuun. Agent Skill -muotoinen taito botologien apuvälineeksi."
 layout: page
-updated: 2026-06-05
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [SanttuAhonen/laivadatan-metsastaja](https://github.com/SanttuAhonen/laivadatan-metsastaja)
 
-**★ 0** · strong (score 6) · agent-skills, botologi, botologia, claude-skill, genealogy
+**★ 0** · strong (score 7.5) · agent-skills, botologi, botologia, claude-skill, genealogy
 
 > Tekoälytaito vanhojen suomalaisten laivojen tiedonhakuun. Agent Skill -muotoinen taito botologien apuvälineeksi.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-05
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: agent-skills, botologi, botologia, claude-skill, genealogy, hoyryhinaaja, hoyrylaiva, rautalaiva, steamboat, steamship, sukututkimus, tugboat
 
 ## Best fit cue profiles

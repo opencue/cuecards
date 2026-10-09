@@ -2,7 +2,7 @@
 title: "NeelAPatel/Claude-Mod-ConversationAtlas — Claude Code skill discovered by cue"
 description: "ConversationAtlas (Atlas): a live side pane for Claude Code that maps a long session — goal, path, detours, decisions, open questions, checkpoints and files. Ob"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-07
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: claude, claude-code, claude-code-mod, claude-code-mods, claude-code-plugin, mod
 
 ## Best fit cue profiles

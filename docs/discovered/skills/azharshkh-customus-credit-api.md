@@ -2,7 +2,7 @@
 title: "azharshkh/customus-credit-api — Claude Code skill discovered by cue"
 description: "AI Image to 3D Mesh Rigging and Roblox Asset API Cost Tracker 2026"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
 - ⭐ 68 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: 3d-generation, ai-agents, claude-code, claude-skill, customuse, game-assets, mcp, roblox
 
 ## Best fit cue profiles

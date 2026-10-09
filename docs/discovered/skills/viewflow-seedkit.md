@@ -2,21 +2,21 @@
 title: "viewflow/seedkit — Claude Code skill discovered by cue"
 description: "Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI."
 layout: page
-updated: 2026-08-22
+updated: 2026-10-09
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [viewflow/seedkit](https://github.com/viewflow/seedkit)
 
-**★ 78** · exceptional (score 15.2) · claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
+**★ 66** · exceptional (score 15.1) · claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
 
 > Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
-- ⭐ 78 stars
-- 🗓️ Last pushed: 2026-08-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.1 based on:
+- ⭐ 66 stars
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold, starter-template
 
 ## Best fit cue profiles
