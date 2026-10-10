@@ -2,7 +2,7 @@
 title: "inprojectspl/fastapi-test-design — Claude Code skill discovered by cue"
 description: "Claude Skill for designing robust, deterministic test strategies for FastAPI backends       with JWT auth and PostgreSQL, covering unit/integration boundaries, "
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, skill, backend]
 ---
 

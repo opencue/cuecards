@@ -2,22 +2,22 @@
 title: "powerofjinbo/phdtaketaketake — Claude Code skill discovered by cue"
 description: "Connection-first PhD advisor matcher — find the right advisor by network strength, not h-index. Quantitative 4.0 scoring across Connection, Publication, Experie"
 layout: page
-updated: 2026-07-04
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [powerofjinbo/phdtaketaketake](https://github.com/powerofjinbo/phdtaketaketake)
 
-**★ 29** · exceptional (score 15.7) · Python · academic-network, advisor-matching, ai-skill, claude-code, claude-skill
+**★ 33** · exceptional (score 16.7) · Python · academic-network, advisor-matching, ai-skill, claude-code, claude-skill
 
 > Connection-first PhD advisor matcher — find the right advisor by network strength, not h-index. Quantitative 4.0 scoring across Connection, Publication, Experience, GPA.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 29 stars
-- 🗓️ Last pushed: 2026-07-04
+- ⭐ 33 stars
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: academic-network, advisor-matching, ai-skill, claude-code, claude-skill, connection-graph, graduate-school, hep-ex, open-source, phd, phd-application, python, streamlit
 
 ## Best fit cue profiles

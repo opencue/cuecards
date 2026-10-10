@@ -2,7 +2,7 @@
 title: "gauravkr-io/cartridge-compass — Claude Code skill discovered by cue"
 description: "Gives AI coding agents a map of your Salesforce Commerce Cloud (SFCC) project: cartridge paths, hooks and site config. Claude Code plugin and CLI for SFRA, Site"
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, skill, medusa-dev]
 ---
 

@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="obenic-paper-translator"></a>
-## 💎 [obenic/paper-translator](https://github.com/obenic/paper-translator)
-
-**★ 0** · exceptional (score 15.5) · Python · tags: academic-papers, ai-agent, chinese-translation, claude-code, claude-skill
-
-Claude Code skill: 把英文论文 PDF 完整翻译成中文，图和正文一起交付（含漏图交叉校验），输出 Markdown + PDF
-
-✅ SKILL.md
-
-```bash
-cue skills add obenic/paper-translator --profile research
-```
 
 ---
 

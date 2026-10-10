@@ -1,22 +1,22 @@
 ---
 title: "vineetu/simple-host — Claude Code skill discovered by cue"
-description: "Deploy websites to simple-host.app from your coding agent (Claude Code, Codex, Cursor) — one-command install. Static hosting + a per-site backend: state, collec"
+description: "Describe a website to the AI you already use and it's online. Every site can save data (RSVPs, votes, orders) and use your own domain. Skills for Claude Code, C"
 layout: page
-updated: 2026-09-10
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vineetu/simple-host](https://github.com/vineetu/simple-host)
 
-**★ 1** · exceptional (score 9.8) · HTML · agent-skills, claude-code, claude-code-plugin, claude-plugin, claude-skill
+**★ 1** · exceptional (score 8.8) · Go · agent-skills, claude-code, claude-code-plugin, claude-plugin, claude-skill
 
-> Deploy websites to simple-host.app from your coding agent (Claude Code, Codex, Cursor) — one-command install. Static hosting + a per-site backend: state, collections, private pages, templates.
+> Describe a website to the AI you already use and it's online. Every site can save data (RSVPs, votes, orders) and use your own domain. Skills for Claude Code, Codex and more, plus a connector for ChatGPT, Claude and Grok.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-10
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, claude-plugin, claude-skill, mcp, static-hosting, website-deploy
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "eins78/meteoswiss-llm-tools — Claude Code skill discovered by cue"
 description: "Meteoswiss Open Data Tools for LLMs - MCP server and Agent Skill"
 layout: page
-updated: 2026-09-11
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [eins78/meteoswiss-llm-tools](https://github.com/eins78/meteoswiss-llm-tools)
 
-**★ 2** · exceptional (score 12.5) · HTML · claude-code, claude-skill, mcp-server, meteoswiss, open-data
+**★ 3** · exceptional (score 12.7) · HTML · claude-code, claude-skill, mcp-server, meteoswiss, open-data
 
 > Meteoswiss Open Data Tools for LLMs - MCP server and Agent Skill
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: claude-code, claude-skill, mcp-server, meteoswiss, open-data, switzerland, weather
 
 ## Best fit cue profiles

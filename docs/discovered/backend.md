@@ -1,56 +1,17 @@
 ---
 title: "Claude Code Skills for backend"
-description: "13 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 13 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="colibird-ai-local-mcp-releases"></a>
-## 💎 [colibird-ai/local-mcp-releases](https://github.com/colibird-ai/local-mcp-releases)
-
-**★ 66** · exceptional (score 17.6) · JavaScript · tags: ai-tools, chatgpt, claude, claude-code, codex
-
-201+ local tools for Claude, ChatGPT, Cursor & Grok — Mail, iMessage, Teams, Slack, WhatsApp, OneDrive, Google Drive, Zoom, Outlook, Office. Native macOS and Windows, runs on your computer, no API keys.
-
-```bash
-cue skills add colibird-ai/local-mcp-releases --profile backend
-```
-
----
-
-<a id="kitfunso-hippo-memory"></a>
-## 💎 [kitfunso/hippo-memory](https://github.com/kitfunso/hippo-memory)
-
-**★ 774** · exceptional (score 17.4) · TypeScript · tags: agent-memory, ai-agents, ai-memory, claude-code, claude-code-plugin
-
-Stop re-teaching your agent. Make your agent's memory work like a brain. Hippo is long-term memory for coding agents. It's a critical layer for your AI harness that connects across your different tools (Cursor, Claude Code, Codex). It keeps your proprietary data completely local, and it actually learns over time.
-
-```bash
-cue skills add kitfunso/hippo-memory --profile backend
-```
-
----
-
-<a id="viewflow-seedkit"></a>
-## 💎 [viewflow/seedkit](https://github.com/viewflow/seedkit)
-
-**★ 66** · exceptional (score 15.1) · tags: claude-code, claude-code-skill, django, django-cookiecutter, django-scaffold
-
-Build any Django app — from a SaaS to a dashboard to an API — from a single sentence. An agent skill that wires packages, splits dev/prod settings, and adds CI.
-
-```bash
-cue skills add viewflow/seedkit --profile backend
-```
 
 ---
 
@@ -82,19 +43,6 @@ cue skills add inprojectspl/fastapi-test-design --profile backend
 
 ---
 
-<a id="luiacuaniello-perspectivegraph"></a>
-## 💎 [luiacuaniello/perspectivegraph](https://github.com/luiacuaniello/perspectivegraph)
-
-**★ 9** · exceptional (score 9.8) · Go · tags: apache-age, appsec, attack-graph, attack-path, aws
-
-Open-source attack-path engine for AWS and Kubernetes: correlates your scanners into one graph and blocks the pull request that opens a route to your data.
-
-```bash
-cue skills add luiacuaniello/perspectivegraph --profile backend
-```
-
----
-
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
@@ -108,41 +56,28 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="kanap-hq-kanap"></a>
-## 💎 [kanap-hq/KANAP](https://github.com/kanap-hq/KANAP)
+<a id="burakdede-lorepack"></a>
+## 💎 [burakdede/lorepack](https://github.com/burakdede/lorepack)
 
-**★ 6** · exceptional (score 8.7) · TypeScript · tags: ai-agents, application-portfolio-management, budget-management, contract-management, enterprise-architecture
+**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, ai-agents, build-system, citations, claude-code
 
-KANAP, the open source IT governance platform: IT budget (OPEX/CAPEX), application landscape, project portfolio, tasks and documentation in one governed record, with Plaid, a built-in AI agent. AGPL v3. Self-host free, or hosted.
+Give AI agents cited, versioned context from your docs and spreadsheets. Build, diff and roll back what Claude Code, Codex and any MCP client read. Local-first, no API keys.
 
 ```bash
-cue skills add kanap-hq/KANAP --profile backend
+cue skills add burakdede/lorepack --profile backend
 ```
 
 ---
 
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+<a id="wirebench-wirebench"></a>
+## ✨ [wirebench/wirebench](https://github.com/wirebench/wirebench)
 
-**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+**★ 1** · strong (score 5.3) · TypeScript · tags: api-client, api-testing, desktop-app, electron, graphql
 
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
-
-```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="espetro-cauce"></a>
-## ✨ [espetro/cauce](https://github.com/espetro/cauce)
-
-**★ 1** · strong (score 6.3) · Rust · tags: ai-agents, exa, fastapi, mcp, mcp-server
-
-Local web-search proxy and cache for AI agents. Exa-compatible HTTP API + MCP, under 30MB RSS.
+Open-source desktop workbench for SOAP, REST, GraphQL, gRPC and WebSocket APIs — WSDL, OpenAPI and .proto import, WS-Security, environments, history, a CLI and an MCP server. Projects are plain files made for git. Electron + TypeScript.
 
 ```bash
-cue skills add espetro/cauce --profile backend
+cue skills add wirebench/wirebench --profile backend
 ```
 
 ---
@@ -156,19 +91,6 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile backend
-```
-
----
-
-<a id="jersyfi-hubtask"></a>
-## ✨ [Jersyfi/hubtask](https://github.com/Jersyfi/hubtask)
-
-**★ 0** · strong (score 5) · Go · tags: arc42, gdpr, golang, hexagonal-architecture, mcp-server
-
-A task manager that is genuinely yours — for a person, a household, a team, or a provider running it for thousands. Five levels from Hub to Activity; one image plus PostgreSQL; everything scriptable and agent-ready through REST and MCP; offline; backups, audit and privacy you can verify. Apache-2.0.
-
-```bash
-cue skills add Jersyfi/hubtask --profile backend
 ```
 
 ---

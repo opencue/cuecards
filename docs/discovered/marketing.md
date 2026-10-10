@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="fh-ndiritu-list-my-startup-skill"></a>
+## 💎 [Fh-Ndiritu/list-my-startup-skill](https://github.com/Fh-Ndiritu/list-my-startup-skill)
+
+**★ 3** · exceptional (score 10.7) · tags: backlinks, browser-automation, claude, claude-cowork, claude-skill
+
+A Claude Cowork skill that studies a startup from its URL — what it does, features, differentiators, competitors, proof points, pricing — then lists it across startup, software, AI-tool, and review directories. You handle logins/signups; Claude fills every field.
+
+✅ SKILL.md
+
+```bash
+cue skills add Fh-Ndiritu/list-my-startup-skill --profile marketing
+```
 
 ---
 

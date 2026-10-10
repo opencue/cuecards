@@ -2,21 +2,21 @@
 title: "elementalsouls/Claude-OSINT — Claude Code skill discovered by cue"
 description: "8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines "
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2793** · exceptional (score 11) · Python · agentskills, claude, skills
+**★ 2797** · exceptional (score 14) · Python · agentskills, claude, skills
 
 > 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
-- ⭐ 2793 stars
-- 🗓️ Last pushed: 2026-08-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+- ⭐ 2797 stars
+- 🗓️ Last pushed: 2026-10-09
 - 🏷️ Tags: agentskills, claude, skills
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Fh-Ndiritu/list-my-startup-skill — Claude Code skill discovered by cue"
 description: "A Claude Cowork skill that studies a startup from its URL — what it does, features, differentiators, competitors, proof points, pricing — then lists it across s"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-10
 tags: [claude-code, skill, marketing]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, marketing]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: backlinks, browser-automation, claude, claude-cowork, claude-skill, cowork, directory-submission, marketing, product-launch, seo, startup
 
 ## Best fit cue profiles

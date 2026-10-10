@@ -2,21 +2,21 @@
 title: "Muvon/octomind — Claude Code skill discovered by cue"
 description: "Open-source AI coding agent and agent runtime: one binary, any model, MCP-native. Runs in terminal, CI, or as a daemon."
 layout: page
-updated: 2026-08-30
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Muvon/octomind](https://github.com/Muvon/octomind)
 
-**★ 116** · exceptional (score 16.1) · Rust · agentic-ai, ai, ai-agents, ai-assistant, ai-developer
+**★ 155** · exceptional (score 16.3) · Rust · agentic-ai, ai, ai-agents, ai-assistant, ai-developer
 
 > Open-source AI coding agent and agent runtime: one binary, any model, MCP-native. Runs in terminal, CI, or as a daemon.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
-- ⭐ 116 stars
-- 🗓️ Last pushed: 2026-08-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.3 based on:
+- ⭐ 155 stars
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: agentic-ai, ai, ai-agents, ai-assistant, ai-developer, autonomous-agents, claude-code, cli, cli-app, code-assist-tool, code-assistant, developer-tools, development, mcp, mcp-server, rust, semantic-search, vibe-coding
 
 ## Best fit cue profiles

@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="feitangyuan-onetake"></a>
+## 💎 [feitangyuan/onetake](https://github.com/feitangyuan/onetake)
+
+**★ 2064** · exceptional (score 20) · Python · tags: agent-skill, animation, canvas, claude-skill, launch-video
+
+Motion films that never cut to the next slide: every beat grows out of the one before, one continuous camera, continuity measured by an oracle. Product launch films and feature demos, made with a coding agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add feitangyuan/onetake --profile creative-media
+```
 
 ---
 
@@ -46,7 +61,7 @@ cue skills add Sibhimanyu/rasanai --profile creative-media
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.8) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
+**★ 1** · strong (score 7.7) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
 
 yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JSON.
 
@@ -56,15 +71,15 @@ cue skills add TanaTTV/lyt --profile creative-media
 
 ---
 
-<a id="yassiinee-product-launch-motion-design-skill"></a>
-## ✨ [Yassiinee/product-launch-motion-design-skill](https://github.com/Yassiinee/product-launch-motion-design-skill)
+<a id="jorgut-architecture-design-skills"></a>
+## ✨ [Jorgut/architecture-design-skills](https://github.com/Jorgut/architecture-design-skills)
 
-**★ 0** · strong (score 7) · JavaScript · tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, gsap
+**★ 0** · strong (score 6) · tags: ai-visualization, architectural-programming, architecture-design, claude-code-skill
 
-Claude Code skill that makes showreel-grade product & feature launch videos in code: teasers, kinetic type, UI-motion hero reveals, feature drops, roundups, Reels and lit-3D showreels. HyperFrames + Three.js, exact brand colours, rebuilt UI, royalty-free music, verified MP4 + GIF.
+Agent skills for architectural programming and AI visualization prompts
 
 ```bash
-cue skills add Yassiinee/product-launch-motion-design-skill --profile creative-media
+cue skills add Jorgut/architecture-design-skills --profile creative-media
 ```
 
 ---

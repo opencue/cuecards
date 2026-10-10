@@ -1,27 +1,27 @@
 ---
 title: "Lu1sDV/skillsmd — Claude Code skill discovered by cue"
-description: "Personal skills collection for Claude"
+description: "Personal SKILLS.md collection"
 layout: page
-updated: 2026-09-02
-tags: [claude-code, skill, core]
+updated: 2026-10-10
+tags: [claude-code, skill, cybersecurity]
 ---
 
-# ✨ [Lu1sDV/skillsmd](https://github.com/Lu1sDV/skillsmd)
+# 💎 [Lu1sDV/skillsmd](https://github.com/Lu1sDV/skillsmd)
 
-**★ 2** · strong (score 7) · Ruby · claude-code-skill, claude-skills
+**★ 2** · exceptional (score 9) · CodeQL · agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic
 
-> Personal skills collection for Claude
+> Personal SKILLS.md collection
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-02
-- 🏷️ Tags: claude-code-skill, claude-skills
+- 🗓️ Last pushed: 2026-10-10
+- 🏷️ Tags: agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic, claude, claude-code, claude-code-plugins, claude-code-skill, claude-skills, codeql, cybersecurity, developer-tools, llm, prompt-engineering, security-auditing, skill-md, skills, static-analysis
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[cybersecurity](../cybersecurity.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add Lu1sDV/skillsmd --profile core
+cue skills add Lu1sDV/skillsmd --profile cybersecurity
 ```
 
 ## About

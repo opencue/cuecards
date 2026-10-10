@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="checkout-page-ecommerce-skills"></a>
-## 💎 [checkout-page/ecommerce-skills](https://github.com/checkout-page/ecommerce-skills)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, claude-skills
-
-19 agent skills for pricing, discounts, promotions, checkout UX, and conversion in online stores. Rules cite peer-reviewed studies by DOI.
-
-```bash
-cue skills add checkout-page/ecommerce-skills --profile medusa-dev
-```
 
 ---
 

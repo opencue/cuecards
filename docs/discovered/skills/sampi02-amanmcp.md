@@ -2,7 +2,7 @@
 title: "sampi02/amanmcp — Claude Code skill discovered by cue"
 description: "🛠️ Simplify codebase queries with AmanMCP—your local RAG solution. Enjoy zero config and privacy-first features for seamless searching."
 layout: page
-updated: 2026-07-03
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-03
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: bm25, claude-code, cursor, hnsw, hybrid-search, mcp, mcp-server, mlx, ollama, qwen3, rag, rrf, semantic-search, tree-sitter, vector-search
 
 ## Best fit cue profiles

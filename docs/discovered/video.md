@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -33,7 +33,7 @@ cue skills add zyziyun/reelfold --profile video
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.8) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
+**★ 1** · strong (score 7.7) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
 
 yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JSON.
 

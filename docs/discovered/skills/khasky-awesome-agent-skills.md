@@ -2,21 +2,21 @@
 title: "khasky/awesome-agent-skills — Claude Code skill discovered by cue"
 description: " Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-10
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
 
-**★ 11** · exceptional (score 12) · Python · agent, agent-skills, ai, ai-coding, ai-skill
+**★ 12** · exceptional (score 12.1) · Python · agent, agent-skills, ai, ai-coding, ai-skill
 
 >  Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 11 stars
-- 🗓️ Last pushed: 2026-10-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
+- ⭐ 12 stars
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: agent, agent-skills, ai, ai-coding, ai-skill, ai-slop, awesome, awesome-lists, chatgpt, claude, claude-code, claude-skill, code-review, codex, cursor, refactoring, security-audit, skills, vibe-coding
 
 ## Best fit cue profiles

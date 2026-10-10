@@ -2,21 +2,21 @@
 title: "oaustegard/claude-skills — Claude Code skill discovered by cue"
 description: "My collection of Claude skills"
 layout: page
-updated: 2026-06-15
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [oaustegard/claude-skills](https://github.com/oaustegard/claude-skills)
 
-**★ 125** · exceptional (score 12.6) · Python · claude, claude-skill, claude-skills
+**★ 150** · exceptional (score 12.7) · Python · claude, claude-skill, claude-skills
 
 > My collection of Claude skills
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
-- ⭐ 125 stars
-- 🗓️ Last pushed: 2026-06-15
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
+- ⭐ 150 stars
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: claude, claude-skill, claude-skills
 
 ## Best fit cue profiles

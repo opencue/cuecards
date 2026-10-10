@@ -2,7 +2,7 @@
 title: "NeelAPatel/Claude-Mod-ConversationAtlas — Claude Code skill discovered by cue"
 description: "ConversationAtlas (Atlas): a live side pane for Claude Code that maps a long session — goal, path, detours, decisions, open questions, checkpoints and files. Ob"
 layout: page
-updated: 2026-10-09
+updated: 2026-10-10
 tags: [claude-code, skill, core]
 ---
 
