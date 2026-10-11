@@ -1,31 +1,57 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+<a id="chrishan17-video-gaga"></a>
+## 💎 [chrishan17/video-gaga](https://github.com/chrishan17/video-gaga)
 
-**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 0** · exceptional (score 11) · HTML · tags: canvas, claude-skill, edge-tts, ffmpeg, motion-design
 
-Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+Claude skill: idea → motion-designed video rendered from HTML Canvas, with free Edge TTS narration and subtitles. Free & open source.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile video
+cue skills add chrishan17/video-gaga --profile video
+```
+
+---
+
+<a id="augustusw-audio-tldr-skill"></a>
+## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+
+**★ 39** · exceptional (score 10.2) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+
+Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+
+```bash
+cue skills add AugustusW/audio-tldr-skill --profile video
+```
+
+---
+
+<a id="umiyosh-motion-render"></a>
+## 💎 [umiyosh/motion-render](https://github.com/umiyosh/motion-render)
+
+**★ 0** · exceptional (score 8) · TypeScript · tags: agent-skills, claude, claude-code, claude-code-plugin, claude-code-skill
+
+Agent Skill and Claude Code plugin: turn a theme into an animated explainer video with Claude Motion, add narration (Gemini TTS) and BGM (Lyria), and render it to MP4.
+
+```bash
+cue skills add umiyosh/motion-render --profile video
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-03
+updated: 2026-10-11
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="noisefactorllc-shade-mcp"></a>
-## ✨ [noisefactorllc/shade-mcp](https://github.com/noisefactorllc/shade-mcp)
+<a id="1nc0gn30-nexus-3d-scene-studio"></a>
+## ✨ [1nc0gn30/nexus-3d-scene-studio](https://github.com/1nc0gn30/nexus-3d-scene-studio)
 
-**★ 0** · strong (score 7.5) · TypeScript · tags: developer-tools, glsl, mcp, mcp-server, model-context-protocol
+**★ 0** · strong (score 6) · Python · tags: 3d-graphics, 3d-modeling, cad, fastmcp, geometry
 
-MCP dev tools for Noisemaker and Portable shader effects
+Nexus 3D Studio - Mathematical Geometry Engine, WebGL Scene Exporter & MCP Server (design influenced by Material 3)
 
 ```bash
-cue skills add noisefactorllc/shade-mcp --profile threejs
+cue skills add 1nc0gn30/nexus-3d-scene-studio --profile threejs
 ```
 
 ---

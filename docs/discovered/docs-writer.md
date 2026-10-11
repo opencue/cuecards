@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="josbeir-carver"></a>
-## ✨ [josbeir/carver](https://github.com/josbeir/carver)
+<a id="dlbolshov-yandex-wiki-search-mcp"></a>
+## ✨ [dlbolshov/yandex-wiki-search-mcp](https://github.com/dlbolshov/yandex-wiki-search-mcp)
 
-**★ 1** · strong (score 6.3) · Rust · tags: adwaita, gnome, gtk4, markdown, mcp
+**★ 7** · strong (score 7.2) · Python · tags: ai, ai-tools, docker, fastmcp, knowledge-base
 
-Carver is a fast, native GNOME note-taking application built with Rust, GTK4, and Libadwaita
+MCP server for Yandex Wiki: full-text search, pages, comments, attachments and dynamic tables. 33 typed tools, server-side read-only mode, Docker-ready.
 
 ```bash
-cue skills add josbeir/carver --profile docs-writer
+cue skills add dlbolshov/yandex-wiki-search-mcp --profile docs-writer
 ```
 
 ---

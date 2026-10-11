@@ -2,7 +2,7 @@
 title: "aghasalim/groundcheck-mcp — Claude Code skill discovered by cue"
 description: "MCP connector that verifies a claim's grounding against reality (quotes, citations, code, repos, math) with no LLM in the verification path. Works in Claude and"
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-09
+- 🗓️ Last pushed: 2026-10-10
 - 🏷️ Tags: ai-safety, claude, fact-checking, gemini, hallucination-detection, llm-tools, mcp, model-context-protocol, python, verification
 
 ## Best fit cue profiles

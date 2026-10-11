@@ -1,24 +1,37 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="skyhook-io-radar"></a>
+## 💎 [skyhook-io/radar](https://github.com/skyhook-io/radar)
+
+**★ 3726** · exceptional (score 15) · Go · tags: ai-agents, argocd, cloud-native, fluxcd, gitops
+
+The missing open-source Kubernetes UI with a built-in MCP server for AI agents. See what's broken, why, and what changed. Issues, Topology, event timeline, Helm, GitOps, live service traffic, and cluster audits - all in one Go binary.
+
+```bash
+cue skills add skyhook-io/radar --profile backend
+```
+
+---
+
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 76** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 77** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -28,10 +41,23 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
+<a id="freepeak-leankg"></a>
+## 💎 [FreePeak/LeanKG](https://github.com/FreePeak/LeanKG)
+
+**★ 220** · exceptional (score 11.7) · Go · tags: ai-memory, codebase-memory, codebase-memory-mcp, concise-context, context-engineer
+
+LeanKG: Stop Burning Tokens. Start Coding Lean.
+
+```bash
+cue skills add FreePeak/LeanKG --profile backend
+```
+
+---
+
 <a id="inprojectspl-fastapi-test-design"></a>
 ## 💎 [inprojectspl/fastapi-test-design](https://github.com/inprojectspl/fastapi-test-design)
 
-**★ 1** · exceptional (score 9.8) · Python
+**★ 1** · exceptional (score 9.7) · Python
 
 Claude Skill for designing robust, deterministic test strategies for FastAPI backends       with JWT auth and PostgreSQL, covering unit/integration boundaries, fixture architecture,    and security-focused failure paths.
 
@@ -46,7 +72,7 @@ cue skills add inprojectspl/fastapi-test-design --profile backend
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -56,28 +82,41 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="burakdede-lorepack"></a>
-## 💎 [burakdede/lorepack](https://github.com/burakdede/lorepack)
+<a id="omkarjamadar-mcp-server-client-computer-use-ai-sdk"></a>
+## 💎 [Omkarjamadar/MCP-server-client-computer-use-ai-sdk](https://github.com/Omkarjamadar/MCP-server-client-computer-use-ai-sdk)
 
-**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, ai-agents, build-system, citations, claude-code
+**★ 3** · exceptional (score 8.2) · Rust · tags: ai-sdk, api-development, application-integration, backend-development, client-app
 
-Give AI agents cited, versioned context from your docs and spreadsheets. Build, diff and roll back what Claude Code, Codex and any MCP client read. Local-first, no API keys.
+🖥️ Control your computer effortlessly with our AI SDK, enabling seamless interaction with apps and websites without virtual machines or pixel-based issues.
 
 ```bash
-cue skills add burakdede/lorepack --profile backend
+cue skills add Omkarjamadar/MCP-server-client-computer-use-ai-sdk --profile backend
 ```
 
 ---
 
-<a id="wirebench-wirebench"></a>
-## ✨ [wirebench/wirebench](https://github.com/wirebench/wirebench)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 1** · strong (score 5.3) · TypeScript · tags: api-client, api-testing, desktop-app, electron, graphql
+**★ 12** · exceptional (score 8) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-Open-source desktop workbench for SOAP, REST, GraphQL, gRPC and WebSocket APIs — WSDL, OpenAPI and .proto import, WS-Security, environments, history, a CLI and an MCP server. Projects are plain files made for git. Electron + TypeScript.
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add wirebench/wirebench --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="dlbolshov-yandex-wiki-search-mcp"></a>
+## ✨ [dlbolshov/yandex-wiki-search-mcp](https://github.com/dlbolshov/yandex-wiki-search-mcp)
+
+**★ 7** · strong (score 7.2) · Python · tags: ai, ai-tools, docker, fastmcp, knowledge-base
+
+MCP server for Yandex Wiki: full-text search, pages, comments, attachments and dynamic tables. 33 typed tools, server-side read-only mode, Docker-ready.
+
+```bash
+cue skills add dlbolshov/yandex-wiki-search-mcp --profile backend
 ```
 
 ---

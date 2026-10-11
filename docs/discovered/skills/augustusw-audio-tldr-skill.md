@@ -2,7 +2,7 @@
 title: "AugustusW/audio-tldr-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill: summarize videos, audio & podcasts with local cached transcription"
 layout: page
-updated: 2026-10-06
+updated: 2026-10-11
 tags: [claude-code, skill, video]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
 - ⭐ 39 stars
-- 🗓️ Last pushed: 2026-10-06
+- 🗓️ Last pushed: 2026-10-11
 - 🏷️ Tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text, summarization, transcription, whisper, youtube
 
 ## Best fit cue profiles

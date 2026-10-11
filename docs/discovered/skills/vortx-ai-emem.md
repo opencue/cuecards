@@ -1,24 +1,23 @@
 ---
 title: "Vortx-AI/emem — Claude Code skill discovered by cue"
-description: "The shared, verifiable world memory layer for multi-agent systems."
+description: "emem is the machine-maintained, external memory of our physical world a.k.a. Satellites for AI. "
 layout: page
-updated: 2026-08-19
+updated: 2026-10-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Vortx-AI/emem](https://github.com/Vortx-AI/emem)
 
-**★ 52** · exceptional (score 18.9) · Rust · a2a-protocol, ai-agents, earth-observation, long-running-agents, long-term-memory
+**★ 66** · exceptional (score 11.1) · Rust · agent-collaboration, agent-communication, agent-context, agent-coordination, agent-interoperability
 
-> The shared, verifiable world memory layer for multi-agent systems.
+> emem is the machine-maintained, external memory of our physical world a.k.a. Satellites for AI. 
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.9 based on:
-- ✅ Contains SKILL.md
-- ⭐ 52 stars
-- 🗓️ Last pushed: 2026-08-19
-- 🏷️ Tags: a2a-protocol, ai-agents, earth-observation, long-running-agents, long-term-memory, mcp-server, model-context-protocol, rust, world-models
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
+- ⭐ 66 stars
+- 🗓️ Last pushed: 2026-10-11
+- 🏷️ Tags: agent-collaboration, agent-communication, agent-context, agent-coordination, agent-interoperability, ai-agents, content-addressed, cryptography, deterministic, deterministic-ai, ed25519, gemini-cli-extension, llm-tools, long-term-memory, mcp-server, provenance, rust, transparency-log, verifiable-memory
 
 ## Best fit cue profiles
 

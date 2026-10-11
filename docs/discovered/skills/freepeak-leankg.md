@@ -2,21 +2,21 @@
 title: "FreePeak/LeanKG — Claude Code skill discovered by cue"
 description: "LeanKG: Stop Burning Tokens. Start Coding Lean."
 layout: page
-updated: 2026-07-29
+updated: 2026-10-11
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [FreePeak/LeanKG](https://github.com/FreePeak/LeanKG)
 
-**★ 213** · exceptional (score 11.6) · Rust · ai-memory, codebase-memory, codebase-memory-mcp, concise-context, context-engineer
+**★ 220** · exceptional (score 11.7) · Go · ai-memory, codebase-memory, codebase-memory-mcp, concise-context, context-engineer
 
 > LeanKG: Stop Burning Tokens. Start Coding Lean.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
-- ⭐ 213 stars
-- 🗓️ Last pushed: 2026-07-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
+- ⭐ 220 stars
+- 🗓️ Last pushed: 2026-10-11
 - 🏷️ Tags: ai-memory, codebase-memory, codebase-memory-mcp, concise-context, context-engineer, graph-database, graph-engineer, knowledge-graph, knowlege-base, lean-code, lean-context, lean-token, mcp, mcp-server, memory-ai-agent, saving-token, second-brain, token
 
 ## Best fit cue profiles

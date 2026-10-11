@@ -1,59 +1,46 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="feitangyuan-onetake"></a>
-## 💎 [feitangyuan/onetake](https://github.com/feitangyuan/onetake)
+<a id="jorgut-folio"></a>
+## 💎 [Jorgut/folio](https://github.com/Jorgut/folio)
 
-**★ 2064** · exceptional (score 20) · Python · tags: agent-skill, animation, canvas, claude-skill, launch-video
+**★ 3** · exceptional (score 13.2) · HTML · tags: claude-code-skill, design-intelligence, html-ppt, html-slides, html-to-pptx
 
-Motion films that never cut to the next slide: every beat grows out of the one before, one continuous camera, continuity measured by an oracle. Product launch films and feature demos, made with a coding agent.
-
-✅ SKILL.md
-
-```bash
-cue skills add feitangyuan/onetake --profile creative-media
-```
-
----
-
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
-
-**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
-
-Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+Folio — Design Intelligence Engine. Magazine-style presentation rendering with multi-format export: HTML Slides, PPTX, PDF, Figma. Structured data → template-driven layout → pixel-perfect output.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile creative-media
+cue skills add Jorgut/folio --profile creative-media
 ```
 
 ---
 
-<a id="sibhimanyu-rasanai"></a>
-## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
+<a id="chrishan17-video-gaga"></a>
+## 💎 [chrishan17/video-gaga](https://github.com/chrishan17/video-gaga)
 
-**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
+**★ 0** · exceptional (score 11) · HTML · tags: canvas, claude-skill, edge-tts, ffmpeg, motion-design
 
-AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
+Claude skill: idea → motion-designed video rendered from HTML Canvas, with free Edge TTS narration and subtitles. Free & open source.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Sibhimanyu/rasanai --profile creative-media
+cue skills add chrishan17/video-gaga --profile creative-media
 ```
 
 ---
@@ -67,19 +54,6 @@ yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any
 
 ```bash
 cue skills add TanaTTV/lyt --profile creative-media
-```
-
----
-
-<a id="jorgut-architecture-design-skills"></a>
-## ✨ [Jorgut/architecture-design-skills](https://github.com/Jorgut/architecture-design-skills)
-
-**★ 0** · strong (score 6) · tags: ai-visualization, architectural-programming, architecture-design, claude-code-skill
-
-Agent skills for architectural programming and AI visualization prompts
-
-```bash
-cue skills add Jorgut/architecture-design-skills --profile creative-media
 ```
 
 ---

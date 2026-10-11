@@ -2,7 +2,7 @@
 title: "pathmodeio/claude-plugin — Claude Code skill discovered by cue"
 description: "Pathmode plugin for Claude Code — MCP server + intent-engineering skill pack. Install: /plugin marketplace add pathmodeio/claude-plugin"
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-10-11
 - 🏷️ Tags: agent-skills, claude-agent-skill, claude-code-plugins, claude-code-skill, claude-code-skills, claude-skill, intent-engineering, mcp
 
 ## Best fit cue profiles

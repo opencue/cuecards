@@ -2,19 +2,19 @@
 title: "inprojectspl/fastapi-test-design — Claude Code skill discovered by cue"
 description: "Claude Skill for designing robust, deterministic test strategies for FastAPI backends       with JWT auth and PostgreSQL, covering unit/integration boundaries, "
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [inprojectspl/fastapi-test-design](https://github.com/inprojectspl/fastapi-test-design)
 
-**★ 1** · exceptional (score 9.8) · Python
+**★ 1** · exceptional (score 9.7) · Python
 
 > Claude Skill for designing robust, deterministic test strategies for FastAPI backends       with JWT auth and PostgreSQL, covering unit/integration boundaries, fixture architecture,    and security-focused failure paths.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-08

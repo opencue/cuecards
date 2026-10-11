@@ -2,7 +2,7 @@
 title: "LukeTsengTW/windows-powershell-agent-skill — Claude Code skill discovered by cue"
 description: "A portable Agent Skill for generating safe, valid, and version-aware native Windows PowerShell commands across AI coding agents."
 layout: page
-updated: 2026-10-09
+updated: 2026-10-11
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-09
+- 🗓️ Last pushed: 2026-10-11
 - 🏷️ Tags: agent-skills, ai-agents, automation, claude-code, claude-code-skill, codex, codex-skill, coding-agents, command-line, developer-tools, gemini-cli, github-copilot, powershell, powershell-5, powershell-7, shell-scripting, terminal, windows, windows-powershell
 
 ## Best fit cue profiles

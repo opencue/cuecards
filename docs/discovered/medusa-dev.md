@@ -1,24 +1,37 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
+## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
+
+**★ 6** · exceptional (score 11.1) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
+
+Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
+
+```bash
+cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
+```
+
+---
+
 <a id="gauravkr-io-cartridge-compass"></a>
 ## ✨ [gauravkr-io/cartridge-compass](https://github.com/gauravkr-io/cartridge-compass)
 
-**★ 1** · strong (score 6.2) · JavaScript · tags: ai-agents, b2c-cli, b2c-commerce, claude, claude-code
+**★ 1** · strong (score 6.1) · JavaScript · tags: ai-agents, b2c-cli, b2c-commerce, claude, claude-code
 
 Gives AI coding agents a map of your Salesforce Commerce Cloud (SFCC) project: cartridge paths, hooks and site config. Claude Code plugin and CLI for SFRA, SiteGenesis, SCAPI and headless.
 

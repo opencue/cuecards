@@ -1,24 +1,24 @@
 ---
 title: "BryceEWatson/honestweek — Claude Code skill discovered by cue"
-description: "Turn a week of your AI coding sessions into an honest, shareable work report — verified against git, private by default. Spec-first; built from the issues."
+description: "Find, replay and check your Claude Code and Codex sessions on your own machine, and turn a week of them into an honest, git-checked summary."
 layout: page
-updated: 2026-06-24
+updated: 2026-10-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [BryceEWatson/honestweek](https://github.com/BryceEWatson/honestweek)
 
-**★ 0** · exceptional (score 13) · JavaScript · changelog, claude-code, claude-code-plugin, claude-plugin, claude-skill
+**★ 1** · exceptional (score 14.8) · JavaScript · ai-agents, claude-code, claude-code-plugin, claude-plugin, claude-skill
 
-> Turn a week of your AI coding sessions into an honest, shareable work report — verified against git, private by default. Spec-first; built from the issues.
+> Find, replay and check your Claude Code and Codex sessions on your own machine, and turn a week of them into an honest, git-checked summary.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-24
-- 🏷️ Tags: changelog, claude-code, claude-code-plugin, claude-plugin, claude-skill, git, privacy, weekly-summary
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-11
+- 🏷️ Tags: ai-agents, claude-code, claude-code-plugin, claude-plugin, claude-skill, codex, developer-tools, git, local-first, privacy, session-replay, weekly-summary
 
 ## Best fit cue profiles
 

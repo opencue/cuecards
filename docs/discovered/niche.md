@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="eziwork-eziwork-roomtour-shorts"></a>
-## 💎 [eziwork/eziwork-roomtour-shorts](https://github.com/eziwork/eziwork-roomtour-shorts)
+<a id="daizedong-daily-hotspots"></a>
+## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
 
-**★ 0** · exceptional (score 8.5) · JavaScript · tags: claude-code-skill, codex-skill, hyperframes, korean, real-estate
+**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, automation, claude
 
-Codex용 부동산 룸투어 릴스 스킬 · 버전 4종·무료 AI 내레이션·배경음 · EZIWORK
-
-✅ SKILL.md
+每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
 
 ```bash
-cue skills add eziwork/eziwork-roomtour-shorts --profile niche
+cue skills add DaizeDong/daily-hotspots --profile niche
 ```
 
 ---

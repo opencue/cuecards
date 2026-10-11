@@ -2,7 +2,7 @@
 title: "Omkarjamadar/MCP-server-client-computer-use-ai-sdk — Claude Code skill discovered by cue"
 description: "🖥️ Control your computer effortlessly with our AI SDK, enabling seamless interaction with apps and websites without virtual machines or pixel-based issues."
 layout: page
-updated: 2026-07-18
+updated: 2026-10-11
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-07-18
+- 🗓️ Last pushed: 2026-10-11
 - 🏷️ Tags: ai-sdk, api-development, application-integration, backend-development, client-app, computer-vision, cross-platform, data-processing, frontend-development, machine-learning, mcp-server, programming-tools, real-time-communication, software-development, user-interface
 
 ## Best fit cue profiles

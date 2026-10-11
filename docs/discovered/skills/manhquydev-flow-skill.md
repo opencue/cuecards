@@ -1,23 +1,23 @@
 ---
 title: "manhquydev/flow-skill — Claude Code skill discovered by cue"
-description: "/flow - gated build harness skill: idea -> real done-evidence via honest gates, a durable knowledge loop, and a mechanical usage log closed into a feedback loop"
+description: "/flow gated build harness: idea → real done-evidence via honest gates. Site: https://flowskill.io.vn — standalone skill for Claude Code, Codex, Cursor, Antigrav"
 layout: page
-updated: 2026-07-18
+updated: 2026-10-11
 tags: [claude-code, skill, python]
 ---
 
-# ✨ [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
+# 💎 [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
 
-**★ 1** · strong (score 7.3) · Shell · ai-agents, bash, build-pipeline, claude-code, claude-skill
+**★ 8** · exceptional (score 11.8) · Shell · ai-agents, bash, build-pipeline, claude-code, claude-skill
 
-> /flow - gated build harness skill: idea -> real done-evidence via honest gates, a durable knowledge loop, and a mechanical usage log closed into a feedback loop (recall + propose + prune). Cross-vendor agent ladder (ck: + bmad + Codex + Antigravity/Gemini-3). Portable: Claude Code, Codex CLI, Antigravity. bash+python3. MIT.
+> /flow gated build harness: idea → real done-evidence via honest gates. Site: https://flowskill.io.vn — standalone skill for Claude Code, Codex, Cursor, Antigravity. bash+python3. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-18
-- 🏷️ Tags: ai-agents, bash, build-pipeline, claude-code, claude-skill, codex, developer-tools, gated-workflow, openai
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-10-11
+- 🏷️ Tags: ai-agents, bash, build-pipeline, claude-code, claude-skill, codex, developer-tools, documentation, gated-workflow, openai, website
 
 ## Best fit cue profiles
 

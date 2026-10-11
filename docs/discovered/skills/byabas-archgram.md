@@ -2,21 +2,21 @@
 title: "byAbas/archgram — Claude Code skill discovered by cue"
 description: "Clean, minimal architecture diagrams from a spec. Write nodes and edges in JSON or YAML; archgram lays them out, routes the lines and draws them with animated f"
 layout: page
-updated: 2026-10-10
+updated: 2026-10-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [byAbas/archgram](https://github.com/byAbas/archgram)
 
-**★ 4** · exceptional (score 11.3) · Rust · agent-skill, ai-agents, animated, architecture-diagram, c4-model
+**★ 6** · exceptional (score 11.5) · Rust · agent-skill, ai-agents, animated, architecture-diagram, c4-model
 
 > Clean, minimal architecture diagrams from a spec. Write nodes and edges in JSON or YAML; archgram lays them out, routes the lines and draws them with animated flows, in light and dark.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-10
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-10-11
 - 🏷️ Tags: agent-skill, ai-agents, animated, architecture-diagram, c4-model, claude-code, claude-code-skill, cli, dark-mode, diagrams-as-code, readme, rust, svg, system-design, yaml
 
 ## Best fit cue profiles
