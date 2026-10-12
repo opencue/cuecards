@@ -2,7 +2,7 @@
 title: "Tuteliq/mcp — Claude Code skill discovered by cue"
 description: "MCP server with 41 AI-powered tools for child safety, fraud detection, and content moderation. Detects bullying, grooming, sextortion, romance scams, social eng"
 layout: page
-updated: 2026-09-21
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-21
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: ai, bullying-detection, child-safety, claude, content-moderation, cursor, fraud-detection, gdpr, grooming-detection, kosa, mcp, mcp-apps, mcp-server, model-context-protocol, multilingual, online-safety, safety, sextortion, tools, trust-safety
 
 ## Best fit cue profiles

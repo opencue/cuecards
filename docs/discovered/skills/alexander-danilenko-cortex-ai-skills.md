@@ -2,21 +2,21 @@
 title: "alexander-danilenko/cortex-ai-skills — Claude Code skill discovered by cue"
 description: "Opinionated AI Coding Skills for AI coding agents"
 layout: page
-updated: 2026-06-22
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [alexander-danilenko/cortex-ai-skills](https://github.com/alexander-danilenko/cortex-ai-skills)
 
-**★ 14** · exceptional (score 11.1) · Shell · ai-skill, ai-skills, claude-code, claude-code-skill, claude-code-skills
+**★ 16** · exceptional (score 11.3) · Shell · ai-skill, ai-skills, claude-code, claude-code-skill, claude-code-skills
 
 > Opinionated AI Coding Skills for AI coding agents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
-- ⭐ 14 stars
-- 🗓️ Last pushed: 2026-06-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
+- ⭐ 16 stars
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: ai-skill, ai-skills, claude-code, claude-code-skill, claude-code-skills, cursor, cursor-skill, cursor-skills, opencode-skill, opencode-skills
 
 ## Best fit cue profiles

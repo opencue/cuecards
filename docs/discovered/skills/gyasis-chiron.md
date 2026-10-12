@@ -2,21 +2,21 @@
 title: "gyasis/chiron — Claude Code skill discovered by cue"
 description: "Universal LLM-powered lesson generator for solo learners across code, medicine, and language. Self-contained interactive lesson HTML. Q8 architecture: parent Cl"
 layout: page
-updated: 2026-07-18
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [gyasis/chiron](https://github.com/gyasis/chiron)
+# 💎 [gyasis/chiron](https://github.com/gyasis/chiron)
 
-**★ 0** · strong (score 7) · HTML · anki, claude-code, claude-skill, interactive-html, language-learning
+**★ 1** · exceptional (score 8.8) · HTML · anki, claude-code, claude-skill, interactive-html, language-learning
 
 > Universal LLM-powered lesson generator for solo learners across code, medicine, and language. Self-contained interactive lesson HTML. Q8 architecture: parent Claude Code agent runs all text-LLM steps; built as a Claude Code skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: anki, claude-code, claude-skill, interactive-html, language-learning, lesson-generator, llm-pipeline, medical-education, pedagogy, single-file-app, spaced-repetition, typescript
 
 ## Best fit cue profiles

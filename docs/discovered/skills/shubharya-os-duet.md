@@ -2,21 +2,21 @@
 title: "shubharya-os/duet — Claude Code skill discovered by cue"
 description: "Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, G"
 layout: page
-updated: 2026-09-25
+updated: 2026-10-12
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
 
-**★ 1** · strong (score 7.3) · Python · agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
+**★ 2** · strong (score 7.5) · Python · agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
 
 > Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt, claude, claude-code, claude-code-skill, code-review, codex, codex-cli, cursor, developer-tools, gemini-cli, llm-agents, multi-agent, openai, opencode, pair-programming, tdd
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "mxiaonian/ZiPingEightChar — Claude Code skill discovered by cue"
 description: "子平八字排盘与《子平真诠》格局法解释 Skill · 公众授权版（1000 次，2026-12-31 到期）"
 layout: page
-updated: 2026-10-10
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: claude-code-skill, claude-skills
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "aghasalim/groundcheck-mcp — Claude Code skill discovered by cue"
 description: "MCP connector that verifies a claim's grounding against reality (quotes, citations, code, repos, math) with no LLM in the verification path. Works in Claude and"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 

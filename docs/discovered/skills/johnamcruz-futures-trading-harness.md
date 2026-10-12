@@ -2,7 +2,7 @@
 title: "johnamcruz/futures-trading-harness — Claude Code skill discovered by cue"
 description: "LLM-agnostic agent harness for trading futures on Claude Code, Codex, or Qwen Code, with a risk-gated order path and pluggable broker MCP servers (TopstepX defa"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-11
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: algotrader, harness-engineering, large-language-models, machine-learning
 
 ## Best fit cue profiles

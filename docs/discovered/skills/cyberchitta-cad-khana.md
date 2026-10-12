@@ -1,8 +1,8 @@
 ---
 title: "cyberchitta/cad-khana — Claude Code skill discovered by cue"
-description: "Claude Code skill and diagnostics-first Build123d wrapper for LLM-driven CAD iteration."
+description: "Agent-first assembly and test layer for build123d, for designing 3D-printable mechanisms."
 layout: page
-updated: 2026-10-10
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 18** · exceptional (score 11.3) · Python · 3d-printing, build123d, cad, claude-code, claude-skill
 
-> Claude Code skill and diagnostics-first Build123d wrapper for LLM-driven CAD iteration.
+> Agent-first assembly and test layer for build123d, for designing 3D-printable mechanisms.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ⭐ 18 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: 3d-printing, build123d, cad, claude-code, claude-skill, parametric-cad
 
 ## Best fit cue profiles

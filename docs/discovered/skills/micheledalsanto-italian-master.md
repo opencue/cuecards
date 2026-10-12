@@ -1,23 +1,23 @@
 ---
 title: "micheledalsanto/italian-master — Claude Code skill discovered by cue"
-description: "Skill per Claude che scrive, riscrive e corregge testi in italiano naturale, contro l'AI slop. Claude skill for natural Italian writing."
+description: "L'italiano di chi scrive per mestiere, genere per genere e con i soli fatti ricevuti. Agent skill for Claude and Codex: natural Italian writing, measured on rea"
 layout: page
-updated: 2026-10-09
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [micheledalsanto/italian-master](https://github.com/micheledalsanto/italian-master)
 
-**★ 0** · exceptional (score 8) · Python · agent-skills, ai-slop, claude-code, claude-code-plugin, claude-skill
+**★ 0** · exceptional (score 10.5) · Python · agent-skill, agent-skills, ai-slop, claude, claude-code
 
-> Skill per Claude che scrive, riscrive e corregge testi in italiano naturale, contro l'AI slop. Claude skill for natural Italian writing.
+> L'italiano di chi scrive per mestiere, genere per genere e con i soli fatti ricevuti. Agent skill for Claude and Codex: natural Italian writing, measured on real Italian texts.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-09
-- 🏷️ Tags: agent-skills, ai-slop, claude-code, claude-code-plugin, claude-skill, copywriting, grammar, italian, italiano, scrittura, style-guide, writing
+- 🗓️ Last pushed: 2026-10-12
+- 🏷️ Tags: agent-skill, agent-skills, ai-slop, claude, claude-code, claude-code-plugin, claude-skill, codex, copywriting, grammar, italian, italian-language, italiano, proofreading, scrittura, style-guide, writing, writing-tools
 
 ## Best fit cue profiles
 

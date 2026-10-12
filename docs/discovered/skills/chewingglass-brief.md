@@ -2,7 +2,7 @@
 title: "ChewingGlass/brief — Claude Code skill discovered by cue"
 description: "Review a PR or branch in VS Code as its diff reordered along the call path. A Claude Code plugin with a VS Code extension."
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 

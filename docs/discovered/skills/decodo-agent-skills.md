@@ -2,7 +2,7 @@
 title: "Decodo/agent-skills — Claude Code skill discovered by cue"
 description: "Agent skills that teach AI coding agents to use Decodo for web scraping"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: agent-skills, ai-agents, anthropic-skills, claude-code, claude-code-skill, claude-skills, data-extraction, web-scraping
 
 ## Best fit cue profiles

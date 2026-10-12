@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 <a id="manhquydev-flow-skill"></a>
 ## 💎 [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
 
-**★ 8** · exceptional (score 11.8) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
+**★ 9** · exceptional (score 11.9) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
 
 /flow gated build harness: idea → real done-evidence via honest gates. Site: https://flowskill.io.vn — standalone skill for Claude Code, Codex, Cursor, Antigravity. bash+python3. MIT.
 

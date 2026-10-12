@@ -1,24 +1,24 @@
 ---
 title: "jianruntech/geo-score — Claude Code skill discovered by cue"
-description: "Open, versioned rubric for Generative Engine Optimization — score any site 0–100 on whether AI answer engines can find, parse, trust and cite it. Publishes the "
+description: "Can AI engines cite your site, and do they? Free 0–100 readiness score on an open GEO rubric, plus ask and weekly citation tracking via OpenAI, Perplexity, Gemi"
 layout: page
-updated: 2026-09-08
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [jianruntech/geo-score](https://github.com/jianruntech/geo-score)
 
-**★ 0** · exceptional (score 13) · aeo, ai-search, ai-visibility, chatgpt, claude-code
+**★ 449** · exceptional (score 20) · Python · aeo, ai-search, ai-visibility, answer-engine-optimization, chatgpt
 
-> Open, versioned rubric for Generative Engine Optimization — score any site 0–100 on whether AI answer engines can find, parse, trust and cite it. Publishes the AIV (AI Visibility) score.
+> Can AI engines cite your site, and do they? Free 0–100 readiness score on an open GEO rubric, plus ask and weekly citation tracking via OpenAI, Perplexity, Gemini, Anthropic and OpenRouter with your own keys. Zero dependencies; CLI, GitHub Action and MCP server.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-08
-- 🏷️ Tags: aeo, ai-search, ai-visibility, chatgpt, claude-code, claude-skill, generative-engine-optimization, geo, llms-txt, perplexity, schema-org, seo
+- ⭐ 449 stars
+- 🗓️ Last pushed: 2026-10-12
+- 🏷️ Tags: aeo, ai-search, ai-visibility, answer-engine-optimization, chatgpt, claude-code, claude-skill, cli, generative-engine-optimization, geo, github-action, llm, llm-citations, llms-txt, mcp-server, perplexity, rubric, seo, site-audit, structured-data
 
 ## Best fit cue profiles
 

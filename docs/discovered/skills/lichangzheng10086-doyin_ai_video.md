@@ -2,7 +2,7 @@
 title: "LiChangZheng10086/doyin_ai_video — Claude Code skill discovered by cue"
 description: "抖创工坊：本地 Electron 工具，抖音视频无水印下载 + Whisper 转录 + AI 洗稿 + 分镜 + HyperFrames 竖屏成片 + Claude Skill 蒸馏"
 layout: page
-updated: 2026-10-10
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 25 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: ai-video, asr, claude-skill, content-creation, douyin, electron, hyperframes, react, tiktok, typescript, whisper
 
 ## Best fit cue profiles

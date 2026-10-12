@@ -2,7 +2,7 @@
 title: "philpaz/recusal — Claude Code skill discovered by cue"
 description: "Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe o"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance, ai-safety, audit-log, ci, claude, claude-code, devsecops, github-actions, guardrails, hooks, langchain, langgraph, llm, llm-security, python
 
 ## Best fit cue profiles

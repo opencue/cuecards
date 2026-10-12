@@ -2,7 +2,7 @@
 title: "pepperonas/path-links — Claude Code skill discovered by cue"
 description: "Claude Code mod: clickable paths in replies — click a folder to open it in Finder, click the file name to open the file"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, skill, core]
 ---
 

@@ -1,57 +1,72 @@
 ---
 title: "Claude Code Skills for video"
-description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="chrishan17-video-gaga"></a>
-## 💎 [chrishan17/video-gaga](https://github.com/chrishan17/video-gaga)
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 0** · exceptional (score 11) · HTML · tags: canvas, claude-skill, edge-tts, ffmpeg, motion-design
+**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
 
-Claude skill: idea → motion-designed video rendered from HTML Canvas, with free Edge TTS narration and subtitles. Free & open source.
+Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add chrishan17/video-gaga --profile video
+cue skills add zyziyun/reelfold --profile video
 ```
 
 ---
 
-<a id="augustusw-audio-tldr-skill"></a>
-## 💎 [AugustusW/audio-tldr-skill](https://github.com/AugustusW/audio-tldr-skill)
+<a id="lemomo-ai-lemo-opuscar"></a>
+## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
 
-**★ 39** · exceptional (score 10.2) · Python · tags: ai-agents, claude-code, claude-skill, podcast, speech-to-text
+**★ 2002** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
 
-Claude Code skill: summarize videos, audio & podcasts with local cached transcription
+Claude Code skill for short films with no video model: 43 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98). By Lemomo. · Opus5.5 x 43 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南
 
 ```bash
-cue skills add AugustusW/audio-tldr-skill --profile video
+cue skills add lemomo-ai/lemo-opuscar --profile video
 ```
 
 ---
 
-<a id="umiyosh-motion-render"></a>
-## 💎 [umiyosh/motion-render](https://github.com/umiyosh/motion-render)
+<a id="rakaga66-hojas-studio"></a>
+## 💎 [rakaga66/hojas-studio](https://github.com/rakaga66/hojas-studio)
 
-**★ 0** · exceptional (score 8) · TypeScript · tags: agent-skills, claude, claude-code, claude-code-plugin, claude-code-skill
+**★ 0** · exceptional (score 13) · HTML · tags: ai-video-editing, arabic, captions, claude-code, claude-skill
 
-Agent Skill and Claude Code plugin: turn a theme into an animated explainer video with Claude Motion, add narration (Gemini TTS) and BGM (Lyria), and render it to MP4.
+Claude Code skill that edits Arabic talking-head videos: smart cuts, word-timed Arabic captions, explainer cards, then a browser timeline to fine-tune and export. Runs locally, no API keys.
+
+✅ SKILL.md
 
 ```bash
-cue skills add umiyosh/motion-render --profile video
+cue skills add rakaga66/hojas-studio --profile video
+```
+
+---
+
+<a id="gustavomenani-editing-gameplay-montages"></a>
+## 💎 [gustavomenani/editing-gameplay-montages](https://github.com/gustavomenani/editing-gameplay-montages)
+
+**★ 16** · exceptional (score 9.4) · Python · tags: claude-code, claude-skill, ffmpeg, montage, rife
+
+Skill open source do Claude Code que transforma clipes de Valorant/FPS e uma música num edit no beat para TikTok: kills no beat, slow motion com RIFE, transições, letra na tela. Tutorial em português.
+
+```bash
+cue skills add gustavomenani/editing-gameplay-montages --profile video
 ```
 
 ---
@@ -59,7 +74,7 @@ cue skills add umiyosh/motion-render --profile video
 <a id="tanattv-lyt"></a>
 ## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
 
-**★ 1** · strong (score 7.7) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
+**★ 1** · strong (score 7.6) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
 
 yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JSON.
 

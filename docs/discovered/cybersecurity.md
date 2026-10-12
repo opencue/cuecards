@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-11
+updated: 2026-10-12
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="aliksir-claude-code-skill-security-check"></a>
+## 💎 [aliksir/claude-code-skill-security-check](https://github.com/aliksir/claude-code-skill-security-check)
+
+**★ 4** · exceptional (score 15.3) · JavaScript · tags: claude-code, claude-code-skill, security, skill, static-analysis
+
+Security audit skill for Claude Code community skills. Scans for prompt injection, data exfiltration, permission bypass, dangerous commands, and supply chain risks.
+
+✅ SKILL.md
+
+```bash
+cue skills add aliksir/claude-code-skill-security-check --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2800** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2805** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -44,7 +59,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="hybridindie-comfyui-mcp"></a>
 ## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
-**★ 3** · exceptional (score 8.2) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+**★ 3** · exceptional (score 8.1) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
 
 Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
 
