@@ -2,21 +2,21 @@
 title: "otal-labs/nexul — Claude Code skill discovered by cue"
 description: "Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through t"
 layout: page
-updated: 2026-09-30
+updated: 2026-10-13
 tags: [claude-code, skill, backend, docs-writer]
 ---
 
 # ✨ [otal-labs/nexul](https://github.com/otal-labs/nexul)
 
-**★ 3** · strong (score 6.7) · Go · agents, ai-agents, ci-cd, deployment, devops
+**★ 5** · strong (score 6.9) · Go · agents, ai-agents, ci-cd, deployment, devops
 
 > Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: agents, ai-agents, ci-cd, deployment, devops, docker, documentation, golang, issue-tracker, mcp, mcp-server, open-source, paas, project-management, react, runners, self-hosted, self-hosting, sqlite, typescript
 
 ## Best fit cue profiles

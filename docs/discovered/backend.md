@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,30 +28,15 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="daizedong-schedule-reminder"></a>
-## 💎 [DaizeDong/schedule-reminder](https://github.com/DaizeDong/schedule-reminder)
+<a id="madgapun-pbp"></a>
+## 💎 [MadGapun/PBP](https://github.com/MadGapun/PBP)
 
-**★ 0** · exceptional (score 12) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 6** · exceptional (score 9.7) · Python · tags: ai, automation, bewerbung, claude, claude-desktop
 
-Persistent store for todos, events, deadlines and progress with pending/doing/done states; fires due reminders via Discord; stable CLI/JSON API other skills call.
-
-```bash
-cue skills add DaizeDong/schedule-reminder --profile backend
-```
-
----
-
-<a id="inprojectspl-fastapi-test-design"></a>
-## 💎 [inprojectspl/fastapi-test-design](https://github.com/inprojectspl/fastapi-test-design)
-
-**★ 1** · exceptional (score 9.7) · Python
-
-Claude Skill for designing robust, deterministic test strategies for FastAPI backends       with JWT auth and PostgreSQL, covering unit/integration boundaries, fixture architecture,    and security-focused failure paths.
-
-✅ SKILL.md
+Local AI job application assistant for the German-speaking job market (DACH) — job search, application tracking, CV analysis. MCP server for Claude Desktop, self-hosted, no cloud. Deutsch: dein Bewerbungs-Helfer, läuft komplett lokal.
 
 ```bash
-cue skills add inprojectspl/fastapi-test-design --profile backend
+cue skills add MadGapun/PBP --profile backend
 ```
 
 ---
@@ -59,12 +44,51 @@ cue skills add inprojectspl/fastapi-test-design --profile backend
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 3** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
 cue skills add ni-c/mcp-hub --profile backend
+```
+
+---
+
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
+
+**★ 13** · exceptional (score 8.1) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
+
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
+
+```bash
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
+```
+
+---
+
+<a id="otal-labs-nexul"></a>
+## ✨ [otal-labs/nexul](https://github.com/otal-labs/nexul)
+
+**★ 5** · strong (score 6.9) · Go · tags: agents, ai-agents, ci-cd, deployment, devops
+
+Self-hosted platform for project management, docs, CI runners, and deployment to your own servers, with a first-class MCP server so coding agents work through the same tools people do.
+
+```bash
+cue skills add otal-labs/nexul --profile backend
+```
+
+---
+
+<a id="capmonstercloud-capmonster-mcp-captcha-solver"></a>
+## ✨ [CapMonsterCloud/capmonster-mcp-captcha-solver](https://github.com/CapMonsterCloud/capmonster-mcp-captcha-solver)
+
+**★ 3** · strong (score 6.7) · Python · tags: ai-agents, anti-captcha, automation, browser-automation, capmonster
+
+Official CapMonster Cloud MCP server — AI captcha solver for reCAPTCHA v2/v3, Cloudflare Turnstile & DataDome. Let Claude, Cursor, and other AI agents solve captchas directly via MCP.
+
+```bash
+cue skills add CapMonsterCloud/capmonster-mcp-captcha-solver --profile backend
 ```
 
 ---

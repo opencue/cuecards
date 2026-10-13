@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,19 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
+<a id="gfargo-tui-design-skill"></a>
+## 💎 [gfargo/tui-design-skill](https://github.com/gfargo/tui-design-skill)
+
+**★ 40** · exceptional (score 14.3) · Python · tags: ai-agent, bubbletea, claude, claude-code, claude-skill
+
+Claude Skill for building clean, professional terminal UIs & CLIs — covers Bubble Tea, Ratatui, Textual, and Ink across Go, Rust, Python, and TypeScript
+
+```bash
+cue skills add gfargo/tui-design-skill --profile frontend
+```
+
+---
+
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
@@ -24,19 +37,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="pianoteachervandegraaffgenerator47-appllama-skills"></a>
-## 💎 [pianoteachervandegraaffgenerator47/appllama-skills](https://github.com/pianoteachervandegraaffgenerator47/appllama-skills)
-
-**★ 0** · exceptional (score 8) · tags: agent-skills, claude, claude-code, claude-code-skill, claude-skills
-
-Build production-grade mobile apps faster with simulator-verified skills tested against top-grossing apps.
-
-```bash
-cue skills add pianoteachervandegraaffgenerator47/appllama-skills --profile frontend
 ```
 
 ---

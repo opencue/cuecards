@@ -1,72 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+<a id="erickirmer17-lgtm-motion-director"></a>
+## 💎 [erickirmer17-lgtm/motion-director](https://github.com/erickirmer17-lgtm/motion-director)
 
-**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, motion-graphics, threejs, video-editing
 
-Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
-
-✅ SKILL.md
-
-```bash
-cue skills add zyziyun/reelfold --profile creative-media
-```
-
----
-
-<a id="lemomo-ai-lemo-opuscar"></a>
-## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
-
-**★ 2002** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
-
-Claude Code skill for short films with no video model: 43 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98). By Lemomo. · Opus5.5 x 43 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南
-
-```bash
-cue skills add lemomo-ai/lemo-opuscar --profile creative-media
-```
-
----
-
-<a id="bonnibonni13-star-all-top-brands-design-skill"></a>
-## 💎 [bonnibonni13-star/all-top-brands-design-skill](https://github.com/bonnibonni13-star/all-top-brands-design-skill)
-
-**★ 0** · exceptional (score 13) · HTML · tags: agent-skills, claude-code, claude-skill, design-md, design-system
-
-Claude-Skill: Designs von 74 bekannten Marken (DESIGN.md) mit Katalog und Anleitung
+Claude skill: idea → finished motion-graphic video (concept, copy, assets, canvas + Three.js edit, frame-locked sound design, QA, MP4)
 
 ✅ SKILL.md
 
 ```bash
-cue skills add bonnibonni13-star/all-top-brands-design-skill --profile creative-media
+cue skills add erickirmer17-lgtm/motion-director --profile creative-media
 ```
 
 ---
 
-<a id="tanattv-lyt"></a>
-## ✨ [TanaTTV/lyt](https://github.com/TanaTTV/lyt)
+<a id="scenario-labs-blender-plugin"></a>
+## 💎 [scenario-labs/blender-plugin](https://github.com/scenario-labs/blender-plugin)
 
-**★ 1** · strong (score 7.6) · JavaScript · tags: agent-skills, ai-agents, audio-downloader, claude-code, cli
+**★ 16** · exceptional (score 9.4) · Python · tags: 3d, agentic-ai, ai, blender, blender-addon
 
-yt-dlp for AI agents: a free CLI and skill that lets Claude Code, Codex, and any terminal agent save permitted audio and video and get the exact file path as JSON.
+Scenario for Blender: AI images, video, 3D and PBR materials in the viewport, plus a local MCP server for agents. Blender 5.0+ extension, GPL-3.0-or-later.
 
 ```bash
-cue skills add TanaTTV/lyt --profile creative-media
+cue skills add scenario-labs/blender-plugin --profile creative-media
 ```
 
 ---

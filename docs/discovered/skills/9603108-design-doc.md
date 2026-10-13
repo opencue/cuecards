@@ -2,7 +2,7 @@
 title: "9603108/design-doc — Claude Code skill discovered by cue"
 description: "Claude Code skill from 9603108/design-doc"
 layout: page
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: claude-skill
 
 ## Best fit cue profiles

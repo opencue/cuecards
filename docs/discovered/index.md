@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-10-12 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
+> Last updated: 2026-10-13 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 72 | `geo-score`, `trace-mcp`, `multi-agent-architecture-advisor` |
-| [**backend**](./backend.md) | 6 | `free-proxy-list`, `schedule-reminder`, `fastapi-test-design` |
-| [**video**](./video.md) | 5 | `reelfold`, `lemo-opuscar`, `hojas-studio` |
-| [**creative-media**](./creative-media.md) | 5 | `reelfold`, `lemo-opuscar`, `all-top-brands-design-skill` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `claude-code-skill-security-check`, `Claude-OSINT`, `sanctuary-framework` |
-| [**marketing**](./marketing.md) | 3 | `claude-outreach`, `reachweaver`, `mailzzy-mcp` |
-| [**research**](./research.md) | 2 | `papers-skill`, `skillassay` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `appllama-skills` |
+| [**core**](./core.md) | 73 | `Graft`, `claude-code-psadt-skill`, `answer-me-with-html` |
+| [**backend**](./backend.md) | 8 | `free-proxy-list`, `PBP`, `mcp-hub` |
+| [**cybersecurity**](./cybersecurity.md) | 7 | `Claude-OSINT`, `n2i-sec-audit`, `claude-security-research-skill` |
+| [**docs-writer**](./docs-writer.md) | 4 | `llm-wiki`, `llm-knowledge-base`, `lab` |
+| [**creative-media**](./creative-media.md) | 3 | `motion-director`, `blender-plugin`, `redesigned-pancake` |
+| [**fleet-control**](./fleet-control.md) | 3 | `artibot`, `JarlSkill`, `rolepod` |
+| [**frontend**](./frontend.md) | 2 | `tui-design-skill`, `awesome-claude-ui-armory` |
 | [**python**](./python.md) | 2 | `flow-skill`, `alfred` |
-| [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `duet` |
-| [**niche**](./niche.md) | 1 | `daily-hotspots` |
+| [**video**](./video.md) | 1 | `motion-director` |
+| [**research**](./research.md) | 1 | `skillassay` |
 
 ## How scoring works
 

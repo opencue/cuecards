@@ -2,21 +2,21 @@
 title: "upstash/context7 — Claude Code skill discovered by cue"
 description: "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors"
 layout: page
-updated: 2026-09-04
+updated: 2026-10-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [upstash/context7](https://github.com/upstash/context7)
 
-**★ 61601** · exceptional (score 13) · TypeScript · llm, mcp, mcp-server, vibe-coding
+**★ 62974** · exceptional (score 13) · TypeScript · llm, mcp, mcp-server, vibe-coding
 
 > Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 61601 stars
-- 🗓️ Last pushed: 2026-09-04
+- ⭐ 62974 stars
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: llm, mcp, mcp-server, vibe-coding
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "t1mvdploeg/weekstaat — Claude Code skill discovered by cue"
 description: "Legt gefactureerde uren naast de orders van de opdrachtgever en de bank, en laat zien waar het niet aansluit."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-07
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: aansluiting, claude-skill, detachering, excel, facturen, pdf, python
 
 ## Best fit cue profiles

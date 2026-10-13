@@ -2,7 +2,7 @@
 title: "krzysztofdudek/RatatoskrSkill — Claude Code skill discovered by cue"
 description: "A communication layer between you and your codebase: it keeps your AI coding agent talking in plain language — no jargon, no invented timelines — with one clear"
 layout: page
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-29
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: agentic-guardrails, ai-agents, ai-coding, anthropic, architecture-as-code, claude-code, claude-code-plugin, claude-skill, communication-layer, human-in-the-loop, never-speak-in-code, no-estimates, non-technical-users, plain-language, ratatoskr, yggdrasil-family
 
 ## Best fit cue profiles

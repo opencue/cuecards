@@ -1,44 +1,70 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aliksir-claude-code-skill-security-check"></a>
-## 💎 [aliksir/claude-code-skill-security-check](https://github.com/aliksir/claude-code-skill-security-check)
-
-**★ 4** · exceptional (score 15.3) · JavaScript · tags: claude-code, claude-code-skill, security, skill, static-analysis
-
-Security audit skill for Claude Code community skills. Scans for prompt injection, data exfiltration, permission bypass, dangerous commands, and supply chain risks.
-
-✅ SKILL.md
-
-```bash
-cue skills add aliksir/claude-code-skill-security-check --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2805** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2812** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="muneebrbaig-n2i-sec-audit"></a>
+## 💎 [muneebrbaig/n2i-sec-audit](https://github.com/muneebrbaig/n2i-sec-audit)
+
+**★ 0** · exceptional (score 13) · Python · tags: appsec, claude-code, claude-code-skill, owasp, security-audit
+
+A Claude Code skill that audits your codebase against a 27-item security checklist. It shows what already works, what is missing, and the evidence for both, then asks what you want to do about it.
+
+✅ SKILL.md
+
+```bash
+cue skills add muneebrbaig/n2i-sec-audit --profile cybersecurity
+```
+
+---
+
+<a id="davzpogi01-claude-security-research-skill"></a>
+## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
+
+**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
+
+Automate security research workflows with structured tool-driven assessments for Claude via MCP.
+
+```bash
+cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
+```
+
+---
+
+<a id="hahwul-gori"></a>
+## 💎 [hahwul/gori](https://github.com/hahwul/gori)
+
+**★ 121** · exceptional (score 11.5) · Crystal · tags: bugbounty, cli, crystal, gori, mcp
+
+A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
+
+```bash
+cue skills add hahwul/gori --profile cybersecurity
 ```
 
 ---

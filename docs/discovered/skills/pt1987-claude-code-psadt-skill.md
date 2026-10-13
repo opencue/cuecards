@@ -2,22 +2,22 @@
 title: "pt1987/claude-code-psadt-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill for the full PSADT v4.x → Intune Win32 packaging lifecycle: guided build, packaging, testing, and optional direct Graph upload."
 layout: page
-updated: 2026-09-17
+updated: 2026-10-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [pt1987/claude-code-psadt-skill](https://github.com/pt1987/claude-code-psadt-skill)
 
-**★ 19** · exceptional (score 17.3) · PowerShell · claude-code, claude-skill, intune, powershell, psadt
+**★ 22** · exceptional (score 18.4) · PowerShell · claude-code, claude-skill, intune, powershell, psadt
 
 > Claude Code skill for the full PSADT v4.x → Intune Win32 packaging lifecycle: guided build, packaging, testing, and optional direct Graph upload.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18.4 based on:
 - ✅ Contains SKILL.md
-- ⭐ 19 stars
-- 🗓️ Last pushed: 2026-09-17
+- ⭐ 22 stars
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: claude-code, claude-skill, intune, powershell, psadt, win32
 
 ## Best fit cue profiles

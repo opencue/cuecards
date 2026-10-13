@@ -2,22 +2,22 @@
 title: "muneebrbaig/n2i-dev-cycle — Claude Code skill discovered by cue"
 description: "Full dev-lifecycle skill for Claude Code (+ Qwen): brainstorm or ticket to shipped code, with classification gates, TDD, systematic debugging, and verification."
 layout: page
-updated: 2026-09-10
+updated: 2026-10-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [muneebrbaig/n2i-dev-cycle](https://github.com/muneebrbaig/n2i-dev-cycle)
 
-**★ 0** · exceptional (score 14.5) · Python · ai-agent, angular, ci-cd, claude-code, claude-code-skill
+**★ 0** · exceptional (score 16) · Python · ai-agent, angular, ci-cd, claude-code, claude-code-skill
 
 > Full dev-lifecycle skill for Claude Code (+ Qwen): brainstorm or ticket to shipped code, with classification gates, TDD, systematic debugging, and verification. .NET + Angular defaults, config-overridable for any stack.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-10
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: ai-agent, angular, ci-cd, claude-code, claude-code-skill, claude-skill, code-review, developer-tools, dotnet, qwen, software-development-lifecycle, tdd
 
 ## Best fit cue profiles

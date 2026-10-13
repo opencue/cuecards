@@ -2,21 +2,21 @@
 title: "MadGapun/PBP — Claude Code skill discovered by cue"
 description: "Local AI job application assistant for the German-speaking job market (DACH) — job search, application tracking, CV analysis. MCP server for Claude Desktop, sel"
 layout: page
-updated: 2026-08-12
+updated: 2026-10-13
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [MadGapun/PBP](https://github.com/MadGapun/PBP)
 
-**★ 5** · exceptional (score 9.6) · Python · ai, automation, bewerbung, claude, claude-desktop
+**★ 6** · exceptional (score 9.7) · Python · ai, automation, bewerbung, claude, claude-desktop
 
 > Local AI job application assistant for the German-speaking job market (DACH) — job search, application tracking, CV analysis. MCP server for Claude Desktop, self-hosted, no cloud. Deutsch: dein Bewerbungs-Helfer, läuft komplett lokal.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-08-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: ai, automation, bewerbung, claude, claude-desktop, dach, job-application, job-search, jobsuche, ki-assistent, llm, local-first, mcp, mcp-server, model-context-protocol, ollama, privacy-first, python, self-hosted, sqlite
 
 ## Best fit cue profiles
