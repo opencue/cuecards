@@ -2,7 +2,7 @@
 title: "elementalsouls/Claude-OSINT — Claude Code skill discovered by cue"
 description: "8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines "
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, cybersecurity]
 ---
 

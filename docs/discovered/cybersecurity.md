@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,43 +28,17 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="muneebrbaig-n2i-sec-audit"></a>
-## 💎 [muneebrbaig/n2i-sec-audit](https://github.com/muneebrbaig/n2i-sec-audit)
+<a id="egym-playground-api-authz-pentest"></a>
+## 💎 [egym-playground/api-authz-pentest](https://github.com/egym-playground/api-authz-pentest)
 
-**★ 0** · exceptional (score 13) · Python · tags: appsec, claude-code, claude-code-skill, owasp, security-audit
+**★ 0** · exceptional (score 13.5) · Python · tags: ai-agent, api-security, appsec, authorization, bfla
 
-A Claude Code skill that audits your codebase against a 27-item security checklist. It shows what already works, what is missing, and the evidence for both, then asks what you want to do about it.
+Repository-first API authorization pentest skill: runtime-confirmed OWASP API Top 10 (BOLA/BFLA/IDOR) testing with a built-in safety harness. AI-agent / Claude Skill ready.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add muneebrbaig/n2i-sec-audit --profile cybersecurity
-```
-
----
-
-<a id="davzpogi01-claude-security-research-skill"></a>
-## 💎 [davzpogi01/claude-security-research-skill](https://github.com/davzpogi01/claude-security-research-skill)
-
-**★ 0** · exceptional (score 11.5) · tags: agent-skills, bounty-hunters, claude-code, claude-code-skill, claude-skill
-
-Automate security research workflows with structured tool-driven assessments for Claude via MCP.
-
-```bash
-cue skills add davzpogi01/claude-security-research-skill --profile cybersecurity
-```
-
----
-
-<a id="hahwul-gori"></a>
-## 💎 [hahwul/gori](https://github.com/hahwul/gori)
-
-**★ 121** · exceptional (score 11.5) · Crystal · tags: bugbounty, cli, crystal, gori, mcp
-
-A fast, keyboard-driven HTTP intercepting proxy and hacking & pentesting toolkit for the terminal.
-
-```bash
-cue skills add hahwul/gori --profile cybersecurity
+cue skills add egym-playground/api-authz-pentest --profile cybersecurity
 ```
 
 ---
@@ -82,19 +56,6 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="hybridindie-comfyui-mcp"></a>
-## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
-
-**★ 3** · exceptional (score 8.1) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
-
-Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
-
-```bash
-cue skills add hybridindie/comfyui_mcp --profile cybersecurity
-```
-
----
-
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
@@ -104,6 +65,19 @@ Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph,
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="hermida95-second-opinion-skills"></a>
+## ✨ [Hermida95/second-opinion-skills](https://github.com/Hermida95/second-opinion-skills)
+
+**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-detection, ai-safety, c2pa, claude-code
+
+Second Opinion: Agent Skills for using AI with open eyes. An evidence-backed verdict on code you didn't write (code-teardown) and scored evidence that an image was made or edited with AI (ai-evidence).
+
+```bash
+cue skills add Hermida95/second-opinion-skills --profile cybersecurity
 ```
 
 ---

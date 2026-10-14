@@ -2,7 +2,7 @@
 title: "luucas42/pane-editor — Claude Code skill discovered by cue"
 description: "A file editor in a Claude Code terminal pane: click a path Claude names and edit the file right there"
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 

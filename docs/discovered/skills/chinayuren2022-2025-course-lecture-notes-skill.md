@@ -2,7 +2,7 @@
 title: "chinayuren2022-2025/course-lecture-notes-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill: turn lecture transcripts, slides and textbooks into self-study HTML notes, with ADHD/concept-map editions that leave room for Mac Trackpad No"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-11
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: adhd, claude-code, claude-skill, lecture-notes, macos
 
 ## Best fit cue profiles

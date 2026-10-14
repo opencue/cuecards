@@ -2,7 +2,7 @@
 title: "helenkwok/open-links — Claude Code skill discovered by cue"
 description: "Claude Code mod: file paths in Claude's replies become links that open the file, or your editor at the line. macOS, Linux and Windows."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 

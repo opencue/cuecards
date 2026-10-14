@@ -1,55 +1,42 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "3 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-14
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="emelia-io-claude-outreach"></a>
-## 💎 [emelia-io/claude-outreach](https://github.com/emelia-io/claude-outreach)
+<a id="agricidaniel-claude-blog"></a>
+## 💎 [AgriciDaniel/claude-blog](https://github.com/AgriciDaniel/claude-blog)
 
-**★ 17** · exceptional (score 9.4) · Python · tags: ai, ai-sdr, b2b, claude-code, claude-code-skill
+**★ 2383** · exceptional (score 20) · Python · tags: agent-skills, ai, ai-citations, ai-content, ai-marketing
 
-Universal B2B outreach skill for Claude Code. 16 sub-skills + 5 sub-agents: ICP targeting, lead sourcing, email finder, phone finder, verification, AI personalization, multichannel sequences, deliverability, campaign launch, reply handling and GDPR compliance.
+Claude Code blog skill suite: 30 sub-skills, 5 agents, 5-gate v1.9.0 Blog Delivery Contract, dual-optimized for Google rankings and AI citations. Active development at AI-Marketing-Hub/claude-blog (AI Marketing Hub Pro community); public releases ship here.
 
 ```bash
-cue skills add emelia-io/claude-outreach --profile marketing
+cue skills add AgriciDaniel/claude-blog --profile marketing
 ```
 
 ---
 
-<a id="mskazemi-reachweaver"></a>
-## 💎 [MSKazemi/reachweaver](https://github.com/MSKazemi/reachweaver)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, audience-growth, claude-code, claude-skill, content-marketing
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Claude Code skill for evidence-backed social media planning, approval-first scheduling, publishing workflows, and analytics.
-
-```bash
-cue skills add MSKazemi/reachweaver --profile marketing
-```
-
----
-
-<a id="softsages-mailzzy-mcp"></a>
-## ✨ [softsages/mailzzy-mcp](https://github.com/softsages/mailzzy-mcp)
-
-**★ 0** · strong (score 6) · tags: email-marketing, mcp, mcp-server, model-context-protocol, oauth
-
-Hosted MCP server for Mailzzy email marketing: campaigns, audiences, contacts, segments, templates and reports. Docs and registry manifest.
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add softsages/mailzzy-mcp --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

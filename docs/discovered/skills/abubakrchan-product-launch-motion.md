@@ -1,28 +1,28 @@
 ---
 title: "AbubakrChan/product-launch-motion — Claude Code skill discovered by cue"
-description: "Claude Code skill for product launch motion design — make launch videos, promos and demo reels from code. HTML/CSS/GSAP compositions, word-locked voiceover sync"
+description: "Claude Code skill for Dribbble-level product launch videos from code. One shape that never cuts, springs, a cursor that drives every change, beat-synced SFX, 60"
 layout: page
-updated: 2026-07-27
-tags: [claude-code, skill, creative-media, video]
+updated: 2026-10-14
+tags: [claude-code, skill, frontend, creative-media]
 ---
 
 # 💎 [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion)
 
-**★ 0** · exceptional (score 14.5) · JavaScript · agent-skill, agent-skills, ai-agents, anthropic, claude
+**★ 258** · exceptional (score 21.6) · JavaScript · agent-skill, agent-skills, ai-agents, anthropic, claude
 
-> Claude Code skill for product launch motion design — make launch videos, promos and demo reels from code. HTML/CSS/GSAP compositions, word-locked voiceover sync, real camera moves, film grade, broadcast-loudness mastering. A director's discipline, not a template.
+> Claude Code skill for Dribbble-level product launch videos from code. One shape that never cuts, springs, a cursor that drives every change, beat-synced SFX, 60 fps motion blur. v2: use with Claude Opus 5.5.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-27
-- 🏷️ Tags: agent-skill, agent-skills, ai-agents, anthropic, claude, claude-code, claude-skill, ffmpeg, gsap, html-to-video, launch-video, marketing-video, motion-design, motion-graphics, product-launch, programmatic-video, remotion, skill, skills, video-generation
+- ⭐ 258 stars
+- 🗓️ Last pushed: 2026-10-14
+- 🏷️ Tags: agent-skill, agent-skills, ai-agents, anthropic, claude, claude-code, claude-skill, ffmpeg, html-to-video, launch-video, marketing-video, motion-design, motion-graphics, playwright, product-launch, programmatic-video, skill, skills, ui-animation, video-generation
 
 ## Best fit cue profiles
 
-[creative-media](../creative-media.md), [video](../video.md)
+[frontend](../frontend.md), [creative-media](../creative-media.md)
 
 
 
@@ -30,7 +30,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add AbubakrChan/product-launch-motion --profile creative-media
+cue skills add AbubakrChan/product-launch-motion --profile frontend
 ```
 
 ## About

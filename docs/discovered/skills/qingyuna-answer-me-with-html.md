@@ -2,21 +2,21 @@
 title: "QingYunA/answer-me-with-html — Claude Code skill discovered by cue"
 description: "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。"
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [QingYunA/answer-me-with-html](https://github.com/QingYunA/answer-me-with-html)
 
-**★ 3253** · exceptional (score 18) · JavaScript · agent-skill, ai-agent, claude-code, claude-code-skill, claude-skill
+**★ 3330** · exceptional (score 18) · JavaScript · agent-skill, ai-agent, claude-code, claude-code-skill, claude-skill
 
 > Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18 based on:
-- ⭐ 3253 stars
-- 🗓️ Last pushed: 2026-10-13
+- ⭐ 3330 stars
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: agent-skill, ai-agent, claude-code, claude-code-skill, claude-skill, claude-skills, cli, diagram, dsh-plugin, explainer, html, llm, ste100
 
 ## Best fit cue profiles

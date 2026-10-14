@@ -1,8 +1,8 @@
 ---
 title: "brissonjo-sudo/droit-francais-skill — Claude Code skill discovered by cue"
-description: "Skill LLM — méthodologie rigoureuse de recherche en droit français, conçue contre 14 modes d'erreur LLM."
+description: "Méthodologie de recherche en droit français, 18 modes d'erreur, sources primaires, contrôle de vigueur et outils MCP Légifrance/Judilibre."
 layout: page
-updated: 2026-10-06
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 7** · exceptional (score 11.7) · Python · claude-code, claude-skill, droit-francais, gendarmerie, juriste
 
-> Skill LLM — méthodologie rigoureuse de recherche en droit français, conçue contre 14 modes d'erreur LLM.
+> Méthodologie de recherche en droit français, 18 modes d'erreur, sources primaires, contrôle de vigueur et outils MCP Légifrance/Judilibre.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-06
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: claude-code, claude-skill, droit-francais, gendarmerie, juriste, legal-tech, legifrance, police, recherche-juridique
 
 ## Best fit cue profiles

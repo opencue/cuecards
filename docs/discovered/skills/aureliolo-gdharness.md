@@ -2,21 +2,21 @@
 title: "Aureliolo/gdharness — Claude Code skill discovered by cue"
 description: "A harness for driving a Godot 4 project from an agent: editor addons, a runtime bridge into the running game, an MCP server in front of them, and a CLI that ins"
 layout: page
-updated: 2026-09-26
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Aureliolo/gdharness](https://github.com/Aureliolo/gdharness)
 
-**★ 1** · strong (score 6.3) · TypeScript · gamedev, gdscript, godot, godot-engine, godot4
+**★ 2** · strong (score 6.5) · TypeScript · gamedev, gdscript, godot, godot-engine, godot4
 
 > A harness for driving a Godot 4 project from an agent: editor addons, a runtime bridge into the running game, an MCP server in front of them, and a CLI that installs and diagnoses the Godot side.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: gamedev, gdscript, godot, godot-engine, godot4, mcp, mcp-server, model-context-protocol
 
 ## Best fit cue profiles

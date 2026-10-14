@@ -1,44 +1,89 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="erickirmer17-lgtm-motion-director"></a>
-## 💎 [erickirmer17-lgtm/motion-director](https://github.com/erickirmer17-lgtm/motion-director)
+<a id="abubakrchan-product-launch-motion"></a>
+## 💎 [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, motion-graphics, threejs, video-editing
+**★ 258** · exceptional (score 21.6) · JavaScript · tags: agent-skill, agent-skills, ai-agents, anthropic, claude
 
-Claude skill: idea → finished motion-graphic video (concept, copy, assets, canvas + Three.js edit, frame-locked sound design, QA, MP4)
+Claude Code skill for Dribbble-level product launch videos from code. One shape that never cuts, springs, a cursor that drives every change, beat-synced SFX, 60 fps motion blur. v2: use with Claude Opus 5.5.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add erickirmer17-lgtm/motion-director --profile creative-media
+cue skills add AbubakrChan/product-launch-motion --profile creative-media
 ```
 
 ---
 
-<a id="scenario-labs-blender-plugin"></a>
-## 💎 [scenario-labs/blender-plugin](https://github.com/scenario-labs/blender-plugin)
+<a id="beyondmrk-super-ai-gen"></a>
+## 💎 [beyondmrk/super-ai-gen](https://github.com/beyondmrk/super-ai-gen)
 
-**★ 16** · exceptional (score 9.4) · Python · tags: 3d, agentic-ai, ai, blender, blender-addon
+**★ 1** · exceptional (score 13.3) · Python · tags: ad-creative, ai-image-generation, ai-video, claude-code, claude-code-skill
 
-Scenario for Blender: AI images, video, 3D and PBR materials in the viewport, plus a local MCP server for agents. Blender 5.0+ extension, GPL-3.0-or-later.
+Guarded CLI pipeline for AI ad asset generation on Higgsfield: declared client, gated spend, resume and regen-in-place. Packaged as a Claude Code skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add scenario-labs/blender-plugin --profile creative-media
+cue skills add beyondmrk/super-ai-gen --profile creative-media
+```
+
+---
+
+<a id="tadeyruk-creative-rukkan"></a>
+## 💎 [TadeyRuk/creative-rukkan](https://github.com/TadeyRuk/creative-rukkan)
+
+**★ 0** · exceptional (score 13) · JavaScript · tags: claude-code, claude-skill, design-tools, figma, frontend
+
+Claude Code skill: Figma-style editing studios over any frontend project's real UI, wired back to the code.
+
+✅ SKILL.md
+
+```bash
+cue skills add TadeyRuk/creative-rukkan --profile creative-media
+```
+
+---
+
+<a id="haomiaomou-cmd-flat-cartoon-photo-mashup"></a>
+## 💎 [haomiaomou-cmd/flat-cartoon-photo-mashup](https://github.com/haomiaomou-cmd/flat-cartoon-photo-mashup)
+
+**★ 1** · exceptional (score 11.3) · Python · tags: ai-art, claude-skill, flat-illustration, image-generation, photo-collage
+
+WorkBuddy / Claude Code skill: turn a real photo into a real-photo x flat-cartoon-character mash-up.
+
+✅ SKILL.md
+
+```bash
+cue skills add haomiaomou-cmd/flat-cartoon-photo-mashup --profile creative-media
+```
+
+---
+
+<a id="stayfoool-muse-illustration"></a>
+## 💎 [Stayfoool/muse-illustration](https://github.com/Stayfoool/muse-illustration)
+
+**★ 0** · exceptional (score 10.5) · Python · tags: agent-skill, agent-skills, ai-art, chinese-poetry, claude-code
+
+把诗词、意象，甚至一句灵感，变成插画或海报。An Agent Skill with a growing, self-contained style library.
+
+```bash
+cue skills add Stayfoool/muse-illustration --profile creative-media
 ```
 
 ---

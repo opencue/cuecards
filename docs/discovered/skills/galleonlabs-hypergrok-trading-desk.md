@@ -1,23 +1,23 @@
 ---
 title: "galleonlabs/hypergrok-trading-desk — Claude Code skill discovered by cue"
-description: "Open-source 7-agent Hyperliquid trading desk for Grok Bot, Claude Code and Cursor: roles, system prompts and 17 skills your agents use to research, size, execut"
+description: "Grok Bot for Hyperliquid: an open-source 7-agent trading desk with roles, system prompts and 17 skills to research, size, execute and review. Also runs in Claud"
 layout: page
-updated: 2026-10-09
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [galleonlabs/hypergrok-trading-desk](https://github.com/galleonlabs/hypergrok-trading-desk)
 
-**★ 84** · exceptional (score 16.2) · Python · agent-plugin, agent-plugins, agent-skills, ai-agents, claude-code
+**★ 101** · exceptional (score 14.3) · Python · agent-plugins, agent-skills, ai-agents, ai-trading, claude-code
 
-> Open-source 7-agent Hyperliquid trading desk for Grok Bot, Claude Code and Cursor: roles, system prompts and 17 skills your agents use to research, size, execute and review.
+> Grok Bot for Hyperliquid: an open-source 7-agent trading desk with roles, system prompts and 17 skills to research, size, execute and review. Also runs in Claude Code, Cursor, Codex and Gemini CLI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
-- ⭐ 84 stars
-- 🗓️ Last pushed: 2026-10-09
-- 🏷️ Tags: agent-plugin, agent-plugins, agent-skills, ai-agents, claude-code, claude-code-skill, claude-plugin, claude-skill, claude-skills, cursor-plugin, defi, grok-bot, hypergrok, hyperliquid, open-source, trading, trading-desk
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.3 based on:
+- ⭐ 101 stars
+- 🗓️ Last pushed: 2026-10-14
+- 🏷️ Tags: agent-plugins, agent-skills, ai-agents, ai-trading, claude-code, claude-code-skill, claude-plugin, claude-skills, cursor-plugin, defi, gemini-cli-extension, grok-bot, hypergrok, hyperliquid, open-source, trading, trading-bot, trading-desk
 
 ## Best fit cue profiles
 

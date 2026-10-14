@@ -2,21 +2,21 @@
 title: "rafalpodles/board-planner — Claude Code skill discovered by cue"
 description: "One board. Your team works it. So do your agents. Kanban, sprints, REST API and MCP server — self-hosted, AGPL, with a PM agent and execution workers that run y"
 layout: page
-updated: 2026-09-21
+updated: 2026-10-14
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [rafalpodles/board-planner](https://github.com/rafalpodles/board-planner)
 
-**★ 0** · exceptional (score 10) · TypeScript · agpl, ai-agents, claude-code, kanban, mcp
+**★ 3** · exceptional (score 10.7) · TypeScript · agpl, ai-agents, claude-code, kanban, mcp
 
 > One board. Your team works it. So do your agents. Kanban, sprints, REST API and MCP server — self-hosted, AGPL, with a PM agent and execution workers that run your tasks under your gates.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-21
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: agpl, ai-agents, claude-code, kanban, mcp, mcp-server, mongodb, nextjs, project-management, self-hosted
 
 ## Best fit cue profiles

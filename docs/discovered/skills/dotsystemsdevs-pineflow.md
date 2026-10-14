@@ -2,20 +2,20 @@
 title: "dotsystemsdevs/pineflow — Claude Code skill discovered by cue"
 description: "The exact path from an idea to a mobile app in the App Store, with Claude Code. 11 chapters, templates and hooks for Expo + React Native."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [dotsystemsdevs/pineflow](https://github.com/dotsystemsdevs/pineflow)
 
-**★ 10** · exceptional (score 11) · agents-md, ai, android, app-store, claude
+**★ 16** · exceptional (score 10.2) · agents-md, ai, android, app-store, claude
 
 > The exact path from an idea to a mobile app in the App Store, with Claude Code. 11 chapters, templates and hooks for Expo + React Native.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
-- ⭐ 10 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 16 stars
 - 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: agents-md, ai, android, app-store, claude, claude-code, expo, indie-dev, ios, mobile-app, open-source, react-native, vibe-coding, workflow
 

@@ -2,7 +2,7 @@
 title: "sepehrkeyhani00/bashoor-ai-menu — Claude Code skill discovered by cue"
 description: "Bashoor Cafe in Piroozi, Mashhad — live Persian menu, Toman/IRR prices, llms.txt, WebMCP and MCP metadata."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-13
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: ai-seo, bashoor-cafe, bilingual-menu, cafe-menu, coffee, iran, llms-txt, local-business, mashhad, mashhad-cafe, mcp-server, menu-prices, persian, piroozi, restaurant-menu, schema-org, structured-data, webmcp
 
 ## Best fit cue profiles

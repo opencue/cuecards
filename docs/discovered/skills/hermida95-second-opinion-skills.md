@@ -2,7 +2,7 @@
 title: "Hermida95/second-opinion-skills — Claude Code skill discovered by cue"
 description: "Second Opinion: Agent Skills for using AI with open eyes. An evidence-backed verdict on code you didn't write (code-teardown) and scored evidence that an image "
 layout: page
-updated: 2026-10-08
+updated: 2026-10-14
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: agent-skills, ai-detection, ai-safety, c2pa, claude-code, claude-skill, code-audit, code-quality, code-review, content-credentials, docker, learning, python, reverse-engineering, static-analysis
 
 ## Best fit cue profiles

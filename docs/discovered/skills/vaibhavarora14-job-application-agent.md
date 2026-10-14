@@ -2,7 +2,7 @@
 title: "vaibhavarora14/job-application-agent — Claude Code skill discovered by cue"
 description: "Privacy-first job Agent Skill for Claude/Cursor/Codex: verified facts only, OS secrets, confirmed submissions."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ⭐ 156 stars
-- 🗓️ Last pushed: 2026-10-13
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: agent-skills, agentskills, ai-agent, automation, browser-automation, careers, claude-code-skill, claude-skills, codex, cursor, job-application, job-search, privacy, resume, skill-md
 
 ## Best fit cue profiles

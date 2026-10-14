@@ -2,21 +2,21 @@
 title: "malkreide/mcp-continuous-auditor — Claude Code skill discovered by cue"
 description: "Continuous AI auditor for MCP servers: OpenClaw agents + promptfoo as deterministic CI ground truth"
 layout: page
-updated: 2026-08-03
+updated: 2026-10-14
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [malkreide/mcp-continuous-auditor](https://github.com/malkreide/mcp-continuous-auditor)
 
-**★ 0** · strong (score 6) · Python · claude-skill, mcp, mcp-quality-chain, model-context-protocol
+**★ 0** · strong (score 7.5) · Python · claude-skill, mcp, mcp-quality-chain, model-context-protocol
 
 > Continuous AI auditor for MCP servers: OpenClaw agents + promptfoo as deterministic CI ground truth
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-03
+- 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: claude-skill, mcp, mcp-quality-chain, model-context-protocol
 
 ## Best fit cue profiles

@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-14
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="gfargo-tui-design-skill"></a>
-## 💎 [gfargo/tui-design-skill](https://github.com/gfargo/tui-design-skill)
+<a id="abubakrchan-product-launch-motion"></a>
+## 💎 [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion)
 
-**★ 40** · exceptional (score 14.3) · Python · tags: ai-agent, bubbletea, claude, claude-code, claude-skill
+**★ 258** · exceptional (score 21.6) · JavaScript · tags: agent-skill, agent-skills, ai-agents, anthropic, claude
 
-Claude Skill for building clean, professional terminal UIs & CLIs — covers Bubble Tea, Ratatui, Textual, and Ink across Go, Rust, Python, and TypeScript
+Claude Code skill for Dribbble-level product launch videos from code. One shape that never cuts, springs, a cursor that drives every change, beat-synced SFX, 60 fps motion blur. v2: use with Claude Opus 5.5.
+
+✅ SKILL.md
 
 ```bash
-cue skills add gfargo/tui-design-skill --profile frontend
+cue skills add AbubakrChan/product-launch-motion --profile frontend
+```
+
+---
+
+<a id="tadeyruk-creative-rukkan"></a>
+## 💎 [TadeyRuk/creative-rukkan](https://github.com/TadeyRuk/creative-rukkan)
+
+**★ 0** · exceptional (score 13) · JavaScript · tags: claude-code, claude-skill, design-tools, figma, frontend
+
+Claude Code skill: Figma-style editing studios over any frontend project's real UI, wired back to the code.
+
+✅ SKILL.md
+
+```bash
+cue skills add TadeyRuk/creative-rukkan --profile frontend
 ```
 
 ---
@@ -37,6 +54,45 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+
+```bash
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="devbaj-stastny-jakub-better-grill"></a>
+## 💎 [devbaj-stastny-jakub/better-grill](https://github.com/devbaj-stastny-jakub/better-grill)
+
+**★ 3** · exceptional (score 8.7) · TypeScript · tags: ai, browser-ui, claude, claude-code, claude-code-plugin
+
+Grill sessions for Claude Code, in your browser instead of the terminal.
+
+```bash
+cue skills add devbaj-stastny-jakub/better-grill --profile frontend
 ```
 
 ---
