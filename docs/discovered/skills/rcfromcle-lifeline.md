@@ -2,7 +2,7 @@
 title: "RCFromCLE/Lifeline — Claude Code skill discovered by cue"
 description: "AI-assisted, hardcore-first Path of Exile 2 playthrough and build companion (Rust/Tauri, uses your Claude subscription)"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-13
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

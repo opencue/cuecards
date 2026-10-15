@@ -2,7 +2,7 @@
 title: "bartek-filipiuk/security-audit-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill: evidence-based security audit of your own code, with a verified-safe list, regression tests and a seeded-bug benchmark"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-15
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, cybersecurity]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: appsec, claude-code, claude-code-skill, security-audit
 
 ## Best fit cue profiles

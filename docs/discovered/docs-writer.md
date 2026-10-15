@@ -1,42 +1,61 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="beppetemp-cartographer"></a>
-## 💎 [BeppeTemp/cartographer](https://github.com/BeppeTemp/cartographer)
+<a id="huiyonghkw-hekouwang-writer-skill"></a>
+## 💎 [huiyonghkw/hekouwang-writer-skill](https://github.com/huiyonghkw/hekouwang-writer-skill)
 
-**★ 38** · exceptional (score 11.7) · Go · tags: agent-memory, ai-agents, claude-code, codex, go
+**★ 0** · exceptional (score 15.5) · Python · tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill
 
-A shared, git-backed wiki your team's AI agents maintain but can't break — Claude Code, Codex, OpenCode and any MCP client.
+中文文档写作与改进 Agent Skill：把素材写成结构清晰、读得懂、数字可对账的文档。出处/模态/修订三铁律，修订列改动清单可回退，五把纯 Python 标准库检查脚本（锯末词、长句、表格与敏感信息、算术对账、改动对账）。
+
+✅ SKILL.md
 
 ```bash
-cue skills add BeppeTemp/cartographer --profile docs-writer
+cue skills add huiyonghkw/hekouwang-writer-skill --profile docs-writer
 ```
 
 ---
 
-<a id="gagoar-unmistakable"></a>
-## 💎 [gagoar/unmistakable](https://github.com/gagoar/unmistakable)
+<a id="luffysolution-svg-doc-ocr-to-markdown"></a>
+## 💎 [luffysolution-svg/doc-ocr-to-markdown](https://github.com/luffysolution-svg/doc-ocr-to-markdown)
 
-**★ 0** · exceptional (score 8) · TypeScript · tags: claude-code, claude-code-plugin, claude-code-skill, linter, llm-agents
+**★ 0** · exceptional (score 12.5) · Python · tags: agent-skill, claude-skill, katex, knowledge-base, latex
 
-Rewrite English so an AI agent cannot misread it. A Claude Code skill and a TypeScript linter (no dependency) that follow the ASD-STE100 rules.
+Agent skill: turn scanned documents, PDFs and slides into a Markdown knowledge base with rendered LaTeX formulas and high-resolution figures. OCR + source-text correction + math normalization + validation.
+
+✅ SKILL.md
 
 ```bash
-cue skills add gagoar/unmistakable --profile docs-writer
+cue skills add luffysolution-svg/doc-ocr-to-markdown --profile docs-writer
+```
+
+---
+
+<a id="scriptautomate-write-good-docs"></a>
+## 💎 [ScriptAutomate/write-good-docs](https://github.com/ScriptAutomate/write-good-docs)
+
+**★ 0** · exceptional (score 12.5) · Python · tags: ai-agent, automation, claude-code-skill, developer-tools, docs-as-code
+
+The Good Docs Project templates repository converted into a SKILL for AI agents: Use for writing how-tos, readmes, quickstarts, tutorials, contributing guides, installation guides, glossaries, and more
+
+✅ SKILL.md
+
+```bash
+cue skills add ScriptAutomate/write-good-docs --profile docs-writer
 ```
 
 ---

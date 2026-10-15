@@ -2,7 +2,7 @@
 title: "novanoticia/multilang-repo-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill that guides AI agents in making repositories multilingual, including apps, libraries, servers, CLIs, skills, and plugins. Supports projects al"
 layout: page
-updated: 2026-10-12
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: ai-agents, claude-code, claude-code-skill, gettext, i18n, i18next, icu, internationalization, localization, multilingual, translation
 
 ## Best fit cue profiles

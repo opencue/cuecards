@@ -2,19 +2,19 @@
 title: "helenkwok/open-links — Claude Code skill discovered by cue"
 description: "Claude Code mod: file paths in Claude's replies become links that open the file, or your editor at the line. macOS, Linux and Windows."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [helenkwok/open-links](https://github.com/helenkwok/open-links)
 
-**★ 1** · potential (score 4.3) · TypeScript
+**★ 1** · potential (score 4.2) · TypeScript
 
 > Claude Code mod: file paths in Claude's replies become links that open the file, or your editor at the line. macOS, Linux and Windows.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: (none)

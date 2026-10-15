@@ -2,7 +2,7 @@
 title: "micheledalsanto/italian-master — Claude Code skill discovered by cue"
 description: "L'italiano di chi scrive per mestiere, genere per genere e con i soli fatti ricevuti. Agent skill for Claude and Codex: natural Italian writing, measured on rea"
 layout: page
-updated: 2026-10-12
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: agent-skill, agent-skills, ai-slop, claude, claude-code, claude-code-plugin, claude-skill, codex, copywriting, grammar, italian, italian-language, italiano, proofreading, scrittura, style-guide, writing, writing-tools
 
 ## Best fit cue profiles

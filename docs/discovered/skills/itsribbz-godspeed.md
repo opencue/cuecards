@@ -2,7 +2,7 @@
 title: "itsribbZ/Godspeed — Claude Code skill discovered by cue"
 description: "Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, fleet-control]
 ---
 

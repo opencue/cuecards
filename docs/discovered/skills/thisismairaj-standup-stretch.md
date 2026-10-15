@@ -2,7 +2,7 @@
 title: "thisismairaj/standup-stretch — Claude Code skill discovered by cue"
 description: "Nudges you to stand up and stretch after 90 minutes — as a Claude Code plugin, a Claude Code skill, or a CLI for tmux/shell/any terminal"
 layout: page
-updated: 2026-10-07
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-07
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, cli, status-line, tmux, wellness
 
 ## Best fit cue profiles

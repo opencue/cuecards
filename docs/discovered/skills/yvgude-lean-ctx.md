@@ -1,23 +1,23 @@
 ---
 title: "yvgude/lean-ctx — Claude Code skill discovered by cue"
-description: "LeanCTX — Context Intelligence for AI systems."
+description: "LeanCTX — Context Gateway for AI Systems. Control what your AI can see. Open-source Engine for context selection, supported controls, and evidence."
 layout: page
-updated: 2026-09-30
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yvgude/lean-ctx](https://github.com/yvgude/lean-ctx)
 
-**★ 3838** · exceptional (score 15.5) · Rust · agentic-coding, ai, ai-agents, ai-coding, claude-code
+**★ 3877** · exceptional (score 15.5) · Rust · agentic-coding, ai, ai-agents, ai-coding, ai-governance
 
-> LeanCTX — Context Intelligence for AI systems.
+> LeanCTX — Context Gateway for AI Systems. Control what your AI can see. Open-source Engine for context selection, supported controls, and evidence.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 3838 stars
-- 🗓️ Last pushed: 2026-09-30
-- 🏷️ Tags: agentic-coding, ai, ai-agents, ai-coding, claude-code, context-engineering, context-intelligence, context-layer, copilot, cursor, developer-tools, gemini-cli, lean-context, llm, mcp, mcp-server, reduce-token-costs, rust, token-optimization
+- ⭐ 3877 stars
+- 🗓️ Last pushed: 2026-10-15
+- 🏷️ Tags: agentic-coding, ai, ai-agents, ai-coding, ai-governance, claude-code, context-engineering, context-gateway, context-intelligence, copilot, cursor, developer-tools, gemini-cli, lean-context, llm, mcp, mcp-server, rust, token-optimization
 
 ## Best fit cue profiles
 

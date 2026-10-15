@@ -2,7 +2,7 @@
 title: "Dpetg/claude-session-share — Claude Code skill discovered by cue"
 description: "Claude Code plugin to sync and resume sessions across devices and OSes (Windows/macOS/Linux). Shares conversation history and settings via a private git repo or"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 

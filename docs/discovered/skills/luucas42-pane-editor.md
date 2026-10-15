@@ -2,19 +2,19 @@
 title: "luucas42/pane-editor — Claude Code skill discovered by cue"
 description: "A file editor in a Claude Code terminal pane: click a path Claude names and edit the file right there"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [luucas42/pane-editor](https://github.com/luucas42/pane-editor)
 
-**★ 1** · potential (score 4.3) · TypeScript
+**★ 1** · potential (score 4.2) · TypeScript
 
 > A file editor in a Claude Code terminal pane: click a path Claude names and edit the file right there
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-12
 - 🏷️ Tags: (none)

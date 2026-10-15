@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="n8n-io-n8n"></a>
 ## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
 
-**★ 207330** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
+**★ 207436** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
 
 Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
@@ -28,56 +28,15 @@ cue skills add n8n-io/n8n --profile backend
 
 ---
 
-<a id="devlikeapro-waha"></a>
-## 💎 [devlikeapro/waha](https://github.com/devlikeapro/waha)
+<a id="hproxy-com-free-proxy-list"></a>
+## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 7588** · exceptional (score 14) · TypeScript · tags: ai-bot, bot, http-api, mcp, mcp-server
+**★ 79** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
-WAHA - WhatsApp HTTP API (REST API) that you can configure in a click! Multiple engines: WEBJS (browser based), NOWEB (websocket nodejs), GOWS (websocket go), WPP (browser)
-
-```bash
-cue skills add devlikeapro/waha --profile backend
-```
-
----
-
-<a id="egym-playground-api-authz-pentest"></a>
-## 💎 [egym-playground/api-authz-pentest](https://github.com/egym-playground/api-authz-pentest)
-
-**★ 0** · exceptional (score 13.5) · Python · tags: ai-agent, api-security, appsec, authorization, bfla
-
-Repository-first API authorization pentest skill: runtime-confirmed OWASP API Top 10 (BOLA/BFLA/IDOR) testing with a built-in safety harness. AI-agent / Claude Skill ready.
-
-✅ SKILL.md
+Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
 ```bash
-cue skills add egym-playground/api-authz-pentest --profile backend
-```
-
----
-
-<a id="bakissation-mcp-google-multi"></a>
-## 💎 [bakissation/mcp-google-multi](https://github.com/bakissation/mcp-google-multi)
-
-**★ 15** · exceptional (score 11.2) · TypeScript · tags: claude, gmail, google-api, google-calendar, google-contacts
-
-Multi-account Google MCP server for Claude Code: Gmail, Drive, Calendar, Sheets, Docs, Contacts, Search Console, and more. ~871 tools with OAuth2 multi-account switching.
-
-```bash
-cue skills add bakissation/mcp-google-multi --profile backend
-```
-
----
-
-<a id="rafalpodles-board-planner"></a>
-## 💎 [rafalpodles/board-planner](https://github.com/rafalpodles/board-planner)
-
-**★ 3** · exceptional (score 10.7) · TypeScript · tags: agpl, ai-agents, claude-code, kanban, mcp
-
-One board. Your team works it. So do your agents. Kanban, sprints, REST API and MCP server — self-hosted, AGPL, with a PM agent and execution workers that run your tasks under your gates.
-
-```bash
-cue skills add rafalpodles/board-planner --profile backend
+cue skills add hproxy-com/free-proxy-list --profile backend
 ```
 
 ---

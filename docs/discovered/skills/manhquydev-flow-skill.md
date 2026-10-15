@@ -2,7 +2,7 @@
 title: "manhquydev/flow-skill — Claude Code skill discovered by cue"
 description: "/flow gated build harness: idea → real done-evidence via honest gates. Site: https://flowskill.io.vn — standalone skill for Claude Code, Codex, Cursor, Antigrav"
 layout: page
-updated: 2026-10-13
+updated: 2026-10-15
 tags: [claude-code, skill, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.9 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-10-13
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: ai-agents, bash, build-pipeline, claude-code, claude-skill, codex, developer-tools, documentation, gated-workflow, openai, website
 
 ## Best fit cue profiles

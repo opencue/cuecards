@@ -2,22 +2,22 @@
 title: "zyziyun/reelfold — Claude Code skill discovered by cue"
 description: "Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude C"
 layout: page
-updated: 2026-10-12
+updated: 2026-10-15
 tags: [claude-code, skill, video, creative-media]
 ---
 
 # 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 1** · exceptional (score 15.8) · Python · ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 2** · exceptional (score 16) · Python · ai-agent, ai-video, batch-processing, claude-code, claude-skill
 
 > Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-12
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-15
 - 🏷️ Tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill, content-creation, douyin, electron, ffmpeg, local-first, macos, multi-platform, podcast, short-video, social-media, tiktok, video-editing, whisper, xiaohongshu, youtube-shorts
 
 ## Best fit cue profiles

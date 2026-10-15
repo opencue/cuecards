@@ -2,7 +2,7 @@
 title: "Hemanthkaruturi/GroundWork — Claude Code skill discovered by cue"
 description: "Groundwork: an open-source Claude Code plugin that makes coding agents work from a shared written plan instead of improvising. It defines standard documents (RF"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 

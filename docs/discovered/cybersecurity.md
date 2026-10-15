@@ -1,44 +1,89 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="violetscar-hui-cc-tackle"></a>
+## 💎 [VioletScar-Hui/cc-tackle](https://github.com/VioletScar-Hui/cc-tackle)
+
+**★ 1** · exceptional (score 15.8) · Python · tags: agent-skills, ai-agent, anthropic, clash, clash-verge
+
+CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
+
+✅ SKILL.md
+
+```bash
+cue skills add VioletScar-Hui/cc-tackle --profile cybersecurity
+```
+
+---
+
+<a id="bartek-filipiuk-security-audit-skill"></a>
+## 💎 [bartek-filipiuk/security-audit-skill](https://github.com/bartek-filipiuk/security-audit-skill)
+
+**★ 1** · exceptional (score 14.8) · JavaScript · tags: appsec, claude-code, claude-code-skill, security-audit
+
+Claude Code skill: evidence-based security audit of your own code, with a verified-safe list, regression tests and a seeded-bug benchmark
+
+✅ SKILL.md
+
+```bash
+cue skills add bartek-filipiuk/security-audit-skill --profile cybersecurity
+```
+
+---
+
+<a id="noatubic-flutter-dependency-audit-skill"></a>
+## 💎 [NoaTubic/flutter-dependency-audit-skill](https://github.com/NoaTubic/flutter-dependency-audit-skill)
+
+**★ 0** · exceptional (score 14.5) · tags: claude-code, claude-skill, dart, dependency-audit, flutter
+
+Flutter/Dart dependency audit skill for Claude Code — checks outdated packages, abandoned libs, license conflicts, CVEs, and version pinning issues
+
+✅ SKILL.md
+
+```bash
+cue skills add NoaTubic/flutter-dependency-audit-skill --profile cybersecurity
+```
+
+---
+
+<a id="noatubic-owasp-mobile-audit-skill"></a>
+## 💎 [NoaTubic/owasp-mobile-audit-skill](https://github.com/NoaTubic/owasp-mobile-audit-skill)
+
+**★ 0** · exceptional (score 14.5) · tags: android, claude-code, claude-skill, dart, flutter
+
+OWASP Mobile Top 10 (2024) security audit skill for Claude Code — covers all 10 categories + 6 emerging checks, with per-rule filtering
+
+✅ SKILL.md
+
+```bash
+cue skills add NoaTubic/owasp-mobile-audit-skill --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2812** · exceptional (score 13.8) · Python · tags: agentskills, claude, skills
+**★ 2821** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="egym-playground-api-authz-pentest"></a>
-## 💎 [egym-playground/api-authz-pentest](https://github.com/egym-playground/api-authz-pentest)
-
-**★ 0** · exceptional (score 13.5) · Python · tags: ai-agent, api-security, appsec, authorization, bfla
-
-Repository-first API authorization pentest skill: runtime-confirmed OWASP API Top 10 (BOLA/BFLA/IDOR) testing with a built-in safety harness. AI-agent / Claude Skill ready.
-
-✅ SKILL.md
-
-```bash
-cue skills add egym-playground/api-authz-pentest --profile cybersecurity
 ```
 
 ---
@@ -65,19 +110,6 @@ Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph,
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="hermida95-second-opinion-skills"></a>
-## ✨ [Hermida95/second-opinion-skills](https://github.com/Hermida95/second-opinion-skills)
-
-**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-detection, ai-safety, c2pa, claude-code
-
-Second Opinion: Agent Skills for using AI with open eyes. An evidence-backed verdict on code you didn't write (code-teardown) and scored evidence that an image was made or edited with AI (ai-evidence).
-
-```bash
-cue skills add Hermida95/second-opinion-skills --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "dotsystemsdevs/pineflow — Claude Code skill discovered by cue"
 description: "The exact path from an idea to a mobile app in the App Store, with Claude Code. 11 chapters, templates and hooks for Expo + React Native."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 

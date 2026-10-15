@@ -2,19 +2,19 @@
 title: "pepperonas/path-links — Claude Code skill discovered by cue"
 description: "Claude Code mod: clickable paths in replies — click a folder to open it in Finder, click the file name to open the file"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [pepperonas/path-links](https://github.com/pepperonas/path-links)
 
-**★ 1** · strong (score 6.3) · TypeScript · claude-code, claude-code-mod, claude-code-plugin, developer-tools, file-manager
+**★ 1** · strong (score 6.2) · TypeScript · claude-code, claude-code-mod, claude-code-plugin, developer-tools, file-manager
 
 > Claude Code mod: clickable paths in replies — click a folder to open it in Finder, click the file name to open the file
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: claude-code, claude-code-mod, claude-code-plugin, developer-tools, file-manager, finder, hyperlinks, macos, mod, osc8, terminal

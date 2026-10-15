@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-13
+updated: 2026-10-15
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="erickirmer17-lgtm-motion-director"></a>
-## 💎 [erickirmer17-lgtm/motion-director](https://github.com/erickirmer17-lgtm/motion-director)
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, motion-graphics, threejs, video-editing
+**★ 2** · exceptional (score 16) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
 
-Claude skill: idea → finished motion-graphic video (concept, copy, assets, canvas + Three.js edit, frame-locked sound design, QA, MP4)
+Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add erickirmer17-lgtm/motion-director --profile video
+cue skills add zyziyun/reelfold --profile video
+```
+
+---
+
+<a id="abcamus-obsidian-sync-vault-ce"></a>
+## 💎 [abcamus/obsidian-sync-vault-ce](https://github.com/abcamus/obsidian-sync-vault-ce)
+
+**★ 137** · exceptional (score 12.8) · TypeScript · tags: baidunetdisk, livesync, mcp-server, obsidian, onedrive
+
+A cloud-first Obsidian vault: zero-space VFS keeps files in your cloud drive, local storage near zero, and 4K video streams on demand. Encrypted multi-device sync for Baidu/Aliyun/Quark/WebDAV/S3, with MCP for AI agents and P2P collaboration.
+
+```bash
+cue skills add abcamus/obsidian-sync-vault-ce --profile video
 ```
 
 ---

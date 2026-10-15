@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-15
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="beyondmrk-super-ai-gen"></a>
-## 💎 [beyondmrk/super-ai-gen](https://github.com/beyondmrk/super-ai-gen)
+<a id="manhquydev-flow-skill"></a>
+## 💎 [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
 
-**★ 1** · exceptional (score 13.3) · Python · tags: ad-creative, ai-image-generation, ai-video, claude-code, claude-code-skill
+**★ 9** · exceptional (score 11.9) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
 
-Guarded CLI pipeline for AI ad asset generation on Higgsfield: declared client, gated spend, resume and regen-in-place. Packaged as a Claude Code skill.
-
-✅ SKILL.md
+/flow gated build harness: idea → real done-evidence via honest gates. Site: https://flowskill.io.vn — standalone skill for Claude Code, Codex, Cursor, Antigravity. bash+python3. MIT.
 
 ```bash
-cue skills add beyondmrk/super-ai-gen --profile python
+cue skills add manhquydev/flow-skill --profile python
 ```
 
 ---
