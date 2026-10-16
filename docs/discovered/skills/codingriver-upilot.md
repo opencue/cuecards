@@ -2,21 +2,21 @@
 title: "codingriver/upilot — Claude Code skill discovered by cue"
 description: "upilot Unity Editor automation bridge for AI agents and MCP clients"
 layout: page
-updated: 2026-07-30
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [codingriver/upilot](https://github.com/codingriver/upilot)
 
-**★ 0** · exceptional (score 8) · C# · ai-agent, claude, codex, cursor, editor-automation
+**★ 0** · exceptional (score 9.5) · C# · ai-agent, claude, codex, cursor, editor-automation
 
 > upilot Unity Editor automation bridge for AI agents and MCP clients
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-30
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: ai-agent, claude, codex, cursor, editor-automation, gamedev-tools, mcp, mcp-server, model-context-protocol, openai, uiflow, uitoolkit, unity, unity-editor, unity-package, upm
 
 ## Best fit cue profiles

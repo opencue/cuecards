@@ -1,22 +1,22 @@
 ---
 title: "MarcelRoozekrans/roslyn-codelens-mcp — Claude Code skill discovered by cue"
-description: "Roslyn-based MCP server giving AI agents deep semantic understanding of .NET/C# codebases — 57 tools for navigation, call graphs, diagnostics & code fixes, code"
+description: "Roslyn-based MCP server giving AI agents deep semantic understanding of .NET/C# codebases — 67 tools for navigation, call graphs, diagnostics & code fixes, safe"
 layout: page
-updated: 2026-07-28
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [MarcelRoozekrans/roslyn-codelens-mcp](https://github.com/MarcelRoozekrans/roslyn-codelens-mcp)
 
-**★ 35** · exceptional (score 13.2) · C# · ai-agents, claude-code, code-analysis, code-intelligence, csharp
+**★ 64** · exceptional (score 15.6) · C# · ai-agents, claude-code, code-analysis, code-intelligence, csharp
 
-> Roslyn-based MCP server giving AI agents deep semantic understanding of .NET/C# codebases — 57 tools for navigation, call graphs, diagnostics & code fixes, code-quality auditing, test intelligence, DI graphs, and IL/external-assembly inspection.
+> Roslyn-based MCP server giving AI agents deep semantic understanding of .NET/C# codebases — 67 tools for navigation, call graphs, diagnostics & code fixes, safe refactoring, code-quality auditing, test intelligence, DI graphs, and IL/external-assembly inspection.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.2 based on:
-- ⭐ 35 stars
-- 🗓️ Last pushed: 2026-07-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
+- ⭐ 64 stars
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: ai-agents, claude-code, code-analysis, code-intelligence, csharp, dotnet, dotnet-tool, mcp, mcp-server, roslyn, static-analysis
 
 ## Best fit cue profiles

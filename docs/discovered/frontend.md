@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="adigold-aat-tool"></a>
+## 💎 [adigold/AAT-Tool](https://github.com/adigold/AAT-Tool)
+
+**★ 2** · exceptional (score 13.5) · HTML · tags: ai-agents, annotation, claude-code, claude-code-skill, developer-tools
+
+Admin Annotation Tool: pin or circle elements on your live Next.js app and get an agent-ready prompt with a marked screenshot. A Claude Code skill.
+
+✅ SKILL.md
+
+```bash
+cue skills add adigold/AAT-Tool --profile frontend
+```
 
 ---
 

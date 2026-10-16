@@ -1,22 +1,22 @@
 ---
 title: "ilyautov/humanizer-ru — Claude Code skill discovered by cue"
-description: "humanizer-ru: очеловечить русский AI-текст для Claude Code, Cursor, Codex и других AI-агентов. 64 признака нейросети, 21 жёсткий бан, сканер в комплекте. | Remo"
+description: "humanizer-ru: редактура русского текста для AI-агентов. Убирает канцелярит и шаблонные обороты, сверяет смысл и факты. 67 признаков, 21 жёсткий запрет, сканер, "
 layout: page
-updated: 2026-09-25
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ilyautov/humanizer-ru](https://github.com/ilyautov/humanizer-ru)
 
-**★ 388** · exceptional (score 14.8) · Python · agent-skills, ai-detection, anthropic, anti-ai-detector, claude
+**★ 453** · exceptional (score 14.8) · Python · agent-skills, ai-detection, anthropic, anti-ai-detector, claude
 
-> humanizer-ru: очеловечить русский AI-текст для Claude Code, Cursor, Codex и других AI-агентов. 64 признака нейросети, 21 жёсткий бан, сканер в комплекте. | Remove AI-generation markers from Russian text: open-source skill for Claude Code, Cursor, Codex and other agents.
+> humanizer-ru: редактура русского текста для AI-агентов. Убирает канцелярит и шаблонные обороты, сверяет смысл и факты. 67 признаков, 21 жёсткий запрет, сканер, CLI, MCP и расширение Chrome. | Russian text editing for AI agents: removes bureaucratese and template phrasing, checks facts.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
-- ⭐ 388 stars
-- 🗓️ Last pushed: 2026-09-25
+- ⭐ 453 stars
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: agent-skills, ai-detection, anthropic, anti-ai-detector, claude, claude-code, claude-code-skills, claude-cowork, claude-skill, claude-skills, codex-cli, copywriting, cursor, gemini-cli-extension, humanizer, humanizer-ru, russian, skill-md, text-humanizer, ux-writing
 
 ## Best fit cue profiles

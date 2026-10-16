@@ -2,13 +2,13 @@
 title: "hoveychen/game-forge — Claude Code skill discovered by cue"
 description: "Claude Code skill for planning and building video games with AI agents — keeps multi-session builds playable, on-scope, and fun. Backed by ~90 case studies."
 layout: page
-updated: 2026-10-01
+updated: 2026-10-16
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [hoveychen/game-forge](https://github.com/hoveychen/game-forge)
 
-**★ 0** · exceptional (score 13) · ai-agents, claude-code, claude-skill, game-design, game-development
+**★ 0** · exceptional (score 13) · agent-skills, ai-agents, claude-code, claude-skill, codex
 
 > Claude Code skill for planning and building video games with AI agents — keeps multi-session builds playable, on-scope, and fun. Backed by ~90 case studies.
 
@@ -17,8 +17,8 @@ tags: [claude-code, skill, creative-media]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-01
-- 🏷️ Tags: ai-agents, claude-code, claude-skill, game-design, game-development
+- 🗓️ Last pushed: 2026-10-16
+- 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-skill, codex, game-design, game-development, gdd
 
 ## Best fit cue profiles
 

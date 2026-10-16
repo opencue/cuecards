@@ -1,8 +1,8 @@
 ---
 title: "unrealinux/ielts-writing-coach — Claude Code skill discovered by cue"
-description: "雅思作文批改 AI agent skill：四项预估分 + 逐句证据 + Word 真批注 + 跨篇趋势。零依赖（Python 标准库）、离线，自带全量自检。"
+description: "雅思作文批改 AI agent skill：逐句证据 + 错误模式 + 定向改写 + Word 真批注 + 跨篇趋势；分数给区间不给单点。零依赖（Python 标准库）、离线，自带全量自检与校准记录。"
 layout: page
-updated: 2026-09-23
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, core]
 
 **★ 0** · exceptional (score 13.5) · Python · agent-skill, claude-skill, codex, education, ielts
 
-> 雅思作文批改 AI agent skill：四项预估分 + 逐句证据 + Word 真批注 + 跨篇趋势。零依赖（Python 标准库）、离线，自带全量自检。
+> 雅思作文批改 AI agent skill：逐句证据 + 错误模式 + 定向改写 + Word 真批注 + 跨篇趋势；分数给区间不给单点。零依赖（Python 标准库）、离线，自带全量自检与校准记录。
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-23
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: agent-skill, claude-skill, codex, education, ielts, ielts-writing, python
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "npmiaman/makenomistakes — Claude Code skill discovered by cue"
 description: "Vibecode like an L8 engineer. A Claude Code skill that takes any task end to end — finds the real problem, builds test-first, proves it on the real path, review"
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 

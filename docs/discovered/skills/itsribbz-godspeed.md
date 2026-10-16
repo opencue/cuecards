@@ -2,19 +2,19 @@
 title: "itsribbZ/Godspeed — Claude Code skill discovered by cue"
 description: "Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory"
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [itsribbZ/Godspeed](https://github.com/itsribbZ/Godspeed)
 
-**★ 1** · strong (score 6.8) · Python · ai-agents, anthropic, claude, claude-code, claude-code-plugin
+**★ 1** · strong (score 6.7) · Python · ai-agents, anthropic, claude, claude-code, claude-code-plugin
 
 > Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory with vector search, 35-test suite + eval harness. Stdlib Python + SQLite. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin, cost-optimization, haiku, llm, llm-routing, multi-agent, opus, orchestration, python, sonnet

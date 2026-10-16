@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="daizedong-small-cap-deepdive"></a>
+## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add DaizeDong/small-cap-deepdive --profile research
+```
+
+---
+
+<a id="chinayuren2022-2025-learn-everything-in-html"></a>
+## 💎 [chinayuren2022-2025/learn-everything-in-html](https://github.com/chinayuren2022-2025/learn-everything-in-html)
+
+**★ 0** · exceptional (score 12) · Python · tags: adhd, claude-code, claude-skill, lecture-notes, macos
+
+Learn everything in HTML — a Claude Code skill that turns lecture transcripts, textbooks, or a research field's papers into self-study HTML notes (example-driven or problem-driven), with highlights, concept maps and room for Mac Trackpad Notes
+
+✅ SKILL.md
+
+```bash
+cue skills add chinayuren2022-2025/learn-everything-in-html --profile research
 ```
 
 ---
@@ -31,7 +48,7 @@ cue skills add aemro-motors/popper-scope --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 3.7) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 2** · potential (score 3.6) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

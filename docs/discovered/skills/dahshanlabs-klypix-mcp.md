@@ -2,22 +2,22 @@
 title: "dahshanlabs/klypix-mcp — Claude Code skill discovered by cue"
 description: "Shared project memory for Claude Code, Codex, Cursor and other MCP coding tools — one brain.klypix file committed with your code."
 layout: page
-updated: 2026-10-06
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [dahshanlabs/klypix-mcp](https://github.com/dahshanlabs/klypix-mcp)
 
-**★ 8** · exceptional (score 13.3) · JavaScript · agent-coordination, ai-agents, ai-memory, canvas, claude
+**★ 10** · exceptional (score 13.4) · JavaScript · agent-coordination, ai-agents, ai-memory, canvas, claude
 
 > Shared project memory for Claude Code, Codex, Cursor and other MCP coding tools — one brain.klypix file committed with your code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-10-06
-- 🏷️ Tags: agent-coordination, ai-agents, ai-memory, canvas, claude, claude-code, codex, cursor, json-canvas, knowledge-management, local-first, mcp, mcp-server, model-context-protocol, multi-agent, project-brain, project-continuity, shared-memory
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.4 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-10-16
+- 🏷️ Tags: agent-coordination, ai-agents, ai-memory, canvas, claude, claude-code, codex, cursor, json-canvas, knowledge-management, local-first, mcp, mcp-server, model-context-protocol, multi-agent, project-brain, project-continuity, project-memory, shared-memory
 
 ## Best fit cue profiles
 

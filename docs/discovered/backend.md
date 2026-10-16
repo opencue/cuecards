@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for backend"
-description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="n8n-io-n8n"></a>
-## 💎 [n8n-io/n8n](https://github.com/n8n-io/n8n)
-
-**★ 207436** · exceptional (score 14) · TypeScript · tags: ai, apis, automation, cli, data-flow
-
-Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
-
-```bash
-cue skills add n8n-io/n8n --profile backend
-```
 
 ---
 
@@ -37,6 +24,45 @@ Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxi
 
 ```bash
 cue skills add hproxy-com/free-proxy-list --profile backend
+```
+
+---
+
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
+
+**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
+
+```bash
+cue skills add ni-c/mcp-hub --profile backend
+```
+
+---
+
+<a id="staqly-staqly"></a>
+## ✨ [staqly/staqly](https://github.com/staqly/staqly)
+
+**★ 1** · strong (score 7.8) · TypeScript · tags: agentic-ai, ai-agents, ai-workflow, approval-workflow, claude-code
+
+Local-first workspace for everything your AI agents create. Agents and n8n save images, video, text and JSON into collections; you approve, reject or regenerate from a fast inbox on desktop or phone. MCP + REST + signed webhooks, SQLite, one Docker command. Self-hosted (Apache-2.0).
+
+```bash
+cue skills add staqly/staqly --profile backend
+```
+
+---
+
+<a id="biogin-serumv1-preset-generator"></a>
+## ✨ [biogin/serumv1-preset-generator](https://github.com/biogin/serumv1-preset-generator)
+
+**★ 0** · strong (score 6) · Python · tags: ai-music-production, mcp-server, no-api-key, serum
+
+Describe a sound in plain English, get a real Serum 1 preset. Works right inside Claude or any AI chat app — no sign-up, no subscription, no API key.
+
+```bash
+cue skills add biogin/serumv1-preset-generator --profile backend
 ```
 
 ---

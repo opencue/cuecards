@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+<a id="hoveychen-game-forge"></a>
+## 💎 [hoveychen/game-forge](https://github.com/hoveychen/game-forge)
 
-**★ 2** · exceptional (score 16) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 0** · exceptional (score 13) · tags: agent-skills, ai-agents, claude-code, claude-skill, codex
 
-Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+Claude Code skill for planning and building video games with AI agents — keeps multi-session builds playable, on-scope, and fun. Backed by ~90 case studies.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile creative-media
+cue skills add hoveychen/game-forge --profile creative-media
+```
+
+---
+
+<a id="pwnera-artbucket"></a>
+## 💎 [pwnera/artbucket](https://github.com/pwnera/artbucket)
+
+**★ 24** · exceptional (score 10.1) · TypeScript · tags: ai, ai-agents, asset-management, brand-assets, brand-guidelines
+
+Open-source, self-hosted DAM and brand manager: assets, guidelines as data and brand portals, for your team and AI agents (MCP, REST, CLI).
+
+```bash
+cue skills add pwnera/artbucket --profile creative-media
 ```
 
 ---

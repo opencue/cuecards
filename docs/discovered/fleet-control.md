@@ -1,65 +1,24 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
-
-**★ 123** · exceptional (score 15) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
-
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="noderaven-parallel-lanes"></a>
-## 💎 [noderaven/parallel-lanes](https://github.com/noderaven/parallel-lanes)
-
-**★ 5** · exceptional (score 13.9) · JavaScript · tags: agent-skills, ai-agents, claude-code, claude-code-skill, claude-skills
-
-Claude Code skill: run an approved implementation plan as parallel lanes of reviewed tasks
-
-✅ SKILL.md
-
-```bash
-cue skills add noderaven/parallel-lanes --profile fleet-control
-```
-
----
-
-<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
-## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
-
-**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
-
-2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
-
-```bash
-cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
-```
-
----
-
 <a id="itsribbz-godspeed"></a>
 ## ✨ [itsribbZ/Godspeed](https://github.com/itsribbZ/Godspeed)
 
-**★ 1** · strong (score 6.8) · Python · tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin
+**★ 1** · strong (score 6.7) · Python · tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin
 
 Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory with vector search, 35-test suite + eval harness. Stdlib Python + SQLite. MIT.
 

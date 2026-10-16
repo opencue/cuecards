@@ -1,84 +1,24 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="violetscar-hui-cc-tackle"></a>
-## 💎 [VioletScar-Hui/cc-tackle](https://github.com/VioletScar-Hui/cc-tackle)
-
-**★ 1** · exceptional (score 15.8) · Python · tags: agent-skills, ai-agent, anthropic, clash, clash-verge
-
-CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
-
-✅ SKILL.md
-
-```bash
-cue skills add VioletScar-Hui/cc-tackle --profile cybersecurity
-```
-
----
-
-<a id="bartek-filipiuk-security-audit-skill"></a>
-## 💎 [bartek-filipiuk/security-audit-skill](https://github.com/bartek-filipiuk/security-audit-skill)
-
-**★ 1** · exceptional (score 14.8) · JavaScript · tags: appsec, claude-code, claude-code-skill, security-audit
-
-Claude Code skill: evidence-based security audit of your own code, with a verified-safe list, regression tests and a seeded-bug benchmark
-
-✅ SKILL.md
-
-```bash
-cue skills add bartek-filipiuk/security-audit-skill --profile cybersecurity
-```
-
----
-
-<a id="noatubic-flutter-dependency-audit-skill"></a>
-## 💎 [NoaTubic/flutter-dependency-audit-skill](https://github.com/NoaTubic/flutter-dependency-audit-skill)
-
-**★ 0** · exceptional (score 14.5) · tags: claude-code, claude-skill, dart, dependency-audit, flutter
-
-Flutter/Dart dependency audit skill for Claude Code — checks outdated packages, abandoned libs, license conflicts, CVEs, and version pinning issues
-
-✅ SKILL.md
-
-```bash
-cue skills add NoaTubic/flutter-dependency-audit-skill --profile cybersecurity
-```
-
----
-
-<a id="noatubic-owasp-mobile-audit-skill"></a>
-## 💎 [NoaTubic/owasp-mobile-audit-skill](https://github.com/NoaTubic/owasp-mobile-audit-skill)
-
-**★ 0** · exceptional (score 14.5) · tags: android, claude-code, claude-skill, dart, flutter
-
-OWASP Mobile Top 10 (2024) security audit skill for Claude Code — covers all 10 categories + 6 emerging checks, with per-rule filtering
-
-✅ SKILL.md
-
-```bash
-cue skills add NoaTubic/owasp-mobile-audit-skill --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2821** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
+**★ 2823** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -104,7 +44,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 7.3) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 7.2) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 

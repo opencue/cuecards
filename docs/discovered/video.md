@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,27 +18,14 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 <a id="zyziyun-reelfold"></a>
 ## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 2** · exceptional (score 16) · Python · tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 3** · exceptional (score 13.7) · Python · tags: ai-video, batch-processing, claude-code, claude-skill, content-creation
 
-Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
 
 ✅ SKILL.md
 
 ```bash
 cue skills add zyziyun/reelfold --profile video
-```
-
----
-
-<a id="abcamus-obsidian-sync-vault-ce"></a>
-## 💎 [abcamus/obsidian-sync-vault-ce](https://github.com/abcamus/obsidian-sync-vault-ce)
-
-**★ 137** · exceptional (score 12.8) · TypeScript · tags: baidunetdisk, livesync, mcp-server, obsidian, onedrive
-
-A cloud-first Obsidian vault: zero-space VFS keeps files in your cloud drive, local storage near zero, and 4K video streams on demand. Encrypted multi-device sync for Baidu/Aliyun/Quark/WebDAV/S3, with MCP for AI agents and P2P collaboration.
-
-```bash
-cue skills add abcamus/obsidian-sync-vault-ce --profile video
 ```
 
 ---

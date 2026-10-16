@@ -1,61 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-16
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="huiyonghkw-hekouwang-writer-skill"></a>
-## 💎 [huiyonghkw/hekouwang-writer-skill](https://github.com/huiyonghkw/hekouwang-writer-skill)
+<a id="basitalisandhu-repo-engineering-skills"></a>
+## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 0** · exceptional (score 15.5) · Python · tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill
+**★ 1** · strong (score 5.2) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
-中文文档写作与改进 Agent Skill：把素材写成结构清晰、读得懂、数字可对账的文档。出处/模态/修订三铁律，修订列改动清单可回退，五把纯 Python 标准库检查脚本（锯末词、长句、表格与敏感信息、算术对账、改动对账）。
-
-✅ SKILL.md
+Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 
 ```bash
-cue skills add huiyonghkw/hekouwang-writer-skill --profile docs-writer
-```
-
----
-
-<a id="luffysolution-svg-doc-ocr-to-markdown"></a>
-## 💎 [luffysolution-svg/doc-ocr-to-markdown](https://github.com/luffysolution-svg/doc-ocr-to-markdown)
-
-**★ 0** · exceptional (score 12.5) · Python · tags: agent-skill, claude-skill, katex, knowledge-base, latex
-
-Agent skill: turn scanned documents, PDFs and slides into a Markdown knowledge base with rendered LaTeX formulas and high-resolution figures. OCR + source-text correction + math normalization + validation.
-
-✅ SKILL.md
-
-```bash
-cue skills add luffysolution-svg/doc-ocr-to-markdown --profile docs-writer
-```
-
----
-
-<a id="scriptautomate-write-good-docs"></a>
-## 💎 [ScriptAutomate/write-good-docs](https://github.com/ScriptAutomate/write-good-docs)
-
-**★ 0** · exceptional (score 12.5) · Python · tags: ai-agent, automation, claude-code-skill, developer-tools, docs-as-code
-
-The Good Docs Project templates repository converted into a SKILL for AI agents: Use for writing how-tos, readmes, quickstarts, tutorials, contributing guides, installation guides, glossaries, and more
-
-✅ SKILL.md
-
-```bash
-cue skills add ScriptAutomate/write-good-docs --profile docs-writer
+cue skills add basitalisandhu/repo-engineering-skills --profile docs-writer
 ```
 
 ---

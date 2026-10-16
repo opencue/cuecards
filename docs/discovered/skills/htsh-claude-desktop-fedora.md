@@ -2,21 +2,21 @@
 title: "htsh/claude-desktop-fedora — Claude Code skill discovered by cue"
 description: "Unofficial RPM spec for Anthropic's Claude Desktop on Fedora — fixes Wayland/Vulkan crash and Cowork's QEMU firmware paths"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-16
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [htsh/claude-desktop-fedora](https://github.com/htsh/claude-desktop-fedora)
 
-**★ 3** · potential (score 4.5) · anthropic, claude, claude-desktop, cowork, electron
+**★ 3** · potential (score 4.7) · anthropic, claude, claude-desktop, cowork, electron
 
 > Unofficial RPM spec for Anthropic's Claude Desktop on Fedora — fixes Wayland/Vulkan crash and Cowork's QEMU firmware paths
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-11
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: anthropic, claude, claude-desktop, cowork, electron, fedora, qemu, rpm, rpm-spec, wayland
 
 ## Best fit cue profiles

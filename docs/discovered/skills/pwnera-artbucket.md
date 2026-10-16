@@ -2,21 +2,21 @@
 title: "pwnera/artbucket — Claude Code skill discovered by cue"
 description: "Open-source, self-hosted DAM and brand manager: assets, guidelines as data and brand portals, for your team and AI agents (MCP, REST, CLI)."
 layout: page
-updated: 2026-10-05
+updated: 2026-10-16
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [pwnera/artbucket](https://github.com/pwnera/artbucket)
 
-**★ 5** · exceptional (score 9.4) · TypeScript · ai, ai-agents, asset-management, brand-assets, brand-guidelines
+**★ 24** · exceptional (score 10.1) · TypeScript · ai, ai-agents, asset-management, brand-assets, brand-guidelines
 
 > Open-source, self-hosted DAM and brand manager: assets, guidelines as data and brand portals, for your team and AI agents (MCP, REST, CLI).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
+- ⭐ 24 stars
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: ai, ai-agents, asset-management, brand-assets, brand-guidelines, brand-identity, brand-management, brand-portal, branding, bynder-alternative, claude-code, dam, design-tokens, digital-asset-management, marketing, mcp, mcp-server, nextjs, self-hosted, typescript
 
 ## Best fit cue profiles

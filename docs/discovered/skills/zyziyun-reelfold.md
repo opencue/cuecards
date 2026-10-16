@@ -1,28 +1,28 @@
 ---
 title: "zyziyun/reelfold — Claude Code skill discovered by cue"
-description: "Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude C"
+description: "Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI."
 layout: page
-updated: 2026-10-15
-tags: [claude-code, skill, video, creative-media]
+updated: 2026-10-16
+tags: [claude-code, skill, video]
 ---
 
 # 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 2** · exceptional (score 16) · Python · ai-agent, ai-video, batch-processing, claude-code, claude-skill
+**★ 3** · exceptional (score 13.7) · Python · ai-video, batch-processing, claude-code, claude-skill, content-creation
 
-> Describe the batch, get every cut for every platform. Free, open-source, local-first video orchestrator for creators, podcasts and studios. macOS app + Claude Code skill.
+> Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-15
-- 🏷️ Tags: ai-agent, ai-video, batch-processing, claude-code, claude-skill, content-creation, douyin, electron, ffmpeg, local-first, macos, multi-platform, podcast, short-video, social-media, tiktok, video-editing, whisper, xiaohongshu, youtube-shorts
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-10-16
+- 🏷️ Tags: ai-video, batch-processing, claude-code, claude-skill, content-creation, douyin, electron, ffmpeg, local-first, macos, multi-platform, open-source, podcast, short-video, tiktok, video-editing, video-editor, whisper, xiaohongshu, youtube-shorts
 
 ## Best fit cue profiles
 
-[video](../video.md), [creative-media](../creative-media.md)
+[video](../video.md)
 
 
 
