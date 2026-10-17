@@ -1,23 +1,23 @@
 ---
 title: "jegly/Box — Claude Code skill discovered by cue"
-description: "Private on-device AI suite for Android. Fork of Google AI Edge Gallery with llama.cpp, whisper.cpp, stable-diffusion.cpp, GGUF import, voice chat, vision AI, on"
+description: "The most advanced, fully offline client-side AI suite on Android today."
 layout: page
-updated: 2026-06-04
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [jegly/Box](https://github.com/jegly/Box)
 
-**★ 535** · exceptional (score 9.5) · Kotlin · android, android-ai-app, artificial-intelligence, box, gguf
+**★ 920** · exceptional (score 12.9) · Kotlin · android, android-ai-app, artificial-intelligence, box, gguf
 
-> Private on-device AI suite for Android. Fork of Google AI Edge Gallery with llama.cpp, whisper.cpp, stable-diffusion.cpp, GGUF import, voice chat, vision AI, on-device image generation, biometric lock, encrypted history, and CPU/NPU/GPU acceleration.
+> The most advanced, fully offline client-side AI suite on Android today.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 535 stars
-- 🗓️ Last pushed: 2026-06-04
-- 🏷️ Tags: android, android-ai-app, artificial-intelligence, box, gguf, linux, linux-ai, litert, litert-community-functiongemma, litert-for-android, litert-lm, litertlm, llamacpp, local-ai, local-llm, mcp-server, ondevice-ai, privacy-first-ai, rag, visionai
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.9 based on:
+- ⭐ 920 stars
+- 🗓️ Last pushed: 2026-10-17
+- 🏷️ Tags: android, android-ai-app, artificial-intelligence, box, gguf, linux, linux-ai, litert, litert-lm, litertlm, llamacpp, local-ai, local-llm, mcp-server, music-generation, ondevice-ai, privacy-first-ai, rag, visionai
 
 ## Best fit cue profiles
 

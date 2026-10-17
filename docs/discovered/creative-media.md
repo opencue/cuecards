@@ -1,44 +1,59 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="hoveychen-game-forge"></a>
-## 💎 [hoveychen/game-forge](https://github.com/hoveychen/game-forge)
+<a id="lemomo-ai-lemo-opuscar"></a>
+## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
 
-**★ 0** · exceptional (score 13) · tags: agent-skills, ai-agents, claude-code, claude-skill, codex
+**★ 2773** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
 
-Claude Code skill for planning and building video games with AI agents — keeps multi-session builds playable, on-scope, and fun. Backed by ~90 case studies.
-
-✅ SKILL.md
+Claude Code skill for short films with no video model: 51 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98 and the new Evidence Films). By Lemomo. · Opus5.5 x 51 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南（新增「实证影像」）
 
 ```bash
-cue skills add hoveychen/game-forge --profile creative-media
+cue skills add lemomo-ai/lemo-opuscar --profile creative-media
 ```
 
 ---
 
-<a id="pwnera-artbucket"></a>
-## 💎 [pwnera/artbucket](https://github.com/pwnera/artbucket)
+<a id="shemyu-teachme"></a>
+## 💎 [ShemYu/teachme](https://github.com/ShemYu/teachme)
 
-**★ 24** · exceptional (score 10.1) · TypeScript · tags: ai, ai-agents, asset-management, brand-assets, brand-guidelines
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, education, elevenlabs, learning
 
-Open-source, self-hosted DAM and brand manager: assets, guidelines as data and brand portals, for your team and AI agents (MCP, REST, CLI).
+A Claude Code skill that turns any technical topic into a narrated study lesson: visual-proof slides, an MP4 with subtitles, and a focus player that spotlights each sentence.
+
+✅ SKILL.md
 
 ```bash
-cue skills add pwnera/artbucket --profile creative-media
+cue skills add ShemYu/teachme --profile creative-media
+```
+
+---
+
+<a id="levybytes-ai-skill-gimp"></a>
+## 💎 [LevyBytes/AI-SKILL-gimp](https://github.com/LevyBytes/AI-SKILL-gimp)
+
+**★ 1** · exceptional (score 11.8) · tags: agent-kaizen, agent-skills, ai-agents, anthropic, claude-code
+
+Agent Kaizen skill for Claude Code & Codex: faithful GIMP 3.2 reference (GNU Image Manipulation Program), layers, blend modes, masks, channels, selections, Bézier paths, levels, curves, ICC profiles, .xcf/PNG/JPEG export, and scripting via Script-Fu, Python-Fu & the PDB, including headless batch and GIMP MCP server runs.
+
+✅ SKILL.md
+
+```bash
+cue skills add LevyBytes/AI-SKILL-gimp --profile creative-media
 ```
 
 ---
@@ -52,6 +67,19 @@ AI video director for Claude Code: pick one of three complete films and Claude d
 
 ```bash
 cue skills add Sibhimanyu/rasanai --profile creative-media
+```
+
+---
+
+<a id="senlindesign-proof"></a>
+## ✨ [senlindesign/proof](https://github.com/senlindesign/proof)
+
+**★ 1** · strong (score 7.3) · Python · tags: agent-skills, claude-code, claude-skill, codex, design
+
+Proof — a product design skill for Claude Code & Codex. Product pages that look shipped, not generated, learned from 400+ real product pages: 8 page types, 10 sections, and 4 visual styles (Minimal, Business, Colorful, Editorial) in light and dark.
+
+```bash
+cue skills add senlindesign/proof --profile creative-media
 ```
 
 ---

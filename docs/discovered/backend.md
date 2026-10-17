@@ -1,24 +1,37 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="doobidoo-mcp-memory-service"></a>
+## 💎 [doobidoo/mcp-memory-service](https://github.com/doobidoo/mcp-memory-service)
+
+**★ 2021** · exceptional (score 17) · Python · tags: agent-memory, agentic-ai, ai-agents, autogen, claude
+
+Open-source persistent memory for AI agent pipelines (LangGraph, CrewAI, AutoGen) and Claude. REST API + knowledge graph + autonomous consolidation.
+
+```bash
+cue skills add doobidoo/mcp-memory-service --profile backend
+```
+
+---
+
 <a id="hproxy-com-free-proxy-list"></a>
 ## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
 
-**★ 79** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 80** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
 
 Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
 
@@ -41,28 +54,15 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="staqly-staqly"></a>
-## ✨ [staqly/staqly](https://github.com/staqly/staqly)
+<a id="renefichtmueller-adaptive-llm-gateway"></a>
+## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
 
-**★ 1** · strong (score 7.8) · TypeScript · tags: agentic-ai, ai-agents, ai-workflow, approval-workflow, claude-code
+**★ 14** · exceptional (score 8.1) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
 
-Local-first workspace for everything your AI agents create. Agents and n8n save images, video, text and JSON into collections; you approve, reject or regenerate from a fast inbox on desktop or phone. MCP + REST + signed webhooks, SQLite, one Docker command. Self-hosted (Apache-2.0).
-
-```bash
-cue skills add staqly/staqly --profile backend
-```
-
----
-
-<a id="biogin-serumv1-preset-generator"></a>
-## ✨ [biogin/serumv1-preset-generator](https://github.com/biogin/serumv1-preset-generator)
-
-**★ 0** · strong (score 6) · Python · tags: ai-music-production, mcp-server, no-api-key, serum
-
-Describe a sound in plain English, get a real Serum 1 preset. Works right inside Claude or any AI chat app — no sign-up, no subscription, no API key.
+Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
 
 ```bash
-cue skills add biogin/serumv1-preset-generator --profile backend
+cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
 ```
 
 ---
@@ -76,6 +76,19 @@ Local-first multi-agent voice assistant — dual-process architecture (local Oll
 
 ```bash
 cue skills add anirudhlath/alfred --profile backend
+```
+
+---
+
+<a id="perdhevi-pdf-mcp"></a>
+## ✨ [perdhevi/pdf-mcp](https://github.com/perdhevi/pdf-mcp)
+
+**★ 0** · strong (score 5) · Python · tags: docker, document-management, llm, mcp, mcp-server
+
+MCP server for per-customer PDF document management and RAG. Ingests text, scanned and chart-heavy PDFs (PyMuPDF + Tesseract + vision model), isolates each customer in its own Qdrant collection, and returns cited answers with deep links to the original PDF page. Local-first with Ollama, or any OpenAI-compatible API.
+
+```bash
+cue skills add perdhevi/pdf-mcp --profile backend
 ```
 
 ---

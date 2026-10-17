@@ -2,7 +2,7 @@
 title: "asfakulsiam/asfakulsiam-motomation-design — Claude Code skill discovered by cue"
 description: "Claude Code skill from asfakulsiam/asfakulsiam-motomation-design"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-16
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, gemini-cli-extension, gsap, motion-design, web-design
 
 ## Best fit cue profiles

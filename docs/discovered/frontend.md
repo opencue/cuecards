@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="adigold-aat-tool"></a>
-## 💎 [adigold/AAT-Tool](https://github.com/adigold/AAT-Tool)
-
-**★ 2** · exceptional (score 13.5) · HTML · tags: ai-agents, annotation, claude-code, claude-code-skill, developer-tools
-
-Admin Annotation Tool: pin or circle elements on your live Next.js app and get an agent-ready prompt with a marked screenshot. A Claude Code skill.
-
-✅ SKILL.md
-
-```bash
-cue skills add adigold/AAT-Tool --profile frontend
-```
 
 ---
 
@@ -52,6 +37,19 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="teresacooper-avoid-ai-design"></a>
+## ✨ [teresacooper/avoid-ai-design](https://github.com/teresacooper/avoid-ai-design)
+
+**★ 0** · strong (score 7) · JavaScript · tags: agent-skills, ai-design, ai-slop, anthropic, claude-code
+
+Audits AI-generated frontend and rewrites it so it stops looking AI-made: purple-gradient slop and the "tasteful" defaults (cream + terracotta, mono chrome). Zero-dependency scanner included. The design counterpart to avoid-ai-writing.
+
+```bash
+cue skills add teresacooper/avoid-ai-design --profile frontend
 ```
 
 ---

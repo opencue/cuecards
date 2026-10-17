@@ -2,7 +2,7 @@
 title: "RCFromCLE/Lifeline — Claude Code skill discovered by cue"
 description: "AI-assisted, hardcore-first Path of Exile 2 playthrough and build companion (Rust/Tauri, uses your Claude subscription)"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 

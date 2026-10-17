@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-11
+updated: 2026-10-17
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="1nc0gn30-nexus-3d-scene-studio"></a>
-## ✨ [1nc0gn30/nexus-3d-scene-studio](https://github.com/1nc0gn30/nexus-3d-scene-studio)
+<a id="drkostas-3d-review"></a>
+## 💎 [drkostas/3d-review](https://github.com/drkostas/3d-review)
 
-**★ 0** · strong (score 6) · Python · tags: 3d-graphics, 3d-modeling, cad, fastmcp, geometry
+**★ 0** · exceptional (score 8) · Python · tags: 3d, 3d-printing, ai-agents, claude-code, claude-skill
 
-Nexus 3D Studio - Mathematical Geometry Engine, WebGL Scene Exporter & MCP Server (design influenced by Material 3)
+Review a 3D design with an assistant: a bench to mark what is wrong on the model, a step ledger, a requirement board proven able to fail, and a Penpot bridge
 
 ```bash
-cue skills add 1nc0gn30/nexus-3d-scene-studio --profile threejs
+cue skills add drkostas/3d-review --profile threejs
 ```
 
 ---

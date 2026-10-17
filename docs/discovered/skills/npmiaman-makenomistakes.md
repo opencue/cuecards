@@ -2,19 +2,19 @@
 title: "npmiaman/makenomistakes — Claude Code skill discovered by cue"
 description: "Vibecode like an L8 engineer. A Claude Code skill that takes any task end to end — finds the real problem, builds test-first, proves it on the real path, review"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [npmiaman/makenomistakes](https://github.com/npmiaman/makenomistakes)
 
-**★ 1** · strong (score 5.3) · Markdown · agent-skills, ai-coding, claude-code, claude-code-marketplace, claude-code-plugin
+**★ 1** · strong (score 5.2) · Markdown · agent-skills, ai-coding, claude-code, claude-code-marketplace, claude-code-plugin
 
 > Vibecode like an L8 engineer. A Claude Code skill that takes any task end to end — finds the real problem, builds test-first, proves it on the real path, reviews itself, opens the PR — and stops only at one-way doors.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-14
 - 🏷️ Tags: agent-skills, ai-coding, claude-code, claude-code-marketplace, claude-code-plugin, claude-code-skills, claude-skills, vibecoding

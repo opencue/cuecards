@@ -2,7 +2,7 @@
 title: "Yoshiaki-Takashita/skopost — Claude Code skill discovered by cue"
 description: "Static analyzer for AI agent tool setups (MCP, OpenAPI, Claude Code settings). Finds paths where untrusted text can reach sending, execution, purchase or deleti"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 

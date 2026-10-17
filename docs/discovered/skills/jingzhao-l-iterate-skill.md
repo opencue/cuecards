@@ -2,22 +2,22 @@
 title: "jingzhao-l/iterate-skill — Claude Code skill discovered by cue"
 description: "Turn any AI coding assistant into a self-checking senior engineer: multi-round, multi-dimension code review → fix → re-verify, repeating until the change conver"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [jingzhao-l/iterate-skill](https://github.com/jingzhao-l/iterate-skill)
 
-**★ 1** · exceptional (score 14.8) · Python · agent-skill, ai-agent, ai-coding-assistant, ai-skill, automated-code-review
+**★ 2** · exceptional (score 15) · Python · agent-skill, ai-agent, ai-coding-assistant, ai-skill, automated-code-review
 
 > Turn any AI coding assistant into a self-checking senior engineer: multi-round, multi-dimension code review → fix → re-verify, repeating until the change converges. Works with Trae, Claude Code, Cursor, Copilot, Codex and 25+ assistants.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-14
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agent-skill, ai-agent, ai-coding-assistant, ai-skill, automated-code-review, claude-code, claude-skill, code-quality, code-review, cursor, developer-tools, iterate, multi-agent, skill, skills, trae
 
 ## Best fit cue profiles

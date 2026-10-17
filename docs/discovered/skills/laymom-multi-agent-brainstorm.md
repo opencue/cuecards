@@ -2,21 +2,21 @@
 title: "laymom/multi-agent-brainstorm — Claude Code skill discovered by cue"
 description: "Brainstorming skill for Claude Code that finds the options you missed: 5 perspectives work separately, each guarding a different reason ideas fail, then give yo"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [laymom/multi-agent-brainstorm](https://github.com/laymom/multi-agent-brainstorm)
 
-**★ 2** · strong (score 6.9) · JavaScript · agent-skills, ai-agents, brainstorming, business-strategy, claude
+**★ 2** · strong (score 7) · JavaScript · agent-skills, ai-agents, brainstorming, business-strategy, claude
 
 > Brainstorming skill for Claude Code that finds the options you missed: 5 perspectives work separately, each guarding a different reason ideas fail, then give you 3 paths to act on this week, with trade-offs, the skeptic’s pushback, where they disagreed, and one contrarian option.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-13
+- 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: agent-skills, ai-agents, brainstorming, business-strategy, claude, claude-code, claude-code-skills, claude-skills, design-sprint, idea-generation, ideation, multi-agent, product-discovery, product-management
 
 ## Best fit cue profiles

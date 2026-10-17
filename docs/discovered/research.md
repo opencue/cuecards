@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="daizedong-small-cap-deepdive"></a>
-## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
-
-✅ SKILL.md
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add DaizeDong/small-cap-deepdive --profile research
-```
-
----
-
-<a id="chinayuren2022-2025-learn-everything-in-html"></a>
-## 💎 [chinayuren2022-2025/learn-everything-in-html](https://github.com/chinayuren2022-2025/learn-everything-in-html)
-
-**★ 0** · exceptional (score 12) · Python · tags: adhd, claude-code, claude-skill, lecture-notes, macos
-
-Learn everything in HTML — a Claude Code skill that turns lecture transcripts, textbooks, or a research field's papers into self-study HTML notes (example-driven or problem-driven), with highlights, concept maps and room for Mac Trackpad Notes
-
-✅ SKILL.md
-
-```bash
-cue skills add chinayuren2022-2025/learn-everything-in-html --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

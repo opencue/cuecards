@@ -1,22 +1,22 @@
 ---
 title: "lemomo-ai/lemo-opuscar — Claude Code skill discovered by cue"
-description: "Claude Code skill for short films with no video model: 43 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUS"
+description: "Claude Code skill for short films with no video model: 51 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUS"
 layout: page
-updated: 2026-10-12
+updated: 2026-10-17
 tags: [claude-code, skill, creative-media, video]
 ---
 
 # 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
 
-**★ 2002** · exceptional (score 15.5) · JavaScript · agent-skills, ai-agents, ai-short-film, ai-video, animation
+**★ 2773** · exceptional (score 15.5) · JavaScript · agent-skills, ai-agents, ai-short-film, ai-video, animation
 
-> Claude Code skill for short films with no video model: 43 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98). By Lemomo. · Opus5.5 x 43 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南
+> Claude Code skill for short films with no video model: 51 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98 and the new Evidence Films). By Lemomo. · Opus5.5 x 51 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南（新增「实证影像」）
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ⭐ 2002 stars
-- 🗓️ Last pushed: 2026-10-12
+- ⭐ 2773 stars
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agent-skills, ai-agents, ai-short-film, ai-video, animation, canvas, claude, claude-code, claude-code-plugin, claude-code-skill, creative-coding, ffmpeg, filmmaking, motion-graphics, opus-5-5, prompt-library, text-to-speech, threejs, video-production, webgl
 
 ## Best fit cue profiles

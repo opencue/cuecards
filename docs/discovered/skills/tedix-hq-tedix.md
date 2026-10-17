@@ -2,21 +2,21 @@
 title: "tedix-hq/tedix — Claude Code skill discovered by cue"
 description: "Open-source AI coworkers for your team. They do recurring work, ask before risky steps, and show you exactly what they did."
 layout: page
-updated: 2026-10-11
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [tedix-hq/tedix](https://github.com/tedix-hq/tedix)
 
-**★ 5** · strong (score 6.9) · TypeScript · agent-framework, agent-governance, agpl, ai-agents, ai-coworkers
+**★ 14** · strong (score 7.4) · TypeScript · agent-framework, agent-governance, agpl, ai-agents, ai-coworkers
 
 > Open-source AI coworkers for your team. They do recurring work, ask before risky steps, and show you exactly what they did.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.4 based on:
+- ⭐ 14 stars
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agent-framework, agent-governance, agpl, ai-agents, ai-coworkers, ai-workers, claude-code-plugin, cloudflare, cloudflare-workers, codex, durable-objects, human-in-the-loop, mcp, mcp-gateway, mcp-server, self-hosted, typescript
 
 ## Best fit cue profiles

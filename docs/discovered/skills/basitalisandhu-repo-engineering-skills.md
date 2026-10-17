@@ -2,19 +2,19 @@
 title: "basitalisandhu/repo-engineering-skills — Claude Code skill discovered by cue"
 description: "Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable pa"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skill, docs-writer]
 ---
 
 # ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5.2) · Python · agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5.1) · Python · agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 > Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.1 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-13
 - 🏷️ Tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin, claude-md, claude-skills, code-audit, codebase-analysis, developer-tools, docs-as-code, documentation, hacktoberfest, python, readme, static-analysis, technical-debt, testing

@@ -1,31 +1,57 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+<a id="lemomo-ai-lemo-opuscar"></a>
+## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
 
-**★ 3** · exceptional (score 13.7) · Python · tags: ai-video, batch-processing, claude-code, claude-skill, content-creation
+**★ 2773** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
 
-Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
+Claude Code skill for short films with no video model: 51 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98 and the new Evidence Films). By Lemomo. · Opus5.5 x 51 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南（新增「实证影像」）
+
+```bash
+cue skills add lemomo-ai/lemo-opuscar --profile video
+```
+
+---
+
+<a id="shemyu-teachme"></a>
+## 💎 [ShemYu/teachme](https://github.com/ShemYu/teachme)
+
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, education, elevenlabs, learning
+
+A Claude Code skill that turns any technical topic into a narrated study lesson: visual-proof slides, an MP4 with subtitles, and a focus player that spotlights each sentence.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile video
+cue skills add ShemYu/teachme --profile video
+```
+
+---
+
+<a id="naman-sharma12345-kimo"></a>
+## 💎 [naman-sharma12345/kimo](https://github.com/naman-sharma12345/kimo)
+
+**★ 10** · exceptional (score 8.2) · Rust · tags: ai-agents, ai-tools, claude, cli, codex
+
+MCP-first AI video editor in Rust/C++. Every operation is an AI-callable tool.
+
+```bash
+cue skills add naman-sharma12345/kimo --profile video
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "Hemanthkaruturi/GroundWork — Claude Code skill discovered by cue"
 description: "Groundwork: an open-source Claude Code plugin that makes coding agents work from a shared written plan instead of improvising. It defines standard documents (RF"
 layout: page
-updated: 2026-10-15
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Hemanthkaruturi/GroundWork](https://github.com/Hemanthkaruturi/GroundWork)
 
-**★ 3** · potential (score 3.6) · Python
+**★ 3** · potential (score 3.7) · Python
 
 > Groundwork: an open-source Claude Code plugin that makes coding agents work from a shared written plan instead of improvising. It defines standard documents (RFC → spec → plan → tasks → evals), a mandatory path from idea to code, and human approval gates. A model-free groundwork check enforces conformance locally, in git hooks and in CI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

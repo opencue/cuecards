@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-17
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-10-16 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-10-17 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 78 | `answer-me-with-html`, `nemoclaw-skill`, `multi-agent-architecture-advisor` |
-| [**backend**](./backend.md) | 6 | `free-proxy-list`, `mcp-hub`, `staqly` |
-| [**creative-media**](./creative-media.md) | 4 | `game-forge`, `artbucket`, `rasanai` |
-| [**research**](./research.md) | 3 | `small-cap-deepdive`, `learn-everything-in-html`, `skillassay` |
-| [**cybersecurity**](./cybersecurity.md) | 3 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**frontend**](./frontend.md) | 3 | `AAT-Tool`, `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
-| [**nextjs**](./nextjs.md) | 2 | `AAT-Tool`, `sitemend` |
-| [**video**](./video.md) | 1 | `reelfold` |
+| [**core**](./core.md) | 73 | `context-mode`, `storybloq`, `trace-mcp` |
+| [**backend**](./backend.md) | 7 | `mcp-memory-service`, `free-proxy-list`, `mcp-hub` |
+| [**creative-media**](./creative-media.md) | 6 | `lemo-opuscar`, `teachme`, `AI-SKILL-gimp` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `sanctuary-framework`, `belay` |
+| [**video**](./video.md) | 3 | `lemo-opuscar`, `teachme`, `kimo` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook`, `avoid-ai-design` |
+| [**python**](./python.md) | 2 | `flow-skill`, `alfred` |
+| [**research**](./research.md) | 2 | `popper-scope`, `skillassay` |
+| [**docs-writer**](./docs-writer.md) | 2 | `lab`, `repo-engineering-skills` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
-| [**fleet-control**](./fleet-control.md) | 1 | `Godspeed` |
-| [**docs-writer**](./docs-writer.md) | 1 | `repo-engineering-skills` |
-| [**python**](./python.md) | 1 | `alfred` |
+| [**threejs**](./threejs.md) | 1 | `3d-review` |
 
 ## How scoring works
 

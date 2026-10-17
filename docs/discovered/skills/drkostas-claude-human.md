@@ -2,21 +2,21 @@
 title: "drkostas/claude-human — Claude Code skill discovered by cue"
 description: "Screen capture, lock screen typing and phone notifications for a Mac a person and an agent share"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [drkostas/claude-human](https://github.com/drkostas/claude-human)
 
-**★ 0** · exceptional (score 8) · Python · ai-agents, android, automation, claude-code, claude-skill
+**★ 1** · exceptional (score 8.3) · Python · ai-agents, android, automation, claude-code, claude-skill
 
 > Screen capture, lock screen typing and phone notifications for a Mac a person and an agent share
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: ai-agents, android, automation, claude-code, claude-skill, expo, human-in-the-loop, macos, ntfy, push-notifications, python, screencapturekit
 
 ## Best fit cue profiles
