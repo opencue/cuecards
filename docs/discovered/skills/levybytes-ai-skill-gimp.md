@@ -2,7 +2,7 @@
 title: "LevyBytes/AI-SKILL-gimp — Claude Code skill discovered by cue"
 description: "Agent Kaizen skill for Claude Code & Codex: faithful GIMP 3.2 reference (GNU Image Manipulation Program), layers, blend modes, masks, channels, selections, Bézi"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, creative-media]
 ---
 

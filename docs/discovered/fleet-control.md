@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-18
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="itsribbz-godspeed"></a>
-## ✨ [itsribbZ/Godspeed](https://github.com/itsribbZ/Godspeed)
+<a id="nuttaruj-rolepod"></a>
+## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 1** · strong (score 6.7) · Python · tags: ai-agents, anthropic, claude, claude-code, claude-code-plugin
+**★ 3** · exceptional (score 8.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
-Routing classifier + multi-agent orchestrator for Claude Code. 3-4ms Node fast-path hook, per-prompt S0-S5 tiering, parallel Sonnet workers, Oracle-gated memory with vector search, 35-test suite + eval harness. Stdlib Python + SQLite. MIT.
+Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
-cue skills add itsribbZ/Godspeed --profile fleet-control
+cue skills add nuttaruj/rolepod --profile fleet-control
 ```
 
 ---

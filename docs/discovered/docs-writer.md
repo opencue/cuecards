@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="isamu-lab"></a>
-## ✨ [isamu/lab](https://github.com/isamu/lab)
+<a id="luffysolution-svg-sanmu-skills"></a>
+## 💎 [luffysolution-svg/sanmu-skills](https://github.com/luffysolution-svg/sanmu-skills)
 
-**★ 0** · strong (score 7) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
+**★ 0** · exceptional (score 8.5) · Python · tags: academic, agent-skill, agent-skills, claude-skill, katex
 
-chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
+Sanmu's Agent Skills collection. Academic PDFs, textbooks and slides to Markdown with LaTeX validation, high-resolution figures and Zotero workflows.
 
 ```bash
-cue skills add isamu/lab --profile docs-writer
+cue skills add luffysolution-svg/sanmu-skills --profile docs-writer
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "reeschan/pbi-orchestration-jev — Claude Code skill discovered by cue"
 description: "PBI に分けてサブエージェント (Codex / Antigravity / Claude Code) に振り分け、Jev で点検する Claude Code スキル / Claude Code skill that orchestrates PBIs across sub-agents with Jev-gated"
 layout: page
-updated: 2026-10-12
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-18
 - 🏷️ Tags: ai-agents, claude-code, claude-code-skill, codex, orchestration
 
 ## Best fit cue profiles

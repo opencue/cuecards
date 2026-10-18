@@ -1,23 +1,23 @@
 ---
 title: "akseolabs-seo/seo-coach — Claude Code skill discovered by cue"
-description: "AK 設計的開源免費AI SEO陪跑教練——不丟報告，在你自己的網站上示範→共做→放手，練到第一個可驗證成果。零付費工具可入門，適合 SEO 新手、小品牌與服務業網站。"
+description: "An open-source AI SEO coach for beginners: practice on your own website, make evidence-based decisions, and track verifiable progress without expensive tools."
 layout: page
-updated: 2026-08-13
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [akseolabs-seo/seo-coach](https://github.com/akseolabs-seo/seo-coach)
 
-**★ 81** · exceptional (score 14.7) · Python · ai-agent-skill, ai-coach, claude-code, codex, seo
+**★ 156** · exceptional (score 15.6) · JavaScript · ai-agent-skill, ai-coach, claude-code, codex, seo
 
-> AK 設計的開源免費AI SEO陪跑教練——不丟報告，在你自己的網站上示範→共做→放手，練到第一個可驗證成果。零付費工具可入門，適合 SEO 新手、小品牌與服務業網站。
+> An open-source AI SEO coach for beginners: practice on your own website, make evidence-based decisions, and track verifiable progress without expensive tools.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 81 stars
-- 🗓️ Last pushed: 2026-08-03
+- ⭐ 156 stars
+- 🗓️ Last pushed: 2026-10-18
 - 🏷️ Tags: ai-agent-skill, ai-coach, claude-code, codex, seo, seo-coach
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "mayur-esh/threat-report-killchain — Claude Code skill discovered by cue"
 description: "Claude skill to convert CTI reports into cyber kill chain, Diamond Model views and create a TTP-to-ATT&CK/ATLAS mapping, IOC - IPs, domains, emails, hashes, fil"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, cybersecurity]
 ---
 

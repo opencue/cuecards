@@ -2,7 +2,7 @@
 title: "Stephenson-Software/create-dev-loop — Claude Code skill discovered by cue"
 description: "Claude Code skill that generates a tailored autonomous dev loop for any git repository"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-16
+- 🗓️ Last pushed: 2026-10-18
 - 🏷️ Tags: ai-agents, autonomous-agents, claude-code, claude-skill, developer-tools, llm-agent
 
 ## Best fit cue profiles

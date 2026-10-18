@@ -1,8 +1,8 @@
 ---
 title: "cyberchitta/cad-khana — Claude Code skill discovered by cue"
-description: "Agent-first assembly and test layer for build123d, for designing 3D-printable mechanisms."
+description: "Agent-first assembly and test layer for build123d: compose parts into mechanisms, hold claims about them, and export, draw and render the result."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 18** · exceptional (score 11.3) · Python · 3d-printing, build123d, cad, claude-code, claude-skill
 
-> Agent-first assembly and test layer for build123d, for designing 3D-printable mechanisms.
+> Agent-first assembly and test layer for build123d: compose parts into mechanisms, hold claims about them, and export, draw and render the result.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ⭐ 18 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-18
 - 🏷️ Tags: 3d-printing, build123d, cad, claude-code, claude-skill, parametric-cad
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "laymom/multi-agent-brainstorm — Claude Code skill discovered by cue"
 description: "Brainstorming skill for Claude Code that finds the options you missed: 5 perspectives work separately, each guarding a different reason ideas fail, then give yo"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 

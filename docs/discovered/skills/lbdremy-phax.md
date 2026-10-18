@@ -2,21 +2,21 @@
 title: "lbdremy/phax — Claude Code skill discovered by cue"
 description: "Run a plan through AI coding agents (Claude Code, OpenAI Codex, Mistral Vibe) as a sequence of gated phases, and get a change you can review. The golden path, j"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [lbdremy/phax](https://github.com/lbdremy/phax)
+# 💎 [lbdremy/phax](https://github.com/lbdremy/phax)
 
-**★ 1** · strong (score 7.8) · TypeScript · agent-harness, agentic-coding, claude-code, codex-cli, deterministic-ai
+**★ 2** · exceptional (score 8) · TypeScript · agent-harness, agentic-coding, claude-code, codex-cli, deterministic-ai
 
 > Run a plan through AI coding agents (Claude Code, OpenAI Codex, Mistral Vibe) as a sequence of gated phases, and get a change you can review. The golden path, just facts.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agent-harness, agentic-coding, claude-code, codex-cli, deterministic-ai, git-worktree, mistral-vibe, quality-gates, spec-driven-development
 
 ## Best fit cue profiles

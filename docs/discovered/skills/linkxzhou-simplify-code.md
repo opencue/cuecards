@@ -2,22 +2,22 @@
 title: "linkxzhou/simplify-code — Claude Code skill discovered by cue"
 description: "Agent skill to simplify and refactor code in any mainstream language while preserving behavior and public APIs."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [linkxzhou/simplify-code](https://github.com/linkxzhou/simplify-code)
 
-**★ 0** · exceptional (score 13) · JavaScript · agent-skills, claude-code, claude-code-skill, claude-skills, clean-code
+**★ 1** · exceptional (score 13.3) · JavaScript · agent-skills, claude-code, claude-code-skill, claude-skills, clean-code
 
 > Agent skill to simplify and refactor code in any mainstream language while preserving behavior and public APIs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-14
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-18
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, claude-skills, clean-code, code-simplification, refactoring
 
 ## Best fit cue profiles

@@ -2,19 +2,19 @@
 title: "SECBLOK/belay — Claude Code skill discovered by cue"
 description: "Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous comm"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
 
-**★ 8** · strong (score 7.8) · Rust · ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 8** · strong (score 7.7) · Rust · ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
 
 > Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
 - ⭐ 8 stars
 - 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code, cybersecurity, devsecops, firewall, llm-security, mcp, model-context-protocol, owasp, prompt-injection, prompt-injection-defense, rust, sast, security, self-hosted, supply-chain-security, vulnerability-scanner

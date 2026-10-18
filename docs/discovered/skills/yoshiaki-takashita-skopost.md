@@ -2,19 +2,19 @@
 title: "Yoshiaki-Takashita/skopost — Claude Code skill discovered by cue"
 description: "Static analyzer for AI agent tool setups (MCP, OpenAPI, Claude Code settings). Finds paths where untrusted text can reach sending, execution, purchase or deleti"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [Yoshiaki-Takashita/skopost](https://github.com/Yoshiaki-Takashita/skopost)
 
-**★ 1** · potential (score 3.3) · Python
+**★ 1** · potential (score 3.2) · Python
 
 > Static analyzer for AI agent tool setups (MCP, OpenAPI, Claude Code settings). Finds paths where untrusted text can reach sending, execution, purchase or deletion, and computes the minimal set of human-confirmation points that cuts them. Unknown capabilities count as dangerous. Python stdlib only, no network. Research preview.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-16
 - 🏷️ Tags: (none)

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -41,15 +41,15 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 
 ---
 
-<a id="teresacooper-avoid-ai-design"></a>
-## ✨ [teresacooper/avoid-ai-design](https://github.com/teresacooper/avoid-ai-design)
+<a id="je4nvrg-mepmail"></a>
+## ✨ [JE4NVRG/mepmail](https://github.com/JE4NVRG/mepmail)
 
-**★ 0** · strong (score 7) · JavaScript · tags: agent-skills, ai-design, ai-slop, anthropic, claude-code
+**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, aws-ses, business-email, email, email-api
 
-Audits AI-generated frontend and rewrites it so it stops looking AI-made: purple-gradient slop and the "tasteful" defaults (cream + terracotta, mono chrome). Zero-dependency scanner included. The design counterpart to avoid-ai-writing.
+Open-source email platform: Resend-compatible email API, SMTP relay, broadcasts and business email on your own domain, with an MCP server for AI agents. Self-host on Amazon SES or use MepMail Cloud. API de e-mail e e-mail profissional open source.
 
 ```bash
-cue skills add teresacooper/avoid-ai-design --profile frontend
+cue skills add JE4NVRG/mepmail --profile frontend
 ```
 
 ---

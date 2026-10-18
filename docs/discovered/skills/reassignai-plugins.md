@@ -2,7 +2,7 @@
 title: "reassignai/plugins — Claude Code skill discovered by cue"
 description: "Claude Code skill from reassignai/plugins"
 layout: page
-updated: 2026-10-02
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-10-18
 - 🏷️ Tags: adhd, agent-skills, calendar, claude, claude-code, claude-skill, mcp, mcp-server, mcpb, model-context-protocol, pomodoro, productivity, scheduling, time-blocking, time-tracking
 
 ## Best fit cue profiles

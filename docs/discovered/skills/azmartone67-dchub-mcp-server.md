@@ -1,23 +1,23 @@
 ---
 title: "azmartone67/dchub-mcp-server — Claude Code skill discovered by cue"
-description: "Live data-center, power-grid, energy, interconnection-queue, fiber, natural-gas & M&A intelligence for AI agents — 91 tools, 22,100+ facilities, 300+ markets sc"
+description: "DC Hub is the live data layer for data-center site selection. Its DCPI is a daily score of where data centers can get grid power, across 300+ markets."
 layout: page
-updated: 2026-09-17
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [azmartone67/dchub-mcp-server](https://github.com/azmartone67/dchub-mcp-server)
+# 💎 [azmartone67/dchub-mcp-server](https://github.com/azmartone67/dchub-mcp-server)
 
-**★ 2** · strong (score 7) · JavaScript · ai-tools, anthropic, claude, data-center, datacenter
+**★ 3** · exceptional (score 8.2) · JavaScript · data-center, electricity, energy, ercot, interconnection
 
-> Live data-center, power-grid, energy, interconnection-queue, fiber, natural-gas & M&A intelligence for AI agents — 91 tools, 22,100+ facilities, 300+ markets scored daily (DCPI), 2,200+ tracked M&A deals, live grid telemetry across 49 regions. Off-market capacity via source_capacity. Remote MCP at dchub.cloud/mcp. Query & cite (CC-BY-4.0).
+> DC Hub is the live data layer for data-center site selection. Its DCPI is a daily score of where data centers can get grid power, across 300+ markets.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-17
-- 🏷️ Tags: ai-tools, anthropic, claude, data-center, datacenter, energy, fiber, infrastructure, market-intelligence, mcp, mcp-server, model-context-protocol, power-grid, real-estate, site-selection
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-10-18
+- 🏷️ Tags: data-center, electricity, energy, ercot, interconnection, mcp, mcp-server, model-context-protocol, pjm, power-grid, site-selection
 
 ## Best fit cue profiles
 

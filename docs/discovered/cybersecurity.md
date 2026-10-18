@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2824** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
+**★ 2825** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -41,10 +41,23 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="v33ru-tcpk"></a>
+## 💎 [V33RU/tcpk](https://github.com/V33RU/tcpk)
+
+**★ 23** · exceptional (score 8.4) · PowerShell · tags: appsec, appx, clickonce, cvss, dll-hijacking
+
+Thick client penetration testing and MSIX security audit toolkit for Windows. Audits .NET, Electron and native binaries: static and runtime checks, IL-verified findings, computed CVSS v4.0, CWE/ATT&CK mapping, SBOM, HTML/Excel reports. PowerShell engine, GUI, MCP server and agentic AI triage.
+
+```bash
+cue skills add V33RU/tcpk --profile cybersecurity
+```
+
+---
+
 <a id="secblok-belay"></a>
 ## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
 
-**★ 8** · strong (score 7.8) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 8** · strong (score 7.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
 
 Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
 

@@ -2,7 +2,7 @@
 title: "studio-edul/pcb-layout-skill — Claude Code skill discovered by cue"
 description: "PCB layout skill for AI coding agents: deterministic placement checker, power-path calculators, post-route audit, Gerber-level netlist check (Agent Skills / Cla"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-18
 tags: [claude-code, skill, core]
 ---
 
