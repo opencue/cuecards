@@ -1,59 +1,31 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="eskokoivula-material-3-skill"></a>
-## 💎 [eskokoivula/material-3-skill](https://github.com/eskokoivula/material-3-skill)
+<a id="marianif-od-plugin-app-store-assets"></a>
+## 💎 [marianif/od-plugin-app-store-assets](https://github.com/marianif/od-plugin-app-store-assets)
 
-**★ 0** · exceptional (score 13) · Python · tags: accessibility, claude-code, claude-skill, design-system, material-3
+**★ 0** · exceptional (score 13.5) · JavaScript · tags: agent-skill, app-store-connect, app-store-screenshots, claude-skill, ios
 
-Claude Code skill that designs and audits interfaces the Google Material 3 way, brand first: tokens, prototypes, and web, screenshot and Flutter audits
-
-✅ SKILL.md
-
-```bash
-cue skills add eskokoivula/material-3-skill --profile creative-media
-```
-
----
-
-<a id="levybytes-ai-skill-gimp"></a>
-## 💎 [LevyBytes/AI-SKILL-gimp](https://github.com/LevyBytes/AI-SKILL-gimp)
-
-**★ 1** · exceptional (score 11.8) · tags: agent-kaizen, agent-skills, ai-agents, anthropic, claude-code
-
-Agent Kaizen skill for Claude Code & Codex: faithful GIMP 3.2 reference (GNU Image Manipulation Program), layers, blend modes, masks, channels, selections, Bézier paths, levels, curves, ICC profiles, .xcf/PNG/JPEG export, and scripting via Script-Fu, Python-Fu & the PDB, including headless batch and GIMP MCP server runs.
+OpenDesign plugin: generate, validate and upload App Store screenshots, product-page header, search-results creative and In-App Event media at Apple's exact specs
 
 ✅ SKILL.md
 
 ```bash
-cue skills add LevyBytes/AI-SKILL-gimp --profile creative-media
-```
-
----
-
-<a id="netresearch-netresearch-branding-skill"></a>
-## 💎 [netresearch/netresearch-branding-skill](https://github.com/netresearch/netresearch-branding-skill)
-
-**★ 4** · exceptional (score 10.8) · HTML · tags: agent-skills, ai-agent, branding, claude-code-skill, corporate-identity
-
-Agent Skill for implementing Netresearch brand guidelines - colors, typography, components | Claude Code compatible
-
-```bash
-cue skills add netresearch/netresearch-branding-skill --profile creative-media
+cue skills add marianif/od-plugin-app-store-assets --profile creative-media
 ```
 
 ---
@@ -61,7 +33,7 @@ cue skills add netresearch/netresearch-branding-skill --profile creative-media
 <a id="cpulxb-wsl-image-clipboard-helper"></a>
 ## 💎 [cpulxb/WSL-Image-Clipboard-Helper](https://github.com/cpulxb/WSL-Image-Clipboard-Helper)
 
-**★ 98** · exceptional (score 10.5) · Rust
+**★ 98** · exceptional (score 10.4) · Rust
 
 该工具用于在 Windows 中配合 WSL 环境下的 Claude Code、CodeX、OpenCode等 AI 工具，快速保存剪贴板图片并将其转换为 WSL 路径，方便粘贴给 AI 读取。This tool is designed for use with AI tools like Claude Code and CodeX in WSL environments on Windows. It quickly saves clipboard images and converts them to WSL paths for easy pasting and AI reading.
 

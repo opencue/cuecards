@@ -2,21 +2,21 @@
 title: "petersonsenadevs/senzu — Claude Code skill discovered by cue"
 description: "Claude Code skill from petersonsenadevs/senzu"
 layout: page
-updated: 2026-10-10
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [petersonsenadevs/senzu](https://github.com/petersonsenadevs/senzu)
 
-**★ 2** · exceptional (score 9.5) · Python · claude, claude-api, claude-code, claude-code-plugin, claude-code-skill
+**★ 3** · exceptional (score 9.7) · Python · claude, claude-api, claude-code, claude-code-plugin, claude-code-skill
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-10
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: claude, claude-api, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills, codex, codex-desktop, codex-github, codex-pet, codex-plugin, codex-skill, codex-skills, skills, skills-assessment, skills-library, skills-prompts, skills-sh, skillshare
 
 ## Best fit cue profiles

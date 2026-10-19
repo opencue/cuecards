@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="violetscar-hui-cc-tackle"></a>
+## 💎 [VioletScar-Hui/cc-tackle](https://github.com/VioletScar-Hui/cc-tackle)
+
+**★ 1** · exceptional (score 15.8) · Python · tags: agent-skills, ai-agent, anthropic, clash, clash-verge
+
+CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、CLI 登录凭据（长期 token 还是网页登录）、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
+
+✅ SKILL.md
+
+```bash
+cue skills add VioletScar-Hui/cc-tackle --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2825** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
+**★ 2827** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="khasky-awesome-agent-skills"></a>
+## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
+
+**★ 14** · exceptional (score 12.2) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
+
+ Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
+
+```bash
+cue skills add khasky/awesome-agent-skills --profile cybersecurity
 ```
 
 ---
@@ -41,54 +69,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="v33ru-tcpk"></a>
-## 💎 [V33RU/tcpk](https://github.com/V33RU/tcpk)
-
-**★ 23** · exceptional (score 8.4) · PowerShell · tags: appsec, appx, clickonce, cvss, dll-hijacking
-
-Thick client penetration testing and MSIX security audit toolkit for Windows. Audits .NET, Electron and native binaries: static and runtime checks, IL-verified findings, computed CVSS v4.0, CWE/ATT&CK mapping, SBOM, HTML/Excel reports. PowerShell engine, GUI, MCP server and agentic AI triage.
-
-```bash
-cue skills add V33RU/tcpk --profile cybersecurity
-```
-
----
-
-<a id="secblok-belay"></a>
-## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
-
-**★ 8** · strong (score 7.7) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
-
-Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
-
-```bash
-cue skills add SECBLOK/belay --profile cybersecurity
-```
-
----
-
 <a id="philpaz-recusal"></a>
 ## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 7.3) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 4** · strong (score 7.2) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="mayur-esh-threat-report-killchain"></a>
-## 🔹 [mayur-esh/threat-report-killchain](https://github.com/mayur-esh/threat-report-killchain)
-
-**★ 1** · potential (score 3.3) · tags: cti, cti-reporting, cve, cyber-kill-chain, diamond-model
-
-Claude skill to convert CTI reports into cyber kill chain, Diamond Model views and create a TTP-to-ATT&CK/ATLAS mapping, IOC - IPs, domains, emails, hashes, file paths, registry keys, CVEs, malware, threat actors - extraction.
-
-```bash
-cue skills add mayur-esh/threat-report-killchain --profile cybersecurity
 ```
 
 ---

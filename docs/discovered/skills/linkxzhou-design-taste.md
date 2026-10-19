@@ -2,7 +2,7 @@
 title: "linkxzhou/design-taste — Claude Code skill discovered by cue"
 description: "Agent skill that gives coding agents design taste: create, audit and redesign UIs, score websites, images and game art. English + 简体中文 editions."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-18
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, claude-skills, codex, cursor, design, design-tokens, ui-design
 
 ## Best fit cue profiles

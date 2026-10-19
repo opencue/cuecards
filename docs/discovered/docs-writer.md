@@ -1,29 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="luffysolution-svg-sanmu-skills"></a>
-## 💎 [luffysolution-svg/sanmu-skills](https://github.com/luffysolution-svg/sanmu-skills)
+<a id="isamu-lab"></a>
+## ✨ [isamu/lab](https://github.com/isamu/lab)
 
-**★ 0** · exceptional (score 8.5) · Python · tags: academic, agent-skill, agent-skills, claude-skill, katex
+**★ 1** · strong (score 7.3) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
 
-Sanmu's Agent Skills collection. Academic PDFs, textbooks and slides to Markdown with LaTeX validation, high-resolution figures and Zotero workflows.
+chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
 
 ```bash
-cue skills add luffysolution-svg/sanmu-skills --profile docs-writer
+cue skills add isamu/lab --profile docs-writer
 ```
 
 ---
@@ -31,12 +31,25 @@ cue skills add luffysolution-svg/sanmu-skills --profile docs-writer
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5.1) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5.3) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 
 ```bash
 cue skills add basitalisandhu/repo-engineering-skills --profile docs-writer
+```
+
+---
+
+<a id="jasonxu08-document-formatting"></a>
+## ✨ [jasonxu08/document-formatting](https://github.com/jasonxu08/document-formatting)
+
+**★ 1** · strong (score 5.3) · Python · tags: agent-skills, ai-agents, claude-code, codex, cursor
+
+Agent Skill that makes AI agents write long documents humans can actually read: verdict first, human vs machine zones, a reading path, relationship diagrams. Works with Claude Code, GitHub Copilot, Codex, Cursor, Gemini CLI and 70+ agents.
+
+```bash
+cue skills add jasonxu08/document-formatting --profile docs-writer
 ```
 
 ---

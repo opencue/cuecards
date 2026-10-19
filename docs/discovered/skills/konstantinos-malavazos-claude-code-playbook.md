@@ -2,19 +2,19 @@
 title: "konstantinos-malavazos/claude-code-playbook — Claude Code skill discovered by cue"
 description: "A stack-agnostic blueprint for running Claude Code as an engineering teammate, on any stack and any tracker. There are two ways in: a team path that takes a tic"
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [konstantinos-malavazos/claude-code-playbook](https://github.com/konstantinos-malavazos/claude-code-playbook)
 
-**★ 3** · strong (score 5.7) · Shell · agentic-engineering, agentic-workflow, agile, ai-agents, ai-coding
+**★ 3** · strong (score 5.6) · Shell · agentic-engineering, agentic-workflow, agile, ai-agents, ai-coding
 
 > A stack-agnostic blueprint for running Claude Code as an engineering teammate, on any stack and any tracker. There are two ways in: a team path that takes a ticket to a reviewed branch, and a solo path that takes a raw idea to a ready repo. Semantic code navigation, durable memory and multi-agent flows sit behind slash commands.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.6 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agentic-engineering, agentic-workflow, agile, ai-agents, ai-coding, claude-code, claude-code-hooks, context-engineering, developer-tools, developer-workflow, mcp, multi-agent, playbook, prompt-engineering, serena, slash-commands, software-engineering, solo-developer

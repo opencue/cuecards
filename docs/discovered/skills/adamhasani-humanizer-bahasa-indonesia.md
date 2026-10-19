@@ -2,7 +2,7 @@
 title: "adamhasani/humanizer-bahasa-indonesia — Claude Code skill discovered by cue"
 description: "Humanizer Bahasa Indonesia untuk tugas akademik siswa & mahasiswa: 12 template format (T1–T12), aturan EYD V, placeholder visual, dan CLI scanner"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-16
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: academic-writing, ai-detection, bahasa-indonesia, claude-code, claude-skill, humanizer, mahasiswa, skripsi
 
 ## Best fit cue profiles

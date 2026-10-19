@@ -1,23 +1,23 @@
 ---
 title: "drhelius/Gearsystem — Claude Code skill discovered by cue"
-description: "Sega Master System / Game Gear / SG-1000 emulator, debugger and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
+description: "Sega Master System / Game Gear / SG-1000 emulator and debugger with embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
 layout: page
-updated: 2026-06-29
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [drhelius/Gearsystem](https://github.com/drhelius/Gearsystem)
 
-**★ 376** · exceptional (score 15) · C++ · bsd, emulation, emulator, game-gear, gamegear
+**★ 396** · exceptional (score 15) · C++ · bsd, emulation, emulator, game-gear, gamegear
 
-> Sega Master System / Game Gear / SG-1000 emulator, debugger and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
+> Sega Master System / Game Gear / SG-1000 emulator and debugger with embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 376 stars
-- 🗓️ Last pushed: 2026-06-29
-- 🏷️ Tags: bsd, emulation, emulator, game-gear, gamegear, libretro, linux, master-system, mcp, mcp-server, raspberry-pi, retroarch, sega, sg1000, sms, vgm, z80
+- ⭐ 396 stars
+- 🗓️ Last pushed: 2026-10-19
+- 🏷️ Tags: bsd, emulation, emulator, game-gear, gamegear, libretro, linux, macos, master-system, mcp, mcp-server, raspberry-pi, retroarch, sega, sg1000, sms, vgm, z80
 
 ## Best fit cue profiles
 

@@ -1,8 +1,8 @@
 ---
 title: "dini-2000/claude-toolbox — Claude Code skill discovered by cue"
-description: "A one-stop collection of Claude Code skills, settings and optimizations: 481 skills from 12 open-source collections, an essentials pack for getting started, and"
+description: "Claude Code skills, settings and optimizations in one place: 588 skills from 16 open-source collections (the toolbox's own is one of them), an essentials pack, "
 layout: page
-updated: 2026-10-15
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 1** · strong (score 7.3) · Python · agent-skills, ai-agent-skill, ai-agent-tools, ai-agents, ai-agents-automation
 
-> A one-stop collection of Claude Code skills, settings and optimizations: 481 skills from 12 open-source collections, an essentials pack for getting started, and hooks that keep Claude's writing plain, save its progress before usage limits and guard downloads. Every skill is credited to its original creator.
+> Claude Code skills, settings and optimizations in one place: 588 skills from 16 open-source collections (the toolbox's own is one of them), an essentials pack, and hooks that keep Claude's writing plain, save progress before usage limits and guard downloads. Every skill credits its original creator.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-15
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: agent-skills, ai-agent-skill, ai-agent-tools, ai-agents, ai-agents-automation, claude, claude-ai, claude-api, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-desktop, claude-hooks, claude-plugin, claude-skills, developer-tools, productivity
 
 ## Best fit cue profiles

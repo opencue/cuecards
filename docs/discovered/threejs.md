@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-17
+updated: 2026-10-19
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="drkostas-3d-review"></a>
-## 💎 [drkostas/3d-review](https://github.com/drkostas/3d-review)
+<a id="caseycs-stl-to-scad-heplers"></a>
+## 💎 [caseycs/stl-to-scad-heplers](https://github.com/caseycs/stl-to-scad-heplers)
 
-**★ 0** · exceptional (score 8) · Python · tags: 3d, 3d-printing, ai-agents, claude-code, claude-skill
+**★ 0** · exceptional (score 13) · Python · tags: 3d-printing, cad, claude-code, claude-skill, geometry
 
-Review a 3D design with an assistant: a bench to mark what is wrong on the model, a step ledger, a requirement board proven able to fail, and a Penpot bridge
+STL/OpenSCAD inspection tools for LLM-assisted modeling
+
+✅ SKILL.md
 
 ```bash
-cue skills add drkostas/3d-review --profile threejs
+cue skills add caseycs/stl-to-scad-heplers --profile threejs
 ```
 
 ---

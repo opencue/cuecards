@@ -1,81 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mikkoparkkola-trvl"></a>
-## 💎 [MikkoParkkola/trvl](https://github.com/MikkoParkkola/trvl)
+<a id="ilien-dev-muninn"></a>
+## ✨ [ilien-dev/muninn](https://github.com/ilien-dev/muninn)
 
-**★ 88** · exceptional (score 14.3) · Go · tags: ai-agent, claude, cli, cursor, flight-search
+**★ 4** · strong (score 5.8) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
 
-Travel MCP server + CLI for AI assistants — flights, hotels, trains, cars, ferries, price alerts. No API keys, single Go binary. 1 smart MCP tool + 66 aliases (98.9% smaller tools/list). Works with Claude, Cursor, Windsurf, Codex.
+Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hooks. Local-first: one Rust binary, SQLite + FTS5, no cloud, no API key, no LLM in the read path. Cue-anchored recall under a 700-token budget.
 
 ```bash
-cue skills add MikkoParkkola/trvl --profile backend
+cue skills add ilien-dev/muninn --profile backend
 ```
 
 ---
 
-<a id="hproxy-com-free-proxy-list"></a>
-## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
+<a id="anirudhlath-alfred"></a>
+## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
 
-**★ 81** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
 
-Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
-
-```bash
-cue skills add hproxy-com/free-proxy-list --profile backend
-```
-
----
-
-<a id="mshobeyri-multimeter"></a>
-## 💎 [mshobeyri/multimeter](https://github.com/mshobeyri/multimeter)
-
-**★ 11** · exceptional (score 9.1) · TypeScript · tags: ai, api-testing, ci-cd, cursor, graphql
-
-Multimeter is an AI-powered REST Client and API testing tool for VS Code and CI. It is not an electrical multimeter. YAML .mmt files. testlight CLI. MCP @mmt/mcp. Git-native Postman alternative.
+Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
 
 ```bash
-cue skills add mshobeyri/multimeter --profile backend
-```
-
----
-
-<a id="renefichtmueller-adaptive-llm-gateway"></a>
-## 💎 [renefichtmueller/adaptive-llm-gateway](https://github.com/renefichtmueller/adaptive-llm-gateway)
-
-**★ 15** · exceptional (score 8.2) · TypeScript · tags: ai-gateway, anthropic, apache-2, chatgpt, claude
-
-Self-hosted LLM gateway that turns flat-rate AI subscriptions (Claude Code Max, ChatGPT Plus, Codex, Copilot, M365, Gemini) into one OpenAI/Anthropic-compatible API. Unified subscription wallet, OAuth passthrough on /v1/responses, prompt-injection + PII defense, MCP server, semantic cache, time-travel replay.
-
-```bash
-cue skills add renefichtmueller/adaptive-llm-gateway --profile backend
-```
-
----
-
-<a id="je4nvrg-mepmail"></a>
-## ✨ [JE4NVRG/mepmail](https://github.com/JE4NVRG/mepmail)
-
-**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, aws-ses, business-email, email, email-api
-
-Open-source email platform: Resend-compatible email API, SMTP relay, broadcasts and business email on your own domain, with an MCP server for AI agents. Self-host on Amazon SES or use MepMail Cloud. API de e-mail e e-mail profissional open source.
-
-```bash
-cue skills add JE4NVRG/mepmail --profile backend
+cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---

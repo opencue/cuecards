@@ -2,19 +2,19 @@
 title: "studio-edul/pcb-layout-skill — Claude Code skill discovered by cue"
 description: "PCB layout skill for AI coding agents: deterministic placement checker, power-path calculators, post-route audit, Gerber-level netlist check (Agent Skills / Cla"
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [studio-edul/pcb-layout-skill](https://github.com/studio-edul/pcb-layout-skill)
 
-**★ 1** · strong (score 6.3) · Python · agent-skills, claude-code, claude-code-plugin, easyeda, gerber
+**★ 1** · strong (score 6.2) · Python · agent-skills, claude-code, claude-code-plugin, easyeda, gerber
 
 > PCB layout skill for AI coding agents: deterministic placement checker, power-path calculators, post-route audit, Gerber-level netlist check (Agent Skills / Claude Code plugin)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-17
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, easyeda, gerber, hardware, jlcpcb, kicad, pcb, pcb-design

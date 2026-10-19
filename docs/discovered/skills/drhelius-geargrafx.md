@@ -1,23 +1,23 @@
 ---
 title: "drhelius/Geargrafx — Claude Code skill discovered by cue"
-description: "PC Engine / TurboGrafx-16 / SuperGrafx / PCE CD-ROM² emulator, debugger, and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
+description: "PC Engine / TurboGrafx-16 / SuperGrafx / CD-ROM² / LD-ROM² emulator and debugger with embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
 layout: page
-updated: 2026-06-29
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [drhelius/Geargrafx](https://github.com/drhelius/Geargrafx)
 
-**★ 218** · exceptional (score 13.9) · C++ · bsd, emulator, libretro, linux, macos
+**★ 245** · exceptional (score 14) · C++ · bsd, emulation, emulator, libretro, linux
 
-> PC Engine / TurboGrafx-16 / SuperGrafx / PCE CD-ROM² emulator, debugger, and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
+> PC Engine / TurboGrafx-16 / SuperGrafx / CD-ROM² / LD-ROM² emulator and debugger with embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
-- ⭐ 218 stars
-- 🗓️ Last pushed: 2026-06-29
-- 🏷️ Tags: bsd, emulator, libretro, linux, macos, mcp, mcp-server, pc-engine, pcengine, raspberry-pi, raspberrypi, retroarch, supergrafx, turbografx, turbografx-16, vgm
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+- ⭐ 245 stars
+- 🗓️ Last pushed: 2026-10-19
+- 🏷️ Tags: bsd, emulation, emulator, libretro, linux, macos, mcp, mcp-server, pc-engine, pcengine, raspberry-pi, raspberrypi, retroarch, supergrafx, turbografx, turbografx-16, vgm
 
 ## Best fit cue profiles
 

@@ -2,22 +2,22 @@
 title: "linkxzhou/code-refactor — Claude Code skill discovered by cue"
 description: "Agent skill to refactor, rewrite, or port code to another language while proving behavior is preserved."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [linkxzhou/code-refactor](https://github.com/linkxzhou/code-refactor)
 
-**★ 0** · exceptional (score 13) · Python · agent-skills, claude-code, claude-code-skill, claude-skills, code-migration
+**★ 1** · exceptional (score 13.3) · Python · agent-skills, claude-code, claude-code-skill, claude-skills, code-migration
 
 > Agent skill to refactor, rewrite, or port code to another language while proving behavior is preserved.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-18
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, claude-skills, code-migration, refactoring
 
 ## Best fit cue profiles

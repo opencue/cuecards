@@ -1,8 +1,8 @@
 ---
 title: "VioletScar-Hui/cc-tackle — Claude Code skill discovered by cue"
-description: "CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS."
+description: "CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、CLI 登录凭据（长期 token 还是网页登录）、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS."
 layout: page
-updated: 2026-10-15
+updated: 2026-10-19
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -10,15 +10,15 @@ tags: [claude-code, skill, cybersecurity]
 
 **★ 1** · exceptional (score 15.8) · Python · agent-skills, ai-agent, anthropic, clash, clash-verge
 
-> CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
+> CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、CLI 登录凭据（长期 token 还是网页登录）、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-15
-- 🏷️ Tags: agent-skills, ai-agent, anthropic, clash, clash-verge, claude-code, claude-code-skill, claude-skills, dns-leak, environment-check, macos, privacy, proxy, python, security, skills, webrtc
+- 🗓️ Last pushed: 2026-10-19
+- 🏷️ Tags: agent-skills, ai-agent, anthropic, clash, clash-verge, claude-code, claude-code-skill, claude-skills, dns-leak, environment-check, macos, oauth, privacy, proxy, python, security, skills, webrtc
 
 ## Best fit cue profiles
 

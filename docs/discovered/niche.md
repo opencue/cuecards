@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-19
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-daily-hotspots"></a>
-## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
+<a id="hhd-git-code-job-hunt-match"></a>
+## 💎 [hhd-git-code/job-hunt-match](https://github.com/hhd-git-code/job-hunt-match)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 0** · exceptional (score 13) · tags: ai-agent, boss-zhipin, career, claude-code, claude-skill
 
-每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
+Claude Code Skill：按简历在 BOSS直聘/猎聘抓取岗位，五道否决 + S/A/B/C 分档，产出投递优先级表与投递节奏建议
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/daily-hotspots --profile niche
+cue skills add hhd-git-code/job-hunt-match --profile niche
 ```
 
 ---

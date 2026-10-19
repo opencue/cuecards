@@ -1,22 +1,22 @@
 ---
 title: "drhelius/Gearboy — Claude Code skill discovered by cue"
-description: "Game Boy / Game Boy Color / Super Game Boy emulator, debugger and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
+description: "Game Boy / Game Boy Color / Super Game Boy emulator and debugger with embedded MCP server for macOS, Windows, Linux, BSD and RetroArch."
 layout: page
-updated: 2026-06-29
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [drhelius/Gearboy](https://github.com/drhelius/Gearboy)
 
-**★ 1168** · exceptional (score 17) · C++ · bsd, emulation, emulator, game-boy, gameboy
+**★ 1219** · exceptional (score 17) · C++ · bsd, emulation, emulator, game-boy, gameboy
 
-> Game Boy / Game Boy Color / Super Game Boy emulator, debugger and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
+> Game Boy / Game Boy Color / Super Game Boy emulator and debugger with embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 1168 stars
-- 🗓️ Last pushed: 2026-06-29
+- ⭐ 1219 stars
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: bsd, emulation, emulator, game-boy, gameboy, gameboy-color-emulator, gameboy-emulator, libretro, linux, mcp, mcp-server, nintendo-gameboy, raspberry-pi, retroarch, vgm
 
 ## Best fit cue profiles

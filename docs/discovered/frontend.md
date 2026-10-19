@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -28,6 +28,21 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
+<a id="educlopez-diorama"></a>
+## 💎 [educlopez/diorama](https://github.com/educlopez/diorama)
+
+**★ 0** · exceptional (score 12) · JavaScript · tags: 3d, agent-skills, animation, claude-code, claude-code-skill
+
+A Claude Code skill that builds small animated isometric 3D worlds for the web as one self-contained SVG file: six themes, hover and tap answers, a headless-browser check. Heroes for landing pages, cards for docs, minis for empty states.
+
+✅ SKILL.md
+
+```bash
+cue skills add educlopez/diorama --profile frontend
+```
+
+---
+
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -37,19 +52,6 @@ Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion F
 
 ```bash
 cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="je4nvrg-mepmail"></a>
-## ✨ [JE4NVRG/mepmail](https://github.com/JE4NVRG/mepmail)
-
-**★ 0** · strong (score 5) · TypeScript · tags: ai-agents, aws-ses, business-email, email, email-api
-
-Open-source email platform: Resend-compatible email API, SMTP relay, broadcasts and business email on your own domain, with an MCP server for AI agents. Self-host on Amazon SES or use MepMail Cloud. API de e-mail e e-mail profissional open source.
-
-```bash
-cue skills add JE4NVRG/mepmail --profile frontend
 ```
 
 ---

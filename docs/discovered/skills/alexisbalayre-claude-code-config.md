@@ -2,7 +2,7 @@
 title: "AlexisBalayre/claude-code-config — Claude Code skill discovered by cue"
 description: "Opinionated Claude Code config: path-scoped rules, 34 skills, 12 subagents, deterministic hooks, and a multi-agent PR review. Stack-agnostic; run /adapt-to-proj"
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-18
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: agent-skills, agentic-coding, agentic-engineering, ai, ai-agents, anthropic, claude, claude-code, claude-code-agents, claude-code-config, claude-code-hooks, claude-code-skills, coding-agent, context-engineering, developer-tools, hooks, llm, mcp, subagents, template
 
 ## Best fit cue profiles

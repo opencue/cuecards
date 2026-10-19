@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-18
+updated: 2026-10-19
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="lettiiii-tiktok-analyzer"></a>
-## 💎 [Lettiiii/tiktok-analyzer](https://github.com/Lettiiii/tiktok-analyzer)
+<a id="jackiezheng1318-hash-beat-locked-vlog-editor"></a>
+## 💎 [jackiezheng1318-hash/beat-locked-vlog-editor](https://github.com/jackiezheng1318-hash/beat-locked-vlog-editor)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-code-skill, tiktok, transcription, video-analysis
+**★ 0** · exceptional (score 13) · Python · tags: beat-sync, claude-code, claude-skill, ffmpeg, video-editing
 
-Claude Code skill that analyzes a TikTok video from its link: metadata, speech transcript and frames, all local
+Claude Code skill: cut vlog montages with every cut on the measured kick drum, export at source spec (4K50 10-bit), verify sync on the final file.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Lettiiii/tiktok-analyzer --profile video
+cue skills add jackiezheng1318-hash/beat-locked-vlog-editor --profile video
+```
+
+---
+
+<a id="cig13zs-hf-kit"></a>
+## ✨ [cig13zs/hf-kit](https://github.com/cig13zs/hf-kit)
+
+**★ 0** · strong (score 6) · Python · tags: agent-skills, claude-code-skill, hyperframes, motion-graphics, video
+
+HyperFrames blocks, sound presets and style targets measured from 48 YouTube videos in 16 niches
+
+```bash
+cue skills add cig13zs/hf-kit --profile video
 ```
 
 ---

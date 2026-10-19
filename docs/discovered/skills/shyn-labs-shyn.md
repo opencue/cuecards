@@ -2,21 +2,21 @@
 title: "shyn-labs/shyn — Claude Code skill discovered by cue"
 description: "shyn — a register of your days. Local-first memory for your Mac: pages, meetings, notes — encrypted on-device, recalled by your AI over MCP."
 layout: page
-updated: 2026-08-05
+updated: 2026-10-19
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [shyn-labs/shyn](https://github.com/shyn-labs/shyn)
 
-**★ 0** · strong (score 6) · TypeScript · ai-memory, claude, local-first, macos, mcp
+**★ 1** · strong (score 7.8) · TypeScript · ai-memory, claude, local-first, macos, mcp
 
 > shyn — a register of your days. Local-first memory for your Mac: pages, meetings, notes — encrypted on-device, recalled by your AI over MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-19
 - 🏷️ Tags: ai-memory, claude, local-first, macos, mcp, mcp-server, memory, privacy
 
 ## Best fit cue profiles
