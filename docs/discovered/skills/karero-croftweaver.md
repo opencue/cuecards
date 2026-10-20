@@ -1,23 +1,23 @@
 ---
 title: "karero/croftweaver — Claude Code skill discovered by cue"
-description: "Croftweaver: open-source AI website builder skills for Claude Code, Codex and Antigravity. From a short brief to a fast, accessible, SEO-ready Astro site. By Ge"
+description: "A free, open-source suite of website skills: instructions your AI coding assistant follows to build and test a site you own, so people find it on Google and in "
 layout: page
-updated: 2026-10-18
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [karero/croftweaver](https://github.com/karero/croftweaver)
 
-**★ 7** · exceptional (score 12.7) · Python · agent-skills, ai-coding, ai-website-builder, astro, claude-code
+**★ 8** · exceptional (score 13.8) · Python · agent-skills, ai-coding, ai-coding-assistant, ai-website-builder, astro
 
-> Croftweaver: open-source AI website builder skills for Claude Code, Codex and Antigravity. From a short brief to a fast, accessible, SEO-ready Astro site. By GenAI Wednesday (genai-wednesday.de/builder-lab).
+> A free, open-source suite of website skills: instructions your AI coding assistant follows to build and test a site you own, so people find it on Google and in AI answers.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-18
-- 🏷️ Tags: agent-skills, ai-coding, ai-website-builder, astro, claude-code, claude-code-plugin, claude-code-skill, claude-skills, cloudflare-pages, codex-plugin, codex-skills, croftweaver, geo, llms-txt, seo, website-generator
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-10-20
+- 🏷️ Tags: agent-skills, ai-coding, ai-coding-assistant, ai-website-builder, astro, claude-code, claude-code-plugin, claude-code-skill, claude-skills, cloudflare-pages, codex-plugin, codex-skills, croftweaver, generative-engine-optimization, geo, llms-txt, seo, website-generator, website-skills, wordpress-migration
 
 ## Best fit cue profiles
 

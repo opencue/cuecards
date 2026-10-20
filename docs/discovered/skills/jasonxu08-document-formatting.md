@@ -2,7 +2,7 @@
 title: "jasonxu08/document-formatting — Claude Code skill discovered by cue"
 description: "Agent Skill that makes AI agents write long documents humans can actually read: verdict first, human vs machine zones, a reading path, relationship diagrams. Wo"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-19
+- 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, codex, cursor, diagrams, documentation, gemini-cli, github-copilot, llm, markdown, mermaid, opencode, skill-md, technical-writing
 
 ## Best fit cue profiles

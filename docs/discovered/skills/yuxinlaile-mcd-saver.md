@@ -2,23 +2,23 @@
 title: "yuxinlaile/McD-saver — Claude Code skill discovered by cue"
 description: "🍟 麦麦省钱助手 —— 基于麦当劳中国官方 MCP 的省钱点餐 Agent Skill：省钱四步检查 + 一键领券 + 券组合优化（预算/热量约束）+ 沉默成本体检 + 全渠道比价。社区开源，免登录在线试算 👇"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yuxinlaile/McD-saver](https://github.com/yuxinlaile/McD-saver)
 
-**★ 11** · exceptional (score 16.7) · Python · agent-skill, claude-skill, cli-tool, coupon, coupon-optimizer
+**★ 20** · exceptional (score 17) · Python · agent-skill, agent-skills, claude-skill, cli-tool, cost-optimization
 
 > 🍟 麦麦省钱助手 —— 基于麦当劳中国官方 MCP 的省钱点餐 Agent Skill：省钱四步检查 + 一键领券 + 券组合优化（预算/热量约束）+ 沉默成本体检 + 全渠道比价。社区开源，免登录在线试算 👇
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
 - ✅ Contains SKILL.md
-- ⭐ 11 stars
-- 🗓️ Last pushed: 2026-10-19
-- 🏷️ Tags: agent-skill, claude-skill, cli-tool, coupon, coupon-optimizer, deal-comparison, llm-agent, mcdonalds, mcdonalds-china, mcp, mcp-server, python
+- ⭐ 20 stars
+- 🗓️ Last pushed: 2026-10-20
+- 🏷️ Tags: agent-skill, agent-skills, claude-skill, cli-tool, cost-optimization, coupon, coupon-optimizer, deal-comparison, llm-agent, mcdonalds, mcdonalds-china, mcp, mcp-client, mcp-server, python
 
 ## Best fit cue profiles
 

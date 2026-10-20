@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="isamu-lab"></a>
-## ✨ [isamu/lab](https://github.com/isamu/lab)
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
 
-**★ 1** · strong (score 7.3) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
+**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
 
-chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
 
 ```bash
-cue skills add isamu/lab --profile docs-writer
+cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
+```
+
+---
+
+<a id="mworldorg-markdown-memory"></a>
+## 💎 [mworldorg/markdown-memory](https://github.com/mworldorg/markdown-memory)
+
+**★ 25** · exceptional (score 11.5) · Python · tags: antigravity, antigravity-ide, antigravity-skills, antrophic, claude
+
+A cross-platform, file-based persistent memory and prompt bridge for Claude Code, claude.ai, and Antigravity IDE. Synchronizes project passports, handoffs, and session logs in an Obsidian Vault, connecting web planning with local CLI execution. Install via: npx markdown-memory
+
+```bash
+cue skills add mworldorg/markdown-memory --profile docs-writer
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,25 +15,10 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="violetscar-hui-cc-tackle"></a>
-## 💎 [VioletScar-Hui/cc-tackle](https://github.com/VioletScar-Hui/cc-tackle)
-
-**★ 1** · exceptional (score 15.8) · Python · tags: agent-skills, ai-agent, anthropic, clash, clash-verge
-
-CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、CLI 登录凭据（长期 token 还是网页登录）、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
-
-✅ SKILL.md
-
-```bash
-cue skills add VioletScar-Hui/cc-tackle --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2827** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
+**★ 2831** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -43,15 +28,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="khasky-awesome-agent-skills"></a>
-## 💎 [khasky/awesome-agent-skills](https://github.com/khasky/awesome-agent-skills)
+<a id="aliceljy-repo-insight"></a>
+## 💎 [AliceLJY/repo-insight](https://github.com/AliceLJY/repo-insight)
 
-**★ 14** · exceptional (score 12.2) · Python · tags: agent, agent-skills, ai, ai-coding, ai-skill
+**★ 2** · exceptional (score 12.5) · JavaScript · tags: agent-skill, ai-agent, architecture, audit, claude-code
 
- Skills for AI coding agents: code review, debugging, security audits, refactoring, cleaning up AI-written code and text, and more.
+Deep architecture analysis skill with evidence-first reports, read-only untrusted-repo handling, and borrow-audit workflows.
 
 ```bash
-cue skills add khasky/awesome-agent-skills --profile cybersecurity
+cue skills add AliceLJY/repo-insight --profile cybersecurity
 ```
 
 ---
@@ -61,7 +46,7 @@ cue skills add khasky/awesome-agent-skills --profile cybersecurity
 
 **★ 9** · exceptional (score 10.4) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
-Open-source security for AI agents: kernel-enforced egress control on macOS and Linux, keys only the operator holds, tamper-evident audit. One command protects Claude Code, Cursor, or any MCP harness. No vendor in the path.
+Open source security for AI agents: an OS-enforced egress wall on macOS, and on Ubuntu 24.04 x86-64 via a separate package; keys only the operator holds; a hash-chained audit record. One command wraps Claude Code, Cursor, Hermes, OpenClaw or Cline on tested config paths. No vendor in the path. Claims trace to the Assurance Matrix.
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
@@ -70,14 +55,27 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 ---
 
 <a id="philpaz-recusal"></a>
-## ✨ [philpaz/recusal](https://github.com/philpaz/recusal)
+## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 4** · strong (score 7.2) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 5** · exceptional (score 9.5) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="canortiz-kru"></a>
+## 💎 [canortiz/kru](https://github.com/canortiz/kru)
+
+**★ 0** · exceptional (score 8.5) · Rust · tags: ai-agents, ai-security, api-key-management, claude-code, codex
+
+Local-first MCP password and credential manager for AI agents. Use passwords, API keys, SSH identities, and TOTP without exposing hidden plaintext to the model.
+
+```bash
+cue skills add canortiz/kru --profile cybersecurity
 ```
 
 ---

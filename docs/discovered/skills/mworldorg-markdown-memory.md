@@ -2,21 +2,21 @@
 title: "mworldorg/markdown-memory — Claude Code skill discovered by cue"
 description: "A cross-platform, file-based persistent memory and prompt bridge for Claude Code, claude.ai, and Antigravity IDE. Synchronizes project passports, handoffs, and "
 layout: page
-updated: 2026-08-02
+updated: 2026-10-20
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [mworldorg/markdown-memory](https://github.com/mworldorg/markdown-memory)
 
-**★ 23** · exceptional (score 9.8) · Python · antigravity, antigravity-ide, antigravity-skills, antrophic, claude
+**★ 25** · exceptional (score 11.5) · Python · antigravity, antigravity-ide, antigravity-skills, antrophic, claude
 
 > A cross-platform, file-based persistent memory and prompt bridge for Claude Code, claude.ai, and Antigravity IDE. Synchronizes project passports, handoffs, and session logs in an Obsidian Vault, connecting web planning with local CLI execution. Install via: npx markdown-memory
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 23 stars
-- 🗓️ Last pushed: 2026-08-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
+- ⭐ 25 stars
+- 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: antigravity, antigravity-ide, antigravity-skills, antrophic, claude, claude-code, claude-code-memory, claude-code-skill, claude-skills, markdown, markdown-memory, opus-4-8, skills, workflow, workflow-system
 
 ## Best fit cue profiles

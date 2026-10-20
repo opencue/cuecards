@@ -2,21 +2,21 @@
 title: "megamen32/gptadmin_opensource — Claude Code skill discovered by cue"
 description: "One MCP hub — any AI controls any infrastructure. Self-hosted, works with ChatGPT, Claude, Codex, DeepSeek, Qwen, Alice, GigaChat."
 layout: page
-updated: 2026-07-01
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [megamen32/gptadmin_opensource](https://github.com/megamen32/gptadmin_opensource)
 
-**★ 6** · exceptional (score 9) · Python · ai-agent, chatgpt, claude, mcp, mcp-server
+**★ 10** · exceptional (score 12) · Go · ai-agent, chatgpt, claude, mcp, mcp-server
 
 > One MCP hub — any AI controls any infrastructure. Self-hosted, works with ChatGPT, Claude, Codex, DeepSeek, Qwen, Alice, GigaChat.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-07-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: ai-agent, chatgpt, claude, mcp, mcp-server, self-hosted, server-admin
 
 ## Best fit cue profiles

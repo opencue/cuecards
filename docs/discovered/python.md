@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="manhquydev-flow-skill"></a>
+## 💎 [manhquydev/flow-skill](https://github.com/manhquydev/flow-skill)
+
+**★ 9** · exceptional (score 11.9) · Shell · tags: ai-agents, bash, build-pipeline, claude-code, claude-skill
+
+/flow gated build harness: idea → real done-evidence via honest gates. Site: https://flowskill.io.vn — standalone skill for Claude Code, Codex, Cursor, Antigravity. bash+python3. MIT.
+
+```bash
+cue skills add manhquydev/flow-skill --profile python
+```
+
+---
+
+<a id="trevhud-rote"></a>
+## 💎 [trevhud/rote](https://github.com/trevhud/rote)
+
+**★ 8** · exceptional (score 10.8) · Python · tags: agent-skills, agentic-ai, ai-agents, anthropic, claude
+
+Compile AI agent skills into cheap, fast, deterministic pipelines that run without an LLM in the loop
+
+```bash
+cue skills add trevhud/rote --profile python
+```
 
 ---
 

@@ -2,7 +2,7 @@
 title: "77777R7/Octocrawl — Claude Code skill discovered by cue"
 description: "Octocrawl: readable Markdown and checked fields from public web pages, for AI agents, RAG and research. Failures come back with a reason. Self-host with REST, S"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-17
+- 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: ai-agents, crawler, data-extraction, firecrawl-alternative, html-to-markdown, llm, markdown, mcp, mcp-server, model-context-protocol, python, rag, scraper, typescript, web-crawler, web-scraping
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "ArniDexian/Map-Animator — Claude Code skill discovered by cue"
 description: "Vibe-coded app in Claude to animate path alongside road and export to video clip"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 

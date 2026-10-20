@@ -2,7 +2,7 @@
 title: "vx790905119-svg/copy-path-mini — Claude Code skill discovered by cue"
 description: "Tiny Windows right-click path copier for AI coding workflows (Codex, Claude Code, Cursor). 5.5 KiB helper, no background process or network calls. English / Chi"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 

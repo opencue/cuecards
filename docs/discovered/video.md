@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,30 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="jackiezheng1318-hash-beat-locked-vlog-editor"></a>
-## 💎 [jackiezheng1318-hash/beat-locked-vlog-editor](https://github.com/jackiezheng1318-hash/beat-locked-vlog-editor)
+<a id="sratour-xm-handdraw-video"></a>
+## 💎 [sratour/xm-handdraw-video](https://github.com/sratour/xm-handdraw-video)
 
-**★ 0** · exceptional (score 13) · Python · tags: beat-sync, claude-code, claude-skill, ffmpeg, video-editing
+**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, ai-video, claude-skill, explainer-video, ffmpeg
 
-Claude Code skill: cut vlog montages with every cut on the measured kick drum, export at source spec (4K50 10-bit), verify sync on the final file.
+Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, colors sampled from your own artwork. Python + ffmpeg + any image model.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jackiezheng1318-hash/beat-locked-vlog-editor --profile video
+cue skills add sratour/xm-handdraw-video --profile video
 ```
 
 ---
 
-<a id="cig13zs-hf-kit"></a>
-## ✨ [cig13zs/hf-kit](https://github.com/cig13zs/hf-kit)
+<a id="shlior7-demo-recorder"></a>
+## 💎 [shlior7/demo-recorder](https://github.com/shlior7/demo-recorder)
 
-**★ 0** · strong (score 6) · Python · tags: agent-skills, claude-code-skill, hyperframes, motion-graphics, video
+**★ 0** · exceptional (score 8) · TypeScript · tags: claude-code, claude-code-plugin, claude-skill, demo-video, playwright
 
-HyperFrames blocks, sound presets and style targets measured from 48 YouTube videos in 16 niches
+Polished, narrated demo videos of any web app — recorded by your coding agent, posted to your PR. A Claude Code plugin.
 
 ```bash
-cue skills add cig13zs/hf-kit --profile video
+cue skills add shlior7/demo-recorder --profile video
 ```
 
 ---

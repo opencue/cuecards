@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="caseycs-stl-to-scad-heplers"></a>
-## 💎 [caseycs/stl-to-scad-heplers](https://github.com/caseycs/stl-to-scad-heplers)
+<a id="makerjackie-yarn-planet"></a>
+## ✨ [makerjackie/yarn-planet](https://github.com/makerjackie/yarn-planet)
 
-**★ 0** · exceptional (score 13) · Python · tags: 3d-printing, cad, claude-code, claude-skill, geometry
+**★ 2** · strong (score 6.5) · TypeScript · tags: ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects
 
-STL/OpenSCAD inspection tools for LLM-assisted modeling
-
-✅ SKILL.md
+毛线星球 · Yarn Planet — a small-planet walking game in the browser: your path becomes a colored thread. Three.js + Cloudflare Durable Objects, made with Claude Opus 5.5.
 
 ```bash
-cue skills add caseycs/stl-to-scad-heplers --profile threejs
+cue skills add makerjackie/yarn-planet --profile threejs
 ```
 
 ---

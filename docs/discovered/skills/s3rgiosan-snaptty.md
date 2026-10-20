@@ -2,7 +2,7 @@
 title: "s3rgiosan/snaptty — Claude Code skill discovered by cue"
 description: "Paste macOS screenshots into the terminal with Cmd+V. A small Swift LaunchAgent puts the screenshot's file path on the clipboard, so coding agents like Claude C"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "nadiwerk/trust-no-agent — Claude Code skill discovered by cue"
 description: "The trust layer for AI coding agents. Proof over promises every 'done' backed by fresh verification evidence. Disciplines an agent that doesn't trust anyone, in"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-19
+- 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: agent-skill, agentic-workflow, ai-agents, claude-code, claude-code-plugin, claude-code-skill, code-review, codex, codex-plugin, codex-skill, developer-tools, opencode, opencode-plugin, opencode-skill
 
 ## Best fit cue profiles

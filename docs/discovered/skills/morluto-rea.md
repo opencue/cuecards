@@ -2,22 +2,22 @@
 title: "morluto/rea — Claude Code skill discovered by cue"
 description: "Reverse engineer anything with agents, from app behavior down to native binaries."
 layout: page
-updated: 2026-10-07
+updated: 2026-10-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [morluto/rea](https://github.com/morluto/rea)
 
-**★ 11304** · exceptional (score 17) · TypeScript · agent-skills, ai-agent-tools, ai-agents, binary-analysis, cli
+**★ 341563** · exceptional (score 17) · TypeScript · agent-skills, ai-agents, binary-analysis, claude-code, cli
 
 > Reverse engineer anything with agents, from app behavior down to native binaries.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 11304 stars
-- 🗓️ Last pushed: 2026-10-07
-- 🏷️ Tags: agent-skills, ai-agent-tools, ai-agents, binary-analysis, cli, coding-agents, cordis, ctf, decompiler, disassembler, dsh, dsh-plugin, ghidra, hopper, mcp, mcp-server, model-context-protocol, reverse-engineering, reverse-engineering-tools, static-analysis
+- ⭐ 341563 stars
+- 🗓️ Last pushed: 2026-10-20
+- 🏷️ Tags: agent-skills, ai-agents, binary-analysis, claude-code, cli, codex, cordis, decompiler, developer-tools, dsh, dsh-plugin, ghidra, hopper, llm, mcp, model-context-protocol, rea, reverse-engineering, static-analysis, touhou
 
 ## Best fit cue profiles
 
