@@ -2,22 +2,22 @@
 title: "woyexiangguolikai/pm-workflow — Claude Code skill discovered by cue"
 description: "AI Agent 驱动的产品经理工作流：六阶段 + 自改进反馈层。每一条判据都经过变异测试（好样本全绿 且 坏样本全红）。"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [woyexiangguolikai/pm-workflow](https://github.com/woyexiangguolikai/pm-workflow)
 
-**★ 0** · exceptional (score 13.5) · Python · ai-agent, claude-skill, design-system, mutation-testing, prd
+**★ 1** · exceptional (score 13.8) · Python · ai-agent, claude-skill, design-system, mutation-testing, prd
 
 > AI Agent 驱动的产品经理工作流：六阶段 + 自改进反馈层。每一条判据都经过变异测试（好样本全绿 且 坏样本全红）。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-11
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: ai-agent, claude-skill, design-system, mutation-testing, prd, product-management, prototype, self-improving, workbuddy, workflow
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Choisiz/DigiTokenBar — Claude Code skill discovered by cue"
 description: "A macOS menu bar app that turns your Claude Code and Codex token usage into Digimon growth. Hatch, evolve, and collect Digimon with branching evolution paths, f"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "trevhud/rote — Claude Code skill discovered by cue"
 description: "Compile AI agent skills into cheap, fast, deterministic pipelines that run without an LLM in the loop"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, skill, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, python]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: agent-skills, agentic-ai, ai-agents, anthropic, claude, claude-code, claude-skill, claude-skills, cli, cloudflare-workers, dbos, deterministic-workflows, durable-execution, inngest, llm, mcp, python, temporal, token-optimization, workflow-engine
 
 ## Best fit cue profiles

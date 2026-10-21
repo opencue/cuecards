@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -30,41 +30,28 @@ cue skills add sratour/xm-handdraw-video --profile creative-media
 
 ---
 
-<a id="netresearch-netresearch-branding-skill"></a>
-## 💎 [netresearch/netresearch-branding-skill](https://github.com/netresearch/netresearch-branding-skill)
+<a id="timscheuerai-launch-video-kit"></a>
+## 💎 [timscheuerai/launch-video-kit](https://github.com/timscheuerai/launch-video-kit)
 
-**★ 4** · exceptional (score 10.8) · HTML · tags: agent-skills, ai-agent, branding, claude-code-skill, corporate-identity
+**★ 12** · exceptional (score 9.2) · Python · tags: agent-skills, brand-kit, claude-code, hyperframes, launch-video
 
-Agent Skill for implementing Netresearch brand guidelines - colors, typography, components | Claude Code compatible
+Turn your website into an Apple-style launch video in your own brand. Brand kit from your URL, a hook-plus-body film template, 10 agent skills for Claude Code and Codex, and a free audio path. MIT.
 
 ```bash
-cue skills add netresearch/netresearch-branding-skill --profile creative-media
+cue skills add timscheuerai/launch-video-kit --profile creative-media
 ```
 
 ---
 
-<a id="firstclasstree-shapelessai"></a>
-## 💎 [FirstClassTree/shapelessai](https://github.com/FirstClassTree/shapelessai)
+<a id="cig13zs-map-design"></a>
+## ✨ [cig13zs/map-design](https://github.com/cig13zs/map-design)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, ai-agents, ai-video-editor, claude-code-plugin, claude-skills
+**★ 0** · strong (score 6) · HTML · tags: agent-skills, cartography, claude-code-skill, d3, data-visualization
 
-The ShapelessAI agent surface: CLI, MCP server, API contract, Claude Code plugin
-
-```bash
-cue skills add FirstClassTree/shapelessai --profile creative-media
-```
-
----
-
-<a id="iamfromchangsha-three-ink-character"></a>
-## ✨ [iamfromchangsha/three-ink-character](https://github.com/iamfromchangsha/three-ink-character)
-
-**★ 0** · strong (score 5) · JavaScript · tags: canvas, claude-skill, creative-coding, generative-art, image-processing
-
-Turn a flat-colour character illustration into three ink plates: cumulative masks, traced vector outlines, an ink label map and connected-part extraction, so the character can be rendered as a misregistered print from code. A Mavis/Claude Code skill with a dependency-free Node.js tool.
+Agent skill for editorial maps: routes, globes, choropleths, symbol and locator maps as HTML/SVG with real, cited data. For Claude Code, Codex and other agents.
 
 ```bash
-cue skills add iamfromchangsha/three-ink-character --profile creative-media
+cue skills add cig13zs/map-design --profile creative-media
 ```
 
 ---

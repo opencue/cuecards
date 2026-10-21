@@ -2,7 +2,7 @@
 title: "brissonjo-sudo/droit-francais-skill — Claude Code skill discovered by cue"
 description: "Méthodologie de recherche en droit français, 18 modes d'erreur, sources primaires, contrôle de vigueur et outils MCP Légifrance/Judilibre."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-14
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: claude-code, claude-skill, droit-francais, gendarmerie, juriste, legal-tech, legifrance, police, recherche-juridique
 
 ## Best fit cue profiles

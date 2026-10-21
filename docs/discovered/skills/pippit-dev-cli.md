@@ -2,21 +2,21 @@
 title: "Pippit-dev/cli — Claude Code skill discovered by cue"
 description: "Claude Code skill from Pippit-dev/cli"
 layout: page
-updated: 2026-10-15
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Pippit-dev/cli](https://github.com/Pippit-dev/cli)
 
-**★ 12** · exceptional (score 10) · JavaScript · claude-code-skill, claude-skills
+**★ 18** · exceptional (score 10.3) · JavaScript · claude-code-skill, claude-skills
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 12 stars
-- 🗓️ Last pushed: 2026-10-15
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: claude-code-skill, claude-skills
 
 ## Best fit cue profiles

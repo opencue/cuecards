@@ -1,42 +1,59 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "7 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="7onez-cti-expert"></a>
+## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
+
+**★ 613** · exceptional (score 25.4) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
+
+CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code / Codex. 120+ commands, 57 techniques, 79 typed MCP tools, deterministic case pipeline + ICD-203 reports. No API keys required for core.
+
+✅ SKILL.md
+
+```bash
+cue skills add 7onez/cti-expert --profile cybersecurity
+```
+
+---
+
+<a id="0xarx-hashling"></a>
+## 💎 [0xArx/hashling](https://github.com/0xArx/hashling)
+
+**★ 0** · exceptional (score 14.5) · TypeScript · tags: ai-agent, claude-code, cybersecurity, macos, malware-detection
+
+Hashling: your personal AI cybersecurity agent for Mac. Keeps watch around the clock, explains what it finds in plain words, and fixes things only with your Touch ID. Works with Claude Code, Cursor, Codex and any MCP agent.
+
+✅ SKILL.md
+
+```bash
+cue skills add 0xArx/hashling --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2831** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
+**★ 2832** · exceptional (score 14) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="aliceljy-repo-insight"></a>
-## 💎 [AliceLJY/repo-insight](https://github.com/AliceLJY/repo-insight)
-
-**★ 2** · exceptional (score 12.5) · JavaScript · tags: agent-skill, ai-agent, architecture, audit, claude-code
-
-Deep architecture analysis skill with evidence-first reports, read-only untrusted-repo handling, and borrow-audit workflows.
-
-```bash
-cue skills add AliceLJY/repo-insight --profile cybersecurity
 ```
 
 ---
@@ -54,6 +71,19 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="ali-ulu-huqan"></a>
+## 💎 [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
+
+**★ 34** · exceptional (score 9.6) · JavaScript · tags: agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
+
+Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or action is trusted.
+
+```bash
+cue skills add ali-ulu/huqan --profile cybersecurity
+```
+
+---
+
 <a id="philpaz-recusal"></a>
 ## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
 
@@ -67,15 +97,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="canortiz-kru"></a>
-## 💎 [canortiz/kru](https://github.com/canortiz/kru)
+<a id="deedglass-deedglass"></a>
+## 💎 [deedglass/deedglass](https://github.com/deedglass/deedglass)
 
-**★ 0** · exceptional (score 8.5) · Rust · tags: ai-agents, ai-security, api-key-management, claude-code, codex
+**★ 1** · exceptional (score 8.8) · Go · tags: agent-security, ai-agents, ai-safety, audit-log, change-data-capture
 
-Local-first MCP password and credential manager for AI agents. Use passwords, API keys, SSH identities, and TOTP without exposing hidden plaintext to the model.
+An agent said it updated 1 row. Postgres changed 301. Deedglass checks what AI agents really did, enforces your rules, keeps signed records and has undo.
 
 ```bash
-cue skills add canortiz/kru --profile cybersecurity
+cue skills add deedglass/deedglass --profile cybersecurity
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "woodti/remote-fileshare — Claude Code skill discovered by cue"
 description: "Send screenshots and files to Claude Code / Codex CLI running on a remote Linux server — upload in the browser, copy the path, paste to the agent. npx / uvx, HT"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 

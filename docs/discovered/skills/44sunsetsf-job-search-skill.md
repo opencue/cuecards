@@ -2,7 +2,7 @@
 title: "44sunsetsf/job-search-skill — Claude Code skill discovered by cue"
 description: "A Claude Code skill for the whole student job hunt: find thesis/graduate ads (Chalmers, LinkedIn, Platsbanken), tailored one-page CV + cover letter, independent"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-19
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: chalmers, claude-code, claude-skill, cover-letter, cv, job-search
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "ali-ulu/huqan — Claude Code skill discovered by cue"
 description: "Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or "
 layout: page
-updated: 2026-09-30
+updated: 2026-10-21
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [ali-ulu/huqan](https://github.com/ali-ulu/huqan)
 
-**★ 6** · exceptional (score 9.1) · JavaScript · agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
+**★ 34** · exceptional (score 9.6) · JavaScript · agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance
 
 > Local-first verification layer for AI agents: evidence, provenance, policy gates, human approval, and auditable Trust Receipts before a claim, memory write, or action is trusted.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-09-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+- ⭐ 34 stars
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: agent-safety, agent-security, agentic-workflow, ai-agents, ai-governance, ai-safety, audit-trail, deterministic, deterministic-ai, human-in-the-loop, knowledge-graph, llm-security, mcp, mcp-server, nodejs, open-source, provenance
 
 ## Best fit cue profiles

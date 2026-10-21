@@ -2,7 +2,7 @@
 title: "MSKazemi/reachweaver — Claude Code skill discovered by cue"
 description: "Claude Code skill for evidence-backed social media planning, approval-first scheduling, publishing workflows, and analytics."
 layout: page
-updated: 2026-10-12
+updated: 2026-10-21
 tags: [claude-code, skill, marketing]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-12
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: agent-skills, audience-growth, claude-code, claude-skill, content-marketing, content-scheduling, developer-tools, growth-analytics, human-in-the-loop, marketing-automation, open-source, python, social-media, social-media-automation, social-media-management, social-media-scheduler
 
 ## Best fit cue profiles

@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for backend"
-description: "10 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 10 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="7onez-cti-expert"></a>
+## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
+
+**★ 613** · exceptional (score 25.4) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
+
+CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code / Codex. 120+ commands, 57 techniques, 79 typed MCP tools, deterministic case pipeline + ICD-203 reports. No API keys required for core.
+
+✅ SKILL.md
+
+```bash
+cue skills add 7onez/cti-expert --profile backend
+```
 
 ---
 
@@ -30,93 +45,54 @@ cue skills add sriinnu/tokmeter --profile backend
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="xiaodou-official-xiaodou-open-platform"></a>
+## 💎 [xiaodou-official/xiaodou-open-platform](https://github.com/xiaodou-official/xiaodou-open-platform)
 
-**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 346** · exceptional (score 11) · tags: aggregate-payment, ai-agent, alipay, card-key, claude-skill
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+个人支付接口｜个人网站/个人开发者/个人用户接入支付宝+微信聚合支付接口 API：个人/小微无需营业执照，卡密/虚拟商品收款，持牌清算、次日中午前到账（含节假日），兼容易支付。Alipay/WeChat Pay API for individual developers in China; Epay-compatible; licensed settlement.
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile backend
+cue skills add xiaodou-official/xiaodou-open-platform --profile backend
 ```
 
 ---
 
-<a id="hproxy-com-free-proxy-list"></a>
-## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 84** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
-Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
-cue skills add hproxy-com/free-proxy-list --profile backend
+cue skills add ni-c/mcp-hub --profile backend
 ```
 
 ---
 
-<a id="canortiz-kru"></a>
-## 💎 [canortiz/kru](https://github.com/canortiz/kru)
+<a id="deedglass-deedglass"></a>
+## 💎 [deedglass/deedglass](https://github.com/deedglass/deedglass)
 
-**★ 0** · exceptional (score 8.5) · Rust · tags: ai-agents, ai-security, api-key-management, claude-code, codex
+**★ 1** · exceptional (score 8.8) · Go · tags: agent-security, ai-agents, ai-safety, audit-log, change-data-capture
 
-Local-first MCP password and credential manager for AI agents. Use passwords, API keys, SSH identities, and TOTP without exposing hidden plaintext to the model.
+An agent said it updated 1 row. Postgres changed 301. Deedglass checks what AI agents really did, enforces your rules, keeps signed records and has undo.
 
 ```bash
-cue skills add canortiz/kru --profile backend
+cue skills add deedglass/deedglass --profile backend
 ```
 
 ---
 
-<a id="firstclasstree-shapelessai"></a>
-## 💎 [FirstClassTree/shapelessai](https://github.com/FirstClassTree/shapelessai)
+<a id="richer-richard-arquimedes"></a>
+## ✨ [richer-richard/arquimedes](https://github.com/richer-richard/arquimedes)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: agent-skills, ai-agents, ai-video-editor, claude-code-plugin, claude-skills
+**★ 1** · strong (score 6.3) · Python · tags: benchmark, competition-math, dataset, education, jsonl
 
-The ShapelessAI agent surface: CLI, MCP server, API contract, Claude Code plugin
-
-```bash
-cue skills add FirstClassTree/shapelessai --profile backend
-```
-
----
-
-<a id="ihatepostingorg-agent-skill"></a>
-## ✨ [iHatePostingOrg/agent-skill](https://github.com/iHatePostingOrg/agent-skill)
-
-**★ 1** · strong (score 7.8) · JavaScript · tags: agent-skills, ai-agents, bluesky, claude, claude-code
-
-Let Claude, Claude Code, Cursor, Gemini CLI, Grok Build, Kimi Code and Qwen Code draft, check, schedule and publish posts on 14 social networks (X, LinkedIn, Instagram, Facebook, TikTok, YouTube, Threads, Bluesky, Pinterest and more) through the hosted iHatePosting MCP server. 16 tools, browser sign-in with no API key, drafts by default.
+A structured math database containing 1,038,963 structured math problems with answers, solutions, and LaTeX statements, stored as gzipped JSONL shards.
 
 ```bash
-cue skills add iHatePostingOrg/agent-skill --profile backend
-```
-
----
-
-<a id="rezearcher-x402-data-api"></a>
-## ✨ [rezearcher/x402-data-api](https://github.com/rezearcher/x402-data-api)
-
-**★ 0** · strong (score 7.5) · TypeScript · tags: agentic-payments, ai-agents, base, cloudflare-workers, defi
-
-Agent-native x402 pay-per-call data & security APIs on Base (crypto, DeFi, on-chain, Polymarket, MCP security scan)
-
-```bash
-cue skills add rezearcher/x402-data-api --profile backend
-```
-
----
-
-<a id="ilien-dev-muninn"></a>
-## ✨ [ilien-dev/muninn](https://github.com/ilien-dev/muninn)
-
-**★ 5** · strong (score 5.8) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
-
-Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hooks. Local-first: one Rust binary, SQLite + FTS5, no cloud, no API key, no LLM in the read path. Cue-anchored recall under a 700-token budget.
-
-```bash
-cue skills add ilien-dev/muninn --profile backend
+cue skills add richer-richard/arquimedes --profile backend
 ```
 
 ---

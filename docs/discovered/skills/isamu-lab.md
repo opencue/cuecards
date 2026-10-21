@@ -2,21 +2,21 @@
 title: "isamu/lab — Claude Code skill discovered by cue"
 description: "chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also s"
 layout: page
-updated: 2026-10-19
+updated: 2026-10-21
 tags: [claude-code, skill, docs-writer]
 ---
 
 # ✨ [isamu/lab](https://github.com/isamu/lab)
 
-**★ 1** · strong (score 7.3) · TypeScript · agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
+**★ 2** · strong (score 7.5) · TypeScript · agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
 
 > chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill, cli, code-quality, codex, cursor, english, japanese, linter, llm-evals, markdown, prose, static-analysis, style-guide, technical-writing, typescript, writing
 
 ## Best fit cue profiles

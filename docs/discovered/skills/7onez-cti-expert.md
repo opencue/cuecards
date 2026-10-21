@@ -1,28 +1,28 @@
 ---
 title: "7onez/cti-expert — Claude Code skill discovered by cue"
-description: "CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required."
+description: "CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code / Codex. 120+ commands, 57 techniques, 79 typed MCP tools, deterministic case pipe"
 layout: page
-updated: 2026-08-26
-tags: [claude-code, skill, cybersecurity]
+updated: 2026-10-21
+tags: [claude-code, skill, cybersecurity, backend]
 ---
 
 # 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
 
-**★ 569** · exceptional (score 23.8) · Python · claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
+**★ 613** · exceptional (score 25.4) · Python · claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
 
-> CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code. 67+ commands, 35 techniques, no API keys required.
+> CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code / Codex. 120+ commands, 57 techniques, 79 typed MCP tools, deterministic case pipeline + ICD-203 reports. No API keys required for core.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 23.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 25.4 based on:
 - ✅ Contains SKILL.md
-- ⭐ 569 stars
-- 🗓️ Last pushed: 2026-08-26
-- 🏷️ Tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics, investigation, osint, reconnaissance, security, threat-intelligence
+- ⭐ 613 stars
+- 🗓️ Last pushed: 2026-10-21
+- 🏷️ Tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics, investigation, mcp-server, osint, osint-tool, reconnaissance, security, threat-intelligence
 
 ## Best fit cue profiles
 
-[cybersecurity](../cybersecurity.md)
+[cybersecurity](../cybersecurity.md), [backend](../backend.md)
 
 
 

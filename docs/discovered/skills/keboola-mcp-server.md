@@ -2,7 +2,7 @@
 title: "keboola/mcp-server — Claude Code skill discovered by cue"
 description: "Model Context Protocol (MCP) Server for the Keboola Platform"
 layout: page
-updated: 2026-10-08
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ⭐ 85 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: data-platform, etl-pipeline, keboola-platform, mcp, mcp-server, model-context-protocol
 
 ## Best fit cue profiles

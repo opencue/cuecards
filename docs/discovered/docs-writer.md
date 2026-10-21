@@ -1,55 +1,57 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="agricidaniel-claude-obsidian"></a>
+## 💎 [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)
 
-**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 15686** · exceptional (score 17) · Python · tags: agent-skills, ai-note-taking, ai-second-brain, claude-code, claude-code-skill
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
+cue skills add AgriciDaniel/claude-obsidian --profile docs-writer
 ```
 
 ---
 
-<a id="mworldorg-markdown-memory"></a>
-## 💎 [mworldorg/markdown-memory](https://github.com/mworldorg/markdown-memory)
+<a id="huiyonghkw-hekouwang-writer-skill"></a>
+## 💎 [huiyonghkw/hekouwang-writer-skill](https://github.com/huiyonghkw/hekouwang-writer-skill)
 
-**★ 25** · exceptional (score 11.5) · Python · tags: antigravity, antigravity-ide, antigravity-skills, antrophic, claude
+**★ 0** · exceptional (score 15.5) · Python · tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill
 
-A cross-platform, file-based persistent memory and prompt bridge for Claude Code, claude.ai, and Antigravity IDE. Synchronizes project passports, handoffs, and session logs in an Obsidian Vault, connecting web planning with local CLI execution. Install via: npx markdown-memory
+中文文档写作与改进 Agent Skill：把素材写成结构清晰、读得懂、数字可对账的文档。出处/模态/修订三铁律，修订列改动清单可回退，五把纯 Python 标准库检查脚本（锯末词、长句、表格与敏感信息、算术对账、改动对账）。
+
+✅ SKILL.md
 
 ```bash
-cue skills add mworldorg/markdown-memory --profile docs-writer
+cue skills add huiyonghkw/hekouwang-writer-skill --profile docs-writer
 ```
 
 ---
 
-<a id="basitalisandhu-repo-engineering-skills"></a>
-## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
+<a id="isamu-lab"></a>
+## ✨ [isamu/lab](https://github.com/isamu/lab)
 
-**★ 1** · strong (score 5.3) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
 
-Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
+chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
 
 ```bash
-cue skills add basitalisandhu/repo-engineering-skills --profile docs-writer
+cue skills add isamu/lab --profile docs-writer
 ```
 
 ---
@@ -63,6 +65,19 @@ Agent Skill that makes AI agents write long documents humans can actually read: 
 
 ```bash
 cue skills add jasonxu08/document-formatting --profile docs-writer
+```
+
+---
+
+<a id="basitalisandhu-repo-engineering-skills"></a>
+## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
+
+**★ 1** · strong (score 5.2) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+
+Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
+
+```bash
+cue skills add basitalisandhu/repo-engineering-skills --profile docs-writer
 ```
 
 ---

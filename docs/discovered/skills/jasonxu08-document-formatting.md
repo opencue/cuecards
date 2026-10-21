@@ -2,7 +2,7 @@
 title: "jasonxu08/document-formatting — Claude Code skill discovered by cue"
 description: "Agent Skill that makes AI agents write long documents humans can actually read: verdict first, human vs machine zones, a reading path, relationship diagrams. Wo"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, skill, docs-writer]
 ---
 

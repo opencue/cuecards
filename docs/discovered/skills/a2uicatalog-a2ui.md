@@ -2,22 +2,22 @@
 title: "a2uicatalog/a2ui — Claude Code skill discovered by cue"
 description: "Typed UI vocabulary for AI agents using the a2ui protocol  — 474 atoms an agent composes into real rendered interfaces across web, Google Meet, Apps Script, Goo"
 layout: page
-updated: 2026-09-28
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [a2uicatalog/a2ui](https://github.com/a2uicatalog/a2ui)
 
-**★ 3** · exceptional (score 12.2) · HTML · a2ui, agent, agent-skills, ai-agents, apps-script
+**★ 4** · exceptional (score 12.3) · HTML · a2ui, agent, agent-skills, ai-agents, apps-script
 
 > Typed UI vocabulary for AI agents using the a2ui protocol  — 474 atoms an agent composes into real rendered interfaces across web, Google Meet, Apps Script, Google Chat and MCP Apps. MCP server, no signup.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-28
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: a2ui, agent, agent-skills, ai-agents, apps-script, claude, generative-ui, mcp, mcp-apps, mcp-server
 
 ## Best fit cue profiles

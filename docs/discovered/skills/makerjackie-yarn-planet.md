@@ -2,20 +2,20 @@
 title: "makerjackie/yarn-planet — Claude Code skill discovered by cue"
 description: "毛线星球 · Yarn Planet — a small-planet walking game in the browser: your path becomes a colored thread. Three.js + Cloudflare Durable Objects, made with Claude Opu"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, skill, threejs]
 ---
 
-# ✨ [makerjackie/yarn-planet](https://github.com/makerjackie/yarn-planet)
+# 💎 [makerjackie/yarn-planet](https://github.com/makerjackie/yarn-planet)
 
-**★ 2** · strong (score 6.5) · TypeScript · ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects
+**★ 8** · exceptional (score 8) · TypeScript · ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects
 
 > 毛线星球 · Yarn Planet — a small-planet walking game in the browser: your path becomes a colored thread. Three.js + Cloudflare Durable Objects, made with Claude Opus 5.5.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 8 stars
 - 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects, game, threejs, webgl
 

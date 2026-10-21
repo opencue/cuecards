@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,19 +26,6 @@ Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, 
 
 ```bash
 cue skills add sratour/xm-handdraw-video --profile video
-```
-
----
-
-<a id="shlior7-demo-recorder"></a>
-## 💎 [shlior7/demo-recorder](https://github.com/shlior7/demo-recorder)
-
-**★ 0** · exceptional (score 8) · TypeScript · tags: claude-code, claude-code-plugin, claude-skill, demo-video, playwright
-
-Polished, narrated demo videos of any web app — recorded by your coding agent, posted to your PR. A Claude Code plugin.
-
-```bash
-cue skills add shlior7/demo-recorder --profile video
 ```
 
 ---

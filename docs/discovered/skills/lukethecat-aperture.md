@@ -2,22 +2,22 @@
 title: "lukethecat/aperture — Claude Code skill discovered by cue"
 description: "A skill for AI agents that curate better daily reports — scan front pages, tape every decision, learn from feedback."
 layout: page
-updated: 2026-08-05
+updated: 2026-10-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [lukethecat/aperture](https://github.com/lukethecat/aperture)
 
-**★ 6** · exceptional (score 14.5) · Python · agent-skill, claude-skill, hermes, llm, news-aggregator
+**★ 6** · exceptional (score 14.6) · Python · agent-skill, claude-skill, hermes, llm, news-aggregator
 
 > A skill for AI agents that curate better daily reports — scan front pages, tape every decision, learn from feedback.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.6 based on:
 - ✅ Contains SKILL.md
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-08-05
+- 🗓️ Last pushed: 2026-10-21
 - 🏷️ Tags: agent-skill, claude-skill, hermes, llm, news-aggregator, openclaw, raft, rss, self-evolving, skill-md
 
 ## Best fit cue profiles

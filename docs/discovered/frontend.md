@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "1 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-21
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 

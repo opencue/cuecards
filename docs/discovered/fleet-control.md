@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-21
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="nuttaruj-rolepod"></a>
-## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
+<a id="shijianxi-cloud-local-bridge"></a>
+## 💎 [ShiJianXi/cloud-local-bridge](https://github.com/ShiJianXi/cloud-local-bridge)
 
-**★ 3** · exceptional (score 8.1) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 0** · exceptional (score 8) · tags: agent-skills, ai-agents, anthropic, claude-code, claude-code-on-the-web
 
-Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
+Claude Code plugin: hand work from a cloud session (Claude Code on the web, claude.ai/code) to a local Claude Desktop or Remote Control session and get the result back
 
 ```bash
-cue skills add nuttaruj/rolepod --profile fleet-control
+cue skills add ShiJianXi/cloud-local-bridge --profile fleet-control
 ```
 
 ---
