@@ -2,7 +2,7 @@
 title: "kochetkov-ma/brewpage-openapi — Claude Code skill discovered by cue"
 description: "Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-22
 tags: [claude-code, skill, backend, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting, brewpage, claude-code, claude-desktop, claude-skill, developer-tools, free-api, mcp, mcp-server, model-context-protocol, npm-package, openapi, openclaw, opencode, rest-api, typescript
 
 ## Best fit cue profiles

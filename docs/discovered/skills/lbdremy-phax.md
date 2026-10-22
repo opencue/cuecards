@@ -2,7 +2,7 @@
 title: "lbdremy/phax — Claude Code skill discovered by cue"
 description: "Run a plan through AI coding agents (Claude Code, OpenAI Codex, Mistral Vibe) as a sequence of gated phases, and get a change you can review. The golden path, j"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-21
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: agent-harness, agentic-coding, claude-code, codex-cli, deterministic-ai, git-worktree, mistral-vibe, quality-gates, spec-driven-development
 
 ## Best fit cue profiles

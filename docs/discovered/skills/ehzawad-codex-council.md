@@ -2,21 +2,21 @@
 title: "ehzawad/codex-council — Claude Code skill discovered by cue"
 description: "Multi-perspective parallel Codex review for Claude Code — N sub-agents, each framed with a role you decide per call."
 layout: page
-updated: 2026-09-23
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ehzawad/codex-council](https://github.com/ehzawad/codex-council)
 
-**★ 1** · exceptional (score 11.8) · Python · claude, claude-code, claude-code-plugin, claude-code-skill, claude-skill
+**★ 2** · exceptional (score 12) · Python · claude, claude-code, claude-code-plugin, claude-code-skill, claude-skill
 
 > Multi-perspective parallel Codex review for Claude Code — N sub-agents, each framed with a role you decide per call.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-skill, claude-skills, codex, codex-cli
 
 ## Best fit cue profiles

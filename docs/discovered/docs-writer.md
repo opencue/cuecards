@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="agricidaniel-claude-obsidian"></a>
-## 💎 [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)
+<a id="openghz-embodied-ai-paper-writer"></a>
+## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
 
-**★ 15686** · exceptional (score 17) · Python · tags: agent-skills, ai-note-taking, ai-second-brain, claude-code, claude-code-skill
+**★ 15** · exceptional (score 15.7) · Python · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
 
-Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.
+A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
+
+✅ SKILL.md
 
 ```bash
-cue skills add AgriciDaniel/claude-obsidian --profile docs-writer
+cue skills add OpenGHz/embodied-ai-paper-writer --profile docs-writer
 ```
 
 ---
@@ -43,28 +45,15 @@ cue skills add huiyonghkw/hekouwang-writer-skill --profile docs-writer
 
 ---
 
-<a id="isamu-lab"></a>
-## ✨ [isamu/lab](https://github.com/isamu/lab)
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
 
-**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
+**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
 
-chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
-
-```bash
-cue skills add isamu/lab --profile docs-writer
-```
-
----
-
-<a id="jasonxu08-document-formatting"></a>
-## ✨ [jasonxu08/document-formatting](https://github.com/jasonxu08/document-formatting)
-
-**★ 1** · strong (score 5.3) · Python · tags: agent-skills, ai-agents, claude-code, codex, cursor
-
-Agent Skill that makes AI agents write long documents humans can actually read: verdict first, human vs machine zones, a reading path, relationship diagrams. Works with Claude Code, GitHub Copilot, Codex, Cursor, Gemini CLI and 70+ agents.
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
 
 ```bash
-cue skills add jasonxu08/document-formatting --profile docs-writer
+cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
 ```
 
 ---
@@ -78,6 +67,19 @@ Claude Code skills for repository audits and documentation: verify README and do
 
 ```bash
 cue skills add basitalisandhu/repo-engineering-skills --profile docs-writer
+```
+
+---
+
+<a id="jasonxu08-document-formatting"></a>
+## ✨ [jasonxu08/document-formatting](https://github.com/jasonxu08/document-formatting)
+
+**★ 1** · strong (score 5.2) · Python · tags: agent-skills, ai-agents, claude-code, codex, cursor
+
+Agent Skill that makes AI agents write long documents humans can actually read: verdict first, human vs machine zones, a reading path, relationship diagrams. Works with Claude Code, GitHub Copilot, Codex, Cursor, Gemini CLI and 70+ agents.
+
+```bash
+cue skills add jasonxu08/document-formatting --profile docs-writer
 ```
 
 ---

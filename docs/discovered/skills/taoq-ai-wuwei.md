@@ -1,23 +1,23 @@
 ---
 title: "taoq-ai/wuwei — Claude Code skill discovered by cue"
-description: "无为 WUWEI: a Claude Code plugin that runs a chartered agent team through your day, with guards that make the safe path the default one."
+description: "无为 WUWEI: a Claude Code and Codex plugin that runs a chartered agent team through your day, with guards that make the safe path the default one."
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [taoq-ai/wuwei](https://github.com/taoq-ai/wuwei)
+# 💎 [taoq-ai/wuwei](https://github.com/taoq-ai/wuwei)
 
-**★ 3** · strong (score 6.7) · Python · agentic-workflow, ai-agents, autonomous-agents, claude-code, claude-code-plugin
+**★ 6** · exceptional (score 9) · Python · agentic-workflow, ai-agents, autonomous-agents, claude-code, claude-code-plugin
 
-> 无为 WUWEI: a Claude Code plugin that runs a chartered agent team through your day, with guards that make the safe path the default one.
+> 无为 WUWEI: a Claude Code and Codex plugin that runs a chartered agent team through your day, with guards that make the safe path the default one.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-21
-- 🏷️ Tags: agentic-workflow, ai-agents, autonomous-agents, claude-code, claude-code-plugin, cluade-code, cluadecode-source, codex, developer-workflow, guardrails, harness-engineering, harness-framework, python, sdlc, sdlc-automation, sdlc-enforced, sdlc-tools, slack, spec-driven-development, stdlib-only
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-10-22
+- 🏷️ Tags: agentic-workflow, ai-agents, autonomous-agents, claude-code, claude-code-plugin, cluade-code, cluadecode-source, codex, codex-plugin, developer-workflow, guardrails, harness-engineering, harness-framework, python, sdd, sdlc-automation, sdlc-tools, spec-driven-developement, spec-driven-development, stdlib-only
 
 ## Best fit cue profiles
 

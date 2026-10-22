@@ -2,20 +2,20 @@
 title: "timscheuerai/launch-video-kit — Claude Code skill discovered by cue"
 description: "Turn your website into an Apple-style launch video in your own brand. Brand kit from your URL, a hook-plus-body film template, 10 agent skills for Claude Code a"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [timscheuerai/launch-video-kit](https://github.com/timscheuerai/launch-video-kit)
 
-**★ 12** · exceptional (score 9.2) · Python · agent-skills, brand-kit, claude-code, hyperframes, launch-video
+**★ 13** · exceptional (score 9.2) · Python · agent-skills, brand-kit, claude-code, hyperframes, launch-video
 
 > Turn your website into an Apple-style launch video in your own brand. Brand kit from your URL, a hook-plus-body film template, 10 agent skills for Claude Code and Codex, and a free audio path. MIT.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
-- ⭐ 12 stars
+- ⭐ 13 stars
 - 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: agent-skills, brand-kit, claude-code, hyperframes, launch-video, motion-graphics, product-launch
 

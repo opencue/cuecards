@@ -2,21 +2,21 @@
 title: "GiulioDER/RE-call — Claude Code skill discovered by cue"
 description: "Memory that abstains instead of guessing: agent memory on your own Postgres with a verdict, confidence and provenance on every hit, and a calibrated refusal whe"
 layout: page
-updated: 2026-09-25
+updated: 2026-10-22
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [GiulioDER/RE-call](https://github.com/GiulioDER/RE-call)
 
-**★ 5** · exceptional (score 8) · Python · abstention, agent-memory, ai-agents, claude, embeddings
+**★ 6** · exceptional (score 9.6) · Python · abstention, agent-memory, ai-agents, claude, embeddings
 
 > Memory that abstains instead of guessing: agent memory on your own Postgres with a verdict, confidence and provenance on every hit, and a calibrated refusal when nothing clears the threshold.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: abstention, agent-memory, ai-agents, claude, embeddings, hybrid-search, information-retrieval, llm, llm-agents, mcp, mcp-server, model-context-protocol, pgvector, postgresql, python, rag, reranking, retrieval-augmented-generation, vector-database, vector-search
 
 ## Best fit cue profiles

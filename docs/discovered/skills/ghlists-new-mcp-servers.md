@@ -2,7 +2,7 @@
 title: "GHLists/new-mcp-servers — Claude Code skill discovered by cue"
 description: "List of newly created MCP Servers. Automatically updating hourly."
 layout: page
-updated: 2026-10-08
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: ai-agent, ai-agents, mcp, mcp-server, mcp-servers
 
 ## Best fit cue profiles

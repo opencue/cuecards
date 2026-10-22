@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "100 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-10-21 · refreshed nightly via GitHub Code Search.
+> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-10-22 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 71 | `context-mode`, `banana-claude`, `strategic-advisor-orchestrator` |
-| [**backend**](./backend.md) | 8 | `cti-expert`, `tokmeter`, `xiaodou-open-platform` |
-| [**cybersecurity**](./cybersecurity.md) | 7 | `cti-expert`, `hashling`, `Claude-OSINT` |
-| [**docs-writer**](./docs-writer.md) | 5 | `claude-obsidian`, `hekouwang-writer-skill`, `lab` |
-| [**creative-media**](./creative-media.md) | 4 | `xm-handdraw-video`, `launch-video-kit`, `map-design` |
+| [**core**](./core.md) | 67 | `context-mode`, `GodotMaker`, `answer-me-with-html` |
+| [**backend**](./backend.md) | 11 | `nightingale`, `GoSQLX`, `api-authz-pentest` |
+| [**docs-writer**](./docs-writer.md) | 5 | `embodied-ai-paper-writer`, `hekouwang-writer-skill`, `brewpage-openapi` |
+| [**creative-media**](./creative-media.md) | 5 | `xm-handdraw-video`, `netresearch-branding-skill`, `launch-video-kit` |
+| [**research**](./research.md) | 4 | `embodied-ai-paper-writer`, `trading-agents-workflow`, `popper-scope` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `api-authz-pentest`, `sanctuary-framework` |
+| [**video**](./video.md) | 3 | `agentcall`, `xm-handdraw-video`, `demo-recorder` |
+| [**niche**](./niche.md) | 2 | `walk-kcal`, `ai-companion-reading` |
+| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
 | [**threejs**](./threejs.md) | 2 | `silkify`, `yarn-planet` |
-| [**python**](./python.md) | 2 | `rote`, `alfred` |
-| [**marketing**](./marketing.md) | 2 | `claude-outreach`, `reachweaver` |
-| [**video**](./video.md) | 1 | `xm-handdraw-video` |
-| [**frontend**](./frontend.md) | 1 | `awesome-claude-ui-armory` |
-| [**fleet-control**](./fleet-control.md) | 1 | `cloud-local-bridge` |
-| [**research**](./research.md) | 1 | `skillassay` |
+| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
 
 ## How scoring works
 

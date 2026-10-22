@@ -2,19 +2,19 @@
 title: "woodti/remote-fileshare — Claude Code skill discovered by cue"
 description: "Send screenshots and files to Claude Code / Codex CLI running on a remote Linux server — upload in the browser, copy the path, paste to the agent. npx / uvx, HT"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [woodti/remote-fileshare](https://github.com/woodti/remote-fileshare)
 
-**★ 1** · strong (score 7.8) · JavaScript · ai-agent, claude-code, codex, file-sharing, file-transfer
+**★ 1** · strong (score 7.7) · JavaScript · ai-agent, claude-code, codex, file-sharing, file-transfer
 
 > Send screenshots and files to Claude Code / Codex CLI running on a remote Linux server — upload in the browser, copy the path, paste to the agent. npx / uvx, HTTPS, zero deps. 在远程 Linux 上用 Claude Code、Codex CLI 时，把截图和文件从浏览器传给 AI agent，并下载结果。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: ai-agent, claude-code, codex, file-sharing, file-transfer, nodejs, npx, python, remote, screenshot, self-hosted, ssh, upload, uvx, zero-dependency

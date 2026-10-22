@@ -2,22 +2,22 @@
 title: "OpenGHz/embodied-ai-paper-writer — Claude Code skill discovered by cue"
 description: "A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Rob"
 layout: page
-updated: 2026-06-24
+updated: 2026-10-22
 tags: [claude-code, skill, research, docs-writer]
 ---
 
 # 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
 
-**★ 1** · exceptional (score 12.8) · Shell · academic-writing, agent-skill, claude-skill, corl, embodied-ai
+**★ 15** · exceptional (score 15.7) · Python · academic-writing, agent-skill, claude-skill, corl, embodied-ai
 
 > A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-24
+- ⭐ 15 stars
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai, icra, iros, llm, paper-writing, prompt-engineering, robotics, rss, science-robotics, system-prompt
 
 ## Best fit cue profiles

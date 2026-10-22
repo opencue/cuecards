@@ -2,21 +2,21 @@
 title: "shlior7/demo-recorder — Claude Code skill discovered by cue"
 description: "Polished, narrated demo videos of any web app — recorded by your coding agent, posted to your PR. A Claude Code plugin."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-22
 tags: [claude-code, skill, video]
 ---
 
 # 💎 [shlior7/demo-recorder](https://github.com/shlior7/demo-recorder)
 
-**★ 0** · exceptional (score 8) · TypeScript · claude-code, claude-code-plugin, claude-skill, demo-video, playwright
+**★ 2** · exceptional (score 8.5) · TypeScript · claude-code, claude-code-plugin, claude-skill, demo-video, playwright
 
 > Polished, narrated demo videos of any web app — recorded by your coding agent, posted to your PR. A Claude Code plugin.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-skill, demo-video, playwright, screen-recording
 
 ## Best fit cue profiles

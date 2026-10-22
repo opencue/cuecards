@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 <a id="russguo-silkify"></a>
 ## 💎 [RussGuo/silkify](https://github.com/RussGuo/silkify)
 
-**★ 0** · exceptional (score 11) · JavaScript · tags: claude-skill, generative-art, silk, threejs, webgl
+**★ 1** · exceptional (score 11.3) · JavaScript · tags: claude-skill, generative-art, silk, threejs, webgl
 
 Silkify anything: turn any image into a touchable silk surface on the web
 
@@ -33,7 +33,7 @@ cue skills add RussGuo/silkify --profile threejs
 <a id="makerjackie-yarn-planet"></a>
 ## 💎 [makerjackie/yarn-planet](https://github.com/makerjackie/yarn-planet)
 
-**★ 8** · exceptional (score 8) · TypeScript · tags: ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects
+**★ 10** · exceptional (score 9.1) · TypeScript · tags: ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects
 
 毛线星球 · Yarn Planet — a small-planet walking game in the browser: your path becomes a colored thread. Three.js + Cloudflare Durable Objects, made with Claude Opus 5.5.
 

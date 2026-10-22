@@ -2,20 +2,20 @@
 title: "SaudSatopay/bullseye — Claude Code skill discovered by cue"
 description: "The hackathon playbook for coding agents. 12 Agent Skills and 5 subagents that take Claude Code, Codex or Cursor from the problem statement to the podium: decod"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [SaudSatopay/bullseye](https://github.com/SaudSatopay/bullseye)
 
-**★ 2** · strong (score 5.5) · JavaScript · agent-skills, ai-agents, claude-code, claude-code-plugin, codex
+**★ 3** · strong (score 5.6) · JavaScript · agent-skills, ai-agents, claude-code, claude-code-plugin, codex
 
 > The hackathon playbook for coding agents. 12 Agent Skills and 5 subagents that take Claude Code, Codex or Cursor from the problem statement to the podium: decode the rubric, build the demo path, prove every number, simulate the judges, ship the package.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.6 based on:
+- ⭐ 3 stars
 - 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-code-plugin, codex, coding-agents, cursor, developer-tools, gemini-cli, hackathon, hackathon-toolkit, pitch-deck
 

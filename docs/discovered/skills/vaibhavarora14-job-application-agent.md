@@ -1,23 +1,23 @@
 ---
 title: "vaibhavarora14/job-application-agent — Claude Code skill discovered by cue"
-description: "Open-source job search Agent Skill and CLI: searches wide, matches one verified résumé, applies within your rules, tracks confirmed submissions."
+description: "JobAppAgent: open-source AI job application agent (Agent Skill + CLI). Searches wide, matches one verified résumé, applies within your rules on Greenhouse, Ashb"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vaibhavarora14/job-application-agent](https://github.com/vaibhavarora14/job-application-agent)
 
-**★ 161** · exceptional (score 15.5) · JavaScript · agent-skills, agentskills, ai-agent, automation, browser-automation
+**★ 161** · exceptional (score 14.5) · JavaScript · agent-skills, agentskills, ai-agent, ai-job-search, automation
 
-> Open-source job search Agent Skill and CLI: searches wide, matches one verified résumé, applies within your rules, tracks confirmed submissions.
+> JobAppAgent: open-source AI job application agent (Agent Skill + CLI). Searches wide, matches one verified résumé, applies within your rules on Greenhouse, Ashby and Lever, tracks confirmed submissions.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ⭐ 161 stars
-- 🗓️ Last pushed: 2026-10-21
-- 🏷️ Tags: agent-skills, agentskills, ai-agent, automation, browser-automation, careers, claude-code-skill, claude-skills, codex, cursor, job-application, job-search, privacy, resume, skill-md
+- 🗓️ Last pushed: 2026-10-22
+- 🏷️ Tags: agent-skills, agentskills, ai-agent, ai-job-search, automation, browser-automation, careers, claude-code-skill, claude-skills, codex, cursor, job-application, job-application-agent, job-board, job-search, jobappagent, open-source, privacy, resume, skill-md
 
 ## Best fit cue profiles
 

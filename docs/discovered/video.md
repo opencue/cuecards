@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="pattern-ai-labs-agentcall"></a>
+## 💎 [pattern-ai-labs/agentcall](https://github.com/pattern-ai-labs/agentcall)
+
+**★ 169** · exceptional (score 24.2) · Python · tags: agent-skills, agentcall, ai-agent, ai-meeting-assistant, claude-code
+
+AgentCall lets AI Agents join meetings with voice, video & screen-share to build together. Supports Google Meet, Teams, Zoom (Beta)
+
+✅ SKILL.md
+
+```bash
+cue skills add pattern-ai-labs/agentcall --profile video
+```
 
 ---
 
@@ -26,6 +41,19 @@ Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, 
 
 ```bash
 cue skills add sratour/xm-handdraw-video --profile video
+```
+
+---
+
+<a id="shlior7-demo-recorder"></a>
+## 💎 [shlior7/demo-recorder](https://github.com/shlior7/demo-recorder)
+
+**★ 2** · exceptional (score 8.5) · TypeScript · tags: claude-code, claude-code-plugin, claude-skill, demo-video, playwright
+
+Polished, narrated demo videos of any web app — recorded by your coding agent, posted to your PR. A Claude Code plugin.
+
+```bash
+cue skills add shlior7/demo-recorder --profile video
 ```
 
 ---

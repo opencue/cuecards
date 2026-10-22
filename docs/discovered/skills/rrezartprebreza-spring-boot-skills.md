@@ -2,21 +2,21 @@
 title: "rrezartprebreza/spring-boot-skills — Claude Code skill discovered by cue"
 description: "Production-grade Claude Code and Codex skills for Spring Boot developers"
 layout: page
-updated: 2026-09-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rrezartprebreza/spring-boot-skills](https://github.com/rrezartprebreza/spring-boot-skills)
 
-**★ 278** · exceptional (score 16.7) · Java · ai-coding-agent, claude, claude-ai, claude-code, claude-plugin
+**★ 320** · exceptional (score 16.8) · Java · ai-coding-agent, claude, claude-ai, claude-code, claude-plugin
 
 > Production-grade Claude Code and Codex skills for Spring Boot developers
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
-- ⭐ 278 stars
-- 🗓️ Last pushed: 2026-09-21
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.8 based on:
+- ⭐ 320 stars
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: ai-coding-agent, claude, claude-ai, claude-code, claude-plugin, claude-skill, claude-skills, codex, codex-skills, developer-tools, java, mcp, spring-ai, spring-boot
 
 ## Best fit cue profiles

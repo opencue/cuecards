@@ -2,7 +2,7 @@
 title: "namit-jpg/presales-agent-skill — Claude Code skill discovered by cue"
 description: "Salesforce presales workflow as a Claude Code plugin — discovery to scope matrix, sprint plan, and timeline with Excel output"
 layout: page
-updated: 2026-07-31
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-31
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, claude-skill, presales, salesforce
 
 ## Best fit cue profiles

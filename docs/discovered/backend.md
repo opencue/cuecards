@@ -1,59 +1,111 @@
 ---
 title: "Claude Code Skills for backend"
-description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "11 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 11 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="7onez-cti-expert"></a>
-## 💎 [7onez/cti-expert](https://github.com/7onez/cti-expert)
+<a id="ccfos-nightingale"></a>
+## 💎 [ccfos/nightingale](https://github.com/ccfos/nightingale)
 
-**★ 613** · exceptional (score 25.4) · Python · tags: claude-code, claude-code-skill, cti, cyber-threat-intelligence, digital-forensics
+**★ 13378** · exceptional (score 17) · Go · tags: alerting, alertmanager, clickhouse, golang, logs
 
-CTI Expert — Cyber Threat Intelligence & OSINT analysis skill for Claude Code / Codex. 120+ commands, 57 techniques, 79 typed MCP tools, deterministic case pipeline + ICD-203 reports. No API keys required for core.
-
-✅ SKILL.md
+Open-source, self-hosted alerting for metrics, logs, and databases. Includes a built-in AI agent and MCP server.
 
 ```bash
-cue skills add 7onez/cti-expert --profile backend
+cue skills add ccfos/nightingale --profile backend
 ```
 
 ---
 
-<a id="sriinnu-tokmeter"></a>
-## 💎 [sriinnu/tokmeter](https://github.com/sriinnu/tokmeter)
+<a id="ajitpratap0-gosqlx"></a>
+## 💎 [ajitpratap0/GoSQLX](https://github.com/ajitpratap0/GoSQLX)
 
-**★ 1** · exceptional (score 17.3) · TypeScript · tags: agent-skills, ai-coding-agents, claude-code, claude-code-skill, claude-skills
+**★ 120** · exceptional (score 14.7) · Go · tags: ast, cli, go, golang, lsp
 
-Token and cost tracking for AI coding agents. Reads the local session logs of Claude Code, Codex, Gemini CLI, Cursor and 20+ more. No API keys, no telemetry, nothing leaves your machine.
-
-✅ SKILL.md
+Pure-Go SQL parser, formatter, linter and security scanner for 8 dialects. Zero-copy, race-free, with an LSP and MCP server.
 
 ```bash
-cue skills add sriinnu/tokmeter --profile backend
+cue skills add ajitpratap0/GoSQLX --profile backend
 ```
 
 ---
 
-<a id="xiaodou-official-xiaodou-open-platform"></a>
-## 💎 [xiaodou-official/xiaodou-open-platform](https://github.com/xiaodou-official/xiaodou-open-platform)
+<a id="egym-playground-api-authz-pentest"></a>
+## 💎 [egym-playground/api-authz-pentest](https://github.com/egym-playground/api-authz-pentest)
 
-**★ 346** · exceptional (score 11) · tags: aggregate-payment, ai-agent, alipay, card-key, claude-skill
+**★ 0** · exceptional (score 13.5) · Python · tags: ai-agent, api-security, appsec, authorization, bfla
 
-个人支付接口｜个人网站/个人开发者/个人用户接入支付宝+微信聚合支付接口 API：个人/小微无需营业执照，卡密/虚拟商品收款，持牌清算、次日中午前到账（含节假日），兼容易支付。Alipay/WeChat Pay API for individual developers in China; Epay-compatible; licensed settlement.
+Repository-first API authorization pentest skill: runtime-confirmed OWASP API Top 10 (BOLA/BFLA/IDOR) testing with a built-in safety harness. AI-agent / Claude Skill ready.
+
+✅ SKILL.md
 
 ```bash
-cue skills add xiaodou-official/xiaodou-open-platform --profile backend
+cue skills add egym-playground/api-authz-pentest --profile backend
+```
+
+---
+
+<a id="sifenfisaha-vps-deploy"></a>
+## 💎 [sifenfisaha/vps-deploy](https://github.com/sifenfisaha/vps-deploy)
+
+**★ 1** · exceptional (score 13.3) · Shell · tags: caddy, claude-code, claude-skill, deployment, devops
+
+Claude Code skill: put a service on a plain VPS behind HTTPS — systemd, Caddy, atomic releases with automatic rollback. No Docker.
+
+✅ SKILL.md
+
+```bash
+cue skills add sifenfisaha/vps-deploy --profile backend
+```
+
+---
+
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+
+**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+
+```bash
+cue skills add kochetkov-ma/brewpage-openapi --profile backend
+```
+
+---
+
+<a id="hproxy-com-free-proxy-list"></a>
+## 💎 [hproxy-com/free-proxy-list](https://github.com/hproxy-com/free-proxy-list)
+
+**★ 83** · exceptional (score 12.2) · tags: ai-agents, anonymous-proxy, free-proxies, free-proxy, free-proxy-api
+
+Free proxy list, verified around the clock: HTTP, HTTPS, SOCKS4 and SOCKS5 proxies with country, anonymity, latency and uptime on every row, updated several times a day. Live list, proxy checker, keyless API and MCP server at hproxy.com.
+
+```bash
+cue skills add hproxy-com/free-proxy-list --profile backend
+```
+
+---
+
+<a id="giulioder-re-call"></a>
+## 💎 [GiulioDER/RE-call](https://github.com/GiulioDER/RE-call)
+
+**★ 6** · exceptional (score 9.6) · Python · tags: abstention, agent-memory, ai-agents, claude, embeddings
+
+Memory that abstains instead of guessing: agent memory on your own Postgres with a verdict, confidence and provenance on every hit, and a calibrated refusal when nothing clears the threshold.
+
+```bash
+cue skills add GiulioDER/RE-call --profile backend
 ```
 
 ---
@@ -71,41 +123,28 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="deedglass-deedglass"></a>
-## 💎 [deedglass/deedglass](https://github.com/deedglass/deedglass)
+<a id="rezearcher-x402-data-api"></a>
+## ✨ [rezearcher/x402-data-api](https://github.com/rezearcher/x402-data-api)
 
-**★ 1** · exceptional (score 8.8) · Go · tags: agent-security, ai-agents, ai-safety, audit-log, change-data-capture
+**★ 0** · strong (score 7.5) · TypeScript · tags: agentic-payments, ai-agents, base, cloudflare-workers, defi
 
-An agent said it updated 1 row. Postgres changed 301. Deedglass checks what AI agents really did, enforces your rules, keeps signed records and has undo.
+Agent-native x402 pay-per-call data & security APIs on Base (crypto, DeFi, on-chain, Polymarket, MCP security scan)
 
 ```bash
-cue skills add deedglass/deedglass --profile backend
+cue skills add rezearcher/x402-data-api --profile backend
 ```
 
 ---
 
-<a id="richer-richard-arquimedes"></a>
-## ✨ [richer-richard/arquimedes](https://github.com/richer-richard/arquimedes)
+<a id="klr-pattern-fastapi-mcp-neo"></a>
+## ✨ [KLR-Pattern/fastapi-mcp-neo](https://github.com/KLR-Pattern/fastapi-mcp-neo)
 
-**★ 1** · strong (score 6.3) · Python · tags: benchmark, competition-math, dataset, education, jsonl
+**★ 6** · strong (score 7) · Python · tags: ai, authorization, fastapi, graphql, llm
 
-A structured math database containing 1,038,963 structured math problems with answers, solutions, and LaTeX statements, stored as gzipped JSONL shards.
-
-```bash
-cue skills add richer-richard/arquimedes --profile backend
-```
-
----
-
-<a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
-
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
-
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+Transform your FastAPI routes to agent-friendly, context-efficient MCP
 
 ```bash
-cue skills add anirudhlath/alfred --profile backend
+cue skills add KLR-Pattern/fastapi-mcp-neo --profile backend
 ```
 
 ---

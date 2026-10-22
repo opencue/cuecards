@@ -2,7 +2,7 @@
 title: "rezearcher/x402-data-api — Claude Code skill discovered by cue"
 description: "Agent-native x402 pay-per-call data & security APIs on Base (crypto, DeFi, on-chain, Polymarket, MCP security scan)"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-22
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: agentic-payments, ai-agents, base, cloudflare-workers, defi, honeypot-detector, mcp, mcp-server, pay-per-call, polymarket, token-security, usdc, x402
 
 ## Best fit cue profiles

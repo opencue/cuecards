@@ -2,7 +2,7 @@
 title: "denzjama/employer-brand-auditor — Claude Code skill discovered by cue"
 description: "Claude Code plugin that audits careers pages, EVPs and job ads through a candidate's eyes. Scores what your employer brand proves, not what it promises. No evid"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, claude-code-skill, claude-skills, employer-branding, evp, hr, recruitment-marketing, talent-acquisition
 
 ## Best fit cue profiles

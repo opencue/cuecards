@@ -2,7 +2,7 @@
 title: "abouchard11/claude-desktop-skills — Claude Code skill discovered by cue"
 description: "10 high-leverage skills for Claude Desktop: research, decisions, meetings, communication, feedback, document comparison, learning paths, content transformation,"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 

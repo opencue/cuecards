@@ -2,19 +2,19 @@
 title: "nonsenseblue/blender-qa — Claude Code skill discovered by cue"
 description: "Automatic + visual QA for Blender (bpy) scenes — catches overlaps, floating parts, z-fighting and blocked paths, with a Claude Code skill, a pitfalls guide and "
 layout: page
-updated: 2026-10-21
+updated: 2026-10-22
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [nonsenseblue/blender-qa](https://github.com/nonsenseblue/blender-qa)
 
-**★ 1** · potential (score 4.3) · Python
+**★ 1** · potential (score 4.2) · Python
 
 > Automatic + visual QA for Blender (bpy) scenes — catches overlaps, floating parts, z-fighting and blocked paths, with a Claude Code skill, a pitfalls guide and cosy low-poly example scenes.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: (none)
