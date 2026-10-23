@@ -2,7 +2,7 @@
 title: "sanshengai/sansheng-write — Claude Code skill discovered by cue"
 description: "Claude Code skill for Chinese long-form & WeChat article production · 中文长文与公众号内容生产"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
 - ✅ Contains SKILL.md
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-10-23
 - 🏷️ Tags: agent-skills, ai-writing, chinese-writing, claude-code, claude-skill, content-creation, copywriting, llm, wechat
 
 ## Best fit cue profiles

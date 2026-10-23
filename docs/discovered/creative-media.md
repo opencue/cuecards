@@ -1,71 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="sratour-xm-handdraw-video"></a>
-## 💎 [sratour/xm-handdraw-video](https://github.com/sratour/xm-handdraw-video)
-
-**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, ai-video, claude-skill, explainer-video, ffmpeg
-
-Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, colors sampled from your own artwork. Python + ffmpeg + any image model.
-
-✅ SKILL.md
-
-```bash
-cue skills add sratour/xm-handdraw-video --profile creative-media
-```
-
----
-
-<a id="netresearch-netresearch-branding-skill"></a>
-## 💎 [netresearch/netresearch-branding-skill](https://github.com/netresearch/netresearch-branding-skill)
-
-**★ 4** · exceptional (score 10.8) · JavaScript · tags: agent-skills, ai-agent, branding, claude-code-skill, corporate-identity
-
-Agent Skill for implementing Netresearch brand guidelines - colors, typography, components | Claude Code compatible
-
-```bash
-cue skills add netresearch/netresearch-branding-skill --profile creative-media
-```
-
----
-
-<a id="timscheuerai-launch-video-kit"></a>
-## 💎 [timscheuerai/launch-video-kit](https://github.com/timscheuerai/launch-video-kit)
-
-**★ 13** · exceptional (score 9.2) · Python · tags: agent-skills, brand-kit, claude-code, hyperframes, launch-video
-
-Turn your website into an Apple-style launch video in your own brand. Brand kit from your URL, a hook-plus-body film template, 10 agent skills for Claude Code and Codex, and a free audio path. MIT.
-
-```bash
-cue skills add timscheuerai/launch-video-kit --profile creative-media
-```
-
----
-
-<a id="sibhimanyu-rasanai"></a>
-## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
-
-**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
-
-AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
-
-```bash
-cue skills add Sibhimanyu/rasanai --profile creative-media
-```
 
 ---
 

@@ -1,59 +1,57 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="openghz-embodied-ai-paper-writer"></a>
-## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
+<a id="magofficinalis-gzh-deep-research"></a>
+## 💎 [magofficinalis/gzh-deep-research](https://github.com/magofficinalis/gzh-deep-research)
 
-**★ 15** · exceptional (score 15.7) · Python · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
+**★ 1** · exceptional (score 15.8) · Python · tags: agent-skill, agent-skills, claude-code, claude-skill, claude-skills
 
-A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
-
-✅ SKILL.md
-
-```bash
-cue skills add OpenGHz/embodied-ai-paper-writer --profile docs-writer
-```
-
----
-
-<a id="huiyonghkw-hekouwang-writer-skill"></a>
-## 💎 [huiyonghkw/hekouwang-writer-skill](https://github.com/huiyonghkw/hekouwang-writer-skill)
-
-**★ 0** · exceptional (score 15.5) · Python · tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill
-
-中文文档写作与改进 Agent Skill：把素材写成结构清晰、读得懂、数字可对账的文档。出处/模态/修订三铁律，修订列改动清单可回退，五把纯 Python 标准库检查脚本（锯末词、长句、表格与敏感信息、算术对账、改动对账）。
+深度研究 → 长文写作 → 公众号排版一条龙 Skill：用横纵分析法联网研究产品/公司/概念/人物，产出 1-3 万字深度长文，并排版为可直接粘贴进微信公众号的 HTML（可选 PDF 报告）。hv-analysis + gzh-design 合并版。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add huiyonghkw/hekouwang-writer-skill --profile docs-writer
+cue skills add magofficinalis/gzh-deep-research --profile docs-writer
 ```
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="netresearch-typo3-docs-skill"></a>
+## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
 
-**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 6** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
+cue skills add netresearch/typo3-docs-skill --profile docs-writer
+```
+
+---
+
+<a id="the-40-thieves-obsidian-tc"></a>
+## 💎 [The-40-Thieves/obsidian-tc](https://github.com/The-40-Thieves/obsidian-tc)
+
+**★ 10** · exceptional (score 9.9) · TypeScript · tags: ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol
+
+Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. Multi-vault native, pluggable embeddings, OAuth-ready HTTP. TypeScript + Rust. AGPL-3.0-only.
+
+```bash
+cue skills add The-40-Thieves/obsidian-tc --profile docs-writer
 ```
 
 ---
@@ -61,25 +59,12 @@ cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5.2) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5.1) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 
 ```bash
 cue skills add basitalisandhu/repo-engineering-skills --profile docs-writer
-```
-
----
-
-<a id="jasonxu08-document-formatting"></a>
-## ✨ [jasonxu08/document-formatting](https://github.com/jasonxu08/document-formatting)
-
-**★ 1** · strong (score 5.2) · Python · tags: agent-skills, ai-agents, claude-code, codex, cursor
-
-Agent Skill that makes AI agents write long documents humans can actually read: verdict first, human vs machine zones, a reading path, relationship diagrams. Works with Claude Code, GitHub Copilot, Codex, Cursor, Gemini CLI and 70+ agents.
-
-```bash
-cue skills add jasonxu08/document-formatting --profile docs-writer
 ```
 
 ---

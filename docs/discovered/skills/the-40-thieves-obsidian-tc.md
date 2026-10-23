@@ -1,22 +1,22 @@
 ---
 title: "The-40-Thieves/obsidian-tc — Claude Code skill discovered by cue"
-description: "Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. 163 tools across 31 domains, multi-vault native, pluggable embeddings. TypeScript + Rust. AGP"
+description: "Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. Multi-vault native, pluggable embeddings, OAuth-ready HTTP. TypeScript + Rust. AGPL-3.0-only."
 layout: page
-updated: 2026-09-13
+updated: 2026-10-23
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [The-40-Thieves/obsidian-tc](https://github.com/The-40-Thieves/obsidian-tc)
 
-**★ 5** · exceptional (score 9.5) · TypeScript · ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol
+**★ 10** · exceptional (score 9.9) · TypeScript · ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol
 
-> Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. 163 tools across 31 domains, multi-vault native, pluggable embeddings. TypeScript + Rust. AGPL-3.0-only.
+> Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. Multi-vault native, pluggable embeddings, OAuth-ready HTTP. TypeScript + Rust. AGPL-3.0-only.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-13
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-10-23
 - 🏷️ Tags: ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol, obsidian, obsidian-md, obsidian-plugin, rust, typescript
 
 ## Best fit cue profiles

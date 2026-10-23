@@ -2,7 +2,7 @@
 title: "RHSTheSecond/cross-model-adversarial-pass — Claude Code skill discovered by cue"
 description: "Run OpenAI Codex and a fresh Claude subagent as parallel adversarial reviewers on a design, PR, or prod gate, then adjudicate both. Always asks: is there a simp"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, skill, core]
 ---
 

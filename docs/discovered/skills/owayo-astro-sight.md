@@ -1,27 +1,27 @@
 ---
 title: "owayo/astro-sight — Claude Code skill discovered by cue"
-description: "Claude Code skill from owayo/astro-sight"
+description: "AST CLI for AI agents that parses 16 languages with tree-sitter and reports symbols, references, diff impact, API changes, and dead code as JSON or TOON"
 layout: page
-updated: 2026-08-20
-tags: [claude-code, skill, core]
+updated: 2026-10-23
+tags: [claude-code, skill, backend]
 ---
 
-# ✨ [owayo/astro-sight](https://github.com/owayo/astro-sight)
+# 💎 [owayo/astro-sight](https://github.com/owayo/astro-sight)
 
-**★ 2** · strong (score 7) · Rust · ast, mcp-server, parser, rust, static-code-analysis
+**★ 2** · exceptional (score 10.5) · Rust · ai-agents, ast, claude-code, cli, code-review
 
-> A Claude Code skill repository discovered by cue.
+> AST CLI for AI agents that parses 16 languages with tree-sitter and reports symbols, references, diff impact, API changes, and dead code as JSON or TOON
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-20
-- 🏷️ Tags: ast, mcp-server, parser, rust, static-code-analysis, tree-sitter
+- 🗓️ Last pushed: 2026-10-23
+- 🏷️ Tags: ai-agents, ast, claude-code, cli, code-review, mcp-server, parser, rust, static-code-analysis, tree-sitter
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add owayo/astro-sight --profile core
+cue skills add owayo/astro-sight --profile backend
 ```
 
 ## About

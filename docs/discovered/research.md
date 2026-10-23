@@ -1,59 +1,74 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="openghz-embodied-ai-paper-writer"></a>
-## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
+<a id="magofficinalis-gzh-deep-research"></a>
+## 💎 [magofficinalis/gzh-deep-research](https://github.com/magofficinalis/gzh-deep-research)
 
-**★ 15** · exceptional (score 15.7) · Python · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
+**★ 1** · exceptional (score 15.8) · Python · tags: agent-skill, agent-skills, claude-code, claude-skill, claude-skills
 
-A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
-
-✅ SKILL.md
-
-```bash
-cue skills add OpenGHz/embodied-ai-paper-writer --profile research
-```
-
----
-
-<a id="chenquding-code-trading-agents-workflow"></a>
-## 💎 [chenquding-code/trading-agents-workflow](https://github.com/chenquding-code/trading-agents-workflow)
-
-**★ 0** · exceptional (score 11) · Python · tags: claude-skill, equity-research, investment-research, llm, multi-agent
-
-TradingAgents 的多智能体投研流程，改造成以「市场在定价什么 / 与卖方共识差在哪」为主轴的合成研报工作流
+深度研究 → 长文写作 → 公众号排版一条龙 Skill：用横纵分析法联网研究产品/公司/概念/人物，产出 1-3 万字深度长文，并排版为可直接粘贴进微信公众号的 HTML（可选 PDF 报告）。hv-analysis + gzh-design 合并版。
 
 ✅ SKILL.md
 
 ```bash
-cue skills add chenquding-code/trading-agents-workflow --profile research
+cue skills add magofficinalis/gzh-deep-research --profile research
 ```
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="arcadiastra-ieee-transactions-writing-zh"></a>
+## 💎 [Arcadiastra/ieee-transactions-writing-zh](https://github.com/Arcadiastra/ieee-transactions-writing-zh)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 4** · exceptional (score 13.8) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+使用简体中文规划、撰写、修改和审查 IEEE Transactions 学术论文写作的模块化 Agent Skill，涵盖章节写作、贡献论证、引用核验与投稿规范检查。
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add Arcadiastra/ieee-transactions-writing-zh --profile research
+```
+
+---
+
+<a id="arcadiastra-ieee-transactions-writing"></a>
+## 💎 [Arcadiastra/ieee-transactions-writing](https://github.com/Arcadiastra/ieee-transactions-writing)
+
+**★ 0** · exceptional (score 13) · Python · tags: academic-writing, agent-skills, ai-agents, claude-code, claude-code-skill
+
+An agent skill suite for drafting, revising, and reviewing IEEE Transactions papers, with contribution-driven writing workflows and citation verification tools.
+
+✅ SKILL.md
+
+```bash
+cue skills add Arcadiastra/ieee-transactions-writing --profile research
+```
+
+---
+
+<a id="shohelex-avoid-desk-rejection"></a>
+## ✨ [shohelex/avoid-desk-rejection](https://github.com/shohelex/avoid-desk-rejection)
+
+**★ 1** · strong (score 7.3) · tags: academic-publishing, academic-writing, claude-code, claude-code-plugin, claude-skill
+
+Claude Code plugin: /scope-check screens your manuscript the way a journal editor does. 97 tests: the target journal's own requirements, fit with its scope and recent papers, novelty, methods, hallucinated references, cover letter, and better-fitting journals. Read-only and locked down.
+
+```bash
+cue skills add shohelex/avoid-desk-rejection --profile research
 ```
 
 ---

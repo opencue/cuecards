@@ -2,7 +2,7 @@
 title: "SaudSatopay/bullseye — Claude Code skill discovered by cue"
 description: "The hackathon playbook for coding agents. 12 Agent Skills and 5 subagents that take Claude Code, Codex or Cursor from the problem statement to the podium: decod"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, skill, core]
 ---
 

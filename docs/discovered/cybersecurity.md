@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,27 +18,12 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2841** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
+**★ 2850** · exceptional (score 13.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="egym-playground-api-authz-pentest"></a>
-## 💎 [egym-playground/api-authz-pentest](https://github.com/egym-playground/api-authz-pentest)
-
-**★ 0** · exceptional (score 13.5) · Python · tags: ai-agent, api-security, appsec, authorization, bfla
-
-Repository-first API authorization pentest skill: runtime-confirmed OWASP API Top 10 (BOLA/BFLA/IDOR) testing with a built-in safety harness. AI-agent / Claude Skill ready.
-
-✅ SKILL.md
-
-```bash
-cue skills add egym-playground/api-authz-pentest --profile cybersecurity
 ```
 
 ---
@@ -56,15 +41,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="ibrahimabdallatif-appsec-review"></a>
-## ✨ [ibrahimabdallatif/appsec-review](https://github.com/ibrahimabdallatif/appsec-review)
+<a id="baryonlabs-elixir-security-audit"></a>
+## 💎 [baryonlabs/elixir-security-audit](https://github.com/baryonlabs/elixir-security-audit)
 
-**★ 0** · strong (score 7) · Python · tags: ai-agents, application-security, appsec, asvs, claude-code
+**★ 1** · exceptional (score 8.3) · Python · tags: claude-code, claude-skill, elixir, phoenix, sast
 
-Claude Code skill for pentest-style source code security reviews. Each finding must survive a second verifier agent, coverage is checked by script, and scores use CVSS 4.0. Covers Spring, Node.js, Python, .NET, Go, web frontends, mobile apps, Supabase and Firebase, mapped to OWASP Top 10, ASVS, MASVS, CWE and PCI DSS.
+Claude Code skill: Elixir/Phoenix security audit & fix (Sobelow, mix_audit, hex.audit, OSV, Opengrep rules)
 
 ```bash
-cue skills add ibrahimabdallatif/appsec-review --profile cybersecurity
+cue skills add baryonlabs/elixir-security-audit --profile cybersecurity
 ```
 
 ---

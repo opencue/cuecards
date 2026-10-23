@@ -2,21 +2,21 @@
 title: "timoncool/givememod — Claude Code skill discovered by cue"
 description: "Claude Code mods on demand — a skill that reads your conversation and builds the mod that fits: plan progress bar, files pane, context gauge, risky-command guar"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [timoncool/givememod](https://github.com/timoncool/givememod)
 
-**★ 9** · exceptional (score 9.1) · TypeScript · agent-skills, ai-tools, anthropic, claude, claude-code
+**★ 10** · exceptional (score 9.2) · TypeScript · agent-skills, ai-tools, anthropic, claude, claude-code
 
 > Claude Code mods on demand — a skill that reads your conversation and builds the mod that fits: plan progress bar, files pane, context gauge, risky-command guard, test watcher. 11 tested templates, 29 building blocks, a map of 3,057 public mods. Terminal and desktop.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.1 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-10-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-10-23
 - 🏷️ Tags: agent-skills, ai-tools, anthropic, claude, claude-code, claude-code-mods, claude-code-plugin, claude-code-skill, developer-tools, function-hooks, mods, productivity, terminal-ui
 
 ## Best fit cue profiles

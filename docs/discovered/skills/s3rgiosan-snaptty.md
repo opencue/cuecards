@@ -2,19 +2,19 @@
 title: "s3rgiosan/snaptty — Claude Code skill discovered by cue"
 description: "Paste macOS screenshots into the terminal with Cmd+V. A small Swift LaunchAgent puts the screenshot's file path on the clipboard, so coding agents like Claude C"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [s3rgiosan/snaptty](https://github.com/s3rgiosan/snaptty)
 
-**★ 1** · strong (score 6.3) · Swift · ai-coding-agents, claude-code, cli, clipboard, codex
+**★ 1** · strong (score 6.2) · Swift · ai-coding-agents, claude-code, cli, clipboard, codex
 
 > Paste macOS screenshots into the terminal with Cmd+V. A small Swift LaunchAgent puts the screenshot's file path on the clipboard, so coding agents like Claude Code and Codex can read it.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-20
 - 🏷️ Tags: ai-coding-agents, claude-code, cli, clipboard, codex, developer-tools, launchagent, macos, screenshot, swift, terminal

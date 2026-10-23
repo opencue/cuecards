@@ -2,7 +2,7 @@
 title: "it-bens/cc-port — Claude Code skill discovered by cue"
 description: "CLI that ports Claude Code and OpenAI Codex project state: it rewrites absolute paths after a project directory moves, and exports, imports and syncs project st"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-23
 tags: [claude-code, skill, core]
 ---
 
