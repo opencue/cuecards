@@ -2,21 +2,21 @@
 title: "ontology-of-everything/concept-skills — Claude Code skill discovered by cue"
 description: "Ontology, semantic-layer, concept-design, and presentation Agent Skills."
 layout: page
-updated: 2026-09-22
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
 
-**★ 9** · exceptional (score 10.9) · Shell · agent-skills, claude-code-skill, claude-skills, concept-design, ontology
+**★ 11** · exceptional (score 11) · Shell · agent-skills, claude-code-skill, claude-skills, concept-design, ontology
 
 > Ontology, semantic-layer, concept-design, and presentation Agent Skills.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-09-22
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: agent-skills, claude-code-skill, claude-skills, concept-design, ontology, skills-sh, skillsmp
 
 ## Best fit cue profiles

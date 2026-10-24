@@ -2,7 +2,7 @@
 title: "concept-git/cloud-concept-skills — Claude Code skill discovered by cue"
 description: "Community-maintained Huawei Cloud billing, cost estimation, controlled provisioning, and account onboarding Agent Skills."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: agent-skills, claude-code-skill, claude-skills, finops, huawei-cloud, skills-sh, skillsmp
 
 ## Best fit cue profiles

@@ -2,21 +2,21 @@
 title: "boykush/scraps — Claude Code skill discovered by cue"
 description: "The Wiki-link doc compiler for the LLM era."
 layout: page
-updated: 2026-09-25
+updated: 2026-10-24
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [boykush/scraps](https://github.com/boykush/scraps)
 
-**★ 46** · exceptional (score 11.2) · Rust · cli, knowledge-management, markdown, mcp, mcp-server
+**★ 45** · exceptional (score 11.2) · Rust · cli, knowledge-management, markdown, mcp, mcp-server
 
 > The Wiki-link doc compiler for the LLM era.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
-- ⭐ 46 stars
-- 🗓️ Last pushed: 2026-09-25
+- ⭐ 45 stars
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: cli, knowledge-management, markdown, mcp, mcp-server, personal-knowledge-management, rust, static-site-generator, wiki
 
 ## Best fit cue profiles

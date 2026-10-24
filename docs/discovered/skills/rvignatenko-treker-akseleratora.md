@@ -2,22 +2,22 @@
 title: "rvignatenko/treker-akseleratora — Claude Code skill discovered by cue"
 description: "Скилл для Claude Code: работа трекера в акселераторе — методика, шаблоны документов и инструменты. Любое число потоков и команд."
 layout: page
-updated: 2026-09-05
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rvignatenko/treker-akseleratora](https://github.com/rvignatenko/treker-akseleratora)
 
-**★ 0** · exceptional (score 13) · Python · accelerator, claude-code, claude-skill, grow-model, hadi
+**★ 2** · exceptional (score 13.5) · Python · accelerator, claude-code, claude-skill, grow-model, hadi
 
 > Скилл для Claude Code: работа трекера в акселераторе — методика, шаблоны документов и инструменты. Любое число потоков и команд.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-05
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: accelerator, claude-code, claude-skill, grow-model, hadi, russian, startup-mentoring, tracking
 
 ## Best fit cue profiles

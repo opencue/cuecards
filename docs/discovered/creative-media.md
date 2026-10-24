@@ -1,17 +1,71 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-23
+updated: 2026-10-24
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="hhx465453939-agent-taste-seed-system"></a>
+## 💎 [hhx465453939/agent-taste-seed-system](https://github.com/hhx465453939/agent-taste-seed-system)
+
+**★ 4** · exceptional (score 13.8) · Python · tags: aesthetic, agent-skills, ai-agents, art-history, art-styles
+
+An aesthetic operating system and art-style seed library for AI agents — 250+ artists distilled into executable design parameters for Claude Code, Codex, OpenClaw and pi.
+
+✅ SKILL.md
+
+```bash
+cue skills add hhx465453939/agent-taste-seed-system --profile creative-media
+```
+
+---
+
+<a id="marcosmodly-marketing-skill"></a>
+## 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
+
+**★ 51** · exceptional (score 13) · HTML · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
+
+Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+
+```bash
+cue skills add marcosmodly/marketing-skill --profile creative-media
+```
+
+---
+
+<a id="sibhimanyu-rasanai"></a>
+## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
+
+**★ 0** · exceptional (score 9) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
+
+AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
+
+```bash
+cue skills add Sibhimanyu/rasanai --profile creative-media
+```
+
+---
+
+<a id="jeonghun-app-web-design-skill"></a>
+## 💎 [jeonghun-app/web-design-skill](https://github.com/jeonghun-app/web-design-skill)
+
+**★ 0** · exceptional (score 8) · JavaScript · tags: claude-code, claude-skill, design-tokens, figma, react
+
+Claude Code skill: Figma + React as one design system — stable human-factors principles plus swappable, dated trend packs
+
+```bash
+cue skills add jeonghun-app/web-design-skill --profile creative-media
+```
 
 ---
 

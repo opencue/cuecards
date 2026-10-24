@@ -1,57 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-23
+updated: 2026-10-24
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="magofficinalis-gzh-deep-research"></a>
-## 💎 [magofficinalis/gzh-deep-research](https://github.com/magofficinalis/gzh-deep-research)
+<a id="openghz-embodied-ai-paper-writer"></a>
+## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
 
-**★ 1** · exceptional (score 15.8) · Python · tags: agent-skill, agent-skills, claude-code, claude-skill, claude-skills
+**★ 15** · exceptional (score 15.7) · Python · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
 
-深度研究 → 长文写作 → 公众号排版一条龙 Skill：用横纵分析法联网研究产品/公司/概念/人物，产出 1-3 万字深度长文，并排版为可直接粘贴进微信公众号的 HTML（可选 PDF 报告）。hv-analysis + gzh-design 合并版。
+A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add magofficinalis/gzh-deep-research --profile docs-writer
+cue skills add OpenGHz/embodied-ai-paper-writer --profile docs-writer
 ```
 
 ---
 
-<a id="netresearch-typo3-docs-skill"></a>
-## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+<a id="boykush-scraps"></a>
+## 💎 [boykush/scraps](https://github.com/boykush/scraps)
 
-**★ 6** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+**★ 45** · exceptional (score 11.2) · Rust · tags: cli, knowledge-management, markdown, mcp, mcp-server
 
-Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
-
-```bash
-cue skills add netresearch/typo3-docs-skill --profile docs-writer
-```
-
----
-
-<a id="the-40-thieves-obsidian-tc"></a>
-## 💎 [The-40-Thieves/obsidian-tc](https://github.com/The-40-Thieves/obsidian-tc)
-
-**★ 10** · exceptional (score 9.9) · TypeScript · tags: ai-agents, knowledge-base, mcp, mcp-server, model-context-protocol
-
-Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. Multi-vault native, pluggable embeddings, OAuth-ready HTTP. TypeScript + Rust. AGPL-3.0-only.
+The Wiki-link doc compiler for the LLM era.
 
 ```bash
-cue skills add The-40-Thieves/obsidian-tc --profile docs-writer
+cue skills add boykush/scraps --profile docs-writer
 ```
 
 ---

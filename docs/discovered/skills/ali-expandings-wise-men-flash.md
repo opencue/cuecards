@@ -2,13 +2,13 @@
 title: "Ali-expandings/wise-men-flash — Claude Code skill discovered by cue"
 description: "The fast tier of the wise-men council as its own skill: three Claude subagents down three reasoning paths, one checked decision memo in a third of the full coun"
 layout: page
-updated: 2026-10-23
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Ali-expandings/wise-men-flash](https://github.com/Ali-expandings/wise-men-flash)
 
-**★ 4** · exceptional (score 13.8) · Python · agent-skills, claude-code, claude-code-skill, deliberation, devils-advocate
+**★ 5** · exceptional (score 13.8) · Python · agent-skills, claude-code, claude-code-skill, deliberation, devils-advocate
 
 > The fast tier of the wise-men council as its own skill: three Claude subagents down three reasoning paths, one checked decision memo in a third of the full council's time. Ships its own blind eval.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 4 stars
+- ⭐ 5 stars
 - 🗓️ Last pushed: 2026-10-22
 - 🏷️ Tags: agent-skills, claude-code, claude-code-skill, deliberation, devils-advocate, fast, llm-council, multi-agent
 

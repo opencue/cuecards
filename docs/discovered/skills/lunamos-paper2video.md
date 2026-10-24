@@ -2,21 +2,21 @@
 title: "Lunamos/paper2video — Claude Code skill discovered by cue"
 description: "Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, co"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-24
 tags: [claude-code, skill, research, video]
 ---
 
 # 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
 
-**★ 1** · exceptional (score 8.3) · Python · claude-code, claude-skill, explainer-video, paper, remotion
+**★ 6** · exceptional (score 9) · Python · claude-code, claude-skill, explainer-video, paper, remotion
 
 > Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: claude-code, claude-skill, explainer-video, paper, remotion, research
 
 ## Best fit cue profiles

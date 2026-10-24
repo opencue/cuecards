@@ -2,23 +2,23 @@
 title: "Mafifrizi/tanuki — Claude Code skill discovered by cue"
 description: "Tactical Identity Operator for Linux & Hybrid Active Directory "
 layout: page
-updated: 2026-10-06
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Mafifrizi/tanuki](https://github.com/Mafifrizi/tanuki)
 
-**★ 13** · exceptional (score 12.3) · Python · active-directory, ai-agent-skill, ai-agents, ai-safety, ai-security
+**★ 19** · exceptional (score 11.5) · Python · active-directory, ai-agent-skill, ai-agents, ai-safety, ai-security
 
 > Tactical Identity Operator for Linux & Hybrid Active Directory 
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-10-06
-- 🏷️ Tags: active-directory, ai-agent-skill, ai-agents, ai-safety, ai-security, artificial-intelligence, indonesian, linux, opsec, purple-team
+- ⭐ 19 stars
+- 🗓️ Last pushed: 2026-10-24
+- 🏷️ Tags: active-directory, ai-agent-skill, ai-agents, ai-safety, ai-security, artificial-intelligence, good-first-issue, indonesian, linux, opsec, purple-team
 
 ## Best fit cue profiles
 

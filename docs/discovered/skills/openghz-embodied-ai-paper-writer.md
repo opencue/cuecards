@@ -2,7 +2,7 @@
 title: "OpenGHz/embodied-ai-paper-writer — Claude Code skill discovered by cue"
 description: "A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Rob"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-24
 tags: [claude-code, skill, research, docs-writer]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research, docs-writer]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 15 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai, icra, iros, llm, paper-writing, prompt-engineering, robotics, rss, science-robotics, system-prompt
 
 ## Best fit cue profiles

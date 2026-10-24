@@ -2,13 +2,13 @@
 title: "tndvnn/tncn — Claude Code skill discovered by cue"
 description: "Thuế thu nhập cá nhân 2026: skill AI (Claude) tính thuế, quyết toán, giảm trừ gia cảnh, thuế người nước ngoài — Vietnam personal income tax 2026 skill"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [tndvnn/tncn](https://github.com/tndvnn/tncn)
 
-**★ 20** · exceptional (score 16) · Python · agent-skill, claude-skill, expat-tax, giam-tru-gia-canh, quyet-toan-thue
+**★ 21** · exceptional (score 16) · Python · agent-skill, claude-skill, expat-tax, giam-tru-gia-canh, quyet-toan-thue
 
 > Thuế thu nhập cá nhân 2026: skill AI (Claude) tính thuế, quyết toán, giảm trừ gia cảnh, thuế người nước ngoài — Vietnam personal income tax 2026 skill
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
-- ⭐ 20 stars
-- 🗓️ Last pushed: 2026-10-22
+- ⭐ 21 stars
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: agent-skill, claude-skill, expat-tax, giam-tru-gia-canh, quyet-toan-thue, thue-thu-nhap-ca-nhan, thue-tncn, vietnam, vietnam-personal-income-tax, vietnam-tax
 
 ## Best fit cue profiles

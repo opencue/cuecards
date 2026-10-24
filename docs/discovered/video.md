@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-23
+updated: 2026-10-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="qjzzsky-lyric-onset-montage"></a>
-## 💎 [qjzzsky/lyric-onset-montage](https://github.com/qjzzsky/lyric-onset-montage)
+<a id="lunamos-paper2video"></a>
+## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
 
-**★ 0** · exceptional (score 8.5) · Python · tags: agent-skill, agent-skills, audio-analysis, beat-detection, bpm
+**★ 6** · exceptional (score 9) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
 
-Cut footage to the sung word — a skill for AI agents that lands every cut on the lyric onset. Lyric montage (歌词混剪 / mashup), ffmpeg + librosa, no beat grid, no subtitle timestamps.
+Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
 
 ```bash
-cue skills add qjzzsky/lyric-onset-montage --profile video
+cue skills add Lunamos/paper2video --profile video
 ```
 
 ---

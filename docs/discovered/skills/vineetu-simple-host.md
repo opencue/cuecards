@@ -2,7 +2,7 @@
 title: "vineetu/simple-host — Claude Code skill discovered by cue"
 description: "Describe a website to the AI you already use and it's online. Every site can save data (RSVPs, votes, orders) and use your own domain. Skills for Claude Code, C"
 layout: page
-updated: 2026-10-23
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, claude-plugin, claude-skill, mcp, static-hosting, website-deploy
 
 ## Best fit cue profiles

@@ -1,22 +1,22 @@
 ---
 title: "cammac-creator/ibanforge — Claude Code skill discovered by cue"
-description: "IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents"
+description: "IBAN validation API: bank code checked against national registers (DE, AT, BE, CZ, SK, BG, CH, LI), national check digits (FR, BE, IT, ES, UK), BIC resolved wit"
 layout: page
-updated: 2026-09-02
+updated: 2026-10-24
 tags: [claude-code, skill, backend]
 ---
 
-# 💎 [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
+# ✨ [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
 
-**★ 3** · exceptional (score 8.2) · TypeScript · ai-agents, api, banking, bic, compliance
+**★ 3** · strong (score 7.2) · TypeScript · ai-agents, api, banking, bic, compliance
 
-> IBANforge — IBAN validation, BIC/SWIFT lookup, Swiss clearing, and EMI/vIBAN classification API with MCP for AI agents
+> IBAN validation API: bank code checked against national registers (DE, AT, BE, CZ, SK, BG, CH, LI), national check digits (FR, BE, IT, ES, UK), BIC resolved with its source, SEPA Instant and VoP readiness, bank-level sanctions (OFAC, EU, UN). 89 countries. REST API and MCP server.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-09-02
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: ai-agents, api, banking, bic, compliance, fintech, hono, iban, iban-validation, mcp, mcp-server, micropayments, neobank, sepa, sqlite, swift, typescript, validation, viban, x402
 
 ## Best fit cue profiles

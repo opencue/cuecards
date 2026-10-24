@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for backend"
-description: "8 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-23
+updated: 2026-10-24
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 8 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="nkapila6-mcpsurfr"></a>
-## 💎 [nkapila6/mcpsurfr](https://github.com/nkapila6/mcpsurfr)
-
-**★ 134** · exceptional (score 14.8) · Python · tags: mcp, mcp-local-rag, mcp-server, model-context-protocol, rag
-
-Local web search MCP server, formerly mcp-local-rag. Multi-engine deep research with on-device re-ranking. ✨ no API keys ✨
-
-```bash
-cue skills add nkapila6/mcpsurfr --profile backend
-```
 
 ---
 
@@ -41,36 +28,10 @@ cue skills add hproxy-com/free-proxy-list --profile backend
 
 ---
 
-<a id="grunion-ai-weave"></a>
-## 💎 [grunion-ai/weave](https://github.com/grunion-ai/weave)
-
-**★ 14** · exceptional (score 12) · JavaScript · tags: agentic-ai, ai-agent, ai-agents, airtable-alternative, claude-code
-
-Open-source, self-hosted alternative to Airtable, Fibery, Notion databases and ClickUp: a work management database built for AI agents, agent-first (Claude Code, Codex, Cursor, any MCP client). Tables, relations, formulas, rollups, workflows, documents, one SQLite file. REST, CLI, MCP server. Docker or one Node process, zero dependencies, MIT.
-
-```bash
-cue skills add grunion-ai/weave --profile backend
-```
-
----
-
-<a id="owayo-astro-sight"></a>
-## 💎 [owayo/astro-sight](https://github.com/owayo/astro-sight)
-
-**★ 2** · exceptional (score 10.5) · Rust · tags: ai-agents, ast, claude-code, cli, code-review
-
-AST CLI for AI agents that parses 16 languages with tree-sitter and reports symbols, references, diff impact, API changes, and dead code as JSON or TOON
-
-```bash
-cue skills add owayo/astro-sight --profile backend
-```
-
----
-
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -80,15 +41,15 @@ cue skills add ni-c/mcp-hub --profile backend
 
 ---
 
-<a id="timerwhou-team-dev-assistant"></a>
-## 💎 [timerwhou/team-dev-assistant](https://github.com/timerwhou/team-dev-assistant)
+<a id="cammac-creator-ibanforge"></a>
+## ✨ [cammac-creator/ibanforge](https://github.com/cammac-creator/ibanforge)
 
-**★ 0** · exceptional (score 8) · TypeScript · tags: a2a, agent-memory, ai-agent, ai-governance, architecture-memory
+**★ 3** · strong (score 7.2) · TypeScript · tags: ai-agents, api, banking, bic, compliance
 
-面向 AI Agent 研发的团队级架构记忆体：统一沉淀业务事实与技术规约，消除跨模型/跨工作流认知偏差
+IBAN validation API: bank code checked against national registers (DE, AT, BE, CZ, SK, BG, CH, LI), national check digits (FR, BE, IT, ES, UK), BIC resolved with its source, SEPA Instant and VoP readiness, bank-level sanctions (OFAC, EU, UN). 89 countries. REST API and MCP server.
 
 ```bash
-cue skills add timerwhou/team-dev-assistant --profile backend
+cue skills add cammac-creator/ibanforge --profile backend
 ```
 
 ---

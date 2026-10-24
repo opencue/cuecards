@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for nextjs"
-description: "2 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-24
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `nextjs`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **nextjs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **nextjs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="adigold-aat-tool"></a>
-## 💎 [adigold/AAT-Tool](https://github.com/adigold/AAT-Tool)
+<a id="ditakebede1-personal-knowledge-nexus"></a>
+## 💎 [ditakebede1/personal-knowledge-nexus](https://github.com/ditakebede1/personal-knowledge-nexus)
 
-**★ 2** · exceptional (score 13.5) · HTML · tags: ai-agents, annotation, claude-code, claude-code-skill, developer-tools
+**★ 0** · exceptional (score 9) · HTML · tags: ai-tools, book-intelligence, claude-code, claude-plugin, claude-skill
 
-Admin Annotation Tool: pin or circle elements on your live Next.js app and get an agent-ready prompt with a marked screenshot. A Claude Code skill.
-
-✅ SKILL.md
+Library OS 2026: Auto-Publish Your Deep Book Notes to Your Website
 
 ```bash
-cue skills add adigold/AAT-Tool --profile nextjs
-```
-
----
-
-<a id="surendharvr-sitemend"></a>
-## 💎 [SurendharVr/sitemend](https://github.com/SurendharVr/sitemend)
-
-**★ 0** · exceptional (score 12) · Python · tags: agent-skills, astro, ci, claude-code, claude-skill
-
-SEO regression tests for your repo. Fails the PR when a change breaks crawling or indexing (preview URLs in canonicals, soft 404s, orphaned pages, broken schema) and cites the exact line. Free CLI, GitHub Action and Claude Code plugin.
-
-✅ SKILL.md
-
-```bash
-cue skills add SurendharVr/sitemend --profile nextjs
+cue skills add ditakebede1/personal-knowledge-nexus --profile nextjs
 ```
 
 ---

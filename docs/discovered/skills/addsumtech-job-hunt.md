@@ -2,7 +2,7 @@
 title: "addsumtech/job-hunt — Claude Code skill discovered by cue"
 description: "适用于 Claude Code 和 Codex 的求职 Skill：查找岗位、判断是否值得投递、制作简历与申请材料、检验申请材料并模拟面试。不编造技能或业绩数字，不预测录用概率；检查简历是否便于招聘管理系统（ATS）读取，并从招聘人员和用人经理视角分别独立评审。"
 layout: page
-updated: 2026-10-11
+updated: 2026-10-24
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-11
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: agent-skill, ats, career, claude-code, claude-skill, codex, cover-letter, cv, interview-prep, job-application, job-search, latex, llm-agent, local-first, mock-interview, python, resume, resume-builder
 
 ## Best fit cue profiles
