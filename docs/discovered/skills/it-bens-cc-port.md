@@ -2,7 +2,7 @@
 title: "it-bens/cc-port — Claude Code skill discovered by cue"
 description: "CLI that ports Claude Code and OpenAI Codex project state: it rewrites absolute paths after a project directory moves, and exports, imports and syncs project st"
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: anthropic, backup, claude, claude-code, cli, developer-tools, go, golang, homebrew, homebrew-cask, migration, portability
 
 ## Best fit cue profiles

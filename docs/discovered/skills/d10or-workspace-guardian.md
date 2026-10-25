@@ -2,7 +2,7 @@
 title: "d10or/workspace-guardian — Claude Code skill discovered by cue"
 description: "Preflight coordination for parallel Claude Code sessions on one repo: task-level path ownership, overlap checks before merging, evidence-based handoff. CLI + Cl"
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-10-24
 - 🏷️ Tags: ai-coding-agents, claude-code, claude-code-hooks, claude-code-plugin, git-worktree
 
 ## Best fit cue profiles

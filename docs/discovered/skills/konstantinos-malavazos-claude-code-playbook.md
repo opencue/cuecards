@@ -2,7 +2,7 @@
 title: "konstantinos-malavazos/claude-code-playbook — Claude Code skill discovered by cue"
 description: "A stack-agnostic blueprint for running Claude Code as an engineering teammate, on any stack and any tracker. There are two ways in: a team path that takes a tic"
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 

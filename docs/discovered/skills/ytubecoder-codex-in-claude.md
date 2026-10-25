@@ -2,7 +2,7 @@
 title: "ytubecoder/codex-in-claude — Claude Code skill discovered by cue"
 description: "Claude Code skill for iterative plan review with Codex, Grok, or both as a mediated council. Claude mediates instead of passing reviewer output through."
 layout: page
-updated: 2026-08-03
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-03
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: claude-code, claude-code-skill, codex, grok
 
 ## Best fit cue profiles

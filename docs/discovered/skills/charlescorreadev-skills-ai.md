@@ -2,7 +2,7 @@
 title: "CharlesCorreaDev/skills-ai — Claude Code skill discovered by cue"
 description: "AI Skills Ecosystem & MCP Servers — High-performance, token-efficient modular knowledge bases, visual reverse engineering & dev companions for AI Agents (Antigr"
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-24
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: ai-agents, ai-agents-mcp, automation, claude-code, claude-code-skill, foundryvtt, foundryvtt-rpg, ia-skills, php, php8, reverse-engineering-tools
 
 ## Best fit cue profiles

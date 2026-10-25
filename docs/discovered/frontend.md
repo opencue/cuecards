@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,34 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
+<a id="mario-andreschak-flujo"></a>
+## 💎 [mario-andreschak/FLUJO](https://github.com/mario-andreschak/FLUJO)
+
+**★ 665** · exceptional (score 19.5) · TypeScript · tags: agentic-ai, agentic-framework, agentic-workflow, ai-chat, automation
+
+Multi-Agent + Automation Harness: Graph-based Workflows, MCP, Self-Improving Agents. NextJs+React
+
+```bash
+cue skills add mario-andreschak/FLUJO --profile frontend
+```
+
+---
+
+<a id="baccaraaa-tavero"></a>
+## 💎 [baccaraaa/tavero](https://github.com/baccaraaa/tavero)
+
+**★ 3** · exceptional (score 14.2) · TypeScript · tags: ai-agents, claude-code, cli, cursor, design-system
+
+Keep the UI your agent writes consistent. Scans your running React app for drift in buttons, cards, colors and spacing, and gives your coding agent each fix. CLI, MCP server, local panel.
+
+✅ SKILL.md
+
+```bash
+cue skills add baccaraaa/tavero --profile frontend
+```
+
+---
+
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
@@ -24,32 +52,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
-
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
-
-```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
-```
-
----
-
-<a id="jeonghun-app-web-design-skill"></a>
-## 💎 [jeonghun-app/web-design-skill](https://github.com/jeonghun-app/web-design-skill)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: claude-code, claude-skill, design-tokens, figma, react
-
-Claude Code skill: Figma + React as one design system — stable human-factors principles plus swappable, dated trend packs
-
-```bash
-cue skills add jeonghun-app/web-design-skill --profile frontend
 ```
 
 ---

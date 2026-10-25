@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="lunamos-paper2video"></a>
-## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 6** · exceptional (score 9) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
+**★ 3** · exceptional (score 13.7) · Python · tags: ai-video, batch-processing, claude-code, claude-skill, content-creation
 
-Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
+Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Lunamos/paper2video --profile video
+cue skills add zyziyun/reelfold --profile video
+```
+
+---
+
+<a id="mhnadali-mh-video-editor-skill"></a>
+## 💎 [mhnadali/mh-video-editor-skill](https://github.com/mhnadali/mh-video-editor-skill)
+
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, ffmpeg, python, video-editing
+
+Claude Code skill + agent for beat-synced short-form video editing with FFmpeg (EDL-based, cached renders, QA gate, Persian text support)
+
+✅ SKILL.md
+
+```bash
+cue skills add mhnadali/mh-video-editor-skill --profile video
 ```
 
 ---

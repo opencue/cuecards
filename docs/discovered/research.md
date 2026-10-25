@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-24
+updated: 2026-10-25
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="openghz-embodied-ai-paper-writer"></a>
-## 💎 [OpenGHz/embodied-ai-paper-writer](https://github.com/OpenGHz/embodied-ai-paper-writer)
+<a id="retospect-precis-mcp"></a>
+## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
 
-**★ 15** · exceptional (score 15.7) · Python · tags: academic-writing, agent-skill, claude-skill, corl, embodied-ai
+**★ 7** · exceptional (score 11.8) · Python · tags: ai-agent, cad, claude, computational-chemistry, context-management
 
-A portable agent skill (SKILL.md + reference playbooks) for writing top-conference embodied-AI papers — distilled from 63 papers (CoRL/RSS/ICRA/IROS/Science Robotics, 2022–2026). Works with any LLM agent that loads markdown context.
-
-✅ SKILL.md
+Untiring, token-efficient research collaborator: reads papers and patents, cites the paragraph, writes the paper, designs and simulates what it proposes.
 
 ```bash
-cue skills add OpenGHz/embodied-ai-paper-writer --profile research
-```
-
----
-
-<a id="lunamos-paper2video"></a>
-## 💎 [Lunamos/paper2video](https://github.com/Lunamos/paper2video)
-
-**★ 6** · exceptional (score 9) · Python · tags: claude-code, claude-skill, explainer-video, paper, remotion
-
-Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)
-
-```bash
-cue skills add Lunamos/paper2video --profile research
+cue skills add retospect/precis-mcp --profile research
 ```
 
 ---
@@ -52,6 +37,21 @@ Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Anal
 
 ```bash
 cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="bimajanuri-academic-writing-skill"></a>
+## 💎 [bimajanuri/academic-writing-skill](https://github.com/bimajanuri/academic-writing-skill)
+
+**★ 3** · exceptional (score 8.7) · Shell
+
+Academic writing and literature-synthesis support for AI agents, including Claude Code, OpenCode, and other Agent Skills-compatible hosts. The skill covers the full path from literature discovery to final format conversion. Manuscripts are produced in English (US) academic style, while research input may be provided in Bahasa Indonesia or English.
+
+✅ SKILL.md
+
+```bash
+cue skills add bimajanuri/academic-writing-skill --profile research
 ```
 
 ---

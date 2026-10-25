@@ -1,22 +1,22 @@
 ---
 title: "Hainrixz/claude-anatomy — Claude Code skill discovered by cue"
-description: "ES: El árbol de decisión para saber qué construir en Claude Code: una skill, un subagente, un hook, un servidor MCP, un plugin, una rutina, una página web, una "
+description: "El árbol de decisión para saber qué construir en Claude Code: una skill, un subagente, un hook, un servidor MCP, un plugin, una rutina, una página web, una app,"
 layout: page
-updated: 2026-08-12
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Hainrixz/claude-anatomy](https://github.com/Hainrixz/claude-anatomy)
+# 💎 [Hainrixz/claude-anatomy](https://github.com/Hainrixz/claude-anatomy)
 
-**★ 0** · strong (score 7) · claude-code, claude-code-skill, claude-plugin, claude-skills, decision-tree
+**★ 15** · exceptional (score 9.6) · claude-code, claude-code-skill, claude-plugin, claude-skills, decision-tree
 
-> ES: El árbol de decisión para saber qué construir en Claude Code: una skill, un subagente, un hook, un servidor MCP, un plugin, una rutina, una página web, una app, o nada. Con el esqueleto de archivos de la pieza que salió. EN: Decision tree for what to build in Claude Code, with the file skeleton. No afiliado a Anthropic.
+> El árbol de decisión para saber qué construir en Claude Code: una skill, un subagente, un hook, un servidor MCP, un plugin, una rutina, una página web, una app, o nada. Te devuelve una sola pieza y su esqueleto de archivos. No afiliado a Anthropic.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
+- ⭐ 15 stars
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: claude-code, claude-code-skill, claude-plugin, claude-skills, decision-tree, developer-tools, espanol, hooks, la-forja, mcp, spanish, subagents
 
 ## Best fit cue profiles

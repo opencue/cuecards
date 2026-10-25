@@ -2,21 +2,21 @@
 title: "kanap-hq/KANAP — Claude Code skill discovered by cue"
 description: "KANAP, the open source IT governance platform: IT budget (OPEX/CAPEX), application landscape, project portfolio, tasks and documentation in one governed record,"
 layout: page
-updated: 2026-10-09
+updated: 2026-10-25
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [kanap-hq/KANAP](https://github.com/kanap-hq/KANAP)
 
-**★ 6** · exceptional (score 8.7) · TypeScript · ai-agents, application-portfolio-management, budget-management, contract-management, enterprise-architecture
+**★ 7** · exceptional (score 8.8) · TypeScript · ai-agents, application-portfolio-management, budget-management, contract-management, enterprise-architecture
 
 > KANAP, the open source IT governance platform: IT budget (OPEX/CAPEX), application landscape, project portfolio, tasks and documentation in one governed record, with Plaid, a built-in AI agent. AGPL v3. Self-host free, or hosted.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-10-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: ai-agents, application-portfolio-management, budget-management, contract-management, enterprise-architecture, glpi, it-financial-management, it-governance, it-management, knowledge-management, mcp, mcp-server, nestjs, netbox, open-source, postgresql, project-portfolio-management, react, self-hosted, typescript
 
 ## Best fit cue profiles

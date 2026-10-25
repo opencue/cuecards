@@ -1,27 +1,27 @@
 ---
 title: "retospect/precis-mcp — Claude Code skill discovered by cue"
-description: "MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls"
+description: "Untiring, token-efficient research collaborator: reads papers and patents, cites the paragraph, writes the paper, designs and simulates what it proposes."
 layout: page
-updated: 2026-10-02
-tags: [claude-code, skill, backend]
+updated: 2026-10-25
+tags: [claude-code, skill, research]
 ---
 
 # 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
 
-**★ 4** · exceptional (score 10.3) · Python · ai-agent, claude, context-management, cursor, llm
+**★ 7** · exceptional (score 11.8) · Python · ai-agent, cad, claude, computational-chemistry, context-management
 
-> MCP server giving LLM agents a seven-verb API over papers, documents, code, state, patents, and cached web/Wolfram/YouTube tool calls
+> Untiring, token-efficient research collaborator: reads papers and patents, cites the paragraph, writes the paper, designs and simulates what it proposes.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-02
-- 🏷️ Tags: ai-agent, claude, context-management, cursor, llm, markdown, mcp, mcp-server, model-context-protocol, patents, perplexity, pgvector, progressive-disclosure, python, scientific-papers, semantic-search, spaced-repetition, token-optimization, wolfram-alpha, youtube-transcripts
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-10-25
+- 🏷️ Tags: ai-agent, cad, claude, computational-chemistry, context-management, knowledge-graph, llm, materials-science, mcp, mcp-server, model-context-protocol, patents, pcb, pgvector, python, research-assistant, scientific-papers, scientific-writing, semantic-search, simulation
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[research](../research.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add retospect/precis-mcp --profile backend
+cue skills add retospect/precis-mcp --profile research
 ```
 
 ## About

@@ -2,23 +2,23 @@
 title: "parinshahAIbuilder/indian-compliance-calendar — Claude Code skill discovered by cue"
 description: "Free open-source compliance calendar for Indian companies: SEBI LODR (NSE/BSE equity & debt), MCA/ROC, LLP deadlines, BSE filing verification, email & WhatsApp "
 layout: page
-updated: 2026-10-03
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [parinshahAIbuilder/indian-compliance-calendar](https://github.com/parinshahAIbuilder/indian-compliance-calendar)
 
-**★ 0** · exceptional (score 10) · JavaScript · bse, cfo, claude-skill, company-secretary, compliance
+**★ 1** · exceptional (score 10.3) · JavaScript · agent-skills, bse, cfo, claude-skill, claude-skills
 
 > Free open-source compliance calendar for Indian companies: SEBI LODR (NSE/BSE equity & debt), MCA/ROC, LLP deadlines, BSE filing verification, email & WhatsApp reminders. Node.js app + Claude skill for CFOs, Company Secretaries and compliance teams.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-03
-- 🏷️ Tags: bse, cfo, claude-skill, company-secretary, compliance, compliance-calendar, fintech, india, lodr, mca, nodejs, nse, regtech, sebi, whatsapp-reminders
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-25
+- 🏷️ Tags: agent-skills, bse, cfo, claude-skill, claude-skills, company-secretary, compliance, compliance-calendar, fintech, india, lodr, mca, nodejs, nse, regtech, sebi, skill-md, whatsapp-reminders
 
 ## Best fit cue profiles
 

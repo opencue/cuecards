@@ -2,7 +2,7 @@
 title: "h1994st/rllvm — Claude Code skill discovered by cue"
 description: "Compiler wrappers for building whole-program LLVM bitcode files"
 layout: page
-updated: 2026-10-03
+updated: 2026-10-25
 tags: [claude-code, skill, rust]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, rust]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-10-03
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: bitcode, clang, claude, claude-code, claude-code-plugin, claude-code-skill, compiler, gllvm, llvm, llvm-ir, mcp, program-analysis, rllvm, rust, static-analysis, wasm, webassembly, whole-program-analysis, whole-program-bitcode, wllvm
 
 ## Best fit cue profiles

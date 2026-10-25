@@ -1,22 +1,22 @@
 ---
 title: "lastnpcalex/a-shadow-loom — Claude Code skill discovered by cue"
-description: "A self-hosted web interface for branching AI conversations across Claude Code, Gemini CLI, and local Ollama models — and for handing off between them mid-conver"
+description: "Self-hosted web interface for branching AI conversations across Claude Code, ChatGPT Codex, Antigravity (agy), Goose ACP, and local llama.cpp models — with mid-"
 layout: page
-updated: 2026-10-18
+updated: 2026-10-25
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [lastnpcalex/a-shadow-loom](https://github.com/lastnpcalex/a-shadow-loom)
+# ✨ [lastnpcalex/a-shadow-loom](https://github.com/lastnpcalex/a-shadow-loom)
 
-**★ 1** · potential (score 4.7) · Python
+**★ 2** · strong (score 5) · Python
 
-> A self-hosted web interface for branching AI conversations across Claude Code, Gemini CLI, and local Ollama models — and for handing off between them mid-conversation. Every conversation is a tree — branch, fork, regenerate, and full-text search across every path without losing anything.
+> Self-hosted web interface for branching AI conversations across Claude Code, ChatGPT Codex, Antigravity (agy), Goose ACP, and local llama.cpp models — with mid-conversation handoffs. Every conversation is a tree: branch, fork, regenerate, and search across every path without losing anything.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
