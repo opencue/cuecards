@@ -2,7 +2,7 @@
 title: "d10or/workspace-guardian — Claude Code skill discovered by cue"
 description: "Preflight coordination for parallel Claude Code sessions on one repo: task-level path ownership, overlap checks before merging, evidence-based handoff. CLI + Cl"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 

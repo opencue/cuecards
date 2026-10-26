@@ -1,23 +1,23 @@
 ---
 title: "Oqura-ai/optim-jev — Claude Code skill discovered by cue"
-description: "Jev based decision tools for claude code"
+description: "Jev based decision tools for claude code and codex"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Oqura-ai/optim-jev](https://github.com/Oqura-ai/optim-jev)
 
-**★ 44** · exceptional (score 10.9) · Python · claude-code, claude-code-plugin, claude-code-skill, claude-skills, jev
+**★ 49** · exceptional (score 13) · Python · claude-code, claude-code-plugin, claude-code-skill, claude-skills, codex
 
-> Jev based decision tools for claude code
+> Jev based decision tools for claude code and codex
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
-- ⭐ 44 stars
-- 🗓️ Last pushed: 2026-10-21
-- 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, claude-skills, jev
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+- ⭐ 49 stars
+- 🗓️ Last pushed: 2026-10-26
+- 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, claude-skills, codex, codex-plugin, jev
 
 ## Best fit cue profiles
 

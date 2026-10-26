@@ -2,7 +2,7 @@
 title: "drkostas/claude-ops — Claude Code skill discovered by cue"
 description: "Tools for running many Claude Code chats on one machine"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: ai-agents, anthropic, automation, claude, claude-code, claude-skill, cli, developer-tools, hooks, iterm2, python, tmux
 
 ## Best fit cue profiles

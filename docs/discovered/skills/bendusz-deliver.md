@@ -2,7 +2,7 @@
 title: "bendusz/deliver — Claude Code skill discovered by cue"
 description: "A Project/Product Manager skill for Claude Code: Claude orchestrates delivery — discover, plan, sign-off, then build/review/ship via subagents."
 layout: page
-updated: 2026-09-13
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-09-13
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: ai-agents, claude-code, claude-plugin, claude-skill, project-management
 
 ## Best fit cue profiles

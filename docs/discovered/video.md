@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,21 +26,6 @@ Open-source creator workbench: turn footage or notes into batches of videos, cap
 
 ```bash
 cue skills add zyziyun/reelfold --profile video
-```
-
----
-
-<a id="mhnadali-mh-video-editor-skill"></a>
-## 💎 [mhnadali/mh-video-editor-skill](https://github.com/mhnadali/mh-video-editor-skill)
-
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, ffmpeg, python, video-editing
-
-Claude Code skill + agent for beat-synced short-form video editing with FFmpeg (EDL-based, cached renders, QA gate, Persian text support)
-
-✅ SKILL.md
-
-```bash
-cue skills add mhnadali/mh-video-editor-skill --profile video
 ```
 
 ---

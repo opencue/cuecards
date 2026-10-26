@@ -1,24 +1,50 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+
+**★ 3** · exceptional (score 12.7) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+
+```bash
+cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
+```
+
+---
+
+<a id="luffysolution-svg-sanmu-skills"></a>
+## 💎 [luffysolution-svg/sanmu-skills](https://github.com/luffysolution-svg/sanmu-skills)
+
+**★ 1** · exceptional (score 10.8) · Python · tags: academic, agent-skill, agent-skills, claude-code-skill, claude-skill
+
+Sanmu's Agent Skills collection. Academic PDFs, textbooks and slides to Markdown with LaTeX validation, high-resolution figures and Zotero workflows.
+
+```bash
+cue skills add luffysolution-svg/sanmu-skills --profile docs-writer
+```
+
+---
+
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5.3) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

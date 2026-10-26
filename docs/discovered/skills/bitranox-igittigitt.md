@@ -2,7 +2,7 @@
 title: "bitranox/igittigitt — Claude Code skill discovered by cue"
 description: "Git-compatible .gitignore parser and path filter for Python: library and streaming CLI, include/whitelist mode, shutil.copytree filter, memory-bounded for milli"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 31 stars
-- 🗓️ Last pushed: 2026-10-24
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: claude-code, claude-code-plugin, cli, copytree, cross-platform, file-filter, git, gitignore, gitignore-parser, glob, path-filter, pattern-matching, pypi, python, python-library, streaming, whitelist, wildmatch
 
 ## Best fit cue profiles

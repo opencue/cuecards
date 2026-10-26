@@ -2,7 +2,7 @@
 title: "koffih/claude-skills — Claude Code skill discovered by cue"
 description: "Catalog of koffih's Claude Code skills: one repository per skill, installable by name."
 layout: page
-updated: 2026-10-16
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-16
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: agent-skill, claude-code, claude-code-skill
 
 ## Best fit cue profiles

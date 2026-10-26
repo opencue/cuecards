@@ -2,7 +2,7 @@
 title: "zyziyun/reelfold — Claude Code skill discovered by cue"
 description: "Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, video]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, video]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: ai-video, batch-processing, claude-code, claude-skill, content-creation, douyin, electron, ffmpeg, local-first, macos, multi-platform, open-source, podcast, short-video, tiktok, video-editing, video-editor, whisper, xiaohongshu, youtube-shorts
 
 ## Best fit cue profiles

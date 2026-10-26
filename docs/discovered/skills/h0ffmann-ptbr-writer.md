@@ -1,23 +1,23 @@
 ---
 title: "h0ffmann/ptbr-writer — Claude Code skill discovered by cue"
-description: "portuguese (Brazil) on rails"
+description: "🇧🇷 portuguese (Brazil) on rails"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [h0ffmann/ptbr-writer](https://github.com/h0ffmann/ptbr-writer)
 
-**★ 3** · exceptional (score 10.7) · TypeScript · asd, asd-ste100, browser-extension, claude-code-plugin, claude-code-skill
+**★ 4** · exceptional (score 10.8) · Rust · asd, asd-ste100, browser-extension, claude-code-plugin, claude-code-skill
 
-> portuguese (Brazil) on rails
+> 🇧🇷 portuguese (Brazil) on rails
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-22
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: asd, asd-ste100, browser-extension, claude-code-plugin, claude-code-skill, controlled-language, controlled-natural-language, extension-chrome, grammar, grammar-checker, machado-de-assis, portuguese, ptbr, rails, saramago, writing, writing-assistant, writing-software, writing-systems, writing-tool
 
 ## Best fit cue profiles

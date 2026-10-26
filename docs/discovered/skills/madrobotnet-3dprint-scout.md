@@ -2,7 +2,7 @@
 title: "madrobotnet/3dprint-scout — Claude Code skill discovered by cue"
 description: "Agent skill that designs 3D-printable parts reference-first: finds existing models, builds in Fusion, OpenSCAD or Python, verifies the mesh, and delivers STL/3M"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: 3d-printing, agent-skills, bambu-lab, bambu-studio, blender, blender-addon, blender-python, claude-code-skill, claude-skills, fusion360, openscad
 
 ## Best fit cue profiles

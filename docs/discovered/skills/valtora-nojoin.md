@@ -2,21 +2,21 @@
 title: "Valtora/Nojoin — Claude Code skill discovered by cue"
 description: "Self-hosted meeting notes with no bot in the call. Records Meet, Teams and Zoom from the browser, transcribes on your own hardware, and lets Claude or ChatGPT r"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Valtora/Nojoin](https://github.com/Valtora/Nojoin)
 
-**★ 84** · exceptional (score 13.4) · Python · ai-notes, granola-alternative, mcp, mcp-server, meeting-assistant
+**★ 85** · exceptional (score 13.4) · Python · ai-notes, granola-alternative, mcp, mcp-server, meeting-assistant
 
 > Self-hosted meeting notes with no bot in the call. Records Meet, Teams and Zoom from the browser, transcribes on your own hardware, and lets Claude or ChatGPT read and edit your library over MCP.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.4 based on:
-- ⭐ 84 stars
-- 🗓️ Last pushed: 2026-10-22
+- ⭐ 85 stars
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: ai-notes, granola-alternative, mcp, mcp-server, meeting-assistant, meeting-minutes, meeting-notes, meeting-recorder, meeting-transcription, note-taking, ollama, otter-alternative, parakeet, privacy, self-hosted, selfhosted, speaker-diarization, speech-to-text, transcription, whisper
 
 ## Best fit cue profiles

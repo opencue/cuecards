@@ -2,7 +2,7 @@
 title: "FrankFMY/buddy-evolution — Claude Code skill discovered by cue"
 description: "A companion that grows with your Claude Code sessions: achievements, XP, evolution paths, local journals and a stats dashboard."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 

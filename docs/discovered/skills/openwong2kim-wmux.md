@@ -1,27 +1,27 @@
 ---
 title: "openwong2kim/wmux — Claude Code skill discovered by cue"
-description: "Run Claude Code, Codex & Gemini in parallel on Windows & macOS — git worktree fan-out with atomic hunk adoption, approval gates, reboot-surviving sessions"
+description: "The ADE for AI agents. Automate everything else. Do your true work."
 layout: page
-updated: 2026-10-07
-tags: [claude-code, skill, fleet-control]
+updated: 2026-10-26
+tags: [claude-code, skill, core]
 ---
 
 # 💎 [openwong2kim/wmux](https://github.com/openwong2kim/wmux)
 
-**★ 412** · exceptional (score 19.3) · TypeScript · agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation
+**★ 435** · exceptional (score 17.3) · TypeScript · ade, agent-development-environment, agentic-ai, ai-agents, automation
 
-> Run Claude Code, Codex & Gemini in parallel on Windows & macOS — git worktree fan-out with atomic hunk adoption, approval gates, reboot-surviving sessions
+> The ADE for AI agents. Automate everything else. Do your true work.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.3 based on:
-- ⭐ 412 stars
-- 🗓️ Last pushed: 2026-10-07
-- 🏷️ Tags: agentic-ai, ai-agent, ai-agents, ai-coding, browser-automation, claude, claude-code, coding-agent, developer-tools, electron, gemini, mcp-server, multi-agent, powershell, terminal-multiplexer, tmux, windows, workspace-multiplexer
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
+- ⭐ 435 stars
+- 🗓️ Last pushed: 2026-10-26
+- 🏷️ Tags: ade, agent-development-environment, agentic-ai, ai-agents, automation, browser-automation, claude-code, codex, coding-agent, developer-tools, gemini-cli, git-worktree, macos, mcp-server, multi-agent, terminal-multiplexer, tmux, windows, workspace-multiplexer
 
 ## Best fit cue profiles
 
-[fleet-control](../fleet-control.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add openwong2kim/wmux --profile fleet-control
+cue skills add openwong2kim/wmux --profile core
 ```
 
 ## About

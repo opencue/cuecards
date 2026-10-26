@@ -2,22 +2,22 @@
 title: "askuma/workflow-generator — Claude Code skill discovered by cue"
 description: "Claude Code skill from askuma/workflow-generator"
 layout: page
-updated: 2026-07-10
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [askuma/workflow-generator](https://github.com/askuma/workflow-generator)
 
-**★ 0** · exceptional (score 14.5) · Python · ai-tools, architecture-diagram, claude-code, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 16) · Python · ai-tools, architecture-diagram, claude-code, claude-code-skill, claude-skills
 
 > A Claude Code skill repository discovered by cue.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-10
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: ai-tools, architecture-diagram, claude-code, claude-code-skill, claude-skills, developer-tool, developer-tools, llm-tools, mcp, mcp-server, static-analysis, workflow, workflow-diagram
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "johnamcruz/futures-trading-harness — Claude Code skill discovered by cue"
 description: "LLM-agnostic agent harness for trading futures on Claude Code, Codex, or Qwen Code, with a risk-gated order path and pluggable broker MCP servers (TopstepX defa"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 

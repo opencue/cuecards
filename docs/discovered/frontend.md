@@ -1,45 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="mario-andreschak-flujo"></a>
-## 💎 [mario-andreschak/FLUJO](https://github.com/mario-andreschak/FLUJO)
-
-**★ 665** · exceptional (score 19.5) · TypeScript · tags: agentic-ai, agentic-framework, agentic-workflow, ai-chat, automation
-
-Multi-Agent + Automation Harness: Graph-based Workflows, MCP, Self-Improving Agents. NextJs+React
-
-```bash
-cue skills add mario-andreschak/FLUJO --profile frontend
-```
-
----
-
-<a id="baccaraaa-tavero"></a>
-## 💎 [baccaraaa/tavero](https://github.com/baccaraaa/tavero)
-
-**★ 3** · exceptional (score 14.2) · TypeScript · tags: ai-agents, claude-code, cli, cursor, design-system
-
-Keep the UI your agent writes consistent. Scans your running React app for drift in buttons, cards, colors and spacing, and gives your coding agent each fix. CLI, MCP server, local panel.
-
-✅ SKILL.md
-
-```bash
-cue skills add baccaraaa/tavero --profile frontend
-```
 
 ---
 
@@ -52,6 +24,19 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="alexays-lilo"></a>
+## 💎 [Alexays/Lilo](https://github.com/Alexays/Lilo)
+
+**★ 2** · exceptional (score 9) · Swift · tags: ai-agents, appkit, arc-browser, browser, browser-automation
+
+A Mac browser on WebKit, not Chromium, that still runs Chrome extensions. Arc-style Spaces, terminal tabs, and a built-in MCP server so your AI agents browse beside you. MIT, no account.
+
+```bash
+cue skills add Alexays/Lilo --profile frontend
 ```
 
 ---

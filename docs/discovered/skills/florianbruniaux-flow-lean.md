@@ -2,21 +2,21 @@
 title: "FlorianBruniaux/flow-lean — Claude Code skill discovered by cue"
 description: "Model-agnostic output control for LLM agents: concise, action-first answers with proof and risk preserved. Native install paths for Claude Code and Codex."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [FlorianBruniaux/flow-lean](https://github.com/FlorianBruniaux/flow-lean)
+# 💎 [FlorianBruniaux/flow-lean](https://github.com/FlorianBruniaux/flow-lean)
 
-**★ 21** · strong (score 7.8) · Python · agent-skills, ai-agents, claude-code, codex, developer-tools
+**★ 22** · exceptional (score 9.3) · Python · agent-skills, ai-agents, claude-code, codex, developer-tools
 
 > Model-agnostic output control for LLM agents: concise, action-first answers with proof and risk preserved. Native install paths for Claude Code and Codex.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
-- ⭐ 21 stars
-- 🗓️ Last pushed: 2026-10-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
+- ⭐ 22 stars
+- 🗓️ Last pushed: 2026-10-25
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, codex, developer-tools, llm, llm-agents, model-agnostic, openai-codex, productivity, prompt-engineering, response-optimization, token-optimization, yagni
 
 ## Best fit cue profiles

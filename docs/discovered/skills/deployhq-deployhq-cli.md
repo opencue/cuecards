@@ -2,21 +2,21 @@
 title: "deployhq/deployhq-cli — Claude Code skill discovered by cue"
 description: "DeployHQ CLI — deploy from your terminal, for humans and agents"
 layout: page
-updated: 2026-06-30
+updated: 2026-10-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [deployhq/deployhq-cli](https://github.com/deployhq/deployhq-cli)
 
-**★ 0** · exceptional (score 12) · Go · agent-skill, ai-agent, automation, ci-cd, claude-code-plugin
+**★ 1** · exceptional (score 12.3) · Go · agent-skill, ai-agent, automation, ci-cd, claude-code-plugin
 
 > DeployHQ CLI — deploy from your terminal, for humans and agents
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: agent-skill, ai-agent, automation, ci-cd, claude-code-plugin, claude-code-skill, cli, command-line-tool, deployhq, deployment, devops, devops-tools, go, golang
 
 ## Best fit cue profiles
