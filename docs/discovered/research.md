@@ -1,29 +1,61 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="daizedong-small-cap-deepdive"></a>
+## 💎 [DaizeDong/small-cap-deepdive](https://github.com/DaizeDong/small-cap-deepdive)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 16) · Python · tags: agent, ai, ai-agent, claude, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Theme-driven small-cap deep-dive Claude Code skill: enumerate a theme's small-cap universe from SEC filings, mechanically de-risk (going-concern / death-spiral / material-weakness), then run disciplined, falsifiable due diligence with forced disconfirmation and base-rate priors. Discipline as moat, not a stock picker.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add DaizeDong/small-cap-deepdive --profile research
+```
+
+---
+
+<a id="arcadiastra-ieee-transactions-paper-writing-zh"></a>
+## 💎 [Arcadiastra/ieee-transactions-paper-writing-zh](https://github.com/Arcadiastra/ieee-transactions-paper-writing-zh)
+
+**★ 4** · exceptional (score 13.8) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
+
+使用简体中文规划、撰写、修改和审查 IEEE Transactions 学术论文写作的模块化 Agent Skill，涵盖章节写作、贡献论证、引用核验与投稿规范检查。
+
+✅ SKILL.md
+
+```bash
+cue skills add Arcadiastra/ieee-transactions-paper-writing-zh --profile research
+```
+
+---
+
+<a id="arcadiastra-ieee-transactions-paper-writing"></a>
+## 💎 [Arcadiastra/ieee-transactions-paper-writing](https://github.com/Arcadiastra/ieee-transactions-paper-writing)
+
+**★ 1** · exceptional (score 13.3) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
+
+An agent skill suite for drafting, revising, and reviewing IEEE Transactions papers, with contribution-driven writing workflows and citation verification tools.
+
+✅ SKILL.md
+
+```bash
+cue skills add Arcadiastra/ieee-transactions-paper-writing --profile research
 ```
 
 ---
@@ -31,7 +63,7 @@ cue skills add aemro-motors/popper-scope --profile research
 <a id="bimajanuri-academic-writing-skill"></a>
 ## 💎 [bimajanuri/academic-writing-skill](https://github.com/bimajanuri/academic-writing-skill)
 
-**★ 4** · exceptional (score 8.7) · Shell
+**★ 4** · exceptional (score 8.8)
 
 Academic writing and literature-synthesis support for AI agents, including Claude Code, OpenCode, and other Agent Skills-compatible hosts. The skill covers the full path from literature discovery to final format conversion. Manuscripts are produced in English (US) academic style, while research input may be provided in Bahasa Indonesia or English.
 

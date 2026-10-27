@@ -2,7 +2,7 @@
 title: "misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator — Claude Code skill discovered by cue"
 description: "A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Code"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: ai, ai-agents, antigravity, claude, codex, cost-optimization, deepseek, gemini, gpt, grok, llm-router, model-routing, multi-agent, orchestration, python, text
 
 ## Best fit cue profiles

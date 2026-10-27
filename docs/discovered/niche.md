@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-27
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="adexbn-walk-kcal"></a>
-## 💎 [adexbn/walk-kcal](https://github.com/adexbn/walk-kcal)
+<a id="daizedong-daily-hotspots"></a>
+## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
 
-**★ 163** · exceptional (score 13.5) · Python · tags: agent, ai-agent-skill, calorie, calorie-counter, claude-skill
+**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, automation, claude
 
-你今天还能吃多少卡，取决于你愿意走多远 —— 用步行距离换卡路里额度的吃饭决策。麦当劳官方营养值 × 周边餐厅，算你这顿还吃得下什么。
-
-✅ SKILL.md
+每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
 
 ```bash
-cue skills add adexbn/walk-kcal --profile niche
-```
-
----
-
-<a id="henglu-ai-companion-reading"></a>
-## 💎 [henglu/ai-companion-reading](https://github.com/henglu/ai-companion-reading)
-
-**★ 0** · exceptional (score 11) · Python · tags: agent-skill, bm25, claude-skill, epub, exam-prep
-
-精读一本书，深学一门课。本地书籍与教材的深度伴读 + 认证备考：判断题要理由、错题用新题验证，BM25 与 bge-m3 向量混合检索。
-
-✅ SKILL.md
-
-```bash
-cue skills add henglu/ai-companion-reading --profile niche
+cue skills add DaizeDong/daily-hotspots --profile niche
 ```
 
 ---

@@ -2,13 +2,13 @@
 title: "AnDeulin/panel — Claude Code skill discovered by cue"
 description: "Панель экспертов для Claude Code: на сложный вопрос собирает панель ролей, исследует тему, спорит и выдаёт вердикт с приоритетами. AI-first, простым языком."
 layout: page
-updated: 2026-08-28
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [AnDeulin/panel](https://github.com/AnDeulin/panel)
 
-**★ 0** · exceptional (score 13) · ai-agents, claude-code, claude-skill, decision-making, russian
+**★ 0** · exceptional (score 13) · Python · ai-agents, claude-code, claude-skill, decision-making, russian
 
 > Панель экспертов для Claude Code: на сложный вопрос собирает панель ролей, исследует тему, спорит и выдаёт вердикт с приоритетами. AI-first, простым языком.
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-28
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: ai-agents, claude-code, claude-skill, decision-making, russian
 
 ## Best fit cue profiles

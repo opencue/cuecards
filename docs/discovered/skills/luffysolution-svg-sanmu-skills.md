@@ -2,7 +2,7 @@
 title: "luffysolution-svg/sanmu-skills — Claude Code skill discovered by cue"
 description: "Sanmu's Agent Skills collection. Academic PDFs, textbooks and slides to Markdown with LaTeX validation, high-resolution figures and Zotero workflows."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-26
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: academic, agent-skill, agent-skills, claude-code-skill, claude-skill, claude-skills, codex-skills, katex, knowledge-base, latex, markdown, mineru, obsidian, ocr, pdf-to-markdown, zotero
 
 ## Best fit cue profiles

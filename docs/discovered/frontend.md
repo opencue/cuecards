@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="rik-python-apple-style-design"></a>
+## 💎 [rik-python/apple-style-design](https://github.com/rik-python/apple-style-design)
+
+**★ 0** · exceptional (score 13) · CSS · tags: apple-style, claude-code, claude-skill, css, dark-mode
+
+Claude Code skill: calm, premium Apple-style UI. Tokens, Liquid Glass, spring motion, drop-in CSS kit, demo and evals.
+
+✅ SKILL.md
+
+```bash
+cue skills add rik-python/apple-style-design --profile frontend
+```
 
 ---
 
@@ -28,15 +43,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="alexays-lilo"></a>
-## 💎 [Alexays/Lilo](https://github.com/Alexays/Lilo)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 2** · exceptional (score 9) · Swift · tags: ai-agents, appkit, arc-browser, browser, browser-automation
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
-A Mac browser on WebKit, not Chromium, that still runs Chrome extensions. Arc-style Spaces, terminal tabs, and a built-in MCP server so your AI agents browse beside you. MIT, no account.
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add Alexays/Lilo --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
 ```
 
 ---

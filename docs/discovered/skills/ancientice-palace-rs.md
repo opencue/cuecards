@@ -2,21 +2,21 @@
 title: "AncientiCe/palace-rs — Claude Code skill discovered by cue"
 description: "Local-first memory for coding agents — MCP server, single SQLite file, local embeddings"
 layout: page
-updated: 2026-09-27
+updated: 2026-10-27
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [AncientiCe/palace-rs](https://github.com/AncientiCe/palace-rs)
 
-**★ 8** · exceptional (score 9.8) · Rust · ai, ai-memory, coding-agents, embeddings, knowledge-graph
+**★ 10** · exceptional (score 10) · Rust · ai, ai-memory, coding-agents, embeddings, knowledge-graph
 
 > Local-first memory for coding agents — MCP server, single SQLite file, local embeddings
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-09-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: ai, ai-memory, coding-agents, embeddings, knowledge-graph, llm, local-first, mcp, mcp-server, memory, rust, semantic-search, sqlite
 
 ## Best fit cue profiles

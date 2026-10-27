@@ -2,7 +2,7 @@
 title: "karero/croftweaver — Claude Code skill discovered by cue"
 description: "A free, open-source suite of website skills: instructions your AI coding assistant follows to build and test a site you own, so people find it on Google and in "
 layout: page
-updated: 2026-10-25
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: agent-skills, ai-coding, ai-coding-assistant, ai-website-builder, astro, claude-code, claude-code-plugin, claude-code-skill, claude-skills, cloudflare-pages, codex-plugin, codex-skills, croftweaver, generative-engine-optimization, geo, llms-txt, seo, website-generator, website-skills, wordpress-migration
 
 ## Best fit cue profiles

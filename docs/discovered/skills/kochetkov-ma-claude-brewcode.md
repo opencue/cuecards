@@ -2,21 +2,21 @@
 title: "kochetkov-ma/claude-brewcode — Claude Code skill discovered by cue"
 description: "Claude Code plugin suite: brewcode (skill/agent/rule authoring, semble semantic search, superreview and teams setups), brewdoc (doc sync, PDF, publish), brewtoo"
 layout: page
-updated: 2026-10-22
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kochetkov-ma/claude-brewcode](https://github.com/kochetkov-ma/claude-brewcode)
 
-**★ 37** · exceptional (score 14.3) · JavaScript · ai-agent, ai-tools, anthropic, claude-code, claude-code-agents
+**★ 38** · exceptional (score 14.3) · JavaScript · ai-agent, ai-tools, anthropic, claude-code, claude-code-agents
 
 > Claude Code plugin suite: brewcode (skill/agent/rule authoring, semble semantic search, superreview and teams setups), brewdoc (doc sync, PDF, publish), brewtools (text optimization, secrets scan, deploy, SSH, subagent guards)
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.3 based on:
-- ⭐ 37 stars
-- 🗓️ Last pushed: 2026-10-22
+- ⭐ 38 stars
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: ai-agent, ai-tools, anthropic, claude-code, claude-code-agents, claude-code-plugin, claude-code-skill, developer-tools, llm-tools, marketplace, mcp, prompt-engineering
 
 ## Best fit cue profiles

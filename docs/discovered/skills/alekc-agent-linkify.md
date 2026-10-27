@@ -2,7 +2,7 @@
 title: "alekc/agent-linkify — Claude Code skill discovered by cue"
 description: "Markdown links for file paths, URLs and issue keys in coding-agent replies (Claude Code, OpenCode)"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 

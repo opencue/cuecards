@@ -2,7 +2,7 @@
 title: "sratour/xm-handdraw-video — Claude Code skill discovered by cue"
 description: "Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, colors sampled from your own artwork. Python + ffmpeg + any image model."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-27
 tags: [claude-code, skill, video, creative-media]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, video, creative-media]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: agent-skill, ai-video, claude-skill, explainer-video, ffmpeg, hand-drawn, python, storyboard, svg-animation, text-to-video, tts, video-generation
 
 ## Best fit cue profiles

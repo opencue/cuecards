@@ -2,7 +2,7 @@
 title: "bitranox/igittigitt — Claude Code skill discovered by cue"
 description: "Git-compatible .gitignore parser and path filter for Python: library and streaming CLI, include/whitelist mode, shutil.copytree filter, memory-bounded for milli"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 

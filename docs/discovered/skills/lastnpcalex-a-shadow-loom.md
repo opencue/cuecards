@@ -2,7 +2,7 @@
 title: "lastnpcalex/a-shadow-loom — Claude Code skill discovered by cue"
 description: "Self-hosted web interface for branching AI conversations across Claude Code, ChatGPT Codex, Antigravity (agy), Goose ACP, and local llama.cpp models — with mid-"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 

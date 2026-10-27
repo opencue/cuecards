@@ -1,42 +1,44 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="zandereins-hydra"></a>
+## 💎 [Zandereins/hydra](https://github.com/Zandereins/hydra)
+
+**★ 4** · exceptional (score 16.3) · Python · tags: adversarial-testing, ai-code-review, architecture-review, claude-code, claude-code-skill
+
+Multi-perspective code review council for Claude Code. 3 advisors by default, 10 agents in deep mode (Opus + Codex). Evidence chains, adversarial self-test, dual-path verdict. Based on Karpathy's LLM Council.
+
+✅ SKILL.md
+
+```bash
+cue skills add Zandereins/hydra --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2872** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
+**★ 2876** · exceptional (score 13.7) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="m3taz-ahmed-aizee"></a>
-## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
-
-**★ 5** · exceptional (score 11.1) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
-
-Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
-
-```bash
-cue skills add m3taz-ahmed/aizee --profile cybersecurity
 ```
 
 ---
@@ -50,19 +52,6 @@ Open source security for AI agents: an OS-enforced egress wall on macOS, and on 
 
 ```bash
 cue skills add eriknewton/sanctuary-framework --profile cybersecurity
-```
-
----
-
-<a id="bmscomp-kates"></a>
-## 💎 [bmscomp/kates](https://github.com/bmscomp/kates)
-
-**★ 16** · exceptional (score 10.3) · Go · tags: apache-kafka, chaos-engineering, golang, grafana-dashboards, helm-charts
-
-A terminal-first platform for performance testing, chaos engineering, and operational resilience of Apache Kafka clusters. Runs on a local Kind-based Kubernetes environment with production-parity infrastructure.
-
-```bash
-cue skills add bmscomp/kates --profile cybersecurity
 ```
 
 ---

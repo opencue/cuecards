@@ -2,7 +2,7 @@
 title: "mustafa-omeri/goku-dev-skills — Claude Code skill discovered by cue"
 description: "Turn AI coding agents (Antigravity, Cursor, Claude Code) into senior engineers: 30+ battle-tested skills, 11 deterministic quality gates & zero AI-slop."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-26
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: ai-agents, antigravity, antigravity-cli, antigravity-ide, antigravity-skill, antigravity-skills, claude-code-skill, code-quality, coding-assistant, cursor-skills, developer-tools, prompt-engineering
 
 ## Best fit cue profiles

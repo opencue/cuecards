@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
+<a id="haiderfarooq3-paper-reel"></a>
+## 💎 [haiderfarooq3/paper-reel](https://github.com/haiderfarooq3/paper-reel)
 
-**★ 3** · exceptional (score 13.7) · Python · tags: ai-video, batch-processing, claude-code, claude-skill, content-creation
+**★ 25** · exceptional (score 15.6) · JavaScript · tags: agent-skills, ai-video, canvas-animation, claude-code, claude-code-skill
 
-Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
+Claude Code skill: faceless 9:16 explainer reels in a cut-paper style. Voice-timed scenes, word-by-word captions. Free, local, no API keys.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile video
+cue skills add haiderfarooq3/paper-reel --profile video
+```
+
+---
+
+<a id="sratour-xm-handdraw-video"></a>
+## 💎 [sratour/xm-handdraw-video](https://github.com/sratour/xm-handdraw-video)
+
+**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, ai-video, claude-skill, explainer-video, ffmpeg
+
+Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, colors sampled from your own artwork. Python + ffmpeg + any image model.
+
+✅ SKILL.md
+
+```bash
+cue skills add sratour/xm-handdraw-video --profile video
 ```
 
 ---

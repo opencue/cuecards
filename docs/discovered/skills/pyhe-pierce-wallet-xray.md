@@ -2,7 +2,7 @@
 title: "pyhe-pierce/wallet-xray — Claude Code skill discovered by cue"
 description: "How much can your AI-built app burn on its worst day? Agent skill that finds every code path spending your money (LLM, image, email, SMS), estimates cost per us"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 

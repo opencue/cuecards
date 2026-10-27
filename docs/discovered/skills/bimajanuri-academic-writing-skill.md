@@ -2,22 +2,22 @@
 title: "bimajanuri/academic-writing-skill — Claude Code skill discovered by cue"
 description: "Academic writing and literature-synthesis support for AI agents, including Claude Code, OpenCode, and other Agent Skills-compatible hosts. The skill covers the "
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [bimajanuri/academic-writing-skill](https://github.com/bimajanuri/academic-writing-skill)
 
-**★ 4** · exceptional (score 8.7) · Shell
+**★ 4** · exceptional (score 8.8)
 
 > Academic writing and literature-synthesis support for AI agents, including Claude Code, OpenCode, and other Agent Skills-compatible hosts. The skill covers the full path from literature discovery to final format conversion. Manuscripts are produced in English (US) academic style, while research input may be provided in Bahasa Indonesia or English.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-24
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

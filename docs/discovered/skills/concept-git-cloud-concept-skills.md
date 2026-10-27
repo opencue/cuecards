@@ -1,23 +1,23 @@
 ---
 title: "concept-git/cloud-concept-skills — Claude Code skill discovered by cue"
-description: "Community-maintained Huawei Cloud billing, cost estimation, controlled provisioning, and account onboarding Agent Skills."
+description: "Community-maintained Huawei Cloud Agent Skills for billing analysis, cost estimation, controlled provisioning, and account onboarding via KooCLI. English and Si"
 layout: page
-updated: 2026-10-24
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [concept-git/cloud-concept-skills](https://github.com/concept-git/cloud-concept-skills)
 
-**★ 3** · strong (score 6.7) · Python · agent-skills, claude-code-skill, claude-skills, finops, huawei-cloud
+**★ 4** · strong (score 7.8) · Python · agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
 
-> Community-maintained Huawei Cloud billing, cost estimation, controlled provisioning, and account onboarding Agent Skills.
+> Community-maintained Huawei Cloud Agent Skills for billing analysis, cost estimation, controlled provisioning, and account onboarding via KooCLI. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-24
-- 🏷️ Tags: agent-skills, claude-code-skill, claude-skills, finops, huawei-cloud, skills-sh, skillsmp
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-10-27
+- 🏷️ Tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills, cloud-billing, cloud-computing, cloud-provisioning, codex-skills, cost-estimation, cursor, finops, huawei-cloud, koocli, skills-sh, skillsmp
 
 ## Best fit cue profiles
 

@@ -2,7 +2,7 @@
 title: "mh-mansouri/embedded-iot-mentor — Claude Code skill discovered by cue"
 description: "Claude Code Agent Skill/API: mentor for embedded/IoT hardware projects (MCU selection, cost & time estimates, MVP-first build plans, PCB transition guidance)."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: agent-skills, api, arduino, claude, claude-code, claude-skill, embedded, esp32, iot, microcontroller, rest-api
 
 ## Best fit cue profiles

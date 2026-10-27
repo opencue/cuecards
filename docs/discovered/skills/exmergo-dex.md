@@ -2,21 +2,21 @@
 title: "exmergo/dex — Claude Code skill discovered by cue"
 description: "Dex lets your agent build your analytics."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [exmergo/dex](https://github.com/exmergo/dex)
 
-**★ 100** · exceptional (score 17.3) · Python · agent, agent-skills, analytics-engineering, bigquery, claude-code
+**★ 102** · exceptional (score 17.4) · Python · agent, agent-skills, analytics-engineering, bigquery, claude-code
 
 > Dex lets your agent build your analytics.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
-- ⭐ 100 stars
-- 🗓️ Last pushed: 2026-10-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.4 based on:
+- ⭐ 102 stars
+- 🗓️ Last pushed: 2026-10-27
 - 🏷️ Tags: agent, agent-skills, analytics-engineering, bigquery, claude-code, claude-code-plugin, claude-code-skill, clickhouse, data-contracts, data-engineering, databricks, dbt, duckdb, metricflow, redshift, schema-drift, semantic-layer, skills, snowflake, trino
 
 ## Best fit cue profiles

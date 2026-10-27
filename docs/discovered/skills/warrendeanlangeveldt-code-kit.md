@@ -2,20 +2,20 @@
 title: "warrendeanlangeveldt/code-kit — Claude Code skill discovered by cue"
 description: "Keeps AI coding agents inside your project's rules: lanes, layer rules, protected paths and proof before finish, enforced by Claude Code hooks and in CI"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [warrendeanlangeveldt/code-kit](https://github.com/warrendeanlangeveldt/code-kit)
 
-**★ 1** · strong (score 6.3) · JavaScript · agentic-coding, ai-agents, claude-code, claude-code-hooks, claude-code-plugin
+**★ 2** · strong (score 6.5) · JavaScript · agentic-coding, ai-agents, claude-code, claude-code-hooks, claude-code-plugin
 
 > Keeps AI coding agents inside your project's rules: lanes, layer rules, protected paths and proof before finish, enforced by Claude Code hooks and in CI
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 2 stars
 - 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: agentic-coding, ai-agents, claude-code, claude-code-hooks, claude-code-plugin, claude-code-skills, coding-agents, developer-tools, guardrails, multi-agent, software-architecture, spec-driven-development
 
