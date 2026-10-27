@@ -1,4 +1,6 @@
 const MAX_ERRORS = 200;
+// Ratchet for warnings — tighten this value after resolving existing warnings.
+const MAX_WARNINGS = 500;
 
 const result = Bun.spawnSync(["bun", "src/index.ts", "skills", "lint", "--all"], {
   stdout: "pipe",
@@ -16,9 +18,16 @@ if (!match) {
 const errors = Number(match[1]);
 const warnings = Number(match[2]);
 const info = Number(match[3]);
-console.log(`skill lint baseline: ${errors} errors, ${warnings} warnings, ${info} info (max errors: ${MAX_ERRORS})`);
+console.log(
+  `skill lint baseline: ${errors} errors, ${warnings} warnings, ${info} info` +
+  ` (max errors: ${MAX_ERRORS}, max warnings: ${MAX_WARNINGS})`,
+);
 
 if (errors > MAX_ERRORS) {
   console.error(`skill lint regressed by ${errors - MAX_ERRORS} error(s)`);
+  process.exit(1);
+}
+if (warnings > MAX_WARNINGS) {
+  console.error(`skill lint warning ratchet exceeded by ${warnings - MAX_WARNINGS} warning(s)`);
   process.exit(1);
 }

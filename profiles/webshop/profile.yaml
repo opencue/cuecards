@@ -40,7 +40,7 @@ skills:
     - review/security-review
     - stripe/stripe-best-practices
     - stripe/stripe-webhooks
-    - deployment/supabase
+    - deployment/supabase  # lint: ignore W4 — intentional: local deployment/supabase covers deploy/migration patterns; mindrally/skills:supabase (npx, line 101) covers general integration patterns; slugs collide but skill content differs
     - deployment/pnpm
     - deployment/coolify
     - github/github

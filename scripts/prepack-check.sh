@@ -18,4 +18,4 @@ if [ "$count" -eq 0 ]; then
   exit 1
 fi
 
-echo "prepack: skills submodule populated ($(find "$SKILLS_DIR" -name SKILL.md | wc -l) skills)."
+echo "prepack: skills submodule populated ($count skills)."

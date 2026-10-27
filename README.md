@@ -21,10 +21,10 @@
   &nbsp;
   <img src="https://img.shields.io/badge/node-%E2%89%A520-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node 20+">
   &nbsp;
-  <img src="https://img.shields.io/badge/telemetry-none-success?style=for-the-badge" alt="zero telemetry">
+  <img src="https://img.shields.io/badge/telemetry-opt--in-success?style=for-the-badge" alt="opt-in local telemetry">
 </p>
 
-[Community](https://cuecards.cc) · [Install](#install) · [How it works](#how-it-works) · [Profiles](#85-ready-made-cuecards) · [Multi-agent](#one-cuecard-ten-agents) · [FAQ](#faq) · [Contributing](#contributing)
+[Community](https://cuecards.cc) · [Install](#install) · [How it works](#how-it-works) · [Profiles](#194-ready-made-cuecards) · [Multi-agent](#one-cuecard-ten-agents) · [FAQ](#faq) · [Contributing](#contributing)
 
 </div>
 
@@ -54,7 +54,7 @@ for this project.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
 7. Report which profile got pinned and whether the shim is active. Mention that
-   `install.sh --uninstall` undoes it.
+   `cue shell uninstall` undoes the shim, or `npm uninstall -g cue-ai` removes the package entirely.
 
 Do not install anything without asking me first.
 ```
@@ -78,9 +78,9 @@ Setup requires Node ≥ 20 and an existing
 [Codex](https://github.com/openai/codex) install — cue is a thin shim that hands
 off to your real agent, not a replacement for it.
 
-After setup, a bare interactive `codex` opens Cue's profile suggestion picker
-on Linux, macOS, PowerShell, and cmd.exe. `codex <args>` remains non-interactive
-unless you pass `--cue-pick`.
+After setup, a bare interactive `claude` or `codex` opens Cue's profile suggestion picker
+on Linux, macOS, PowerShell, and cmd.exe. Passing arguments (`claude <args>` / `codex <args>`)
+remains non-interactive unless you pass `--cue-pick`.
 
 > package `cue-ai` · command `cue` · repo [opencue/cuecards](https://github.com/opencue/cuecards)
 
@@ -202,7 +202,7 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ## 194 ready-made cuecards
 
-cue ships with 98 focused primary profiles plus 94 opt-in overlays. A taste:
+cue ships with 99 focused primary profiles plus 95 opt-in overlays. A taste:
 
 | Profile | What it's for |
 |---|---|
@@ -301,7 +301,7 @@ cue cost --compare           # all profiles ranked vs `full`
 
 # Skills & discovery
 cue discover search <query>  # find skills on GitHub
-cue discover install <skill> # install one (SkillSpector-gated)
+cue skills add <owner/repo>   # install one skill (SkillSpector-gated)
 cue lint-skill <path> --fix  # validate a SKILL.md
 
 # Security

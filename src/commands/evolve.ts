@@ -19,13 +19,12 @@ import {
 } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { homedir } from "node:os";
+import { fileURLToPath } from "node:url";
 import { configDir } from "../lib/config-paths";
 
 import { loadProfile, } from "../lib/profile-loader";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 
-const CONFIG_DIR = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue");
-const EVO_LOG = join(CONFIG_DIR, "evolution-log.jsonl");
 const SESSIONS_ROOT = join(homedir(), ".claude", "projects");
 const DAYS_7 = 7 * 24 * 60 * 60 * 1000;
 const DAYS_30 = 30 * 24 * 60 * 60 * 1000;
@@ -178,7 +177,7 @@ async function generateProposal(profileName: string): Promise<Proposal> {
 // ---------------------------------------------------------------------------
 
 async function applyProposal(profileName: string, proposal: Proposal): Promise<void> {
-  const profilesDir = resolve(dirname(new URL(import.meta.url).pathname), "..", "..", "profiles");
+  const profilesDir = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "profiles");
   const yamlPath = join(profilesDir, profileName, "profile.yaml");
   if (!existsSync(yamlPath)) {
     process.stderr.write(`❌ Profile YAML not found: ${yamlPath}\n`);
@@ -202,9 +201,10 @@ async function applyProposal(profileName: string, proposal: Proposal): Promise<v
   writeFileSync(yamlPath, content);
 
   // Log the evolution
+  const evoLog = join(configDir(), "evolution-log.jsonl");
   const entry = { ts: new Date().toISOString(), profile: profileName, added: proposal.add, removed: proposal.remove, gaps: proposal.gaps };
-  mkdirSync(dirname(EVO_LOG), { recursive: true });
-  appendFileSync(EVO_LOG, JSON.stringify(entry) + "\n");
+  mkdirSync(dirname(evoLog), { recursive: true });
+  appendFileSync(evoLog, JSON.stringify(entry) + "\n");
 
   process.stdout.write(`✅ Applied: +${proposal.add.length} skills, -${proposal.remove.length} skills\n`);
 }
@@ -214,11 +214,12 @@ async function applyProposal(profileName: string, proposal: Proposal): Promise<v
 // ---------------------------------------------------------------------------
 
 function showHistory(): void {
-  if (!existsSync(EVO_LOG)) {
+  const evoLog = join(configDir(), "evolution-log.jsonl");
+  if (!existsSync(evoLog)) {
     process.stdout.write("No evolution history yet.\n");
     return;
   }
-  const lines = readFileSync(EVO_LOG, "utf8").trim().split("\n");
+  const lines = readFileSync(evoLog, "utf8").trim().split("\n");
   for (const line of lines.slice(-20)) {
     try {
       const e = JSON.parse(line);

@@ -13,7 +13,7 @@
  */
 
 import { readdir, readFile } from "node:fs/promises";
-import type { Dirent } from "node:fs";
+import { existsSync, readdirSync, statSync, type Dirent } from "node:fs";
 import { join } from "node:path";
 
 import Ajv, { type ErrorObject, type ValidateFunction } from "ajv";
@@ -122,26 +122,24 @@ export function profileYamlPath(name: string): string {
   // multi-hyphen names like `jane-medusa-shop` still resolve.
   try {
     // Synchronous existsSync avoids async fanout in the hot path.
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const fs = require("node:fs") as typeof import("node:fs");
-    if (fs.existsSync(main)) return main;
+    if (existsSync(main)) return main;
     if (!name.includes("-")) return main;
     const sharedBase =
       process.env.XDG_CONFIG_HOME ?? join(process.env.HOME ?? "", ".config");
     const sharedRoot = join(sharedBase, "cue", "shared");
     // Walk shared/<user>/<repo>/profile.yaml looking for a name match.
-    if (!fs.existsSync(sharedRoot)) return main;
-    for (const user of fs.readdirSync(sharedRoot)) {
+    if (!existsSync(sharedRoot)) return main;
+    for (const user of readdirSync(sharedRoot)) {
       const userDir = join(sharedRoot, user);
       try {
-        const stats = fs.statSync(userDir);
+        const stats = statSync(userDir);
         if (!stats.isDirectory()) continue;
       } catch {
         continue;
       }
-      for (const repo of fs.readdirSync(userDir)) {
+      for (const repo of readdirSync(userDir)) {
         const candidate = join(userDir, repo, "profile.yaml");
-        if (!fs.existsSync(candidate)) continue;
+        if (!existsSync(candidate)) continue;
         // Reuse the same slugifier as shared-profiles.ts so we recognize
         // the installed namespaced name without depending on that module.
         const slug = (s: string) =>

@@ -12,6 +12,8 @@ preload = ["./test/preload.ts"]
 pathIgnorePatterns = [
   "profiles/_cache/**",
   "resources/skills/skills/**",
+  "resources/agentic-awesome-skills/**",
+  "resources/ai-memory/**",
   "vendor/**",
   "agentshield/**",
   ".claude/**",

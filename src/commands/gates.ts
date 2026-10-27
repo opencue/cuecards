@@ -21,6 +21,7 @@
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { loadProfile } from "../lib/profile-loader";
 import {
@@ -30,7 +31,7 @@ import {
   type GateRun,
 } from "../lib/gate-status";
 
-const REPO_ROOT = resolve(new URL(import.meta.url).pathname, "..", "..", "..");
+const REPO_ROOT = resolve(fileURLToPath(import.meta.url), "..", "..", "..");
 const GATES_RESOURCE_DIR = join(REPO_ROOT, "resources", "quality-gates");
 
 interface ParsedArgs {

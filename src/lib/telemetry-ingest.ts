@@ -31,7 +31,6 @@ import { recordResolve } from "./skill-resolve-journal";
 import { redactPrompt } from "./telemetry-redact";
 import { isEnabled, seenTrackerPath } from "./telemetry-consent";
 
-const DEFAULT_PROJECTS_DIR = join(homedir(), ".claude", "projects");
 const MAX_BYTES_PER_TRANSCRIPT = 5 * 1024 * 1024;
 // A trigger phrase needs at least one of these properties before it's used
 // for miss detection; otherwise short / common phrases match everything.
@@ -350,7 +349,7 @@ export async function ingest(opts: IngestOptions = {}): Promise<IngestStats> {
     return { transcriptsScanned: 0, newInvocations: 0, newMisses: 0, skippedDuplicates: 0 };
   }
 
-  const projectsDir = opts.projectsDir ?? DEFAULT_PROJECTS_DIR;
+  const projectsDir = opts.projectsDir ?? join(homedir(), ".claude", "projects");
   const sinceDays = opts.sinceDays ?? 7;
   const transcripts = recentTranscripts(projectsDir, sinceDays);
   const seenPath = opts.seenTrackerOverride ?? seenTrackerPath();

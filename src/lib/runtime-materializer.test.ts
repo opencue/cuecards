@@ -27,10 +27,20 @@ import { MAX_STAGGER_MS } from "./credentials-sync";
 import type { ResolvedProfile } from "../../profiles/_types";
 
 let root: string;
+let _origXdgConfigHome: string | undefined;
 beforeEach(async () => {
   root = await mkdtemp(join(tmpdir(), "cue-runtime-"));
+  // Isolate configDir() so withContextMode() doesn't pick up the real
+  // ~/.config/cue/context-mode.json from the developer's machine.
+  _origXdgConfigHome = process.env.XDG_CONFIG_HOME;
+  process.env.XDG_CONFIG_HOME = root;
 });
 afterEach(async () => {
+  if (_origXdgConfigHome === undefined) {
+    delete process.env.XDG_CONFIG_HOME;
+  } else {
+    process.env.XDG_CONFIG_HOME = _origXdgConfigHome;
+  }
   await rm(root, { recursive: true, force: true });
 });
 

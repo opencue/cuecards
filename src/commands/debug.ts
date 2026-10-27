@@ -47,7 +47,7 @@ export async function run(args: string[]): Promise<number> {
         process.stdout.write(`    ${dim("Fix: echo <profile> > .cue.profile or pass a profile name")}\n\n`);
         return 1;
       }
-      profileName = (resolved as any).profile;
+      profileName = resolved.profile;
       process.stdout.write(`    ${green("✓")} Profile: ${profileName} (source: ${resolved.source})\n`);
     } catch (e) {
       process.stdout.write(`    ${red("✗")} Resolution failed: ${e}\n`);

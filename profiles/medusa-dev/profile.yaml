@@ -53,4 +53,8 @@ plugins:
   - resend@claude-plugins-official
 mcps:
   - coolify
-  - envoult
+  # envoult is a local-only MCP (~/Documents/soul/bin/envoultd); gate it so sessions
+  # without the binary don't fail at startup (same pattern as obsidian-vault in full/profile.yaml)
+  - id: envoult
+    when:
+      has_dir: ~/Documents/soul

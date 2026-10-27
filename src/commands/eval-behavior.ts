@@ -79,8 +79,8 @@ interface ScenarioResult {
 function scoreScenario(profile: ResolvedProfile, scenario: EvalScenario): ScenarioResult {
   const skillSlugs = new Set(profile.skills.local.map((s) => s.id));
   const commandSet = new Set((profile.commands ?? []).map((c) => c.replace(/\.md$/, "")));
-  const playbookSet = new Set(((profile as any).playbooks ?? []).map((p: string) => p.replace(/\.md$/, "")));
-  const gateSet = new Set(((profile as any).qualityGates ?? []));
+  const playbookSet = new Set((profile.playbooks ?? []).map((p) => p.replace(/\.md$/, "")));
+  const gateSet = new Set((profile.qualityGates ?? []));
 
   let score = 0;
   let max = 0;
@@ -117,7 +117,7 @@ function scoreScenario(profile: ResolvedProfile, scenario: EvalScenario): Scenar
 
 async function evalProfile(name: string): Promise<{ profile: string; results: ScenarioResult[] }> {
   const profile = await loadProfile(name);
-  const evalRefs = ((profile as any).evals ?? []) as string[];
+  const evalRefs = (profile.evals ?? []);
   const results: ScenarioResult[] = [];
   for (const ref of evalRefs) {
     const path = isAbsolute(ref) ? ref : join(EVALS_ROOT, ref.endsWith(".md") ? ref : `${ref}.md`);
@@ -148,7 +148,7 @@ export async function run(args: string[]): Promise<number> {
           process.stderr.write("Usage: cue eval-behavior [profile] | --all\n");
           return 1;
         }
-        profiles = [(r as any).profile];
+        profiles = [r.profile];
       } catch {
         process.stderr.write("Usage: cue eval-behavior [profile] | --all\n");
         return 1;

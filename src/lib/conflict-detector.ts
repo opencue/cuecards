@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { repoRoot } from "./repo-root";
 
-const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
+function skillsRoot(): string { return join(repoRoot(), "resources", "skills", "skills"); }
 
 interface Directive {
   skillId: string;
@@ -64,7 +64,7 @@ function tokenize(subject: string): Set<string> {
 }
 
 function extractDirectives(skillId: string): Directive[] {
-  const skillPath = join(SKILLS_ROOT, skillId, "SKILL.md");
+  const skillPath = join(skillsRoot(), skillId, "SKILL.md");
   let content: string;
   try { content = readFileSync(skillPath, "utf8"); } catch { return []; }
   content = stripFrontmatter(content);
@@ -152,7 +152,7 @@ function detectAllowedToolsConflicts(skillIds: string[]): Conflict[] {
   const toolSpecs: { id: string; tools: string[] }[] = [];
 
   for (const id of skillIds) {
-    const skillPath = join(SKILLS_ROOT, id, "SKILL.md");
+    const skillPath = join(skillsRoot(), id, "SKILL.md");
     try {
       const content = readFileSync(skillPath, "utf8");
       const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
@@ -205,7 +205,7 @@ function detectPersonaConflicts(skillIds: string[]): Conflict[] {
   const personas: { id: string; text: string }[] = [];
 
   for (const id of skillIds) {
-    const skillPath = join(SKILLS_ROOT, id, "SKILL.md");
+    const skillPath = join(skillsRoot(), id, "SKILL.md");
     try {
       const content = readFileSync(skillPath, "utf8");
       const body = stripFrontmatter(content);

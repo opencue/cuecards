@@ -7,8 +7,8 @@
 # upgrade. Source of truth = the patched clone in the account2 credentials dir.
 set -euo pipefail
 
-SRC="${OMC_SRC:-/home/deadpool/.claude-accounts/account2/plugins/marketplaces/omc}"
-RUNTIME_ROOT="${CUE_RUNTIME_ROOT:-/home/deadpool/.config/cue/runtime}"
+SRC="${OMC_SRC:-$HOME/.claude-accounts/account2/plugins/marketplaces/omc}"
+RUNTIME_ROOT="${CUE_RUNTIME_ROOT:-$HOME/.config/cue/runtime}"
 REPO="Yeachan-Heo/oh-my-claudecode"
 
 if [ ! -f "$SRC/.claude-plugin/plugin.json" ]; then
