@@ -71,14 +71,12 @@ plugins:
   - vercel@claude-plugins-official
 mcps:
   - cue-tty-watch
-  # Credential-gated SaaS servers: each is inert without its token, so they
-  # only load (and only cost tool schema) when that integration is configured.
-  - id: aws-docs
-    when:
-      env: AWS_ACCESS_KEY_ID
+  - aws-docs
   - coolify
   - gbrain
   - hostinger-api
+  # Credential-gated SaaS servers: each is inert without its token, so they
+  # only load (and only cost tool schema) when that integration is configured.
   - id: google-drive-mcp
     when:
       env: GOOGLE_DRIVE_OAUTH_CREDENTIALS
