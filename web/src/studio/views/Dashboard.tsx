@@ -10,6 +10,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { useProfileDetail, useTimeline, useActiveSessions, postJson, type StatusData, type TimelineData } from "../api";
 import { partEmoji, fmtDuration, fmtAge, abbrev } from "../curated";
+import { Sparkline } from "../components/Sparkline";
 import { isDemoMode } from "../../lib/fetcher";
 
 /** Honor the OS "reduce motion" setting: no pulsing dot, no radar ping. */
@@ -74,18 +75,7 @@ function BandIco({ type }: { type: "scale" | "usage" | "health" }) {
 }
 
 function MiniSpark({ data }: { data: number[] }) {
-  const d = data.slice(-16), w = 128, h = 44, max = Math.max(1, ...d);
-  if (d.length < 2) return <svg className="mini-spark" viewBox={`0 0 ${w} ${h}`} />;
-  const pts = d.map((v, i) => [(i / (d.length - 1)) * w, h - 3 - (v / max) * (h - 8)] as const);
-  let path = `M ${pts[0]![0]} ${pts[0]![1]}`;
-  for (let i = 0; i < pts.length - 1; i++) { const mx = (pts[i]![0] + pts[i + 1]![0]) / 2; path += ` C ${mx} ${pts[i]![1]}, ${mx} ${pts[i + 1]![1]}, ${pts[i + 1]![0]} ${pts[i + 1]![1]}`; }
-  return (
-    <svg className="mini-spark" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
-      <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--violet)" stopOpacity=".32" /><stop offset="100%" stopColor="var(--violet)" stopOpacity="0" /></linearGradient></defs>
-      <path d={`${path} L ${w} ${h} L 0 ${h} Z`} fill="url(#mg)" />
-      <path d={path} fill="none" stroke="var(--violet)" strokeWidth="1.7" />
-    </svg>
-  );
+  return <Sparkline data={data} slice={16} width={128} height={44} color="var(--violet)" gradientId="mg" className="mini-spark" emptyMode="empty-svg" strokeWidth={1.7} fillOpacity={0.32} roundCaps={false} />;
 }
 
 export function Dashboard({ profile, status }: { profile: string | null; status?: StatusData }) {

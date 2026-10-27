@@ -13,8 +13,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { useProfilesFull, useProfileDetail, useRepos, type ProfileDetail, type StudioSkill, type SubagentRef, type RepoKind } from "../api";
-import { nsColor, nsLabel, mcpInfo, partEmoji, WORKFLOWS } from "../curated";
+import { useProfilesFull, useProfileDetail, useRepos, type ProfileDetail, type SubagentRef, type RepoKind } from "../api";
+import { nsColor, mcpInfo, partEmoji, WORKFLOWS } from "../curated";
+import { groupSkills } from "../skills";
 import type { OpenTarget } from "../StudioApp";
 
 /** Per-kind tag colour for repo cards (matches the design). */
@@ -29,17 +30,6 @@ function fmtStars(n: number | null): string {
 
 function MiniStat({ n, l, accent }: { n: React.ReactNode; l: string; accent?: string }) {
   return <div className="pi-stat"><div className={"pi-n" + (accent ? " " + accent : "")}>{n}</div><div className="pi-l">{l}</div></div>;
-}
-
-interface SkillGroup { ns: string; color: string; label: string; items: StudioSkill[] }
-function groupSkills(skills: StudioSkill[]): SkillGroup[] {
-  const order: string[] = [];
-  const map = new Map<string, StudioSkill[]>();
-  for (const s of skills) {
-    if (!map.has(s.ns)) { map.set(s.ns, []); order.push(s.ns); }
-    map.get(s.ns)!.push(s);
-  }
-  return order.map((ns) => ({ ns, color: nsColor(ns), label: nsLabel(ns), items: map.get(ns)! }));
 }
 
 /** Group subagents by their division (first path segment), preserving order. */
