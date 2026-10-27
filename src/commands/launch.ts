@@ -20,9 +20,9 @@
  * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
  */
 
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
@@ -43,7 +43,6 @@ import {
   splitSkillBytes,
   tokenLevelEmoji,
   type SkillTokens,
-  type TokenBreakdown,
 } from "../lib/token-budget";
 
 import {
@@ -118,6 +117,24 @@ import {
 } from "../lib/launch-guards";
 import { shimDir, stripShimDirFromPath } from "../lib/shim-dir";
 import { needsWindowsCommandShell } from "../lib/claude-binary";
+
+import {
+  colorFns,
+  formatProfileSummary,
+  formatTokenWarning,
+  formatStartupBanner,
+  formatDoctorWarnings,
+  sortProfileOptions,
+  relativeTime,
+  mergeProfileSuggestions,
+  MAX_SUGGESTIONS,
+  SUGGESTED_MIN_CONFIDENCE,
+  SUGGESTED_AUTO_PICK_CONFIDENCE,
+  authmuxAccountTag,
+  formatNpxDegraded,
+  type RecentEntry,
+  type SuggestedEntry,
+} from "../lib/launch-format";
 
 export {
   isAlwaysPickEnabled,
@@ -292,7 +309,15 @@ function parse(args: string[]): ParsedArgs {
 }
 
 /** Test-only surface. */
-export const __test = { parse, shouldOpenMcpPicker, listProfileOptions };
+export const __test = {
+  parse,
+  shouldOpenMcpPicker,
+  listProfileOptions,
+  rescueRuntimeCredsToOwner,
+  startCredentialReconciler,
+  invalidateRuntimeHash,
+  buildSkillsRoot,
+};
 
 // ---------------------------------------------------------------------------
 // Workspace overrides — merge active workspace env into profile
@@ -500,7 +525,6 @@ function announceTmuxProfile(
 
   if (pane) {
     try {
-      const { spawnSync } = require("node:child_process");
       // One tmux invocation for all eight options. Measured on a live server:
       // eight separate spawns cost ~81ms, the batched form ~11ms — and this
       // runs on the launch path, in front of the agent the user is waiting on.
@@ -533,7 +557,6 @@ function announceTmuxProfile(
     }
     if (pane && applied.size > 0) {
       try {
-        const { spawnSync } = require("node:child_process");
         const keys = [...applied.keys()];
         // Read all eight back in one spawn. A launch that started after us owns
         // the badge now, and clearing its values would blank the border for a
@@ -589,129 +612,49 @@ function announceTmuxProfile(
  */
 const expandWildcards = expandSkillWildcards;
 
-/**
- * Compact human-readable summary of what a profile would load. Each returned
- * string is one line (or wrapped block) in the picker's post-pick log.
- *
- * When `parts` is supplied and contains more than one entry, the summary
- * shows a composite breakdown after the skills count — e.g.
- * `skills    53  ← skill-writer:8 + core:12 + ecc:33`.
- *
- * Colors are emitted only when stdout is a TTY and `NO_COLOR` is unset.
- */
-const LIST_TRUNCATE = 8;
-const BREAKDOWN_MAX = 6; // per-profile skill breakdown cap before "+N more"
-const COMMANDS_PER_LINE = 4;
-const LABEL_WIDTH = 10; // "commands  " — keep visually aligned
+// Formatting display helpers (formatProfileSummary, categoryBreakdown, colorFns, …)
+// moved to src/lib/launch-format.ts; re-exported for back-compat.
+export {
+  formatProfileSummary,
+  categoryBreakdown,
+} from "../lib/launch-format";
 
-export function formatProfileSummary(
-  profile: ResolvedProfile,
-  parts?: ResolvedProfile[],
-): string[] {
-  const c = colorFns();
-  const label = (s: string) => c.cyan(s.padEnd(LABEL_WIDTH));
-  const indent = " ".repeat(LABEL_WIDTH);
-  const lines: string[] = [];
+// ---------------------------------------------------------------------------
+// Shared path helpers (used from multiple call sites inside run())
+// ---------------------------------------------------------------------------
 
-  const localCount = profile.skills.local.length;
-  const npxCount = profile.skills.npx.reduce((sum, source) => sum + source.skills.length, 0);
-  const totalSkills = countProfileSkills(profile);
-  if (totalSkills > 0) {
-    const breakdown =
-      npxCount > 0 ? ` (${localCount} local, ${npxCount} npx)` : "";
-    let line = `${label("skills")}${c.yellow(String(totalSkills))}${c.dim(breakdown)}`;
-    if (parts && parts.length > 1) {
-      const segs = parts.map(
-        (p) =>
-          `${p.icon ? `${p.icon} ` : ""}${p.name}:${countProfileSkills(p)}`,
-      );
-      // Cap the per-profile breakdown so a fat composite doesn't wrap into a
-      // multi-line wall — the headline total already carries the full picture.
-      const shown =
-        segs.length > BREAKDOWN_MAX
-          ? `${segs.slice(0, BREAKDOWN_MAX).join(" + ")} +${segs.length - BREAKDOWN_MAX} more`
-          : segs.join(" + ");
-      line += `  ${c.dim("←")} ${c.dim(shown)}`;
-    }
-    lines.push(line);
-    if (localCount >= 5) {
-      const cats = categoryBreakdown(profile.skills.local.map((s) => s.id));
-      if (cats) lines.push(`${indent}${c.dim(cats)}`);
-    }
-  }
-  if (profile.mcps.length > 0) {
-    lines.push(
-      `${label("mcps")}${truncateList(profile.mcps.map((m) => m.id))}`,
-    );
-  }
-  if (profile.plugins.length > 0) {
-    lines.push(
-      `${label("plugins")}${truncateList(profile.plugins.map((pl) => pl.id))}`,
-    );
-  }
-  if (profile.commands && profile.commands.length > 0) {
-    const slashed = profile.commands.map((cmd) => `/${basename(cmd, ".md")}`);
-    lines.push(
-      `${label("commands")}${wrapItems(slashed, COMMANDS_PER_LINE, LABEL_WIDTH)}`,
-    );
-  }
-  if (profile.agents && profile.agents.length > 0) {
-    lines.push(`${label("agents")}${profile.agents.join("  ")}`);
-  }
-  return lines;
+/** Return the root directory that contains installed skill sub-folders. */
+function buildSkillsRoot(): string {
+  return join(
+    process.env.CUE_REPO_ROOT ??
+      resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+    "resources",
+    "skills",
+    "skills",
+  );
 }
 
 /**
- * Group skill ids by their `<category>/<slug>` prefix and emit a compact
- * `meta:25  gstack:16  plan:5 …` summary. Sorted by descending count.
- * Returns "" when there are no skills.
+ * Delete the per-runtime `.cue-hash` file so the next launch forces a full
+ * materializer rebuild. Swallows ENOENT and any other deletion error.
  */
-export function categoryBreakdown(skillIds: string[], max = 7): string {
-  if (skillIds.length === 0) return "";
-  const groups = new Map<string, number>();
-  for (const id of skillIds) {
-    const parts = id.split("/");
-    const cat = parts.length > 1 ? parts[0]! : "other";
-    groups.set(cat, (groups.get(cat) ?? 0) + 1);
+async function invalidateRuntimeHash(
+  runtimeKey: string,
+  agentKind: AgentKind,
+): Promise<void> {
+  const { rm: rmFile } = await import("node:fs/promises");
+  const hashPath = join(
+    configDir(),
+    "runtime",
+    runtimeKey,
+    agentKind === "claude-code" ? "claude" : "codex",
+    ".cue-hash",
+  );
+  try {
+    await rmFile(hashPath, { force: true });
+  } catch {
+    /* ok */
   }
-  const sorted = [...groups.entries()].sort((a, b) => b[1] - a[1]);
-  const head = sorted
-    .slice(0, max)
-    .map(([cat, n]) => `${cat}:${n}`)
-    .join("  ");
-  if (sorted.length > max) {
-    return `${head}  +${sorted.length - max} cats`;
-  }
-  return head;
-}
-
-/** Wrap a list of items into rows of `perRow`, separated by two spaces, with
- * continuation lines indented to align with the first item. */
-function wrapItems(items: string[], perRow: number, indent: number): string {
-  const rows: string[] = [];
-  for (let i = 0; i < items.length; i += perRow) {
-    rows.push(items.slice(i, i + perRow).join("  "));
-  }
-  const pad = " ".repeat(indent);
-  return rows.join(`\n${pad}`);
-}
-
-function truncateList(items: string[], max = LIST_TRUNCATE): string {
-  if (items.length <= max) return items.join(", ");
-  return `${items.slice(0, max).join(", ")}, +${items.length - max} more`;
-}
-
-/** Lazy color helpers. Disabled when stdout isn't a TTY or `NO_COLOR` is set. */
-function colorFns() {
-  const enabled = process.stdout.isTTY === true && !process.env.NO_COLOR;
-  const wrap = (code: string) => (s: string) =>
-    enabled ? `\x1b[${code}m${s}\x1b[0m` : s;
-  return {
-    cyan: wrap("36"),
-    yellow: wrap("33"),
-    dim: wrap("2"),
-    bold: wrap("1"),
-  };
 }
 
 // ---------------------------------------------------------------------------
@@ -737,284 +680,34 @@ export {
   type SkillTokens,
   type TokenBreakdown,
 } from "../lib/token-budget";
-/** Format the token-overhead block. Returns `[]` under the 2K always-on floor. */
-export function formatTokenWarning(b: TokenBreakdown): string[] {
-  if (b.alwaysOn < 2000) return [];
-  const c = colorFns();
-  const lines: string[] = [];
-  const level = tokenLevelEmoji(b.alwaysOn);
-  const alwaysK = `${(b.alwaysOn / 1000).toFixed(1)}K`;
-  lines.push(
-    `${level} Skill overhead: ${c.yellow(`~${alwaysK}`)} always-on (${b.totalSkills} skills)`,
-  );
-  if (b.alwaysOn >= 50_000) {
-    lines.push(
-      `   ${c.yellow("Very heavy profile:")} prefer \`core\` or a narrow stack; use \`--subset "<task>"\` before launching broad composites.`,
-    );
-  }
+// formatTokenWarning, StartupBannerInfo, formatStartupBanner, DoctorWarning,
+// formatDoctorWarnings, sortProfileOptions, relativeTime — moved to
+// src/lib/launch-format.ts; re-exported for back-compat.
+export type {
+  StartupBannerInfo,
+  DoctorWarning,
+} from "../lib/launch-format";
+export {
+  formatTokenWarning,
+  formatStartupBanner,
+  formatDoctorWarnings,
+  sortProfileOptions,
+  relativeTime,
+} from "../lib/launch-format";
 
-  // `byProfile[0]` is the primary (the profile the user actively picked);
-  // the rest are companions added via the multiselect. We tag whichever part
-  // weighs the most as "← heaviest" purely for info, but only consider
-  // *companions* as candidates for the "Drop X" hint below — telling the
-  // user to drop their primary is never the right advice.
-  let heaviestPart: { name: string; tokens: number } | undefined;
-  let heaviestDroppable: { name: string; tokens: number } | undefined;
-  if (b.byProfile.length > 1) {
-    heaviestPart = [...b.byProfile].sort((a, x) => x.tokens - a.tokens)[0];
-    heaviestDroppable = [...b.byProfile.slice(1)].sort(
-      (a, x) => x.tokens - a.tokens,
-    )[0];
-    const heaviestName = heaviestPart!.name;
-    const segments = b.byProfile.map((p) => {
-      const kStr = `${(p.tokens / 1000).toFixed(1)}K`;
-      const iconPart = p.icon ? `${p.icon} ` : "";
-      const label = `${iconPart}${p.name} ${kStr}`;
-      return p.name === heaviestName
-        ? `${c.bold(label)} ${c.dim("← heaviest")}`
-        : c.dim(label);
-    });
-    lines.push(`   By profile:  ${segments.join(c.dim("  ·  "))}`);
-  }
-
-  if (b.maxIfAllActivate > 0) {
-    const maxK = `${(b.maxIfAllActivate / 1000).toFixed(0)}K`;
-    lines.push(
-      `   ${c.dim(`~${maxK} max if every skill activates (bodies load on demand)`)}`,
-    );
-  }
-
-  const top3 = b.heaviestBodies.slice(0, 3);
-  if (top3.length > 0) {
-    const items = top3
-      .map((s) => `${s.id.split("/").pop()} (${(s.tokens / 1000).toFixed(1)}K)`)
-      .join(", ");
-    lines.push(`   ${c.dim(`Heaviest bodies:  ${items}`)}`);
-  }
-
-  if (heaviestDroppable && heaviestDroppable.tokens > 3000) {
-    const saveK = `${(heaviestDroppable.tokens / 1000).toFixed(1)}K`;
-    lines.push(
-      `   💡 Drop ${c.bold(`"${heaviestDroppable.name}"`)} to save ~${saveK} always-on`,
-    );
-  } else if (b.alwaysOn > 10000) {
-    lines.push(`   💡 Run \`cue skills audit\` to trim unused skills.`);
-  }
-
-  return lines;
-}
-
-/**
- * Format the single-line startup identity banner shown on every warm launch.
- * Confirms what you landed in: agent · icon+profile (collapsed to `primary +N`
- * for composites, via formatTmuxTitle) · skill and MCP counts · the always-on
- * token cost. The token segment is omitted under the 2K floor; a `→ cue cost`
- * pointer is appended only for genuinely heavy profiles. The full breakdown —
- * per-profile attribution, heaviest bodies — lives in `cue cost`.
- */
-const BANNER_TOKEN_FLOOR = 2000;
-const BANNER_HEAVY = 10_000;
-
-export interface StartupBannerInfo {
-  /** Pre-collapsed title from formatTmuxTitle, e.g. "claude · 🏭 gstack +4". */
-  title: string;
-  /** Total skills (local + npx). */
-  skills: number;
-  /** MCP server count. */
-  mcps: number;
-  /** Always-on token estimate, or undefined when not computed (light profile). */
-  alwaysOn?: number;
-}
-
-export function formatStartupBanner(info: StartupBannerInfo): string {
-  const c = colorFns();
-  const segs: string[] = [`${c.cyan("▸")} ${info.title}`];
-  segs.push(`${info.skills} skill${info.skills === 1 ? "" : "s"}`);
-  if (info.mcps > 0) segs.push(`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`);
-  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_TOKEN_FLOOR) {
-    segs.push(
-      `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`,
-    );
-  }
-  let line = segs.join(c.dim(" · "));
-  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_HEAVY) {
-    line += c.dim(" · → cue cost");
-  }
-  return line;
-}
-
-// ---------------------------------------------------------------------------
-// Doctor warnings — inline summary of diagnostics on first build after a
-// rebuild. Replaces the older "run cue doctor to see" generic message.
-// ---------------------------------------------------------------------------
-
-export interface DoctorWarning {
-  code: string;
-  message: string;
-}
-
-/**
- * Format doctor warnings as a single compact line. Returns `[]` when there are
- * none. The per-warning detail lives in `cue doctor --fix`; launch only signals
- * that there's something to look at.
- */
-export function formatDoctorWarnings(warnings: DoctorWarning[]): string[] {
-  if (warnings.length === 0) return [];
-  const c = colorFns();
-  const n = warnings.length;
-  return [
-    `${c.yellow(`⚠ ${n} cue-doctor warning${n > 1 ? "s" : ""}`)} ${c.dim("→ cue doctor --fix")}`,
-  ];
-}
-
-/**
- * Sort picker options. Pure function so tests don't need filesystem.
- *
- * Priority order:
- *   1. Pinned profile (if any) — pinned to top so resuming is one Enter.
- *   2. Used profiles, descending by session count.
- *   3. Never-used profiles, alphabetical. `full` no longer floats to the top
- *      here — it carries a NEVER-USE warning and should sit with its peers.
- */
-export function sortProfileOptions(
-  opts: PickerOption[],
-  pinnedProfile?: string,
-  usage?: Map<string, number>,
-): PickerOption[] {
-  return [...opts].sort((a, b) => {
-    // `top` (the Default entry) always wins, regardless of pin or usage.
-    if (a.top && !b.top) return -1;
-    if (b.top && !a.top) return 1;
-    if (a.value === pinnedProfile) return -1;
-    if (b.value === pinnedProfile) return 1;
-    const ua = usage?.get(a.value) ?? 0;
-    const ub = usage?.get(b.value) ?? 0;
-    if (ua !== ub) return ub - ua;
-    return a.value.localeCompare(b.value);
-  });
-}
-
-/**
- * Format a relative-time string for the picker's recent-section hints.
- * `today` / `yesterday` / `Nd ago` / ISO date. Empty string when `iso` is null.
- */
-export function relativeTime(
-  iso: string | null | undefined,
-  now = Date.now(),
-): string {
-  if (!iso) return "";
-  const then = new Date(iso).getTime();
-  if (Number.isNaN(then)) return "";
-  const diffMs = now - then;
-  const day = 24 * 3600 * 1000;
-  if (diffMs < day) return "today";
-  const days = Math.floor(diffMs / day);
-  if (days === 1) return "yesterday";
-  if (days < 7) return `${days}d ago`;
-  return new Date(iso).toISOString().split("T")[0]!;
-}
-
-/**
- * Build a structured picker order: Default → Recent section → All section.
- *
- * Recent = top `recentLimit` profiles by session count whose `lastUsed` is
- * non-null. Empty when nothing's been used yet — the Recent divider is
- * skipped in that case so the picker stays terse for fresh installs.
- */
-export interface RecentEntry {
-  name: string;
-  sessions: number;
-  lastUsed: string | null;
-}
-
-export interface SuggestedEntry {
-  /** Profile name — must match a value in `allProfileOpts`. */
-  name: string;
-  /** 0.0–1.0 from `detectProfileV2`. */
-  confidence: number;
-  /** Files / signals that drove the match — surfaced in the hint. */
-  reasons: string[];
-  /** AI advice is visually distinguished from deterministic detection. */
-  source?: "ai" | "deterministic" | "hybrid" | "stale-hybrid";
-}
-
-/**
- * Cap on how many cwd-detected suggestions we surface at the top. Two is
- * enough to cover the "primary stack + sub-profile" case (medusa-dev +
- * medusa-next) without dominating the picker.
- */
-export const MAX_SUGGESTIONS = 2;
-
-/**
- * Combine model judgement with repository signals without inventing a weighted
- * score. Agreement leads. When they disagree, the model's first choice and the
- * detector's strongest choice both survive the two-row picker cap.
- */
-export function mergeProfileSuggestions(
-  advised: readonly DetectionResultV2[],
-  deterministic: readonly DetectionResultV2[],
-): DetectionResultV2[] {
-  const deterministicByProfile = new Map(
-    deterministic.map((item) => [item.profile, item]),
-  );
-  const seen = new Set<string>();
-  const merged: DetectionResultV2[] = [];
-  const add = (
-    item: DetectionResultV2,
-    counterpart?: DetectionResultV2,
-  ): void => {
-    if (seen.has(item.profile)) return;
-    seen.add(item.profile);
-    merged.push({
-      profile: item.profile,
-      confidence: Math.max(item.confidence, counterpart?.confidence ?? 0),
-      reasons: [...new Set([...item.reasons, ...(counterpart?.reasons ?? [])])].slice(
-        0,
-        3,
-      ),
-    });
-  };
-
-  const consensus = advised.filter((item) =>
-    deterministicByProfile.has(item.profile),
-  );
-  for (const item of consensus) {
-    add(item, deterministicByProfile.get(item.profile));
-  }
-
-  const advisedOnly = advised.filter(
-    (item) => !deterministicByProfile.has(item.profile),
-  );
-  const deterministicOnly = deterministic.filter(
-    (item) => !seen.has(item.profile),
-  );
-
-  // No consensus: preserve one choice from each system before either can fill
-  // the remaining rows. With consensus, it already represents both systems.
-  if (consensus.length === 0) {
-    if (advisedOnly[0]) add(advisedOnly[0]);
-    if (deterministicOnly[0]) add(deterministicOnly[0]);
-  }
-  for (const item of advisedOnly) add(item);
-  for (const item of deterministicOnly) add(item);
-  return merged;
-}
-
-/**
- * Minimum confidence for a detection to appear in the Suggested section at
- * all. Below this the signal is too noisy (e.g. a stray tsconfig.json
- * suggesting "frontend") and would push real choices down the screen.
- */
-export const SUGGESTED_MIN_CONFIDENCE = 0.5;
-
-/**
- * Confidence at which the picker pre-selects the top suggestion (Enter on
- * first keystroke launches it). Below this we still SHOW the suggestion but
- * leave Default as the Enter-default so a wrong guess can't hijack the
- * common case.
- */
-export const SUGGESTED_AUTO_PICK_CONFIDENCE = 0.7;
-
+// RecentEntry, SuggestedEntry, MAX_SUGGESTIONS, mergeProfileSuggestions,
+// SUGGESTED_MIN_CONFIDENCE, SUGGESTED_AUTO_PICK_CONFIDENCE — moved to
+// src/lib/launch-format.ts; re-exported for back-compat.
+export type {
+  RecentEntry,
+  SuggestedEntry,
+} from "../lib/launch-format";
+export {
+  MAX_SUGGESTIONS,
+  SUGGESTED_MIN_CONFIDENCE,
+  SUGGESTED_AUTO_PICK_CONFIDENCE,
+  mergeProfileSuggestions,
+} from "../lib/launch-format";
 /**
  * Registered postizz brand folder names (dir basenames under
  * profiles/postizz/brands), used by the combine companion detector to suggest
@@ -1370,11 +1063,16 @@ interface ProfileOptionSet {
   defaultSelector?: string;
 }
 
-async function listProfileOptions(
-  pinnedProfile?: string,
-  preferredAgent: "claude" | "codex" = "claude",
-): Promise<ProfileOptionSet> {
-  const names = await listProfiles();
+
+/**
+ * Load the per-profile PickerOption rows and the Default entry.
+ * Handles kitty-terminal image transmission and profile YAML loading.
+ * Extracted from listProfileOptions (finding 5).
+ */
+async function loadPickerOptions(
+  names: string[],
+  pinnedProfile: string | undefined,
+): Promise<{ opts: PickerOption[]; defaultOpt: PickerOption | undefined }> {
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
   const kitty = await detectKittyTerminal();
@@ -1483,12 +1181,23 @@ async function listProfileOptions(
     /* non-fatal — picker still works without the Default entry */
   }
 
-  // Pull usage data so most-picked entries float to the top. Combo pins like
-  // "blog-writer+postizz" are naturally separate keys in the analytics log.
+  return { opts, defaultOpt };
+}
+
+/**
+ * Collect analytics-based usage signals for picker ranking.
+ * Returns usage counts, a recency list, and whether the recency list
+ * is scoped to the current working directory.
+ * Extracted from listProfileOptions (finding 5).
+ */
+async function gatherUsageSignals(cwd: string): Promise<{
+  usage: Map<string, number>;
+  recent: RecentEntry[];
+  recentCwdScoped: boolean;
+}> {
   const usage = new Map<string, number>();
   const recentGlobal: RecentEntry[] = [];
   const recentCwd: RecentEntry[] = [];
-  const cwd = process.cwd();
   try {
     for (const s of computeStats()) {
       usage.set(s.profile, s.sessions);
@@ -1515,6 +1224,18 @@ async function listProfileOptions(
   // history; fall back to global only for brand-new directories. Keeps
   // ambient $HOME launches (auto-pinned profiles) out of project pickers.
   const recent = recentCwd.length > 0 ? recentCwd : recentGlobal;
+  return { usage, recent, recentCwdScoped: recentCwd.length > 0 };
+}
+
+
+async function listProfileOptions(
+  pinnedProfile?: string,
+  preferredAgent: "claude" | "codex" = "claude",
+): Promise<ProfileOptionSet> {
+  const names = await listProfiles();
+  const { opts, defaultOpt } = await loadPickerOptions(names, pinnedProfile);
+  const cwd = process.cwd();
+  const { usage, recent, recentCwdScoped } = await gatherUsageSignals(cwd);
 
   // Cwd-detected suggestions (medusa-config.js, Cargo.toml, etc.). Only
   // surfaced when a profile of the same name actually exists in this install.
@@ -1596,11 +1317,12 @@ async function listProfileOptions(
     detected: detections,
     deterministic,
     recents: recent,
-    recentsAreCwdScoped: recentCwd.length > 0,
+    recentsAreCwdScoped: recentCwdScoped,
     featured,
     defaultSelector: defaultOpt?.value,
   };
 }
+
 
 async function readSharedClaudeMd(profile?: {
   name: string;
@@ -1952,40 +1674,8 @@ async function rescueRuntimeCredsToOwner(runtimeKey: string): Promise<void> {
   }
 }
 
-/**
- * When cue launches under an authmux parallel account, CLAUDE_CONFIG_DIR points
- * at that account's dir (`~/.claude-accounts/<name>`) or its per-run session
- * copy (`~/.claude-accounts-sessions/<name>/<ts>-<pid>`). Derive a stable
- * per-account tag so the runtime dir can be keyed by profile + account. Without
- * it, two accounts sharing a cue profile share ONE runtime `.credentials.json` /
- * `.claude.json` and collapse into a single Anthropic login (the credential is
- * copied, not symlinked, so the shared runtime is the source of truth). Returns
- * undefined for the default `~/.claude` and any non-authmux config dir, which
- * preserves the plain per-profile runtime.
- */
-export function authmuxAccountTag(
-  configDirEnv: string | undefined,
-  homeDir: string,
-): string | undefined {
-  if (!configDirEnv) return undefined;
-  const resolved = resolve(configDirEnv);
-  for (const root of [
-    join(homeDir, ".claude-accounts-sessions"),
-    join(homeDir, ".claude-accounts"),
-  ]) {
-    const prefix = root + sep;
-    if (resolved.startsWith(prefix)) {
-      const name = resolved.slice(prefix.length).split(sep)[0];
-      // Filesystem-safe, and can't inject the `profile@tag` separator or a path
-      // separator into the runtime dir name. LIMITATION: names differing only in
-      // non-`[A-Za-z0-9._-]` characters (e.g. `a@b` vs `a_b`) sanitize to the same
-      // tag and would share a runtime. authmux account names are simple, user-chosen
-      // ids (`parallel --add <name>`), so this is a theoretical edge, not a live risk.
-      if (name) return name.replace(/[^A-Za-z0-9._-]/g, "_");
-    }
-  }
-  return undefined;
-}
+// authmuxAccountTag — moved to src/lib/launch-format.ts; re-exported for back-compat.
+export { authmuxAccountTag } from "../lib/launch-format";
 
 interface ResolveNpxSkillSourcesOptions {
   resolveNpx?: (profile: ResolvedProfile) => Promise<LinkPlan[]>;
@@ -2053,62 +1743,454 @@ export async function resolveNpxSkillSources(
   return sources;
 }
 
-/** "5h48m" / "12m" / "40s" — coarse on purpose, this is a hint, not a clock. */
-function formatDuration(ms: number): string {
-  const total = Math.max(0, Math.round(ms / 1000));
-  const h = Math.floor(total / 3600);
-  const m = Math.floor((total % 3600) / 60);
-  if (h > 0) return `${h}h${m}m`;
-  if (m > 0) return `${m}m`;
-  return `${total}s`;
-}
-
-/**
- * Human-readable lines for skills dropped by a failed remote fetch.
- *
- * A skipped entry is reported differently from a failed one: nothing was tried
- * this launch, so saying "unreachable" would be a fresh claim we did not make.
- * The line names the remembered reason and when the retry happens on its own,
- * because otherwise a user watching a skill stay missing has no way to tell a
- * cooling-down repo from a permanently broken profile entry.
- */
-export function formatNpxDegraded(failures: NpxEntryFailure[]): string[] {
-  const lines: string[] = [];
-  for (const f of failures) {
-    const reason = f.error.message.replace(
-      /^npx fetch (?:failed|skipped) for \S+: /,
-      "",
-    );
-    const outcome =
-      f.skills.length > 0
-        ? `launching without ${f.skills.join(", ")}`
-        : "using cached copy";
-    if (f.skipped) {
-      const retry =
-        f.retryInMs === undefined
-          ? "auto-retry later"
-          : `auto-retry in ${formatDuration(f.retryInMs)}`;
-      lines.push(
-        `[cue] skills: ${f.repo} skipped — earlier fetch failed (${reason}), ${retry} — ${outcome}`,
-      );
-    } else {
-      lines.push(`[cue] skills: ${f.repo} unreachable (${reason}) — ${outcome}`);
-    }
-  }
-  if (lines.length > 0) {
-    // Always the forcing form: a fetch that just failed has left a marker, so
-    // a plain `cue launch` would skip it rather than retry — advertising that
-    // command would send the user to a no-op.
-    lines.push(
-      "[cue] retry the fetch now with: CUE_NPX_FORCE=1 cue launch (or cue doctor)",
-    );
-  }
-  return lines;
-}
+// formatNpxDegraded — moved to src/lib/launch-format.ts; re-exported for back-compat.
+export { formatNpxDegraded } from "../lib/launch-format";
 
 // ---------------------------------------------------------------------------
 // Main entry point
 // ---------------------------------------------------------------------------
+
+/** Options forwarded from {@link run} into {@link applyMcpPruning}. */
+interface ApplyMcpPruningOpts {
+  agentKind: AgentKind;
+  parsed: Pick<ParsedArgs, "disableMcp" | "forcePickMcps" | "dryRun">;
+  pinDir: string;
+  loadoutActive: boolean;
+  runtimeKey: string;
+  profileName: string;
+}
+
+/**
+ * Prune the profile's MCP servers to what active skills need and let the
+ * user toggle them interactively. Returns the (possibly modified) profile
+ * and the list of disabled MCP ids to forward to the materializer.
+ * Always resolves — errors are swallowed (fail-open, never blocks a launch).
+ *
+ * Extracted from the inline MCP-prune block in run() (finding 6).
+ */
+async function applyMcpPruning(
+  profile: ResolvedProfile,
+  opts: ApplyMcpPruningOpts,
+): Promise<{ profile: ResolvedProfile; mcpDisabledIds: string[] }> {
+  const { agentKind, parsed, pinDir, loadoutActive, runtimeKey, profileName } = opts;
+  // Lazy-MCP: ids the user disabled, forwarded to the materializer so the stale
+  // keys are evicted from the runtime .claude.json (which the rebuild preserves).
+  let mcpDisabledIds: string[] = [];
+  // ── Lazy MCP loading ──────────────────────────────────────────────────
+  // Prune the profile's MCP servers to what the chosen skills actually need
+  // (smart-prune) and let the user disable individual servers interactively.
+  // The choice is remembered per pinned directory; later launches apply it
+  // silently until the profile's MCP set changes (fingerprint mismatch).
+  //
+  // Runs BEFORE the loader so the interactive toggle owns a clean TTY, and
+  // BEFORE smart-subset — so `needed` reflects the pre-subset skill set. That
+  // only ever over-keeps an MCP (safe); subset's copy-on-write preserves the
+  // pruned `mcps`. Pruning `profile.mcps` changes the materializer content
+  // hash, so the smaller `.claude.json` rebuilds automatically.
+  if (agentKind === "claude-code" && profile.mcps.length > 0) {
+    try {
+      const { getNeededMcps } = await import("../lib/skill-dependencies");
+      const {
+        readMcpOverride,
+        writeMcpOverride,
+        mcpFingerprint,
+        reconcileDisabledWithNeeded,
+        autoPrunableMcps,
+        mcpPruneMode,
+        isRecognizedPruneEnv,
+        readRuntimeMcpServerIds,
+        withAutoPrunedGlobals,
+      } = await import("../lib/mcp-overrides");
+
+      const allMcpIds = profile.mcps.map((m) => m.id);
+      const fingerprint = mcpFingerprint(allMcpIds);
+      const pinned = new Set(
+        profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()),
+      );
+      const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
+
+      const keepNonPinned = (drop: Set<string>): Set<string> =>
+        new Set(
+          allMcpIds.filter(
+            (id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase()),
+          ),
+        );
+
+      let kept: Set<string> | null = null;
+      let reviewed = false;
+
+      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
+      // (including an explicit `off`) overrides the profile's declared default;
+      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
+      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
+      // (e.g. a typo like `profil`) must NOT silently suppress the profile
+      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
+      const pruneEnv = process.env.CUE_PRUNE_MCPS;
+      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
+      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
+      if (pruneEnvSet && !pruneFromEnv) {
+        process.stderr.write(
+          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
+        );
+      }
+      const pruneMode = pruneFromEnv
+        ? mcpPruneMode(pruneEnv)
+        : (profile.mcpPrune ?? "off");
+      const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
+
+      if (parsed.disableMcp.length > 0) {
+        // Non-interactive flag path: drop named ids (pinned ones excepted) for
+        // THIS launch only. `reviewed` stays false so the choice is NOT written
+        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
+        // run or a debug session must not silently stick on later launches. Use
+        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
+        kept = keepNonPinned(
+          new Set(parsed.disableMcp.map((s) => s.toLowerCase())),
+        );
+      } else {
+        const override = readMcpOverride(pinDir);
+        const overrideValid =
+          override !== undefined && override.fingerprint === fingerprint;
+        const interactive = process.stdin.isTTY === true && !parsed.dryRun;
+
+        // Replay a remembered disable-list, cross-checked against what active
+        // skills now need: a skill added since the override was captured may
+        // need an MCP the user disabled. Re-enable those (honor the dependency)
+        // and say so, rather than silently starving the skill. The override is
+        // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
+        const applyRememberedOverride = (): Set<string> => {
+          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(
+            override!.disabled,
+            needed.keys(),
+          );
+          if (reEnabled.length > 0) {
+            process.stderr.write(
+              `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
+            );
+          }
+          return keepNonPinned(new Set(keepDisabled));
+        };
+
+        // The toggle opens on --cue-pick-mcps and when there's no valid
+        // remembered choice (first launch of this MCP set, or the set changed —
+        // the fingerprint invalidates the override). It does NOT re-open just
+        // because the profile was picked interactively this launch: a remembered
+        // choice is honored, so picking `core` from the startup menu no longer
+        // forces an MCP dialog every time. Re-review explicitly with
+        // --cue-pick-mcps. A valid override seeds the checkboxes when it does open.
+        if (
+          shouldOpenMcpPicker({
+            interactive,
+            forcePickMcps: parsed.forcePickMcps,
+            overrideValid,
+          })
+        ) {
+          const { pickMcps } = await import("../lib/mcp-picker");
+          // Initial checkbox state, best first: the remembered override (this
+          // is a re-review), else — when a loadout is active — the project-
+          // aware suggestion (unpinned MCPs no full skill needs start
+          // unchecked; Enter persists it as the normal override), else the
+          // picker's built-in defaults.
+          kept = await pickMcps({
+            profileMcpIds: allMcpIds,
+            pinned,
+            needed,
+            initialDisabled: overrideValid
+              ? new Set(override!.disabled.map((s) => s.toLowerCase()))
+              : loadoutActive
+                ? new Set(autoPrunableMcps(allMcpIds, pinned, needed.keys()))
+                : undefined,
+          });
+          reviewed = kept !== null; // null = user cancelled → persist nothing
+          // Cancelling the review must not silently re-enable everything when a
+          // remembered choice exists — fall back to it, same as a non-picking launch.
+          if (kept === null && overrideValid) kept = applyRememberedOverride();
+        } else if (overrideValid) {
+          kept = applyRememberedOverride();
+        } else if (pruneMode !== "off") {
+          // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
+          // default. Self-contained: it sets mcpDisabledIds directly (so it can
+          // drop GLOBAL servers that aren't in profile.mcps and thus invisible to
+          // the shared block below) and leaves `kept` null to skip that block.
+          // Recomputed each launch; never persisted, so the picker's remembered
+          // overrides stay intact.
+          //
+          //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
+          //                  user-global servers are never touched holds).
+          //   all mode     → also drop unused GLOBAL servers present in the
+          //                  runtime .claude.json (the heavy ones a coding
+          //                  profile never calls). Removes config set globally.
+          const universe = [...allMcpIds];
+          if (pruneMode === "all") {
+            const rtClaudeJson = join(
+              configDir(),
+              "runtime",
+              runtimeKey,
+              "claude",
+              ".claude.json",
+            );
+            for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
+              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase()))
+                universe.push(id);
+            }
+          }
+          const drop = new Set(
+            autoPrunableMcps(universe, pinned, needed.keys()),
+          );
+          debug("launch:mcp-prune", {
+            mode: pruneMode,
+            source: pruneSource,
+            universe,
+            pinned: [...pinned],
+            needed: [...needed.keys()],
+            drop: [...drop],
+          });
+          if (drop.size > 0) {
+            profile = {
+              ...profile,
+              mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
+            };
+            mcpDisabledIds = [...drop];
+            // Name the pin exemption. `pin: true` silently makes prune a no-op
+            // for those servers, so "auto-pruned 2 unused" reads as if the rest
+            // were all needed — leaving no way to tell an MCP that survived
+            // because a skill wants it from one that survived because it is
+            // pinned.
+            //
+            // Scope, deliberately narrow: this counts ids DECLARED pinned, and
+            // "exempt" means exempt from prune — which is exactly true, since
+            // autoPrunableMcps skips every pinned id. It is not a count of
+            // servers that will start: collectProfileMcps later drops entries
+            // by `agents:`, `when:`, and registry presence, none of which this
+            // set knows about. No bundled profile combines `pin:` with those
+            // today. It also only prints when something was dropped; a profile
+            // where everything survives via pin still says nothing.
+            const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
+            process.stderr.write(
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
+            );
+          }
+        }
+        // else: non-interactive with no valid override → keep all (kept stays null).
+      }
+
+      debug("launch:mcp-prune", {
+        all: allMcpIds,
+        pinned: [...pinned],
+        needed: [...needed.keys()],
+        reviewed,
+        kept: kept ? [...kept] : null,
+      });
+      if (kept !== null) {
+        const keptSet = kept;
+        let disabled = allMcpIds
+          .filter((id) => !keptSet.has(id))
+          .map((id) => id.toLowerCase());
+        if (pruneMode === "all") {
+          const rtClaudeJson = join(
+            configDir(),
+            "runtime",
+            runtimeKey,
+            "claude",
+            ".claude.json",
+          );
+          disabled = withAutoPrunedGlobals(
+            disabled,
+            allMcpIds,
+            readRuntimeMcpServerIds(rtClaudeJson),
+            pinned,
+            needed.keys(),
+          );
+        }
+        if (disabled.length > 0) {
+          profile = {
+            ...profile,
+            mcps: profile.mcps.filter((m) => keptSet.has(m.id)),
+          };
+          mcpDisabledIds = disabled;
+          process.stderr.write(
+            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · ${
+              parsed.forcePickMcps && isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS)
+                ? "asked every launch (CUE_ALWAYS_PICK_MCPS) · unset it to remember"
+                : "--cue-pick-mcps to change"
+            }\n`,
+          );
+        }
+        // Persist whenever the user actively reviewed (keeps the remembered set
+        // fresh, and clears a stale override when they re-enable everything).
+        // `disabled` may be [] here — that's intentional: it records "reviewed,
+        // nothing disabled" so a later launch doesn't re-prompt.
+        if (reviewed)
+          writeMcpOverride(pinDir, {
+            profile: profileName,
+            fingerprint,
+            disabled,
+          });
+      }
+    } catch (err) {
+      debug("launch:mcp-prune", err); // fail-open — never blocks a launch
+    }
+  }
+  return { profile, mcpDisabledIds };
+}
+
+
+/**
+ * Emit token-budget and context-budget warnings to stderr.
+ * Returns the always-on token count for the tmux badge, or undefined when
+ * the profile is too small to bother (≤5 skills) or measurement fails.
+ * Extracted from run() (finding 0/77/104).
+ */
+async function emitTokenBudgetWarning(
+  profile: ResolvedProfile,
+  profileName: string,
+): Promise<number | undefined> {
+  // Token budget warning — accurate measurement, actionable advice
+  const skillCount = profile.skills.local.length;
+
+  // Skill → MCP dependency check (non-fatal)
+  try {
+    const { detectMissingDependencies } =
+      await import("../lib/skill-dependencies");
+    const skillIds = profile.skills.local.map((s) => s.id);
+    const mcpIds = profile.mcps.map((m) => m.id);
+    const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
+    if (missing.length > 0) {
+      const unique = [...new Set(missing.map((m) => m.mcpId))];
+      const c = colorFns();
+      process.stderr.write(
+        `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
+      );
+    }
+  } catch {
+    /* non-fatal */
+  }
+
+  // Tracks the breakdown so the tmux badge below can reuse what the CLI
+  // banner already computed. Undefined when skillCount is too small to bother
+  // — in that case the badge just isn't set, which is fine.
+  let alwaysOnForBadge: number | undefined;
+  if (skillCount > 5) {
+    try {
+      const skillsRoot = buildSkillsRoot();
+      const tokenCache = new Map<string, SkillTokens>();
+      const tokensForSkill = (id: string): SkillTokens => {
+        const cached = tokenCache.get(id);
+        if (cached) return cached;
+        let result: SkillTokens = { frontmatter: 0, body: 0 };
+        try {
+          const src = readFileSync(join(skillsRoot, id, "SKILL.md"), "utf8");
+          const { frontmatter, body } = splitSkillBytes(src);
+          result = {
+            frontmatter: Math.ceil(frontmatter / 4),
+            body: Math.ceil(body / 4),
+          };
+        } catch {
+          /* skill missing on disk; counts as 0 */
+        }
+        tokenCache.set(id, result);
+        return result;
+      };
+
+      // For composite selectors, load each part so we can attribute tokens.
+      const partNames = parseProfileSelector(profileName);
+      let parts: ResolvedProfile[] | undefined;
+      if (partNames.length > 1) {
+        try {
+          parts = await Promise.all(partNames.map((p) => loadProfile(p)));
+        } catch {
+          /* breakdown unavailable, total still shown */
+        }
+      }
+
+      const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
+      alwaysOnForBadge = breakdown.alwaysOn;
+      const lines = formatTokenWarning(breakdown);
+
+      // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
+      // should stay under 50% of the model's context window so the other half
+      // is free for the conversation. Window precedence: profile
+      // contextWindow/model → env (CUE_CONTEXT_WINDOW/CUE_MODEL) → 256K default.
+      const budget = computeContextBudget({
+        skillTokens: breakdown.alwaysOn,
+        mcpCount: profile.mcps.length,
+        window: profile.contextWindow,
+        model: profile.model,
+      });
+      const bc = colorFns();
+      lines.push(
+        ...formatContextBudgetWarning(budget, {
+          yellow: bc.yellow,
+          bold: bc.bold,
+          dim: bc.dim,
+        }),
+      );
+
+      if (lines.length > 0) {
+        process.stderr.write("\n");
+        for (const l of lines) process.stderr.write(`${l}\n`);
+        process.stderr.write("\n");
+      }
+    } catch {
+      /* non-fatal */
+    }
+  }
+  return alwaysOnForBadge;
+}
+
+
+/**
+ * Build the child-process environment for the agent launch.
+ * Sets the config-dir env var ({@link CLAUDE_CONFIG_DIR} or CODEX_HOME),
+ * the launch-depth counter, and isolates claude-mem per profile.
+ * The returned object may be augmented by the caller (e.g. brief injection).
+ * Extracted from run() (finding 0/77/104).
+ */
+async function buildLaunchEnv(
+  agentKind: AgentKind,
+  runtime: { runtimeDir: string },
+  depth: number,
+  profileName: string,
+): Promise<{ childEnv: NodeJS.ProcessEnv; envKey: string }> {
+  const envKey =
+    agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
+  const persistentCodexHome =
+    agentKind === "codex" ? canonicalCodexHome() : undefined;
+  const childEnv: NodeJS.ProcessEnv = {
+    ...process.env,
+    [envKey]: runtime.runtimeDir,
+    ...(persistentCodexHome
+      ? { CUE_CANONICAL_CODEX_HOME: persistentCodexHome }
+      : {}),
+    // Depth, not a boolean — see launchDepth(). The agent's whole process tree
+    // inherits this, so a subtask that shells out to `claude` lands one deeper
+    // rather than being refused.
+    CUE_LAUNCHING: String(depth + 1),
+  };
+
+  // Per-profile claude-mem memory: point the (cue-managed) claude-mem plugin at
+  // an isolated, SQLite-only store + its own worker/server ports so one profile's
+  // memory never bleeds into another's. Best-effort — a failure here must never
+  // block the launch. Opt out with CUE_CLAUDE_MEM_ISOLATE=0. See lib/claude-mem-env.ts.
+  //
+  // SCOPE NOTE: keyed by `profileName`, NOT `runtimeKey` — deliberately. The
+  // per-account runtime isolation above only splits credential/session state so
+  // authmux accounts don't collapse into one login. claude-mem memory stays
+  // shared across accounts on the same profile (re-keying it here would silently
+  // relocate every existing per-profile memory store). Two accounts running the
+  // SAME profile concurrently therefore still share one memory data dir + port
+  // slot; making memory per-account is a separate follow-up.
+  try {
+    const { resolveClaudeMemEnv } = await import("../lib/claude-mem-env");
+    const memEnv = resolveClaudeMemEnv(profileName, {
+      existingEnv: process.env,
+    });
+    if (memEnv) Object.assign(childEnv, memEnv);
+  } catch {
+    /* non-fatal — memory isolation is an enhancement, not a gate */
+  }
+  return { childEnv, envKey };
+}
 
 export async function run(args: string[]): Promise<number> {
   // Recursion guard. See MAX_LAUNCH_DEPTH for why this counts instead of
@@ -2371,14 +2453,8 @@ export async function run(args: string[]): Promise<number> {
     // A shared skill-token reader feeds the always-on estimate (frontmatter
     // bytes ÷4 ≈ tokens) — same approximation as the post-launch overhead
     // banner below, so the picker's heads-up and the banner agree.
-    const { readFileSync: readSkillFile } = await import("node:fs");
-    const skillsRootForTally = join(
-      process.env.CUE_REPO_ROOT ??
-        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-      "resources",
-      "skills",
-      "skills",
-    );
+    const readSkillFile = readFileSync;
+    const skillsRootForTally = buildSkillsRoot();
     const skillTokenCache = new Map<string, SkillTokens>();
     const tokensForSkill = (id: string): SkillTokens => {
       const c = skillTokenCache.get(id);
@@ -2599,13 +2675,7 @@ export async function run(args: string[]): Promise<number> {
       // Direct-path read (skills live at <root>/<category>/<slug>/SKILL.md);
       // fuzzy-resolved ids just yield empty metadata — classification then
       // falls back to id-token matching, and the index row omits the path.
-      const skillsRoot = join(
-        process.env.CUE_REPO_ROOT ??
-          resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-        "resources",
-        "skills",
-        "skills",
-      );
+      const skillsRoot = buildSkillsRoot();
       const result = await applyProjectLoadout({
         profile,
         cwd,
@@ -2641,19 +2711,7 @@ export async function run(args: string[]): Promise<number> {
 
   // --rematerialize: force rebuild by deleting the hash file first
   if (parsed.rematerialize) {
-    const { rm: rmFile } = await import("node:fs/promises");
-    const hashPath = join(
-      configDir(),
-      "runtime",
-      runtimeKey,
-      agentKind === "claude-code" ? "claude" : "codex",
-      ".cue-hash",
-    );
-    try {
-      await rmFile(hashPath, { force: true });
-    } catch {
-      /* ok */
-    }
+    await invalidateRuntimeHash(runtimeKey, agentKind);
   } else {
     // Auto-rematerialize on staleness: if profile.yaml is newer than the stored
     // hash (doctor's D5 predicate), the user edited the profile after the last
@@ -2671,19 +2729,7 @@ export async function run(args: string[]): Promise<number> {
           runtimeKey,
         )
       ) {
-        const { rm: rmFile } = await import("node:fs/promises");
-        const hashPath = join(
-          configDir(),
-          "runtime",
-          runtimeKey,
-          agentKind === "claude-code" ? "claude" : "codex",
-          ".cue-hash",
-        );
-        try {
-          await rmFile(hashPath, { force: true });
-        } catch {
-          /* ok */
-        }
+        await invalidateRuntimeHash(runtimeKey, agentKind);
         process.stderr.write(`[cue] profile changed, rebuilding runtime...\n`);
       }
     } catch (err) {
@@ -2691,264 +2737,15 @@ export async function run(args: string[]): Promise<number> {
     }
   }
 
-  // Lazy-MCP: ids the user disabled, forwarded to the materializer so the stale
-  // keys are evicted from the runtime .claude.json (which the rebuild preserves).
-  let mcpDisabledIds: string[] = [];
-  // ── Lazy MCP loading ──────────────────────────────────────────────────
-  // Prune the profile's MCP servers to what the chosen skills actually need
-  // (smart-prune) and let the user disable individual servers interactively.
-  // The choice is remembered per pinned directory; later launches apply it
-  // silently until the profile's MCP set changes (fingerprint mismatch).
-  //
-  // Runs BEFORE the loader so the interactive toggle owns a clean TTY, and
-  // BEFORE smart-subset — so `needed` reflects the pre-subset skill set. That
-  // only ever over-keeps an MCP (safe); subset's copy-on-write preserves the
-  // pruned `mcps`. Pruning `profile.mcps` changes the materializer content
-  // hash, so the smaller `.claude.json` rebuilds automatically.
-  if (agentKind === "claude-code" && profile.mcps.length > 0) {
-    try {
-      const { getNeededMcps } = await import("../lib/skill-dependencies");
-      const {
-        readMcpOverride,
-        writeMcpOverride,
-        mcpFingerprint,
-        reconcileDisabledWithNeeded,
-        autoPrunableMcps,
-        mcpPruneMode,
-        isRecognizedPruneEnv,
-        readRuntimeMcpServerIds,
-        withAutoPrunedGlobals,
-      } = await import("../lib/mcp-overrides");
-
-      const allMcpIds = profile.mcps.map((m) => m.id);
-      const fingerprint = mcpFingerprint(allMcpIds);
-      const pinned = new Set(
-        profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()),
-      );
-      const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
-
-      const keepNonPinned = (drop: Set<string>): Set<string> =>
-        new Set(
-          allMcpIds.filter(
-            (id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase()),
-          ),
-        );
-
-      let kept: Set<string> | null = null;
-      let reviewed = false;
-
-      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
-      // (including an explicit `off`) overrides the profile's declared default;
-      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
-      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
-      // (e.g. a typo like `profil`) must NOT silently suppress the profile
-      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
-      const pruneEnv = process.env.CUE_PRUNE_MCPS;
-      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
-      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
-      if (pruneEnvSet && !pruneFromEnv) {
-        process.stderr.write(
-          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
-        );
-      }
-      const pruneMode = pruneFromEnv
-        ? mcpPruneMode(pruneEnv)
-        : (profile.mcpPrune ?? "off");
-      const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
-
-      if (parsed.disableMcp.length > 0) {
-        // Non-interactive flag path: drop named ids (pinned ones excepted) for
-        // THIS launch only. `reviewed` stays false so the choice is NOT written
-        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
-        // run or a debug session must not silently stick on later launches. Use
-        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
-        kept = keepNonPinned(
-          new Set(parsed.disableMcp.map((s) => s.toLowerCase())),
-        );
-      } else {
-        const override = readMcpOverride(pinDir);
-        const overrideValid =
-          override !== undefined && override.fingerprint === fingerprint;
-        const interactive = process.stdin.isTTY === true && !parsed.dryRun;
-
-        // Replay a remembered disable-list, cross-checked against what active
-        // skills now need: a skill added since the override was captured may
-        // need an MCP the user disabled. Re-enable those (honor the dependency)
-        // and say so, rather than silently starving the skill. The override is
-        // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
-        const applyRememberedOverride = (): Set<string> => {
-          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(
-            override!.disabled,
-            needed.keys(),
-          );
-          if (reEnabled.length > 0) {
-            process.stderr.write(
-              `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
-            );
-          }
-          return keepNonPinned(new Set(keepDisabled));
-        };
-
-        // The toggle opens on --cue-pick-mcps and when there's no valid
-        // remembered choice (first launch of this MCP set, or the set changed —
-        // the fingerprint invalidates the override). It does NOT re-open just
-        // because the profile was picked interactively this launch: a remembered
-        // choice is honored, so picking `core` from the startup menu no longer
-        // forces an MCP dialog every time. Re-review explicitly with
-        // --cue-pick-mcps. A valid override seeds the checkboxes when it does open.
-        if (
-          shouldOpenMcpPicker({
-            interactive,
-            forcePickMcps: parsed.forcePickMcps,
-            overrideValid,
-          })
-        ) {
-          const { pickMcps } = await import("../lib/mcp-picker");
-          // Initial checkbox state, best first: the remembered override (this
-          // is a re-review), else — when a loadout is active — the project-
-          // aware suggestion (unpinned MCPs no full skill needs start
-          // unchecked; Enter persists it as the normal override), else the
-          // picker's built-in defaults.
-          kept = await pickMcps({
-            profileMcpIds: allMcpIds,
-            pinned,
-            needed,
-            initialDisabled: overrideValid
-              ? new Set(override!.disabled.map((s) => s.toLowerCase()))
-              : loadoutActive
-                ? new Set(autoPrunableMcps(allMcpIds, pinned, needed.keys()))
-                : undefined,
-          });
-          reviewed = kept !== null; // null = user cancelled → persist nothing
-          // Cancelling the review must not silently re-enable everything when a
-          // remembered choice exists — fall back to it, same as a non-picking launch.
-          if (kept === null && overrideValid) kept = applyRememberedOverride();
-        } else if (overrideValid) {
-          kept = applyRememberedOverride();
-        } else if (pruneMode !== "off") {
-          // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
-          // default. Self-contained: it sets mcpDisabledIds directly (so it can
-          // drop GLOBAL servers that aren't in profile.mcps and thus invisible to
-          // the shared block below) and leaves `kept` null to skip that block.
-          // Recomputed each launch; never persisted, so the picker's remembered
-          // overrides stay intact.
-          //
-          //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
-          //                  user-global servers are never touched holds).
-          //   all mode     → also drop unused GLOBAL servers present in the
-          //                  runtime .claude.json (the heavy ones a coding
-          //                  profile never calls). Removes config set globally.
-          const universe = [...allMcpIds];
-          if (pruneMode === "all") {
-            const rtClaudeJson = join(
-              configDir(),
-              "runtime",
-              runtimeKey,
-              "claude",
-              ".claude.json",
-            );
-            for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
-              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase()))
-                universe.push(id);
-            }
-          }
-          const drop = new Set(
-            autoPrunableMcps(universe, pinned, needed.keys()),
-          );
-          debug("launch:mcp-prune", {
-            mode: pruneMode,
-            source: pruneSource,
-            universe,
-            pinned: [...pinned],
-            needed: [...needed.keys()],
-            drop: [...drop],
-          });
-          if (drop.size > 0) {
-            profile = {
-              ...profile,
-              mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
-            };
-            mcpDisabledIds = [...drop];
-            // Name the pin exemption. `pin: true` silently makes prune a no-op
-            // for those servers, so "auto-pruned 2 unused" reads as if the rest
-            // were all needed — leaving no way to tell an MCP that survived
-            // because a skill wants it from one that survived because it is
-            // pinned.
-            //
-            // Scope, deliberately narrow: this counts ids DECLARED pinned, and
-            // "exempt" means exempt from prune — which is exactly true, since
-            // autoPrunableMcps skips every pinned id. It is not a count of
-            // servers that will start: collectProfileMcps later drops entries
-            // by `agents:`, `when:`, and registry presence, none of which this
-            // set knows about. No bundled profile combines `pin:` with those
-            // today. It also only prints when something was dropped; a profile
-            // where everything survives via pin still says nothing.
-            const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
-            process.stderr.write(
-              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
-            );
-          }
-        }
-        // else: non-interactive with no valid override → keep all (kept stays null).
-      }
-
-      debug("launch:mcp-prune", {
-        all: allMcpIds,
-        pinned: [...pinned],
-        needed: [...needed.keys()],
-        reviewed,
-        kept: kept ? [...kept] : null,
-      });
-      if (kept !== null) {
-        const keptSet = kept;
-        let disabled = allMcpIds
-          .filter((id) => !keptSet.has(id))
-          .map((id) => id.toLowerCase());
-        if (pruneMode === "all") {
-          const rtClaudeJson = join(
-            configDir(),
-            "runtime",
-            runtimeKey,
-            "claude",
-            ".claude.json",
-          );
-          disabled = withAutoPrunedGlobals(
-            disabled,
-            allMcpIds,
-            readRuntimeMcpServerIds(rtClaudeJson),
-            pinned,
-            needed.keys(),
-          );
-        }
-        if (disabled.length > 0) {
-          profile = {
-            ...profile,
-            mcps: profile.mcps.filter((m) => keptSet.has(m.id)),
-          };
-          mcpDisabledIds = disabled;
-          process.stderr.write(
-            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · ${
-              parsed.forcePickMcps && isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS)
-                ? "asked every launch (CUE_ALWAYS_PICK_MCPS) · unset it to remember"
-                : "--cue-pick-mcps to change"
-            }\n`,
-          );
-        }
-        // Persist whenever the user actively reviewed (keeps the remembered set
-        // fresh, and clears a stale override when they re-enable everything).
-        // `disabled` may be [] here — that's intentional: it records "reviewed,
-        // nothing disabled" so a later launch doesn't re-prompt.
-        if (reviewed)
-          writeMcpOverride(pinDir, {
-            profile: profileName,
-            fingerprint,
-            disabled,
-          });
-      }
-    } catch (err) {
-      debug("launch:mcp-prune", err); // fail-open — never blocks a launch
-    }
-  }
+  const { profile: mcpPrunedProfile, mcpDisabledIds } = await applyMcpPruning(profile, {
+    agentKind,
+    parsed,
+    pinDir,
+    loadoutActive,
+    runtimeKey,
+    profileName,
+  });
+  profile = mcpPrunedProfile;
 
   // ── Launch loader ─────────────────────────────────────────────────────
   // Animate the two genuinely slow steps of the handoff — smart-subset LLM
@@ -3019,19 +2816,7 @@ export async function run(args: string[]): Promise<number> {
             },
           };
           // Force a rebuild so the smaller skill set actually lands on disk.
-          const { rm: rmFile } = await import("node:fs/promises");
-          const hashPath = join(
-            configDir(),
-            "runtime",
-            runtimeKey,
-            agentKind === "claude-code" ? "claude" : "codex",
-            ".cue-hash",
-          );
-          try {
-            await rmFile(hashPath, { force: true });
-          } catch {
-            /* ok */
-          }
+          await invalidateRuntimeHash(runtimeKey, agentKind);
         }
       } catch (err) {
         progress(
@@ -3253,43 +3038,7 @@ export async function run(args: string[]): Promise<number> {
     debug("launch:auto-ruler", err); /* fail-open — never blocks launch */
   }
 
-  const envKey =
-    agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
-  const persistentCodexHome =
-    agentKind === "codex" ? canonicalCodexHome() : undefined;
-  const childEnv: NodeJS.ProcessEnv = {
-    ...process.env,
-    [envKey]: runtime.runtimeDir,
-    ...(persistentCodexHome
-      ? { CUE_CANONICAL_CODEX_HOME: persistentCodexHome }
-      : {}),
-    // Depth, not a boolean — see launchDepth(). The agent's whole process tree
-    // inherits this, so a subtask that shells out to `claude` lands one deeper
-    // rather than being refused.
-    CUE_LAUNCHING: String(depth + 1),
-  };
-
-  // Per-profile claude-mem memory: point the (cue-managed) claude-mem plugin at
-  // an isolated, SQLite-only store + its own worker/server ports so one profile's
-  // memory never bleeds into another's. Best-effort — a failure here must never
-  // block the launch. Opt out with CUE_CLAUDE_MEM_ISOLATE=0. See lib/claude-mem-env.ts.
-  //
-  // SCOPE NOTE: keyed by `profileName`, NOT `runtimeKey` — deliberately. The
-  // per-account runtime isolation above only splits credential/session state so
-  // authmux accounts don't collapse into one login. claude-mem memory stays
-  // shared across accounts on the same profile (re-keying it here would silently
-  // relocate every existing per-profile memory store). Two accounts running the
-  // SAME profile concurrently therefore still share one memory data dir + port
-  // slot; making memory per-account is a separate follow-up.
-  try {
-    const { resolveClaudeMemEnv } = await import("../lib/claude-mem-env");
-    const memEnv = resolveClaudeMemEnv(profileName, {
-      existingEnv: process.env,
-    });
-    if (memEnv) Object.assign(childEnv, memEnv);
-  } catch {
-    /* non-fatal — memory isolation is an enhancement, not a gate */
-  }
+  const { childEnv, envKey } = await buildLaunchEnv(agentKind, runtime, depth, profileName);
 
   if (parsed.dryRun) {
     process.stdout.write(
@@ -3329,103 +3078,7 @@ export async function run(args: string[]): Promise<number> {
     return 127;
   }
 
-  // Token budget warning — accurate measurement, actionable advice
-  const skillCount = profile.skills.local.length;
-
-  // Skill → MCP dependency check (non-fatal)
-  try {
-    const { detectMissingDependencies } =
-      await import("../lib/skill-dependencies");
-    const skillIds = profile.skills.local.map((s: any) => s.id);
-    const mcpIds = profile.mcps.map((m: any) => m.id);
-    const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
-    if (missing.length > 0) {
-      const unique = [...new Set(missing.map((m) => m.mcpId))];
-      const c = colorFns();
-      process.stderr.write(
-        `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
-      );
-    }
-  } catch {
-    /* non-fatal */
-  }
-
-  // Tracks the breakdown so the tmux badge below can reuse what the CLI
-  // banner already computed. Undefined when skillCount is too small to bother
-  // — in that case the badge just isn't set, which is fine.
-  let alwaysOnForBadge: number | undefined;
-  if (skillCount > 5) {
-    try {
-      const { readFileSync } = await import("node:fs");
-      const skillsRoot = join(
-        process.env.CUE_REPO_ROOT ??
-          resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-        "resources",
-        "skills",
-        "skills",
-      );
-      const tokenCache = new Map<string, SkillTokens>();
-      const tokensForSkill = (id: string): SkillTokens => {
-        const cached = tokenCache.get(id);
-        if (cached) return cached;
-        let result: SkillTokens = { frontmatter: 0, body: 0 };
-        try {
-          const src = readFileSync(join(skillsRoot, id, "SKILL.md"), "utf8");
-          const { frontmatter, body } = splitSkillBytes(src);
-          result = {
-            frontmatter: Math.ceil(frontmatter / 4),
-            body: Math.ceil(body / 4),
-          };
-        } catch {
-          /* skill missing on disk; counts as 0 */
-        }
-        tokenCache.set(id, result);
-        return result;
-      };
-
-      // For composite selectors, load each part so we can attribute tokens.
-      const partNames = parseProfileSelector(profileName);
-      let parts: ResolvedProfile[] | undefined;
-      if (partNames.length > 1) {
-        try {
-          parts = await Promise.all(partNames.map((p) => loadProfile(p)));
-        } catch {
-          /* breakdown unavailable, total still shown */
-        }
-      }
-
-      const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
-      alwaysOnForBadge = breakdown.alwaysOn;
-      const lines = formatTokenWarning(breakdown);
-
-      // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
-      // should stay under 50% of the model's context window so the other half
-      // is free for the conversation. Window precedence: profile
-      // contextWindow/model → env (CUE_CONTEXT_WINDOW/CUE_MODEL) → 256K default.
-      const budget = computeContextBudget({
-        skillTokens: breakdown.alwaysOn,
-        mcpCount: profile.mcps.length,
-        window: profile.contextWindow,
-        model: profile.model,
-      });
-      const bc = colorFns();
-      lines.push(
-        ...formatContextBudgetWarning(budget, {
-          yellow: bc.yellow,
-          bold: bc.bold,
-          dim: bc.dim,
-        }),
-      );
-
-      if (lines.length > 0) {
-        process.stderr.write("\n");
-        for (const l of lines) process.stderr.write(`${l}\n`);
-        process.stderr.write("\n");
-      }
-    } catch {
-      /* non-fatal */
-    }
-  }
+  const alwaysOnForBadge = await emitTokenBudgetWarning(profile, profileName);
 
   // First-run: prompt to star the repo (once ever, non-blocking)
   try {
@@ -3473,11 +3126,8 @@ export async function run(args: string[]): Promise<number> {
       // Must stay synchronous: process.on("exit") handlers cannot await.
       if (credentialsSource) {
         try {
-          const {
-            copyFileSync,
-            readFileSync: rf,
-            existsSync: ex,
-          } = require("node:fs");
+          const rf = readFileSync;
+          const ex = existsSync;
           const runtimeCreds = join(runtime.runtimeDir, ".credentials.json");
           const sourceCreds = join(credentialsSource, ".credentials.json");
           const expiresAt = (p: string): number => {
