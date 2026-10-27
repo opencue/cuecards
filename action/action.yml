@@ -32,21 +32,23 @@ runs:
   using: 'composite'
   steps:
     - name: Setup Bun
-      uses: oven-sh/setup-bun@v2
+      uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
       with:
         bun-version: latest
 
     - name: Install cue
       shell: bash
       run: |
-        npm install -g cue-ai@latest
+        npm install -g cue-ai@0.10.0
 
     - name: Resolve profile
       id: resolve
       shell: bash
+      env:
+        CUE_PROFILE_INPUT: ${{ inputs.profile }}
       run: |
-        if [ -n "${{ inputs.profile }}" ]; then
-          PROFILE="${{ inputs.profile }}"
+        if [ -n "$CUE_PROFILE_INPUT" ]; then
+          PROFILE="$CUE_PROFILE_INPUT"
         elif [ -f ".cue-profile" ]; then
           PROFILE=$(cat .cue-profile | tr -d '\n')
         else
@@ -59,8 +61,11 @@ runs:
     - name: Validate profile
       id: validate
       shell: bash
+      env:
+        CUE_PROFILE: ${{ steps.resolve.outputs.profile }}
+        TOKEN_THRESHOLD: ${{ inputs.token-threshold }}
       run: |
-        PROFILE="${{ steps.resolve.outputs.profile }}"
+        PROFILE="$CUE_PROFILE"
         if [ -z "$PROFILE" ]; then exit 0; fi
 
         # Run validation
@@ -77,7 +82,7 @@ runs:
         echo "tokens=$TOKENS" >> $GITHUB_OUTPUT
 
         # Threshold check
-        THRESHOLD=${{ inputs.token-threshold }}
+        THRESHOLD="$TOKEN_THRESHOLD"
         if [ "$TOKENS" -gt "$THRESHOLD" ]; then
           echo "passed=false" >> $GITHUB_OUTPUT
           echo "::error::Profile '$PROFILE' exceeds token threshold: $TOKENS > $THRESHOLD"
@@ -88,22 +93,31 @@ runs:
     - name: Cost comparison
       id: cost
       shell: bash
+      env:
+        CUE_PROFILE: ${{ steps.resolve.outputs.profile }}
       run: |
-        PROFILE="${{ steps.resolve.outputs.profile }}"
+        PROFILE="$CUE_PROFILE"
         if [ -z "$PROFILE" ]; then exit 0; fi
         cue cost "$PROFILE" --json > /tmp/cue-cost.json || true
 
     - name: Post PR comment
       if: inputs.comment == 'true' && github.event_name == 'pull_request'
-      uses: actions/github-script@v7
+      uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+      env:
+        CUE_SCORE: ${{ steps.validate.outputs.score }}
+        CUE_GRADE: ${{ steps.validate.outputs.grade }}
+        CUE_TOKENS: ${{ steps.validate.outputs.tokens }}
+        CUE_PASSED: ${{ steps.validate.outputs.passed }}
+        CUE_PROFILE: ${{ steps.resolve.outputs.profile }}
+        CUE_THRESHOLD: ${{ inputs.token-threshold }}
       with:
         script: |
-          const score = '${{ steps.validate.outputs.score }}';
-          const grade = '${{ steps.validate.outputs.grade }}';
-          const tokens = '${{ steps.validate.outputs.tokens }}';
-          const passed = '${{ steps.validate.outputs.passed }}';
-          const profile = '${{ steps.resolve.outputs.profile }}';
-          const threshold = '${{ inputs.token-threshold }}';
+          const score = process.env.CUE_SCORE;
+          const grade = process.env.CUE_GRADE;
+          const tokens = process.env.CUE_TOKENS;
+          const passed = process.env.CUE_PASSED;
+          const profile = process.env.CUE_PROFILE;
+          const threshold = process.env.CUE_THRESHOLD;
 
           if (!profile) return;
 
