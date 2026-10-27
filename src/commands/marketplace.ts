@@ -18,6 +18,8 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
 import { gateFreshSkill, resolveSkillDir } from "./security";
+import { ANSI, colorize as _colorize } from "../lib/discover-format";
+import { addMcpToProfileSync } from "../lib/discover-market-profile-yaml";
 import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import type { FileChange } from "../lib/pr-poster";
 import { repoRoot } from "../lib/repo-root";
@@ -77,9 +79,9 @@ function searchRegistry(query: string, registry: Registry): { skills: RegistrySk
 // Helpers
 // ---------------------------------------------------------------------------
 
+let _hasSmithery: boolean | undefined;
 function hasSmithery(): boolean {
-  const res = spawnSync("smithery", ["--help"], { encoding: "utf8", timeout: 5000 });
-  return res.status === 0;
+  return (_hasSmithery ??= spawnSync("smithery", ["--help"], { encoding: "utf8", timeout: 5000 }).status === 0);
 }
 
 function smithery(args: string[], json = false): { ok: boolean; stdout: string; stderr: string } {
@@ -211,25 +213,11 @@ async function cmdInstallMcp(id: string): Promise<number> {
   try { profileName = await resolveActiveProfile(); } catch { /* no profile */ }
 
   if (profileName) {
-    const { readFile, writeFile } = await import("node:fs/promises");
     const yamlPath = join(PROFILES_DIR, profileName, "profile.yaml");
     try {
-      let content = await readFile(yamlPath, "utf8");
-      if (!content.includes(`- ${id}`)) {
-        if (content.includes("mcps:")) {
-          const lines = content.split("\n");
-          const mcpsIdx = lines.findIndex(l => l.match(/^mcps:/));
-          let insertIdx = mcpsIdx + 1;
-          while (insertIdx < lines.length && lines[insertIdx]?.match(/^\s+-\s/)) insertIdx++;
-          lines.splice(insertIdx, 0, `  - ${id}`);
-          content = lines.join("\n");
-        } else {
-          content = content.trimEnd() + `\nmcps:\n  - ${id}\n`;
-        }
-        await writeFile(yamlPath, content);
-        process.stdout.write(`✅ Added "${id}" to profile "${profileName}"\n`);
-      }
-    } catch { /* skip profile update */ }
+      const added = addMcpToProfileSync(yamlPath, id);
+      if (added) process.stdout.write(`✅ Added "${id}" to profile "${profileName}"\n`);
+    } catch { /* skip profile update if yaml not writable */ }
   }
 
   process.stdout.write(`\n⚠️  Restart Claude Code to connect the new MCP.\n`);
@@ -908,13 +896,12 @@ async function cmdPrPreview(repo: string, json: boolean): Promise<number> {
   return 0;
 }
 
-// Small color helpers reused from earlier blocks (re-declared to keep
-// cmdPrPreview self-contained at the top of the file).
-const bold = (s: string) => `\x1b[1m${s}\x1b[0m`;
-const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
-const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
-const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
-const dim = (s: string) => `\x1b[2m${s}\x1b[0m`;
+// Color helpers backed by lib/discover-format — single source of truth.
+const bold = (s: string): string => _colorize(ANSI.bold, s);
+const green = (s: string): string => _colorize(ANSI.green, s);
+const red = (s: string): string => _colorize(ANSI.red, s);
+const yellow = (s: string): string => _colorize(ANSI.yellow, s);
+const dim = (s: string): string => _colorize(ANSI.dim, s);
 
 async function cmdDiscover(
   profileFilter: string,
@@ -1082,10 +1069,10 @@ async function cmdDiscover(
 const PUBLISH_TYPES = ["profile", "workflow", "skill", "cli", "mcp", "plugin"] as const;
 type PublishType = (typeof PUBLISH_TYPES)[number];
 
-/** Pull the value of `--flag value` out of an arg list (returns null if absent). */
-function flagValue(args: string[], flag: string): string | null {
+/** Pull the value of `--flag value` out of an arg list (returns undefined if absent). */
+function flagValue(args: string[], flag: string): string | undefined {
   const i = args.indexOf(flag);
-  return i >= 0 && args[i + 1] && !args[i + 1]!.startsWith("--") ? args[i + 1]! : null;
+  return i >= 0 && args[i + 1] && !args[i + 1]!.startsWith("--") ? args[i + 1]! : undefined;
 }
 
 async function apiFetch(

@@ -10,12 +10,16 @@
  *   --limit <n>             — max results (default: 50)
  */
 
-import { spawnSync } from "node:child_process";
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { spawnSync, execFile as _execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFile = promisify(_execFile);
+import { readFileSync, existsSync, mkdirSync, writeFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
+import { addMcpToProfileSync } from "../lib/discover-market-profile-yaml";
 import { clusterByKeywords, clusterByEmbeddings, unclustered, type Cluster, type ClusterItem } from "../lib/cluster-skills";
 import { findRealClaudeBin } from "../lib/claude-binary";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
@@ -89,7 +93,12 @@ export function getCachedGemsForProfile(profile: string, minScore = 8): GemRepo[
     return cache.gems
       .filter(g => g.gem_score >= minScore && g.suggested_profiles.includes(profile))
       .sort((a, b) => b.gem_score - a.gem_score);
-  } catch { return []; }
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
+      process.stderr.write(`warn: discover cache parse error: ${e}\n`);
+    }
+    return [];
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -385,7 +394,7 @@ export function getInstalledIn(gem: GemRepo, profilesDir = join(repoRoot(), "pro
   const hits: string[] = [];
   const slugs = [gem.name.toLowerCase(), gem.full_name.toLowerCase()];
   try {
-    const profiles = require("node:fs").readdirSync(profilesDir);
+    const profiles = readdirSync(profilesDir);
     for (const p of profiles) {
       if (p.startsWith("_") || p.startsWith(".")) continue;
       const yaml = join(profilesDir, p, "profile.yaml");
@@ -393,7 +402,11 @@ export function getInstalledIn(gem: GemRepo, profilesDir = join(repoRoot(), "pro
       const content = readFileSync(yaml, "utf8").toLowerCase();
       if (slugs.some(s => content.includes(s))) hits.push(p);
     }
-  } catch { /* ignore */ }
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
+      process.stderr.write(`warn: getInstalledIn profiles scan error: ${e}\n`);
+    }
+  }
   return hits;
 }
 
@@ -449,7 +462,7 @@ export function applyFilters(gems: GemRepo[], f: GemFilter): GemRepo[] {
     if (f.topic && !g.topics.some(t => t.toLowerCase().includes(f.topic!.toLowerCase()))) return false;
     if (f.owner && g.owner.toLowerCase() !== f.owner.toLowerCase()) return false;
     if (f.excludeOwner && g.owner.toLowerCase() === f.excludeOwner.toLowerCase()) return false;
-    if (f.tier && !f.tier.has(tierName(g.gem_score) as any)) return false;
+    if (f.tier && !f.tier.has(tierName(g.gem_score))) return false;
     if (f.profile && !g.suggested_profiles.includes(f.profile)) return false;
     if (f.installed || f.notInstalled) {
       const isIn = getInstalledIn(g).length > 0;
@@ -571,19 +584,35 @@ export function suggestProfiles(repo: GemRepo): string[] {
 // GitHub API search
 // ---------------------------------------------------------------------------
 
-function ghSearch(query: string, limit: number): any[] {
+/** Shape of a single item returned by the GitHub search/repositories API. */
+export interface GitHubRepoItem {
+  full_name: string;
+  owner: { login: string } | null;
+  name: string;
+  description: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  created_at: string;
+  pushed_at: string;
+  topics: string[];
+  language: string | null;
+  html_url: string;
+}
+
+async function ghSearch(query: string, limit: number): Promise<GitHubRepoItem[]> {
   const q = query.replace("{RECENT}", recentDate());
-  const res = spawnSync("gh", [
+  const args = [
     "api", "search/repositories",
     "--method", "GET",
     "-f", `q=${q}`,
     "-f", `per_page=${Math.min(limit, 30)}`,
     "-f", "sort=updated",
     "--jq", ".items",
-  ], { encoding: "utf8", timeout: 30000 });
-
-  if (res.status !== 0) return [];
-  try { return JSON.parse(res.stdout); } catch { return []; }
+  ];
+  try {
+    const { stdout } = await execFile("gh", args, { timeout: 30000 });
+    return (JSON.parse(stdout) as unknown[]).filter((x): x is GitHubRepoItem => x != null && typeof x === "object");
+  } catch { return []; }
 }
 
 function checkFileExists(fullName: string, path: string): boolean {
@@ -811,47 +840,50 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
     queries = SEARCH_QUERIES;
   }
 
-  for (const { q, label } of queries) {
+  const labeledQueries = queries.slice(0, opts.limit > 0 ? queries.length : 0);
+  if (labeledQueries.length > 0) {
+    process.stderr.write(`  ⏳ Running ${labeledQueries.length} search quer${labeledQueries.length === 1 ? "y" : "ies"} in parallel...\n`);
+  }
+  const allItems = (await Promise.all(
+    labeledQueries.map(({ q }) => ghSearch(q, opts.limit)),
+  )).flat();
+
+  for (const item of allItems) {
     if (gems.length >= opts.limit) break;
-    process.stderr.write(`  ⏳ ${label}...\n`);
+    if (seen.has(item.full_name)) continue;
+    seen.add(item.full_name);
 
-    const items = ghSearch(q, opts.limit - gems.length);
-    for (const item of items) {
-      if (seen.has(item.full_name)) continue;
-      seen.add(item.full_name);
+    const gem: GemRepo = {
+      full_name: item.full_name,
+      owner: item.owner?.login ?? "",
+      name: item.name,
+      description: item.description ?? "",
+      stars: item.stargazers_count ?? 0,
+      forks: item.forks_count ?? 0,
+      created_at: item.created_at ?? "",
+      pushed_at: item.pushed_at ?? "",
+      topics: item.topics ?? [],
+      language: item.language ?? "",
+      has_skill_md: false,
+      has_claude_dir: false,
+      has_mcp_sdk: false,
+      gem_score: 0,
+      suggested_profiles: [],
+      suggested_mcps: [],
+      suggested_clis: [],
+      quality: 0,
+      url: item.html_url ?? `https://github.com/${item.full_name}`,
+    };
 
-      const gem: GemRepo = {
-        full_name: item.full_name,
-        owner: item.owner?.login ?? "",
-        name: item.name,
-        description: item.description ?? "",
-        stars: item.stargazers_count ?? 0,
-        forks: item.forks_count ?? 0,
-        created_at: item.created_at ?? "",
-        pushed_at: item.pushed_at ?? "",
-        topics: item.topics ?? [],
-        language: item.language ?? "",
-        has_skill_md: false,
-        has_claude_dir: false,
-        has_mcp_sdk: false,
-        gem_score: 0,
-        suggested_profiles: [],
-        suggested_mcps: [],
-        suggested_clis: [],
-        quality: 0,
-        url: item.html_url ?? `https://github.com/${item.full_name}`,
-      };
+    // SKILL.md / .claude detection is load-bearing for scoring, so always check.
+    // Authenticated `gh api` raises the rate ceiling enough to absorb 2 calls per repo.
+    gem.has_skill_md = checkFileExists(gem.full_name, "SKILL.md");
+    gem.has_claude_dir = checkFileExists(gem.full_name, ".claude");
 
-      // SKILL.md / .claude detection is load-bearing for scoring, so always check.
-      // Authenticated `gh api` raises the rate ceiling enough to absorb 2 calls per repo.
-      gem.has_skill_md = checkFileExists(gem.full_name, "SKILL.md");
-      gem.has_claude_dir = checkFileExists(gem.full_name, ".claude");
+    gem.gem_score = scoreGem(gem);
+    gem.suggested_profiles = suggestProfiles(gem);
 
-      gem.gem_score = scoreGem(gem);
-      gem.suggested_profiles = suggestProfiles(gem);
-
-      if (gem.gem_score >= opts.minScore) gems.push(gem);
-    }
+    if (gem.gem_score >= opts.minScore) gems.push(gem);
   }
 
   // Sort by score descending
@@ -1407,26 +1439,24 @@ async function cmdAnalyze(opts: { profile?: string; minScore: number; limit: num
   for (const gem of gems) {
     process.stdout.write(`  ⏳ ${gem.full_name} (★ ${gem.stars})...\n`);
 
-    // Fetch README content
-    const readmeRes = spawnSync("gh", [
-      "api", `repos/${gem.full_name}/readme`, "--jq", ".content",
-    ], { encoding: "utf8", timeout: 15000 });
+    // Fetch README and SKILL.md in parallel — both are independent GitHub API calls.
+    const [readmeOut, skillOut] = await Promise.all([
+      execFile("gh", ["api", `repos/${gem.full_name}/readme`, "--jq", ".content"], { timeout: 15000 })
+        .then(r => r.stdout)
+        .catch(() => ""),
+      gem.has_skill_md
+        ? execFile("gh", ["api", `repos/${gem.full_name}/contents/SKILL.md`, "--jq", ".content"], { timeout: 10000 })
+            .then(r => r.stdout)
+            .catch(() => "")
+        : Promise.resolve(""),
+    ]);
 
-    let readme = "";
-    if (readmeRes.status === 0 && readmeRes.stdout.trim()) {
-      readme = Buffer.from(readmeRes.stdout.trim(), "base64").toString("utf8").slice(0, 3000);
-    }
-
-    // Fetch SKILL.md if exists
-    let skillMd = "";
-    if (gem.has_skill_md) {
-      const skillRes = spawnSync("gh", [
-        "api", `repos/${gem.full_name}/contents/SKILL.md`, "--jq", ".content",
-      ], { encoding: "utf8", timeout: 10000 });
-      if (skillRes.status === 0 && skillRes.stdout.trim()) {
-        skillMd = Buffer.from(skillRes.stdout.trim(), "base64").toString("utf8").slice(0, 2000);
-      }
-    }
+    const readme = readmeOut.trim()
+      ? Buffer.from(readmeOut.trim(), "base64").toString("utf8").slice(0, 3000)
+      : "";
+    const skillMd = skillOut.trim()
+      ? Buffer.from(skillOut.trim(), "base64").toString("utf8").slice(0, 2000)
+      : "";
 
     if (!readme && !skillMd) {
       process.stdout.write(`     ⚠️  No readable content, skipping\n`);
@@ -1453,25 +1483,28 @@ CLIS: <cli tools required to run this skill, comma-separated, or "none">
 REASON: <one sentence why>
 QUALITY: <1-10 score of how useful this skill actually is>`;
 
-    const claudeRes = spawnSync("claude", ["--print", "-p", prompt], {
-      encoding: "utf8", timeout: 30000,
-      env: { ...process.env, CUE_BYPASS: "1" },
-    });
-
-    if (claudeRes.status !== 0 || !claudeRes.stdout.trim()) {
+    let output = "";
+    try {
+      const claudeOut = await execFile("claude", ["--print", "-p", prompt], {
+        timeout: 30000,
+        env: { ...process.env, CUE_BYPASS: "1" },
+      });
+      output = claudeOut.stdout.trim();
+    } catch {
       // Fallback: use the real claude binary directly (cue's PATH shim recurses)
       const realClaude = findRealClaudeBin();
-      const fallbackRes = realClaude
-        ? spawnSync(realClaude, ["--print", "-p", prompt], { encoding: "utf8", timeout: 30000 })
-        : null;
-      if (!fallbackRes || fallbackRes.status !== 0) {
-        process.stdout.write(`     ⚠️  Claude analysis failed, keeping keyword suggestion\n`);
-        continue;
+      if (realClaude) {
+        try {
+          const fallbackOut = await execFile(realClaude, ["--print", "-p", prompt], { timeout: 30000 });
+          output = fallbackOut.stdout.trim();
+        } catch { /* fall through */ }
       }
-      claudeRes.stdout = fallbackRes.stdout;
     }
 
-    const output = claudeRes.stdout.trim();
+    if (!output) {
+      process.stdout.write(`     ⚠️  Claude analysis failed, keeping keyword suggestion\n`);
+      continue;
+    }
     const profileMatch = output.match(/PROFILES?:\s*(.+)/i);
     const mcpsMatch = output.match(/MCPS?:\s*(.+)/i);
     const clisMatch = output.match(/CLIS?:\s*(.+)/i);
@@ -2093,19 +2126,12 @@ async function cmdInstall(opts: { profile?: string; minScore: number; minQuality
 
       // Add MCPs if detected by analyze
       if (gem.suggested_mcps?.length) {
-        let current = readFileSync(profileYaml, "utf8");
-        const newMcps = gem.suggested_mcps.filter(m => !current.includes(m));
-        if (newMcps.length) {
-          const mcpsMatch = current.match(/(mcps:\s*\n)([\s\S]*?)(\n\S|\n*$)/);
-          if (mcpsMatch) {
-            const mcpLines = newMcps.map(m => `  - ${m}\n`).join("");
-            current = current.replace(mcpsMatch[0], mcpsMatch[1] + mcpsMatch[2] + mcpLines + (mcpsMatch[3] ?? ""));
-          } else {
-            // No mcps section yet — add one
-            current += `\nmcps:\n${newMcps.map(m => `  - ${m}`).join("\n")}\n`;
-          }
-          writeFileSync(profileYaml, current);
-          process.stdout.write(`     ✅ Added MCPs: ${newMcps.join(", ")}\n`);
+        const added: string[] = [];
+        for (const m of gem.suggested_mcps) {
+          if (addMcpToProfileSync(profileYaml, m)) added.push(m);
+        }
+        if (added.length) {
+          process.stdout.write(`     ✅ Added MCPs: ${added.join(", ")}\n`);
         }
       }
 
@@ -2372,7 +2398,10 @@ interface McpResult {
   suggested_profiles: string[];
 }
 
-function scoreMcp(item: any): number {
+/** Alias so callers that work with raw GitHub search items are clearly typed. */
+type RawMcpCandidate = GitHubRepoItem;
+
+function scoreMcp(item: RawMcpCandidate): number {
   const now = Date.now();
   const pushed = item.pushed_at ? new Date(item.pushed_at).getTime() : now;
   const daysSincePush = (now - pushed) / 86400000;
@@ -2387,24 +2416,17 @@ function scoreMcp(item: any): number {
   return Math.max(0, Math.round(score * 10) / 10);
 }
 
-function suggestMcpProfiles(item: any): string[] {
-  const desc = (item.description ?? "").toLowerCase();
-  const topicStr = (item.topics ?? []).join(" ").toLowerCase();
-  const name = (item.name ?? "").toLowerCase();
-  const scored: { profile: string; score: number }[] = [];
-  for (const [profile, keywords] of Object.entries(PROFILE_KEYWORDS)) {
-    let hits = 0;
-    for (const kw of keywords) {
-      const re = new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "i");
-      if (re.test(topicStr)) hits += 3;
-      if (re.test(desc)) hits += 1;
-      if (re.test(name)) hits += 2;
-    }
-    if (hits >= 3) scored.push({ profile, score: hits });
-  }
-  scored.sort((a, b) => b.score - a.score);
-  const top = scored.slice(0, 2).map(s => s.profile);
-  return top.length ? top : ["core"];
+/**
+ * Suggest cue profiles for an MCP candidate using the same logic as suggestProfiles.
+ * Delegates to suggestProfiles to avoid duplicating the weighting/guard logic.
+ */
+function suggestMcpProfiles(item: RawMcpCandidate): string[] {
+  return suggestProfiles({
+    description: item.description ?? "",
+    topics: item.topics ?? [],
+    name: item.name,
+    language: item.language ?? "",
+  } as GemRepo);
 }
 
 function extractMcpMeta(fullName: string, repoName: string): { server_name: string; stdio_command: string } {
@@ -2437,33 +2459,34 @@ async function cmdDiscoverMcps(opts: { limit: number; minScore: number; json: bo
   const seen = new Set<string>();
   const results: McpResult[] = [];
 
-  for (const { q, label } of MCP_SEARCH_QUERIES) {
-    if (results.length >= opts.limit) break;
-    process.stderr.write(`  ⏳ ${label}...\n`);
-    const items = ghSearch(q, Math.min(30, opts.limit - results.length));
-    for (const item of items) {
-      if (seen.has(item.full_name)) continue;
-      seen.add(item.full_name);
-      const score = scoreMcp(item);
-      if (score < opts.minScore) continue;
-      const profiles = suggestMcpProfiles(item);
-      if (opts.profile && !profiles.includes(opts.profile)) continue;
+  process.stderr.write(`  ⏳ Running ${MCP_SEARCH_QUERIES.length} search quer${MCP_SEARCH_QUERIES.length === 1 ? "y" : "ies"} in parallel...\n`);
+  const allMcpItems = (await Promise.all(
+    MCP_SEARCH_QUERIES.map(({ q }) => ghSearch(q, Math.min(30, opts.limit))),
+  )).flat();
 
-      const { server_name, stdio_command } = extractMcpMeta(item.full_name, item.name);
-      results.push({
-        full_name: item.full_name,
-        name: item.name,
-        description: item.description ?? "",
-        stars: item.stargazers_count ?? 0,
-        pushed_at: item.pushed_at ?? "",
-        topics: item.topics ?? [],
-        url: item.html_url ?? `https://github.com/${item.full_name}`,
-        server_name,
-        stdio_command,
-        score,
-        suggested_profiles: profiles,
-      });
-    }
+  for (const item of allMcpItems) {
+    if (results.length >= opts.limit) break;
+    if (seen.has(item.full_name)) continue;
+    seen.add(item.full_name);
+    const score = scoreMcp(item);
+    if (score < opts.minScore) continue;
+    const profiles = suggestMcpProfiles(item);
+    if (opts.profile && !profiles.includes(opts.profile)) continue;
+
+    const { server_name, stdio_command } = extractMcpMeta(item.full_name, item.name);
+    results.push({
+      full_name: item.full_name,
+      name: item.name,
+      description: item.description ?? "",
+      stars: item.stargazers_count ?? 0,
+      pushed_at: item.pushed_at ?? "",
+      topics: item.topics ?? [],
+      url: item.html_url ?? `https://github.com/${item.full_name}`,
+      server_name,
+      stdio_command,
+      score,
+      suggested_profiles: profiles,
+    });
   }
 
   results.sort((a, b) => b.score - a.score);
@@ -2497,30 +2520,26 @@ async function cmdDiscoverMcps(opts: { limit: number; minScore: number; json: bo
       return 1;
     }
 
-    let content = readFileSync(profileYaml, "utf8");
     let added = 0;
     for (const mcp of display) {
-      if (content.includes(mcp.server_name)) {
-        process.stdout.write(`  ⏭  ${mcp.server_name} already in ${targetProfile}\n`);
-        continue;
-      }
       if (opts.dryRun) {
-        process.stdout.write(`  [dry-run] Would add "${mcp.server_name}" to ${targetProfile}/profile.yaml mcps:\n`);
-        added++;
+        const current = readFileSync(profileYaml, "utf8");
+        if (current.includes(`- ${mcp.server_name}`)) {
+          process.stdout.write(`  ⏭  ${mcp.server_name} already in ${targetProfile}\n`);
+        } else {
+          process.stdout.write(`  [dry-run] Would add "${mcp.server_name}" to ${targetProfile}/profile.yaml mcps:\n`);
+          added++;
+        }
         continue;
       }
-      const mcpsMatch = content.match(/(mcps:\s*\n)([\s\S]*?)(\n\S|\n*$)/);
-      if (mcpsMatch) {
-        content = content.replace(mcpsMatch[0], mcpsMatch[1] + mcpsMatch[2] + `  - ${mcp.server_name}\n` + (mcpsMatch[3] ?? ""));
-      } else if (content.includes("mcps: []")) {
-        content = content.replace("mcps: []", `mcps:\n  - ${mcp.server_name}`);
+      const wasAdded = addMcpToProfileSync(profileYaml, mcp.server_name);
+      if (wasAdded) {
+        added++;
+        process.stdout.write(`  ✅ Added ${mcp.server_name} to ${targetProfile}\n`);
       } else {
-        content += `\nmcps:\n  - ${mcp.server_name}\n`;
+        process.stdout.write(`  ⏭  ${mcp.server_name} already in ${targetProfile}\n`);
       }
-      added++;
-      process.stdout.write(`  ✅ Added ${mcp.server_name} to ${targetProfile}\n`);
     }
-    if (added > 0 && !opts.dryRun) writeFileSync(profileYaml, content);
     process.stdout.write(`\n  Done: ${added} MCP(s) ${opts.dryRun ? "would be " : ""}added to ${targetProfile}\n`);
   }
 
@@ -2569,7 +2588,7 @@ function parseFilter(args: string[]): GemFilter | undefined {
   const excludeOwner = flagValue(args, "--exclude-owner");
   if (excludeOwner) f.excludeOwner = excludeOwner;
   const tier = flagValue(args, "--tier");
-  if (tier) f.tier = new Set(tier.split(",").map(t => t.trim()) as any);
+  if (tier) f.tier = new Set(tier.split(",").map(t => t.trim() as "premium" | "strong" | "worth" | "tail"));
   if (args.includes("--installed")) f.installed = true;
   if (args.includes("--not-installed")) f.notInstalled = true;
   return Object.keys(f).length ? f : undefined;
