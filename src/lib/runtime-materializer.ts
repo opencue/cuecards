@@ -36,6 +36,7 @@ import { homedir } from "node:os";
 import type {
   AgentKind,
   CodexProfileConfig,
+  DeferredSkillEntry,
   ResolvedProfile,
 } from "../../profiles/_types";
 import { buildCodexConfigToml, extractRuntimeCodexState } from "./codex-config";
@@ -992,6 +993,130 @@ async function atomicSwapRuntime(
   }
 }
 
+/**
+ * Resolve skill source dirs, create flat symlinks in `<tmpDir>/skills/`, write
+ * the `.cue-skills` manifest, and enforce the >50%-failure safety guard.
+ * Returns the slug→src map (for Codex config) and the deferred-skills list.
+ */
+async function resolveAndLinkSkills(
+  tmpDir: string,
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  input: Pick<MaterializeInput, "skillSourceLookup">,
+): Promise<{ slugToSrc: Map<string, string>; deferredSkills: DeferredSkillEntry[] }> {
+  // 1. Skills — missing refs are warned + skipped, not fatal. A profile that
+  // lists 20 skills and has 1 broken ref shouldn't crash the entire launch.
+  // `cue debug` and `cue validate` surface the broken ref clearly so the user
+  // can fix it. Behavior matches `cue debug`'s tolerance.
+  const skillsDir = join(tmpDir, "skills");
+  await mkdir(skillsDir, { recursive: true });
+  const skippedSkills: string[] = [];
+  let attemptedSkills = 0;
+  // Skills are linked FLAT — skills/<slug>, not skills/<category>/<slug>.
+  // Claude Code (and Codex) only register a personal skill one level deep, by
+  // its directory name (skills/<name>/SKILL.md → /<name>); a nested category
+  // dir is invisible to that scan. Flattening matches `activate-profile.sh`'s
+  // manual installer and lets every profile skill be invoked via the Skill
+  // tool — including the slug==category cases (caveman/caveman, github/github,
+  // colony/colony) that a nested layout can't expose. smart-loader's dedup no
+  // longer reads the dir tree; it reads the `.cue-skills` manifest written
+  // below, which preserves the <category>/<slug> identity.
+  const loadedSkillIds: string[] = [];
+  // Resolve first, link second, so slug collisions resolve by LAST-WINS: when
+  // two skills share a slug (e.g. plan/investigate lean vs gstack/investigate
+  // full), the later entry wins the flat /<slug> name. Skill lists merge
+  // parent→child (core first, profile last), so last-wins = the more-specific
+  // profile's choice overrides the inherited one — the standard override rule.
+  // The loser is still in the manifest, so smart-loader can surface it.
+  const slugToSrc = new Map<string, string>();
+  const slugToId = new Map<string, string>();
+  const overridden: string[] = [];
+  for (const skill of profile.skills.local) {
+    if (!appliesToAgent(skill, agent)) continue;
+    if (skill.when && !evaluateCondition(skill.when, process.cwd())) continue;
+    attemptedSkills++;
+    try {
+      const src = await input.skillSourceLookup(skill.id);
+      loadedSkillIds.push(skill.id);
+      const slug = basename(skill.id);
+      const prevId = slugToId.get(slug);
+      if (prevId !== undefined && prevId !== skill.id) {
+        overridden.push(`${slug}: ${prevId} → ${skill.id}`);
+      }
+      slugToSrc.set(slug, src);
+      slugToId.set(slug, skill.id);
+    } catch {
+      skippedSkills.push(skill.id);
+    }
+  }
+  for (const [slug, src] of slugToSrc) {
+    await symlink(src, join(skillsDir, slug));
+  }
+  // Project-loadout deferred index: one generated (written, not symlinked)
+  // skill standing in for every skill the loadout deferred. Costs a single
+  // frontmatter line always-on; the agent invokes it to discover and Read a
+  // deferred skill's real SKILL.md. Present in the content hash via
+  // profile.deferredSkills, so loadout changes rebuild this file.
+  const deferredSkills = profile.deferredSkills ?? [];
+  if (deferredSkills.length > 0) {
+    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } =
+      await import("./lazy-skills");
+    const indexDir = join(skillsDir, DEFERRED_INDEX_SLUG);
+    await mkdir(indexDir, { recursive: true });
+    await writeFile(
+      join(indexDir, "SKILL.md"),
+      generateDeferredIndexSkill(deferredSkills),
+    );
+  }
+  if (overridden.length > 0) {
+    process.stderr.write(
+      `[cue] ${overridden.length} skill slug collision(s) resolved last-wins ` +
+        `(loser still smart-loadable): ${overridden.join("; ")}\n`,
+    );
+  }
+  // Manifest for smart-loader's --exclude-loaded: the resolved <category>/<slug>
+  // ids, decoupled from the (now flat) on-disk layout.
+  await writeFile(
+    join(tmpDir, ".cue-skills"),
+    loadedSkillIds.length > 0 ? `${loadedSkillIds.join("\n")}\n` : "",
+  );
+  if (skippedSkills.length > 0) {
+    process.stderr.write(
+      `[cue] skipped ${skippedSkills.length} missing skill(s): ${skippedSkills.slice(0, 5).join(", ")}` +
+        (skippedSkills.length > 5
+          ? `, +${skippedSkills.length - 5} more`
+          : "") +
+        ` — run \`cue debug ${profile.name}\` for details\n`,
+    );
+  }
+  // Fail-loud guard: a single broken ref in a 20-skill profile is tolerable
+  // (warned above), but if MORE THAN HALF the skills failed to resolve, the
+  // materialized runtime is broken — almost always a misconfigured skill
+  // source root (e.g. resolveLocalSkill falling back to a stale default when
+  // CUE_REPO_ROOT is unset). Silently writing a near-empty CLAUDE.md is worse
+  // than crashing. Bypass with CUE_ALLOW_PARTIAL_SKILLS=1 for the rare profile
+  // that genuinely expects most skills to be unavailable.
+  const allowPartial =
+    process.env.CUE_ALLOW_PARTIAL_SKILLS === "1" ||
+    process.env.CUE_ALLOW_PARTIAL_SKILLS === "true";
+  if (
+    !allowPartial &&
+    attemptedSkills > 0 &&
+    skippedSkills.length / attemptedSkills > 0.5
+  ) {
+    await rm(tmpDir, { recursive: true, force: true });
+    throw new Error(
+      `[cue] skill resolution failed: ${skippedSkills.length}/${attemptedSkills} ` +
+        `skill(s) for profile "${profile.name}" could not be resolved. The runtime ` +
+        `would be broken, so the rebuild was aborted (old runtime left intact). ` +
+        `This usually means the skill source root is wrong — check CUE_REPO_ROOT / ` +
+        `the skillSourceLookup wiring, then run \`cue debug ${profile.name}\`. ` +
+        `Set CUE_ALLOW_PARTIAL_SKILLS=1 to bypass.`,
+    );
+  }
+  return { slugToSrc, deferredSkills };
+}
+
 export async function materializeRuntime(
   input: MaterializeInput,
 ): Promise<MaterializeOutput> {
@@ -1109,116 +1234,8 @@ async function materializeRuntimeUnlocked(
   await mkdir(dirname(runtimeDir), { recursive: true });
   const tmpDir = await mkdtemp(`${runtimeDir}.tmp.`);
 
-  // 1. Skills — missing refs are warned + skipped, not fatal. A profile that
-  // lists 20 skills and has 1 broken ref shouldn't crash the entire launch.
-  // `cue debug` and `cue validate` surface the broken ref clearly so the user
-  // can fix it. Behavior matches `cue debug`'s tolerance.
-  const skillsDir = join(tmpDir, "skills");
-  await mkdir(skillsDir, { recursive: true });
-  const skippedSkills: string[] = [];
-  let attemptedSkills = 0;
-  // Skills are linked FLAT — skills/<slug>, not skills/<category>/<slug>.
-  // Claude Code (and Codex) only register a personal skill one level deep, by
-  // its directory name (skills/<name>/SKILL.md → /<name>); a nested category
-  // dir is invisible to that scan. Flattening matches `activate-profile.sh`'s
-  // manual installer and lets every profile skill be invoked via the Skill
-  // tool — including the slug==category cases (caveman/caveman, github/github,
-  // colony/colony) that a nested layout can't expose. smart-loader's dedup no
-  // longer reads the dir tree; it reads the `.cue-skills` manifest written
-  // below, which preserves the <category>/<slug> identity.
-  const loadedSkillIds: string[] = [];
-  // Resolve first, link second, so slug collisions resolve by LAST-WINS: when
-  // two skills share a slug (e.g. plan/investigate lean vs gstack/investigate
-  // full), the later entry wins the flat /<slug> name. Skill lists merge
-  // parent→child (core first, profile last), so last-wins = the more-specific
-  // profile's choice overrides the inherited one — the standard override rule.
-  // The loser is still in the manifest, so smart-loader can surface it.
-  const slugToSrc = new Map<string, string>();
-  const slugToId = new Map<string, string>();
-  const overridden: string[] = [];
-  for (const skill of profile.skills.local) {
-    if (!appliesToAgent(skill, agent)) continue;
-    if (skill.when && !evaluateCondition(skill.when, process.cwd())) continue;
-    attemptedSkills++;
-    try {
-      const src = await input.skillSourceLookup(skill.id);
-      loadedSkillIds.push(skill.id);
-      const slug = basename(skill.id);
-      const prevId = slugToId.get(slug);
-      if (prevId !== undefined && prevId !== skill.id) {
-        overridden.push(`${slug}: ${prevId} → ${skill.id}`);
-      }
-      slugToSrc.set(slug, src);
-      slugToId.set(slug, skill.id);
-    } catch {
-      skippedSkills.push(skill.id);
-    }
-  }
-  for (const [slug, src] of slugToSrc) {
-    await symlink(src, join(skillsDir, slug));
-  }
-  // Project-loadout deferred index: one generated (written, not symlinked)
-  // skill standing in for every skill the loadout deferred. Costs a single
-  // frontmatter line always-on; the agent invokes it to discover and Read a
-  // deferred skill's real SKILL.md. Present in the content hash via
-  // profile.deferredSkills, so loadout changes rebuild this file.
-  const deferredSkills = profile.deferredSkills ?? [];
-  if (deferredSkills.length > 0) {
-    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } =
-      await import("./lazy-skills");
-    const indexDir = join(skillsDir, DEFERRED_INDEX_SLUG);
-    await mkdir(indexDir, { recursive: true });
-    await writeFile(
-      join(indexDir, "SKILL.md"),
-      generateDeferredIndexSkill(deferredSkills),
-    );
-  }
-  if (overridden.length > 0) {
-    process.stderr.write(
-      `[cue] ${overridden.length} skill slug collision(s) resolved last-wins ` +
-        `(loser still smart-loadable): ${overridden.join("; ")}\n`,
-    );
-  }
-  // Manifest for smart-loader's --exclude-loaded: the resolved <category>/<slug>
-  // ids, decoupled from the (now flat) on-disk layout.
-  await writeFile(
-    join(tmpDir, ".cue-skills"),
-    loadedSkillIds.length > 0 ? `${loadedSkillIds.join("\n")}\n` : "",
-  );
-  if (skippedSkills.length > 0) {
-    process.stderr.write(
-      `[cue] skipped ${skippedSkills.length} missing skill(s): ${skippedSkills.slice(0, 5).join(", ")}` +
-        (skippedSkills.length > 5
-          ? `, +${skippedSkills.length - 5} more`
-          : "") +
-        ` — run \`cue debug ${profile.name}\` for details\n`,
-    );
-  }
-  // Fail-loud guard: a single broken ref in a 20-skill profile is tolerable
-  // (warned above), but if MORE THAN HALF the skills failed to resolve, the
-  // materialized runtime is broken — almost always a misconfigured skill
-  // source root (e.g. resolveLocalSkill falling back to a stale default when
-  // CUE_REPO_ROOT is unset). Silently writing a near-empty CLAUDE.md is worse
-  // than crashing. Bypass with CUE_ALLOW_PARTIAL_SKILLS=1 for the rare profile
-  // that genuinely expects most skills to be unavailable.
-  const allowPartial =
-    process.env.CUE_ALLOW_PARTIAL_SKILLS === "1" ||
-    process.env.CUE_ALLOW_PARTIAL_SKILLS === "true";
-  if (
-    !allowPartial &&
-    attemptedSkills > 0 &&
-    skippedSkills.length / attemptedSkills > 0.5
-  ) {
-    await rm(tmpDir, { recursive: true, force: true });
-    throw new Error(
-      `[cue] skill resolution failed: ${skippedSkills.length}/${attemptedSkills} ` +
-        `skill(s) for profile "${profile.name}" could not be resolved. The runtime ` +
-        `would be broken, so the rebuild was aborted (old runtime left intact). ` +
-        `This usually means the skill source root is wrong — check CUE_REPO_ROOT / ` +
-        `the skillSourceLookup wiring, then run \`cue debug ${profile.name}\`. ` +
-        `Set CUE_ALLOW_PARTIAL_SKILLS=1 to bypass.`,
-    );
-  }
+  // 1. Skills — resolve, link flat, write .cue-skills manifest, enforce guard.
+  const { slugToSrc, deferredSkills } = await resolveAndLinkSkills(tmpDir, profile, agent, input);
 
   // Defensive defaults — older fixtures may not declare these arrays.
   const profileRules = profile.rules ?? [];
