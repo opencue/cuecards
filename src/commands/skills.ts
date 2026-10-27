@@ -11,7 +11,7 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { styleText } from "node:util";
@@ -24,6 +24,7 @@ import { listAllSkillIds } from "../lib/resolver-local";
 import { fetchCompanionFiles, readSourceFile, findIncompleteSkills } from "../lib/companion-fetch";
 import { gateFreshSkill } from "./security";
 import { unavailableNote, formatVerdict } from "../lib/skillspector";
+import { insertSkillsIntoYaml } from "../lib/profile-yaml-editor";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
@@ -157,14 +158,25 @@ async function getActiveProfileSkillIds(): Promise<string[]> {
   }
 }
 
+/** Returns both the active profile name and its local skill IDs in a single async round-trip. */
+async function getActiveProfile(): Promise<{ name: string | null; ids: string[] }> {
+  const name = await getActiveProfileName();
+  if (!name) return { name: null, ids: [] };
+  try {
+    const profile = await loadProfile(name);
+    return { name, ids: profile.skills.local.map(s => typeof s === "string" ? s : s.id) };
+  } catch {
+    return { name, ids: [] };
+  }
+}
+
 async function cmdList(json: boolean): Promise<number> {
-  const ids = await getActiveProfileSkillIds();
+  const { name: profileName, ids } = await getActiveProfile();
   const metas = ids.map(parseSkillMeta);
 
   if (json) {
     process.stdout.write(JSON.stringify(metas, null, 2) + "\n");
   } else {
-    const profileName = await getActiveProfileName();
     process.stdout.write(`Skills in profile "${profileName}" (${metas.length}):\n\n`);
     renderSkillGroups(metas);
   }
@@ -289,18 +301,7 @@ async function cmdAddToProfile(id: string, preview = false): Promise<number> {
   }
 
   // Add skill to skills.local
-  if (updated.includes("  local:")) {
-    const lines = updated.split("\n");
-    const localIdx = lines.findIndex(l => l.match(/^\s+local:/));
-    let insertIdx = localIdx + 1;
-    while (insertIdx < lines.length && lines[insertIdx]?.match(/^\s{4}-\s/)) insertIdx++;
-    lines.splice(insertIdx, 0, `    - ${id}`);
-    updated = lines.join("\n");
-  } else if (updated.includes("skills:")) {
-    updated = updated.replace(/^(skills:)\s*$/m, `$1\n  local:\n    - ${id}`);
-  } else {
-    updated = updated.trimEnd() + `\nskills:\n  local:\n    - ${id}\n`;
-  }
+  updated = insertSkillsIntoYaml(updated, [id], "append");
 
   await writeFile(yamlPath, updated);
   process.stdout.write(`Added "${id}" to profile "${profileName}"\n`);
@@ -318,7 +319,8 @@ async function cmdRemoveFromProfile(id: string): Promise<number> {
   const content = await readFile(yamlPath, "utf8");
 
   const lines = content.split("\n");
-  const filtered = lines.filter(l => !l.match(new RegExp(`^\\s+-\\s+${id.replace("/", "/")}\\s*$`)));
+  const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const filtered = lines.filter(l => !l.match(new RegExp(`^\\s+-\\s+${escaped}\\s*$`)));
 
   if (filtered.length === lines.length) {
     process.stderr.write(`Skill "${id}" not found in profile "${profileName}"\n`);
@@ -530,11 +532,11 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
   let repoDescription = "";
   if (repo) {
     try {
-      const apiRes = spawnSync("curl", ["-fsSL", `https://api.github.com/repos/${repo}`], {
-        stdio: ["ignore", "pipe", "pipe"], encoding: "utf8", timeout: 5000,
+      const apiRes = await fetch(`https://api.github.com/repos/${repo}`, {
+        signal: AbortSignal.timeout(5000),
       });
-      if (apiRes.status === 0 && apiRes.stdout) {
-        const data = JSON.parse(apiRes.stdout);
+      if (apiRes.ok) {
+        const data = await apiRes.json() as { description?: string | null };
         if (data.description) repoDescription = data.description;
       }
     } catch {}
@@ -628,20 +630,7 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     const removed = currentProfileSkills.filter((s) => !newSet.has(s));
 
     // Replace the entire skills.local section
-    const skillLines = newSkills.map((s) => `    - ${s}`).join("\n");
-    let updated: string;
-    if (content.includes("  local:")) {
-      const lines = content.split("\n");
-      const localIdx = lines.findIndex((l) => l.match(/^\s+local:/));
-      let endIdx = localIdx + 1;
-      while (endIdx < lines.length && lines[endIdx]?.match(/^\s{4}-\s/)) endIdx++;
-      lines.splice(localIdx + 1, endIdx - localIdx - 1, ...newSkills.map((s) => `    - ${s}`));
-      updated = lines.join("\n");
-    } else if (content.includes("skills:")) {
-      updated = content.replace(/^(skills:)\s*$/m, `$1\n  local:\n${skillLines}`);
-    } else {
-      updated = content.trimEnd() + `\nskills:\n  local:\n${skillLines}\n`;
-    }
+    const updated = insertSkillsIntoYaml(content, newSkills, "replace");
     await writeFile(existingProfilePath, updated);
 
     const parts: string[] = [`${newSkills.length} total`];
@@ -871,22 +860,7 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
       }
     }
 
-    const skillLines = selectedSkills.map((s) => `    - ${s}`);
-
-    let updated: string;
-    if (content.includes("  local:")) {
-      const lines = content.split("\n");
-      const localIdx = lines.findIndex((l) => l.match(/^\s+local:/));
-      let insertIdx = localIdx + 1;
-      while (insertIdx < lines.length && lines[insertIdx]?.match(/^\s{4}-\s/)) insertIdx++;
-      lines.splice(insertIdx, 0, ...skillLines);
-      updated = lines.join("\n");
-    } else if (content.includes("skills:")) {
-      updated = content.replace(/^(skills:)\s*$/m, `$1\n  local:\n${skillLines.join("\n")}`);
-    } else {
-      updated = content.trimEnd() + `\nskills:\n  local:\n${skillLines.join("\n")}\n`;
-    }
-
+    const updated = insertSkillsIntoYaml(content, selectedSkills, "append");
     await writeFile(targetYamlPath, updated);
     p.outro(`Added ${selectedSkills.length} skills to "${target}".`);
     return 0;
@@ -1107,7 +1081,6 @@ async function cmdOutdated(json: boolean): Promise<number> {
   for (const id of ids) {
     const skillPath = join(SKILLS_ROOT, id, "SKILL.md");
     try {
-      const { statSync } = require("node:fs");
       const stat = statSync(skillPath);
       const daysOld = Math.floor((now - stat.mtimeMs) / 86400000);
       results.push({ id, lastModified: stat.mtime.toISOString().slice(0, 10), daysOld });
