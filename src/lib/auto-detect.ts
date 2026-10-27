@@ -20,16 +20,34 @@ export interface DetectionResultV2 {
 }
 
 /**
- * Read package.json dependencies to boost detection.
+ * Parse the root package.json once and return its raw object, or null on
+ * failure. Callers share this result to avoid reading the file twice per
+ * `detectProfileV2` invocation (see `readPackageDeps` + `readWorkspaceDeps`).
  */
-function readPackageDeps(cwd: string): { deps: Set<string>; devDeps: Set<string> } {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function parseRootPkg(cwd: string): Record<string, any> | null {
+  try {
+    const parsed = JSON.parse(readFileSync(join(cwd, "package.json"), "utf8"));
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Read package.json dependencies to boost detection.
+ * Accepts a pre-parsed `pkg` to avoid re-reading the file when called
+ * alongside `readWorkspaceDeps` in the same detection pass.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function readPackageDeps(cwd: string, pkg?: Record<string, any> | null): { deps: Set<string>; devDeps: Set<string> } {
   const deps = new Set<string>();
   const devDeps = new Set<string>();
   try {
-    const raw = readFileSync(join(cwd, "package.json"), "utf8");
-    const pkg = JSON.parse(raw);
-    if (pkg.dependencies) for (const k of Object.keys(pkg.dependencies)) deps.add(k);
-    if (pkg.devDependencies) for (const k of Object.keys(pkg.devDependencies)) devDeps.add(k);
+    const p = pkg ?? parseRootPkg(cwd);
+    if (!p) return { deps, devDeps };
+    if (p.dependencies) for (const k of Object.keys(p.dependencies)) deps.add(k);
+    if (p.devDependencies) for (const k of Object.keys(p.devDependencies)) devDeps.add(k);
   } catch { /* no package.json or invalid */ }
   return { deps, devDeps };
 }
@@ -121,12 +139,16 @@ const FALLBACK_PACKAGE_SKIP = new Set([
  * from package.json `workspaces` (array or {packages}) and pnpm-workspace.yaml.
  * Best-effort glob support: exact paths and single trailing `/*` only — deeper
  * globs (`**`, or a `*` mid-path) are skipped, negations ignored.
+ *
+ * Accepts a pre-parsed `pkg` to avoid re-reading the root package.json when
+ * called alongside `readPackageDeps` in the same detection pass.
  */
-function readWorkspaceDeps(cwd: string): Set<string> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function readWorkspaceDeps(cwd: string, pkg?: Record<string, any> | null): Set<string> {
   const patterns: string[] = [];
   try {
-    const pkg = JSON.parse(readFileSync(join(cwd, "package.json"), "utf8"));
-    const ws = Array.isArray(pkg.workspaces) ? pkg.workspaces : pkg.workspaces?.packages;
+    const p = pkg ?? JSON.parse(readFileSync(join(cwd, "package.json"), "utf8"));
+    const ws = Array.isArray(p.workspaces) ? p.workspaces : p.workspaces?.packages;
     if (Array.isArray(ws)) for (const w of ws) if (typeof w === "string") patterns.push(w);
   } catch { /* no root package.json */ }
   try {
@@ -430,8 +452,11 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
   if (ex(cwd, "profiles")) add("full", 0.3, "profiles/ dir");
 
   // ── package.json deps ──
-  if (ex(cwd, "package.json")) {
-    const { deps, devDeps } = readPackageDeps(cwd);
+  // Parse the root package.json once and share it with readWorkspaceDeps to
+  // avoid reading the same file twice (which happens on every picker launch).
+  const rootPkg = ex(cwd, "package.json") ? parseRootPkg(cwd) : null;
+  if (rootPkg) {
+    const { deps, devDeps } = readPackageDeps(cwd, rootPkg);
     const allDeps = new Set([...deps, ...devDeps]);
     const isMedusaPkg = hasPrefix(allDeps, "@medusajs/");
     if (isMedusaPkg && allDeps.has("next")) {
@@ -476,7 +501,7 @@ export function detectProfileV2(cwd: string): DetectionResultV2[] {
 
   // ── Workspace child deps (monorepo roots) — same rule table ──
   {
-    const wsDeps = readWorkspaceDeps(cwd);
+    const wsDeps = readWorkspaceDeps(cwd, rootPkg);
     if (wsDeps.size > 0) {
       const workspaceHasMedusa = hasPrefix(wsDeps, "@medusajs/");
       if (workspaceHasMedusa && wsDeps.has("next")) {

@@ -7,11 +7,13 @@
  * or via `cue workspace <name>`.
  */
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync, } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
+import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
 
 import { profilesDir } from "./repo-root";
+import { getSecret } from "./workspace-secrets";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -79,7 +81,6 @@ export function loadWorkspaces(profileName: string): WorkspacesConfig | null {
   const sharedDir = sharedWorkspacesDir();
   if (existsSync(sharedDir)) {
     try {
-      const { readdirSync } = require("node:fs") as typeof import("node:fs");
       const files = readdirSync(sharedDir).filter((f: string) => f.endsWith(".yaml"));
       for (const file of files) {
         const shared = parseYaml(readFileSync(join(sharedDir, file), "utf8")) as Workspace;
@@ -128,7 +129,6 @@ export function setActiveWorkspace(profileName: string, workspaceId: string): vo
 // ---------------------------------------------------------------------------
 
 export function resolveWorkspaceForCwd(profileName: string, cwd: string): string | null {
-  const { homedir } = require("node:os") as typeof import("node:os");
   const home = homedir();
   let dir = cwd;
   while (true) {
@@ -172,7 +172,6 @@ export function computeOverrides(profileName: string, workspaceId: string): Work
     for (const [key, val] of Object.entries(ws.env)) {
       if (val.startsWith("secret:")) {
         try {
-          const { getSecret } = require("./workspace-secrets") as typeof import("./workspace-secrets");
           const secretName = val.slice(7);
           const resolved = getSecret(secretName);
           env[key] = resolved ?? val;

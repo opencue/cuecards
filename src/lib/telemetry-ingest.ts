@@ -13,8 +13,11 @@
  */
 
 import {
+  closeSync,
   existsSync,
+  openSync,
   readFileSync,
+  readSync,
   readdirSync,
   renameSync,
   statSync,
@@ -246,11 +249,11 @@ function ingestTranscript(
     if (st.size > MAX_BYTES_PER_TRANSCRIPT) {
       // Read a 5MB tail: recent activity matters most.
       const buf = Buffer.alloc(MAX_BYTES_PER_TRANSCRIPT);
-      const fd = require("node:fs").openSync(path, "r");
+      const fd = openSync(path, "r");
       try {
-        require("node:fs").readSync(fd, buf, 0, MAX_BYTES_PER_TRANSCRIPT, st.size - MAX_BYTES_PER_TRANSCRIPT);
+        readSync(fd, buf, 0, MAX_BYTES_PER_TRANSCRIPT, st.size - MAX_BYTES_PER_TRANSCRIPT);
       } finally {
-        require("node:fs").closeSync(fd);
+        closeSync(fd);
       }
       contentRaw = buf.toString("utf8");
       // Drop the first (possibly truncated) line.
