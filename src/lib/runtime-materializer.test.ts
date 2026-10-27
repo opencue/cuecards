@@ -377,6 +377,40 @@ describe("materializeRuntime", () => {
     ).toContain('model_reasoning_effort = "xhigh"');
   });
 
+  test("corrupt config.toml does not abort rematerialization", async () => {
+    // A Codex crash mid-write can leave config.toml in an unterminated state.
+    // extractRuntimeCodexState throws on malformed TOML; previously the call
+    // was bare and that error propagated, blocking every subsequent launch.
+    const runtimeRoot = join(root, "runtime");
+    const profile = {
+      ...sampleProfile,
+      name: "test-codex-corrupt",
+      agents: ["codex"] as ResolvedProfile["agents"],
+      mcps: [],
+      inheritanceChain: ["test-codex-corrupt"],
+    } as ResolvedProfile;
+    const input = {
+      profile,
+      agent: "codex" as const,
+      runtimeRoot,
+      skillSourceLookup: async (id: string) => `/fake/skills/${id}`,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    };
+    // First build — establishes the runtime dir
+    const first = await materializeRuntime(input);
+    // Plant a corrupt config.toml to simulate a mid-write crash
+    await writeFile(
+      join(first.runtimeDir, "config.toml"),
+      'model = "o3"\n[unterminated = {\n',
+    );
+    // Force a rebuild by dropping the hash
+    await writeFile(join(first.runtimeDir, ".cue-hash"), "stale");
+    // Second build must complete without throwing despite the corrupt TOML
+    const second = await materializeRuntime(input);
+    expect(second.rebuilt).toBe(true);
+  });
+
   test("creates runtime dir with hash and settings.json", async () => {
     const out = await materializeRuntime({
       profile: sampleProfile,

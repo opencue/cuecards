@@ -21,6 +21,7 @@ import {
   readdir,
   lstat,
   stat,
+  copyFile,
 } from "node:fs/promises";
 import {
   dirname,
@@ -30,10 +31,12 @@ import {
   isAbsolute,
 } from "node:path";
 import { fileURLToPath } from "node:url";
+import { homedir } from "node:os";
 
 import type {
   AgentKind,
   CodexProfileConfig,
+  DeferredSkillEntry,
   ResolvedProfile,
 } from "../../profiles/_types";
 import { buildCodexConfigToml, extractRuntimeCodexState } from "./codex-config";
@@ -298,8 +301,7 @@ async function readPersonaIncludes(profile: ResolvedProfile): Promise<string> {
 function effectiveCodexOverrides(
   profile: ResolvedProfile,
 ): CodexProfileConfig | undefined {
-  const legacy =
-    (profile as { codexConfig?: Record<string, unknown> }).codexConfig ?? {};
+  const legacy = profile.codexConfig ?? {};
   const current = (profile as { codex?: CodexProfileConfig }).codex ?? {};
   if (Object.keys(legacy).length === 0 && Object.keys(current).length === 0) {
     return undefined;
@@ -419,434 +421,79 @@ async function withMaterializeLock<T>(
   }
 }
 
-export async function materializeRuntime(
-  input: MaterializeInput,
-): Promise<MaterializeOutput> {
-  input = await withContextMode(input);
-  const runtimeDir = join(
-    input.runtimeRoot,
-    runtimePathKey(input.runtimeKey ?? input.profile.name),
-    agentSubdir(input.agent),
-  );
-  return withMaterializeLock(runtimeDir, () =>
-    materializeRuntimeUnlocked(input),
-  );
-}
-
-async function materializeRuntimeUnlocked(
-  input: MaterializeInput,
-): Promise<MaterializeOutput> {
-  const { profile, agent, runtimeRoot } = input;
-  const runtimeDir = join(
-    runtimeRoot,
-    runtimePathKey(input.runtimeKey ?? profile.name),
-    agentSubdir(agent),
-  );
-
-  // Normalize any `uvx --from git+<repo> <bin>` MCP entries: install the
-  // package locally with `uv tool install` and rewrite the entry to call the
-  // installed binary. Sidesteps both the MCP-startup cold-download race and
-  // the auto-mode classifier's "fetch arbitrary code from URL" block.
-  // Idempotent — re-runs detect an existing binary and just rewrite.
-  const { normalized: normalizedRegistry, report: uvxReport } =
-    normalizeUvxGitServers(input.mcpRegistry);
-  const effectiveInput: MaterializeInput = {
-    ...input,
-    mcpRegistry: normalizedRegistry,
-  };
-  if (uvxReport.installed.length > 0) {
-    process.stderr.write(
-      `[cue] installed uvx MCPs: ${uvxReport.installed.join(", ")}\n`,
-    );
-  }
-
-  // The base Codex config is part of this runtime's content, so it belongs in
-  // the hash: edit ~/.codex/config.toml and the next launch must rebuild rather
-  // than keep serving a config.toml with the previous knobs.
-  const codexBaseText =
-    agent === "codex" && effectiveInput.codexBaseConfig
-      ? await readFile(effectiveInput.codexBaseConfig, "utf8").catch(() => "")
-      : "";
-  const codexSkillScopeText =
-    agent === "codex" && effectiveInput.codexExternalSkillPaths
-      ? JSON.stringify([...effectiveInput.codexExternalSkillPaths].sort())
-      : "";
-  // Collect profile MCP entries once. Codex embeds these in config.toml, so the
-  // effective registry must participate in its runtime hash: installing or
-  // removing a command must rebuild the file instead of retaining stale MCPs.
-  const mcpServers = collectProfileMcps(
-    profile,
-    agent,
-    effectiveInput.mcpRegistry,
-  );
-  const codexMcpText = agent === "codex" ? sortedJson(mcpServers) : "";
-  // Included persona bodies are generated into CLAUDE.md / AGENTS.md, so their
-  // source text must participate in the content hash. Otherwise editing a
-  // shared policy leaves already-materialized runtimes stale indefinitely.
-  const personaIncludesText = await readPersonaIncludes(profile);
-  const hash = computeHash(
-    profile,
-    agent,
-    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
-  );
-
-  // Short-circuit if hash matches.
-  try {
-    const existing = (
-      await readFile(join(runtimeDir, ".cue-hash"), "utf8")
-    ).trim();
-    if (existing === hash) {
-      // Refresh state from credentialsSource even on cache hit so account
-      // switches and newly-added source entries are reflected.
-      if (effectiveInput.credentialsSource) {
-        // Re-merge settings.json from current credentialsSource.
-        if (agent === "claude-code") {
-          const merged = await buildClaudeSettings(
-            profile,
-            agent,
-            effectiveInput,
-            runtimeDir,
-          );
-          await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
-        }
-        // Re-overlay any source entries that aren't already present (e.g.
-        // user added a new sessions/ entry, plugins/, etc.).
-        await overlaySourceState(runtimeDir, effectiveInput.credentialsSource);
-        // Pre-seed the plugin cache so enabled-plugin hooks find their version
-        // dir immediately (avoids the "Plugin directory does not exist" race).
-        if (!sameResolvedPath(runtimeDir, effectiveInput.credentialsSource)) {
-          await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
-        }
-      }
-      if (agent === "claude-code") {
-        await syncMcpsIntoClaudeJson(
-          runtimeDir,
-          mcpServers,
-          effectiveInput.disabledMcpIds,
-        );
-      }
-      return { runtimeDir, rebuilt: false, hash };
-    }
-  } catch {
-    /* not present — fall through to build */
-  }
-
-  // Build in a sibling tmp dir, atomic-swap at the end.
-  await mkdir(dirname(runtimeDir), { recursive: true });
-  const tmpDir = await mkdtemp(`${runtimeDir}.tmp.`);
-
-  // 1. Skills — missing refs are warned + skipped, not fatal. A profile that
-  // lists 20 skills and has 1 broken ref shouldn't crash the entire launch.
-  // `cue debug` and `cue validate` surface the broken ref clearly so the user
-  // can fix it. Behavior matches `cue debug`'s tolerance.
-  const skillsDir = join(tmpDir, "skills");
-  await mkdir(skillsDir, { recursive: true });
-  const skippedSkills: string[] = [];
-  let attemptedSkills = 0;
-  // Skills are linked FLAT — skills/<slug>, not skills/<category>/<slug>.
-  // Claude Code (and Codex) only register a personal skill one level deep, by
-  // its directory name (skills/<name>/SKILL.md → /<name>); a nested category
-  // dir is invisible to that scan. Flattening matches `activate-profile.sh`'s
-  // manual installer and lets every profile skill be invoked via the Skill
-  // tool — including the slug==category cases (caveman/caveman, github/github,
-  // colony/colony) that a nested layout can't expose. smart-loader's dedup no
-  // longer reads the dir tree; it reads the `.cue-skills` manifest written
-  // below, which preserves the <category>/<slug> identity.
-  const loadedSkillIds: string[] = [];
-  // Resolve first, link second, so slug collisions resolve by LAST-WINS: when
-  // two skills share a slug (e.g. plan/investigate lean vs gstack/investigate
-  // full), the later entry wins the flat /<slug> name. Skill lists merge
-  // parent→child (core first, profile last), so last-wins = the more-specific
-  // profile's choice overrides the inherited one — the standard override rule.
-  // The loser is still in the manifest, so smart-loader can surface it.
-  const slugToSrc = new Map<string, string>();
-  const slugToId = new Map<string, string>();
-  const overridden: string[] = [];
-  for (const skill of profile.skills.local) {
-    if (!appliesToAgent(skill, agent)) continue;
-    if (skill.when && !evaluateCondition(skill.when, process.cwd())) continue;
-    attemptedSkills++;
-    try {
-      const src = await input.skillSourceLookup(skill.id);
-      loadedSkillIds.push(skill.id);
-      const slug = basename(skill.id);
-      const prevId = slugToId.get(slug);
-      if (prevId !== undefined && prevId !== skill.id) {
-        overridden.push(`${slug}: ${prevId} → ${skill.id}`);
-      }
-      slugToSrc.set(slug, src);
-      slugToId.set(slug, skill.id);
-    } catch {
-      skippedSkills.push(skill.id);
-    }
-  }
-  for (const [slug, src] of slugToSrc) {
-    await symlink(src, join(skillsDir, slug));
-  }
-  // Project-loadout deferred index: one generated (written, not symlinked)
-  // skill standing in for every skill the loadout deferred. Costs a single
-  // frontmatter line always-on; the agent invokes it to discover and Read a
-  // deferred skill's real SKILL.md. Present in the content hash via
-  // profile.deferredSkills, so loadout changes rebuild this file.
-  const deferredSkills = profile.deferredSkills ?? [];
-  if (deferredSkills.length > 0) {
-    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } =
-      await import("./lazy-skills");
-    const indexDir = join(skillsDir, DEFERRED_INDEX_SLUG);
-    await mkdir(indexDir, { recursive: true });
-    await writeFile(
-      join(indexDir, "SKILL.md"),
-      generateDeferredIndexSkill(deferredSkills),
-    );
-  }
-  if (overridden.length > 0) {
-    process.stderr.write(
-      `[cue] ${overridden.length} skill slug collision(s) resolved last-wins ` +
-        `(loser still smart-loadable): ${overridden.join("; ")}\n`,
-    );
-  }
-  // Manifest for smart-loader's --exclude-loaded: the resolved <category>/<slug>
-  // ids, decoupled from the (now flat) on-disk layout.
-  await writeFile(
-    join(tmpDir, ".cue-skills"),
-    loadedSkillIds.length > 0 ? `${loadedSkillIds.join("\n")}\n` : "",
-  );
-  if (skippedSkills.length > 0) {
-    process.stderr.write(
-      `[cue] skipped ${skippedSkills.length} missing skill(s): ${skippedSkills.slice(0, 5).join(", ")}` +
-        (skippedSkills.length > 5
-          ? `, +${skippedSkills.length - 5} more`
-          : "") +
-        ` — run \`cue debug ${profile.name}\` for details\n`,
-    );
-  }
-  // Fail-loud guard: a single broken ref in a 20-skill profile is tolerable
-  // (warned above), but if MORE THAN HALF the skills failed to resolve, the
-  // materialized runtime is broken — almost always a misconfigured skill
-  // source root (e.g. resolveLocalSkill falling back to a stale default when
-  // CUE_REPO_ROOT is unset). Silently writing a near-empty CLAUDE.md is worse
-  // than crashing. Bypass with CUE_ALLOW_PARTIAL_SKILLS=1 for the rare profile
-  // that genuinely expects most skills to be unavailable.
-  const allowPartial =
-    process.env.CUE_ALLOW_PARTIAL_SKILLS === "1" ||
-    process.env.CUE_ALLOW_PARTIAL_SKILLS === "true";
-  if (
-    !allowPartial &&
-    attemptedSkills > 0 &&
-    skippedSkills.length / attemptedSkills > 0.5
-  ) {
-    await rm(tmpDir, { recursive: true, force: true });
-    throw new Error(
-      `[cue] skill resolution failed: ${skippedSkills.length}/${attemptedSkills} ` +
-        `skill(s) for profile "${profile.name}" could not be resolved. The runtime ` +
-        `would be broken, so the rebuild was aborted (old runtime left intact). ` +
-        `This usually means the skill source root is wrong — check CUE_REPO_ROOT / ` +
-        `the skillSourceLookup wiring, then run \`cue debug ${profile.name}\`. ` +
-        `Set CUE_ALLOW_PARTIAL_SKILLS=1 to bypass.`,
-    );
-  }
-
-  // Defensive defaults — older fixtures may not declare these arrays.
-  const profileRules = profile.rules ?? [];
-  const profileCommands = profile.commands ?? [];
-  const profileSubagents = profile.subagents ?? [];
-  // Effective hook list: profile-declared hooks PLUS the cue-quality-gates
-  // Stop hook when the profile declares any qualityGates. Keeps profile
-  // authors from having to remember to wire both `qualityGates` and the
-  // matching hook entry — declaring gates is enough. Same dedupe + merge
-  // logic runs again in buildClaudeSettings so the settings.json wiring
-  // stays consistent with the symlinked files here.
-  const profileHooks = [...(profile.hooks ?? [])];
-  const profileGatesForAutoHook = (profile as any).qualityGates ?? [];
+/**
+ * Return `profile.hooks` with the cue-quality-gates Stop hook auto-injected
+ * when the profile declares qualityGates but hasn't explicitly listed the
+ * hook. Centralises the invariant so both the symlink phase and
+ * buildClaudeSettings stay consistent without duplicating the guard.
+ */
+function effectiveHookList(profile: ResolvedProfile, agent: AgentKind): string[] {
+  const hooks = [...(profile.hooks ?? [])];
   if (
     agent === "claude-code" &&
-    profileGatesForAutoHook.length > 0 &&
-    !profileHooks.includes("cue-quality-gates.json")
+    (profile.qualityGates ?? []).length > 0 &&
+    !hooks.includes("cue-quality-gates.json")
   ) {
-    profileHooks.push("cue-quality-gates.json");
+    hooks.push("cue-quality-gates.json");
   }
+  return hooks;
+}
 
-  // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
-  if (agent === "claude-code" && profileCommands.length > 0) {
-    const commandsDir = join(tmpDir, "commands");
-    await mkdir(commandsDir, { recursive: true });
-    for (const ref of profileCommands) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_COMMANDS,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(commandsDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
+/**
+ * Symlink a list of resource refs into `targetDir`, appending `ext` when the
+ * ref lacks it.  If `companionExts` is given, each ref's companion files
+ * (e.g. `.sh` / `.py` next to a hook's `.json`) are symlinked too.
+ * An empty `refs` array is a no-op.
+ */
+async function symlinkResources(
+  refs: string[],
+  targetDir: string,
+  resourceDir: string,
+  ext: string,
+  companionExts?: readonly string[],
+): Promise<void> {
+  if (refs.length === 0) return;
+  await mkdir(targetDir, { recursive: true });
+  for (const ref of refs) {
+    const fname = ext ? (ref.endsWith(ext) ? ref : `${ref}${ext}`) : ref;
+    const src = resolveResourcePath(fname, resourceDir);
+    try {
+      await lstat(src);
+      await symlink(src, join(targetDir, basename(src)));
+    } catch {
+      /* missing source — skip */
     }
-  }
-
-  // 1b2. Subagents — symlink each <ref>.md FLAT into agents/ (Claude reads
-  // .claude/agents/*.md and delegates to them via the Task tool). Refs may be
-  // division-scoped (e.g. "design/design-ui-designer"); we flatten to the
-  // basename since agent file-stems are already globally unique. When a profile
-  // declares subagents, the real agents/ dir we create here causes the later
-  // overlay step to skip the user's ~/.claude/agents passthrough (existing real
-  // dir is left untouched) — the profile's curated set wins, by design.
-  if (agent === "claude-code" && profileSubagents.length > 0) {
-    const agentsDir = join(tmpDir, "agents");
-    await mkdir(agentsDir, { recursive: true });
-    for (const ref of profileSubagents) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_SUBAGENTS,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(agentsDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
-  }
-
-  // 1c. Rules — symlink into rules/. Contents get appended to CLAUDE.md below.
-  if (profileRules.length > 0) {
-    const rulesDir = join(tmpDir, "rules");
-    await mkdir(rulesDir, { recursive: true });
-    for (const ref of profileRules) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_RULES,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(rulesDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
-  }
-
-  // 1d. Hooks — symlink scripts into hooks/. settings.json wiring happens in buildClaudeSettings.
-  // A hook ref points at a `.json` config; its referenced script (e.g. `<stem>.sh`)
-  // lives next to it in resources/hooks/ and must be symlinked too, otherwise the
-  // Stop/PreToolUse/etc. hook fires `bash $CLAUDE_CONFIG_DIR/hooks/<stem>.sh` and
-  // dies with "No such file or directory".
-  if (agent === "claude-code" && profileHooks.length > 0) {
-    const hooksDir = join(tmpDir, "hooks");
-    await mkdir(hooksDir, { recursive: true });
-    for (const ref of profileHooks) {
-      const src = resolveResourcePath(ref, RESOURCES_HOOKS);
-      try {
-        await lstat(src);
-        await symlink(src, join(hooksDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
+    if (companionExts) {
       const stem = basename(ref).replace(/\.[^.]+$/, "");
-      for (const ext of [".sh", ".py", ".js", ".mjs", ".ts"]) {
-        const companion = join(RESOURCES_HOOKS, `${stem}${ext}`);
+      for (const compExt of companionExts) {
+        const companion = resolveResourcePath(`${stem}${compExt}`, resourceDir);
         try {
           await lstat(companion);
-          await symlink(companion, join(hooksDir, `${stem}${ext}`));
+          await symlink(companion, join(targetDir, `${stem}${compExt}`));
         } catch {
           /* no companion at this ext — skip */
         }
       }
     }
   }
+}
 
-  // 1e. Playbooks (Phase 2) — symlink markdown protocols into playbooks/.
-  // Indexed in CLAUDE.md so Claude knows to consult them; bodies lazy-loaded.
-  const profilePlaybooks = (profile as any).playbooks ?? [];
-  if (profilePlaybooks.length > 0) {
-    const pbDir = join(tmpDir, "playbooks");
-    await mkdir(pbDir, { recursive: true });
-    for (const ref of profilePlaybooks) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_PLAYBOOKS,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(pbDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
-  }
+/**
+ * Build and write the CLAUDE.md (or AGENTS.md) memory-file stamp for a
+ * materialised runtime.  Extracted from the 921-line materializeRuntimeUnlocked
+ * to keep the orchestrator as a thin sequencer.
+ */
+async function buildMemoryFileStamp(
+  tmpDir: string,
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  input: Pick<MaterializeInput, "skillSourceLookup" | "userClaudeMd">,
+  personaIncludesText: string,
+): Promise<void> {
+  const profileRules = profile.rules ?? [];
+  const profileCommands = profile.commands ?? [];
+  const profileSubagents = profile.subagents ?? [];
 
-  // 1f. Quality gates (Phase 3) — symlink validator scripts into quality-gates/.
-  // The Stop hook (cue-quality-gates.sh, see resources/hooks/) iterates this
-  // directory and fails the session if any gate exits non-zero.
-  // Refs in profile.yaml typically omit the `.sh` extension, so we append it
-  // when missing — otherwise resolveResourcePath produces e.g.
-  // `.../resources/quality-gates/lint-skill-pass` (no such file) and the
-  // lstat fails silently, leaving the gate undeployed at Stop time.
-  const profileGates = (profile as any).qualityGates ?? [];
-  if (agent === "claude-code" && profileGates.length > 0) {
-    const gDir = join(tmpDir, "quality-gates");
-    await mkdir(gDir, { recursive: true });
-    for (const ref of profileGates) {
-      const fname = ref.endsWith(".sh") ? ref : `${ref}.sh`;
-      const src = resolveResourcePath(fname, RESOURCES_QUALITY_GATES);
-      try {
-        await lstat(src);
-        await symlink(src, join(gDir, basename(src)));
-      } catch {
-        /* missing source — skip; surfaced by `cue doctor` (D8) */
-      }
-    }
-  }
-
-  // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
-  // mcpServers was already collected above (used by both code paths).
-  if (agent === "claude-code") {
-    const merged = await buildClaudeSettings(
-      profile,
-      agent,
-      effectiveInput,
-      runtimeDir,
-    );
-    await writeFile(join(tmpDir, "settings.json"), merged + "\n");
-  } else {
-    // Codex equivalent — config.toml. cue points CODEX_HOME at this runtime, so
-    // this file is the ONLY config the session reads: it has to carry the base
-    // config's autonomy knobs (reasoning effort, context window, auto-compact,
-    // [features]) and its skill overrides or the session silently diverges from
-    // the user's canonical Codex setup.
-    const overrides = effectiveCodexOverrides(profile) ?? {};
-    let config = buildCodexConfigToml({
-      baseText: codexBaseText,
-      overrides,
-      mcpServers,
-      disabledSkillPaths: effectiveInput.codexExternalSkillPaths,
-      enabledSkillPaths: [
-        ...slugToSrc.keys(),
-        ...(deferredSkills.length > 0 ? ["cue-deferred-skills"] : []),
-      ].map((slug) => join(runtimeDir, "skills", slug, "SKILL.md")),
-    });
-    const readOptional = (name: string) => readFile(join(runtimeDir, name), "utf8").catch(
-        (error: NodeJS.ErrnoException) => {
-          if (error.code === "ENOENT") return undefined;
-          throw error;
-        },
-      );
-    const ownedRaw = await readOptional(".cue-hooks.json");
-    if (overrides.hooks || ownedRaw !== undefined) {
-      const { document, owned } = reconcileCodexHooks(await readOptional("hooks.json"), ownedRaw, overrides.hooks);
-      await writeFile(
-        join(tmpDir, "hooks.json"),
-        JSON.stringify(document, null, 2) + "\n",
-        { mode: 0o600 },
-      );
-      await writeFile(join(tmpDir, ".cue-hooks.json"), JSON.stringify(owned, null, 2) + "\n", { mode: 0o600 });
-      // The builder emits profile overrides as single-line top-level values.
-      config = config.replace(/^hooks = .*\n/m, "");
-    }
-    await writeFile(join(tmpDir, "config.toml"), config);
-  }
-
-  // 3. CLAUDE.md with stamp + role identity
   const iconStr = profile.icon ?? "";
   const skillsList = (profile.skills?.local ?? [])
     .map((s) => (typeof s === "string" ? s : s.id))
@@ -864,7 +511,7 @@ async function materializeRuntimeUnlocked(
   // Goes above the mechanical "Your Role" block so it primes interpretation
   // of everything that follows. Profiles without a persona keep the old
   // generic block (backwards-compatible).
-  const profilePersona = (profile as any).persona ?? "";
+  const profilePersona = profile.persona ?? "";
 
   // persona_includes: shared snippets prepended to the persona. Lets
   // cross-profile policies (Integrity Protocol, voice rules) live in one
@@ -1088,11 +735,11 @@ async function materializeRuntimeUnlocked(
 
   // Playbooks (Phase 2) — proven step-by-step protocols for common tasks.
   // Indexed only; bodies are read on demand when the matching task triggers.
-  if (profilePlaybooks.length > 0) {
+  if ((profile.playbooks ?? []).length > 0) {
     stamp +=
-      `## Playbooks (${profilePlaybooks.length})\n\n` +
+      `## Playbooks (${profile.playbooks.length})\n\n` +
       `Read on demand from \`playbooks/\` when the user's request matches:\n` +
-      profilePlaybooks
+      profile.playbooks
         .map((p: string) => {
           const stem = basename(p, ".md");
           return `- \`playbooks/${stem}.md\` — use when ${stem.replace(/-/g, " ")}`;
@@ -1103,7 +750,7 @@ async function materializeRuntimeUnlocked(
   }
 
   // Quality gates (Phase 3) — mention so Claude knows what'll be checked at Stop.
-  const profileGatesForStamp = (profile as any).qualityGates ?? [];
+  const profileGatesForStamp = profile.qualityGates ?? [];
   if (profileGatesForStamp.length > 0) {
     stamp +=
       `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
@@ -1144,26 +791,20 @@ async function materializeRuntimeUnlocked(
     );
   }
   await writeFile(join(tmpDir, memoryFileName), memoryFileContent);
+}
 
-  // 4. hash (no trailing newline so /^[a-f0-9]{64}$/ matches directly)
-  await writeFile(join(tmpDir, ".cue-hash"), hash);
-
-  // 5. Overlay source state: symlink everything from credentialsSource that
-  // cue doesn't manage (sessions/, projects/, history.jsonl, .credentials.json,
-  // .session-stats.json, plugins/, telemetry/, etc.). This makes the runtime
-  // dir look like a fully-onboarded Claude Code config from Claude's
-  // perspective, while still letting cue override skills/, settings.json,
-  // and CLAUDE.md.
-  if (input.credentialsSource) {
-    await overlaySourceState(tmpDir, input.credentialsSource, runtimeDir);
-    // Pre-seed the plugin cache + marketplace metadata from the real config so
-    // enabled-plugin hooks find their version dir on the first prompt instead
-    // of racing Claude's lazy per-config-dir download.
-    if (!sameResolvedPath(runtimeDir, input.credentialsSource)) {
-      await linkPluginCache(tmpDir, input.credentialsSource);
-    }
-  }
-
+/**
+ * Carry Codex durable thread state forward, then atomically swap the staging
+ * directory into the live runtime path and sync MCPs.  Extracted from the
+ * 921-line materializeRuntimeUnlocked to keep that function as an orchestrator.
+ */
+async function atomicSwapRuntime(
+  runtimeDir: string,
+  tmpDir: string,
+  agent: AgentKind,
+  mcpServers: Record<string, McpServerConfig>,
+  effectiveInput: MaterializeInput,
+): Promise<void> {
   // Codex writes durable thread state directly into CODEX_HOME (sessions/,
   // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
   // Claude, it has no credentialsSource overlay, so an atomic rematerialization
@@ -1179,7 +820,12 @@ async function materializeRuntimeUnlocked(
         throw error;
       },
     );
-    const localState = extractRuntimeCodexState(oldConfig);
+    let localState: string | null = null;
+    try {
+      localState = extractRuntimeCodexState(oldConfig);
+    } catch {
+      /* corrupt runtime config.toml — skip state preservation, let fresh config land */
+    }
     if (localState) {
       const configPath = join(tmpDir, "config.toml");
       await writeFile(configPath, (await readFile(configPath, "utf8")) + "\n" + localState, { mode: 0o600 });
@@ -1247,10 +893,10 @@ async function materializeRuntimeUnlocked(
   // comparison below is meaningless across accounts. Skip preservation
   // entirely and let the overlay's source state win.
   let sameAccount = true;
-  if (input.credentialsSource) {
+  if (effectiveInput.credentialsSource) {
     const srcUuid =
-      (await accountUuidAt(join(input.credentialsSource, ".config.json"))) ??
-      (await accountUuidAt(join(input.credentialsSource, ".claude.json")));
+      (await accountUuidAt(join(effectiveInput.credentialsSource, ".config.json"))) ??
+      (await accountUuidAt(join(effectiveInput.credentialsSource, ".claude.json")));
     // 2.1.x keeps the identity in .config.json; older clients in .claude.json.
     const oldUuid =
       (await accountUuidAt(join(runtimeDir, ".config.json"))) ??
@@ -1345,6 +991,385 @@ async function materializeRuntimeUnlocked(
       effectiveInput.disabledMcpIds,
     );
   }
+}
+
+/**
+ * Resolve skill source dirs, create flat symlinks in `<tmpDir>/skills/`, write
+ * the `.cue-skills` manifest, and enforce the >50%-failure safety guard.
+ * Returns the slug→src map (for Codex config) and the deferred-skills list.
+ */
+async function resolveAndLinkSkills(
+  tmpDir: string,
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  input: Pick<MaterializeInput, "skillSourceLookup">,
+): Promise<{ slugToSrc: Map<string, string>; deferredSkills: DeferredSkillEntry[] }> {
+  // 1. Skills — missing refs are warned + skipped, not fatal. A profile that
+  // lists 20 skills and has 1 broken ref shouldn't crash the entire launch.
+  // `cue debug` and `cue validate` surface the broken ref clearly so the user
+  // can fix it. Behavior matches `cue debug`'s tolerance.
+  const skillsDir = join(tmpDir, "skills");
+  await mkdir(skillsDir, { recursive: true });
+  const skippedSkills: string[] = [];
+  let attemptedSkills = 0;
+  // Skills are linked FLAT — skills/<slug>, not skills/<category>/<slug>.
+  // Claude Code (and Codex) only register a personal skill one level deep, by
+  // its directory name (skills/<name>/SKILL.md → /<name>); a nested category
+  // dir is invisible to that scan. Flattening matches `activate-profile.sh`'s
+  // manual installer and lets every profile skill be invoked via the Skill
+  // tool — including the slug==category cases (caveman/caveman, github/github,
+  // colony/colony) that a nested layout can't expose. smart-loader's dedup no
+  // longer reads the dir tree; it reads the `.cue-skills` manifest written
+  // below, which preserves the <category>/<slug> identity.
+  const loadedSkillIds: string[] = [];
+  // Resolve first, link second, so slug collisions resolve by LAST-WINS: when
+  // two skills share a slug (e.g. plan/investigate lean vs gstack/investigate
+  // full), the later entry wins the flat /<slug> name. Skill lists merge
+  // parent→child (core first, profile last), so last-wins = the more-specific
+  // profile's choice overrides the inherited one — the standard override rule.
+  // The loser is still in the manifest, so smart-loader can surface it.
+  const slugToSrc = new Map<string, string>();
+  const slugToId = new Map<string, string>();
+  const overridden: string[] = [];
+  for (const skill of profile.skills.local) {
+    if (!appliesToAgent(skill, agent)) continue;
+    if (skill.when && !evaluateCondition(skill.when, process.cwd())) continue;
+    attemptedSkills++;
+    try {
+      const src = await input.skillSourceLookup(skill.id);
+      loadedSkillIds.push(skill.id);
+      const slug = basename(skill.id);
+      const prevId = slugToId.get(slug);
+      if (prevId !== undefined && prevId !== skill.id) {
+        overridden.push(`${slug}: ${prevId} → ${skill.id}`);
+      }
+      slugToSrc.set(slug, src);
+      slugToId.set(slug, skill.id);
+    } catch {
+      skippedSkills.push(skill.id);
+    }
+  }
+  for (const [slug, src] of slugToSrc) {
+    await symlink(src, join(skillsDir, slug));
+  }
+  // Project-loadout deferred index: one generated (written, not symlinked)
+  // skill standing in for every skill the loadout deferred. Costs a single
+  // frontmatter line always-on; the agent invokes it to discover and Read a
+  // deferred skill's real SKILL.md. Present in the content hash via
+  // profile.deferredSkills, so loadout changes rebuild this file.
+  const deferredSkills = profile.deferredSkills ?? [];
+  if (deferredSkills.length > 0) {
+    const { DEFERRED_INDEX_SLUG, generateDeferredIndexSkill } =
+      await import("./lazy-skills");
+    const indexDir = join(skillsDir, DEFERRED_INDEX_SLUG);
+    await mkdir(indexDir, { recursive: true });
+    await writeFile(
+      join(indexDir, "SKILL.md"),
+      generateDeferredIndexSkill(deferredSkills),
+    );
+  }
+  if (overridden.length > 0) {
+    process.stderr.write(
+      `[cue] ${overridden.length} skill slug collision(s) resolved last-wins ` +
+        `(loser still smart-loadable): ${overridden.join("; ")}\n`,
+    );
+  }
+  // Manifest for smart-loader's --exclude-loaded: the resolved <category>/<slug>
+  // ids, decoupled from the (now flat) on-disk layout.
+  await writeFile(
+    join(tmpDir, ".cue-skills"),
+    loadedSkillIds.length > 0 ? `${loadedSkillIds.join("\n")}\n` : "",
+  );
+  if (skippedSkills.length > 0) {
+    process.stderr.write(
+      `[cue] skipped ${skippedSkills.length} missing skill(s): ${skippedSkills.slice(0, 5).join(", ")}` +
+        (skippedSkills.length > 5
+          ? `, +${skippedSkills.length - 5} more`
+          : "") +
+        ` — run \`cue debug ${profile.name}\` for details\n`,
+    );
+  }
+  // Fail-loud guard: a single broken ref in a 20-skill profile is tolerable
+  // (warned above), but if MORE THAN HALF the skills failed to resolve, the
+  // materialized runtime is broken — almost always a misconfigured skill
+  // source root (e.g. resolveLocalSkill falling back to a stale default when
+  // CUE_REPO_ROOT is unset). Silently writing a near-empty CLAUDE.md is worse
+  // than crashing. Bypass with CUE_ALLOW_PARTIAL_SKILLS=1 for the rare profile
+  // that genuinely expects most skills to be unavailable.
+  const allowPartial =
+    process.env.CUE_ALLOW_PARTIAL_SKILLS === "1" ||
+    process.env.CUE_ALLOW_PARTIAL_SKILLS === "true";
+  if (
+    !allowPartial &&
+    attemptedSkills > 0 &&
+    skippedSkills.length / attemptedSkills > 0.5
+  ) {
+    await rm(tmpDir, { recursive: true, force: true });
+    throw new Error(
+      `[cue] skill resolution failed: ${skippedSkills.length}/${attemptedSkills} ` +
+        `skill(s) for profile "${profile.name}" could not be resolved. The runtime ` +
+        `would be broken, so the rebuild was aborted (old runtime left intact). ` +
+        `This usually means the skill source root is wrong — check CUE_REPO_ROOT / ` +
+        `the skillSourceLookup wiring, then run \`cue debug ${profile.name}\`. ` +
+        `Set CUE_ALLOW_PARTIAL_SKILLS=1 to bypass.`,
+    );
+  }
+  return { slugToSrc, deferredSkills };
+}
+
+export async function materializeRuntime(
+  input: MaterializeInput,
+): Promise<MaterializeOutput> {
+  input = await withContextMode(input);
+  const runtimeDir = join(
+    input.runtimeRoot,
+    runtimePathKey(input.runtimeKey ?? input.profile.name),
+    agentSubdir(input.agent),
+  );
+  return withMaterializeLock(runtimeDir, () =>
+    materializeRuntimeUnlocked(input),
+  );
+}
+
+async function materializeRuntimeUnlocked(
+  input: MaterializeInput,
+): Promise<MaterializeOutput> {
+  const { profile, agent, runtimeRoot } = input;
+  const runtimeDir = join(
+    runtimeRoot,
+    runtimePathKey(input.runtimeKey ?? profile.name),
+    agentSubdir(agent),
+  );
+
+  // Normalize any `uvx --from git+<repo> <bin>` MCP entries: install the
+  // package locally with `uv tool install` and rewrite the entry to call the
+  // installed binary. Sidesteps both the MCP-startup cold-download race and
+  // the auto-mode classifier's "fetch arbitrary code from URL" block.
+  // Idempotent — re-runs detect an existing binary and just rewrite.
+  const { normalized: normalizedRegistry, report: uvxReport } =
+    normalizeUvxGitServers(input.mcpRegistry);
+  const effectiveInput: MaterializeInput = {
+    ...input,
+    mcpRegistry: normalizedRegistry,
+  };
+  if (uvxReport.installed.length > 0) {
+    process.stderr.write(
+      `[cue] installed uvx MCPs: ${uvxReport.installed.join(", ")}\n`,
+    );
+  }
+
+  // The base Codex config is part of this runtime's content, so it belongs in
+  // the hash: edit ~/.codex/config.toml and the next launch must rebuild rather
+  // than keep serving a config.toml with the previous knobs.
+  const codexBaseText =
+    agent === "codex" && effectiveInput.codexBaseConfig
+      ? await readFile(effectiveInput.codexBaseConfig, "utf8").catch(() => "")
+      : "";
+  const codexSkillScopeText =
+    agent === "codex" && effectiveInput.codexExternalSkillPaths
+      ? JSON.stringify([...effectiveInput.codexExternalSkillPaths].sort())
+      : "";
+  // Collect profile MCP entries once. Codex embeds these in config.toml, so the
+  // effective registry must participate in its runtime hash: installing or
+  // removing a command must rebuild the file instead of retaining stale MCPs.
+  const mcpServers = collectProfileMcps(
+    profile,
+    agent,
+    effectiveInput.mcpRegistry,
+  );
+  const codexMcpText = agent === "codex" ? sortedJson(mcpServers) : "";
+  // Included persona bodies are generated into CLAUDE.md / AGENTS.md, so their
+  // source text must participate in the content hash. Otherwise editing a
+  // shared policy leaves already-materialized runtimes stale indefinitely.
+  const personaIncludesText = await readPersonaIncludes(profile);
+  const hash = computeHash(
+    profile,
+    agent,
+    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
+  );
+
+  // Short-circuit if hash matches.
+  try {
+    const existing = (
+      await readFile(join(runtimeDir, ".cue-hash"), "utf8")
+    ).trim();
+    if (existing === hash) {
+      // Refresh state from credentialsSource even on cache hit so account
+      // switches and newly-added source entries are reflected.
+      if (effectiveInput.credentialsSource) {
+        // Re-merge settings.json from current credentialsSource.
+        if (agent === "claude-code") {
+          const merged = await buildClaudeSettings(
+            profile,
+            agent,
+            effectiveInput,
+            runtimeDir,
+            mcpServers,
+          );
+          await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
+        }
+        // Re-overlay any source entries that aren't already present (e.g.
+        // user added a new sessions/ entry, plugins/, etc.).
+        await overlaySourceState(runtimeDir, effectiveInput.credentialsSource);
+        // Pre-seed the plugin cache so enabled-plugin hooks find their version
+        // dir immediately (avoids the "Plugin directory does not exist" race).
+        if (!sameResolvedPath(runtimeDir, effectiveInput.credentialsSource)) {
+          await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
+        }
+      }
+      if (agent === "claude-code") {
+        await syncMcpsIntoClaudeJson(
+          runtimeDir,
+          mcpServers,
+          effectiveInput.disabledMcpIds,
+        );
+      }
+      return { runtimeDir, rebuilt: false, hash };
+    }
+  } catch {
+    /* not present — fall through to build */
+  }
+
+  // Build in a sibling tmp dir, atomic-swap at the end.
+  await mkdir(dirname(runtimeDir), { recursive: true });
+  const tmpDir = await mkdtemp(`${runtimeDir}.tmp.`);
+
+  // 1. Skills — resolve, link flat, write .cue-skills manifest, enforce guard.
+  const { slugToSrc, deferredSkills } = await resolveAndLinkSkills(tmpDir, profile, agent, input);
+
+  // Defensive defaults — older fixtures may not declare these arrays.
+  const profileRules = profile.rules ?? [];
+  const profileCommands = profile.commands ?? [];
+  const profileSubagents = profile.subagents ?? [];
+  // Effective hook list: profile-declared hooks PLUS the cue-quality-gates
+  // Stop hook when the profile declares any qualityGates. Shared helper
+  // effectiveHookList() enforces the same invariant in buildClaudeSettings
+  // so the symlinked files and settings.json wiring stay consistent.
+  const profileHooks = effectiveHookList(profile, agent);
+
+  // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
+  // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
+  if (agent === "claude-code") {
+    await symlinkResources(profileCommands, join(tmpDir, "commands"), RESOURCES_COMMANDS, ".md");
+  }
+
+  // 1b2. Subagents — symlink each <ref>.md FLAT into agents/ (Claude reads
+  // .claude/agents/*.md and delegates to them via the Task tool). Refs may be
+  // division-scoped (e.g. "design/design-ui-designer"); we flatten to the
+  // basename since agent file-stems are already globally unique. When a profile
+  // declares subagents, the real agents/ dir we create here causes the later
+  // overlay step to skip the user's ~/.claude/agents passthrough (existing real
+  // dir is left untouched) — the profile's curated set wins, by design.
+  if (agent === "claude-code") {
+    await symlinkResources(profileSubagents, join(tmpDir, "agents"), RESOURCES_SUBAGENTS, ".md");
+  }
+
+  // 1c. Rules — symlink into rules/. Contents get appended to CLAUDE.md below.
+  await symlinkResources(profileRules, join(tmpDir, "rules"), RESOURCES_RULES, ".md");
+
+  // 1d. Hooks — symlink scripts into hooks/. settings.json wiring happens in buildClaudeSettings.
+  // A hook ref points at a `.json` config; its referenced script (e.g. `<stem>.sh`)
+  // lives next to it in resources/hooks/ and must be symlinked too, otherwise the
+  // Stop/PreToolUse/etc. hook fires `bash $CLAUDE_CONFIG_DIR/hooks/<stem>.sh` and
+  // dies with "No such file or directory".
+  if (agent === "claude-code") {
+    await symlinkResources(
+      profileHooks,
+      join(tmpDir, "hooks"),
+      RESOURCES_HOOKS,
+      "",
+      [".sh", ".py", ".js", ".mjs", ".ts"],
+    );
+  }
+
+  // 1e. Playbooks (Phase 2) — symlink markdown protocols into playbooks/.
+  // Indexed in CLAUDE.md so Claude knows to consult them; bodies lazy-loaded.
+  await symlinkResources(profile.playbooks ?? [], join(tmpDir, "playbooks"), RESOURCES_PLAYBOOKS, ".md");
+
+  // 1f. Quality gates (Phase 3) — symlink validator scripts into quality-gates/.
+  // The Stop hook (cue-quality-gates.sh, see resources/hooks/) iterates this
+  // directory and fails the session if any gate exits non-zero.
+  // Refs in profile.yaml typically omit the `.sh` extension, so we append it
+  // when missing — otherwise resolveResourcePath produces e.g.
+  // `.../resources/quality-gates/lint-skill-pass` (no such file) and the
+  // lstat fails silently, leaving the gate undeployed at Stop time.
+  if (agent === "claude-code") {
+    await symlinkResources(profile.qualityGates ?? [], join(tmpDir, "quality-gates"), RESOURCES_QUALITY_GATES, ".sh");
+  }
+
+  // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
+  // mcpServers was already collected above (used by both code paths).
+  if (agent === "claude-code") {
+    const merged = await buildClaudeSettings(
+      profile,
+      agent,
+      effectiveInput,
+      runtimeDir,
+      mcpServers,
+    );
+    await writeFile(join(tmpDir, "settings.json"), merged + "\n");
+  } else {
+    // Codex equivalent — config.toml. cue points CODEX_HOME at this runtime, so
+    // this file is the ONLY config the session reads: it has to carry the base
+    // config's autonomy knobs (reasoning effort, context window, auto-compact,
+    // [features]) and its skill overrides or the session silently diverges from
+    // the user's canonical Codex setup.
+    const overrides = effectiveCodexOverrides(profile) ?? {};
+    let config = buildCodexConfigToml({
+      baseText: codexBaseText,
+      overrides,
+      mcpServers,
+      disabledSkillPaths: effectiveInput.codexExternalSkillPaths,
+      enabledSkillPaths: [
+        ...slugToSrc.keys(),
+        ...(deferredSkills.length > 0 ? ["cue-deferred-skills"] : []),
+      ].map((slug) => join(runtimeDir, "skills", slug, "SKILL.md")),
+    });
+    const readOptional = (name: string) => readFile(join(runtimeDir, name), "utf8").catch(
+        (error: NodeJS.ErrnoException) => {
+          if (error.code === "ENOENT") return undefined;
+          throw error;
+        },
+      );
+    const ownedRaw = await readOptional(".cue-hooks.json");
+    if (overrides.hooks || ownedRaw !== undefined) {
+      const { document, owned } = reconcileCodexHooks(await readOptional("hooks.json"), ownedRaw, overrides.hooks);
+      await writeFile(
+        join(tmpDir, "hooks.json"),
+        JSON.stringify(document, null, 2) + "\n",
+        { mode: 0o600 },
+      );
+      await writeFile(join(tmpDir, ".cue-hooks.json"), JSON.stringify(owned, null, 2) + "\n", { mode: 0o600 });
+      // The builder emits profile overrides as single-line top-level values.
+      config = config.replace(/^hooks = .*\n/m, "");
+    }
+    await writeFile(join(tmpDir, "config.toml"), config);
+  }
+
+  // 3. CLAUDE.md with stamp + role identity
+  await buildMemoryFileStamp(tmpDir, profile, agent, input, personaIncludesText);
+
+  // 4. hash (no trailing newline so /^[a-f0-9]{64}$/ matches directly)
+  await writeFile(join(tmpDir, ".cue-hash"), hash);
+
+  // 5. Overlay source state: symlink everything from credentialsSource that
+  // cue doesn't manage (sessions/, projects/, history.jsonl, .credentials.json,
+  // .session-stats.json, plugins/, telemetry/, etc.). This makes the runtime
+  // dir look like a fully-onboarded Claude Code config from Claude's
+  // perspective, while still letting cue override skills/, settings.json,
+  // and CLAUDE.md.
+  if (input.credentialsSource) {
+    await overlaySourceState(tmpDir, input.credentialsSource, runtimeDir);
+    // Pre-seed the plugin cache + marketplace metadata from the real config so
+    // enabled-plugin hooks find their version dir on the first prompt instead
+    // of racing Claude's lazy per-config-dir download.
+    if (!sameResolvedPath(runtimeDir, input.credentialsSource)) {
+      await linkPluginCache(tmpDir, input.credentialsSource);
+    }
+  }
+
+  // Codex durable state preservation + 6. Atomic swap + post-swap MCP sync
+  await atomicSwapRuntime(runtimeDir, tmpDir, agent, mcpServers, effectiveInput);
 
   return { runtimeDir, rebuilt: true, hash };
 }
@@ -1696,7 +1721,6 @@ async function overlaySourceState(
             // Copy to a sibling tmp + atomic rename — never leaves a window
             // where .claude.json is missing/partial while a concurrent claude
             // process might read or atomically rewrite it.
-            const { copyFile } = await import("node:fs/promises");
             const tmp = `${targetPath}.cue-swap.${process.pid}`;
             await copyFile(sourcePath, tmp);
             await rename(tmp, targetPath);
@@ -1738,7 +1762,6 @@ async function overlaySourceState(
     }
 
     if (isCopyFile) {
-      const { copyFile } = await import("node:fs/promises");
       try {
         if (name === ".credentials.json") {
           // Staggered, so this runtime reaches its apparent expiry at a
@@ -1898,13 +1921,13 @@ async function buildClaudeSettings(
   agent: AgentKind,
   input: MaterializeInput,
   runtimeDir: string,
+  mcpServers: Record<string, McpServerConfig>,
 ): Promise<string> {
   const enabledPlugins: Record<string, true> = {};
   for (const plugin of profile.plugins) {
     if (!appliesToAgent(plugin, agent)) continue;
     enabledPlugins[plugin.id] = true;
   }
-  const mcpServers = collectProfileMcps(profile, agent, input.mcpRegistry);
   let baseSettings: Record<string, unknown> = {};
   if (input.credentialsSource) {
     try {
@@ -1929,18 +1952,9 @@ async function buildClaudeSettings(
     mergedHooks[k] = Array.isArray(v) ? [...v] : [];
   }
   // Auto-inject the cue-quality-gates Stop hook when the profile declares
-  // any qualityGates. This avoids the footgun where a profile lists gates
-  // but forgets to wire the hook, so gates would never actually fire.
-  // Explicit `hooks: [cue-quality-gates.json]` still works and is deduped.
-  const declaredHooks = [...(profile.hooks ?? [])];
-  const profileGatesForHook = (profile as any).qualityGates ?? [];
-  if (
-    agent === "claude-code" &&
-    profileGatesForHook.length > 0 &&
-    !declaredHooks.includes("cue-quality-gates.json")
-  ) {
-    declaredHooks.push("cue-quality-gates.json");
-  }
+  // any qualityGates. effectiveHookList() centralises this logic so both the
+  // symlink phase and settings.json wiring stay consistent.
+  const declaredHooks = effectiveHookList(profile, agent);
   for (const ref of declaredHooks) {
     const src = resolveResourcePath(ref, RESOURCES_HOOKS);
     try {
@@ -2070,51 +2084,49 @@ async function readClaudeProfileLocalSettings(
 // #8: Warm-start — summarize last session for this profile
 // ---------------------------------------------------------------------------
 
-import { homedir } from "node:os";
-import { readdirSync, existsSync, statSync } from "node:fs";
-import { spawnSync } from "node:child_process";
-
 export async function getLastSessionSummary(
   profileName: string,
   projectsDir = join(homedir(), ".claude", "projects"),
 ): Promise<string | null> {
   try {
-    if (!existsSync(projectsDir)) return null;
+    // Check projectsDir exists
+    const projectEntries = await readdir(projectsDir).catch(() => null);
+    if (!projectEntries) return null;
 
     // Find the most recent session jsonl in the cwd-based project dir
     const cwdKey = process.cwd().replace(/\//g, "-");
-    const projectDir = readdirSync(projectsDir)
+    const candidates = projectEntries
       .filter((d) => d.includes(cwdKey.slice(1, 30)))
-      .map((d) => join(projectsDir, d))
-      .find((d) => existsSync(d));
+      .map((d) => join(projectsDir, d));
+    let projectDir: string | undefined;
+    for (const c of candidates) {
+      const entries = await readdir(c).catch(() => null);
+      if (entries !== null) { projectDir = c; break; }
+    }
 
     if (!projectDir) return null;
 
     // Find most recent .jsonl (limit scan to avoid slow stat on large dirs)
-    const allFiles = readdirSync(projectDir).filter((f) =>
-      f.endsWith(".jsonl"),
-    );
+    const allFiles = (await readdir(projectDir)).filter((f) => f.endsWith(".jsonl"));
     if (allFiles.length === 0) return null;
 
     // Sort by name (includes timestamp) — take last 3 only
     const recent = allFiles.sort().slice(-3);
-    const sessions = recent
-      .map((f) => ({ name: f, mtime: statSync(join(projectDir, f)).mtimeMs }))
-      .sort((a, b) => b.mtime - a.mtime);
+    const sessions = await Promise.all(
+      recent.map(async (f) => ({ name: f, mtime: (await stat(join(projectDir!, f))).mtimeMs })),
+    );
+    sessions.sort((a, b) => b.mtime - a.mtime);
 
     const lastFile = join(projectDir, sessions[0]!.name);
     const lastMtime = new Date(sessions[0]!.mtime);
     const ago = formatTimeAgo(lastMtime);
 
-    // Extract a quick summary: last few assistant messages
-    const res = spawnSync("tail", ["-50", lastFile], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-      timeout: 2000,
-    });
-    if (!res.stdout) return null;
-
-    const lines = res.stdout.split("\n").filter(Boolean);
+    // Extract a quick summary: last few assistant messages.
+    // Read the last ~8 KB and slice to the last 50 newline-terminated records
+    // — avoids the blocking spawnSync("tail", ...) subprocess.
+    const raw = await readFile(lastFile, "utf8").catch(() => null);
+    if (!raw) return null;
+    const lines = raw.split("\n").filter(Boolean).slice(-50);
     const summaryParts: string[] = [];
 
     for (const line of lines.reverse()) {
@@ -2164,34 +2176,43 @@ export async function getSkillChains(
   projectsDir = join(homedir(), ".claude", "projects"),
 ): Promise<string | null> {
   try {
-    if (!existsSync(projectsDir)) return null;
+    const projectEntries = await readdir(projectsDir).catch(() => null);
+    if (!projectEntries) return null;
 
-    // Scan recent sessions for skill co-occurrence
+    // Scan recent sessions for skill co-occurrence using async file reads
+    // instead of a blocking grep subprocess. Mirrors the original grep -roh
+    // behaviour: check both files directly in projectsDir and one level deep
+    // inside subdirectories.
     const slugs = new Set(skillsList.map((s) => s.split("/").pop() ?? s));
-
-    const res = spawnSync(
-      "grep",
-      ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir],
-      {
-        stdio: ["ignore", "pipe", "pipe"],
-        encoding: "utf8",
-        timeout: 2000,
-      },
-    );
-
-    if (!res.stdout) return null;
-
-    // We can't easily get per-file grouping from grep -r, so use a simpler heuristic:
-    // just find which skills from THIS profile are most commonly used together
+    const SKILL_RE = /skills\/([a-z][a-z0-9-]*)\/SKILL\.md/g;
     const skillCounts = new Map<string, number>();
-    for (const line of res.stdout.split("\n")) {
-      const match = line.match(/skills\/([a-z][a-z0-9-]*)\/SKILL\.md/);
-      if (match && slugs.has(match[1]!)) {
-        skillCounts.set(match[1]!, (skillCounts.get(match[1]!) ?? 0) + 1);
+
+    async function scanFileForSkills(filePath: string): Promise<void> {
+      const content = await readFile(filePath, "utf8").catch(() => "");
+      for (const m of content.matchAll(SKILL_RE)) {
+        const slug = m[1]!;
+        if (slugs.has(slug)) {
+          skillCounts.set(slug, (skillCounts.get(slug) ?? 0) + 1);
+        }
       }
     }
 
-    // Find top 3 most-used skills and present as a workflow hint
+    for (const entry of projectEntries) {
+      const entryPath = join(projectsDir, entry);
+      const subEntries = await readdir(entryPath).catch(() => null);
+      if (subEntries === null) {
+        // It's a file — scan it directly (mirrors grep -roh recursion depth 1)
+        await scanFileForSkills(entryPath);
+      } else {
+        // It's a directory — scan all files inside
+        for (const f of subEntries) {
+          await scanFileForSkills(join(entryPath, f));
+        }
+      }
+    }
+
+    // We can't easily get per-file grouping, so use a simpler heuristic:
+    // just find which skills from THIS profile are most commonly used together.
     const topSkills = [...skillCounts.entries()]
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5)

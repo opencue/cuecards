@@ -270,6 +270,21 @@ describe("writeIndex / loadIndex", () => {
   test("returns null for a missing file", () => {
     expect(loadIndex(join(fx.root, "nope.json"))).toBeNull();
   });
+
+  test("returns null when schema_version does not match INDEX_SCHEMA_VERSION", () => {
+    const stale = join(fx.root, "stale.json");
+    writeFileSync(
+      stale,
+      JSON.stringify({ ...index, schema_version: "0.0" }),
+    );
+    expect(loadIndex(stale)).toBeNull();
+  });
+
+  test("accepts index whose schema_version matches INDEX_SCHEMA_VERSION", () => {
+    const out = join(fx.root, "current.json");
+    writeIndex(index, out);
+    expect(loadIndex(out)).not.toBeNull();
+  });
 });
 
 describe("writeMatcherIndex", () => {
