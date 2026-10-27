@@ -440,116 +440,100 @@ function inferImageUrl(repo: string, profileName: string): string | null {
   return null;
 }
 
-async function cmdNpxAdd(args: string[]): Promise<number> {
-  const addArgs = args.slice(1); // skip "add"
-  const repo = addArgs.find((a) => !a.startsWith("-") && !["claude-code", "codex", "*"].includes(a));
+// ---------------------------------------------------------------------------
+// Phase helpers extracted from cmdNpxAdd
+// ---------------------------------------------------------------------------
 
-  // #6: If -y/--yes without --skill, inject --skill "*" to skip npx's interactive picker
-  // (strip our own --allow-unsafe so it isn't forwarded to `npx skills add`).
-  const allowUnsafe = args.includes("--allow-unsafe");
-  const passedArgs = args.filter((a) => a !== "--allow-unsafe");
-  const hasYes = passedArgs.includes("-y") || passedArgs.includes("--yes");
-  const hasSkill = passedArgs.includes("-s") || passedArgs.includes("--skill");
-  if (hasYes && !hasSkill) {
-    passedArgs.push("--skill", "*");
-  }
-
-  // Snapshot before
+/** Runs `npx skills …` and returns before/after skill snapshots. */
+function runNpxInstallPhase(passedArgs: string[]): {
+  status: number | null;
+  before: Set<string>;
+  after: Set<string>;
+} {
   const before = getInstalledSkills();
-
-  // Always use inherit so npx's interactive picker works on TTY
-  const res = spawnSync("npx", ["skills", ...passedArgs], {
-    stdio: "inherit",
-    encoding: "utf8",
-  });
-
-  if (res.status !== 0) return res.status ?? 1;
-
-  // Detect new skills by diffing before/after
+  const res = spawnSync("npx", ["skills", ...passedArgs], { stdio: "inherit", encoding: "utf8" });
+  if (res.status !== 0) return { status: res.status ?? 1, before, after: before };
   const after = getInstalledSkills();
-  let newSkills = [...after].filter((s) => !before.has(s));
+  return { status: null, before, after };
+}
 
-  // If no new skills (re-install), check if a profile for this repo already exists
-  // and offer to update it, or use the installed skills that match the repo name
+/** Derives which skills are new; handles re-install by falling back to on-disk skills. */
+function detectNewSkills(
+  before: Set<string>,
+  after: Set<string>,
+  repo: string | undefined,
+): { newSkills: string[]; isReinstall: boolean } {
+  let newSkills = [...after].filter((s) => !before.has(s));
   let isReinstall = false;
   if (newSkills.length === 0 && repo) {
     isReinstall = true;
-    // Use the profile name we'd infer to find matching skills already on disk
     const profileSlug = inferProfileName(repo);
-    // Check if profile exists
     const profileYaml = join(PROFILES_DIR, profileSlug, "profile.yaml");
     if (existsSync(profileYaml)) {
-      // Profile exists — read its skills as the "new" skills for update flow
       const content = readFileSync(profileYaml, "utf8");
       const skillMatches = content.match(/^\s{4}-\s+(.+)$/gm);
       if (skillMatches) {
         newSkills = skillMatches.map((l) => l.replace(/^\s+-\s+/, "").trim());
       }
     }
-    // If profile doesn't exist or has no skills, scan disk for repo's skills
     if (newSkills.length === 0) {
-      // All skills currently on disk that weren't in "before" snapshot of profiles
       newSkills = [...after];
     }
   }
+  return { newSkills, isReinstall };
+}
 
-  // If still nothing, the install was likely cancelled — don't trigger hook
-  if (newSkills.length === 0) return 0;
-
-  // Security gate: scan freshly-fetched skills before the profile hook below
-  // registers any into profile.yaml. NVIDIA SkillSpector's DO_NOT_INSTALL and
-  // cue's own criticals (SEC1-3) block unless --allow-unsafe; flagged skills
-  // stay on disk but are dropped from the set.
-  {
-    process.stdout.write(`🔍 Scanning ${newSkills.length} new skill(s) with NVIDIA SkillSpector…\n`);
-    const blocked: string[] = [];
-    for (const slug of newSkills) {
-      const gate = gateFreshSkill(slug, { allowUnsafe });
-      const note = unavailableNote(gate.skillspector);
-      if (note) process.stderr.write(`   ${note}\n`);
-      if (!gate.ok) {
-        blocked.push(slug);
-        process.stderr.write(`🔴 BLOCKED ${slug}: ${gate.critical.length} critical security finding(s)\n`);
-        for (const c of gate.critical) {
-          process.stderr.write(`   [${c.code}] ${c.message}${c.line ? ` (line ${c.line})` : ""}\n`);
-        }
-      } else if (!gate.scanned) {
-        process.stderr.write(`⚠️  ${slug}: no SKILL.md found to scan — review manually.\n`);
-      } else if (gate.skillspector.recommendation === "CAUTION") {
-        process.stderr.write(`🟡 ${slug}: ${formatVerdict(gate.skillspector)} — registered, review it.\n`);
-      } else if (gate.skillspector.recommendation === "SAFE") {
-        process.stdout.write(`🟢 ${slug}: SkillSpector SAFE\n`);
+/** Security gate: scans each skill and returns the safe subset (blocked skills removed). */
+async function scanSecurityGate(skills: string[], allowUnsafe: boolean): Promise<string[]> {
+  process.stdout.write(`🔍 Scanning ${skills.length} new skill(s) with NVIDIA SkillSpector…\n`);
+  const blocked: string[] = [];
+  for (const slug of skills) {
+    const gate = gateFreshSkill(slug, { allowUnsafe });
+    const note = unavailableNote(gate.skillspector);
+    if (note) process.stderr.write(`   ${note}\n`);
+    if (!gate.ok) {
+      blocked.push(slug);
+      process.stderr.write(`🔴 BLOCKED ${slug}: ${gate.critical.length} critical security finding(s)\n`);
+      for (const c of gate.critical) {
+        process.stderr.write(`   [${c.code}] ${c.message}${c.line ? ` (line ${c.line})` : ""}\n`);
       }
-    }
-    if (blocked.length > 0) {
-      newSkills = newSkills.filter((s) => !blocked.includes(s));
-      process.stderr.write(`   ${blocked.length} skill(s) left on disk but NOT registered. Re-run with --allow-unsafe to register anyway.\n`);
-      if (newSkills.length === 0) return 1;
+    } else if (!gate.scanned) {
+      process.stderr.write(`⚠️  ${slug}: no SKILL.md found to scan — review manually.\n`);
+    } else if (gate.skillspector.recommendation === "CAUTION") {
+      process.stderr.write(`🟡 ${slug}: ${formatVerdict(gate.skillspector)} — registered, review it.\n`);
+    } else if (gate.skillspector.recommendation === "SAFE") {
+      process.stdout.write(`🟢 ${slug}: SkillSpector SAFE\n`);
     }
   }
-
-  // #7: Fetch GitHub repo description
-  let repoDescription = "";
-  if (repo) {
-    try {
-      const apiRes = await fetch(`https://api.github.com/repos/${repo}`, {
-        signal: AbortSignal.timeout(5000),
-      });
-      if (apiRes.ok) {
-        const data = await apiRes.json() as { description?: string | null };
-        if (data.description) repoDescription = data.description;
-      }
-    } catch {}
+  if (blocked.length > 0) {
+    process.stderr.write(`   ${blocked.length} skill(s) left on disk but NOT registered. Re-run with --allow-unsafe to register anyway.\n`);
   }
+  return skills.filter((s) => !blocked.includes(s));
+}
 
-  // #8: Dedup — check which skills already exist in other profiles (direct only, not inherited)
-  const existingMap = new Map<string, string[]>(); // skill → [profile names]
+/** Fetches the GitHub repo description (best-effort, returns empty string on any failure). */
+async function fetchRepoDescription(repo: string | undefined): Promise<string> {
+  if (!repo) return "";
+  try {
+    const apiRes = await fetch(`https://api.github.com/repos/${repo}`, {
+      signal: AbortSignal.timeout(5000),
+    });
+    if (apiRes.ok) {
+      const data = (await apiRes.json()) as { description?: string | null };
+      if (data.description) return data.description;
+    }
+  } catch {}
+  return "";
+}
+
+/** Builds a map of skill → [profile names] for skills already present in any profile. */
+async function findSkillDuplicates(newSkills: string[]): Promise<Map<string, string[]>> {
+  const existingMap = new Map<string, string[]>();
   try {
     const allProfiles = await listProfiles();
     for (const pName of allProfiles) {
       try {
         const yamlContent = readFileSync(join(PROFILES_DIR, pName, "profile.yaml"), "utf8");
-        // Extract skill slugs directly from YAML (lines like "    - category/skill" or "    - skill")
         const skillMatches = yamlContent.match(/^\s{4}-\s+(.+)$/gm);
         if (!skillMatches) continue;
         for (const line of skillMatches) {
@@ -564,26 +548,341 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
       } catch {}
     }
   } catch {}
+  return existingMap;
+}
 
-  // --- Post-install profile hook ---
+/** Interactive skill-subset selector for large installs (>10 skills). Returns null on cancel. */
+async function selectSkillSubset(newSkills: string[]): Promise<string[] | null> {
+  if (newSkills.length <= 10) return newSkills;
+  const scope = await p.select({
+    message: `Include all ${newSkills.length} skills or pick a subset?`,
+    options: [
+      { value: "all", label: `All ${newSkills.length} skills` },
+      { value: "groups", label: "Select by category/group" },
+      { value: "individual", label: "Pick individual skills" },
+    ],
+  });
+  if (p.isCancel(scope)) return null;
+  if (scope === "groups") {
+    const groups = new Map<string, string[]>();
+    for (const s of newSkills) {
+      const prefix = s.split("-").slice(0, 1).join("-");
+      const list = groups.get(prefix) ?? [];
+      list.push(s);
+      groups.set(prefix, list);
+    }
+    const sortedGroups = [...groups.entries()].sort((a, b) => b[1].length - a[1].length);
+    const chosenGroups = await p.multiselect({
+      message: "Select skill groups (space to toggle)",
+      options: sortedGroups.map(([prefix, skills]) => ({
+        value: prefix,
+        label: `${prefix}-* (${skills.length} skills)`,
+        hint: skills.slice(0, 3).join(", ") + (skills.length > 3 ? " …" : ""),
+      })),
+      required: true,
+    });
+    if (p.isCancel(chosenGroups)) return null;
+    const selectedPrefixes = new Set(chosenGroups as string[]);
+    const selected = newSkills.filter((s) =>
+      selectedPrefixes.has(s.split("-").slice(0, 1).join("-")),
+    );
+    p.log.info(`Selected ${selected.length} skills from ${selectedPrefixes.size} groups`);
+    return selected;
+  }
+  if (scope === "individual") {
+    const chosen = await p.multiselect({
+      message: "Select skills (space to toggle)",
+      options: newSkills.map((s) => ({ value: s, label: s })),
+      required: true,
+    });
+    if (p.isCancel(chosen)) return null;
+    return chosen as string[];
+  }
+  return newSkills;
+}
+
+/** Handles the "update existing profile" wizard branch. */
+async function handleUpdateProfile(
+  existingProfilePath: string,
+  inferredName: string,
+  newSkills: string[],
+  currentProfileSkills: string[],
+): Promise<number> {
+  const content = await readFile(existingProfilePath, "utf8");
+  const currentSet = new Set(currentProfileSkills);
+  const newSet = new Set(newSkills);
+  const added = newSkills.filter((s) => !currentSet.has(s));
+  const removed = currentProfileSkills.filter((s) => !newSet.has(s));
+  const updated = insertSkillsIntoYaml(content, newSkills, "replace");
+  await writeFile(existingProfilePath, updated);
+  const parts: string[] = [`${newSkills.length} total`];
+  if (added.length > 0) parts.push(`+${added.length} new`);
+  if (removed.length > 0) parts.push(`-${removed.length} removed`);
+  p.outro(`Updated "${inferredName}" — ${parts.join(", ")}`);
+  return 0;
+}
+
+/** Handles the "create new profile" wizard branch. */
+async function handleCreateProfile(
+  selectedSkills: string[],
+  repo: string | undefined | null,
+  repoDescription: string,
+): Promise<number> {
+  const suggested = repo ? inferProfileName(repo) : "new-profile";
+  const name = await p.text({
+    message: "Profile name",
+    placeholder: suggested,
+    initialValue: suggested,
+    validate: (v) => {
+      if (!/^[a-z][a-z0-9-]{1,63}$/.test(v ?? "")) return "Must be kebab-case";
+    },
+  });
+  if (p.isCancel(name)) { p.cancel("cancelled"); return 130; }
+
+  const iconType = await p.select({
+    message: "Profile icon",
+    options: [
+      { value: "emoji", label: "Emoji", hint: "type or paste an emoji" },
+      { value: "image", label: "Image file", hint: "paste path to .png/.jpg" },
+    ],
+  });
+  if (p.isCancel(iconType)) { p.cancel("cancelled"); return 130; }
+
+  let icon = "🔒";
+  let iconImagePath: string | null = null;
+
+  if (iconType === "emoji") {
+    const suggestedEmoji = inferEmoji(repo ?? "", name as string);
+    const emojiInput = await p.text({
+      message: "Icon emoji",
+      placeholder: suggestedEmoji,
+      initialValue: suggestedEmoji,
+    });
+    if (p.isCancel(emojiInput)) { p.cancel("cancelled"); return 130; }
+    icon = emojiInput as string;
+  } else {
+    const suggestedUrl = inferImageUrl(repo ?? "", name as string);
+    const ghAvatar = repo ? `https://github.com/${repo.split("/")[0]}.png?size=128` : null;
+    const imgSource = await p.select({
+      message: "Image source",
+      options: [
+        ...(suggestedUrl
+          ? [{ value: "suggested", label: "Download suggested icon", hint: suggestedUrl }]
+          : []),
+        ...(ghAvatar ? [{ value: "avatar", label: "GitHub avatar", hint: ghAvatar }] : []),
+        { value: "url", label: "Download from URL" },
+        { value: "local", label: "Local file path" },
+      ],
+    });
+    if (p.isCancel(imgSource)) { p.cancel("cancelled"); return 130; }
+
+    if (imgSource === "suggested" || imgSource === "url" || imgSource === "avatar") {
+      let url =
+        imgSource === "suggested"
+          ? (suggestedUrl ?? "")
+          : imgSource === "avatar"
+            ? (ghAvatar ?? "")
+            : "";
+      if (imgSource === "url") {
+        const urlInput = await p.text({ message: "Image URL", placeholder: "https://..." });
+        if (p.isCancel(urlInput)) { p.cancel("cancelled"); return 130; }
+        url = urlInput as string;
+      }
+      const { mkdtempSync } = await import("node:fs");
+      const { tmpdir } = await import("node:os");
+      const tmpDir = mkdtempSync(join(tmpdir(), "cue-icon-"));
+      const ext = url.match(/\.(png|jpg|jpeg|svg|webp)/i)?.[0] ?? ".png";
+      const tmpFile = join(tmpDir, `logo${ext}`);
+      const dlRes = spawnSync("curl", ["-fsSL", "-o", tmpFile, url], {
+        stdio: "pipe",
+        encoding: "utf8",
+      });
+      if (dlRes.status === 0 && existsSync(tmpFile)) {
+        iconImagePath = tmpFile;
+        p.log.success(`Downloaded icon`);
+      } else {
+        p.log.warning(`Download failed. Using emoji fallback.`);
+        icon = inferEmoji(repo ?? "", name as string);
+      }
+    } else {
+      const imgInput = await p.text({
+        message: "Image path",
+        placeholder: "/path/to/logo.png",
+        validate: (v) => {
+          if (!v) return "Path required";
+          if (!existsSync(v)) return `Not found: ${v}`;
+          if (!/\.(png|jpg|jpeg|svg|webp)$/i.test(v)) return "Must be .png, .jpg, .svg, or .webp";
+        },
+      });
+      if (p.isCancel(imgInput)) { p.cancel("cancelled"); return 130; }
+      iconImagePath = imgInput as string;
+    }
+  }
+
+  const defaultDesc = repoDescription || `Skills from ${repo ?? "install"}`;
+  const desc = await p.text({
+    message: "Description",
+    placeholder: defaultDesc,
+    initialValue: defaultDesc,
+  });
+  if (p.isCancel(desc)) { p.cancel("cancelled"); return 130; }
+
+  // #1: Preview card before confirm
+  const previewIcon = iconImagePath ? `${icon} + logo image` : icon;
+  p.log.message(
+    `\n┌─ Profile Preview ─────────────────────\n│  Name:        ${name}\n│  Icon:        ${previewIcon}\n│  Description: ${(desc as string).slice(0, 60)}\n│  Skills:      ${selectedSkills.length}\n│  Inherits:    core\n└───────────────────────────────────────`,
+  );
+
+  const confirm = await p.confirm({ message: "Create this profile?" });
+  if (p.isCancel(confirm) || !confirm) { p.cancel("cancelled"); return 130; }
+
+  const { run: createProfile } = await import("./create-profile");
+  const code = await createProfile([
+    name as string,
+    "--icon",
+    icon,
+    "--description",
+    desc as string,
+    "--skills",
+    selectedSkills.join(","),
+  ]);
+
+  if (code === 0 && iconImagePath) {
+    const profileDir = join(PROFILES_DIR, name as string);
+    const ext = iconImagePath.match(/\.\w+$/)?.[0] ?? ".png";
+    const destName = `logo${ext}`;
+    copyFileSync(iconImagePath, join(profileDir, destName));
+    const yaml = await readFile(join(profileDir, "profile.yaml"), "utf8");
+    await writeFile(
+      join(profileDir, "profile.yaml"),
+      yaml.replace(/^(icon:.*\n)/m, `$1iconImage: "${destName}"\n`),
+    );
+  }
+
+  if (code !== 0) return code;
+
+  // #2: Auto-pin option
+  const pin = await p.confirm({ message: `Pin "${name}" to current directory?`, initialValue: true });
+  if (!p.isCancel(pin) && pin) {
+    await writeFile(join(process.cwd(), ".cue.profile"), `${name}\n`);
+    p.log.success(`Pinned → .cue.profile`);
+  }
+
+  // #10: Post-create launch prompt
+  const launch = await p.confirm({
+    message: `Launch claude with "${name}" now?`,
+    initialValue: false,
+  });
+  if (!p.isCancel(launch) && launch) {
+    p.outro(`Launching claude with profile "${name}"…`);
+    const { execSync } = await import("node:child_process");
+    // The profile is already created; this launch is a convenience. A non-zero
+    // exit (incl. the user quitting claude) throws from execSync — swallow it so
+    // the wizard ends cleanly instead of dumping a stack trace.
+    try {
+      execSync("claude", { stdio: "inherit", env: { ...process.env } });
+    } catch { /* claude exited non-zero — nothing to recover */ }
+  } else {
+    p.outro(
+      `Profile "${name}" created with ${selectedSkills.length} skills. Run \`cue use ${name}\` to activate.`,
+    );
+  }
+  return 0;
+}
+
+/** Handles the "add to existing profile" wizard branch. */
+async function handleAddToExistingProfile(selectedSkills: string[]): Promise<number> {
+  const profiles = await listProfiles();
+  if (profiles.length === 0) { p.log.error("No profiles found."); return 1; }
+
+  const profileOptions = profiles.map((n) => {
+    let skillCount = 0;
+    try {
+      const content = readFileSync(join(PROFILES_DIR, n, "profile.yaml"), "utf8");
+      const matches = content.match(/^\s{4}-\s+/gm);
+      if (matches) skillCount = matches.length;
+    } catch {}
+    return { value: n, label: `${n} (${skillCount} skills)` };
+  });
+
+  const target = await p.select({
+    message: "Which profile?",
+    options: profileOptions,
+  });
+  if (p.isCancel(target)) { p.cancel("cancelled"); return 130; }
+
+  // #8: Show dedup for the target profile specifically
+  const targetYamlPath = join(PROFILES_DIR, target as string, "profile.yaml");
+  const content = await readFile(targetYamlPath, "utf8");
+  let skills = [...selectedSkills];
+  const alreadyInTarget = skills.filter((s) => content.includes(s));
+  if (alreadyInTarget.length > 0) {
+    p.log.warning(`${alreadyInTarget.length} skill(s) already in "${target}", will skip duplicates`);
+    skills = skills.filter((s) => !content.includes(s));
+    if (skills.length === 0) {
+      p.outro(`All skills already in "${target}". Nothing to add.`);
+      return 0;
+    }
+  }
+
+  const updated = insertSkillsIntoYaml(content, skills, "append");
+  await writeFile(targetYamlPath, updated);
+  p.outro(`Added ${skills.length} skills to "${target}".`);
+  return 0;
+}
+
+async function cmdNpxAdd(args: string[]): Promise<number> {
+  const addArgs = args.slice(1); // skip "add"
+  const repo = addArgs.find(
+    (a) => !a.startsWith("-") && !["claude-code", "codex", "*"].includes(a),
+  );
+
+  // Strip --allow-unsafe from forwarded args; inject --skill "*" if -y/--yes without --skill
+  const allowUnsafe = args.includes("--allow-unsafe");
+  const passedArgs = args.filter((a) => a !== "--allow-unsafe");
+  const hasYes = passedArgs.includes("-y") || passedArgs.includes("--yes");
+  const hasSkill = passedArgs.includes("-s") || passedArgs.includes("--skill");
+  if (hasYes && !hasSkill) {
+    passedArgs.push("--skill", "*");
+  }
+
+  // Phase 1: run npx and diff installed skills
+  const { status, before, after } = runNpxInstallPhase(passedArgs);
+  if (status !== null) return status;
+
+  const { newSkills: rawNewSkills, isReinstall } = detectNewSkills(before, after, repo);
+  if (rawNewSkills.length === 0) return 0;
+
+  // Phase 2: security gate
+  const newSkills = await scanSecurityGate(rawNewSkills, allowUnsafe);
+  if (newSkills.length === 0) return 1;
+
+  // Phase 3: enrichment
+  const repoDescription = await fetchRepoDescription(repo);
+  const existingMap = await findSkillDuplicates(newSkills);
+
+  // Phase 4: post-install intro UI
   p.intro(isReinstall ? "🔄 Skills already installed" : "🎉 Skills installed successfully");
   p.log.info(`${newSkills.length} skills from ${repo ?? "install"}`);
 
-  // Show dedup warning (skip for re-installs since we already know)
   if (!isReinstall && existingMap.size > 0) {
     const dupCount = existingMap.size;
-    const examples = [...existingMap.entries()].slice(0, 5)
+    const examples = [...existingMap.entries()]
+      .slice(0, 5)
       .map(([skill, profiles]) => `  ${skill} → ${profiles.join(", ")}`)
       .join("\n");
-    p.log.warning(`${dupCount} skill(s) already in other profiles:\n${examples}${dupCount > 5 ? `\n  … +${dupCount - 5} more` : ""}`);
+    p.log.warning(
+      `${dupCount} skill(s) already in other profiles:\n${examples}${dupCount > 5 ? `\n  … +${dupCount - 5} more` : ""}`,
+    );
   }
 
-  // Check if a profile for this repo already exists
+  // Phase 5: profile resolution + diff hint for the update option
   const inferredName = repo ? inferProfileName(repo) : null;
-  const existingProfilePath = inferredName ? join(PROFILES_DIR, inferredName, "profile.yaml") : null;
+  const existingProfilePath = inferredName
+    ? join(PROFILES_DIR, inferredName, "profile.yaml")
+    : null;
   const profileExists = existingProfilePath && existsSync(existingProfilePath);
 
-  // Compute diff stats for update hint
   let diffHint = "sync skills list";
   let currentProfileSkills: string[] = [];
   if (profileExists && existingProfilePath) {
@@ -605,13 +904,20 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     } catch {}
   }
 
+  // Phase 6: action selection
   const action = await p.select({
     message: profileExists
       ? `Profile "${inferredName}" already exists. What to do?`
       : "Add these skills to a cue profile?",
     options: [
-      ...(profileExists ? [{ value: "update", label: `Update "${inferredName}" profile`, hint: diffHint }] : []),
-      { value: "create", label: "Create a new profile", hint: !profileExists && repo ? inferProfileName(repo) : undefined },
+      ...(profileExists
+        ? [{ value: "update", label: `Update "${inferredName}" profile`, hint: diffHint }]
+        : []),
+      {
+        value: "create",
+        label: "Create a new profile",
+        hint: !profileExists && repo ? inferProfileName(repo) : undefined,
+      },
       { value: "existing", label: "Add to a different profile" },
       { value: "skip", label: "Skip" },
     ],
@@ -621,254 +927,29 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     return 0;
   }
 
-  // Handle "update" — overwrite skills in existing profile
   if (action === "update" && existingProfilePath && inferredName) {
-    const content = await readFile(existingProfilePath, "utf8");
-    const currentSet = new Set(currentProfileSkills);
-    const newSet = new Set(newSkills);
-    const added = newSkills.filter((s) => !currentSet.has(s));
-    const removed = currentProfileSkills.filter((s) => !newSet.has(s));
-
-    // Replace the entire skills.local section
-    const updated = insertSkillsIntoYaml(content, newSkills, "replace");
-    await writeFile(existingProfilePath, updated);
-
-    const parts: string[] = [`${newSkills.length} total`];
-    if (added.length > 0) parts.push(`+${added.length} new`);
-    if (removed.length > 0) parts.push(`-${removed.length} removed`);
-    p.outro(`Updated "${inferredName}" — ${parts.join(", ")}`);
-    return 0;
+    return handleUpdateProfile(
+      existingProfilePath,
+      inferredName,
+      newSkills,
+      currentProfileSkills,
+    );
   }
 
-  // #3: Smart subset — group by prefix
-  let selectedSkills = newSkills;
-  if (newSkills.length > 10) {
-    const scope = await p.select({
-      message: `Include all ${newSkills.length} skills or pick a subset?`,
-      options: [
-        { value: "all", label: `All ${newSkills.length} skills` },
-        { value: "groups", label: "Select by category/group" },
-        { value: "individual", label: "Pick individual skills" },
-      ],
-    });
-    if (p.isCancel(scope)) { p.cancel("cancelled"); return 130; }
-
-    if (scope === "groups") {
-      // Group skills by their first word/prefix (e.g. "analyzing-*", "testing-*", "securing-*")
-      const groups = new Map<string, string[]>();
-      for (const s of newSkills) {
-        const prefix = s.split("-").slice(0, 1).join("-");
-        const list = groups.get(prefix) ?? [];
-        list.push(s);
-        groups.set(prefix, list);
-      }
-      // Sort groups by size descending
-      const sortedGroups = [...groups.entries()].sort((a, b) => b[1].length - a[1].length);
-
-      const chosenGroups = await p.multiselect({
-        message: "Select skill groups (space to toggle)",
-        options: sortedGroups.map(([prefix, skills]) => ({
-          value: prefix,
-          label: `${prefix}-* (${skills.length} skills)`,
-          hint: skills.slice(0, 3).join(", ") + (skills.length > 3 ? " …" : ""),
-        })),
-        required: true,
-      });
-      if (p.isCancel(chosenGroups)) { p.cancel("cancelled"); return 130; }
-      const selectedPrefixes = new Set(chosenGroups as string[]);
-      selectedSkills = newSkills.filter((s) => selectedPrefixes.has(s.split("-").slice(0, 1).join("-")));
-      p.log.info(`Selected ${selectedSkills.length} skills from ${selectedPrefixes.size} groups`);
-    } else if (scope === "individual") {
-      const chosen = await p.multiselect({
-        message: "Select skills (space to toggle)",
-        options: newSkills.map((s) => ({ value: s, label: s })),
-        required: true,
-      });
-      if (p.isCancel(chosen)) { p.cancel("cancelled"); return 130; }
-      selectedSkills = chosen as string[];
-    }
-  }
+  // Phase 7: optional subset selection (for create and existing paths)
+  const selectedSkills = await selectSkillSubset(newSkills);
+  if (selectedSkills === null) { p.cancel("cancelled"); return 130; }
 
   if (action === "create") {
-    const suggested = repo ? inferProfileName(repo) : "new-profile";
-    const name = await p.text({
-      message: "Profile name",
-      placeholder: suggested,
-      initialValue: suggested,
-      validate: (v) => { if (!/^[a-z][a-z0-9-]{1,63}$/.test(v ?? "")) return "Must be kebab-case"; },
-    });
-    if (p.isCancel(name)) { p.cancel("cancelled"); return 130; }
-
-    // Icon: emoji or image
-    const iconType = await p.select({
-      message: "Profile icon",
-      options: [
-        { value: "emoji", label: "Emoji", hint: "type or paste an emoji" },
-        { value: "image", label: "Image file", hint: "paste path to .png/.jpg" },
-      ],
-    });
-    if (p.isCancel(iconType)) { p.cancel("cancelled"); return 130; }
-
-    let icon = "🔒";
-    let iconImagePath: string | null = null;
-
-    if (iconType === "emoji") {
-      const suggestedEmoji = inferEmoji(repo ?? "", name as string);
-      const emojiInput = await p.text({ message: "Icon emoji", placeholder: suggestedEmoji, initialValue: suggestedEmoji });
-      if (p.isCancel(emojiInput)) { p.cancel("cancelled"); return 130; }
-      icon = emojiInput as string;
-    } else {
-      // #4: GitHub avatar as fallback
-      const suggestedUrl = inferImageUrl(repo ?? "", name as string);
-      const ghAvatar = repo ? `https://github.com/${repo.split("/")[0]}.png?size=128` : null;
-      const imgSource = await p.select({
-        message: "Image source",
-        options: [
-          ...(suggestedUrl ? [{ value: "suggested", label: "Download suggested icon", hint: suggestedUrl }] : []),
-          ...(ghAvatar ? [{ value: "avatar", label: "GitHub avatar", hint: ghAvatar }] : []),
-          { value: "url", label: "Download from URL" },
-          { value: "local", label: "Local file path" },
-        ],
-      });
-      if (p.isCancel(imgSource)) { p.cancel("cancelled"); return 130; }
-
-      if (imgSource === "suggested" || imgSource === "url" || imgSource === "avatar") {
-        let url = imgSource === "suggested" ? (suggestedUrl ?? "") : imgSource === "avatar" ? (ghAvatar ?? "") : "";
-        if (imgSource === "url") {
-          const urlInput = await p.text({ message: "Image URL", placeholder: "https://..." });
-          if (p.isCancel(urlInput)) { p.cancel("cancelled"); return 130; }
-          url = urlInput as string;
-        }
-        const { mkdtempSync } = await import("node:fs");
-        const { tmpdir } = await import("node:os");
-        const tmpDir = mkdtempSync(join(tmpdir(), "cue-icon-"));
-        const ext = url.match(/\.(png|jpg|jpeg|svg|webp)/i)?.[0] ?? ".png";
-        const tmpFile = join(tmpDir, `logo${ext}`);
-        const dlRes = spawnSync("curl", ["-fsSL", "-o", tmpFile, url], { stdio: "pipe", encoding: "utf8" });
-        if (dlRes.status === 0 && existsSync(tmpFile)) {
-          iconImagePath = tmpFile;
-          p.log.success(`Downloaded icon`);
-        } else {
-          p.log.warning(`Download failed. Using emoji fallback.`);
-          icon = inferEmoji(repo ?? "", name as string);
-        }
-      } else {
-        const imgInput = await p.text({
-          message: "Image path",
-          placeholder: "/path/to/logo.png",
-          validate: (v) => {
-            if (!v) return "Path required";
-            if (!existsSync(v)) return `Not found: ${v}`;
-            if (!/\.(png|jpg|jpeg|svg|webp)$/i.test(v)) return "Must be .png, .jpg, .svg, or .webp";
-          },
-        });
-        if (p.isCancel(imgInput)) { p.cancel("cancelled"); return 130; }
-        iconImagePath = imgInput as string;
-      }
-    }
-
-    // Description — use GitHub repo description as default
-    const defaultDesc = repoDescription || `Skills from ${repo ?? "install"}`;
-    const desc = await p.text({
-      message: "Description",
-      placeholder: defaultDesc,
-      initialValue: defaultDesc,
-    });
-    if (p.isCancel(desc)) { p.cancel("cancelled"); return 130; }
-
-    // #1: Preview card before confirm
-    const previewIcon = iconImagePath ? `${icon} + logo image` : icon;
-    p.log.message(`\n┌─ Profile Preview ─────────────────────\n│  Name:        ${name}\n│  Icon:        ${previewIcon}\n│  Description: ${(desc as string).slice(0, 60)}\n│  Skills:      ${selectedSkills.length}\n│  Inherits:    core\n└───────────────────────────────────────`);
-
-    const confirm = await p.confirm({ message: "Create this profile?" });
-    if (p.isCancel(confirm) || !confirm) { p.cancel("cancelled"); return 130; }
-
-    // Create profile
-    const { run: createProfile } = await import("./create-profile");
-    const code = await createProfile([
-      name as string, "--icon", icon, "--description", desc as string,
-      "--skills", selectedSkills.join(","),
-    ]);
-
-    // Copy image if provided
-    if (code === 0 && iconImagePath) {
-      const profileDir = join(PROFILES_DIR, name as string);
-      const ext = iconImagePath.match(/\.\w+$/)?.[0] ?? ".png";
-      const destName = `logo${ext}`;
-      copyFileSync(iconImagePath, join(profileDir, destName));
-      const yaml = await readFile(join(profileDir, "profile.yaml"), "utf8");
-      await writeFile(join(profileDir, "profile.yaml"), yaml.replace(/^(icon:.*\n)/m, `$1iconImage: "${destName}"\n`));
-    }
-
-    if (code !== 0) return code;
-
-    // #2: Auto-pin option
-    const pin = await p.confirm({ message: `Pin "${name}" to current directory?`, initialValue: true });
-    if (!p.isCancel(pin) && pin) {
-      await writeFile(join(process.cwd(), ".cue.profile"), `${name}\n`);
-      p.log.success(`Pinned → .cue.profile`);
-    }
-
-    // #10: Post-create launch prompt
-    const launch = await p.confirm({ message: `Launch claude with "${name}" now?`, initialValue: false });
-    if (!p.isCancel(launch) && launch) {
-      p.outro(`Launching claude with profile "${name}"…`);
-      const { execSync } = await import("node:child_process");
-      // The profile is already created; this launch is a convenience. A non-zero
-      // exit (incl. the user quitting claude) throws from execSync — swallow it so
-      // the wizard ends cleanly instead of dumping a stack trace.
-      try {
-        execSync("claude", { stdio: "inherit", env: { ...process.env } });
-      } catch { /* claude exited non-zero — nothing to recover */ }
-    } else {
-      p.outro(`Profile "${name}" created with ${selectedSkills.length} skills. Run \`cue use ${name}\` to activate.`);
-    }
-    return 0;
+    return handleCreateProfile(selectedSkills, repo, repoDescription);
   }
 
   if (action === "existing") {
-    const profiles = await listProfiles();
-    if (profiles.length === 0) { p.log.error("No profiles found."); return 1; }
-
-    // Build profile options with skill counts
-    const profileOptions = profiles.map((n) => {
-      let skillCount = 0;
-      try {
-        const content = readFileSync(join(PROFILES_DIR, n, "profile.yaml"), "utf8");
-        const matches = content.match(/^\s{4}-\s+/gm);
-        if (matches) skillCount = matches.length;
-      } catch {}
-      return { value: n, label: `${n} (${skillCount} skills)` };
-    });
-
-    const target = await p.select({
-      message: "Which profile?",
-      options: profileOptions,
-    });
-    if (p.isCancel(target)) { p.cancel("cancelled"); return 130; }
-
-    // #8: Show dedup for the target profile specifically
-    const targetYamlPath = join(PROFILES_DIR, target as string, "profile.yaml");
-    const content = await readFile(targetYamlPath, "utf8");
-    const alreadyInTarget = selectedSkills.filter((s) => content.includes(s));
-    if (alreadyInTarget.length > 0) {
-      p.log.warning(`${alreadyInTarget.length} skill(s) already in "${target}", will skip duplicates`);
-      selectedSkills = selectedSkills.filter((s) => !content.includes(s));
-      if (selectedSkills.length === 0) {
-        p.outro(`All skills already in "${target}". Nothing to add.`);
-        return 0;
-      }
-    }
-
-    const updated = insertSkillsIntoYaml(content, selectedSkills, "append");
-    await writeFile(targetYamlPath, updated);
-    p.outro(`Added ${selectedSkills.length} skills to "${target}".`);
-    return 0;
+    return handleAddToExistingProfile(selectedSkills);
   }
 
   return 0;
 }
-
 // ---------------------------------------------------------------------------
 // `cue skills rank` — ranked list of skills by usage
 // ---------------------------------------------------------------------------
