@@ -88,6 +88,8 @@ if [[ -f package.json ]]; then
     pkg_manager="pnpm"
   elif command -v npm >/dev/null 2>&1 && [[ -f package-lock.json ]]; then
     pkg_manager="npm"
+  elif command -v bun >/dev/null 2>&1 && [[ -f bun.lock || -f bun.lockb ]]; then
+    pkg_manager="bun"
   fi
 
   case "$pkg_manager" in
@@ -98,6 +100,14 @@ if [[ -f package.json ]]; then
       ;;
     npm)
       has_package_script test && run_step "npm test" npm test
+      ;;
+    bun)
+      has_package_script typecheck && run_step "bun typecheck" bun run typecheck
+      has_package_script lint && run_step "bun lint" bun run lint
+      has_package_script test && run_step "bun test" bun run test
+      ;;
+    *)
+      echo "[agent-preflight] package.json found but no recognized lockfile (pnpm-lock.yaml / package-lock.json / bun.lock); Node checks skipped." >&2
       ;;
   esac
 fi

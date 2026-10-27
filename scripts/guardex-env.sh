@@ -31,9 +31,9 @@ guardex_read_repo_dotenv_var() {
     if [[ "$line" =~ ^[[:space:]]*(export[[:space:]]+)?${key}[[:space:]]*=(.*)$ ]]; then
       value="${BASH_REMATCH[2]}"
       value="$(printf '%s' "$value" | sed -E 's/[[:space:]]+#.*$//; s/^[[:space:]]+//; s/[[:space:]]+$//')"
-      if [[ "$value" == \"*\" && "$value" == *\" ]]; then
+      if [[ "$value" == '"'*'"' ]]; then
         value="${value:1:${#value}-2}"
-      elif [[ "$value" == \'*\' && "$value" == *\' ]]; then
+      elif [[ "$value" == "'"*"'" ]]; then
         value="${value:1:${#value}-2}"
       fi
       printf '%s' "$value"
