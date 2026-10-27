@@ -20,9 +20,9 @@
  * Recursion guard via a CUE_LAUNCHING depth counter in the child env.
  */
 
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
@@ -292,7 +292,15 @@ function parse(args: string[]): ParsedArgs {
 }
 
 /** Test-only surface. */
-export const __test = { parse, shouldOpenMcpPicker, listProfileOptions };
+export const __test = {
+  parse,
+  shouldOpenMcpPicker,
+  listProfileOptions,
+  rescueRuntimeCredsToOwner,
+  startCredentialReconciler,
+  invalidateRuntimeHash,
+  buildSkillsRoot,
+};
 
 // ---------------------------------------------------------------------------
 // Workspace overrides — merge active workspace env into profile
@@ -500,7 +508,6 @@ function announceTmuxProfile(
 
   if (pane) {
     try {
-      const { spawnSync } = require("node:child_process");
       // One tmux invocation for all eight options. Measured on a live server:
       // eight separate spawns cost ~81ms, the batched form ~11ms — and this
       // runs on the launch path, in front of the agent the user is waiting on.
@@ -533,7 +540,6 @@ function announceTmuxProfile(
     }
     if (pane && applied.size > 0) {
       try {
-        const { spawnSync } = require("node:child_process");
         const keys = [...applied.keys()];
         // Read all eight back in one spawn. A launch that started after us owns
         // the badge now, and clearing its values would blank the border for a
@@ -701,17 +707,61 @@ function truncateList(items: string[], max = LIST_TRUNCATE): string {
   return `${items.slice(0, max).join(", ")}, +${items.length - max} more`;
 }
 
+// isTTY and NO_COLOR are stable after process start — cache the result so
+// colorFns() allocates 4 closures once instead of on every call.
+let _colorFns:
+  | { cyan: (s: string) => string; yellow: (s: string) => string; dim: (s: string) => string; bold: (s: string) => string }
+  | undefined;
 /** Lazy color helpers. Disabled when stdout isn't a TTY or `NO_COLOR` is set. */
 function colorFns() {
+  if (_colorFns) return _colorFns;
   const enabled = process.stdout.isTTY === true && !process.env.NO_COLOR;
   const wrap = (code: string) => (s: string) =>
     enabled ? `\x1b[${code}m${s}\x1b[0m` : s;
-  return {
+  return (_colorFns = {
     cyan: wrap("36"),
     yellow: wrap("33"),
     dim: wrap("2"),
     bold: wrap("1"),
-  };
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Shared path helpers (used from multiple call sites inside run())
+// ---------------------------------------------------------------------------
+
+/** Return the root directory that contains installed skill sub-folders. */
+function buildSkillsRoot(): string {
+  return join(
+    process.env.CUE_REPO_ROOT ??
+      resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
+    "resources",
+    "skills",
+    "skills",
+  );
+}
+
+/**
+ * Delete the per-runtime `.cue-hash` file so the next launch forces a full
+ * materializer rebuild. Swallows ENOENT and any other deletion error.
+ */
+async function invalidateRuntimeHash(
+  runtimeKey: string,
+  agentKind: AgentKind,
+): Promise<void> {
+  const { rm: rmFile } = await import("node:fs/promises");
+  const hashPath = join(
+    configDir(),
+    "runtime",
+    runtimeKey,
+    agentKind === "claude-code" ? "claude" : "codex",
+    ".cue-hash",
+  );
+  try {
+    await rmFile(hashPath, { force: true });
+  } catch {
+    /* ok */
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -2371,14 +2421,8 @@ export async function run(args: string[]): Promise<number> {
     // A shared skill-token reader feeds the always-on estimate (frontmatter
     // bytes ÷4 ≈ tokens) — same approximation as the post-launch overhead
     // banner below, so the picker's heads-up and the banner agree.
-    const { readFileSync: readSkillFile } = await import("node:fs");
-    const skillsRootForTally = join(
-      process.env.CUE_REPO_ROOT ??
-        resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-      "resources",
-      "skills",
-      "skills",
-    );
+    const readSkillFile = readFileSync;
+    const skillsRootForTally = buildSkillsRoot();
     const skillTokenCache = new Map<string, SkillTokens>();
     const tokensForSkill = (id: string): SkillTokens => {
       const c = skillTokenCache.get(id);
@@ -2599,13 +2643,7 @@ export async function run(args: string[]): Promise<number> {
       // Direct-path read (skills live at <root>/<category>/<slug>/SKILL.md);
       // fuzzy-resolved ids just yield empty metadata — classification then
       // falls back to id-token matching, and the index row omits the path.
-      const skillsRoot = join(
-        process.env.CUE_REPO_ROOT ??
-          resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-        "resources",
-        "skills",
-        "skills",
-      );
+      const skillsRoot = buildSkillsRoot();
       const result = await applyProjectLoadout({
         profile,
         cwd,
@@ -2641,19 +2679,7 @@ export async function run(args: string[]): Promise<number> {
 
   // --rematerialize: force rebuild by deleting the hash file first
   if (parsed.rematerialize) {
-    const { rm: rmFile } = await import("node:fs/promises");
-    const hashPath = join(
-      configDir(),
-      "runtime",
-      runtimeKey,
-      agentKind === "claude-code" ? "claude" : "codex",
-      ".cue-hash",
-    );
-    try {
-      await rmFile(hashPath, { force: true });
-    } catch {
-      /* ok */
-    }
+    await invalidateRuntimeHash(runtimeKey, agentKind);
   } else {
     // Auto-rematerialize on staleness: if profile.yaml is newer than the stored
     // hash (doctor's D5 predicate), the user edited the profile after the last
@@ -2671,19 +2697,7 @@ export async function run(args: string[]): Promise<number> {
           runtimeKey,
         )
       ) {
-        const { rm: rmFile } = await import("node:fs/promises");
-        const hashPath = join(
-          configDir(),
-          "runtime",
-          runtimeKey,
-          agentKind === "claude-code" ? "claude" : "codex",
-          ".cue-hash",
-        );
-        try {
-          await rmFile(hashPath, { force: true });
-        } catch {
-          /* ok */
-        }
+        await invalidateRuntimeHash(runtimeKey, agentKind);
         process.stderr.write(`[cue] profile changed, rebuilding runtime...\n`);
       }
     } catch (err) {
@@ -3019,19 +3033,7 @@ export async function run(args: string[]): Promise<number> {
             },
           };
           // Force a rebuild so the smaller skill set actually lands on disk.
-          const { rm: rmFile } = await import("node:fs/promises");
-          const hashPath = join(
-            configDir(),
-            "runtime",
-            runtimeKey,
-            agentKind === "claude-code" ? "claude" : "codex",
-            ".cue-hash",
-          );
-          try {
-            await rmFile(hashPath, { force: true });
-          } catch {
-            /* ok */
-          }
+          await invalidateRuntimeHash(runtimeKey, agentKind);
         }
       } catch (err) {
         progress(
@@ -3336,8 +3338,8 @@ export async function run(args: string[]): Promise<number> {
   try {
     const { detectMissingDependencies } =
       await import("../lib/skill-dependencies");
-    const skillIds = profile.skills.local.map((s: any) => s.id);
-    const mcpIds = profile.mcps.map((m: any) => m.id);
+    const skillIds = profile.skills.local.map((s) => s.id);
+    const mcpIds = profile.mcps.map((m) => m.id);
     const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
     if (missing.length > 0) {
       const unique = [...new Set(missing.map((m) => m.mcpId))];
@@ -3356,14 +3358,7 @@ export async function run(args: string[]): Promise<number> {
   let alwaysOnForBadge: number | undefined;
   if (skillCount > 5) {
     try {
-      const { readFileSync } = await import("node:fs");
-      const skillsRoot = join(
-        process.env.CUE_REPO_ROOT ??
-          resolve(new URL(import.meta.url).pathname, "..", "..", ".."),
-        "resources",
-        "skills",
-        "skills",
-      );
+      const skillsRoot = buildSkillsRoot();
       const tokenCache = new Map<string, SkillTokens>();
       const tokensForSkill = (id: string): SkillTokens => {
         const cached = tokenCache.get(id);
@@ -3473,11 +3468,8 @@ export async function run(args: string[]): Promise<number> {
       // Must stay synchronous: process.on("exit") handlers cannot await.
       if (credentialsSource) {
         try {
-          const {
-            copyFileSync,
-            readFileSync: rf,
-            existsSync: ex,
-          } = require("node:fs");
+          const rf = readFileSync;
+          const ex = existsSync;
           const runtimeCreds = join(runtime.runtimeDir, ".credentials.json");
           const sourceCreds = join(credentialsSource, ".credentials.json");
           const expiresAt = (p: string): number => {
