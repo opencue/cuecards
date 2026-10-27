@@ -10,7 +10,7 @@ recommends:
   - marketing           # creative + campaign copy
   - blog-writer         # SEO content the campaigns drive traffic to
 skills:
-  local:
+  local: []
     # content/pdf removed: anthropics/skills:pdf (inherited from core via webshop) is sufficient; local copy caused W4 collision
   npx:
     # google/skills inherited via bundled google-ads + google-analytics
