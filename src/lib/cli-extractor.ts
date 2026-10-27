@@ -14,7 +14,7 @@ import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { loadProfile } from "./profile-loader";
-import { extractCLIsFromSkill } from "../commands/optimizer";
+import { extractCLIsFromSkill } from "./skill-parser";
 import { repoRoot } from "./repo-root";
 
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");

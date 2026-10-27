@@ -7,19 +7,25 @@
  *   - CLIs extracted from skills (tags, allowed-tools, Prerequisites, skill name)
  */
 
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 
-import { listProfiles } from "../lib/profile-loader";
+import { listProfiles, loadProfile } from "../lib/profile-loader";
 import { isKittyTerminal, transmitKittyImage, kittyPlaceholderLabel } from "../lib/kitty-image";
 import { getSkillIcon, getMcpIcon, getRepoIcon, getCliIcon } from "../lib/brand-icons";
 import { repoRoot } from "../lib/repo-root";
+import { extractCLIsFromSkill, expandSkillGlob } from "../lib/skill-parser";
+
+// ---------------------------------------------------------------------------
+// Re-exports for back-compat — callers that imported these from optimizer.ts
+// continue to work without changes.
+// ---------------------------------------------------------------------------
+export type { SkillMetadata } from "../lib/skill-parser";
+export { parseMetadataFromContent, parseCLIsFromContent, extractCLIsFromSkill } from "../lib/skill-parser";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
-const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
-const HOME_SKILLS = join(homedir(), ".claude", "skills");
 
 // ---------------------------------------------------------------------------
 // Usage tracking — scan session transcripts for skill file reads
@@ -48,39 +54,6 @@ function getSkillUsage(): Map<string, number> {
   return usage;
 }
 
-// Known CLI tools that appear in skill tags/names
-const KNOWN_CLIS = new Set([
-  "nmap", "scapy", "wireshark", "tcpdump", "burpsuite", "metasploit", "hydra",
-  "nikto", "sqlmap", "gobuster", "dirb", "ffuf", "hashcat", "john",
-  "volatility", "autopsy", "binwalk", "ghidra", "radare2", "gdb",
-  "apktool", "jadx", "androguard", "frida", "objection",
-  "docker", "kubectl", "helm", "terraform", "ansible", "vagrant",
-  "aws", "gcloud", "az", "curl", "wget", "jq", "yq",
-  "git", "gh", "glab", "npm", "npx", "bun", "pnpm", "yarn",
-  "python", "pip", "uv", "uvx", "node", "deno",
-  "go", "cargo", "rustc", "rustup", "clippy", "rustfmt", "gcc", "make", "cmake",
-  "cargo-watch", "cargo-nextest", "cargo-edit", "cargo-expand", "cargo-machete",
-  "cargo-outdated", "cargo-udeps", "cargo-audit", "cargo-deny", "cargo-geiger",
-  "cargo-vet", "cargo-crev", "cargo-flamegraph", "cargo-criterion", "cargo-bloat",
-  "bacon", "sccache", "wasm-pack", "trunk", "dioxus", "tauri",
-  "sqlx", "sea-orm-cli", "diesel", "mdbook", "cross", "just",
-  "tokio-console", "cargo-insta", "cargo-fuzz", "cargo-hack", "cargo-mutants",
-  "release-plz", "typos", "cargo-chef", "cargo-msrv", "cargo-readme",
-  "maturin", "napi", "uniffi-bindgen", "bindgen", "cbindgen",
-  "probe-rs", "cargo-embed", "cargo-binutils", "chisel",
-  "chromium", "chrome", "google-chrome", "microsoft-edge", "ego-browser",
-  "openssl", "ssh", "ncat", "netcat", "socat",
-  "splunk", "elastic", "kibana", "logstash",
-  "peepdf", "pdfid", "pdf-parser", "olevba", "oletools",
-  "yara", "clamav", "snort", "suricata", "zeek",
-  "aircrack-ng", "reaver", "wifite", "kismet",
-  "maltego", "shodan", "censys", "amass", "subfinder", "httpx",
-  "nuclei", "zap", "wpscan", "testssl", "sslscan",
-  "dd", "dcfldd", "foremost", "scalpel", "sleuthkit",
-  "cuckoo", "remnux", "floss", "strings", "strace", "ltrace",
-  "medusa", "coolify", "higgsfield", "colony", "gx",
-]);
-
 interface ProfileReport {
   name: string;
   icon: string;
@@ -90,203 +63,51 @@ interface ProfileReport {
 }
 
 /**
- * Pure parser: extract metadata (domain, tags, one-line description) from a
- * SKILL.md's frontmatter. Used by marketplace discover to suggest which cue
- * profile a repo would fit and what it's good for.
+ * Read the core profile's skill list once and return their slugs (basename
+ * after the last "/") as a Set. Used by the dashboard renderer to separate
+ * built-in (core-inherited) skills from profile-specific ones.
+ * Reads core/profile.yaml once per run — NOT once per profile in the loop.
  */
-export interface SkillMetadata {
-  description: string;  // one-line summary
-  domain: string;       // top-level category (e.g. "cybersecurity", "marketing")
-  tags: string[];       // free-form tag list
-  category: string;     // legacy alias for domain
-  name: string;
-}
-
-export function parseMetadataFromContent(content: string): SkillMetadata {
-  const empty: SkillMetadata = { description: "", domain: "", tags: [], category: "", name: "" };
-  if (!content) return empty;
-  const fm = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!fm) return empty;
-  const yaml = fm[1]!;
-
-  const get = (key: string): string => {
-    const m = yaml.match(new RegExp(`^${key}:\\s*(.+?)\\s*$`, "m"));
-    return m ? m[1]!.replace(/^["'>|]\s*/, "").replace(/["']$/, "").trim() : "";
-  };
-
-  // Tags can be either inline `tags: [a, b]` or YAML list `tags:\n  - a\n  - b`.
-  let tags: string[] = [];
-  const inline = yaml.match(/^tags:\s*\[([^\]]*)\]/m);
-  if (inline) {
-    tags = inline[1]!.split(",").map((s) => s.trim().replace(/^["']|["']$/g, "")).filter(Boolean);
-  } else {
-    const block = yaml.match(/^tags:\s*\n((?:\s+-\s+.+\n?)+)/m);
-    if (block) {
-      tags = block[1]!.split("\n").map((l) => l.replace(/^\s*-\s*/, "").trim().replace(/^["']|["']$/g, "")).filter(Boolean);
-    }
-  }
-
-  // Multi-line description: handle `description: >-\n  text\n  more text` and `description: |`.
-  let description = get("description");
-  if (!description) {
-    const multi = yaml.match(/^description:\s*[>|]-?\s*\n((?:\s+.+\n?)+)/m);
-    if (multi) description = multi[1]!.split("\n").map((l) => l.trim()).filter(Boolean).join(" ");
-  }
-
-  return {
-    description: description.slice(0, 200),
-    domain: get("domain") || get("category"),
-    category: get("category") || get("domain"),
-    tags,
-    name: get("name"),
-  };
-}
-
-/**
- * Pure parser: extract CLI names from a SKILL.md's raw text. Used by both
- * disk-loading callers and network-fetched content (marketplace discover).
- */
-export function parseCLIsFromContent(content: string): string[] {
-  const clis: Set<string> = new Set();
-  if (!content) return [];
-
-  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
-  if (fmMatch) {
-    const fm = fmMatch[1]!;
-    const toolsMatch = fm.match(/^allowed-tools:\s*(.+)$/m);
-    if (toolsMatch) {
-      const tools = toolsMatch[1]!;
-      const bashTools = tools.match(/Bash\(([^:)]+)/g);
-      if (bashTools) {
-        for (const bt of bashTools) {
-          // Preserve case — Linux binary names are case-sensitive (e.g. `Xvfb`,
-          // not `xvfb`). Lowercasing here used to surface false-negatives.
-          const cli = bt.replace("Bash(", "").trim().split(" ")[0]!;
-          if (cli && cli.toLowerCase() !== "bash") clis.add(cli);
-        }
+function loadCoreSkillSlugs(profilesDir: string): Set<string> {
+  const slugs = new Set<string>();
+  try {
+    const yaml = readFileSync(join(profilesDir, "core", "profile.yaml"), "utf8");
+    const matches = yaml.match(/^\s{4}-\s+(.+)$/gm);
+    if (matches) {
+      for (const m of matches) {
+        const id = m.replace(/^\s+-\s+/, "").trim().replace(/['"]/g, "");
+        slugs.add(id.split("/").pop() ?? id);
       }
     }
-  }
-
-  const prereqMatch = content.match(/## Prerequisites\n([\s\S]*?)(?=\n##|\n$)/);
-  if (prereqMatch) {
-    const prereqs = prereqMatch[1]!;
-    const lines = prereqs.split("\n").filter((l) => l.startsWith("-") || l.startsWith("*"));
-    for (const line of lines) {
-      const lower = line.toLowerCase();
-      for (const cli of KNOWN_CLIS) {
-        const re = new RegExp(`\\b${cli}\\b`);
-        if (re.test(lower)) clis.add(cli);
-      }
-    }
-  }
-
-  return [...clis];
+  } catch { /* core profile not found — skip */ }
+  return slugs;
 }
 
-export function extractCLIsFromSkill(skillSlug: string): string[] {
-  // Try to read SKILL.md from resources or ~/.claude/skills
-  let content = "";
-  const paths = [
-    join(HOME_SKILLS, skillSlug, "SKILL.md"),
-    // Try all category subdirs in resources
-    ...(() => {
-      try {
-        return readdirSync(SKILLS_ROOT)
-          .map((cat) => join(SKILLS_ROOT, cat, skillSlug, "SKILL.md"));
-      } catch { return []; }
-    })(),
-  ];
-
-  for (const p of paths) {
-    try { content = readFileSync(p, "utf8"); break; } catch {}
-  }
-
-  return parseCLIsFromContent(content);
-}
-
-function parseProfile(name: string): ProfileReport {
-  const yamlPath = join(PROFILES_DIR, name, "profile.yaml");
+async function parseProfile(name: string): Promise<ProfileReport> {
   let icon = "  ";
   let skills: string[] = [];
   let mcps: string[] = [];
 
   try {
-    const content = readFileSync(yamlPath, "utf8");
+    // loadProfile resolves the full inheritance chain (not just one level),
+    // handles object-form skill refs, schema validation, and wildcard
+    // de-scoping — replacing ~80 lines of hand-rolled YAML regex logic.
+    const p = await loadProfile(name);
+    icon = p.icon ?? "  ";
 
-    // Icon
-    const iconMatch = content.match(/^icon:\s*["']?(.+?)["']?\s*$/m);
-    if (iconMatch) icon = iconMatch[1]!;
-
-    // Skills
-    const skillMatches = content.match(/^\s{4}-\s+(.+)$/gm);
-    if (skillMatches) {
-      skills = skillMatches.map((l) => l.replace(/^\s+-\s+/, "").trim().replace(/['"]/g, ""));
+    // Expand any wildcard skill IDs (e.g. "*/*") to concrete IDs on disk.
+    const rawSkills = p.skills.local.map((r) => r.id);
+    if (rawSkills.some((id) => id.includes("*"))) {
+      const expanded = rawSkills.flatMap(expandSkillGlob);
+      // Deduplicate while preserving order
+      const seen = new Set<string>();
+      skills = expanded.filter((id) => (seen.has(id) ? false : (seen.add(id), true)));
+    } else {
+      skills = rawSkills;
     }
 
-    // Resolve wildcard "*/*" or "*" — expand to all skills on disk
-    if (skills.some((s) => s.includes("*"))) {
-      const expanded: string[] = [];
-      try {
-        // Scan resources/skills/skills/<category>/<skill>/
-        for (const cat of readdirSync(SKILLS_ROOT)) {
-          const catPath = join(SKILLS_ROOT, cat);
-          try {
-            for (const skill of readdirSync(catPath)) {
-              if (existsSync(join(catPath, skill, "SKILL.md"))) {
-                expanded.push(`${cat}/${skill}`);
-              }
-            }
-          } catch {}
-        }
-      } catch {}
-      // Also include skills from ~/.claude/skills/
-      try {
-        for (const skill of readdirSync(HOME_SKILLS)) {
-          if (!expanded.some((e) => e.endsWith(`/${skill}`))) {
-            expanded.push(skill);
-          }
-        }
-      } catch {}
-      skills = expanded;
-    }
-
-    // MCPs
-    const mcpSection = content.match(/^mcps:\n((?:\s+-\s+.+\n)*)/m);
-    if (mcpSection) {
-      const mcpLines = mcpSection[1]!.match(/^\s+-\s+(.+)$/gm);
-      if (mcpLines) {
-        mcps = mcpLines.map((l) => l.replace(/^\s+-\s+/, "").trim());
-      }
-    }
-
-    // Resolve inheritance — prepend parent skills
-    const inheritsMatch = content.match(/^inherits:\s*(.+)$/m);
-    if (inheritsMatch && name !== "core") {
-      const parent = inheritsMatch[1]!.trim();
-      try {
-        const parentYaml = readFileSync(join(PROFILES_DIR, parent, "profile.yaml"), "utf8");
-        const parentSkills = parentYaml.match(/^\s{4}-\s+(.+)$/gm);
-        if (parentSkills) {
-          const parentIds = parentSkills.map(l => l.replace(/^\s+-\s+/, "").trim().replace(/['"]/g, ""));
-          // Prepend parent skills (deduped)
-          const existing = new Set(skills);
-          const inherited = parentIds.filter(s => !existing.has(s) && !s.startsWith("#"));
-          skills = [...inherited, ...skills];
-        }
-        // Also inherit MCPs
-        const parentMcpSection = parentYaml.match(/^mcps:\n((?:\s+-\s+.+\n)*)/m);
-        if (parentMcpSection) {
-          const parentMcpLines = parentMcpSection[1]!.match(/^\s+-\s+(.+)$/gm);
-          if (parentMcpLines) {
-            const parentMcps = parentMcpLines.map(l => l.replace(/^\s+-\s+/, "").trim());
-            const existingMcps = new Set(mcps);
-            mcps = [...parentMcps.filter(m => !existingMcps.has(m)), ...mcps];
-          }
-        }
-      } catch { /* parent not found */ }
-    }
-  } catch {}
+    mcps = p.mcps.map((r) => r.id);
+  } catch { /* profile not found or invalid — return empty report */ }
 
   // Extract CLIs from each skill
   const clis = new Map<string, string[]>();
@@ -335,7 +156,7 @@ Examples:
   const reports: ProfileReport[] = [];
   for (const name of profiles) {
     if (filterProfile && name !== filterProfile) continue;
-    reports.push(parseProfile(name));
+    reports.push(await parseProfile(name));
   }
 
   if (reports.length === 0) {
@@ -412,6 +233,11 @@ Examples:
     return kittyPlaceholderLabel(imgId, 2, 1) + " ";
   }
 
+  // Load core skill slugs once — used in each profile row to separate
+  // built-in skills (inherited from core) from profile-specific ones.
+  // Previously read and regex-parsed twice per profile inside the loop.
+  const coreSkillSlugs = loadCoreSkillSlugs(PROFILES_DIR);
+
   for (let i = 0; i < reports.length; i++) {
     const r = reports[i]!;
     const cliCount = r.clis.size;
@@ -427,18 +253,7 @@ Examples:
     process.stdout.write(`\n${i === 0 ? "╭" : "├"}── ${iconDisplay}${r.name}\n`);
     process.stdout.write(`│\n`);
     // Show profile-specific skill count (exclude built-ins from the number)
-    const coreSkillsForCount = new Set<string>();
-    try {
-      const coreYamlForCount = readFileSync(join(PROFILES_DIR, "core", "profile.yaml"), "utf8");
-      const coreMatchesForCount = coreYamlForCount.match(/^\s{4}-\s+(.+)$/gm);
-      if (coreMatchesForCount) {
-        for (const m of coreMatchesForCount) {
-          const id = m.replace(/^\s+-\s+/, "").trim().replace(/['"]/g, "");
-          coreSkillsForCount.add(id.split("/").pop() ?? id);
-        }
-      }
-    } catch { /* skip */ }
-    const profileSkillCount = r.name === "core" ? r.skills.length : r.skills.filter(s => !coreSkillsForCount.has(s.split("/").pop() ?? s)).length;
+    const profileSkillCount = r.name === "core" ? r.skills.length : r.skills.filter(s => !coreSkillSlugs.has(s.split("/").pop() ?? s)).length;
     process.stdout.write(`│   📦 Skills: ${profileSkillCount}     🔌 MCPs: ${r.mcps.length}     🖥️  CLIs: ${cliCount}\n`);
     process.stdout.write(`│\n`);
 
@@ -455,23 +270,10 @@ Examples:
         process.stdout.write(`│   │  📊 Total usage: ${profileUsage} reads across sessions\n│   │\n`);
       }
 
-      // Load core skills to identify built-ins
-      const coreSkills = new Set<string>();
-      try {
-        const coreYaml = readFileSync(join(PROFILES_DIR, "core", "profile.yaml"), "utf8");
-        const coreMatches = coreYaml.match(/^\s{4}-\s+(.+)$/gm);
-        if (coreMatches) {
-          for (const m of coreMatches) {
-            const id = m.replace(/^\s+-\s+/, "").trim().replace(/['"]/g, "");
-            coreSkills.add(id.split("/").pop() ?? id);
-          }
-        }
-      } catch { /* skip */ }
-
       if (r.skills.length <= 30) {
         // Show built-in section first
-        const builtIn = r.skills.filter(s => coreSkills.has(s.split("/").pop() ?? s));
-        const custom = r.skills.filter(s => !coreSkills.has(s.split("/").pop() ?? s));
+        const builtIn = r.skills.filter(s => coreSkillSlugs.has(s.split("/").pop() ?? s));
+        const custom = r.skills.filter(s => !coreSkillSlugs.has(s.split("/").pop() ?? s));
 
         if (builtIn.length > 0 && custom.length > 0 && r.name !== "core") {
           // Just reference built-ins, don't list them again
