@@ -1,4 +1,8 @@
 name: Validate Profiles
+
+permissions:
+  contents: read
+
 on:
   pull_request:
     paths:
@@ -11,11 +15,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           submodules: true
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@4bc047ad8a91a0c59e6b73cf74b46e58c5da4b35 # v2.0.1
         with:
           bun-version: 1.3.13
 

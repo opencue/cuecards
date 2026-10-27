@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@4bc047ad8a91a0c59e6b73cf74b46e58c5da4b35 # v2.0.1
         with:
           bun-version: 1.3.13
 
