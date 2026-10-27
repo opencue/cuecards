@@ -1063,11 +1063,16 @@ interface ProfileOptionSet {
   defaultSelector?: string;
 }
 
-async function listProfileOptions(
-  pinnedProfile?: string,
-  preferredAgent: "claude" | "codex" = "claude",
-): Promise<ProfileOptionSet> {
-  const names = await listProfiles();
+
+/**
+ * Load the per-profile PickerOption rows and the Default entry.
+ * Handles kitty-terminal image transmission and profile YAML loading.
+ * Extracted from listProfileOptions (finding 5).
+ */
+async function loadPickerOptions(
+  names: string[],
+  pinnedProfile: string | undefined,
+): Promise<{ opts: PickerOption[]; defaultOpt: PickerOption | undefined }> {
   const knownNames = new Set(names);
   const opts: PickerOption[] = [];
   const kitty = await detectKittyTerminal();
@@ -1176,12 +1181,23 @@ async function listProfileOptions(
     /* non-fatal — picker still works without the Default entry */
   }
 
-  // Pull usage data so most-picked entries float to the top. Combo pins like
-  // "blog-writer+postizz" are naturally separate keys in the analytics log.
+  return { opts, defaultOpt };
+}
+
+/**
+ * Collect analytics-based usage signals for picker ranking.
+ * Returns usage counts, a recency list, and whether the recency list
+ * is scoped to the current working directory.
+ * Extracted from listProfileOptions (finding 5).
+ */
+async function gatherUsageSignals(cwd: string): Promise<{
+  usage: Map<string, number>;
+  recent: RecentEntry[];
+  recentCwdScoped: boolean;
+}> {
   const usage = new Map<string, number>();
   const recentGlobal: RecentEntry[] = [];
   const recentCwd: RecentEntry[] = [];
-  const cwd = process.cwd();
   try {
     for (const s of computeStats()) {
       usage.set(s.profile, s.sessions);
@@ -1208,6 +1224,18 @@ async function listProfileOptions(
   // history; fall back to global only for brand-new directories. Keeps
   // ambient $HOME launches (auto-pinned profiles) out of project pickers.
   const recent = recentCwd.length > 0 ? recentCwd : recentGlobal;
+  return { usage, recent, recentCwdScoped: recentCwd.length > 0 };
+}
+
+
+async function listProfileOptions(
+  pinnedProfile?: string,
+  preferredAgent: "claude" | "codex" = "claude",
+): Promise<ProfileOptionSet> {
+  const names = await listProfiles();
+  const { opts, defaultOpt } = await loadPickerOptions(names, pinnedProfile);
+  const cwd = process.cwd();
+  const { usage, recent, recentCwdScoped } = await gatherUsageSignals(cwd);
 
   // Cwd-detected suggestions (medusa-config.js, Cargo.toml, etc.). Only
   // surfaced when a profile of the same name actually exists in this install.
@@ -1289,11 +1317,12 @@ async function listProfileOptions(
     detected: detections,
     deterministic,
     recents: recent,
-    recentsAreCwdScoped: recentCwd.length > 0,
+    recentsAreCwdScoped: recentCwdScoped,
     featured,
     defaultSelector: defaultOpt?.value,
   };
 }
+
 
 async function readSharedClaudeMd(profile?: {
   name: string;
