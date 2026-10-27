@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach, afterAll } from "bun:test";
-import { mkdirSync, rmSync, } from "node:fs";
+import { rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -26,18 +26,11 @@ describe("skills-lock", () => {
   });
 
   test("readLockfile returns empty when no file", () => {
-    // Point HOME to a fresh empty dir
-    const emptyDir = join(tmpdir(), "cue-lock-empty-" + Date.now());
-    mkdirSync(emptyDir, { recursive: true });
-    const origHome = process.env.HOME;
-    process.env.HOME = emptyDir;
-    // Re-import won't help since homedir() may be cached, so test the behavior:
-    // readLockfile should handle missing file gracefully
+    // CUE_SKILLS_LOCK_PATH (set in beforeEach) points at a non-existent path.
+    // readLockfile should handle the missing file gracefully.
     const lock = lockMod.readLockfile();
     expect(lock.version).toBe(1);
     expect(lock.skills).toBeInstanceOf(Array);
-    process.env.HOME = origHome;
-    rmSync(emptyDir, { recursive: true, force: true });
   });
 
   test("writeLockfile + readLockfile roundtrip", () => {

@@ -15,7 +15,7 @@ import { readdirSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 import { DEP_PROFILE_RULES } from "./auto-detect";
-import { STACK_PROFILES, PROFILE_KEYWORDS as DISCOVER_KEYWORDS } from "../commands/discover";
+import { STACK_PROFILES, PROFILE_KEYWORDS as DISCOVER_KEYWORDS } from "./stack-profiles";
 import { PROFILE_KEYWORDS as AI_KEYWORDS } from "../commands/ai";
 
 const PROFILES_DIR = resolve(import.meta.dir, "../../profiles");

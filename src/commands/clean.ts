@@ -2,14 +2,13 @@
  * `cue clean` — prune stale runtimes, old cache entries, orphaned symlinks.
  */
 
-import { existsSync, readdirSync, rmSync, statSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, rmSync, statSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
 import { repoRoot } from "../lib/repo-root";
+import { configDir } from "../lib/config-paths";
 
-const RUNTIME_ROOT = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "runtime");
 const CACHE_ROOT = join(repoRoot(), "profiles", "_cache", "npx");
 
 export async function run(args: string[]): Promise<number> {
@@ -28,11 +27,13 @@ Usage:
   let totalBytes = 0;
   let totalEntries = 0;
 
+  const runtimeRoot = join(configDir(), "runtime");
+
   // 1. Stale runtimes (profiles that no longer exist)
-  if (existsSync(RUNTIME_ROOT)) {
-    for (const dir of readdirSync(RUNTIME_ROOT)) {
+  if (existsSync(runtimeRoot)) {
+    for (const dir of readdirSync(runtimeRoot)) {
       if (!profiles.has(dir)) {
-        const path = join(RUNTIME_ROOT, dir);
+        const path = join(runtimeRoot, dir);
         const size = getDirSize(path);
         totalBytes += size;
         totalEntries++;
@@ -60,7 +61,7 @@ Usage:
   }
 
   // 3. Analytics file size check
-  const analyticsPath = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "analytics.jsonl");
+  const analyticsPath = join(configDir(), "analytics.jsonl");
   if (existsSync(analyticsPath)) {
     const size = statSync(analyticsPath).size;
     if (size > 5_000_000) { // > 5MB
@@ -71,7 +72,7 @@ Usage:
         const content = readFileSync(analyticsPath, "utf8");
         const lines = content.split("\n");
         const trimmed = lines.slice(-10000).join("\n"); // keep last 10k events
-        require("node:fs").writeFileSync(analyticsPath, trimmed);
+        writeFileSync(analyticsPath, trimmed);
       }
     }
   }
