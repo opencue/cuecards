@@ -301,7 +301,7 @@ async function readPersonaIncludes(profile: ResolvedProfile): Promise<string> {
 function effectiveCodexOverrides(
   profile: ResolvedProfile,
 ): CodexProfileConfig | undefined {
-  const legacy = profile.codexConfig;
+  const legacy = profile.codexConfig ?? {};
   const current = (profile as { codex?: CodexProfileConfig }).codex ?? {};
   if (Object.keys(legacy).length === 0 && Object.keys(current).length === 0) {
     return undefined;
