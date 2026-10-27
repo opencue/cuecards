@@ -115,9 +115,11 @@ function run(): number {
     .filter(([, count]) => count > 1)
     .map(([id]) => id)
     .sort((a, b) => a.localeCompare(b));
+  // Build a lookup map once to avoid O(n×m) linear scans inside the filter.
+  const skillById = new Map(catalog.skills.map((s) => [s.id, s]));
   const unsafeSkillIds = [...counts.keys()]
     .filter((id) => {
-      const skill = catalog.skills.find((entry) => entry.id === id);
+      const skill = skillById.get(id);
       return !skill || (skill.risk !== "safe" && skill.risk !== "none");
     })
     .sort((a, b) => a.localeCompare(b));

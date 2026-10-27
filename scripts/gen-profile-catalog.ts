@@ -177,7 +177,10 @@ function renderCategoryTable(cat: Category, profiles: Map<string, ProfileMeta>):
   const rows: string[] = [];
   for (const name of cat.members) {
     const p = profiles.get(name);
-    if (!p) continue;
+    if (!p) {
+      process.stderr.write(`  ⚠ category '${cat.slug}' member '${name}' not found — remove from CATEGORIES\n`);
+      continue;
+    }
     const cmd = `\`cue use ${name}\``;
     const stats: string[] = [];
     if (p.skillCount) stats.push(`${p.skillCount} skill${p.skillCount === 1 ? "" : "s"}`);
@@ -198,6 +201,17 @@ function renderCategoryTable(cat: Category, profiles: Map<string, ProfileMeta>):
     ...rows,
     "",
   ].join("\n");
+}
+
+/** Count CATEGORIES members whose profile no longer exists. Used by --check. */
+function countCategoryOrphans(profiles: Map<string, ProfileMeta>): number {
+  let count = 0;
+  for (const cat of CATEGORIES) {
+    for (const name of cat.members) {
+      if (!profiles.has(name)) count++;
+    }
+  }
+  return count;
 }
 
 function renderUncategorized(profiles: Map<string, ProfileMeta>): string {
@@ -353,12 +367,14 @@ async function main() {
 
   const readmeChanged = !readmeSkipped && next !== readme;
   const dataChanged = dataNext !== dataPrev;
+  const orphanCount = countCategoryOrphans(profiles);
 
   if (check) {
-    if (readmeChanged || dataChanged) {
+    if (readmeChanged || dataChanged || orphanCount > 0) {
       process.stderr.write(`Profile catalog out of date. Run: bun scripts/gen-profile-catalog.ts\n`);
       if (readmeChanged) process.stderr.write(`  - README.md needs regen\n`);
       if (dataChanged) process.stderr.write(`  - docs/data/profiles.md needs regen\n`);
+      if (orphanCount > 0) process.stderr.write(`  - ${orphanCount} CATEGORIES member(s) not found in profiles\n`);
       process.exit(1);
     }
     process.stdout.write(`✅ profile catalog up to date (${profiles.size} profiles)\n`);

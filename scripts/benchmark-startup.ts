@@ -20,6 +20,7 @@ try {
   await writeFile(join(cwd, ".cue.profile"), "backend\n");
   const agent = join(scratch, "agent");
   await writeFile(agent, "#!/bin/sh\nexit 0\n", { mode: 0o755 });
+  // Required so loadProfile() (called below) can resolve profiles from the repo.
   process.env.CUE_REPO_ROOT = repo;
   process.env.CUE_PROFILES_DIR = join(repo, "profiles");
   // Seed only disposable remote skill fixtures; never download or use credentials.
@@ -39,6 +40,7 @@ try {
     XDG_CONFIG_HOME: config,
     XDG_CACHE_HOME: cache,
     CODEX_HOME: join(home, ".codex"),
+    CUE_REPO_ROOT: repo,
     CUE_PROFILES_DIR: join(repo, "profiles"),
     CUE_REAL_CODEX: agent,
     CI: "1",
