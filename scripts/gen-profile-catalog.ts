@@ -51,7 +51,7 @@ const CATEGORIES: Category[] = [
     slug: "backend",
     title: "🐻 Backend & Languages",
     blurb: "Language-scoped expert agents for API and systems work.",
-    members: ["backend", "python-api", "go-api", "rust", "rust-core", "rust-cli", "rust-web", "rust-ffi", "rust-wasm", "rust-game", "rust-embedded"],
+    members: ["backend", "go-api", "rust", "rust-core", ],
   },
   {
     slug: "frontend",
@@ -87,7 +87,7 @@ const CATEGORIES: Category[] = [
     slug: "vertical",
     title: "🦊 Verticals",
     blurb: "Domain-specific bundles.",
-    members: ["medusa-dev", "nvidia", "jetson", "ecc"],
+    members: ["medusa-dev", "nvidia", "jetson", ],
   },
   {
     slug: "modes",
