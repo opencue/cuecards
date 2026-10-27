@@ -1721,6 +1721,290 @@ export { formatNpxDegraded } from "../lib/launch-format";
 // Main entry point
 // ---------------------------------------------------------------------------
 
+/** Options forwarded from {@link run} into {@link applyMcpPruning}. */
+interface ApplyMcpPruningOpts {
+  agentKind: AgentKind;
+  parsed: Pick<ParsedArgs, "disableMcp" | "forcePickMcps" | "dryRun">;
+  pinDir: string;
+  loadoutActive: boolean;
+  runtimeKey: string;
+  profileName: string;
+}
+
+/**
+ * Prune the profile's MCP servers to what active skills need and let the
+ * user toggle them interactively. Returns the (possibly modified) profile
+ * and the list of disabled MCP ids to forward to the materializer.
+ * Always resolves — errors are swallowed (fail-open, never blocks a launch).
+ *
+ * Extracted from the inline MCP-prune block in run() (finding 6).
+ */
+async function applyMcpPruning(
+  profile: ResolvedProfile,
+  opts: ApplyMcpPruningOpts,
+): Promise<{ profile: ResolvedProfile; mcpDisabledIds: string[] }> {
+  const { agentKind, parsed, pinDir, loadoutActive, runtimeKey, profileName } = opts;
+  // Lazy-MCP: ids the user disabled, forwarded to the materializer so the stale
+  // keys are evicted from the runtime .claude.json (which the rebuild preserves).
+  let mcpDisabledIds: string[] = [];
+  // ── Lazy MCP loading ──────────────────────────────────────────────────
+  // Prune the profile's MCP servers to what the chosen skills actually need
+  // (smart-prune) and let the user disable individual servers interactively.
+  // The choice is remembered per pinned directory; later launches apply it
+  // silently until the profile's MCP set changes (fingerprint mismatch).
+  //
+  // Runs BEFORE the loader so the interactive toggle owns a clean TTY, and
+  // BEFORE smart-subset — so `needed` reflects the pre-subset skill set. That
+  // only ever over-keeps an MCP (safe); subset's copy-on-write preserves the
+  // pruned `mcps`. Pruning `profile.mcps` changes the materializer content
+  // hash, so the smaller `.claude.json` rebuilds automatically.
+  if (agentKind === "claude-code" && profile.mcps.length > 0) {
+    try {
+      const { getNeededMcps } = await import("../lib/skill-dependencies");
+      const {
+        readMcpOverride,
+        writeMcpOverride,
+        mcpFingerprint,
+        reconcileDisabledWithNeeded,
+        autoPrunableMcps,
+        mcpPruneMode,
+        isRecognizedPruneEnv,
+        readRuntimeMcpServerIds,
+        withAutoPrunedGlobals,
+      } = await import("../lib/mcp-overrides");
+
+      const allMcpIds = profile.mcps.map((m) => m.id);
+      const fingerprint = mcpFingerprint(allMcpIds);
+      const pinned = new Set(
+        profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()),
+      );
+      const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
+
+      const keepNonPinned = (drop: Set<string>): Set<string> =>
+        new Set(
+          allMcpIds.filter(
+            (id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase()),
+          ),
+        );
+
+      let kept: Set<string> | null = null;
+      let reviewed = false;
+
+      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
+      // (including an explicit `off`) overrides the profile's declared default;
+      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
+      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
+      // (e.g. a typo like `profil`) must NOT silently suppress the profile
+      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
+      const pruneEnv = process.env.CUE_PRUNE_MCPS;
+      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
+      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
+      if (pruneEnvSet && !pruneFromEnv) {
+        process.stderr.write(
+          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
+        );
+      }
+      const pruneMode = pruneFromEnv
+        ? mcpPruneMode(pruneEnv)
+        : (profile.mcpPrune ?? "off");
+      const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
+
+      if (parsed.disableMcp.length > 0) {
+        // Non-interactive flag path: drop named ids (pinned ones excepted) for
+        // THIS launch only. `reviewed` stays false so the choice is NOT written
+        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
+        // run or a debug session must not silently stick on later launches. Use
+        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
+        kept = keepNonPinned(
+          new Set(parsed.disableMcp.map((s) => s.toLowerCase())),
+        );
+      } else {
+        const override = readMcpOverride(pinDir);
+        const overrideValid =
+          override !== undefined && override.fingerprint === fingerprint;
+        const interactive = process.stdin.isTTY === true && !parsed.dryRun;
+
+        // Replay a remembered disable-list, cross-checked against what active
+        // skills now need: a skill added since the override was captured may
+        // need an MCP the user disabled. Re-enable those (honor the dependency)
+        // and say so, rather than silently starving the skill. The override is
+        // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
+        const applyRememberedOverride = (): Set<string> => {
+          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(
+            override!.disabled,
+            needed.keys(),
+          );
+          if (reEnabled.length > 0) {
+            process.stderr.write(
+              `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
+            );
+          }
+          return keepNonPinned(new Set(keepDisabled));
+        };
+
+        // The toggle opens on --cue-pick-mcps and when there's no valid
+        // remembered choice (first launch of this MCP set, or the set changed —
+        // the fingerprint invalidates the override). It does NOT re-open just
+        // because the profile was picked interactively this launch: a remembered
+        // choice is honored, so picking `core` from the startup menu no longer
+        // forces an MCP dialog every time. Re-review explicitly with
+        // --cue-pick-mcps. A valid override seeds the checkboxes when it does open.
+        if (
+          shouldOpenMcpPicker({
+            interactive,
+            forcePickMcps: parsed.forcePickMcps,
+            overrideValid,
+          })
+        ) {
+          const { pickMcps } = await import("../lib/mcp-picker");
+          // Initial checkbox state, best first: the remembered override (this
+          // is a re-review), else — when a loadout is active — the project-
+          // aware suggestion (unpinned MCPs no full skill needs start
+          // unchecked; Enter persists it as the normal override), else the
+          // picker's built-in defaults.
+          kept = await pickMcps({
+            profileMcpIds: allMcpIds,
+            pinned,
+            needed,
+            initialDisabled: overrideValid
+              ? new Set(override!.disabled.map((s) => s.toLowerCase()))
+              : loadoutActive
+                ? new Set(autoPrunableMcps(allMcpIds, pinned, needed.keys()))
+                : undefined,
+          });
+          reviewed = kept !== null; // null = user cancelled → persist nothing
+          // Cancelling the review must not silently re-enable everything when a
+          // remembered choice exists — fall back to it, same as a non-picking launch.
+          if (kept === null && overrideValid) kept = applyRememberedOverride();
+        } else if (overrideValid) {
+          kept = applyRememberedOverride();
+        } else if (pruneMode !== "off") {
+          // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
+          // default. Self-contained: it sets mcpDisabledIds directly (so it can
+          // drop GLOBAL servers that aren't in profile.mcps and thus invisible to
+          // the shared block below) and leaves `kept` null to skip that block.
+          // Recomputed each launch; never persisted, so the picker's remembered
+          // overrides stay intact.
+          //
+          //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
+          //                  user-global servers are never touched holds).
+          //   all mode     → also drop unused GLOBAL servers present in the
+          //                  runtime .claude.json (the heavy ones a coding
+          //                  profile never calls). Removes config set globally.
+          const universe = [...allMcpIds];
+          if (pruneMode === "all") {
+            const rtClaudeJson = join(
+              configDir(),
+              "runtime",
+              runtimeKey,
+              "claude",
+              ".claude.json",
+            );
+            for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
+              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase()))
+                universe.push(id);
+            }
+          }
+          const drop = new Set(
+            autoPrunableMcps(universe, pinned, needed.keys()),
+          );
+          debug("launch:mcp-prune", {
+            mode: pruneMode,
+            source: pruneSource,
+            universe,
+            pinned: [...pinned],
+            needed: [...needed.keys()],
+            drop: [...drop],
+          });
+          if (drop.size > 0) {
+            profile = {
+              ...profile,
+              mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
+            };
+            mcpDisabledIds = [...drop];
+            // Name the pin exemption. `pin: true` silently makes prune a no-op
+            // for those servers, so "auto-pruned 2 unused" reads as if the rest
+            // were all needed — leaving no way to tell an MCP that survived
+            // because a skill wants it from one that survived because it is
+            // pinned.
+            //
+            // Scope, deliberately narrow: this counts ids DECLARED pinned, and
+            // "exempt" means exempt from prune — which is exactly true, since
+            // autoPrunableMcps skips every pinned id. It is not a count of
+            // servers that will start: collectProfileMcps later drops entries
+            // by `agents:`, `when:`, and registry presence, none of which this
+            // set knows about. No bundled profile combines `pin:` with those
+            // today. It also only prints when something was dropped; a profile
+            // where everything survives via pin still says nothing.
+            const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
+            process.stderr.write(
+              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
+            );
+          }
+        }
+        // else: non-interactive with no valid override → keep all (kept stays null).
+      }
+
+      debug("launch:mcp-prune", {
+        all: allMcpIds,
+        pinned: [...pinned],
+        needed: [...needed.keys()],
+        reviewed,
+        kept: kept ? [...kept] : null,
+      });
+      if (kept !== null) {
+        const keptSet = kept;
+        let disabled = allMcpIds
+          .filter((id) => !keptSet.has(id))
+          .map((id) => id.toLowerCase());
+        if (pruneMode === "all") {
+          const rtClaudeJson = join(
+            configDir(),
+            "runtime",
+            runtimeKey,
+            "claude",
+            ".claude.json",
+          );
+          disabled = withAutoPrunedGlobals(
+            disabled,
+            allMcpIds,
+            readRuntimeMcpServerIds(rtClaudeJson),
+            pinned,
+            needed.keys(),
+          );
+        }
+        if (disabled.length > 0) {
+          profile = {
+            ...profile,
+            mcps: profile.mcps.filter((m) => keptSet.has(m.id)),
+          };
+          mcpDisabledIds = disabled;
+          process.stderr.write(
+            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · ${
+              parsed.forcePickMcps && isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS)
+                ? "asked every launch (CUE_ALWAYS_PICK_MCPS) · unset it to remember"
+                : "--cue-pick-mcps to change"
+            }\n`,
+          );
+        }
+        // Persist whenever the user actively reviewed (keeps the remembered set
+        // fresh, and clears a stale override when they re-enable everything).
+        // `disabled` may be [] here — that's intentional: it records "reviewed,
+        // nothing disabled" so a later launch doesn't re-prompt.
+        if (reviewed)
+          writeMcpOverride(pinDir, {
+            profile: profileName,
+            fingerprint,
+            disabled,
+          });
+      }
+    } catch (err) {
+      debug("launch:mcp-prune", err); // fail-open — never blocks a launch
+    }
+  }
+  return { profile, mcpDisabledIds };
+}
+
 export async function run(args: string[]): Promise<number> {
   // Recursion guard. See MAX_LAUNCH_DEPTH for why this counts instead of
   // tripping on the first nested launch.
@@ -2266,264 +2550,15 @@ export async function run(args: string[]): Promise<number> {
     }
   }
 
-  // Lazy-MCP: ids the user disabled, forwarded to the materializer so the stale
-  // keys are evicted from the runtime .claude.json (which the rebuild preserves).
-  let mcpDisabledIds: string[] = [];
-  // ── Lazy MCP loading ──────────────────────────────────────────────────
-  // Prune the profile's MCP servers to what the chosen skills actually need
-  // (smart-prune) and let the user disable individual servers interactively.
-  // The choice is remembered per pinned directory; later launches apply it
-  // silently until the profile's MCP set changes (fingerprint mismatch).
-  //
-  // Runs BEFORE the loader so the interactive toggle owns a clean TTY, and
-  // BEFORE smart-subset — so `needed` reflects the pre-subset skill set. That
-  // only ever over-keeps an MCP (safe); subset's copy-on-write preserves the
-  // pruned `mcps`. Pruning `profile.mcps` changes the materializer content
-  // hash, so the smaller `.claude.json` rebuilds automatically.
-  if (agentKind === "claude-code" && profile.mcps.length > 0) {
-    try {
-      const { getNeededMcps } = await import("../lib/skill-dependencies");
-      const {
-        readMcpOverride,
-        writeMcpOverride,
-        mcpFingerprint,
-        reconcileDisabledWithNeeded,
-        autoPrunableMcps,
-        mcpPruneMode,
-        isRecognizedPruneEnv,
-        readRuntimeMcpServerIds,
-        withAutoPrunedGlobals,
-      } = await import("../lib/mcp-overrides");
-
-      const allMcpIds = profile.mcps.map((m) => m.id);
-      const fingerprint = mcpFingerprint(allMcpIds);
-      const pinned = new Set(
-        profile.mcps.filter((m) => m.pin).map((m) => m.id.toLowerCase()),
-      );
-      const needed = getNeededMcps(profile.skills.local.map((s) => s.id));
-
-      const keepNonPinned = (drop: Set<string>): Set<string> =>
-        new Set(
-          allMcpIds.filter(
-            (id) => pinned.has(id.toLowerCase()) || !drop.has(id.toLowerCase()),
-          ),
-        );
-
-      let kept: Set<string> | null = null;
-      let reviewed = false;
-
-      // Effective non-interactive prune mode: a RECOGNIZED `CUE_PRUNE_MCPS` env
-      // (including an explicit `off`) overrides the profile's declared default;
-      // otherwise the profile's `mcpPrune:` applies — this is what makes a heavy
-      // profile auto-prune with no env var. A non-empty but UNRECOGNIZED env
-      // (e.g. a typo like `profil`) must NOT silently suppress the profile
-      // default: warn and fall through, so the typo is a no-op, not a foot-gun.
-      const pruneEnv = process.env.CUE_PRUNE_MCPS;
-      const pruneEnvSet = pruneEnv != null && pruneEnv !== "";
-      const pruneFromEnv = pruneEnvSet && isRecognizedPruneEnv(pruneEnv);
-      if (pruneEnvSet && !pruneFromEnv) {
-        process.stderr.write(
-          `[cue] CUE_PRUNE_MCPS="${pruneEnv}" not recognized (use off|profile|all) — using the profile default\n`,
-        );
-      }
-      const pruneMode = pruneFromEnv
-        ? mcpPruneMode(pruneEnv)
-        : (profile.mcpPrune ?? "off");
-      const pruneSource = pruneFromEnv ? "CUE_PRUNE_MCPS" : "profile mcpPrune";
-
-      if (parsed.disableMcp.length > 0) {
-        // Non-interactive flag path: drop named ids (pinned ones excepted) for
-        // THIS launch only. `reviewed` stays false so the choice is NOT written
-        // as a remembered per-dir override — a one-shot `--disable-mcp` in a CI
-        // run or a debug session must not silently stick on later launches. Use
-        // the interactive picker (or `--cue-pick-mcps`) to persist a choice.
-        kept = keepNonPinned(
-          new Set(parsed.disableMcp.map((s) => s.toLowerCase())),
-        );
-      } else {
-        const override = readMcpOverride(pinDir);
-        const overrideValid =
-          override !== undefined && override.fingerprint === fingerprint;
-        const interactive = process.stdin.isTTY === true && !parsed.dryRun;
-
-        // Replay a remembered disable-list, cross-checked against what active
-        // skills now need: a skill added since the override was captured may
-        // need an MCP the user disabled. Re-enable those (honor the dependency)
-        // and say so, rather than silently starving the skill. The override is
-        // keyed only by the MCP id set (fingerprint), so it won't re-prompt.
-        const applyRememberedOverride = (): Set<string> => {
-          const { keepDisabled, reEnabled } = reconcileDisabledWithNeeded(
-            override!.disabled,
-            needed.keys(),
-          );
-          if (reEnabled.length > 0) {
-            process.stderr.write(
-              `[cue] MCPs: re-enabled ${reEnabled.length} now needed by active skills (${reEnabled.join(", ")}) · --cue-pick-mcps to change\n`,
-            );
-          }
-          return keepNonPinned(new Set(keepDisabled));
-        };
-
-        // The toggle opens on --cue-pick-mcps and when there's no valid
-        // remembered choice (first launch of this MCP set, or the set changed —
-        // the fingerprint invalidates the override). It does NOT re-open just
-        // because the profile was picked interactively this launch: a remembered
-        // choice is honored, so picking `core` from the startup menu no longer
-        // forces an MCP dialog every time. Re-review explicitly with
-        // --cue-pick-mcps. A valid override seeds the checkboxes when it does open.
-        if (
-          shouldOpenMcpPicker({
-            interactive,
-            forcePickMcps: parsed.forcePickMcps,
-            overrideValid,
-          })
-        ) {
-          const { pickMcps } = await import("../lib/mcp-picker");
-          // Initial checkbox state, best first: the remembered override (this
-          // is a re-review), else — when a loadout is active — the project-
-          // aware suggestion (unpinned MCPs no full skill needs start
-          // unchecked; Enter persists it as the normal override), else the
-          // picker's built-in defaults.
-          kept = await pickMcps({
-            profileMcpIds: allMcpIds,
-            pinned,
-            needed,
-            initialDisabled: overrideValid
-              ? new Set(override!.disabled.map((s) => s.toLowerCase()))
-              : loadoutActive
-                ? new Set(autoPrunableMcps(allMcpIds, pinned, needed.keys()))
-                : undefined,
-          });
-          reviewed = kept !== null; // null = user cancelled → persist nothing
-          // Cancelling the review must not silently re-enable everything when a
-          // remembered choice exists — fall back to it, same as a non-picking launch.
-          if (kept === null && overrideValid) kept = applyRememberedOverride();
-        } else if (overrideValid) {
-          kept = applyRememberedOverride();
-        } else if (pruneMode !== "off") {
-          // Non-interactive prune, from CUE_PRUNE_MCPS or the profile's mcpPrune
-          // default. Self-contained: it sets mcpDisabledIds directly (so it can
-          // drop GLOBAL servers that aren't in profile.mcps and thus invisible to
-          // the shared block below) and leaves `kept` null to skip that block.
-          // Recomputed each launch; never persisted, so the picker's remembered
-          // overrides stay intact.
-          //
-          //   profile mode → drop unused PROFILE MCPs only (cue's invariant that
-          //                  user-global servers are never touched holds).
-          //   all mode     → also drop unused GLOBAL servers present in the
-          //                  runtime .claude.json (the heavy ones a coding
-          //                  profile never calls). Removes config set globally.
-          const universe = [...allMcpIds];
-          if (pruneMode === "all") {
-            const rtClaudeJson = join(
-              configDir(),
-              "runtime",
-              runtimeKey,
-              "claude",
-              ".claude.json",
-            );
-            for (const id of readRuntimeMcpServerIds(rtClaudeJson)) {
-              if (!universe.some((p) => p.toLowerCase() === id.toLowerCase()))
-                universe.push(id);
-            }
-          }
-          const drop = new Set(
-            autoPrunableMcps(universe, pinned, needed.keys()),
-          );
-          debug("launch:mcp-prune", {
-            mode: pruneMode,
-            source: pruneSource,
-            universe,
-            pinned: [...pinned],
-            needed: [...needed.keys()],
-            drop: [...drop],
-          });
-          if (drop.size > 0) {
-            profile = {
-              ...profile,
-              mcps: profile.mcps.filter((m) => !drop.has(m.id.toLowerCase())),
-            };
-            mcpDisabledIds = [...drop];
-            // Name the pin exemption. `pin: true` silently makes prune a no-op
-            // for those servers, so "auto-pruned 2 unused" reads as if the rest
-            // were all needed — leaving no way to tell an MCP that survived
-            // because a skill wants it from one that survived because it is
-            // pinned.
-            //
-            // Scope, deliberately narrow: this counts ids DECLARED pinned, and
-            // "exempt" means exempt from prune — which is exactly true, since
-            // autoPrunableMcps skips every pinned id. It is not a count of
-            // servers that will start: collectProfileMcps later drops entries
-            // by `agents:`, `when:`, and registry presence, none of which this
-            // set knows about. No bundled profile combines `pin:` with those
-            // today. It also only prints when something was dropped; a profile
-            // where everything survives via pin still says nothing.
-            const pinNote = pinned.size > 0 ? ` · ${pinned.size} pinned, exempt` : "";
-            process.stderr.write(
-              `[cue] MCPs: auto-pruned ${drop.size} unused (${[...drop].join(", ")})${pinNote} · ${pruneSource}=${pruneMode} · --cue-pick-mcps to keep\n`,
-            );
-          }
-        }
-        // else: non-interactive with no valid override → keep all (kept stays null).
-      }
-
-      debug("launch:mcp-prune", {
-        all: allMcpIds,
-        pinned: [...pinned],
-        needed: [...needed.keys()],
-        reviewed,
-        kept: kept ? [...kept] : null,
-      });
-      if (kept !== null) {
-        const keptSet = kept;
-        let disabled = allMcpIds
-          .filter((id) => !keptSet.has(id))
-          .map((id) => id.toLowerCase());
-        if (pruneMode === "all") {
-          const rtClaudeJson = join(
-            configDir(),
-            "runtime",
-            runtimeKey,
-            "claude",
-            ".claude.json",
-          );
-          disabled = withAutoPrunedGlobals(
-            disabled,
-            allMcpIds,
-            readRuntimeMcpServerIds(rtClaudeJson),
-            pinned,
-            needed.keys(),
-          );
-        }
-        if (disabled.length > 0) {
-          profile = {
-            ...profile,
-            mcps: profile.mcps.filter((m) => keptSet.has(m.id)),
-          };
-          mcpDisabledIds = disabled;
-          process.stderr.write(
-            `[cue] MCPs: ${keptSet.size} on · ${disabled.length} disabled (${disabled.join(", ")}) · ${
-              parsed.forcePickMcps && isAlwaysPickEnabled(process.env.CUE_ALWAYS_PICK_MCPS)
-                ? "asked every launch (CUE_ALWAYS_PICK_MCPS) · unset it to remember"
-                : "--cue-pick-mcps to change"
-            }\n`,
-          );
-        }
-        // Persist whenever the user actively reviewed (keeps the remembered set
-        // fresh, and clears a stale override when they re-enable everything).
-        // `disabled` may be [] here — that's intentional: it records "reviewed,
-        // nothing disabled" so a later launch doesn't re-prompt.
-        if (reviewed)
-          writeMcpOverride(pinDir, {
-            profile: profileName,
-            fingerprint,
-            disabled,
-          });
-      }
-    } catch (err) {
-      debug("launch:mcp-prune", err); // fail-open — never blocks a launch
-    }
-  }
+  const { profile: mcpPrunedProfile, mcpDisabledIds } = await applyMcpPruning(profile, {
+    agentKind,
+    parsed,
+    pinDir,
+    loadoutActive,
+    runtimeKey,
+    profileName,
+  });
+  profile = mcpPrunedProfile;
 
   // ── Launch loader ─────────────────────────────────────────────────────
   // Animate the two genuinely slow steps of the handoff — smart-subset LLM
