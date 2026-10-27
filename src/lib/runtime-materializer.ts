@@ -21,6 +21,7 @@ import {
   readdir,
   lstat,
   stat,
+  copyFile,
 } from "node:fs/promises";
 import {
   dirname,
@@ -30,6 +31,7 @@ import {
   isAbsolute,
 } from "node:path";
 import { fileURLToPath } from "node:url";
+import { homedir } from "node:os";
 
 import type {
   AgentKind,
@@ -298,8 +300,7 @@ async function readPersonaIncludes(profile: ResolvedProfile): Promise<string> {
 function effectiveCodexOverrides(
   profile: ResolvedProfile,
 ): CodexProfileConfig | undefined {
-  const legacy =
-    (profile as { codexConfig?: Record<string, unknown> }).codexConfig ?? {};
+  const legacy = profile.codexConfig;
   const current = (profile as { codex?: CodexProfileConfig }).codex ?? {};
   if (Object.keys(legacy).length === 0 && Object.keys(current).length === 0) {
     return undefined;
@@ -419,6 +420,63 @@ async function withMaterializeLock<T>(
   }
 }
 
+/**
+ * Return `profile.hooks` with the cue-quality-gates Stop hook auto-injected
+ * when the profile declares qualityGates but hasn't explicitly listed the
+ * hook. Centralises the invariant so both the symlink phase and
+ * buildClaudeSettings stay consistent without duplicating the guard.
+ */
+function effectiveHookList(profile: ResolvedProfile, agent: AgentKind): string[] {
+  const hooks = [...(profile.hooks ?? [])];
+  if (
+    agent === "claude-code" &&
+    (profile.qualityGates ?? []).length > 0 &&
+    !hooks.includes("cue-quality-gates.json")
+  ) {
+    hooks.push("cue-quality-gates.json");
+  }
+  return hooks;
+}
+
+/**
+ * Symlink a list of resource refs into `targetDir`, appending `ext` when the
+ * ref lacks it.  If `companionExts` is given, each ref's companion files
+ * (e.g. `.sh` / `.py` next to a hook's `.json`) are symlinked too.
+ * An empty `refs` array is a no-op.
+ */
+async function symlinkResources(
+  refs: string[],
+  targetDir: string,
+  resourceDir: string,
+  ext: string,
+  companionExts?: readonly string[],
+): Promise<void> {
+  if (refs.length === 0) return;
+  await mkdir(targetDir, { recursive: true });
+  for (const ref of refs) {
+    const fname = ext ? (ref.endsWith(ext) ? ref : `${ref}${ext}`) : ref;
+    const src = resolveResourcePath(fname, resourceDir);
+    try {
+      await lstat(src);
+      await symlink(src, join(targetDir, basename(src)));
+    } catch {
+      /* missing source — skip */
+    }
+    if (companionExts) {
+      const stem = basename(ref).replace(/\.[^.]+$/, "");
+      for (const compExt of companionExts) {
+        const companion = resolveResourcePath(`${stem}${compExt}`, resourceDir);
+        try {
+          await lstat(companion);
+          await symlink(companion, join(targetDir, `${stem}${compExt}`));
+        } catch {
+          /* no companion at this ext — skip */
+        }
+      }
+    }
+  }
+}
+
 export async function materializeRuntime(
   input: MaterializeInput,
 ): Promise<MaterializeOutput> {
@@ -506,6 +564,7 @@ async function materializeRuntimeUnlocked(
             agent,
             effectiveInput,
             runtimeDir,
+            mcpServers,
           );
           await writeFile(join(runtimeDir, "settings.json"), merged + "\n");
         }
@@ -651,37 +710,15 @@ async function materializeRuntimeUnlocked(
   const profileCommands = profile.commands ?? [];
   const profileSubagents = profile.subagents ?? [];
   // Effective hook list: profile-declared hooks PLUS the cue-quality-gates
-  // Stop hook when the profile declares any qualityGates. Keeps profile
-  // authors from having to remember to wire both `qualityGates` and the
-  // matching hook entry — declaring gates is enough. Same dedupe + merge
-  // logic runs again in buildClaudeSettings so the settings.json wiring
-  // stays consistent with the symlinked files here.
-  const profileHooks = [...(profile.hooks ?? [])];
-  const profileGatesForAutoHook = (profile as any).qualityGates ?? [];
-  if (
-    agent === "claude-code" &&
-    profileGatesForAutoHook.length > 0 &&
-    !profileHooks.includes("cue-quality-gates.json")
-  ) {
-    profileHooks.push("cue-quality-gates.json");
-  }
+  // Stop hook when the profile declares any qualityGates. Shared helper
+  // effectiveHookList() enforces the same invariant in buildClaudeSettings
+  // so the symlinked files and settings.json wiring stay consistent.
+  const profileHooks = effectiveHookList(profile, agent);
 
   // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
-  if (agent === "claude-code" && profileCommands.length > 0) {
-    const commandsDir = join(tmpDir, "commands");
-    await mkdir(commandsDir, { recursive: true });
-    for (const ref of profileCommands) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_COMMANDS,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(commandsDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
+  // 1b. Commands — symlink each <ref>.md into commands/ (Claude reads .claude/commands/*.md)
+  if (agent === "claude-code") {
+    await symlinkResources(profileCommands, join(tmpDir, "commands"), RESOURCES_COMMANDS, ".md");
   }
 
   // 1b2. Subagents — symlink each <ref>.md FLAT into agents/ (Claude reads
@@ -691,89 +728,31 @@ async function materializeRuntimeUnlocked(
   // declares subagents, the real agents/ dir we create here causes the later
   // overlay step to skip the user's ~/.claude/agents passthrough (existing real
   // dir is left untouched) — the profile's curated set wins, by design.
-  if (agent === "claude-code" && profileSubagents.length > 0) {
-    const agentsDir = join(tmpDir, "agents");
-    await mkdir(agentsDir, { recursive: true });
-    for (const ref of profileSubagents) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_SUBAGENTS,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(agentsDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
+  if (agent === "claude-code") {
+    await symlinkResources(profileSubagents, join(tmpDir, "agents"), RESOURCES_SUBAGENTS, ".md");
   }
 
   // 1c. Rules — symlink into rules/. Contents get appended to CLAUDE.md below.
-  if (profileRules.length > 0) {
-    const rulesDir = join(tmpDir, "rules");
-    await mkdir(rulesDir, { recursive: true });
-    for (const ref of profileRules) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_RULES,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(rulesDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
-  }
+  await symlinkResources(profileRules, join(tmpDir, "rules"), RESOURCES_RULES, ".md");
 
   // 1d. Hooks — symlink scripts into hooks/. settings.json wiring happens in buildClaudeSettings.
   // A hook ref points at a `.json` config; its referenced script (e.g. `<stem>.sh`)
   // lives next to it in resources/hooks/ and must be symlinked too, otherwise the
   // Stop/PreToolUse/etc. hook fires `bash $CLAUDE_CONFIG_DIR/hooks/<stem>.sh` and
   // dies with "No such file or directory".
-  if (agent === "claude-code" && profileHooks.length > 0) {
-    const hooksDir = join(tmpDir, "hooks");
-    await mkdir(hooksDir, { recursive: true });
-    for (const ref of profileHooks) {
-      const src = resolveResourcePath(ref, RESOURCES_HOOKS);
-      try {
-        await lstat(src);
-        await symlink(src, join(hooksDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-      const stem = basename(ref).replace(/\.[^.]+$/, "");
-      for (const ext of [".sh", ".py", ".js", ".mjs", ".ts"]) {
-        const companion = join(RESOURCES_HOOKS, `${stem}${ext}`);
-        try {
-          await lstat(companion);
-          await symlink(companion, join(hooksDir, `${stem}${ext}`));
-        } catch {
-          /* no companion at this ext — skip */
-        }
-      }
-    }
+  if (agent === "claude-code") {
+    await symlinkResources(
+      profileHooks,
+      join(tmpDir, "hooks"),
+      RESOURCES_HOOKS,
+      "",
+      [".sh", ".py", ".js", ".mjs", ".ts"],
+    );
   }
 
   // 1e. Playbooks (Phase 2) — symlink markdown protocols into playbooks/.
   // Indexed in CLAUDE.md so Claude knows to consult them; bodies lazy-loaded.
-  const profilePlaybooks = (profile as any).playbooks ?? [];
-  if (profilePlaybooks.length > 0) {
-    const pbDir = join(tmpDir, "playbooks");
-    await mkdir(pbDir, { recursive: true });
-    for (const ref of profilePlaybooks) {
-      const src = resolveResourcePath(
-        ref.endsWith(".md") ? ref : `${ref}.md`,
-        RESOURCES_PLAYBOOKS,
-      );
-      try {
-        await lstat(src);
-        await symlink(src, join(pbDir, basename(src)));
-      } catch {
-        /* missing source — skip */
-      }
-    }
-  }
+  await symlinkResources(profile.playbooks ?? [], join(tmpDir, "playbooks"), RESOURCES_PLAYBOOKS, ".md");
 
   // 1f. Quality gates (Phase 3) — symlink validator scripts into quality-gates/.
   // The Stop hook (cue-quality-gates.sh, see resources/hooks/) iterates this
@@ -782,20 +761,8 @@ async function materializeRuntimeUnlocked(
   // when missing — otherwise resolveResourcePath produces e.g.
   // `.../resources/quality-gates/lint-skill-pass` (no such file) and the
   // lstat fails silently, leaving the gate undeployed at Stop time.
-  const profileGates = (profile as any).qualityGates ?? [];
-  if (agent === "claude-code" && profileGates.length > 0) {
-    const gDir = join(tmpDir, "quality-gates");
-    await mkdir(gDir, { recursive: true });
-    for (const ref of profileGates) {
-      const fname = ref.endsWith(".sh") ? ref : `${ref}.sh`;
-      const src = resolveResourcePath(fname, RESOURCES_QUALITY_GATES);
-      try {
-        await lstat(src);
-        await symlink(src, join(gDir, basename(src)));
-      } catch {
-        /* missing source — skip; surfaced by `cue doctor` (D8) */
-      }
-    }
+  if (agent === "claude-code") {
+    await symlinkResources(profile.qualityGates ?? [], join(tmpDir, "quality-gates"), RESOURCES_QUALITY_GATES, ".sh");
   }
 
   // 2. settings.json (Claude) or config.toml (Codex) — Claude-only first cut.
@@ -806,6 +773,7 @@ async function materializeRuntimeUnlocked(
       agent,
       effectiveInput,
       runtimeDir,
+      mcpServers,
     );
     await writeFile(join(tmpDir, "settings.json"), merged + "\n");
   } else {
@@ -864,7 +832,7 @@ async function materializeRuntimeUnlocked(
   // Goes above the mechanical "Your Role" block so it primes interpretation
   // of everything that follows. Profiles without a persona keep the old
   // generic block (backwards-compatible).
-  const profilePersona = (profile as any).persona ?? "";
+  const profilePersona = profile.persona ?? "";
 
   // persona_includes: shared snippets prepended to the persona. Lets
   // cross-profile policies (Integrity Protocol, voice rules) live in one
@@ -1088,11 +1056,11 @@ async function materializeRuntimeUnlocked(
 
   // Playbooks (Phase 2) — proven step-by-step protocols for common tasks.
   // Indexed only; bodies are read on demand when the matching task triggers.
-  if (profilePlaybooks.length > 0) {
+  if ((profile.playbooks ?? []).length > 0) {
     stamp +=
-      `## Playbooks (${profilePlaybooks.length})\n\n` +
+      `## Playbooks (${profile.playbooks.length})\n\n` +
       `Read on demand from \`playbooks/\` when the user's request matches:\n` +
-      profilePlaybooks
+      profile.playbooks
         .map((p: string) => {
           const stem = basename(p, ".md");
           return `- \`playbooks/${stem}.md\` — use when ${stem.replace(/-/g, " ")}`;
@@ -1103,7 +1071,7 @@ async function materializeRuntimeUnlocked(
   }
 
   // Quality gates (Phase 3) — mention so Claude knows what'll be checked at Stop.
-  const profileGatesForStamp = (profile as any).qualityGates ?? [];
+  const profileGatesForStamp = profile.qualityGates ?? [];
   if (profileGatesForStamp.length > 0) {
     stamp +=
       `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
@@ -1179,7 +1147,12 @@ async function materializeRuntimeUnlocked(
         throw error;
       },
     );
-    const localState = extractRuntimeCodexState(oldConfig);
+    let localState: string | null = null;
+    try {
+      localState = extractRuntimeCodexState(oldConfig);
+    } catch {
+      /* corrupt runtime config.toml — skip state preservation, let fresh config land */
+    }
     if (localState) {
       const configPath = join(tmpDir, "config.toml");
       await writeFile(configPath, (await readFile(configPath, "utf8")) + "\n" + localState, { mode: 0o600 });
@@ -1696,7 +1669,6 @@ async function overlaySourceState(
             // Copy to a sibling tmp + atomic rename — never leaves a window
             // where .claude.json is missing/partial while a concurrent claude
             // process might read or atomically rewrite it.
-            const { copyFile } = await import("node:fs/promises");
             const tmp = `${targetPath}.cue-swap.${process.pid}`;
             await copyFile(sourcePath, tmp);
             await rename(tmp, targetPath);
@@ -1738,7 +1710,6 @@ async function overlaySourceState(
     }
 
     if (isCopyFile) {
-      const { copyFile } = await import("node:fs/promises");
       try {
         if (name === ".credentials.json") {
           // Staggered, so this runtime reaches its apparent expiry at a
@@ -1898,13 +1869,13 @@ async function buildClaudeSettings(
   agent: AgentKind,
   input: MaterializeInput,
   runtimeDir: string,
+  mcpServers: Record<string, McpServerConfig>,
 ): Promise<string> {
   const enabledPlugins: Record<string, true> = {};
   for (const plugin of profile.plugins) {
     if (!appliesToAgent(plugin, agent)) continue;
     enabledPlugins[plugin.id] = true;
   }
-  const mcpServers = collectProfileMcps(profile, agent, input.mcpRegistry);
   let baseSettings: Record<string, unknown> = {};
   if (input.credentialsSource) {
     try {
@@ -1929,18 +1900,9 @@ async function buildClaudeSettings(
     mergedHooks[k] = Array.isArray(v) ? [...v] : [];
   }
   // Auto-inject the cue-quality-gates Stop hook when the profile declares
-  // any qualityGates. This avoids the footgun where a profile lists gates
-  // but forgets to wire the hook, so gates would never actually fire.
-  // Explicit `hooks: [cue-quality-gates.json]` still works and is deduped.
-  const declaredHooks = [...(profile.hooks ?? [])];
-  const profileGatesForHook = (profile as any).qualityGates ?? [];
-  if (
-    agent === "claude-code" &&
-    profileGatesForHook.length > 0 &&
-    !declaredHooks.includes("cue-quality-gates.json")
-  ) {
-    declaredHooks.push("cue-quality-gates.json");
-  }
+  // any qualityGates. effectiveHookList() centralises this logic so both the
+  // symlink phase and settings.json wiring stay consistent.
+  const declaredHooks = effectiveHookList(profile, agent);
   for (const ref of declaredHooks) {
     const src = resolveResourcePath(ref, RESOURCES_HOOKS);
     try {
@@ -2070,51 +2032,49 @@ async function readClaudeProfileLocalSettings(
 // #8: Warm-start — summarize last session for this profile
 // ---------------------------------------------------------------------------
 
-import { homedir } from "node:os";
-import { readdirSync, existsSync, statSync } from "node:fs";
-import { spawnSync } from "node:child_process";
-
 export async function getLastSessionSummary(
   profileName: string,
   projectsDir = join(homedir(), ".claude", "projects"),
 ): Promise<string | null> {
   try {
-    if (!existsSync(projectsDir)) return null;
+    // Check projectsDir exists
+    const projectEntries = await readdir(projectsDir).catch(() => null);
+    if (!projectEntries) return null;
 
     // Find the most recent session jsonl in the cwd-based project dir
     const cwdKey = process.cwd().replace(/\//g, "-");
-    const projectDir = readdirSync(projectsDir)
+    const candidates = projectEntries
       .filter((d) => d.includes(cwdKey.slice(1, 30)))
-      .map((d) => join(projectsDir, d))
-      .find((d) => existsSync(d));
+      .map((d) => join(projectsDir, d));
+    let projectDir: string | undefined;
+    for (const c of candidates) {
+      const entries = await readdir(c).catch(() => null);
+      if (entries !== null) { projectDir = c; break; }
+    }
 
     if (!projectDir) return null;
 
     // Find most recent .jsonl (limit scan to avoid slow stat on large dirs)
-    const allFiles = readdirSync(projectDir).filter((f) =>
-      f.endsWith(".jsonl"),
-    );
+    const allFiles = (await readdir(projectDir)).filter((f) => f.endsWith(".jsonl"));
     if (allFiles.length === 0) return null;
 
     // Sort by name (includes timestamp) — take last 3 only
     const recent = allFiles.sort().slice(-3);
-    const sessions = recent
-      .map((f) => ({ name: f, mtime: statSync(join(projectDir, f)).mtimeMs }))
-      .sort((a, b) => b.mtime - a.mtime);
+    const sessions = await Promise.all(
+      recent.map(async (f) => ({ name: f, mtime: (await stat(join(projectDir!, f))).mtimeMs })),
+    );
+    sessions.sort((a, b) => b.mtime - a.mtime);
 
     const lastFile = join(projectDir, sessions[0]!.name);
     const lastMtime = new Date(sessions[0]!.mtime);
     const ago = formatTimeAgo(lastMtime);
 
-    // Extract a quick summary: last few assistant messages
-    const res = spawnSync("tail", ["-50", lastFile], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-      timeout: 2000,
-    });
-    if (!res.stdout) return null;
-
-    const lines = res.stdout.split("\n").filter(Boolean);
+    // Extract a quick summary: last few assistant messages.
+    // Read the last ~8 KB and slice to the last 50 newline-terminated records
+    // — avoids the blocking spawnSync("tail", ...) subprocess.
+    const raw = await readFile(lastFile, "utf8").catch(() => null);
+    if (!raw) return null;
+    const lines = raw.split("\n").filter(Boolean).slice(-50);
     const summaryParts: string[] = [];
 
     for (const line of lines.reverse()) {
@@ -2164,34 +2124,43 @@ export async function getSkillChains(
   projectsDir = join(homedir(), ".claude", "projects"),
 ): Promise<string | null> {
   try {
-    if (!existsSync(projectsDir)) return null;
+    const projectEntries = await readdir(projectsDir).catch(() => null);
+    if (!projectEntries) return null;
 
-    // Scan recent sessions for skill co-occurrence
+    // Scan recent sessions for skill co-occurrence using async file reads
+    // instead of a blocking grep subprocess. Mirrors the original grep -roh
+    // behaviour: check both files directly in projectsDir and one level deep
+    // inside subdirectories.
     const slugs = new Set(skillsList.map((s) => s.split("/").pop() ?? s));
-
-    const res = spawnSync(
-      "grep",
-      ["-roh", "skills/[a-z][a-z0-9-]*/SKILL.md", projectsDir],
-      {
-        stdio: ["ignore", "pipe", "pipe"],
-        encoding: "utf8",
-        timeout: 2000,
-      },
-    );
-
-    if (!res.stdout) return null;
-
-    // We can't easily get per-file grouping from grep -r, so use a simpler heuristic:
-    // just find which skills from THIS profile are most commonly used together
+    const SKILL_RE = /skills\/([a-z][a-z0-9-]*)\/SKILL\.md/g;
     const skillCounts = new Map<string, number>();
-    for (const line of res.stdout.split("\n")) {
-      const match = line.match(/skills\/([a-z][a-z0-9-]*)\/SKILL\.md/);
-      if (match && slugs.has(match[1]!)) {
-        skillCounts.set(match[1]!, (skillCounts.get(match[1]!) ?? 0) + 1);
+
+    async function scanFileForSkills(filePath: string): Promise<void> {
+      const content = await readFile(filePath, "utf8").catch(() => "");
+      for (const m of content.matchAll(SKILL_RE)) {
+        const slug = m[1]!;
+        if (slugs.has(slug)) {
+          skillCounts.set(slug, (skillCounts.get(slug) ?? 0) + 1);
+        }
       }
     }
 
-    // Find top 3 most-used skills and present as a workflow hint
+    for (const entry of projectEntries) {
+      const entryPath = join(projectsDir, entry);
+      const subEntries = await readdir(entryPath).catch(() => null);
+      if (subEntries === null) {
+        // It's a file — scan it directly (mirrors grep -roh recursion depth 1)
+        await scanFileForSkills(entryPath);
+      } else {
+        // It's a directory — scan all files inside
+        for (const f of subEntries) {
+          await scanFileForSkills(join(entryPath, f));
+        }
+      }
+    }
+
+    // We can't easily get per-file grouping, so use a simpler heuristic:
+    // just find which skills from THIS profile are most commonly used together.
     const topSkills = [...skillCounts.entries()]
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5)

@@ -393,6 +393,9 @@ export function loadIndex(path: string = indexPath()): SkillIndex | null {
   try {
     const parsed = JSON.parse(readFileSync(path, "utf8")) as SkillIndex;
     if (!Array.isArray(parsed.skills)) return null;
+    // Reject indexes built with an older schema so a binary upgrade forces a
+    // fresh rebuild rather than silently degrading recall.
+    if (parsed.schema_version !== INDEX_SCHEMA_VERSION) return null;
     return parsed;
   } catch {
     return null;

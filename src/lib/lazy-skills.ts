@@ -79,7 +79,12 @@ export function generateLazyManifest(skills: { id: string; description: string }
 
 /**
  * Check if a profile has lazy mode enabled.
+ *
+ * The `lazy` field is not yet declared on ResolvedProfile (profiles/_types.ts);
+ * the cast below is intentionally scoped to avoid silencing unrelated type
+ * errors. The proper fix — adding `lazy?: boolean` to ResolvedProfile — is
+ * tracked separately as it touches files outside this module's ownership.
  */
 export function isLazyEnabled(profile: ResolvedProfile): boolean {
-  return (profile as any).lazy === true;
+  return (profile as ResolvedProfile & { lazy?: boolean }).lazy === true;
 }
