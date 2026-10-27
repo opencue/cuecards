@@ -10,12 +10,16 @@
  *   --limit <n>             — max results (default: 50)
  */
 
-import { spawnSync } from "node:child_process";
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { spawnSync, execFile as _execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFile = promisify(_execFile);
+import { readFileSync, existsSync, mkdirSync, writeFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
+import { addMcpToProfileSync } from "../lib/discover-market-profile-yaml";
 import { clusterByKeywords, clusterByEmbeddings, unclustered, type Cluster, type ClusterItem } from "../lib/cluster-skills";
 import { findRealClaudeBin } from "../lib/claude-binary";
 import { fetchCompanionFiles, detectSkillPath } from "../lib/companion-fetch";
@@ -34,6 +38,12 @@ import {
 } from "../lib/discover-format";
 
 export { colorStars, freshnessColor, freshnessLabel, tierColorFor, tierName, wrapText } from "../lib/discover-format";
+import { cmdDiscoverMcps } from "./discover-mcps";
+export { cmdDiscoverMcps };
+import { cmdExport } from "./discover-site";
+export { cmdExport };
+import { buildGemHeroBadges, cmdNotify, loadNotifyLog, notifyOwner, postDailyDigest } from "./discover-notify";
+export { buildGemHeroBadges };
 
 // Cache path resolved lazily so tests can redirect via XDG_CONFIG_HOME without
 // re-importing the module. (Bun shares module state across test files; const
@@ -76,7 +86,7 @@ export interface GemRepo {
   url: string;
 }
 
-interface GemCache {
+export interface GemCache {
   updated: string;
   gems: GemRepo[];
 }
@@ -89,7 +99,12 @@ export function getCachedGemsForProfile(profile: string, minScore = 8): GemRepo[
     return cache.gems
       .filter(g => g.gem_score >= minScore && g.suggested_profiles.includes(profile))
       .sort((a, b) => b.gem_score - a.gem_score);
-  } catch { return []; }
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
+      process.stderr.write(`warn: discover cache parse error: ${e}\n`);
+    }
+    return [];
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -385,7 +400,7 @@ export function getInstalledIn(gem: GemRepo, profilesDir = join(repoRoot(), "pro
   const hits: string[] = [];
   const slugs = [gem.name.toLowerCase(), gem.full_name.toLowerCase()];
   try {
-    const profiles = require("node:fs").readdirSync(profilesDir);
+    const profiles = readdirSync(profilesDir);
     for (const p of profiles) {
       if (p.startsWith("_") || p.startsWith(".")) continue;
       const yaml = join(profilesDir, p, "profile.yaml");
@@ -393,7 +408,11 @@ export function getInstalledIn(gem: GemRepo, profilesDir = join(repoRoot(), "pro
       const content = readFileSync(yaml, "utf8").toLowerCase();
       if (slugs.some(s => content.includes(s))) hits.push(p);
     }
-  } catch { /* ignore */ }
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
+      process.stderr.write(`warn: getInstalledIn profiles scan error: ${e}\n`);
+    }
+  }
   return hits;
 }
 
@@ -449,7 +468,7 @@ export function applyFilters(gems: GemRepo[], f: GemFilter): GemRepo[] {
     if (f.topic && !g.topics.some(t => t.toLowerCase().includes(f.topic!.toLowerCase()))) return false;
     if (f.owner && g.owner.toLowerCase() !== f.owner.toLowerCase()) return false;
     if (f.excludeOwner && g.owner.toLowerCase() === f.excludeOwner.toLowerCase()) return false;
-    if (f.tier && !f.tier.has(tierName(g.gem_score) as any)) return false;
+    if (f.tier && !f.tier.has(tierName(g.gem_score))) return false;
     if (f.profile && !g.suggested_profiles.includes(f.profile)) return false;
     if (f.installed || f.notInstalled) {
       const isIn = getInstalledIn(g).length > 0;
@@ -571,19 +590,68 @@ export function suggestProfiles(repo: GemRepo): string[] {
 // GitHub API search
 // ---------------------------------------------------------------------------
 
-function ghSearch(query: string, limit: number): any[] {
+/** Shape of a single item returned by the GitHub search/repositories API. */
+export interface GitHubRepoItem {
+  full_name: string;
+  owner: { login: string } | null;
+  name: string;
+  description: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  created_at: string;
+  pushed_at: string;
+  topics: string[];
+  language: string | null;
+  html_url: string;
+}
+
+export async function ghSearch(query: string, limit: number): Promise<GitHubRepoItem[]> {
   const q = query.replace("{RECENT}", recentDate());
-  const res = spawnSync("gh", [
+  const args = [
     "api", "search/repositories",
     "--method", "GET",
     "-f", `q=${q}`,
     "-f", `per_page=${Math.min(limit, 30)}`,
     "-f", "sort=updated",
     "--jq", ".items",
-  ], { encoding: "utf8", timeout: 30000 });
+  ];
+  try {
+    const { stdout } = await execFile("gh", args, { timeout: 30000 });
+    return (JSON.parse(stdout) as unknown[]).filter((x): x is GitHubRepoItem => x != null && typeof x === "object");
+  } catch { return []; }
+}
 
-  if (res.status !== 0) return [];
-  try { return JSON.parse(res.stdout); } catch { return []; }
+/**
+ * Run search queries in bounded parallel batches, deduplicating by full_name.
+ * Stops launching new batches once `limit` unique items have been collected,
+ * keeping GitHub search API usage within the 30 req/min rate limit.
+ *
+ * Exported for tests — pass a mock `searchFn` to avoid real network calls.
+ */
+export async function runQueryBatches(
+  queries: Array<{ q: string; label: string }>,
+  limit: number,
+  searchFn: (q: string, limit: number) => Promise<GitHubRepoItem[]>,
+  batchSize = 4,
+): Promise<GitHubRepoItem[]> {
+  const seen = new Set<string>();
+  const results: GitHubRepoItem[] = [];
+
+  for (let i = 0; i < queries.length; i += batchSize) {
+    if (results.length >= limit) break;
+    const batch = queries.slice(i, i + batchSize);
+    const batchItems = (await Promise.all(
+      batch.map(({ q }) => searchFn(q, limit)),
+    )).flat();
+
+    for (const item of batchItems) {
+      if (results.length >= limit) break;
+      if (seen.has(item.full_name)) continue;
+      seen.add(item.full_name);
+      results.push(item);
+    }
+  }
+  return results;
 }
 
 function checkFileExists(fullName: string, path: string): boolean {
@@ -798,7 +866,6 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
   const profileLabel = opts.profile ? ` for "${opts.profile}" profile` : "";
   process.stderr.write(`🔍 Searching GitHub for hidden gem skill repos${profileLabel}...\n\n`);
 
-  const seen = new Set<string>();
   const gems: GemRepo[] = [];
 
   let queries: { q: string; label: string }[];
@@ -811,47 +878,46 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
     queries = SEARCH_QUERIES;
   }
 
-  for (const { q, label } of queries) {
+  const labeledQueries = queries.slice(0, opts.limit > 0 ? queries.length : 0);
+  if (labeledQueries.length > 0) {
+    process.stderr.write(`  ⏳ Running up to ${labeledQueries.length} search quer${labeledQueries.length === 1 ? "y" : "ies"} in parallel batches...\n`);
+  }
+  const allItems = await runQueryBatches(labeledQueries, opts.limit, ghSearch);
+
+  for (const item of allItems) {
     if (gems.length >= opts.limit) break;
-    process.stderr.write(`  ⏳ ${label}...\n`);
 
-    const items = ghSearch(q, opts.limit - gems.length);
-    for (const item of items) {
-      if (seen.has(item.full_name)) continue;
-      seen.add(item.full_name);
+    const gem: GemRepo = {
+      full_name: item.full_name,
+      owner: item.owner?.login ?? "",
+      name: item.name,
+      description: item.description ?? "",
+      stars: item.stargazers_count ?? 0,
+      forks: item.forks_count ?? 0,
+      created_at: item.created_at ?? "",
+      pushed_at: item.pushed_at ?? "",
+      topics: item.topics ?? [],
+      language: item.language ?? "",
+      has_skill_md: false,
+      has_claude_dir: false,
+      has_mcp_sdk: false,
+      gem_score: 0,
+      suggested_profiles: [],
+      suggested_mcps: [],
+      suggested_clis: [],
+      quality: 0,
+      url: item.html_url ?? `https://github.com/${item.full_name}`,
+    };
 
-      const gem: GemRepo = {
-        full_name: item.full_name,
-        owner: item.owner?.login ?? "",
-        name: item.name,
-        description: item.description ?? "",
-        stars: item.stargazers_count ?? 0,
-        forks: item.forks_count ?? 0,
-        created_at: item.created_at ?? "",
-        pushed_at: item.pushed_at ?? "",
-        topics: item.topics ?? [],
-        language: item.language ?? "",
-        has_skill_md: false,
-        has_claude_dir: false,
-        has_mcp_sdk: false,
-        gem_score: 0,
-        suggested_profiles: [],
-        suggested_mcps: [],
-        suggested_clis: [],
-        quality: 0,
-        url: item.html_url ?? `https://github.com/${item.full_name}`,
-      };
+    // SKILL.md / .claude detection is load-bearing for scoring, so always check.
+    // Authenticated `gh api` raises the rate ceiling enough to absorb 2 calls per repo.
+    gem.has_skill_md = checkFileExists(gem.full_name, "SKILL.md");
+    gem.has_claude_dir = checkFileExists(gem.full_name, ".claude");
 
-      // SKILL.md / .claude detection is load-bearing for scoring, so always check.
-      // Authenticated `gh api` raises the rate ceiling enough to absorb 2 calls per repo.
-      gem.has_skill_md = checkFileExists(gem.full_name, "SKILL.md");
-      gem.has_claude_dir = checkFileExists(gem.full_name, ".claude");
+    gem.gem_score = scoreGem(gem);
+    gem.suggested_profiles = suggestProfiles(gem);
 
-      gem.gem_score = scoreGem(gem);
-      gem.suggested_profiles = suggestProfiles(gem);
-
-      if (gem.gem_score >= opts.minScore) gems.push(gem);
-    }
+    if (gem.gem_score >= opts.minScore) gems.push(gem);
   }
 
   // Sort by score descending
@@ -901,483 +967,6 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
 }
 
 // ---------------------------------------------------------------------------
-// Export to docs/discovered.md
-// ---------------------------------------------------------------------------
-
-// ---------------------------------------------------------------------------
-// Export — SEO/GEO-friendly artifacts.
-//
-//   --export <path.md>           single markdown file (legacy)
-//   --export <dir> --site        per-profile pages + index (SEO targets long-tail
-//                                 queries: "Claude Code skills for cybersecurity")
-//   --export <dir> --site --html same, with HTML + JSON-LD schema for LLM citation
-// ---------------------------------------------------------------------------
-
-function tierIcon(score: number): string {
-  return score >= 8 ? "💎" : score >= 5 ? "✨" : "🔹";
-}
-function tierLabel(score: number): string {
-  return score >= 8 ? "exceptional" : score >= 5 ? "strong" : "potential";
-}
-function repoAnchor(repo: string): string {
-  return repo.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-}
-
-// Neutralize Liquid delimiters in scraped text so Jekyll (GitHub Pages runs
-// v3 — no per-file render_with_liquid) doesn't choke on `{{ }}` / `{% %}` /
-// stray `{% endraw %}` embedded in third-party README content. A space inside
-// the delimiter stops Liquid recognizing a tag and renders near-identically.
-function escapeLiquid(s: string): string {
-  return s
-    .replace(/\{\{/g, "{ {")
-    .replace(/\}\}/g, "} }")
-    .replace(/\{%/g, "{ %")
-    .replace(/%\}/g, "% }");
-}
-
-function buildProfilePage(profile: string, gems: GemRepo[], updated: string): string {
-  const sorted = [...gems].sort((a, b) => b.gem_score - a.gem_score);
-  let md = `---
-title: "Claude Code Skills for ${profile}"
-description: "${gems.length} community Claude Code skills curated by cue for the ${profile} profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
-layout: page
-updated: ${updated.split("T")[0]}
-tags: [claude-code, ${profile}, skills, mcp, ai-agents]
----
-
-`;
-  md += `# Claude Code Skills for \`${profile}\`\n\n`;
-  md += `> ${gems.length} community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **${profile}** profile.\n`;
-  md += `> Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.\n\n`;
-  md += `**[← back to all discovered skills](./index.md)**\n\n---\n\n`;
-
-  for (const gem of sorted) {
-    const icon = tierIcon(gem.gem_score);
-    md += `<a id="${repoAnchor(gem.full_name)}"></a>\n`;
-    md += `## ${icon} [${gem.full_name}](${gem.url})\n\n`;
-    md += `**★ ${gem.stars}** · ${tierLabel(gem.gem_score)} (score ${gem.gem_score})`;
-    if (gem.language) md += ` · ${gem.language}`;
-    if (gem.topics.length > 0) md += ` · tags: ${gem.topics.slice(0, 5).join(", ")}`;
-    md += `\n\n${escapeLiquid(gem.description)}\n\n`;
-    const evidence: string[] = [];
-    if (gem.has_skill_md) evidence.push("✅ SKILL.md");
-    if (gem.has_claude_dir) evidence.push("✅ `.claude/` directory");
-    if (gem.has_mcp_sdk) evidence.push("✅ MCP SDK");
-    if (evidence.length > 0) md += `${evidence.join(" · ")}\n\n`;
-    if (gem.suggested_clis.length > 0) {
-      md += `**CLIs needed:** ${gem.suggested_clis.map((c) => `\`${c}\``).join(", ")}\n\n`;
-    }
-    md += `\`\`\`bash\ncue skills add ${gem.full_name} --profile ${profile}\n\`\`\`\n\n---\n\n`;
-  }
-  md += `## About this list\n\nGenerated by [cue](https://github.com/opencue/cuecards) — an open-source agent profile manager. cue runs nightly GitHub Code Search for \`filename:SKILL.md\` and scores each repo by recency, skill format, MCP integration, and engagement signals.\n\n**Authors:** if you'd rather not be listed, add \`<!-- cue: ignore -->\` to your README — we respect it permanently. Want to opt in explicitly? Add \`<!-- cue: ok -->\`.\n\n`;
-  return md;
-}
-
-function buildIndexPage(byProfile: Map<string, GemRepo[]>, totalGems: number, updated: string): string {
-  const sorted = [...byProfile.entries()].sort((a, b) => b[1].length - a[1].length);
-  let md = `---
-title: "Discovered Claude Code Skills"
-description: "${totalGems} community Claude Code skills curated by cue across ${byProfile.size} profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
-layout: page
-updated: ${updated.split("T")[0]}
-tags: [claude-code, skills, mcp, ai-agents, marketplace]
----
-
-# 🎯 Discovered Claude Code Skills
-
-These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
-
-> **${totalGems} hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **${byProfile.size} profiles**.
-> Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.
-
-## Browse by profile
-
-| Profile | Skills | Sample |
-|---|---|---|
-`;
-  for (const [profile, gems] of sorted) {
-    const top = [...gems].sort((a, b) => b.gem_score - a.gem_score).slice(0, 3);
-    const samples = top.map((g) => `\`${g.full_name.split("/")[1]}\``).join(", ");
-    md += `| [**${profile}**](./${profile}.md) | ${gems.length} | ${samples} |\n`;
-  }
-  md += `\n## How scoring works\n\n| Tier | Score | Meaning |\n|---|---|---|\n| 💎 exceptional | 8+ | Active repo, proper skill format, low star count (true hidden gem) |\n| ✨ strong | 5–7 | Good signal mix — proven format or active maintainer |\n| 🔹 potential | 3–4 | Some signal — worth a look |\n\n`;
-  md += `## Use cue to install any of these\n\n\`\`\`bash\nnpx cue@latest\ncue skills add owner/repo --profile <profile>\n\`\`\`\n\n## About cue\n\ncue is an agent profile manager for Claude Code and Codex CLI. [github.com/opencue/cuecards](https://github.com/opencue/cuecards)\n`;
-  return md;
-}
-
-function buildJsonLdItemList(name: string, description: string, gems: GemRepo[]): string {
-  const list = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name,
-    description,
-    numberOfItems: gems.length,
-    itemListElement: gems.slice(0, 100).map((g, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "SoftwareApplication",
-        name: g.full_name,
-        description: g.description,
-        url: g.url,
-        applicationCategory: "DeveloperApplication",
-        operatingSystem: "Cross-platform",
-        codeRepository: g.url,
-        ...(g.language ? { programmingLanguage: g.language } : {}),
-      },
-    })),
-  };
-  return JSON.stringify(list, null, 2);
-}
-
-function buildIndexHtml(byProfile: Map<string, GemRepo[]>, totalGems: number, updated: string): string {
-  const sorted = [...byProfile.entries()].sort((a, b) => b[1].length - a[1].length);
-  const allGems: GemRepo[] = [];
-  for (const [, gems] of sorted) for (const g of gems) if (!allGems.some((x) => x.full_name === g.full_name)) allGems.push(g);
-  const jsonLd = buildJsonLdItemList(
-    "Discovered Claude Code Skills",
-    `${totalGems} community-built skills for Claude Code, curated by cue.`,
-    allGems,
-  );
-  const rows = sorted.map(([profile, gems]) => {
-    const top = [...gems].sort((a, b) => b.gem_score - a.gem_score).slice(0, 3);
-    const samples = top.map((g) => `<code>${g.full_name.split("/")[1]}</code>`).join(", ");
-    return `    <tr><td><a href="./${profile}.html">${profile}</a></td><td>${gems.length}</td><td>${samples}</td></tr>`;
-  }).join("\n");
-  return `<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8">
-<title>Discovered Claude Code Skills · cue</title>
-<meta name="description" content="${totalGems} community Claude Code skills curated by cue across ${byProfile.size} profiles. Find skills for backend, frontend, marketing, cybersecurity, and more.">
-<meta property="og:title" content="Discovered Claude Code Skills · cue">
-<meta property="og:description" content="${totalGems} community Claude Code skills curated by cue.">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://opencue.github.io/cuecards/discovered/">
-<style>body{font:16px/1.6 -apple-system,sans-serif;max-width:760px;margin:2em auto;padding:0 1em;color:#222}table{border-collapse:collapse;width:100%}th,td{padding:.5em .75em;border-bottom:1px solid #eee;text-align:left}code{background:#f4f4f4;padding:1px 5px;border-radius:3px;font-size:.9em}a{color:#0a58ca;text-decoration:none}a:hover{text-decoration:underline}</style>
-<script type="application/ld+json">
-${jsonLd}
-</script>
-</head><body>
-<h1>🎯 Discovered Claude Code Skills</h1>
-<p>These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.</p>
-<p><strong>${totalGems} hidden-gem skills</strong> discovered by <a href="https://github.com/opencue/cuecards">cue</a> across <strong>${byProfile.size} profiles</strong>.</p>
-<p><small>Last updated: ${updated.split("T")[0]} · refreshed nightly via GitHub Code Search.</small></p>
-<h2>Browse by profile</h2>
-<table><thead><tr><th>Profile</th><th>Skills</th><th>Sample</th></tr></thead>
-<tbody>
-${rows}
-</tbody></table>
-<p><a href="https://github.com/opencue/cuecards">github.com/opencue/cuecards</a></p>
-</body></html>
-`;
-}
-
-function buildProfileHtml(profile: string, gems: GemRepo[], updated: string): string {
-  const sorted = [...gems].sort((a, b) => b.gem_score - a.gem_score);
-  const jsonLd = buildJsonLdItemList(
-    `Claude Code Skills for ${profile}`,
-    `${gems.length} community Claude Code skills for ${profile}, curated by cue.`,
-    sorted,
-  );
-  const cards = sorted.map((g) => {
-    const icon = tierIcon(g.gem_score);
-    const escDesc = g.description.replace(/[<>]/g, (c) => c === "<" ? "&lt;" : "&gt;");
-    return `<article id="${repoAnchor(g.full_name)}">
-<h2>${icon} <a href="${g.url}">${g.full_name}</a></h2>
-<p><small>★ ${g.stars} · ${tierLabel(g.gem_score)} (score ${g.gem_score})${g.language ? " · " + g.language : ""}</small></p>
-<p>${escDesc}</p>
-<pre><code>cue skills add ${g.full_name} --profile ${profile}</code></pre>
-</article>`;
-  }).join("\n");
-  return `<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8">
-<title>Claude Code Skills for ${profile} · cue</title>
-<meta name="description" content="${gems.length} community Claude Code skills for ${profile}, curated by cue. Discovered via GitHub Code Search, scored on signal quality.">
-<meta property="og:title" content="Claude Code Skills for ${profile} · cue">
-<meta property="og:description" content="${gems.length} skills for ${profile}, curated by cue.">
-<link rel="canonical" href="https://opencue.github.io/cuecards/discovered/${profile}.html">
-<style>body{font:16px/1.6 -apple-system,sans-serif;max-width:760px;margin:2em auto;padding:0 1em;color:#222}article{border-bottom:1px solid #eee;padding:1em 0}pre{background:#f4f4f4;padding:.6em;border-radius:4px;overflow-x:auto}a{color:#0a58ca;text-decoration:none}a:hover{text-decoration:underline}</style>
-<script type="application/ld+json">
-${jsonLd}
-</script>
-</head><body>
-<p><a href="./index.html">← back to all profiles</a></p>
-<h1>Claude Code Skills for <code>${profile}</code></h1>
-<p>${gems.length} skills discovered by <a href="https://github.com/opencue/cuecards">cue</a>. Last updated ${updated.split("T")[0]}.</p>
-${cards}
-</body></html>
-`;
-}
-
-// ---------------------------------------------------------------------------
-// Per-repo inbound pages — reverse-direction backlinks. Every discovered repo
-// gets its own indexable surface so cue's SEO covers the long tail (repo
-// names), and so the repo's authors get a backlink from cue.dev.
-// ---------------------------------------------------------------------------
-
-/**
- * Escape a string for a double-quoted YAML scalar in generated frontmatter.
- * Repo descriptions routinely contain `"` and `\` (e.g. `Tell Claude "deploy this"`),
- * which break Jekyll's YAML parser if interpolated raw — failing the landing build.
- * Escapes backslash + double-quote and collapses newlines to spaces.
- */
-function yamlStr(s: string): string {
-  return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\r\n]+/g, " ");
-}
-
-function buildRepoPage(gem: GemRepo, updated: string): string {
-  const icon = tierIcon(gem.gem_score);
-  const profileLinks = gem.suggested_profiles.map((p) => `[${p}](../${p}.md)`).join(", ") || "_(no profile match)_";
-  return `---
-title: "${yamlStr(`${gem.full_name} — Claude Code skill discovered by cue`)}"
-description: "${yamlStr((gem.description || `Claude Code skill from ${gem.full_name}`).slice(0, 160))}"
-layout: page
-updated: ${updated.split("T")[0]}
-tags: [claude-code, skill, ${gem.suggested_profiles.join(", ")}]
----
-
-# ${icon} [${gem.full_name}](${gem.url})
-
-**★ ${gem.stars}** · ${tierLabel(gem.gem_score)} (score ${gem.gem_score})${gem.language ? ` · ${gem.language}` : ""}${gem.topics.length > 0 ? ` · ${gem.topics.slice(0, 5).join(", ")}` : ""}
-
-> ${escapeLiquid(gem.description || `A Claude Code skill repository discovered by cue.`)}
-
-## Why cue indexed it
-
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for \`filename:SKILL.md\` and found this repo. It scored ${gem.gem_score} based on:
-${gem.has_skill_md ? "- ✅ Contains SKILL.md\n" : ""}${gem.has_claude_dir ? "- ✅ Has \`.claude/\` directory\n" : ""}${gem.has_mcp_sdk ? "- ✅ Uses Model Context Protocol SDK\n" : ""}- ⭐ ${gem.stars} stars
-- 🗓️ Last pushed: ${gem.pushed_at?.split("T")[0] ?? "unknown"}
-- 🏷️ Tags: ${gem.topics.join(", ") || "(none)"}
-
-## Best fit cue profiles
-
-${profileLinks}
-
-${gem.suggested_clis.length > 0 ? `## CLIs needed
-
-${gem.suggested_clis.map((c) => `- \`${c}\``).join("\n")}
-
-Run \`cue cli install ${gem.suggested_clis.join(" ")} --yes\` to install them.
-` : ""}
-
-## Install via cue
-
-\`\`\`bash
-npm install -g cue-ai
-cue skills add ${gem.full_name}${gem.suggested_profiles[0] ? ` --profile ${gem.suggested_profiles[0]}` : ""}
-\`\`\`
-
-## About
-
-This page was auto-generated by [cue](https://github.com/opencue/cuecards) — an open-source agent profile manager for Claude Code, Codex, Cursor, Cline, Gemini, Copilot, and 4 other AI coding agents. cue scopes skills + MCPs + plugins per-directory so each project only loads what it needs.
-
-**Repo author:** if you'd rather we don't list this skill, add \`<!-- cue: ignore -->\` to your README and we'll skip it permanently.
-
----
-
-[← back to all profiles](../index.md) · [view repo on GitHub →](${gem.url})
-`;
-}
-
-function buildRepoHtml(gem: GemRepo, updated: string): string {
-  const icon = tierIcon(gem.gem_score);
-  const desc = (gem.description || `Claude Code skill from ${gem.full_name}`).slice(0, 160);
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: gem.full_name,
-    description: gem.description || desc,
-    url: gem.url,
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Cross-platform",
-    codeRepository: gem.url,
-    ...(gem.language ? { programmingLanguage: gem.language } : {}),
-    ...(gem.stars > 0 ? {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: Math.min(5, 1 + Math.log10(gem.stars + 1)).toFixed(2),
-        reviewCount: gem.stars,
-      },
-    } : {}),
-  };
-  const profileLinks = gem.suggested_profiles.map((p) => `<a href="../${p}.html">${p}</a>`).join(", ") || "<em>(no profile match)</em>";
-  return `<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8">
-<title>${gem.full_name} — Claude Code skill discovered by cue</title>
-<meta name="description" content="${desc.replace(/"/g, "&quot;")}">
-<meta property="og:title" content="${gem.full_name} — Claude Code skill">
-<meta property="og:description" content="${desc.replace(/"/g, "&quot;")}">
-<link rel="canonical" href="https://opencue.github.io/cuecards/discovered/skills/${gem.full_name.replace("/", "-").toLowerCase()}.html">
-<style>body{font:16px/1.6 -apple-system,sans-serif;max-width:760px;margin:2em auto;padding:0 1em;color:#222}code{background:#f4f4f4;padding:1px 5px;border-radius:3px;font-size:.9em}pre{background:#f4f4f4;padding:.6em;border-radius:4px;overflow-x:auto}a{color:#0a58ca;text-decoration:none}a:hover{text-decoration:underline}</style>
-<script type="application/ld+json">
-${JSON.stringify(jsonLd, null, 2)}
-</script>
-</head><body>
-<p><a href="../index.html">← back to all profiles</a></p>
-<h1>${icon} <a href="${gem.url}">${gem.full_name}</a></h1>
-<p><small>★ ${gem.stars} · ${tierLabel(gem.gem_score)} (score ${gem.gem_score})${gem.language ? " · " + gem.language : ""}</small></p>
-<p>${(gem.description || `A Claude Code skill repository discovered by cue.`).replace(/[<>]/g, (c) => c === "<" ? "&lt;" : "&gt;")}</p>
-<h2>Best fit cue profiles</h2>
-<p>${profileLinks}</p>
-<h2>Install via cue</h2>
-<pre><code>npm install -g cue-ai
-cue skills add ${gem.full_name}${gem.suggested_profiles[0] ? ` --profile ${gem.suggested_profiles[0]}` : ""}</code></pre>
-<p><a href="${gem.url}">View repo on GitHub →</a></p>
-<hr>
-<p><small>This page was auto-generated by <a href="https://github.com/opencue/cuecards">cue</a>. Repo authors can opt out by adding <code>&lt;!-- cue: ignore --&gt;</code> to their README.</small></p>
-</body></html>
-`;
-}
-
-// ---------------------------------------------------------------------------
-// sitemap.xml — index every page for Search Console + Bing Webmaster.
-// ---------------------------------------------------------------------------
-
-function buildSitemap(byProfile: Map<string, GemRepo[]>, gems: GemRepo[], updated: string): string {
-  const base = "https://opencue.github.io/cuecards/discovered";
-  const date = updated.split("T")[0];
-  const urls: string[] = [];
-  urls.push(`<url><loc>${base}/index.html</loc><lastmod>${date}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>`);
-  for (const profile of byProfile.keys()) {
-    urls.push(`<url><loc>${base}/${profile}.html</loc><lastmod>${date}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>`);
-  }
-  for (const gem of gems) {
-    const slug = gem.full_name.replace("/", "-").toLowerCase();
-    urls.push(`<url><loc>${base}/skills/${slug}.html</loc><lastmod>${date}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>`);
-  }
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls.join("\n  ")}
-</urlset>
-`;
-}
-
-interface ExportOpts { site: boolean; html: boolean; }
-
-function cmdExport(exportPath: string, opts: ExportOpts = { site: false, html: false }): number {
-  if (!existsSync(cacheFile())) {
-    process.stderr.write("No cached gems. Run `cue discover search` first.\n");
-    return 1;
-  }
-  const cache: GemCache = JSON.parse(readFileSync(cacheFile(), "utf8"));
-  // Re-apply the current spam filter at export time so tightened rules can
-  // purge entries from a stale cache without requiring a full re-search.
-  const gems = cache.gems.filter(g => !isLikelySpam(g));
-
-  const byProfile = new Map<string, GemRepo[]>();
-  for (const gem of gems) {
-    for (const p of gem.suggested_profiles) {
-      const list = byProfile.get(p) ?? [];
-      list.push(gem);
-      byProfile.set(p, list);
-    }
-  }
-
-  // --- Site mode: per-profile pages + index + per-repo pages + sitemap.xml ---
-  if (opts.site) {
-    const dir = exportPath.endsWith(".md") ? dirname(exportPath) : exportPath;
-    mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, "index.md"), buildIndexPage(byProfile, gems.length, cache.updated));
-    if (opts.html) writeFileSync(join(dir, "index.html"), buildIndexHtml(byProfile, gems.length, cache.updated));
-    for (const [profile, profGems] of byProfile) {
-      writeFileSync(join(dir, `${profile}.md`), buildProfilePage(profile, profGems, cache.updated));
-      if (opts.html) writeFileSync(join(dir, `${profile}.html`), buildProfileHtml(profile, profGems, cache.updated));
-    }
-
-    // Per-repo inbound pages — reverse-direction backlinks. Every discovered
-    // repo gets its own indexable surface, helping the repo's SEO + giving cue
-    // long-tail keyword reach per repo.
-    const repoPagesDir = join(dir, "skills");
-    mkdirSync(repoPagesDir, { recursive: true });
-    for (const gem of gems) {
-      const slug = gem.full_name.replace("/", "-").toLowerCase();
-      writeFileSync(join(repoPagesDir, `${slug}.md`), buildRepoPage(gem, cache.updated));
-      if (opts.html) writeFileSync(join(repoPagesDir, `${slug}.html`), buildRepoHtml(gem, cache.updated));
-    }
-
-    // sitemap.xml — every per-profile and per-repo page enumerated for Search
-    // Console / Bing Webmaster submission.
-    if (opts.html) writeFileSync(join(dir, "sitemap.xml"), buildSitemap(byProfile, gems, cache.updated));
-
-    const pageCount = (byProfile.size + 1 + gems.length) * (opts.html ? 2 : 1);
-    process.stdout.write(`✅ Exported ${gems.length} gems → ${pageCount} files under ${dir}/\n`);
-    process.stdout.write(`   index: ${join(dir, "index.md")}${opts.html ? " (+ .html with JSON-LD)" : ""}\n`);
-    process.stdout.write(`   per-profile pages: ${byProfile.size}${opts.html ? " (+ HTML)" : ""}\n`);
-    process.stdout.write(`   per-repo pages: ${gems.length} (under skills/)${opts.html ? " (+ HTML)" : ""}\n`);
-    if (opts.html) process.stdout.write(`   sitemap.xml: ${join(dir, "sitemap.xml")} — submit to Google Search Console + Bing Webmaster\n`);
-    return 0;
-  }
-
-  // --- Legacy single-file mode ---
-  let md = `<p align="center">
-  <img src="https://img.shields.io/badge/cue-💎_Discovered_Skills-6366f1?style=for-the-badge&labelColor=1e1b4b" alt="cue discovered skills">
-</p>
-
-# 🎯 Discovered Skills & Hidden Gems
-
-> **${gems.length} repos** discovered across **${byProfile.size} profiles** · Last scan: ${cache.updated.split("T")[0]}
->
-> Found by scanning GitHub for skill-compatible projects that most developers haven't discovered yet.
-
-<table>
-<tr><td>💎 <b>8+</b></td><td>Exceptional — active, proper skill format, community-validated</td></tr>
-<tr><td>✨ <b>5–7</b></td><td>Strong — good signals, worth checking out</td></tr>
-<tr><td>🔹 <b>3–4</b></td><td>Potential — some signals present</td></tr>
-</table>
-
-## Quick install
-
-\`\`\`bash
-npm install -g cue-ai
-cue discover search                    # find gems
-cue discover install --min-score 8     # install top gems into profiles
-\`\`\`
-
----
-
-`;
-  const sortedProfiles = [...byProfile.keys()].sort();
-  for (const profile of sortedProfiles) {
-    const profileGems = byProfile.get(profile)!.sort((a, b) => b.gem_score - a.gem_score);
-    const topScore = profileGems[0]?.gem_score ?? 0;
-    const profileIcon = topScore >= 10 ? "🏆" : topScore >= 8 ? "💎" : "✨";
-    md += `## ${profileIcon} ${profile} <sub>(${profileGems.length} gems)</sub>\n\n`;
-    md += `| | Repo | ★ | Score | What it does |\n|---|------|---|-------|-------------|\n`;
-    for (const gem of profileGems) {
-      const icon = tierIcon(gem.gem_score);
-      const desc = escapeLiquid(gem.description).slice(0, 70).replace(/\|/g, "\\|");
-      const skillBadge = gem.has_skill_md ? " 📄" : "";
-      md += `| ${icon} | [${gem.full_name}](${gem.url})${skillBadge} | ${gem.stars} | ${gem.gem_score} | ${desc} |\n`;
-    }
-    md += `\n<details><summary>Install all ${profile} gems</summary>\n\n\`\`\`bash\ncue discover install --profile ${profile} --min-score 5\n\`\`\`\n</details>\n\n---\n\n`;
-  }
-  md += `## Contributing
-
-Want your repo listed? Either:
-- Add \`topic:claude-skill\` to your GitHub repo
-- Include a \`SKILL.md\` in your repo root
-- Both get you discovered automatically on the next nightly scan
-
-Want out? Add \`<!-- cue: ignore -->\` to your README.
-
----
-
-<p align="center">
-  <a href="https://github.com/opencue/cuecards">
-    <img src="https://img.shields.io/badge/powered_by-cue-6366f1?style=flat-square&labelColor=1e1b4b" alt="powered by cue">
-  </a>
-</p>
-`;
-  mkdirSync(dirname(exportPath), { recursive: true });
-  writeFileSync(exportPath, md);
-  process.stdout.write(`✅ Exported ${gems.length} gems to ${exportPath}\n`);
-  process.stdout.write(`   💡 Add --site for per-profile SEO pages, --html for indexable HTML with JSON-LD.\n`);
-  return 0;
-}
-
-// ---------------------------------------------------------------------------
 // Analyze gems with Claude Code (reads README/SKILL.md, determines profile)
 // ---------------------------------------------------------------------------
 
@@ -1407,26 +996,24 @@ async function cmdAnalyze(opts: { profile?: string; minScore: number; limit: num
   for (const gem of gems) {
     process.stdout.write(`  ⏳ ${gem.full_name} (★ ${gem.stars})...\n`);
 
-    // Fetch README content
-    const readmeRes = spawnSync("gh", [
-      "api", `repos/${gem.full_name}/readme`, "--jq", ".content",
-    ], { encoding: "utf8", timeout: 15000 });
+    // Fetch README and SKILL.md in parallel — both are independent GitHub API calls.
+    const [readmeOut, skillOut] = await Promise.all([
+      execFile("gh", ["api", `repos/${gem.full_name}/readme`, "--jq", ".content"], { timeout: 15000 })
+        .then(r => r.stdout)
+        .catch(() => ""),
+      gem.has_skill_md
+        ? execFile("gh", ["api", `repos/${gem.full_name}/contents/SKILL.md`, "--jq", ".content"], { timeout: 10000 })
+            .then(r => r.stdout)
+            .catch(() => "")
+        : Promise.resolve(""),
+    ]);
 
-    let readme = "";
-    if (readmeRes.status === 0 && readmeRes.stdout.trim()) {
-      readme = Buffer.from(readmeRes.stdout.trim(), "base64").toString("utf8").slice(0, 3000);
-    }
-
-    // Fetch SKILL.md if exists
-    let skillMd = "";
-    if (gem.has_skill_md) {
-      const skillRes = spawnSync("gh", [
-        "api", `repos/${gem.full_name}/contents/SKILL.md`, "--jq", ".content",
-      ], { encoding: "utf8", timeout: 10000 });
-      if (skillRes.status === 0 && skillRes.stdout.trim()) {
-        skillMd = Buffer.from(skillRes.stdout.trim(), "base64").toString("utf8").slice(0, 2000);
-      }
-    }
+    const readme = readmeOut.trim()
+      ? Buffer.from(readmeOut.trim(), "base64").toString("utf8").slice(0, 3000)
+      : "";
+    const skillMd = skillOut.trim()
+      ? Buffer.from(skillOut.trim(), "base64").toString("utf8").slice(0, 2000)
+      : "";
 
     if (!readme && !skillMd) {
       process.stdout.write(`     ⚠️  No readable content, skipping\n`);
@@ -1453,25 +1040,28 @@ CLIS: <cli tools required to run this skill, comma-separated, or "none">
 REASON: <one sentence why>
 QUALITY: <1-10 score of how useful this skill actually is>`;
 
-    const claudeRes = spawnSync("claude", ["--print", "-p", prompt], {
-      encoding: "utf8", timeout: 30000,
-      env: { ...process.env, CUE_BYPASS: "1" },
-    });
-
-    if (claudeRes.status !== 0 || !claudeRes.stdout.trim()) {
+    let output = "";
+    try {
+      const claudeOut = await execFile("claude", ["--print", "-p", prompt], {
+        timeout: 30000,
+        env: { ...process.env, CUE_BYPASS: "1" },
+      });
+      output = claudeOut.stdout.trim();
+    } catch {
       // Fallback: use the real claude binary directly (cue's PATH shim recurses)
       const realClaude = findRealClaudeBin();
-      const fallbackRes = realClaude
-        ? spawnSync(realClaude, ["--print", "-p", prompt], { encoding: "utf8", timeout: 30000 })
-        : null;
-      if (!fallbackRes || fallbackRes.status !== 0) {
-        process.stdout.write(`     ⚠️  Claude analysis failed, keeping keyword suggestion\n`);
-        continue;
+      if (realClaude) {
+        try {
+          const fallbackOut = await execFile(realClaude, ["--print", "-p", prompt], { timeout: 30000 });
+          output = fallbackOut.stdout.trim();
+        } catch { /* fall through */ }
       }
-      claudeRes.stdout = fallbackRes.stdout;
     }
 
-    const output = claudeRes.stdout.trim();
+    if (!output) {
+      process.stdout.write(`     ⚠️  Claude analysis failed, keeping keyword suggestion\n`);
+      continue;
+    }
     const profileMatch = output.match(/PROFILES?:\s*(.+)/i);
     const mcpsMatch = output.match(/MCPS?:\s*(.+)/i);
     const clisMatch = output.match(/CLIS?:\s*(.+)/i);
@@ -1503,369 +1093,6 @@ QUALITY: <1-10 score of how useful this skill actually is>`;
   writeFileSync(cacheFile(), JSON.stringify(cache, null, 2));
   process.stdout.write(`\n  ✅ Analysis complete. Cache updated.\n`);
   process.stdout.write(`  Next: cue discover install --dry-run\n`);
-  return 0;
-}
-
-// ---------------------------------------------------------------------------
-// Notify repo owner via GitHub issue
-// ---------------------------------------------------------------------------
-
-const NOTIFY_LOG = join(
-  process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"),
-  "cue",
-  "discover-notified.json",
-);
-
-interface NotifyLog {
-  notified: Record<string, { date: string; issueUrl: string }>;
-  // Daily digest discussion posts in opencue/cuecards, keyed by YYYY-MM-DD.
-  digests?: Record<string, { discussionUrl: string; gems: string[] }>;
-}
-
-function loadNotifyLog(): NotifyLog {
-  if (!existsSync(NOTIFY_LOG)) return { notified: {}, digests: {} };
-  try {
-    const log = JSON.parse(readFileSync(NOTIFY_LOG, "utf8")) as NotifyLog;
-    log.digests ??= {};
-    return log;
-  } catch { return { notified: {}, digests: {} }; }
-}
-
-function saveNotifyLog(log: NotifyLog): void {
-  mkdirSync(dirname(NOTIFY_LOG), { recursive: true });
-  writeFileSync(NOTIFY_LOG, JSON.stringify(log, null, 2));
-}
-
-// ---------------------------------------------------------------------------
-// Daily digest discussion (in opencue/cuecards) — lower-pressure analog to --notify
-// ---------------------------------------------------------------------------
-
-const DIGEST_REPO = process.env.CUE_DIGEST_REPO ?? "opencue/cuecards";
-const DIGEST_CATEGORY_PREF = ["Discoveries", "Show and tell", "Announcements", "General"];
-
-interface DiscussionTarget { repoId: string; categoryId: string; categoryName: string }
-
-function resolveDiscussionTarget(repo: string): DiscussionTarget | null {
-  const [owner, name] = repo.split("/");
-  if (!owner || !name) return null;
-  const query = `query($owner:String!,$name:String!){ repository(owner:$owner,name:$name){ id discussionCategories(first:20){ nodes { id name } } } }`;
-  const res = spawnSync("gh", [
-    "api", "graphql",
-    "-f", `query=${query}`,
-    "-F", `owner=${owner}`,
-    "-F", `name=${name}`,
-  ], { encoding: "utf8", timeout: 15000 });
-  if (res.status !== 0) return null;
-  try {
-    const data = JSON.parse(res.stdout);
-    const repoNode = data?.data?.repository;
-    if (!repoNode?.id) return null;
-    const cats: { id: string; name: string }[] = repoNode.discussionCategories?.nodes ?? [];
-    if (cats.length === 0) return null;
-    for (const pref of DIGEST_CATEGORY_PREF) {
-      const hit = cats.find(c => c.name.toLowerCase() === pref.toLowerCase());
-      if (hit) return { repoId: repoNode.id, categoryId: hit.id, categoryName: hit.name };
-    }
-    return { repoId: repoNode.id, categoryId: cats[0]!.id, categoryName: cats[0]!.name };
-  } catch { return null; }
-}
-
-function buildDigestBody(gems: GemRepo[], date: string): string {
-  const byProfile = new Map<string, GemRepo[]>();
-  for (const gem of gems) {
-    const p = gem.suggested_profiles[0] ?? "core";
-    const list = byProfile.get(p) ?? [];
-    list.push(gem);
-    byProfile.set(p, list);
-  }
-  const sections: string[] = [];
-  for (const profile of [...byProfile.keys()].sort()) {
-    const list = byProfile.get(profile)!.sort((a, b) => b.gem_score - a.gem_score);
-    const lines = list.map(g => {
-      const icon = g.gem_score >= 15 ? "🏆" : g.gem_score >= 8 ? "💎" : "✨";
-      const desc = (g.description ?? "").slice(0, 110).replace(/\n+/g, " ");
-      const signals: string[] = [];
-      if (g.has_skill_md) signals.push("SKILL.md");
-      if (g.has_claude_dir) signals.push(".claude/");
-      if (g.has_mcp_sdk) signals.push("MCP SDK");
-      const sigTag = signals.length ? ` _(${signals.join(", ")})_` : "";
-      return `- ${icon} [\`${g.full_name}\`](${g.url}) — ★ ${g.stars} · score ${g.gem_score}${sigTag}\n  ${desc}`;
-    }).join("\n");
-    sections.push(`### \`${profile}\` (${list.length})\n\n${lines}`);
-  }
-
-  return `> Daily digest from [\`cue discover\`](https://github.com/opencue/cuecards) — repos newly indexed on **${date}**, grouped by profile.
-
-cue scans GitHub for high-quality skill repos (\`SKILL.md\`, \`.claude/\`, MCP servers) and routes them into per-profile bundles for users of Claude Code, Codex, and other agents. Today we indexed **${gems.length}** gem(s) across **${byProfile.size}** profile(s).
-
-${sections.join("\n\n")}
-
----
-
-**Want to be indexed?** Add a \`SKILL.md\` to your repo root or tag it \`topic:claude-skill\`. We scan daily.
-
-**Don't want to be indexed?** Open an issue and we'll exclude your repo.
-
-<sub>Posted by \`cue discover install --digest\`. One post per day.</sub>`;
-}
-
-function postDailyDigest(gems: GemRepo[], opts: { dryRun: boolean }): void {
-  if (gems.length === 0) {
-    process.stdout.write(`  ⏭  Digest: nothing new to post.\n`);
-    return;
-  }
-
-  const log = loadNotifyLog();
-  const date = new Date().toISOString().split("T")[0]!;
-  if (log.digests?.[date]) {
-    process.stdout.write(`  ⏭  Digest: already posted today (${log.digests[date].discussionUrl}).\n`);
-    return;
-  }
-
-  const title = `cue discover — daily digest ${date} (${gems.length} new gem${gems.length === 1 ? "" : "s"})`;
-  const body = buildDigestBody(gems, date);
-
-  if (opts.dryRun) {
-    process.stdout.write(`  [dry-run] Would post digest to ${DIGEST_REPO} discussions:\n`);
-    process.stdout.write(`     Title: ${title}\n`);
-    process.stdout.write(`     Body: ${body.length} chars across ${gems.length} gems\n`);
-    return;
-  }
-
-  const target = resolveDiscussionTarget(DIGEST_REPO);
-  if (!target) {
-    process.stdout.write(`  ⚠️  Digest: could not resolve discussion category on ${DIGEST_REPO} (discussions enabled? gh auth?). Skipped.\n`);
-    return;
-  }
-
-  const mutation = `mutation($repoId:ID!,$catId:ID!,$title:String!,$body:String!){ createDiscussion(input:{repositoryId:$repoId,categoryId:$catId,title:$title,body:$body}){ discussion { url } } }`;
-  const res = spawnSync("gh", [
-    "api", "graphql",
-    "-f", `query=${mutation}`,
-    "-F", `repoId=${target.repoId}`,
-    "-F", `catId=${target.categoryId}`,
-    "-F", `title=${title}`,
-    "-F", `body=${body}`,
-  ], { encoding: "utf8", timeout: 20000 });
-
-  if (res.status !== 0) {
-    process.stdout.write(`  ⚠️  Digest: failed to post — ${res.stderr?.trim().slice(0, 120)}\n`);
-    return;
-  }
-
-  try {
-    const out = JSON.parse(res.stdout);
-    const url: string = out?.data?.createDiscussion?.discussion?.url ?? "";
-    log.digests ??= {};
-    log.digests[date] = { discussionUrl: url, gems: gems.map(g => g.full_name) };
-    saveNotifyLog(log);
-    process.stdout.write(`  📰 Posted daily digest (${target.categoryName}): ${url}\n`);
-  } catch {
-    process.stdout.write(`  ⚠️  Digest: posted but couldn't parse response.\n`);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Hero badge composition — tokscale-style 3-stat row for issues + export pages
-// ---------------------------------------------------------------------------
-
-/** URL-encode a shields.io label segment (escape - and _, spaces become _). */
-function shieldsEscape(s: string): string {
-  return encodeURIComponent(s).replace(/-/g, "--").replace(/_/g, "__").replace(/%20/g, "_");
-}
-
-/** Build a shields.io for-the-badge URL with optional logo/labelColor. */
-function shieldsBadge(label: string, value: string, color: string, opts: { labelColor?: string; logo?: string } = {}): string {
-  const params = new URLSearchParams();
-  params.set("style", "for-the-badge");
-  if (opts.labelColor) params.set("labelColor", opts.labelColor);
-  if (opts.logo) params.set("logo", opts.logo);
-  return `https://img.shields.io/badge/${shieldsEscape(label)}-${shieldsEscape(value)}-${color}?${params.toString()}`;
-}
-
-/** Tier → palette: { primary, label, tier name } matching the TTY render. */
-function tierPalette(score: number): { primary: string; label: string; tier: string } {
-  if (score >= 12) return { primary: "8b5cf6", label: "1e1b4b", tier: "PREMIUM" };
-  if (score >= 8) return { primary: "06b6d4", label: "0e2a3a", tier: "STRONG" };
-  if (score >= 5) return { primary: "eab308", label: "3a2a0e", tier: "WORTH" };
-  return { primary: "6b7280", label: "1f2937", tier: "TAIL" };
-}
-
-/** Stars magnitude → palette + abbreviated display (1.5K, 15K, etc.). */
-function starsPalette(stars: number): { primary: string; display: string } {
-  const display = stars >= 1000 ? `★ ${(stars / 1000).toFixed(stars >= 10000 ? 0 : 1)}K` : `★ ${stars}`;
-  if (stars >= 1000) return { primary: "ec4899", display };
-  if (stars >= 100) return { primary: "22c55e", display };
-  if (stars >= 10) return { primary: "eab308", display };
-  return { primary: "6b7280", display };
-}
-
-/**
- * Markdown for the tokscale-style 3-badge hero strip:
- *   [ Score: 20.5 (PREMIUM) ]  [ Stars: ★ 15.5K ]  [ Profile: core ]
- * Centered in <p align="center"> for GitHub issue / markdown rendering.
- */
-export function buildGemHeroBadges(gem: GemRepo, profile: string): string {
-  const t = tierPalette(gem.gem_score);
-  const s = starsPalette(gem.stars);
-  const scoreBadge = shieldsBadge("Score", `${gem.gem_score} (${t.tier})`, t.primary, { labelColor: "1e1b4b" });
-  const starsBadge = shieldsBadge("Stars", s.display, s.primary, { labelColor: "1e1b4b" });
-  const profileBadge = shieldsBadge("Profile", profile, "c084fc", { labelColor: "1e1b4b" });
-  return `<p align="center">
-  <img src="${scoreBadge}" alt="score ${gem.gem_score} (${t.tier})">&nbsp;
-  <img src="${starsBadge}" alt="${gem.stars} stars">&nbsp;
-  <img src="${profileBadge}" alt="${profile} profile">
-</p>`;
-}
-
-function notifyOwner(gem: GemRepo, profile: string, opts: { dryRun?: boolean; force?: boolean } = {}): void {
-  const log = loadNotifyLog();
-  if (log.notified[gem.full_name] && !opts.force) {
-    process.stdout.write(`     ⏭  ${gem.full_name} already notified at ${log.notified[gem.full_name]!.issueUrl}\n`);
-    return;
-  }
-
-  // Rate limit: max 15 issues per day to stay under GitHub's radar
-  const today = new Date().toISOString().split("T")[0]!;
-  const todayCount = Object.values(log.notified).filter(n => n.date.startsWith(today)).length;
-  if (todayCount >= 15) {
-    process.stdout.write(`     🛑 Daily limit reached (${todayCount}/15) — skipping notify to protect your account\n`);
-    return;
-  }
-
-  // Neutral, dependabot-style title — visual hooks live in the body.
-  const t = tierPalette(gem.gem_score);
-  const title = `💎 Hidden Gem — your repo was added to cue's "${profile}" profile`;
-  const heroBadges = buildGemHeroBadges(gem, profile);
-  const readmeBadge = shieldsBadge("cue", `💎 hidden gem`, t.primary, { labelColor: "1e1b4b" });
-
-  // Per-repo evidence — only show signals that actually fired.
-  const evidence: string[] = [];
-  if (gem.has_skill_md) evidence.push("`SKILL.md` in repo root");
-  if (gem.has_claude_dir) evidence.push("`.claude/` directory present");
-  if (gem.has_mcp_sdk) evidence.push("uses `@modelcontextprotocol/sdk`");
-  const gemTopics = gem.topics.filter(t => ["claude-skill", "claude-code", "mcp-server", "ai-agent", "codex-plugin", "claude-code-skill", "agent-skill"].includes(t));
-  if (gemTopics.length) evidence.push(`relevant topic${gemTopics.length > 1 ? "s" : ""}: ${gemTopics.map(t => `\`${t}\``).join(", ")}`);
-  if (gem.stars >= 5 && gem.forks > 0 && gem.forks / gem.stars >= 0.1) {
-    evidence.push(`${gem.stars}★ / ${gem.forks} forks — genuine reuse ratio`);
-  }
-  const pushedDays = gem.pushed_at ? Math.floor((Date.now() - new Date(gem.pushed_at).getTime()) / 86400000) : null;
-  if (pushedDays !== null && pushedDays < 30) evidence.push(`actively maintained — last push ${pushedDays}d ago`);
-  const evidenceList = evidence.length
-    ? evidence.map(s => `- ✅ ${s}`).join("\n")
-    : "- ✅ matched cue's profile search query";
-
-  // Per-factor score breakdown for the collapsible "How it scored" details.
-  const { components } = scoreGemBreakdown(gem);
-  const breakdownRows = components
-    .map(c => `| ${c.delta > 0 ? "+" : ""}${c.delta.toFixed(1)} | ${c.label} |`)
-    .join("\n");
-
-  const body = `> **Automated, one-time notification.** Close this issue to opt out — we'll never open another on this repo.
-
-${heroBadges}
-
-<h2 align="center">💎 Your repo was added to cue's <code>${profile}</code> profile</h2>
-
-[**cue**](https://github.com/opencue/cuecards) scans GitHub for high-quality skill repos and routes them to per-profile bundles for Claude Code & Codex users. \`${gem.full_name}\` cleared the discovery threshold (score **${gem.gem_score}**, tier **${t.tier}**) and is now auto-loaded for everyone on the **\`${profile}\`** profile.
-
-## Install (one line)
-
-\`\`\`bash
-cue skills add ${gem.full_name}
-\`\`\`
-
-## Why your repo was picked
-
-${evidenceList}
-
-<details>
-<summary><strong>How the score was computed</strong> (click to expand)</summary>
-
-| Δ | Factor |
-|---:|---|
-${breakdownRows}
-| **${gem.gem_score}** | **Total** |
-
-[Full scoring rubric →](https://github.com/opencue/cuecards/blob/main/src/commands/discover.ts)
-
-</details>
-
-## Where you appear now
-
-| Channel | Status |
-|---|---|
-| \`cue discover\` results | ✅ Listed |
-| \`cue optimizer\` dashboard | ✅ Shown to all users on \`${profile}\` |
-| [\`docs/discovered.md\`](https://github.com/opencue/cuecards/blob/main/docs/discovered.md) | ✅ Indexed |
-| GitHub backlink traffic | ✅ Active |
-
-## Optional: README badge
-
-<p align="center">
-  <a href="https://github.com/opencue/cuecards"><img src="${readmeBadge}" alt="cue hidden gem"></a>
-</p>
-
-\`\`\`markdown
-[![cue hidden gem](${readmeBadge})](https://github.com/opencue/cuecards)
-\`\`\`
-
----
-
-<sub>Opened by <a href="https://github.com/opencue/cuecards"><code>cue discover install --notify</code></a>. One issue per repo, ever. To opt out, close this issue or <a href="https://github.com/opencue/cuecards/issues/new">file an issue against cue</a>.</sub>`;
-
-  if (opts.dryRun) {
-    process.stdout.write(`\n${wrap(ANSI.bold, "─── DRY RUN ───────────────────────────────────────────────────────────")}\n`);
-    process.stdout.write(`${wrap(ANSI.dim, "would post to")} ${wrap(ANSI.bold, "https://github.com/" + gem.full_name + "/issues/new")}\n\n`);
-    process.stdout.write(`${wrap(ANSI.bold, "Title:")} ${title}\n\n`);
-    process.stdout.write(`${wrap(ANSI.bold, "Body:")}\n${body}\n`);
-    process.stdout.write(`${wrap(ANSI.bold, "───────────────────────────────────────────────────────────────────────")}\n`);
-    process.stdout.write(`${wrap(ANSI.dim, "(dry-run — no issue created. Remove --dry-run to post.)")}\n\n`);
-    return;
-  }
-
-  const res = spawnSync("gh", [
-    "issue", "create",
-    "--repo", gem.full_name,
-    "--title", title,
-    "--body", body,
-  ], { encoding: "utf8", timeout: 15000 });
-
-  if (res.status === 0) {
-    const issueUrl = res.stdout.trim();
-    process.stdout.write(`     📬 Notified owner: ${issueUrl}\n`);
-    log.notified[gem.full_name] = { date: new Date().toISOString(), issueUrl };
-    saveNotifyLog(log);
-  } else {
-    process.stdout.write(`     ⚠️  Could not notify (issues may be disabled, repo private, or no gh auth)\n`);
-    if (res.stderr) process.stdout.write(`     ${wrap(ANSI.dim, res.stderr.trim().slice(0, 200))}\n`);
-  }
-}
-
-/**
- * `cue discover notify <repo>` — open a one-time GitHub issue on a specific
- * gem repo, announcing that cue indexed it. Notify-only — does NOT install
- * the skill, clone, or modify any profile.yaml. Idempotent via NOTIFY_LOG.
- */
-async function cmdNotify(repo: string | undefined, opts: { profile?: string; dryRun: boolean; force: boolean }): Promise<number> {
-  if (!repo) {
-    process.stderr.write("Usage: cue discover notify <owner/repo> [--profile <name>] [--dry-run] [--force]\n");
-    return 1;
-  }
-  if (!existsSync(cacheFile())) {
-    process.stderr.write("No cached gems. Run `cue discover search` first.\n");
-    return 1;
-  }
-  const cache: GemCache = JSON.parse(readFileSync(cacheFile(), "utf8"));
-  const gem = cache.gems.find(g => g.full_name.toLowerCase() === repo.toLowerCase());
-  if (!gem) {
-    process.stderr.write(`Gem "${repo}" not found in cache. Run \`cue discover search\` to refresh, or check spelling.\n`);
-    return 1;
-  }
-
-  const profile = opts.profile ?? gem.suggested_profiles[0] ?? "core";
-  process.stdout.write(`  📬 ${opts.dryRun ? "Dry-run" : "Notifying"}: ${wrap(ANSI.bold, gem.full_name)} → profile ${wrap(ANSI.cyan, profile)}\n`);
-  notifyOwner(gem, profile, { dryRun: opts.dryRun, force: opts.force });
   return 0;
 }
 
@@ -2093,19 +1320,12 @@ async function cmdInstall(opts: { profile?: string; minScore: number; minQuality
 
       // Add MCPs if detected by analyze
       if (gem.suggested_mcps?.length) {
-        let current = readFileSync(profileYaml, "utf8");
-        const newMcps = gem.suggested_mcps.filter(m => !current.includes(m));
-        if (newMcps.length) {
-          const mcpsMatch = current.match(/(mcps:\s*\n)([\s\S]*?)(\n\S|\n*$)/);
-          if (mcpsMatch) {
-            const mcpLines = newMcps.map(m => `  - ${m}\n`).join("");
-            current = current.replace(mcpsMatch[0], mcpsMatch[1] + mcpsMatch[2] + mcpLines + (mcpsMatch[3] ?? ""));
-          } else {
-            // No mcps section yet — add one
-            current += `\nmcps:\n${newMcps.map(m => `  - ${m}`).join("\n")}\n`;
-          }
-          writeFileSync(profileYaml, current);
-          process.stdout.write(`     ✅ Added MCPs: ${newMcps.join(", ")}\n`);
+        const added: string[] = [];
+        for (const m of gem.suggested_mcps) {
+          if (addMcpToProfileSync(profileYaml, m)) added.push(m);
+        }
+        if (added.length) {
+          process.stdout.write(`     ✅ Added MCPs: ${added.join(", ")}\n`);
         }
       }
 
@@ -2347,187 +1567,6 @@ function cmdList(opts: { json: boolean; limit: number; filter?: GemFilter; rende
 }
 
 // ---------------------------------------------------------------------------
-// Discover MCP servers on GitHub
-// ---------------------------------------------------------------------------
-
-const MCP_SEARCH_QUERIES = [
-  { q: `"@modelcontextprotocol/sdk" in:file filename:package.json`, label: "MCP SDK in package.json" },
-  { q: `topic:mcp-server`, label: "topic:mcp-server" },
-  { q: `"McpServer" in:file extension:ts`, label: "McpServer class in .ts" },
-  { q: `"StdioServerTransport" in:file extension:ts`, label: "StdioServerTransport in .ts" },
-  { q: `topic:model-context-protocol`, label: "topic:model-context-protocol" },
-];
-
-interface McpResult {
-  full_name: string;
-  name: string;
-  description: string;
-  stars: number;
-  pushed_at: string;
-  topics: string[];
-  url: string;
-  server_name: string;
-  stdio_command: string;
-  score: number;
-  suggested_profiles: string[];
-}
-
-function scoreMcp(item: any): number {
-  const now = Date.now();
-  const pushed = item.pushed_at ? new Date(item.pushed_at).getTime() : now;
-  const daysSincePush = (now - pushed) / 86400000;
-  let score = 0;
-  score += 3 * Math.exp(-daysSincePush / 60);
-  score += Math.min(2.5, Math.log(1 + (item.stargazers_count ?? 0)) * 0.5);
-  if (item.description) score += 1;
-  const topics: string[] = item.topics ?? [];
-  if (topics.includes("mcp-server") || topics.includes("model-context-protocol")) score += 2;
-  if (item.stargazers_count >= 50) score += 2;
-  if (daysSincePush > 365) score -= 3;
-  return Math.max(0, Math.round(score * 10) / 10);
-}
-
-function suggestMcpProfiles(item: any): string[] {
-  const desc = (item.description ?? "").toLowerCase();
-  const topicStr = (item.topics ?? []).join(" ").toLowerCase();
-  const name = (item.name ?? "").toLowerCase();
-  const scored: { profile: string; score: number }[] = [];
-  for (const [profile, keywords] of Object.entries(PROFILE_KEYWORDS)) {
-    let hits = 0;
-    for (const kw of keywords) {
-      const re = new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "i");
-      if (re.test(topicStr)) hits += 3;
-      if (re.test(desc)) hits += 1;
-      if (re.test(name)) hits += 2;
-    }
-    if (hits >= 3) scored.push({ profile, score: hits });
-  }
-  scored.sort((a, b) => b.score - a.score);
-  const top = scored.slice(0, 2).map(s => s.profile);
-  return top.length ? top : ["core"];
-}
-
-function extractMcpMeta(fullName: string, repoName: string): { server_name: string; stdio_command: string } {
-  // Try to get package.json for bin/name
-  const pkgRes = spawnSync("gh", ["api", `repos/${fullName}/contents/package.json`, "--jq", ".content"], {
-    encoding: "utf8", timeout: 10000,
-  });
-  let serverName = repoName.replace(/^mcp-/, "").replace(/-mcp$/, "").replace(/-server$/, "");
-  let stdioCommand = `npx ${repoName}`;
-
-  if (pkgRes.status === 0 && pkgRes.stdout.trim()) {
-    try {
-      const pkg = JSON.parse(Buffer.from(pkgRes.stdout.trim(), "base64").toString("utf8"));
-      if (pkg.name) serverName = pkg.name.replace(/^@[^/]+\//, "").replace(/^mcp-/, "").replace(/-mcp$/, "").replace(/-server$/, "");
-      if (pkg.bin) {
-        const binName = typeof pkg.bin === "string" ? repoName : Object.keys(pkg.bin)[0] ?? repoName;
-        stdioCommand = `npx -y ${pkg.name ?? repoName}`;
-        if (binName !== repoName && typeof pkg.bin !== "string") stdioCommand = `npx -y ${pkg.name ?? repoName}`;
-      } else if (pkg.scripts?.start) {
-        stdioCommand = `npx -y ${pkg.name ?? repoName}`;
-      }
-    } catch { /* keep defaults */ }
-  }
-  return { server_name: serverName, stdio_command: stdioCommand };
-}
-
-async function cmdDiscoverMcps(opts: { limit: number; minScore: number; json: boolean; profile?: string; install: boolean; dryRun: boolean }): Promise<number> {
-  process.stderr.write(`🔍 Searching GitHub for MCP server repos...\n\n`);
-
-  const seen = new Set<string>();
-  const results: McpResult[] = [];
-
-  for (const { q, label } of MCP_SEARCH_QUERIES) {
-    if (results.length >= opts.limit) break;
-    process.stderr.write(`  ⏳ ${label}...\n`);
-    const items = ghSearch(q, Math.min(30, opts.limit - results.length));
-    for (const item of items) {
-      if (seen.has(item.full_name)) continue;
-      seen.add(item.full_name);
-      const score = scoreMcp(item);
-      if (score < opts.minScore) continue;
-      const profiles = suggestMcpProfiles(item);
-      if (opts.profile && !profiles.includes(opts.profile)) continue;
-
-      const { server_name, stdio_command } = extractMcpMeta(item.full_name, item.name);
-      results.push({
-        full_name: item.full_name,
-        name: item.name,
-        description: item.description ?? "",
-        stars: item.stargazers_count ?? 0,
-        pushed_at: item.pushed_at ?? "",
-        topics: item.topics ?? [],
-        url: item.html_url ?? `https://github.com/${item.full_name}`,
-        server_name,
-        stdio_command,
-        score,
-        suggested_profiles: profiles,
-      });
-    }
-  }
-
-  results.sort((a, b) => b.score - a.score);
-  const display = results.slice(0, opts.limit);
-
-  if (opts.json) {
-    process.stdout.write(JSON.stringify(display, null, 2) + "\n");
-    return 0;
-  }
-
-  if (display.length === 0) {
-    process.stdout.write(`\n  No MCP servers found matching criteria.\n`);
-    return 0;
-  }
-
-  process.stdout.write(`\n  🎯 ${wrap(ANSI.bold, `Found ${display.length} MCP server(s)`)}\n\n`);
-
-  for (const mcp of display) {
-    const starsStr = colorStars(mcp.stars);
-    process.stdout.write(`  ${wrap(ANSI.magenta, "[MCP]")} ${wrap(ANSI.bold, mcp.full_name)}  ${starsStr}  ${wrap(tierColorFor(mcp.score), `s:${mcp.score}`)}\n`);
-    if (mcp.description) process.stdout.write(`       ${mcp.description.slice(0, 80)}\n`);
-    process.stdout.write(`       ${wrap(ANSI.cyan, `name: ${mcp.server_name}`)}  ${wrap(ANSI.dim, `cmd: ${mcp.stdio_command}`)}\n`);
-    process.stdout.write(`       ${wrap(ANSI.cyan, `→ ${mcp.suggested_profiles.join(", ")}`)}\n\n`);
-  }
-
-  if (opts.install) {
-    const targetProfile = opts.profile ?? getActiveProfile() ?? "core";
-    const profileYaml = join(repoRoot(), "profiles", targetProfile, "profile.yaml");
-    if (!existsSync(profileYaml)) {
-      process.stderr.write(`  ⚠️  Profile "${targetProfile}" not found at ${profileYaml}\n`);
-      return 1;
-    }
-
-    let content = readFileSync(profileYaml, "utf8");
-    let added = 0;
-    for (const mcp of display) {
-      if (content.includes(mcp.server_name)) {
-        process.stdout.write(`  ⏭  ${mcp.server_name} already in ${targetProfile}\n`);
-        continue;
-      }
-      if (opts.dryRun) {
-        process.stdout.write(`  [dry-run] Would add "${mcp.server_name}" to ${targetProfile}/profile.yaml mcps:\n`);
-        added++;
-        continue;
-      }
-      const mcpsMatch = content.match(/(mcps:\s*\n)([\s\S]*?)(\n\S|\n*$)/);
-      if (mcpsMatch) {
-        content = content.replace(mcpsMatch[0], mcpsMatch[1] + mcpsMatch[2] + `  - ${mcp.server_name}\n` + (mcpsMatch[3] ?? ""));
-      } else if (content.includes("mcps: []")) {
-        content = content.replace("mcps: []", `mcps:\n  - ${mcp.server_name}`);
-      } else {
-        content += `\nmcps:\n  - ${mcp.server_name}\n`;
-      }
-      added++;
-      process.stdout.write(`  ✅ Added ${mcp.server_name} to ${targetProfile}\n`);
-    }
-    if (added > 0 && !opts.dryRun) writeFileSync(profileYaml, content);
-    process.stdout.write(`\n  Done: ${added} MCP(s) ${opts.dryRun ? "would be " : ""}added to ${targetProfile}\n`);
-  }
-
-  return 0;
-}
-
-// ---------------------------------------------------------------------------
 // Router
 // ---------------------------------------------------------------------------
 
@@ -2569,7 +1608,7 @@ function parseFilter(args: string[]): GemFilter | undefined {
   const excludeOwner = flagValue(args, "--exclude-owner");
   if (excludeOwner) f.excludeOwner = excludeOwner;
   const tier = flagValue(args, "--tier");
-  if (tier) f.tier = new Set(tier.split(",").map(t => t.trim()) as any);
+  if (tier) f.tier = new Set(tier.split(",").map(t => t.trim() as "premium" | "strong" | "worth" | "tail"));
   if (args.includes("--installed")) f.installed = true;
   if (args.includes("--not-installed")) f.notInstalled = true;
   return Object.keys(f).length ? f : undefined;
