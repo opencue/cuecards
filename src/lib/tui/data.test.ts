@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import { mkdtempSync, rmSync, writeFileSync, } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { skillGroupId, skillGroupLabel, loadPreview } from "./data";
+import { skillGroupId, skillGroupLabel, loadPreview, resetTuiDataCache } from "./data";
 import type { SkillRow } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -202,5 +202,18 @@ describe("loadPreview", () => {
     const skill: SkillRow = { id: "cli-row", kind: "cli", previewBody: "" };
     const preview = await loadPreview(skill);
     expect(preview!.body).toBe("");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// resetTuiDataCache — smoke test: exported and callable without error
+// ---------------------------------------------------------------------------
+describe("resetTuiDataCache", () => {
+  test("exported and callable without throwing", () => {
+    // The caches may or may not be populated; we just verify the export exists
+    // and executing it does not throw.
+    expect(() => resetTuiDataCache()).not.toThrow();
+    // Calling it a second time must also be safe (idempotent reset).
+    expect(() => resetTuiDataCache()).not.toThrow();
   });
 });

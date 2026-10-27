@@ -5,6 +5,7 @@ import {
   formatOverheadBadge,
   formatStackTotals,
   formatTallyDelta,
+  makeTallyLoader,
   OVERHEAD_WARN_TOKENS,
   type ProfileTally,
   type TallyCounts,
@@ -162,5 +163,59 @@ describe("formatStackTotals", () => {
 
   test("plugins included when non-zero", () => {
     expect(formatStackTotals({ skills: 0, mcps: 0, plugins: 1, commands: 0 })).toBe("1 plugin");
+  });
+});
+
+describe("makeTallyLoader", () => {
+  const fakeTally = (id: string): ProfileTally => ({
+    skills: [id],
+    mcps: [],
+    plugins: [],
+    commands: [],
+  });
+
+  test("fills the map for unknown values", async () => {
+    const tallies = new Map<string, ProfileTally>();
+    const loader = makeTallyLoader(fakeTally, tallies);
+    await loader(["a", "b"]);
+    expect(tallies.has("a")).toBe(true);
+    expect(tallies.get("a")?.skills).toEqual(["a"]);
+    expect(tallies.has("b")).toBe(true);
+  });
+
+  test("skips values already present in the map", async () => {
+    const sentinel: ProfileTally = { skills: ["original"], mcps: [], plugins: [], commands: [] };
+    const tallies = new Map<string, ProfileTally>([["a", sentinel]]);
+    const loader = makeTallyLoader(fakeTally, tallies);
+    await loader(["a"]);
+    // Must not overwrite the existing entry.
+    expect(tallies.get("a")).toBe(sentinel);
+  });
+
+  test("no-op when resourceTally is undefined", async () => {
+    const tallies = new Map<string, ProfileTally>();
+    const loader = makeTallyLoader(undefined, tallies);
+    await loader(["a", "b"]);
+    expect(tallies.size).toBe(0);
+  });
+
+  test("silently drops profiles that throw from resourceTally", async () => {
+    const tallies = new Map<string, ProfileTally>();
+    const loader = makeTallyLoader((id) => {
+      if (id === "bad") throw new Error("load failed");
+      return fakeTally(id);
+    }, tallies);
+    await loader(["good", "bad"]);
+    expect(tallies.has("good")).toBe(true);
+    expect(tallies.has("bad")).toBe(false);
+  });
+
+  test("deduplicates calls — loading same value twice stays once", async () => {
+    let calls = 0;
+    const tallies = new Map<string, ProfileTally>();
+    const loader = makeTallyLoader((id) => { calls++; return fakeTally(id); }, tallies);
+    await loader(["x"]);
+    await loader(["x"]); // already cached, should skip
+    expect(calls).toBe(1);
   });
 });

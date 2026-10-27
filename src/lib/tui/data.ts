@@ -54,15 +54,6 @@ function profilesRoot(): string {
   return join(repoRoot(), "profiles");
 }
 
-function skillRefId(ref: unknown): string {
-  if (typeof ref === "string") return ref;
-  if (ref && typeof ref === "object" && "id" in ref) {
-    const id = (ref as { id: unknown }).id;
-    if (typeof id === "string") return id;
-  }
-  return "";
-}
-
 async function profileRow(name: string): Promise<ProfileRow | null> {
   try {
     const p = await loadProfile(name);
@@ -88,12 +79,7 @@ async function profileRow(name: string): Promise<ProfileRow | null> {
 
 export async function listProfileRows(): Promise<ProfileRow[]> {
   const names = await listProfiles();
-  const rows: ProfileRow[] = [];
-  for (const n of names) {
-    const row = await profileRow(n);
-    if (row) rows.push(row);
-  }
-  return rows;
+  return (await Promise.all(names.map(profileRow))).filter((r): r is ProfileRow => r !== null);
 }
 
 /**
@@ -109,7 +95,7 @@ async function coreSkillIds(): Promise<Set<string>> {
   try {
     const core = await loadProfile("core");
     for (const ref of core.skills.local ?? []) {
-      const id = skillRefId(ref);
+      const id = mcpRefId(ref);
       if (id) ids.add(id);
     }
     for (const npx of core.skills.npx ?? []) {
@@ -206,7 +192,7 @@ export async function skillsFor(profileName: string): Promise<SkillRow[]> {
     const rows: SkillRow[] = [];
     const root = skillsRoot();
     for (const ref of p.skills.local ?? []) {
-      const id = skillRefId(ref);
+      const id = mcpRefId(ref);
       if (!id) continue;
       rows.push({
         id,
@@ -462,4 +448,14 @@ export async function loadPreview(skill: SkillRow): Promise<Preview | null> {
     return { title: skill.id, body: skill.previewBody };
   }
   return { title: skill.id, body: "(npx skill — preview not loaded)" };
+}
+
+/**
+ * Reset all per-session singleton caches. Call in test `afterEach` hooks to
+ * ensure isolation between tests that load profiles.
+ */
+export function resetTuiDataCache(): void {
+  _coreSkillIds = null;
+  _scannedPlugins = null;
+  _coreMcpIds = null;
 }
