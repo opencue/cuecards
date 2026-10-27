@@ -17,15 +17,16 @@
  * an isolated tmpdir — production code never reaches into the real `~/.claude`
  * tree directly.
  *
- * NOTE: A11 (`scan-plugins.ts`) implements similar plugin-root discovery. By
- * the fleet contract we let that duplication appear now and extract a shared
- * helper in a later cleanup pass if the patterns actually converge — so this
- * module keeps a small private helper rather than reaching across boundaries.
+ * NOTE: A11 (`scan-plugins.ts`) implements similar plugin-root discovery.
+ * Common filesystem helpers live in `./fs-utils`; see that module for notes
+ * on how the pattern converged.
  */
-import { readdir, stat } from "node:fs/promises";
+import { readdir } from "node:fs/promises";
 import type { Dirent } from "node:fs";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
+
+import { expandTilde, isDirectory, isFile, pathExists } from "./fs-utils";
 
 import {
   ProfileError,
@@ -133,39 +134,6 @@ export async function resolvePlugins(
 export function resolvePluginsRoot(explicit?: string): string {
   const raw = explicit ?? process.env.SOUL_PLUGINS_ROOT ?? join(homedir(), ".claude", "plugins");
   return resolve(expandTilde(raw));
-}
-
-function expandTilde(p: string): string {
-  if (p === "~") return homedir();
-  if (p.startsWith("~/")) return join(homedir(), p.slice(2));
-  return p;
-}
-
-async function pathExists(p: string): Promise<boolean> {
-  try {
-    await stat(p);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function isDirectory(p: string): Promise<boolean> {
-  try {
-    const st = await stat(p);
-    return st.isDirectory();
-  } catch {
-    return false;
-  }
-}
-
-async function isFile(p: string): Promise<boolean> {
-  try {
-    const st = await stat(p);
-    return st.isFile();
-  } catch {
-    return false;
-  }
 }
 
 /**

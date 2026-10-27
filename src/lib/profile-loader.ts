@@ -12,7 +12,7 @@
  * from `profiles/_types.ts`.
  */
 
-import { readdir, readFile, stat } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import type { Dirent } from "node:fs";
 import { join } from "node:path";
 
@@ -20,6 +20,7 @@ import Ajv, { type ErrorObject, type ValidateFunction } from "ajv";
 import { parse as parseYaml } from "yaml";
 
 import { profilesDir, repoRoot } from "./repo-root";
+import { pathExists } from "./fs-utils";
 
 import {
   InheritanceCycle,
@@ -43,8 +44,17 @@ import {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** Inheritance depth limit, inclusive. depth == number of ancestors. */
+/** Inheritance depth limit for single-parent chains, inclusive. depth == number of ancestors. */
 const MAX_INHERITANCE_DEPTH = 3;
+
+/**
+ * Inheritance depth limit for multi-parent (composite-part) chains.
+ * Multi-parent profiles fan out laterally across several independent chains
+ * rather than stacking ancestor upon ancestor, so a slightly higher limit
+ * is intentional: the total chain can include ancestors contributed by each
+ * parent branch, not just a single linear stack.
+ */
+const MAX_MULTI_PARENT_DEPTH = MAX_INHERITANCE_DEPTH + 2; // = 5
 
 /** Pattern a plugin id must match: <plugin>@<marketplace>. */
 const PLUGIN_PATTERN = /^[a-z0-9][a-z0-9-]*@[a-z0-9][a-z0-9_-]*$/;
@@ -147,15 +157,6 @@ export function profileYamlPath(name: string): string {
     /* fall through to main */
   }
   return main;
-}
-
-async function pathExists(p: string): Promise<boolean> {
-  try {
-    await stat(p);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 // ---------------------------------------------------------------------------
@@ -524,7 +525,7 @@ async function buildInheritanceChain(name: string): Promise<Profile[]> {
       }
       // Total chain: parents (in order) + self
       const totalChain = [...allParents, profile];
-      if (totalChain.length - 1 > MAX_INHERITANCE_DEPTH + 2) {
+      if (totalChain.length - 1 > MAX_MULTI_PARENT_DEPTH) {
         throw new InheritanceDepthExceeded(totalChain.map((p) => p.name));
       }
       return totalChain;
@@ -879,11 +880,11 @@ export async function loadProfile(name: string): Promise<ResolvedProfile> {
     const chain = await buildInheritanceChain(parts[0]!);
     return foldChain(chain);
   }
-  const resolved: ResolvedProfile[] = [];
-  for (const part of parts) {
-    const chain = await buildInheritanceChain(part);
-    resolved.push(foldChain(chain));
-  }
+  // Load each part's inheritance chain in parallel — the parts are fully
+  // independent and there is no shared mutable state between them.
+  const resolved = await Promise.all(
+    parts.map((part) => buildInheritanceChain(part).then(foldChain)),
+  );
   // Name the composite from the deduped parts, not the raw selector: a duped
   // selector ("a+b+a") loads correct (once-each) resources but must not name
   // a redundant runtime dir / CLAUDE.md path — that splits the materializer

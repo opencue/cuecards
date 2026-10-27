@@ -9,8 +9,6 @@ import {
   mkdir,
   readFile,
   readdir,
-  realpath,
-  stat,
   writeFile,
 } from "node:fs/promises";
 import type { Dirent } from "node:fs";
@@ -22,6 +20,7 @@ import { parse as parseYaml } from "yaml";
 
 import type { NpxSkillRef, Profile } from "../../profiles/_types";
 import { repoRoot as cueRepoRoot } from "./repo-root";
+import { expandTilde, isDirectory, isFile, pathExists, safeRealpath } from "./fs-utils";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
@@ -898,9 +897,15 @@ function isRepoRef(value: string): boolean {
   return /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(value);
 }
 
+/** Maximum directory depth for the SKILL.md walk — prevents runaway on symlink
+ *  loops or unexpectedly deep trees. Skills live at most 3 levels deep under
+ *  the skills root (`<category>/<slug>/SKILL.md`), so 5 is a generous ceiling. */
+const FIND_SKILL_MAX_DEPTH = 5;
+
 async function findSkillMarkdown(root: string): Promise<string[]> {
   const out: string[] = [];
-  async function walk(dir: string): Promise<void> {
+  async function walk(dir: string, depth: number): Promise<void> {
+    if (depth > FIND_SKILL_MAX_DEPTH) return;
     let entries: Dirent[];
     try {
       entries = await readdir(dir, { withFileTypes: true });
@@ -910,13 +915,13 @@ async function findSkillMarkdown(root: string): Promise<string[]> {
     for (const entry of entries) {
       const path = join(dir, entry.name);
       if (entry.isDirectory()) {
-        await walk(path);
+        await walk(path, depth + 1);
       } else if (entry.isFile() && entry.name === "SKILL.md") {
         out.push(path);
       }
     }
   }
-  await walk(root);
+  await walk(root, 0);
   return out.sort();
 }
 
@@ -1105,46 +1110,6 @@ function displayRef(skill: DiscoveredSkill): string {
   return `npx:${skill.name}`;
 }
 
-async function pathExists(path: string): Promise<boolean> {
-  try {
-    await stat(path);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function isDirectory(path: string): Promise<boolean> {
-  try {
-    const s = await stat(path);
-    return s.isDirectory();
-  } catch {
-    return false;
-  }
-}
-
-async function isFile(path: string): Promise<boolean> {
-  try {
-    const s = await stat(path);
-    return s.isFile();
-  } catch {
-    return false;
-  }
-}
-
-async function safeRealpath(path: string): Promise<string> {
-  try {
-    return await realpath(path);
-  } catch {
-    return path;
-  }
-}
-
-function expandTilde(path: string): string {
-  if (path === "~") return homedir();
-  if (path.startsWith("~/")) return join(homedir(), path.slice(2));
-  return path;
-}
 
 function stringOrUndefined(value: unknown): string | undefined {
   return typeof value === "string" ? value : undefined;

@@ -17,10 +17,10 @@
  * E3: referenced skill or MCP cannot be resolved.
  */
 
-import { mkdir, mkdtemp, readdir, readFile, rm } from "node:fs/promises";
+import { access, mkdir, mkdtemp, readdir, readFile, rm } from "node:fs/promises";
 import { existsSync, type Dirent } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, isAbsolute, join } from "node:path";
 
 import { parse as parseYaml } from "yaml";
 
@@ -200,9 +200,11 @@ export async function lintAllProfiles(
   opts: ProfileLinterOptions = {},
 ): Promise<ProfileLintResult[]> {
   const names = await withProfilesDir(opts.profilesDir, () => listProfiles());
+  // Read the name-collision map once for all profiles (O(N) instead of O(N²)).
+  const nameRecords = await readRawProfileNames(profilesDir(opts));
   const results: ProfileLintResult[] = [];
   for (const name of names) {
-    results.push(await lintProfile(name, opts));
+    results.push(await lintProfile(name, opts, nameRecords));
   }
   return results;
 }
@@ -210,6 +212,8 @@ export async function lintAllProfiles(
 export async function lintProfile(
   profileName: string,
   opts: ProfileLinterOptions = {},
+  /** Pre-computed name records (avoids redundant disk reads when called from lintAllProfiles). */
+  nameRecords?: RawProfileRecord[],
 ): Promise<ProfileLintResult> {
   const result: ProfileLintResult = {
     profileName,
@@ -217,7 +221,7 @@ export async function lintProfile(
     issues: [],
   };
 
-  await checkNameCollisions(profileName, result, opts);
+  await checkNameCollisions(profileName, result, opts, nameRecords);
 
   let resolved: ResolvedProfile;
   try {
@@ -316,9 +320,6 @@ async function checkResourceRefs(
   result: ProfileLintResult,
   _opts: ProfileLinterOptions,
 ): Promise<void> {
-  const { access } = await import("node:fs/promises");
-  const { isAbsolute } = await import("node:path");
-
   const buckets: { label: string; refs: string[]; root: string; addExt: boolean }[] = [
     { label: "rules",    refs: profile.rules,    root: DEFAULT_RULES_ROOT,    addExt: true },
     { label: "commands", refs: profile.commands, root: DEFAULT_COMMANDS_ROOT, addExt: true },
@@ -381,8 +382,10 @@ async function checkNameCollisions(
   profileName: string,
   result: ProfileLintResult,
   opts: ProfileLinterOptions,
+  /** Pre-computed records from lintAllProfiles; if absent, read from disk. */
+  precomputed?: RawProfileRecord[],
 ): Promise<void> {
-  const records = await readRawProfileNames(profilesDir(opts));
+  const records = precomputed ?? await readRawProfileNames(profilesDir(opts));
   const declaredByDir = new Map(records.map((record) => [record.dirName, record.declaredName]));
   const targetDeclaredName = declaredByDir.get(profileName);
   if (!targetDeclaredName) return;
