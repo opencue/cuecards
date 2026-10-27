@@ -39,7 +39,7 @@ skills:
     - nvidia/skill-evolution
     - nvidia/aiq-research
     - content/doc
-    - content/pdf
+    # content/pdf removed: anthropics/skills:pdf declared explicitly below (line 56-57); local copy caused W4 collision
     - obsidian/obsidian-markdown
     - obsidian/obsidian-cli
     - obsidian/obsidian-bases

@@ -9,7 +9,7 @@ recommends:
 
 skills:
   local:
-    - content/pdf              # PDF report generation for stakeholders
+    # content/pdf removed: anthropics/skills:pdf (inherited from core) is sufficient; local copy caused W4 collision
   npx:
     # --- google/skills: official Google Cloud skill library ---
     - repo: google/skills

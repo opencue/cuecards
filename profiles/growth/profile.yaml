@@ -74,7 +74,7 @@ skills:
     - gstack/landing-report
     - content/stop-slop
     - content/anti-formula
-    - content/pdf
+    # content/pdf removed: anthropics/skills:pdf declared in npx section below; local copy caused W4 collision
     - review/api-tester
     - gstack/ship
     - gstack/review
