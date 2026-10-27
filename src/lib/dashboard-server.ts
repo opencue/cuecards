@@ -15,6 +15,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { readFile, stat as statAsync } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { configDir } from "./config-paths";
 import { collectLocalInventory } from "./local-inventory";
@@ -65,7 +66,7 @@ import { mergeProfilesDir, serveProfileIcon, servePluginIcon, contentTypeFor } f
 
 export { computeVersionInfo, semverGt } from "./dashboard-version";
 
-const REPO_ROOT = resolve(new URL(import.meta.url).pathname, "..", "..", "..");
+const REPO_ROOT = resolve(fileURLToPath(import.meta.url), "..", "..", "..");
 const WEB_DIST = join(REPO_ROOT, "web", "dist");
 
 /** Standard envelope so the UI doesn't have to special-case per-endpoint shape. */

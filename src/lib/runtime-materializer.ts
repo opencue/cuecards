@@ -140,6 +140,11 @@ export interface MaterializeInput {
   disabledMcpIds?: string[];
   /** Test seam for loopback proxy health; production defaults to the HTTP probe. */
   proxyHealthCheck?: (url: string) => Promise<boolean>;
+  /** Override the path to context-mode.json. When set, `withContextMode` reads
+   *  this path instead of `configDir()/context-mode.json`. Pass a non-existent
+   *  path in tests to prevent the user's real installation from leaking into the
+   *  test runtime. */
+  contextModePath?: string;
 }
 
 export interface MaterializeOutput {
@@ -1120,7 +1125,7 @@ async function resolveAndLinkSkills(
 export async function materializeRuntime(
   input: MaterializeInput,
 ): Promise<MaterializeOutput> {
-  input = await withContextMode(input);
+  input = await withContextMode(input, input.contextModePath);
   const runtimeDir = join(
     input.runtimeRoot,
     runtimePathKey(input.runtimeKey ?? input.profile.name),

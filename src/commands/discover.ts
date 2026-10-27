@@ -27,6 +27,10 @@ import { gateFreshSkill } from "./security";
 import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import { repoRoot } from "../lib/repo-root";
 import {
+  PROFILE_KEYWORDS as _PROFILE_KEYWORDS,
+  STACK_PROFILES as _STACK_PROFILES,
+} from "../lib/stack-profiles";
+import {
   ANSI,
   colorize as wrap,
   colorStars,
@@ -48,8 +52,11 @@ export { buildGemHeroBadges };
 // Cache path resolved lazily so tests can redirect via XDG_CONFIG_HOME without
 // re-importing the module. (Bun shares module state across test files; const
 // values captured at import time wouldn't see runtime env changes.)
-function cacheDir(): string {
-  return join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", "discover");
+// Note: uses XDG_CONFIG_HOME (not XDG_CACHE_HOME) for historical reasons;
+// the existing tests set XDG_CONFIG_HOME to redirect the cache path.
+function discoverCacheDir(): string {
+  const xdg = process.env.XDG_CONFIG_HOME;
+  return join(xdg && xdg.length > 0 ? xdg : join(homedir(), ".config"), "cue", "discover");
 }
 /**
  * Exported so tests seeding a fake gems cache (e.g. to prove a caller skips
@@ -57,7 +64,7 @@ function cacheDir(): string {
  * module reads, instead of hand-deriving a parallel path string that can
  * silently drift out of sync with this one.
  */
-export function cacheFile(): string { return join(cacheDir(), "gems.json"); }
+export function cacheFile(): string { return join(discoverCacheDir(), "gems.json"); }
 const DEFAULT_EXPORT = join(repoRoot(), "docs", "discovered.md");
 
 // ---------------------------------------------------------------------------
@@ -483,23 +490,8 @@ export function applyFilters(gems: GemRepo[], f: GemFilter): GemRepo[] {
 // Profile suggestion (keyword matching)
 // ---------------------------------------------------------------------------
 
-export const PROFILE_KEYWORDS: Record<string, string[]> = {
-  backend: ["api", "server", "express", "fastapi", "django", "flask", "webhook", "database", "sql", "graphql", "deploy", "docker", "kubernetes", "microservice", "redis", "postgres", "mongo", "supabase", "prisma"],
-  frontend: ["react", "vue", "svelte", "nextjs", "css", "tailwind", "component", "browser", "dom", "ui", "ux", "responsive", "animation", "spa"],
-  nextjs: ["nextjs", "next.js", "vercel", "app-router", "server-component", "next-auth"],
-  "python": ["python", "fastapi", "django", "flask", "sqlalchemy", "pytest", "pip", "uvicorn", "pydantic", "celery"],
-  rust: ["rust", "cargo", "tokio", "crate", "wasm", "async-std"],
-  "go-api": ["golang", "gin", "echo", "chi", "gorm", "goroutine"],
-  cybersecurity: ["security", "pentest", "vulnerability", "exploit", "forensic", "dfir", "red-team", "blue-team", "malware", "audit", "cve", "owasp", "threat", "osint", "recon", "dork", "credential", "phishing"],
-  "creative-media": ["image", "video", "media", "design", "brand", "visual", "photo", "illustration", "figma", "canvas"],
-  "docs-writer": ["documentation", "markdown", "docs", "writing", "obsidian", "knowledge-base", "wiki", "readme", "technical-writing", "docusaurus"],
-  research: ["research", "paper", "literature", "citation", "academic", "notebook", "arxiv", "scholar", "study", "analysis"],
-  threejs: ["three.js", "threejs", "webgl", "shader", "3d", "scene", "geometry"],
-  video: ["video", "ffmpeg", "transcription", "frame", "subtitle", "stream", "recording", "youtube"],
-  marketing: ["seo", "marketing", "copywriting", "growth", "conversion", "analytics", "campaign", "funnel", "landing-page"],
-  "medusa-dev": ["medusa", "ecommerce", "storefront", "shop", "cart", "checkout", "product-catalog", "amazon", "seller"],
-  "fleet-control": ["multi-agent", "orchestrat", "coordinator", "dispatch", "parallel", "swarm", "colony"],
-};
+// Re-exported from lib/stack-profiles for backward compat; import from there directly.
+export const PROFILE_KEYWORDS: Record<string, string[]> = _PROFILE_KEYWORDS;
 
 // `core` is the fallback — don't match it via keywords, only assign when nothing else matches.
 
@@ -516,9 +508,8 @@ const NICHE_SUBJECT_HINTS: RegExp[] = [
   /\b(bilibili|spotify|reddit|bbc|wechat|notion|jira|servicenow|obsidian|home\s?assistant|farming\s?simulator|gospel|grant)\b/i,
 ];
 
-export const STACK_PROFILES: ReadonlySet<string> = new Set([
-  "frontend", "backend", "nextjs", "python", "rust", "go-api", "threejs",
-]);
+// Re-exported from lib/stack-profiles for backward compat; import from there directly.
+export const STACK_PROFILES: ReadonlySet<string> = _STACK_PROFILES;
 
 export function suggestProfiles(repo: GemRepo): string[] {
   const desc = (repo.description ?? "").toLowerCase();
@@ -924,7 +915,7 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
   gems.sort((a, b) => b.gem_score - a.gem_score);
 
   // Cache results (BEFORE filtering — cache is the raw scan, filters are display-time)
-  mkdirSync(cacheDir(), { recursive: true });
+  mkdirSync(discoverCacheDir(), { recursive: true });
   const cache: GemCache = { updated: new Date().toISOString(), gems };
   writeFileSync(cacheFile(), JSON.stringify(cache, null, 2));
 

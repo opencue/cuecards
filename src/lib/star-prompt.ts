@@ -3,33 +3,34 @@
  * Stores flag in ~/.config/cue/starred so it only asks once.
  */
 
-import { existsSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
+import { configDir } from "./config-paths";
 
-const CONFIG_DIR = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue");
-const FLAG_FILE = join(CONFIG_DIR, ".star-prompted");
-const ANALYTICS_FILE = join(CONFIG_DIR, "analytics.jsonl");
 const REPO = "opencue/cuecards";
 const SESSION_THRESHOLD = 10;
 
 export async function maybePromptStar(): Promise<void> {
+  const cfg = configDir();
+  const flagFile = join(cfg, ".star-prompted");
+  const analyticsFile = join(cfg, "analytics.jsonl");
+
   // Only prompt once ever
-  if (existsSync(FLAG_FILE)) return;
+  if (existsSync(flagFile)) return;
   // Only in interactive TTY
   if (!process.stdin.isTTY || !process.stdout.isTTY) return;
 
   // Only after N sessions
   let sessionCount = 0;
   try {
-    const content = require("node:fs").readFileSync(ANALYTICS_FILE, "utf8");
+    const content = readFileSync(analyticsFile, "utf8");
     sessionCount = (content.match(/"event":"start"/g) ?? []).length;
   } catch {}
   if (sessionCount < SESSION_THRESHOLD) return;
   // Check if gh CLI is available
   const ghCheck = spawnSync("gh", ["--version"], { encoding: "utf8", timeout: 3000 });
-  if (ghCheck.status !== 0) { markDone(); return; }
+  if (ghCheck.status !== 0) { markDone(flagFile, cfg); return; }
 
   // Check if already starred
   const starCheck = spawnSync("gh", ["api", `user/starred/${REPO}`, "--silent"], {
@@ -37,7 +38,7 @@ export async function maybePromptStar(): Promise<void> {
   });
   if (starCheck.status === 0) {
     // Already starred
-    markDone();
+    markDone(flagFile, cfg);
     return;
   }
 
@@ -82,10 +83,10 @@ export async function maybePromptStar(): Promise<void> {
     process.stdout.write("\n");
   }
 
-  markDone();
+  markDone(flagFile, cfg);
 }
 
-function markDone(): void {
-  mkdirSync(CONFIG_DIR, { recursive: true });
-  writeFileSync(FLAG_FILE, new Date().toISOString());
+function markDone(flagFile: string, cfg: string): void {
+  mkdirSync(cfg, { recursive: true });
+  writeFileSync(flagFile, new Date().toISOString());
 }
