@@ -11,7 +11,6 @@
  * public interface would be a privacy footgun.
  */
 
-import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { readFile, stat as statAsync } from "node:fs/promises";
 import { homedir } from "node:os";
@@ -45,7 +44,7 @@ import { collectPermissions } from "./permissions";
 import { reposForProfile, resolveRepoStars } from "./repos";
 import { parseSkillFromContent, parseSkillFromDir } from "./skill-router";
 import { resolveLocalSkill } from "./resolver-local";
-import { resolveProfileForCwd } from "./cwd-resolver";
+import { resolveProfileForCwd, resolveActiveProfile } from "./cwd-resolver";
 import { quickDiagnose } from "../commands/status";
 import { isEnabled as telemetryEnabled } from "./telemetry-consent";
 import { collectUserPrompts } from "../commands/trigger-gaps";
@@ -103,13 +102,12 @@ export async function handleStatus(): Promise<ApiResult<unknown>> {
     homeDir: homedir(),
     configDir: configDir(),
   });
-  const hasProfile = resolved.source !== "none";
   let profile: ProfilePartSummary | null = null;
   let parts: ProfilePartSummary[] = [];
   let warnings: unknown[] = [];
   let gateRun = null;
-  if (hasProfile) {
-    const profileName = (resolved as { profile: string }).profile;
+  if (resolved.source !== "none") {
+    const profileName = resolved.profile;
     try {
       const loaded = await loadProfile(profileName);
       profile = {
@@ -221,10 +219,15 @@ async function serveProfileIcon(rawName: string | null): Promise<Response> {
   const dir = mergeProfilesDir();
   const file = resolve(join(dir, name, iconImage));
   if (!file.startsWith(resolve(dir))) return new Response("forbidden", { status: 403 });
-  if (!existsSync(file) || !statSync(file).isFile()) return new Response("not found", { status: 404 });
-  return new Response(readFileSync(file), {
-    headers: { "Content-Type": contentTypeFor(file), "Cache-Control": "max-age=3600" },
-  });
+  try {
+    const st = await statAsync(file);
+    if (!st.isFile()) return new Response("not found", { status: 404 });
+    return new Response(await readFile(file), {
+      headers: { "Content-Type": contentTypeFor(file), "Cache-Control": "max-age=3600" },
+    });
+  } catch {
+    return new Response("not found", { status: 404 });
+  }
 }
 
 /** Directory holding generated plugin logos, keyed by `<plugin-name>.png`. */
@@ -264,10 +267,15 @@ async function servePluginIcon(rawId: string | null): Promise<Response> {
     if (iconImage && !iconImage.includes("/") && !iconImage.includes("\\") && !iconImage.includes("..")) {
       const pdir = mergeProfilesDir();
       const pfile = resolve(join(pdir, name, iconImage));
-      if (pfile.startsWith(resolve(pdir)) && existsSync(pfile) && statSync(pfile).isFile()) {
-        return new Response(readFileSync(pfile), {
-          headers: { "Content-Type": contentTypeFor(pfile), "Cache-Control": "max-age=3600" },
-        });
+      if (pfile.startsWith(resolve(pdir))) {
+        try {
+          const st = await statAsync(pfile);
+          if (st.isFile()) {
+            return new Response(await readFile(pfile), {
+              headers: { "Content-Type": contentTypeFor(pfile), "Cache-Control": "max-age=3600" },
+            });
+          }
+        } catch { /* fall through to generated art */ }
       }
     }
   } catch {
@@ -278,11 +286,14 @@ async function servePluginIcon(rawId: string | null): Promise<Response> {
   const gdir = pluginLogosDir();
   const gfile = resolve(join(gdir, name + ".png"));
   if (!gfile.startsWith(resolve(gdir))) return new Response("forbidden", { status: 403 });
-  if (existsSync(gfile) && statSync(gfile).isFile()) {
-    return new Response(readFileSync(gfile), {
-      headers: { "Content-Type": "image/png", "Cache-Control": "max-age=3600" },
-    });
-  }
+  try {
+    const st = await statAsync(gfile);
+    if (st.isFile()) {
+      return new Response(await readFile(gfile), {
+        headers: { "Content-Type": "image/png", "Cache-Control": "max-age=3600" },
+      });
+    }
+  } catch { /* not found */ }
   return new Response("not found", { status: 404 });
 }
 
@@ -590,12 +601,7 @@ export async function handleProfileDetail(params: URLSearchParams): Promise<ApiR
   // /status), so the studio opens on the active profile with no query param.
   let name = resolveProfileQuery(params.get("profile"));
   if (!name) {
-    const resolved = await resolveProfileForCwd({
-      cwd: process.cwd(),
-      homeDir: homedir(),
-      configDir: configDir(),
-    });
-    if (resolved.source !== "none") name = (resolved as { profile: string }).profile;
+    name = await resolveActiveProfile();
   }
   if (!name) return { ok: false, error: "no-profile" };
 
@@ -838,8 +844,7 @@ function readHooksFile(path: string, source: FlatHook["source"], profileName: st
 async function resolveHooksProfile(profileParam: string | null): Promise<string | null> {
   const explicit = resolveProfileQuery(profileParam);
   if (explicit) return explicit;
-  const resolved = await resolveProfileForCwd({ cwd: process.cwd(), homeDir: homedir(), configDir: configDir() });
-  return resolved.source !== "none" ? (resolved as { profile: string }).profile : null;
+  return resolveActiveProfile();
 }
 
 /** All hooks (global + this profile's runtime), deduped by id — the shared
@@ -1094,16 +1099,17 @@ export async function handleTriggerGaps(params: URLSearchParams): Promise<ApiRes
   }
   try {
     const profile = await loadProfile(name);
-    const skills = [];
     const skillRefs = (profile.skills?.local ?? [])
       .map((s) => typeof s === "string" ? s : s.id)
       .filter((id) => !id.includes("*"));
-    for (const id of skillRefs) {
-      try {
-        const dir = await resolveLocalSkill(id);
-        skills.push(await parseSkillFromDir(id, dir));
-      } catch { /* skip unresolvable */ }
-    }
+    const skills = (await Promise.all(
+      skillRefs.map(async (id) => {
+        try {
+          const dir = await resolveLocalSkill(id);
+          return await parseSkillFromDir(id, dir);
+        } catch { return null; }
+      })
+    )).filter((s): s is NonNullable<typeof s> => s !== null);
     const userPrompts = collectUserPrompts(sinceDays);
     const usage = computeSkillUsage(profile, { windowDays: sinceDays });
     const hits = new Map<string, number>();
@@ -1337,19 +1343,19 @@ function registryIndexPath(): string {
 const REGISTRY_URL = "https://opencue.github.io/cue/registry/index.json";
 
 /**
- * Load the shared registry — local doc first, then a short-timeout curl fetch,
+ * Load the shared registry — local doc first, then a short-timeout fetch,
  * mirroring `loadRegistry` in src/commands/marketplace.ts. Any failure is
  * tolerated (returns null) so the local-library part of the feed still renders
  * offline.
  */
-function loadMarketRegistry(): MarketRegistry | null {
+async function loadMarketRegistry(): Promise<MarketRegistry | null> {
   const path = registryIndexPath();
   if (existsSync(path)) {
     try { return JSON.parse(readFileSync(path, "utf8")) as MarketRegistry; } catch { /* fall through */ }
   }
   try {
-    const res = spawnSync("curl", ["-sfL", "--max-time", "5", REGISTRY_URL], { encoding: "utf8", timeout: 8000 });
-    if (res.status === 0 && res.stdout) return JSON.parse(res.stdout) as MarketRegistry;
+    const res = await fetch(REGISTRY_URL, { signal: AbortSignal.timeout(5000) });
+    if (res.ok) return (await res.json()) as MarketRegistry;
   } catch { /* offline / blocked */ }
   return null;
 }
@@ -1588,7 +1594,7 @@ export async function handleMarket(): Promise<ApiResult<unknown>> {
     return { ok: true, data: marketCache.data };
   }
 
-  const reg = loadMarketRegistry();
+  const reg = await loadMarketRegistry();
   const regItems = registryItems(reg);
   const registryMcpIds = new Set(
     regItems.filter((i) => i.type === "mcp").map((i) => i.id.slice("mcp:".length)),
@@ -1683,15 +1689,27 @@ export async function handleWorkflowSave(body: unknown): Promise<ApiResult<unkno
 // names that key in `reveal`. Loopback-only trust boundary (see binding note).
 
 /** Project folders whose `.env` the studio may read. `~` expands to $HOME.
- *  Mirrors the design's folder list; the canonical home for the user's repos. */
-const ENV_FOLDER_DEFS: ReadonlyArray<{ path: string; tag: string }> = [
-  { path: "~/Documents/cue", tag: "cue" },
-  { path: "~/Documents/recodee/authmux", tag: "authmux" },
-  { path: "~/Documents/x-growth-bot", tag: "x-growth-bot" },
-  { path: "~/work/medusa", tag: "medusa" },
-  { path: "~/Documents/medusa-shops/marva", tag: "marva" },
-  { path: "~/Documents/gitguardex", tag: "gitguardex" },
-];
+ *  Configured via `~/.config/cue/env-folders.json`; falls back to a minimal
+ *  built-in default when no config file exists. */
+function loadEnvFolderDefs(): ReadonlyArray<{ path: string; tag: string }> {
+  const cfgPath = join(configDir(), "env-folders.json");
+  try {
+    if (existsSync(cfgPath)) {
+      const parsed = JSON.parse(readFileSync(cfgPath, "utf8")) as unknown;
+      if (
+        Array.isArray(parsed) &&
+        parsed.every(
+          (e): e is { path: string; tag: string } =>
+            typeof e === "object" && e !== null &&
+            typeof (e as Record<string, unknown>).path === "string" &&
+            typeof (e as Record<string, unknown>).tag === "string",
+        )
+      ) return parsed;
+    }
+  } catch { /* fall through to default */ }
+  return [{ path: "~/Documents/cue", tag: "cue" }];
+}
+const ENV_FOLDER_DEFS = loadEnvFolderDefs();
 
 const expandHome = (p: string): string => (p.startsWith("~/") ? join(homedir(), p.slice(2)) : p);
 
@@ -1733,12 +1751,15 @@ function parseEnvText(raw: string, revealKey: string): EnvVarRow[] {
 
 /** GET /api/v1/env/folders → the allowlisted project folders + their var counts. */
 export async function handleEnvFolders(): Promise<ApiResult<unknown>> {
-  const folders = ENV_FOLDER_DEFS.map((f) => {
+  const folders = await Promise.all(ENV_FOLDER_DEFS.map(async (f) => {
     const abs = join(expandHome(f.path), ".env");
     let count = 0;
-    try { if (existsSync(abs)) count = parseEnvText(readFileSync(abs, "utf8"), "").length; } catch { /* unreadable → 0 */ }
+    try {
+      const raw = await readFile(abs, "utf8");
+      count = parseEnvText(raw, "").length;
+    } catch { /* unreadable or missing → 0 */ }
     return { path: f.path, tag: f.tag, count };
-  });
+  }));
   return { ok: true, data: { folders } };
 }
 
@@ -1751,9 +1772,15 @@ export async function handleEnv(params: URLSearchParams): Promise<ApiResult<unkn
   const def = ENV_FOLDER_DEFS.find((f) => f.path === folder);
   if (!def) return { ok: false, error: "unknown-folder" };
   const abs = join(expandHome(def.path), ".env");
-  if (!existsSync(abs)) return { ok: true, data: { folder: def.path, tag: def.tag, exists: false, vars: [] } };
-  let raw = "";
-  try { raw = readFileSync(abs, "utf8"); } catch (err) { return { ok: false, error: `read failed: ${(err as Error).message}` }; }
+  let raw: string;
+  try {
+    raw = await readFile(abs, "utf8");
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === "ENOENT") {
+      return { ok: true, data: { folder: def.path, tag: def.tag, exists: false, vars: [] } };
+    }
+    return { ok: false, error: `read failed: ${(err as Error).message}` };
+  }
   return { ok: true, data: { folder: def.path, tag: def.tag, exists: true, vars: parseEnvText(raw, reveal) } };
 }
 
@@ -1766,12 +1793,7 @@ export async function handleEnv(params: URLSearchParams): Promise<ApiResult<unkn
 export async function handleRepos(params: URLSearchParams): Promise<ApiResult<unknown>> {
   let name = resolveProfileQuery(params.get("profile"));
   if (!name) {
-    const resolved = await resolveProfileForCwd({
-      cwd: process.cwd(),
-      homeDir: homedir(),
-      configDir: configDir(),
-    });
-    if (resolved.source !== "none") name = (resolved as { profile: string }).profile;
+    name = await resolveActiveProfile();
   }
   if (!name) return { ok: false, error: "no-profile" };
 
@@ -1820,6 +1842,21 @@ const ROUTES: Record<string, (params: URLSearchParams) => Promise<ApiResult<unkn
   "/api/v1/repos":              (p) => handleRepos(p),
 };
 
+/** Parse request body as JSON, returning null on malformed input. */
+async function parseJsonBody<T>(req: Request): Promise<T | null> {
+  try { return (await req.json()) as T; } catch { return null; }
+}
+
+/** POST write-side routes (parallel to ROUTES for GET). Each handler receives
+ *  the parsed (or null) body and returns an ApiResult envelope. */
+const POST_ROUTES: Record<string, (body: unknown) => Promise<ApiResult<unknown>>> = {
+  "/api/v1/merge/preview":  (b) => handleMergePreview(b as Parameters<typeof handleMergePreview>[0]),
+  "/api/v1/merge/save":     (b) => handleMergeSave(b as Parameters<typeof handleMergeSave>[0]),
+  "/api/v1/mcps/add":       (b) => handleMcpAdd(b as Parameters<typeof handleMcpAdd>[0]),
+  "/api/v1/market/install": (b) => handleMarketInstall(b as Parameters<typeof handleMarketInstall>[0]),
+  "/api/v1/workflows/save": (b) => handleWorkflowSave(b),
+};
+
 function contentTypeFor(path: string): string {
   if (path.endsWith(".html")) return "text/html; charset=utf-8";
   if (path.endsWith(".js"))   return "application/javascript; charset=utf-8";
@@ -1855,45 +1892,17 @@ export function createHandler(): (req: Request) => Promise<Response> {
     // is the v1 trust boundary — anyone hitting these from localhost is
     // assumed to be the user.
     if (req.method === "POST" && url.pathname === "/api/v1/sessions/kill") {
-      let body: { pid?: number; signal?: NodeJS.Signals } | null = null;
-      try { body = (await req.json()) as typeof body; } catch { /* malformed */ }
+      const body = await parseJsonBody<{ pid?: number; signal?: NodeJS.Signals }>(req);
       const result = await handleKillSession(body);
       return Response.json(result, { status: result.ok ? 200 : 400 });
     }
 
-    if (req.method === "POST" && url.pathname === "/api/v1/merge/preview") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMergePreview(body as Parameters<typeof handleMergePreview>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/merge/save") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMergeSave(body as Parameters<typeof handleMergeSave>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/mcps/add") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMcpAdd(body as Parameters<typeof handleMcpAdd>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/market/install") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMarketInstall(body as Parameters<typeof handleMarketInstall>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/workflows/save") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleWorkflowSave(body);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
+    if (req.method === "POST") {
+      const postHandler = POST_ROUTES[url.pathname];
+      if (postHandler) {
+        const result = await postHandler(await parseJsonBody(req));
+        return Response.json(result, { status: result.ok ? 200 : 400 });
+      }
     }
 
     // Live activity stream (Server-Sent Events, not JSON): pushes the timeline
