@@ -113,6 +113,9 @@ process.stdout.write(`auto selection coverage    ${pct(baselineMetrics.autoSelec
 process.stdout.write(`wrong auto selections      ${String(baselineMetrics.wrongAutoSelections).padEnd(15)}${structuredMetrics.wrongAutoSelections}\n`);
 process.stdout.write(`p95 latency                ${baselineMetrics.p95LatencyMs.toFixed(1).padEnd(15)}${structuredMetrics.p95LatencyMs.toFixed(1)} ms\n`);
 
+// autoSelectionCoverage is displayed above but intentionally excluded from the
+// regression guard: precision=0 (already guarded) implies coverage=0 for the
+// same failure mode, so a separate coverage term would be redundant.
 const failed =
   structuredMetrics.top1Rate < baselineMetrics.top1Rate ||
   structuredMetrics.top2Rate < baselineMetrics.top2Rate ||

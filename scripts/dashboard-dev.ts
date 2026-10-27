@@ -50,7 +50,8 @@ const dashboard = spawn(
 );
 pipe("dash", COLORS.magenta, dashboard);
 
-// Tiny stagger so the API banner prints first — visual clarity in mixed logs.
+// Cosmetic stagger: the API banner prints first in mixed logs.
+// This delay is not a correctness dependency — vite starts safely regardless.
 await new Promise((r) => setTimeout(r, 250));
 
 const vite = spawn(

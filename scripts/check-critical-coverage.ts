@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 interface Threshold {
   lines: number;
   functions: number;
+  /** Optional branch-coverage floor (BRF/BRH). Add once a baseline is measured. */
+  branches?: number;
 }
 
 const thresholds: Record<string, Threshold> = {
@@ -10,13 +12,23 @@ const thresholds: Record<string, Threshold> = {
   "src/lib/cwd-resolver.ts": { lines: 90, functions: 90 },
   "src/lib/profile-loader.ts": { lines: 80, functions: 80 },
   "src/lib/runtime-materializer.ts": { lines: 80, functions: 75 },
-  // launch.ts still contains orchestration exercised by e2e tests outside this
-  // focused run. This floor locks its current unit-tested surface while it is split.
+  // TODO: raise these floors as launch.ts helpers are extracted into testable
+  // units. The helper split is deferred; tracking issue to be filed. The e2e
+  // tests cover more surface but run outside this focused critical suite.
   "src/commands/launch.ts": { lines: 18, functions: 75 },
 };
 
 const lcovPath = process.argv[2] ?? "coverage/critical/lcov.info";
-const records = readFileSync(lcovPath, "utf8").split("end_of_record");
+let rawLcov: string;
+try {
+  rawLcov = readFileSync(lcovPath, "utf8");
+} catch {
+  process.stderr.write(
+    `coverage report not found at ${lcovPath} — run bun run test:critical:coverage first\n`,
+  );
+  process.exit(1);
+}
+const records = rawLcov.split("end_of_record");
 let failed = false;
 
 for (const [file, minimum] of Object.entries(thresholds)) {
@@ -32,13 +44,20 @@ for (const [file, minimum] of Object.entries(thresholds)) {
   const lineHit = value("LH");
   const functionTotal = value("FNF");
   const functionHit = value("FNH");
+  const branchTotal = value("BRF");
+  const branchHit = value("BRH");
   const lines = lineTotal === 0 ? 0 : (lineHit * 100) / lineTotal;
   const functions = functionTotal === 0 ? 0 : (functionHit * 100) / functionTotal;
-  const ok = lines >= minimum.lines && functions >= minimum.functions;
-  process.stdout.write(
+  const branches = branchTotal === 0 ? 0 : (branchHit * 100) / branchTotal;
+  const branchOk = minimum.branches === undefined || branches >= minimum.branches;
+  const ok = lines >= minimum.lines && functions >= minimum.functions && branchOk;
+  let line =
     `${ok ? "✓" : "✗"} ${file}: lines ${lines.toFixed(1)}% (>=${minimum.lines}%), ` +
-      `functions ${functions.toFixed(1)}% (>=${minimum.functions}%)\n`,
-  );
+    `functions ${functions.toFixed(1)}% (>=${minimum.functions}%)`;
+  if (minimum.branches !== undefined) {
+    line += `, branches ${branches.toFixed(1)}% (>=${minimum.branches}%)`;
+  }
+  process.stdout.write(`${line}\n`);
   if (!ok) failed = true;
 }
 
