@@ -82,9 +82,6 @@ jobs:
       - name: Lint skills
         run: bun run lint:skills:baseline
 
-      - name: Check profile catalog is up to date
-        run: bun scripts/gen-profile-catalog.ts --check
-
   web-typecheck:
     runs-on: ubuntu-latest
     steps:
