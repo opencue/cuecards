@@ -2034,6 +2034,110 @@ async function applyMcpPruning(
   return { profile, mcpDisabledIds };
 }
 
+
+/**
+ * Emit token-budget and context-budget warnings to stderr.
+ * Returns the always-on token count for the tmux badge, or undefined when
+ * the profile is too small to bother (≤5 skills) or measurement fails.
+ * Extracted from run() (finding 0/77/104).
+ */
+async function emitTokenBudgetWarning(
+  profile: ResolvedProfile,
+  profileName: string,
+): Promise<number | undefined> {
+  // Token budget warning — accurate measurement, actionable advice
+  const skillCount = profile.skills.local.length;
+
+  // Skill → MCP dependency check (non-fatal)
+  try {
+    const { detectMissingDependencies } =
+      await import("../lib/skill-dependencies");
+    const skillIds = profile.skills.local.map((s) => s.id);
+    const mcpIds = profile.mcps.map((m) => m.id);
+    const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
+    if (missing.length > 0) {
+      const unique = [...new Set(missing.map((m) => m.mcpId))];
+      const c = colorFns();
+      process.stderr.write(
+        `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
+      );
+    }
+  } catch {
+    /* non-fatal */
+  }
+
+  // Tracks the breakdown so the tmux badge below can reuse what the CLI
+  // banner already computed. Undefined when skillCount is too small to bother
+  // — in that case the badge just isn't set, which is fine.
+  let alwaysOnForBadge: number | undefined;
+  if (skillCount > 5) {
+    try {
+      const skillsRoot = buildSkillsRoot();
+      const tokenCache = new Map<string, SkillTokens>();
+      const tokensForSkill = (id: string): SkillTokens => {
+        const cached = tokenCache.get(id);
+        if (cached) return cached;
+        let result: SkillTokens = { frontmatter: 0, body: 0 };
+        try {
+          const src = readFileSync(join(skillsRoot, id, "SKILL.md"), "utf8");
+          const { frontmatter, body } = splitSkillBytes(src);
+          result = {
+            frontmatter: Math.ceil(frontmatter / 4),
+            body: Math.ceil(body / 4),
+          };
+        } catch {
+          /* skill missing on disk; counts as 0 */
+        }
+        tokenCache.set(id, result);
+        return result;
+      };
+
+      // For composite selectors, load each part so we can attribute tokens.
+      const partNames = parseProfileSelector(profileName);
+      let parts: ResolvedProfile[] | undefined;
+      if (partNames.length > 1) {
+        try {
+          parts = await Promise.all(partNames.map((p) => loadProfile(p)));
+        } catch {
+          /* breakdown unavailable, total still shown */
+        }
+      }
+
+      const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
+      alwaysOnForBadge = breakdown.alwaysOn;
+      const lines = formatTokenWarning(breakdown);
+
+      // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
+      // should stay under 50% of the model's context window so the other half
+      // is free for the conversation. Window precedence: profile
+      // contextWindow/model → env (CUE_CONTEXT_WINDOW/CUE_MODEL) → 256K default.
+      const budget = computeContextBudget({
+        skillTokens: breakdown.alwaysOn,
+        mcpCount: profile.mcps.length,
+        window: profile.contextWindow,
+        model: profile.model,
+      });
+      const bc = colorFns();
+      lines.push(
+        ...formatContextBudgetWarning(budget, {
+          yellow: bc.yellow,
+          bold: bc.bold,
+          dim: bc.dim,
+        }),
+      );
+
+      if (lines.length > 0) {
+        process.stderr.write("\n");
+        for (const l of lines) process.stderr.write(`${l}\n`);
+        process.stderr.write("\n");
+      }
+    } catch {
+      /* non-fatal */
+    }
+  }
+  return alwaysOnForBadge;
+}
+
 export async function run(args: string[]): Promise<number> {
   // Recursion guard. See MAX_LAUNCH_DEPTH for why this counts instead of
   // tripping on the first nested launch.
@@ -2956,96 +3060,7 @@ export async function run(args: string[]): Promise<number> {
     return 127;
   }
 
-  // Token budget warning — accurate measurement, actionable advice
-  const skillCount = profile.skills.local.length;
-
-  // Skill → MCP dependency check (non-fatal)
-  try {
-    const { detectMissingDependencies } =
-      await import("../lib/skill-dependencies");
-    const skillIds = profile.skills.local.map((s) => s.id);
-    const mcpIds = profile.mcps.map((m) => m.id);
-    const missing = detectMissingDependencies(profileName, skillIds, mcpIds);
-    if (missing.length > 0) {
-      const unique = [...new Set(missing.map((m) => m.mcpId))];
-      const c = colorFns();
-      process.stderr.write(
-        `${c.yellow(`⚠ missing MCP${unique.length > 1 ? "s" : ""}: ${unique.join(", ")}`)} ${c.dim(`→ cue mcps add ${unique[0]} --profile ${profileName}`)}\n`,
-      );
-    }
-  } catch {
-    /* non-fatal */
-  }
-
-  // Tracks the breakdown so the tmux badge below can reuse what the CLI
-  // banner already computed. Undefined when skillCount is too small to bother
-  // — in that case the badge just isn't set, which is fine.
-  let alwaysOnForBadge: number | undefined;
-  if (skillCount > 5) {
-    try {
-      const skillsRoot = buildSkillsRoot();
-      const tokenCache = new Map<string, SkillTokens>();
-      const tokensForSkill = (id: string): SkillTokens => {
-        const cached = tokenCache.get(id);
-        if (cached) return cached;
-        let result: SkillTokens = { frontmatter: 0, body: 0 };
-        try {
-          const src = readFileSync(join(skillsRoot, id, "SKILL.md"), "utf8");
-          const { frontmatter, body } = splitSkillBytes(src);
-          result = {
-            frontmatter: Math.ceil(frontmatter / 4),
-            body: Math.ceil(body / 4),
-          };
-        } catch {
-          /* skill missing on disk; counts as 0 */
-        }
-        tokenCache.set(id, result);
-        return result;
-      };
-
-      // For composite selectors, load each part so we can attribute tokens.
-      const partNames = parseProfileSelector(profileName);
-      let parts: ResolvedProfile[] | undefined;
-      if (partNames.length > 1) {
-        try {
-          parts = await Promise.all(partNames.map((p) => loadProfile(p)));
-        } catch {
-          /* breakdown unavailable, total still shown */
-        }
-      }
-
-      const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
-      alwaysOnForBadge = breakdown.alwaysOn;
-      const lines = formatTokenWarning(breakdown);
-
-      // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
-      // should stay under 50% of the model's context window so the other half
-      // is free for the conversation. Window precedence: profile
-      // contextWindow/model → env (CUE_CONTEXT_WINDOW/CUE_MODEL) → 256K default.
-      const budget = computeContextBudget({
-        skillTokens: breakdown.alwaysOn,
-        mcpCount: profile.mcps.length,
-        window: profile.contextWindow,
-        model: profile.model,
-      });
-      const bc = colorFns();
-      lines.push(
-        ...formatContextBudgetWarning(budget, {
-          yellow: bc.yellow,
-          bold: bc.bold,
-          dim: bc.dim,
-        }),
-      );
-
-      if (lines.length > 0) {
-        process.stderr.write("\n");
-        for (const l of lines) process.stderr.write(`${l}\n`);
-        process.stderr.write("\n");
-      }
-    } catch {
-      /* non-fatal */
-    }
-  }
+  const alwaysOnForBadge = await emitTokenBudgetWarning(profile, profileName);
 
   // First-run: prompt to star the repo (once ever, non-blocking)
   try {
