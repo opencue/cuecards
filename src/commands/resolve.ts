@@ -414,3 +414,23 @@ export async function run(args: string[]): Promise<number> {
   console.log(renderHuman(rows, profile, opts.query, note));
   return rows.length > 0 ? 0 : 1;
 }
+
+// ---------------------------------------------------------------------------
+// Test helpers — not part of the public CLI surface
+// ---------------------------------------------------------------------------
+
+/** @internal Expose internals for unit tests without polluting the public API. */
+export const __test = {
+  deepResolve,
+  toRow,
+  /** Convenience factory for an empty active-profile stub. */
+  emptyProfile: (name = "(test)"): ActiveProfile => ({
+    name,
+    loaded: new Set<string>(),
+    mcps: new Set<string>(),
+  }),
+} satisfies {
+  deepResolve: typeof deepResolve;
+  toRow: typeof toRow;
+  emptyProfile: (name?: string) => ActiveProfile;
+};

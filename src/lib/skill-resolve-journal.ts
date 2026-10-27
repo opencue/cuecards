@@ -15,16 +15,20 @@
  * All writes are best-effort — a failed append never fails a resolution.
  */
 
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
-import { homedir } from "node:os";
-import { dirname, join } from "node:path";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { configDir } from "./config-paths";
 
 /** Mirrors `comboHistoryPath()` — same config dir, same XDG handling. */
 export function resolveJournalPath(): string {
-  const xdg = process.env.XDG_CONFIG_HOME;
-  const base = xdg && xdg.length > 0 ? xdg : join(homedir(), ".config");
-  return join(base, "cue", "skill-resolve.jsonl");
+  return join(configDir(), "skill-resolve.jsonl");
 }
+
+/** Maximum journal size before `resolveCounts` skips the read (best-effort guard). */
+const MAX_JOURNAL_BYTES = 1 * 1024 * 1024; // 1 MB
+
+/** True once the journal directory has been created in this process. */
+let journalDirEnsured = false;
 
 export type SkillResolutionStage = "surfaced" | "loaded" | "invoked" | "completed";
 
@@ -45,7 +49,10 @@ export interface ResolveRecord {
 export function recordResolve(rec: ResolveRecord): void {
   try {
     const path = resolveJournalPath();
-    mkdirSync(dirname(path), { recursive: true });
+    if (!journalDirEnsured) {
+      mkdirSync(configDir(), { recursive: true });
+      journalDirEnsured = true;
+    }
     appendFileSync(path, `${JSON.stringify(rec)}\n`);
   } catch {
     /* best-effort */
@@ -67,6 +74,14 @@ export function resolveCounts(
   const stages = opts.stages ?? new Set<SkillResolutionStage>(["invoked"]);
   const path = resolveJournalPath();
   if (!existsSync(path)) return counts;
+
+  // Skip large journals to avoid blocking the launch critical path.
+  // A journal this big is unusual and suggests an anomalous write pattern.
+  try {
+    if (statSync(path).size > MAX_JOURNAL_BYTES) return counts;
+  } catch {
+    return counts;
+  }
 
   let raw = "";
   try {

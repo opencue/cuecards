@@ -117,7 +117,7 @@ async function resolveProfileArg(args: string[]): Promise<string | undefined> {
   if (arg) return arg;
   try {
     const r = await resolveProfileForCwd({ cwd: process.cwd(), homeDir: homedir(), configDir: join(homedir(), ".config", "cue") });
-    if (r.source !== "none") return (r as any).profile;
+    if (r.source !== "none") return r.profile;
   } catch {}
   return undefined;
 }

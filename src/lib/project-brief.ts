@@ -391,7 +391,7 @@ export function scanCiCommands(cwd: string, probe: BriefProbe): string[] {
   return out;
 }
 
-function parseJson(raw: string | null): Record<string, any> | null {
+function parseJson(raw: string | null): Record<string, unknown> | null {
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw);

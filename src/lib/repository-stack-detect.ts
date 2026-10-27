@@ -137,10 +137,31 @@ export function decideAutoSelection(
 }
 
 let cachedProfiles: Promise<SuggestProfile[]> | null = null;
+/** Timestamp (ms) when `cachedProfiles` was last populated, 0 means empty. */
+let cachedAt = 0;
+/** Cache TTL: 60 s is long enough for a long-lived dashboard server to be
+ *  responsive to `cue share install` / `cue init` without a full restart. */
+const CACHE_TTL_MS = 60_000;
+
+/**
+ * Discard the in-memory profile list so the next call to `loadSuggestProfiles`
+ * re-reads from disk. Call this after installing or removing profiles.
+ */
+export function invalidateSuggestProfileCache(): void {
+  cachedProfiles = null;
+  cachedAt = 0;
+}
 
 /** Load only suggestion metadata; full profile resolution is too expensive here. */
 export async function loadSuggestProfiles(): Promise<SuggestProfile[]> {
+  // Expire a stale cache so long-lived processes (dashboard server) pick up
+  // profiles installed via `cue share install` or `cue init` without a restart.
+  if (cachedProfiles && Date.now() - cachedAt >= CACHE_TTL_MS) {
+    cachedProfiles = null;
+    cachedAt = 0;
+  }
   if (!cachedProfiles) {
+    cachedAt = Date.now();
     cachedProfiles = listProfiles()
       .then(async (names) => {
         const rawByName = new Map<string, Profile>();
@@ -188,6 +209,7 @@ export async function loadSuggestProfiles(): Promise<SuggestProfile[]> {
       })
       .catch((error: unknown) => {
         cachedProfiles = null;
+        cachedAt = 0;
         throw error;
       });
   }

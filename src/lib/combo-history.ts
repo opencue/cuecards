@@ -14,15 +14,13 @@
  */
 
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
-import { homedir } from "node:os";
 import { dirname, join } from "node:path";
+import { configDir } from "./config-paths";
 import { repoScopeMatcher, type RepoScopeOptions } from "./repo-scope";
 
 /** Resolved path mirrors `pair-suggestions.sessionLogPath` (same config dir). */
 export function comboHistoryPath(): string {
-  const xdg = process.env.XDG_CONFIG_HOME;
-  const base = xdg && xdg.length > 0 ? xdg : join(homedir(), ".config");
-  return join(base, "cue", "combo-history.jsonl");
+  return join(configDir(), "combo-history.jsonl");
 }
 
 /** One recorded combo. `profile` is the full composite selector ("a+b+c") so
