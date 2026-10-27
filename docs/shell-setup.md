@@ -3,7 +3,7 @@
 How the `claude`/`codex` shims work, per shell. `cue setup` does all of this for
 you — this page is for debugging or doing it by hand.
 
-`cue setup` (or `cue shell install` on its own) writes the `~/.config/cue/shims/claude` shim and the PATH line for it. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
+`cue shell install` writes the `~/.config/cue/shims/claude` shim and the PATH line for it. `cue setup` does all of this plus profile pinning and a telemetry opt-in prompt — prefer it for a first install. Two more lines round out the experience — drop them in your `.bashrc` / `.zshrc` / fish config:
 
 ```bash
 eval "$(cue shell hook)"   # auto-switch profile when you cd into a project (bash/zsh/fish, auto-detected)
