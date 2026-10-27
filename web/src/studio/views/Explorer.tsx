@@ -141,16 +141,19 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
   const jumpLine = (i: number) => { const el = scrollRef.current; if (!el) return; const rows = el.querySelectorAll(".ed-row"); const row = rows[i] as HTMLElement | undefined; if (row) el.scrollTop = row.offsetTop - 12; };
   // Scroll to a line and flash it for ~2.6s. Forces Preview (the highlight rows
   // only exist there); defers a tick when leaving Edit so they paint first.
-  const flashLine = (i: number) => {
-    if (i < 0) return;
+  // Returns a cancel function so callers (useEffect cleanup) can abort the
+  // deferred scroll+flash on rapid re-trigger or unmount.
+  const flashLine = (i: number): (() => void) => {
+    if (i < 0) return () => {};
     const wasEdit = mode === "edit";
     if (wasEdit) setMode("preview");
-    setTimeout(() => {
+    const t = setTimeout(() => {
       jumpLine(i);
       setHlLine(i);
       if (hlTimer.current) clearTimeout(hlTimer.current);
       hlTimer.current = setTimeout(() => setHlLine(null), 2600);
     }, wasEdit ? 90 : 0);
+    return () => clearTimeout(t);
   };
 
   // Open a target requested from search / details cross-links. When it carries
@@ -167,7 +170,7 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
     const b = sk ? (edits[sk.id] ?? sk.body) : "";
     const i = findCliLine(b, cli);
     if (i < 0) return;
-    flashLine(i);
+    return flashLine(i);
   }, [pendingOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Reset scroll + clear any stale CLI highlight when the active tab changes.
