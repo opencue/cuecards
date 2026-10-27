@@ -36,7 +36,7 @@ import {
 } from "./claude-classifier";
 import { cacheDir } from "./config-paths";
 import { resolveLocalSkill } from "./resolver-local";
-import { parseMetadataFromContent } from "../commands/optimizer";
+import { parseMetadataFromContent } from "./skill-parser";
 
 // Skills that survive every subset filter. They're operational, not domain-
 // specific, and pruning them changes how the agent behaves more than it

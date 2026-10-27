@@ -14,7 +14,7 @@ import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { parseCLIsFromContent, parseMetadataFromContent } from "../commands/optimizer";
+import { parseCLIsFromContent, parseMetadataFromContent } from "./skill-parser";
 
 // ---------------------------------------------------------------------------
 // Per-CLI install command lookup (used by R006).
@@ -491,6 +491,31 @@ function lineOf(content: string, offset: number): number {
 }
 
 /**
+ * Build a sorted array of newline positions for `content`. O(n) once.
+ * Pass to `lineFromIndex` for O(log n) per subsequent lookup — use when
+ * `lineOf` would be called many times on the same content (e.g. ruleR009).
+ */
+function buildLineIndex(content: string): number[] {
+  const newlines: number[] = [];
+  for (let i = 0; i < content.length; i++) {
+    if (content[i] === "\n") newlines.push(i);
+  }
+  return newlines;
+}
+
+/** O(log n) line lookup against a precomputed `buildLineIndex` result. */
+function lineFromIndex(lineIndex: number[], offset: number): number {
+  let lo = 0;
+  let hi = lineIndex.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (lineIndex[mid]! < offset) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo + 1; // 1-indexed
+}
+
+/**
  * Replace every em dash in prose (skipping frontmatter, fenced code blocks,
  * and inline code) with ", ". Surrounding whitespace is collapsed so
  * `foo — bar` becomes `foo, bar`, not `foo,  bar`. Idempotent.
@@ -531,13 +556,19 @@ function ruleR009(content: string): Diagnostic[] {
   const prose = stripCodeAndFrontmatter(content);
   const diagnostics: Diagnostic[] = [];
 
+  // Precompute once — ruleR009 calls lineOf up to 26 times on the same
+  // content (1 em-dash + 19 BANNED_WORDS + 5 BANNED_PHRASES + 1 leverage).
+  // O(n) build once + O(log n) per lookup instead of 26 × O(n) scans.
+  const lineIdx = buildLineIndex(content);
+  const lineAt = (offset: number) => lineFromIndex(lineIdx, offset);
+
   const emDashIdx = prose.indexOf("—");
   if (emDashIdx !== -1) {
     diagnostics.push({
       rule: "R009",
       severity: "warning",
       message: "Em dash found in prose. Voice rules ban it; use commas, periods, or \"...\". Wrap legitimate uses in backticks to exempt.",
-      line: lineOf(content, emDashIdx),
+      line: lineAt(emDashIdx),
       fix: fixEmDashesInProse,
     });
   }
@@ -548,7 +579,7 @@ function ruleR009(content: string): Diagnostic[] {
     const re = new RegExp(`\\b${word}\\b`, "i");
     const m = re.exec(prose);
     if (m && m.index !== undefined) {
-      flaggedWords.push({ word, line: lineOf(content, m.index) });
+      flaggedWords.push({ word, line: lineAt(m.index) });
     }
   }
   if (flaggedWords.length > 0) {
@@ -569,7 +600,7 @@ function ruleR009(content: string): Diagnostic[] {
         rule: "R009",
         severity: "warning",
         message: `Banned phrase "${phrase}" — voice rules call this hype. Cut or rewrite.`,
-        line: lineOf(content, idx),
+        line: lineAt(idx),
       });
     }
   }
@@ -584,7 +615,7 @@ function ruleR009(content: string): Diagnostic[] {
       rule: "R009",
       severity: "warning",
       message: '"leverage" used as a verb — voice rules ban it. Use "use" or "rely on".',
-      line: lineOf(content, lv.index),
+      line: lineAt(lv.index),
     });
   }
 
