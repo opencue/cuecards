@@ -41,7 +41,7 @@ describe("AAS profile organizer", () => {
       keywords: [],
     };
 
-    expect(parseAasTaxonomy({ version: 1, domains: [general] })).toEqual([general]);
+    expect(parseAasTaxonomy({ version: 1, domains: [general] }).domains).toEqual([general]);
     expect(() => parseAasTaxonomy({
       version: 1,
       domains: [

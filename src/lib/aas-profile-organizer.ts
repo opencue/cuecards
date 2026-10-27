@@ -166,7 +166,22 @@ function parseCatalogCluster(raw: unknown, domainId: string, index: number): Cat
   };
 }
 
-export function parseAasTaxonomy(raw: unknown): readonly CatalogDomain[] {
+export interface ParsedAasTaxonomy {
+  domains: readonly CatalogDomain[];
+  overrides: Map<string, CatalogAssignmentOverride>;
+  shadowed: Map<string, string>;
+}
+
+/**
+ * Parse and validate the raw YAML object for the AAS taxonomy.
+ *
+ * Returns all three maps in one call so callers do not need to separately
+ * invoke `parseTaxonomyOverrides` and `parseTaxonomyShadowed` — the previous
+ * pattern called those functions twice (once here for validation, once in
+ * `loadAasTaxonomy` to capture the return values), causing redundant work on
+ * every module load.
+ */
+export function parseAasTaxonomy(raw: unknown): ParsedAasTaxonomy {
   if (raw === null || typeof raw !== "object" || Array.isArray(raw)) {
     throw new Error("AAS taxonomy must be an object.");
   }
@@ -216,9 +231,9 @@ export function parseAasTaxonomy(raw: unknown): readonly CatalogDomain[] {
     });
   }
   if (!domainIds.has("general")) throw new Error("AAS taxonomy must include a general domain.");
-  parseTaxonomyOverrides(root, domains);
-  parseTaxonomyShadowed(root);
-  return domains;
+  const overrides = parseTaxonomyOverrides(root, domains);
+  const shadowed = parseTaxonomyShadowed(root);
+  return { domains, overrides, shadowed };
 }
 
 function parseTaxonomyOverrides(
@@ -286,12 +301,7 @@ function loadAasTaxonomy(
 } {
   try {
     const raw = parseYaml(readFileSync(path, "utf8"));
-    const domains = parseAasTaxonomy(raw);
-    return {
-      domains,
-      overrides: parseTaxonomyOverrides(raw as Record<string, unknown>, domains),
-      shadowed: parseTaxonomyShadowed(raw as Record<string, unknown>),
-    };
+    return parseAasTaxonomy(raw);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw new Error(`Cannot load AAS taxonomy at ${path}: ${message}`);
