@@ -477,6 +477,321 @@ async function symlinkResources(
   }
 }
 
+/**
+ * Build and write the CLAUDE.md (or AGENTS.md) memory-file stamp for a
+ * materialised runtime.  Extracted from the 921-line materializeRuntimeUnlocked
+ * to keep the orchestrator as a thin sequencer.
+ */
+async function buildMemoryFileStamp(
+  tmpDir: string,
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  input: Pick<MaterializeInput, "skillSourceLookup" | "userClaudeMd">,
+  personaIncludesText: string,
+): Promise<void> {
+  const profileRules = profile.rules ?? [];
+  const profileCommands = profile.commands ?? [];
+  const profileSubagents = profile.subagents ?? [];
+
+  const iconStr = profile.icon ?? "";
+  const skillsList = (profile.skills?.local ?? [])
+    .map((s) => (typeof s === "string" ? s : s.id))
+    .filter((s) => !s.includes("*"));
+  const mcpsList = (profile.mcps ?? []).map((m) =>
+    typeof m === "string" ? m : m.id,
+  );
+
+  let stamp =
+    `<!-- cue: profile=${profile.name} icon=${iconStr} -->\n` +
+    `# Active Profile: ${iconStr ? iconStr + " " : ""}${profile.name}\n\n` +
+    `> ${profile.description}\n\n`;
+
+  // Phase 1: Persona — multi-line role-priming defining who the agent IS.
+  // Goes above the mechanical "Your Role" block so it primes interpretation
+  // of everything that follows. Profiles without a persona keep the old
+  // generic block (backwards-compatible).
+  const profilePersona = profile.persona ?? "";
+
+  // persona_includes: shared snippets prepended to the persona. Lets
+  // cross-profile policies (Integrity Protocol, voice rules) live in one
+  // file in resources/personas/ and fan out via the profile chain.
+  const fullPersona = (personaIncludesText + profilePersona).trim();
+  if (fullPersona) {
+    stamp += `## Your Expertise\n\n${fullPersona}\n\n`;
+  }
+
+  // Workspace context — inject active workspace's context into persona
+  if (hasWorkspaces(profile.name)) {
+    const activeWs = getActiveWorkspace(profile.name);
+    if (activeWs) {
+      const overrides = computeOverrides(profile.name, activeWs);
+      if (overrides?.personaPrefix) {
+        stamp += overrides.personaPrefix;
+      }
+    }
+  }
+
+  // Skill router — auto-built capability + trigger tables that prime Claude
+  // to reach for skills proactively (capability) and reactively (triggers)
+  // instead of freestyling. Parsed from each skill's SKILL.md frontmatter;
+  // skills with weak descriptions land in the "Other skills" tail and are
+  // flagged by the linter (W6/W7/W8).
+  const routerParsed: ParsedSkill[] = [];
+  for (const id of skillsList) {
+    try {
+      const dir = await input.skillSourceLookup(id);
+      routerParsed.push(await parseSkillFromDir(id, dir));
+    } catch {
+      // Skill source not on disk (e.g. plugin skill resolved at runtime) —
+      // include a placeholder so it surfaces in "Other skills" rather than
+      // silently vanishing.
+      const fallbackName = id.split("/").pop() ?? id;
+      routerParsed.push({
+        id,
+        name: fallbackName,
+        triggers: [],
+        capability: "",
+        capabilityExplicit: false,
+        whenToInvoke: [],
+        notFor: "",
+        rawDescription: "",
+        quality: "none",
+        missing: true,
+      });
+    }
+  }
+  const routerOverrides =
+    (
+      profile as {
+        personaRouting?: {
+          phrase?: string;
+          capability?: string;
+          skill: string;
+          note?: string;
+        }[];
+      }
+    ).personaRouting ?? [];
+
+  // Telemetry-driven router compaction. Read the same skill-usage data that
+  // `cue skill-report` shows; collapse zombies (0 hits in last 30d) into a
+  // single compact tail in the rendered router. Saves ~40% of router-block
+  // tokens on heavy profiles. Honors `CUE_LEAN=1` to drop zombies entirely.
+  // Best-effort: any failure (telemetry off, log unreadable) → render full.
+  let zombieIds: string[] = [];
+  try {
+    const { computeSkillUsage } = await import("./skill-report");
+    const usage = computeSkillUsage(profile, { windowDays: 30 });
+    zombieIds = usage.filter((u) => u.zombie).map((u) => u.id);
+  } catch {
+    /* render full router on any failure */
+  }
+  const lean = process.env.CUE_LEAN === "1" || process.env.CUE_LEAN === "true";
+  // Default-on: the trigger-phrases table duplicates each SKILL.md's own
+  // frontmatter, and on heavy profiles it pushes the materialized CLAUDE.md
+  // past Claude Code's 40KB perf-warning threshold. Opt back in with
+  // CUE_TRIGGER_PHRASES=1.
+  const omitTriggerPhrases = !(
+    process.env.CUE_TRIGGER_PHRASES === "1" ||
+    process.env.CUE_TRIGGER_PHRASES === "true"
+  );
+  // Cap the capability table so heavy profiles (60+ skills) don't blow past
+  // Claude Code's 40KB CLAUDE.md perf threshold. Overflow skills stay listed
+  // under "Available Skills" and loadable on demand. Override with
+  // CUE_MAX_CAPABILITY_ROWS (0 disables the cap).
+  const maxCapEnv = Number(process.env.CUE_MAX_CAPABILITY_ROWS);
+  const maxCapabilityRows =
+    Number.isFinite(maxCapEnv) && maxCapEnv >= 0 ? maxCapEnv : 50;
+  const routerBlock = renderRouter(routerParsed, {
+    overrides: routerOverrides,
+    zombies: zombieIds,
+    lean,
+    omitTriggerPhrases,
+    maxCapabilityRows,
+  });
+  if (routerBlock) stamp += routerBlock;
+
+  // Role identity — tell Claude what it is
+  stamp +=
+    `## Your Role\n\n` +
+    `You are operating as **${profile.name}** — ${profile.description.toLowerCase()}.\n` +
+    `Focus on tasks within this domain. Use the skills loaded in this profile.\n\n`;
+
+  // Skills summary
+  if (skillsList.length > 0) {
+    stamp += `## Available Skills (${skillsList.length})\n\n`;
+    if (skillsList.length <= 20) {
+      stamp +=
+        skillsList.map((s) => `- \`${s.split("/").pop()}\``).join("\n") + "\n";
+    } else {
+      // Group by category
+      const groups = new Map<string, string[]>();
+      for (const s of skillsList) {
+        const parts = s.split("/");
+        const cat = parts.length > 1 ? parts[0]! : "other";
+        const list = groups.get(cat) ?? [];
+        list.push(parts.pop()!);
+        groups.set(cat, list);
+      }
+      for (const [cat, skills] of [...groups.entries()].sort()) {
+        stamp += `- **${cat}/** (${skills.length}): ${skills.slice(0, 5).join(", ")}${skills.length > 5 ? ` +${skills.length - 5} more` : ""}\n`;
+      }
+    }
+    stamp += "\n";
+  }
+
+  // MCPs
+  if (mcpsList.length > 0) {
+    stamp += `## MCP Servers: ${mcpsList.join(", ")}\n\n`;
+  }
+
+  // Per-session telemetry sections (Skill Usage / Last Session / Common
+  // Workflows). Default-off: volatile usage/warm-start noise with no triggering
+  // value — every skill is already named in the capability table and
+  // "## Available Skills". Opt back in with CUE_SESSION_TELEMETRY=1. Skipping
+  // the block also skips the analytics/session disk reads below.
+  if (shouldIncludeSessionTelemetry(process.env)) {
+    // Skill usage analytics — help the model prioritize frequently-used skills
+    try {
+      const { skillStats } = await import("./analytics");
+      const stats = skillStats(profile.name);
+      if (stats.length > 0) {
+        stamp += `## Skill Usage (last 30 days)\n\n`;
+        stamp += `Prioritize these skills — they're the ones actually used:\n`;
+        for (const s of stats.slice(0, 8)) {
+          stamp += `- \`${s.skill}\` (${s.hits}× used)\n`;
+        }
+        stamp += "\n";
+      }
+    } catch {
+      /* analytics unavailable — skip */
+    }
+
+    // Profile fit monitoring — formerly a ~150-token hardcoded block; now a
+    // skill (meta/profile-fit-monitor) loaded on demand. Net per-message cost
+    // drops to just the skill's description line in "## Available Skills".
+
+    // #8: Warm-start context — last session summary
+    const lastSession = await getLastSessionSummary(profile.name);
+    if (lastSession) {
+      stamp += `## Last Session\n\n${lastSession}\n\n`;
+    }
+
+    // #9: Skill chaining hints — common workflows from usage patterns
+    const chains = await getSkillChains(skillsList);
+    if (chains) {
+      stamp += `## Common Workflows\n\n${chains}\n\n`;
+    }
+  }
+
+  // Rules — index only. Symlinks live in rules/; Claude reads on demand instead
+  // of paying the full token cost every turn.
+  if (profileRules.length > 0) {
+    stamp +=
+      `## Rules (${profileRules.length})\n\n` +
+      `Read on demand from \`rules/\`:\n` +
+      profileRules
+        .map(
+          (r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``,
+        )
+        .join("\n") +
+      "\n\n";
+  }
+
+  // Commands — list as a quick reference
+  if (profileCommands.length > 0) {
+    stamp +=
+      `## Available Commands\n\n` +
+      profileCommands.map((c) => `- /${basename(c, ".md")}`).join("\n") +
+      "\n\n";
+  }
+
+  // Subagents — a grouped roster of the delegatable specialists in agents/.
+  // Claude Code already routes to them natively by each agent's description;
+  // this section is the proactive nudge — a quick "who's on the floor" map so
+  // the model reaches for a specialist instead of improvising. Names only (the
+  // full descriptions Claude Code loads from agents/ would be too costly to
+  // repeat every turn). Grouped by the ref's division prefix.
+  if (agent === "claude-code" && profileSubagents.length > 0) {
+    const groups = new Map<string, string[]>();
+    for (const ref of profileSubagents) {
+      const slash = ref.indexOf("/");
+      const div = slash > 0 ? ref.slice(0, slash) : "general";
+      const stem = basename(ref, ".md");
+      if (!groups.has(div)) groups.set(div, []);
+      groups.get(div)!.push(stem);
+    }
+    stamp +=
+      `## Subagents (${profileSubagents.length})\n\n` +
+      `Delegatable specialists in \`agents/\`. **Prefer handing a matching task ` +
+      `to one of these via the Task tool over improvising it yourself.** Claude ` +
+      `Code routes by each agent's description; this is your quick map of who's ` +
+      `on the floor:\n\n`;
+    for (const [div, stems] of [...groups.entries()].sort()) {
+      stamp += `- **${div}** (${stems.length}): ${stems.join(", ")}\n`;
+    }
+    stamp += "\n";
+  }
+
+  // Playbooks (Phase 2) — proven step-by-step protocols for common tasks.
+  // Indexed only; bodies are read on demand when the matching task triggers.
+  if ((profile.playbooks ?? []).length > 0) {
+    stamp +=
+      `## Playbooks (${profile.playbooks.length})\n\n` +
+      `Read on demand from \`playbooks/\` when the user's request matches:\n` +
+      profile.playbooks
+        .map((p: string) => {
+          const stem = basename(p, ".md");
+          return `- \`playbooks/${stem}.md\` — use when ${stem.replace(/-/g, " ")}`;
+        })
+        .join("\n") +
+      "\n\n" +
+      `**Following a playbook beats freestyling.** If a relevant playbook exists, read it first and step through it.\n\n`;
+  }
+
+  // Quality gates (Phase 3) — mention so Claude knows what'll be checked at Stop.
+  const profileGatesForStamp = profile.qualityGates ?? [];
+  if (profileGatesForStamp.length > 0) {
+    stamp +=
+      `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
+      profileGatesForStamp
+        .map((g: string) => `- \`${basename(g)}\``)
+        .join("\n") +
+      "\n\n" +
+      `Don't claim "done" if you haven't met them — they'll fail you publicly.\n\n`;
+  }
+
+  // Codex has no `--append-system-prompt`, so the per-directory project brief
+  // reaches it through a file named by CUE_PROJECT_BRIEF. This pointer must stay
+  // STATIC: the runtime memory file is shared by every directory using this
+  // profile, so anything directory-specific here would leak across projects and
+  // churn the materialization hash. claude-code gets the brief inline instead.
+  if (agent === "codex") {
+    stamp += `## Project brief\n\n${CODEX_BRIEF_POINTER}\n\n`;
+  }
+
+  stamp += `---\n*generated ${new Date().toISOString()} — do not hand-edit*\n\n`;
+
+  const memoryFileContent = stamp + input.userClaudeMd;
+  const memoryFileName = agent === "claude-code" ? "CLAUDE.md" : "AGENTS.md";
+  // Size-budget guard: Claude Code warns (and degrades performance) once a
+  // memory file crosses ~40k chars. Warn at materialize time — the moment the
+  // file is generated — so a bloated profile is caught before the user sees
+  // the runtime warning, with a pointer to the usual culprit.
+  if (
+    agent === "claude-code" &&
+    memoryFileContent.length > MEMORY_FILE_WARN_CHARS
+  ) {
+    const kb = (memoryFileContent.length / 1000).toFixed(1);
+    process.stderr.write(
+      `[cue] ${memoryFileName} for profile "${profile.name}" is ${kb}k chars ` +
+        `(> ${(MEMORY_FILE_WARN_CHARS / 1000).toFixed(0)}k) — large memory files slow the agent ` +
+        `and trigger its perf warning. Trim the profile (fewer skills/rules) or the ` +
+        `appended user instructions.\n`,
+    );
+  }
+  await writeFile(join(tmpDir, memoryFileName), memoryFileContent);
+}
+
 export async function materializeRuntime(
   input: MaterializeInput,
 ): Promise<MaterializeOutput> {
@@ -815,303 +1130,7 @@ async function materializeRuntimeUnlocked(
   }
 
   // 3. CLAUDE.md with stamp + role identity
-  const iconStr = profile.icon ?? "";
-  const skillsList = (profile.skills?.local ?? [])
-    .map((s) => (typeof s === "string" ? s : s.id))
-    .filter((s) => !s.includes("*"));
-  const mcpsList = (profile.mcps ?? []).map((m) =>
-    typeof m === "string" ? m : m.id,
-  );
-
-  let stamp =
-    `<!-- cue: profile=${profile.name} icon=${iconStr} -->\n` +
-    `# Active Profile: ${iconStr ? iconStr + " " : ""}${profile.name}\n\n` +
-    `> ${profile.description}\n\n`;
-
-  // Phase 1: Persona — multi-line role-priming defining who the agent IS.
-  // Goes above the mechanical "Your Role" block so it primes interpretation
-  // of everything that follows. Profiles without a persona keep the old
-  // generic block (backwards-compatible).
-  const profilePersona = profile.persona ?? "";
-
-  // persona_includes: shared snippets prepended to the persona. Lets
-  // cross-profile policies (Integrity Protocol, voice rules) live in one
-  // file in resources/personas/ and fan out via the profile chain.
-  const fullPersona = (personaIncludesText + profilePersona).trim();
-  if (fullPersona) {
-    stamp += `## Your Expertise\n\n${fullPersona}\n\n`;
-  }
-
-  // Workspace context — inject active workspace's context into persona
-  if (hasWorkspaces(profile.name)) {
-    const activeWs = getActiveWorkspace(profile.name);
-    if (activeWs) {
-      const overrides = computeOverrides(profile.name, activeWs);
-      if (overrides?.personaPrefix) {
-        stamp += overrides.personaPrefix;
-      }
-    }
-  }
-
-  // Skill router — auto-built capability + trigger tables that prime Claude
-  // to reach for skills proactively (capability) and reactively (triggers)
-  // instead of freestyling. Parsed from each skill's SKILL.md frontmatter;
-  // skills with weak descriptions land in the "Other skills" tail and are
-  // flagged by the linter (W6/W7/W8).
-  const routerParsed: ParsedSkill[] = [];
-  for (const id of skillsList) {
-    try {
-      const dir = await input.skillSourceLookup(id);
-      routerParsed.push(await parseSkillFromDir(id, dir));
-    } catch {
-      // Skill source not on disk (e.g. plugin skill resolved at runtime) —
-      // include a placeholder so it surfaces in "Other skills" rather than
-      // silently vanishing.
-      const fallbackName = id.split("/").pop() ?? id;
-      routerParsed.push({
-        id,
-        name: fallbackName,
-        triggers: [],
-        capability: "",
-        capabilityExplicit: false,
-        whenToInvoke: [],
-        notFor: "",
-        rawDescription: "",
-        quality: "none",
-        missing: true,
-      });
-    }
-  }
-  const routerOverrides =
-    (
-      profile as {
-        personaRouting?: {
-          phrase?: string;
-          capability?: string;
-          skill: string;
-          note?: string;
-        }[];
-      }
-    ).personaRouting ?? [];
-
-  // Telemetry-driven router compaction. Read the same skill-usage data that
-  // `cue skill-report` shows; collapse zombies (0 hits in last 30d) into a
-  // single compact tail in the rendered router. Saves ~40% of router-block
-  // tokens on heavy profiles. Honors `CUE_LEAN=1` to drop zombies entirely.
-  // Best-effort: any failure (telemetry off, log unreadable) → render full.
-  let zombieIds: string[] = [];
-  try {
-    const { computeSkillUsage } = await import("./skill-report");
-    const usage = computeSkillUsage(profile, { windowDays: 30 });
-    zombieIds = usage.filter((u) => u.zombie).map((u) => u.id);
-  } catch {
-    /* render full router on any failure */
-  }
-  const lean = process.env.CUE_LEAN === "1" || process.env.CUE_LEAN === "true";
-  // Default-on: the trigger-phrases table duplicates each SKILL.md's own
-  // frontmatter, and on heavy profiles it pushes the materialized CLAUDE.md
-  // past Claude Code's 40KB perf-warning threshold. Opt back in with
-  // CUE_TRIGGER_PHRASES=1.
-  const omitTriggerPhrases = !(
-    process.env.CUE_TRIGGER_PHRASES === "1" ||
-    process.env.CUE_TRIGGER_PHRASES === "true"
-  );
-  // Cap the capability table so heavy profiles (60+ skills) don't blow past
-  // Claude Code's 40KB CLAUDE.md perf threshold. Overflow skills stay listed
-  // under "Available Skills" and loadable on demand. Override with
-  // CUE_MAX_CAPABILITY_ROWS (0 disables the cap).
-  const maxCapEnv = Number(process.env.CUE_MAX_CAPABILITY_ROWS);
-  const maxCapabilityRows =
-    Number.isFinite(maxCapEnv) && maxCapEnv >= 0 ? maxCapEnv : 50;
-  const routerBlock = renderRouter(routerParsed, {
-    overrides: routerOverrides,
-    zombies: zombieIds,
-    lean,
-    omitTriggerPhrases,
-    maxCapabilityRows,
-  });
-  if (routerBlock) stamp += routerBlock;
-
-  // Role identity — tell Claude what it is
-  stamp +=
-    `## Your Role\n\n` +
-    `You are operating as **${profile.name}** — ${profile.description.toLowerCase()}.\n` +
-    `Focus on tasks within this domain. Use the skills loaded in this profile.\n\n`;
-
-  // Skills summary
-  if (skillsList.length > 0) {
-    stamp += `## Available Skills (${skillsList.length})\n\n`;
-    if (skillsList.length <= 20) {
-      stamp +=
-        skillsList.map((s) => `- \`${s.split("/").pop()}\``).join("\n") + "\n";
-    } else {
-      // Group by category
-      const groups = new Map<string, string[]>();
-      for (const s of skillsList) {
-        const parts = s.split("/");
-        const cat = parts.length > 1 ? parts[0]! : "other";
-        const list = groups.get(cat) ?? [];
-        list.push(parts.pop()!);
-        groups.set(cat, list);
-      }
-      for (const [cat, skills] of [...groups.entries()].sort()) {
-        stamp += `- **${cat}/** (${skills.length}): ${skills.slice(0, 5).join(", ")}${skills.length > 5 ? ` +${skills.length - 5} more` : ""}\n`;
-      }
-    }
-    stamp += "\n";
-  }
-
-  // MCPs
-  if (mcpsList.length > 0) {
-    stamp += `## MCP Servers: ${mcpsList.join(", ")}\n\n`;
-  }
-
-  // Per-session telemetry sections (Skill Usage / Last Session / Common
-  // Workflows). Default-off: volatile usage/warm-start noise with no triggering
-  // value — every skill is already named in the capability table and
-  // "## Available Skills". Opt back in with CUE_SESSION_TELEMETRY=1. Skipping
-  // the block also skips the analytics/session disk reads below.
-  if (shouldIncludeSessionTelemetry(process.env)) {
-    // Skill usage analytics — help the model prioritize frequently-used skills
-    try {
-      const { skillStats } = await import("./analytics");
-      const stats = skillStats(profile.name);
-      if (stats.length > 0) {
-        stamp += `## Skill Usage (last 30 days)\n\n`;
-        stamp += `Prioritize these skills — they're the ones actually used:\n`;
-        for (const s of stats.slice(0, 8)) {
-          stamp += `- \`${s.skill}\` (${s.hits}× used)\n`;
-        }
-        stamp += "\n";
-      }
-    } catch {
-      /* analytics unavailable — skip */
-    }
-
-    // Profile fit monitoring — formerly a ~150-token hardcoded block; now a
-    // skill (meta/profile-fit-monitor) loaded on demand. Net per-message cost
-    // drops to just the skill's description line in "## Available Skills".
-
-    // #8: Warm-start context — last session summary
-    const lastSession = await getLastSessionSummary(profile.name);
-    if (lastSession) {
-      stamp += `## Last Session\n\n${lastSession}\n\n`;
-    }
-
-    // #9: Skill chaining hints — common workflows from usage patterns
-    const chains = await getSkillChains(skillsList);
-    if (chains) {
-      stamp += `## Common Workflows\n\n${chains}\n\n`;
-    }
-  }
-
-  // Rules — index only. Symlinks live in rules/; Claude reads on demand instead
-  // of paying the full token cost every turn.
-  if (profileRules.length > 0) {
-    stamp +=
-      `## Rules (${profileRules.length})\n\n` +
-      `Read on demand from \`rules/\`:\n` +
-      profileRules
-        .map(
-          (r) => `- \`rules/${basename(r.endsWith(".md") ? r : `${r}.md`)}\``,
-        )
-        .join("\n") +
-      "\n\n";
-  }
-
-  // Commands — list as a quick reference
-  if (profileCommands.length > 0) {
-    stamp +=
-      `## Available Commands\n\n` +
-      profileCommands.map((c) => `- /${basename(c, ".md")}`).join("\n") +
-      "\n\n";
-  }
-
-  // Subagents — a grouped roster of the delegatable specialists in agents/.
-  // Claude Code already routes to them natively by each agent's description;
-  // this section is the proactive nudge — a quick "who's on the floor" map so
-  // the model reaches for a specialist instead of improvising. Names only (the
-  // full descriptions Claude Code loads from agents/ would be too costly to
-  // repeat every turn). Grouped by the ref's division prefix.
-  if (agent === "claude-code" && profileSubagents.length > 0) {
-    const groups = new Map<string, string[]>();
-    for (const ref of profileSubagents) {
-      const slash = ref.indexOf("/");
-      const div = slash > 0 ? ref.slice(0, slash) : "general";
-      const stem = basename(ref, ".md");
-      if (!groups.has(div)) groups.set(div, []);
-      groups.get(div)!.push(stem);
-    }
-    stamp +=
-      `## Subagents (${profileSubagents.length})\n\n` +
-      `Delegatable specialists in \`agents/\`. **Prefer handing a matching task ` +
-      `to one of these via the Task tool over improvising it yourself.** Claude ` +
-      `Code routes by each agent's description; this is your quick map of who's ` +
-      `on the floor:\n\n`;
-    for (const [div, stems] of [...groups.entries()].sort()) {
-      stamp += `- **${div}** (${stems.length}): ${stems.join(", ")}\n`;
-    }
-    stamp += "\n";
-  }
-
-  // Playbooks (Phase 2) — proven step-by-step protocols for common tasks.
-  // Indexed only; bodies are read on demand when the matching task triggers.
-  if ((profile.playbooks ?? []).length > 0) {
-    stamp +=
-      `## Playbooks (${profile.playbooks.length})\n\n` +
-      `Read on demand from \`playbooks/\` when the user's request matches:\n` +
-      profile.playbooks
-        .map((p: string) => {
-          const stem = basename(p, ".md");
-          return `- \`playbooks/${stem}.md\` — use when ${stem.replace(/-/g, " ")}`;
-        })
-        .join("\n") +
-      "\n\n" +
-      `**Following a playbook beats freestyling.** If a relevant playbook exists, read it first and step through it.\n\n`;
-  }
-
-  // Quality gates (Phase 3) — mention so Claude knows what'll be checked at Stop.
-  const profileGatesForStamp = profile.qualityGates ?? [];
-  if (profileGatesForStamp.length > 0) {
-    stamp +=
-      `## Quality Gates\n\nBefore claiming this session complete, these checks run at Stop:\n` +
-      profileGatesForStamp
-        .map((g: string) => `- \`${basename(g)}\``)
-        .join("\n") +
-      "\n\n" +
-      `Don't claim "done" if you haven't met them — they'll fail you publicly.\n\n`;
-  }
-
-  // Codex has no `--append-system-prompt`, so the per-directory project brief
-  // reaches it through a file named by CUE_PROJECT_BRIEF. This pointer must stay
-  // STATIC: the runtime memory file is shared by every directory using this
-  // profile, so anything directory-specific here would leak across projects and
-  // churn the materialization hash. claude-code gets the brief inline instead.
-  if (agent === "codex") {
-    stamp += `## Project brief\n\n${CODEX_BRIEF_POINTER}\n\n`;
-  }
-
-  stamp += `---\n*generated ${new Date().toISOString()} — do not hand-edit*\n\n`;
-
-  const memoryFileContent = stamp + input.userClaudeMd;
-  const memoryFileName = agent === "claude-code" ? "CLAUDE.md" : "AGENTS.md";
-  // Size-budget guard: Claude Code warns (and degrades performance) once a
-  // memory file crosses ~40k chars. Warn at materialize time — the moment the
-  // file is generated — so a bloated profile is caught before the user sees
-  // the runtime warning, with a pointer to the usual culprit.
-  if (
-    agent === "claude-code" &&
-    memoryFileContent.length > MEMORY_FILE_WARN_CHARS
-  ) {
-    const kb = (memoryFileContent.length / 1000).toFixed(1);
-    process.stderr.write(
-      `[cue] ${memoryFileName} for profile "${profile.name}" is ${kb}k chars ` +
-        `(> ${(MEMORY_FILE_WARN_CHARS / 1000).toFixed(0)}k) — large memory files slow the agent ` +
-        `and trigger its perf warning. Trim the profile (fewer skills/rules) or the ` +
-        `appended user instructions.\n`,
-    );
-  }
-  await writeFile(join(tmpDir, memoryFileName), memoryFileContent);
+  await buildMemoryFileStamp(tmpDir, profile, agent, input, personaIncludesText);
 
   // 4. hash (no trailing newline so /^[a-f0-9]{64}$/ matches directly)
   await writeFile(join(tmpDir, ".cue-hash"), hash);
