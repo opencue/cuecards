@@ -86,7 +86,8 @@ SEND() { tmux -L cue-demo send-keys -t demo "$@"; }
 SEND 'unset CUE_LAUNCHING CLAUDE_CONFIG_DIR CLAUDECODE CLAUDE_CODE_SESSION_ID CLAUDE_EFFORT AI_AGENT CODEX_HOME' Enter
 # Derive the active node binary directory at record time so the demo PATH
 # doesn't break if the Node version changes or a different version manager is used.
-_NODE_BIN_DIR="$(dirname "$(command -v node 2>/dev/null)" 2>/dev/null || true)"
+_NODE_BIN="$(command -v node 2>/dev/null || true)"
+_NODE_BIN_DIR="${_NODE_BIN:+$(dirname "$_NODE_BIN")}"
 [[ -z "$_NODE_BIN_DIR" ]] && _NODE_BIN_DIR='$HOME/.local/bin'
 SEND "export PATH=\"\$HOME/.local/bin:${_NODE_BIN_DIR}:\$HOME/Documents/cue/bin:\$PATH\"" Enter
 SEND 'export TERM=xterm-kitty' Enter
