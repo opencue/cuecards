@@ -18,12 +18,15 @@ import { runCommand } from "./lib/command-runner";
 import { repoRoot } from "./lib/repo-root";
 
 
+let _version: string | null = null;
 function readVersion(): string {
+  if (_version !== null) return _version;
   try {
     const pkg = JSON.parse(
       readFileSync(resolve(repoRoot(), "package.json"), "utf8"),
     ) as { version?: string };
-    return pkg.version ?? "0.0.0";
+    _version = pkg.version ?? "0.0.0";
+    return _version;
   } catch {
     return "0.0.0";
   }

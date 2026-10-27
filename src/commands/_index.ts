@@ -376,8 +376,8 @@ export const COMMANDS = {
         // Force the prompt regardless of session count
         const { existsSync, unlinkSync } = await import("node:fs");
         const { join } = await import("node:path");
-        const { homedir } = await import("node:os");
-        const flag = join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "cue", ".star-prompted");
+        const { configDir } = await import("../lib/config-paths");
+        const flag = join(configDir(), ".star-prompted");
         if (existsSync(flag)) unlinkSync(flag);
         await maybePromptStar();
         return 0;

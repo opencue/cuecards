@@ -5,11 +5,11 @@
  */
 
 import { homedir } from "node:os";
-import { join, resolve, dirname } from "node:path";
+import { join } from "node:path";
 import { existsSync, readFileSync, readdirSync, } from "node:fs";
-import { fileURLToPath } from "node:url";
 
 import { configDir } from "../lib/config-paths";
+import { repoRoot } from "../lib/repo-root";
 import { resolveProfileForCwd } from "../lib/cwd-resolver";
 import { loadProfile, listProfiles } from "../lib/profile-loader";
 import { computeStats } from "../lib/analytics";
@@ -18,9 +18,6 @@ import { countProfileSkills } from "../lib/profile-capabilities";
 import { resolvePluginsRoot } from "../lib/resolver-plugins";
 import type { AgentKind } from "../../profiles/_types";
 
-const REPO_ROOT = process.env.CUE_REPO_ROOT ?? process.env.SOUL_REPO_ROOT ?? resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const SKILLS_ROOT = join(REPO_ROOT, "resources", "skills", "skills");
-const MCP_CONFIGS_DIR = join(REPO_ROOT, "resources", "mcps", "configs");
 const RUNTIME_ROOT = join(process.env.HOME ?? homedir(), ".config", "cue", "runtime");
 
 
@@ -39,20 +36,22 @@ export function quickDiagnose(
   agent?: AgentKind,
 ): Warning[] {
   const warnings: Warning[] = [];
+  const skillsRoot = join(repoRoot(), "resources", "skills", "skills");
+  const mcpConfigsDir = join(repoRoot(), "resources", "mcps", "configs");
 
   // Check skills exist on disk
   for (const s of profile.skills.local) {
     const id = s.id ?? s;
     if (typeof id === "string" && id.includes("*")) continue; // skip wildcards
     // Try direct path first (category/slug format)
-    if (existsSync(join(SKILLS_ROOT, id, "SKILL.md"))) continue;
+    if (existsSync(join(skillsRoot, id, "SKILL.md"))) continue;
     // Try to find the skill in any category (bare slug)
     let found = false;
     try {
-      const cats = readdirSync(SKILLS_ROOT, { withFileTypes: true });
+      const cats = readdirSync(skillsRoot, { withFileTypes: true });
       for (const cat of cats) {
         if (!cat.isDirectory()) continue;
-        if (existsSync(join(SKILLS_ROOT, cat.name, id, "SKILL.md"))) { found = true; break; }
+        if (existsSync(join(skillsRoot, cat.name, id, "SKILL.md"))) { found = true; break; }
       }
     } catch { /* skip */ }
     // Also check plugin marketplace paths (for npx-promoted skills).
@@ -76,7 +75,7 @@ export function quickDiagnose(
   const mcpIds = new Set<string>();
   for (const file of ["claude.sanitized.json", "claude_runtime.sanitized.json", "codex.sanitized.json"]) {
     try {
-      const raw = JSON.parse(readFileSync(join(MCP_CONFIGS_DIR, file), "utf8"));
+      const raw = JSON.parse(readFileSync(join(mcpConfigsDir, file), "utf8"));
       if (raw.servers) for (const id of Object.keys(raw.servers)) mcpIds.add(id);
     } catch { /* skip */ }
   }
@@ -188,6 +187,9 @@ export async function run(args: string[]): Promise<number> {
   let profile: any = null;
   let warnings: Warning[] = [];
 
+  // Kick off listProfiles in parallel — independent of the profile load.
+  const allProfilesPromise = listProfiles();
+
   if (hasProfile) {
     try {
       profile = await loadProfile(resolved.profile);
@@ -201,8 +203,8 @@ export async function run(args: string[]): Promise<number> {
   const stats = computeStats();
   const totalSessions = stats.reduce((a, s) => a + s.sessions, 0);
 
-  // 3. Profiles count
-  const allProfiles = await listProfiles();
+  // 3. Profiles count (awaited here — started above in parallel with loadProfile)
+  const allProfiles = await allProfilesPromise;
 
   // 4. Most recent Stop-hook gate run for this profile. Null when no run has
   //    been recorded yet (fresh install, telemetry off, or gates not declared).
