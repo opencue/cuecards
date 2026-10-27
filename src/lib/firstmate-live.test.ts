@@ -102,6 +102,8 @@ test.skipIf(!hasTmux)("live acceptance preserves the process and existing pane f
   expect(render()).toBe("⚓ Firstmate ");
   process.kill(f.pid, "SIGTERM");
   for (let i = 0; i < 40 && f.tmux("display-message", "-p", "-t", f.pane, "#{pane_dead}") !== "1"; i++) await Bun.sleep(50);
+  // pane_dead can flip before the owner is reaped; `ps -p` still sees it briefly.
+  for (let i = 0; i < 40 && render() !== ""; i++) await Bun.sleep(50);
   expect(render()).toBe("");
   expect(f.tmux("show-options", "-g", "-w", "-v", "pane-border-status")).toBe("off");
 }, 15000);
