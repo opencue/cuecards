@@ -23,6 +23,7 @@ import { dedupeSelectorParts } from "./selector";
 import {
   EMPTY_TALLY,
   formatStackTotals,
+  makeTallyLoader,
   unionTallyCounts,
   type ProfileTally,
 } from "./tally";
@@ -102,20 +103,7 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
 
   // ── resource tallies ──────────────────────────────────────────────────────
   const tallies = new Map<string, ProfileTally>();
-  const loadTallies = async (values: string[]): Promise<void> => {
-    if (!input.resourceTally) return;
-    await Promise.all(
-      values
-        .filter((v) => !tallies.has(v))
-        .map(async (v) => {
-          try {
-            tallies.set(v, await input.resourceTally!(v));
-          } catch {
-            /* this row simply renders without counts */
-          }
-        }),
-    );
-  };
+  const loadTallies = makeTallyLoader(input.resourceTally, tallies);
   await loadTallies([...new Set(ranked.flatMap((s) => s.parts))]);
 
   const toView = (s: StackSuggestion): CardSuggestion => {

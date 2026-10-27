@@ -109,6 +109,34 @@ export function formatOverheadBadge(alwaysOnTokens: number): string {
 }
 
 /**
+ * Returns an async function that fills `tallies` for the given profile values,
+ * skipping any already present. Best-effort: a failing tally for a single
+ * profile is silently dropped so the remaining rows still render without counts.
+ *
+ * Pass `undefined` for `resourceTally` when there is no resolver; the returned
+ * loader becomes a no-op, so callers don't need to branch on its presence.
+ */
+export function makeTallyLoader(
+  resourceTally: ((profileValue: string) => Promise<ProfileTally> | ProfileTally) | undefined,
+  tallies: Map<string, ProfileTally>,
+): (values: string[]) => Promise<void> {
+  return async (values: string[]): Promise<void> => {
+    if (!resourceTally) return;
+    await Promise.all(
+      values
+        .filter((v) => !tallies.has(v))
+        .map(async (v) => {
+          try {
+            tallies.set(v, await resourceTally(v));
+          } catch {
+            /* skip this profile — it just renders without counts */
+          }
+        }),
+    );
+  };
+}
+
+/**
  * "31 skills · 2 mcps" — a compact one-line summary of a whole stack's
  * resources, used by the v2 card and the palette's sticky footer. Zero
  * categories are dropped; an empty tally returns "". Pure.

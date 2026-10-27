@@ -167,7 +167,22 @@ export async function runTui(cwd: string = process.cwd(), mode: TuiMode = "skill
     process.exit(2);
   });
 
-  const offResize = onResize(() => { app.dirty = true; });
+  // Event-driven render: zero CPU between keystrokes. `_pendingDirty` handles
+  // the case where markDirty() fires while the loop is painting (no Promise
+  // pending) — the next waitDirty() call sees it and returns immediately.
+  let _pendingDirty = true; // initial: draw first frame without waiting
+  let _dirtyResolve: (() => void) | null = null;
+  const markDirty = (): void => {
+    _pendingDirty = true;
+    const r = _dirtyResolve;
+    if (r) { _dirtyResolve = null; r(); }
+  };
+  const waitDirty = (): Promise<void> => {
+    if (_pendingDirty) { _pendingDirty = false; return Promise.resolve(); }
+    return new Promise<void>((resolve) => { _dirtyResolve = resolve; });
+  };
+
+  const offResize = onResize(markDirty);
 
   let quit = false;
   const offKey = onKey((key) => {
@@ -175,21 +190,21 @@ export async function runTui(cwd: string = process.cwd(), mode: TuiMode = "skill
       try {
         if (await handleKey(app, key)) {
           quit = true;
+          markDirty();
+          return;
         }
       } catch (e) {
         app.state.error = (e as Error).message;
-        app.dirty = true;
       }
+      markDirty();
     })();
   });
 
   while (!quit) {
-    if (app.dirty) {
-      const size = getSize();
-      paint(renderFrame(app.state, { cols: size.cols, rows: size.rows }));
-      app.dirty = false;
-    }
-    await new Promise((res) => setTimeout(res, 30));
+    await waitDirty();
+    if (quit) break;
+    const size = getSize();
+    paint(renderFrame(app.state, { cols: size.cols, rows: size.rows }));
   }
 
   offKey();

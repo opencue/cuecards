@@ -31,6 +31,7 @@ import {
   formatCombinedPreview,
   formatOverheadBadge,
   formatTallyDelta,
+  makeTallyLoader,
   unionTallyCounts,
   type ProfileTally,
 } from "./picker/tally";
@@ -403,6 +404,145 @@ export interface CombineFrameState {
    * and footer stay pinned). Unset / ≤0 → show every companion (no window).
    */
   maxRows?: number;
+  /**
+   * Pre-computed conflict map (option value → set of conflicting values).
+   * When absent, `renderCombineFrame` builds it from `options` on each call.
+   * Pass this from `asciiMultiselect` (which already holds the full map
+   * including overflow options) to avoid rebuilding per frame.
+   */
+  conflictMap?: Map<string, Set<string>>;
+}
+
+/** Context passed into `renderCombineRow` — derived once per frame. */
+interface RenderCombineRowCtx {
+  /** The full option list (action row uses it to look up companion labels). */
+  state: CombineFrameState;
+  /** Conflict-resolution result: values that will actually be pinned. */
+  effective: Set<string>;
+  /** Symmetric map built from the full option set (including overflow). */
+  conflictMap: Map<string, Set<string>>;
+  /** Width of the widest companion label — defines the right-aligned delta col. */
+  labelCol: number;
+  /** Applies ASCII-icon stripping when `state.ascii` is set. */
+  icon: (s: string) => string;
+  /** Vertical bar glyph (pre-styled) shared by every row. */
+  BAR: string;
+}
+
+/**
+ * Render a single combine-multiselect row. Returns one styled string (no
+ * newline); the caller pushes it into the frame's line buffer.
+ *
+ * Extracted from the inline `renderRow` closure so `renderCombineFrame` is
+ * smaller and this function is unit-testable without a live `asciiMultiselect`.
+ */
+function renderCombineRow(
+  o: AsciiMSOption,
+  isCursor: boolean,
+  ctx: RenderCombineRowCtx,
+): string {
+  const { state, effective, conflictMap, labelCol, icon, BAR } = ctx;
+  const isSel = effective.has(o.value);
+  // The `→`/"recommended" affordance flags a curated *companion* pairing; it
+  // must never decorate a control row (skip-combine / show-all), so guard on
+  // the row kind even though `buildCompanionOptions` only sets `recommended`
+  // on real companions today. Keeps `renderCombineFrame` honest for callers
+  // (and tests) that hand-build options.
+  const isRecommended = o.recommended === true && o.kind === undefined;
+  // Gutter glyph: the cursor `›` always wins; otherwise a `→` flags a
+  // recommended companion so the suggested pairing reads at a glance.
+  const arrow = isCursor
+    ? styleText("cyan", "›")
+    : isRecommended
+      ? styleText("magenta", "→")
+      : " ";
+
+  if (o.kind === "action") {
+    // Narrate what enter does *right now*: toggled on, this row forces
+    // primary-alone (skips the checked companions); toggled off, it
+    // mirrors the live combination so the confirm line never lies.
+    const combo = [...effective]
+      .filter((v) => v !== SKIP_COMBINE && v !== SHOW_ALL)
+      .map((v) => icon(state.options.find((opt) => opt.value === v)?.label ?? v));
+    // The primary may itself be a composite ("a + b + c"); split it so the
+    // combo count is real and `compressCombo` can fold a long line to
+    // "first +N more" instead of wrapping across the screen.
+    const primaryParts = icon(o.primaryLabel ?? "").split(" + ");
+    let dynamicLabel = o.label;
+    if (o.primaryLabel) {
+      dynamicLabel =
+        isSel || combo.length === 0
+          ? primaryParts.length <= 3
+            ? `use ${icon(o.primaryLabel)} alone`
+            : `use ${compressCombo(primaryParts)}`
+          : `use ${compressCombo([...primaryParts, ...combo])}`;
+    }
+    const glyph = styleText(isSel ? "cyan" : "dim", "↩");
+    const labelStyled = isSel
+      ? styleText("cyan", dynamicLabel)
+      : isCursor
+        ? dynamicLabel
+        : styleText("dim", dynamicLabel);
+    // Toggled on → it overrides the checks; toggled off with a combo
+    // staged → point at the enter key so the confirm path is obvious.
+    const marker = isSel
+      ? styleText("cyan", "  ← will skip combining")
+      : combo.length > 0
+        ? styleText("dim", "  ↵ enter to confirm")
+        : "";
+    return `${BAR}  ${arrow} ${glyph}  ${labelStyled}${marker}`;
+  }
+
+  // Conflict-blocked: another currently-selected option lists this
+  // value in its conflicts (or vice-versa via the symmetric map).
+  // Render disabled so the user can see why a toggle "doesn't take."
+  let blocker: string | null = null;
+  if (!isSel) {
+    const partners = conflictMap.get(o.value);
+    if (partners) {
+      for (const sel of effective) {
+        if (partners.has(sel)) { blocker = sel; break; }
+      }
+    }
+  }
+
+  if (blocker) {
+    const box = styleText("dim", "[—]");
+    const labelStyled = styleText("dim", icon(o.label));
+    const conflictHint = styleText("dim", ` (conflicts with ${blocker})`);
+    return `${BAR}  ${arrow} ${box} ${labelStyled}${conflictHint}`;
+  }
+
+  const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
+  const rawLabel = icon(o.label);
+  const labelStyled = isSel || isCursor ? rawLabel : styleText("dim", rawLabel);
+  // Contribution at a glance: every row shows just the headline "N skills"
+  // (one token, never wraps); the focused row expands to the full
+  // "N skills · M mcps · …" breakdown so detail is one keystroke away.
+  const tally = state.preview ? state.preview.tallies.get(o.value) ?? EMPTY_TALLY : null;
+  const delta = tally
+    ? isCursor
+      ? formatTallyDelta(tally)
+      : tally.skills.length > 0
+        ? `${tally.skills.length} skills`
+        : ""
+    : "";
+  // The verbose reason / description (detection signal, profile blurb)
+  // stays cursor-only to keep the unfocused rows scannable.
+  const hint = o.hint && isCursor ? styleText("dim", ` (${o.hint})`) : "";
+  // A dim trailing tag labels the `→` marker, so it reads "recommended" even
+  // when the cursor sits on the row (gutter shows `›`, not `→`).
+  const recTag = isRecommended ? styleText("dim", "  recommended") : "";
+  // Pad the label out to the shared delta column so every "N skills" lines
+  // up in a clean table (≥2-space gap even for an over-long name). Skip the
+  // pad entirely when there's no trailer, so bare rows carry no trailing
+  // whitespace.
+  const hasTrailer = delta !== "" || (Boolean(o.hint) && isCursor) || Boolean(o.danger);
+  const pad = hasTrailer ? " ".repeat(Math.max(2, labelCol + 2 - displayWidth(rawLabel))) : "";
+  const deltaStr = delta ? styleText("dim", delta) : "";
+  // Danger profiles (e.g. `full`, "never use this") carry a red trailing tag.
+  const dangerTag = o.danger ? styleText("red", `${delta ? " · " : ""}${o.danger}`) : "";
+  return `${BAR}  ${arrow} ${box} ${labelStyled}${pad}${deltaStr}${dangerTag}${hint}${recTag}`;
 }
 
 /**
@@ -415,7 +555,7 @@ export interface CombineFrameState {
  */
 export function renderCombineFrame(state: CombineFrameState): string {
   const BAR = styleText("gray", "│");
-  const conflictMap = buildConflictMap(state.options);
+  const conflictMap = state.conflictMap ?? buildConflictMap(state.options);
   // Apply conflict resolution to the live value so the display matches what
   // we'd actually return on confirm. The underlying MultiSelectPrompt may hold
   // a conflicting value internally (we can't easily block its toggle), but the
@@ -436,118 +576,11 @@ export function renderCombineFrame(state: CombineFrameState): string {
       .filter((o) => o.kind === undefined)
       .reduce((m, o) => Math.max(m, displayWidth(icon(o.label))), 0),
   );
+  const rowCtx: RenderCombineRowCtx = { state, effective, conflictMap, labelCol, icon, BAR };
   const lines: string[] = [];
   lines.push(`${BAR}`);
   lines.push(`${BAR}  ${state.message}`);
   lines.push(`${BAR}`);
-  // One row's rendering, shared by the pinned action row and the windowed
-  // companion list below it.
-  const renderRow = (o: AsciiMSOption, idx: number) => {
-    const isCursor = idx === state.cursor;
-    const isSel = effective.has(o.value);
-    // The `→`/"recommended" affordance flags a curated *companion* pairing; it
-    // must never decorate a control row (skip-combine / show-all), so guard on
-    // the row kind even though `buildCompanionOptions` only sets `recommended`
-    // on real companions today. Keeps `renderCombineFrame` honest for callers
-    // (and tests) that hand-build options.
-    const isRecommended = o.recommended === true && o.kind === undefined;
-    // Gutter glyph: the cursor `›` always wins; otherwise a `→` flags a
-    // recommended companion so the suggested pairing reads at a glance.
-    const arrow = isCursor
-      ? styleText("cyan", "›")
-      : isRecommended
-        ? styleText("magenta", "→")
-        : " ";
-
-    if (o.kind === "action") {
-      // Narrate what enter does *right now*: toggled on, this row forces
-      // primary-alone (skips the checked companions); toggled off, it
-      // mirrors the live combination so the confirm line never lies.
-      const combo = [...effective]
-        .filter((v) => v !== SKIP_COMBINE && v !== SHOW_ALL)
-        .map((v) => icon(state.options.find((opt) => opt.value === v)?.label ?? v));
-      // The primary may itself be a composite ("a + b + c"); split it so the
-      // combo count is real and `compressCombo` can fold a long line to
-      // "first +N more" instead of wrapping across the screen.
-      const primaryParts = icon(o.primaryLabel ?? "").split(" + ");
-      let dynamicLabel = o.label;
-      if (o.primaryLabel) {
-        dynamicLabel =
-          isSel || combo.length === 0
-            ? primaryParts.length <= 3
-              ? `use ${icon(o.primaryLabel)} alone`
-              : `use ${compressCombo(primaryParts)}`
-            : `use ${compressCombo([...primaryParts, ...combo])}`;
-      }
-      const glyph = styleText(isSel ? "cyan" : "dim", "↩");
-      const labelStyled = isSel
-        ? styleText("cyan", dynamicLabel)
-        : isCursor
-          ? dynamicLabel
-          : styleText("dim", dynamicLabel);
-      // Toggled on → it overrides the checks; toggled off with a combo
-      // staged → point at the enter key so the confirm path is obvious.
-      const marker = isSel
-        ? styleText("cyan", "  ← will skip combining")
-        : combo.length > 0
-          ? styleText("dim", "  ↵ enter to confirm")
-          : "";
-      lines.push(`${BAR}  ${arrow} ${glyph}  ${labelStyled}${marker}`);
-      return;
-    }
-
-    // Conflict-blocked: another currently-selected option lists this
-    // value in its conflicts (or vice-versa via the symmetric map).
-    // Render disabled so the user can see why a toggle "doesn't take."
-    let blocker: string | null = null;
-    if (!isSel) {
-      const partners = conflictMap.get(o.value);
-      if (partners) {
-        for (const sel of effective) {
-          if (partners.has(sel)) { blocker = sel; break; }
-        }
-      }
-    }
-
-    if (blocker) {
-      const box = styleText("dim", "[—]");
-      const labelStyled = styleText("dim", icon(o.label));
-      const conflictHint = styleText("dim", ` (conflicts with ${blocker})`);
-      lines.push(`${BAR}  ${arrow} ${box} ${labelStyled}${conflictHint}`);
-      return;
-    }
-
-    const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
-    const rawLabel = icon(o.label);
-    const labelStyled = isSel || isCursor ? rawLabel : styleText("dim", rawLabel);
-    // Contribution at a glance: every row shows just the headline "N skills"
-    // (one token, never wraps); the focused row expands to the full
-    // "N skills · M mcps · …" breakdown so detail is one keystroke away.
-    const tally = state.preview ? state.preview.tallies.get(o.value) ?? EMPTY_TALLY : null;
-    const delta = tally
-      ? isCursor
-        ? formatTallyDelta(tally)
-        : tally.skills.length > 0
-          ? `${tally.skills.length} skills`
-          : ""
-      : "";
-    // The verbose reason / description (detection signal, profile blurb)
-    // stays cursor-only to keep the unfocused rows scannable.
-    const hint = o.hint && isCursor ? styleText("dim", ` (${o.hint})`) : "";
-    // A dim trailing tag labels the `→` marker, so it reads "recommended" even
-    // when the cursor sits on the row (gutter shows `›`, not `→`).
-    const recTag = isRecommended ? styleText("dim", "  recommended") : "";
-    // Pad the label out to the shared delta column so every "N skills" lines
-    // up in a clean table (≥2-space gap even for an over-long name). Skip the
-    // pad entirely when there's no trailer, so bare rows carry no trailing
-    // whitespace.
-    const hasTrailer = delta !== "" || (Boolean(o.hint) && isCursor) || Boolean(o.danger);
-    const pad = hasTrailer ? " ".repeat(Math.max(2, labelCol + 2 - displayWidth(rawLabel))) : "";
-    const deltaStr = delta ? styleText("dim", delta) : "";
-    // Danger profiles (e.g. `full`, "never use this") carry a red trailing tag.
-    const dangerTag = o.danger ? styleText("red", `${delta ? " · " : ""}${o.danger}`) : "";
-    lines.push(`${BAR}  ${arrow} ${box} ${labelStyled}${pad}${deltaStr}${dangerTag}${hint}${recTag}`);
-  };
 
   // The lead action row ("use X alone / + …") stays pinned on top; only the
   // companion list below it scrolls, so a long companion list can't push the
@@ -556,7 +589,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
   const actionRows = rows.filter((r) => r.o.kind === "action");
   const expandRows = rows.filter((r) => r.o.kind === "expand");
   const companions = rows.filter((r) => r.o.kind !== "action" && r.o.kind !== "expand");
-  for (const r of actionRows) renderRow(r.o, r.idx);
+  for (const r of actionRows) lines.push(renderCombineRow(r.o, r.idx === state.cursor, rowCtx));
   if (companions.length > 0) {
     lines.push(`${BAR}  ${styleText("dim", "─".repeat(28))}`);
     const max = state.maxRows && state.maxRows > 0 ? state.maxRows : companions.length;
@@ -596,7 +629,7 @@ export function renderCombineFrame(state: CombineFrameState): string {
         lines.push(`${BAR}  ${label} ${rule} ${styleText("dim", countStr)}`);
         lastCat = cat;
       }
-      renderRow(r.o, r.idx);
+      lines.push(renderCombineRow(r.o, r.idx === state.cursor, rowCtx));
     }
     if (win.hiddenBelow > 0) lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
   }
@@ -741,6 +774,7 @@ async function asciiMultiselect(opts: {
         cursor: this.cursor,
         selected: (this.value ?? []) as string[],
         preview: opts.preview,
+        conflictMap,
         maxRows: Math.max(4, termRows - 12),
       });
     },
@@ -1089,20 +1123,7 @@ export async function runPickerClassic(input: PickerInput): Promise<PickerOutput
     // Load tallies for a set of profile values into the shared map (deduped,
     // best-effort). Reused for the initial curated set and, lazily, for the
     // overflow list when the user expands "show all profiles".
-    const loadTallies = async (values: string[]): Promise<void> => {
-      if (!input.resourceTally) return;
-      await Promise.all(
-        values
-          .filter((v) => !tallies.has(v))
-          .map(async (v) => {
-            try {
-              tallies.set(v, await input.resourceTally!(v));
-            } catch {
-              /* skip this profile — it just renders without counts */
-            }
-          }),
-      );
-    };
+    const loadTallies = makeTallyLoader(input.resourceTally, tallies);
     if (input.resourceTally) {
       const wanted = [
         first,
