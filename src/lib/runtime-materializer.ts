@@ -792,6 +792,206 @@ async function buildMemoryFileStamp(
   await writeFile(join(tmpDir, memoryFileName), memoryFileContent);
 }
 
+/**
+ * Carry Codex durable thread state forward, then atomically swap the staging
+ * directory into the live runtime path and sync MCPs.  Extracted from the
+ * 921-line materializeRuntimeUnlocked to keep that function as an orchestrator.
+ */
+async function atomicSwapRuntime(
+  runtimeDir: string,
+  tmpDir: string,
+  agent: AgentKind,
+  mcpServers: Record<string, McpServerConfig>,
+  effectiveInput: MaterializeInput,
+): Promise<void> {
+  // Codex writes durable thread state directly into CODEX_HOME (sessions/,
+  // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
+  // Claude, it has no credentialsSource overlay, so an atomic rematerialization
+  // must carry every non-cue-managed entry forward. Otherwise changing a
+  // profile while Codex is running deletes the active rollout and transcript
+  // persistence starts failing with "no rollout found for thread id".
+  if (agent === "codex") {
+    // Read as late as possible, before moving any durable state. An unreadable
+    // file must not be mistaken for a first launch.
+    const oldConfig = await readFile(join(runtimeDir, "config.toml"), "utf8").catch(
+      (error: NodeJS.ErrnoException) => {
+        if (error.code === "ENOENT") return "";
+        throw error;
+      },
+    );
+    let localState: string | null = null;
+    try {
+      localState = extractRuntimeCodexState(oldConfig);
+    } catch {
+      /* corrupt runtime config.toml — skip state preservation, let fresh config land */
+    }
+    if (localState) {
+      const configPath = join(tmpDir, "config.toml");
+      await writeFile(configPath, (await readFile(configPath, "utf8")) + "\n" + localState, { mode: 0o600 });
+    }
+    const managed = new Set([
+      ".cue-hash",
+      ".cue-skills",
+      "AGENTS.md",
+      "config.toml",
+      "playbooks",
+      "rules",
+      "skills",
+    ]);
+    let oldEntries: string[] = [];
+    try {
+      oldEntries = await readdir(runtimeDir);
+    } catch {
+      /* first build */
+    }
+    for (const name of oldEntries) {
+      if (managed.has(name)) continue;
+      const oldPath = join(runtimeDir, name);
+      const newPath = join(tmpDir, name);
+      try {
+        await lstat(newPath);
+        continue; // a freshly generated entry wins
+      } catch {
+        /* absent in the new runtime — preserve the old one */
+      }
+      try {
+        await rename(oldPath, newPath);
+      } catch {
+        /* best-effort per entry */
+      }
+    }
+  }
+
+  // 6. Atomic swap: rm -rf old, rename tmp.
+  //
+  // Preserve session/credential state from the OLD runtime so resume + auth
+  // survive across rematerializations:
+  //   - .claude.json      → session state, projects list, oauthAccount
+  //   - .credentials.json → OAuth tokens (refresh + access)
+  //   - backups/          → Claude Code's own .claude.json backup chain
+  //   - session-env/      → environment snapshots for sessions still running
+  //   - tasks/            → in-flight task state for sessions still running
+  //
+  // We MOVE these from the old runtime over whatever the overlay step (5)
+  // dropped into tmpDir — so a logged-in runtime stays logged in even when
+  // ~/.claude.json (the credentialsSource) is in a stale/half-logged-out
+  // state. Without this, an authmux account swap or a partial claude write
+  // to the source would propagate into every cue-materialized profile.
+  //
+  // Trade-off: to fresh-bootstrap a profile after deliberately switching
+  // accounts at the source, run:
+  //   rm ~/.config/cue/runtime/<profile>/claude/.credentials.json
+  //   rm ~/.config/cue/runtime/<profile>/claude/.claude.json
+  // Next launch will copy current source state.
+  // Account-identity guard: runtime dirs are keyed by PROFILE, so two authmux
+  // accounts (claude-account1 / claude-account2 with different
+  // CLAUDE_CONFIG_DIRs) share the same runtime. When the OLD runtime belongs
+  // to a different account than the current credentialsSource, resurrecting
+  // its .claude.json/.credentials.json would pair the old account's identity
+  // with the new account's tokens (or vice versa) — and the expiresAt
+  // comparison below is meaningless across accounts. Skip preservation
+  // entirely and let the overlay's source state win.
+  let sameAccount = true;
+  if (effectiveInput.credentialsSource) {
+    const srcUuid =
+      (await accountUuidAt(join(effectiveInput.credentialsSource, ".config.json"))) ??
+      (await accountUuidAt(join(effectiveInput.credentialsSource, ".claude.json")));
+    // 2.1.x keeps the identity in .config.json; older clients in .claude.json.
+    const oldUuid =
+      (await accountUuidAt(join(runtimeDir, ".config.json"))) ??
+      (await accountUuidAt(join(runtimeDir, ".claude.json")));
+    if (srcUuid && oldUuid && srcUuid !== oldUuid) sameAccount = false;
+  }
+  // `.config.json` is Claude Code 2.1.x's user config (session state, oauth
+  // account, mcpServers). Dropping it on a rebuild would hand a migrated client
+  // a runtime without its state — and the file cue syncs profile MCPs into.
+  //
+  // `projects` holds the user's session transcripts. Normally it is a symlink
+  // into the source config — the overlay recreates that link in tmpDir, and the
+  // lstat guard below skips symlinks, so the fresh link still wins. But when the
+  // source config has no projects/ of its own, Claude Code creates a REAL
+  // directory here, and the swap's `rm -rf` of the old runtime then destroys
+  // every transcript in it (observed 2026-09-10: a core@claude5 rebuild took 12
+  // sessions / ~130 MB of history with it). Transcripts are neither
+  // identity-bound nor regenerable, so a real directory is carried across even
+  // when the account changed — there is no identity to mispair.
+  const preserveFiles = sameAccount
+    ? [
+        ".claude.json",
+        ".config.json",
+        ".credentials.json",
+        "backups",
+        "session-env",
+        "tasks",
+        "projects",
+      ]
+    : ["projects"];
+  for (const name of preserveFiles) {
+    const oldPath = join(runtimeDir, name);
+    const newPath = join(tmpDir, name);
+    try {
+      const st = await lstat(oldPath);
+      if (!(st.isFile() || st.isDirectory())) continue;
+      if (name === ".credentials.json") {
+        // Freshness guard — fixes "logged-out after relaunch". Anthropic rotates
+        // the refresh token on every refresh, so only the copy with the highest
+        // expiresAt still holds a live refresh token. Step 5's overlay already
+        // placed the freshly-synced SOURCE creds in tmpDir (and
+        // resolveClaudeCredentialsSource healed source from the freshest sibling
+        // runtime first). Resurrect the OLD runtime's creds ONLY when they are
+        // strictly newer than source — otherwise keep source, so a rebuild can't
+        // drag a dead, rotated token back into the runtime. When source is
+        // half-logged-out its expiresAt is 0/old, so a logged-in runtime still
+        // wins and stays logged in (the original intent of this preserve step).
+        const oldExp = await credentialsExpiresAt(oldPath);
+        const newExp = await credentialsExpiresAt(newPath);
+        if (oldExp <= newExp) continue; // source as-fresh-or-fresher → keep it
+      }
+      // Remove whatever overlay put here (likely a symlink for .claude.json
+      // or a copy for .credentials.json) so rename can replace it cleanly.
+      await rm(newPath, { force: true, recursive: true });
+      await rename(oldPath, newPath);
+    } catch {
+      /* doesn't exist — skip */
+    }
+  }
+  // `rm -rf runtimeDir` followed by rename leaves the live path NONEXISTENT for
+  // the whole recursive delete — seconds, on a runtime carrying a plugin cache
+  // and a backup chain. A Claude Code session already running against this
+  // profile resolves ${CLAUDE_CONFIG_DIR}/hooks/*.sh through that exact path, so
+  // every hook firing inside the gap dies with "No such file or directory"
+  // (observed 2026-08-03: nine Stop hooks at once, mid-session rematerialize).
+  //
+  // Move the old tree aside instead. The live path is then unresolvable only
+  // between two renames, and the delete runs after the new runtime is already
+  // in place. `.old-*` is a SIBLING of the swap target, so it stays on the same
+  // filesystem (rename cannot cross devices) and one level below the runtime
+  // root that runtime-gc scans — it is never mistaken for a runtime entry.
+  const trashDir = `${runtimeDir}.old-${process.pid}-${Date.now().toString(36)}`;
+  let trashed = false;
+  try {
+    await rename(runtimeDir, trashDir);
+    trashed = true;
+  } catch {
+    /* no previous runtime (first materialization) — nothing to move aside */
+  }
+  await rename(tmpDir, runtimeDir);
+  if (trashed) {
+    await rm(trashDir, { recursive: true, force: true }).catch(() => {
+      /* the new runtime is already live; a stale .old-* is swept below */
+    });
+  }
+  await sweepStaleSwapDirs(runtimeDir);
+
+  if (agent === "claude-code") {
+    await syncMcpsIntoClaudeJson(
+      runtimeDir,
+      mcpServers,
+      effectiveInput.disabledMcpIds,
+    );
+  }
+}
+
 export async function materializeRuntime(
   input: MaterializeInput,
 ): Promise<MaterializeOutput> {
@@ -1151,192 +1351,8 @@ async function materializeRuntimeUnlocked(
     }
   }
 
-  // Codex writes durable thread state directly into CODEX_HOME (sessions/,
-  // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
-  // Claude, it has no credentialsSource overlay, so an atomic rematerialization
-  // must carry every non-cue-managed entry forward. Otherwise changing a
-  // profile while Codex is running deletes the active rollout and transcript
-  // persistence starts failing with "no rollout found for thread id".
-  if (agent === "codex") {
-    // Read as late as possible, before moving any durable state. An unreadable
-    // file must not be mistaken for a first launch.
-    const oldConfig = await readFile(join(runtimeDir, "config.toml"), "utf8").catch(
-      (error: NodeJS.ErrnoException) => {
-        if (error.code === "ENOENT") return "";
-        throw error;
-      },
-    );
-    let localState: string | null = null;
-    try {
-      localState = extractRuntimeCodexState(oldConfig);
-    } catch {
-      /* corrupt runtime config.toml — skip state preservation, let fresh config land */
-    }
-    if (localState) {
-      const configPath = join(tmpDir, "config.toml");
-      await writeFile(configPath, (await readFile(configPath, "utf8")) + "\n" + localState, { mode: 0o600 });
-    }
-    const managed = new Set([
-      ".cue-hash",
-      ".cue-skills",
-      "AGENTS.md",
-      "config.toml",
-      "playbooks",
-      "rules",
-      "skills",
-    ]);
-    let oldEntries: string[] = [];
-    try {
-      oldEntries = await readdir(runtimeDir);
-    } catch {
-      /* first build */
-    }
-    for (const name of oldEntries) {
-      if (managed.has(name)) continue;
-      const oldPath = join(runtimeDir, name);
-      const newPath = join(tmpDir, name);
-      try {
-        await lstat(newPath);
-        continue; // a freshly generated entry wins
-      } catch {
-        /* absent in the new runtime — preserve the old one */
-      }
-      try {
-        await rename(oldPath, newPath);
-      } catch {
-        /* best-effort per entry */
-      }
-    }
-  }
-
-  // 6. Atomic swap: rm -rf old, rename tmp.
-  //
-  // Preserve session/credential state from the OLD runtime so resume + auth
-  // survive across rematerializations:
-  //   - .claude.json      → session state, projects list, oauthAccount
-  //   - .credentials.json → OAuth tokens (refresh + access)
-  //   - backups/          → Claude Code's own .claude.json backup chain
-  //   - session-env/      → environment snapshots for sessions still running
-  //   - tasks/            → in-flight task state for sessions still running
-  //
-  // We MOVE these from the old runtime over whatever the overlay step (5)
-  // dropped into tmpDir — so a logged-in runtime stays logged in even when
-  // ~/.claude.json (the credentialsSource) is in a stale/half-logged-out
-  // state. Without this, an authmux account swap or a partial claude write
-  // to the source would propagate into every cue-materialized profile.
-  //
-  // Trade-off: to fresh-bootstrap a profile after deliberately switching
-  // accounts at the source, run:
-  //   rm ~/.config/cue/runtime/<profile>/claude/.credentials.json
-  //   rm ~/.config/cue/runtime/<profile>/claude/.claude.json
-  // Next launch will copy current source state.
-  // Account-identity guard: runtime dirs are keyed by PROFILE, so two authmux
-  // accounts (claude-account1 / claude-account2 with different
-  // CLAUDE_CONFIG_DIRs) share the same runtime. When the OLD runtime belongs
-  // to a different account than the current credentialsSource, resurrecting
-  // its .claude.json/.credentials.json would pair the old account's identity
-  // with the new account's tokens (or vice versa) — and the expiresAt
-  // comparison below is meaningless across accounts. Skip preservation
-  // entirely and let the overlay's source state win.
-  let sameAccount = true;
-  if (input.credentialsSource) {
-    const srcUuid =
-      (await accountUuidAt(join(input.credentialsSource, ".config.json"))) ??
-      (await accountUuidAt(join(input.credentialsSource, ".claude.json")));
-    // 2.1.x keeps the identity in .config.json; older clients in .claude.json.
-    const oldUuid =
-      (await accountUuidAt(join(runtimeDir, ".config.json"))) ??
-      (await accountUuidAt(join(runtimeDir, ".claude.json")));
-    if (srcUuid && oldUuid && srcUuid !== oldUuid) sameAccount = false;
-  }
-  // `.config.json` is Claude Code 2.1.x's user config (session state, oauth
-  // account, mcpServers). Dropping it on a rebuild would hand a migrated client
-  // a runtime without its state — and the file cue syncs profile MCPs into.
-  //
-  // `projects` holds the user's session transcripts. Normally it is a symlink
-  // into the source config — the overlay recreates that link in tmpDir, and the
-  // lstat guard below skips symlinks, so the fresh link still wins. But when the
-  // source config has no projects/ of its own, Claude Code creates a REAL
-  // directory here, and the swap's `rm -rf` of the old runtime then destroys
-  // every transcript in it (observed 2026-09-10: a core@claude5 rebuild took 12
-  // sessions / ~130 MB of history with it). Transcripts are neither
-  // identity-bound nor regenerable, so a real directory is carried across even
-  // when the account changed — there is no identity to mispair.
-  const preserveFiles = sameAccount
-    ? [
-        ".claude.json",
-        ".config.json",
-        ".credentials.json",
-        "backups",
-        "session-env",
-        "tasks",
-        "projects",
-      ]
-    : ["projects"];
-  for (const name of preserveFiles) {
-    const oldPath = join(runtimeDir, name);
-    const newPath = join(tmpDir, name);
-    try {
-      const st = await lstat(oldPath);
-      if (!(st.isFile() || st.isDirectory())) continue;
-      if (name === ".credentials.json") {
-        // Freshness guard — fixes "logged-out after relaunch". Anthropic rotates
-        // the refresh token on every refresh, so only the copy with the highest
-        // expiresAt still holds a live refresh token. Step 5's overlay already
-        // placed the freshly-synced SOURCE creds in tmpDir (and
-        // resolveClaudeCredentialsSource healed source from the freshest sibling
-        // runtime first). Resurrect the OLD runtime's creds ONLY when they are
-        // strictly newer than source — otherwise keep source, so a rebuild can't
-        // drag a dead, rotated token back into the runtime. When source is
-        // half-logged-out its expiresAt is 0/old, so a logged-in runtime still
-        // wins and stays logged in (the original intent of this preserve step).
-        const oldExp = await credentialsExpiresAt(oldPath);
-        const newExp = await credentialsExpiresAt(newPath);
-        if (oldExp <= newExp) continue; // source as-fresh-or-fresher → keep it
-      }
-      // Remove whatever overlay put here (likely a symlink for .claude.json
-      // or a copy for .credentials.json) so rename can replace it cleanly.
-      await rm(newPath, { force: true, recursive: true });
-      await rename(oldPath, newPath);
-    } catch {
-      /* doesn't exist — skip */
-    }
-  }
-  // `rm -rf runtimeDir` followed by rename leaves the live path NONEXISTENT for
-  // the whole recursive delete — seconds, on a runtime carrying a plugin cache
-  // and a backup chain. A Claude Code session already running against this
-  // profile resolves ${CLAUDE_CONFIG_DIR}/hooks/*.sh through that exact path, so
-  // every hook firing inside the gap dies with "No such file or directory"
-  // (observed 2026-08-03: nine Stop hooks at once, mid-session rematerialize).
-  //
-  // Move the old tree aside instead. The live path is then unresolvable only
-  // between two renames, and the delete runs after the new runtime is already
-  // in place. `.old-*` is a SIBLING of the swap target, so it stays on the same
-  // filesystem (rename cannot cross devices) and one level below the runtime
-  // root that runtime-gc scans — it is never mistaken for a runtime entry.
-  const trashDir = `${runtimeDir}.old-${process.pid}-${Date.now().toString(36)}`;
-  let trashed = false;
-  try {
-    await rename(runtimeDir, trashDir);
-    trashed = true;
-  } catch {
-    /* no previous runtime (first materialization) — nothing to move aside */
-  }
-  await rename(tmpDir, runtimeDir);
-  if (trashed) {
-    await rm(trashDir, { recursive: true, force: true }).catch(() => {
-      /* the new runtime is already live; a stale .old-* is swept below */
-    });
-  }
-  await sweepStaleSwapDirs(runtimeDir);
-
-  if (agent === "claude-code") {
-    await syncMcpsIntoClaudeJson(
-      runtimeDir,
-      mcpServers,
-      effectiveInput.disabledMcpIds,
-    );
-  }
+  // Codex durable state preservation + 6. Atomic swap + post-swap MCP sync
+  await atomicSwapRuntime(runtimeDir, tmpDir, agent, mcpServers, effectiveInput);
 
   return { runtimeDir, rebuilt: true, hash };
 }
