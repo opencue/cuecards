@@ -26,7 +26,7 @@ for this project.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
 7. Report which profile got pinned and whether the shim is active. Mention that
-   `install.sh --uninstall` undoes it.
+   `cue shell uninstall` undoes the shim, or `npm uninstall -g cue-ai` removes the package entirely.
 
 Do not install anything without asking me first.
 ```

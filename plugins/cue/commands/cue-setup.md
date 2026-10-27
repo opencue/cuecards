@@ -33,7 +33,8 @@ order, and stop to report if any step fails.
    nothing until it is fixed.
 
 6. Finish by reporting which profile was pinned and whether the shim is
-   active. Mention that the shim is undone with `install.sh --uninstall`.
+   active. Mention that the shim is undone with `cue shell uninstall`
+   (or `npm uninstall -g cue-ai` to remove the package).
 
 Do not reimplement any of this flow yourself — `cue setup` is the single source
 of truth for it, and the same flow runs for users who install from npm.
