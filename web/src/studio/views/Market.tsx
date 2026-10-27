@@ -64,13 +64,97 @@ function daysAgo(when: string): number {
   return n;
 }
 
+interface CardProps {
+  i: LocalMarketItem;
+  where: string;
+  starred: Set<string>;
+  fmtStars: (i: LocalMarketItem) => string;
+  toggleStar: (id: string) => void;
+  copyCommand: (command: string) => Promise<void>;
+  install: (i: LocalMarketItem, profile: string) => Promise<void>;
+  installing: string | null;
+  myProfiles: { name: string }[];
+  addFor: string | null;
+  setAddFor: (key: string | null) => void;
+  publicMode: boolean;
+}
+
+function Card({ i, where, starred, fmtStars, toggleStar, copyCommand, install, installing, myProfiles, addFor, setAddFor, publicMode }: CardProps) {
+  const draft = i.mine && i.source === "local";
+  const command = i.type === "profile" && i.source === "registry"
+    ? profileInstallCommand(i.sourceUrl) === i.add ? i.add : ""
+    : i.add;
+  const t = TYPE[i.type];
+  const on = starred.has(i.id);
+  const key = where + ":" + i.id;
+  const openMenu = (e: React.MouseEvent) => { e.stopPropagation(); setAddFor(addFor === key ? null : key); };
+  return (
+    <div className={"mk-card" + (addFor === key ? " menu-open" : "")} style={{ "--tc": t.color } as React.CSSProperties}>
+      <div className="mk-top">
+        <span className="mk-typeicon" style={{ color: t.color, background: t.color + "1a", borderColor: t.color + "40" }}>{t.glyph}</span>
+        <div className="mk-headtext">
+          <div className="mk-name">{i.name}</div>
+          <div className="mk-type" style={{ color: t.color }}>{t.label}{i.featured ? " · featured" : ""}{i.mine ? " · yours" : ""}</div>
+        </div>
+        <div className="mk-addwrap">
+          {!command || draft ? <span className="mk-type">Source needed before install</span> : publicMode || i.source === "registry" && i.type === "profile" ? (
+            <button className="de-btn" onClick={() => void copyCommand(command)}>Copy CLI command</button>
+          ) : (
+          <>
+          <div className={"mk-install" + (addFor === key ? " open" : "")}>
+            <button className="mk-install-main" onClick={openMenu}>Install</button>
+            <button className="mk-install-caret" onClick={openMenu}>▾</button>
+          </div>
+          {addFor === key && (
+            <div className="mk-addmenu" onClick={(e) => e.stopPropagation()}>
+              <div className="mk-addmenu-h">Add to profile <span className="mk-addmenu-sub">choose one of yours</span></div>
+              <div className="mk-addmenu-list">
+                {myProfiles.map((p) => {
+                  const busy = installing === i.id + "→" + p.name;
+                  return (
+                    <button
+                      key={p.name}
+                      className="mk-addmenu-item"
+                      disabled={!!installing}
+                      onClick={() => { setAddFor(null); void install(i, p.name); }}
+                    >
+                      <span className="mk-am-branch">⎇</span>
+                      <span className="mk-am-name">{p.name}</span>
+                      <span className="mk-am-go">{busy ? "…" : "add →"}</span>
+                    </button>
+                  );
+                })}
+                {myProfiles.length === 0 && <div className="mk-addmenu-item" style={{ opacity: 0.6 }}>no profiles loaded</div>}
+              </div>
+              <button className="mk-addmenu-foot" onClick={() => {
+                setAddFor(null);
+                void copyCommand(i.add);
+              }}>⧉ Copy install command</button>
+            </div>
+          )}
+          </>
+          )}
+        </div>
+      </div>
+      <div className="mk-desc">{i.desc}</div>
+      {i.sourceUrl?.startsWith("https://github.com/") && <p><a href={i.sourceUrl} target="_blank" rel="noopener noreferrer">Inspect profile source ↗</a></p>}
+      {command && !draft && <code style={{ display: "block", overflowWrap: "anywhere", padding: "10px 0", fontSize: 12 }}>{command}</code>}
+      <div className="mk-foot">
+        <span className="mk-by">By <b>{i.handle}</b></span>
+        <button className={"mk-star" + (on ? " on" : "")} onClick={() => toggleStar(i.id)} title={on ? "unstar" : "star"}>
+          <span className="mk-star-ic">{on ? "★" : "☆"}</span>{fmtStars(i)}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function MarketView() {
   const publicMode = isDemoMode();
-  const qc = useQueryClient();
+  const queryClient = useQueryClient();
   const { data } = useMarket();
   const community = useCommunityMarket();
   const { data: session } = useSession();
-  const queryClient = useQueryClient();
   const profilesQ = useProfilesFull();
 
   const [q, setQ] = useState("");
@@ -129,9 +213,9 @@ export function MarketView() {
         flash(`${i.name} → added to ${profile} · relaunch cue to load`);
       }
       // Reflect the new membership across the studio.
-      qc.invalidateQueries({ queryKey: ["profiles-full"] });
-      qc.invalidateQueries({ queryKey: ["profile-detail"] });
-      qc.invalidateQueries({ queryKey: ["market"] });
+      queryClient.invalidateQueries({ queryKey: ["profiles-full"] });
+      queryClient.invalidateQueries({ queryKey: ["profile-detail"] });
+      queryClient.invalidateQueries({ queryKey: ["market"] });
     } catch (err) {
       flash(`Install failed: ${(err as Error).message}`);
     } finally {
@@ -190,75 +274,8 @@ export function MarketView() {
   // (Copy-install-command still works) until /profiles/full resolves.
   const myProfiles = profilesQ.data ?? [];
 
-  function Card({ i, where }: { i: LocalMarketItem; where: string }) {
-    const draft = i.mine && i.source === "local";
-    const command = i.type === "profile" && i.source === "registry"
-      ? profileInstallCommand(i.sourceUrl) === i.add ? i.add : ""
-      : i.add;
-    const t = TYPE[i.type];
-    const on = starred.has(i.id);
-    const key = where + ":" + i.id;
-    const openMenu = (e: React.MouseEvent) => { e.stopPropagation(); setAddFor(addFor === key ? null : key); };
-    return (
-      <div className={"mk-card" + (addFor === key ? " menu-open" : "")} style={{ "--tc": t.color } as React.CSSProperties}>
-        <div className="mk-top">
-          <span className="mk-typeicon" style={{ color: t.color, background: t.color + "1a", borderColor: t.color + "40" }}>{t.glyph}</span>
-          <div className="mk-headtext">
-            <div className="mk-name">{i.name}</div>
-            <div className="mk-type" style={{ color: t.color }}>{t.label}{i.featured ? " · featured" : ""}{i.mine ? " · yours" : ""}</div>
-          </div>
-          <div className="mk-addwrap">
-            {!command || draft ? <span className="mk-type">Source needed before install</span> : publicMode || i.source === "registry" && i.type === "profile" ? (
-              <button className="de-btn" onClick={() => void copyCommand(command)}>Copy CLI command</button>
-            ) : (
-            <>
-            <div className={"mk-install" + (addFor === key ? " open" : "")}>
-              <button className="mk-install-main" onClick={openMenu}>Install</button>
-              <button className="mk-install-caret" onClick={openMenu}>▾</button>
-            </div>
-            {addFor === key && (
-              <div className="mk-addmenu" onClick={(e) => e.stopPropagation()}>
-                <div className="mk-addmenu-h">Add to profile <span className="mk-addmenu-sub">choose one of yours</span></div>
-                <div className="mk-addmenu-list">
-                  {myProfiles.map((p) => {
-                    const busy = installing === i.id + "→" + p.name;
-                    return (
-                      <button
-                        key={p.name}
-                        className="mk-addmenu-item"
-                        disabled={!!installing}
-                        onClick={() => { setAddFor(null); void install(i, p.name); }}
-                      >
-                        <span className="mk-am-branch">⎇</span>
-                        <span className="mk-am-name">{p.name}</span>
-                        <span className="mk-am-go">{busy ? "…" : "add →"}</span>
-                      </button>
-                    );
-                  })}
-                  {myProfiles.length === 0 && <div className="mk-addmenu-item" style={{ opacity: 0.6 }}>no profiles loaded</div>}
-                </div>
-                <button className="mk-addmenu-foot" onClick={() => {
-                  setAddFor(null);
-                  void copyCommand(i.add);
-                }}>⧉ Copy install command</button>
-              </div>
-            )}
-            </>
-            )}
-          </div>
-        </div>
-        <div className="mk-desc">{i.desc}</div>
-        {i.sourceUrl?.startsWith("https://github.com/") && <p><a href={i.sourceUrl} target="_blank" rel="noopener noreferrer">Inspect profile source ↗</a></p>}
-        {command && !draft && <code style={{ display: "block", overflowWrap: "anywhere", padding: "10px 0", fontSize: 12 }}>{command}</code>}
-        <div className="mk-foot">
-          <span className="mk-by">By <b>{i.handle}</b></span>
-          <button className={"mk-star" + (on ? " on" : "")} onClick={() => toggleStar(i.id)} title={on ? "unstar" : "star"}>
-            <span className="mk-star-ic">{on ? "★" : "☆"}</span>{fmtStars(i)}
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // Shared props passed to every Card render to avoid closure-over-render.
+  const cardShared = { starred, fmtStars, toggleStar, copyCommand, install, installing, myProfiles, addFor, setAddFor, publicMode };
 
   const cur = SORT_OPTS.find((o) => o[0] === sort) ?? SORT_OPTS[0]!;
 
@@ -309,13 +326,13 @@ export function MarketView() {
       {type === "all" && !q && featured.length > 0 && (
         <div className="mk-section">
           <div className="mk-sec-h">Featured</div>
-          <div className="mk-featgrid">{featured.map((i) => <Card key={i.id} i={i} where="feat" />)}</div>
+          <div className="mk-featgrid">{featured.map((i) => <Card key={i.id} i={i} where="feat" {...cardShared} />)}</div>
         </div>
       )}
 
       <div className="mk-section">
         <div className="mk-sec-h">{type === "all" ? "All items" : TYPE[type].label + "s"} <span className="mk-sec-n">{shown.length}</span></div>
-        <div className="mk-grid">{shown.map((i) => <Card key={i.id} i={i} where="grid" />)}</div>
+        <div className="mk-grid">{shown.map((i) => <Card key={i.id} i={i} where="grid" {...cardShared} />)}</div>
         {shown.length === 0 && !community.isPending && !community.isError && <div className="mk-empty">
           {q ? <>No results for “{q}”.</> : publicMode && type === "all"
             ? "No community profiles yet. Publish the first profile with its public GitHub source."

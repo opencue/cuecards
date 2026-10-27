@@ -7,9 +7,12 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-import { useProfileDetail, useProfilesFull, useSkillReport, useTimeline, type StudioSkill } from "../api";
-import { nsColor, nsLabel, mcpInfo, mcpBody, bodyStats, fmtAge } from "../curated";
+import { useProfileDetail, useProfilesFull, useSkillReport, useTimeline } from "../api";
+import { nsColor, mcpInfo, mcpBody, bodyStats, fmtAge } from "../curated";
+import { groupSkills } from "../skills";
 import { MdEditor, EditArea, Minimap, outlineOf } from "../md";
+import { Sparkline } from "../components/Sparkline";
+import { findCliLine } from "./explorer-utils";
 import type { OpenTarget } from "../StudioApp";
 
 type TabKind = "skill" | "mcp" | "plugin" | "command";
@@ -58,64 +61,23 @@ function TreeRow({ depth, color, glyph, label, count, active, onClick, caret, st
   );
 }
 
-interface SkillGroup { ns: string; color: string; label: string; items: StudioSkill[] }
-function groupSkills(skills: StudioSkill[]): SkillGroup[] {
-  const order: string[] = [];
-  const map = new Map<string, StudioSkill[]>();
-  for (const s of skills) {
-    if (!map.has(s.ns)) { map.set(s.ns, []); order.push(s.ns); }
-    map.get(s.ns)!.push(s);
-  }
-  return order.map((ns) => ({ ns, color: nsColor(ns), label: nsLabel(ns), items: map.get(ns)! }));
-}
-
-function escapeRe(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-/**
- * Locate the best line in a SKILL.md to highlight for a given CLI, mirroring
- * the server's detection priority but returning a position:
- *   1. First command-position use inside a code span (the real "here's how you
- *      run it" line — what the user wants to jump to).
- *   2. Else the frontmatter `allowed-tools: Bash(<cli>…)` declaration line.
- *   3. Else the first prose mention. Returns -1 when the CLI never appears.
- */
-function findCliLine(body: string, cli: string): number {
-  const lines = body.split("\n");
-  const word = new RegExp(`(^|[^\\w-])${escapeRe(cli.toLowerCase())}([^\\w-]|$)`);
-  let frontLine = -1, codeLine = -1, anyLine = -1;
-  let fm = 0, inCode = false;
-  for (let i = 0; i < lines.length; i++) {
-    const ln = lines[i]!;
-    if (ln.trim() === "---" && !inCode) { fm++; continue; }
-    const trimmed = ln.trimStart();
-    if (trimmed.startsWith("```") || trimmed.startsWith("~~~")) { inCode = !inCode; continue; }
-    const low = ln.toLowerCase();
-    if (!word.test(low)) continue;
-    if (anyLine < 0) anyLine = i;
-    if (fm === 1) {
-      if (frontLine < 0 && (low.includes("bash(") || low.includes("allowed-tools"))) frontLine = i;
-    } else if (codeLine < 0 && (inCode || low.includes("`" + cli.toLowerCase()) || /^\s*\$/.test(ln))) {
-      codeLine = i;
-    }
-  }
-  return codeLine >= 0 ? codeLine : frontLine >= 0 ? frontLine : anyLine;
-}
 
 /** Tiny smooth area sparkline for the USAGE block. */
 function Spark({ data }: { data: number[] }) {
-  const d = data.slice(-20), w = 120, h = 38, max = Math.max(1, ...d);
-  if (d.length < 2) return null;
-  const pts = d.map((v, i) => [(i / (d.length - 1)) * w, h - 3 - (v / max) * (h - 8)] as const);
-  let path = `M ${pts[0]![0]} ${pts[0]![1]}`;
-  for (let i = 0; i < pts.length - 1; i++) { const mx = (pts[i]![0] + pts[i + 1]![0]) / 2; path += ` C ${mx} ${pts[i]![1]}, ${mx} ${pts[i + 1]![1]}, ${pts[i + 1]![0]} ${pts[i + 1]![1]}`; }
+  return <Sparkline data={data} slice={20} width={120} height={38} color="var(--amber)" gradientId="duSpark" />;
+}
+
+/** Doc-stats grid shared by the skill and command DOCUMENT panels. */
+function DocStatGrid({ stats }: { stats: ReturnType<typeof bodyStats> }) {
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} preserveAspectRatio="none" style={{ display: "block" }}>
-      <defs><linearGradient id="duSpark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--amber)" stopOpacity=".30" /><stop offset="100%" stopColor="var(--amber)" stopOpacity="0" /></linearGradient></defs>
-      <path d={`${path} L ${w} ${h} L 0 ${h} Z`} fill="url(#duSpark)" />
-      <path d={path} fill="none" stroke="var(--amber)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <div className="doc-grid">
+      <div className="doc-tile"><div className="dt-n">{stats.lines.toLocaleString()}</div><div className="dt-l">lines</div></div>
+      <div className="doc-tile"><div className="dt-n">{stats.words.toLocaleString()}</div><div className="dt-l">words</div></div>
+      <div className="doc-tile"><div className="dt-n">{stats.headings}</div><div className="dt-l">sections</div></div>
+      <div className="doc-tile"><div className="dt-n">{stats.codeBlocks}</div><div className="dt-l">code blocks</div></div>
+      <div className="doc-tile"><div className="dt-n">{stats.listItems}</div><div className="dt-l">list items</div></div>
+      <div className="doc-tile"><div className="dt-n">~{stats.readMin}m</div><div className="dt-l">read time</div></div>
+    </div>
   );
 }
 
@@ -134,14 +96,14 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
   const [exp, setExp] = useState<Record<string, boolean>>({ SKILLS: true, MCPS: true, PLUGINS: true, COMMANDS: false, ns_meta: true });
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [active, setActive] = useState<string | null>(null);
-  const [mode, setMode] = useState<"preview" | "edit">(settingsDefaults().mode);
+  const [mode, setMode] = useState<"preview" | "edit">(() => settingsDefaults().mode);
+  const [showMinimap] = useState(() => settingsDefaults().minimap);
   const [edits, setEdits] = useState<Record<string, string>>(() => {
     try { return JSON.parse(localStorage.getItem("cue-studio-edits") || "{}"); } catch { return {}; }
   });
   const scrollRef = useRef<HTMLDivElement>(null);
   const hlTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [hlLine, setHlLine] = useState<number | null>(null);
-  const showMinimap = settingsDefaults().minimap;
 
   useEffect(() => { try { localStorage.setItem("cue-studio-edits", JSON.stringify(edits)); } catch { /* ignore */ } }, [edits]);
 
@@ -174,6 +136,26 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
     if (first) { setTabs([{ kind: "skill", key: first.id }]); setActive(first.id); }
   }, [data?.profile]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // jumpLine and flashLine are declared here (before the pendingOpen effect)
+  // so the effect can call flashLine directly instead of duplicating the logic.
+  const jumpLine = (i: number) => { const el = scrollRef.current; if (!el) return; const rows = el.querySelectorAll(".ed-row"); const row = rows[i] as HTMLElement | undefined; if (row) el.scrollTop = row.offsetTop - 12; };
+  // Scroll to a line and flash it for ~2.6s. Forces Preview (the highlight rows
+  // only exist there); defers a tick when leaving Edit so they paint first.
+  // Returns a cancel function so callers (useEffect cleanup) can abort the
+  // deferred scroll+flash on rapid re-trigger or unmount.
+  const flashLine = (i: number): (() => void) => {
+    if (i < 0) return () => {};
+    const wasEdit = mode === "edit";
+    if (wasEdit) setMode("preview");
+    const t = setTimeout(() => {
+      jumpLine(i);
+      setHlLine(i);
+      if (hlTimer.current) clearTimeout(hlTimer.current);
+      hlTimer.current = setTimeout(() => setHlLine(null), 2600);
+    }, wasEdit ? 90 : 0);
+    return () => clearTimeout(t);
+  };
+
   // Open a target requested from search / details cross-links. When it carries
   // a CLI (a click in the profile's CLIs tab), jump to + flash the line in the
   // freshly-opened skill where that CLI is used. The body is looked up straight
@@ -188,18 +170,7 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
     const b = sk ? (edits[sk.id] ?? sk.body) : "";
     const i = findCliLine(b, cli);
     if (i < 0) return;
-    setMode("preview");
-    const t = setTimeout(() => {
-      const el = scrollRef.current;
-      if (el) {
-        const row = el.querySelectorAll(".ed-row")[i] as HTMLElement | undefined;
-        if (row) el.scrollTop = row.offsetTop - 12;
-      }
-      setHlLine(i);
-      if (hlTimer.current) clearTimeout(hlTimer.current);
-      hlTimer.current = setTimeout(() => setHlLine(null), 2600);
-    }, 90);
-    return () => clearTimeout(t);
+    return flashLine(i);
   }, [pendingOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Reset scroll + clear any stale CLI highlight when the active tab changes.
@@ -233,20 +204,6 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
   const outline = outlineOf(body);
 
   const jumpTo = (frac: number) => { const el = scrollRef.current; if (el) el.scrollTop = frac * (el.scrollHeight - el.clientHeight); };
-  const jumpLine = (i: number) => { const el = scrollRef.current; if (!el) return; const rows = el.querySelectorAll(".ed-row"); const row = rows[i] as HTMLElement | undefined; if (row) el.scrollTop = row.offsetTop - 12; };
-  // Scroll to a line and flash it for ~2.6s. Forces Preview (the highlight rows
-  // only exist there); defers a tick when leaving Edit so they paint first.
-  const flashLine = (i: number) => {
-    if (i < 0) return;
-    const wasEdit = mode === "edit";
-    if (wasEdit) setMode("preview");
-    setTimeout(() => {
-      jumpLine(i);
-      setHlLine(i);
-      if (hlTimer.current) clearTimeout(hlTimer.current);
-      hlTimer.current = setTimeout(() => setHlLine(null), 2600);
-    }, wasEdit ? 90 : 0);
-  };
   const onCliClick = (cli: string) => flashLine(findCliLine(body, cli));
   const skillClis = curSkill ? data.clis.filter((c) => c.usedBy.includes(curSkill.id)) : [];
 
@@ -453,35 +410,18 @@ export function Explorer({ profile, setProfile, pendingOpen }: {
 
                 <div className="det-sec">
                   <div className="det-h">DOCUMENT</div>
-                  <div className="doc-grid">
-                    <div className="doc-tile"><div className="dt-n">{stats.lines.toLocaleString()}</div><div className="dt-l">lines</div></div>
-                    <div className="doc-tile"><div className="dt-n">{stats.words.toLocaleString()}</div><div className="dt-l">words</div></div>
-                    <div className="doc-tile"><div className="dt-n">{stats.headings}</div><div className="dt-l">sections</div></div>
-                    <div className="doc-tile"><div className="dt-n">{stats.codeBlocks}</div><div className="dt-l">code blocks</div></div>
-                    <div className="doc-tile"><div className="dt-n">{stats.listItems}</div><div className="dt-l">list items</div></div>
-                    <div className="doc-tile"><div className="dt-n">~{stats.readMin}m</div><div className="dt-l">read time</div></div>
-                  </div>
+                  <DocStatGrid stats={stats} />
                 </div>
               </>
             );
           })()}
 
-          {curCommand && (() => {
-            const stats = bodyStats(body);
-            return (
-              <div className="det-sec">
-                <div className="det-h">DOCUMENT</div>
-                <div className="doc-grid">
-                  <div className="doc-tile"><div className="dt-n">{stats.lines.toLocaleString()}</div><div className="dt-l">lines</div></div>
-                  <div className="doc-tile"><div className="dt-n">{stats.words.toLocaleString()}</div><div className="dt-l">words</div></div>
-                  <div className="doc-tile"><div className="dt-n">{stats.headings}</div><div className="dt-l">sections</div></div>
-                  <div className="doc-tile"><div className="dt-n">{stats.codeBlocks}</div><div className="dt-l">code blocks</div></div>
-                  <div className="doc-tile"><div className="dt-n">{stats.listItems}</div><div className="dt-l">list items</div></div>
-                  <div className="doc-tile"><div className="dt-n">~{stats.readMin}m</div><div className="dt-l">read time</div></div>
-                </div>
-              </div>
-            );
-          })()}
+          {curCommand && (
+            <div className="det-sec">
+              <div className="det-h">DOCUMENT</div>
+              <DocStatGrid stats={bodyStats(body)} />
+            </div>
+          )}
 
           {curSkill && curSkill.uses.length > 0 && (
             <div className="det-sec">

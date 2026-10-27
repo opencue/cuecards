@@ -14,6 +14,9 @@ import {
 } from "../../lib/auth-client";
 
 const DAY = 60 * 60 * 24;
+
+/** Shape of the data returned by `authClient.apiKey.create()`. */
+type ApiKeyCreateResult = { key: string };
 const EXPIRY_CHOICES: [string, number | null][] = [
   ["Never expires", null],
   ["30 days", 30 * DAY],
@@ -127,7 +130,7 @@ function ApiTokens({ email }: { email: string }) {
       ...(newExpiry ? { expiresIn: newExpiry } : {}),
     });
     if (res.error) { setError(res.error.message ?? "Failed to create token"); return; }
-    setFreshToken((res.data as { key: string }).key);
+    setFreshToken((res.data as ApiKeyCreateResult).key);
     setReveal(false);
     setCreating(false);
     setNewName("");
@@ -161,7 +164,7 @@ function ApiTokens({ email }: { email: string }) {
     if (del.error) {
       setError("New token created, but removing the old one failed — delete it manually below.");
     }
-    setFreshToken((res.data as { key: string }).key);
+    setFreshToken((res.data as ApiKeyCreateResult).key);
     setReveal(false);
     await reload();
   };
