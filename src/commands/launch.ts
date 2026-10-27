@@ -2138,6 +2138,60 @@ async function emitTokenBudgetWarning(
   return alwaysOnForBadge;
 }
 
+
+/**
+ * Build the child-process environment for the agent launch.
+ * Sets the config-dir env var ({@link CLAUDE_CONFIG_DIR} or CODEX_HOME),
+ * the launch-depth counter, and isolates claude-mem per profile.
+ * The returned object may be augmented by the caller (e.g. brief injection).
+ * Extracted from run() (finding 0/77/104).
+ */
+async function buildLaunchEnv(
+  agentKind: AgentKind,
+  runtime: { runtimeDir: string },
+  depth: number,
+  profileName: string,
+): Promise<{ childEnv: NodeJS.ProcessEnv; envKey: string }> {
+  const envKey =
+    agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
+  const persistentCodexHome =
+    agentKind === "codex" ? canonicalCodexHome() : undefined;
+  const childEnv: NodeJS.ProcessEnv = {
+    ...process.env,
+    [envKey]: runtime.runtimeDir,
+    ...(persistentCodexHome
+      ? { CUE_CANONICAL_CODEX_HOME: persistentCodexHome }
+      : {}),
+    // Depth, not a boolean — see launchDepth(). The agent's whole process tree
+    // inherits this, so a subtask that shells out to `claude` lands one deeper
+    // rather than being refused.
+    CUE_LAUNCHING: String(depth + 1),
+  };
+
+  // Per-profile claude-mem memory: point the (cue-managed) claude-mem plugin at
+  // an isolated, SQLite-only store + its own worker/server ports so one profile's
+  // memory never bleeds into another's. Best-effort — a failure here must never
+  // block the launch. Opt out with CUE_CLAUDE_MEM_ISOLATE=0. See lib/claude-mem-env.ts.
+  //
+  // SCOPE NOTE: keyed by `profileName`, NOT `runtimeKey` — deliberately. The
+  // per-account runtime isolation above only splits credential/session state so
+  // authmux accounts don't collapse into one login. claude-mem memory stays
+  // shared across accounts on the same profile (re-keying it here would silently
+  // relocate every existing per-profile memory store). Two accounts running the
+  // SAME profile concurrently therefore still share one memory data dir + port
+  // slot; making memory per-account is a separate follow-up.
+  try {
+    const { resolveClaudeMemEnv } = await import("../lib/claude-mem-env");
+    const memEnv = resolveClaudeMemEnv(profileName, {
+      existingEnv: process.env,
+    });
+    if (memEnv) Object.assign(childEnv, memEnv);
+  } catch {
+    /* non-fatal — memory isolation is an enhancement, not a gate */
+  }
+  return { childEnv, envKey };
+}
+
 export async function run(args: string[]): Promise<number> {
   // Recursion guard. See MAX_LAUNCH_DEPTH for why this counts instead of
   // tripping on the first nested launch.
@@ -2984,43 +3038,7 @@ export async function run(args: string[]): Promise<number> {
     debug("launch:auto-ruler", err); /* fail-open — never blocks launch */
   }
 
-  const envKey =
-    agentKind === "claude-code" ? "CLAUDE_CONFIG_DIR" : "CODEX_HOME";
-  const persistentCodexHome =
-    agentKind === "codex" ? canonicalCodexHome() : undefined;
-  const childEnv: NodeJS.ProcessEnv = {
-    ...process.env,
-    [envKey]: runtime.runtimeDir,
-    ...(persistentCodexHome
-      ? { CUE_CANONICAL_CODEX_HOME: persistentCodexHome }
-      : {}),
-    // Depth, not a boolean — see launchDepth(). The agent's whole process tree
-    // inherits this, so a subtask that shells out to `claude` lands one deeper
-    // rather than being refused.
-    CUE_LAUNCHING: String(depth + 1),
-  };
-
-  // Per-profile claude-mem memory: point the (cue-managed) claude-mem plugin at
-  // an isolated, SQLite-only store + its own worker/server ports so one profile's
-  // memory never bleeds into another's. Best-effort — a failure here must never
-  // block the launch. Opt out with CUE_CLAUDE_MEM_ISOLATE=0. See lib/claude-mem-env.ts.
-  //
-  // SCOPE NOTE: keyed by `profileName`, NOT `runtimeKey` — deliberately. The
-  // per-account runtime isolation above only splits credential/session state so
-  // authmux accounts don't collapse into one login. claude-mem memory stays
-  // shared across accounts on the same profile (re-keying it here would silently
-  // relocate every existing per-profile memory store). Two accounts running the
-  // SAME profile concurrently therefore still share one memory data dir + port
-  // slot; making memory per-account is a separate follow-up.
-  try {
-    const { resolveClaudeMemEnv } = await import("../lib/claude-mem-env");
-    const memEnv = resolveClaudeMemEnv(profileName, {
-      existingEnv: process.env,
-    });
-    if (memEnv) Object.assign(childEnv, memEnv);
-  } catch {
-    /* non-fatal — memory isolation is an enhancement, not a gate */
-  }
+  const { childEnv, envKey } = await buildLaunchEnv(agentKind, runtime, depth, profileName);
 
   if (parsed.dryRun) {
     process.stdout.write(
