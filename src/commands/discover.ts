@@ -15,7 +15,7 @@ import { promisify } from "node:util";
 
 const execFile = promisify(_execFile);
 import { readFileSync, existsSync, mkdirSync, writeFileSync, readdirSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 import { homedir } from "node:os";
 
 import { listProfiles } from "../lib/profile-loader";
@@ -621,6 +621,39 @@ export async function ghSearch(query: string, limit: number): Promise<GitHubRepo
   } catch { return []; }
 }
 
+/**
+ * Run search queries in bounded parallel batches, deduplicating by full_name.
+ * Stops launching new batches once `limit` unique items have been collected,
+ * keeping GitHub search API usage within the 30 req/min rate limit.
+ *
+ * Exported for tests — pass a mock `searchFn` to avoid real network calls.
+ */
+export async function runQueryBatches(
+  queries: Array<{ q: string; label: string }>,
+  limit: number,
+  searchFn: (q: string, limit: number) => Promise<GitHubRepoItem[]>,
+  batchSize = 4,
+): Promise<GitHubRepoItem[]> {
+  const seen = new Set<string>();
+  const results: GitHubRepoItem[] = [];
+
+  for (let i = 0; i < queries.length; i += batchSize) {
+    if (results.length >= limit) break;
+    const batch = queries.slice(i, i + batchSize);
+    const batchItems = (await Promise.all(
+      batch.map(({ q }) => searchFn(q, limit)),
+    )).flat();
+
+    for (const item of batchItems) {
+      if (results.length >= limit) break;
+      if (seen.has(item.full_name)) continue;
+      seen.add(item.full_name);
+      results.push(item);
+    }
+  }
+  return results;
+}
+
 function checkFileExists(fullName: string, path: string): boolean {
   const res = spawnSync("gh", ["api", `repos/${fullName}/contents/${path}`, "--jq", ".name"], {
     encoding: "utf8", timeout: 8000,
@@ -833,7 +866,6 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
   const profileLabel = opts.profile ? ` for "${opts.profile}" profile` : "";
   process.stderr.write(`🔍 Searching GitHub for hidden gem skill repos${profileLabel}...\n\n`);
 
-  const seen = new Set<string>();
   const gems: GemRepo[] = [];
 
   let queries: { q: string; label: string }[];
@@ -848,16 +880,12 @@ async function cmdSearch(query: string | undefined, opts: { limit: number; minSc
 
   const labeledQueries = queries.slice(0, opts.limit > 0 ? queries.length : 0);
   if (labeledQueries.length > 0) {
-    process.stderr.write(`  ⏳ Running ${labeledQueries.length} search quer${labeledQueries.length === 1 ? "y" : "ies"} in parallel...\n`);
+    process.stderr.write(`  ⏳ Running up to ${labeledQueries.length} search quer${labeledQueries.length === 1 ? "y" : "ies"} in parallel batches...\n`);
   }
-  const allItems = (await Promise.all(
-    labeledQueries.map(({ q }) => ghSearch(q, opts.limit)),
-  )).flat();
+  const allItems = await runQueryBatches(labeledQueries, opts.limit, ghSearch);
 
   for (const item of allItems) {
     if (gems.length >= opts.limit) break;
-    if (seen.has(item.full_name)) continue;
-    seen.add(item.full_name);
 
     const gem: GemRepo = {
       full_name: item.full_name,
