@@ -27,12 +27,18 @@ ROOT="${ROOT:-.claude/skills/structured-prompt-writer}"
 DRY_RUN=0
 LIMIT=0
 
-for arg in "$@"; do
-  case "$arg" in
-    --dry-run) DRY_RUN=1 ;;
-    --limit) shift; LIMIT="$1" ;;
-    --limit=*) LIMIT="${arg#*=}" ;;
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run)  DRY_RUN=1 ;;
+    --limit=*)  LIMIT="${1#*=}" ;;
+    --limit)
+      if [[ $# -lt 2 ]]; then
+        echo "translate-cjk-skills.sh: --limit requires a value" >&2
+        exit 1
+      fi
+      LIMIT="$2"; shift ;;
   esac
+  shift
 done
 
 if ! command -v claude >/dev/null 2>&1; then

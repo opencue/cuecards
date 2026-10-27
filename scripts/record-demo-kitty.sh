@@ -15,7 +15,8 @@ WIDTH=1500
 HEIGHT=900
 GIF_WIDTH=1200
 RECORD_SECONDS=42
-FFMPEG=/usr/bin/ffmpeg      # apt build has x11grab; nix one doesn't
+FFMPEG="${FFMPEG:-$(command -v ffmpeg 2>/dev/null)}"
+[[ -x "${FFMPEG:-}" ]] || { echo "ffmpeg not found; set FFMPEG=/path/to/ffmpeg" >&2; exit 1; }
 OUT_MP4=/tmp/cue-demo-raw.mp4
 OUT_PALETTE=/tmp/cue-demo-palette.png
 OUT_GIF=docs/assets/demo.gif
@@ -56,7 +57,7 @@ stop_flashpaste
 
 # ── 1. Virtual X display ─────────────────────────────────────────────────────
 echo "▸ starting Xvfb on $DISPLAY_NUM (${WIDTH}x${HEIGHT})"
-Xvfb $DISPLAY_NUM -screen 0 ${WIDTH}x${HEIGHT}x24 -nolisten tcp &
+Xvfb "$DISPLAY_NUM" -screen 0 "${WIDTH}x${HEIGHT}x24" -nolisten tcp &
 XVFB_PID=$!
 sleep 1.5
 
@@ -83,7 +84,11 @@ DISPLAY=$DISPLAY_NUM tmux -L cue-demo -f /tmp/cue-demo-tmux.conf \
 SEND() { tmux -L cue-demo send-keys -t demo "$@"; }
 
 SEND 'unset CUE_LAUNCHING CLAUDE_CONFIG_DIR CLAUDECODE CLAUDE_CODE_SESSION_ID CLAUDE_EFFORT AI_AGENT CODEX_HOME' Enter
-SEND "export PATH=\"\$HOME/.local/bin:\$HOME/.nvm/versions/node/v22.22.0/bin:\$HOME/Documents/cue/bin:\$PATH\"" Enter
+# Derive the active node binary directory at record time so the demo PATH
+# doesn't break if the Node version changes or a different version manager is used.
+_NODE_BIN_DIR="$(dirname "$(command -v node 2>/dev/null)" 2>/dev/null || true)"
+[[ -z "$_NODE_BIN_DIR" ]] && _NODE_BIN_DIR='$HOME/.local/bin'
+SEND "export PATH=\"\$HOME/.local/bin:${_NODE_BIN_DIR}:\$HOME/Documents/cue/bin:\$PATH\"" Enter
 SEND 'export TERM=xterm-kitty' Enter
 SEND 'export CUE_KITTY=1' Enter
 SEND 'PS1="\[\033[38;5;213m\]➜\[\033[0m\] \[\033[38;5;111m\]demo\[\033[0m\] "' Enter
@@ -128,9 +133,9 @@ fi
 
 # ── 6. Start ffmpeg recording ────────────────────────────────────────────────
 echo "▸ starting ffmpeg x11grab (recording ${RECORD_SECONDS}s)"
-$FFMPEG -y -loglevel error \
-  -f x11grab -video_size ${WIDTH}x${HEIGHT} -framerate 15 -i $DISPLAY_NUM \
-  -t $RECORD_SECONDS -c:v libx264 -preset ultrafast -pix_fmt yuv420p \
+"$FFMPEG" -y -loglevel error \
+  -f x11grab -video_size "${WIDTH}x${HEIGHT}" -framerate 15 -i "$DISPLAY_NUM" \
+  -t "$RECORD_SECONDS" -c:v libx264 -preset ultrafast -pix_fmt yuv420p \
   "$OUT_MP4" &
 FFMPEG_PID=$!
 sleep 1.2
@@ -176,12 +181,12 @@ wait $FFMPEG_PID || true
 
 # ── 9. Convert mp4 → palette → gif (2-pass = sharp colors) ───────────────────
 echo "▸ palettegen"
-$FFMPEG -y -loglevel error -i "$OUT_MP4" \
+"$FFMPEG" -y -loglevel error -i "$OUT_MP4" \
   -vf "fps=12,scale=${GIF_WIDTH}:-1:flags=lanczos,palettegen=stats_mode=diff" \
   "$OUT_PALETTE"
 
 echo "▸ paletteuse → $OUT_GIF"
-$FFMPEG -y -loglevel error -i "$OUT_MP4" -i "$OUT_PALETTE" \
+"$FFMPEG" -y -loglevel error -i "$OUT_MP4" -i "$OUT_PALETTE" \
   -lavfi "fps=12,scale=${GIF_WIDTH}:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=4" \
   "$OUT_GIF"
 

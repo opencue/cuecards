@@ -53,7 +53,8 @@ def parse_article(path: Path) -> dict | None:
         return None
     postiz = {k: v for k, v in POSTIZ_ENTRY_RE.findall(postiz_m.group(1))}
 
-    preset = (PRESET_RE.search(fm) or [None, "unknown"])[1] if PRESET_RE.search(fm) else "unknown"
+    preset_m = PRESET_RE.search(fm)
+    preset = preset_m.group(1) if preset_m else "unknown"
     voices_m = VOICES_RE.search(fm)
     voices = []
     if voices_m:

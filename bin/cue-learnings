@@ -156,7 +156,7 @@ case "$cmd" in
       # Most recent first; filter by pattern (matches key or insight) if given
       if [[ -n "$pattern" ]]; then
         tac "$LEARNINGS_FILE" 2>/dev/null \
-          | jq -c "select(.key | test(\"$pattern\"; \"i\")) // select(.insight | test(\"$pattern\"; \"i\"))" \
+          | jq -c --arg pat "$pattern" 'select((.key | test($pat; "i")) or (.insight | test($pat; "i")))' \
           | jq -r '"[\(.confidence)/10] \(.type)/\(.key) — \(.insight) (\(.ts))"'
       else
         tac "$LEARNINGS_FILE" 2>/dev/null \
