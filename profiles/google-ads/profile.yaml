@@ -8,8 +8,8 @@ recommends:
   - blog-writer   # long-form content the campaigns drive traffic to
 
 skills:
-  local:
-    - content/pdf              # PDF form filling, extraction, merging — includes scripts/
+  local: []
+    # content/pdf removed: anthropics/skills:pdf (inherited from core) is sufficient; local copy caused W4 collision
   npx:
     # --- google/skills: official Google Cloud skill library ---
     - repo: google/skills

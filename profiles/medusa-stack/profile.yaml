@@ -1,6 +1,11 @@
 name: medusa-stack
 icon: "🏪"
 description: "Full-stack Medusa v2 dev in one profile — Medusa backend/modules + design system + backend infra. Bundles medusa-dev, designer, and backend so you stop hand-stacking them at launch."
+# lint: ignore W3 — depth-4 chain (core→medusa-dev→designer→backend→medusa-stack) is intentional: this
+# profile is a convenience composite; the depth is unavoidable without flattening the parent chains.
+# lint: ignore W4 — supabase collision between deployment/supabase (backend chain) and
+# mindrally/skills:supabase (medusa-dev chain) is known. deployment/supabase covers deploy/migration
+# patterns; mindrally/skills:supabase covers general integration. Both are intentionally retained.
 inherits: [medusa-dev, designer, backend]
 bundles:
   - medusa-dev

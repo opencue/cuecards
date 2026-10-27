@@ -166,7 +166,7 @@ skills:
     - marketing/client-report-narratives
     - marketing/competitor-creative-analysis
     - marketing/competitor-teardown
-    - marketing/content-repurposer
+    - marketing/content-repurposer  # lint: ignore W4 — intentional: marketing/content-repurposer (multi-channel) and Affitor/affiliate-skills:content-repurposer (affiliate-specific) serve different use cases
     - marketing/conversion-path-analysis
     - marketing/cpa-diagnostics
     - marketing/creative-fatigue-detection
@@ -200,7 +200,7 @@ skills:
     - content/engagement-feedback
     - content/stop-slop
     - content/anti-formula
-    - content/pdf
+    # content/pdf removed: anthropics/skills:pdf declared in npx section below (line 222-223); local copy caused W4 collision
     - research/trendradar
     - research/keyword-research
     - nvidia/aiq-research
@@ -281,8 +281,7 @@ skills:
       skills: [fastapi]
     - repo: github/awesome-copilot
       skills: [pytest-coverage]
-    - repo: nextlevelbuilder/ui-ux-pro-max-skill
-      skills: [ui-ux-pro-max]
+    # nextlevelbuilder/ui-ux-pro-max-skill:ui-ux-pro-max removed: design/ui-ux-pro-max (local, line 100) is the authoritative variant; npx duplicate caused W4 collision
     - repo: OSideMedia/higgsfield-ai-prompt-skill
       skills: [higgsfield-ai-prompt-skill]
     - repo: op7418/Seedance-Product-Video

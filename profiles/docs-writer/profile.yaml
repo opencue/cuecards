@@ -8,7 +8,7 @@ recommends:
 skills:
   local:
     - content/doc
-    - content/pdf
+    # content/pdf removed: anthropics/skills:pdf (inherited from core) is sufficient; local copy caused W4 collision
     - obsidian/obsidian-markdown
     - obsidian/obsidian-cli
     - obsidian/obsidian-bases
