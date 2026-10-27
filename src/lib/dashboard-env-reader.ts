@@ -10,11 +10,41 @@ import { join } from "node:path";
 
 import { configDir } from "./config-paths";
 
-export function loadEnvFolderDefs(): ReadonlyArray<{ path: string; tag: string }> {
-  const cfgPath = join(configDir(), "env-folders.json");
+/**
+ * The original 6 built-in folder definitions shipped with the dashboard.
+ * Used as the fallback when no ~/.config/cue/env-folders.json is present;
+ * entries whose directory does not exist on disk are filtered out at runtime.
+ */
+export const DEFAULT_ENV_FOLDER_DEFS: ReadonlyArray<{ path: string; tag: string }> = [
+  { path: "~/Documents/cue", tag: "cue" },
+  { path: "~/Documents/recodee/authmux", tag: "authmux" },
+  { path: "~/Documents/x-growth-bot", tag: "x-growth-bot" },
+  { path: "~/work/medusa", tag: "medusa" },
+  { path: "~/Documents/medusa-shops/marva", tag: "marva" },
+  { path: "~/Documents/gitguardex", tag: "gitguardex" },
+];
+
+export const expandHome = (p: string): string => (p.startsWith("~/") ? join(homedir(), p.slice(2)) : p);
+
+/** Dependency-injection seams used in tests to avoid touching the real filesystem. */
+export interface LoadEnvFolderDefsOpts {
+  /** Override for the cue config directory (default: configDir()). */
+  configDirOverride?: string;
+  /** Replacement for fs.existsSync (default: node:fs existsSync). */
+  existsFn?: (path: string) => boolean;
+  /** Replacement for fs.readFileSync(path, "utf8") (default: node:fs readFileSync). */
+  readFn?: (path: string) => string;
+}
+
+export function loadEnvFolderDefs(opts?: LoadEnvFolderDefsOpts): ReadonlyArray<{ path: string; tag: string }> {
+  const dir = opts?.configDirOverride ?? configDir();
+  const exists = opts?.existsFn ?? existsSync;
+  const read = opts?.readFn ?? ((p: string) => readFileSync(p, "utf8"));
+
+  const cfgPath = join(dir, "env-folders.json");
   try {
-    if (existsSync(cfgPath)) {
-      const parsed = JSON.parse(readFileSync(cfgPath, "utf8")) as unknown;
+    if (exists(cfgPath)) {
+      const parsed = JSON.parse(read(cfgPath)) as unknown;
       if (
         Array.isArray(parsed) &&
         parsed.every(
@@ -26,12 +56,14 @@ export function loadEnvFolderDefs(): ReadonlyArray<{ path: string; tag: string }
       ) return parsed;
     }
   } catch { /* fall through to default */ }
-  return [{ path: "~/Documents/cue", tag: "cue" }];
+
+  // No valid config file found; fall back to the original 6 defaults, filtered
+  // to those whose directories actually exist on disk so we don't advertise
+  // paths that aren't present on this machine.
+  return DEFAULT_ENV_FOLDER_DEFS.filter((f) => exists(expandHome(f.path)));
 }
 
 export const ENV_FOLDER_DEFS: ReadonlyArray<{ path: string; tag: string }> = loadEnvFolderDefs();
-
-export const expandHome = (p: string): string => (p.startsWith("~/") ? join(homedir(), p.slice(2)) : p);
 
 const ENV_SECRET_RE = /(SECRET|_KEY|TOKEN|PASSWORD|PASSWD|_PASS|CREDENTIAL|DATABASE_URL|_DSN|PRIVATE)/i;
 
