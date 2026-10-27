@@ -4,24 +4,28 @@ import { getPool } from "../lib/db.js";
 import { GitHubRepo, decryptCredential, verifyWebhook, webhookSecret } from "../lib/gx.js";
 import { Workspaces } from "../lib/workspaces.js";
 import { WorkspaceError } from "../lib/workspace-schema.js";
+import { readLimitedBody } from "../lib/http-utils.js";
 
 export async function githubWebhook(req: Request, dependencies?: { pool: Pool; secret: string; request?: typeof fetch }): Promise<Response> {
   const json = (data: unknown, status = 200) => Response.json(data, { status, headers: { "cache-control": "no-store" } });
   if (req.method !== "POST") return json({ error: { code: "METHOD_NOT_ALLOWED" } }, 405);
   const id = z.uuid().safeParse(new URL(req.url).searchParams.get("id"));
   if (!id.success) return json({ error: { code: "INVALID_INPUT" } }, 400);
+  let pool: Pool;
   try {
-    const pool = dependencies?.pool ?? getPool(), secret = dependencies?.secret ?? process.env.BETTER_AUTH_SECRET ?? "";
-    const reader = req.body?.getReader(), chunks: Uint8Array[] = [];
-    let length = 0;
-    if (reader) while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      length += value.byteLength;
-      if (length > 262144) { await reader.cancel(); return json({ error: { code: "BODY_TOO_LARGE" } }, 413); }
-      chunks.push(value);
+    pool = dependencies?.pool ?? getPool();
+  } catch {
+    return json({ error: { code: "CONFIGURATION_ERROR" } }, 500);
+  }
+  const secret = dependencies?.secret ?? process.env.BETTER_AUTH_SECRET ?? "";
+  try {
+    let body: Buffer;
+    try {
+      body = await readLimitedBody(req, 262144);
+    } catch (err) {
+      if ((err as NodeJS.ErrnoException).code === "BODY_TOO_LARGE") return json({ error: { code: "BODY_TOO_LARGE" } }, 413);
+      throw err;
     }
-    const body = Buffer.concat(chunks);
     if (!verifyWebhook(body, req.headers.get("x-hub-signature-256") ?? "", webhookSecret(id.data, secret))) return json({ error: { code: "INVALID_SIGNATURE" } }, 401);
     const repo = (await pool.query("SELECT workspace_id FROM cue_workspace_repo WHERE id=$1", [id.data])).rows[0];
     if (!repo) return json({ error: { code: "NOT_FOUND" } }, 404);

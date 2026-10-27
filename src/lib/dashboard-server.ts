@@ -11,7 +11,6 @@
  * public interface would be a privacy footgun.
  */
 
-import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { readFile, stat as statAsync } from "node:fs/promises";
 import { homedir } from "node:os";
@@ -40,16 +39,29 @@ import {
 import { validateProfileName } from "./profile-generator";
 import { loadMcpCatalog, addMcpToProfile } from "./mcp-catalog";
 import { installMarketItem, type MarketAddKind } from "./market-install";
-import { aggregateProfileClis, type ProfileCli } from "./skill-clis";
+import { aggregateProfileClis } from "./skill-clis";
+import {
+  type StudioSkill,
+  type PlaybookWorkflow,
+  type SubagentRef,
+  type StudioCommand,
+  type ProfileDetail,
+  parseUsesFromFrontmatter,
+  parseCommandFrontmatter,
+  stubCommandBody,
+  parsePlaybook,
+} from "./dashboard-playbook-parser";
 import { collectPermissions } from "./permissions";
 import { reposForProfile, resolveRepoStars } from "./repos";
 import { parseSkillFromContent, parseSkillFromDir } from "./skill-router";
 import { resolveLocalSkill } from "./resolver-local";
-import { resolveProfileForCwd } from "./cwd-resolver";
+import { resolveProfileForCwd, resolveActiveProfile } from "./cwd-resolver";
 import { quickDiagnose } from "../commands/status";
 import { isEnabled as telemetryEnabled } from "./telemetry-consent";
 import { collectUserPrompts } from "../commands/trigger-gaps";
 import { computeVersionInfo, type NoticePayload, type VersionInfo } from "./dashboard-version";
+import { ENV_FOLDER_DEFS, expandHome, parseEnvText } from "./dashboard-env-reader";
+import { mergeProfilesDir, serveProfileIcon, servePluginIcon, contentTypeFor } from "./dashboard-static-assets";
 
 export { computeVersionInfo, semverGt } from "./dashboard-version";
 
@@ -103,13 +115,12 @@ export async function handleStatus(): Promise<ApiResult<unknown>> {
     homeDir: homedir(),
     configDir: configDir(),
   });
-  const hasProfile = resolved.source !== "none";
   let profile: ProfilePartSummary | null = null;
   let parts: ProfilePartSummary[] = [];
   let warnings: unknown[] = [];
   let gateRun = null;
-  if (hasProfile) {
-    const profileName = (resolved as { profile: string }).profile;
+  if (resolved.source !== "none") {
+    const profileName = resolved.profile;
     try {
       const loaded = await loadProfile(profileName);
       profile = {
@@ -192,46 +203,6 @@ export async function handleProfiles(): Promise<ApiResult<unknown>> {
 }
 
 /** Profiles dir the merge engine writes to — honors the same env override. */
-function mergeProfilesDir(): string {
-  return process.env.CUE_PROFILES_DIR ?? join(REPO_ROOT, "profiles");
-}
-
-/**
- * Serve a profile's logo image (`profiles/<name>/<iconImage>`) as raw bytes.
- * Read-only and path-traversal-safe: the profile name is restricted to a
- * single dir segment, the iconImage must be a bare filename, and the resolved
- * path must stay inside the profiles dir. 404 when the profile has no logo.
- */
-async function serveProfileIcon(rawName: string | null): Promise<Response> {
-  if (!rawName) return new Response("missing profile", { status: 400 });
-  // Composite selectors (a+b) → use the first part's logo.
-  const name = rawName.split("+")[0]!.trim();
-  if (!/^[A-Za-z0-9._-]+$/.test(name) || name.includes("..")) {
-    return new Response("bad profile", { status: 400 });
-  }
-  let iconImage: string | undefined;
-  try {
-    iconImage = (await loadProfile(name)).iconImage;
-  } catch {
-    return new Response("not found", { status: 404 });
-  }
-  if (!iconImage || iconImage.includes("/") || iconImage.includes("\\") || iconImage.includes("..")) {
-    return new Response("no icon", { status: 404 });
-  }
-  const dir = mergeProfilesDir();
-  const file = resolve(join(dir, name, iconImage));
-  if (!file.startsWith(resolve(dir))) return new Response("forbidden", { status: 403 });
-  if (!existsSync(file) || !statSync(file).isFile()) return new Response("not found", { status: 404 });
-  return new Response(readFileSync(file), {
-    headers: { "Content-Type": contentTypeFor(file), "Cache-Control": "max-age=3600" },
-  });
-}
-
-/** Directory holding generated plugin logos, keyed by `<plugin-name>.png`. */
-function pluginLogosDir(): string {
-  return process.env.CUE_PLUGIN_LOGOS_DIR ?? join(REPO_ROOT, "resources", "plugin-logos");
-}
-
 /** Directory holding playbook markdown docs, keyed by `<slug>.md`. */
 function playbooksDir(): string {
   return process.env.CUE_PLAYBOOKS_DIR ?? join(REPO_ROOT, "resources", "playbooks");
@@ -240,50 +211,6 @@ function playbooksDir(): string {
 /** Directory holding slash-command markdown docs, keyed by `<ref>.md`. */
 function commandsDir(): string {
   return process.env.CUE_COMMANDS_DIR ?? join(REPO_ROOT, "resources", "commands");
-}
-
-/**
- * Serve a plugin's logo image as raw bytes. Two sources, tried in order:
- *   1. Reuse — a cue profile sharing the plugin's bare name that ships its own
- *      logo (the `resend` / `vercel` / `stripe` plugins map straight onto
- *      profiles/<name>/<iconImage>).
- *   2. Generated — a PNG under the plugin-logos dir keyed by the plugin name.
- * Path-traversal-safe exactly like serveProfileIcon. 404 when neither exists.
- */
-async function servePluginIcon(rawId: string | null): Promise<Response> {
-  if (!rawId) return new Response("missing plugin", { status: 400 });
-  // Plugin ids are "name@marketplace" — the logo keys off the bare name.
-  const name = rawId.split("@")[0]!.trim();
-  if (!/^[A-Za-z0-9._-]+$/.test(name) || name.includes("..")) {
-    return new Response("bad plugin", { status: 400 });
-  }
-
-  // 1. Reuse a same-named profile's logo when it ships one.
-  try {
-    const iconImage = (await loadProfile(name)).iconImage;
-    if (iconImage && !iconImage.includes("/") && !iconImage.includes("\\") && !iconImage.includes("..")) {
-      const pdir = mergeProfilesDir();
-      const pfile = resolve(join(pdir, name, iconImage));
-      if (pfile.startsWith(resolve(pdir)) && existsSync(pfile) && statSync(pfile).isFile()) {
-        return new Response(readFileSync(pfile), {
-          headers: { "Content-Type": contentTypeFor(pfile), "Cache-Control": "max-age=3600" },
-        });
-      }
-    }
-  } catch {
-    // No same-named profile — fall through to generated art.
-  }
-
-  // 2. Generated logo under the plugin-logos dir.
-  const gdir = pluginLogosDir();
-  const gfile = resolve(join(gdir, name + ".png"));
-  if (!gfile.startsWith(resolve(gdir))) return new Response("forbidden", { status: 403 });
-  if (existsSync(gfile) && statSync(gfile).isFile()) {
-    return new Response(readFileSync(gfile), {
-      headers: { "Content-Type": "image/png", "Cache-Control": "max-age=3600" },
-    });
-  }
-  return new Response("not found", { status: 404 });
 }
 
 /**
@@ -357,230 +284,6 @@ export async function handleProfilesFull(): Promise<ApiResult<unknown>> {
 // so the result is cached briefly (keyed by profile selector).
 // ---------------------------------------------------------------------------
 
-interface StudioSkill {
-  id: string;
-  ns: string;
-  name: string;
-  desc: string;
-  sizeK: number;
-  body: string;
-  uses: string[];
-  missing: boolean;
-}
-
-/** One `##` heading of a playbook, rendered as a step chip in the studio. */
-interface PlaybookStep {
-  name: string;
-  detail: string;
-}
-
-/** A profile's playbook, shaped for the studio Workflows page. */
-interface PlaybookWorkflow {
-  id: string;
-  name: string;
-  title: string;
-  emoji: string;
-  trigger: string;
-  est: string;
-  desc: string;
-  steps: PlaybookStep[];
-}
-
-/** A delegatable subagent ref, split into its division + slug for grouping. */
-interface SubagentRef {
-  /** The raw ref, e.g. "design/design-ui-designer". */
-  id: string;
-  /** First path segment — the agency division (design, finance, sales…). */
-  division: string;
-  /** Trailing slug — the agent name. */
-  name: string;
-}
-
-/** A profile slash-command, resolved from its on-disk markdown source. */
-interface StudioCommand {
-  /** Display name with the leading slash, e.g. "/goal". */
-  name: string;
-  /** Bare ref / file stem used to resolve the source, e.g. "goal". */
-  ref: string;
-  /** One-line `description:` from frontmatter ("" when absent / unresolved). */
-  desc: string;
-  /** Optional `argument-hint:` from frontmatter. */
-  argHint: string | null;
-  /** Full markdown body, rendered in the studio editor preview. */
-  body: string;
-  /** KB size of the source file (0 when unresolved). */
-  sizeK: number;
-  /** True when no source .md resolved (built-in / plugin-provided command). */
-  missing: boolean;
-}
-
-interface ProfileDetail {
-  profile: string;
-  parts: string[];
-  counts: { skills: number; mcps: number; plugins: number; commands: number; subagents: number; clis: number };
-  skills: StudioSkill[];
-  mcps: { id: string; status: string }[];
-  plugins: { id: string; name: string; marketplace: string; status: string }[];
-  commands: StudioCommand[];
-  /** Real on-disk workflows: the playbooks this profile declares, parsed. */
-  playbooks: PlaybookWorkflow[];
-  /** Delegatable specialists this profile wires into `.claude/agents/`. */
-  subagents: SubagentRef[];
-  /** External CLI tools the profile's skills declare (frontmatter Bash refs). */
-  clis: ProfileCli[];
-  /** Companion profiles the active profile recommends pairing with. */
-  recommends: string[];
-}
-
-/** Pull a `uses:` (or `mcps:`) frontmatter list out of a SKILL.md, if present. */
-function parseUsesFromFrontmatter(content: string): string[] {
-  const lines = content.split("\n");
-  if (lines[0] !== "---") return [];
-  for (let i = 1; i < lines.length; i++) {
-    if (lines[i] === "---") break;
-    const m = lines[i]!.match(/^(?:uses|mcps):\s*\[([^\]]*)\]/);
-    if (m) {
-      return m[1]!
-        .split(",")
-        .map((s) => s.trim().replace(/^["']|["']$/g, ""))
-        .filter(Boolean);
-    }
-  }
-  return [];
-}
-
-/** Strip a single matched pair of wrapping quotes — never an unbalanced lone quote. */
-function stripWrappingQuotes(s: string): string {
-  return s.replace(/^(['"])([\s\S]*)\1$/, "$2");
-}
-
-/** Pull `description:` and `argument-hint:` out of a command markdown's frontmatter. */
-function parseCommandFrontmatter(content: string): { desc: string; argHint: string | null } {
-  // Normalize CRLF so an externally-authored (Windows) command file's "---\r"
-  // fence still matches the delimiter check below.
-  const lines = content.replace(/\r\n/g, "\n").split("\n");
-  if (lines[0] !== "---") return { desc: "", argHint: null };
-  let desc = "";
-  let argHint: string | null = null;
-  for (let i = 1; i < lines.length; i++) {
-    if (lines[i] === "---") break;
-    const d = lines[i]!.match(/^description:\s*(.+)$/);
-    if (d) desc = stripWrappingQuotes(d[1]!.trim());
-    const a = lines[i]!.match(/^argument-hint:\s*(.+)$/);
-    if (a) argHint = stripWrappingQuotes(a[1]!.trim());
-  }
-  return { desc, argHint };
-}
-
-/** Placeholder body for a command with no on-disk source (plugin / built-in). */
-function stubCommandBody(name: string): string {
-  return `---
-command: ${name}
-source: plugin or built-in
----
-
-# ${name}
-
-This command has no markdown source in \`resources/commands/\` — it is contributed by an installed plugin or built in to the agent, so its body isn't stored locally. Invoke it by typing \`${name}\` in the prompt.`;
-}
-
-/** Map a playbook slug/title to a stable emoji for its workflow card. */
-function playbookEmoji(hint: string): string {
-  const s = hint.toLowerCase();
-  // Specific themes first — generic "ship/deploy" verbs appear in many titles.
-  if (/bug|triage|debug/.test(s)) return "🐛";
-  if (/sprint/.test(s)) return "🏃";
-  if (/improve|clean|refactor|health/.test(s)) return "🔧";
-  if (/skill/.test(s)) return "🧪";
-  if (/research|analyze|investigate/.test(s)) return "🔍";
-  if (/security|secops|cso/.test(s)) return "🛡";
-  if (/doc|write/.test(s)) return "📝";
-  if (/growth|market/.test(s)) return "📈";
-  if (/vite|web|frontend|design/.test(s)) return "🎨";
-  if (/medusa|shop|commerce/.test(s)) return "🛒";
-  if (/ship|deploy|release|land|canary/.test(s)) return "🚀";
-  return "📋";
-}
-
-/** Rough token estimate (~4 chars/token) → compact "~1.2K" label. */
-function estTokensLabel(chars: number): string {
-  const t = Math.max(1, Math.round(chars / 4));
-  if (t < 1000) return `~${t}`;
-  return `~${(t / 1000).toFixed(1).replace(/\.0$/, "")}K`;
-}
-
-/** Collapse whitespace and cap a string with an ellipsis. */
-function collapse(s: string, cap = 160): string {
-  const t = s.replace(/\s+/g, " ").trim();
-  return t.length > cap ? t.slice(0, cap - 1).trimEnd() + "…" : t;
-}
-
-/** Strip leading markdown markers (bullets, numbers, bold) from a line. */
-function cleanMdLine(s: string): string {
-  return s.replace(/^[-*]\s+/, "").replace(/^\d+\.\s+/, "").replace(/\*\*/g, "").trim();
-}
-
-/**
- * Parse a playbook markdown doc into a workflow-card model:
- *  - `title` from the `# Playbook: …` H1 (falls back to the prettified slug),
- *  - `desc` from the first "Use when …" paragraph (falls back to the first
- *    non-heading paragraph),
- *  - one `step` per `##` heading, numbered prefix stripped, with a one-line
- *    `detail` pulled from that section's first body line.
- */
-function parsePlaybook(slug: string, content: string): PlaybookWorkflow {
-  const lines = content.split("\n");
-
-  let title = slug.replace(/[-_]/g, " ");
-  const h1Idx = lines.findIndex((l) => /^#\s+/.test(l));
-  if (h1Idx >= 0) {
-    const m = lines[h1Idx]!.match(/^#\s+(?:Playbook:\s*)?(.+)$/);
-    if (m) title = m[1]!.trim();
-  }
-
-  let desc = "";
-  const gatherParagraph = (start: number): string => {
-    const para: string[] = [];
-    for (let i = start; i < lines.length && lines[i]!.trim() !== ""; i++) para.push(lines[i]!);
-    return collapse(para.join(" "));
-  };
-  const useIdx = lines.findIndex((l) => /use when/i.test(l));
-  if (useIdx >= 0) {
-    desc = gatherParagraph(useIdx);
-  } else {
-    for (let i = h1Idx + 1; i < lines.length; i++) {
-      const l = lines[i]!.trim();
-      if (!l || l.startsWith("#")) continue;
-      desc = gatherParagraph(i);
-      break;
-    }
-  }
-
-  const steps: PlaybookStep[] = [];
-  for (let i = 0; i < lines.length; i++) {
-    const m = lines[i]!.match(/^##\s+(.+)$/);
-    if (!m) continue;
-    const name = collapse(m[1]!.replace(/^\d+\.\s*/, ""), 60);
-    let detail = "";
-    for (let j = i + 1; j < lines.length; j++) {
-      if (/^##\s+/.test(lines[j]!)) break;
-      const c = cleanMdLine(lines[j]!);
-      if (c) { detail = collapse(c, 140); break; }
-    }
-    steps.push({ name, detail });
-  }
-
-  return {
-    id: slug,
-    name: slug,
-    title,
-    emoji: playbookEmoji(`${slug} ${title}`),
-    trigger: "playbook",
-    est: estTokensLabel(content.length),
-    desc: desc || `Playbook: ${title}`,
-    steps,
-  };
-}
 
 const profileDetailCache = new Map<string, { ts: number; data: ProfileDetail }>();
 const PROFILE_DETAIL_TTL_MS = 60_000;
@@ -590,12 +293,7 @@ export async function handleProfileDetail(params: URLSearchParams): Promise<ApiR
   // /status), so the studio opens on the active profile with no query param.
   let name = resolveProfileQuery(params.get("profile"));
   if (!name) {
-    const resolved = await resolveProfileForCwd({
-      cwd: process.cwd(),
-      homeDir: homedir(),
-      configDir: configDir(),
-    });
-    if (resolved.source !== "none") name = (resolved as { profile: string }).profile;
+    name = await resolveActiveProfile();
   }
   if (!name) return { ok: false, error: "no-profile" };
 
@@ -838,8 +536,7 @@ function readHooksFile(path: string, source: FlatHook["source"], profileName: st
 async function resolveHooksProfile(profileParam: string | null): Promise<string | null> {
   const explicit = resolveProfileQuery(profileParam);
   if (explicit) return explicit;
-  const resolved = await resolveProfileForCwd({ cwd: process.cwd(), homeDir: homedir(), configDir: configDir() });
-  return resolved.source !== "none" ? (resolved as { profile: string }).profile : null;
+  return resolveActiveProfile();
 }
 
 /** All hooks (global + this profile's runtime), deduped by id — the shared
@@ -1094,16 +791,17 @@ export async function handleTriggerGaps(params: URLSearchParams): Promise<ApiRes
   }
   try {
     const profile = await loadProfile(name);
-    const skills = [];
     const skillRefs = (profile.skills?.local ?? [])
       .map((s) => typeof s === "string" ? s : s.id)
       .filter((id) => !id.includes("*"));
-    for (const id of skillRefs) {
-      try {
-        const dir = await resolveLocalSkill(id);
-        skills.push(await parseSkillFromDir(id, dir));
-      } catch { /* skip unresolvable */ }
-    }
+    const skills = (await Promise.all(
+      skillRefs.map(async (id) => {
+        try {
+          const dir = await resolveLocalSkill(id);
+          return await parseSkillFromDir(id, dir);
+        } catch { return null; }
+      })
+    )).filter((s): s is NonNullable<typeof s> => s !== null);
     const userPrompts = collectUserPrompts(sinceDays);
     const usage = computeSkillUsage(profile, { windowDays: sinceDays });
     const hits = new Map<string, number>();
@@ -1337,19 +1035,19 @@ function registryIndexPath(): string {
 const REGISTRY_URL = "https://opencue.github.io/cue/registry/index.json";
 
 /**
- * Load the shared registry — local doc first, then a short-timeout curl fetch,
+ * Load the shared registry — local doc first, then a short-timeout fetch,
  * mirroring `loadRegistry` in src/commands/marketplace.ts. Any failure is
  * tolerated (returns null) so the local-library part of the feed still renders
  * offline.
  */
-function loadMarketRegistry(): MarketRegistry | null {
+async function loadMarketRegistry(): Promise<MarketRegistry | null> {
   const path = registryIndexPath();
   if (existsSync(path)) {
     try { return JSON.parse(readFileSync(path, "utf8")) as MarketRegistry; } catch { /* fall through */ }
   }
   try {
-    const res = spawnSync("curl", ["-sfL", "--max-time", "5", REGISTRY_URL], { encoding: "utf8", timeout: 8000 });
-    if (res.status === 0 && res.stdout) return JSON.parse(res.stdout) as MarketRegistry;
+    const res = await fetch(REGISTRY_URL, { signal: AbortSignal.timeout(5000) });
+    if (res.ok) return (await res.json()) as MarketRegistry;
   } catch { /* offline / blocked */ }
   return null;
 }
@@ -1588,7 +1286,7 @@ export async function handleMarket(): Promise<ApiResult<unknown>> {
     return { ok: true, data: marketCache.data };
   }
 
-  const reg = loadMarketRegistry();
+  const reg = await loadMarketRegistry();
   const regItems = registryItems(reg);
   const registryMcpIds = new Set(
     regItems.filter((i) => i.type === "mcp").map((i) => i.id.slice("mcp:".length)),
@@ -1683,62 +1381,20 @@ export async function handleWorkflowSave(body: unknown): Promise<ApiResult<unkno
 // names that key in `reveal`. Loopback-only trust boundary (see binding note).
 
 /** Project folders whose `.env` the studio may read. `~` expands to $HOME.
- *  Mirrors the design's folder list; the canonical home for the user's repos. */
-const ENV_FOLDER_DEFS: ReadonlyArray<{ path: string; tag: string }> = [
-  { path: "~/Documents/cue", tag: "cue" },
-  { path: "~/Documents/recodee/authmux", tag: "authmux" },
-  { path: "~/Documents/x-growth-bot", tag: "x-growth-bot" },
-  { path: "~/work/medusa", tag: "medusa" },
-  { path: "~/Documents/medusa-shops/marva", tag: "marva" },
-  { path: "~/Documents/gitguardex", tag: "gitguardex" },
-];
-
-const expandHome = (p: string): string => (p.startsWith("~/") ? join(homedir(), p.slice(2)) : p);
-
-const ENV_SECRET_RE = /(SECRET|_KEY|TOKEN|PASSWORD|PASSWD|_PASS|CREDENTIAL|DATABASE_URL|_DSN|PRIVATE)/i;
-type EnvKind = "secret" | "url" | "bool" | "num" | "plain";
-function classifyEnvVar(key: string, val: string): EnvKind {
-  if (ENV_SECRET_RE.test(key)) return "secret";
-  if (/^https?:\/\//.test(val)) return "url";
-  if (/^(true|false)$/i.test(val)) return "bool";
-  if (/^\d+$/.test(val)) return "num";
-  return "plain";
-}
-interface EnvVarRow { key: string; value: string; kind: EnvKind; masked: boolean }
-/** Mask all but the first/last 3 chars (mirrors the design's mask()). */
-function maskSecretValue(v: string): string {
-  return v.length <= 8 ? "•".repeat(v.length) : v.slice(0, 3) + "•".repeat(Math.min(18, v.length - 6)) + v.slice(-3);
-}
-function parseEnvText(raw: string, revealKey: string): EnvVarRow[] {
-  const out: EnvVarRow[] = [];
-  for (const line of raw.split("\n")) {
-    const t = line.trim();
-    if (!t || t.startsWith("#")) continue;
-    const eq = line.indexOf("=");
-    if (eq < 0) continue;
-    const key = line.slice(0, eq).trim();
-    let value = line.slice(eq + 1).trim();
-    // Strip a single layer of surrounding quotes, like dotenv does.
-    if (value.length >= 2 && ((value[0] === '"' && value.at(-1) === '"') || (value[0] === "'" && value.at(-1) === "'"))) {
-      value = value.slice(1, -1);
-    }
-    const kind = classifyEnvVar(key, value);
-    const isSecret = kind === "secret";
-    // `reveal` names a single key, or "*" to reveal every secret at once.
-    const reveal = isSecret && (revealKey === "*" || revealKey === key);
-    out.push({ key, value: isSecret && !reveal ? maskSecretValue(value) : value, kind, masked: isSecret && !reveal });
-  }
-  return out;
-}
+ *  Configured via `~/.config/cue/env-folders.json`; falls back to a minimal
+ *  built-in default when no config file exists. */
 
 /** GET /api/v1/env/folders → the allowlisted project folders + their var counts. */
 export async function handleEnvFolders(): Promise<ApiResult<unknown>> {
-  const folders = ENV_FOLDER_DEFS.map((f) => {
+  const folders = await Promise.all(ENV_FOLDER_DEFS.map(async (f) => {
     const abs = join(expandHome(f.path), ".env");
     let count = 0;
-    try { if (existsSync(abs)) count = parseEnvText(readFileSync(abs, "utf8"), "").length; } catch { /* unreadable → 0 */ }
+    try {
+      const raw = await readFile(abs, "utf8");
+      count = parseEnvText(raw, "").length;
+    } catch { /* unreadable or missing → 0 */ }
     return { path: f.path, tag: f.tag, count };
-  });
+  }));
   return { ok: true, data: { folders } };
 }
 
@@ -1751,9 +1407,15 @@ export async function handleEnv(params: URLSearchParams): Promise<ApiResult<unkn
   const def = ENV_FOLDER_DEFS.find((f) => f.path === folder);
   if (!def) return { ok: false, error: "unknown-folder" };
   const abs = join(expandHome(def.path), ".env");
-  if (!existsSync(abs)) return { ok: true, data: { folder: def.path, tag: def.tag, exists: false, vars: [] } };
-  let raw = "";
-  try { raw = readFileSync(abs, "utf8"); } catch (err) { return { ok: false, error: `read failed: ${(err as Error).message}` }; }
+  let raw: string;
+  try {
+    raw = await readFile(abs, "utf8");
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === "ENOENT") {
+      return { ok: true, data: { folder: def.path, tag: def.tag, exists: false, vars: [] } };
+    }
+    return { ok: false, error: `read failed: ${(err as Error).message}` };
+  }
   return { ok: true, data: { folder: def.path, tag: def.tag, exists: true, vars: parseEnvText(raw, reveal) } };
 }
 
@@ -1766,12 +1428,7 @@ export async function handleEnv(params: URLSearchParams): Promise<ApiResult<unkn
 export async function handleRepos(params: URLSearchParams): Promise<ApiResult<unknown>> {
   let name = resolveProfileQuery(params.get("profile"));
   if (!name) {
-    const resolved = await resolveProfileForCwd({
-      cwd: process.cwd(),
-      homeDir: homedir(),
-      configDir: configDir(),
-    });
-    if (resolved.source !== "none") name = (resolved as { profile: string }).profile;
+    name = await resolveActiveProfile();
   }
   if (!name) return { ok: false, error: "no-profile" };
 
@@ -1820,15 +1477,20 @@ const ROUTES: Record<string, (params: URLSearchParams) => Promise<ApiResult<unkn
   "/api/v1/repos":              (p) => handleRepos(p),
 };
 
-function contentTypeFor(path: string): string {
-  if (path.endsWith(".html")) return "text/html; charset=utf-8";
-  if (path.endsWith(".js"))   return "application/javascript; charset=utf-8";
-  if (path.endsWith(".css"))  return "text/css; charset=utf-8";
-  if (path.endsWith(".json")) return "application/json; charset=utf-8";
-  if (path.endsWith(".svg"))  return "image/svg+xml";
-  if (path.endsWith(".png"))  return "image/png";
-  return "application/octet-stream";
+/** Parse request body as JSON, returning null on malformed input. */
+async function parseJsonBody<T>(req: Request): Promise<T | null> {
+  try { return (await req.json()) as T; } catch { return null; }
 }
+
+/** POST write-side routes (parallel to ROUTES for GET). Each handler receives
+ *  the parsed (or null) body and returns an ApiResult envelope. */
+const POST_ROUTES: Record<string, (body: unknown) => Promise<ApiResult<unknown>>> = {
+  "/api/v1/merge/preview":  (b) => handleMergePreview(b as Parameters<typeof handleMergePreview>[0]),
+  "/api/v1/merge/save":     (b) => handleMergeSave(b as Parameters<typeof handleMergeSave>[0]),
+  "/api/v1/mcps/add":       (b) => handleMcpAdd(b as Parameters<typeof handleMcpAdd>[0]),
+  "/api/v1/market/install": (b) => handleMarketInstall(b as Parameters<typeof handleMarketInstall>[0]),
+  "/api/v1/workflows/save": (b) => handleWorkflowSave(b),
+};
 
 /**
  * Build the request handler. Exported so tests can mount it without
@@ -1855,45 +1517,17 @@ export function createHandler(): (req: Request) => Promise<Response> {
     // is the v1 trust boundary — anyone hitting these from localhost is
     // assumed to be the user.
     if (req.method === "POST" && url.pathname === "/api/v1/sessions/kill") {
-      let body: { pid?: number; signal?: NodeJS.Signals } | null = null;
-      try { body = (await req.json()) as typeof body; } catch { /* malformed */ }
+      const body = await parseJsonBody<{ pid?: number; signal?: NodeJS.Signals }>(req);
       const result = await handleKillSession(body);
       return Response.json(result, { status: result.ok ? 200 : 400 });
     }
 
-    if (req.method === "POST" && url.pathname === "/api/v1/merge/preview") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMergePreview(body as Parameters<typeof handleMergePreview>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/merge/save") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMergeSave(body as Parameters<typeof handleMergeSave>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/mcps/add") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMcpAdd(body as Parameters<typeof handleMcpAdd>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/market/install") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleMarketInstall(body as Parameters<typeof handleMarketInstall>[0]);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
-    }
-
-    if (req.method === "POST" && url.pathname === "/api/v1/workflows/save") {
-      let body: unknown = null;
-      try { body = await req.json(); } catch { /* malformed */ }
-      const result = await handleWorkflowSave(body);
-      return Response.json(result, { status: result.ok ? 200 : 400 });
+    if (req.method === "POST") {
+      const postHandler = POST_ROUTES[url.pathname];
+      if (postHandler) {
+        const result = await postHandler(await parseJsonBody(req));
+        return Response.json(result, { status: result.ok ? 200 : 400 });
+      }
     }
 
     // Live activity stream (Server-Sent Events, not JSON): pushes the timeline

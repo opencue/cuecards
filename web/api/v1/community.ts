@@ -17,7 +17,13 @@ import { getMarket, publishMarket, type PublishInput } from "../../lib/market.js
 function readBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
     let data = "";
-    req.on("data", (c) => { data += c; if (data.length > 1_000_000) req.destroy(); });
+    req.on("data", (c) => {
+      data += c;
+      if (data.length > 1_000_000) {
+        req.destroy();
+        reject(new Error("body-too-large"));
+      }
+    });
     req.on("end", () => resolve(data));
     req.on("error", reject);
   });
@@ -42,9 +48,14 @@ export default async function handler(
     let input: PublishInput;
     try {
       input = JSON.parse((await readBody(req)) || "{}") as PublishInput;
-    } catch {
-      res.statusCode = 400;
-      res.end(JSON.stringify({ ok: false, error: "invalid-json" }));
+    } catch (err) {
+      if ((err as Error).message === "body-too-large") {
+        res.statusCode = 413;
+        res.end(JSON.stringify({ ok: false, error: "body-too-large" }));
+      } else {
+        res.statusCode = 400;
+        res.end(JSON.stringify({ ok: false, error: "invalid-json" }));
+      }
       return;
     }
     const { status, body } = await publishMarket(headers, input);
