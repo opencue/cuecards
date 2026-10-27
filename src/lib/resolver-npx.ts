@@ -35,7 +35,7 @@
 
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdtempSync, readdirSync, rmSync, statSync } from "node:fs";
+import { cpSync, existsSync, mkdtempSync, readdirSync, renameSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -473,16 +473,13 @@ export async function resolveNpxDetailed(
     let failure: NpxEntryFailure | undefined;
 
     try {
-      const fetched = await ensureCacheForEntry(
-        layout,
-        key,
-        entry,
+      const fetched = await ensureCacheForEntry(layout, key, entry, {
         fetcher,
         batchFetcher,
         offline,
         suppress,
-        activeKeys,
-      );
+        protect: activeKeys,
+      });
       // Only a real fetch proves the repo is reachable again. A pure cache hit
       // proves nothing — and clearing on it would drop a marker that is still
       // protecting a DIFFERENT request from the stall, so two profiles sharing
@@ -606,12 +603,11 @@ async function ensureCacheForEntry(
   layout: CacheLayout,
   key: string,
   entry: NpxSkillRef,
-  fetcher: NpxFetchFn,
-  batchFetcher: NpxBatchFetchFn | undefined,
-  offline: boolean,
-  suppress: SuppressOptions = { enabled: false, cooldownMs: 0 },
-  protect: ReadonlySet<string> = new Set(),
+  opts: EnsureCacheOpts,
 ): Promise<boolean> {
+  const { fetcher, batchFetcher, offline } = opts;
+  const suppress = opts.suppress ?? { enabled: false, cooldownMs: 0 };
+  const protect = opts.protect ?? new Set<string>();
   if (cacheHit(layout, key)) {
     const present = new Set(cacheChildren(layout, key));
     const missing = entry.skills.filter((s) => !present.has(s) || !isNonEmptyDir(cacheSkillPath(layout, key, s)));
@@ -644,6 +640,15 @@ async function ensureCacheForEntry(
 interface SuppressOptions {
   enabled: boolean;
   cooldownMs: number;
+}
+
+/** Options bag for ensureCacheForEntry (consolidates the formerly positional tail params). */
+interface EnsureCacheOpts {
+  fetcher: NpxFetchFn;
+  batchFetcher?: NpxBatchFetchFn;
+  offline: boolean;
+  suppress?: SuppressOptions;
+  protect?: ReadonlySet<string>;
 }
 
 /** Concurrent repo fetches. CUE_NPX_CONCURRENCY overrides (1 = serial, max 8). */
@@ -788,11 +793,8 @@ async function fetchInto(
         if (existsSync(dest)) rmSync(dest, { recursive: true, force: true });
         // renameSync within tmp -> repo can fail across FS; fall back to copy.
         try {
-          // We deliberately import only on demand to avoid a top-level cycle.
-          const { renameSync } = await import("node:fs");
           renameSync(src, dest);
         } catch {
-          const { cpSync } = await import("node:fs");
           cpSync(src, dest, { recursive: true });
           rmSync(src, { recursive: true, force: true });
         }

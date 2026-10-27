@@ -276,15 +276,17 @@ function plannedActions(profiles: string[], agents: AnyAgent[], dir?: string): I
 async function captureStdout(fn: () => Promise<number>): Promise<{ stdout: string; code: number }> {
   const orig = process.stdout.write.bind(process.stdout);
   let stdout = "";
-  (process.stdout as any).write = (chunk: string | Uint8Array) => {
+  // Cast to the stream's own write type rather than widening to `any`, so only
+  // the assignment (not the whole stream) escapes type-checking.
+  process.stdout.write = ((chunk: string | Uint8Array): boolean => {
     stdout += String(chunk);
     return true;
-  };
+  }) as typeof process.stdout.write;
   try {
     const code = await fn();
     return { stdout, code };
   } finally {
-    (process.stdout as any).write = orig;
+    process.stdout.write = orig;
   }
 }
 

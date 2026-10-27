@@ -71,16 +71,24 @@ interface ETagEntry {
 
 const ETAG_CACHE_PATH = join(cacheDir(), "companion-etags.json");
 
+// In-memory singleton to avoid reading + JSON-parsing the cache file on every
+// ghListDir call (which recurses per subdirectory during skill installs).
+let _etagCache: Record<string, ETagEntry> | null = null;
+
 function loadETagCache(): Record<string, ETagEntry> {
+  if (_etagCache !== null) return _etagCache;
   try {
     if (existsSync(ETAG_CACHE_PATH)) {
-      return JSON.parse(readFileSync(ETAG_CACHE_PATH, "utf8"));
+      _etagCache = JSON.parse(readFileSync(ETAG_CACHE_PATH, "utf8"));
+      return _etagCache!;
     }
   } catch {}
-  return {};
+  _etagCache = {};
+  return _etagCache;
 }
 
 function saveETagCache(cache: Record<string, ETagEntry>): void {
+  _etagCache = cache; // keep in-memory copy in sync
   try {
     mkdirSync(join(ETAG_CACHE_PATH, ".."), { recursive: true });
     writeFileSync(ETAG_CACHE_PATH, JSON.stringify(cache));
@@ -111,9 +119,10 @@ function retrySpawn(
       res.stderr?.includes("503") || res.stderr?.includes("502") ||
       res.stderr?.includes("429");
     if (!isTransient || attempt === MAX_RETRIES) return res;
-    // Exponential backoff
+    // Exponential backoff — use Atomics.wait instead of spawning a child
+    // process to avoid the OS fork overhead and event-loop stalls from spawnSync.
     const delay = BASE_DELAY_MS * Math.pow(2, attempt);
-    spawnSync("sleep", [String(delay / 1000)], { stdio: "ignore" });
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, delay);
   }
   return { status: 1, stdout: "", stderr: "max retries exceeded" };
 }
@@ -266,16 +275,21 @@ export function parseCompanionsField(skillMdPath: string): string[] | null {
 }
 
 // ---------------------------------------------------------------------------
-// SHA256 integrity verification
+// SHA256 sidecar writer
 // ---------------------------------------------------------------------------
 
-function verifySha256(filePath: string, expectedSha: string): boolean {
+/**
+ * Compute SHA256 of `filePath` and write a `<filePath>.sha256` sidecar for
+ * future integrity checks. Returns true iff the file is non-empty.
+ *
+ * Note: GitHub's `sha` field is a git-blob SHA1, not SHA256, so it cannot
+ * be used for direct comparison here — the sidecar captures our own digest
+ * for later use.
+ */
+function writeSha256Sidecar(filePath: string): boolean {
   try {
-    // GitHub's "sha" field is a git blob sha (sha1), not sha256.
-    // We compute our own sha256 for integrity and store it for future checks.
     const content = readFileSync(filePath);
     const hash = createHash("sha256").update(content).digest("hex");
-    // Write a sidecar .sha256 file for future verification
     writeFileSync(`${filePath}.sha256`, hash);
     return content.length > 0; // basic sanity: file is non-empty
   } catch {
@@ -408,7 +422,7 @@ export async function fetchCompanionFilesAsync(
       const dest = join(localDir, entry.name);
       const ok = await downloadFn(entry.download_url!, dest);
       if (ok) {
-        if (opts.verifySha !== false) verifySha256(dest, entry.sha);
+        if (opts.verifySha !== false) writeSha256Sidecar(dest);
         fetched.push(entry.name);
       } else {
         errors.push(entry.name);
@@ -456,7 +470,7 @@ function parallelDownloadSync(
   for (const entry of toDownload) {
     const dest = join(localDir, entry.name);
     if (fetcher.downloadFile(entry.download_url!, dest)) {
-      if (verify) verifySha256(dest, entry.sha);
+      if (verify) writeSha256Sidecar(dest);
       fetched.push(entry.name);
     } else {
       errors.push(entry.name);
