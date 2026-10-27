@@ -22,7 +22,7 @@ import { spawnSync } from "node:child_process";
 
 import { listProfiles, loadProfile } from "../lib/profile-loader";
 import { listAllSkillIds } from "../lib/resolver-local";
-import { findIncompleteSkills, fetchCompanionFiles, readSourceFile } from "../lib/companion-fetch";
+import { findIncompleteSkills, fetchCompanionFiles, readSourceFile, type IncompleteSkill } from "../lib/companion-fetch";
 import { detectMissingDependencies } from "../lib/skill-dependencies";
 import { shimInstalled, runInstall } from "./shell";
 import { shimDir, shimDirPosition } from "../lib/shim-dir";
@@ -33,13 +33,14 @@ import { clearFetchFailure, readFetchFailure } from "../lib/cache";
 import { reconcileCodexHooks } from "../lib/codex-hooks";
 import { parseBaseCodexConfig } from "../lib/codex-config";
 import { runtimePathKey } from "../lib/runtime-materializer";
+import { configDir } from "../lib/config-paths";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
 const MCP_CONFIGS_DIR = join(repoRoot(), "resources", "mcps", "configs");
 const MCP_SOURCES_DIR = join(repoRoot(), "resources", "mcps", "mcps");
 const QUALITY_GATES_DIR = join(repoRoot(), "resources", "quality-gates");
-const RUNTIME_ROOT = join(process.env.HOME ?? "~", ".config", "cue", "runtime");
+const RUNTIME_ROOT = join(configDir(), "runtime");
 
 export interface Issue {
   code: string;
@@ -49,6 +50,12 @@ export interface Issue {
   fix?: string;
   runtimeDir?: string;
   path?: string;
+  /**
+   * Structured identifier for the subject of this issue (skill id, MCP id,
+   * etc.). Populated alongside `message` so `applyFix` can read it directly
+   * instead of regex-parsing the prose string.
+   */
+  id?: string;
   /**
    * Cache slot this issue is about (D10). Carried rather than re-derived: a
    * profile may reference the same repo at two pins, and those are different
@@ -120,6 +127,7 @@ export function missingMcpIssue(
       profile,
       message: `MCP "${id}" is local-only and absent from the sanitized registry`,
       fix: `Configure "${id}" in the user's agent MCP settings`,
+      id,
     };
   }
   return {
@@ -128,10 +136,16 @@ export function missingMcpIssue(
     profile,
     message: `MCP "${id}" declared but not in any registry config`,
     fix: `Remove "${id}" from ${profile}/profile.yaml mcps section`,
+    id,
   };
 }
 
-async function checkProfile(profileName: string, allSkillIds: Set<string>, allMcpIds: Set<string>): Promise<Issue[]> {
+async function checkProfile(
+  profileName: string,
+  allSkillIds: Set<string>,
+  allMcpIds: Set<string>,
+  incompleteSkills: IncompleteSkill[],
+): Promise<Issue[]> {
   const issues: Issue[] = [];
 
   let profile;
@@ -156,6 +170,7 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
         profile: profileName,
         message: `Skill "${id}" declared but not found on disk`,
         fix: `Remove "${id}" from ${profileName}/profile.yaml`,
+        id,
       });
     }
   }
@@ -209,6 +224,7 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
       profile: profileName,
       message: `Skill "${m.skillId}" requires MCP "${m.mcpId}" (${m.source}) which is not in profile`,
       fix: `Add "${m.mcpId}" to ${profileName}/profile.yaml mcps section`,
+      id: m.mcpId,
     });
   }
 
@@ -276,9 +292,9 @@ async function checkProfile(profileName: string, allSkillIds: Set<string>, allMc
   ));
 
   // D7: Incomplete skill installs (SKILL.md declares companions but they're missing)
-  const incomplete = findIncompleteSkills(SKILLS_ROOT);
+  // incompleteSkills is pre-computed once in run() and passed in to avoid O(N×disk scan).
   const profileSkillSlugs = new Set(profileSkillIds.map(id => id.split("/").pop()));
-  for (const skill of incomplete) {
+  for (const skill of incompleteSkills) {
     // Only report if this skill belongs to the current profile
     const slug = skill.id.split("/").pop();
     if (!profileSkillSlugs.has(slug)) continue;
@@ -424,9 +440,8 @@ async function applyFix(issue: Issue): Promise<boolean> {
   switch (issue.code) {
     case "D1": {
       // Remove skill from profile
-      const idMatch = issue.message.match(/Skill "([^"]+)"/);
-      if (!idMatch) return false;
-      const id = idMatch[1]!;
+      const id = issue.id ?? issue.message.match(/Skill "([^"]+)"/)![1]!;
+      if (!id) return false;
       try {
         const content = await readFile(yamlPath, "utf8");
         const lines = content.split("\n");
@@ -440,9 +455,8 @@ async function applyFix(issue: Issue): Promise<boolean> {
     }
     case "D2": {
       // Remove MCP from profile
-      const idMatch = issue.message.match(/MCP "([^"]+)"/);
-      if (!idMatch) return false;
-      const id = idMatch[1]!;
+      const id = issue.id ?? issue.message.match(/MCP "([^"]+)"/)![1]!;
+      if (!id) return false;
       try {
         const content = await readFile(yamlPath, "utf8");
         const lines = content.split("\n");
@@ -456,9 +470,8 @@ async function applyFix(issue: Issue): Promise<boolean> {
     }
     case "D4": {
       // Add required MCP to profile
-      const mcpMatch = issue.message.match(/requires MCP "([^"]+)"/);
-      if (!mcpMatch) return false;
-      const mcp = mcpMatch[1]!;
+      const mcp = issue.id ?? issue.message.match(/requires MCP "([^"]+)"/)![1]!;
+      if (!mcp) return false;
       try {
         let content = await readFile(yamlPath, "utf8");
         if (content.includes("mcps:")) {
@@ -576,10 +589,14 @@ Examples:
   // materialize time, so it homes all of them — nothing is orphaned.
   let hasGlobAll = false;
 
+  // D7: Compute incomplete skills once and pass to each checkProfile invocation
+  // to avoid O(N × disk scan) with N profiles.
+  const incompleteSkills = findIncompleteSkills(SKILLS_ROOT);
+
   const issues: Issue[] = [];
 
   for (const name of profileNames) {
-    const profileIssues = await checkProfile(name, allSkillIds, allMcpIds);
+    const profileIssues = await checkProfile(name, allSkillIds, allMcpIds, incompleteSkills);
     issues.push(...profileIssues);
 
     try {
@@ -613,12 +630,15 @@ Examples:
   if (!json) process.stdout.write("\n🔒 Running security scan...\n");
   const { run: runSecurity } = await import("./security");
   const secArgs = targetProfile ? [targetProfile, "--json"] : ["--all", "--json"];
-  // Capture security output
+  // Capture security output; restore stdout even if runSecurity throws.
   const origWrite = process.stdout.write.bind(process.stdout);
   let secOutput = "";
   process.stdout.write = ((chunk: string) => { secOutput += chunk; return true; }) as typeof process.stdout.write;
-  await runSecurity(secArgs);
-  process.stdout.write = origWrite;
+  try {
+    await runSecurity(secArgs);
+  } finally {
+    process.stdout.write = origWrite;
+  }
 
   try {
     const secData = JSON.parse(secOutput) as { scanned: number; issues: { code: string; severity: string; skill: string; message: string }[] };
