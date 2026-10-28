@@ -2,7 +2,7 @@
 title: "tolsocooperations/free-claude-code — Claude Code skill discovered by cue"
 description: "Free Claude Code Fable 5.1, an AI coding tool resource for developers interested in AI-assisted programming and modern software development."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-10-27
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: claude-code, claude-code-cli, claude-code-hooks, claude-code-marketplace, claude-code-mod, claude-code-mods, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, free-claude-account, free-claude-ai, free-claude-ai-pro, free-claude-api, free-claude-api-key, free-claude-premium, free-claude-pro
 
 ## Best fit cue profiles

@@ -2,19 +2,19 @@
 title: "alekc/agent-linkify — Claude Code skill discovered by cue"
 description: "Markdown links for file paths, URLs and issue keys in coding-agent replies (Claude Code, OpenCode)"
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [alekc/agent-linkify](https://github.com/alekc/agent-linkify)
 
-**★ 1** · potential (score 4.3) · TypeScript
+**★ 1** · potential (score 4.2) · TypeScript
 
 > Markdown links for file paths, URLs and issue keys in coding-agent replies (Claude Code, OpenCode)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: (none)

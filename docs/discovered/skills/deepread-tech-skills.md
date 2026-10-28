@@ -2,21 +2,21 @@
 title: "deepread-tech/skills — Claude Code skill discovered by cue"
 description: "Teach any AI agent how to use the DeepRead OCR, Form Fill, PII Redaction, and BYOK APIs. Claude Code, Codex, ChatGPT skills."
 layout: page
-updated: 2026-06-18
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [deepread-tech/skills](https://github.com/deepread-tech/skills)
 
-**★ 3** · exceptional (score 12.7) · agent-skill, ai, claude-code, claude-skill, document-processing
+**★ 4** · exceptional (score 12.8) · agent-skill, ai, claude-code, claude-skill, document-processing
 
 > Teach any AI agent how to use the DeepRead OCR, Form Fill, PII Redaction, and BYOK APIs. Claude Code, Codex, ChatGPT skills.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.7 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-06-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agent-skill, ai, claude-code, claude-skill, document-processing, ocr, openclaw, pdf, pii, skillsmp
 
 ## Best fit cue profiles

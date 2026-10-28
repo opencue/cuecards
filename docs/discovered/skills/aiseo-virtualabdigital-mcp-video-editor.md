@@ -2,20 +2,20 @@
 title: "AISEO-VirtualabDigital/mcp-video-editor — Claude Code skill discovered by cue"
 description: "Wag na kayo magbayad ng 5k PHP. Ito na — libre.  MCP server that lets Cursor, Claude, Codex, Antigravity, OpenCode & KiloCode edit videos in CapCut and OpenCut."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [AISEO-VirtualabDigital/mcp-video-editor](https://github.com/AISEO-VirtualabDigital/mcp-video-editor)
+# 💎 [AISEO-VirtualabDigital/mcp-video-editor](https://github.com/AISEO-VirtualabDigital/mcp-video-editor)
 
-**★ 13** · strong (score 5.3) · TypeScript
+**★ 60** · exceptional (score 10) · TypeScript
 
 > Wag na kayo magbayad ng 5k PHP. Ito na — libre.  MCP server that lets Cursor, Claude, Codex, Antigravity, OpenCode & KiloCode edit videos in CapCut and OpenCut. 50 tools, dry-run safe, path-traversal hardened.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
-- ⭐ 13 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+- ⭐ 60 stars
 - 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: (none)
 

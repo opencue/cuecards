@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
 ## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 123** · exceptional (score 15) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 122** · exceptional (score 15) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
 Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
@@ -37,19 +37,6 @@ cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-co
 
 ```bash
 cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
-```
-
----
-
-<a id="misakamikotoghr-5205-cost-aware-claim-based-multi-model-ai-orchestrator"></a>
-## 🔹 [misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator](https://github.com/misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator)
-
-**★ 1** · potential (score 4.8) · Python · tags: ai, ai-agents, antigravity, claude, codex
-
-A cost-aware, quota-aware, claim-based, weighted-voting multi-model AI orchestrator. Picks the best cost/performance path across GPT, Claude, Gemini, Grok, Codex & DeepSeek — not always the strongest model.
-
-```bash
-cue skills add misakamikotoghr-5205/Cost-aware-claim-based-multi-model-AI-orchestrator --profile fleet-control
 ```
 
 ---

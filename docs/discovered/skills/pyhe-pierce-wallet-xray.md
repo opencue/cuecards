@@ -2,19 +2,19 @@
 title: "pyhe-pierce/wallet-xray — Claude Code skill discovered by cue"
 description: "How much can your AI-built app burn on its worst day? Agent skill that finds every code path spending your money (LLM, image, email, SMS), estimates cost per us"
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [pyhe-pierce/wallet-xray](https://github.com/pyhe-pierce/wallet-xray)
 
-**★ 1** · potential (score 3.3) · Python
+**★ 1** · potential (score 3.2) · Python
 
 > How much can your AI-built app burn on its worst day? Agent skill that finds every code path spending your money (LLM, image, email, SMS), estimates cost per user and worst-case burn per hour, and fixes leaked keys, unlimited endpoints, and unverified webhooks. Claude Code / Cursor / Codex.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: (none)

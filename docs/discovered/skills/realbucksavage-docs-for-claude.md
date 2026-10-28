@@ -2,7 +2,7 @@
 title: "realbucksavage/docs-for-claude — Claude Code skill discovered by cue"
 description: "A plugin for Claude that outputs documents in the format I like."
 layout: page
-updated: 2026-10-19
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-19
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills, docx, pdf
 
 ## Best fit cue profiles

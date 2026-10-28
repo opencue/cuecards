@@ -2,7 +2,7 @@
 title: "basitalisandhu/repo-engineering-skills — Claude Code skill discovered by cue"
 description: "Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable pa"
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-26
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin, claude-md, claude-skills, code-audit, codebase-analysis, developer-tools, docs-as-code, documentation, hacktoberfest, python, readme, static-analysis, technical-debt, testing
 
 ## Best fit cue profiles

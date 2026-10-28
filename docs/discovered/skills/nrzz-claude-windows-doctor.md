@@ -2,7 +2,7 @@
 title: "nrzz/claude-windows-doctor — Claude Code skill discovered by cue"
 description: "Which shell Claude Code's Bash tool gets on Windows and why, every claude on PATH and which one runs, and the setup problems behind the common Windows issues: G"
 layout: page
-updated: 2026-10-21
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-19
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agentic-coding, ai-coding, anthropic, claude, claude-code, claude-code-plugin, claude-code-toolkit, cli, developer-tools, diagnostics, git-bash, nodejs, powershell, shell, windows, wsl, zero-dependency
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="rik-python-apple-style-design"></a>
-## 💎 [rik-python/apple-style-design](https://github.com/rik-python/apple-style-design)
+<a id="abdiraimov-otabek-dashboard-design-skill"></a>
+## 💎 [abdiraimov-otabek/dashboard-design-skill](https://github.com/abdiraimov-otabek/dashboard-design-skill)
 
-**★ 0** · exceptional (score 13) · CSS · tags: apple-style, claude-code, claude-skill, css, dark-mode
+**★ 134** · exceptional (score 13.5) · tags: agent-skills, analytics, claude-code, claude-skill, dashboard
 
-Claude Code skill: calm, premium Apple-style UI. Tokens, Liquid Glass, spring motion, drop-in CSS kit, demo and evals.
-
-✅ SKILL.md
+A Claude Code skill for clean, honest dashboard UI: KPI tiles, charts, date pickers, ranked lists, states, layouts and a screenshot QA pass. Distilled from 127 shipped dashboards.
 
 ```bash
-cue skills add rik-python/apple-style-design --profile frontend
+cue skills add abdiraimov-otabek/dashboard-design-skill --profile frontend
 ```
 
 ---
@@ -43,15 +41,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="rohitjz-sketchbook-ui"></a>
+## 💎 [rohitjz/sketchbook-ui](https://github.com/rohitjz/sketchbook-ui)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 0** · exceptional (score 8.5) · HTML · tags: agent-skill, claude-skill, css, design-system, hand-drawn
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+Moved: now the sketchbook medium of analog-ui in rohitjz/skills
 
 ```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+cue skills add rohitjz/sketchbook-ui --profile frontend
 ```
 
 ---

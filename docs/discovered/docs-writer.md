@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,32 +24,6 @@ Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifa
 
 ```bash
 cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
-```
-
----
-
-<a id="luffysolution-svg-sanmu-skills"></a>
-## 💎 [luffysolution-svg/sanmu-skills](https://github.com/luffysolution-svg/sanmu-skills)
-
-**★ 1** · exceptional (score 10.8) · Python · tags: academic, agent-skill, agent-skills, claude-code-skill, claude-skill
-
-Sanmu's Agent Skills collection. Academic PDFs, textbooks and slides to Markdown with LaTeX validation, high-resolution figures and Zotero workflows.
-
-```bash
-cue skills add luffysolution-svg/sanmu-skills --profile docs-writer
-```
-
----
-
-<a id="isamu-lab"></a>
-## ✨ [isamu/lab](https://github.com/isamu/lab)
-
-**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
-
-chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
-
-```bash
-cue skills add isamu/lab --profile docs-writer
 ```
 
 ---

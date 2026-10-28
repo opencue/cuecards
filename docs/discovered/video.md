@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,32 +15,30 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="haiderfarooq3-paper-reel"></a>
-## 💎 [haiderfarooq3/paper-reel](https://github.com/haiderfarooq3/paper-reel)
+<a id="mhnadali-mh-video-editor-skill"></a>
+## 💎 [mhnadali/mh-video-editor-skill](https://github.com/mhnadali/mh-video-editor-skill)
 
-**★ 25** · exceptional (score 15.6) · JavaScript · tags: agent-skills, ai-video, canvas-animation, claude-code, claude-code-skill
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, ffmpeg, python, video-editing
 
-Claude Code skill: faceless 9:16 explainer reels in a cut-paper style. Voice-timed scenes, word-by-word captions. Free, local, no API keys.
+Claude Code skill + agent for beat-synced short-form video editing with FFmpeg (EDL-based, cached renders, QA gate, Persian text support)
 
 ✅ SKILL.md
 
 ```bash
-cue skills add haiderfarooq3/paper-reel --profile video
+cue skills add mhnadali/mh-video-editor-skill --profile video
 ```
 
 ---
 
-<a id="sratour-xm-handdraw-video"></a>
-## 💎 [sratour/xm-handdraw-video](https://github.com/sratour/xm-handdraw-video)
+<a id="costassav-product-demo-generator"></a>
+## ✨ [CostasSav/product-demo-generator](https://github.com/CostasSav/product-demo-generator)
 
-**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, ai-video, claude-skill, explainer-video, ffmpeg
+**★ 0** · strong (score 7) · Python · tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills
 
-Hand-drawn explainer video generator: every pixel is revealed stroke by stroke, colors sampled from your own artwork. Python + ffmpeg + any image model.
-
-✅ SKILL.md
+Turn your web app into a polished, voiced demo video in an hour: automated Playwright screen recording, free retakes, AI voice-over (local TTS + Whisper), automatic editing and branded slides. A Claude Code skill.
 
 ```bash
-cue skills add sratour/xm-handdraw-video --profile video
+cue skills add CostasSav/product-demo-generator --profile video
 ```
 
 ---

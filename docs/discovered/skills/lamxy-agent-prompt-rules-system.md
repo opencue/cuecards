@@ -2,7 +2,7 @@
 title: "lamxy/agent-prompt-rules-system — Claude Code skill discovered by cue"
 description: "面向个人开发者的 Claude Code 配置与技能管理工具：精简的用户级配置，PRD / 前端 / 后端 / DevOps 四个场景的开箱即用场景包（settings、CLAUDE.md、MCP、agents），开源工具的幂等安装支持包，并可同步到 Codex。"
 layout: page
-updated: 2026-10-20
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agent-skill, agent-skill-platform, claude, claude-code-plugin, claude-code-skill, codex-cli, codex-skill, coding, config-management, enterprise-skill-management, mcp-tools, personal-skills, skill-management, subagent
 
 ## Best fit cue profiles

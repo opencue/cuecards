@@ -2,21 +2,21 @@
 title: "alexgreensh/token-optimizer — Claude Code skill discovered by cue"
 description: "Find the ghost tokens. Fix them. Survive compaction. Avoid context quality decay. "
 layout: page
-updated: 2026-10-21
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [alexgreensh/token-optimizer](https://github.com/alexgreensh/token-optimizer)
 
-**★ 2611** · exceptional (score 15) · Python · agentskills, claude-code, claude-code-mod, claude-code-skill, claude-plugin
+**★ 2761** · exceptional (score 15) · Python · agentskills, claude-code, claude-code-mod, claude-code-skill, claude-plugin
 
 > Find the ghost tokens. Fix them. Survive compaction. Avoid context quality decay. 
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
-- ⭐ 2611 stars
-- 🗓️ Last pushed: 2026-10-21
+- ⭐ 2761 stars
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agentskills, claude-code, claude-code-mod, claude-code-skill, claude-plugin, codex, context-engineering, context-window, cost-management, cost-optimization, cost-tracking, ghost-tokens, hermes-plugin, pi-coding-agent, token-optimization, token-optimizer, token-usage, tokenomics, tokenoptimization
 
 ## Best fit cue profiles

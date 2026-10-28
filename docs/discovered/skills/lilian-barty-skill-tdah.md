@@ -2,7 +2,7 @@
 title: "lilian-barty/skill-tdah — Claude Code skill discovered by cue"
 description: "Le skill TDAH en français pour Claude.ai et Claude Code : une tâche à la fois, brain dump, déblocage, mode turbo pour les bons jours. Pour les indépendants qui "
 layout: page
-updated: 2026-10-20
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: adhd, claude, claude-code, claude-skill, francais, freelance, productivite, tdah
 
 ## Best fit cue profiles

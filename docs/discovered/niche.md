@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="daizedong-daily-hotspots"></a>
-## 💎 [DaizeDong/daily-hotspots](https://github.com/DaizeDong/daily-hotspots)
+<a id="yayun8064-ui-my-mentor-is-zhenhuan"></a>
+## 💎 [yayun8064-ui/my-mentor-is-zhenhuan](https://github.com/yayun8064-ui/my-mentor-is-zhenhuan)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: agent, ai, ai-agent, automation, claude
+**★ 0** · exceptional (score 13) · Python · tags: agent-skill, career, claude-code, claude-skill, zhenhuan
 
-每日前沿商业机会雷达: 多源采集→分类评分→跨日去重→Discord 分级推送+私有归档.
+我的mentor是甄嬛：召唤甄嬛当你的职场 mentor。从《甄嬛传》76 集剧本和全网解读蒸馏出 49 个局、33 招、8 条底层逻辑，陪你过面试、谈投资、老板 1on1 和各种难局
+
+✅ SKILL.md
 
 ```bash
-cue skills add DaizeDong/daily-hotspots --profile niche
+cue skills add yayun8064-ui/my-mentor-is-zhenhuan --profile niche
 ```
 
 ---

@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-22
+updated: 2026-10-28
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="russguo-silkify"></a>
-## 💎 [RussGuo/silkify](https://github.com/RussGuo/silkify)
+<a id="elithril-blender-kiln"></a>
+## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 1** · exceptional (score 11.3) · JavaScript · tags: claude-skill, generative-art, silk, threejs, webgl
+**★ 62** · exceptional (score 19.1) · Python · tags: 3d-assets, agent-skills, animation, asset-pipeline, blender
 
-Silkify anything: turn any image into a touchable silk surface on the web
+Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add RussGuo/silkify --profile threejs
-```
-
----
-
-<a id="makerjackie-yarn-planet"></a>
-## 💎 [makerjackie/yarn-planet](https://github.com/makerjackie/yarn-planet)
-
-**★ 10** · exceptional (score 9.1) · TypeScript · tags: ai-generated, browser-game, claude-code, cloudflare-workers, durable-objects
-
-毛线星球 · Yarn Planet — a small-planet walking game in the browser: your path becomes a colored thread. Three.js + Cloudflare Durable Objects, made with Claude Opus 5.5.
-
-```bash
-cue skills add makerjackie/yarn-planet --profile threejs
+cue skills add elithril/blender-kiln --profile threejs
 ```
 
 ---

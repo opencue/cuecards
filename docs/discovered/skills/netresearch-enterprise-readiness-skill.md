@@ -2,21 +2,21 @@
 title: "netresearch/enterprise-readiness-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for enterprise readiness assessment - security, quality, and automation | Claude Code compatible"
 layout: page
-updated: 2026-08-29
+updated: 2026-10-28
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/enterprise-readiness-skill](https://github.com/netresearch/enterprise-readiness-skill)
 
-**★ 4** · exceptional (score 10.8) · Shell · agent-skills, ai-agent, claude-code-skill, devsecops, enterprise
+**★ 7** · exceptional (score 12.3) · Shell · agent-skills, ai-agent, claude-code-skill, devsecops, enterprise
 
 > Agent Skill for enterprise readiness assessment - security, quality, and automation | Claude Code compatible
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-08-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, devsecops, enterprise, open-standard, openssf, security, skill, slsa, supply-chain-security
 
 ## Best fit cue profiles

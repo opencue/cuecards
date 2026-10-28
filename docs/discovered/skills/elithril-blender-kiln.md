@@ -1,28 +1,28 @@
 ---
 title: "elithril/blender-kiln — Claude Code skill discovered by cue"
-description: "Blender skill and plugin for Claude Code — 3D asset pipeline from text brief to production GLB: Blender MCP, Hunyuan3D generation, texturing, rigging, batch mod"
+description: "Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded again"
 layout: page
-updated: 2026-10-02
-tags: [claude-code, skill, threejs]
+updated: 2026-10-28
+tags: [claude-code, skill, threejs, creative-media]
 ---
 
 # 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 15** · exceptional (score 16.2) · Python · 3d, 3d-assets, agent-skills, asset-pipeline, blender
+**★ 62** · exceptional (score 19.1) · Python · 3d-assets, agent-skills, animation, asset-pipeline, blender
 
-> Blender skill and plugin for Claude Code — 3D asset pipeline from text brief to production GLB: Blender MCP, Hunyuan3D generation, texturing, rigging, batch mode
+> Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 15 stars
-- 🗓️ Last pushed: 2026-10-02
-- 🏷️ Tags: 3d, 3d-assets, agent-skills, asset-pipeline, blender, blender-mcp, claude-code, claude-code-plugin, claude-code-skill, claude-skills, gamedev, glb, gltf, hunyuan3d, mcp, model-context-protocol, pbr, texturing, threejs, usdz
+- ⭐ 62 stars
+- 🗓️ Last pushed: 2026-10-28
+- 🏷️ Tags: 3d-assets, agent-skills, animation, asset-pipeline, blender, blender-mcp, claude-code, claude-code-plugin, claude-code-skill, game-assets, gamedev, glb, gltf, image-to-3d, indie-game-dev, procedural-modeling, rigging, text-to-3d, threejs, usdz
 
 ## Best fit cue profiles
 
-[threejs](../threejs.md)
+[threejs](../threejs.md), [creative-media](../creative-media.md)
 
 
 

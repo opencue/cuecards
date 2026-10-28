@@ -2,7 +2,7 @@
 title: "mhnadali/mh-video-editor-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill + agent for beat-synced short-form video editing with FFmpeg (EDL-based, cached renders, QA gate, Persian text support)"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-28
 tags: [claude-code, skill, video]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, video]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: claude-code, claude-skill, ffmpeg, python, video-editing
 
 ## Best fit cue profiles

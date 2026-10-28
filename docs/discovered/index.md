@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "100 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "89 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **100 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-10-27 · refreshed nightly via GitHub Code Search.
+> **89 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-10-28 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 70 | `offer-toolkit-skill`, `context-mode`, `trace-mcp` |
-| [**backend**](./backend.md) | 7 | `brewpage-openapi`, `vmlx`, `palace-rs` |
-| [**research**](./research.md) | 5 | `small-cap-deepdive`, `ieee-transactions-paper-writing-zh`, `ieee-transactions-paper-writing` |
-| [**creative-media**](./creative-media.md) | 4 | `paper-reel`, `xm-handdraw-video`, `rasanai` |
-| [**docs-writer**](./docs-writer.md) | 4 | `brewpage-openapi`, `sanmu-skills`, `lab` |
-| [**cybersecurity**](./cybersecurity.md) | 3 | `hydra`, `Claude-OSINT`, `sanctuary-framework` |
-| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator`, `Cost-aware-claim-based-multi-model-AI-orchestrator` |
-| [**frontend**](./frontend.md) | 3 | `apple-style-design`, `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns` |
-| [**video**](./video.md) | 2 | `paper-reel`, `xm-handdraw-video` |
-| [**rust**](./rust.md) | 1 | `intutic` |
-| [**niche**](./niche.md) | 1 | `daily-hotspots` |
-| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
+| [**core**](./core.md) | 66 | `context-mode`, `trace-mcp`, `dex` |
+| [**creative-media**](./creative-media.md) | 6 | `blender-kiln`, `dashboard-design-skill`, `rasanai` |
+| [**backend**](./backend.md) | 5 | `aizee`, `brewpage-openapi`, `mcp-hub` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `aizee`, `security-audit-skill`, `Claude-OSINT` |
+| [**frontend**](./frontend.md) | 3 | `dashboard-design-skill`, `awesome-claude-ui-armory`, `sketchbook-ui` |
+| [**fleet-control**](./fleet-control.md) | 2 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator` |
+| [**docs-writer**](./docs-writer.md) | 2 | `brewpage-openapi`, `repo-engineering-skills` |
+| [**video**](./video.md) | 2 | `mh-video-editor-skill`, `product-demo-generator` |
+| [**research**](./research.md) | 2 | `academic-writing-skill`, `skillassay` |
+| [**threejs**](./threejs.md) | 1 | `blender-kiln` |
+| [**niche**](./niche.md) | 1 | `my-mentor-is-zhenhuan` |
 | [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works
