@@ -2,13 +2,13 @@
 title: "manufosela/karajan-code — Claude Code skill discovered by cue"
 description: "Your AI writes the code; Karajan governs how it happens: TDD-first method, cross-AI review on every commit and git gates that make a false green impossible. Wor"
 layout: page
-updated: 2026-10-23
+updated: 2026-10-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [manufosela/karajan-code](https://github.com/manufosela/karajan-code)
 
-**★ 41** · exceptional (score 14.4) · HTML · ai-agent, ai-code-review, ai-governance, ai-orchestration, claude-code
+**★ 41** · exceptional (score 14.4) · JavaScript · ai-agent, ai-code-review, ai-governance, ai-orchestration, claude-code
 
 > Your AI writes the code; Karajan governs how it happens: TDD-first method, cross-AI review on every commit and git gates that make a false green impossible. Works with Claude, Codex, Gemini, OpenCode and Aider, on the subscriptions you already pay for. MCP server included.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.4 based on:
 - ⭐ 41 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: ai-agent, ai-code-review, ai-governance, ai-orchestration, claude-code, code-review, developer-tools, git-hooks, mcp, mcp-server, quality-gates, tdd
 
 ## Best fit cue profiles

@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "89 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "90 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **89 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-10-28 · refreshed nightly via GitHub Code Search.
+> **90 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-10-29 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 66 | `context-mode`, `trace-mcp`, `dex` |
-| [**creative-media**](./creative-media.md) | 6 | `blender-kiln`, `dashboard-design-skill`, `rasanai` |
-| [**backend**](./backend.md) | 5 | `aizee`, `brewpage-openapi`, `mcp-hub` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `aizee`, `security-audit-skill`, `Claude-OSINT` |
-| [**frontend**](./frontend.md) | 3 | `dashboard-design-skill`, `awesome-claude-ui-armory`, `sketchbook-ui` |
-| [**fleet-control**](./fleet-control.md) | 2 | `opencouncil-contract-inspector`, `multi-agent-revenue-orchestrator` |
-| [**docs-writer**](./docs-writer.md) | 2 | `brewpage-openapi`, `repo-engineering-skills` |
-| [**video**](./video.md) | 2 | `mh-video-editor-skill`, `product-demo-generator` |
-| [**research**](./research.md) | 2 | `academic-writing-skill`, `skillassay` |
-| [**threejs**](./threejs.md) | 1 | `blender-kiln` |
-| [**niche**](./niche.md) | 1 | `my-mentor-is-zhenhuan` |
+| [**core**](./core.md) | 70 | `icode-skill`, `superloopy`, `qiuxiaoce-football-data` |
+| [**backend**](./backend.md) | 6 | `tokmeter`, `aizee`, `OpenAkashic` |
+| [**frontend**](./frontend.md) | 5 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `sticky-switcher-funnel-playbook` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `aizee`, `Claude-OSINT`, `sanctuary-framework` |
+| [**research**](./research.md) | 3 | `precis-mcp`, `academic-writing-skill`, `skillassay` |
+| [**docs-writer**](./docs-writer.md) | 2 | `OpenAkashic`, `repo-engineering-skills` |
+| [**video**](./video.md) | 1 | `video-insight-pack` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
+| [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
+| [**creative-media**](./creative-media.md) | 1 | `cube-icons` |
 | [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works

@@ -2,21 +2,21 @@
 title: "retospect/precis-mcp — Claude Code skill discovered by cue"
 description: "Untiring, token-efficient research collaborator: reads papers and patents, cites the paragraph, writes the paper, designs and simulates what it proposes."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-29
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
 
-**★ 7** · exceptional (score 11.8) · Python · ai-agent, cad, claude, computational-chemistry, context-management
+**★ 8** · exceptional (score 11.9) · Python · ai-agent, cad, claude, computational-chemistry, context-management
 
 > Untiring, token-efficient research collaborator: reads papers and patents, cites the paragraph, writes the paper, designs and simulates what it proposes.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.9 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: ai-agent, cad, claude, computational-chemistry, context-management, knowledge-graph, llm, materials-science, mcp, mcp-server, model-context-protocol, patents, pcb, pgvector, python, research-assistant, scientific-papers, scientific-writing, semantic-search, simulation
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -30,25 +30,10 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 
 ---
 
-<a id="bartek-filipiuk-security-audit-skill"></a>
-## 💎 [bartek-filipiuk/security-audit-skill](https://github.com/bartek-filipiuk/security-audit-skill)
-
-**★ 1** · exceptional (score 14.8) · JavaScript · tags: appsec, claude-code, claude-code-skill, security-audit
-
-Claude Code skill: evidence-based security audit of your own code, with a verified-safe list, regression tests and a seeded-bug benchmark
-
-✅ SKILL.md
-
-```bash
-cue skills add bartek-filipiuk/security-audit-skill --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2878** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
+**★ 2884** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 

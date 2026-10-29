@@ -2,19 +2,19 @@
 title: "rossoctl/eventing-lab — Claude Code skill discovered by cue"
 description: "Event-driven agent wake path: a Kafka message wakes a Claude Code agent and streams every step back as CloudEvents — extracted from rossoctl/examples (history p"
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [rossoctl/eventing-lab](https://github.com/rossoctl/eventing-lab)
 
-**★ 1** · potential (score 4.3) · Python
+**★ 1** · potential (score 4.2) · Python
 
 > Event-driven agent wake path: a Kafka message wakes a Claude Code agent and streams every step back as CloudEvents — extracted from rossoctl/examples (history preserved)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-26
 - 🏷️ Tags: (none)

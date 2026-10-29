@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mhnadali-mh-video-editor-skill"></a>
-## 💎 [mhnadali/mh-video-editor-skill](https://github.com/mhnadali/mh-video-editor-skill)
+<a id="ewvue-video-insight-pack"></a>
+## 💎 [Ewvue/video-insight-pack](https://github.com/Ewvue/video-insight-pack)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, ffmpeg, python, video-editing
+**★ 0** · exceptional (score 11) · HTML · tags: ai, claude, claude-skill, flashcards, mind-map
 
-Claude Code skill + agent for beat-synced short-form video editing with FFmpeg (EDL-based, cached renders, QA gate, Persian text support)
+Claude Skill: turn any video into insights, a mind map, an illustrated article and flashcards in one shareable page.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add mhnadali/mh-video-editor-skill --profile video
-```
-
----
-
-<a id="costassav-product-demo-generator"></a>
-## ✨ [CostasSav/product-demo-generator](https://github.com/CostasSav/product-demo-generator)
-
-**★ 0** · strong (score 7) · Python · tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills
-
-Turn your web app into a polished, voiced demo video in an hour: automated Playwright screen recording, free retakes, AI voice-over (local TTS + Whisper), automatic editing and branded slides. A Claude Code skill.
-
-```bash
-cue skills add CostasSav/product-demo-generator --profile video
+cue skills add Ewvue/video-insight-pack --profile video
 ```
 
 ---

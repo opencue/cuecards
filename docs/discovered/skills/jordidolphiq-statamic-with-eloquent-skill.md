@@ -2,7 +2,7 @@
 title: "JordiDolphiq/statamic-with-eloquent-skill — Claude Code skill discovered by cue"
 description: "Develop with Statamic CMS (statamic/cms) and the Eloquent Driver (statamic/eloquent-driver)"
 layout: page
-updated: 2026-10-14
+updated: 2026-10-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-14
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: ai-skill, blade, claude-code-skill, claude-skill, cms, eloquent, laravel, php, skills-sh, statamic
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Yarden-zamir/news — Claude Code skill discovered by cue"
 description: "The changelorg Gazette: a weekly newspaper built by an agent from changelorg feeds. Renderer, agent skill and site for news.yarden-zamir.com."
 layout: page
-updated: 2026-10-25
+updated: 2026-10-29
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: changelorg, claude-code-skill, cloudflare-workers, newspaper, static-site
 
 ## Best fit cue profiles

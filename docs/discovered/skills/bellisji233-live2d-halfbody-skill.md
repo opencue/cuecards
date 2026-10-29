@@ -2,22 +2,22 @@
 title: "bellisji233/live2d-halfbody-skill — Claude Code skill discovered by cue"
 description: "Agent skill (Claude Code) that turns one character illustration into a half-body Live2D avatar for VTube Studio. 一张立绘做出 VTube Studio 半身 Live2D 皮套。"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-29
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [bellisji233/live2d-halfbody-skill](https://github.com/bellisji233/live2d-halfbody-skill)
 
-**★ 8** · exceptional (score 15.1) · Python · agent-skills, claude-code, claude-skill, live2d, live2d-model
+**★ 25** · exceptional (score 15.6) · Python · agent-skills, claude-code, claude-skill, live2d, live2d-model
 
 > Agent skill (Claude Code) that turns one character illustration into a half-body Live2D avatar for VTube Studio. 一张立绘做出 VTube Studio 半身 Live2D 皮套。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.6 based on:
 - ✅ Contains SKILL.md
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-10-25
+- ⭐ 25 stars
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: agent-skills, claude-code, claude-skill, live2d, live2d-model, vtube-studio, vtuber
 
 ## Best fit cue profiles

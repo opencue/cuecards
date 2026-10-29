@@ -2,21 +2,21 @@
 title: "vilosource/vfkb-claude-plugin — Claude Code skill discovered by cue"
 description: "Claude Code plugin for vfkb — the primary distribution path for the Claude Code harness face (ADR-0045)"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-29
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [vilosource/vfkb-claude-plugin](https://github.com/vilosource/vfkb-claude-plugin)
 
-**★ 1** · strong (score 5.7) · JavaScript
+**★ 1** · strong (score 5.8) · JavaScript
 
 > Claude Code plugin for vfkb — the primary distribution path for the Claude Code harness face (ADR-0045)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

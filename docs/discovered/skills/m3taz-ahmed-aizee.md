@@ -2,7 +2,7 @@
 title: "m3taz-ahmed/aizee — Claude Code skill discovered by cue"
 description: "Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code,"
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, skill, backend, cybersecurity]
 ---
 

@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="abdiraimov-otabek-dashboard-design-skill"></a>
-## 💎 [abdiraimov-otabek/dashboard-design-skill](https://github.com/abdiraimov-otabek/dashboard-design-skill)
-
-**★ 134** · exceptional (score 13.5) · tags: agent-skills, analytics, claude-code, claude-skill, dashboard
-
-A Claude Code skill for clean, honest dashboard UI: KPI tiles, charts, date pickers, ranked lists, states, layouts and a screenshot QA pass. Distilled from 127 shipped dashboards.
-
-```bash
-cue skills add abdiraimov-otabek/dashboard-design-skill --profile frontend
-```
 
 ---
 
@@ -41,15 +28,54 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="rohitjz-sketchbook-ui"></a>
-## 💎 [rohitjz/sketchbook-ui](https://github.com/rohitjz/sketchbook-ui)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 0** · exceptional (score 8.5) · HTML · tags: agent-skill, claude-skill, css, design-system, hand-drawn
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
-Moved: now the sketchbook medium of analog-ui in rohitjz/skills
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add rohitjz/sketchbook-ui --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+```
+
+---
+
+<a id="atwalabs-cube-icons"></a>
+## 💎 [atwalabs/cube-icons](https://github.com/atwalabs/cube-icons)
+
+**★ 0** · exceptional (score 8) · HTML · tags: 3d, 3d-icons, agent-skills, animation, canvas
+
+Animated pixel icons built from 3D cubes for any website. One script, no dependencies: 61 icons, 11 looks, scroll and hover effects, an image-to-icon editor and an AI agent skill.
+
+```bash
+cue skills add atwalabs/cube-icons --profile frontend
+```
+
+---
+
+<a id="teamdev-ip-dotnetbrowser-skill"></a>
+## ✨ [TeamDev-IP/DotNetBrowser-Skill](https://github.com/TeamDev-IP/DotNetBrowser-Skill)
+
+**★ 0** · strong (score 6) · tags: agent-skills, avalonia, claude-code-skill, dotnet, webview
+
+The official Agent Skill for DotNetBrowser, TeamDev's Chromium-based browser component for .NET applications built with WPF, Windows Forms, WinUI 3, Avalonia UI, or as console apps.
+
+```bash
+cue skills add TeamDev-IP/DotNetBrowser-Skill --profile frontend
 ```
 
 ---

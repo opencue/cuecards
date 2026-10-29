@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-28
+updated: 2026-10-29
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="szara7678-openakashic"></a>
+## 💎 [szara7678/OpenAkashic](https://github.com/szara7678/OpenAkashic)
 
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 3** · exceptional (score 11.7) · Python · tags: agent-memory, agent-skill, ai-agents, claude, claude-code
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+Visibility-aware knowledge network for LLM agents — private+public markdown vault, MCP server, and verified-claims API. Self-hostable.
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
+cue skills add szara7678/OpenAkashic --profile docs-writer
 ```
 
 ---
