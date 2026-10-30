@@ -1,23 +1,23 @@
 ---
 title: "rockbenben/aishort-skills — Claude Code skill discovered by cue"
-description: "Markdown to web page — upload .md files to S3-compatible storage, rendered instantly via Docsify. A skill for sharing long content as readable links."
+description: "Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。"
 layout: page
-updated: 2026-06-18
+updated: 2026-10-30
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
 
-**★ 0** · exceptional (score 9.5) · JavaScript · agent-skills, ai-agents, anthropic, claude, claude-code
+**★ 0** · exceptional (score 9.5) · JavaScript · agent-skills, ai-agents, anthropic, app-icon, claude
 
-> Markdown to web page — upload .md files to S3-compatible storage, rendered instantly via Docsify. A skill for sharing long content as readable links.
+> Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-18
-- 🏷️ Tags: agent-skills, ai-agents, anthropic, claude, claude-code, claude-skill, clawdbot, docsify, markdown, openclaw, skills
+- 🗓️ Last pushed: 2026-10-30
+- 🏷️ Tags: agent-skills, ai-agents, anthropic, app-icon, claude, claude-code, claude-skill, clawdbot, cursor, deepl, docsify, electron, favicon, markdown, nextjs, og-image, openclaw, playwright, skills, tauri
 
 ## Best fit cue profiles
 

@@ -2,7 +2,7 @@
 title: "jongos/Dazzler — Claude Code skill discovered by cue"
 description: "Dazzler: frontend design skill for AI with expressive typography, vibrant color theory, and purposeful interfaces."
 layout: page
-updated: 2026-10-24
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-24
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, codex, cursor, design-system, frontend-design, gemini-cli-extension, github-copilot, typography, ui-design
 
 ## Best fit cue profiles

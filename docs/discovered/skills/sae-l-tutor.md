@@ -2,21 +2,21 @@
 title: "Sae-l/tutor — Claude Code skill discovered by cue"
 description: "tutor – MINT-Lern-Tutor als Claude-Skill und System-Prompt"
 layout: page
-updated: 2026-10-28
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Sae-l/tutor](https://github.com/Sae-l/tutor)
 
-**★ 4** · strong (score 6.8) · Python · adhd, chatgpt-plugin, claude-skill, education, electrical-engineering
+**★ 5** · strong (score 6.9) · HTML · adhd, chatgpt-plugin, claude-skill, education, electrical-engineering
 
 > tutor – MINT-Lern-Tutor als Claude-Skill und System-Prompt
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.9 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: adhd, chatgpt-plugin, claude-skill, education, electrical-engineering, engineering-mechanics, gemini, german, learning, mathematics, physics, stem, study-tool, system-prompt, tutor
 
 ## Best fit cue profiles

@@ -2,13 +2,13 @@
 title: "elithril/blender-kiln — Claude Code skill discovered by cue"
 description: "Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded again"
 layout: page
-updated: 2026-10-28
+updated: 2026-10-30
 tags: [claude-code, skill, threejs, creative-media]
 ---
 
 # 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 62** · exceptional (score 19.1) · Python · 3d-assets, agent-skills, animation, asset-pipeline, blender
+**★ 65** · exceptional (score 19.1) · Python · 3d-assets, agent-skills, animation, asset-pipeline, blender
 
 > Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, threejs, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 62 stars
-- 🗓️ Last pushed: 2026-10-28
+- ⭐ 65 stars
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: 3d-assets, agent-skills, animation, asset-pipeline, blender, blender-mcp, claude-code, claude-code-plugin, claude-code-skill, game-assets, gamedev, glb, gltf, image-to-3d, indie-game-dev, procedural-modeling, rigging, text-to-3d, threejs, usdz
 
 ## Best fit cue profiles

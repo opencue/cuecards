@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "5 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,19 +28,6 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
-
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
-
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
-```
-
----
-
 <a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
 ## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
@@ -54,28 +41,15 @@ cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 
 ---
 
-<a id="atwalabs-cube-icons"></a>
-## 💎 [atwalabs/cube-icons](https://github.com/atwalabs/cube-icons)
+<a id="chinmaya123-cyber-wedding-invite-film"></a>
+## ✨ [Chinmaya123-cyber/wedding-invite-film](https://github.com/Chinmaya123-cyber/wedding-invite-film)
 
-**★ 0** · exceptional (score 8) · HTML · tags: 3d, 3d-icons, agent-skills, animation, canvas
+**★ 0** · strong (score 5) · JavaScript · tags: animation, atlabs, claude-code-plugin, claude-skill, indian-wedding
 
-Animated pixel icons built from 3D cubes for any website. One script, no dependencies: 61 icons, 11 looks, scroll and hover effects, an image-to-icon editor and an AI agent skill.
-
-```bash
-cue skills add atwalabs/cube-icons --profile frontend
-```
-
----
-
-<a id="teamdev-ip-dotnetbrowser-skill"></a>
-## ✨ [TeamDev-IP/DotNetBrowser-Skill](https://github.com/TeamDev-IP/DotNetBrowser-Skill)
-
-**★ 0** · strong (score 6) · tags: agent-skills, avalonia, claude-code-skill, dotnet, webview
-
-The official Agent Skill for DotNetBrowser, TeamDev's Chromium-based browser component for .NET applications built with WPF, Windows Forms, WinUI 3, Avalonia UI, or as console apps.
+Claude skill: personalised hand-painted wedding invitation videos — a painted street, an unrolling banner, window zoom-throughs into every ceremony. 16 Indian & international places, your names, photos and song. HTML/CSS/JS + Playwright, paintings via the Atlabs MCP.
 
 ```bash
-cue skills add TeamDev-IP/DotNetBrowser-Skill --profile frontend
+cue skills add Chinmaya123-cyber/wedding-invite-film --profile frontend
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-28
+updated: 2026-10-30
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 <a id="elithril-blender-kiln"></a>
 ## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 62** · exceptional (score 19.1) · Python · tags: 3d-assets, agent-skills, animation, asset-pipeline, blender
+**★ 65** · exceptional (score 19.1) · Python · tags: 3d-assets, agent-skills, animation, asset-pipeline, blender
 
 Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
 

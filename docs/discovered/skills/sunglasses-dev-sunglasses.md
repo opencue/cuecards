@@ -2,21 +2,21 @@
 title: "sunglasses-dev/sunglasses — Claude Code skill discovered by cue"
 description: "Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,583 patterns across 117 catego"
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [sunglasses-dev/sunglasses](https://github.com/sunglasses-dev/sunglasses)
+# ✨ [sunglasses-dev/sunglasses](https://github.com/sunglasses-dev/sunglasses)
 
-**★ 10** · exceptional (score 8) · Python · agent-security, ai-agent-security, ai-agents, ai-safety, ai-security
+**★ 11** · strong (score 7) · Python · agent-security, ai-agent-security, ai-agents, ai-safety, ai-security
 
 > Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,583 patterns across 117 categories and reports findings and incomplete scans. A Claude Code hook blocks secret material in tool calls and the paths and hosts your policy lists before tools run.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 10 stars
-- 🗓️ Last pushed: 2026-10-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: agent-security, ai-agent-security, ai-agents, ai-safety, ai-security, anthropic, claude, cybersecurity, llm, llm-security, mcp, mcp-security, model-context-protocol, open-source-ai, prompt-injection, prompt-injection-detection, python, security-scanner, supply-chain-security, tool-poisoning
 
 ## Best fit cue profiles

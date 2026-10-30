@@ -2,7 +2,7 @@
 title: "taoq-ai/wuwei — Claude Code skill discovered by cue"
 description: "无为 WUWEI: software development framework for agents. Run a chartered agent team through your day, with guards that make the safe path the default one. Claude Co"
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 

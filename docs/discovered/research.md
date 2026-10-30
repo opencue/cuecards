@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="retospect-precis-mcp"></a>
-## 💎 [retospect/precis-mcp](https://github.com/retospect/precis-mcp)
+<a id="cristobalchumaceiro-ai-phd-search"></a>
+## 💎 [cristobalchumaceiro/ai-phd-search](https://github.com/cristobalchumaceiro/ai-phd-search)
 
-**★ 8** · exceptional (score 11.9) · Python · tags: ai-agent, cad, claude, computational-chemistry, context-management
+**★ 0** · exceptional (score 9.5) · Python · tags: academic-jobs, agentic-ai, ai-agent, antigravity-ai, antigravity-cli
 
-Untiring, token-efficient research collaborator: reads papers and patents, cites the paragraph, writes the paper, designs and simulates what it proposes.
+An autonomous PhD application co-pilot for Google Antigravity, Claude Code, and Cursor. Scrapes UK university portals, bypasses Cloudflare, scores opportunities against your academic profile, and tracks your application pipeline.
 
 ```bash
-cue skills add retospect/precis-mcp --profile research
+cue skills add cristobalchumaceiro/ai-phd-search --profile research
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add retospect/precis-mcp --profile research
 <a id="bimajanuri-academic-writing-skill"></a>
 ## 💎 [bimajanuri/academic-writing-skill](https://github.com/bimajanuri/academic-writing-skill)
 
-**★ 4** · exceptional (score 8.8)
+**★ 4** · exceptional (score 8.7)
 
 Academic writing and literature-synthesis support for AI agents, including Claude Code, OpenCode, and other Agent Skills-compatible hosts. The skill covers the full path from literature discovery to final format conversion. Manuscripts are produced in English (US) academic style, while research input may be provided in Bahasa Indonesia or English.
 

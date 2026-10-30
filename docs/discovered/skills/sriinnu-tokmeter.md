@@ -2,22 +2,21 @@
 title: "sriinnu/tokmeter — Claude Code skill discovered by cue"
 description: "Token and cost tracking for AI coding agents. Reads the local session logs of Claude Code, Codex, Gemini CLI, Cursor and 20+ more. No API keys, no telemetry, no"
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [sriinnu/tokmeter](https://github.com/sriinnu/tokmeter)
 
-**★ 1** · exceptional (score 17.3) · TypeScript · agent-skills, ai-coding-agents, claude-code, claude-code-skill, claude-skills
+**★ 1** · exceptional (score 12.3) · TypeScript · agent-skills, ai-coding-agents, claude-code, claude-code-skill, claude-skills
 
 > Token and cost tracking for AI coding agents. Reads the local session logs of Claude Code, Codex, Gemini CLI, Cursor and 20+ more. No API keys, no telemetry, nothing leaves your machine.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
-- ✅ Contains SKILL.md
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-29
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: agent-skills, ai-coding-agents, claude-code, claude-code-skill, claude-skills, cli, codex, cost-analysis, cursor, developer-tools, finops, gemini-cli, llms, macos, mcp, mcp-server, model-context-protocol, observability, token-costs, token-tracker
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="szara7678-openakashic"></a>
-## 💎 [szara7678/OpenAkashic](https://github.com/szara7678/OpenAkashic)
+<a id="rockbenben-aishort-skills"></a>
+## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
 
-**★ 3** · exceptional (score 11.7) · Python · tags: agent-memory, agent-skill, ai-agents, claude, claude-code
+**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, app-icon, claude
 
-Visibility-aware knowledge network for LLM agents — private+public markdown vault, MCP server, and verified-claims API. Self-hostable.
+Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
 
 ```bash
-cue skills add szara7678/OpenAkashic --profile docs-writer
+cue skills add rockbenben/aishort-skills --profile docs-writer
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "SAP/ai-native-architecture-advisor — Claude Code skill discovered by cue"
 description: "Describe an SAP business problem and this Claude Code / Codex plugin helps you design an AI solution for it. It asks a few questions, then writes a clear plan: "
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 

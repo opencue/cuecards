@@ -2,19 +2,19 @@
 title: "nrzz/claude-windows-doctor — Claude Code skill discovered by cue"
 description: "Which shell Claude Code's Bash tool gets on Windows and why, every claude on PATH and which one runs, and the setup problems behind the common Windows issues: G"
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [nrzz/claude-windows-doctor](https://github.com/nrzz/claude-windows-doctor)
 
-**★ 1** · strong (score 5.3) · JavaScript · agentic-coding, ai-coding, anthropic, claude, claude-code
+**★ 1** · strong (score 5.2) · JavaScript · agentic-coding, ai-coding, anthropic, claude, claude-code
 
 > Which shell Claude Code's Bash tool gets on Windows and why, every claude on PATH and which one runs, and the setup problems behind the common Windows issues: Git Bash, PowerShell, WSL, long paths, line endings. Proves the shell choice with the real binary. Zero tokens.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: agentic-coding, ai-coding, anthropic, claude, claude-code, claude-code-plugin, claude-code-toolkit, cli, developer-tools, diagnostics, git-bash, nodejs, powershell, shell, windows, wsl, zero-dependency

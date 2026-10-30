@@ -2,21 +2,21 @@
 title: "MercurieVV/ScalaSemantic — Claude Code skill discovered by cue"
 description: "MCP server for deep semantic analysis of Scala via SemanticDB — exact find-usages, class hierarchies, implicit resolution & call paths for AI coding agents like"
 layout: page
-updated: 2026-09-17
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [MercurieVV/ScalaSemantic](https://github.com/MercurieVV/ScalaSemantic)
 
-**★ 21** · exceptional (score 8.2) · Scala · ai, ai-tools, claude, claude-code, code-analysis
+**★ 22** · exceptional (score 8.3) · Scala · ai, ai-tools, claude, claude-code, code-analysis
 
 > MCP server for deep semantic analysis of Scala via SemanticDB — exact find-usages, class hierarchies, implicit resolution & call paths for AI coding agents like Claude Code. Beyond grep and standard LSP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
-- ⭐ 21 stars
-- 🗓️ Last pushed: 2026-09-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 22 stars
+- 🗓️ Last pushed: 2026-10-29
 - 🏷️ Tags: ai, ai-tools, claude, claude-code, code-analysis, code-intelligence, developer-tools, llm, mcp, model-context-protocol, sbt, sbt-plugin, scala, scala3, scalameta, semantic-analysis, semanticdb, static-analysis
 
 ## Best fit cue profiles

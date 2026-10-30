@@ -2,7 +2,7 @@
 title: "alainburindi/mac-migration — Claude Code skill discovered by cue"
 description: "An interactive Claude Code skill that guides you through migrating your complete developer environment from an old Mac to a new Mac — without using Migration As"
 layout: page
-updated: 2026-10-29
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 

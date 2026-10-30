@@ -2,21 +2,21 @@
 title: "drkostas/3d-card — Claude Code skill discovered by cue"
 description: "Turn 3D-printable parts into one printable kit card, like a model-kit sprue, and check every part comes off clean"
 layout: page
-updated: 2026-10-26
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [drkostas/3d-card](https://github.com/drkostas/3d-card)
 
-**★ 0** · exceptional (score 8) · Python · 3d-printing, build123d, cad, claude-code, claude-skill
+**★ 1** · exceptional (score 8.3) · Python · 3d-printing, build123d, cad, claude-code, claude-skill
 
 > Turn 3D-printable parts into one printable kit card, like a model-kit sprue, and check every part comes off clean
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: 3d-printing, build123d, cad, claude-code, claude-skill, joints, kit-card, model-kit, print-in-place, python, sprue, stl, trimesh
 
 ## Best fit cue profiles

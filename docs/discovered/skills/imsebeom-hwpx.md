@@ -2,13 +2,13 @@
 title: "imsebeom/hwpx — Claude Code skill discovered by cue"
 description: "AI 에이전트용 HWPX(.hwpx) 한글 문서 생성·읽기·편집 통합 스킬 — 마크다운·텍스트·URL을 한컴오피스 한글 문서로 자동 변환 (Claude Code Skill)"
 layout: page
-updated: 2026-10-17
+updated: 2026-10-30
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [imsebeom/hwpx](https://github.com/imsebeom/hwpx)
 
-**★ 1** · exceptional (score 17.3) · Python · ai-agent, claude-code, claude-skill, document-generation, hancom
+**★ 1** · exceptional (score 17.3) · Rust · ai-agent, claude-code, claude-skill, document-generation, hancom
 
 > AI 에이전트용 HWPX(.hwpx) 한글 문서 생성·읽기·편집 통합 스킬 — 마크다운·텍스트·URL을 한컴오피스 한글 문서로 자동 변환 (Claude Code Skill)
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-17
+- 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: ai-agent, claude-code, claude-skill, document-generation, hancom, hangul, hwp, hwpx, korean-document, markdown-to-hwpx
 
 ## Best fit cue profiles

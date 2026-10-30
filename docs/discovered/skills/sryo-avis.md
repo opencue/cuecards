@@ -2,27 +2,27 @@
 title: "sryo/avis — Claude Code skill discovered by cue"
 description: "avis annotates web pages so Claude Code can see your comments in context."
 layout: page
-updated: 2026-06-10
-tags: [claude-code, skill, core]
+updated: 2026-10-30
+tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [sryo/avis](https://github.com/sryo/avis)
 
-**★ 0** · exceptional (score 11) · JavaScript · annotations, claude-skill
+**★ 0** · exceptional (score 14.5) · JavaScript · agent-skills, annotations, chrome, claude-code, claude-skill
 
 > avis annotates web pages so Claude Code can see your comments in context.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-10
-- 🏷️ Tags: annotations, claude-skill
+- 🗓️ Last pushed: 2026-10-30
+- 🏷️ Tags: agent-skills, annotations, chrome, claude-code, claude-skill, claude-skills, design-feedback, design-review, javascript, visual-feedback, web-annotation
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[creative-media](../creative-media.md)
 
 
 
@@ -30,7 +30,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add sryo/avis --profile core
+cue skills add sryo/avis --profile creative-media
 ```
 
 ## About
