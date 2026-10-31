@@ -2,7 +2,7 @@
 title: "nizarhamza/p6-mcp — Claude Code skill discovered by cue"
 description: "Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional databas"
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, backend]
 ---
 

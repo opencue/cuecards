@@ -2,7 +2,7 @@
 title: "ayukyo/icode-skill — Claude Code skill discovered by cue"
 description: "AI coding workflow for Claude Code, Codex and CodeBuddy: ticket-based development, resumable steps, evidence-based verification and independent multi-model revi"
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.1 based on:
 - ✅ Contains SKILL.md
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-30
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: ai-agent, ai-coding, ai-workflow, automation, claude-code, claude-code-skill, claude-skills, code-review, codebuddy, codebuddy-skill, codex, codex-plugin, codex-skill, coding-agent, coding-assistant, llm, mcp, skill, workbuddy-skill, workflow
 
 ## Best fit cue profiles

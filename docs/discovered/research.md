@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="cristobalchumaceiro-ai-phd-search"></a>
-## 💎 [cristobalchumaceiro/ai-phd-search](https://github.com/cristobalchumaceiro/ai-phd-search)
+<a id="topoftheblock-citation-worthy-skill"></a>
+## 💎 [topoftheblock/citation-worthy-skill](https://github.com/topoftheblock/citation-worthy-skill)
 
-**★ 0** · exceptional (score 9.5) · Python · tags: academic-jobs, agentic-ai, ai-agent, antigravity-ai, antigravity-cli
+**★ 1** · exceptional (score 13.3) · Python · tags: agent-skills, ai-agents, anthropic, claude-code, claude-skill
 
-An autonomous PhD application co-pilot for Google Antigravity, Claude Code, and Cursor. Scrapes UK university portals, bypasses Cloudflare, scores opportunities against your academic profile, and tracks your application pipeline.
+A source-validation skill for Claude Code: evaluate domains before fetching, refuse content farms and hyper-partisan sites, and halt rather than cite junk."
+
+✅ SKILL.md
 
 ```bash
-cue skills add cristobalchumaceiro/ai-phd-search --profile research
+cue skills add topoftheblock/citation-worthy-skill --profile research
 ```
 
 ---

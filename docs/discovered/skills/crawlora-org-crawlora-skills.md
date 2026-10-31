@@ -2,7 +2,7 @@
 title: "Crawlora-org/crawlora-skills — Claude Code skill discovered by cue"
 description: "Crawlora Agent Skills — structured public web data (search, e-commerce, social, finance, app stores, media, reviews) via the Crawlora REST API. Installable in a"
 layout: page
-updated: 2026-10-25
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: agent-skills, ai-agents, api, claude-code, claude-skill, claude-skills, crawlora, data-extraction, mcp, serp-api, skill, skills, web-data, web-scraping, web-scraping-api
 
 ## Best fit cue profiles

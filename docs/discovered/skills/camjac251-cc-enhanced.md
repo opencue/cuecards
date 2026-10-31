@@ -2,7 +2,7 @@
 title: "camjac251/cc-enhanced — Claude Code skill discovered by cue"
 description: "Stock Claude Code enhancements through a standard plugin and system-prompt PATH wrapper, with read-only release inspection tools."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 

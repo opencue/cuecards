@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-14
+updated: 2026-10-31
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 <a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
 ## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 7** · exceptional (score 11.2) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
+**★ 8** · exceptional (score 11.3) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
 Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 

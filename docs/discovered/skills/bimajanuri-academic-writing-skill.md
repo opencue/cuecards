@@ -2,7 +2,7 @@
 title: "bimajanuri/academic-writing-skill — Claude Code skill discovered by cue"
 description: "Academic writing and literature-synthesis support for AI agents, including Claude Code, OpenCode, and other Agent Skills-compatible hosts. The skill covers the "
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, research]
 ---
 

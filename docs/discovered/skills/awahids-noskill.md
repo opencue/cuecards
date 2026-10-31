@@ -2,7 +2,7 @@
 title: "awahids/noskill — Claude Code skill discovered by cue"
 description: "Skill dan agent untuk kerja development seperti tim engineering: tiket dikerjakan developer, dicek reviewer, diuji QA, lalu masuk DONE. Kodenya hanya mengubah y"
 layout: page
-updated: 2026-10-16
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-16
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, skill
 
 ## Best fit cue profiles

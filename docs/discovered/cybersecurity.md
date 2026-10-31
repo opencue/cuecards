@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="v-yun-vuln-report-skill"></a>
+## 💎 [v-yun/vuln-report-skill](https://github.com/v-yun/vuln-report-skill)
+
+**★ 86** · exceptional (score 18.7) · Python · tags: bug-bounty, claude-code, claude-skill, docx, security-reporting
+
+AI-agent skill: turn confirmed vulnerabilities into submission-ready DOCX reports | 漏洞报告成稿 skill（SRC/0day 提交稿、分层验证门、Step 式 PoC、截图铁律）
+
+✅ SKILL.md
+
+```bash
+cue skills add v-yun/vuln-report-skill --profile cybersecurity
+```
+
+---
+
 <a id="m3taz-ahmed-aizee"></a>
 ## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
 
-**★ 5** · exceptional (score 15.9) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
+**★ 5** · exceptional (score 16) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
 
 Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
 
@@ -30,10 +45,25 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 
 ---
 
+<a id="violetscar-hui-cc-tackle"></a>
+## 💎 [VioletScar-Hui/cc-tackle](https://github.com/VioletScar-Hui/cc-tackle)
+
+**★ 2** · exceptional (score 16) · Python · tags: agent-skills, ai-agent, anthropic, clash, clash-verge
+
+CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、CLI 登录凭据（长期 token 还是网页登录）、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
+
+✅ SKILL.md
+
+```bash
+cue skills add VioletScar-Hui/cc-tackle --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2919** · exceptional (score 13.6) · Python · tags: agentskills, claude, skills
+**★ 2935** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -46,7 +76,7 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 <a id="eriknewton-sanctuary-framework"></a>
 ## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 10** · exceptional (score 10.4) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 10** · exceptional (score 10.5) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
 Open source security for AI agents: an OS-enforced egress wall on macOS, and on Ubuntu 24.04 x86-64 via a separate package; keys only the operator holds; a hash-chained audit record. One command wraps Claude Code, Cursor, Hermes, OpenClaw or Cline on tested config paths. No vendor in the path. Claims trace to the Assurance Matrix.
 

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="m3taz-ahmed-aizee"></a>
 ## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
 
-**★ 5** · exceptional (score 15.9) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
+**★ 5** · exceptional (score 16) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
 
 Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
 
@@ -26,19 +26,6 @@ Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy,
 
 ```bash
 cue skills add m3taz-ahmed/aizee --profile backend
-```
-
----
-
-<a id="sriinnu-tokmeter"></a>
-## 💎 [sriinnu/tokmeter](https://github.com/sriinnu/tokmeter)
-
-**★ 1** · exceptional (score 12.3) · TypeScript · tags: agent-skills, ai-coding-agents, claude-code, claude-code-skill, claude-skills
-
-Token and cost tracking for AI coding agents. Reads the local session logs of Claude Code, Codex, Gemini CLI, Cursor and 20+ more. No API keys, no telemetry, nothing leaves your machine.
-
-```bash
-cue skills add sriinnu/tokmeter --profile backend
 ```
 
 ---

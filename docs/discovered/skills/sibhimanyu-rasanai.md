@@ -2,21 +2,21 @@
 title: "Sibhimanyu/rasanai — Claude Code skill discovered by cue"
 description: "AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your foota"
 layout: page
-updated: 2026-10-28
+updated: 2026-10-31
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
 
-**★ 0** · exceptional (score 9) · JavaScript · agent-skills, ai-video, ai-video-generator, animation, anthropic
+**★ 2** · exceptional (score 9.5) · JavaScript · agent-skills, ai-video, ai-video-generator, animation, anthropic
 
 > AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: agent-skills, ai-video, ai-video-generator, animation, anthropic, claude, claude-code, claude-code-skill, claude-skill, creative-direction, explainer-video, gsap, hyperframes, kinetic-typography, launch-video, motion-design, motion-graphics, product-video, video-editing, video-generation
 
 ## Best fit cue profiles

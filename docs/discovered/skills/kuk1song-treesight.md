@@ -1,23 +1,23 @@
 ---
 title: "kuk1song/treesight — Claude Code skill discovered by cue"
-description: "See your Claude Code sessions as trees: what each one got done, and what is still open across the project. Local page, no network requests. Unofficial."
+description: "Recall what each AI session did, and what it left open. Runs as a plugin inside your AI; the page is local and makes no network requests."
 layout: page
-updated: 2026-10-20
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kuk1song/treesight](https://github.com/kuk1song/treesight)
 
-**★ 0** · exceptional (score 8) · Python · claude-code, claude-code-plugin, claude-code-skill, session-history, todo
+**★ 0** · exceptional (score 8) · Python · ai-agents, claude-code, claude-code-plugin, claude-code-skill, session-history
 
-> See your Claude Code sessions as trees: what each one got done, and what is still open across the project. Local page, no network requests. Unofficial.
+> Recall what each AI session did, and what it left open. Runs as a plugin inside your AI; the page is local and makes no network requests.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-20
-- 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, session-history, todo, visualization
+- 🗓️ Last pushed: 2026-10-31
+- 🏷️ Tags: ai-agents, claude-code, claude-code-plugin, claude-code-skill, session-history, todo, visualization
 
 ## Best fit cue profiles
 

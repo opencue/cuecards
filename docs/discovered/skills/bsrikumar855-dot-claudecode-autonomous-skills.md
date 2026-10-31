@@ -2,21 +2,21 @@
 title: "bsrikumar855-dot/ClaudeCODE-Autonomous-skills — Claude Code skill discovered by cue"
 description: "An autonomous AI development skill for Claude Code. Turn project goals into planned, implemented, tested, and reviewed software using specialist AI subagents."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [bsrikumar855-dot/ClaudeCODE-Autonomous-skills](https://github.com/bsrikumar855-dot/ClaudeCODE-Autonomous-skills)
 
-**★ 1** · exceptional (score 8.3) · Python · agentic-coding, ai-agents, ai-development, autonomous-coding, autonomous-coding-agent
+**★ 2** · exceptional (score 8.5) · Python · agentic-coding, ai-agents, ai-development, autonomous-coding, autonomous-coding-agent
 
 > An autonomous AI development skill for Claude Code. Turn project goals into planned, implemented, tested, and reviewed software using specialist AI subagents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: agentic-coding, ai-agents, ai-development, autonomous-coding, autonomous-coding-agent, claude-code, claude-code-agents, claude-code-skill, claude-code-skills, developer-tools, multi-agent-systems, vibe-coding
 
 ## Best fit cue profiles

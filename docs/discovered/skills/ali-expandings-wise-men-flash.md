@@ -2,7 +2,7 @@
 title: "Ali-expandings/wise-men-flash — Claude Code skill discovered by cue"
 description: "The fast tier of the wise-men council as its own skill: three Claude subagents down three reasoning paths, one checked decision memo in a third of the full coun"
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 

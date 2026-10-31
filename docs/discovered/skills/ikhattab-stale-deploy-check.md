@@ -1,23 +1,23 @@
 ---
 title: "ikhattab/stale-deploy-check — Claude Code skill discovered by cue"
-description: "Find out why users still see the old version after a deploy: cache headers, CDN, open tabs, service workers."
+description: "Find out why users still see the old version after a deploy."
 layout: page
-updated: 2026-10-26
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [ikhattab/stale-deploy-check](https://github.com/ikhattab/stale-deploy-check)
+# 💎 [ikhattab/stale-deploy-check](https://github.com/ikhattab/stale-deploy-check)
 
-**★ 0** · strong (score 6) · TypeScript · cache-control, cdn, claude-code-skill, cli, deployment
+**★ 0** · exceptional (score 8) · TypeScript · agent-skills, cache-control, caching, cdn, claude-code
 
-> Find out why users still see the old version after a deploy: cache headers, CDN, open tabs, service workers.
+> Find out why users still see the old version after a deploy.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-26
-- 🏷️ Tags: cache-control, cdn, claude-code-skill, cli, deployment, service-worker
+- 🗓️ Last pushed: 2026-10-31
+- 🏷️ Tags: agent-skills, cache-control, caching, cdn, claude-code, claude-code-skill, cli, deployment, service-worker, typescript
 
 ## Best fit cue profiles
 

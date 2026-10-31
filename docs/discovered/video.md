@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-29
+updated: 2026-10-31
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="ewvue-video-insight-pack"></a>
-## 💎 [Ewvue/video-insight-pack](https://github.com/Ewvue/video-insight-pack)
+<a id="bobbybian97-explainer-video-skill"></a>
+## 💎 [BobbyBian97/explainer-video-skill](https://github.com/BobbyBian97/explainer-video-skill)
 
-**★ 0** · exceptional (score 11) · HTML · tags: ai, claude, claude-skill, flashcards, mind-map
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, edge-tts, explainer-video, ffmpeg
 
-Claude Skill: turn any video into insights, a mind map, an illustrated article and flashcards in one shareable page.
+Turn a topic or script into a narrated 1080p explainer video: AI TTS, sentence-synced Pillow motion graphics, burned-in subtitles, cover, ffmpeg mux.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Ewvue/video-insight-pack --profile video
+cue skills add BobbyBian97/explainer-video-skill --profile video
 ```
 
 ---

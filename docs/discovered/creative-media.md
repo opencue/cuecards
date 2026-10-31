@@ -1,89 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="op7418-guizang-social-card-skill"></a>
-## 💎 [op7418/guizang-social-card-skill](https://github.com/op7418/guizang-social-card-skill)
+<a id="0xgoldtooth-leak-finder"></a>
+## 💎 [0xGoldTooth/leak-finder](https://github.com/0xGoldTooth/leak-finder)
 
-**★ 7857** · exceptional (score 25.5) · HTML · tags: agent-skill, ai-agent, anthropic, claude-code, claude-skill
+**★ 0** · exceptional (score 13) · Python · tags: ai, claude-code, claude-code-skill, content-protection, dmca
 
-🪧 Claude Code / Codex skill — generate Xiaohongshu carousels & WeChat 21:9+1:1 cover pairs. Editorial × Swiss visual systems, 28 layouts, 10 themes, single-file HTML → PNG. 小红书图文 + 公众号封面对
-
-✅ SKILL.md
-
-```bash
-cue skills add op7418/guizang-social-card-skill --profile creative-media
-```
-
----
-
-<a id="elithril-blender-kiln"></a>
-## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
-
-**★ 65** · exceptional (score 19.1) · Python · tags: 3d-assets, agent-skills, animation, asset-pipeline, blender
-
-Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
+Find your own leaked photos and videos online and send DMCA takedowns. Claude Code skill → x.com/0xGoldTooth
 
 ✅ SKILL.md
 
 ```bash
-cue skills add elithril/blender-kiln --profile creative-media
+cue skills add 0xGoldTooth/leak-finder --profile creative-media
 ```
 
 ---
 
-<a id="sryo-figma-cdp"></a>
-## 💎 [sryo/figma-cdp](https://github.com/sryo/figma-cdp)
+<a id="sibhimanyu-rasanai"></a>
+## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
 
-**★ 0** · exceptional (score 14.5) · Python · tags: agent-skills, cdp, chrome-devtools-protocol, claude-code, claude-skill
+**★ 2** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
 
-Code → Figma. A Claude Code skill that builds in Figma via agent-browser over Chrome DevTools Protocol.
-
-✅ SKILL.md
+AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
 
 ```bash
-cue skills add sryo/figma-cdp --profile creative-media
-```
-
----
-
-<a id="sryo-avis"></a>
-## 💎 [sryo/avis](https://github.com/sryo/avis)
-
-**★ 0** · exceptional (score 14.5) · JavaScript · tags: agent-skills, annotations, chrome, claude-code, claude-skill
-
-avis annotates web pages so Claude Code can see your comments in context.
-
-✅ SKILL.md
-
-```bash
-cue skills add sryo/avis --profile creative-media
-```
-
----
-
-<a id="buildexlabsai-ex-designer"></a>
-## 💎 [BuildexLabsAI/ex-designer](https://github.com/BuildexLabsAI/ex-designer)
-
-**★ 0** · exceptional (score 8) · Python · tags: brand-book, claude-code, claude-code-skill, design-system, website-audit
-
-The Ex-Designer: a Claude Code skill that audits your website, documents its design system from code, creates a brand book, and tests every change before you approve it.
-
-```bash
-cue skills add BuildexLabsAI/ex-designer --profile creative-media
+cue skills add Sibhimanyu/rasanai --profile creative-media
 ```
 
 ---

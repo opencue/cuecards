@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="rockbenben-aishort-skills"></a>
-## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
-
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, app-icon, claude
-
-Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
-
-```bash
-cue skills add rockbenben/aishort-skills --profile docs-writer
-```
 
 ---
 

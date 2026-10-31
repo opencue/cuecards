@@ -2,19 +2,19 @@
 title: "alainburindi/mac-migration — Claude Code skill discovered by cue"
 description: "An interactive Claude Code skill that guides you through migrating your complete developer environment from an old Mac to a new Mac — without using Migration As"
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [alainburindi/mac-migration](https://github.com/alainburindi/mac-migration)
+# 🔹 [alainburindi/mac-migration](https://github.com/alainburindi/mac-migration)
 
-**★ 2** · strong (score 5) · developer-tools, macos, migration-tool
+**★ 2** · potential (score 4.9) · developer-tools, macos, migration-tool
 
 > An interactive Claude Code skill that guides you through migrating your complete developer environment from an old Mac to a new Mac — without using Migration Assistant. Handles different usernames, databases, apps, dotfiles, git repos, and Claude Code data with automatic path fixing.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.9 based on:
 - ⭐ 2 stars
 - 🗓️ Last pushed: 2026-10-28
 - 🏷️ Tags: developer-tools, macos, migration-tool

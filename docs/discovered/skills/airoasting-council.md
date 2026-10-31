@@ -2,22 +2,22 @@
 title: "airoasting/council — Claude Code skill discovered by cue"
 description: "고개만 끄덕이는 자문단은 잊으세요. 25인 거장 자문단이 당신의 어려운 결정을 로스팅합니다. AI ROASTING 자문단 · Claude Code 스킬"
 layout: page
-updated: 2026-07-12
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [airoasting/council](https://github.com/airoasting/council)
 
-**★ 0** · exceptional (score 13) · Python · ai-agents, ai-roasting, claude-code, claude-code-skill, decision-making
+**★ 7** · exceptional (score 16.7) · Python · ai-agents, ai-roasting, claude-code, claude-code-skill, decision-making
 
 > 고개만 끄덕이는 자문단은 잊으세요. 25인 거장 자문단이 당신의 어려운 결정을 로스팅합니다. AI ROASTING 자문단 · Claude Code 스킬
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-12
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: ai-agents, ai-roasting, claude-code, claude-code-skill, decision-making, korean
 
 ## Best fit cue profiles

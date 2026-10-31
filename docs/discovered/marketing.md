@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="yanisdigital-smm-page-audit"></a>
+## 💎 [YanisDigital/smm-page-audit](https://github.com/YanisDigital/smm-page-audit)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 0** · exceptional (score 8) · HTML · tags: claude-code, claude-skill, content-plan, instagram, meta-ads
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Claude Code skill: audits an Instagram profile from a link and builds an HTML report with growth strategy, content plan, Reels ideas and a Meta Ads plan.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add YanisDigital/smm-page-audit --profile marketing
 ```
 
 ---

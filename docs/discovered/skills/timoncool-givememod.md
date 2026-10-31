@@ -2,7 +2,7 @@
 title: "timoncool/givememod — Claude Code skill discovered by cue"
 description: "Claude Code mods on demand — a skill that reads your conversation and builds the mod that fits: plan progress bar, files pane, context gauge, risky-command guar"
 layout: page
-updated: 2026-10-30
+updated: 2026-10-31
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 10 stars
-- 🗓️ Last pushed: 2026-10-30
+- 🗓️ Last pushed: 2026-10-31
 - 🏷️ Tags: agent-skills, ai-tools, anthropic, claude, claude-code, claude-code-mods, claude-code-plugin, claude-code-skill, developer-tools, function-hooks, mods, productivity, terminal-ui
 
 ## Best fit cue profiles
