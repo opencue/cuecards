@@ -2,7 +2,7 @@
 title: "warrendeanlangeveldt/code-kit — Claude Code skill discovered by cue"
 description: "Keeps AI coding agents inside your project's rules: lanes, layer rules, protected paths and proof before finish, enforced by Claude Code hooks and in CI"
 layout: page
-updated: 2026-10-31
+updated: 2026-11-01
 tags: [claude-code, skill, core]
 ---
 

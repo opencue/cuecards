@@ -2,7 +2,7 @@
 title: "cgartlab/person-profile — Claude Code skill discovered by cue"
 description: "人物档案方法论独立 skill 项目（Skill for Person Profile Creation）"
 layout: page
-updated: 2026-10-23
+updated: 2026-11-01
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-11-01
 - 🏷️ Tags: agent-skill, claude-code-skill
 
 ## Best fit cue profiles

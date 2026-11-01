@@ -1,23 +1,22 @@
 ---
 title: "MustBeSimo/web-design-studio — Claude Code skill discovered by cue"
-description: "Web Design Studio: free agent skill for distinctive websites, interactive 3D and motion. 28 live examples, art direction and accessible fallbacks. Formerly Cine"
+description: "Three free agent skills for websites people remember: cinematic-scroll builds distinctive scroll, 3D and motion sites; scroll-audit scores any page; launch-page"
 layout: page
-updated: 2026-09-13
+updated: 2026-11-01
 tags: [claude-code, skill, frontend, threejs]
 ---
 
 # 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
 
-**★ 34** · exceptional (score 17.1) · JavaScript · agent-skill, agent-skills, claude-skill, creative-coding, cursor
+**★ 50** · exceptional (score 14.4) · JavaScript · agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
-> Web Design Studio: free agent skill for distinctive websites, interactive 3D and motion. 28 live examples, art direction and accessible fallbacks. Formerly Cinematic Scroll.
+> Three free agent skills for websites people remember: cinematic-scroll builds distinctive scroll, 3D and motion sites; scroll-audit scores any page; launch-page-strategy decides what the page must say. 28 live examples. Formerly Cinematic Scroll.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.1 based on:
-- ✅ Contains SKILL.md
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-09-13
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.4 based on:
+- ⭐ 50 stars
+- 🗓️ Last pushed: 2026-11-01
 - 🏷️ Tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor, fal-ai, framer-motion, generative-ui, gsap, hermes-agent, landing-page, nextjs, openclaw, parallax, scroll-animation, scroll-driven-animation, threejs, web-animation, web-design, webgl
 
 ## Best fit cue profiles

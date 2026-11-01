@@ -2,7 +2,7 @@
 title: "wirb/wirb-model-economy — Claude Code skill discovered by cue"
 description: " A Claude Code skill for delegating work to subagents: Sonnet builds, Opus reviews and handles money paths, Haiku transcribes. Includes a reusable brief templat"
 layout: page
-updated: 2026-10-31
+updated: 2026-11-01
 tags: [claude-code, skill, core]
 ---
 

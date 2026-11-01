@@ -2,7 +2,7 @@
 title: "sryo/figma-cdp — Claude Code skill discovered by cue"
 description: "Code → Figma. A Claude Code skill that builds in Figma via agent-browser over Chrome DevTools Protocol."
 layout: page
-updated: 2026-10-30
+updated: 2026-11-01
 tags: [claude-code, skill, creative-media]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, creative-media]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-30
+- 🗓️ Last pushed: 2026-11-01
 - 🏷️ Tags: agent-skills, cdp, chrome-devtools-protocol, claude-code, claude-skill, claude-skills, code-to-figma, design-tools, figma, mockup
 
 ## Best fit cue profiles

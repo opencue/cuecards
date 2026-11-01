@@ -1,27 +1,27 @@
 ---
 title: "ontology-of-everything/concept-skills — Claude Code skill discovered by cue"
-description: "Ontology, semantic-layer, concept-design, and presentation Agent Skills."
+description: "Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions"
 layout: page
-updated: 2026-10-24
-tags: [claude-code, skill, core]
+updated: 2026-11-01
+tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
 
-**★ 11** · exceptional (score 11) · Shell · agent-skills, claude-code-skill, claude-skills, concept-design, ontology
+**★ 13** · exceptional (score 12.1) · HTML · agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
 
-> Ontology, semantic-layer, concept-design, and presentation Agent Skills.
+> Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
-- ⭐ 11 stars
-- 🗓️ Last pushed: 2026-10-24
-- 🏷️ Tags: agent-skills, claude-code-skill, claude-skills, concept-design, ontology, skills-sh, skillsmp
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
+- ⭐ 13 stars
+- 🗓️ Last pushed: 2026-11-01
+- 🏷️ Tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills, codex-skills, concept-design, cursor, knowledge-management, ontology, semantic-modeling, skills-sh, skillsmp, software-architecture, visual-learning
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[creative-media](../creative-media.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add ontology-of-everything/concept-skills --profile core
+cue skills add ontology-of-everything/concept-skills --profile creative-media
 ```
 
 ## About

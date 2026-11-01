@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-31
+updated: 2026-11-01
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="bobbybian97-explainer-video-skill"></a>
-## 💎 [BobbyBian97/explainer-video-skill](https://github.com/BobbyBian97/explainer-video-skill)
+<a id="tudorjuravlea-showcase"></a>
+## 💎 [tudorjuravlea/showcase](https://github.com/tudorjuravlea/showcase)
 
-**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, edge-tts, explainer-video, ffmpeg
+**★ 0** · exceptional (score 8) · JavaScript · tags: 3d-device-mockup, app-preview, claude-code, claude-skill, device-mockup
 
-Turn a topic or script into a narrated 1080p explainer video: AI TTS, sentence-synced Pillow motion graphics, burned-in subtitles, cover, ffmpeg mux.
-
-✅ SKILL.md
+Cinematic device-mockup videos and animated hero pages from a screen recording. It contains: Showcase CLI, Claude Code skill, and a two-renderer editor (CSS 3D + WebGL).
 
 ```bash
-cue skills add BobbyBian97/explainer-video-skill --profile video
+cue skills add tudorjuravlea/showcase --profile video
 ```
 
 ---

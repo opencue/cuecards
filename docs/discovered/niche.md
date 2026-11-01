@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-28
+updated: 2026-11-01
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="yayun8064-ui-my-mentor-is-zhenhuan"></a>
-## 💎 [yayun8064-ui/my-mentor-is-zhenhuan](https://github.com/yayun8064-ui/my-mentor-is-zhenhuan)
+<a id="cgartlab-attention"></a>
+## 💎 [cgartlab/attention](https://github.com/cgartlab/attention)
 
-**★ 0** · exceptional (score 13) · Python · tags: agent-skill, career, claude-code, claude-skill, zhenhuan
+**★ 0** · exceptional (score 10) · Shell · tags: agent-skill, claude-code-skill, management, project, skill
 
-我的mentor是甄嬛：召唤甄嬛当你的职场 mentor。从《甄嬛传》76 集剧本和全网解读蒸馏出 49 个局、33 招、8 条底层逻辑，陪你过面试、谈投资、老板 1on1 和各种难局
+让项目随时做好准备
 
 ✅ SKILL.md
 
 ```bash
-cue skills add yayun8064-ui/my-mentor-is-zhenhuan --profile niche
+cue skills add cgartlab/attention --profile niche
+```
+
+---
+
+<a id="aichijuzi3209520851-lang-aigc-detox-lcw"></a>
+## 💎 [aichijuzi3209520851-lang/aigc-detox-lcw](https://github.com/aichijuzi3209520851-lang/aigc-detox-lcw)
+
+**★ 1** · exceptional (score 8.8) · Python · tags: academic-writing, ai-detection, aigc, chinese, claude-skill
+
+论文去 AI 味三件套：机械信号体检 → 三层诊断 → 带事实护栏的改写 → 改写后复检闭环。支持 DOCX/纯文本、中英双语、HTML+PDF 报告与 Word 修订痕迹。基于五个 MIT 开源方案实测择优整合。
+
+✅ SKILL.md
+
+```bash
+cue skills add aichijuzi3209520851-lang/aigc-detox-lcw --profile niche
 ```
 
 ---

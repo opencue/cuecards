@@ -1,31 +1,42 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-30
+updated: 2026-11-01
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="elithril-blender-kiln"></a>
-## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
+<a id="mustbesimo-web-design-studio"></a>
+## 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
 
-**★ 65** · exceptional (score 19.1) · Python · tags: 3d-assets, agent-skills, animation, asset-pipeline, blender
+**★ 50** · exceptional (score 14.4) · JavaScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
-Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
-
-✅ SKILL.md
+Three free agent skills for websites people remember: cinematic-scroll builds distinctive scroll, 3D and motion sites; scroll-audit scores any page; launch-page-strategy decides what the page must say. 28 live examples. Formerly Cinematic Scroll.
 
 ```bash
-cue skills add elithril/blender-kiln --profile threejs
+cue skills add MustBeSimo/web-design-studio --profile threejs
+```
+
+---
+
+<a id="tudorjuravlea-showcase"></a>
+## 💎 [tudorjuravlea/showcase](https://github.com/tudorjuravlea/showcase)
+
+**★ 0** · exceptional (score 8) · JavaScript · tags: 3d-device-mockup, app-preview, claude-code, claude-skill, device-mockup
+
+Cinematic device-mockup videos and animated hero pages from a screen recording. It contains: Showcase CLI, Claude Code skill, and a two-renderer editor (CSS 3D + WebGL).
+
+```bash
+cue skills add tudorjuravlea/showcase --profile threejs
 ```
 
 ---

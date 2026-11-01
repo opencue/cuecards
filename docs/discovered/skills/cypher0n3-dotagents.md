@@ -2,7 +2,7 @@
 title: "cypher0n3/dotagents — Claude Code skill discovered by cue"
 description: "Opinionated, portable agent skills and instructions with installer script for Claude Code, Codex, Cursor, Gemini, and Grok. One directory (~/.agents), installed"
 layout: page
-updated: 2026-10-11
+updated: 2026-11-01
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-11
+- 🗓️ Last pushed: 2026-11-01
 - 🏷️ Tags: agent-skill, agent-skills, ai-agent, ai-skill, ai-skill-file, ai-skills, claude-code-skill, claude-code-skills, codex-skill, cursor, dotfiles, dotfiles-linux, dotfiles-macos, gemini-cli, grok-build, llm-tools
 
 ## Best fit cue profiles

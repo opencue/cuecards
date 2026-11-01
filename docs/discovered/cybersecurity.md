@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-10-31
+updated: 2026-11-01
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="v-yun-vuln-report-skill"></a>
-## 💎 [v-yun/vuln-report-skill](https://github.com/v-yun/vuln-report-skill)
-
-**★ 86** · exceptional (score 18.7) · Python · tags: bug-bounty, claude-code, claude-skill, docx, security-reporting
-
-AI-agent skill: turn confirmed vulnerabilities into submission-ready DOCX reports | 漏洞报告成稿 skill（SRC/0day 提交稿、分层验证门、Step 式 PoC、截图铁律）
-
-✅ SKILL.md
-
-```bash
-cue skills add v-yun/vuln-report-skill --profile cybersecurity
-```
 
 ---
 
@@ -45,30 +30,30 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 
 ---
 
-<a id="violetscar-hui-cc-tackle"></a>
-## 💎 [VioletScar-Hui/cc-tackle](https://github.com/VioletScar-Hui/cc-tackle)
-
-**★ 2** · exceptional (score 16) · Python · tags: agent-skills, ai-agent, anthropic, clash, clash-verge
-
-CC tackle —— Claude Code 本机环境体检与可控清理（macOS）：只读审计、代理/DNS/WebRTC 检测、CLI 登录凭据（长期 token 还是网页登录）、确认后备份与分项修复。Audit and harden a Claude Code environment on macOS.
-
-✅ SKILL.md
-
-```bash
-cue skills add VioletScar-Hui/cc-tackle --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2935** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
+**★ 2943** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
+```
+
+---
+
+<a id="dextsamu-appsec-sentinel"></a>
+## 💎 [dextsamu/appsec-sentinel](https://github.com/dextsamu/appsec-sentinel)
+
+**★ 1** · exceptional (score 12.3) · Python · tags: agent-skills, antigravity, antigravity-skills, appsec, asvs
+
+Skill per agenti AI (Claude, Codex, Antigravity) per assessment di sicurezza applicativa e cloud: regole di ingaggio, test dimostrabili, finding strutturati e copertura con denominatori reali. In italiano, per PA e piccole organizzazioni.
+
+✅ SKILL.md
+
+```bash
+cue skills add dextsamu/appsec-sentinel --profile cybersecurity
 ```
 
 ---
@@ -86,15 +71,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="philpaz-recusal"></a>
-## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
+<a id="hybridindie-comfyui-mcp"></a>
+## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
-**★ 5** · exceptional (score 9.4) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 3** · exceptional (score 8.2) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
 
-Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
+Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
 
 ```bash
-cue skills add philpaz/recusal --profile cybersecurity
+cue skills add hybridindie/comfyui_mcp --profile cybersecurity
 ```
 
 ---
