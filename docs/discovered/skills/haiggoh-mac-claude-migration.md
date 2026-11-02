@@ -2,7 +2,7 @@
 title: "haiggoh/mac-claude-migration — Claude Code skill discovered by cue"
 description: "📦 Move your whole Claude Code setup to a new Mac (or create a safety backup 💾): package what cannot be redownloaded, reinstall everything that can. Private — "
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 

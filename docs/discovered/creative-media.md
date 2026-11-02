@@ -1,72 +1,31 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="sryo-figma-cdp"></a>
-## 💎 [sryo/figma-cdp](https://github.com/sryo/figma-cdp)
+<a id="oelbas-photo-archive-organizer"></a>
+## 💎 [oelbas/photo-archive-organizer](https://github.com/oelbas/photo-archive-organizer)
 
-**★ 0** · exceptional (score 14.5) · Python · tags: agent-skills, cdp, chrome-devtools-protocol, claude-code, claude-skill
+**★ 0** · exceptional (score 13) · Python · tags: claude-code, claude-skill, duplicate-detection, exiftool, macos
 
-Code → Figma. A Claude Code skill that builds in Figma via agent-browser over Chrome DevTools Protocol.
-
-✅ SKILL.md
-
-```bash
-cue skills add sryo/figma-cdp --profile creative-media
-```
-
----
-
-<a id="sryo-avis"></a>
-## 💎 [sryo/avis](https://github.com/sryo/avis)
-
-**★ 0** · exceptional (score 14.5) · JavaScript · tags: agent-skills, annotations, chrome, claude-code, claude-skill
-
-avis annotates web pages so Claude Code can see your comments in context.
+Claude Code skill: safely organize, compare, deduplicate and merge photo/video archives without viewing the pictures (EN/TR)
 
 ✅ SKILL.md
 
 ```bash
-cue skills add sryo/avis --profile creative-media
-```
-
----
-
-<a id="ontology-of-everything-concept-skills"></a>
-## 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
-
-**★ 13** · exceptional (score 12.1) · HTML · tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
-
-Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
-
-```bash
-cue skills add ontology-of-everything/concept-skills --profile creative-media
-```
-
----
-
-<a id="sibhimanyu-rasanai"></a>
-## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
-
-**★ 2** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
-
-AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
-
-```bash
-cue skills add Sibhimanyu/rasanai --profile creative-media
+cue skills add oelbas/photo-archive-organizer --profile creative-media
 ```
 
 ---

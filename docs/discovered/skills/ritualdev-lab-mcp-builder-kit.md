@@ -2,7 +2,7 @@
 title: "RitualDev-Lab/mcp-builder-kit — Claude Code skill discovered by cue"
 description: "Production Toolkit & Scaffolding Engine for Model Context Protocol (MCP) Servers. Scaffold typed TS/Python servers, generate tools from OpenAPI, inspect conform"
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-01
+- 🗓️ Last pushed: 2026-11-02
 - 🏷️ Tags: ai-agents, antigravity, antigravity-skills, claude, claude-ai, claude-code, claude-code-skill, claude-skills, mcp, mcp-server, mcp-tools, model-context-protocol, model-context-protocol-mcp, model-context-protocol-servers
 
 ## Best fit cue profiles

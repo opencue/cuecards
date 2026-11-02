@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="metamol-verified-research"></a>
+## 💎 [MetamoL/verified-research](https://github.com/MetamoL/verified-research)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 13) · Python · tags: agent-skills, citations, claude-code, claude-code-skill, claude-skills
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Agent skill for Claude Code, Codex & more: web research where every claim carries a verbatim quote that a script checks against the source. 引用を原文と機械照合するWeb調査スキル
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add MetamoL/verified-research --profile research
 ```
 
 ---

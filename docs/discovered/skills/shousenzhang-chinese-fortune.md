@@ -1,24 +1,24 @@
 ---
 title: "ShousenZHANG/chinese-fortune — Claude Code skill discovered by cue"
-description: "Comprehensive Chinese metaphysics & fortune-telling toolkit · Claude Skill · 20+ methods · MIT"
+description: "Agent Skill for Chinese fortune-telling grounded in classical texts: BaZi, personal date selection, luck cycles and years, Zi Wei, Liu Yao, almanac. Plain-langu"
 layout: page
-updated: 2026-09-25
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ShousenZHANG/chinese-fortune](https://github.com/ShousenZHANG/chinese-fortune)
 
-**★ 11** · exceptional (score 15) · Python · ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics
+**★ 18** · exceptional (score 16.3) · Python · agent-skills, ai-skill, anthropic-claude, bazi, chinese-culture
 
-> Comprehensive Chinese metaphysics & fortune-telling toolkit · Claude Skill · 20+ methods · MIT
+> Agent Skill for Chinese fortune-telling grounded in classical texts: BaZi, personal date selection, luck cycles and years, Zi Wei, Liu Yao, almanac. Plain-language answers with sources. Works with Claude Code, Codex, Cursor, Gemini CLI · MIT
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 11 stars
-- 🗓️ Last pushed: 2026-09-25
-- 🏷️ Tags: ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics, claude-skill, divination, fengshui, fortune-telling, iching, lunar-calendar, tarot, zodiac
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-11-02
+- 🏷️ Tags: agent-skills, ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics, claude-code, claude-skill, codex, divination, fengshui, fortune-telling, gemini-cli, iching, lunar-calendar, zodiac
 
 ## Best fit cue profiles
 

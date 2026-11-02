@@ -1,39 +1,24 @@
 ---
 title: "Claude Code Skills for backend"
-description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="m3taz-ahmed-aizee"></a>
-## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
-
-**★ 5** · exceptional (score 16) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
-
-Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
-
-✅ SKILL.md
-
-```bash
-cue skills add m3taz-ahmed/aizee --profile backend
-```
-
----
-
 <a id="ni-c-mcp-hub"></a>
 ## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 3** · exceptional (score 9) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 3** · exceptional (score 9.2) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
 Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
@@ -46,25 +31,12 @@ cue skills add ni-c/mcp-hub --profile backend
 <a id="nizarhamza-p6-mcp"></a>
 ## ✨ [nizarhamza/p6-mcp](https://github.com/nizarhamza/p6-mcp)
 
-**★ 5** · strong (score 7.8) · Python · tags: claude, construction, critical-path, dcma, mcp
+**★ 5** · strong (score 7.9) · Python · tags: claude, construction, critical-path, dcma, mcp
 
 Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional database. Windows. Not affiliated with Oracle.
 
 ```bash
 cue skills add nizarhamza/p6-mcp --profile backend
-```
-
----
-
-<a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
-
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
-
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
-
-```bash
-cue skills add anirudhlath/alfred --profile backend
 ```
 
 ---

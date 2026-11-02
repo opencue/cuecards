@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -15,25 +15,10 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 
 ---
 
-<a id="m3taz-ahmed-aizee"></a>
-## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
-
-**★ 5** · exceptional (score 16) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
-
-Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
-
-✅ SKILL.md
-
-```bash
-cue skills add m3taz-ahmed/aizee --profile cybersecurity
-```
-
----
-
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2943** · exceptional (score 13.5) · Python · tags: agentskills, claude, skills
+**★ 2948** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -71,10 +56,23 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
+<a id="philpaz-recusal"></a>
+## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
+
+**★ 5** · exceptional (score 9.5) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+
+Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
+
+```bash
+cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
 <a id="hybridindie-comfyui-mcp"></a>
 ## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
 
-**★ 3** · exceptional (score 8.2) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+**★ 3** · exceptional (score 8.1) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
 
 Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
 

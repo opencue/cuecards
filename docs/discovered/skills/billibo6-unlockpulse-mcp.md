@@ -2,7 +2,7 @@
 title: "Billibo6/unlockpulse-mcp — Claude Code skill discovered by cue"
 description: "Token unlock calendar for AI assistants: MCP server + Claude skill. Upcoming crypto token unlocks rated by size vs circulating supply, track record, on-chain ch"
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-01
+- 🗓️ Last pushed: 2026-11-02
 - 🏷️ Tags: claude-skill, crypto, crypto-data, mcp, mcp-server, model-context-protocol, open-data, token-unlocks, tokenomics, vesting
 
 ## Best fit cue profiles

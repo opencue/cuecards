@@ -2,19 +2,19 @@
 title: "wirb/wirb-model-economy — Claude Code skill discovered by cue"
 description: " A Claude Code skill for delegating work to subagents: Sonnet builds, Opus reviews and handles money paths, Haiku transcribes. Includes a reusable brief templat"
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [wirb/wirb-model-economy](https://github.com/wirb/wirb-model-economy)
 
-**★ 1** · potential (score 3.3)
+**★ 1** · potential (score 3.2)
 
 >  A Claude Code skill for delegating work to subagents: Sonnet builds, Opus reviews and handles money paths, Haiku transcribes. Includes a reusable brief template, a build → test + review → fix → deploy loop, and the defect classes reviewers should hunt.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-10-30
 - 🏷️ Tags: (none)

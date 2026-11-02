@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mustbesimo-web-design-studio"></a>
-## 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
+<a id="leodavincs-kalem"></a>
+## 💎 [leodavincs/kalem](https://github.com/leodavincs/kalem)
 
-**★ 50** · exceptional (score 14.4) · JavaScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
+**★ 20** · exceptional (score 10.5) · JavaScript · tags: animation, claude-code, claude-skill, manim, paperjs
 
-Three free agent skills for websites people remember: cinematic-scroll builds distinctive scroll, 3D and motion sites; scroll-audit scores any page; launch-page-strategy decides what the page must say. 28 live examples. Formerly Cinematic Scroll.
-
-```bash
-cue skills add MustBeSimo/web-design-studio --profile threejs
-```
-
----
-
-<a id="tudorjuravlea-showcase"></a>
-## 💎 [tudorjuravlea/showcase](https://github.com/tudorjuravlea/showcase)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: 3d-device-mockup, app-preview, claude-code, claude-skill, device-mockup
-
-Cinematic device-mockup videos and animated hero pages from a screen recording. It contains: Showcase CLI, Claude Code skill, and a two-renderer editor (CSS 3D + WebGL).
+Claude Code skill: her sahnenin kendi kalemi var. Videoyu sahnelere böler, her sahneye uygun motoru seçer (Paper.js, PixiJS, HyperFrames, Three.js, Manim).
 
 ```bash
-cue skills add tudorjuravlea/showcase --profile threejs
+cue skills add leodavincs/kalem --profile threejs
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "QuotaFuse-ai/disk-warden — Claude Code skill discovered by cue"
 description: "Storage manager for AI coding tools: move regenerable Cursor / Trae / Claude Code data to another drive, keep the original paths working."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 

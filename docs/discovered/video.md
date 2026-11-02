@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-02
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="tudorjuravlea-showcase"></a>
-## 💎 [tudorjuravlea/showcase](https://github.com/tudorjuravlea/showcase)
+<a id="zyziyun-reelfold"></a>
+## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: 3d-device-mockup, app-preview, claude-code, claude-skill, device-mockup
+**★ 3** · exceptional (score 13.7) · Python · tags: ai-video, batch-processing, claude-code, claude-skill, content-creation
 
-Cinematic device-mockup videos and animated hero pages from a screen recording. It contains: Showcase CLI, Claude Code skill, and a two-renderer editor (CSS 3D + WebGL).
+Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
+
+✅ SKILL.md
 
 ```bash
-cue skills add tudorjuravlea/showcase --profile video
+cue skills add zyziyun/reelfold --profile video
+```
+
+---
+
+<a id="krlaribi-reel-teardown"></a>
+## 💎 [krlaribi/reel-teardown](https://github.com/krlaribi/reel-teardown)
+
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, competitor-analysis, content-marketing, instagram-reels
+
+Claude Code skill: paste any reel, TikTok, Short or ad and get why it works: hook, every cut, pacing, script, and moves to steal. Measured from frames, not guessed.
+
+```bash
+cue skills add krlaribi/reel-teardown --profile video
 ```
 
 ---

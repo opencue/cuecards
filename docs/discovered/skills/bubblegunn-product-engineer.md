@@ -2,21 +2,21 @@
 title: "Bubblegunn/product-engineer — Claude Code skill discovered by cue"
 description: "product-engineer is an agent skill and command-line checker that makes AI coding agents explain each commit and pull request in plain language, and warns when t"
 layout: page
-updated: 2026-10-30
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Bubblegunn/product-engineer](https://github.com/Bubblegunn/product-engineer)
 
-**★ 2** · exceptional (score 8.5) · JavaScript · agent-skills, ai-agents, ai-coding-agent, claude-code, claude-code-skill
+**★ 5** · exceptional (score 10.9) · JavaScript · agent-skills, ai-agents, ai-coding-agent, claude-code, claude-code-skill
 
 > product-engineer is an agent skill and command-line checker that makes AI coding agents explain each commit and pull request in plain language, and warns when the message contradicts the diff.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-30
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-11-02
 - 🏷️ Tags: agent-skills, ai-agents, ai-coding-agent, claude-code, claude-code-skill, codex, commit-message, commit-messages, commitlint, cursor, diff-check, gemini-cli-extension, github-action, github-copilot, plain-language, pre-commit, product-engineering, pull-request, pull-requests
 
 ## Best fit cue profiles

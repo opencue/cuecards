@@ -1,22 +1,22 @@
 ---
 title: "notque/vexjoy-agent — Claude Code skill discovered by cue"
-description: "VexJoy AI Agent with Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learnin"
+description: "VexJoy AI Agent with Jev Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a lea"
 layout: page
-updated: 2026-07-02
+updated: 2026-11-02
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [notque/vexjoy-agent](https://github.com/notque/vexjoy-agent)
 
-**★ 401** · exceptional (score 15.7) · Python · ai, ai-agents, ai-pipelines, ai-skills, ai-workflows
+**★ 445** · exceptional (score 16.8) · Python · ai, ai-agents, ai-pipelines, ai-skills, ai-workflows
 
-> VexJoy AI Agent with Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learning loop.
+> VexJoy AI Agent with Jev Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learning loop.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
-- ⭐ 401 stars
-- 🗓️ Last pushed: 2026-07-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.8 based on:
+- ⭐ 445 stars
+- 🗓️ Last pushed: 2026-11-02
 - 🏷️ Tags: ai, ai-agents, ai-pipelines, ai-skills, ai-workflows, claude, claude-ai, claude-code, claude-code-skill, claude-skills, codex-skills, developer-tools, factory-ai
 
 ## Best fit cue profiles
