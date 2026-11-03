@@ -1,28 +1,27 @@
 ---
 title: "educlopez/diorama — Claude Code skill discovered by cue"
-description: "A Claude Code skill that builds small animated isometric 3D worlds for the web as one self-contained SVG file: six themes, hover and tap answers, a headless-bro"
+description: "Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js"
 layout: page
-updated: 2026-10-19
-tags: [claude-code, skill, frontend]
+updated: 2026-11-03
+tags: [claude-code, skill, threejs]
 ---
 
 # 💎 [educlopez/diorama](https://github.com/educlopez/diorama)
 
-**★ 0** · exceptional (score 12) · JavaScript · 3d, agent-skills, animation, claude-code, claude-code-skill
+**★ 14** · exceptional (score 8.4) · JavaScript · 3d, agent-skills, animation, claude-code, claude-code-skill
 
-> A Claude Code skill that builds small animated isometric 3D worlds for the web as one self-contained SVG file: six themes, hover and tap answers, a headless-browser check. Heroes for landing pages, cards for docs, minis for empty states.
+> Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js miniature worlds, four finishes. diorama-pixel: dithered pixel-art miniatures, no three.js. npx skills add educlopez/diorama
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
+- ⭐ 14 stars
+- 🗓️ Last pushed: 2026-11-03
 - 🏷️ Tags: 3d, agent-skills, animation, claude-code, claude-code-skill, diorama, empty-state, illustration, isometric, landing-page, low-poly, svg
 
 ## Best fit cue profiles
 
-[frontend](../frontend.md)
+[threejs](../threejs.md)
 
 
 
@@ -30,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add educlopez/diorama --profile frontend
+cue skills add educlopez/diorama --profile threejs
 ```
 
 ## About

@@ -1,17 +1,43 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="albegosu-second-brain"></a>
+## 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
+
+**★ 15** · exceptional (score 10.4) · Python · tags: ai-agents, claude-code, claude-skill, design-inspiration, design-md
+
+Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from.
+
+```bash
+cue skills add albegosu/second-brain --profile docs-writer
+```
+
+---
+
+<a id="isamu-lab"></a>
+## ✨ [isamu/lab](https://github.com/isamu/lab)
+
+**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
+
+chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
+
+```bash
+cue skills add isamu/lab --profile docs-writer
+```
 
 ---
 

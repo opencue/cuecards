@@ -2,13 +2,13 @@
 title: "blitzsicht/falzmarke — Claude Code skill discovered by cue"
 description: "Auf den Millimeter geprüft, nicht nur behauptet: DIN-5008-Briefe aus Markdown, als PDF/A gesetzt. Skill für KI-Agenten und CLI."
 layout: page
-updated: 2026-10-29
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [blitzsicht/falzmarke](https://github.com/blitzsicht/falzmarke)
 
-**★ 1** · exceptional (score 8.8) · Python · agent-skills, brief, claude-skill, din-5008, din5008
+**★ 1** · exceptional (score 8.8) · Python · agent-skills, brief, business-letter, claude-skill, din-5008
 
 > Auf den Millimeter geprüft, nicht nur behauptet: DIN-5008-Briefe aus Markdown, als PDF/A gesetzt. Skill für KI-Agenten und CLI.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-29
-- 🏷️ Tags: agent-skills, brief, claude-skill, din-5008, din5008, falzmarke, german, geschaeftsbrief, letter, markdown, mcp, mcp-server, model-context-protocol, normbrief, pdf, pdfa, pdfua, typst
+- 🗓️ Last pushed: 2026-11-03
+- 🏷️ Tags: agent-skills, brief, business-letter, claude-skill, din-5008, din5008, document-generation, falzmarke, german, geschaeftsbrief, letter, markdown, mcp, mcp-server, model-context-protocol, normbrief, pdf, pdfa, pdfua, typst
 
 ## Best fit cue profiles
 

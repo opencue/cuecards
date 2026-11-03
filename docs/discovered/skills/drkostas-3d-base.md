@@ -2,7 +2,7 @@
 title: "drkostas/3d-base — Claude Code skill discovered by cue"
 description: "Headless pictures of 3D meshes with correct occlusion and smooth shading, and a health check for exported STL files"
 layout: page
-updated: 2026-10-17
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-17
+- 🗓️ Last pushed: 2026-11-03
 - 🏷️ Tags: 3d, 3d-models, 3d-printing, cad, claude-code, claude-skill, headless, mesh, python, rendering, stl, trimesh
 
 ## Best fit cue profiles

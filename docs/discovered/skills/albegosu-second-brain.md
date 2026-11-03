@@ -1,23 +1,23 @@
 ---
 title: "albegosu/second-brain — Claude Code skill discovered by cue"
-description: "Share a post from your phone; a vision model files it into a Markdown wiki your coding agent reads"
+description: "Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from."
 layout: page
-updated: 2026-09-18
+updated: 2026-11-03
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
 
-**★ 1** · exceptional (score 8.3) · Python · claude-code, claude-skill, design-inspiration, github-actions, ios-shortcuts
+**★ 15** · exceptional (score 10.4) · Python · ai-agents, claude-code, claude-skill, design-inspiration, design-md
 
-> Share a post from your phone; a vision model files it into a Markdown wiki your coding agent reads
+> Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-18
-- 🏷️ Tags: claude-code, claude-skill, design-inspiration, github-actions, ios-shortcuts, knowledge-base, llm-wiki, ollama, personal-knowledge-management, second-brain, supabase, ui-patterns, vision-language-model, yt-dlp
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
+- ⭐ 15 stars
+- 🗓️ Last pushed: 2026-11-03
+- 🏷️ Tags: ai-agents, claude-code, claude-skill, design-inspiration, design-md, design-systems, design-tokens, github-actions, ios-shortcuts, knowledge-base, llm-wiki, ollama, personal-knowledge-management, second-brain, supabase, ui-patterns, vision-language-model, yt-dlp
 
 ## Best fit cue profiles
 

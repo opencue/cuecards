@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-03
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="paulhowever-orchestor"></a>
-## 💎 [paulhowever/orchestor](https://github.com/paulhowever/orchestor)
+<a id="nuttaruj-rolepod"></a>
+## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
 
-**★ 2** · exceptional (score 8.5) · Python · tags: agent-orchestration, ai-agents, anthropic, claude, claude-code
+**★ 3** · exceptional (score 8.2) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
 
-/orchestrate — a Claude Code skill: one message in, parallel sessions out, each with its own model. Nothing ships without your yes.
+Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
 
 ```bash
-cue skills add paulhowever/orchestor --profile fleet-control
+cue skills add nuttaruj/rolepod --profile fleet-control
 ```
 
 ---

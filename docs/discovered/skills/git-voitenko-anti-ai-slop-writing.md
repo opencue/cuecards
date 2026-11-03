@@ -2,7 +2,7 @@
 title: "git-voitenko/anti-ai-slop-writing — Claude Code skill discovered by cue"
 description: "Claude skill that writes human-sounding English, Russian and Ukrainian, plus a zero-dependency detector for AI writing patterns"
 layout: page
-updated: 2026-10-20
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-20
+- 🗓️ Last pushed: 2026-11-03
 - 🏷️ Tags: ai-writing, claude, claude-code, claude-skill, linter, llm, prompt-engineering, russian, ukrainian, writing
 
 ## Best fit cue profiles

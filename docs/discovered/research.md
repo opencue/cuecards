@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="metamol-verified-research"></a>
-## 💎 [MetamoL/verified-research](https://github.com/MetamoL/verified-research)
+<a id="o0000-code-paper-search-pro"></a>
+## 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
 
-**★ 0** · exceptional (score 13) · Python · tags: agent-skills, citations, claude-code, claude-code-skill, claude-skills
+**★ 226** · exceptional (score 21.2) · HTML · tags: academic-research, agent-skill, arxiv, claude-code-skill, codex
 
-Agent skill for Claude Code, Codex & more: web research where every claim carries a verbatim quote that a script checks against the source. 引用を原文と機械照合するWeb調査スキル
+Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add MetamoL/verified-research --profile research
+cue skills add O0000-code/paper-search-pro --profile research
+```
+
+---
+
+<a id="chinayuren2022-2025-learn-everything-in-html"></a>
+## 💎 [chinayuren2022-2025/learn-everything-in-html](https://github.com/chinayuren2022-2025/learn-everything-in-html)
+
+**★ 0** · exceptional (score 12) · Python · tags: adhd, claude-code, claude-skill, lecture-notes, macos
+
+Learn everything in HTML — a Claude Code skill that turns lecture transcripts, textbooks, or a research field's papers into self-study HTML notes (example-driven or problem-driven), with highlights, concept maps and room for Mac Trackpad Notes
+
+✅ SKILL.md
+
+```bash
+cue skills add chinayuren2022-2025/learn-everything-in-html --profile research
 ```
 
 ---
@@ -33,7 +48,7 @@ cue skills add MetamoL/verified-research --profile research
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 2** · potential (score 3.4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 3** · potential (score 3.5) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

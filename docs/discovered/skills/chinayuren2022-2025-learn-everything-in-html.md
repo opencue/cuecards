@@ -2,7 +2,7 @@
 title: "chinayuren2022-2025/learn-everything-in-html — Claude Code skill discovered by cue"
 description: "Learn everything in HTML — a Claude Code skill that turns lecture transcripts, textbooks, or a research field's papers into self-study HTML notes (example-drive"
 layout: page
-updated: 2026-10-16
+updated: 2026-11-03
 tags: [claude-code, skill, research]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-16
+- 🗓️ Last pushed: 2026-11-03
 - 🏷️ Tags: adhd, claude-code, claude-skill, lecture-notes, macos
 
 ## Best fit cue profiles

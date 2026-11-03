@@ -2,7 +2,7 @@
 title: "meagan-glenn/operator — Claude Code skill discovered by cue"
 description: "An AI agent I built to run business development for a fractional product practice: prospect discovery, warm paths, voice-grounded outreach drafts, scheduling. B"
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 

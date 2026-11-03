@@ -2,7 +2,7 @@
 title: "PolloCraft/OpenCode-Nexus — Claude Code skill discovered by cue"
 description: "Suite de escritorio en Python/Tkinter que unifica tres motores en una sola consola con dashboard local, diagnostico, respaldos y gestion de PATH: Oplire (Rust),"
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2948** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
+**★ 2958** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,12 +28,27 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
+<a id="jowel29-binsleuth"></a>
+## 💎 [Jowel29/binsleuth](https://github.com/Jowel29/binsleuth)
+
+**★ 0** · exceptional (score 13) · Python · tags: ai-security, claude, claude-code, claude-skill, cybersecurity
+
+A Claude skill for static malware triage of Windows binaries, hardened against prompt injection
+
+✅ SKILL.md
+
+```bash
+cue skills add Jowel29/binsleuth --profile cybersecurity
+```
+
+---
+
 <a id="dextsamu-appsec-sentinel"></a>
 ## 💎 [dextsamu/appsec-sentinel](https://github.com/dextsamu/appsec-sentinel)
 
 **★ 1** · exceptional (score 12.3) · Python · tags: agent-skills, antigravity, antigravity-skills, appsec, asvs
 
-Skill per agenti AI (Claude, Codex, Antigravity) per assessment di sicurezza applicativa e cloud: regole di ingaggio, test dimostrabili, finding strutturati e copertura con denominatori reali. In italiano, per PA e piccole organizzazioni.
+Security audit skill for AI coding agents (Claude Code, Codex, Antigravity): rules of engagement, proven findings, independent refutation, real coverage numbers. English + Italian. · Assessment di sicurezza applicativa per PA e piccole organizzazioni.
 
 ✅ SKILL.md
 
@@ -59,7 +74,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 <a id="philpaz-recusal"></a>
 ## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 5** · exceptional (score 9.5) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 6** · exceptional (score 9.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
 Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
@@ -69,15 +84,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="hybridindie-comfyui-mcp"></a>
-## 💎 [hybridindie/comfyui_mcp](https://github.com/hybridindie/comfyui_mcp)
+<a id="shreyanshshah91-appsec-assurance"></a>
+## 💎 [shreyanshshah91/appsec-assurance](https://github.com/shreyanshshah91/appsec-assurance)
 
-**★ 3** · exceptional (score 8.1) · Python · tags: ai-tools, claude, comfyui, image-generation, mcp
+**★ 0** · exceptional (score 8) · Python · tags: appsec, claude-code, claude-skill, devsecops, owasp
 
-Secure MCP server for ComfyUI — workflow inspection, path sanitization, rate limiting, and audit logging. Generate images from Claude and other AI assistants with built-in security controls.
+Evidence-driven application security audit and hardening skill for Claude Code
 
 ```bash
-cue skills add hybridindie/comfyui_mcp --profile cybersecurity
+cue skills add shreyanshshah91/appsec-assurance --profile cybersecurity
 ```
 
 ---

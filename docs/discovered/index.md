@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "85 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "87 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **85 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-11-02 · refreshed nightly via GitHub Code Search.
+> **87 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-11-03 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 67 | `context-mode`, `answer-me-with-html`, `dex` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `appsec-sentinel`, `sanctuary-framework` |
-| [**backend**](./backend.md) | 3 | `mcp-hub`, `p6-mcp`, `redesigned-pancake` |
-| [**video**](./video.md) | 2 | `reelfold`, `reel-teardown` |
-| [**creative-media**](./creative-media.md) | 2 | `photo-archive-organizer`, `redesigned-pancake` |
-| [**research**](./research.md) | 2 | `verified-research`, `skillassay` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `sticky-switcher-funnel-playbook` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `etsy-ugc-compliance-harvester` |
-| [**threejs**](./threejs.md) | 1 | `kalem` |
+| [**core**](./core.md) | 59 | `dex`, `iterate-skill`, `strategic-advisor-orchestrator` |
+| [**backend**](./backend.md) | 7 | `context-mode`, `tokmeter`, `mcp-hub` |
+| [**cybersecurity**](./cybersecurity.md) | 6 | `Claude-OSINT`, `binsleuth`, `appsec-sentinel` |
+| [**frontend**](./frontend.md) | 4 | `remote-login`, `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns` |
+| [**research**](./research.md) | 3 | `paper-search-pro`, `learn-everything-in-html`, `skillassay` |
+| [**creative-media**](./creative-media.md) | 3 | `luxin`, `rasanai`, `redesigned-pancake` |
+| [**docs-writer**](./docs-writer.md) | 3 | `second-brain`, `lab`, `repo-engineering-skills` |
+| [**threejs**](./threejs.md) | 2 | `joinery`, `diorama` |
 | [**marketing**](./marketing.md) | 1 | `sticky-switcher-funnel-playbook` |
-| [**docs-writer**](./docs-writer.md) | 1 | `repo-engineering-skills` |
+| [**fleet-control**](./fleet-control.md) | 1 | `rolepod` |
+| [**python**](./python.md) | 1 | `alfred` |
 
 ## How scoring works
 

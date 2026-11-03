@@ -2,21 +2,21 @@
 title: "yoelf22/electrum — Claude Code skill discovered by cue"
 description: "A structured, AI-assisted toolkit for defining hardware products that have software inside — from concept through engineering spec to presentation-ready materia"
 layout: page
-updated: 2026-10-25
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [yoelf22/electrum](https://github.com/yoelf22/electrum)
 
-**★ 7** · exceptional (score 10.8) · Python · awesome-iot, claude-code, claude-skill, embedded-systems, firmware
+**★ 8** · exceptional (score 10.9) · Python · awesome-iot, claude-code, claude-skill, embedded-systems, firmware
 
 > A structured, AI-assisted toolkit for defining hardware products that have software inside — from concept through engineering spec to presentation-ready materials in eight phases.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.9 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-11-03
 - 🏷️ Tags: awesome-iot, claude-code, claude-skill, embedded-systems, firmware, hardware, hardware-software, iot, product-definition, product-management
 
 ## Best fit cue profiles

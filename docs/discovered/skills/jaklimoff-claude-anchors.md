@@ -2,7 +2,7 @@
 title: "jaklimoff/claude-anchors — Claude Code skill discovered by cue"
 description: "Claude Code plugin: keeps the file paths, commits, errors and URLs a compaction summary drops. Plain regexes, no model calls."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-03
 tags: [claude-code, skill, core]
 ---
 
