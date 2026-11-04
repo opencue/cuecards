@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2958** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
+**★ 2965** · exceptional (score 13.4) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,17 +28,17 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="jowel29-binsleuth"></a>
-## 💎 [Jowel29/binsleuth](https://github.com/Jowel29/binsleuth)
+<a id="dev-shamsali-sentinel-security"></a>
+## 💎 [dev-shamsali/sentinel-security](https://github.com/dev-shamsali/sentinel-security)
 
-**★ 0** · exceptional (score 13) · Python · tags: ai-security, claude, claude-code, claude-skill, cybersecurity
+**★ 1** · exceptional (score 13.3) · JavaScript · tags: claude-code, claude-skill, nodejs, owasp, security
 
-A Claude skill for static malware triage of Windows binaries, hardened against prompt injection
+Claude Code skill: audit, harden and verify Node.js backends and databases (Express, NestJS, Next.js, SQL, MongoDB)
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Jowel29/binsleuth --profile cybersecurity
+cue skills add dev-shamsali/sentinel-security --profile cybersecurity
 ```
 
 ---
@@ -84,15 +84,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="shreyanshshah91-appsec-assurance"></a>
-## 💎 [shreyanshshah91/appsec-assurance](https://github.com/shreyanshshah91/appsec-assurance)
+<a id="surya8991-agentmaster"></a>
+## 💎 [Surya8991/AgentMaster](https://github.com/Surya8991/AgentMaster)
 
-**★ 0** · exceptional (score 8) · Python · tags: appsec, claude-code, claude-skill, devsecops, owasp
+**★ 2** · exceptional (score 9) · PowerShell · tags: ai, ai-agents, claude-code, claude-code-skill, code-review
 
-Evidence-driven application security audit and hardening skill for Claude Code
+Meta-orchestrator for AI coding agents. Auto-routes tasks to 41+ skills across 21 categories. Supports Claude Code, Codex, Cursor, Windsurf, Antigravity, Gemini CLI, and 5 more platforms.
 
 ```bash
-cue skills add shreyanshshah91/appsec-assurance --profile cybersecurity
+cue skills add Surya8991/AgentMaster --profile cybersecurity
 ```
 
 ---

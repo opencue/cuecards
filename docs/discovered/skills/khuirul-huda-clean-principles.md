@@ -2,7 +2,7 @@
 title: "Khuirul-Huda/clean-principles — Claude Code skill discovered by cue"
 description: "Senior-level software engineering standards & architectural principles for AI coding agents."
 layout: page
-updated: 2026-10-25
+updated: 2026-11-04
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: agent-skills, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill, codex-skill, coding-standards, coding-standards-guideline
 
 ## Best fit cue profiles

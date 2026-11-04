@@ -2,22 +2,22 @@
 title: "voygr-tech/placecall — Claude Code skill discovered by cue"
 description: "The phone is your last API. Give your agent a voice to call any US business - reservations, inquiries, quotes. Verified outcome + transcript. First 250 calls fr"
 layout: page
-updated: 2026-10-02
+updated: 2026-11-04
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [voygr-tech/placecall](https://github.com/voygr-tech/placecall)
 
-**★ 34** · exceptional (score 12.6) · Shell · agent-skills, ai-agent, calls, claude-code, claude-code-plugins
+**★ 110** · exceptional (score 17.9) · Shell · agent-skills, ai-agent, calls, claude-code, claude-code-plugins
 
 > The phone is your last API. Give your agent a voice to call any US business - reservations, inquiries, quotes. Verified outcome + transcript. First 250 calls free.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.6 based on:
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-10-02
-- 🏷️ Tags: agent-skills, ai-agent, calls, claude-code, claude-code-plugins, claude-code-skills, claude-plugin, claude-skill, mcp, mcp-server, phone, reservations, telephony, voice
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.9 based on:
+- ⭐ 110 stars
+- 🗓️ Last pushed: 2026-11-04
+- 🏷️ Tags: agent-skills, ai-agent, calls, claude-code, claude-code-plugins, claude-code-skills, claude-plugin, claude-skill, gemini-cli-extension, mcp, mcp-server, phone, reservations, telephony, voice
 
 ## Best fit cue profiles
 

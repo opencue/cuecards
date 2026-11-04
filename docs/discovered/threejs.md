@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="josechipanatica-joinery"></a>
-## 💎 [JoseChipanaTica/joinery](https://github.com/JoseChipanaTica/joinery)
+<a id="yusen-dev-living-ascii"></a>
+## 💎 [yusen-dev/living-ascii](https://github.com/yusen-dev/living-ascii)
 
-**★ 0** · exceptional (score 13) · JavaScript · tags: agent-skills, claude-code, claude-skill, cut-list, furniture
+**★ 0** · exceptional (score 13) · JavaScript · tags: animation, ascii, ascii-art, claude-code, claude-skill
 
-A Claude Code skill that turns a furniture photo into a buildable 3D model: real joinery, exploded view, cut list, shop drawings and an assembly manual.
+Bring a still image to life as a seamless ASCII loop — hundreds of thousands of strands swaying like a school of fish, with ASCII glyphs that turn with them. three.js + custom shaders.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add JoseChipanaTica/joinery --profile threejs
-```
-
----
-
-<a id="educlopez-diorama"></a>
-## 💎 [educlopez/diorama](https://github.com/educlopez/diorama)
-
-**★ 14** · exceptional (score 8.4) · JavaScript · tags: 3d, agent-skills, animation, claude-code, claude-code-skill
-
-Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js miniature worlds, four finishes. diorama-pixel: dithered pixel-art miniatures, no three.js. npx skills add educlopez/diorama
-
-```bash
-cue skills add educlopez/diorama --profile threejs
+cue skills add yusen-dev/living-ascii --profile threejs
 ```
 
 ---

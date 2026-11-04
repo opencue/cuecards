@@ -2,7 +2,7 @@
 title: "albegosu/second-brain — Claude Code skill discovered by cue"
 description: "Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
 - ⭐ 15 stars
-- 🗓️ Last pushed: 2026-11-03
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: ai-agents, claude-code, claude-skill, design-inspiration, design-md, design-systems, design-tokens, github-actions, ios-shortcuts, knowledge-base, llm-wiki, ollama, personal-knowledge-management, second-brain, supabase, ui-patterns, vision-language-model, yt-dlp
 
 ## Best fit cue profiles

@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="pyxl-dev-remote-login"></a>
-## 💎 [pyxl-dev/remote-login](https://github.com/pyxl-dev/remote-login)
-
-**★ 1** · exceptional (score 13.3) · Python · tags: ai-agents, browser-automation, claude-code, claude-skill, macos
-
-Connecte-toi au navigateur de ton agent IA depuis ton téléphone : vue en direct via Tailscale, tes identifiants ne passent jamais par l'agent
-
-✅ SKILL.md
-
-```bash
-cue skills add pyxl-dev/remote-login --profile frontend
-```
 
 ---
 

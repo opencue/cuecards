@@ -2,13 +2,13 @@
 title: "netresearch/typo3-core-contributions-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for TYPO3 Core contributions - Gerrit workflow, CI/CD, quality automation | Claude Code compatible"
 layout: page
-updated: 2026-10-07
+updated: 2026-11-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/typo3-core-contributions-skill](https://github.com/netresearch/typo3-core-contributions-skill)
 
-**★ 1** · exceptional (score 10.3) · Shell · agent-skills, ai-agent, claude-code-skill, contribution, gerrit
+**★ 1** · exceptional (score 10.3) · agent-skills, ai-agent, claude-code-skill, contribution, gerrit
 
 > Agent Skill for TYPO3 Core contributions - Gerrit workflow, CI/CD, quality automation | Claude Code compatible
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-07
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, contribution, gerrit, open-standard, skill, typo3, typo3-cms
 
 ## Best fit cue profiles

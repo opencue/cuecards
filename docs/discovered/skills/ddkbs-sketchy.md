@@ -1,23 +1,23 @@
 ---
 title: "ddkbs/sketchy — Claude Code skill discovered by cue"
-description: "A layout engine for LLM diagrams: Claude says what to draw, Sketchy figures out where. Hand-drawn, interactive, no overlapping boxes."
+description: "A layout engine for AI diagrams: the model says what to draw, Sketchy figures out where. Hand-drawn, interactive, in Claude, Cursor and VS Code."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ddkbs/sketchy](https://github.com/ddkbs/sketchy)
 
-**★ 17** · exceptional (score 9.4) · TypeScript · claude, claude-code, claude-skill, claude-skills, diagrams
+**★ 140** · exceptional (score 13.5) · TypeScript · claude, claude-code, claude-skill, claude-skills, cursor
 
-> A layout engine for LLM diagrams: Claude says what to draw, Sketchy figures out where. Hand-drawn, interactive, no overlapping boxes.
+> A layout engine for AI diagrams: the model says what to draw, Sketchy figures out where. Hand-drawn, interactive, in Claude, Cursor and VS Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
-- ⭐ 17 stars
-- 🗓️ Last pushed: 2026-11-02
-- 🏷️ Tags: claude, claude-code, claude-skill, claude-skills, diagrams, elkjs, layout-engine, mcp, mcp-apps, model-context-protocol, roughjs, visualization
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+- ⭐ 140 stars
+- 🗓️ Last pushed: 2026-11-04
+- 🏷️ Tags: claude, claude-code, claude-skill, claude-skills, cursor, diagrams, elkjs, layout-engine, mcp, mcp-apps, model-context-protocol, npm, roughjs, visualization, vscode
 
 ## Best fit cue profiles
 

@@ -2,22 +2,22 @@
 title: "aisenseapi/aisense-free-public-rest-apis — Claude Code skill discovered by cue"
 description: "Free, public, no-auth REST APIs from AI SENSE AS — clients for OpenClaw, Python, JavaScript, OpenAI function calling, Claude, and many more"
 layout: page
-updated: 2026-10-31
+updated: 2026-11-04
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [aisenseapi/aisense-free-public-rest-apis](https://github.com/aisenseapi/aisense-free-public-rest-apis)
 
-**★ 0** · exceptional (score 12.5) · HTML · claude-skill, claude-skills, free-api, free-apis, javascript
+**★ 1** · exceptional (score 12.8) · HTML · claude-skill, claude-skills, free-api, free-apis, javascript
 
 > Free, public, no-auth REST APIs from AI SENSE AS — clients for OpenClaw, Python, JavaScript, OpenAI function calling, Claude, and many more
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-31
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: claude-skill, claude-skills, free-api, free-apis, javascript, llm-tools, openai-tools, openclaw-skill, openclaw-skills, public-api, public-apis, python, python3, rest-api, rest-apis
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "noderaven/parallel-lanes — Claude Code skill discovered by cue"
 description: "Claude Code skill: run an approved implementation plan as parallel lanes of reviewed tasks"
 layout: page
-updated: 2026-10-15
+updated: 2026-11-04
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, fleet-control]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
 - ✅ Contains SKILL.md
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-15
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-code-skill, claude-skills, code-review, developer-tools, git-worktree, multi-agent, parallel-execution, subagents, superpowers
 
 ## Best fit cue profiles

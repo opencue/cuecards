@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,32 +15,28 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="o0000-code-paper-search-pro"></a>
-## 💎 [O0000-code/paper-search-pro](https://github.com/O0000-code/paper-search-pro)
+<a id="chanmeng666-chanmeng-typst"></a>
+## 💎 [ChanMeng666/chanmeng-typst](https://github.com/ChanMeng666/chanmeng-typst)
 
-**★ 226** · exceptional (score 21.2) · HTML · tags: academic-research, agent-skill, arxiv, claude-code-skill, codex
+**★ 15** · exceptional (score 9.2) · Python · tags: academic-paper, ai-tools, claude-code, claude-code-plugin, claude-skill
 
-Academic literature discovery as a Skill — Claude Code · Codex · any agent that loads SKILL.md. Five sources · four tiers · single-file Shadcn report.
-
-✅ SKILL.md
+【Stars are free hugs for code - spread the love! 🤗⭐️】 Claude Code skill for professional document generation using Typst typesetting system. Includes complete language reference, CLI reference, and 9 ready-to-use templates.
 
 ```bash
-cue skills add O0000-code/paper-search-pro --profile research
+cue skills add ChanMeng666/chanmeng-typst --profile research
 ```
 
 ---
 
-<a id="chinayuren2022-2025-learn-everything-in-html"></a>
-## 💎 [chinayuren2022-2025/learn-everything-in-html](https://github.com/chinayuren2022-2025/learn-everything-in-html)
+<a id="vinimrdi-ux-laws-principles"></a>
+## 💎 [vinimrdi/ux-laws-principles](https://github.com/vinimrdi/ux-laws-principles)
 
-**★ 0** · exceptional (score 12) · Python · tags: adhd, claude-code, claude-skill, lecture-notes, macos
+**★ 0** · exceptional (score 8) · tags: accessibility, agent-skills, claude-code, claude-code-skill, claude-code-skills
 
-Learn everything in HTML — a Claude Code skill that turns lecture transcripts, textbooks, or a research field's papers into self-study HTML notes (example-driven or problem-driven), with highlights, concept maps and room for Mac Trackpad Notes
-
-✅ SKILL.md
+Evidence-based UX laws, heuristics & methods for AI agents and designers. No fake citations.
 
 ```bash
-cue skills add chinayuren2022-2025/learn-everything-in-html --profile research
+cue skills add vinimrdi/ux-laws-principles --profile research
 ```
 
 ---

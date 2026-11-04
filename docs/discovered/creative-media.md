@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="danielgwilson-luxin"></a>
-## 💎 [danielgwilson/luxin](https://github.com/danielgwilson/luxin)
-
-**★ 2** · exceptional (score 12.5) · JavaScript · tags: 3d-generation, agent-skill, agent-skills, ai-agents, audio-generation
-
-Zero-setup creative media for agents. Generate & edit images, generate video & audio, create 3D, with no API key, no OAuth, durable hosted URLs, recoverable jobs, and cost receipts.
-
-```bash
-cue skills add danielgwilson/luxin --profile creative-media
-```
-
----
-
-<a id="sibhimanyu-rasanai"></a>
-## 💎 [Sibhimanyu/rasanai](https://github.com/Sibhimanyu/rasanai)
-
-**★ 2** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-video, ai-video-generator, animation, anthropic
-
-AI video director for Claude Code: pick one of three complete films and Claude designs, animates and renders it. Launch films, explainers, reels from your footage, motion graphics. Built on HyperFrames. Formerly Rasa Director.
-
-```bash
-cue skills add Sibhimanyu/rasanai --profile creative-media
-```
 
 ---
 

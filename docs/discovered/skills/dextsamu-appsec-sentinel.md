@@ -2,7 +2,7 @@
 title: "dextsamu/appsec-sentinel — Claude Code skill discovered by cue"
 description: "Security audit skill for AI coding agents (Claude Code, Codex, Antigravity): rules of engagement, proven findings, independent refutation, real coverage numbers"
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, cybersecurity]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-03
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: agent-skills, antigravity, antigravity-skills, appsec, asvs, claude-code, claude-code-skills, claude-skill, codex, codex-skill, italiano, nis2, owasp, owasp-juice-shop, owasp-top-10, security-audit, security-scanner, security-tools, skill, threat-model
 
 ## Best fit cue profiles

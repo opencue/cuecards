@@ -2,7 +2,7 @@
 title: "haiggoh/watch-your-step — Claude Code skill discovered by cue"
 description: "🛘🥾 Catches command traps before a Claude Code tool call runs: backticks or $40 in double quotes, a mistyped home path, truncate-before-read, zsh's ==== abort."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-04
 tags: [claude-code, skill, core]
 ---
 

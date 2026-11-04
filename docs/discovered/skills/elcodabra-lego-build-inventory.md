@@ -2,7 +2,7 @@
 title: "elcodabra/lego-build-inventory — Claude Code skill discovered by cue"
 description: "LEGO from my bricks: photograph your parts, get build ideas and step-by-step instructions. Agent Skill + MCP server for Claude and ChatGPT."
 layout: page
-updated: 2026-10-02
+updated: 2026-11-04
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-11-04
 - 🏷️ Tags: agent-skills, chatgpt, claude-skill, lego, mcp
 
 ## Best fit cue profiles
