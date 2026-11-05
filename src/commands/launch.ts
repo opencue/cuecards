@@ -263,7 +263,8 @@ function parse(args: string[]): ParsedArgs {
       rematerialize = true;
     } else if (a === "--subset") {
       const val = args[++i];
-      if (val === undefined || val.startsWith("-")) {
+      // Free-form prompt: only a `--flag` means the value is missing, "-1 priority" is fine.
+      if (val === undefined || val.startsWith("--")) {
         return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit: false, passthrough, parseError: "--subset requires a prompt string" };
       }
       subset = val;

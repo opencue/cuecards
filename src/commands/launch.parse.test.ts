@@ -330,6 +330,17 @@ describe("parse: missing flag values set parseError", () => {
     expect(p.subset).toBeNull();
   });
 
+  test("--subset accepts a prompt starting with a single dash", () => {
+    const p = parse(["claude", "--subset", "-1 priority: fix the leak"]);
+    expect(p.parseError).toBeUndefined();
+    expect(p.subset).toBe("-1 priority: fix the leak");
+  });
+
+  test("--subset followed by another flag sets parseError", () => {
+    const p = parse(["claude", "--subset", "--dry-run"]);
+    expect(p.parseError).toContain("--subset");
+  });
+
   test("--subset with a valid value does not set parseError", () => {
     const p = parse(["claude", "--subset", "fix the parser"]);
     expect(p.parseError).toBeUndefined();

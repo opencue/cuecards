@@ -445,6 +445,18 @@ function effectiveHookList(profile: ResolvedProfile, agent: AgentKind): string[]
   return hooks;
 }
 
+// Subdirectory-scoped refs flatten to their basename, so two rules can collide
+// (common/security.md and typescript/security.md). The first one wins; any other
+// symlink failure is real and propagates.
+export async function linkUnlessPresent(src: string, dest: string): Promise<void> {
+  try {
+    await symlink(src, dest);
+  } catch (e: unknown) {
+    if ((e as NodeJS.ErrnoException).code !== "EEXIST") throw e;
+    console.warn(`cue: skipped ${src}: ${basename(dest)} is already linked by an earlier ref`);
+  }
+}
+
 /**
  * Symlink a list of resource refs into `targetDir`, appending `ext` when the
  * ref lacks it.  If `companionExts` is given, each ref's companion files
@@ -471,7 +483,7 @@ async function symlinkResources(
       if ((e as NodeJS.ErrnoException).code === "ENOENT") continue;
       throw e;
     }
-    await symlink(src, join(targetDir, basename(src)));
+    await linkUnlessPresent(src, join(targetDir, basename(src)));
     if (companionExts) {
       const stem = basename(ref).replace(/\.[^.]+$/, "");
       for (const compExt of companionExts) {
@@ -482,7 +494,7 @@ async function symlinkResources(
           if ((e as NodeJS.ErrnoException).code === "ENOENT") continue;
           throw e;
         }
-        await symlink(companion, join(targetDir, `${stem}${compExt}`));
+        await linkUnlessPresent(companion, join(targetDir, `${stem}${compExt}`));
       }
     }
   }
