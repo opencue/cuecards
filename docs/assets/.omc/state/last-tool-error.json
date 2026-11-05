@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"sudo tee /etc/NetworkManager/conf.d/15-unmanaged-docker.conf >/dev/null <<'EOF'\\n[keyfile]\\nunmanaged-devices=interface-name:docker0;interface-name:br-*;interface-name:veth*;interface-name...",
-  "error": "Exit code 1\nsudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper\nsudo: a password is required\nwrote config (exit 1)\ncat: /etc/NetworkManager/conf.d/15-unmanaged-docker.conf: No such file or directory",
-  "timestamp": "2026-05-29T13:43:45.647Z",
-  "retry_count": 1
-}
