@@ -12,6 +12,8 @@
  * W6: a skill's description has no parseable trigger phrases (reactive routing won't work).
  * W7: a skill has no capability summary the router can infer (proactive routing won't work).
  * W8: a skill has a capability but no explicit `when_to_invoke:` (proactive routing falls back to a single generic row).
+ * W11: a profile slug appears in both `recommends` and `conflicts`.
+ * W12: a skill slug appears more than once in `skills.local` or `skills.npx`.
  * E1: profile `name:` collides with another profile.
  * E2: inheritance chain contains a cycle.
  * E3: referenced skill or MCP cannot be resolved.
@@ -53,9 +55,13 @@ const DEFAULT_RULES_ROOT = join(cueRepoRoot(), "resources", "rules");
 const DEFAULT_COMMANDS_ROOT = join(cueRepoRoot(), "resources", "commands");
 const DEFAULT_HOOKS_ROOT = join(cueRepoRoot(), "resources", "hooks");
 const DEFAULT_SUBAGENTS_ROOT = join(cueRepoRoot(), "resources", "subagents");
+const DEFAULT_PLAYBOOKS_ROOT = join(cueRepoRoot(), "resources", "playbooks");
+const DEFAULT_QUALITY_GATES_ROOT = join(cueRepoRoot(), "resources", "quality-gates");
+const DEFAULT_EVALS_ROOT = join(cueRepoRoot(), "resources", "evals");
+const DEFAULT_PERSONAS_ROOT = join(cueRepoRoot(), "resources", "personas");
 
 export type LintRuleId =
-  | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8" | "W9" | "W10"
+  | "W1" | "W2" | "W3" | "W4" | "W5" | "W6" | "W7" | "W8" | "W9" | "W10" | "W11" | "W12"
   | "E1" | "E2" | "E3";
 export type DiagnosticRuleId = LintRuleId | "SCHEMA" | "LOAD";
 export type LintSeverity = "warning" | "error";
@@ -117,6 +123,16 @@ export const PROFILE_LINT_RULES: Record<LintRuleId, RuleDoc> = {
     title: "unresolved MCP env secret",
     description: "An MCP config references a `${VAR}` env placeholder (typically an API key/username) that isn't set in this environment. Secrets are supplied at launch, not at validate time — so this is environmental state, not a profile bug. Declare it in profile.env or export it before `cue launch`.",
   },
+  W11: {
+    severity: "warning",
+    title: "recommends/conflicts collision",
+    description: "A profile slug appears in both recommends and conflicts. The conflict wins at load time, but the slug still appears in picker suggestions — remove it from recommends.",
+  },
+  W12: {
+    severity: "warning",
+    title: "duplicate skill slug in same list",
+    description: "A skill slug appears more than once in skills.local or skills.npx. The duplicate contributes extra tool permissions and token cost without adding capability.",
+  },
   E1: {
     severity: "error",
     title: "profile name collision",
@@ -163,6 +179,22 @@ export interface ProfileLinterOptions {
   repoRoot?: string;
   npxFetch?: NpxFetchFn;
   npxOffline?: boolean;
+  /** Override the rules resource root (defaults to `resources/rules`). Used in tests to point at fixture trees. */
+  rulesRoot?: string;
+  /** Override the commands resource root (defaults to `resources/commands`). */
+  commandsRoot?: string;
+  /** Override the hooks resource root (defaults to `resources/hooks`). */
+  hooksRoot?: string;
+  /** Override the subagents resource root (defaults to `resources/subagents`). */
+  subagentsRoot?: string;
+  /** Override the playbooks resource root (defaults to `resources/playbooks`). */
+  playbooksRoot?: string;
+  /** Override the quality-gates resource root (defaults to `resources/quality-gates`). */
+  qualityGatesRoot?: string;
+  /** Override the evals resource root (defaults to `resources/evals`). */
+  evalsRoot?: string;
+  /** Override the personas resource root (defaults to `resources/personas`). */
+  personasRoot?: string;
 }
 
 interface RawProfileRecord {
@@ -318,23 +350,30 @@ async function checkSkillDescriptions(
 async function checkResourceRefs(
   profile: ResolvedProfile,
   result: ProfileLintResult,
-  _opts: ProfileLinterOptions,
+  opts: ProfileLinterOptions,
 ): Promise<void> {
-  const buckets: { label: string; refs: string[]; root: string; addExt: boolean }[] = [
-    { label: "rules",    refs: profile.rules,    root: DEFAULT_RULES_ROOT,    addExt: true },
-    { label: "commands", refs: profile.commands, root: DEFAULT_COMMANDS_ROOT, addExt: true },
-    { label: "hooks",    refs: profile.hooks,    root: DEFAULT_HOOKS_ROOT,    addExt: false },
-    { label: "subagents", refs: profile.subagents ?? [], root: DEFAULT_SUBAGENTS_ROOT, addExt: true },
+  const buckets: { label: string; refs: string[]; root: string; addExt: boolean; ext?: string }[] = [
+    { label: "rules",         refs: profile.rules,                 root: opts.rulesRoot         ?? DEFAULT_RULES_ROOT,         addExt: true },
+    { label: "commands",      refs: profile.commands,              root: opts.commandsRoot      ?? DEFAULT_COMMANDS_ROOT,      addExt: true },
+    { label: "hooks",         refs: profile.hooks,                 root: opts.hooksRoot         ?? DEFAULT_HOOKS_ROOT,         addExt: false },
+    { label: "subagents",     refs: profile.subagents ?? [],       root: opts.subagentsRoot     ?? DEFAULT_SUBAGENTS_ROOT,     addExt: true },
+    { label: "playbooks",     refs: profile.playbooks ?? [],       root: opts.playbooksRoot     ?? DEFAULT_PLAYBOOKS_ROOT,     addExt: true },
+    { label: "qualityGates",  refs: profile.qualityGates ?? [],    root: opts.qualityGatesRoot  ?? DEFAULT_QUALITY_GATES_ROOT, addExt: true, ext: ".sh" },
+    { label: "evals",         refs: profile.evals ?? [],           root: opts.evalsRoot         ?? DEFAULT_EVALS_ROOT,         addExt: true },
+    { label: "persona_includes", refs: profile.personaIncludes ?? [], root: opts.personasRoot   ?? DEFAULT_PERSONAS_ROOT,      addExt: true },
   ];
 
-  for (const { label, refs, root, addExt } of buckets) {
+  for (const { label, refs, root, addExt, ext: bucketExt } of buckets) {
     if (refs.length === 0) {
       addCheck(result, label, `no ${label} declared`);
       continue;
     }
+    // The file extension to append when `addExt` is true: bucket-level `ext`
+    // overrides the default `.md` (e.g. quality-gates use `.sh`).
+    const fileExt = bucketExt ?? ".md";
     let ok = 0;
     for (const ref of refs) {
-      const withExt = addExt && !ref.endsWith(".md") ? `${ref}.md` : ref;
+      const withExt = addExt && !ref.endsWith(fileExt) ? `${ref}${fileExt}` : ref;
       const full = isAbsolute(withExt) ? withExt : join(root, withExt);
       try {
         await access(full);
@@ -568,14 +607,63 @@ function checkStaticRules(
       { subject: slug, details: [...localRefs, ...npxRefs] },
     );
   }
+
+  // W11: a profile slug appears in both recommends and conflicts.
+  if ((profile.recommends ?? []).length > 0 && (profile.conflicts ?? []).length > 0) {
+    const conflictSet = new Set(profile.conflicts);
+    for (const rec of profile.recommends) {
+      if (conflictSet.has(rec)) {
+        addIssue(
+          result,
+          "W11",
+          "warning",
+          `profile "${rec}" appears in both recommends and conflicts; remove it from recommends`,
+          { subject: rec },
+        );
+      }
+    }
+  }
+
+  // W12: a skill slug appears more than once in skills.local or skills.npx.
+  const seenLocal = new Set<string>();
+  for (const ref of profile.skills.local) {
+    if (seenLocal.has(ref.id)) {
+      addIssue(
+        result,
+        "W12",
+        "warning",
+        `local skill "${ref.id}" is listed more than once`,
+        { subject: ref.id },
+      );
+    }
+    seenLocal.add(ref.id);
+  }
+  for (const entry of profile.skills.npx) {
+    const seenNpx = new Set<string>();
+    for (const skill of entry.skills) {
+      if (seenNpx.has(skill)) {
+        addIssue(
+          result,
+          "W12",
+          "warning",
+          `npx skill "${entry.repo}:${skill}" is listed more than once`,
+          { subject: `${entry.repo}:${skill}` },
+        );
+      }
+      seenNpx.add(skill);
+    }
+  }
 }
 
 function declaredSkillCount(profile: ResolvedProfile): number {
-  const npxSkillCount = profile.skills.npx.reduce(
-    (count, entry) => count + entry.skills.length,
+  // Deduplicate before counting so a profile with duplicate entries does not
+  // falsely trigger W1 (too many skills). W12 already flags the duplicates.
+  const uniqueLocal = new Set(profile.skills.local.map((r) => r.id)).size;
+  const uniqueNpx = profile.skills.npx.reduce(
+    (count, entry) => count + new Set(entry.skills).size,
     0,
   );
-  return profile.skills.local.length + npxSkillCount + profile.plugins.length;
+  return uniqueLocal + uniqueNpx + profile.plugins.length;
 }
 
 function lastPathSegment(ref: string): string {

@@ -297,7 +297,8 @@ async function readPersonaIncludes(profile: ResolvedProfile): Promise<string> {
         text += content + "\n\n";
       }
     } catch {
-      // Missing snippet — skip silently; cue validate will surface it.
+      // Missing snippet — skip silently. cue validate checks persona_includes
+      // refs via checkResourceRefs and will surface missing files there.
     }
   }
   return text;
@@ -464,20 +465,24 @@ async function symlinkResources(
     const src = resolveResourcePath(fname, resourceDir);
     try {
       await lstat(src);
-      await symlink(src, join(targetDir, basename(src)));
-    } catch {
-      /* missing source — skip */
+    } catch (e: unknown) {
+      // Only skip when the source is genuinely absent; propagate everything
+      // else (EPERM, ENOSPC, …) so the caller gets a real error.
+      if ((e as NodeJS.ErrnoException).code === "ENOENT") continue;
+      throw e;
     }
+    await symlink(src, join(targetDir, basename(src)));
     if (companionExts) {
       const stem = basename(ref).replace(/\.[^.]+$/, "");
       for (const compExt of companionExts) {
         const companion = resolveResourcePath(`${stem}${compExt}`, resourceDir);
         try {
           await lstat(companion);
-          await symlink(companion, join(targetDir, `${stem}${compExt}`));
-        } catch {
-          /* no companion at this ext — skip */
+        } catch (e: unknown) {
+          if ((e as NodeJS.ErrnoException).code === "ENOENT") continue;
+          throw e;
         }
+        await symlink(companion, join(targetDir, `${stem}${compExt}`));
       }
     }
   }

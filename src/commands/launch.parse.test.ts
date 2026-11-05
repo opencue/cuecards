@@ -281,6 +281,62 @@ describe("picker row for the `full` profile", () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// Regression: flags with missing values must set parseError, not silently
+// fall back to null/auto-resolution (finding: --cue-profile drops missing value).
+// ---------------------------------------------------------------------------
+describe("parse: missing flag values set parseError", () => {
+  test("--cue-profile with no following value sets parseError", () => {
+    const p = parse(["claude", "--cue-profile"]);
+    expect(p.parseError).toBeDefined();
+    expect(p.parseError).toContain("--cue-profile");
+    expect(p.override).toBeNull();
+  });
+
+  test("--cue-profile with a flag as the next token sets parseError", () => {
+    const p = parse(["claude", "--cue-profile", "--dry-run"]);
+    expect(p.parseError).toBeDefined();
+    expect(p.override).toBeNull();
+  });
+
+  test("--cue-profile with a valid value does not set parseError", () => {
+    const p = parse(["claude", "--cue-profile", "core"]);
+    expect(p.parseError).toBeUndefined();
+    expect(p.override).toBe("core");
+  });
+
+  test("--disable-mcp with no following value sets parseError", () => {
+    const p = parse(["claude", "--disable-mcp"]);
+    expect(p.parseError).toBeDefined();
+    expect(p.parseError).toContain("--disable-mcp");
+    expect(p.disableMcp).toHaveLength(0);
+  });
+
+  test("--disable-mcp with a flag as the next token sets parseError", () => {
+    const p = parse(["claude", "--disable-mcp", "--dry-run"]);
+    expect(p.parseError).toBeDefined();
+  });
+
+  test("--disable-mcp with a valid value does not set parseError", () => {
+    const p = parse(["claude", "--disable-mcp", "coolify"]);
+    expect(p.parseError).toBeUndefined();
+    expect(p.disableMcp).toEqual(["coolify"]);
+  });
+
+  test("--subset with no following value sets parseError", () => {
+    const p = parse(["claude", "--subset"]);
+    expect(p.parseError).toBeDefined();
+    expect(p.parseError).toContain("--subset");
+    expect(p.subset).toBeNull();
+  });
+
+  test("--subset with a valid value does not set parseError", () => {
+    const p = parse(["claude", "--subset", "fix the parser"]);
+    expect(p.parseError).toBeUndefined();
+    expect(p.subset).toBe("fix the parser");
+  });
+});
+
 describe("passthroughPrompt", () => {
   test("keeps a real prompt, so smart-subset still classifies `-p` launches", () => {
     expect(passthroughPrompt(["-p", "fix the auth bug"])).toBe("fix the auth bug");

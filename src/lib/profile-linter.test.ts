@@ -316,3 +316,220 @@ describe("lintAllProfiles", () => {
     expect(results.map((result) => result.profileName)).toEqual(["alpha", "beta"]);
   });
 });
+
+// ---------------------------------------------------------------------------
+// W11: recommends/conflicts collision
+// ---------------------------------------------------------------------------
+describe("W11 recommends/conflicts collision", () => {
+  test("emits W11 when a slug appears in both recommends and conflicts", async () => {
+    await writeProfile(
+      "clash",
+      [
+        "name: clash",
+        "description: collision fixture",
+        "recommends: [partner, rival]",
+        "conflicts: [rival]",
+        "",
+      ].join("\n"),
+    );
+
+    const result = await lintProfile("clash", opts());
+
+    expect(rules(result)).toContain("W11");
+    const issue = result.issues.find((i) => i.rule === "W11");
+    expect(issue?.subject).toBe("rival");
+    // 'partner' is in recommends but not in conflicts — no W11 for it
+    expect(result.issues.filter((i) => i.rule === "W11")).toHaveLength(1);
+    expect(hasLintErrors(result)).toBe(false);
+  });
+
+  test("does not emit W11 when recommends and conflicts are disjoint", async () => {
+    await writeProfile(
+      "clean",
+      [
+        "name: clean",
+        "description: no collision",
+        "recommends: [partner]",
+        "conflicts: [rival]",
+        "",
+      ].join("\n"),
+    );
+
+    const result = await lintProfile("clean", opts());
+
+    expect(rules(result)).not.toContain("W11");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// W12: duplicate skill slug within the same list
+// ---------------------------------------------------------------------------
+describe("W12 duplicate skill slug in same list", () => {
+  test("emits W12 for a skill listed twice in skills.local", async () => {
+    await writeLocalSkill("design/image-to-code");
+    await writeLocalSkill("design/minimalist-ui");
+    await writeProfile(
+      "dupes",
+      [
+        "name: dupes",
+        "description: duplicate local skills",
+        "skills:",
+        "  local:",
+        "    - design/image-to-code",
+        "    - design/minimalist-ui",
+        "    - design/image-to-code",
+        "",
+      ].join("\n"),
+    );
+
+    const result = await lintProfile("dupes", opts());
+
+    expect(rules(result)).toContain("W12");
+    const w12 = result.issues.filter((i) => i.rule === "W12");
+    expect(w12).toHaveLength(1);
+    expect(w12[0]?.subject).toBe("design/image-to-code");
+    expect(hasLintErrors(result)).toBe(false);
+  });
+
+  test("does not emit W12 when each local skill slug is unique", async () => {
+    await writeLocalSkill("design/image-to-code");
+    await writeLocalSkill("design/minimalist-ui");
+    await writeProfile(
+      "uniq",
+      [
+        "name: uniq",
+        "description: unique local skills",
+        "skills:",
+        "  local:",
+        "    - design/image-to-code",
+        "    - design/minimalist-ui",
+        "",
+      ].join("\n"),
+    );
+
+    const result = await lintProfile("uniq", opts());
+
+    expect(rules(result)).not.toContain("W12");
+  });
+
+  test("duplicates do not inflate the skill count toward W1", async () => {
+    // Create just enough unique skills so that counting duplicates would push
+    // past 120, while unique count stays under it.
+    const localRefs: string[] = [];
+    for (let i = 0; i < 60; i++) {
+      const ref = `bulk/skill-${i}`;
+      localRefs.push(ref);
+      await writeLocalSkill(ref);
+    }
+    // Duplicate each one — raw count would be 120, but unique count is 60.
+    const dupeRefs = [...localRefs, ...localRefs];
+
+    await writeProfile(
+      "nodupe-w1",
+      [
+        "name: nodupe-w1",
+        "description: duplicates should not trigger W1",
+        "skills:",
+        "  local:",
+        ...dupeRefs.map((r) => `    - ${r}`),
+        "",
+      ].join("\n"),
+    );
+
+    const result = await lintProfile("nodupe-w1", opts());
+
+    expect(rules(result)).not.toContain("W1");
+    // The 60 duplicates each produce a W12
+    expect(rules(result).filter((r) => r === "W12")).toHaveLength(60);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// checkResourceRefs: opts isolation (finding: _opts was silently ignored)
+// ---------------------------------------------------------------------------
+describe("checkResourceRefs: opts-rooted resource validation", () => {
+  async function writeResourceFile(subDir: string, name: string): Promise<void> {
+    const dir = join(root, subDir);
+    await mkdir(dir, { recursive: true });
+    await writeFile(join(dir, name), `# ${name}\n`, "utf8");
+  }
+
+  test("resolves a playbook ref when playbooksRoot points at a fixture dir", async () => {
+    await writeResourceFile("playbooks", "ship-feature.md");
+    await writeProfile(
+      "pb",
+      "name: pb\ndescription: playbook test\nplaybooks: [ship-feature]\n",
+    );
+
+    const result = await lintProfile("pb", opts({ playbooksRoot: join(root, "playbooks") }));
+
+    expect(rules(result)).not.toContain("E3");
+    const check = result.checks.find((c) => c.name === "playbooks");
+    expect(check?.message).toBe("1 resolved");
+  });
+
+  test("reports E3 for a missing playbook ref", async () => {
+    await writeProfile(
+      "pbmiss",
+      "name: pbmiss\ndescription: missing playbook\nplaybooks: [nonexistent]\n",
+    );
+
+    const result = await lintProfile("pbmiss", opts({ playbooksRoot: join(root, "playbooks-empty") }));
+
+    expect(rules(result)).toContain("E3");
+  });
+
+  test("resolves a qualityGate ref (.sh extension) using qualityGatesRoot", async () => {
+    await writeResourceFile("quality-gates", "tests-pass.sh");
+    await writeProfile(
+      "qg",
+      "name: qg\ndescription: quality gate test\nqualityGates: [tests-pass]\n",
+    );
+
+    const result = await lintProfile("qg", opts({ qualityGatesRoot: join(root, "quality-gates") }));
+
+    expect(rules(result)).not.toContain("E3");
+    const check = result.checks.find((c) => c.name === "qualityGates");
+    expect(check?.message).toBe("1 resolved");
+  });
+
+  test("resolves a persona_includes ref using personasRoot", async () => {
+    await writeResourceFile("personas", "integrity-protocol.md");
+    await writeProfile(
+      "pi",
+      "name: pi\ndescription: persona includes test\npersona_includes: [integrity-protocol]\n",
+    );
+
+    const result = await lintProfile("pi", opts({ personasRoot: join(root, "personas") }));
+
+    expect(rules(result)).not.toContain("E3");
+    const check = result.checks.find((c) => c.name === "persona_includes");
+    expect(check?.message).toBe("1 resolved");
+  });
+
+  test("resolves an evals ref using evalsRoot", async () => {
+    await writeResourceFile("evals", "skill-writing.md");
+    await writeProfile(
+      "ev",
+      "name: ev\ndescription: evals test\nevals: [skill-writing]\n",
+    );
+
+    const result = await lintProfile("ev", opts({ evalsRoot: join(root, "evals") }));
+
+    expect(rules(result)).not.toContain("E3");
+    const check = result.checks.find((c) => c.name === "evals");
+    expect(check?.message).toBe("1 resolved");
+  });
+
+  test("resolves rules ref using rulesRoot fixture", async () => {
+    await writeResourceFile("rules", "no-eval.md");
+    await writeProfile(
+      "rl",
+      "name: rl\ndescription: rules test\nrules: [no-eval]\n",
+    );
+
+    const result = await lintProfile("rl", opts({ rulesRoot: join(root, "rules") }));
+
+    expect(rules(result)).not.toContain("E3");
+  });
+});
