@@ -73,7 +73,7 @@ if [ "$UNINSTALL" = "1" ]; then
     # Only remove what is provably ours: a symlink into the cue repo, or a
     # shim whose body calls `cue launch`. A bare symlink is NOT proof —
     # ~/.local/bin/claude is a symlink on every native Claude install.
-    if [[ "$target" == "$CUE_DIR"* ]] || { grep -q "launch $agent" "$f" 2>/dev/null && grep -qi "cue" "$f" 2>/dev/null; }; then
+    if [[ "$target" == "$CUE_DIR/"* ]] || { grep -q "launch $agent" "$f" 2>/dev/null && grep -qi "cue" "$f" 2>/dev/null; }; then
       rm "$f"
       ok "Removed $f"
     else
@@ -145,7 +145,7 @@ esac
 say ""
 say "${DIM}Step 5/6 — authmux${RESET}"
 if command -v authmux >/dev/null 2>&1; then
-  ok "authmux $(authmux --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' | head -1) already installed"
+  ok "authmux $(authmux --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1) already installed"
 elif ! command -v npm >/dev/null 2>&1; then
   warn "npm not found — skipping authmux install (install Node.js + npm, then run: npm install -g authmux)"
 else

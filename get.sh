@@ -138,7 +138,7 @@ if grep -q "launch claude" "$BIN_DIR/claude" 2>/dev/null && grep -qi "cue" "$BIN
 fi
 
 # Check PATH — the shim dir must lead, or the real binary shadows it.
-if echo "$PATH" | tr ':' '\n' | grep -qx "$CUE_SHIMS"; then
+if echo "$PATH" | tr ':' '\n' | grep -Fqx "$CUE_SHIMS"; then
   ok "$CUE_SHIMS is on PATH"
 else
   warn "$CUE_SHIMS is NOT on PATH — the claude shim is inert until it is"
@@ -146,7 +146,7 @@ else
   say "    ${CYAN}export PATH=\"$CUE_SHIMS:\$PATH\"${RESET}"
   say "    ${DIM}fish:${RESET} ${CYAN}fish_add_path -g -p $CUE_SHIMS${RESET}"
 fi
-if ! echo "$PATH" | tr ':' '\n' | grep -qx "$BIN_DIR"; then
+if ! echo "$PATH" | tr ':' '\n' | grep -Fqx "$BIN_DIR"; then
   warn "$BIN_DIR is NOT on PATH — the \`cue\` command won't resolve"
   say "    ${CYAN}export PATH=\"\$HOME/.local/bin:\$PATH\"${RESET}"
 fi
