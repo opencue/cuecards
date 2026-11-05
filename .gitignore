@@ -44,10 +44,15 @@ claude-plugins-official/
 # OMX / OMC agent state (per-session traces + mission state, not source-controlled)
 .omx/
 .omc/
+# Also cover .omc/ nested under docs/assets (committed before the root rule existed).
+docs/assets/.omc/
 andrej-karpathy-skills/
 agentshield/
 awesome-clis/
 
+# Runtime-materialised Claude Code skills tree (written by `cue apply`; not source).
+# The specific per-clone paths below are superseded by this rule.
+.claude/skills/
 # Locally-cloned third-party skills (have their own .git/ — keep out of cue's tree)
 .claude/skills/hirelens-showcase/
 .claude/skills/jdfit/
@@ -64,6 +69,9 @@ vibecode-pro-max-kit/
 .agents/skills/hirelens-showcase/
 .agents/skills/jdfit/
 .agents/skills/job-hunter/
+
+# Personal drafts / social-media scheduling payloads (contain internal IDs; not source).
+/drafts/
 # Local source checkout used by `bun run profiles:aas`; generated profiles pin
 # the remote Git revision, so the 390 MB catalog clone is build input, not repo content.
 /resources/agentic-awesome-skills/
