@@ -22,6 +22,7 @@ import {
   shouldIncludeSessionTelemetry,
   getLastSessionSummary,
   getSkillChains,
+  linkUnlessPresent,
 } from "./runtime-materializer";
 import { MAX_STAGGER_MS } from "./credentials-sync";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -2724,5 +2725,27 @@ describe("materializeRuntime — rebuild swap leftovers", () => {
     expect(
       await readFile(join(out.runtimeDir, ".cue-hash"), "utf8"),
     ).not.toBeEmpty();
+  });
+});
+
+describe("linkUnlessPresent", () => {
+  test("keeps the first link when two refs flatten to the same basename", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "cue-link-"));
+    try {
+      await linkUnlessPresent("/rules/common/security.md", join(dir, "security.md"));
+      await linkUnlessPresent("/rules/typescript/security.md", join(dir, "security.md"));
+      expect(await readlink(join(dir, "security.md"))).toBe("/rules/common/security.md");
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+
+  test("propagates symlink failures other than EEXIST", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "cue-link-"));
+    try {
+      await expect(linkUnlessPresent("/rules/a.md", join(dir, "missing-dir", "a.md"))).rejects.toThrow();
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
   });
 });

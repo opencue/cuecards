@@ -151,6 +151,8 @@ export {
 interface ParsedArgs {
   agent: "claude" | "codex" | null;
   override: string | null;
+  /** Set when a flag was supplied without its required value (e.g. `--cue-profile` with no name). */
+  parseError?: string;
   forcePick: boolean;
   dryRun: boolean;
   rematerialize: boolean;
@@ -238,7 +240,11 @@ function parse(args: string[]): ParsedArgs {
     if (i === 0 && (a === "claude" || a === "codex")) {
       agent = a;
     } else if (a === "--cue-profile") {
-      override = args[++i] ?? null;
+      const val = args[++i];
+      if (val === undefined || val.startsWith("-")) {
+        return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit: false, passthrough, parseError: "--cue-profile requires a profile name" };
+      }
+      override = val;
     } else if (a === "--cue-pick") {
       forcePick = true;
     } else if (a === "--cue-pick-mcps") {
@@ -247,13 +253,21 @@ function parse(args: string[]): ParsedArgs {
       fullLoad = true;
     } else if (a === "--disable-mcp") {
       const id = args[++i];
-      if (id) disableMcp.push(id);
+      if (id === undefined || id.startsWith("-")) {
+        return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit: false, passthrough, parseError: "--disable-mcp requires an MCP id" };
+      }
+      disableMcp.push(id);
     } else if (a === "--dry-run") {
       dryRun = true;
     } else if (a === "--rematerialize") {
       rematerialize = true;
     } else if (a === "--subset") {
-      subset = args[++i] ?? null;
+      const val = args[++i];
+      // Free-form prompt: only a `--flag` means the value is missing, "-1 priority" is fine.
+      if (val === undefined || val.startsWith("--")) {
+        return { agent, override, forcePick, forcePickMcps, fullLoad, disableMcp, dryRun, rematerialize, subset, subsetExplicit: false, passthrough, parseError: "--subset requires a prompt string" };
+      }
+      subset = val;
     } else {
       passthrough.push(a!);
     }
@@ -2207,6 +2221,10 @@ export async function run(args: string[]): Promise<number> {
   }
 
   const parsed = parse(args);
+  if (parsed.parseError) {
+    process.stderr.write(`cue launch: ${parsed.parseError}\n`);
+    return 1;
+  }
   if (!parsed.agent) {
     process.stderr.write(
       "cue launch: missing agent (use 'claude' or 'codex')\n",

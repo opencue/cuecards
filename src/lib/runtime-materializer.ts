@@ -297,7 +297,8 @@ async function readPersonaIncludes(profile: ResolvedProfile): Promise<string> {
         text += content + "\n\n";
       }
     } catch {
-      // Missing snippet — skip silently; cue validate will surface it.
+      // Missing snippet — skip silently. cue validate checks persona_includes
+      // refs via checkResourceRefs and will surface missing files there.
     }
   }
   return text;
@@ -444,6 +445,18 @@ function effectiveHookList(profile: ResolvedProfile, agent: AgentKind): string[]
   return hooks;
 }
 
+// Subdirectory-scoped refs flatten to their basename, so two rules can collide
+// (common/security.md and typescript/security.md). The first one wins; any other
+// symlink failure is real and propagates.
+export async function linkUnlessPresent(src: string, dest: string): Promise<void> {
+  try {
+    await symlink(src, dest);
+  } catch (e: unknown) {
+    if ((e as NodeJS.ErrnoException).code !== "EEXIST") throw e;
+    console.warn(`cue: skipped ${src}: ${basename(dest)} is already linked by an earlier ref`);
+  }
+}
+
 /**
  * Symlink a list of resource refs into `targetDir`, appending `ext` when the
  * ref lacks it.  If `companionExts` is given, each ref's companion files
@@ -464,20 +477,24 @@ async function symlinkResources(
     const src = resolveResourcePath(fname, resourceDir);
     try {
       await lstat(src);
-      await symlink(src, join(targetDir, basename(src)));
-    } catch {
-      /* missing source — skip */
+    } catch (e: unknown) {
+      // Only skip when the source is genuinely absent; propagate everything
+      // else (EPERM, ENOSPC, …) so the caller gets a real error.
+      if ((e as NodeJS.ErrnoException).code === "ENOENT") continue;
+      throw e;
     }
+    await linkUnlessPresent(src, join(targetDir, basename(src)));
     if (companionExts) {
       const stem = basename(ref).replace(/\.[^.]+$/, "");
       for (const compExt of companionExts) {
         const companion = resolveResourcePath(`${stem}${compExt}`, resourceDir);
         try {
           await lstat(companion);
-          await symlink(companion, join(targetDir, `${stem}${compExt}`));
-        } catch {
-          /* no companion at this ext — skip */
+        } catch (e: unknown) {
+          if ((e as NodeJS.ErrnoException).code === "ENOENT") continue;
+          throw e;
         }
+        await linkUnlessPresent(companion, join(targetDir, `${stem}${compExt}`));
       }
     }
   }
