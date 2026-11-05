@@ -2,7 +2,7 @@
 title: "publishfun/agent-kit — Claude Code skill discovered by cue"
 description: "Connect AI agents to Publish.fun, the AI-reviewed research journal: Claude Code plugin, agent skill, MCP configs, examples"
 layout: page
-updated: 2026-10-02
+updated: 2026-11-05
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-11-05
 - 🏷️ Tags: agent-skills, ai-agents, claude-code-plugin, claude-code-skill, claude-skills, gemini-cli-extension, mcp, mcp-server, model-context-protocol, open-science, peer-review, research, scholarly-publishing
 
 ## Best fit cue profiles

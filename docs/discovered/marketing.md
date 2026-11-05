@@ -1,29 +1,55 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="arcbaslow-google-ads-agents"></a>
+## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
+cue skills add arcbaslow/google-ads-agents --profile marketing
+```
+
+---
+
+<a id="arcbaslow-meta-ads-agents"></a>
+## 💎 [arcbaslow/meta-ads-agents](https://github.com/arcbaslow/meta-ads-agents)
+
+**★ 1** · exceptional (score 12.3) · Python · tags: ai-agent, attribution, audience-insights, campaign-analysis, capi
+
+Read-only Meta Ads toolkit: campaign performance, creative fatigue, audience breakdowns, Pixel/CAPI event health, and reports.
+
+```bash
+cue skills add arcbaslow/meta-ads-agents --profile marketing
+```
+
+---
+
+<a id="arcbaslow-google-analytics-agent"></a>
+## 💎 [arcbaslow/google-analytics-agent](https://github.com/arcbaslow/google-analytics-agent)
+
+**★ 0** · exceptional (score 12) · Python · tags: ai-agent, analytics, attribution, claude-code, claude-skill
+
+GA4 CLI and MCP server: data quality, configurable funnels, segment analysis, property management, and benchmarked Markdown audits.
+
+```bash
+cue skills add arcbaslow/google-analytics-agent --profile marketing
 ```
 
 ---

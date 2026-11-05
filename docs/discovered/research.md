@@ -1,42 +1,55 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="chanmeng666-chanmeng-typst"></a>
-## 💎 [ChanMeng666/chanmeng-typst](https://github.com/ChanMeng666/chanmeng-typst)
+<a id="arcbaslow-google-ads-agents"></a>
+## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
 
-**★ 15** · exceptional (score 9.2) · Python · tags: academic-paper, ai-tools, claude-code, claude-code-plugin, claude-skill
+**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
 
-【Stars are free hugs for code - spread the love! 🤗⭐️】 Claude Code skill for professional document generation using Typst typesetting system. Includes complete language reference, CLI reference, and 9 ready-to-use templates.
+Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
 
 ```bash
-cue skills add ChanMeng666/chanmeng-typst --profile research
+cue skills add arcbaslow/google-ads-agents --profile research
 ```
 
 ---
 
-<a id="vinimrdi-ux-laws-principles"></a>
-## 💎 [vinimrdi/ux-laws-principles](https://github.com/vinimrdi/ux-laws-principles)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 0** · exceptional (score 8) · tags: accessibility, agent-skills, claude-code, claude-code-skill, claude-code-skills
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-Evidence-based UX laws, heuristics & methods for AI agents and designers. No fake citations.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add vinimrdi/ux-laws-principles --profile research
+cue skills add aemro-motors/popper-scope --profile research
+```
+
+---
+
+<a id="publishfun-agent-kit"></a>
+## 💎 [publishfun/agent-kit](https://github.com/publishfun/agent-kit)
+
+**★ 0** · exceptional (score 8.5) · Python · tags: agent-skills, ai-agents, claude-code-plugin, claude-code-skill, claude-skills
+
+Connect AI agents to Publish.fun, the AI-reviewed research journal: Claude Code plugin, agent skill, MCP configs, examples
+
+```bash
+cue skills add publishfun/agent-kit --profile research
 ```
 
 ---

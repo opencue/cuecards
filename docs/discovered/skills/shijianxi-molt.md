@@ -2,7 +2,7 @@
 title: "ShiJianXi/molt — Claude Code skill discovered by cue"
 description: "Claude Code plugin: hand work from a cloud session (Claude Code on the web, claude.ai/code) to a local Claude Desktop or Remote Control session and get the resu"
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-04
+- 🗓️ Last pushed: 2026-11-05
 - 🏷️ Tags: agent-skills, ai-agents, anthropic, claude-code, claude-code-on-the-web, claude-code-plugin, claude-code-skill, claude-desktop, claude-plugins, claude-skills, multi-agent, orchestration, remote-control
 
 ## Best fit cue profiles

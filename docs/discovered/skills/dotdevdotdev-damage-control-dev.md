@@ -2,20 +2,20 @@
 title: "dotdevdotdev/damage-control-dev — Claude Code skill discovered by cue"
 description: "Damage control for AI coding agents: a PreToolUse guard that blocks or asks before destructive commands and protected-path writes (Claude Code). A seatbelt, not"
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [dotdevdotdev/damage-control-dev](https://github.com/dotdevdotdev/damage-control-dev)
 
-**★ 2** · strong (score 6.5) · Python · ai-agents, claude-code, safety
+**★ 3** · strong (score 6.6) · Python · ai-agents, claude-code, safety
 
 > Damage control for AI coding agents: a PreToolUse guard that blocks or asks before destructive commands and protected-path writes (Claude Code). A seatbelt, not a sandbox.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
+- ⭐ 3 stars
 - 🗓️ Last pushed: 2026-11-03
 - 🏷️ Tags: ai-agents, claude-code, safety
 

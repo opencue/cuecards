@@ -1,70 +1,29 @@
 ---
 title: "Claude Code Skills for backend"
-description: "9 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 9 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mksglu-context-mode"></a>
-## 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
 
-**★ 33425** · exceptional (score 19.5) · TypeScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
+**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
 
-Free, local plugin that keeps tool output out of your coding agent's context window. Sandbox and SQLite FTS5 search, 99% fewer bytes in context. Works with Claude Code, Codex, Pi, OpenCode, Gemini CLI, Copilot CLI and 4 more agents. Zero telemetry.
-
-```bash
-cue skills add mksglu/context-mode --profile backend
-```
-
----
-
-<a id="voygr-tech-placecall"></a>
-## 💎 [voygr-tech/placecall](https://github.com/voygr-tech/placecall)
-
-**★ 110** · exceptional (score 17.9) · Shell · tags: agent-skills, ai-agent, calls, claude-code, claude-code-plugins
-
-The phone is your last API. Give your agent a voice to call any US business - reservations, inquiries, quotes. Verified outcome + transcript. First 250 calls free.
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
 
 ```bash
-cue skills add voygr-tech/placecall --profile backend
-```
-
----
-
-<a id="dev-shamsali-sentinel-security"></a>
-## 💎 [dev-shamsali/sentinel-security](https://github.com/dev-shamsali/sentinel-security)
-
-**★ 1** · exceptional (score 13.3) · JavaScript · tags: claude-code, claude-skill, nodejs, owasp, security
-
-Claude Code skill: audit, harden and verify Node.js backends and databases (Express, NestJS, Next.js, SQL, MongoDB)
-
-✅ SKILL.md
-
-```bash
-cue skills add dev-shamsali/sentinel-security --profile backend
-```
-
----
-
-<a id="sriinnu-tokmeter"></a>
-## 💎 [sriinnu/tokmeter](https://github.com/sriinnu/tokmeter)
-
-**★ 1** · exceptional (score 12.3) · TypeScript · tags: agent-skills, ai-coding-agents, claude-code, claude-code-skill, claude-skills
-
-Token and cost tracking for AI coding agents. Reads the local session logs of Claude Code, Codex, Gemini CLI, Cursor and 20+ more. No API keys, no telemetry, nothing leaves your machine.
-
-```bash
-cue skills add sriinnu/tokmeter --profile backend
+cue skills add kochetkov-ma/brewpage-openapi --profile backend
 ```
 
 ---
@@ -78,32 +37,6 @@ Serve multiple stdio MCP servers from one container: path routing, hub meta-tool
 
 ```bash
 cue skills add ni-c/mcp-hub --profile backend
-```
-
----
-
-<a id="nizarhamza-p6-mcp"></a>
-## ✨ [nizarhamza/p6-mcp](https://github.com/nizarhamza/p6-mcp)
-
-**★ 6** · strong (score 7.9) · Python · tags: claude, construction, critical-path, dcma, mcp
-
-Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional database. Windows. Not affiliated with Oracle.
-
-```bash
-cue skills add nizarhamza/p6-mcp --profile backend
-```
-
----
-
-<a id="ilien-dev-muninn"></a>
-## ✨ [ilien-dev/muninn](https://github.com/ilien-dev/muninn)
-
-**★ 6** · strong (score 5.9) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
-
-Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hooks. Local-first: one Rust binary, SQLite + FTS5, no cloud, no API key, no LLM in the read path. Cue-anchored recall under a 700-token budget.
-
-```bash
-cue skills add ilien-dev/muninn --profile backend
 ```
 
 ---

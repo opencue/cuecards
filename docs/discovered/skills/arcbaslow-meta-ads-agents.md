@@ -2,21 +2,21 @@
 title: "arcbaslow/meta-ads-agents — Claude Code skill discovered by cue"
 description: "Read-only Meta Ads toolkit: campaign performance, creative fatigue, audience breakdowns, Pixel/CAPI event health, and reports."
 layout: page
-updated: 2026-10-01
+updated: 2026-11-05
 tags: [claude-code, skill, marketing]
 ---
 
 # 💎 [arcbaslow/meta-ads-agents](https://github.com/arcbaslow/meta-ads-agents)
 
-**★ 0** · exceptional (score 12) · Python · ai-agent, attribution, audience-insights, campaign-analysis, capi
+**★ 1** · exceptional (score 12.3) · Python · ai-agent, attribution, audience-insights, campaign-analysis, capi
 
 > Read-only Meta Ads toolkit: campaign performance, creative fatigue, audience breakdowns, Pixel/CAPI event health, and reports.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-05
 - 🏷️ Tags: ai-agent, attribution, audience-insights, campaign-analysis, capi, claude-code, claude-skill, conversion-tracking, creative-fatigue, facebook-ads, facebook-pixel, instagram-ads, marketing-api, meta-ads, multi-agent, paid-social, roas
 
 ## Best fit cue profiles

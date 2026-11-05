@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="yusen-dev-living-ascii"></a>
-## 💎 [yusen-dev/living-ascii](https://github.com/yusen-dev/living-ascii)
+<a id="contactharshitdesign-design-animate-my-app"></a>
+## 💎 [contactharshitdesign-design/animate-my-app](https://github.com/contactharshitdesign-design/animate-my-app)
 
-**★ 0** · exceptional (score 13) · JavaScript · tags: animation, ascii, ascii-art, claude-code, claude-skill
+**★ 0** · exceptional (score 8) · Swift · tags: animation, claude-code, claude-skill, ios, swiftui
 
-Bring a still image to life as a seamless ASCII loop — hundreds of thousands of strands swaying like a school of fish, with ASCII glyphs that turn with them. three.js + custom shaders.
-
-✅ SKILL.md
+Claude Code skill: turn an app design into a native, animated iOS app (SwiftUI + three.js), tested on device.
 
 ```bash
-cue skills add yusen-dev/living-ascii --profile threejs
+cue skills add contactharshitdesign-design/animate-my-app --profile threejs
 ```
 
 ---

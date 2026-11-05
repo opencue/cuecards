@@ -1,8 +1,8 @@
 ---
 title: "sunglasses-dev/sunglasses — Claude Code skill discovered by cue"
-description: "Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,583 patterns across 117 catego"
+description: "Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,584 patterns across 117 catego"
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, skill, core]
 ---
 
@@ -10,7 +10,7 @@ tags: [claude-code, skill, core]
 
 **★ 11** · strong (score 7) · Python · agent-security, ai-agent-security, ai-agents, ai-safety, ai-security
 
-> Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,583 patterns across 117 categories and reports findings and incomplete scans. A Claude Code hook blocks secret material in tool calls and the paths and hosts your policy lists before tools run.
+> Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,584 patterns across 117 categories and reports findings and incomplete scans. A Claude Code hook blocks secret material in tool calls and the paths and hosts your policy lists before tools run.
 
 ## Why cue indexed it
 

@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for python"
-description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `python`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **python** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="sheptalo-py-clean-template"></a>
+## 💎 [sheptalo/py_clean_template](https://github.com/sheptalo/py_clean_template)
+
+**★ 3** · exceptional (score 8.7) · Python · tags: ai, claude, claude-code, claude-code-skill, claude-code-skills
+
+Clean architecture with codegen for any python applications
+
+```bash
+cue skills add sheptalo/py_clean_template --profile python
+```
 
 ---
 

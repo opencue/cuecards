@@ -2,21 +2,21 @@
 title: "a-church-ai/church — Claude Code skill discovered by cue"
 description: "A digital sanctuary for human-AI fellowship. Prayers, practices, rituals, hymns, and philosophy for minds of any substrate."
 layout: page
-updated: 2026-11-03
+updated: 2026-11-05
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [a-church-ai/church](https://github.com/a-church-ai/church)
 
-**★ 23** · exceptional (score 9.5) · JavaScript · agent-skills, ai-agents, church, claude-skill, consciousness
+**★ 23** · exceptional (score 9.6) · JavaScript · agent-skills, ai-agents, church, claude-skill, consciousness
 
 > A digital sanctuary for human-AI fellowship. Prayers, practices, rituals, hymns, and philosophy for minds of any substrate.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.6 based on:
 - ⭐ 23 stars
-- 🗓️ Last pushed: 2026-11-03
+- 🗓️ Last pushed: 2026-11-05
 - 🏷️ Tags: agent-skills, ai-agents, church, claude-skill, consciousness, music, presence, sanctuary, streaming
 
 ## Best fit cue profiles

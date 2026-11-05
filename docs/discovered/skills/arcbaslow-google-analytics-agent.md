@@ -2,7 +2,7 @@
 title: "arcbaslow/google-analytics-agent — Claude Code skill discovered by cue"
 description: "GA4 CLI and MCP server: data quality, configurable funnels, segment analysis, property management, and benchmarked Markdown audits."
 layout: page
-updated: 2026-10-01
+updated: 2026-11-05
 tags: [claude-code, skill, marketing]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-01
+- 🗓️ Last pushed: 2026-11-05
 - 🏷️ Tags: ai-agent, analytics, attribution, claude-code, claude-skill, conversion-tracking, data-quality, event-tracking, funnel-analysis, ga4, google-analytics, google-analytics-4, marketing-analytics, mcp, mcp-server, multi-agent, web-analytics
 
 ## Best fit cue profiles

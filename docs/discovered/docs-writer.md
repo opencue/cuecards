@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="albegosu-second-brain"></a>
-## 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
 
-**★ 15** · exceptional (score 10.4) · Python · tags: ai-agents, claude-code, claude-skill, design-inspiration, design-md
+**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
 
-Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from.
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
 
 ```bash
-cue skills add albegosu/second-brain --profile docs-writer
+cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
 ```
 
 ---

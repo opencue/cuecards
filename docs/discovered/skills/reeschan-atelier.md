@@ -1,23 +1,23 @@
 ---
 title: "reeschan/atelier — Claude Code skill discovered by cue"
-description: "PBI に分けてサブエージェント (Codex / Antigravity / Claude Code) に振り分け、Jev で点検する Claude Code スキル / Claude Code skill that orchestrates PBIs across sub-agents with Jev-gated"
+description: "開発を 9 工程のワークフローテンプレートとして回す Claude Code スキル (旧 pbi-orchestration-jev)。複数ファイルの実装を PBI に分け、判定表と Jev でモデルを選んでサブエージェントに振り分け、検証コマンドで合否を決める / Claude Code skill that ru"
 layout: page
-updated: 2026-10-24
+updated: 2026-11-05
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [reeschan/atelier](https://github.com/reeschan/atelier)
+# ✨ [reeschan/atelier](https://github.com/reeschan/atelier)
 
-**★ 1** · exceptional (score 8.3) · Python · ai-agents, claude-code, claude-code-skill, codex, orchestration
+**★ 1** · strong (score 7.3) · Python · ai-agents, claude-code, claude-code-skill, codex, orchestration
 
-> PBI に分けてサブエージェント (Codex / Antigravity / Claude Code) に振り分け、Jev で点検する Claude Code スキル / Claude Code skill that orchestrates PBIs across sub-agents with Jev-gated routing and review
+> 開発を 9 工程のワークフローテンプレートとして回す Claude Code スキル (旧 pbi-orchestration-jev)。複数ファイルの実装を PBI に分け、判定表と Jev でモデルを選んでサブエージェントに振り分け、検証コマンドで合否を決める / Claude Code skill that runs development as a nine-stage workflow template: splits multi-file work into PBIs, routes them to sub-agents via a decision table and Jev, and gates on verification commands
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-24
-- 🏷️ Tags: ai-agents, claude-code, claude-code-skill, codex, orchestration
+- 🗓️ Last pushed: 2026-11-05
+- 🏷️ Tags: ai-agents, claude-code, claude-code-skill, codex, orchestration, workflow
 
 ## Best fit cue profiles
 

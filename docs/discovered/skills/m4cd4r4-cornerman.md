@@ -2,7 +2,7 @@
 title: "m4cd4r4/cornerman — Claude Code skill discovered by cue"
 description: "When a Claude Code chat gets long, Cornerman saves a handover, clears the chat and carries on by itself, up to the number of clears you set. Tables, lists, link"
 layout: page
-updated: 2026-11-04
+updated: 2026-11-05
 tags: [claude-code, skill, core]
 ---
 
