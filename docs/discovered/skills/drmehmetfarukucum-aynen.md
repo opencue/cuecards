@@ -1,8 +1,8 @@
 ---
 title: "drmehmetfarukucum/aynen — Claude Code skill discovered by cue"
-description: "Aynen — Türkçe Metin Doğallaştırıcı. Türkçe metinleri yapay zekâ izlerinden arındırır, söylediğini aynen korur. Claude skill + anlam denetim betiği."
+description: "Aynen — Türkçe Metin Doğallaştırıcı. Türkçe metinleri yapay zekâ izlerinden arındırır, söylediğini aynen korur. Claude skill + anlam denetim aracı."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, skill, core]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, core]
 
 **★ 0** · exceptional (score 11) · Python · claude-skill, humanizer, nlp, tdk, turkce
 
-> Aynen — Türkçe Metin Doğallaştırıcı. Türkçe metinleri yapay zekâ izlerinden arındırır, söylediğini aynen korur. Claude skill + anlam denetim betiği.
+> Aynen — Türkçe Metin Doğallaştırıcı. Türkçe metinleri yapay zekâ izlerinden arındırır, söylediğini aynen korur. Claude skill + anlam denetim aracı.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-05
+- 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: claude-skill, humanizer, nlp, tdk, turkce, turkish, writing
 
 ## Best fit cue profiles

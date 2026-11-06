@@ -1,23 +1,23 @@
 ---
 title: "KyleNesium/upkeep — Claude Code skill discovered by cue"
-description: "macOS system cleanup and updater Skill for Claude Code"
+description: "Claude Code plugin for macOS, Linux & WSL2: discovery-based disk cleanup and one-approval updates for AI skills, Claude Code plugins, and package managers. Dele"
 layout: page
-updated: 2026-06-19
+updated: 2026-11-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [KyleNesium/upkeep](https://github.com/KyleNesium/upkeep)
 
-**★ 0** · exceptional (score 8) · Shell · cache-cleanup, claude-code, claude-skill, disk-cleanup, homebrew
+**★ 0** · exceptional (score 8.5) · Shell · cache-cleanup, claude-code, claude-code-plugin, claude-skill, disk-cleanup
 
-> macOS system cleanup and updater Skill for Claude Code
+> Claude Code plugin for macOS, Linux & WSL2: discovery-based disk cleanup and one-approval updates for AI skills, Claude Code plugins, and package managers. Deletions are path-validated; nothing runs without your OK.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-19
-- 🏷️ Tags: cache-cleanup, claude-code, claude-skill, disk-cleanup, homebrew, macos, orphan-detection, system-maintenance
+- 🗓️ Last pushed: 2026-11-06
+- 🏷️ Tags: cache-cleanup, claude-code, claude-code-plugin, claude-skill, disk-cleanup, homebrew, linux, macos, orphan-detection, system-maintenance, wsl2
 
 ## Best fit cue profiles
 

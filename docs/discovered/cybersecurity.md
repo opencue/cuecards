@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="m3taz-ahmed-aizee"></a>
+## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
+
+**★ 5** · exceptional (score 16.1) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
+
+Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
+
+✅ SKILL.md
+
+```bash
+cue skills add m3taz-ahmed/aizee --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2968** · exceptional (score 13.3) · Python · tags: agentskills, claude, skills
+**★ 2975** · exceptional (score 13.3) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -54,15 +69,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="baryonlabs-security-sweep"></a>
-## 💎 [baryonlabs/security-sweep](https://github.com/baryonlabs/security-sweep)
+<a id="lu1sdv-skillsmd"></a>
+## 💎 [Lu1sDV/skillsmd](https://github.com/Lu1sDV/skillsmd)
 
-**★ 3** · exceptional (score 8.7) · Python · tags: claude-code, claude-skill, cve, osv, sca
+**★ 2** · exceptional (score 9) · Python · tags: agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic
 
-Claude Code skill: one-prompt vulnerability sweep across many projects, servers and container images — OSV-verified CVEs, KEV/EPSS, reachability, prioritized report
+Personal SKILLS.md collection
 
 ```bash
-cue skills add baryonlabs/security-sweep --profile cybersecurity
+cue skills add Lu1sDV/skillsmd --profile cybersecurity
 ```
 
 ---

@@ -2,21 +2,21 @@
 title: "oberon-systems/enggraph — Claude Code skill discovered by cue"
 description: "Engineering Graph for AI coding agents. Code intelligence, persistent memory, plans and multi-project context over MCP."
 layout: page
-updated: 2026-09-09
+updated: 2026-11-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [oberon-systems/enggraph](https://github.com/oberon-systems/enggraph)
 
-**★ 0** · exceptional (score 8) · Python · ai-agents, ai-agents-and-tools, ai-agents-mcp, claude-code, claude-code-skill
+**★ 1** · exceptional (score 8.3) · Python · ai-agents, ai-agents-and-tools, ai-agents-mcp, claude-code, claude-code-skill
 
 > Engineering Graph for AI coding agents. Code intelligence, persistent memory, plans and multi-project context over MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: ai-agents, ai-agents-and-tools, ai-agents-mcp, claude-code, claude-code-skill, claude-code-skills, code-intelligence, code-intelligence-platform, code-search, context-engine, engineering-graph, gemini-cli, gemini-cli-skills, graphrag, mcp, mcp-tools
 
 ## Best fit cue profiles

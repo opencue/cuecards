@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -28,15 +28,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="galehashoid-flow-map-resp"></a>
-## ✨ [Galehashoid/flow-map-resp](https://github.com/Galehashoid/flow-map-resp)
+<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
+## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
 
-**★ 0** · strong (score 5) · HTML · tags: adonisjs-api, agent-skills-spec, ai-agents-automation, books, claude-code-skill
+**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
 
-A Claude Code skill that turns your pipeline into an animated metro map, replayed from what a real run recorded. Retries as loop arcs, parallel work as rails, checks as hubs with spokes. React + SVG, your colours, light and dark.
+Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
 
 ```bash
-cue skills add Galehashoid/flow-map-resp --profile frontend
+cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+```
+
+---
+
+<a id="vinimrdi-optical-alignment-ui"></a>
+## 💎 [vinimrdi/optical-alignment-ui](https://github.com/vinimrdi/optical-alignment-ui)
+
+**★ 0** · exceptional (score 8) · Python · tags: agent-skills, claude-code, claude-code-skill, cursor-skills, icons
+
+Evidence-based optical adjustment skill for AI agents: precision vs perception in digital UI, typography, icons, and layout.
+
+```bash
+cue skills add vinimrdi/optical-alignment-ui --profile frontend
 ```
 
 ---

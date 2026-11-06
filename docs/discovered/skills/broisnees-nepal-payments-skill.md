@@ -2,7 +2,7 @@
 title: "broisnees/nepal-payments-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for Nepali payment gateways: eSewa, Khalti, Fonepay, connectIPS, CyberSource, NPS, IME Pay. Tested TypeScript + Python adapters for any backend, web"
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-05
+- 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: agent-skills, claude-code, claude-skill, connectips, cybersource, esewa, fonepay, khalti, nepal, npr, payment-gateway, python, typescript
 
 ## Best fit cue profiles

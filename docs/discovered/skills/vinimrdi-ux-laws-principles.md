@@ -2,7 +2,7 @@
 title: "vinimrdi/ux-laws-principles — Claude Code skill discovered by cue"
 description: "Evidence-based UX laws, heuristics & methods for AI agents and designers. No fake citations."
 layout: page
-updated: 2026-11-04
+updated: 2026-11-06
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-04
+- 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: accessibility, agent-skills, claude-code, claude-code-skill, claude-code-skills, cursor-skill, cursor-skills, design, heuristic-evaluation, lovable-skill, lovable-skills, product-design, usability, ux, ux-design, ux-experience, ux-laws, ux-libraries, ux-library, ux-research
 
 ## Best fit cue profiles

@@ -2,13 +2,13 @@
 title: "Lu1sDV/skillsmd — Claude Code skill discovered by cue"
 description: "Personal SKILLS.md collection"
 layout: page
-updated: 2026-10-10
+updated: 2026-11-06
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [Lu1sDV/skillsmd](https://github.com/Lu1sDV/skillsmd)
 
-**★ 2** · exceptional (score 9) · CodeQL · agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic
+**★ 2** · exceptional (score 9) · Python · agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic
 
 > Personal SKILLS.md collection
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic, claude, claude-code, claude-code-plugins, claude-code-skill, claude-skills, codeql, cybersecurity, developer-tools, llm, prompt-engineering, security-auditing, skill-md, skills, static-analysis
 
 ## Best fit cue profiles

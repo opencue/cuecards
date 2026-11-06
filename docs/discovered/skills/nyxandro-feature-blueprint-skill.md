@@ -1,23 +1,23 @@
 ---
 title: "nyxandro/feature-blueprint-skill — Claude Code skill discovered by cue"
-description: "Feature design skill for Claude Code, Codex and OpenCode: turns a feature idea into a research-backed blueprint sized to the project, with how it works for peop"
+description: "Claude Code skill for spec-driven development: turns a feature idea into a research-backed spec (PRD-style product part and technical design) and a step-by-step"
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [nyxandro/feature-blueprint-skill](https://github.com/nyxandro/feature-blueprint-skill)
 
-**★ 0** · exceptional (score 10.5) · JavaScript · agent-skills, ai-agent, ai-coding, claude, claude-code
+**★ 3** · exceptional (score 10.2) · Python · agent-skills, agentic-coding, ai-agent, ai-agents, ai-coding
 
-> Feature design skill for Claude Code, Codex and OpenCode: turns a feature idea into a research-backed blueprint sized to the project, with how it works for people and inside, and a step-by-step plan
+> Claude Code skill for spec-driven development: turns a feature idea into a research-backed spec (PRD-style product part and technical design) and a step-by-step implementation plan with tests, sized to your project. Agent Skills format: also works in Codex, OpenCode and Cursor.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-05
-- 🏷️ Tags: agent-skills, ai-agent, ai-coding, claude, claude-code, claude-code-skill, claude-skills, codex, opencode, skill, skills, software-design, ux-design
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-06
+- 🏷️ Tags: agent-skills, agentic-coding, ai-agent, ai-agents, ai-coding, claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills, codex, codex-skills, opencode, prd, product-management, requirements-engineering, skills, software-design, spec-driven-development, ux-design
 
 ## Best fit cue profiles
 

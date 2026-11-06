@@ -1,8 +1,8 @@
 ---
 title: "wan-huiyan/cutify-this — Claude Code skill discovered by cue"
-description: "Add a cute, hand-authored SVG favicon to a web app — 4 techniques (emoji, gradient blob, 16×16 pixel art, text sticker). A Claude Code skill."
+description: "Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer anim"
 layout: page
-updated: 2026-10-29
+updated: 2026-11-06
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 1** · exceptional (score 9.8) · HTML · claude-code, claude-code-plugin, claude-code-skill, favicon, frontend
 
-> Add a cute, hand-authored SVG favicon to a web app — 4 techniques (emoji, gradient blob, 16×16 pixel art, text sticker). A Claude Code skill.
+> Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer animations, terminal and README.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-29
+- 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, favicon, frontend, pixel-art, svg
 
 ## Best fit cue profiles

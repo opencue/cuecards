@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,41 +15,43 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="arcbaslow-google-ads-agents"></a>
-## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
+<a id="sepinetam-mcp-for-stata"></a>
+## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
 
-**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
+**★ 274** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
 
-Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
+Stata-MCP: A MCP server for integrating Stata into your agent loop with a safety-first design.
 
 ```bash
-cue skills add arcbaslow/google-ads-agents --profile research
+cue skills add SepineTam/mcp-for-stata --profile research
 ```
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="drmehmetfarukucum-hakemli"></a>
+## 💎 [drmehmetfarukucum/hakemli](https://github.com/drmehmetfarukucum/hakemli)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 10) · JavaScript · tags: academic-writing, citations, claude-skill, peer-review, thesis
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Hakemli — Tez ve makale için denetimli yazım. Tezi ve makaleyi çok oturumlu yazar–denetçi düzeniyle yazdırır, her atfı kaynağından denetler. Claude skill + süreç denetimi, künye doğrulama ve Word/PDF araçları.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add drmehmetfarukucum/hakemli --profile research
 ```
 
 ---
 
-<a id="publishfun-agent-kit"></a>
-## 💎 [publishfun/agent-kit](https://github.com/publishfun/agent-kit)
+<a id="vinimrdi-ux-laws-principles"></a>
+## 💎 [vinimrdi/ux-laws-principles](https://github.com/vinimrdi/ux-laws-principles)
 
-**★ 0** · exceptional (score 8.5) · Python · tags: agent-skills, ai-agents, claude-code-plugin, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 8) · tags: accessibility, agent-skills, claude-code, claude-code-skill, claude-code-skills
 
-Connect AI agents to Publish.fun, the AI-reviewed research journal: Claude Code plugin, agent skill, MCP configs, examples
+Evidence-based UX laws, heuristics & methods for AI agents and designers. No fake citations.
 
 ```bash
-cue skills add publishfun/agent-kit --profile research
+cue skills add vinimrdi/ux-laws-principles --profile research
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "92 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "88 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,25 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **92 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-11-05 · refreshed nightly via GitHub Code Search.
+> **88 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
+> Last updated: 2026-11-06 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 68 | `trace-mcp`, `dex`, `qiuxiaoce-football-data` |
-| [**backend**](./backend.md) | 4 | `brewpage-openapi`, `mcp-hub`, `alfred` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**research**](./research.md) | 4 | `google-ads-agents`, `popper-scope`, `agent-kit` |
-| [**creative-media**](./creative-media.md) | 3 | `motion-promo-reels`, `cinematography-director`, `redesigned-pancake` |
-| [**marketing**](./marketing.md) | 3 | `google-ads-agents`, `meta-ads-agents`, `google-analytics-agent` |
+| [**core**](./core.md) | 64 | `dex`, `qiuxiaoce-football-data`, `ai-workspace-archive` |
+| [**backend**](./backend.md) | 6 | `aizee`, `claude-db`, `brewpage-openapi` |
+| [**cybersecurity**](./cybersecurity.md) | 5 | `aizee`, `Claude-OSINT`, `sanctuary-framework` |
+| [**research**](./research.md) | 4 | `mcp-for-stata`, `hakemli`, `ux-laws-principles` |
+| [**fleet-control**](./fleet-control.md) | 3 | `opencouncil-contract-inspector`, `hubkit`, `multi-agent-revenue-orchestrator` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `optical-alignment-ui` |
 | [**docs-writer**](./docs-writer.md) | 2 | `brewpage-openapi`, `repo-engineering-skills` |
-| [**video**](./video.md) | 2 | `motion-promo-reels`, `codebase-explainer-video` |
-| [**frontend**](./frontend.md) | 2 | `awesome-claude-ui-armory`, `flow-map-resp` |
-| [**python**](./python.md) | 2 | `py_clean_template`, `alfred` |
-| [**rust**](./rust.md) | 1 | `intutic` |
-| [**fleet-control**](./fleet-control.md) | 1 | `molt` |
-| [**threejs**](./threejs.md) | 1 | `animate-my-app` |
+| [**video**](./video.md) | 1 | `reelfold` |
+| [**nextjs**](./nextjs.md) | 1 | `personal-knowledge-nexus` |
+| [**niche**](./niche.md) | 1 | `bossops` |
+| [**python**](./python.md) | 1 | `alfred` |
+| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
 
 ## How scoring works
 

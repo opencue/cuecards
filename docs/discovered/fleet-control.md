@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-06
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="shijianxi-molt"></a>
-## 💎 [ShiJianXi/molt](https://github.com/ShiJianXi/molt)
+<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
+## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 1** · exceptional (score 8.3) · HTML · tags: agent-skills, ai-agents, anthropic, claude-code, claude-code-on-the-web
+**★ 122** · exceptional (score 15) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
-Claude Code plugin: hand work from a cloud session (Claude Code on the web, claude.ai/code) to a local Claude Desktop or Remote Control session and get the result back
+Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
 
 ```bash
-cue skills add ShiJianXi/molt --profile fleet-control
+cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="ankitkpandey1-hubkit"></a>
+## 💎 [ankitkpandey1/hubkit](https://github.com/ankitkpandey1/hubkit)
+
+**★ 0** · exceptional (score 13) · Python · tags: adaptive, agent-coordination, agent-orchestration, ai-agents, claude-code
+
+Session supervisor for Claude Code: hooks-based multi-agent orchestration with order clocks, routed-work tracking, a watchdog and a stop gate.
+
+✅ SKILL.md
+
+```bash
+cue skills add ankitkpandey1/hubkit --profile fleet-control
+```
+
+---
+
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
+
+**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
+
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
+
+```bash
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---
