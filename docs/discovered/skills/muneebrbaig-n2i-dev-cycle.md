@@ -2,7 +2,7 @@
 title: "muneebrbaig/n2i-dev-cycle — Claude Code skill discovered by cue"
 description: "Full dev-lifecycle skill for Claude Code (+ Qwen): brainstorm or ticket to shipped code, with classification gates, TDD, systematic debugging, and verification."
 layout: page
-updated: 2026-10-13
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-13
+- 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: ai-agent, angular, ci-cd, claude-code, claude-code-skill, claude-skill, code-review, developer-tools, dotnet, qwen, software-development-lifecycle, tdd
 
 ## Best fit cue profiles

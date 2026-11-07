@@ -2,7 +2,7 @@
 title: "LeeYudok/agents-scaffold — Claude Code skill discovered by cue"
 description: "Guardrails for AI coding agents — Claude Code, Codex and Antigravity — enforced by a real git pre-commit gate. One command installs AGENTS.md, path-scoped rules"
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-07
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="contactharshitdesign-design-animate-my-app"></a>
-## 💎 [contactharshitdesign-design/animate-my-app](https://github.com/contactharshitdesign-design/animate-my-app)
+<a id="mustbesimo-web-design-studio"></a>
+## 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
 
-**★ 0** · exceptional (score 8) · Swift · tags: animation, claude-code, claude-skill, ios, swiftui
+**★ 51** · exceptional (score 14.4) · JavaScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
 
-Claude Code skill: turn an app design into a native, animated iOS app (SwiftUI + three.js), tested on device.
+Three free agent skills for websites people remember: cinematic-scroll builds distinctive scroll, 3D and motion sites; scroll-audit scores any page; launch-page-strategy decides what the page must say. 28 live examples. Formerly Cinematic Scroll.
 
 ```bash
-cue skills add contactharshitdesign-design/animate-my-app --profile threejs
+cue skills add MustBeSimo/web-design-studio --profile threejs
 ```
 
 ---

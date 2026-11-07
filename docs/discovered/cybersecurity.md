@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -33,7 +33,7 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2975** · exceptional (score 13.3) · Python · tags: agentskills, claude, skills
+**★ 2986** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -69,15 +69,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="lu1sdv-skillsmd"></a>
-## 💎 [Lu1sDV/skillsmd](https://github.com/Lu1sDV/skillsmd)
+<a id="qingxuantang-tar-engine"></a>
+## 💎 [qingxuantang/tar-engine](https://github.com/qingxuantang/tar-engine)
 
-**★ 2** · exceptional (score 9) · Python · tags: agent-orchestration, agent-skills, ai-agents, ai-skills, anthropic
+**★ 2** · exceptional (score 8) · Python · tags: ai-agent-safety, ai-safety, ai-skill-audit, ai-skill-safety, aisafety
 
-Personal SKILLS.md collection
+Audit AI skill safety before you ship. Static + semantic + adversarial audit pipeline for SKILL.md, Codex skill.yaml, Claude Code commands, and OpenCode. Free hosted tier on tarai.dev.
 
 ```bash
-cue skills add Lu1sDV/skillsmd --profile cybersecurity
+cue skills add qingxuantang/tar-engine --profile cybersecurity
 ```
 
 ---

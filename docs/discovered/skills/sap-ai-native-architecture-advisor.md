@@ -2,20 +2,20 @@
 title: "SAP/ai-native-architecture-advisor — Claude Code skill discovered by cue"
 description: "Describe an SAP business problem and this Claude Code / Codex plugin helps you design an AI solution for it. It asks a few questions, then writes a clear plan: "
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [SAP/ai-native-architecture-advisor](https://github.com/SAP/ai-native-architecture-advisor)
 
-**★ 2** · strong (score 5.5) · HTML · ai, ai-agents, ai-native, claude-code, codex
+**★ 3** · strong (score 5.6) · HTML · ai, ai-agents, ai-native, claude-code, codex
 
 > Describe an SAP business problem and this Claude Code / Codex plugin helps you design an AI solution for it. It asks a few questions, then writes a clear plan: what to build, how the parts fit together, and which SAP services to use. Built on SAP's own North Star and AI Golden Path guidance.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
-- ⭐ 2 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.6 based on:
+- ⭐ 3 stars
 - 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: ai, ai-agents, ai-native, claude-code, codex, generative-ai, joule, llm-plugin, sap, sap-ai-core, sap-btp, solution-architecture
 

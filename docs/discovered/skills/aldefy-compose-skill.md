@@ -2,21 +2,21 @@
 title: "aldefy/compose-skill — Claude Code skill discovered by cue"
 description: "Jetpack Compose Agent Skill — AI-powered coding guidance with actual androidx/androidx source code receipts. Works with Claude Code, Codex CLI, Gemini CLI, Curs"
 layout: page
-updated: 2026-07-23
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [aldefy/compose-skill](https://github.com/aldefy/compose-skill)
 
-**★ 542** · exceptional (score 20.3) · Kotlin · agent-skill, ai-agent, ai-coding, android, androidx
+**★ 599** · exceptional (score 20.4) · Python · agent-skill, ai-agent, ai-coding, android, androidx
 
 > Jetpack Compose Agent Skill — AI-powered coding guidance with actual androidx/androidx source code receipts. Works with Claude Code, Codex CLI, Gemini CLI, Cursor, Copilot, Windsurf, and more.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.3 based on:
-- ⭐ 542 stars
-- 🗓️ Last pushed: 2026-07-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.4 based on:
+- ⭐ 599 stars
+- 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: agent-skill, ai-agent, ai-coding, android, androidx, claude-code, claude-skill, codex, compose, compose-expert, compose-multiplatform, copilot, cursor, developer-tools, gemini-cli, jetpack-compose, kotlin, llm, material3, mcp
 
 ## Best fit cue profiles

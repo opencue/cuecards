@@ -2,21 +2,21 @@
 title: "qingxuantang/tar-engine — Claude Code skill discovered by cue"
 description: "Audit AI skill safety before you ship. Static + semantic + adversarial audit pipeline for SKILL.md, Codex skill.yaml, Claude Code commands, and OpenCode. Free h"
 layout: page
-updated: 2026-06-15
+updated: 2026-11-07
 tags: [claude-code, skill, cybersecurity]
 ---
 
-# ✨ [qingxuantang/tar-engine](https://github.com/qingxuantang/tar-engine)
+# 💎 [qingxuantang/tar-engine](https://github.com/qingxuantang/tar-engine)
 
-**★ 0** · strong (score 6) · Python · ai-agent-safety, ai-safety, ai-skill-audit, ai-skill-safety, aisafety
+**★ 2** · exceptional (score 8) · Python · ai-agent-safety, ai-safety, ai-skill-audit, ai-skill-safety, aisafety
 
 > Audit AI skill safety before you ship. Static + semantic + adversarial audit pipeline for SKILL.md, Codex skill.yaml, Claude Code commands, and OpenCode. Free hosted tier on tarai.dev.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-06-15
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: ai-agent-safety, ai-safety, ai-skill-audit, ai-skill-safety, aisafety, aiskills, audit, audit-ai-skill, claude-skill, codex-skill, mcp, model-context-protocol, openclaw-skill, skill, skill-audit, skill-security
 
 ## Best fit cue profiles

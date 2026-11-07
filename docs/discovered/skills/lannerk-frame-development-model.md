@@ -2,7 +2,7 @@
 title: "lannerk/FRAME-Development-Model — Claude Code skill discovered by cue"
 description: "split AI collaboration into four seats that are independent of each other and check each other — execution, review, oversight, maintenance — then push the colla"
 layout: page
-updated: 2026-10-30
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-30
+- 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: agent, agent-framework, agent-skills, agentic-workflow, ai, claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-skills, codex, development, evidence, evidence-based, evidently-ai, ide, vibe-coding, vibecoding
 
 ## Best fit cue profiles

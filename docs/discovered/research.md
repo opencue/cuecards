@@ -1,58 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "4 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="sepinetam-mcp-for-stata"></a>
-## 💎 [SepineTam/mcp-for-stata](https://github.com/SepineTam/mcp-for-stata)
-
-**★ 274** · exceptional (score 18.9) · Python · tags: claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin
-
-Stata-MCP: A MCP server for integrating Stata into your agent loop with a safety-first design.
-
-```bash
-cue skills add SepineTam/mcp-for-stata --profile research
-```
-
----
-
-<a id="drmehmetfarukucum-hakemli"></a>
-## 💎 [drmehmetfarukucum/hakemli](https://github.com/drmehmetfarukucum/hakemli)
-
-**★ 0** · exceptional (score 10) · JavaScript · tags: academic-writing, citations, claude-skill, peer-review, thesis
-
-Hakemli — Tez ve makale için denetimli yazım. Tezi ve makaleyi çok oturumlu yazar–denetçi düzeniyle yazdırır, her atfı kaynağından denetler. Claude skill + süreç denetimi, künye doğrulama ve Word/PDF araçları.
-
-✅ SKILL.md
-
-```bash
-cue skills add drmehmetfarukucum/hakemli --profile research
-```
-
----
-
-<a id="vinimrdi-ux-laws-principles"></a>
-## 💎 [vinimrdi/ux-laws-principles](https://github.com/vinimrdi/ux-laws-principles)
-
-**★ 0** · exceptional (score 8) · tags: accessibility, agent-skills, claude-code, claude-code-skill, claude-code-skills
-
-Evidence-based UX laws, heuristics & methods for AI agents and designers. No fake citations.
-
-```bash
-cue skills add vinimrdi/ux-laws-principles --profile research
-```
 
 ---
 

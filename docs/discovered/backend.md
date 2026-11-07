@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -26,45 +26,6 @@ Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy,
 
 ```bash
 cue skills add m3taz-ahmed/aizee --profile backend
-```
-
----
-
-<a id="avijit07x-claude-db"></a>
-## 💎 [Avijit07x/claude-db](https://github.com/Avijit07x/claude-db)
-
-**★ 233** · exceptional (score 15.1) · TypeScript · tags: claude, claude-ai, claude-api, claude-code, claude-code-plugin
-
-Free, open-source memory for Claude Code. Your own database, no cloud, no subscription.
-
-```bash
-cue skills add Avijit07x/claude-db --profile backend
-```
-
----
-
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
-
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
-
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
-
-```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile backend
-```
-
----
-
-<a id="ni-c-mcp-hub"></a>
-## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
-
-**★ 3** · exceptional (score 9.1) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
-
-Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
-
-```bash
-cue skills add ni-c/mcp-hub --profile backend
 ```
 
 ---

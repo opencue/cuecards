@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="yanstd888-humanizer-lint"></a>
+## 💎 [yanstd888/humanizer-lint](https://github.com/yanstd888/humanizer-lint)
 
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 98** · exceptional (score 15.8) · JavaScript · tags: agent-skill, agent-skills-tools, ai-humanizer-free, claude-code-skill, claude-code-skills
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+A local, zero-dependency prose, copywriting, UI-text, and code-comment linter that flags stiff, AI-sounding writing (stock phrases, flat sentence rhythm, repeated wording) and tells you what to revise. Includes 8 language packs. A style checker, not an AI detector.
+
+✅ SKILL.md
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
+cue skills add yanstd888/humanizer-lint --profile docs-writer
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "m4cd4r4/cornerman — Claude Code skill discovered by cue"
 description: "When a Claude Code chat gets long, Cornerman saves a handover, clears the chat and carries on by itself, up to the number of clears you set. Tables, lists, link"
 layout: page
-updated: 2026-11-06
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-06
+- 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: claude, claude-code, claude-code-hooks, claude-code-mod, claude-code-plugin, claude-mods, context-management, context-window, vscode-extension
 
 ## Best fit cue profiles

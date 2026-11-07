@@ -2,7 +2,7 @@
 title: "conft2k/skill-aws-arch-diagram — Claude Code skill discovered by cue"
 description: "Unofficial Claude Code skill: AWS architecture diagrams with the AWS Architecture Icons, exported from one layout as SVG, PNG and/or an editable PowerPoint deck"
 layout: page
-updated: 2026-10-23
+updated: 2026-11-07
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: architecture-diagram, aws, aws-icons, claude-code, claude-skill, powerpoint, pptx, svg
 
 ## Best fit cue profiles
