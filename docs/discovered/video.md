@@ -1,44 +1,31 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="lemomo-ai-lemo-opuscar"></a>
-## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
+<a id="heavenchenggong-demo-video-subtitler"></a>
+## 💎 [heavenchenggong/demo-video-subtitler](https://github.com/heavenchenggong/demo-video-subtitler)
 
-**★ 13192** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
+**★ 1** · exceptional (score 13.8) · Shell · tags: agent-skill, claude-skill, ffmpeg, libass, subtitles
 
-A toolbox of film styles made in code for Claude Code: 66 ready to use, and your own. Each style is a style prompt plus a demo film made entirely in code by Claude Opus 5.5, with no video model. By Lemomo. · 一套用代码做片的风格工具箱：66 种现成风格，也能做出你自己的
-
-```bash
-cue skills add lemomo-ai/lemo-opuscar --profile video
-```
-
----
-
-<a id="zyziyun-reelfold"></a>
-## 💎 [zyziyun/reelfold](https://github.com/zyziyun/reelfold)
-
-**★ 4** · exceptional (score 13.8) · Python · tags: ai-video, batch-processing, claude-code, claude-skill, content-creation
-
-Open-source creator workbench: turn footage or notes into batches of videos, captions and covers for every platform. Local editing on macOS, with your own AI.
+Agent skill: caption a screen-recorded product demo — analysis, copy, styling, focus-aware placement, ffmpeg burn-in
 
 ✅ SKILL.md
 
 ```bash
-cue skills add zyziyun/reelfold --profile video
+cue skills add heavenchenggong/demo-video-subtitler --profile video
 ```
 
 ---

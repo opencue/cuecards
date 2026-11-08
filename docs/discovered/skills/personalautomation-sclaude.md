@@ -2,7 +2,7 @@
 title: "personalautomation/SClaude — Claude Code skill discovered by cue"
 description: "Manageable, scalable AI coding for a team — an orchestrator for Claude Code: one fixed path from issue to production, guardrails, metrics. Open source, MIT."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 

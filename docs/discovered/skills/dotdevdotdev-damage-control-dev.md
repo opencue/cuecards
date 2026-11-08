@@ -2,7 +2,7 @@
 title: "dotdevdotdev/damage-control-dev — Claude Code skill discovered by cue"
 description: "Damage control for AI coding agents: a PreToolUse guard that blocks or asks before destructive commands and protected-path writes (Claude Code). A seatbelt, not"
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 

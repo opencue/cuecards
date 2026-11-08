@@ -2,21 +2,21 @@
 title: "pisan-labs/brocot-gear-finder — Claude Code skill discovered by cue"
 description: "Type a gear ratio such as 12, 24*60 or sidereal time and get the most accurate 1 to 3 stage gear trains within your tooth limits, the continued fraction and Ste"
 layout: page
-updated: 2026-11-04
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [pisan-labs/brocot-gear-finder](https://github.com/pisan-labs/brocot-gear-finder)
 
-**★ 1** · strong (score 5.2) · TypeScript · claude-code, clockmaking, continued-fractions, gear-train, gears
+**★ 1** · strong (score 5.3) · TypeScript · claude-code, clockmaking, continued-fractions, gear-train, gears
 
 > Type a gear ratio such as 12, 24*60 or sidereal time and get the most accurate 1 to 3 stage gear trains within your tooth limits, the continued fraction and Stern-Brocot path to it, an animated SVG train and a drift dial. Built with Claude Code.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-02
+- 🗓️ Last pushed: 2026-11-08
 - 🏷️ Tags: claude-code, clockmaking, continued-fractions, gear-train, gears, horology, number-theory, stern-brocot, teaching-tools, typescript
 
 ## Best fit cue profiles

@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
-## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
+<a id="narkco-kang-agent-fleet"></a>
+## ✨ [narkco-kang/agent-fleet](https://github.com/narkco-kang/agent-fleet)
 
-**★ 123** · exceptional (score 15) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
+**★ 3** · strong (score 6.7) · TypeScript · tags: agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code
 
-Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
-
-```bash
-cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
-```
-
----
-
-<a id="aksilsmd-cortex"></a>
-## 💎 [aksilsmd/cortex](https://github.com/aksilsmd/cortex)
-
-**★ 0** · exceptional (score 8) · Python · tags: ai-agents, ai-coding, ai-governance, ai-security, ai-tools
-
-« Cortex : le réseau d’agents experts qui lance vos projets numériques avec Claude ».
+Claude Code and Codex across your machines — LAN-first, self-hosted. A dead device hands its tasks to another — partial output goes with it on the local CLI path.
 
 ```bash
-cue skills add aksilsmd/cortex --profile fleet-control
+cue skills add narkco-kang/agent-fleet --profile fleet-control
 ```
 
 ---

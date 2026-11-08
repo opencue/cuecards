@@ -1,24 +1,24 @@
 ---
 title: "marmbiz/humanizer-de — Claude Code skill discovered by cue"
-description: "German AI Text Humanizer for Claude Code & Codex. Audits 72 German AI-writing patterns using deterministic linters and evidence-safe rewrites. No fact-bending, "
+description: "Deutscher Text-Humanizer für Claude Code & Codex. Redigiert KI-Floskeln, schützt deine Schreibstimme und prüft 72 deutsche Muster quellentreu."
 layout: page
-updated: 2026-09-10
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [marmbiz/humanizer-de](https://github.com/marmbiz/humanizer-de)
 
-**★ 150** · exceptional (score 22.7) · Python · agent-skills, ai-humanizer, ai-writing, claude-code, claude-code-plugin
+**★ 197** · exceptional (score 22.8) · Python · agent-skills, ai-humanizer, ai-writing, claude-code, claude-skill
 
-> German AI Text Humanizer for Claude Code & Codex. Audits 72 German AI-writing patterns using deterministic linters and evidence-safe rewrites. No fact-bending, no bypassing tricks.
+> Deutscher Text-Humanizer für Claude Code & Codex. Redigiert KI-Floskeln, schützt deine Schreibstimme und prüft 72 deutsche Muster quellentreu.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 22.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 22.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 150 stars
-- 🗓️ Last pushed: 2026-09-10
-- 🏷️ Tags: agent-skills, ai-humanizer, ai-writing, claude-code, claude-code-plugin, claude-skill, codex, codex-plugin, codex-skill, deutsch, german, germanizer, humanizer, ki-text, ki-texte-humanisieren, prompt-engineering, stil-editor, style-editor, text-editing, writing-tools
+- ⭐ 197 stars
+- 🗓️ Last pushed: 2026-11-08
+- 🏷️ Tags: agent-skills, ai-humanizer, ai-writing, claude-code, claude-skill, codex, codex-plugin, codex-skill, deutsch, german, humanizer, humanizer-prompt, ki-text, ki-texte-humanisieren, ki-vermenschlichen, lektorat, llm-linter, prompt-engineering, text-editing, writing-tools
 
 ## Best fit cue profiles
 

@@ -2,7 +2,7 @@
 title: "alazc/clickable-paths-claude-code — Claude Code skill discovered by cue"
 description: "Claude Code mod: click a file path in the transcript to show it in Explorer, Finder or your file manager"
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 

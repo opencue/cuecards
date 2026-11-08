@@ -2,7 +2,7 @@
 title: "hannnnnnnny/GuardRun — Claude Code skill discovered by cue"
 description: "GuardRun: a safety-first AI agent harness for DeepSeek and Claude, with a path sandbox, shell command policy, approvals, secret redaction and an audit log."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 

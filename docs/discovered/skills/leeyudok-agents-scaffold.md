@@ -2,19 +2,19 @@
 title: "LeeYudok/agents-scaffold — Claude Code skill discovered by cue"
 description: "Guardrails for AI coding agents — Claude Code, Codex and Antigravity — enforced by a real git pre-commit gate. One command installs AGENTS.md, path-scoped rules"
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [LeeYudok/agents-scaffold](https://github.com/LeeYudok/agents-scaffold)
 
-**★ 38** · exceptional (score 8.1) · Python · agent-skills, agentic-coding, agents-md, ai-agents, ai-coding
+**★ 38** · exceptional (score 8) · Python · agent-skills, agentic-coding, agents-md, ai-agents, ai-coding
 
 > Guardrails for AI coding agents — Claude Code, Codex and Antigravity — enforced by a real git pre-commit gate. One command installs AGENTS.md, path-scoped rules, skills, subagents, hooks and 13 stack presets. Plain files, offline-ready. English / 한국어
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 38 stars
 - 🗓️ Last pushed: 2026-11-05
 - 🏷️ Tags: agent-skills, agentic-coding, agents-md, ai-agents, ai-coding, anthropic, antigravity, boilerplate, claude, claude-code, claude-code-plugin, code-quality, codex, codex-cli, developer-tools, git-hooks, guardrails, pre-commit, project-template, scaffold

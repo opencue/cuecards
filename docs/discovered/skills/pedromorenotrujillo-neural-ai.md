@@ -2,7 +2,7 @@
 title: "PedroMorenoTrujillo/neural-ai — Claude Code skill discovered by cue"
 description: "Official agent skill for Angular 22 applications with Neural UI v2. Verified against @neural-ui/core public contracts."
 layout: page
-updated: 2026-11-02
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-02
+- 🗓️ Last pushed: 2026-11-08
 - 🏷️ Tags: agent-skills, angular, claude-code-skill, claude-skills, codex, neural-ui
 
 ## Best fit cue profiles

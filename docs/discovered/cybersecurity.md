@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-08
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -33,7 +33,7 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2986** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
+**★ 2993** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,28 +56,17 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="philpaz-recusal"></a>
-## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
+<a id="sowadalmughni-soc2-evidence-ledger"></a>
+## 💎 [sowadalmughni/soc2-evidence-ledger](https://github.com/sowadalmughni/soc2-evidence-ledger)
 
-**★ 6** · exceptional (score 9.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 0** · exceptional (score 10) · Python · tags: audit-evidence, aws, claude-skill, compliance, github
 
-Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
+Auditor-traceable SOC 2 evidence from GitHub, AWS and Linear in one sealed folder. A Claude Skill and Python CLI with per-artifact IPE records, a hash-chained ledger, and a gap report across your audit window. Read-only. Collects evidence, never grades it.
 
-```bash
-cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="qingxuantang-tar-engine"></a>
-## 💎 [qingxuantang/tar-engine](https://github.com/qingxuantang/tar-engine)
-
-**★ 2** · exceptional (score 8) · Python · tags: ai-agent-safety, ai-safety, ai-skill-audit, ai-skill-safety, aisafety
-
-Audit AI skill safety before you ship. Static + semantic + adversarial audit pipeline for SKILL.md, Codex skill.yaml, Claude Code commands, and OpenCode. Free hosted tier on tarai.dev.
+✅ SKILL.md
 
 ```bash
-cue skills add qingxuantang/tar-engine --profile cybersecurity
+cue skills add sowadalmughni/soc2-evidence-ledger --profile cybersecurity
 ```
 
 ---

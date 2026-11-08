@@ -1,24 +1,24 @@
 ---
 title: "riffkit/skill — Claude Code skill discovered by cue"
-description: "Official Riffkit skill — riff a winning TikTok into your own short video from your AI agent (Claude Code, Cursor) or the browser. Riff the formula, not the vide"
+description: "Official Riffkit skill — change the outfit, place, product or person in your video, or riff a winning short video, from ChatGPT, Claude, Claude Code, Codex, Cur"
 layout: page
-updated: 2026-07-02
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [riffkit/skill](https://github.com/riffkit/skill)
 
-**★ 1** · exceptional (score 15.8) · agent-skill, ai-video, claude-code, claude-skill, mcp
+**★ 8** · exceptional (score 19.3) · Python · ad-creative, agent-skill, agent-skills, ai-agents, ai-video
 
-> Official Riffkit skill — riff a winning TikTok into your own short video from your AI agent (Claude Code, Cursor) or the browser. Riff the formula, not the video.
+> Official Riffkit skill — change the outfit, place, product or person in your video, or riff a winning short video, from ChatGPT, Claude, Claude Code, Codex, Cursor or the browser.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-02
-- 🏷️ Tags: agent-skill, ai-video, claude-code, claude-skill, mcp, riffkit, tiktok, ugc, video-generation
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-11-08
+- 🏷️ Tags: ad-creative, agent-skill, agent-skills, ai-agents, ai-video, claude-code, claude-skill, claude-skills, cursor, deepseek-harness, dsh, dsh-plugin, dsh-skill, riffkit, short-video, tiktok, ugc, video-generation
 
 ## Best fit cue profiles
 

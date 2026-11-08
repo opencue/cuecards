@@ -2,21 +2,21 @@
 title: "bassnova42/arch-diagram-skill — Claude Code skill discovered by cue"
 description: "RokoAI arch-diagram: a Claude Code & Codex skill that turns any repo or article into an animated architecture diagram (HTML / PNG / MP4 / GIF / Mermaid) with a "
 layout: page
-updated: 2026-10-28
+updated: 2026-11-08
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [bassnova42/arch-diagram-skill](https://github.com/bassnova42/arch-diagram-skill)
 
-**★ 0** · exceptional (score 8) · JavaScript · architecture-diagram, claude-code, claude-skill, codex, mermaid
+**★ 76** · exceptional (score 14.2) · JavaScript · architecture-diagram, claude-code, claude-skill, codex, mermaid
 
 > RokoAI arch-diagram: a Claude Code & Codex skill that turns any repo or article into an animated architecture diagram (HTML / PNG / MP4 / GIF / Mermaid) with a live trace log
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.2 based on:
+- ⭐ 76 stars
+- 🗓️ Last pushed: 2026-11-08
 - 🏷️ Tags: architecture-diagram, claude-code, claude-skill, codex, mermaid
 
 ## Best fit cue profiles
