@@ -1,8 +1,8 @@
 ---
 title: "huiyonghkw/hekouwang-writer-skill — Claude Code skill discovered by cue"
-description: "中文文档写作与改进 Agent Skill：把素材写成结构清晰、读得懂、数字可对账的文档。出处/模态/修订三铁律，修订列改动清单可回退，五把纯 Python 标准库检查脚本（锯末词、长句、表格与敏感信息、算术对账、改动对账）。"
+description: "中文写作质量控制 Agent Skill：写文档、修文章、做体检，保护出处、数字、模态与原意；附 HTML 产品介绍与真实脱敏案例。"
 layout: page
-updated: 2026-10-22
+updated: 2026-11-09
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, docs-writer]
 
 **★ 0** · exceptional (score 15.5) · Python · agent-skill, agent-skills, chinese-writing, claude-code, claude-skill
 
-> 中文文档写作与改进 Agent Skill：把素材写成结构清晰、读得懂、数字可对账的文档。出处/模态/修订三铁律，修订列改动清单可回退，五把纯 Python 标准库检查脚本（锯末词、长句、表格与敏感信息、算术对账、改动对账）。
+> 中文写作质量控制 Agent Skill：写文档、修文章、做体检，保护出处、数字、模态与原意；附 HTML 产品介绍与真实脱敏案例。
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-11-09
 - 🏷️ Tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill, documentation, linter, skill, technical-writing, writing
 
 ## Best fit cue profiles

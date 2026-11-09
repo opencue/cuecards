@@ -2,19 +2,19 @@
 title: "narkco-kang/agent-fleet — Claude Code skill discovered by cue"
 description: "Claude Code and Codex across your machines — LAN-first, self-hosted. A dead device hands its tasks to another — partial output goes with it on the local CLI pat"
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, skill, fleet-control]
 ---
 
 # ✨ [narkco-kang/agent-fleet](https://github.com/narkco-kang/agent-fleet)
 
-**★ 3** · strong (score 6.7) · TypeScript · agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code
+**★ 3** · strong (score 6.6) · TypeScript · agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code
 
 > Claude Code and Codex across your machines — LAN-first, self-hosted. A dead device hands its tasks to another — partial output goes with it on the local CLI path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-11-08
 - 🏷️ Tags: agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code, cli, codex, cross-device, cursor, developer-tools, free-models, llm, local-ai, model-gateway, multi-agent, openai-compatible, orchestration, self-hosted, swarm, wechat

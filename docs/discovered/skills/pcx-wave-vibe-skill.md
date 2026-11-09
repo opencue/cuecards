@@ -2,13 +2,13 @@
 title: "pcx-wave/vibe-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill — delegate coding tasks to Mistral Vibe, supervise via git diff & save 50-90% Claude token usage"
 layout: page
-updated: 2026-10-01
+updated: 2026-11-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [pcx-wave/vibe-skill](https://github.com/pcx-wave/vibe-skill)
 
-**★ 118** · exceptional (score 21.5) · Shell · claude, claude-ai, claude-ai-skills, claude-code, claude-skill
+**★ 122** · exceptional (score 21.5) · Shell · claude, claude-ai, claude-ai-skills, claude-code, claude-skill
 
 > Claude Code skill — delegate coding tasks to Mistral Vibe, supervise via git diff & save 50-90% Claude token usage
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 118 stars
-- 🗓️ Last pushed: 2026-10-01
+- ⭐ 122 stars
+- 🗓️ Last pushed: 2026-11-09
 - 🏷️ Tags: claude, claude-ai, claude-ai-skills, claude-code, claude-skill, claude-skill-recommended, claude-skills, mistral, mistral-ai, mistral-vibe, productivity, skills, token-optimization, token-usage
 
 ## Best fit cue profiles

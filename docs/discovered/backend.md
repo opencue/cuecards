@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for backend"
-description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="mksglu-context-mode"></a>
-## 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
-
-**★ 33667** · exceptional (score 19.5) · JavaScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
-
-Free, local plugin that keeps tool output out of your coding agent's context window. Sandbox and SQLite FTS5 search, 99% fewer bytes in context. Works with Claude Code, Codex, Pi, OpenCode, Gemini CLI, Copilot CLI and 4 more agents. Zero telemetry.
-
-```bash
-cue skills add mksglu/context-mode --profile backend
-```
 
 ---
 

@@ -2,22 +2,22 @@
 title: "zaytsevand/problem-brief — Claude Code skill discovered by cue"
 description: "A Claude Code skill that turns review findings into a page someone can make decisions from — each entry a problem, its proof, and a recommended way out with its"
 layout: page
-updated: 2026-10-28
+updated: 2026-11-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [zaytsevand/problem-brief](https://github.com/zaytsevand/problem-brief)
 
-**★ 4** · exceptional (score 13.8) · JavaScript · agent-skills, claude-code, claude-skill, decision-records
+**★ 6** · exceptional (score 15) · JavaScript · agent-skills, claude-code, claude-skill, decision-records
 
 > A Claude Code skill that turns review findings into a page someone can make decisions from — each entry a problem, its proof, and a recommended way out with its cost.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
 - ✅ Contains SKILL.md
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-28
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-09
 - 🏷️ Tags: agent-skills, claude-code, claude-skill, decision-records
 
 ## Best fit cue profiles

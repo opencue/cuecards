@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 <a id="narkco-kang-agent-fleet"></a>
 ## ✨ [narkco-kang/agent-fleet](https://github.com/narkco-kang/agent-fleet)
 
-**★ 3** · strong (score 6.7) · TypeScript · tags: agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code
+**★ 3** · strong (score 6.6) · TypeScript · tags: agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code
 
 Claude Code and Codex across your machines — LAN-first, self-hosted. A dead device hands its tasks to another — partial output goes with it on the local CLI path.
 

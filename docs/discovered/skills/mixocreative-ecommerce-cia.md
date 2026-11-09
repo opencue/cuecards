@@ -2,22 +2,22 @@
 title: "mixocreative/ecommerce-cia — Claude Code skill discovered by cue"
 description: "台灣電商金流串接與完整性審查 AI skill — NewebPay 藍新 / ECPay 綠界 / PAYUNi / TapPay, 超商取貨付款, live-verified probes, plain-language setup for first-time builders. Claude Code · Co"
 layout: page
-updated: 2026-09-18
+updated: 2026-11-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mixocreative/ecommerce-cia](https://github.com/mixocreative/ecommerce-cia)
 
-**★ 13** · exceptional (score 17.8) · Python · agent-skills, ai-agent, ai-agents, claude-code, claude-skill
+**★ 14** · exceptional (score 18) · Python · agent-skills, ai-agent, ai-agents, claude-code, claude-skill
 
 > 台灣電商金流串接與完整性審查 AI skill — NewebPay 藍新 / ECPay 綠界 / PAYUNi / TapPay, 超商取貨付款, live-verified probes, plain-language setup for first-time builders. Claude Code · Codex · Cursor.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18 based on:
 - ✅ Contains SKILL.md
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-09-18
+- ⭐ 14 stars
+- 🗓️ Last pushed: 2026-11-09
 - 🏷️ Tags: agent-skills, ai-agent, ai-agents, claude-code, claude-skill, code-audit, codex, cursor, cybernetics, ecommerce, ecpay, newebpay, openai-codex, payment-gateway, payments, payuni, stafford-beer, taiwan, tappay, viable-system-model
 
 ## Best fit cue profiles

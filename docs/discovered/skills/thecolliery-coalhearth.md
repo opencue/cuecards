@@ -2,7 +2,7 @@
 title: "TheColliery/CoalHearth — Claude Code skill discovered by cue"
 description: "Session warm-resume + handoff journal for AI coding agents - journals every step so an interrupted session resumes instead of rebuilding. Validated on Claude Co"
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-07
+- 🗓️ Last pushed: 2026-11-08
 - 🏷️ Tags: ai-agents, ai-coding, antigravity, claude, claude-code, developer-tools, hooks, session-management, session-recovery
 
 ## Best fit cue profiles

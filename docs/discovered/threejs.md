@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-09
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="mustbesimo-web-design-studio"></a>
-## 💎 [MustBeSimo/web-design-studio](https://github.com/MustBeSimo/web-design-studio)
+<a id="jjietay-clayducation"></a>
+## 💎 [jjietay/clayducation](https://github.com/jjietay/clayducation)
 
-**★ 51** · exceptional (score 14.4) · JavaScript · tags: agent-skill, agent-skills, claude-skill, creative-coding, cursor
+**★ 7** · exceptional (score 14) · JavaScript · tags: ai-agents, animation, claude-code, claude-code-skill, education
 
-Three free agent skills for websites people remember: cinematic-scroll builds distinctive scroll, 3D and motion sites; scroll-audit scores any page; launch-page-strategy decides what the page must say. 28 live examples. Formerly Cinematic Scroll.
+Claude Code skill that makes narrated teaching videos in a soft 3D clay look with a silent mascot. One agent checks the script before the voice is made.
+
+✅ SKILL.md
 
 ```bash
-cue skills add MustBeSimo/web-design-studio --profile threejs
+cue skills add jjietay/clayducation --profile threejs
 ```
 
 ---

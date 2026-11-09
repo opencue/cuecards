@@ -2,22 +2,22 @@
 title: "SutariyaVishal/parallel-branches — Claude Code skill discovered by cue"
 description: "Run several git branches side by side, each with its own worktree, dev server and port. An agent skill plus a dependency-free Python script."
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [SutariyaVishal/parallel-branches](https://github.com/SutariyaVishal/parallel-branches)
 
-**★ 1** · exceptional (score 8.3) · Python · agent-skills, ai-coding, claude, claude-ai, claude-code
+**★ 3** · exceptional (score 11.2) · Python · agent-skill, agent-skills, ai-coding, claude, claude-ai
 
 > Run several git branches side by side, each with its own worktree, dev server and port. An agent skill plus a dependency-free Python script.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-08
-- 🏷️ Tags: agent-skills, ai-coding, claude, claude-ai, claude-code, claude-skill, claude-skills, cli, codex, codex-cli, codex-skill, dev-server, developer-tools, git-worktree
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-09
+- 🏷️ Tags: agent-skill, agent-skills, ai-coding, claude, claude-ai, claude-code, claude-skill, claude-skills, cli, codex, codex-cli, codex-skill, cursor, dev-server, developer-productivity, developer-tools, git-worktree, monorepo, python, vite
 
 ## Best fit cue profiles
 

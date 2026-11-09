@@ -2,7 +2,7 @@
 title: "rockbenben/aishort-skills — Claude Code skill discovered by cue"
 description: "Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。"
 layout: page
-updated: 2026-10-30
+updated: 2026-11-09
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-30
+- 🗓️ Last pushed: 2026-11-09
 - 🏷️ Tags: agent-skills, ai-agents, anthropic, app-icon, claude, claude-code, claude-skill, clawdbot, cursor, deepl, docsify, electron, favicon, markdown, nextjs, og-image, openclaw, playwright, skills, tauri
 
 ## Best fit cue profiles

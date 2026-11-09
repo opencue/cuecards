@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -33,7 +33,7 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2993** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
+**★ 2994** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,17 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="sowadalmughni-soc2-evidence-ledger"></a>
-## 💎 [sowadalmughni/soc2-evidence-ledger](https://github.com/sowadalmughni/soc2-evidence-ledger)
+<a id="noronhamandy-raio-x-marca-reconhecivel"></a>
+## ✨ [noronhamandy/raio-x-marca-reconhecivel](https://github.com/noronhamandy/raio-x-marca-reconhecivel)
 
-**★ 0** · exceptional (score 10) · Python · tags: audit-evidence, aws, claude-skill, compliance, github
+**★ 0** · strong (score 6) · tags: ai-search, brand-audit, claude-skill, geo, seo
 
-Auditor-traceable SOC 2 evidence from GitHub, AWS and Linear in one sealed folder. A Claude Skill and Python CLI with per-artifact IPE records, a hash-chained ledger, and a gap report across your audit window. Read-only. Collects evidence, never grades it.
-
-✅ SKILL.md
+Skill para Claude que executa o Raio-x da marca reconhecível de Amanda Noronha: 92 verificações em 7 sintomas, nota de 0 a 35. CC BY-NC-SA 4.0.
 
 ```bash
-cue skills add sowadalmughni/soc2-evidence-ledger --profile cybersecurity
+cue skills add noronhamandy/raio-x-marca-reconhecivel --profile cybersecurity
 ```
 
 ---

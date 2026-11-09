@@ -2,19 +2,19 @@
 title: "alazc/clickable-paths-claude-code — Claude Code skill discovered by cue"
 description: "Claude Code mod: click a file path in the transcript to show it in Explorer, Finder or your file manager"
 layout: page
-updated: 2026-11-08
+updated: 2026-11-09
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [alazc/clickable-paths-claude-code](https://github.com/alazc/clickable-paths-claude-code)
 
-**★ 1** · strong (score 6.3) · TypeScript · claude-code, claude-code-plugin, file-explorer
+**★ 1** · strong (score 6.2) · TypeScript · claude-code, claude-code-plugin, file-explorer
 
 > Claude Code mod: click a file path in the transcript to show it in Explorer, Finder or your file manager
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-11-07
 - 🏷️ Tags: claude-code, claude-code-plugin, file-explorer
