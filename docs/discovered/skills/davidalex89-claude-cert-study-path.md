@@ -2,21 +2,21 @@
 title: "davidalex89/claude-cert-study-path — Claude Code skill discovered by cue"
 description: "Interactive, local-first study path for Anthropic's four Claude Certification exams — lessons, quizzes, practice exams, and flashcards. Unofficial."
 layout: page
-updated: 2026-07-22
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [davidalex89/claude-cert-study-path](https://github.com/davidalex89/claude-cert-study-path)
+# ✨ [davidalex89/claude-cert-study-path](https://github.com/davidalex89/claude-cert-study-path)
 
-**★ 1** · potential (score 4.2) · JavaScript
+**★ 2** · strong (score 6) · JavaScript
 
 > Interactive, local-first study path for Anthropic's four Claude Certification exams — lessons, quizzes, practice exams, and flashcards. Unofficial.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-07-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

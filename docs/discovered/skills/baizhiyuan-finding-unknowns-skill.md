@@ -2,21 +2,21 @@
 title: "baizhiyuan/finding-unknowns-skill — Claude Code skill discovered by cue"
 description: "A Claude Code skill for discovering your unknowns (unknown unknowns / unknown knowns) before, during, and after implementation."
 layout: page
-updated: 2026-07-06
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [baizhiyuan/finding-unknowns-skill](https://github.com/baizhiyuan/finding-unknowns-skill)
 
-**★ 0** · exceptional (score 8) · Shell · agentic, claude-code, claude-skill, prompt-engineering
+**★ 7** · exceptional (score 11.7) · JavaScript · agentic, claude-code, claude-skill, prompt-engineering
 
 > A Claude Code skill for discovering your unknowns (unknown unknowns / unknown knowns) before, during, and after implementation.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: agentic, claude-code, claude-skill, prompt-engineering
 
 ## Best fit cue profiles

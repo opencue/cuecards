@@ -2,7 +2,7 @@
 title: "sunglasses-dev/sunglasses — Claude Code skill discovered by cue"
 description: "Open source input firewall for AI agents, beta. A local scanner checks text, code, PDFs, images, QR codes, audio and video with 1,584 patterns across 117 catego"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 

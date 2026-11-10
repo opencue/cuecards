@@ -2,7 +2,7 @@
 title: "TGKllbod/polyu-courseware-notes — Claude Code skill discovered by cue"
 description: "AI workflow for turning a semester of courseware into per-lecture notes, presentation scripts and group-work docs. PolyU-tested, school-agnostic."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: ai-agent, claude-skill, courseware, docx, notes, python, study-workflow
 
 ## Best fit cue profiles

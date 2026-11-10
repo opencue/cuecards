@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="m3taz-ahmed-aizee"></a>
 ## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
 
-**★ 5** · exceptional (score 16.1) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
+**★ 6** · exceptional (score 16.1) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
 
 Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
 
@@ -33,7 +33,7 @@ cue skills add m3taz-ahmed/aizee --profile cybersecurity
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 2994** · exceptional (score 13.2) · Python · tags: agentskills, claude, skills
+**★ 3007** · exceptional (score 13.1) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -56,15 +56,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="noronhamandy-raio-x-marca-reconhecivel"></a>
-## ✨ [noronhamandy/raio-x-marca-reconhecivel](https://github.com/noronhamandy/raio-x-marca-reconhecivel)
+<a id="philpaz-recusal"></a>
+## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
 
-**★ 0** · strong (score 6) · tags: ai-search, brand-audit, claude-skill, geo, seo
+**★ 6** · exceptional (score 9.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
-Skill para Claude que executa o Raio-x da marca reconhecível de Amanda Noronha: 92 verificações em 7 sintomas, nota de 0 a 35. CC BY-NC-SA 4.0.
+Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
 
 ```bash
-cue skills add noronhamandy/raio-x-marca-reconhecivel --profile cybersecurity
+cue skills add philpaz/recusal --profile cybersecurity
 ```
 
 ---

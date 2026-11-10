@@ -2,7 +2,7 @@
 title: "ExtantApe/theseus — Claude Code skill discovered by cue"
 description: "A private, never-sends personal assistant for Claude Code on your Mac. Clears the path, so you can make the call."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: adhd, claude-code, macos, personal-assistant, tauri
 
 ## Best fit cue profiles

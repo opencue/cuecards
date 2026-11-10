@@ -2,7 +2,7 @@
 title: "huiyonghkw/hekouwang-writer-skill — Claude Code skill discovered by cue"
 description: "中文写作质量控制 Agent Skill：写文档、修文章、做体检，保护出处、数字、模态与原意；附 HTML 产品介绍与真实脱敏案例。"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, docs-writer]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill, documentation, linter, skill, technical-writing, writing
 
 ## Best fit cue profiles

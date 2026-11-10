@@ -1,60 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="capsrock-reid-miles-design-skill"></a>
-## 💎 [capsrock/reid-miles-design-skill](https://github.com/capsrock/reid-miles-design-skill)
-
-**★ 1** · exceptional (score 14.8) · tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills
-
-A Claude Skill for generating UIs and layouts in the Reid Miles / Blue Note jazz album cover style — bold cropped typography, duotone photography, and asymmetric grid compositions.
-
-✅ SKILL.md
-
-```bash
-cue skills add capsrock/reid-miles-design-skill --profile creative-media
-```
-
----
-
-<a id="hidden-leaf-networks-media-kit-skill"></a>
-## 💎 [Hidden-Leaf-Networks/media-kit-skill](https://github.com/Hidden-Leaf-Networks/media-kit-skill)
-
-**★ 0** · exceptional (score 11.5) · TypeScript · tags: ai-skill, claude-code-skill, image-generation, marketing, typescript
-
-
-
-✅ SKILL.md
-
-```bash
-cue skills add Hidden-Leaf-Networks/media-kit-skill --profile creative-media
-```
-
----
-
-<a id="netresearch-netresearch-branding-skill"></a>
-## 💎 [netresearch/netresearch-branding-skill](https://github.com/netresearch/netresearch-branding-skill)
-
-**★ 4** · exceptional (score 10.8) · JavaScript · tags: agent-skills, ai-agent, branding, claude-code-skill, corporate-identity
-
-Agent Skill for implementing Netresearch brand guidelines - colors, typography, components | Claude Code compatible
-
-```bash
-cue skills add netresearch/netresearch-branding-skill --profile creative-media
-```
 
 ---
 

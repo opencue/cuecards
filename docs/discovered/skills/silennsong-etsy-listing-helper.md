@@ -2,22 +2,22 @@
 title: "silennsong/etsy-listing-helper — Claude Code skill discovered by cue"
 description: "Claude Code Agent Skill: turn POD product specs + photos into copy-paste-ready Etsy listing content (title, 13 SEO tags, description, official category path, at"
 layout: page
-updated: 2026-06-20
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [silennsong/etsy-listing-helper](https://github.com/silennsong/etsy-listing-helper)
 
-**★ 1** · exceptional (score 9)
+**★ 9** · exceptional (score 13.9)
 
 > Claude Code Agent Skill: turn POD product specs + photos into copy-paste-ready Etsy listing content (title, 13 SEO tags, description, official category path, attributes)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
 - ✅ Contains SKILL.md
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-12
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

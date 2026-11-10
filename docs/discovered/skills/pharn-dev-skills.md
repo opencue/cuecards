@@ -2,7 +2,7 @@
 title: "pharn-dev/skills — Claude Code skill discovered by cue"
 description: "Claude Code skills for Pharn and Phargus. Phargus skills also run in Codex."
 layout: page
-updated: 2026-10-25
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-25
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-skills, pharn, skill, skills
 
 ## Best fit cue profiles

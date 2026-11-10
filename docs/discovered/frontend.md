@@ -1,17 +1,32 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="kubai087-kubai-icons"></a>
+## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
+
+**★ 623** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
+
+An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
+
+✅ SKILL.md
+
+```bash
+cue skills add kubai087/kubai-icons --profile frontend
+```
 
 ---
 
@@ -28,15 +43,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="nusakutnjak-motion-feels"></a>
+## 💎 [nusakutnjak/motion-feels](https://github.com/nusakutnjak/motion-feels)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 0** · exceptional (score 8) · HTML · tags: animation, claude-code, claude-code-plugin, claude-skill, css
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
+Website motion in everyday words: a Claude skill that turns how you want an animation to feel into the right speed and easing curve.
 
 ```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
+cue skills add nusakutnjak/motion-feels --profile frontend
 ```
 
 ---

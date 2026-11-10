@@ -1,28 +1,28 @@
 ---
 title: "aisenseapi/aisense-free-public-rest-apis — Claude Code skill discovered by cue"
-description: "Free, public, no-auth REST APIs from AI SENSE AS — clients for OpenClaw, Python, JavaScript, OpenAI function calling, Claude, and many more"
+description: "Free public REST APIs from AI SENSE AS, with no account or API key: encoding, hashing, time, QR codes and barcodes, images, PDF, audio and music, and agent work"
 layout: page
-updated: 2026-11-09
-tags: [claude-code, skill, core]
+updated: 2026-11-10
+tags: [claude-code, skill, backend]
 ---
 
 # 💎 [aisenseapi/aisense-free-public-rest-apis](https://github.com/aisenseapi/aisense-free-public-rest-apis)
 
-**★ 1** · exceptional (score 12.8) · HTML · claude-skill, claude-skills, free-api, free-apis, javascript
+**★ 1** · exceptional (score 14.3) · HTML · ai-agents, claude-skill, claude-skills, free-api, free-apis
 
-> Free, public, no-auth REST APIs from AI SENSE AS — clients for OpenClaw, Python, JavaScript, OpenAI function calling, Claude, and many more
+> Free public REST APIs from AI SENSE AS, with no account or API key: encoding, hashing, time, QR codes and barcodes, images, PDF, audio and music, and agent workflows, plus a free MCP server, skills for Claude and OpenClaw, and clients for Python, JavaScript and OpenAI function calling.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-09
-- 🏷️ Tags: claude-skill, claude-skills, free-api, free-apis, javascript, llm-tools, openai-tools, openclaw-skill, openclaw-skills, public-api, public-apis, python, python3, rest-api, rest-apis
+- 🗓️ Last pushed: 2026-11-10
+- 🏷️ Tags: ai-agents, claude-skill, claude-skills, free-api, free-apis, javascript, llm-tools, mcp, mcp-server, no-auth, openai-tools, openclaw-skill, openclaw-skills, public-api, public-apis, python, python3, rest-api, rest-apis
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[backend](../backend.md)
 
 
 
@@ -30,7 +30,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add aisenseapi/aisense-free-public-rest-apis --profile core
+cue skills add aisenseapi/aisense-free-public-rest-apis --profile backend
 ```
 
 ## About

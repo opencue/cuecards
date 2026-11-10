@@ -2,22 +2,22 @@
 title: "apissaj/humanizer-id — Claude Code skill discovered by cue"
 description: "Editorial guide for Indonesian academic writing: reduce cliches, clarify structure, and preserve meaning"
 layout: page
-updated: 2026-11-07
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [apissaj/humanizer-id](https://github.com/apissaj/humanizer-id)
 
-**★ 22** · exceptional (score 13.6) · Python · academic-writing, ai-writing, bahasa-indonesia, chatgpt-prompt, claude-skill
+**★ 168** · exceptional (score 13.5) · Python · academic-writing, ai-writing, bahasa-indonesia, chatgpt-prompt, claude-skill
 
 > Editorial guide for Indonesian academic writing: reduce cliches, clarify structure, and preserve meaning
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 22 stars
-- 🗓️ Last pushed: 2026-11-07
+- ⭐ 168 stars
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: academic-writing, ai-writing, bahasa-indonesia, chatgpt-prompt, claude-skill, humanizer, indonesian, prompt-engineering, skripsi
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="m3taz-ahmed-aizee"></a>
 ## 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
 
-**★ 5** · exceptional (score 16.1) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
+**★ 6** · exceptional (score 16.1) · Python · tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
 
 Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
 
@@ -30,15 +30,17 @@ cue skills add m3taz-ahmed/aizee --profile backend
 
 ---
 
-<a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+<a id="aisenseapi-aisense-free-public-rest-apis"></a>
+## 💎 [aisenseapi/aisense-free-public-rest-apis](https://github.com/aisenseapi/aisense-free-public-rest-apis)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 1** · exceptional (score 14.3) · HTML · tags: ai-agents, claude-skill, claude-skills, free-api, free-apis
 
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+Free public REST APIs from AI SENSE AS, with no account or API key: encoding, hashing, time, QR codes and barcodes, images, PDF, audio and music, and agent workflows, plus a free MCP server, skills for Claude and OpenClaw, and clients for Python, JavaScript and OpenAI function calling.
+
+✅ SKILL.md
 
 ```bash
-cue skills add anirudhlath/alfred --profile backend
+cue skills add aisenseapi/aisense-free-public-rest-apis --profile backend
 ```
 
 ---

@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="narkco-kang-agent-fleet"></a>
-## ✨ [narkco-kang/agent-fleet](https://github.com/narkco-kang/agent-fleet)
+<a id="aksilsmd-cortex"></a>
+## 💎 [aksilsmd/cortex](https://github.com/aksilsmd/cortex)
 
-**★ 3** · strong (score 6.6) · TypeScript · tags: agent-orchestration, ai-agent-framework, ai-agents, automation, claude-code
+**★ 0** · exceptional (score 8) · Python · tags: ai-agents, ai-coding, ai-governance, ai-security, ai-tools
 
-Claude Code and Codex across your machines — LAN-first, self-hosted. A dead device hands its tasks to another — partial output goes with it on the local CLI path.
+« Cortex : le réseau d’agents experts qui lance vos projets numériques avec Claude ».
 
 ```bash
-cue skills add narkco-kang/agent-fleet --profile fleet-control
+cue skills add aksilsmd/cortex --profile fleet-control
+```
+
+---
+
+<a id="shubharya-os-duet"></a>
+## ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
+
+**★ 3** · strong (score 7.7) · Python · tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
+
+Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
+
+```bash
+cue skills add shubharya-os/duet --profile fleet-control
 ```
 
 ---

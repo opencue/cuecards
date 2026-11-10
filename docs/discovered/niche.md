@@ -1,61 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="engheng-art-huokezhusho"></a>
-## 💎 [engheng-art/huokezhusho](https://github.com/engheng-art/huokezhusho)
+<a id="engheng-art-douyin-dongcha-daren"></a>
+## 💎 [engheng-art/douyin-dongcha-daren](https://github.com/engheng-art/douyin-dongcha-daren)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+实时掌握平台热点，快速响应热门话题｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/huokezhusho --profile niche
+cue skills add engheng-art/douyin-dongcha-daren --profile niche
 ```
 
 ---
 
-<a id="engheng-art-shipin-zhuan-wengao"></a>
-## 💎 [engheng-art/shipin-zhuan-wengao](https://github.com/engheng-art/shipin-zhuan-wengao)
+<a id="engheng-art-guaikei-rednote-intel"></a>
+## 💎 [engheng-art/guaikei-rednote-intel](https://github.com/engheng-art/guaikei-rednote-intel)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-调用千问大模型，将网络视频链接或本地视频文件快速转写为干净文本——自动剔除语气词、口误与重复台词等，并支持按需定制文案风格。覆盖短视频二创、会议纪要、课程拆解、直播复盘、采访整理等视频内容场景。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
+根据小红书链接类型自动路由：笔记链接(explore/)走详情或评论、博主主页(user/profile/)走作品列表、短链(xhslink)按目标解析。当用户给出小红书链接并想了解其内容时使用本技能；即使用户没说"分析"，只要粘贴了链接并询问相关内容也适用。不用于非小红书链接或需登录的页面。｜小红书公开数据只读：关键词搜笔记、笔记详情、评论舆情、博主作品、爆款选题，输出 JSON
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/shipin-zhuan-wengao --profile niche
-```
-
----
-
-<a id="engheng-art-shipin-wenantiqu"></a>
-## 💎 [engheng-art/shipin-wenantiqu](https://github.com/engheng-art/shipin-wenantiqu)
-
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
-
-调将视频内容转写为文本。支持网络视频链接和本地视频文件两种输入，调用千问大模型进行语义解析，自动剔除语气词、口误、重复台词等无效内容，并支持按指定风格生成文案。适用于以下场景：短视频二次创作脚本、企业会议纪要、线上课程内容拆解、直播复盘、人物采访文字整理、知识素材提取、探店脚本撰写、培训课件整理。当用户需要把视频转成文字、提取视频中的语音内容、生成视频文案或会议纪要时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
-
-✅ SKILL.md
-
-```bash
-cue skills add engheng-art/shipin-wenantiqu --profile niche
+cue skills add engheng-art/guaikei-rednote-intel --profile niche
 ```
 
 ---

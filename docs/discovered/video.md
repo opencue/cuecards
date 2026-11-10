@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-08
+updated: 2026-11-10
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="heavenchenggong-demo-video-subtitler"></a>
-## 💎 [heavenchenggong/demo-video-subtitler](https://github.com/heavenchenggong/demo-video-subtitler)
+<a id="yari-tuber-math-rap-video"></a>
+## 💎 [Yari-tuber/math-rap-video](https://github.com/Yari-tuber/math-rap-video)
 
-**★ 1** · exceptional (score 13.8) · Shell · tags: agent-skill, claude-skill, ffmpeg, libass, subtitles
+**★ 0** · exceptional (score 11) · Python · tags: ai-skill, claude-skill, ffmpeg, math-education, video-generation
 
-Agent skill: caption a screen-recorded product demo — analysis, copy, styling, focus-aware placement, ffmpeg burn-in
+把知识点做成「口诀 + 图形演示」讲解短视频的 AI skill：音频自备、不挑 AI、自带背景素材库
 
 ✅ SKILL.md
 
 ```bash
-cue skills add heavenchenggong/demo-video-subtitler --profile video
+cue skills add Yari-tuber/math-rap-video --profile video
 ```
 
 ---

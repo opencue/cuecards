@@ -2,13 +2,13 @@
 title: "m3taz-ahmed/aizee — Claude Code skill discovered by cue"
 description: "Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code,"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, skill, backend, cybersecurity]
 ---
 
 # 💎 [m3taz-ahmed/aizee](https://github.com/m3taz-ahmed/aizee)
 
-**★ 5** · exceptional (score 16.1) · Python · agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
+**★ 6** · exceptional (score 16.1) · Python · agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code
 
 > Your AI agent ships hallucinated APIs and secrets. aiZee blocks them — policy, budget, guardrails and audit enforced on the action path for Cursor, Claude Code, Copilot, Windsurf, and MCP.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.1 based on:
 - ✅ Contains SKILL.md
-- ⭐ 5 stars
+- ⭐ 6 stars
 - 🗓️ Last pushed: 2026-11-09
 - 🏷️ Tags: agent-guardrails, ai-agents, ai-governance, ai-safety, claude-code, copilot, cursor, governance, llm-policy, llm-security, mcp, mcp-server, prompt-injection, spec-driven-development, windsurf
 

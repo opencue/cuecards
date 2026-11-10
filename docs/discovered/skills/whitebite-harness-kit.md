@@ -2,7 +2,7 @@
 title: "WhiteBite/harness-kit — Claude Code skill discovered by cue"
 description: "Canonical registry and zero-dependency primitives for wiring AI coding harnesses (Claude Code, Codex, OpenCode 1.x/2.x, Gemini, Qwen, Cursor, Windsurf, Kiro, De"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 

@@ -1,23 +1,23 @@
 ---
 title: "intutic/intutic — Claude Code skill discovered by cue"
-description: "The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, L"
+description: "Policy as code for AI agents: rules are Markdown files in git, enforced before every tool call. A Rust proxy and tool-call gates for 43 harnesses (Claude Code, "
 layout: page
-updated: 2026-11-05
+updated: 2026-11-10
 tags: [claude-code, skill, rust]
 ---
 
 # 💎 [intutic/intutic](https://github.com/intutic/intutic)
 
-**★ 9** · exceptional (score 10.8) · TypeScript · agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 9** · exceptional (score 9.8) · TypeScript · agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
 
-> The open source circuit breaker for AI agents. Real-time security, secret DLP, graph guardrails and loop burn prevention for Claude Code, Cursor, Antigravity, LangGraph, n8n and many more.
+> Policy as code for AI agents: rules are Markdown files in git, enforced before every tool call. A Rust proxy and tool-call gates for 43 harnesses (Claude Code, Cursor, Codex, LangGraph, CrewAI and more) refuse dangerous commands, redact secrets and stop runaway loops. Open source, runs locally.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 9 stars
-- 🗓️ Last pushed: 2026-11-05
-- 🏷️ Tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool, circuit-breaker, claude, claude-code-skill, cursor-ai, devsecops-pipeline, finops-mcp, firewall, llm-security-probe, llm-security-proxy, mcp, model-context-protocol-server, rust-lang, security, wasm4, webassemby
+- 🗓️ Last pushed: 2026-11-10
+- 🏷️ Tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool, circuit-breaker, claude, claude-code-skill, cursor-ai, devsecops-pipeline, finops-mcp, firewall, llm-security-probe, llm-security-proxy, mcp, model-context-protocol-server, rust-lang, security, wasm, webassembly
 
 ## Best fit cue profiles
 

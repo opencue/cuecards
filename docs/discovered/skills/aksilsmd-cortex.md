@@ -2,7 +2,7 @@
 title: "aksilsmd/cortex — Claude Code skill discovered by cue"
 description: "« Cortex : le réseau d’agents experts qui lance vos projets numériques avec Claude »."
 layout: page
-updated: 2026-11-07
+updated: 2026-11-10
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-07
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: ai-agents, ai-coding, ai-governance, ai-security, ai-tools, claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-plugin, claude-skills, coding-agent, gestion-projet, multi-agent, orchestration, orchestrator, project, project-management
 
 ## Best fit cue profiles

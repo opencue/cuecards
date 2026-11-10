@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-10
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="roomi-fields-notebooklm-skill"></a>
-## 💎 [roomi-fields/notebooklm-skill](https://github.com/roomi-fields/notebooklm-skill)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 0** · exceptional (score 8.5) · Shell · tags: agent-skills, ai-agents, anthropic, citations, claude-code
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-Claude Code skill for Google Gemini Notebook (formerly NotebookLM) — citation-backed, source-grounded answers from your own documents. Query notebooks, generate Studio content (audio, report, video, infographic, flashcards, quiz, mind map), search passages without spending quota.
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add roomi-fields/notebooklm-skill --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

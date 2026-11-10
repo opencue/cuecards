@@ -2,21 +2,21 @@
 title: "Iman/agent-driven-options-desk-and-skills — Claude Code skill discovered by cue"
 description: "Options analytics an AI agent can drive and a person can read. Sixteen Greeks, seventeen structures, dealer positioning, GARCH-t simulation, backtests, local da"
 layout: page
-updated: 2026-09-01
+updated: 2026-11-10
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [Iman/agent-driven-options-desk-and-skills](https://github.com/Iman/agent-driven-options-desk-and-skills)
+# 💎 [Iman/agent-driven-options-desk-and-skills](https://github.com/Iman/agent-driven-options-desk-and-skills)
 
-**★ 0** · strong (score 7) · Python · backtesting-agent, claude-code-plugin, claude-code-skill, claude-code-subagents, codex-plugin
+**★ 10** · exceptional (score 9.4) · Python · backtesting-agent, claude-code-plugin, claude-code-skill, claude-code-subagents, codex-plugin
 
 > Options analytics an AI agent can drive and a person can read. Sixteen Greeks, seventeen structures, dealer positioning, GARCH-t simulation, backtests, local dashboard. Skills, commands, agents and MCP for Claude Code, Codex and ChatGPT. Research software, not investment advice. Noncommercial licence.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-01
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
+- ⭐ 10 stars
+- 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: backtesting-agent, claude-code-plugin, claude-code-skill, claude-code-subagents, codex-plugin, codex-skill, finance, garch, langgraph, mcp, monte-carlo, monte-carlo-markov-chain, options, options-flow, options-greeks, options-pricing, options-strategies, python, quantitative-finance, volatility
 
 ## Best fit cue profiles
