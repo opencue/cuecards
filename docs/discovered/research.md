@@ -1,29 +1,74 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="arcadiastra-ieee-transactions-paper-writing-zh"></a>
+## 💎 [Arcadiastra/ieee-transactions-paper-writing-zh](https://github.com/Arcadiastra/ieee-transactions-paper-writing-zh)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 6** · exceptional (score 14) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+使用简体中文规划、撰写、修改和审查 IEEE Transactions 学术论文写作的模块化 Agent Skill，涵盖章节写作、贡献论证、引用核验与投稿规范检查。
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add Arcadiastra/ieee-transactions-paper-writing-zh --profile research
+```
+
+---
+
+<a id="codelady-ship-scholarship-visa-scam-checker"></a>
+## 💎 [codelady-ship/scholarship-visa-scam-checker](https://github.com/codelady-ship/scholarship-visa-scam-checker)
+
+**★ 0** · exceptional (score 13.5) · PowerShell · tags: ai-agent, claude, claude-skill, fraud-prevention, international-students
+
+Free Claude skill: check scholarship, visa, admission, housing, volunteer and job-abroad offers for scams. Verdict, red flags, official comparison, safe next steps, reporting and recovery.
+
+✅ SKILL.md
+
+```bash
+cue skills add codelady-ship/scholarship-visa-scam-checker --profile research
+```
+
+---
+
+<a id="arcadiastra-ieee-transactions-paper-writing"></a>
+## 💎 [Arcadiastra/ieee-transactions-paper-writing](https://github.com/Arcadiastra/ieee-transactions-paper-writing)
+
+**★ 1** · exceptional (score 13.3) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
+
+An agent skill suite for drafting, revising, and reviewing IEEE Transactions papers, with contribution-driven writing workflows and citation verification tools.
+
+✅ SKILL.md
+
+```bash
+cue skills add Arcadiastra/ieee-transactions-paper-writing --profile research
+```
+
+---
+
+<a id="roomi-fields-notebooklm-skill"></a>
+## 💎 [roomi-fields/notebooklm-skill](https://github.com/roomi-fields/notebooklm-skill)
+
+**★ 0** · exceptional (score 8.5) · Shell · tags: agent-skills, ai-agents, anthropic, citations, claude-code
+
+Claude Code skill for Google Gemini Notebook (formerly NotebookLM) — citation-backed, source-grounded answers from your own documents. Query notebooks, generate Studio content (audio, report, video, infographic, flashcards, quiz, mind map), search passages without spending quota.
+
+```bash
+cue skills add roomi-fields/notebooklm-skill --profile research
 ```
 
 ---

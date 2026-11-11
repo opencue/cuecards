@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
-## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
+<a id="luckeeai-independent-site-ip-investigator"></a>
+## 💎 [LuckeeAI/independent-site-ip-investigator](https://github.com/LuckeeAI/independent-site-ip-investigator)
 
-**★ 9** · exceptional (score 11.4) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
+**★ 0** · exceptional (score 11) · Python · tags: amazon-seller, brand-protection, buy-box, claude-code-skill, dmca
 
-Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
+Find who hosts, registers and serves a copycat ecommerce store, then draft DMCA, trademark and Amazon Buy Box notices. CLI + agent skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
+cue skills add LuckeeAI/independent-site-ip-investigator --profile medusa-dev
 ```
 
 ---

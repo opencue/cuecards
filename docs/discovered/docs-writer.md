@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="huiyonghkw-hekouwang-writer-skill"></a>
-## 💎 [huiyonghkw/hekouwang-writer-skill](https://github.com/huiyonghkw/hekouwang-writer-skill)
+<a id="reinamoon-writeskills-ko"></a>
+## 💎 [ReinaMoon/writeskills-ko](https://github.com/ReinaMoon/writeskills-ko)
 
-**★ 0** · exceptional (score 15.5) · Python · tags: agent-skill, agent-skills, chinese-writing, claude-code, claude-skill
+**★ 1** · exceptional (score 8.3) · PowerShell · tags: agent-skills, ai-writing, ai-writing-assistant, ai-writing-free, blog
 
-中文写作质量控制 Agent Skill：写文档、修文章、做体检，保护出处、数字、模态与原意；附 HTML 产品介绍与真实脱敏案例。
-
-✅ SKILL.md
+한국어 Claude Agent Skills 47종. IT 실무 문서(회의록, 런북, ADR, 장애 회고, PR), 기술 블로그, 소설 연재와 연속성, 이력서와 자소서와 면접, AI 말투 교정. 의존성 없음. CC BY-SA 4.0.
 
 ```bash
-cue skills add huiyonghkw/hekouwang-writer-skill --profile docs-writer
-```
-
----
-
-<a id="isamu-lab"></a>
-## ✨ [isamu/lab](https://github.com/isamu/lab)
-
-**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
-
-chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
-
-```bash
-cue skills add isamu/lab --profile docs-writer
+cue skills add ReinaMoon/writeskills-ko --profile docs-writer
 ```
 
 ---
@@ -46,7 +31,7 @@ cue skills add isamu/lab --profile docs-writer
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5.3) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5.2) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

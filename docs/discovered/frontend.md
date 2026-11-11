@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -12,21 +12,6 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="kubai087-kubai-icons"></a>
-## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
-
-**★ 623** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
-
-An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
-
-✅ SKILL.md
-
-```bash
-cue skills add kubai087/kubai-icons --profile frontend
-```
 
 ---
 
@@ -43,15 +28,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="nusakutnjak-motion-feels"></a>
-## 💎 [nusakutnjak/motion-feels](https://github.com/nusakutnjak/motion-feels)
+<a id="wan-huiyan-cutify-this"></a>
+## 💎 [wan-huiyan/cutify-this](https://github.com/wan-huiyan/cutify-this)
 
-**★ 0** · exceptional (score 8) · HTML · tags: animation, claude-code, claude-code-plugin, claude-skill, css
+**★ 1** · exceptional (score 9.8) · JavaScript · tags: claude-code, claude-code-plugin, claude-code-skill, favicon, frontend
 
-Website motion in everyday words: a Claude skill that turns how you want an animation to feel into the right speed and easing curve.
+Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer animations, terminal and README.
 
 ```bash
-cue skills add nusakutnjak/motion-feels --profile frontend
+cue skills add wan-huiyan/cutify-this --profile frontend
+```
+
+---
+
+<a id="teamdev-ip-dotnetbrowser-skill"></a>
+## ✨ [TeamDev-IP/DotNetBrowser-Skill](https://github.com/TeamDev-IP/DotNetBrowser-Skill)
+
+**★ 0** · strong (score 6) · tags: agent-skills, avalonia, claude-code-skill, dotnet, webview
+
+The official Agent Skill for DotNetBrowser, TeamDev's Chromium-based browser component for .NET applications built with WPF, Windows Forms, WinUI 3, Avalonia UI, or as console apps.
+
+```bash
+cue skills add TeamDev-IP/DotNetBrowser-Skill --profile frontend
 ```
 
 ---

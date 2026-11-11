@@ -2,7 +2,7 @@
 title: "NTWKKM/shinystat-skills — Claude Code skill discovered by cue"
 description: "medstat-core is a pure headless Python biostatistical calculation engine "
 layout: page
-updated: 2026-10-17
+updated: 2026-11-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-17
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: agent-skill, antigravity-skill, claude-code-skill, claude-skills, hermes-skill, medicine-resident, science-research, scientific-research, skillsmp
 
 ## Best fit cue profiles

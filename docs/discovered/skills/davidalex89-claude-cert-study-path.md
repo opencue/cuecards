@@ -2,7 +2,7 @@
 title: "davidalex89/claude-cert-study-path — Claude Code skill discovered by cue"
 description: "Interactive, local-first study path for Anthropic's four Claude Certification exams — lessons, quizzes, practice exams, and flashcards. Unofficial."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-10
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-11
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="preziotte-foundby"></a>
-## 💎 [preziotte/foundby](https://github.com/preziotte/foundby)
+<a id="kokoai-id-content-funnel-skill"></a>
+## 💎 [kokoai-id/content-funnel-skill](https://github.com/kokoai-id/content-funnel-skill)
 
-**★ 0** · exceptional (score 13) · Python · tags: ai-agents, analytics, claude-code, claude-code-skill, referrers
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, content-marketing, social-media
 
-Ask your coding agent how people find your site. A Claude Code skill that keeps a ledger of every referrer, AI assistant, unfurler and mention, and reports only what is new.
-
-✅ SKILL.md
+Claude Code skill: plan, write and produce organic social content that turns one buyer persona into DMs/leads (any business; Tilerank + property agent examples)
 
 ```bash
-cue skills add preziotte/foundby --profile marketing
+cue skills add kokoai-id/content-funnel-skill --profile marketing
 ```
 
 ---

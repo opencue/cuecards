@@ -1,22 +1,22 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="engheng-art-douyin-dongcha-daren"></a>
-## 💎 [engheng-art/douyin-dongcha-daren](https://github.com/engheng-art/douyin-dongcha-daren)
+<a id="engheng-art-douyin-jingpinzhixi"></a>
+## 💎 [engheng-art/douyin-jingpinzhixi](https://github.com/engheng-art/douyin-jingpinzhixi)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
@@ -25,22 +25,37 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/douyin-dongcha-daren --profile niche
+cue skills add engheng-art/douyin-jingpinzhixi --profile niche
 ```
 
 ---
 
-<a id="engheng-art-guaikei-rednote-intel"></a>
-## 💎 [engheng-art/guaikei-rednote-intel](https://github.com/engheng-art/guaikei-rednote-intel)
+<a id="engheng-art-public-lead-extractor"></a>
+## 💎 [engheng-art/public-lead-extractor](https://github.com/engheng-art/public-lead-extractor)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-根据小红书链接类型自动路由：笔记链接(explore/)走详情或评论、博主主页(user/profile/)走作品列表、短链(xhslink)按目标解析。当用户给出小红书链接并想了解其内容时使用本技能；即使用户没说"分析"，只要粘贴了链接并询问相关内容也适用。不用于非小红书链接或需登录的页面。｜小红书公开数据只读：关键词搜笔记、笔记详情、评论舆情、博主作品、爆款选题，输出 JSON
+看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/guaikei-rednote-intel --profile niche
+cue skills add engheng-art/public-lead-extractor --profile niche
+```
+
+---
+
+<a id="engheng-art-douyin-wenan"></a>
+## 💎 [engheng-art/douyin-wenan](https://github.com/engheng-art/douyin-wenan)
+
+**★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
+
+实时掌握平台热点，快速响应热门话题｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+
+✅ SKILL.md
+
+```bash
+cue skills add engheng-art/douyin-wenan --profile niche
 ```
 
 ---

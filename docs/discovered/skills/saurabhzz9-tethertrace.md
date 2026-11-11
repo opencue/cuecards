@@ -1,22 +1,22 @@
 ---
 title: "Saurabhzz9/tethertrace — Claude Code skill discovered by cue"
-description: "Test any Android app on your real phone over Wi-Fi. No adb, no Android SDK. MCP server and agent skill for Claude Code, Codex and more."
+description: "Build, install and test Android apps on a real phone over Wi-Fi. No adb, no Android SDK, no Android Studio. Pure TypeScript ADB, YAML flows, crash explorer, and"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Saurabhzz9/tethertrace](https://github.com/Saurabhzz9/tethertrace)
 
-**★ 2** · exceptional (score 11) · TypeScript · adb, ai-agents, android, claude, claude-code
+**★ 2** · exceptional (score 10) · TypeScript · adb, ai-agents, android, claude, claude-code
 
-> Test any Android app on your real phone over Wi-Fi. No adb, no Android SDK. MCP server and agent skill for Claude Code, Codex and more.
+> Build, install and test Android apps on a real phone over Wi-Fi. No adb, no Android SDK, no Android Studio. Pure TypeScript ADB, YAML flows, crash explorer, and a secure MCP server for Claude, Codex and local models.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: adb, ai-agents, android, claude, claude-code, claude-code-skill, claude-skill, claude-skills, codex, flutter, mcp, mcp-server, react-native, testing, typescript
 
 ## Best fit cue profiles

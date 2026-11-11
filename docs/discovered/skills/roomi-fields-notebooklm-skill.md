@@ -2,7 +2,7 @@
 title: "roomi-fields/notebooklm-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill for Google Gemini Notebook (formerly NotebookLM) — citation-backed, source-grounded answers from your own documents. Query notebooks, generate"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-11
 tags: [claude-code, skill, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: agent-skills, ai-agents, anthropic, citations, claude-code, claude-skill, gemini, gemini-notebook, gemini-notebook-skill, mcp, notebooklm, rag, research, skill
 
 ## Best fit cue profiles

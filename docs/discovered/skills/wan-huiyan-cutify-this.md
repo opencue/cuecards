@@ -2,13 +2,13 @@
 title: "wan-huiyan/cutify-this — Claude Code skill discovered by cue"
 description: "Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer anim"
 layout: page
-updated: 2026-11-06
-tags: [claude-code, skill, core]
+updated: 2026-11-11
+tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [wan-huiyan/cutify-this](https://github.com/wan-huiyan/cutify-this)
 
-**★ 1** · exceptional (score 9.8) · HTML · claude-code, claude-code-plugin, claude-code-skill, favicon, frontend
+**★ 1** · exceptional (score 9.8) · JavaScript · claude-code, claude-code-plugin, claude-code-skill, favicon, frontend
 
 > Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer animations, terminal and README.
 
@@ -16,12 +16,12 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-06
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, favicon, frontend, pixel-art, svg
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[frontend](../frontend.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add wan-huiyan/cutify-this --profile core
+cue skills add wan-huiyan/cutify-this --profile frontend
 ```
 
 ## About

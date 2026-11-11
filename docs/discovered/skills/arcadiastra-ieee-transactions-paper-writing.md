@@ -2,7 +2,7 @@
 title: "Arcadiastra/ieee-transactions-paper-writing — Claude Code skill discovered by cue"
 description: "An agent skill suite for drafting, revising, and reviewing IEEE Transactions papers, with contribution-driven writing workflows and citation verification tools."
 layout: page
-updated: 2026-10-27
+updated: 2026-11-11
 tags: [claude-code, skill, research]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-27
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: academic-writing, agent-skills, ai-agents, claude, claude-code, claude-code-skill, codex, codex-skill, ieee, ieee-transactions, paper, paper-writing, paper-writing-agent, scientific-writing
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "TeamDev-IP/DotNetBrowser-Skill — Claude Code skill discovered by cue"
 description: "The official Agent Skill for DotNetBrowser, TeamDev's Chromium-based browser component for .NET applications built with WPF, Windows Forms, WinUI 3, Avalonia UI"
 layout: page
-updated: 2026-10-29
+updated: 2026-11-11
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-29
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: agent-skills, avalonia, claude-code-skill, dotnet, webview, wpf
 
 ## Best fit cue profiles

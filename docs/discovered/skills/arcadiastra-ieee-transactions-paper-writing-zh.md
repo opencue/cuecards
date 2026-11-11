@@ -2,22 +2,22 @@
 title: "Arcadiastra/ieee-transactions-paper-writing-zh — Claude Code skill discovered by cue"
 description: "使用简体中文规划、撰写、修改和审查 IEEE Transactions 学术论文写作的模块化 Agent Skill，涵盖章节写作、贡献论证、引用核验与投稿规范检查。"
 layout: page
-updated: 2026-10-27
+updated: 2026-11-11
 tags: [claude-code, skill, research]
 ---
 
 # 💎 [Arcadiastra/ieee-transactions-paper-writing-zh](https://github.com/Arcadiastra/ieee-transactions-paper-writing-zh)
 
-**★ 4** · exceptional (score 13.8) · Python · academic-writing, agent-skills, ai-agents, claude, claude-code
+**★ 6** · exceptional (score 14) · Python · academic-writing, agent-skills, ai-agents, claude, claude-code
 
 > 使用简体中文规划、撰写、修改和审查 IEEE Transactions 学术论文写作的模块化 Agent Skill，涵盖章节写作、贡献论证、引用核验与投稿规范检查。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
 - ✅ Contains SKILL.md
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-10-27
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: academic-writing, agent-skills, ai-agents, claude, claude-code, claude-code-skill, codex, codex-skill, ieee, ieee-transactions, paper, paper-writing, paper-writing-agent, scientific-writing, writing, writing-skills
 
 ## Best fit cue profiles

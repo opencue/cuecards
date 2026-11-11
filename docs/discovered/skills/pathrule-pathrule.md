@@ -2,19 +2,19 @@
 title: "pathrule/pathrule — Claude Code skill discovered by cue"
 description: "Your AI forgets. Pathrule remembers. The open-source knowledge layer for coding agents: path-scoped memories, rules and skills for Claude Code, Codex, Cursor, C"
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [pathrule/pathrule](https://github.com/pathrule/pathrule)
 
-**★ 5** · exceptional (score 9.4) · TypeScript · ai-agents, claude-code, codex, context-engineering, cursor
+**★ 5** · exceptional (score 9.3) · TypeScript · ai-agents, claude-code, codex, context-engineering, cursor
 
 > Your AI forgets. Pathrule remembers. The open-source knowledge layer for coding agents: path-scoped memories, rules and skills for Claude Code, Codex, Cursor, Copilot, Windsurf and any MCP client.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.3 based on:
 - ⭐ 5 stars
 - 🗓️ Last pushed: 2026-11-10
 - 🏷️ Tags: ai-agents, claude-code, codex, context-engineering, cursor, developer-tools, mcp, mcp-server, memory, typescript

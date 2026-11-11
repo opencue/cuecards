@@ -1,31 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-11
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="yari-tuber-math-rap-video"></a>
-## 💎 [Yari-tuber/math-rap-video](https://github.com/Yari-tuber/math-rap-video)
+<a id="threerocks-article2media"></a>
+## 💎 [threerocks/article2media](https://github.com/threerocks/article2media)
 
-**★ 0** · exceptional (score 11) · Python · tags: ai-skill, claude-skill, ffmpeg, math-education, video-generation
+**★ 82** · exceptional (score 14.2) · JavaScript · tags: agent-skills, bilibili, chinese, claude-code, claude-code-plugin
 
-把知识点做成「口诀 + 图形演示」讲解短视频的 AI skill：音频自备、不挑 AI、自带背景素材库
-
-✅ SKILL.md
+把一篇文章或一条视频（抖音、B 站、YouTube，先转逐字稿）一键做成小红书图文、杂志长图、公众号排版和 AI 配音口播短视频的开源 Claude Code / Codex Skill。21 套主题，自动验收，零 npm 依赖。
 
 ```bash
-cue skills add Yari-tuber/math-rap-video --profile video
+cue skills add threerocks/article2media --profile video
+```
+
+---
+
+<a id="morgankotb7-eng-mpt-arabic-free-quickstart"></a>
+## ✨ [morgankotb7-eng/mpt-arabic-free-quickstart](https://github.com/morgankotb7-eng/mpt-arabic-free-quickstart)
+
+**★ 0** · strong (score 6) · Python · tags: arabic, claude-skill, edge-tts, egyptian-arabic, moneyprinterturbo
+
+Safe, free, Arabic-first quickstart for MoneyPrinterTurbo: pinned setup, hardened config, Egyptian Arabic voice, RTL subtitles, audit notes. No API keys.
+
+```bash
+cue skills add morgankotb7-eng/mpt-arabic-free-quickstart --profile video
 ```
 
 ---

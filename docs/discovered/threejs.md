@@ -1,31 +1,72 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-11
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jjietay-clayducation"></a>
-## 💎 [jjietay/clayducation](https://github.com/jjietay/clayducation)
+<a id="nickfly060606-maker-engineering-drawing-3d"></a>
+## 💎 [nickfly060606-maker/engineering-drawing-3d](https://github.com/nickfly060606-maker/engineering-drawing-3d)
 
-**★ 7** · exceptional (score 14) · JavaScript · tags: ai-agents, animation, claude-code, claude-code-skill, education
+**★ 0** · exceptional (score 13.5) · Python · tags: 3d-reconstruction, agent-skill, cad, claude-skill, engineering-drawing
 
-Claude Code skill that makes narrated teaching videos in a soft 3D clay look with a silent mascot. One agent checks the script before the voice is made.
+把工程制图的三视图反推成可旋转三维模型 —— Agent Skill，附体积/封闭性/反投影三重校验
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jjietay/clayducation --profile threejs
+cue skills add nickfly060606-maker/engineering-drawing-3d --profile threejs
+```
+
+---
+
+<a id="jdhruv14-holographic-card"></a>
+## 💎 [JDhruv14/holographic-card](https://github.com/JDhruv14/holographic-card)
+
+**★ 2** · exceptional (score 11.5) · TypeScript · tags: claude-skill, pokemon, typescript, webgl, windows-98
+
+A Claude skill and WebGL2 + TypeScript component for interactive 3D holographic Pokémon in a Windows 98 window.
+
+✅ SKILL.md
+
+```bash
+cue skills add JDhruv14/holographic-card --profile threejs
+```
+
+---
+
+<a id="hotjinnasim-code-namokposter"></a>
+## 💎 [hotjinnasim-code/NamokPoster](https://github.com/hotjinnasim-code/NamokPoster)
+
+**★ 0** · exceptional (score 8) · JavaScript · tags: blender, claude-code, claude-skill, korean-typography, poster
+
+포스터 문구를 주면 서로 다른 스타일의 시안 세 장을 만들어 주는 Claude Code 스킬 — three.js · HTML, 요청하면 Blender
+
+```bash
+cue skills add hotjinnasim-code/NamokPoster --profile threejs
+```
+
+---
+
+<a id="seawolf0-spectra"></a>
+## 🔹 [Seawolf0/Spectra](https://github.com/Seawolf0/Spectra)
+
+**★ 2** · potential (score 3.5) · HTML · tags: 2d-graphics, 3d-graphics, caustics, dispersion, glsl
+
+A real-time light-physics playground in one HTML file. 3D mode: a spectral path tracer with dispersion, caustics, Fresnel glass and depth of field. 2D mode: an optics light table for building setups with lenses, prisms and mirrors. Runs in the browser with WebGL2. Built by prompting Claude Fable 5.2, with testing and debugging by me.
+
+```bash
+cue skills add Seawolf0/Spectra --profile threejs
 ```
 
 ---

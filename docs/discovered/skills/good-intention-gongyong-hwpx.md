@@ -2,7 +2,7 @@
 title: "Good-Intention/gongyong-hwpx — Claude Code skill discovered by cue"
 description: "공무원 한글문서 편집스킬(/gongyong-hwpx) — 견본 한글(HWPX) 양식대로 보고서·계획서를 만들어 주는 AI 스킬. 한글 보고서 자동 작성, Claude·ChatGPT·Gemini 지원 | Claude skill / ChatGPT skill: Korean government"
 layout: page
-updated: 2026-11-04
+updated: 2026-11-11
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-04
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: agent-skills, chatgpt, chatgpt-skill, claude-skill, claude-skills, document-automation, government, hangul, hwp, hwpx, hwpx-skill, korean, korean-government, public-sector, report-generator
 
 ## Best fit cue profiles
