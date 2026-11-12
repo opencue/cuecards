@@ -2,22 +2,22 @@
 title: "ringku1/claude-mama — Claude Code skill discovered by cue"
 description: "mama: a goal-based work loop skill for Claude Code — research, one batch of questions, a wide parallel plan, build → verify → fix until every criterion has evid"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ringku1/claude-mama](https://github.com/ringku1/claude-mama)
 
-**★ 0** · exceptional (score 13) · Python · ai-agents, claude-code, claude-skill, developer-tools
+**★ 1** · exceptional (score 13.3) · Python · ai-agents, claude-code, claude-skill, developer-tools
 
 > mama: a goal-based work loop skill for Claude Code — research, one batch of questions, a wide parallel plan, build → verify → fix until every criterion has evidence
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-11
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: ai-agents, claude-code, claude-skill, developer-tools
 
 ## Best fit cue profiles

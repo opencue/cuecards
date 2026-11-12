@@ -2,7 +2,7 @@
 title: "reeschan/atelier — Claude Code skill discovered by cue"
 description: "開発を 9 工程のワークフローテンプレートとして回す Claude Code スキル (旧 pbi-orchestration-jev)。複数ファイルの実装を PBI に分け、判定表と Jev でモデルを選んでサブエージェントに振り分け、検証コマンドで合否を決める / Claude Code skill that ru"
 layout: page
-updated: 2026-11-05
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-05
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: ai-agents, claude-code, claude-code-skill, codex, orchestration, workflow
 
 ## Best fit cue profiles

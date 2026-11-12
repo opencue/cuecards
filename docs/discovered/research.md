@@ -1,74 +1,44 @@
 ---
 title: "Claude Code Skills for research"
-description: "5 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="arcadiastra-ieee-transactions-paper-writing-zh"></a>
-## 💎 [Arcadiastra/ieee-transactions-paper-writing-zh](https://github.com/Arcadiastra/ieee-transactions-paper-writing-zh)
+<a id="honeymeta-geng-skills"></a>
+## 💎 [HoneyMeta/geng-skills](https://github.com/HoneyMeta/geng-skills)
 
-**★ 6** · exceptional (score 14) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
+**★ 4** · exceptional (score 13.3) · Python · tags: academic-integrity, agent-skills, claude-skill, data-fabrication, docx
 
-使用简体中文规划、撰写、修改和审查 IEEE Transactions 学术论文写作的模块化 Agent Skill，涵盖章节写作、贡献论证、引用核验与投稿规范检查。
-
-✅ SKILL.md
-
-```bash
-cue skills add Arcadiastra/ieee-transactions-paper-writing-zh --profile research
-```
-
----
-
-<a id="codelady-ship-scholarship-visa-scam-checker"></a>
-## 💎 [codelady-ship/scholarship-visa-scam-checker](https://github.com/codelady-ship/scholarship-visa-scam-checker)
-
-**★ 0** · exceptional (score 13.5) · PowerShell · tags: ai-agent, claude, claude-skill, fraud-prevention, international-students
-
-Free Claude skill: check scholarship, visa, admission, housing, volunteer and job-abroad offers for scams. Verdict, red flags, official comparison, safe next steps, reporting and recovery.
+灵感来自"耿同学"学术打假。论文投稿前科研诚信自检 skill：检查 LaTeX/Word 数据造假与图像 PS 痕迹，导出 PDF 报告。AI agent skill for pre-submission research-integrity self-check.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add codelady-ship/scholarship-visa-scam-checker --profile research
+cue skills add HoneyMeta/geng-skills --profile research
 ```
 
 ---
 
-<a id="arcadiastra-ieee-transactions-paper-writing"></a>
-## 💎 [Arcadiastra/ieee-transactions-paper-writing](https://github.com/Arcadiastra/ieee-transactions-paper-writing)
+<a id="arcbaslow-google-ads-agents"></a>
+## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
 
-**★ 1** · exceptional (score 13.3) · Python · tags: academic-writing, agent-skills, ai-agents, claude, claude-code
+**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
 
-An agent skill suite for drafting, revising, and reviewing IEEE Transactions papers, with contribution-driven writing workflows and citation verification tools.
-
-✅ SKILL.md
+Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
 
 ```bash
-cue skills add Arcadiastra/ieee-transactions-paper-writing --profile research
-```
-
----
-
-<a id="roomi-fields-notebooklm-skill"></a>
-## 💎 [roomi-fields/notebooklm-skill](https://github.com/roomi-fields/notebooklm-skill)
-
-**★ 0** · exceptional (score 8.5) · Shell · tags: agent-skills, ai-agents, anthropic, citations, claude-code
-
-Claude Code skill for Google Gemini Notebook (formerly NotebookLM) — citation-backed, source-grounded answers from your own documents. Query notebooks, generate Studio content (audio, report, video, infographic, flashcards, quiz, mind map), search passages without spending quota.
-
-```bash
-cue skills add roomi-fields/notebooklm-skill --profile research
+cue skills add arcbaslow/google-ads-agents --profile research
 ```
 
 ---

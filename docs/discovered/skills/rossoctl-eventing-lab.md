@@ -2,7 +2,7 @@
 title: "rossoctl/eventing-lab — Claude Code skill discovered by cue"
 description: "Event-driven agent wake path: a Kafka message wakes a Claude Code agent and streams every step back as CloudEvents — extracted from rossoctl/examples (history p"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-11
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

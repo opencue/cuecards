@@ -1,27 +1,27 @@
 ---
 title: "Laith0003/ux-skill — Claude Code skill discovered by cue"
-description: "Design intelligence engine for AI coding tools (Claude Code, Cursor, Windsurf). Deterministic anti-AI-slop linter with 152 rules, 160 brand specs, a 7-axis synt"
+description: "Design intelligence engine for AI coding tools. A 171-rule anti-AI-slop linter, 160 brand specs, a 7-axis synthesizer, a WCAG-gated design system generator with"
 layout: page
-updated: 2026-06-08
-tags: [claude-code, skill, frontend, creative-media]
+updated: 2026-11-12
+tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [Laith0003/ux-skill](https://github.com/Laith0003/ux-skill)
 
-**★ 33** · exceptional (score 8.8) · Python · ai-coding, ai-design, anti-ai-slop, brand-guidelines, claude-code
+**★ 103** · exceptional (score 14.4) · Python · ai-coding, ai-design, anti-ai-slop, brand-guidelines, claude-code
 
-> Design intelligence engine for AI coding tools (Claude Code, Cursor, Windsurf). Deterministic anti-AI-slop linter with 152 rules, 160 brand specs, a 7-axis synthesizer, an MCP server (18 tools), 25 commands, 17 IDEs. Offline, never calls an LLM. MIT.
+> Design intelligence engine for AI coding tools. A 171-rule anti-AI-slop linter, 160 brand specs, a 7-axis synthesizer, a WCAG-gated design system generator with Arabic and right to left built in, 25 MCP tools, 18 commands, 17 IDEs. Offline, never calls an LLM. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
-- ⭐ 33 stars
-- 🗓️ Last pushed: 2026-06-08
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.4 based on:
+- ⭐ 103 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: ai-coding, ai-design, anti-ai-slop, brand-guidelines, claude-code, claude-skill, cursor, design, design-intelligence, design-system, design-tokens, frontend, linter, mcp, open-source, python, ui, ux, vibe-coding, windsurf
 
 ## Best fit cue profiles
 
-[frontend](../frontend.md), [creative-media](../creative-media.md)
+[creative-media](../creative-media.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add Laith0003/ux-skill --profile frontend
+cue skills add Laith0003/ux-skill --profile creative-media
 ```
 
 ## About

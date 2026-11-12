@@ -2,13 +2,13 @@
 title: "pattern-ai-labs/agentcall — Claude Code skill discovered by cue"
 description: "AgentCall lets AI Agents join meetings with voice, video & screen-share to build together. Supports Google Meet, Teams, Zoom (Beta)"
 layout: page
-updated: 2026-10-22
+updated: 2026-11-12
 tags: [claude-code, skill, video]
 ---
 
 # 💎 [pattern-ai-labs/agentcall](https://github.com/pattern-ai-labs/agentcall)
 
-**★ 169** · exceptional (score 24.2) · Python · agent-skills, agentcall, ai-agent, ai-meeting-assistant, claude-code
+**★ 194** · exceptional (score 24.2) · Python · agent-skills, agentcall, ai-agent, ai-meeting-assistant, claude-code
 
 > AgentCall lets AI Agents join meetings with voice, video & screen-share to build together. Supports Google Meet, Teams, Zoom (Beta)
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 24.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 169 stars
-- 🗓️ Last pushed: 2026-10-22
+- ⭐ 194 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: agent-skills, agentcall, ai-agent, ai-meeting-assistant, claude-code, claude-plugin, claude-skill, google-meet, llm-agent, meeting-bot, microsoft-teams, screen-sharing, speech-to-text, text-to-speech, transcription, tts, voice-agent, voice-assistant, websocket, zoom
 
 ## Best fit cue profiles

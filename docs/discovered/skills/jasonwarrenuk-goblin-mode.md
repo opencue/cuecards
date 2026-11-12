@@ -2,21 +2,21 @@
 title: "JasonWarrenUK/goblin-mode — Claude Code skill discovered by cue"
 description: "Three goblins in a trenchcoat pretending to be a senior developer. Claude Code config shaped by ADHD, friction, and spite."
 layout: page
-updated: 2026-10-05
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [JasonWarrenUK/goblin-mode](https://github.com/JasonWarrenUK/goblin-mode)
 
-**★ 5** · exceptional (score 11.6) · Python · claude-code, claude-code-agent, claude-code-agents, claude-code-commands, claude-code-hook
+**★ 6** · exceptional (score 11.7) · Python · claude-code, claude-code-agent, claude-code-agents, claude-code-commands, claude-code-hook
 
 > Three goblins in a trenchcoat pretending to be a senior developer. Claude Code config shaped by ADHD, friction, and spite.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.6 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-10-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.7 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: claude-code, claude-code-agent, claude-code-agents, claude-code-commands, claude-code-hook, claude-code-hooks, claude-code-plugin, claude-code-plugin-marketplace, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill, claude-code-skills
 
 ## Best fit cue profiles

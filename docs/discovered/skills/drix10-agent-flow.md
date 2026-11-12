@@ -2,19 +2,19 @@
 title: "Drix10/agent-flow — Claude Code skill discovered by cue"
 description: "Guardrails for AI coding agents: run Claude Code, Codex, Gemini CLI, Cursor or Copilot unattended and come back to a reviewed pull request. Implement, review an"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [Drix10/agent-flow](https://github.com/Drix10/agent-flow)
 
-**★ 12** · strong (score 6.3) · JavaScript · agent-skills, agents-md, ai-coding, claude, claude-ai
+**★ 12** · strong (score 6.2) · JavaScript · agent-skills, agents-md, ai-coding, claude, claude-ai
 
 > Guardrails for AI coding agents: run Claude Code, Codex, Gemini CLI, Cursor or Copilot unattended and come back to a reviewed pull request. Implement, review and QA agents, a guard on protected paths, and a tamper-evident audit log.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
 - ⭐ 12 stars
 - 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: agent-skills, agents-md, ai-coding, claude, claude-ai, claude-code, claude-plugin, claude-skills, codex, codex-skill, context-drift, cursor, gemini-cli, gemini-cli-extension, guardrails, pi, pre-commit, skill, skill-md, skills

@@ -2,7 +2,7 @@
 title: "arcbaslow/google-ads-agents — Claude Code skill discovered by cue"
 description: "Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports."
 layout: page
-updated: 2026-11-05
+updated: 2026-11-12
 tags: [claude-code, skill, marketing, research]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, marketing, research]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-05
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: advertising, adwords, ai-agent, auction-insights, campaign-management, claude-code, claude-skill, conversion-tracking, google-ads, google-ads-api, keyword-research, marketing-automation, multi-agent, performance-max, placement-safety, ppc, search-campaign
 
 ## Best fit cue profiles

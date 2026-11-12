@@ -2,22 +2,22 @@
 title: "formify-e-sign/formify-skills — Claude Code skill discovered by cue"
 description: "AI agent skills for SMB e-signing and document workflows — build fillable PDF forms, send contracts for electronic signature, verify signers with BankID or an I"
 layout: page
-updated: 2026-09-16
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
-# 💎 [formify-e-sign/formify-skills](https://github.com/formify-e-sign/formify-skills)
+# ✨ [formify-e-sign/formify-skills](https://github.com/formify-e-sign/formify-skills)
 
-**★ 5** · exceptional (score 8.4) · JavaScript · agent-skill, agent-skills, bankid, claude-code-skill, claude-skills
+**★ 5** · strong (score 6) · HTML · agent-skills, bankid, claude-code-skill, claude-skills, contracts
 
 > AI agent skills for SMB e-signing and document workflows — build fillable PDF forms, send contracts for electronic signature, verify signers with BankID or an ID scan, and track everything after the send. Works with Claude, ChatGPT, Codex, Cursor and ~25 agents via MCP.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-16
-- 🏷️ Tags: agent-skill, agent-skills, bankid, claude-code-skill, claude-skills, contracts, document-workflow, e-signing, eidas, electronic-signature, esignature, formify, identity-verification, kyc, mcp, model-context-protocol, pdf-forms, skills-sh, small-business, smb
+- 🗓️ Last pushed: 2026-11-12
+- 🏷️ Tags: agent-skills, bankid, claude-code-skill, claude-skills, contracts, document-signing, document-workflow, e-signing, eidas, electronic-signature, esignature, formify, identity-verification, kyc, mcp, model-context-protocol, pdf-forms, skills-sh, small-business, smb
 
 ## Best fit cue profiles
 

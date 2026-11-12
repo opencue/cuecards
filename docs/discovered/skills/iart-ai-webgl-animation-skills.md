@@ -2,22 +2,22 @@
 title: "iart-ai/webgl-animation-skills — Claude Code skill discovered by cue"
 description: "3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie "
 layout: page
-updated: 2026-06-30
+updated: 2026-11-12
 tags: [claude-code, skill, threejs]
 ---
 
-# ✨ [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
+# 💎 [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
 
-**★ 1** · strong (score 6) · HTML · 3d-animation, claude-skill, glsl-shaders, motion-graphics, particle-system
+**★ 54** · exceptional (score 15.9) · HTML · 3d-animation, agent-skills, ai-animation, claude-code, claude-skill
 
 > 3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-22
-- 🏷️ Tags: 3d-animation, claude-skill, glsl-shaders, motion-graphics, particle-system, threejs, webgl
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
+- ⭐ 54 stars
+- 🗓️ Last pushed: 2026-11-11
+- 🏷️ Tags: 3d-animation, agent-skills, ai-animation, claude-code, claude-skill, claude-skills, codex, cursor, deepseek, glsl-shaders, motion-graphics, particle-system, threejs, webgl
 
 ## Best fit cue profiles
 

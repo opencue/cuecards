@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="reinamoon-writeskills-ko"></a>
-## 💎 [ReinaMoon/writeskills-ko](https://github.com/ReinaMoon/writeskills-ko)
+<a id="albegosu-second-brain"></a>
+## 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
 
-**★ 1** · exceptional (score 8.3) · PowerShell · tags: agent-skills, ai-writing, ai-writing-assistant, ai-writing-free, blog
+**★ 16** · exceptional (score 10.4) · Python · tags: ai-agents, claude-code, claude-skill, design-inspiration, design-md
 
-한국어 Claude Agent Skills 47종. IT 실무 문서(회의록, 런북, ADR, 장애 회고, PR), 기술 블로그, 소설 연재와 연속성, 이력서와 자소서와 면접, AI 말투 교정. 의존성 없음. CC BY-SA 4.0.
+Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from.
 
 ```bash
-cue skills add ReinaMoon/writeskills-ko --profile docs-writer
+cue skills add albegosu/second-brain --profile docs-writer
+```
+
+---
+
+<a id="rockbenben-aishort-skills"></a>
+## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
+
+**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, app-icon, claude
+
+Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
+
+```bash
+cue skills add rockbenben/aishort-skills --profile docs-writer
 ```
 
 ---

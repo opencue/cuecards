@@ -1,23 +1,23 @@
 ---
 title: "mdrzn/claude-screenshot-uploader — Claude Code skill discovered by cue"
-description: "📸 Upload macOS screenshots to your server over SSH and get the remote path on your clipboard — ready to paste into a remote Claude Code/Codex session. Menu bar"
+description: "📸 Upload macOS screenshots to your server over SSH and get the remote path on your clipboard — ready to paste into a remote Claude Code/Codex session. Native m"
 layout: page
-updated: 2026-09-02
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mdrzn/claude-screenshot-uploader](https://github.com/mdrzn/claude-screenshot-uploader)
 
-**★ 33** · exceptional (score 10.7) · Shell · claude-code, codex, developer-tools, launchd, macos
+**★ 34** · exceptional (score 9.8) · Swift · claude-code, codex, developer-tools, macos, menubar
 
-> 📸 Upload macOS screenshots to your server over SSH and get the remote path on your clipboard — ready to paste into a remote Claude Code/Codex session. Menu bar app via xbar.
+> 📸 Upload macOS screenshots to your server over SSH and get the remote path on your clipboard — ready to paste into a remote Claude Code/Codex session. Native menu bar app: instant uploads, clipboard images, drag and drop.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.7 based on:
-- ⭐ 33 stars
-- 🗓️ Last pushed: 2026-09-01
-- 🏷️ Tags: claude-code, codex, developer-tools, launchd, macos, menubar, remote-development, screenshot, screenshot-utility, xbar
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
+- ⭐ 34 stars
+- 🗓️ Last pushed: 2026-11-11
+- 🏷️ Tags: claude-code, codex, developer-tools, macos, menubar, menubar-app, remote-development, screenshot, screenshot-utility, swift
 
 ## Best fit cue profiles
 

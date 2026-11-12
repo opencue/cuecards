@@ -2,22 +2,22 @@
 title: "PeterKalmstrom/claude-powerpoint-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill for building production-quality PowerPoint decks on Windows via MCP + COM automation"
 layout: page
-updated: 2026-10-09
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [PeterKalmstrom/claude-powerpoint-skill](https://github.com/PeterKalmstrom/claude-powerpoint-skill)
 
-**★ 3** · exceptional (score 15.2) · Python · claude-code, claude-skill, com-automation, gemini, mcp
+**★ 6** · exceptional (score 16.7) · Python · claude-code, claude-skill, com-automation, gemini, mcp
 
 > Claude Code skill for building production-quality PowerPoint decks on Windows via MCP + COM automation
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-09
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: claude-code, claude-skill, com-automation, gemini, mcp, powerpoint, presentations, remotion, veo
 
 ## Best fit cue profiles

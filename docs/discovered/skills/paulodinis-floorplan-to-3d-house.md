@@ -1,27 +1,27 @@
 ---
 title: "paulodinis/floorplan-to-3d-house — Claude Code skill discovered by cue"
-description: "Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D model -> GLB/DXF -> Blender drone video"
+description: "Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D (1-2 storeys) -> GLB/DXF, elevations, sun report, Blender video"
 layout: page
-updated: 2026-11-01
-tags: [claude-code, skill, core]
+updated: 2026-11-12
+tags: [claude-code, skill, threejs]
 ---
 
 # ✨ [paulodinis/floorplan-to-3d-house](https://github.com/paulodinis/floorplan-to-3d-house)
 
-**★ 0** · strong (score 6) · Python · architecture, blender, claude-plugin, claude-skill, dxf
+**★ 1** · strong (score 6.3) · JavaScript · architecture, blender, claude-plugin, claude-skill, dxf
 
-> Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D model -> GLB/DXF -> Blender drone video
+> Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D (1-2 storeys) -> GLB/DXF, elevations, sun report, Blender video
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-01
-- 🏷️ Tags: architecture, blender, claude-plugin, claude-skill, dxf, floor-plan, three-js
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-12
+- 🏷️ Tags: architecture, blender, claude-plugin, claude-skill, dxf, floor-plan, three-js, threejs
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[threejs](../threejs.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add paulodinis/floorplan-to-3d-house --profile core
+cue skills add paulodinis/floorplan-to-3d-house --profile threejs
 ```
 
 ## About

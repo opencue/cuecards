@@ -1,59 +1,42 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "4 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="nickfly060606-maker-engineering-drawing-3d"></a>
-## 💎 [nickfly060606-maker/engineering-drawing-3d](https://github.com/nickfly060606-maker/engineering-drawing-3d)
+<a id="iart-ai-webgl-animation-skills"></a>
+## 💎 [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
 
-**★ 0** · exceptional (score 13.5) · Python · tags: 3d-reconstruction, agent-skill, cad, claude-skill, engineering-drawing
+**★ 54** · exceptional (score 15.9) · HTML · tags: 3d-animation, agent-skills, ai-animation, claude-code, claude-skill
 
-把工程制图的三视图反推成可旋转三维模型 —— Agent Skill，附体积/封闭性/反投影三重校验
-
-✅ SKILL.md
+3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.
 
 ```bash
-cue skills add nickfly060606-maker/engineering-drawing-3d --profile threejs
+cue skills add iart-ai/webgl-animation-skills --profile threejs
 ```
 
 ---
 
-<a id="jdhruv14-holographic-card"></a>
-## 💎 [JDhruv14/holographic-card](https://github.com/JDhruv14/holographic-card)
+<a id="paulodinis-floorplan-to-3d-house"></a>
+## ✨ [paulodinis/floorplan-to-3d-house](https://github.com/paulodinis/floorplan-to-3d-house)
 
-**★ 2** · exceptional (score 11.5) · TypeScript · tags: claude-skill, pokemon, typescript, webgl, windows-98
+**★ 1** · strong (score 6.3) · JavaScript · tags: architecture, blender, claude-plugin, claude-skill, dxf
 
-A Claude skill and WebGL2 + TypeScript component for interactive 3D holographic Pokémon in a Windows 98 window.
-
-✅ SKILL.md
+Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D (1-2 storeys) -> GLB/DXF, elevations, sun report, Blender video
 
 ```bash
-cue skills add JDhruv14/holographic-card --profile threejs
-```
-
----
-
-<a id="hotjinnasim-code-namokposter"></a>
-## 💎 [hotjinnasim-code/NamokPoster](https://github.com/hotjinnasim-code/NamokPoster)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: blender, claude-code, claude-skill, korean-typography, poster
-
-포스터 문구를 주면 서로 다른 스타일의 시안 세 장을 만들어 주는 Claude Code 스킬 — three.js · HTML, 요청하면 Blender
-
-```bash
-cue skills add hotjinnasim-code/NamokPoster --profile threejs
+cue skills add paulodinis/floorplan-to-3d-house --profile threejs
 ```
 
 ---

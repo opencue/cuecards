@@ -2,13 +2,13 @@
 title: "kubai087/kubai-icons — Claude Code skill discovered by cue"
 description: "An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React,"
 layout: page
-updated: 2026-11-10
+updated: 2026-11-12
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
 
-**★ 623** · exceptional (score 17.5) · JavaScript · agent-skills, ai-agents, animated-icons, animation, claude
+**★ 770** · exceptional (score 17.5) · JavaScript · agent-skills, ai-agents, animated-icons, animation, claude
 
 > An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 623 stars
-- 🗓️ Last pushed: 2026-11-10
+- ⭐ 770 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: agent-skills, ai-agents, animated-icons, animation, claude, claude-skill, codex, design-system, hover-effects, icon-set, icons, react, svg, svg-icons, vue
 
 ## Best fit cue profiles

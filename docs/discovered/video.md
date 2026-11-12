@@ -1,42 +1,59 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="threerocks-article2media"></a>
-## 💎 [threerocks/article2media](https://github.com/threerocks/article2media)
+<a id="pattern-ai-labs-agentcall"></a>
+## 💎 [pattern-ai-labs/agentcall](https://github.com/pattern-ai-labs/agentcall)
 
-**★ 82** · exceptional (score 14.2) · JavaScript · tags: agent-skills, bilibili, chinese, claude-code, claude-code-plugin
+**★ 194** · exceptional (score 24.2) · Python · tags: agent-skills, agentcall, ai-agent, ai-meeting-assistant, claude-code
 
-把一篇文章或一条视频（抖音、B 站、YouTube，先转逐字稿）一键做成小红书图文、杂志长图、公众号排版和 AI 配音口播短视频的开源 Claude Code / Codex Skill。21 套主题，自动验收，零 npm 依赖。
+AgentCall lets AI Agents join meetings with voice, video & screen-share to build together. Supports Google Meet, Teams, Zoom (Beta)
+
+✅ SKILL.md
 
 ```bash
-cue skills add threerocks/article2media --profile video
+cue skills add pattern-ai-labs/agentcall --profile video
 ```
 
 ---
 
-<a id="morgankotb7-eng-mpt-arabic-free-quickstart"></a>
-## ✨ [morgankotb7-eng/mpt-arabic-free-quickstart](https://github.com/morgankotb7-eng/mpt-arabic-free-quickstart)
+<a id="himohitmehta-shipdemo"></a>
+## 💎 [himohitmehta/shipdemo](https://github.com/himohitmehta/shipdemo)
 
-**★ 0** · strong (score 6) · Python · tags: arabic, claude-skill, edge-tts, egyptian-arabic, moneyprinterturbo
+**★ 0** · exceptional (score 15.5) · TypeScript · tags: agent-skill, captions, claude-code, claude-skill, demo-video
 
-Safe, free, Arabic-first quickstart for MoneyPrinterTurbo: pinned setup, hardened config, Egyptian Arabic voice, RTL subtitles, audit notes. No API keys.
+Product demo videos from one script: Reels, Shorts, YouTube, LinkedIn, X and your website. Script, voice-over, captions, checks and platform variants. A Claude Code skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add morgankotb7-eng/mpt-arabic-free-quickstart --profile video
+cue skills add himohitmehta/shipdemo --profile video
+```
+
+---
+
+<a id="lemomo-ai-lemo-opuscar"></a>
+## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
+
+**★ 15113** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
+
+A toolbox of film styles made in code for Claude Code: 99 ready to use, and your own. Each style is a style prompt plus a demo film made entirely in code by Claude Opus 5.5, with no video model. By Lemomo. · 一套用代码做片的风格工具箱：99 种现成风格，也能做出你自己的
+
+```bash
+cue skills add lemomo-ai/lemo-opuscar --profile video
 ```
 
 ---

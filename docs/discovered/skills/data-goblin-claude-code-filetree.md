@@ -2,21 +2,21 @@
 title: "data-goblin/claude-code-filetree — Claude Code skill discovered by cue"
 description: "IDE-style file tree for Claude Code: a live pane that shows which files Claude reads and edits, with git status, diffs, content search, file previews and guarde"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [data-goblin/claude-code-filetree](https://github.com/data-goblin/claude-code-filetree)
 
-**★ 407** · exceptional (score 11.5) · TypeScript · agentic-coding, ai-agents, ai-coding, anthropic, claude
+**★ 417** · exceptional (score 11.5) · TypeScript · agentic-coding, ai-agents, ai-coding, anthropic, claude
 
 > IDE-style file tree for Claude Code: a live pane that shows which files Claude reads and edits, with git status, diffs, content search, file previews and guarded paths, in the terminal and the Claude Desktop app.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
-- ⭐ 407 stars
-- 🗓️ Last pushed: 2026-11-10
+- ⭐ 417 stars
+- 🗓️ Last pushed: 2026-11-11
 - 🏷️ Tags: agentic-coding, ai-agents, ai-coding, anthropic, claude, claude-code, claude-code-plugin, claude-desktop, code-search, coding-agent, developer-tools, diff-viewer, file-browser, file-explorer, file-tree, git, sidebar, terminal, tmux, tui
 
 ## Best fit cue profiles

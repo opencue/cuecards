@@ -2,7 +2,7 @@
 title: "avlk/spawnxchange-skills — Claude Code skill discovered by cue"
 description: "Agentic skills for spawnxchange - x402 marketplace for AI-built code artifacts"
 layout: page
-updated: 2026-11-08
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-08
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: agent-skill, agentic-marketplace, base, claude-code-skill, codex-skill, copilot-skill, hermes-skill, openclaw-skill, polygon, skills, usdc, x402
 
 ## Best fit cue profiles

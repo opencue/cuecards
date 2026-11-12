@@ -2,7 +2,7 @@
 title: "Seawolf0/Spectra — Claude Code skill discovered by cue"
 description: "A real-time light-physics playground in one HTML file. 3D mode: a spectral path tracer with dispersion, caustics, Fresnel glass and depth of field. 2D mode: an "
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skill, threejs]
 ---
 

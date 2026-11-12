@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,23 +15,23 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="engheng-art-douyin-jingpinzhixi"></a>
-## 💎 [engheng-art/douyin-jingpinzhixi](https://github.com/engheng-art/douyin-jingpinzhixi)
+<a id="geyadawang-boop-humanize-writing"></a>
+## 💎 [geyadawang-boop/humanize-writing](https://github.com/geyadawang-boop/humanize-writing)
 
-**★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
+**★ 19** · exceptional (score 11.5) · Python · tags: agent-skill, chinese-writing, claude-skill, creative-writing, fiction
 
-实时掌握平台热点，快速响应热门话题｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+中文写作技能包：小说、网文、剧本、诗歌、散文的创作、编辑与长篇项目管理
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/douyin-jingpinzhixi --profile niche
+cue skills add geyadawang-boop/humanize-writing --profile niche
 ```
 
 ---
 
-<a id="engheng-art-public-lead-extractor"></a>
-## 💎 [engheng-art/public-lead-extractor](https://github.com/engheng-art/public-lead-extractor)
+<a id="engheng-art-public-customer-acquisition"></a>
+## 💎 [engheng-art/public-customer-acquisition](https://github.com/engheng-art/public-customer-acquisition)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
@@ -40,22 +40,22 @@ cue skills add engheng-art/douyin-jingpinzhixi --profile niche
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/public-lead-extractor --profile niche
+cue skills add engheng-art/public-customer-acquisition --profile niche
 ```
 
 ---
 
-<a id="engheng-art-douyin-wenan"></a>
-## 💎 [engheng-art/douyin-wenan](https://github.com/engheng-art/douyin-wenan)
+<a id="engheng-art-shipin-yuyin-zhuan-wenzi"></a>
+## 💎 [engheng-art/shipin-yuyin-zhuan-wenzi](https://github.com/engheng-art/shipin-yuyin-zhuan-wenzi)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-实时掌握平台热点，快速响应热门话题｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+调用千问大模型完成视频深度语义解析，快速转写网络视频链接与本地视频文件，自动剔除语气词、重复台词等无效文本，自由定制各类风格文案，高效处理短视频二次创作、直播复盘、人物采访整理、知识素材提取、探店脚本撰写、培训课件整理等多类视频内容需求｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/douyin-wenan --profile niche
+cue skills add engheng-art/shipin-yuyin-zhuan-wenzi --profile niche
 ```
 
 ---

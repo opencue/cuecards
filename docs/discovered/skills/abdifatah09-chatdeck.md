@@ -2,7 +2,7 @@
 title: "Abdifatah09/chatdeck — Claude Code skill discovered by cue"
 description: "A local dashboard for your Claude Code chats"
 layout: page
-updated: 2026-10-29
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-29
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-code-skills, claude-desktop, claude-plugin, claude-skills, dashboard, dashboard-application, dashboard-design, dashboard-templates, dashboards, developer, developer-experience, developer-portfolio, developer-tools
 
 ## Best fit cue profiles

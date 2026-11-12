@@ -2,21 +2,21 @@
 title: "mimmo-the-root/UEFN-dream-bot-team — Claude Code skill discovered by cue"
 description: "Free open-source Claude Code kit: 22 AI agents (17 + 5 UEFN MCP sub-agents), 34 skills and 387 proven UEFN MCP recipes to build, test and improve Fortnite maps "
 layout: page
-updated: 2026-11-05
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [mimmo-the-root/UEFN-dream-bot-team](https://github.com/mimmo-the-root/UEFN-dream-bot-team)
 
-**★ 13** · exceptional (score 11.3) · HTML · ai-agents, claude-code, claude-code-skill, claude-code-skills, fortnite
+**★ 18** · exceptional (score 10.5) · HTML · ai-agents, claude-code, claude-code-skill, claude-code-skills, fortnite
 
 > Free open-source Claude Code kit: 22 AI agents (17 + 5 UEFN MCP sub-agents), 34 skills and 387 proven UEFN MCP recipes to build, test and improve Fortnite maps (Verse, Niagara, UI)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-11-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
+- ⭐ 18 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: ai-agents, claude-code, claude-code-skill, claude-code-skills, fortnite, fortnite-creative, fortnite-github, game-development, mcp, mcp-tools, model-context-protocol, uefn, unreal-editor-for-fortnite, unreal-engine, verse
 
 ## Best fit cue profiles

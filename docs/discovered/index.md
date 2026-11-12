@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "89 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "91 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,26 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **89 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-11-11 · refreshed nightly via GitHub Code Search.
+> **91 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
+> Last updated: 2026-11-12 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 63 | `dex`, `qiuxiaoce-football-data`, `strategic-advisor-orchestrator` |
-| [**research**](./research.md) | 5 | `ieee-transactions-paper-writing-zh`, `scholarship-visa-scam-checker`, `ieee-transactions-paper-writing` |
-| [**threejs**](./threejs.md) | 4 | `engineering-drawing-3d`, `holographic-card`, `NamokPoster` |
-| [**cybersecurity**](./cybersecurity.md) | 3 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `cutify-this`, `DotNetBrowser-Skill` |
-| [**niche**](./niche.md) | 3 | `douyin-jingpinzhixi`, `public-lead-extractor`, `douyin-wenan` |
-| [**video**](./video.md) | 2 | `article2media`, `mpt-arabic-free-quickstart` |
-| [**docs-writer**](./docs-writer.md) | 2 | `writeskills-ko`, `repo-engineering-skills` |
-| [**medusa-dev**](./medusa-dev.md) | 1 | `independent-site-ip-investigator` |
-| [**rust**](./rust.md) | 1 | `intutic` |
-| [**marketing**](./marketing.md) | 1 | `content-funnel-skill` |
-| [**backend**](./backend.md) | 1 | `redesigned-pancake` |
-| [**creative-media**](./creative-media.md) | 1 | `redesigned-pancake` |
+| [**core**](./core.md) | 63 | `OnlyShot`, `storybloq`, `brilliant-directories-mcp` |
+| [**creative-media**](./creative-media.md) | 5 | `lemo-opuscar`, `ux-skill`, `atelier` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
+| [**video**](./video.md) | 3 | `agentcall`, `shipdemo`, `lemo-opuscar` |
+| [**threejs**](./threejs.md) | 3 | `webgl-animation-skills`, `floorplan-to-3d-house`, `Spectra` |
+| [**research**](./research.md) | 3 | `geng-skills`, `google-ads-agents`, `skillassay` |
+| [**niche**](./niche.md) | 3 | `humanize-writing`, `public-customer-acquisition`, `shipin-yuyin-zhuan-wenzi` |
+| [**docs-writer**](./docs-writer.md) | 3 | `second-brain`, `aishort-skills`, `repo-engineering-skills` |
+| [**backend**](./backend.md) | 2 | `context-mode`, `redesigned-pancake` |
+| [**frontend**](./frontend.md) | 2 | `kubai-icons`, `awesome-claude-ui-armory` |
+| [**marketing**](./marketing.md) | 2 | `google-ads-agents`, `ship-site` |
+| [**python**](./python.md) | 1 | `skills` |
+| [**nextjs**](./nextjs.md) | 1 | `ship-site` |
 
 ## How scoring works
 

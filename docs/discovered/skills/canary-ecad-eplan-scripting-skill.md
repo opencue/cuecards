@@ -2,21 +2,21 @@
 title: "Canary-ECAD/eplan-scripting-skill — Claude Code skill discovered by cue"
 description: "Agent skills for EPLAN Electric P8 and EEC Pro development: C# scripting, the EPLAN API and Remote Client automation. Works with Claude Code, Codex, Cursor and "
 layout: page
-updated: 2026-11-06
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Canary-ECAD/eplan-scripting-skill](https://github.com/Canary-ECAD/eplan-scripting-skill)
 
-**★ 5** · exceptional (score 9.9) · agent-skills, anthropic, automation, claude-code, claude-code-plugin
+**★ 6** · exceptional (score 10.1) · agent-skills, anthropic, automation, claude-code, claude-code-plugin
 
 > Agent skills for EPLAN Electric P8 and EEC Pro development: C# scripting, the EPLAN API and Remote Client automation. Works with Claude Code, Codex, Cursor and 60+ agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-11-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: agent-skills, anthropic, automation, claude-code, claude-code-plugin, claude-code-skill, csharp, eec-pro, electrical-engineering, eplan, eplan-api, eplan-electric, eplan-p8, eplan-scripting, eplan-skill, plugin-marketplace, scripting
 
 ## Best fit cue profiles

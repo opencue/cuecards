@@ -2,21 +2,21 @@
 title: "veragao0101-cmd/butler-skill — Claude Code skill discovered by cue"
 description: "给个人工作者的 Super-agent：借鉴 DeepSeek Router–Worker 架构的 Claude Code 管家 skill"
 layout: page
-updated: 2026-11-06
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [veragao0101-cmd/butler-skill](https://github.com/veragao0101-cmd/butler-skill)
 
-**★ 2** · exceptional (score 8.5) · Shell · claude-code, claude-skill, deepseek, multi-agent, super-agent
+**★ 3** · exceptional (score 8.7) · Shell · claude-code, claude-skill, deepseek, multi-agent, super-agent
 
 > 给个人工作者的 Super-agent：借鉴 DeepSeek Router–Worker 架构的 Claude Code 管家 skill
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-06
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: claude-code, claude-skill, deepseek, multi-agent, super-agent
 
 ## Best fit cue profiles

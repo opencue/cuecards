@@ -2,7 +2,7 @@
 title: "humanityco/cookie-compliance-agent-manual — Claude Code skill discovered by cue"
 description: "Skills and cookbooks that teach coding agents to install a Cookie Compliance consent banner the right way: loaded first, blocking trackers before consent, and s"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-11
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: ai-agent-skills, ccpa, claude-skill, cookie-consent, gdpr, mcp
 
 ## Best fit cue profiles

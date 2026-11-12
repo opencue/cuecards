@@ -1,23 +1,23 @@
 ---
 title: "vslipchenko/ai — Claude Code skill discovered by cue"
-description: "Standalone plugins and skills for the AI domain."
+description: "Standalone plugins and skills for AI agents."
 layout: page
-updated: 2026-10-01
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [vslipchenko/ai](https://github.com/vslipchenko/ai)
+# 💎 [vslipchenko/ai](https://github.com/vslipchenko/ai)
 
-**★ 0** · strong (score 6) · Python · claude-code-plugin, claude-code-skill, claude-plugin, claude-skills
+**★ 0** · exceptional (score 9.5) · Python · agent-plugins, agent-skills, ai-plugins, ai-skills, anthropic
 
-> Standalone plugins and skills for the AI domain.
+> Standalone plugins and skills for AI agents.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-01
-- 🏷️ Tags: claude-code-plugin, claude-code-skill, claude-plugin, claude-skills
+- 🗓️ Last pushed: 2026-11-12
+- 🏷️ Tags: agent-plugins, agent-skills, ai-plugins, ai-skills, anthropic, anthropic-claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills, developer-tools, prompt-engineering
 
 ## Best fit cue profiles
 

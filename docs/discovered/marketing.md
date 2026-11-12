@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for marketing"
-description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-12
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `marketing`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **marketing** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kokoai-id-content-funnel-skill"></a>
-## 💎 [kokoai-id/content-funnel-skill](https://github.com/kokoai-id/content-funnel-skill)
+<a id="arcbaslow-google-ads-agents"></a>
+## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
 
-**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, content-marketing, social-media
+**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
 
-Claude Code skill: plan, write and produce organic social content that turns one buyer persona into DMs/leads (any business; Tilerank + property agent examples)
+Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
 
 ```bash
-cue skills add kokoai-id/content-funnel-skill --profile marketing
+cue skills add arcbaslow/google-ads-agents --profile marketing
+```
+
+---
+
+<a id="saroj-shahi-ship-site"></a>
+## 💎 [saroj-shahi/ship-site](https://github.com/saroj-shahi/ship-site)
+
+**★ 1** · exceptional (score 8.3) · Python · tags: accessibility, claude-code, claude-code-plugin, claude-skill, nextjs
+
+Claude Code skill: Next.js marketing site release orchestrator (audit, fix, release, smoke)
+
+```bash
+cue skills add saroj-shahi/ship-site --profile marketing
 ```
 
 ---

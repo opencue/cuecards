@@ -2,22 +2,22 @@
 title: "brilliantdirectories/brilliant-directories-mcp — Claude Code skill discovered by cue"
 description: "Official MCP server for Brilliant Directories — manage members, posts, leads, reviews, pages, and more from any AI agent. OpenAPI 3.1 spec included."
 layout: page
-updated: 2026-08-14
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [brilliantdirectories/brilliant-directories-mcp](https://github.com/brilliantdirectories/brilliant-directories-mcp)
 
-**★ 18** · exceptional (score 17.8) · JavaScript · ai-agents, anthropic, brilliant-directories, brilliantdirectories, claude
+**★ 20** · exceptional (score 17.9) · JavaScript · ai-agents, anthropic, brilliant-directories, brilliantdirectories, claude
 
 > Official MCP server for Brilliant Directories — manage members, posts, leads, reviews, pages, and more from any AI agent. OpenAPI 3.1 spec included.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.9 based on:
 - ✅ Contains SKILL.md
-- ⭐ 18 stars
-- 🗓️ Last pushed: 2026-08-14
+- ⭐ 20 stars
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: ai-agents, anthropic, brilliant-directories, brilliantdirectories, claude, claude-skill, cursor, mcp, mcp-server, model-context-protocol, openapi
 
 ## Best fit cue profiles

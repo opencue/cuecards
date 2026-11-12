@@ -2,13 +2,13 @@
 title: "jgoneit/jaekit — Claude Code skill discovered by cue"
 description: "Spec turns requests into goal documents; Seal implements, verifies, and records completion."
 layout: page
-updated: 2026-11-08
+updated: 2026-11-12
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [jgoneit/jaekit](https://github.com/jgoneit/jaekit)
 
-**★ 0** · exceptional (score 8) · Python · claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills
+**★ 0** · exceptional (score 8) · Go · claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills
 
 > Spec turns requests into goal documents; Seal implements, verifies, and records completion.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-08
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills, codex, harness, harness-engineering
 
 ## Best fit cue profiles

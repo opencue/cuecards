@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-09
+updated: 2026-11-12
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="anirudhlath-alfred"></a>
-## ✨ [anirudhlath/alfred](https://github.com/anirudhlath/alfred)
+<a id="simliai-skills"></a>
+## 💎 [simliai/skills](https://github.com/simliai/skills)
 
-**★ 2** · strong (score 5) · Python · tags: agentic-ai, claude, fastapi, home-automation, llm
+**★ 0** · exceptional (score 8.5) · Python · tags: agent-skill, agent-skills, ai-avatar, claude-code-skill, livekit
 
-Local-first multi-agent voice assistant — dual-process architecture (local Ollama SLM fast path + Claude agentic tool-use loop), LLM-generated automation triggers, three-layer memory with embedding search, DeepEval evals. Python, FastAPI, Redis, MQTT.
+Agent skill: add real-time Simli talking avatars to LiveKit, Pipecat, browser and Python apps
 
 ```bash
-cue skills add anirudhlath/alfred --profile python
+cue skills add simliai/skills --profile python
 ```
 
 ---
