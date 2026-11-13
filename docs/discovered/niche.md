@@ -2,7 +2,7 @@
 title: "Claude Code Skills for niche"
 description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
@@ -15,23 +15,8 @@ tags: [claude-code, niche, skills, mcp, ai-agents]
 
 ---
 
-<a id="geyadawang-boop-humanize-writing"></a>
-## 💎 [geyadawang-boop/humanize-writing](https://github.com/geyadawang-boop/humanize-writing)
-
-**★ 19** · exceptional (score 11.5) · Python · tags: agent-skill, chinese-writing, claude-skill, creative-writing, fiction
-
-中文写作技能包：小说、网文、剧本、诗歌、散文的创作、编辑与长篇项目管理
-
-✅ SKILL.md
-
-```bash
-cue skills add geyadawang-boop/humanize-writing --profile niche
-```
-
----
-
-<a id="engheng-art-public-customer-acquisition"></a>
-## 💎 [engheng-art/public-customer-acquisition](https://github.com/engheng-art/public-customer-acquisition)
+<a id="engheng-art-zhao-kehu"></a>
+## 💎 [engheng-art/zhao-kehu](https://github.com/engheng-art/zhao-kehu)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
@@ -40,22 +25,37 @@ cue skills add geyadawang-boop/humanize-writing --profile niche
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/public-customer-acquisition --profile niche
+cue skills add engheng-art/zhao-kehu --profile niche
 ```
 
 ---
 
-<a id="engheng-art-shipin-yuyin-zhuan-wenzi"></a>
-## 💎 [engheng-art/shipin-yuyin-zhuan-wenzi](https://github.com/engheng-art/shipin-yuyin-zhuan-wenzi)
+<a id="engheng-art-shipinwenzi-fenxitiqudashi"></a>
+## 💎 [engheng-art/shipinwenzi-fenxitiqudashi](https://github.com/engheng-art/shipinwenzi-fenxitiqudashi)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-调用千问大模型完成视频深度语义解析，快速转写网络视频链接与本地视频文件，自动剔除语气词、重复台词等无效文本，自由定制各类风格文案，高效处理短视频二次创作、直播复盘、人物采访整理、知识素材提取、探店脚本撰写、培训课件整理等多类视频内容需求｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
+把视频变成能直接用的文字。无论是短视频二创改脚本、会议出纪要、课程拆知识点，还是直播复盘、采访整理、探店脚本、培训课件整理，都能一键成文。支持网络视频链接和本地视频文件，调用千问大模型语义解析，自动过滤语气词、口误与重复台词，并按你想要的风格输出。用户提到视频转文字、提取视频语音、视频出稿等需求时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/shipin-yuyin-zhuan-wenzi --profile niche
+cue skills add engheng-art/shipinwenzi-fenxitiqudashi --profile niche
+```
+
+---
+
+<a id="engheng-art-shipin-wenanguan"></a>
+## 💎 [engheng-art/shipin-wenanguan](https://github.com/engheng-art/shipin-wenanguan)
+
+**★ 0** · exceptional (score 9.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
+
+本技能将视频转写为文本，支持网络视频链接与本地视频文件输入，调用千问大模型进行语义解析，自动清洗语气词、口误与重复台词，并可按指定风格生成文案。适用场景包括：短视频二次创作、企业会议纪要、线上课程拆解、直播复盘、人物采访整理、知识素材提取、探店脚本撰写、培训课件整理。当用户需要把视频转成文字或生成视频文案时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
+
+✅ SKILL.md
+
+```bash
+cue skills add engheng-art/shipin-wenanguan --profile niche
 ```
 
 ---

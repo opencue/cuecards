@@ -2,7 +2,7 @@
 title: "themembershipguru/storytoon-skill — Claude Code skill discovered by cue"
 description: "Claude skill that makes 2D-characters-in-a-3D-world story shorts. Drawn in code, free voice, no image API."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-12
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: animation, claude-code, claude-skill, remotion, youtube-shorts
 
 ## Best fit cue profiles

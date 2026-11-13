@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="arcbaslow-google-ads-agents"></a>
-## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
+<a id="marcosmodly-marketing-skill"></a>
+## 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
 
-**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
+**★ 138** · exceptional (score 13.5) · HTML · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
 
-Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
+Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
 
 ```bash
-cue skills add arcbaslow/google-ads-agents --profile marketing
+cue skills add marcosmodly/marketing-skill --profile marketing
 ```
 
 ---
 
-<a id="saroj-shahi-ship-site"></a>
-## 💎 [saroj-shahi/ship-site](https://github.com/saroj-shahi/ship-site)
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: accessibility, claude-code, claude-code-plugin, claude-skill, nextjs
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
 
-Claude Code skill: Next.js marketing site release orchestrator (audit, fix, release, smoke)
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
 
 ```bash
-cue skills add saroj-shahi/ship-site --profile marketing
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile marketing
 ```
 
 ---

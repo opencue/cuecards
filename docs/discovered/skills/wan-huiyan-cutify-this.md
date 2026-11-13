@@ -2,7 +2,7 @@
 title: "wan-huiyan/cutify-this — Claude Code skill discovered by cue"
 description: "Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer anim"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-13
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-11
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, favicon, frontend, pixel-art, svg
 
 ## Best fit cue profiles

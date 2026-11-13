@@ -2,7 +2,7 @@
 title: "soreavis/property-deep-dive — Claude Code skill discovered by cue"
 description: "Pre-purchase property due-diligence across 126 countries × 41 user-invocable sections + 4 cross-cutting layers — tax, risks, yield, visa, mortgage, schools, sca"
 layout: page
-updated: 2026-11-06
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-06
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: anti-hallucination, claude-code, claude-skill, due-diligence, eu, markdown, property, real-estate, regulatory-watch, tax
 
 ## Best fit cue profiles

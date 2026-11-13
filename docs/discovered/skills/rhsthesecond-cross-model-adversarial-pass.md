@@ -2,21 +2,21 @@
 title: "RHSTheSecond/cross-model-adversarial-pass — Claude Code skill discovered by cue"
 description: "Run OpenAI Codex and a fresh Claude subagent as parallel adversarial reviewers on a design, PR, or prod gate, then adjudicate both. Always asks: is there a simp"
 layout: page
-updated: 2026-10-24
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [RHSTheSecond/cross-model-adversarial-pass](https://github.com/RHSTheSecond/cross-model-adversarial-pass)
 
-**★ 1** · exceptional (score 8.2) · Shell · adversarial-review, ai-agents, claude-code, claude-code-skill, code-review
+**★ 1** · exceptional (score 9.8) · Shell · adversarial-review, ai-agents, claude-code, claude-code-skill, code-review
 
 > Run OpenAI Codex and a fresh Claude subagent as parallel adversarial reviewers on a design, PR, or prod gate, then adjudicate both. Always asks: is there a simpler path?
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: adversarial-review, ai-agents, claude-code, claude-code-skill, code-review, codex
 
 ## Best fit cue profiles

@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "2 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="kubai087-kubai-icons"></a>
-## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
-
-**★ 770** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
-
-An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
-
-✅ SKILL.md
-
-```bash
-cue skills add kubai087/kubai-icons --profile frontend
-```
 
 ---
 
@@ -39,6 +24,45 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="mihirmodi27-keyline"></a>
+## 💎 [Mihirmodi27/keyline](https://github.com/Mihirmodi27/keyline)
+
+**★ 0** · exceptional (score 10.5) · JavaScript · tags: accessibility, agent-skill, agent-skills, ai-agents, claude-code
+
+Interface design laws for coding agents. One skill writes a DESIGN.md in your own token names, then critiques, audits and fixes type, colour, layout, depth, motion and patterns through it.
+
+```bash
+cue skills add Mihirmodi27/keyline --profile frontend
+```
+
+---
+
+<a id="wan-huiyan-cutify-this"></a>
+## 💎 [wan-huiyan/cutify-this](https://github.com/wan-huiyan/cutify-this)
+
+**★ 1** · exceptional (score 9.8) · JavaScript · tags: claude-code, claude-code-plugin, claude-code-skill, favicon, frontend
+
+Six Claude Code skills that make the things you build cute, and check that the cute actually works: favicons, sparkle effects, little-world apps, explainer animations, terminal and README.
+
+```bash
+cue skills add wan-huiyan/cutify-this --profile frontend
+```
+
+---
+
+<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
+## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+
+**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+
+Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+
+```bash
+cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
 ```
 
 ---

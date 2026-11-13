@@ -2,21 +2,21 @@
 title: "merysugy/skillhub-indesign — Claude Code skill discovered by cue"
 description: "Claude skill: prepare documents for professional layout in InDesign. Style system from a reference PDF or your IDML, Word text laid out in an IDML, visual resou"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, creative-media]
 ---
 
 # ✨ [merysugy/skillhub-indesign](https://github.com/merysugy/skillhub-indesign)
 
-**★ 0** · strong (score 6) · Python · claude-code-plugin, claude-skill, editorial-design, extendscript, idml
+**★ 2** · strong (score 6.5) · Python · claude-code-plugin, claude-skill, editorial-design, extendscript, idml
 
 > Claude skill: prepare documents for professional layout in InDesign. Style system from a reference PDF or your IDML, Word text laid out in an IDML, visual resources as scripts.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: claude-code-plugin, claude-skill, editorial-design, extendscript, idml, indesign
 
 ## Best fit cue profiles

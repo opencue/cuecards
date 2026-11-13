@@ -2,7 +2,7 @@
 title: "gkhurana21/co-op-coach — Claude Code skill discovered by cue"
 description: "An AI job-search agent for internship and co-op students: matches, applications, inbox, the NeetCode Path, and Jarvis. Runs on your Mac with your own Claude Cod"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 

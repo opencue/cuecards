@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="honeymeta-geng-skills"></a>
-## 💎 [HoneyMeta/geng-skills](https://github.com/HoneyMeta/geng-skills)
+<a id="aemro-motors-popper-scope"></a>
+## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
 
-**★ 4** · exceptional (score 13.3) · Python · tags: academic-integrity, agent-skills, claude-skill, data-fabrication, docx
+**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
 
-灵感来自"耿同学"学术打假。论文投稿前科研诚信自检 skill：检查 LaTeX/Word 数据造假与图像 PS 痕迹，导出 PDF 报告。AI agent skill for pre-submission research-integrity self-check.
-
-✅ SKILL.md
+Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
 
 ```bash
-cue skills add HoneyMeta/geng-skills --profile research
-```
-
----
-
-<a id="arcbaslow-google-ads-agents"></a>
-## 💎 [arcbaslow/google-ads-agents](https://github.com/arcbaslow/google-ads-agents)
-
-**★ 2** · exceptional (score 12.5) · Python · tags: advertising, adwords, ai-agent, auction-insights, campaign-management
-
-Google Ads audit toolkit: campaign analysis, conversion and tag checks, budget pacing, per-MCC profiles, reviewed changes, and Markdown reports.
-
-```bash
-cue skills add arcbaslow/google-ads-agents --profile research
+cue skills add aemro-motors/popper-scope --profile research
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "rossoctl/eventing-lab — Claude Code skill discovered by cue"
 description: "Event-driven agent wake path: a Kafka message wakes a Claude Code agent and streams every step back as CloudEvents — extracted from rossoctl/examples (history p"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 

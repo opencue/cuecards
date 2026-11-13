@@ -2,7 +2,7 @@
 title: "Claude Code Skills for rust"
 description: "1 community Claude Code skills curated by cue for the rust profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-13
 tags: [claude-code, rust, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, rust, skills, mcp, ai-agents]
 <a id="intutic-intutic"></a>
 ## 💎 [intutic/intutic](https://github.com/intutic/intutic)
 
-**★ 9** · exceptional (score 9.8) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
+**★ 10** · exceptional (score 9.9) · TypeScript · tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool
 
 Policy as code for AI agents: rules are Markdown files in git, enforced before every tool call. A Rust proxy and tool-call gates for 43 harnesses (Claude Code, Cursor, Codex, LangGraph, CrewAI and more) refuse dangerous commands, redact secrets and stop runaway loops. Open source, runs locally.
 

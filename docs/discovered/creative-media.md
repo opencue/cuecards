@@ -1,57 +1,29 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "5 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="lemomo-ai-lemo-opuscar"></a>
-## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
+<a id="marcosmodly-marketing-skill"></a>
+## 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
 
-**★ 15113** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
+**★ 138** · exceptional (score 13.5) · HTML · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
 
-A toolbox of film styles made in code for Claude Code: 99 ready to use, and your own. Each style is a style prompt plus a demo film made entirely in code by Claude Opus 5.5, with no video model. By Lemomo. · 一套用代码做片的风格工具箱：99 种现成风格，也能做出你自己的
-
-```bash
-cue skills add lemomo-ai/lemo-opuscar --profile creative-media
-```
-
----
-
-<a id="laith0003-ux-skill"></a>
-## 💎 [Laith0003/ux-skill](https://github.com/Laith0003/ux-skill)
-
-**★ 103** · exceptional (score 14.4) · Python · tags: ai-coding, ai-design, anti-ai-slop, brand-guidelines, claude-code
-
-Design intelligence engine for AI coding tools. A 171-rule anti-AI-slop linter, 160 brand specs, a 7-axis synthesizer, a WCAG-gated design system generator with Arabic and right to left built in, 25 MCP tools, 18 commands, 17 IDEs. Offline, never calls an LLM. MIT.
+Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
 
 ```bash
-cue skills add Laith0003/ux-skill --profile creative-media
-```
-
----
-
-<a id="wexop-atelier"></a>
-## 💎 [Wexop/atelier](https://github.com/Wexop/atelier)
-
-**★ 0** · exceptional (score 13) · Python · tags: agent-skills, claude, claude-code, claude-skill, claude-skills
-
-Procedural image studio driven by short Python scripts, built for LLMs (no generative AI)
-
-✅ SKILL.md
-
-```bash
-cue skills add Wexop/atelier --profile creative-media
+cue skills add marcosmodly/marketing-skill --profile creative-media
 ```
 
 ---
@@ -59,12 +31,25 @@ cue skills add Wexop/atelier --profile creative-media
 <a id="merysugy-skillhub-indesign"></a>
 ## ✨ [merysugy/skillhub-indesign](https://github.com/merysugy/skillhub-indesign)
 
-**★ 0** · strong (score 6) · Python · tags: claude-code-plugin, claude-skill, editorial-design, extendscript, idml
+**★ 2** · strong (score 6.5) · Python · tags: claude-code-plugin, claude-skill, editorial-design, extendscript, idml
 
 Claude skill: prepare documents for professional layout in InDesign. Style system from a reference PDF or your IDML, Word text laid out in an IDML, visual resources as scripts.
 
 ```bash
 cue skills add merysugy/skillhub-indesign --profile creative-media
+```
+
+---
+
+<a id="blisse-code-geometric-logo-blueprint"></a>
+## ✨ [blisse-code/geometric-logo-blueprint](https://github.com/blisse-code/geometric-logo-blueprint)
+
+**★ 0** · strong (score 6) · Python · tags: brand-identity, claude-skill, geometry, logo-design
+
+A Claude skill that designs logo marks on a geometric blueprint anyone can rebuild without measuring, then scores them for avatar crops and 16px favicons.
+
+```bash
+cue skills add blisse-code/geometric-logo-blueprint --profile creative-media
 ```
 
 ---

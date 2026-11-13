@@ -2,7 +2,7 @@
 title: "mdrzn/windows-screenshot-uploader — Claude Code skill discovered by cue"
 description: "📸 Upload Windows screenshots to your server over SSH and get the remote path on your clipboard — ready to paste into a remote Claude Code session. Windows coun"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-11
+- 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: claude, claude-code, claudec, developer-tools, remote-developmen, screenshot, ssh, windows
 
 ## Best fit cue profiles

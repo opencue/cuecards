@@ -1,50 +1,24 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="albegosu-second-brain"></a>
-## 💎 [albegosu/second-brain](https://github.com/albegosu/second-brain)
-
-**★ 16** · exceptional (score 10.4) · Python · tags: ai-agents, claude-code, claude-skill, design-inspiration, design-md
-
-Save UI inspiration from any app; a vision model curates it into a private wiki and turns your taste into a DESIGN.md your coding agent builds from.
-
-```bash
-cue skills add albegosu/second-brain --profile docs-writer
-```
-
----
-
-<a id="rockbenben-aishort-skills"></a>
-## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
-
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, app-icon, claude
-
-Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
-
-```bash
-cue skills add rockbenben/aishort-skills --profile docs-writer
-```
-
----
-
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5.2) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5.1) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

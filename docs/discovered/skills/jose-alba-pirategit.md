@@ -2,7 +2,7 @@
 title: "jose-alba/PirateGit — Claude Code skill discovered by cue"
 description: "🏴‍☠️ Don't reinvent the wheel—plunder it. Multi-channel GitHub repo scout, anatomical X-ray, and code/data scavenger skill for AI coding agents (Claude Code, A"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-11
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: agent-skills, agent-skills-tools, ai-agents, ai-agents-automation, ai-agents-framework, antigravity, antigravity-cli, antigravity-ide, antigravity-skills, claude-code, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills, code-scavenger, developer-tools, github-search-repository, github-searcher, open-source-intelligence
 
 ## Best fit cue profiles

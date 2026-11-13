@@ -2,22 +2,22 @@
 title: "ddzyx/qiuxiaoce-football-data — Claude Code skill discovered by cue"
 description: "球小策官方开源足球数据集与 AI Agent Skill。每日自动化更新五大联赛与欧冠赛前量化数据与赛后比分比对，支持创作者 API 快速调用。"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ddzyx/qiuxiaoce-football-data](https://github.com/ddzyx/qiuxiaoce-football-data)
 
-**★ 8** · exceptional (score 17.3) · Python · agent-skill, ai-prediction, champions-league, claude-skill, cursor-skill
+**★ 9** · exceptional (score 17.4) · Python · agent-skill, ai-prediction, champions-league, claude-skill, cursor-skill
 
 > 球小策官方开源足球数据集与 AI Agent Skill。每日自动化更新五大联赛与欧冠赛前量化数据与赛后比分比对，支持创作者 API 快速调用。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.4 based on:
 - ✅ Contains SKILL.md
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-11-11
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: agent-skill, ai-prediction, champions-league, claude-skill, cursor-skill, football-analytics, football-api, football-data, premier-league, qiuxiaoce, soccer-prediction, sports-analytics, sports-api, xg-expected-goals
 
 ## Best fit cue profiles

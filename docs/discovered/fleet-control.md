@@ -1,42 +1,31 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-13
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aksilsmd-cortex"></a>
-## 💎 [aksilsmd/cortex](https://github.com/aksilsmd/cortex)
+<a id="mdharastani-pixel-adaptive-multi-agent"></a>
+## 💎 [mdharastani-pixel/adaptive-multi-agent](https://github.com/mdharastani-pixel/adaptive-multi-agent)
 
-**★ 0** · exceptional (score 8) · Python · tags: ai-agents, ai-coding, ai-governance, ai-security, ai-tools
+**★ 0** · exceptional (score 14) · tags: agent-orchestration, agent-skills, agentic-workflow, ai-agents, anthropic
 
-« Cortex : le réseau d’agents experts qui lance vos projets numériques avec Claude ».
+Save tokens, maximize results: Claude Code skill for multi-agent orchestration. A conductor delegates to named subagents that rate their own task and run on the cheapest capable model (Haiku, Sonnet, Opus, Fable), with escalation and handover.
 
-```bash
-cue skills add aksilsmd/cortex --profile fleet-control
-```
-
----
-
-<a id="shubharya-os-duet"></a>
-## ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
-
-**★ 3** · strong (score 7.7) · Python · tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
-
-Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
+✅ SKILL.md
 
 ```bash
-cue skills add shubharya-os/duet --profile fleet-control
+cue skills add mdharastani-pixel/adaptive-multi-agent --profile fleet-control
 ```
 
 ---

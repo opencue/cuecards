@@ -2,7 +2,7 @@
 title: "corvus-dsh/dsh-memory — Claude Code skill discovered by cue"
 description: "DSH open-source ecosystem plugin (topic: dsh-plugin): capability memory for long sessions. Consumes the handoff ledger, extracts reusable skills (SKILL.md) and "
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 

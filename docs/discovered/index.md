@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "91 community Claude Code skills curated by cue across 13 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "89 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **91 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **13 profiles**.
-> Last updated: 2026-11-12 · refreshed nightly via GitHub Code Search.
+> **89 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-11-13 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 63 | `OnlyShot`, `storybloq`, `brilliant-directories-mcp` |
-| [**creative-media**](./creative-media.md) | 5 | `lemo-opuscar`, `ux-skill`, `atelier` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**video**](./video.md) | 3 | `agentcall`, `shipdemo`, `lemo-opuscar` |
-| [**threejs**](./threejs.md) | 3 | `webgl-animation-skills`, `floorplan-to-3d-house`, `Spectra` |
-| [**research**](./research.md) | 3 | `geng-skills`, `google-ads-agents`, `skillassay` |
-| [**niche**](./niche.md) | 3 | `humanize-writing`, `public-customer-acquisition`, `shipin-yuyin-zhuan-wenzi` |
-| [**docs-writer**](./docs-writer.md) | 3 | `second-brain`, `aishort-skills`, `repo-engineering-skills` |
-| [**backend**](./backend.md) | 2 | `context-mode`, `redesigned-pancake` |
-| [**frontend**](./frontend.md) | 2 | `kubai-icons`, `awesome-claude-ui-armory` |
-| [**marketing**](./marketing.md) | 2 | `google-ads-agents`, `ship-site` |
-| [**python**](./python.md) | 1 | `skills` |
-| [**nextjs**](./nextjs.md) | 1 | `ship-site` |
+| [**core**](./core.md) | 69 | `dex`, `qiuxiaoce-football-data`, `iterate-skill` |
+| [**creative-media**](./creative-media.md) | 4 | `marketing-skill`, `skillhub-indesign`, `geometric-logo-blueprint` |
+| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `keyline`, `cutify-this` |
+| [**backend**](./backend.md) | 3 | `mcp-hub`, `p6-mcp`, `redesigned-pancake` |
+| [**niche**](./niche.md) | 3 | `zhao-kehu`, `shipinwenzi-fenxitiqudashi`, `shipin-wenanguan` |
+| [**marketing**](./marketing.md) | 2 | `marketing-skill`, `sticky-switcher-funnel-playbook` |
+| [**cybersecurity**](./cybersecurity.md) | 2 | `Claude-OSINT`, `sanctuary-framework` |
+| [**research**](./research.md) | 2 | `popper-scope`, `skillassay` |
+| [**fleet-control**](./fleet-control.md) | 1 | `adaptive-multi-agent` |
+| [**rust**](./rust.md) | 1 | `intutic` |
+| [**docs-writer**](./docs-writer.md) | 1 | `repo-engineering-skills` |
 
 ## How scoring works
 

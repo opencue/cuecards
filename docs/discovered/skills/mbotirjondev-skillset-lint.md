@@ -2,7 +2,7 @@
 title: "MBotirjonDev/skillset-lint — Claude Code skill discovered by cue"
 description: "Lint Agent Skills (SKILL.md) one by one and as a set: spec, triggers, broken paths, risky scripts, overlapping skills. Agent skill + zero-dep CLI + GitHub Actio"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 

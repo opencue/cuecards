@@ -2,7 +2,7 @@
 title: "Alien0ne/exception-guardian — Claude Code skill discovered by cue"
 description: "Re-grades every risk exception (Tenable VM, Tenable SC, CSV) against today's CISA KEV, EPSS, exposure and attack paths, then guards, approves and hunts. A Claud"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 

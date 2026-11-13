@@ -1,22 +1,22 @@
 ---
 title: "marcosmodly/marketing-skill — Claude Code skill discovered by cue"
-description: "Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, a"
+description: "Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, a"
 layout: page
-updated: 2026-10-25
+updated: 2026-11-13
 tags: [claude-code, skill, marketing, creative-media]
 ---
 
 # 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
 
-**★ 54** · exceptional (score 13) · HTML · ai-agents, anthropic, automation, claude-code, claude-code-plugin
+**★ 138** · exceptional (score 13.5) · HTML · ai-agents, anthropic, automation, claude-code, claude-code-plugin
 
-> Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+> Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
-- ⭐ 54 stars
-- 🗓️ Last pushed: 2026-10-25
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+- ⭐ 138 stars
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin, claude-code-skill, cold-outreach, content-marketing, marketing-automation, seo, social-media
 
 ## Best fit cue profiles

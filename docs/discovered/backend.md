@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "2 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="mksglu-context-mode"></a>
-## 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 33948** · exceptional (score 19.5) · JavaScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
+**★ 4** · exceptional (score 10.8) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
-Free, local plugin that keeps tool output out of your coding agent's context window. Sandbox and SQLite FTS5 search, 99% fewer bytes in context. Works with Claude Code, Codex, Pi, OpenCode, Gemini CLI, Copilot CLI and 4 more agents. Zero telemetry.
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
-cue skills add mksglu/context-mode --profile backend
+cue skills add ni-c/mcp-hub --profile backend
+```
+
+---
+
+<a id="nizarhamza-p6-mcp"></a>
+## 💎 [nizarhamza/p6-mcp](https://github.com/nizarhamza/p6-mcp)
+
+**★ 7** · exceptional (score 8) · Python · tags: claude, construction, critical-path, dcma, mcp
+
+Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional database. Windows. Not affiliated with Oracle.
+
+```bash
+cue skills add nizarhamza/p6-mcp --profile backend
 ```
 
 ---

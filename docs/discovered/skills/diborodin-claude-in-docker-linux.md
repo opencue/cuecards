@@ -2,20 +2,20 @@
 title: "diborodin/claude-in-docker-linux — Claude Code skill discovered by cue"
 description: "Run Claude Code and Claude Desktop in Docker on Linux. Native host paths, configurable mounts, sandboxed Desktop, and optional Docker-in-Docker with Sysbox."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [diborodin/claude-in-docker-linux](https://github.com/diborodin/claude-in-docker-linux)
 
-**★ 1** · potential (score 4.3) · Python
+**★ 2** · potential (score 4.5) · Python
 
 > Run Claude Code and Claude Desktop in Docker on Linux. Native host paths, configurable mounts, sandboxed Desktop, and optional Docker-in-Docker with Sysbox.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
-- ⭐ 1 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
+- ⭐ 2 stars
 - 🗓️ Last pushed: 2026-11-12
 - 🏷️ Tags: (none)
 

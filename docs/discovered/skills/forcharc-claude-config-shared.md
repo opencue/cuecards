@@ -2,21 +2,21 @@
 title: "Forcharc/claude-config-shared — Claude Code skill discovered by cue"
 description: "Shareable Claude Code setup: skills, custom review agents, path-scoped rules, worktree-safety hook."
 layout: page
-updated: 2026-06-19
+updated: 2026-11-13
 tags: [claude-code, skill, core]
 ---
 
-# 🔹 [Forcharc/claude-config-shared](https://github.com/Forcharc/claude-config-shared)
+# ✨ [Forcharc/claude-config-shared](https://github.com/Forcharc/claude-config-shared)
 
-**★ 1** · potential (score 4) · Python
+**★ 3** · strong (score 6.2) · Shell
 
 > Shareable Claude Code setup: skills, custom review agents, path-scoped rules, worktree-safety hook.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-06-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles
