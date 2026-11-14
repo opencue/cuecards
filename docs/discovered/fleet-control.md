@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="mdharastani-pixel-adaptive-multi-agent"></a>
-## 💎 [mdharastani-pixel/adaptive-multi-agent](https://github.com/mdharastani-pixel/adaptive-multi-agent)
+<a id="getcurrentthread-orchestration-kit"></a>
+## 💎 [getCurrentThread/orchestration-kit](https://github.com/getCurrentThread/orchestration-kit)
 
-**★ 0** · exceptional (score 14) · tags: agent-orchestration, agent-skills, agentic-workflow, ai-agents, anthropic
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-code-plugin, claude-skill, multi-agent, orca
 
-Save tokens, maximize results: Claude Code skill for multi-agent orchestration. A conductor delegates to named subagents that rate their own task and run on the cheapest capable model (Haiku, Sonnet, Opus, Fable), with escalation and handover.
-
-✅ SKILL.md
+Claude Code 플러그인: Orca CLI 기반의 디스패치 게이트와 장부, 마스터 승계, 리뷰 워크플로 (Claude Code plugin: dispatch gate and ledger, master succession and a review workflow on top of the Orca CLI)
 
 ```bash
-cue skills add mdharastani-pixel/adaptive-multi-agent --profile fleet-control
+cue skills add getCurrentThread/orchestration-kit --profile fleet-control
 ```
 
 ---

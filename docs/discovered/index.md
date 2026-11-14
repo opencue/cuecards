@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "89 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "90 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,24 +10,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **89 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
-> Last updated: 2026-11-13 · refreshed nightly via GitHub Code Search.
+> **90 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
+> Last updated: 2026-11-14 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 69 | `dex`, `qiuxiaoce-football-data`, `iterate-skill` |
-| [**creative-media**](./creative-media.md) | 4 | `marketing-skill`, `skillhub-indesign`, `geometric-logo-blueprint` |
-| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `keyline`, `cutify-this` |
-| [**backend**](./backend.md) | 3 | `mcp-hub`, `p6-mcp`, `redesigned-pancake` |
-| [**niche**](./niche.md) | 3 | `zhao-kehu`, `shipinwenzi-fenxitiqudashi`, `shipin-wenanguan` |
-| [**marketing**](./marketing.md) | 2 | `marketing-skill`, `sticky-switcher-funnel-playbook` |
-| [**cybersecurity**](./cybersecurity.md) | 2 | `Claude-OSINT`, `sanctuary-framework` |
-| [**research**](./research.md) | 2 | `popper-scope`, `skillassay` |
-| [**fleet-control**](./fleet-control.md) | 1 | `adaptive-multi-agent` |
+| [**core**](./core.md) | 71 | `brilliant-directories-mcp`, `qiuxiaoce-football-data`, `strategic-advisor-orchestrator` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
+| [**creative-media**](./creative-media.md) | 4 | `concept-skills`, `codex-gif-video`, `spetz-logo-design-skill` |
+| [**backend**](./backend.md) | 3 | `context-mode`, `p6-mcp`, `redesigned-pancake` |
+| [**docs-writer**](./docs-writer.md) | 3 | `docs-bootstrap`, `revizor`, `repo-engineering-skills` |
+| [**research**](./research.md) | 2 | `scholarship-visa-scam-checker`, `skillassay` |
+| [**frontend**](./frontend.md) | 1 | `awesome-claude-ui-armory` |
 | [**rust**](./rust.md) | 1 | `intutic` |
-| [**docs-writer**](./docs-writer.md) | 1 | `repo-engineering-skills` |
+| [**video**](./video.md) | 1 | `virtual-crew` |
+| [**fleet-control**](./fleet-control.md) | 1 | `orchestration-kit` |
 
 ## How scoring works
 

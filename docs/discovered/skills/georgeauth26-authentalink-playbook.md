@@ -2,7 +2,7 @@
 title: "GeorgeAuth26/authentalink-playbook — Claude Code skill discovered by cue"
 description: "How a solo founder ships real software with AI builders without losing control. No plan, no code. Human first. Every plan carries a process map, a new-user path"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 

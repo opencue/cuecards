@@ -2,7 +2,7 @@
 title: "lbdremy/phax — Claude Code skill discovered by cue"
 description: "Run a plan through AI coding agents (Claude Code, OpenAI Codex, Mistral Vibe) as a sequence of gated phases, and get a change you can review. The golden path, j"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 

@@ -1,23 +1,23 @@
 ---
 title: "V-Songbird/foreman — Claude Code skill discovered by cue"
-description: "📋 Your project plan, kept next to the code. A Claude Code plugin: ask what's next and get the task, the reason, and a ready-to-run prompt checked against your "
+description: "Project continuity for Claude Code and Codex: a roadmap beside your code, grounded handoffs, and clear task status."
 layout: page
-updated: 2026-09-05
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [V-Songbird/foreman](https://github.com/V-Songbird/foreman)
 
-**★ 34** · exceptional (score 10.8) · JavaScript · agent-skills, ai, anthropic, automation, claude-code
+**★ 35** · exceptional (score 14.7) · JavaScript · agent-skills, ai, anthropic, automation, claude-code
 
-> 📋 Your project plan, kept next to the code. A Claude Code plugin: ask what's next and get the task, the reason, and a ready-to-run prompt checked against your real files.
+> Project continuity for Claude Code and Codex: a roadmap beside your code, grounded handoffs, and clear task status.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-09-05
-- 🏷️ Tags: agent-skills, ai, anthropic, automation, claude-code, claude-code-plugin, claude-code-skill, claude-skills, engineering, hooks, planning, plugin, prd, prompt-engineering, roadmap, roadmaps, skill, spec, task-selection, workflow
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
+- ⭐ 35 stars
+- 🗓️ Last pushed: 2026-11-14
+- 🏷️ Tags: agent-skills, ai, anthropic, automation, claude-code, claude-code-plugin, claude-code-skill, codex, codex-plugin, engineering, hooks, planning, plugin, prd, prompt-engineering, roadmap, roadmaps, spec, task-selection, workflow
 
 ## Best fit cue profiles
 

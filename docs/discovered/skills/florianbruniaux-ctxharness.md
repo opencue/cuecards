@@ -2,7 +2,7 @@
 title: "FlorianBruniaux/ctxharness — Claude Code skill discovered by cue"
 description: "Catch stale versions, broken paths, and missing scripts in your AI instruction files (CLAUDE.md, rules)"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 

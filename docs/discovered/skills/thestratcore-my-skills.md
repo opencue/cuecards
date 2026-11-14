@@ -2,21 +2,21 @@
 title: "thestratcore/My-skills — Claude Code skill discovered by cue"
 description: "Personal collection of Claude Code / Codex agent skills — writing, research, diagrams, dev tooling, and CV maintenance"
 layout: page
-updated: 2026-10-08
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [thestratcore/My-skills](https://github.com/thestratcore/My-skills)
 
-**★ 0** · exceptional (score 8) · TeX · agent-skills, ai-agents, claude-code, claude-skill, skill-md
+**★ 0** · exceptional (score 9.5) · TeX · agent-skills, ai-agents, claude-code, claude-skill, skill-md
 
 > Personal collection of Claude Code / Codex agent skills — writing, research, diagrams, dev tooling, and CV maintenance
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-skill, skill-md, skill-md-skillsmp, skills
 
 ## Best fit cue profiles

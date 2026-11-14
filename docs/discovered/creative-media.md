@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,41 +15,41 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="marcosmodly-marketing-skill"></a>
-## 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
+<a id="ontology-of-everything-concept-skills"></a>
+## 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
 
-**★ 138** · exceptional (score 13.5) · HTML · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
+**★ 13** · exceptional (score 12.1) · Python · tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
 
-Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
 
 ```bash
-cue skills add marcosmodly/marketing-skill --profile creative-media
+cue skills add ontology-of-everything/concept-skills --profile creative-media
 ```
 
 ---
 
-<a id="merysugy-skillhub-indesign"></a>
-## ✨ [merysugy/skillhub-indesign](https://github.com/merysugy/skillhub-indesign)
+<a id="ouxxyy-codex-gif-video"></a>
+## 💎 [ouxxyy/codex-gif-video](https://github.com/ouxxyy/codex-gif-video)
 
-**★ 2** · strong (score 6.5) · Python · tags: claude-code-plugin, claude-skill, editorial-design, extendscript, idml
+**★ 0** · exceptional (score 8.5) · Python · tags: agent-skill, ai-animation, animated-gif, b-roll, character-consistency
 
-Claude skill: prepare documents for professional layout in InDesign. Style system from a reference PDF or your IDML, Word text laid out in an IDML, visual resources as scripts.
+通过 OpenAI GPT API 调用 GPT Image 2.6 原生 GIF 能力，按 69 种内置风格生成长 GIF 或静音 MP4（GIF 视频），适合 X 短视频、口播动画、儿童绘本，也可配合 Hypit / Remotion 等热门 AI 剪辑 Skill 提供原生动画素材。
 
 ```bash
-cue skills add merysugy/skillhub-indesign --profile creative-media
+cue skills add ouxxyy/codex-gif-video --profile creative-media
 ```
 
 ---
 
-<a id="blisse-code-geometric-logo-blueprint"></a>
-## ✨ [blisse-code/geometric-logo-blueprint](https://github.com/blisse-code/geometric-logo-blueprint)
+<a id="triumtech-dev-spetz-logo-design-skill"></a>
+## ✨ [triumtech-dev/spetz-logo-design-skill](https://github.com/triumtech-dev/spetz-logo-design-skill)
 
-**★ 0** · strong (score 6) · Python · tags: brand-identity, claude-skill, geometry, logo-design
+**★ 0** · strong (score 5) · Python · tags: agent-skills, branding, claude-skill, hebrew, logo-design
 
-A Claude skill that designs logo marks on a geometric blueprint anyone can rebuild without measuring, then scores them for avatar crops and 16px favicons.
+
 
 ```bash
-cue skills add blisse-code/geometric-logo-blueprint --profile creative-media
+cue skills add triumtech-dev/spetz-logo-design-skill --profile creative-media
 ```
 
 ---

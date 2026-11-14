@@ -1,22 +1,22 @@
 ---
 title: "V-Songbird/hush — Claude Code skill discovered by cue"
-description: "🤫 Claude shuts up until it's done. A Claude Code plugin: one short answer at the end, the file to open, and no log dumps in your chat."
+description: "Quieter sessions for Claude Code: less narration, shorter tool output and concise answers focused on the result."
 layout: page
-updated: 2026-09-05
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [V-Songbird/hush](https://github.com/V-Songbird/hush)
 
-**★ 49** · exceptional (score 10) · JavaScript · adhd, agent-skills, ai, anthropic, claude
+**★ 54** · exceptional (score 15) · JavaScript · adhd, agent-skills, ai, anthropic, claude
 
-> 🤫 Claude shuts up until it's done. A Claude Code plugin: one short answer at the end, the file to open, and no log dumps in your chat.
+> Quieter sessions for Claude Code: less narration, shorter tool output and concise answers focused on the result.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
-- ⭐ 49 stars
-- 🗓️ Last pushed: 2026-09-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
+- ⭐ 54 stars
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: adhd, agent-skills, ai, anthropic, claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills, developer-tools, hooks, llm, opus-5, output-style, plugin, prompt-engineering, token-optimization, tokens
 
 ## Best fit cue profiles

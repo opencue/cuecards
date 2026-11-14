@@ -1,17 +1,45 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="youndie-docs-bootstrap"></a>
+## 💎 [youndie/docs-bootstrap](https://github.com/youndie/docs-bootstrap)
+
+**★ 2** · exceptional (score 13.5) · Python · tags: agent-tools, claude-code, claude-skill, developer-tools, documentation
+
+Documentation format for codebases whose primary reader is a coding agent: layers linked by ids, paths into the code, and the checks that keep it honest
+
+✅ SKILL.md
+
+```bash
+cue skills add youndie/docs-bootstrap --profile docs-writer
+```
+
+---
+
+<a id="qttc-revizor"></a>
+## 💎 [qttc/revizor](https://github.com/qttc/revizor)
+
+**★ 0** · exceptional (score 8) · Python · tags: ai-slop, ai-writing, claude, claude-code, claude-skill
+
+Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
+
+```bash
+cue skills add qttc/revizor --profile docs-writer
+```
 
 ---
 

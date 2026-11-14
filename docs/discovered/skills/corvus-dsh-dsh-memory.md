@@ -2,21 +2,21 @@
 title: "corvus-dsh/dsh-memory — Claude Code skill discovered by cue"
 description: "DSH open-source ecosystem plugin (topic: dsh-plugin): capability memory for long sessions. Consumes the handoff ledger, extracts reusable skills (SKILL.md) and "
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [corvus-dsh/dsh-memory](https://github.com/corvus-dsh/dsh-memory)
 
-**★ 1** · potential (score 3.2) · JavaScript · agent-memory, deepseek-harness, dsh, dsh-plugin, memory
+**★ 1** · potential (score 3.3) · JavaScript · agent-memory, deepseek-harness, dsh, dsh-plugin, memory
 
 > DSH open-source ecosystem plugin (topic: dsh-plugin): capability memory for long sessions. Consumes the handoff ledger, extracts reusable skills (SKILL.md) and negative paths (negatives.jsonl) from finished sessions, and never imports the slicing plugin. — DSH open-source ecosystem (topic: dsh-plugin)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-10
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agent-memory, deepseek-harness, dsh, dsh-plugin, memory, skills
 
 ## Best fit cue profiles

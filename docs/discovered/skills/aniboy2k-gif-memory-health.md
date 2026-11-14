@@ -2,22 +2,22 @@
 title: "aniboy2k-gif/memory-health — Claude Code skill discovered by cue"
 description: "An operational tool for monitoring knowledge persistence and state integrity in AI agent environments."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [aniboy2k-gif/memory-health](https://github.com/aniboy2k-gif/memory-health)
 
-**★ 0** · exceptional (score 14.5) · Shell · ai-tools, anthropic-claude, bash, claude, claude-code
+**★ 1** · exceptional (score 14.8) · Shell · ai-tools, anthropic-claude, bash, claude, claude-code
 
 > An operational tool for monitoring knowledge persistence and state integrity in AI agent environments.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-10
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: ai-tools, anthropic-claude, bash, claude, claude-code, claude-skill, context-window, developer-tools, llm, memory-management, memory-optimization, productivity
 
 ## Best fit cue profiles

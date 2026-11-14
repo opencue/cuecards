@@ -1,22 +1,22 @@
 ---
 title: "NasonZ/riff — Claude Code skill discovered by cue"
-description: "Bring a second coding agent into the work. One skill for Claude Code, Codex, Pi and Hermes: consult, discuss or delegate, with each exchange recorded locally."
+description: "Engineered diligence for coding agents. Your agent brings in a second one to form an independent view, develop an idea or take on a bounded task, then tells you"
 layout: page
-updated: 2026-11-08
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [NasonZ/riff](https://github.com/NasonZ/riff)
 
-**★ 2** · exceptional (score 10) · Python · agent-skills, claude-code, claude-skill, codex, multi-agent
+**★ 2** · exceptional (score 9) · Python · agent-skills, claude-code, claude-skill, codex, multi-agent
 
-> Bring a second coding agent into the work. One skill for Claude Code, Codex, Pi and Hermes: consult, discuss or delegate, with each exchange recorded locally.
+> Engineered diligence for coding agents. Your agent brings in a second one to form an independent view, develop an idea or take on a bounded task, then tells you what each found and what is yours to decide. For Claude Code, Codex, Pi and Hermes.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-08
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agent-skills, claude-code, claude-skill, codex, multi-agent, openai
 
 ## Best fit cue profiles

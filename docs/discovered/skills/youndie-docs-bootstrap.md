@@ -2,7 +2,7 @@
 title: "youndie/docs-bootstrap — Claude Code skill discovered by cue"
 description: "Documentation format for codebases whose primary reader is a coding agent: layers linked by ids, paths into the code, and the checks that keep it honest"
 layout: page
-updated: 2026-10-02
+updated: 2026-11-14
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, docs-writer]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-02
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agent-tools, claude-code, claude-skill, developer-tools, documentation
 
 ## Best fit cue profiles

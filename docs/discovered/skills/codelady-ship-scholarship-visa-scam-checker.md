@@ -2,7 +2,7 @@
 title: "codelady-ship/scholarship-visa-scam-checker — Claude Code skill discovered by cue"
 description: "Free Claude skill: check scholarship, visa, admission, housing, volunteer and job-abroad offers for scams. Verdict, red flags, official comparison, safe next st"
 layout: page
-updated: 2026-11-11
+updated: 2026-11-14
 tags: [claude-code, skill, research]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, research]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-11
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: ai-agent, claude, claude-skill, fraud-prevention, international-students, scam-detection, scholarships, student-visa, study-abroad
 
 ## Best fit cue profiles

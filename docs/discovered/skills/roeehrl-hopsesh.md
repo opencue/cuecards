@@ -2,7 +2,7 @@
 title: "roeehrl/hopsesh — Claude Code skill discovered by cue"
 description: "Move a Claude Code or Codex session to another computer, or continue it in the other agent and back. Resume where you left off over SSH/Tailscale: repo, worktre"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-13
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agent-sessions, ai-agents, ai-coding, bubbletea, claude, claude-code, cli, codex, coding-agent, developer-tools, git-worktree, golang, macos, openai-codex, session-manager, ssh, tailscale, tui, wails, windows
 
 ## Best fit cue profiles

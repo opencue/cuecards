@@ -2,7 +2,7 @@
 title: "ronnikc/agent-os-protocol — Claude Code skill discovered by cue"
 description: "Agent OS Protocol"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-13
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agentic, agentic-ai, agentic-coding, agentic-commerce, agentic-engineering, agentic-workflow, agentic-workflows, agenticflow, claude, claude-ai, claude-api, claude-code, claude-desktop, claude-skill, claude-skills, open-source, openai, openai-api, opensource
 
 ## Best fit cue profiles

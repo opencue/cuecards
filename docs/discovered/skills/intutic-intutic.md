@@ -2,7 +2,7 @@
 title: "intutic/intutic — Claude Code skill discovered by cue"
 description: "Policy as code for AI agents: rules are Markdown files in git, enforced before every tool call. A Rust proxy and tool-call gates for 43 harnesses (Claude Code, "
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, rust]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, rust]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
 - ⭐ 10 stars
-- 🗓️ Last pushed: 2026-11-13
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agentic-ai, ai-agents, ai-governance-framework, ai-guardrail, ai-security-tool, circuit-breaker, claude, claude-code-skill, cursor-ai, devsecops-pipeline, finops-mcp, firewall, llm-security-probe, llm-security-proxy, mcp, model-context-protocol-server, rust-lang, security, wasm, webassembly
 
 ## Best fit cue profiles

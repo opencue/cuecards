@@ -2,23 +2,23 @@
 title: "SionVerhoef/twincat-scope — Claude Code skill discovered by cue"
 description: "Agent skill for Beckhoff TwinCAT 3 Scope (Claude Code, GitHub Copilot): build .tcscopex projects that actually record, and diagnose machine faults from .svdx/CS"
 layout: page
-updated: 2026-09-30
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [SionVerhoef/twincat-scope](https://github.com/SionVerhoef/twincat-scope)
 
-**★ 0** · exceptional (score 12) · Python · agent-skills, beckhoff, claude-code, claude-skill, data-analysis
+**★ 1** · exceptional (score 13.8) · Python · agent-skills, beckhoff, claude-code, claude-skill, claude-skills
 
 > Agent skill for Beckhoff TwinCAT 3 Scope (Claude Code, GitHub Copilot): build .tcscopex projects that actually record, and diagnose machine faults from .svdx/CSV recordings without reading millions of samples.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-09-30
-- 🏷️ Tags: agent-skills, beckhoff, claude-code, claude-skill, data-analysis, github-copilot, industrial-automation, measurement, motion-control, oscilloscope, plc, twincat, twincat3
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-14
+- 🏷️ Tags: agent-skills, beckhoff, claude-code, claude-skill, claude-skills, data-analysis, github-copilot, industrial-automation, measurement, motion-control, oscilloscope, plc, twincat, twincat3
 
 ## Best fit cue profiles
 

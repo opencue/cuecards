@@ -2,21 +2,21 @@
 title: "theislampill/IMPLEMENTAUDIT.md — Claude Code skill discovered by cue"
 description: "A self-correcting system of nested engineering loops: plan & execute repo work; safely implement audit findings; design greenfield & improve brownfield; learn f"
 layout: page
-updated: 2026-08-11
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [theislampill/IMPLEMENTAUDIT.md](https://github.com/theislampill/IMPLEMENTAUDIT.md)
 
-**★ 12** · exceptional (score 9.5) · Python · agentic-workflow, ai-agents, audit, audit-automation, claude-code
+**★ 16** · exceptional (score 11.2) · Python · agentic-workflow, ai-agents, audit, audit-automation, claude-code
 
 > A self-correcting system of nested engineering loops: plan & execute repo work; safely implement audit findings; design greenfield & improve brownfield; learn from failures; re-verify until closure.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.5 based on:
-- ⭐ 12 stars
-- 🗓️ Last pushed: 2026-08-11
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
+- ⭐ 16 stars
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: agentic-workflow, ai-agents, audit, audit-automation, claude-code, claude-code-skill, codex-skill, continuous-improvement, developer-tools, gemba, hermes-skill, kaizen, kaizen-agents, lean-six-sigma, llm-tools, release-engineering, repo-hygiene, skills-sh, software-quality, verification
 
 ## Best fit cue profiles

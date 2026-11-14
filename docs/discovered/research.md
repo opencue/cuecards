@@ -2,7 +2,7 @@
 title: "Claude Code Skills for research"
 description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, research, skills, mcp, ai-agents]
 
 ---
 
-<a id="aemro-motors-popper-scope"></a>
-## 💎 [aemro-motors/popper-scope](https://github.com/aemro-motors/popper-scope)
+<a id="codelady-ship-scholarship-visa-scam-checker"></a>
+## 💎 [codelady-ship/scholarship-visa-scam-checker](https://github.com/codelady-ship/scholarship-visa-scam-checker)
 
-**★ 0** · exceptional (score 9) · HTML · tags: claude-code, claude-code-plugin, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill
+**★ 0** · exceptional (score 13.5) · PowerShell · tags: ai-agent, claude, claude-skill, fraud-prevention, international-students
 
-Popper Probe Repo: Automated Vulnerability Scanner 2026 - Smart GitHub Code Analysis
+Free Claude skill: check scholarship, visa, admission, housing, volunteer and job-abroad offers for scams. Verdict, red flags, official comparison, safe next steps, reporting and recovery.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aemro-motors/popper-scope --profile research
+cue skills add codelady-ship/scholarship-visa-scam-checker --profile research
 ```
 
 ---

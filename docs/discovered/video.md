@@ -1,59 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-14
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="pattern-ai-labs-agentcall"></a>
-## 💎 [pattern-ai-labs/agentcall](https://github.com/pattern-ai-labs/agentcall)
+<a id="qson8-virtual-crew"></a>
+## 💎 [Qson8/virtual-crew](https://github.com/Qson8/virtual-crew)
 
-**★ 194** · exceptional (score 24.2) · Python · tags: agent-skills, agentcall, ai-agent, ai-meeting-assistant, claude-code
+**★ 0** · exceptional (score 8.5) · tags: agent-skill, ai-video, claude-skill, prompt-engineering, storyboard
 
-AgentCall lets AI Agents join meetings with voice, video & screen-share to build together. Supports Google Meet, Teams, Zoom (Beta)
-
-✅ SKILL.md
+虚拟剧组 Virtual Crew — 六角色 × 八阶段短视频策划 Skill：从一个想法到锁定的策划包，再一镜一镜验成片。Six-role, eight-stage video pre-production skill: from one idea to a locked Creative Package, frame-verified shot by shot.
 
 ```bash
-cue skills add pattern-ai-labs/agentcall --profile video
-```
-
----
-
-<a id="himohitmehta-shipdemo"></a>
-## 💎 [himohitmehta/shipdemo](https://github.com/himohitmehta/shipdemo)
-
-**★ 0** · exceptional (score 15.5) · TypeScript · tags: agent-skill, captions, claude-code, claude-skill, demo-video
-
-Product demo videos from one script: Reels, Shorts, YouTube, LinkedIn, X and your website. Script, voice-over, captions, checks and platform variants. A Claude Code skill.
-
-✅ SKILL.md
-
-```bash
-cue skills add himohitmehta/shipdemo --profile video
-```
-
----
-
-<a id="lemomo-ai-lemo-opuscar"></a>
-## 💎 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
-
-**★ 15113** · exceptional (score 15.5) · JavaScript · tags: agent-skills, ai-agents, ai-short-film, ai-video, animation
-
-A toolbox of film styles made in code for Claude Code: 99 ready to use, and your own. Each style is a style prompt plus a demo film made entirely in code by Claude Opus 5.5, with no video model. By Lemomo. · 一套用代码做片的风格工具箱：99 种现成风格，也能做出你自己的
-
-```bash
-cue skills add lemomo-ai/lemo-opuscar --profile video
+cue skills add Qson8/virtual-crew --profile video
 ```
 
 ---

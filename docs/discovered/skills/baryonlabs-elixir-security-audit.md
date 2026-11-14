@@ -2,13 +2,13 @@
 title: "baryonlabs/elixir-security-audit — Claude Code skill discovered by cue"
 description: "Claude Code skill: Elixir/Phoenix security audit & fix (Sobelow, mix_audit, hex.audit, OSV, Opengrep rules)"
 layout: page
-updated: 2026-10-23
+updated: 2026-11-14
 tags: [claude-code, skill, cybersecurity]
 ---
 
 # 💎 [baryonlabs/elixir-security-audit](https://github.com/baryonlabs/elixir-security-audit)
 
-**★ 1** · exceptional (score 8.3) · Python · claude-code, claude-skill, elixir, phoenix, sast
+**★ 1** · exceptional (score 8.3) · HTML · claude-code, claude-skill, elixir, phoenix, sast
 
 > Claude Code skill: Elixir/Phoenix security audit & fix (Sobelow, mix_audit, hex.audit, OSV, Opengrep rules)
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, cybersecurity]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: claude-code, claude-skill, elixir, phoenix, sast, security, sobelow
 
 ## Best fit cue profiles

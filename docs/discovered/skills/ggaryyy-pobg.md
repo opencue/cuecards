@@ -2,7 +2,7 @@
 title: "GGaryyy/POBG — Claude Code skill discovered by cue"
 description: "Unofficial Path of Exile 2 data and build tools for AI assistants (MCP server + Claude Code plugin): cited poe2db lookups, passive routes, verified build advice"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 

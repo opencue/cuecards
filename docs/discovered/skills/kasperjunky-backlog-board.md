@@ -2,7 +2,7 @@
 title: "kasperjunky/Backlog-Board — Claude Code skill discovered by cue"
 description: "A private, per-project backlog for Claude Code: capture tasks by talking, organize them on a drag-and-drop Kanban board."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-13
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: backlog, claude-code, claude-code-plugin, claude-marketplace, claude-plugin, claude-skill, kanban, productivity, task-management
 
 ## Best fit cue profiles

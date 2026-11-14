@@ -2,21 +2,21 @@
 title: "nizarhamza/p6-mcp — Claude Code skill discovered by cue"
 description: "Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional databas"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-14
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [nizarhamza/p6-mcp](https://github.com/nizarhamza/p6-mcp)
 
-**★ 7** · exceptional (score 8) · Python · claude, construction, critical-path, dcma, mcp
+**★ 8** · exceptional (score 8.1) · Python · claude, construction, critical-path, dcma, mcp
 
 > Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional database. Windows. Not affiliated with Oracle.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-11-12
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.1 based on:
+- ⭐ 8 stars
+- 🗓️ Last pushed: 2026-11-13
 - 🏷️ Tags: claude, construction, critical-path, dcma, mcp, mcp-server, primavera-p6, project-controls, scheduling, windows, xer
 
 ## Best fit cue profiles
