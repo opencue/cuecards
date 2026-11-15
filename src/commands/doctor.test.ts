@@ -7,7 +7,7 @@ import { existsSync, lstatSync, mkdtempSync, mkdirSync, readFileSync, symlinkSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { applyRuntimeFix, checkActivation, checkCodexHooks, missingMcpIssue } from "./doctor";
+import { applyFix, applyRuntimeFix, checkActivation, checkCodexHooks, missingMcpIssue } from "./doctor";
 import { shimDir } from "../lib/shim-dir";
 
 let home: string;
@@ -113,6 +113,39 @@ describe("missingMcpIssue (D2)", () => {
     const issue = missingMcpIssue("commerce", "missing", new Set(), home);
     expect(issue?.severity).toBe("error");
     expect(issue?.message).toContain("not in any registry");
+  });
+});
+
+describe("applyFix (D2)", () => {
+  function profileWith(mcps: string[]): { profiles: string; yaml: string } {
+    const profiles = join(home, "profiles");
+    mkdirSync(join(profiles, "commerce"), { recursive: true });
+    const yaml = join(profiles, "commerce", "profile.yaml");
+    writeFileSync(yaml, `name: commerce\nmcps:\n${mcps.map((m) => `  - ${m}`).join("\n")}\n`);
+    return { profiles, yaml };
+  }
+
+  test("--fix never removes a local-only MCP from a profile", async () => {
+    const sources = join(home, "mcp-sources");
+    mkdirSync(join(sources, "envoult"), { recursive: true });
+    const { profiles, yaml } = profileWith(["coolify", "envoult"]);
+    const before = readFileSync(yaml, "utf8");
+
+    const issue = missingMcpIssue("commerce", "envoult", new Set(), sources)!;
+    expect(issue.manual).toBe(true);
+    expect(await applyFix(issue, profiles)).toBe(false);
+    expect(readFileSync(yaml, "utf8")).toBe(before);
+  });
+
+  test("--fix still removes an MCP that exists nowhere", async () => {
+    const { profiles, yaml } = profileWith(["coolify", "ghost"]);
+
+    const issue = missingMcpIssue("commerce", "ghost", new Set(), home)!;
+    expect(issue.manual).toBeUndefined();
+    expect(await applyFix(issue, profiles)).toBe(true);
+    const after = readFileSync(yaml, "utf8");
+    expect(after).not.toContain("ghost");
+    expect(after).toContain("- coolify");
   });
 });
 
