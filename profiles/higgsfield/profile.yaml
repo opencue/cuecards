@@ -20,6 +20,12 @@ skills:
     - medusa/higgsfield-to-medusa-products
 
 mcps:
+  # secret-mcp is required by the medusa/woocommerce-to-medusa-import and medusa/higgsfield-to-medusa-products
+  # skills. It is a local server (~/Documents/recodee/tools/secret-mcp): gated, so a machine without it
+  # does not fail at startup (same pattern as envoult in medusa-dev and obsidian-vault in full).
+  - id: secret-mcp
+    when:
+      has_dir: ~/Documents/recodee/tools/secret-mcp
   - Higgsfield   # hosted: https://mcp.higgsfield.ai/mcp
 
 persona: |
