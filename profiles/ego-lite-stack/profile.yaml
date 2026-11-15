@@ -320,7 +320,12 @@ mcps:
   - coolify
   - supabase
   - cue-tty-watch
-  - envoult
+  # envoult (secrets vault) serves MCP tools only while the vault is unlocked: `envoultd` exits at
+  # start-up when it is locked. Gate on the unlocked-session file, so a session started with a locked
+  # (or absent) vault simply has no envoult instead of a failed MCP. Run `envoult unlock`, then relaunch.
+  - id: envoult
+    when:
+      has_file: ~/.cache/envoult/session.key
   - Higgsfield
   - hostinger-api
   - postgres
