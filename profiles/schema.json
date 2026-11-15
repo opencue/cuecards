@@ -272,7 +272,7 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
-      "description": "cwd/env gate. has_file/has_dir: at least one must exist in cwd (has_file supports a leading '*.ext' glob). env: all named vars must be set. Checks are AND-ed.",
+      "description": "cwd/env gate. has_file/has_dir: at least one must exist — relative paths are checked in cwd, '~/…' in the user's home, absolute paths as given (has_file supports a leading '*.ext' glob, cwd only). env: all named vars must be set. Checks are AND-ed.",
       "properties": {
         "has_file": {
           "oneOf": [
