@@ -62,6 +62,13 @@ export interface Issue {
    * slots — looking the entry back up by repo alone would clear the wrong one.
    */
   cacheKey?: string;
+  /**
+   * `fix` is advice for the user, not something `--fix` may do. A local-only
+   * MCP (D2 warning) is a healthy setup that merely is not in the sanitized
+   * registry: "repairing" it by deleting the MCP from the profile would remove
+   * a working integration from every profile that uses it.
+   */
+  manual?: boolean;
 }
 
 function loadAllMcpIds(): Set<string> {
@@ -128,6 +135,7 @@ export function missingMcpIssue(
       message: `MCP "${id}" is local-only and absent from the sanitized registry`,
       fix: `Configure "${id}" in the user's agent MCP settings`,
       id,
+      manual: true,
     };
   }
   return {
@@ -434,8 +442,10 @@ export async function applyRuntimeFix(issue: Issue, runtimeRoot = RUNTIME_ROOT):
   return false;
 }
 
-async function applyFix(issue: Issue): Promise<boolean> {
-  const yamlPath = join(PROFILES_DIR, issue.profile, "profile.yaml");
+export async function applyFix(issue: Issue, profilesDir = PROFILES_DIR): Promise<boolean> {
+  // Advice-only issues are never auto-repaired (see Issue.manual).
+  if (issue.manual) return false;
+  const yamlPath = join(profilesDir, issue.profile, "profile.yaml");
 
   switch (issue.code) {
     case "D1": {
@@ -679,6 +689,10 @@ Examples:
     let fixed = 0;
     for (const issue of issues) {
       if (!issue.fix) continue;
+      if (issue.manual) {
+        process.stdout.write(`  ⏭️  Left as is [${issue.code}] ${issue.profile}: ${issue.fix}\n`);
+        continue;
+      }
       const ok = await applyFix(issue);
       if (ok) {
         fixed++;
@@ -687,7 +701,7 @@ Examples:
         process.stdout.write(`  ❌ Could not fix [${issue.code}] ${issue.profile}\n`);
       }
     }
-    process.stdout.write(`\n${fixed}/${issues.filter(i => i.fix).length} issues fixed.\n`);
+    process.stdout.write(`\n${fixed}/${issues.filter(i => i.fix && !i.manual).length} issues fixed.\n`);
   } else if (!fix && issues.length > 0) {
     process.stdout.write("\nRun with --fix to apply repairs.\n");
   }
