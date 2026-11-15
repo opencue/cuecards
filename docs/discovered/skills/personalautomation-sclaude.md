@@ -2,19 +2,19 @@
 title: "personalautomation/SClaude — Claude Code skill discovered by cue"
 description: "Manageable, scalable AI coding for a team — an orchestrator for Claude Code: one fixed path from issue to production, guardrails, metrics. Open source, MIT."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [personalautomation/SClaude](https://github.com/personalautomation/SClaude)
 
-**★ 3** · strong (score 6.7) · Python · ai-coding, claude-code, orchestrator, spec-driven-development
+**★ 3** · strong (score 6.6) · Python · ai-coding, claude-code, orchestrator, spec-driven-development
 
 > Manageable, scalable AI coding for a team — an orchestrator for Claude Code: one fixed path from issue to production, guardrails, metrics. Open source, MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: ai-coding, claude-code, orchestrator, spec-driven-development

@@ -1,55 +1,31 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-15
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ontology-of-everything-concept-skills"></a>
-## 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
+<a id="vincentwei1021-anything2explainer"></a>
+## 💎 [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer)
 
-**★ 13** · exceptional (score 12.1) · Python · tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
+**★ 3326** · exceptional (score 21.5) · TypeScript · tags: agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
 
-Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
+Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.
 
-```bash
-cue skills add ontology-of-everything/concept-skills --profile creative-media
-```
-
----
-
-<a id="ouxxyy-codex-gif-video"></a>
-## 💎 [ouxxyy/codex-gif-video](https://github.com/ouxxyy/codex-gif-video)
-
-**★ 0** · exceptional (score 8.5) · Python · tags: agent-skill, ai-animation, animated-gif, b-roll, character-consistency
-
-通过 OpenAI GPT API 调用 GPT Image 2.6 原生 GIF 能力，按 69 种内置风格生成长 GIF 或静音 MP4（GIF 视频），适合 X 短视频、口播动画、儿童绘本，也可配合 Hypit / Remotion 等热门 AI 剪辑 Skill 提供原生动画素材。
+✅ SKILL.md
 
 ```bash
-cue skills add ouxxyy/codex-gif-video --profile creative-media
-```
-
----
-
-<a id="triumtech-dev-spetz-logo-design-skill"></a>
-## ✨ [triumtech-dev/spetz-logo-design-skill](https://github.com/triumtech-dev/spetz-logo-design-skill)
-
-**★ 0** · strong (score 5) · Python · tags: agent-skills, branding, claude-skill, hebrew, logo-design
-
-
-
-```bash
-cue skills add triumtech-dev/spetz-logo-design-skill --profile creative-media
+cue skills add Vincentwei1021/anything2explainer --profile creative-media
 ```
 
 ---

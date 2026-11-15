@@ -2,13 +2,13 @@
 title: "makavli/fewturns — Claude Code skill discovered by cue"
 description: "A Claude Code skill that trims what every request carries and the requests a task takes. One skill, no hooks, nothing collected."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [makavli/fewturns](https://github.com/makavli/fewturns)
 
-**★ 1** · exceptional (score 10.3) · JavaScript · azure, azuredevops, cicd, claude-ai, claude-code
+**★ 1** · exceptional (score 10.3) · JavaScript · claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin
 
 > A Claude Code skill that trims what every request carries and the requests a task takes. One skill, no hooks, nothing collected.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-13
-- 🏷️ Tags: azure, azuredevops, cicd, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skill, claude-skills, gitea-actions, github-actions, github-config, gitlab, gitlab-ci, it, runners
+- 🗓️ Last pushed: 2026-11-15
+- 🏷️ Tags: claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skill, claude-skills, context-management, cost-optimization, developer-tools, productivity, token-optimization
 
 ## Best fit cue profiles
 

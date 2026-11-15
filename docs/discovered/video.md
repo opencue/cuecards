@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-15
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="qson8-virtual-crew"></a>
-## 💎 [Qson8/virtual-crew](https://github.com/Qson8/virtual-crew)
+<a id="vincentwei1021-anything2explainer"></a>
+## 💎 [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer)
 
-**★ 0** · exceptional (score 8.5) · tags: agent-skill, ai-video, claude-skill, prompt-engineering, storyboard
+**★ 3326** · exceptional (score 21.5) · TypeScript · tags: agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
 
-虚拟剧组 Virtual Crew — 六角色 × 八阶段短视频策划 Skill：从一个想法到锁定的策划包，再一镜一镜验成片。Six-role, eight-stage video pre-production skill: from one idea to a locked Creative Package, frame-verified shot by shot.
+Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.
+
+✅ SKILL.md
 
 ```bash
-cue skills add Qson8/virtual-crew --profile video
+cue skills add Vincentwei1021/anything2explainer --profile video
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Hyukya/windows-sandbox-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill to control Windows Sandbox: exec, screenshots, mouse/keyboard, UI Automation, file transfer"
 layout: page
-updated: 2026-11-06
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-06
+- 🗓️ Last pushed: 2026-11-15
 - 🏷️ Tags: automation, claude-code, claude-skill, powershell, windows-sandbox
 
 ## Best fit cue profiles

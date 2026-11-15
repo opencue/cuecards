@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-15
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="getcurrentthread-orchestration-kit"></a>
-## 💎 [getCurrentThread/orchestration-kit](https://github.com/getCurrentThread/orchestration-kit)
+<a id="powerpboxcaptain-edit-heat"></a>
+## 💎 [PowerpBoxCaptain/edit-heat](https://github.com/PowerpBoxCaptain/edit-heat)
 
-**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-code-plugin, claude-skill, multi-agent, orca
+**★ 0** · exceptional (score 13) · JavaScript · tags: agent-skills, claude-code, claude-code-hooks, claude-skill, multi-agent
 
-Claude Code 플러그인: Orca CLI 기반의 디스패치 게이트와 장부, 마스터 승계, 리뷰 워크플로 (Claude Code plugin: dispatch gate and ledger, master succession and a review workflow on top of the Orca CLI)
+Stop two live Claude Code sessions from editing the same file at once. Three hooks, one file, no dependencies.
+
+✅ SKILL.md
 
 ```bash
-cue skills add getCurrentThread/orchestration-kit --profile fleet-control
+cue skills add PowerpBoxCaptain/edit-heat --profile fleet-control
 ```
 
 ---

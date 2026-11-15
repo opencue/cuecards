@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-15
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="youndie-docs-bootstrap"></a>
-## 💎 [youndie/docs-bootstrap](https://github.com/youndie/docs-bootstrap)
+<a id="netresearch-typo3-docs-skill"></a>
+## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
 
-**★ 2** · exceptional (score 13.5) · Python · tags: agent-tools, claude-code, claude-skill, developer-tools, documentation
+**★ 6** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
 
-Documentation format for codebases whose primary reader is a coding agent: layers linked by ids, paths into the code, and the checks that keep it honest
-
-✅ SKILL.md
+Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
 
 ```bash
-cue skills add youndie/docs-bootstrap --profile docs-writer
+cue skills add netresearch/typo3-docs-skill --profile docs-writer
 ```
 
 ---
 
-<a id="qttc-revizor"></a>
-## 💎 [qttc/revizor](https://github.com/qttc/revizor)
+<a id="rockbenben-aishort-skills"></a>
+## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
 
-**★ 0** · exceptional (score 8) · Python · tags: ai-slop, ai-writing, claude, claude-code, claude-skill
+**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, app-icon, claude
 
-Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
+Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
 
 ```bash
-cue skills add qttc/revizor --profile docs-writer
+cue skills add rockbenben/aishort-skills --profile docs-writer
 ```
 
 ---
@@ -46,7 +44,7 @@ cue skills add qttc/revizor --profile docs-writer
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5.1) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · strong (score 5) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

@@ -2,7 +2,7 @@
 title: "gkhurana21/co-op-coach — Claude Code skill discovered by cue"
 description: "An AI job-search agent for internship and co-op students: matches, applications, inbox, the NeetCode Path, and Jarvis. Runs on your Mac with your own Claude Cod"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-12
+- 🗓️ Last pushed: 2026-11-14
 - 🏷️ Tags: ai-agent, chrome-extension, claude-code, fastapi, internships, job-search
 
 ## Best fit cue profiles

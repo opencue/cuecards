@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-15
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="marcosmodly-marketing-skill"></a>
-## 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
+<a id="agricidaniel-claude-seo"></a>
+## 💎 [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
 
-**★ 138** · exceptional (score 13.5) · HTML · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
+**★ 29515** · exceptional (score 18) · Python · tags: ai, ai-seo, claude-code, claude-code-skill, marketing-automation
 
-Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.
 
 ```bash
-cue skills add marcosmodly/marketing-skill --profile marketing
+cue skills add AgriciDaniel/claude-seo --profile marketing
 ```
 
 ---

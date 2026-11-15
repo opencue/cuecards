@@ -2,21 +2,21 @@
 title: "vzoha/dejiny-domu-skill — Claude Code skill discovered by cue"
 description: "Skill pro Claude Code: dějiny domu a vesnice z českých archivů a web s časovou osou (česky)"
 layout: page
-updated: 2026-10-31
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [vzoha/dejiny-domu-skill](https://github.com/vzoha/dejiny-domu-skill)
 
-**★ 0** · exceptional (score 8) · Python · ceske-archivy, claude-code, claude-code-plugin, claude-skill, czech
+**★ 74** · exceptional (score 14.2) · Python · ceske-archivy, claude-code, claude-code-plugin, claude-skill, czech
 
 > Skill pro Claude Code: dějiny domu a vesnice z českých archivů a web s časovou osou (česky)
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-31
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.2 based on:
+- ⭐ 74 stars
+- 🗓️ Last pushed: 2026-11-15
 - 🏷️ Tags: ceske-archivy, claude-code, claude-code-plugin, claude-skill, czech, dejiny-domu, genealogie, historie, stary-katastr
 
 ## Best fit cue profiles

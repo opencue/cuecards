@@ -2,21 +2,21 @@
 title: "AgriciDaniel/claude-seo — Claude Code skill discovered by cue"
 description: "Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsin"
 layout: page
-updated: 2026-09-29
+updated: 2026-11-15
 tags: [claude-code, skill, marketing]
 ---
 
 # 💎 [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
 
-**★ 17928** · exceptional (score 18) · Python · ai, ai-seo, claude-code, claude-code-skill, marketing-automation
+**★ 29515** · exceptional (score 18) · Python · ai, ai-seo, claude-code, claude-code-skill, marketing-automation
 
-> Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions, including DataForSEO, Firecrawl, Ahrefs and Matomo.
+> Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 18 based on:
-- ⭐ 17928 stars
-- 🗓️ Last pushed: 2026-09-29
+- ⭐ 29515 stars
+- 🗓️ Last pushed: 2026-11-15
 - 🏷️ Tags: ai, ai-seo, claude-code, claude-code-skill, marketing-automation, open-source, seo
 
 ## Best fit cue profiles

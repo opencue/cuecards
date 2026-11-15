@@ -1,31 +1,42 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-15
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="codelady-ship-scholarship-visa-scam-checker"></a>
-## 💎 [codelady-ship/scholarship-visa-scam-checker](https://github.com/codelady-ship/scholarship-visa-scam-checker)
+<a id="adkid-zephyr-anti-defensive-writing-skill"></a>
+## 💎 [Adkid-Zephyr/anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)
 
-**★ 0** · exceptional (score 13.5) · PowerShell · tags: ai-agent, claude, claude-skill, fraud-prevention, international-students
+**★ 6313** · exceptional (score 16) · Python · tags: academic-writing, ai-writing, claude-skill, paper-writing, prompt
 
-Free Claude skill: check scholarship, visa, admission, housing, volunteer and job-abroad offers for scams. Verdict, red flags, official comparison, safe next steps, reporting and recovery.
-
-✅ SKILL.md
+极致轻量｜阻止论文的防御性写作 | Anti-defensive writing for academic papers — 学术写作原则 Skill + prompt pack (CN/EN)
 
 ```bash
-cue skills add codelady-ship/scholarship-visa-scam-checker --profile research
+cue skills add Adkid-Zephyr/anti-defensive-writing-Skill --profile research
+```
+
+---
+
+<a id="nicha-natthanicha-salopgun-skill"></a>
+## ✨ [nicha-natthanicha/salopgun-skill](https://github.com/nicha-natthanicha/salopgun-skill)
+
+**★ 0** · strong (score 6) · Python · tags: claude-skill, claude-skills, notebooklm, study-notes, study-tool
+
+สกิลสำหรับ Claude แปลงสไลด์หรือเอกสารเลคเชอร์เป็นชีทสรุป (ส่งต่อให้ Claude Design จัดหน้าเป็น PDF), เว็บ HTML ที่มี mind map, quiz และ flashcards, และสคริปต์พอดแคสต์สำหรับ NotebookLM
+
+```bash
+cue skills add nicha-natthanicha/salopgun-skill --profile research
 ```
 
 ---

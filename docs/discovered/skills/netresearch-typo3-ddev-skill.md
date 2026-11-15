@@ -2,7 +2,7 @@
 title: "netresearch/typo3-ddev-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for automating DDEV environment setup in TYPO3 extension projects | Claude Code compatible"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.4 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-15
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, ddev, developer-tool, development-environment, open-standard, skill, typo3, typo3-cms, typo3-extension
 
 ## Best fit cue profiles

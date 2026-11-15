@@ -2,22 +2,22 @@
 title: "andykear/Peer — Claude Code skill discovered by cue"
 description: "Peer makes Claude act like an experienced colleague you can use as a sounding board, so you can work through ideas and problems without the frustrating AI habit"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-15
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [andykear/Peer](https://github.com/andykear/Peer)
 
-**★ 0** · exceptional (score 14.5) · Python · agent-skill, agent-skills, ai-agents, ai-tools, claude
+**★ 20** · exceptional (score 16) · Python · agent-skill, agent-skills, ai-agents, ai-tools, claude
 
 > Peer makes Claude act like an experienced colleague you can use as a sounding board, so you can work through ideas and problems without the frustrating AI habits of echoing you back, flattering you, agreeing too easily and shotgunning lists at you. It holds its view when you push back without a reason, and changes it when you give one.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-13
+- ⭐ 20 stars
+- 🗓️ Last pushed: 2026-11-15
 - 🏷️ Tags: agent-skill, agent-skills, ai-agents, ai-tools, claude, claude-ai, claude-code, claude-code-skill, claude-skill, claude-skills, critical-thinking, decision-making, llm, prompt-engineering, reasoning, rubber-duck, sycophancy, sycophancy-prevention
 
 ## Best fit cue profiles
