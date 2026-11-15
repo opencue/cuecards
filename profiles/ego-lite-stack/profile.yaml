@@ -307,11 +307,11 @@ plugins:
   - claude-video-vision@jordanrendric
 mcps:
   # secret-mcp is required by the medusa/woocommerce-to-medusa-import and medusa/higgsfield-to-medusa-products
-  # skills. It is a local server (~/Documents/recodee/tools/secret-mcp): gated, so a machine without it
-  # does not fail at startup (same pattern as envoult in medusa-dev and obsidian-vault in full).
+  # skills. It is a local server that needs an Infisical token, so it is loaded only on a machine where
+  # that token file exists; elsewhere it stays out instead of failing at startup.
   - id: secret-mcp
     when:
-      has_dir: ~/Documents/recodee/tools/secret-mcp
+      has_file: ~/.config/recodee/infisical-token
   - dataforseo
   - codegraph
   - context7
