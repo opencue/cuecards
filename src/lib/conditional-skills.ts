@@ -3,7 +3,21 @@
  */
 
 import { existsSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { homedir } from "node:os";
+import { isAbsolute, join } from "node:path";
+
+/**
+ * Where a condition path points: `~/x` is the user's home, an absolute path is
+ * itself, anything else is relative to the project (cwd). Without this a gate
+ * such as `has_dir: ~/Documents/tool` was joined onto cwd and could never be true.
+ */
+function resolveConditionPath(name: string, cwd: string): string {
+  // $HOME first: it is what the shell that launched the agent means by `~` (and it keeps this testable).
+  const home = process.env.HOME || homedir();
+  if (name === "~") return home;
+  if (name.startsWith("~/")) return join(home, name.slice(2));
+  return isAbsolute(name) ? name : join(cwd, name);
+}
 
 export interface SkillCondition {
   has_file?: string | string[];
@@ -16,7 +30,7 @@ export interface ConditionalSkill {
   when: SkillCondition;
 }
 
-/** Check if a single file pattern exists in cwd. Supports simple glob (*) at start. */
+/** Check if a single file pattern exists (in cwd, or at a `~/` / absolute path). Supports simple glob (*) at start. */
 function fileExists(pattern: string, cwd: string): boolean {
   if (pattern.startsWith("*.")) {
     const ext = pattern.slice(1); // e.g. ".pdf"
@@ -24,16 +38,16 @@ function fileExists(pattern: string, cwd: string): boolean {
       return readdirSync(cwd).some(f => f.endsWith(ext));
     } catch { return false; }
   }
-  return existsSync(join(cwd, pattern));
+  return existsSync(resolveConditionPath(pattern, cwd));
 }
 
-/** Check if a directory exists in cwd. */
+/** Check if a directory exists (in cwd, or at a `~/` / absolute path). */
 function dirExists(name: string, cwd: string): boolean {
   // Strip trailing slash for consistency
   const clean = name.endsWith("/") ? name.slice(0, -1) : name;
   try {
     const { statSync } = require("node:fs");
-    return statSync(join(cwd, clean)).isDirectory();
+    return statSync(resolveConditionPath(clean, cwd)).isDirectory();
   } catch { return false; }
 }
 

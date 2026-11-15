@@ -44,6 +44,28 @@ describe("evaluateCondition", () => {
     expect(evaluateCondition({ has_dir: "forms/" }, tmp)).toBe(true);
   });
 
+  test("has_dir and has_file accept ~/ and absolute paths, not only cwd-relative ones", () => {
+    // HOME is the temp dir for this check, so `~/…` must resolve there and not under cwd.
+    const prevHome = process.env.HOME;
+    const elsewhere = mkdtempSync(join(tmpdir(), "cue-cond-cwd-"));
+    try {
+      process.env.HOME = tmp;
+      mkdirSync(join(tmp, "tools", "secret-mcp"), { recursive: true });
+      writeFileSync(join(tmp, "token"), "");
+      expect(evaluateCondition({ has_dir: "~/tools/secret-mcp" }, elsewhere)).toBe(true);
+      expect(evaluateCondition({ has_file: "~/token" }, elsewhere)).toBe(true);
+      expect(evaluateCondition({ has_dir: join(tmp, "tools") }, elsewhere)).toBe(true);
+      expect(evaluateCondition({ has_dir: "~/nope" }, elsewhere)).toBe(false);
+      expect(evaluateCondition({ has_file: "~/nope" }, elsewhere)).toBe(false);
+      // A relative path still means the project, never home.
+      expect(evaluateCondition({ has_dir: "tools" }, elsewhere)).toBe(false);
+    } finally {
+      if (prevHome === undefined) delete process.env.HOME;
+      else process.env.HOME = prevHome;
+      rmSync(elsewhere, { recursive: true, force: true });
+    }
+  });
+
   test("has_dir fails for missing dir", () => {
     expect(evaluateCondition({ has_dir: "src" }, tmp)).toBe(false);
   });
