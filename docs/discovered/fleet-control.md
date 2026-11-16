@@ -1,31 +1,42 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="powerpboxcaptain-edit-heat"></a>
-## 💎 [PowerpBoxCaptain/edit-heat](https://github.com/PowerpBoxCaptain/edit-heat)
+<a id="getcurrentthread-orchestration-kit"></a>
+## 💎 [getCurrentThread/orchestration-kit](https://github.com/getCurrentThread/orchestration-kit)
 
-**★ 0** · exceptional (score 13) · JavaScript · tags: agent-skills, claude-code, claude-code-hooks, claude-skill, multi-agent
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-code-plugin, claude-skill, multi-agent, orca
 
-Stop two live Claude Code sessions from editing the same file at once. Three hooks, one file, no dependencies.
-
-✅ SKILL.md
+Claude Code 플러그인: Orca CLI 기반의 디스패치 게이트와 장부, 마스터 승계, 리뷰 워크플로 (Claude Code plugin: dispatch gate and ledger, master succession and a review workflow on top of the Orca CLI)
 
 ```bash
-cue skills add PowerpBoxCaptain/edit-heat --profile fleet-control
+cue skills add getCurrentThread/orchestration-kit --profile fleet-control
+```
+
+---
+
+<a id="shubharya-os-duet"></a>
+## ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
+
+**★ 3** · strong (score 7.7) · Python · tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
+
+Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
+
+```bash
+cue skills add shubharya-os/duet --profile fleet-control
 ```
 
 ---

@@ -1,50 +1,24 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="adkid-zephyr-anti-defensive-writing-skill"></a>
-## 💎 [Adkid-Zephyr/anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)
-
-**★ 6313** · exceptional (score 16) · Python · tags: academic-writing, ai-writing, claude-skill, paper-writing, prompt
-
-极致轻量｜阻止论文的防御性写作 | Anti-defensive writing for academic papers — 学术写作原则 Skill + prompt pack (CN/EN)
-
-```bash
-cue skills add Adkid-Zephyr/anti-defensive-writing-Skill --profile research
-```
-
----
-
-<a id="nicha-natthanicha-salopgun-skill"></a>
-## ✨ [nicha-natthanicha/salopgun-skill](https://github.com/nicha-natthanicha/salopgun-skill)
-
-**★ 0** · strong (score 6) · Python · tags: claude-skill, claude-skills, notebooklm, study-notes, study-tool
-
-สกิลสำหรับ Claude แปลงสไลด์หรือเอกสารเลคเชอร์เป็นชีทสรุป (ส่งต่อให้ Claude Design จัดหน้าเป็น PDF), เว็บ HTML ที่มี mind map, quiz และ flashcards, และสคริปต์พอดแคสต์สำหรับ NotebookLM
-
-```bash
-cue skills add nicha-natthanicha/salopgun-skill --profile research
-```
-
----
-
 <a id="rakib-nyc-skillassay"></a>
 ## 🔹 [rakib-nyc/skillassay](https://github.com/rakib-nyc/skillassay)
 
-**★ 3** · potential (score 3.4) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
+**★ 3** · potential (score 3.3) · TypeScript · tags: agent-skills, agents-md, ai-agents, claude, claude-code
 
 Static analyzer for AI coding-agent context — and an Agent Skill your agent can run. Measures always-on context cost of CLAUDE.md, AGENTS.md and Agent Skills; finds skills that won't load, redundant instructions, stale paths and duplicate names. Claude Code, Codex, Cursor, Gemini CLI. Research project.
 

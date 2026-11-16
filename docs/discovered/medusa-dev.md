@@ -1,31 +1,46 @@
 ---
 title: "Claude Code Skills for medusa-dev"
-description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-11
+updated: 2026-11-16
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `medusa-dev`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **medusa-dev** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="luckeeai-independent-site-ip-investigator"></a>
-## 💎 [LuckeeAI/independent-site-ip-investigator](https://github.com/LuckeeAI/independent-site-ip-investigator)
+<a id="nir-mo-hahishook-shopping"></a>
+## 💎 [nir-mo/hahishook-shopping](https://github.com/nir-mo/hahishook-shopping)
 
-**★ 0** · exceptional (score 11) · Python · tags: amazon-seller, brand-protection, buy-box, claude-code-skill, dmca
+**★ 1** · exceptional (score 15.8) · Python · tags: ai-agent, automation, claude-code, claude-skill, cli
 
-Find who hosts, registers and serves a copycat ecommerce store, then draft DMCA, trademark and Amazon Buy Box notices. CLI + agent skill.
+Build your weekly hahishook.com grocery cart from the CLI or a Claude Code agent - unofficial WooCommerce Store API client. Search, log in, assemble a cart, pay in your browser.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add LuckeeAI/independent-site-ip-investigator --profile medusa-dev
+cue skills add nir-mo/hahishook-shopping --profile medusa-dev
+```
+
+---
+
+<a id="aiwithjash-commerce-os"></a>
+## 💎 [aiwithjash/commerce-os](https://github.com/aiwithjash/commerce-os)
+
+**★ 0** · exceptional (score 12) · Python · tags: agentskills, ai-skills, claude-code, claude-code-plugin, claude-skill
+
+Full-stack D2C & e-commerce growth mentor skill for Claude Code, OpenAI Codex & Antigravity (/commerce-os). Combines 13 operator playbooks (Alex Hormozi, April Dunford, Joanna Wiebe, Sabri Suby, Nik Sharma, Steve Schoger, Chris Do, Brian Dean, GaryVee, Ezra Firestone, Dara Denney, Chase Dimond & Peep Laja) to diagnose and code stores.
+
+✅ SKILL.md
+
+```bash
+cue skills add aiwithjash/commerce-os --profile medusa-dev
 ```
 
 ---

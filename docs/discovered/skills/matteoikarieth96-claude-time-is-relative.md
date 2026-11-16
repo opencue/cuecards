@@ -2,7 +2,7 @@
 title: "Matteoikarieth96/claude-time-is-relative — Claude Code skill discovered by cue"
 description: "Time estimates for Claude Code, learned from your own past sessions, on your own machine. Not affiliated with Anthropic."
 layout: page
-updated: 2026-10-29
+updated: 2026-11-16
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.7 based on:
 - ✅ Contains SKILL.md
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-29
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: claude-code, claude-code-skill, developer-tools, time-estimation
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "getCurrentThread/orchestration-kit — Claude Code skill discovered by cue"
 description: "Claude Code 플러그인: Orca CLI 기반의 디스패치 게이트와 장부, 마스터 승계, 리뷰 워크플로 (Claude Code plugin: dispatch gate and ledger, master succession and a review workflow on top of th"
 layout: page
-updated: 2026-11-14
+updated: 2026-11-16
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-14
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-skill, multi-agent, orca, orchestration, python
 
 ## Best fit cue profiles

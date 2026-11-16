@@ -1,55 +1,31 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "3 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-16
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="iart-ai-webgl-animation-skills"></a>
-## 💎 [iart-ai/webgl-animation-skills](https://github.com/iart-ai/webgl-animation-skills)
+<a id="elithril-blender-kiln"></a>
+## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 54** · exceptional (score 15.9) · HTML · tags: 3d-animation, agent-skills, ai-animation, claude-code, claude-skill
+**★ 219** · exceptional (score 19.7) · Python · tags: 3d-models, 3d-printing, agent-skills, animation, blender
 
-3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.
+Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates characters too. New in 3.0: Kiln Studio, a local page to view, check and fix your models with Claude.
 
-```bash
-cue skills add iart-ai/webgl-animation-skills --profile threejs
-```
-
----
-
-<a id="paulodinis-floorplan-to-3d-house"></a>
-## ✨ [paulodinis/floorplan-to-3d-house](https://github.com/paulodinis/floorplan-to-3d-house)
-
-**★ 1** · strong (score 6.3) · JavaScript · tags: architecture, blender, claude-plugin, claude-skill, dxf
-
-Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D (1-2 storeys) -> GLB/DXF, elevations, sun report, Blender video
+✅ SKILL.md
 
 ```bash
-cue skills add paulodinis/floorplan-to-3d-house --profile threejs
-```
-
----
-
-<a id="seawolf0-spectra"></a>
-## 🔹 [Seawolf0/Spectra](https://github.com/Seawolf0/Spectra)
-
-**★ 2** · potential (score 3.5) · HTML · tags: 2d-graphics, 3d-graphics, caustics, dispersion, glsl
-
-A real-time light-physics playground in one HTML file. 3D mode: a spectral path tracer with dispersion, caustics, Fresnel glass and depth of field. 2D mode: an optics light table for building setups with lenses, prisms and mirrors. Runs in the browser with WebGL2. Built by prompting Claude Fable 5.2, with testing and debugging by me.
-
-```bash
-cue skills add Seawolf0/Spectra --profile threejs
+cue skills add elithril/blender-kiln --profile threejs
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "DixitRam/codebase-explainer-video — Claude Code skill discovered by cue"
 description: "Claude Code plugin: narrated explainer videos of how your code really works, researched from the code and rendered frame-exact"
 layout: page
-updated: 2026-11-05
+updated: 2026-11-16
 tags: [claude-code, skill, video]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-05
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, developer-tools, explainer-video, ffmpeg, playwright, video
 
 ## Best fit cue profiles

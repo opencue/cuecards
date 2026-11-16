@@ -2,7 +2,7 @@
 title: "shubharya-os/duet — Claude Code skill discovered by cue"
 description: "Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, G"
 layout: page
-updated: 2026-11-10
+updated: 2026-11-16
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.7 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-10
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt, claude, claude-code, claude-code-skill, code-review, codex, codex-cli, cursor, developer-tools, gemini-cli, llm-agents, multi-agent, openai, opencode, pair-programming, tdd
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-16
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="simliai-skills"></a>
-## 💎 [simliai/skills](https://github.com/simliai/skills)
+<a id="zobaerio-zobvia"></a>
+## 💎 [zobaerio/zobvia](https://github.com/zobaerio/zobvia)
 
-**★ 0** · exceptional (score 8.5) · Python · tags: agent-skill, agent-skills, ai-avatar, claude-code-skill, livekit
+**★ 1** · exceptional (score 10.3) · TypeScript · tags: ai-video, bengali, claude-skill, motion-graphics, python
 
-Agent skill: add real-time Simli talking avatars to LiveKit, Pipecat, browser and Python apps
+🎬 Zobvia — the Claude skill that learns any video's editing style and turns an SRT into a polished Remotion motion-graphics video. 16 style pipelines in code, word-by-word captions, SFX only, Bengali-safe typography. It asks only one question: which colour?
+
+✅ SKILL.md
 
 ```bash
-cue skills add simliai/skills --profile python
+cue skills add zobaerio/zobvia --profile python
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "ejklock/living-docs-skill — Claude Code skill discovered by cue"
 description: "Living Docs —  a AI agent skill that runs your project's documentation as a living system: constitution, ADRs, BDRs, PRDs, issues, research notes & Mermaid arch"
 layout: page
-updated: 2026-11-09
+updated: 2026-11-16
 tags: [claude-code, skill, docs-writer]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
 - ⭐ 14 stars
-- 🗓️ Last pushed: 2026-11-09
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: adr, agent-skills, ai-agents, architecture-decision-records, bdr, claude-code, claude-skill, cursor, docs-as-code, documentation, github-copilot, knowledge-management, living-documentation, markdown, mermaid, okf, open-knowledge-format, prd, software-architecture, technical-writing
 
 ## Best fit cue profiles

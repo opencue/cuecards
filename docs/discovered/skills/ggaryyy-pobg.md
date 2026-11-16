@@ -2,21 +2,21 @@
 title: "GGaryyy/POBG — Claude Code skill discovered by cue"
 description: "Unofficial Path of Exile 2 data and build tools for AI assistants (MCP server + Claude Code plugin): cited poe2db lookups, passive routes, verified build advice"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [GGaryyy/POBG](https://github.com/GGaryyy/POBG)
 
-**★ 1** · potential (score 4.2) · Python
+**★ 1** · potential (score 4.3) · Python
 
 > Unofficial Path of Exile 2 data and build tools for AI assistants (MCP server + Claude Code plugin): cited poe2db lookups, passive routes, verified build advice
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-13
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

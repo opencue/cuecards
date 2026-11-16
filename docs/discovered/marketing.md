@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "2 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,17 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="agricidaniel-claude-seo"></a>
-## 💎 [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
+<a id="aiwithjash-commerce-os"></a>
+## 💎 [aiwithjash/commerce-os](https://github.com/aiwithjash/commerce-os)
 
-**★ 29515** · exceptional (score 18) · Python · tags: ai, ai-seo, claude-code, claude-code-skill, marketing-automation
+**★ 0** · exceptional (score 12) · Python · tags: agentskills, ai-skills, claude-code, claude-code-plugin, claude-skill
 
-Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.
+Full-stack D2C & e-commerce growth mentor skill for Claude Code, OpenAI Codex & Antigravity (/commerce-os). Combines 13 operator playbooks (Alex Hormozi, April Dunford, Joanna Wiebe, Sabri Suby, Nik Sharma, Steve Schoger, Chris Do, Brian Dean, GaryVee, Ezra Firestone, Dara Denney, Chase Dimond & Peep Laja) to diagnose and code stores.
+
+✅ SKILL.md
 
 ```bash
-cue skills add AgriciDaniel/claude-seo --profile marketing
+cue skills add aiwithjash/commerce-os --profile marketing
 ```
 
 ---

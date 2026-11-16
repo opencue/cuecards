@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,27 +18,12 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3043** · exceptional (score 13) · Python · tags: agentskills, claude, skills
+**★ 3059** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="dario-lanz-vibecoding-security"></a>
-## 💎 [Dario-Lanz/vibecoding-security](https://github.com/Dario-Lanz/vibecoding-security)
-
-**★ 0** · exceptional (score 12) · Shell · tags: agent-skills, ai-coding, appsec, claude, claude-code
-
-Security rules for vibe coding: an Agent Skill that makes Claude Code, Codex and Copilot write safer, tested code. Security floor on every change (OWASP), PHP, Java and WordPress rules, tests and scanners in Docker with nothing to install. Learns your own rules locally, only after your yes.
-
-✅ SKILL.md
-
-```bash
-cue skills add Dario-Lanz/vibecoding-security --profile cybersecurity
 ```
 
 ---
@@ -56,41 +41,15 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 ---
 
-<a id="philpaz-recusal"></a>
-## 💎 [philpaz/recusal](https://github.com/philpaz/recusal)
+<a id="dhurjati-js-vulnerability-detector"></a>
+## 🔹 [DHURJATI-JS/vulnerability-detector](https://github.com/DHURJATI-JS/vulnerability-detector)
 
-**★ 6** · exceptional (score 9.6) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
+**★ 2** · potential (score 3.5) · Python · tags: cve, dependency-scanner, devsecops, docker, fastapi
 
-Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
-
-```bash
-cue skills add philpaz/recusal --profile cybersecurity
-```
-
----
-
-<a id="memara741-spec-geeno-prodready"></a>
-## 💎 [memara741-spec/geeno-prodready](https://github.com/memara741-spec/geeno-prodready)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: ai-coding, ai-security, arabic, claude-code, claude-skill
-
-CLAUDE SKILL THAT AUDITS AI-BUILT APPS (LOVABLE, BOLT, V0, REPLIT, CURSOR , CLAUDE ) FOR LAUNCH READINESS AND SECURITY, THEN FIXES AND VERIFIES.
+🛡️ Find vulnerable Python dependencies before they find you. Scan a requirements.txt or a whole project: real OSV.dev advisories, verified upgrade paths, and a local Gemma AI (Claude fallback) that can't hide a CVE. FastAPI · PostgreSQL · Docker · one-click run.
 
 ```bash
-cue skills add memara741-spec/geeno-prodready --profile cybersecurity
-```
-
----
-
-<a id="makavli-fewkit"></a>
-## 💎 [makavli/fewkit](https://github.com/makavli/fewkit)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: ai-agents, claude-code, claude-code-marketplace, claude-code-plugin, claude-code-skill
-
-One front door to a lean Claude Code setup: CodeKickoff on day one, Fewturns every day after, Wavecheck before a release, Laneboard all the time.
-
-```bash
-cue skills add makavli/fewkit --profile cybersecurity
+cue skills add DHURJATI-JS/vulnerability-detector --profile cybersecurity
 ```
 
 ---

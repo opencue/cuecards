@@ -1,24 +1,24 @@
 ---
 title: "elithril/blender-kiln — Claude Code skill discovered by cue"
-description: "Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded again"
+description: "Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates charac"
 layout: page
-updated: 2026-10-30
+updated: 2026-11-16
 tags: [claude-code, skill, threejs, creative-media]
 ---
 
 # 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
 
-**★ 65** · exceptional (score 19.1) · Python · 3d-assets, agent-skills, animation, asset-pipeline, blender
+**★ 219** · exceptional (score 19.7) · Python · 3d-models, 3d-printing, agent-skills, animation, blender
 
-> Claude Code plugin that turns a text brief or a photo into a production-ready 3D asset through Blender: rebuilt by script, textured from CC0 scans, graded against the real object, optimized to GLB/FBX/USDZ, rigged and animated by subject. Runs on both Blender MCP servers.
+> Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates characters too. New in 3.0: Kiln Studio, a local page to view, check and fix your models with Claude.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 19.7 based on:
 - ✅ Contains SKILL.md
-- ⭐ 65 stars
-- 🗓️ Last pushed: 2026-10-30
-- 🏷️ Tags: 3d-assets, agent-skills, animation, asset-pipeline, blender, blender-mcp, claude-code, claude-code-plugin, claude-code-skill, game-assets, gamedev, glb, gltf, image-to-3d, indie-game-dev, procedural-modeling, rigging, text-to-3d, threejs, usdz
+- ⭐ 219 stars
+- 🗓️ Last pushed: 2026-11-16
+- 🏷️ Tags: 3d-models, 3d-printing, agent-skills, animation, blender, blender-mcp, claude, claude-code, claude-code-plugin, claude-code-skill, game-assets, gamedev, glb, gltf, image-to-3d, mcp, rigging, stl, text-to-3d, threejs
 
 ## Best fit cue profiles
 

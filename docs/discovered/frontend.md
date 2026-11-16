@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,6 +15,21 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
+<a id="kubai087-kubai-icons"></a>
+## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
+
+**★ 888** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
+
+An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
+
+✅ SKILL.md
+
+```bash
+cue skills add kubai087/kubai-icons --profile frontend
+```
+
+---
+
 <a id="ezra-y-awesome-claude-ui-armory"></a>
 ## 💎 [ezra-y/awesome-claude-ui-armory](https://github.com/ezra-y/awesome-claude-ui-armory)
 
@@ -24,19 +39,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="mihirmodi27-keyline"></a>
-## 💎 [Mihirmodi27/keyline](https://github.com/Mihirmodi27/keyline)
-
-**★ 0** · exceptional (score 10.5) · JavaScript · tags: accessibility, agent-skill, agent-skills, ai-agents, claude-code
-
-Interface design laws for coding agents. One skill writes a DESIGN.md in your own token names, then critiques, audits and fixes type, colour, layout, depth, motion and patterns through it.
-
-```bash
-cue skills add Mihirmodi27/keyline --profile frontend
 ```
 
 ---

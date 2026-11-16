@@ -2,22 +2,21 @@
 title: "ShousenZHANG/chinese-fortune — Claude Code skill discovered by cue"
 description: "Agent Skill for Chinese fortune-telling grounded in classical texts: BaZi, personal date selection, luck cycles and years, Zi Wei, Liu Yao, almanac. Plain-langu"
 layout: page
-updated: 2026-11-02
+updated: 2026-11-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ShousenZHANG/chinese-fortune](https://github.com/ShousenZHANG/chinese-fortune)
 
-**★ 18** · exceptional (score 16.3) · Python · agent-skills, ai-skill, anthropic-claude, bazi, chinese-culture
+**★ 21** · exceptional (score 11.4) · Python · agent-skills, ai-skill, anthropic-claude, bazi, chinese-culture
 
 > Agent Skill for Chinese fortune-telling grounded in classical texts: BaZi, personal date selection, luck cycles and years, Zi Wei, Liu Yao, almanac. Plain-language answers with sources. Works with Claude Code, Codex, Cursor, Gemini CLI · MIT
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.3 based on:
-- ✅ Contains SKILL.md
-- ⭐ 18 stars
-- 🗓️ Last pushed: 2026-11-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
+- ⭐ 21 stars
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: agent-skills, ai-skill, anthropic-claude, bazi, chinese-culture, chinese-metaphysics, claude-code, claude-skill, codex, divination, fengshui, fortune-telling, gemini-cli, iching, lunar-calendar, zodiac
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="netresearch-typo3-docs-skill"></a>
-## 💎 [netresearch/typo3-docs-skill](https://github.com/netresearch/typo3-docs-skill)
+<a id="ejklock-living-docs-skill"></a>
+## 💎 [ejklock/living-docs-skill](https://github.com/ejklock/living-docs-skill)
 
-**★ 6** · exceptional (score 11.3) · Shell · tags: agent-skills, ai-agent, claude-code-skill, documentation, documentation-generator
+**★ 14** · exceptional (score 11.1) · Rust · tags: adr, agent-skills, ai-agents, architecture-decision-records, bdr
 
-Agent Skill for creating and maintaining TYPO3 extension documentation | Claude Code compatible
+Living Docs —  a AI agent skill that runs your project's documentation as a living system: constitution, ADRs, BDRs, PRDs, issues, research notes & Mermaid architecture diagrams under five no-drift governance invariants. OKF-formatted, stack-agnostic. Works with Claude Code, Cursor, Copilot, OpenCode & Pi.
 
 ```bash
-cue skills add netresearch/typo3-docs-skill --profile docs-writer
+cue skills add ejklock/living-docs-skill --profile docs-writer
 ```
 
 ---
 
-<a id="rockbenben-aishort-skills"></a>
-## 💎 [rockbenben/aishort-skills](https://github.com/rockbenben/aishort-skills)
+<a id="onourimpram-mneme"></a>
+## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
 
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: agent-skills, ai-agents, anthropic, app-icon, claude
+**★ 3** · exceptional (score 10.6) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
 
-Turn what you have into something you can ship — og images, app icons, shareable pages, desktop apps. ｜ 把手边的东西变成能交付的东西 —— og 图、应用图标、分享页、桌面应用。
+Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
 
 ```bash
-cue skills add rockbenben/aishort-skills --profile docs-writer
+cue skills add OnourImpram/mneme --profile docs-writer
 ```
 
 ---

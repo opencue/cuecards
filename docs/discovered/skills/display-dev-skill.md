@@ -2,21 +2,21 @@
 title: "display-dev/skill — Claude Code skill discovered by cue"
 description: "Public agent skill for display.dev — publish HTML or Markdown behind company auth from your AI assistant. Works across Claude Code, Cursor, Codex, OpenCode, Her"
 layout: page
-updated: 2026-10-05
+updated: 2026-11-16
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [display-dev/skill](https://github.com/display-dev/skill)
 
-**★ 12** · exceptional (score 13.5) · Shell · agent-skill, claude-code, claude-code-skill, claude-skills, codex
+**★ 12** · exceptional (score 13.6) · HTML · agent-skill, claude-code, claude-code-skill, claude-skills, codex
 
 > Public agent skill for display.dev — publish HTML or Markdown behind company auth from your AI assistant. Works across Claude Code, Cursor, Codex, OpenCode, Hermes, Pi, and OpenClaw.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.6 based on:
 - ⭐ 12 stars
-- 🗓️ Last pushed: 2026-10-05
+- 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: agent-skill, claude-code, claude-code-skill, claude-skills, codex, codex-skills, cursor, display-dev, hermes, opencode, pi, publishing
 
 ## Best fit cue profiles

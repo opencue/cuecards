@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-16
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="vincentwei1021-anything2explainer"></a>
-## 💎 [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer)
+<a id="zobaerio-zobvia"></a>
+## 💎 [zobaerio/zobvia](https://github.com/zobaerio/zobvia)
 
-**★ 3326** · exceptional (score 21.5) · TypeScript · tags: agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
+**★ 1** · exceptional (score 10.3) · TypeScript · tags: ai-video, bengali, claude-skill, motion-graphics, python
 
-Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.
+🎬 Zobvia — the Claude skill that learns any video's editing style and turns an SRT into a polished Remotion motion-graphics video. 16 style pipelines in code, word-by-word captions, SFX only, Bengali-safe typography. It asks only one question: which colour?
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Vincentwei1021/anything2explainer --profile video
+cue skills add zobaerio/zobvia --profile video
+```
+
+---
+
+<a id="dixitram-codebase-explainer-video"></a>
+## 💎 [DixitRam/codebase-explainer-video](https://github.com/DixitRam/codebase-explainer-video)
+
+**★ 0** · exceptional (score 8) · HTML · tags: claude-code, claude-code-plugin, claude-code-skill, developer-tools, explainer-video
+
+Claude Code plugin: narrated explainer videos of how your code really works, researched from the code and rendered frame-exact
+
+```bash
+cue skills add DixitRam/codebase-explainer-video --profile video
 ```
 
 ---
