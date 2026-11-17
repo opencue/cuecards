@@ -2,7 +2,7 @@
 title: "1monabil/code-mentor — Claude Code skill discovered by cue"
 description: "Claude Code skill: turn the changes on your branch into a lesson — topics, best-practice verdicts, pitfalls, and a learning path."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -24,6 +24,32 @@ The phone is your last API. Give your agent a voice to call any US business - re
 
 ```bash
 cue skills add voygr-tech/placecall --profile backend
+```
+
+---
+
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+
+**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+
+```bash
+cue skills add kochetkov-ma/brewpage-openapi --profile backend
+```
+
+---
+
+<a id="deathgun07-backend-security-audit"></a>
+## ✨ [Deathgun07/backend-security-audit](https://github.com/Deathgun07/backend-security-audit)
+
+**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, benchmark, bun, claude-code, claude-skill
+
+The security audit to run before you ship an app built with AI. Read-only skill for Claude Code, Cursor, Codex, Gemini, Copilot…: Supabase, Firebase, PocketBase, MySQL, Express, PHP, Laravel, Flask, FastAPI, Django, Go. 88% recall on Juice Shop/NodeGoat/DVWA.
+
+```bash
+cue skills add Deathgun07/backend-security-audit --profile backend
 ```
 
 ---
@@ -50,19 +76,6 @@ Skip to content github / docs Code Issues 80 Pull requests 35 Discussions Action
 
 ```bash
 cue skills add Sfedfcv/redesigned-pancake --profile backend
-```
-
----
-
-<a id="dhurjati-js-vulnerability-detector"></a>
-## 🔹 [DHURJATI-JS/vulnerability-detector](https://github.com/DHURJATI-JS/vulnerability-detector)
-
-**★ 2** · potential (score 3.5) · Python · tags: cve, dependency-scanner, devsecops, docker, fastapi
-
-🛡️ Find vulnerable Python dependencies before they find you. Scan a requirements.txt or a whole project: real OSV.dev advisories, verified upgrade paths, and a local Gemma AI (Claude fallback) that can't hide a CVE. FastAPI · PostgreSQL · Docker · one-click run.
-
-```bash
-cue skills add DHURJATI-JS/vulnerability-detector --profile backend
 ```
 
 ---

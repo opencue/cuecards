@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="getcurrentthread-orchestration-kit"></a>
-## 💎 [getCurrentThread/orchestration-kit](https://github.com/getCurrentThread/orchestration-kit)
+<a id="kele-dev-claude-orchestrator-skill"></a>
+## 💎 [kele-dev/Claude-Orchestrator-Skill](https://github.com/kele-dev/Claude-Orchestrator-Skill)
 
-**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-code-plugin, claude-skill, multi-agent, orca
+**★ 14** · exceptional (score 8.4) · JavaScript · tags: claude-code-skill, claude-skill, claude-skills
 
-Claude Code 플러그인: Orca CLI 기반의 디스패치 게이트와 장부, 마스터 승계, 리뷰 워크플로 (Claude Code plugin: dispatch gate and ledger, master succession and a review workflow on top of the Orca CLI)
-
-```bash
-cue skills add getCurrentThread/orchestration-kit --profile fleet-control
-```
-
----
-
-<a id="shubharya-os-duet"></a>
-## ✨ [shubharya-os/duet](https://github.com/shubharya-os/duet)
-
-**★ 3** · strong (score 7.7) · Python · tags: agent-orchestration, ai-agents, ai-code-review, anthropic, chatgpt
-
-Two AI models build it; the harness checks the rules. fix/add/refactor/build/plan where tests are replayed against the original code — for Claude Code, Codex, Gemini CLI, Antigravity, OpenCode and Cursor. No API keys.
+Claude Code plugin for token-saving multi-agent orchestration: Opus plans and verifies, Haiku executes, Sonnet escalates. Includes parallel team mode, autopilot, checkpoints, and self-maintained project lessons.
 
 ```bash
-cue skills add shubharya-os/duet --profile fleet-control
+cue skills add kele-dev/Claude-Orchestrator-Skill --profile fleet-control
 ```
 
 ---

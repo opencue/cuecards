@@ -1,44 +1,29 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="zobaerio-zobvia"></a>
-## 💎 [zobaerio/zobvia](https://github.com/zobaerio/zobvia)
+<a id="malenaaza-video-editor-skill"></a>
+## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
 
-**★ 1** · exceptional (score 10.3) · TypeScript · tags: ai-video, bengali, claude-skill, motion-graphics, python
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, ffmpeg, video-editing, whisper
 
-🎬 Zobvia — the Claude skill that learns any video's editing style and turns an SRT into a polished Remotion motion-graphics video. 16 style pipelines in code, word-by-word captions, SFX only, Bengali-safe typography. It asks only one question: which colour?
-
-✅ SKILL.md
+A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
 
 ```bash
-cue skills add zobaerio/zobvia --profile video
-```
-
----
-
-<a id="dixitram-codebase-explainer-video"></a>
-## 💎 [DixitRam/codebase-explainer-video](https://github.com/DixitRam/codebase-explainer-video)
-
-**★ 0** · exceptional (score 8) · HTML · tags: claude-code, claude-code-plugin, claude-code-skill, developer-tools, explainer-video
-
-Claude Code plugin: narrated explainer videos of how your code really works, researched from the code and rendered frame-exact
-
-```bash
-cue skills add DixitRam/codebase-explainer-video --profile video
+cue skills add malenaaza/video-editor-skill --profile video
 ```
 
 ---

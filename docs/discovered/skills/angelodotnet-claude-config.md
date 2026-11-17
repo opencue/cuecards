@@ -2,7 +2,7 @@
 title: "AngeloDotNet/claude-config — Claude Code skill discovered by cue"
 description: "Starting repository for new projects developed with Claude Code."
 layout: page
-updated: 2026-11-15
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-15
+- 🗓️ Last pushed: 2026-11-17
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skill, claude-skills, vibe-coding
 
 ## Best fit cue profiles

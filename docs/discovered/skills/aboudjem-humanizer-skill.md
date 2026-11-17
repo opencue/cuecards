@@ -1,23 +1,23 @@
 ---
 title: "Aboudjem/humanizer-skill — Claude Code skill discovered by cue"
-description: "Free, open-source AI writing humanizer and detector. 55 patterns, 5 voices, a 0-100 AI-tell score, and nothing leaves your machine."
+description: "Detect 55 AI writing patterns, rewrite text in 5 voices, and score it 0 to 100. Nothing leaves your machine."
 layout: page
-updated: 2026-09-04
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Aboudjem/humanizer-skill](https://github.com/Aboudjem/humanizer-skill)
 
-**★ 214** · exceptional (score 15.7) · JavaScript · agent-skills, ai-detection, ai-humanizer, ai-writing, anti-ai-detection
+**★ 321** · exceptional (score 15.8) · JavaScript · agent-skills, ai-detection, ai-humanizer, ai-writing, burstiness
 
-> Free, open-source AI writing humanizer and detector. 55 patterns, 5 voices, a 0-100 AI-tell score, and nothing leaves your machine.
+> Detect 55 AI writing patterns, rewrite text in 5 voices, and score it 0 to 100. Nothing leaves your machine.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.7 based on:
-- ⭐ 214 stars
-- 🗓️ Last pushed: 2026-09-04
-- 🏷️ Tags: agent-skills, ai-detection, ai-humanizer, ai-writing, anti-ai-detection, awesome-claude-code, burstiness, claude, claude-code, claude-code-plugin, claude-code-skill, claude-skill, content-optimization, humanizer, nlp, openclaw-skill, perplexity, skills-sh, text-rewriting, writing-tools
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
+- ⭐ 321 stars
+- 🗓️ Last pushed: 2026-11-17
+- 🏷️ Tags: agent-skills, ai-detection, ai-humanizer, ai-writing, burstiness, claude, claude-code, claude-code-plugin, claude-code-skill, claude-skill, humanizer, nlp, skills-sh, text-rewriting, writing-tools
 
 ## Best fit cue profiles
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,17 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 
 ---
 
-<a id="kubai087-kubai-icons"></a>
-## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
+<a id="ashwinsathian-loupe"></a>
+## 💎 [AshwinSathian/loupe](https://github.com/AshwinSathian/loupe)
 
-**★ 888** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
+**★ 0** · exceptional (score 13) · JavaScript · tags: accessibility, agent-skills, ai-slop, anthropic, claude
 
-An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
+Design review for Claude Code: checks UI and UX against Apple's Human Interface Guidelines, measures what it can, and flags template-made interfaces. iOS, iPadOS, macOS and the web.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add kubai087/kubai-icons --profile frontend
+cue skills add AshwinSathian/loupe --profile frontend
 ```
 
 ---
@@ -43,15 +43,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="pepinorancio1-sticky-switcher-funnel-playbook"></a>
-## 💎 [PepinoRancio1/sticky-switcher-funnel-playbook](https://github.com/PepinoRancio1/sticky-switcher-funnel-playbook)
+<a id="manimater-manimater-components"></a>
+## ✨ [Manimater/manimater-components](https://github.com/Manimater/manimater-components)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agency-toolkit, ai-coding-agent, claude-code, claude-code-skill, conversion-optimization
+**★ 2** · strong (score 6.5) · Python · tags: animation, claude-skill, education, explainer-videos, manim
 
-Modern Web Design Playbook 2026 – Niche Tokens, Sticky Switcher & Conversion Funnel
+Open-source, tested, reusable Manim animation components (JSON-driven). The component library behind Manimater.
 
 ```bash
-cue skills add PepinoRancio1/sticky-switcher-funnel-playbook --profile frontend
+cue skills add Manimater/manimater-components --profile frontend
 ```
 
 ---

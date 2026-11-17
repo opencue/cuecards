@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3059** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
+**★ 3064** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,28 +28,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="eriknewton-sanctuary-framework"></a>
-## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
+<a id="deathgun07-backend-security-audit"></a>
+## ✨ [Deathgun07/backend-security-audit](https://github.com/Deathgun07/backend-security-audit)
 
-**★ 10** · exceptional (score 10.5) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
+**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, benchmark, bun, claude-code, claude-skill
 
-Open source security for AI agents: an OS-enforced egress wall on macOS, and on Ubuntu 24.04 x86-64 via a separate package; keys only the operator holds; a hash-chained audit record. One command wraps Claude Code, Cursor, Hermes, OpenClaw or Cline on tested config paths. No vendor in the path. Claims trace to the Assurance Matrix.
-
-```bash
-cue skills add eriknewton/sanctuary-framework --profile cybersecurity
-```
-
----
-
-<a id="dhurjati-js-vulnerability-detector"></a>
-## 🔹 [DHURJATI-JS/vulnerability-detector](https://github.com/DHURJATI-JS/vulnerability-detector)
-
-**★ 2** · potential (score 3.5) · Python · tags: cve, dependency-scanner, devsecops, docker, fastapi
-
-🛡️ Find vulnerable Python dependencies before they find you. Scan a requirements.txt or a whole project: real OSV.dev advisories, verified upgrade paths, and a local Gemma AI (Claude fallback) that can't hide a CVE. FastAPI · PostgreSQL · Docker · one-click run.
+The security audit to run before you ship an app built with AI. Read-only skill for Claude Code, Cursor, Codex, Gemini, Copilot…: Supabase, Firebase, PocketBase, MySQL, Express, PHP, Laravel, Flask, FastAPI, Django, Go. 88% recall on Juice Shop/NodeGoat/DVWA.
 
 ```bash
-cue skills add DHURJATI-JS/vulnerability-detector --profile cybersecurity
+cue skills add Deathgun07/backend-security-audit --profile cybersecurity
 ```
 
 ---

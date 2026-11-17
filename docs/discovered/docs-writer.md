@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,36 +15,36 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="ejklock-living-docs-skill"></a>
-## 💎 [ejklock/living-docs-skill](https://github.com/ejklock/living-docs-skill)
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
 
-**★ 14** · exceptional (score 11.1) · Rust · tags: adr, agent-skills, ai-agents, architecture-decision-records, bdr
+**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
 
-Living Docs —  a AI agent skill that runs your project's documentation as a living system: constitution, ADRs, BDRs, PRDs, issues, research notes & Mermaid architecture diagrams under five no-drift governance invariants. OKF-formatted, stack-agnostic. Works with Claude Code, Cursor, Copilot, OpenCode & Pi.
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
 
 ```bash
-cue skills add ejklock/living-docs-skill --profile docs-writer
+cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
 ```
 
 ---
 
-<a id="onourimpram-mneme"></a>
-## 💎 [OnourImpram/mneme](https://github.com/OnourImpram/mneme)
+<a id="onemira-space-okf-markdown"></a>
+## ✨ [onemira-space/okf-markdown](https://github.com/onemira-space/okf-markdown)
 
-**★ 3** · exceptional (score 10.6) · Python · tags: agent-memory, anthropic, claude, claude-code, codex
+**★ 0** · strong (score 6) · JavaScript · tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown
 
-Plain-Markdown memory for Claude Code and MCP. Local retrieval, redaction before indexing, no model on the Stop path.
+Zero-dependency Open Knowledge Format (OKF v0.2) Markdown validator, relational wiki-link graph builder & VTT/SRT transcript CLI for Obsidian, Claude MCP & OneMira
 
 ```bash
-cue skills add OnourImpram/mneme --profile docs-writer
+cue skills add onemira-space/okf-markdown --profile docs-writer
 ```
 
 ---
 
 <a id="basitalisandhu-repo-engineering-skills"></a>
-## ✨ [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
+## 🔹 [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · strong (score 5) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · potential (score 4.9) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

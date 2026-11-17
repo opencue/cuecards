@@ -2,7 +2,7 @@
 title: "ilien-dev/muninn — Claude Code skill discovered by cue"
 description: "Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hook"
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.1 based on:
 - ⭐ 6 stars
-- 🗓️ Last pushed: 2026-11-16
+- 🗓️ Last pushed: 2026-11-17
 - 🏷️ Tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code, claude-code-hooks, claude-code-memory, claude-code-plugin, claude-md, codex, codex-cli, coding-agents, context-engineering, guardrails, llm-memory, local-first, long-term-memory, persistent-memory, rust, sqlite
 
 ## Best fit cue profiles

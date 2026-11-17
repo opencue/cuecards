@@ -2,21 +2,21 @@
 title: "skulitom/Pixelbolt — Claude Code skill discovered by cue"
 description: "Agent-first pixel art and animation toolkit. JSON recipes to PNG, APNG and sprite atlases via CLI, MCP server and local studio. Zero dependencies. MIT."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [skulitom/Pixelbolt](https://github.com/skulitom/Pixelbolt)
 
-**★ 106** · exceptional (score 15.8) · JavaScript · agent-skills, ai-agents, claude-code, claude-skill, game-assets
+**★ 115** · exceptional (score 15.9) · JavaScript · agent-skills, ai-agents, claude-code, claude-skill, game-assets
 
 > Agent-first pixel art and animation toolkit. JSON recipes to PNG, APNG and sprite atlases via CLI, MCP server and local studio. Zero dependencies. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.8 based on:
-- ⭐ 106 stars
-- 🗓️ Last pushed: 2026-11-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
+- ⭐ 115 stars
+- 🗓️ Last pushed: 2026-11-17
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-skill, game-assets, game-effects, gamedev, gemini-cli-extension, javascript, mcp, mcp-server, model-context-protocol, particle-effects, pixel-art, pixelart, sprite-animation, sprite-sheet, sprites, texture-atlas, vfx
 
 ## Best fit cue profiles

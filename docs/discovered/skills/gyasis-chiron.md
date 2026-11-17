@@ -2,7 +2,7 @@
 title: "gyasis/chiron — Claude Code skill discovered by cue"
 description: "Universal LLM-powered lesson generator for solo learners across code, medicine, and language. Self-contained interactive lesson HTML. Q8 architecture: parent Cl"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-15
+- 🗓️ Last pushed: 2026-11-17
 - 🏷️ Tags: anki, claude-code, claude-skill, interactive-html, language-learning, lesson-generator, llm-pipeline, medical-education, pedagogy, single-file-app, spaced-repetition, typescript
 
 ## Best fit cue profiles

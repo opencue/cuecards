@@ -2,21 +2,21 @@
 title: "oantuneshenriqueo/morning-newspaper — Claude Code skill discovered by cue"
 description: "A Claude skill that prints you a personal retro newspaper every morning: your agenda, emails awaiting a reply, the weather and the news you care about, in your "
 layout: page
-updated: 2026-11-13
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [oantuneshenriqueo/morning-newspaper](https://github.com/oantuneshenriqueo/morning-newspaper)
 
-**★ 1** · strong (score 6.3) · Python · claude, claude-skill, claude-skills, morning-briefing, morning-briefing-automation
+**★ 2** · strong (score 6.5) · Python · claude, claude-skill, claude-skills, morning-briefing, morning-briefing-automation
 
 > A Claude skill that prints you a personal retro newspaper every morning: your agenda, emails awaiting a reply, the weather and the news you care about, in your own language.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-13
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-17
 - 🏷️ Tags: claude, claude-skill, claude-skills, morning-briefing, morning-briefing-automation, news, newspaper, productivity, python, retro, rss
 
 ## Best fit cue profiles

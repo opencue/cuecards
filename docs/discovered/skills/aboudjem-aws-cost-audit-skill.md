@@ -1,23 +1,23 @@
 ---
 title: "Aboudjem/aws-cost-audit-skill — Claude Code skill discovered by cue"
-description: "Ask Claude to audit your AWS bill. Every number is checked against live AWS pricing, and nothing is deleted without your say-so."
+description: "Audit your AWS bill with Claude: a verdict, three things to do first, every price checked live. Read-only by default."
 layout: page
-updated: 2026-09-04
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Aboudjem/aws-cost-audit-skill](https://github.com/Aboudjem/aws-cost-audit-skill)
 
-**★ 1** · exceptional (score 9.8) · Shell · agent-skills, ai-agents, aws, aws-cost-explorer, aws-cost-optimization
+**★ 3** · exceptional (score 10.2) · Shell · agent-skills, ai-agents, aws, aws-cost-optimization, claude
 
-> Ask Claude to audit your AWS bill. Every number is checked against live AWS pricing, and nothing is deleted without your say-so.
+> Audit your AWS bill with Claude: a verdict, three things to do first, every price checked live. Read-only by default.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-04
-- 🏷️ Tags: agent-skills, ai-agents, aws, aws-cost-explorer, aws-cost-optimization, claude, claude-code, claude-code-plugin, claude-skill, cloud-cost, cost-explorer, cost-management, cost-optimization, devops, finops, skills-sh
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-17
+- 🏷️ Tags: agent-skills, ai-agents, aws, aws-cost-optimization, claude, claude-code, claude-code-plugin, claude-skill, cloud-cost, cost-explorer, cost-management, cost-optimization, devops, finops, skills-sh
 
 ## Best fit cue profiles
 

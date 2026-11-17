@@ -2,7 +2,7 @@
 title: "mfakharealam/claude-code-engineering-skills — Claude Code skill discovered by cue"
 description: "Claude Code skills and subagents for the path from an issue to a merged PR: grounding, orchestration with subagents, multi-axis review, Codex triage, CI shepher"
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 

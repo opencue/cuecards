@@ -2,7 +2,7 @@
 title: "leonrlr4/readable-chat — Claude Code skill discovered by cue"
 description: "Readable Claude Code replies in the terminal: leaf rendering, folding, reader pane, clickable paths, collapsed tool output, mermaid images"
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, skill, core]
 ---
 

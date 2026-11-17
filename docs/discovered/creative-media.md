@@ -1,46 +1,29 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-17
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="elithril-blender-kiln"></a>
-## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
+<a id="malenaaza-video-editor-skill"></a>
+## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
 
-**★ 219** · exceptional (score 19.7) · Python · tags: 3d-models, 3d-printing, agent-skills, animation, blender
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, ffmpeg, video-editing, whisper
 
-Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates characters too. New in 3.0: Kiln Studio, a local page to view, check and fix your models with Claude.
-
-✅ SKILL.md
+A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
 
 ```bash
-cue skills add elithril/blender-kiln --profile creative-media
-```
-
----
-
-<a id="wuxutian2-bot-douyin-downloader"></a>
-## 💎 [wuxutian2-bot/douyin-downloader](https://github.com/wuxutian2-bot/douyin-downloader)
-
-**★ 6** · exceptional (score 14.5) · Python · tags: agent-skill, chrome-devtools-protocol, claude-skill, douyin, douyin-downloader
-
-抖音视频/图集/GIF 下载器 · Zero-dependency Douyin downloader skill + CLI (no-watermark originals, album images, GIF export)
-
-✅ SKILL.md
-
-```bash
-cue skills add wuxutian2-bot/douyin-downloader --profile creative-media
+cue skills add malenaaza/video-editor-skill --profile creative-media
 ```
 
 ---
