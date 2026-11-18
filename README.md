@@ -24,7 +24,7 @@
   <img src="https://img.shields.io/badge/telemetry-opt--in-success?style=for-the-badge" alt="opt-in local telemetry">
 </p>
 
-[Community](https://cuecards.cc) · [Install](#install) · [How it works](#how-it-works) · [Profiles](#194-ready-made-cuecards) · [Multi-agent](#one-cuecard-ten-agents) · [FAQ](#faq) · [Contributing](#contributing)
+[Community](https://cuecards.cc) · [Install](#install) · [How it works](#how-it-works) · [Profiles](#195-ready-made-cuecards) · [Multi-agent](#one-cuecard-ten-agents) · [FAQ](#faq) · [Contributing](#contributing)
 
 </div>
 
@@ -202,7 +202,7 @@ Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow
 
 ## 195 ready-made cuecards
 
-cue ships with 99 focused primary profiles plus 95 opt-in overlays. A taste:
+cue ships with 100 focused primary profiles plus 95 opt-in overlays. A taste:
 
 | Profile | What it's for |
 |---|---|
