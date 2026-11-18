@@ -1,29 +1,96 @@
 ---
 title: "Claude Code Skills for video"
-description: "1 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="malenaaza-video-editor-skill"></a>
-## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
+<a id="vincentwei1021-anything2explainer"></a>
+## 💎 [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer)
 
-**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, ffmpeg, video-editing, whisper
+**★ 3394** · exceptional (score 21.5) · TypeScript · tags: agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
 
-A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
+Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.
+
+✅ SKILL.md
 
 ```bash
-cue skills add malenaaza/video-editor-skill --profile video
+cue skills add Vincentwei1021/anything2explainer --profile video
+```
+
+---
+
+<a id="halitsever-explain-to-customer"></a>
+## 💎 [halitsever/explain-to-customer](https://github.com/halitsever/explain-to-customer)
+
+**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, ai-agents, anthropic, changelog, claude
+
+Claude Code skill that turns a code change into a short client-ready explainer video, slides and Mermaid diagrams, in the visual style you pick.
+
+```bash
+cue skills add halitsever/explain-to-customer --profile video
+```
+
+---
+
+<a id="transcriptdock-instagram-transcript-api"></a>
+## ✨ [TranscriptDock/instagram-transcript-api](https://github.com/TranscriptDock/instagram-transcript-api)
+
+**★ 0** · strong (score 6) · tags: ai-skill, api, claude-skill, instagram, instagram-reels
+
+Instagram transcript API: AI transcription for public Reels and video posts, with a spend cap on every job. Examples, docs and an agent skill.
+
+```bash
+cue skills add TranscriptDock/instagram-transcript-api --profile video
+```
+
+---
+
+<a id="transcriptdock-tiktok-transcript-api"></a>
+## ✨ [TranscriptDock/tiktok-transcript-api](https://github.com/TranscriptDock/tiktok-transcript-api)
+
+**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, mcp
+
+TikTok transcript API: creator captions, AI transcription fallback and profile video discovery. Examples, docs and an agent skill.
+
+```bash
+cue skills add TranscriptDock/tiktok-transcript-api --profile video
+```
+
+---
+
+<a id="transcriptdock-youtube-transcript-api"></a>
+## ✨ [TranscriptDock/youtube-transcript-api](https://github.com/TranscriptDock/youtube-transcript-api)
+
+**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, mcp
+
+YouTube transcript API: creator and automatic captions, AI transcription, search, channel and playlist discovery. Examples, docs and an agent skill.
+
+```bash
+cue skills add TranscriptDock/youtube-transcript-api --profile video
+```
+
+---
+
+<a id="transcriptdock-transcriptdock-api"></a>
+## ✨ [TranscriptDock/transcriptdock-api](https://github.com/TranscriptDock/transcriptdock-api)
+
+**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, instagram-transcript
+
+Transcript Dock API: transcripts from YouTube, TikTok, Instagram and your own media through one API.
+
+```bash
+cue skills add TranscriptDock/transcriptdock-api --profile video
 ```
 
 ---

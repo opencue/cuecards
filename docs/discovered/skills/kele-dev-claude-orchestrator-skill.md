@@ -2,21 +2,21 @@
 title: "kele-dev/Claude-Orchestrator-Skill — Claude Code skill discovered by cue"
 description: "Claude Code plugin for token-saving multi-agent orchestration: Opus plans and verifies, Haiku executes, Sonnet escalates. Includes parallel team mode, autopilot"
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, skill, fleet-control]
 ---
 
 # 💎 [kele-dev/Claude-Orchestrator-Skill](https://github.com/kele-dev/Claude-Orchestrator-Skill)
 
-**★ 14** · exceptional (score 8.4) · JavaScript · claude-code-skill, claude-skill, claude-skills
+**★ 15** · exceptional (score 8.4) · JavaScript · claude-code-skill, claude-skill, claude-skills
 
 > Claude Code plugin for token-saving multi-agent orchestration: Opus plans and verifies, Haiku executes, Sonnet escalates. Includes parallel team mode, autopilot, checkpoints, and self-maintained project lessons.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
-- ⭐ 14 stars
-- 🗓️ Last pushed: 2026-11-17
+- ⭐ 15 stars
+- 🗓️ Last pushed: 2026-11-18
 - 🏷️ Tags: claude-code-skill, claude-skill, claude-skills
 
 ## Best fit cue profiles

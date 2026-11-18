@@ -2,7 +2,7 @@
 title: "ExtantApe/theseus — Claude Code skill discovered by cue"
 description: "A private, never-sends personal assistant for Claude Code on your Mac. Clears the path, so you can make the call."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, skill, core]
 ---
 

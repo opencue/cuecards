@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="ashwinsathian-loupe"></a>
-## 💎 [AshwinSathian/loupe](https://github.com/AshwinSathian/loupe)
-
-**★ 0** · exceptional (score 13) · JavaScript · tags: accessibility, agent-skills, ai-slop, anthropic, claude
-
-Design review for Claude Code: checks UI and UX against Apple's Human Interface Guidelines, measures what it can, and flags template-made interfaces. iOS, iPadOS, macOS and the web.
-
-✅ SKILL.md
-
-```bash
-cue skills add AshwinSathian/loupe --profile frontend
-```
 
 ---
 
@@ -39,19 +24,6 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
-```
-
----
-
-<a id="manimater-manimater-components"></a>
-## ✨ [Manimater/manimater-components](https://github.com/Manimater/manimater-components)
-
-**★ 2** · strong (score 6.5) · Python · tags: animation, claude-skill, education, explainer-videos, manim
-
-Open-source, tested, reusable Manim animation components (JSON-driven). The component library behind Manimater.
-
-```bash
-cue skills add Manimater/manimater-components --profile frontend
 ```
 
 ---

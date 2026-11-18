@@ -2,13 +2,13 @@
 title: "jwsung91/MAGI — Claude Code skill discovered by cue"
 description: "A Claude skill for three-perspective deliberation: independent technical, safety, and human reviews resolved by 2/3 majority (unanimity for critical decisions)"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-18
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [jwsung91/MAGI](https://github.com/jwsung91/MAGI)
 
-**★ 0** · strong (score 6) · claude, claude-skill, decision-making, multi-agent
+**★ 0** · strong (score 6) · Python · claude, claude-skill, decision-making, multi-agent
 
 > A Claude skill for three-perspective deliberation: independent technical, safety, and human reviews resolved by 2/3 majority (unanimity for critical decisions)
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-15
+- 🗓️ Last pushed: 2026-11-18
 - 🏷️ Tags: claude, claude-skill, decision-making, multi-agent
 
 ## Best fit cue profiles

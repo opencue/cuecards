@@ -2,22 +2,22 @@
 title: "fockus/skill-memory-bank — Claude Code skill discovered by cue"
 description: "Universal long-term project memory for AI coding agents — Claude Code, Cursor, Windsurf, Cline + 4 more. TDD rules, code graph, spec-driven dev, cross-session r"
 layout: page
-updated: 2026-09-28
+updated: 2026-11-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [fockus/skill-memory-bank](https://github.com/fockus/skill-memory-bank)
 
-**★ 25** · exceptional (score 20) · Shell · agent-skill, ai-agents, ai-coding-assistant, anthropic, claude
+**★ 33** · exceptional (score 20.2) · Shell · agent-skill, ai-agents, ai-coding-assistant, anthropic, claude
 
 > Universal long-term project memory for AI coding agents — Claude Code, Cursor, Windsurf, Cline + 4 more. TDD rules, code graph, spec-driven dev, cross-session recall.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 20.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 25 stars
-- 🗓️ Last pushed: 2026-09-28
+- ⭐ 33 stars
+- 🗓️ Last pushed: 2026-11-18
 - 🏷️ Tags: agent-skill, ai-agents, ai-coding-assistant, anthropic, claude, claude-code, claude-skill, clean-architecture, cline, codex, cursor, developer-tools, llm-memory, memory-bank, opencode, persistent-memory, project-memory, skill, tdd, windsurf
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "2 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3064** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
+**★ 3078** · exceptional (score 12.9) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -28,15 +28,15 @@ cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
 
 ---
 
-<a id="deathgun07-backend-security-audit"></a>
-## ✨ [Deathgun07/backend-security-audit](https://github.com/Deathgun07/backend-security-audit)
+<a id="eriknewton-sanctuary-framework"></a>
+## 💎 [eriknewton/sanctuary-framework](https://github.com/eriknewton/sanctuary-framework)
 
-**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, benchmark, bun, claude-code, claude-skill
+**★ 10** · exceptional (score 10.5) · TypeScript · tags: agent-infrastructure, ai-agent-security, ai-agents, claude-code, decentralized-identity
 
-The security audit to run before you ship an app built with AI. Read-only skill for Claude Code, Cursor, Codex, Gemini, Copilot…: Supabase, Firebase, PocketBase, MySQL, Express, PHP, Laravel, Flask, FastAPI, Django, Go. 88% recall on Juice Shop/NodeGoat/DVWA.
+Open source security for AI agents: an OS-enforced egress wall on macOS, and on Ubuntu 24.04 x86-64 via a separate package; keys only the operator holds; a hash-chained audit record. One command wraps Claude Code, Cursor, Hermes, OpenClaw or Cline on tested config paths. No vendor in the path. Claims trace to the Assurance Matrix.
 
 ```bash
-cue skills add Deathgun07/backend-security-audit --profile cybersecurity
+cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 ```
 
 ---

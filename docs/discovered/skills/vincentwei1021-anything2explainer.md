@@ -2,13 +2,13 @@
 title: "Vincentwei1021/anything2explainer — Claude Code skill discovered by cue"
 description: "Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover,"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-18
 tags: [claude-code, skill, video, creative-media]
 ---
 
 # 💎 [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer)
 
-**★ 3326** · exceptional (score 21.5) · TypeScript · agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
+**★ 3394** · exceptional (score 21.5) · TypeScript · agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
 
 > Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, video, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 21.5 based on:
 - ✅ Contains SKILL.md
-- ⭐ 3326 stars
-- 🗓️ Last pushed: 2026-11-15
+- ⭐ 3394 stars
+- 🗓️ Last pushed: 2026-11-18
 - 🏷️ Tags: agent-skills, ai-agents, ai-video, claude-code, claude-code-skill, codex, edge-tts, educational-video, explainer-video, kokoro, motion-graphics, multi-agent, react, remotion, text-to-video, tts, typescript, video-generation
 
 ## Best fit cue profiles

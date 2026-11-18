@@ -2,19 +2,19 @@
 title: "furqanistic/pathplease — Claude Code skill discovered by cue"
 description: "When working with AI assistants like Claude, ChatGPT, GitHub Copilot or Cursor, context is everything. PathPlease automatically adds file paths as comments to y"
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [furqanistic/pathplease](https://github.com/furqanistic/pathplease)
 
-**★ 3** · strong (score 5.2) · TypeScript
+**★ 3** · strong (score 5.1) · TypeScript
 
 > When working with AI assistants like Claude, ChatGPT, GitHub Copilot or Cursor, context is everything. PathPlease automatically adds file paths as comments to your code, making it crystal clear which file you're sharing with AI tools.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.2 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.1 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-11-16
 - 🏷️ Tags: (none)

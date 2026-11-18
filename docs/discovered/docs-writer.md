@@ -1,43 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
-
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
-
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
-
-```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
-```
-
----
-
-<a id="onemira-space-okf-markdown"></a>
-## ✨ [onemira-space/okf-markdown](https://github.com/onemira-space/okf-markdown)
-
-**★ 0** · strong (score 6) · JavaScript · tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown
-
-Zero-dependency Open Knowledge Format (OKF v0.2) Markdown validator, relational wiki-link graph builder & VTT/SRT transcript CLI for Obsidian, Claude MCP & OneMira
-
-```bash
-cue skills add onemira-space/okf-markdown --profile docs-writer
-```
 
 ---
 

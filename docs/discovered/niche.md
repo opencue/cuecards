@@ -1,121 +1,61 @@
 ---
 title: "Claude Code Skills for niche"
-description: "7 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 7 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="engheng-art-shipin-bianwenzi"></a>
-## 💎 [engheng-art/shipin-bianwenzi](https://github.com/engheng-art/shipin-bianwenzi)
-
-**★ 0** · exceptional (score 12) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
-
-基于千问大模型的视频语义解析能力，将网络视频链接或本地视频文件转写为干净文本。转写过程自动识别并剔除语气词、口误、重复台词，支持按指定风格重写为文案。覆盖短视频二创、会议纪要、课程拆解、直播复盘、采访整理、探店脚本、培训课件等视频内容处理需求。用户提到视频转文字、视频转写、提取视频语音时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
-
-✅ SKILL.md
-
-```bash
-cue skills add engheng-art/shipin-bianwenzi --profile niche
-```
-
----
-
-<a id="engheng-art-huoke-compass"></a>
-## 💎 [engheng-art/huoke-compass](https://github.com/engheng-art/huoke-compass)
+<a id="engheng-art-shipin-wenzigao"></a>
+## 💎 [engheng-art/shipin-wenzigao](https://github.com/engheng-art/shipin-wenzigao)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+短视频二创、会议纪要、课程拆解、直播复盘、采访整理、知识提取、探店脚本、培训课件——这些场景里的视频内容，本技能都能转写为干净文本。支持网络视频链接与本地视频文件输入，调用千问大模型语义解析，自动剔除语气词、口误、重复台词，并可按指定风格生成文案。用户需要视频转文字、提取视频语音或生成视频文案时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/huoke-compass --profile niche
+cue skills add engheng-art/shipin-wenzigao --profile niche
 ```
 
 ---
 
-<a id="engheng-art-huoke-search-to-lead"></a>
-## 💎 [engheng-art/huoke-search-to-lead](https://github.com/engheng-art/huoke-search-to-lead)
+<a id="engheng-art-shipin-chuwenzi"></a>
+## 💎 [engheng-art/shipin-chuwenzi](https://github.com/engheng-art/shipin-chuwenzi)
 
 **★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+把视频变成能直接用的文字。无论是短视频二创改脚本、会议出纪要、课程拆知识点，还是直播复盘、采访整理、探店脚本、培训课件整理，都能一键成文。支持网络视频链接和本地视频文件，调用千问大模型语义解析，自动过滤语气词、口误与重复台词，并按你想要的风格输出。用户提到视频转文字、提取视频语音、视频出稿等需求时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/huoke-search-to-lead --profile niche
+cue skills add engheng-art/shipin-chuwenzi --profile niche
 ```
 
 ---
 
-<a id="engheng-art-customer-acquisition-engine"></a>
-## 💎 [engheng-art/customer-acquisition-engine](https://github.com/engheng-art/customer-acquisition-engine)
-
-**★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
-
-看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
-
-✅ SKILL.md
-
-```bash
-cue skills add engheng-art/customer-acquisition-engine --profile niche
-```
-
----
-
-<a id="engheng-art-huoke-panner"></a>
-## 💎 [engheng-art/huoke-panner](https://github.com/engheng-art/huoke-panner)
-
-**★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
-
-看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
-
-✅ SKILL.md
-
-```bash
-cue skills add engheng-art/huoke-panner --profile niche
-```
-
----
-
-<a id="engheng-art-huoke-poacher"></a>
-## 💎 [engheng-art/huoke-poacher](https://github.com/engheng-art/huoke-poacher)
-
-**★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
-
-看实时热点，选话题关键词回去做搜索+评论｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
-
-✅ SKILL.md
-
-```bash
-cue skills add engheng-art/huoke-poacher --profile niche
-```
-
----
-
-<a id="engheng-art-shipin-wenben-tiqu"></a>
-## 💎 [engheng-art/shipin-wenben-tiqu](https://github.com/engheng-art/shipin-wenben-tiqu)
+<a id="engheng-art-shipin-wenan-zhineng-tiqu"></a>
+## 💎 [engheng-art/shipin-wenan-zhineng-tiqu](https://github.com/engheng-art/shipin-wenan-zhineng-tiqu)
 
 **★ 0** · exceptional (score 9.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-核心能力 基于千问大模型，对网络视频链接与本地视频文件进行深度语义解析与快速转写。 智能清洗 自动剔除语气词、口误、重复台词等无效文本，输出可直接使用的干净文稿。 风格定制 自由调整文案风格，适配短视频脚本、正式纪要、知识笔记等不同输出形态。  适用场景 短视频二次创作 · 企业会议纪要 · 线上课程拆解 · 直播复盘 · 人物采访整理 · 知识素材提取 · 探店脚本撰写 · 培训课件整理｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
+将视频内容转写为文本。支持网络视频链接和本地视频文件两种输入，调用千问大模型进行语义解析，自动剔除语气词、口误、重复台词等无效内容，并支持按指定风格生成文案。适用于以下场景：短视频二次创作脚本、企业会议纪要、线上课程内容拆解、直播复盘、人物采访文字整理、知识素材提取、探店脚本撰写、培训课件整理。当用户需要把视频转成文字、提取视频中的语音内容、生成视频文案或会议纪要时触发。｜本地 mp4 或直链转干净文案，并按 Prompt 生成总结、改写、金句、分镜头与翻译
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/shipin-wenben-tiqu --profile niche
+cue skills add engheng-art/shipin-wenan-zhineng-tiqu --profile niche
 ```
 
 ---

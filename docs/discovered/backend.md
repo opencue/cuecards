@@ -1,55 +1,29 @@
 ---
 title: "Claude Code Skills for backend"
-description: "5 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-18
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="voygr-tech-placecall"></a>
-## 💎 [voygr-tech/placecall](https://github.com/voygr-tech/placecall)
+<a id="ni-c-mcp-hub"></a>
+## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
 
-**★ 118** · exceptional (score 17.9) · Shell · tags: agent-skills, ai-agent, calls, claude-code, claude-code-plugins
+**★ 4** · exceptional (score 10.8) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
 
-The phone is your last API. Give your agent a voice to call any US business - reservations, inquiries, quotes. Verified outcome + transcript. First 250 calls free.
-
-```bash
-cue skills add voygr-tech/placecall --profile backend
-```
-
----
-
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
-
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
-
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile backend
-```
-
----
-
-<a id="deathgun07-backend-security-audit"></a>
-## ✨ [Deathgun07/backend-security-audit](https://github.com/Deathgun07/backend-security-audit)
-
-**★ 1** · strong (score 7.3) · Shell · tags: agent-skills, benchmark, bun, claude-code, claude-skill
-
-The security audit to run before you ship an app built with AI. Read-only skill for Claude Code, Cursor, Codex, Gemini, Copilot…: Supabase, Firebase, PocketBase, MySQL, Express, PHP, Laravel, Flask, FastAPI, Django, Go. 88% recall on Juice Shop/NodeGoat/DVWA.
-
-```bash
-cue skills add Deathgun07/backend-security-audit --profile backend
+cue skills add ni-c/mcp-hub --profile backend
 ```
 
 ---
@@ -57,12 +31,25 @@ cue skills add Deathgun07/backend-security-audit --profile backend
 <a id="ilien-dev-muninn"></a>
 ## ✨ [ilien-dev/muninn](https://github.com/ilien-dev/muninn)
 
-**★ 6** · strong (score 6.1) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
+**★ 6** · strong (score 6) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
 
 Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hooks. Local-first: one Rust binary, SQLite + FTS5, no cloud, no API key, no LLM in the read path. Cue-anchored recall under a 700-token budget.
 
 ```bash
 cue skills add ilien-dev/muninn --profile backend
+```
+
+---
+
+<a id="transcriptdock-transcriptdock-api"></a>
+## ✨ [TranscriptDock/transcriptdock-api](https://github.com/TranscriptDock/transcriptdock-api)
+
+**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, instagram-transcript
+
+Transcript Dock API: transcripts from YouTube, TikTok, Instagram and your own media through one API.
+
+```bash
+cue skills add TranscriptDock/transcriptdock-api --profile backend
 ```
 
 ---

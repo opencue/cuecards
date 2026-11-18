@@ -1,22 +1,22 @@
 ---
 title: "maxschottke-spec/seo-survival-kit — Claude Code skill discovered by cue"
-description: "Recovery Operating System for ecommerce/D2C. Eighteen Claude Code skills for Core-Update recovery, AI search visibility, decision-maker PDF reports, channel eco"
+description: "Recovery-first decision support for ecommerce/D2C SEO. Nineteen Claude Code skills for Core-Update recovery, change governance, weekly monitoring and decision-m"
 layout: page
-updated: 2026-07-03
+updated: 2026-11-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [maxschottke-spec/seo-survival-kit](https://github.com/maxschottke-spec/seo-survival-kit)
 
-**★ 9** · exceptional (score 8.6) · JavaScript · ai-citations, ai-overviews, ai-search, chatgpt, claude-code
+**★ 12** · exceptional (score 10.6) · JavaScript · ai-citations, ai-overviews, ai-search, chatgpt, claude-code
 
-> Recovery Operating System for ecommerce/D2C. Eighteen Claude Code skills for Core-Update recovery, AI search visibility, decision-maker PDF reports, channel economics, GSC + AI-citations tracking. Built from real 2026 ecommerce recovery cases. MIT, independent security review.
+> Recovery-first decision support for ecommerce/D2C SEO. Nineteen Claude Code skills for Core-Update recovery, change governance, weekly monitoring and decision-maker PDF reports. Built from one real 2026 recovery case. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
-- ⭐ 9 stars
-- 🗓️ Last pushed: 2026-07-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.6 based on:
+- ⭐ 12 stars
+- 🗓️ Last pushed: 2026-11-18
 - 🏷️ Tags: ai-citations, ai-overviews, ai-search, chatgpt, claude-code, claude-code-plugin, claude-code-skill, core-update-recovery, d2c, dataforseo, decision-engine, ecommerce, gsc-deep-dive, pagespeed-insights, pdf-report, perplexity, recovery-operating-system, rescue, seo, sistrix
 
 ## Best fit cue profiles

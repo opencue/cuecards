@@ -2,21 +2,21 @@
 title: "rebelytics/one-skill-to-rule-them-all — Claude Code skill discovered by cue"
 description: "The meta-skill that improves your skills, including itself. Turns the corrections, judgement calls and repeated workflows of your sessions (autonomous or human-"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-18
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all)
 
-**★ 3913** · exceptional (score 17) · Markdown · agent-skills, ai-skills, augmented-expertise, awesome-skills, claude
+**★ 3964** · exceptional (score 17) · Markdown · agent-skills, ai-skills, augmented-expertise, awesome-skills, claude
 
 > The meta-skill that improves your skills, including itself. Turns the corrections, judgement calls and repeated workflows of your sessions (autonomous or human-led) into small skill updates and new skill candidates, each with its evidence and reason. Nothing touches a skill until you approve it. Augmented Expertise in practice. CC BY 4.0.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17 based on:
-- ⭐ 3913 stars
-- 🗓️ Last pushed: 2026-11-15
+- ⭐ 3964 stars
+- 🗓️ Last pushed: 2026-11-18
 - 🏷️ Tags: agent-skills, ai-skills, augmented-expertise, awesome-skills, claude, claude-code, claude-code-skill, claude-code-skills, claude-cowork, claude-skills, meta-skill, rebelytics, skill-automation, skill-builder, skill-creation, skill-improvement, skill-management, skills
 
 ## Best fit cue profiles
