@@ -2,7 +2,7 @@
 title: "finereli/pwa-kit — Claude Code skill discovered by cue"
 description: "A Claude Code skill for building mobile web apps that feel native: a spec, plus copyable code where prose isn't precise enough."
 layout: page
-updated: 2026-10-31
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-31
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: claude-code, claude-skill, cloudflare-workers, pwa, svelte
 
 ## Best fit cue profiles

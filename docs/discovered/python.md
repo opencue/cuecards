@@ -2,7 +2,7 @@
 title: "Claude Code Skills for python"
 description: "1 community Claude Code skills curated by cue for the python profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-19
 tags: [claude-code, python, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, python, skills, mcp, ai-agents]
 
 ---
 
-<a id="zobaerio-zobvia"></a>
-## 💎 [zobaerio/zobvia](https://github.com/zobaerio/zobvia)
+<a id="mauroemartinez-softrade-batch"></a>
+## 💎 [mauroemartinez/softrade-batch](https://github.com/mauroemartinez/softrade-batch)
 
-**★ 1** · exceptional (score 10.3) · TypeScript · tags: ai-video, bengali, claude-skill, motion-graphics, python
+**★ 1** · exceptional (score 8.3) · Python · tags: browser-automation, claude-code, claude-skill, comercio-exterior, customs-data
 
-🎬 Zobvia — the Claude skill that learns any video's editing style and turns an SRT into a polished Remotion motion-graphics video. 16 style pipelines in code, word-by-word captions, SFX only, Bengali-safe typography. It asks only one question: which colour?
-
-✅ SKILL.md
+Claude Code skill that turns plain-language requests into batch downloads of international trade data from Softrade (78 countries), with resumable runs, truncation checks and Excel consolidation.
 
 ```bash
-cue skills add zobaerio/zobvia --profile python
+cue skills add mauroemartinez/softrade-batch --profile python
 ```
 
 ---

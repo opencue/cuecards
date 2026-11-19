@@ -2,7 +2,7 @@
 title: "mariomele/blender-product-video — Claude Code skill discovered by cue"
 description: "Skill per Claude Code: da foto, CAD o disegni a un video 3D di prodotto in Blender, con storyboard, HyperFrames, ElevenLabs e render su GPU Metal."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-14
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: blender, claude-code, claude-skill, elevenlabs, hyperframes, product-video
 
 ## Best fit cue profiles

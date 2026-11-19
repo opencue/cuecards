@@ -2,7 +2,7 @@
 title: "tsirbiladze/logisticshub — Claude Code skill discovered by cue"
 description: "Agent skill that cross-checks trade documents (invoice, packing list, CMR, contract): 16 deterministic rules, exact quotes, reports in EN/KA/RU/TR, marked PDFs."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-14
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: agent-skills, claude-skill, cmr, customs, invoice, logistics, mcp, trade-documents
 
 ## Best fit cue profiles

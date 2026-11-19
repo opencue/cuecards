@@ -2,21 +2,21 @@
 title: "Valdemar-Yu/Baton — Claude Code skill discovered by cue"
 description: "Claude Code skill: Claude Opus conducts and judges, GPT-6.1-Sol executes via the Codex CLI. Supervision every 30 min, council-backed decisions, HTML reports, Co"
 layout: page
-updated: 2026-10-16
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Valdemar-Yu/Baton](https://github.com/Valdemar-Yu/Baton)
 
-**★ 2** · exceptional (score 8.5) · Python · claude-code, claude-skill, codex, multi-agent
+**★ 5** · exceptional (score 9.9) · Python · claude-code, claude-skill, codex, multi-agent
 
 > Claude Code skill: Claude Opus conducts and judges, GPT-6.1-Sol executes via the Codex CLI. Supervision every 30 min, council-backed decisions, HTML reports, Codex quota statusline.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-10-16
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.9 based on:
+- ⭐ 5 stars
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: claude-code, claude-skill, codex, multi-agent
 
 ## Best fit cue profiles

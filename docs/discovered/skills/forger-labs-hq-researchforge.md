@@ -2,22 +2,22 @@
 title: "forger-labs-hq/researchforge — Claude Code skill discovered by cue"
 description: "A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or"
 layout: page
-updated: 2026-09-02
+updated: 2026-11-19
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [forger-labs-hq/researchforge](https://github.com/forger-labs-hq/researchforge)
 
-**★ 7** · exceptional (score 10.5) · Python · ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
+**★ 11** · exceptional (score 12.5) · Python · ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
 
 > A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or a direct API key (Gemini/Anthropic/openAI).
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 7 stars
-- 🗓️ Last pushed: 2026-09-02
-- 🏷️ Tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher, claude-code, claude-code-skill, claude-code-skills, cursor-ide, cursor-ide-mcp, dashboard, hypothesis-testing, llm-agent, llm-tools, llmops, mcp-server, python3
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
+- ⭐ 11 stars
+- 🗓️ Last pushed: 2026-11-19
+- 🏷️ Tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher, autoresearch, claude-code, claude-code-skill, claude-code-skills, cursor-ide, cursor-ide-mcp, dashboard, hypothesis-testing, llm-agent, llm-tools, llmops, mcp-server, ml-ops, python3
 
 ## Best fit cue profiles
 

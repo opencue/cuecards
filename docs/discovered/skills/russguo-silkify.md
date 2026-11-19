@@ -2,7 +2,7 @@
 title: "RussGuo/silkify — Claude Code skill discovered by cue"
 description: "Silkify anything: turn any image into a touchable silk surface on the web"
 layout: page
-updated: 2026-10-22
+updated: 2026-11-19
 tags: [claude-code, skill, threejs]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, threejs]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-22
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: claude-skill, generative-art, silk, threejs, webgl
 
 ## Best fit cue profiles

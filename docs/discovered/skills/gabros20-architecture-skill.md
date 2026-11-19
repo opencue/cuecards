@@ -2,21 +2,21 @@
 title: "gabros20/architecture-skill — Claude Code skill discovered by cue"
 description: "Decide the shape of a software system — boundaries, contracts, NFR budgets, threat models, and ADRs. The Shape stage of the Digital Product Skills family."
 layout: page
-updated: 2026-10-17
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [gabros20/architecture-skill](https://github.com/gabros20/architecture-skill)
 
-**★ 0** · exceptional (score 8.5) · HTML · agent-skill, architecture, architecture-decision-record, claude-skill, software-architecture
+**★ 0** · exceptional (score 10) · HTML · agent-skill, architecture, architecture-decision-record, claude-skill, software-architecture
 
 > Decide the shape of a software system — boundaries, contracts, NFR budgets, threat models, and ADRs. The Shape stage of the Digital Product Skills family.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-17
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: agent-skill, architecture, architecture-decision-record, claude-skill, software-architecture, system-design
 
 ## Best fit cue profiles

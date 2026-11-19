@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-12
+updated: 2026-11-19
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="saroj-shahi-ship-site"></a>
-## 💎 [saroj-shahi/ship-site](https://github.com/saroj-shahi/ship-site)
+<a id="tsirbiladze-sitewright"></a>
+## ✨ [tsirbiladze/sitewright](https://github.com/tsirbiladze/sitewright)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: accessibility, claude-code, claude-code-plugin, claude-skill, nextjs
+**★ 0** · strong (score 6) · TypeScript · tags: agent-skills, claude-skill, nextjs, personal-site, portfolio
 
-Claude Code skill: Next.js marketing site release orchestrator (audit, fix, release, smoke)
+An agent skill that makes you a site of your own and takes it live on Vercel: your name across the top, projects, a work page, a CV and a blog.
 
 ```bash
-cue skills add saroj-shahi/ship-site --profile nextjs
+cue skills add tsirbiladze/sitewright --profile nextjs
 ```
 
 ---

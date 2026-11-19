@@ -2,21 +2,21 @@
 title: "educlopez/diorama — Claude Code skill discovered by cue"
 description: "Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js"
 layout: page
-updated: 2026-11-03
+updated: 2026-11-19
 tags: [claude-code, skill, threejs]
 ---
 
 # 💎 [educlopez/diorama](https://github.com/educlopez/diorama)
 
-**★ 14** · exceptional (score 8.4) · JavaScript · 3d, agent-skills, animation, claude-code, claude-code-skill
+**★ 23** · exceptional (score 8.6) · JavaScript · 3d, agent-skills, animation, claude-code, claude-code-skill
 
 > Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js miniature worlds, four finishes. diorama-pixel: dithered pixel-art miniatures, no three.js. npx skills add educlopez/diorama
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.4 based on:
-- ⭐ 14 stars
-- 🗓️ Last pushed: 2026-11-03
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
+- ⭐ 23 stars
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: 3d, agent-skills, animation, claude-code, claude-code-skill, diorama, empty-state, illustration, isometric, landing-page, low-poly, svg
 
 ## Best fit cue profiles

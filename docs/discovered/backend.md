@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-18
+updated: 2026-11-19
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="ni-c-mcp-hub"></a>
-## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
+<a id="forger-labs-hq-researchforge"></a>
+## 💎 [forger-labs-hq/researchforge](https://github.com/forger-labs-hq/researchforge)
 
-**★ 4** · exceptional (score 10.8) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 11** · exceptional (score 12.5) · Python · tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
 
-Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
+A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or a direct API key (Gemini/Anthropic/openAI).
 
 ```bash
-cue skills add ni-c/mcp-hub --profile backend
+cue skills add forger-labs-hq/researchforge --profile backend
 ```
 
 ---
@@ -31,7 +31,7 @@ cue skills add ni-c/mcp-hub --profile backend
 <a id="ilien-dev-muninn"></a>
 ## ✨ [ilien-dev/muninn](https://github.com/ilien-dev/muninn)
 
-**★ 6** · strong (score 6) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
+**★ 6** · strong (score 6.1) · Rust · tags: agent-memory, agents-md, ai-coding-agent, ai-memory, claude-code
 
 Persistent memory for Claude Code and Codex CLI that never serves a replaced decision, and turns CLAUDE.md / AGENTS.md rules into permission rules and deny hooks. Local-first: one Rust binary, SQLite + FTS5, no cloud, no API key, no LLM in the read path. Cue-anchored recall under a 700-token budget.
 
@@ -41,15 +41,15 @@ cue skills add ilien-dev/muninn --profile backend
 
 ---
 
-<a id="transcriptdock-transcriptdock-api"></a>
-## ✨ [TranscriptDock/transcriptdock-api](https://github.com/TranscriptDock/transcriptdock-api)
+<a id="pyrochem-universal-quant-tournament-mcp"></a>
+## ✨ [Pyrochem/universal-quant-tournament-mcp](https://github.com/Pyrochem/universal-quant-tournament-mcp)
 
-**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, instagram-transcript
+**★ 1** · strong (score 5.3) · JavaScript · tags: ai-trading-bot-execution, algorithmic-trading-quantitative, alpaca, backtesting, claude-desktop
 
-Transcript Dock API: transcripts from YouTube, TikTok, Instagram and your own media through one API.
+Institutional quantitative trading MCP server for Claude Desktop & AI agents. Features an 8-strategy out-of-sample walk-forward tournament, Higher-Timeframe regime & ForexFactory macro calendar filters, a 1,000-path Bayesian Monte Carlo risk gate, and automated multi-broker bracket order execution for MetaTrader 5, Alpaca, and Tradovate.
 
 ```bash
-cue skills add TranscriptDock/transcriptdock-api --profile backend
+cue skills add Pyrochem/universal-quant-tournament-mcp --profile backend
 ```
 
 ---

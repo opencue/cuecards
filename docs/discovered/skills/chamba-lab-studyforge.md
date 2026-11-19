@@ -2,7 +2,7 @@
 title: "Chamba-Lab/studyforge — Claude Code skill discovered by cue"
 description: "Forge hands-on study paths with any AI agent: a refined syllabus first, then verifiable labs and an integrator project per block. An Agent Skill + Claude Code p"
 layout: page
-updated: 2026-11-18
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 

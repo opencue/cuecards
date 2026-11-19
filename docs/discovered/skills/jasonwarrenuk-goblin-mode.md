@@ -2,7 +2,7 @@
 title: "JasonWarrenUK/goblin-mode — Claude Code skill discovered by cue"
 description: "Three goblins in a trenchcoat pretending to be a senior developer. Claude Code config shaped by ADHD, friction, and spite."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.9 based on:
 - ⭐ 8 stars
-- 🗓️ Last pushed: 2026-11-17
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: claude-code, claude-code-agent, claude-code-agents, claude-code-commands, claude-code-hook, claude-code-hooks, claude-code-plugin, claude-code-plugin-marketplace, claude-code-plugins, claude-code-plugins-marketplace, claude-code-skill, claude-code-skills
 
 ## Best fit cue profiles

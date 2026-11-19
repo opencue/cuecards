@@ -1,31 +1,44 @@
 ---
 title: "Claude Code Skills for threejs"
-description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-16
+updated: 2026-11-19
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `threejs`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **threejs** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="elithril-blender-kiln"></a>
-## 💎 [elithril/blender-kiln](https://github.com/elithril/blender-kiln)
+<a id="russguo-silkify"></a>
+## 💎 [RussGuo/silkify](https://github.com/RussGuo/silkify)
 
-**★ 219** · exceptional (score 19.7) · Python · tags: 3d-models, 3d-printing, agent-skills, animation, blender
+**★ 1** · exceptional (score 11.3) · JavaScript · tags: claude-skill, generative-art, silk, threejs, webgl
 
-Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates characters too. New in 3.0: Kiln Studio, a local page to view, check and fix your models with Claude.
+Silkify anything: turn any image into a touchable silk surface on the web
 
 ✅ SKILL.md
 
 ```bash
-cue skills add elithril/blender-kiln --profile threejs
+cue skills add RussGuo/silkify --profile threejs
+```
+
+---
+
+<a id="educlopez-diorama"></a>
+## 💎 [educlopez/diorama](https://github.com/educlopez/diorama)
+
+**★ 23** · exceptional (score 8.6) · JavaScript · tags: 3d, agent-skills, animation, claude-code, claude-code-skill
+
+Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js miniature worlds, four finishes. diorama-pixel: dithered pixel-art miniatures, no three.js. npx skills add educlopez/diorama
+
+```bash
+cue skills add educlopez/diorama --profile threejs
 ```
 
 ---

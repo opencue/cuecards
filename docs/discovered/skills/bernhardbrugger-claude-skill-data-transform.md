@@ -2,7 +2,7 @@
 title: "bernhardbrugger/claude-skill-data-transform — Claude Code skill discovered by cue"
 description: "Universal data format converter for Claude Code — CSV, JSON, SQL, YAML, Markdown, TOML, NDJSON. Zero external dependencies."
 layout: page
-updated: 2026-11-10
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-10
+- 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: claude-code, claude-skill, csv, csv-to-json, data-conversion, data-transform, etl, json, python
 
 ## Best fit cue profiles

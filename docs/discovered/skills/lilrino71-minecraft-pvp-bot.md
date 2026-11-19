@@ -2,7 +2,7 @@
 title: "LILRINO71/minecraft-pvp-bot — Claude Code skill discovered by cue"
 description: "Client-side Minecraft 26.1.2 Fabric mod: modular PvP/utility bot (KillAura, AutoCrystal, MaceCombat, AutoPearl, Grapple) with Baritone pathing and an optional C"
 layout: page
-updated: 2026-11-18
+updated: 2026-11-19
 tags: [claude-code, skill, core]
 ---
 

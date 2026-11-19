@@ -2,13 +2,13 @@
 title: "malenaaza/video-editor-skill — Claude Code skill discovered by cue"
 description: "A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardwa"
 layout: page
-updated: 2026-11-17
+updated: 2026-11-19
 tags: [claude-code, skill, video, creative-media]
 ---
 
 # 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
 
-**★ 0** · exceptional (score 8) · Python · claude-code, claude-skill, ffmpeg, video-editing, whisper
+**★ 0** · exceptional (score 8) · Python · captions, claude-code, claude-code-plugin, claude-skill, claude-skills
 
 > A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, video, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-17
-- 🏷️ Tags: claude-code, claude-skill, ffmpeg, video-editing, whisper
+- 🗓️ Last pushed: 2026-11-19
+- 🏷️ Tags: captions, claude-code, claude-code-plugin, claude-skill, claude-skills, content-creator, ffmpeg, reels, tiktok, video-editing, whisper
 
 ## Best fit cue profiles
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "6 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-18
+updated: 2026-11-19
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,82 +15,82 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="vincentwei1021-anything2explainer"></a>
-## 💎 [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer)
+<a id="shuxratmusaev1990-design-youtube-hunter"></a>
+## 💎 [shuxratmusaev1990-design/youtube-hunter](https://github.com/shuxratmusaev1990-design/youtube-hunter)
 
-**★ 3394** · exceptional (score 21.5) · TypeScript · tags: agent-skills, ai-agents, ai-video, claude-code, claude-code-skill
+**★ 0** · exceptional (score 11) · Python · tags: automation, claude-skill, ffmpeg, shorts, whisper
 
-Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.
+Record YouTube live streams, download videos, auto-cut 9:16 Shorts with karaoke subtitles, trend-based titles/tags in any language, auto-upload to YouTube. Claude skill + CLI.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add Vincentwei1021/anything2explainer --profile video
+cue skills add shuxratmusaev1990-design/youtube-hunter --profile video
 ```
 
 ---
 
-<a id="halitsever-explain-to-customer"></a>
-## 💎 [halitsever/explain-to-customer](https://github.com/halitsever/explain-to-customer)
+<a id="jutsuhq-gta6-stream-clipper"></a>
+## 💎 [jutsuhq/gta6-stream-clipper](https://github.com/jutsuhq/gta6-stream-clipper)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, ai-agents, anthropic, changelog, claude
+**★ 2** · exceptional (score 8.5) · Python · tags: 9x16, agent-skills, auto-clip, claude-code, claude-code-plugin
 
-Claude Code skill that turns a code change into a short client-ready explainer video, slides and Mermaid diagrams, in the visual style you pick.
+Claude Code skill: turn GTA 6 stream VODs into 9:16 clips for TikTok, Shorts and Reels, with word captions, facecam split and checks against Rockstar, platform and clipping-campaign rules
 
 ```bash
-cue skills add halitsever/explain-to-customer --profile video
+cue skills add jutsuhq/gta6-stream-clipper --profile video
 ```
 
 ---
 
-<a id="transcriptdock-instagram-transcript-api"></a>
-## ✨ [TranscriptDock/instagram-transcript-api](https://github.com/TranscriptDock/instagram-transcript-api)
+<a id="igormcsouza-aurora"></a>
+## 💎 [igormcsouza/aurora](https://github.com/igormcsouza/aurora)
 
-**★ 0** · strong (score 6) · tags: ai-skill, api, claude-skill, instagram, instagram-reels
+**★ 1** · exceptional (score 8.3) · Python · tags: ai-agents, claude-code, claude-skill, video-generation, youtube
 
-Instagram transcript API: AI transcription for public Reels and video posts, with a spend cap on every job. Examples, docs and an agent skill.
+YouTube content-creator assistant written in plain English: a Claude Code skill that makes 10-minute videos in your narrator's voice
 
 ```bash
-cue skills add TranscriptDock/instagram-transcript-api --profile video
+cue skills add igormcsouza/aurora --profile video
 ```
 
 ---
 
-<a id="transcriptdock-tiktok-transcript-api"></a>
-## ✨ [TranscriptDock/tiktok-transcript-api](https://github.com/TranscriptDock/tiktok-transcript-api)
+<a id="malenaaza-video-editor-skill"></a>
+## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
 
-**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, mcp
+**★ 0** · exceptional (score 8) · Python · tags: captions, claude-code, claude-code-plugin, claude-skill, claude-skills
 
-TikTok transcript API: creator captions, AI transcription fallback and profile video discovery. Examples, docs and an agent skill.
+A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
 
 ```bash
-cue skills add TranscriptDock/tiktok-transcript-api --profile video
+cue skills add malenaaza/video-editor-skill --profile video
 ```
 
 ---
 
-<a id="transcriptdock-youtube-transcript-api"></a>
-## ✨ [TranscriptDock/youtube-transcript-api](https://github.com/TranscriptDock/youtube-transcript-api)
+<a id="s-azizkhan-motion-film-skill"></a>
+## ✨ [s-azizkhan/motion-film-skill](https://github.com/s-azizkhan/motion-film-skill)
 
-**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, mcp
+**★ 0** · strong (score 7) · Python · tags: ai-video, claude-code, claude-code-plugin, claude-skill, code-to-video
 
-YouTube transcript API: creator and automatic captions, AI transcription, search, channel and playlist discovery. Examples, docs and an agent skill.
+Free Claude Code skill: turn your product, site or GitHub repo into a launch video, explainer or Instagram Reel, made in code and rendered locally. Motion blur, local voice-over, a sound on every action.
 
 ```bash
-cue skills add TranscriptDock/youtube-transcript-api --profile video
+cue skills add s-azizkhan/motion-film-skill --profile video
 ```
 
 ---
 
-<a id="transcriptdock-transcriptdock-api"></a>
-## ✨ [TranscriptDock/transcriptdock-api](https://github.com/TranscriptDock/transcriptdock-api)
+<a id="bypshkn-emaki-motion-video"></a>
+## ✨ [bypshkn/emaki-motion-video](https://github.com/bypshkn/emaki-motion-video)
 
-**★ 0** · strong (score 6) · tags: ai-skill, api, captions, claude-skill, instagram-transcript
+**★ 4** · strong (score 6.8) · Python · tags: after-effects, agent-skills, claude-code-plugin, claude-skill, kinetic-typography
 
-Transcript Dock API: transcripts from YouTube, TikTok, Instagram and your own media through one API.
+Emaki (絵巻): a Claude skill that makes short motion videos entirely in code. Style frames, an animatic with sound, then an mp4 or an After Effects project.
 
 ```bash
-cue skills add TranscriptDock/transcriptdock-api --profile video
+cue skills add bypshkn/emaki-motion-video --profile video
 ```
 
 ---
