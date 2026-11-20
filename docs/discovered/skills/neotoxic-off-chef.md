@@ -2,13 +2,13 @@
 title: "Neotoxic-off/Chef — Claude Code skill discovered by cue"
 description: "Your kitchen, your rules. Claude cooks the way you do"
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Neotoxic-off/Chef](https://github.com/Neotoxic-off/Chef)
 
-**★ 0** · exceptional (score 10) · Shell · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
+**★ 0** · exceptional (score 10) · Python · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
 
 > Your kitchen, your rules. Claude cooks the way you do
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-19
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skill, claude-skills
 
 ## Best fit cue profiles

@@ -1,42 +1,29 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="nuttaruj-rolepod"></a>
-## 💎 [nuttaruj/rolepod](https://github.com/nuttaruj/rolepod)
+<a id="francis1998-multi-bot-agentic"></a>
+## ✨ [Francis1998/multi-bot-agentic](https://github.com/Francis1998/multi-bot-agentic)
 
-**★ 3** · exceptional (score 8.1) · Shell · tags: agent-orchestration, ai-agents, automation, claude-code, prompt-engineering
+**★ 11** · strong (score 7) · Python · tags: agent-orchestration, agentic-ai, ai-agents, checkpointing, claude
 
-Universal AI dev-team workflow for 6 CLIs (Claude Code, Codex, Gemini, Cursor, Antigravity, opencode) — 16 specialist agents, lazy-load rules, parallel-safe by path/concern ownership
-
-```bash
-cue skills add nuttaruj/rolepod --profile fleet-control
-```
-
----
-
-<a id="subhasishsaha-repo-push-skill"></a>
-## ✨ [subhasishsaha/repo-push-skill](https://github.com/subhasishsaha/repo-push-skill)
-
-**★ 0** · strong (score 6) · Python · tags: agent-skills, ai-agents, antigravity-skills, ast-analysis, automation
-
-Orchestrator-driven multi-agent verification protocol that audits, sanitizes, and certifies codebases for truth in code and documentation before pushing to remote Git hosting.
+Deterministic, auditable multi-bot AI-agent orchestrator: Observe→Decide→Act loop with rationale traces, replayable SQLite event log with resume and time-travel forks, strict golden-path offline evals, OpenTelemetry GenAI trace export, MCP tool bridge, safety controls, and GPT-6.2, Claude 5.5 / Fable 5.2, Gemini 4 and Kimi K3.1 adapters.
 
 ```bash
-cue skills add subhasishsaha/repo-push-skill --profile fleet-control
+cue skills add Francis1998/multi-bot-agentic --profile fleet-control
 ```
 
 ---

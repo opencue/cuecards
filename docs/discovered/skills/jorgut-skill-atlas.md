@@ -1,24 +1,24 @@
 ---
 title: "Jorgut/skill-atlas — Claude Code skill discovered by cue"
-description: "Cross-platform agent skill manager for discovery, recommendation, orchestration, updates, deduplication, and secure sharing."
+description: "Local-first agent environment atlas: scan agent tools and copies, audit project roots, measure disk usage, and install optional push reminders — with a guided f"
 layout: page
-updated: 2026-07-29
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Jorgut/skill-atlas](https://github.com/Jorgut/skill-atlas)
 
-**★ 0** · exceptional (score 13) · Python · agent-skills, claude-code, claude-code-skill, opencode, opencode-skill
+**★ 3** · exceptional (score 15.2) · Python · agent-skills, claude-code, claude-code-skill, disk-usage, git-sync
 
-> Cross-platform agent skill manager for discovery, recommendation, orchestration, updates, deduplication, and secure sharing.
+> Local-first agent environment atlas: scan agent tools and copies, audit project roots, measure disk usage, and install optional push reminders — with a guided first-run tour.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.2 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-07-29
-- 🏷️ Tags: agent-skills, claude-code, claude-code-skill, opencode, opencode-skill, skill-manager
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-20
+- 🏷️ Tags: agent-skills, claude-code, claude-code-skill, disk-usage, git-sync, macos, onboarding, opencode, opencode-skill, push-reminders, skill-manager
 
 ## Best fit cue profiles
 

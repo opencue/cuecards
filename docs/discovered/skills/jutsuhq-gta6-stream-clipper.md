@@ -2,7 +2,7 @@
 title: "jutsuhq/gta6-stream-clipper — Claude Code skill discovered by cue"
 description: "Claude Code skill: turn GTA 6 stream VODs into 9:16 clips for TikTok, Shorts and Reels, with word captions, facecam split and checks against Rockstar, platform "
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skill, video]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, video]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-19
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: 9x16, agent-skills, auto-clip, claude-code, claude-code-plugin, claude-code-skill, clipping, clipping-campaign, grand-theft-auto-vi, gta-6, gta6, opus-clip-alternative, stream-highlights, subtitles, tiktok, twitch-vod, whop, youtube-shorts
 
 ## Best fit cue profiles

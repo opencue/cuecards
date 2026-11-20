@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "3 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="malenaaza-video-editor-skill"></a>
-## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
-
-**★ 0** · exceptional (score 8) · Python · tags: captions, claude-code, claude-code-plugin, claude-skill, claude-skills
-
-A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
-
-```bash
-cue skills add malenaaza/video-editor-skill --profile creative-media
-```
 
 ---
 

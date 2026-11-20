@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="fazarizkya-market-demand-research"></a>
-## 💎 [FazaRizkyA/market-demand-research](https://github.com/FazaRizkyA/market-demand-research)
-
-**★ 1** · exceptional (score 14.8) · tags: ai-agent, bahasa-indonesia, claude, claude-code, claude-skill
-
-Claude skill for market demand research: every number is verified at its source, cross-checked, and traceable. | Skill Claude untuk riset permintaan pasar: setiap angka dicek di sumber aslinya, dicocokkan antarsumber, dan bisa ditelusuri.
-
-✅ SKILL.md
-
-```bash
-cue skills add FazaRizkyA/market-demand-research --profile research
-```
 
 ---
 

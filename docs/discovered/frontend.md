@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "1 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="secondsky-claude-skills"></a>
+## 💎 [secondsky/claude-skills](https://github.com/secondsky/claude-skills)
+
+**★ 250** · exceptional (score 16.8) · TypeScript · tags: claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins
+
+Production-ready skills for Claude Code CLI - Cloudflare, React, Tailwind v4, and AI integrations
+
+```bash
+cue skills add secondsky/claude-skills --profile frontend
+```
 
 ---
 
@@ -24,6 +37,19 @@ Curated index of frontend/UI skills for Claude Code & AI agents — a UI armory 
 
 ```bash
 cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
+```
+
+---
+
+<a id="mihirmodi27-keyline"></a>
+## 💎 [Mihirmodi27/keyline](https://github.com/Mihirmodi27/keyline)
+
+**★ 0** · exceptional (score 10.5) · JavaScript · tags: accessibility, agent-skill, agent-skills, ai-agents, claude-code
+
+Interface design laws for coding agents. One skill writes a DESIGN.md in your own token names, then critiques, audits and fixes type, colour, layout, depth, motion and patterns through it.
+
+```bash
+cue skills add Mihirmodi27/keyline --profile frontend
 ```
 
 ---

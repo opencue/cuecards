@@ -2,22 +2,21 @@
 title: "caio-t/job-match — Claude Code skill discovered by cue"
 description: "Claude Code skill that reads your CV, searches for open jobs and ranks them by how well they fit you, with gaps and direct links."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [caio-t/job-match](https://github.com/caio-t/job-match)
 
-**★ 0** · exceptional (score 15.5) · ai-agent, career, claude-code, claude-skill, cv
+**★ 2** · exceptional (score 11) · HTML · ai-agent, career, claude-code, claude-skill, cv
 
 > Claude Code skill that reads your CV, searches for open jobs and ranks them by how well they fit you, with gaps and direct links.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.5 based on:
-- ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-17
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: ai-agent, career, claude-code, claude-skill, cv, job-search, resume
 
 ## Best fit cue profiles

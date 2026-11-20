@@ -2,7 +2,7 @@
 title: "penstic123-code/Nomess — Claude Code skill discovered by cue"
 description: "Claude Code plugin that keeps AI-written code from turning into a mess: zero-token commit checks, a ratchet on code smells, path-scoped lessons and a generated "
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Mihirmodi27/keyline — Claude Code skill discovered by cue"
 description: "Interface design laws for coding agents. One skill writes a DESIGN.md in your own token names, then critiques, audits and fixes type, colour, layout, depth, mot"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-20
 tags: [claude-code, skill, frontend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, frontend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-15
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: accessibility, agent-skill, agent-skills, ai-agents, claude-code, claude-code-plugin, claude-skill, claude-skills, codex, cursor, design-linter, design-system, typography, ui, ux
 
 ## Best fit cue profiles

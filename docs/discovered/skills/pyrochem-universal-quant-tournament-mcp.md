@@ -2,13 +2,13 @@
 title: "Pyrochem/universal-quant-tournament-mcp — Claude Code skill discovered by cue"
 description: "Institutional quantitative trading MCP server for Claude Desktop & AI agents. Features an 8-strategy out-of-sample walk-forward tournament, Higher-Timeframe reg"
 layout: page
-updated: 2026-11-19
-tags: [claude-code, skill, backend]
+updated: 2026-11-20
+tags: [claude-code, skill, core]
 ---
 
 # ✨ [Pyrochem/universal-quant-tournament-mcp](https://github.com/Pyrochem/universal-quant-tournament-mcp)
 
-**★ 1** · strong (score 5.3) · JavaScript · ai-trading-bot-execution, algorithmic-trading-quantitative, alpaca, backtesting, claude-desktop
+**★ 1** · strong (score 5.3) · JavaScript · agent-skills, ai-trading-bot-execution, algorithmic-trading-quantitative, alpaca, backtesting
 
 > Institutional quantitative trading MCP server for Claude Desktop & AI agents. Features an 8-strategy out-of-sample walk-forward tournament, Higher-Timeframe regime & ForexFactory macro calendar filters, a 1,000-path Bayesian Monte Carlo risk gate, and automated multi-broker bracket order execution for MetaTrader 5, Alpaca, and Tradovate.
 
@@ -17,11 +17,11 @@ tags: [claude-code, skill, backend]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-11-19
-- 🏷️ Tags: ai-trading-bot-execution, algorithmic-trading-quantitative, alpaca, backtesting, claude-desktop, crypto-trading-toolkit, forex-trading-ai, futures-trading-indicator, mcp, mcp-server, metatrader5, model-context-protocol, monte-carlo-simulation, mt5, quant-trading-system, quantitative-finance, risk-management, tradingview-webhook-csharp, tradovate, walk-forward-analysis
+- 🏷️ Tags: agent-skills, ai-trading-bot-execution, algorithmic-trading-quantitative, alpaca, backtesting, claude-desktop, crypto-trading-toolkit, forex-trading-ai, futures-trading-indicator, mcp, mcp-server, metatrader5, model-context-protocol, monte-carlo-simulation, mt5, quant-trading-system, quantitative-finance, risk-management, skill-md, walk-forward-analysis
 
 ## Best fit cue profiles
 
-[backend](../backend.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add Pyrochem/universal-quant-tournament-mcp --profile backend
+cue skills add Pyrochem/universal-quant-tournament-mcp --profile core
 ```
 
 ## About

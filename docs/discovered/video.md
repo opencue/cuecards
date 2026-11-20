@@ -1,31 +1,31 @@
 ---
 title: "Claude Code Skills for video"
-description: "6 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="shuxratmusaev1990-design-youtube-hunter"></a>
-## 💎 [shuxratmusaev1990-design/youtube-hunter](https://github.com/shuxratmusaev1990-design/youtube-hunter)
+<a id="jyan5334-lab-dayan-motion-studio"></a>
+## 💎 [jyan5334-lab/dayan-motion-studio](https://github.com/jyan5334-lab/dayan-motion-studio)
 
-**★ 0** · exceptional (score 11) · Python · tags: automation, claude-skill, ffmpeg, shorts, whisper
+**★ 0** · exceptional (score 11) · JavaScript · tags: agent-skill, ai-video, chinese, claude-skill, douyin
 
-Record YouTube live streams, download videos, auto-cut 9:16 Shorts with karaoke subtitles, trend-based titles/tags in any language, auto-upload to YouTube. Claude skill + CLI.
+AI 口播自动剪辑技能：剪口误、字幕、音效、转场和 MG 动画，60 帧成片 + 可编辑工程
 
 ✅ SKILL.md
 
 ```bash
-cue skills add shuxratmusaev1990-design/youtube-hunter --profile video
+cue skills add jyan5334-lab/dayan-motion-studio --profile video
 ```
 
 ---
@@ -39,58 +39,6 @@ Claude Code skill: turn GTA 6 stream VODs into 9:16 clips for TikTok, Shorts and
 
 ```bash
 cue skills add jutsuhq/gta6-stream-clipper --profile video
-```
-
----
-
-<a id="igormcsouza-aurora"></a>
-## 💎 [igormcsouza/aurora](https://github.com/igormcsouza/aurora)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: ai-agents, claude-code, claude-skill, video-generation, youtube
-
-YouTube content-creator assistant written in plain English: a Claude Code skill that makes 10-minute videos in your narrator's voice
-
-```bash
-cue skills add igormcsouza/aurora --profile video
-```
-
----
-
-<a id="malenaaza-video-editor-skill"></a>
-## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
-
-**★ 0** · exceptional (score 8) · Python · tags: captions, claude-code, claude-code-plugin, claude-skill, claude-skills
-
-A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
-
-```bash
-cue skills add malenaaza/video-editor-skill --profile video
-```
-
----
-
-<a id="s-azizkhan-motion-film-skill"></a>
-## ✨ [s-azizkhan/motion-film-skill](https://github.com/s-azizkhan/motion-film-skill)
-
-**★ 0** · strong (score 7) · Python · tags: ai-video, claude-code, claude-code-plugin, claude-skill, code-to-video
-
-Free Claude Code skill: turn your product, site or GitHub repo into a launch video, explainer or Instagram Reel, made in code and rendered locally. Motion blur, local voice-over, a sound on every action.
-
-```bash
-cue skills add s-azizkhan/motion-film-skill --profile video
-```
-
----
-
-<a id="bypshkn-emaki-motion-video"></a>
-## ✨ [bypshkn/emaki-motion-video](https://github.com/bypshkn/emaki-motion-video)
-
-**★ 4** · strong (score 6.8) · Python · tags: after-effects, agent-skills, claude-code-plugin, claude-skill, kinetic-typography
-
-Emaki (絵巻): a Claude skill that makes short motion videos entirely in code. Style frames, an animatic with sound, then an mp4 or an After Effects project.
-
-```bash
-cue skills add bypshkn/emaki-motion-video --profile video
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "AH-Merii/claude-plugins — Claude Code skill discovered by cue"
 description: "Claude Code skills and mods by AH-Merii"
 layout: page
-updated: 2026-10-10
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: claude-code-marketplace, claude-code-plugin, claude-code-skill
 
 ## Best fit cue profiles

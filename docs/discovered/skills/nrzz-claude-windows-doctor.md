@@ -2,7 +2,7 @@
 title: "nrzz/claude-windows-doctor — Claude Code skill discovered by cue"
 description: "Which shell Claude Code's Bash tool gets on Windows and why, every claude on PATH and which one runs, and the setup problems behind the common Windows issues: G"
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "extensiondev/skill — Claude Code skill discovered by cue"
 description: "The Agent Skill for cross-browser extension development. Teaches AI coding agents to build, debug, and publish for Chrome, Edge, Firefox, Safari, and every Chro"
 layout: page
-updated: 2026-10-08
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-08
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: agent-skill, agent-skills, ai-agent, anthropic, browser-extension, chrome-extension, claude, claude-code, claude-skill, codex, cross-browser, cursor, developer-tools, firefox-addon, github-copilot, manifest-v3, mcp, safari-web-extension, skills, webextension
 
 ## Best fit cue profiles

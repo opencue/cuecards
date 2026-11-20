@@ -2,21 +2,21 @@
 title: "secondsky/claude-skills — Claude Code skill discovered by cue"
 description: "Production-ready skills for Claude Code CLI - Cloudflare, React, Tailwind v4, and AI integrations"
 layout: page
-updated: 2026-08-30
+updated: 2026-11-20
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [secondsky/claude-skills](https://github.com/secondsky/claude-skills)
 
-**★ 212** · exceptional (score 16.8) · TypeScript · claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins
+**★ 250** · exceptional (score 16.8) · TypeScript · claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins
 
 > Production-ready skills for Claude Code CLI - Cloudflare, React, Tailwind v4, and AI integrations
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.8 based on:
-- ⭐ 212 stars
-- 🗓️ Last pushed: 2026-08-30
+- ⭐ 250 stars
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: claude-code, claude-code-commands, claude-code-hooks, claude-code-plugin, claude-code-plugins, claude-code-skill, claude-code-skills
 
 ## Best fit cue profiles

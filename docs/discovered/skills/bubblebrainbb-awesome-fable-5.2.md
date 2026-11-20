@@ -2,21 +2,21 @@
 title: "BubbleBrainBB/awesome-fable-5.2 — Claude Code skill discovered by cue"
 description: "Pictures and films computed entirely by code, written by Claude Fable 5.2 — a first-person underwater dive film and a path-traced afternoon interior."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [BubbleBrainBB/awesome-fable-5.2](https://github.com/BubbleBrainBB/awesome-fable-5.2)
 
-**★ 108** · exceptional (score 10.3) · C++
+**★ 117** · exceptional (score 10.4) · C++
 
 > Pictures and films computed entirely by code, written by Claude Fable 5.2 — a first-person underwater dive film and a path-traced afternoon interior.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
-- ⭐ 108 stars
-- 🗓️ Last pushed: 2026-11-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.4 based on:
+- ⭐ 117 stars
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

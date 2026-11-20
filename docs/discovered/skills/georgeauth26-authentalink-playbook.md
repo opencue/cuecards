@@ -2,19 +2,19 @@
 title: "GeorgeAuth26/authentalink-playbook — Claude Code skill discovered by cue"
 description: "How a solo founder ships real software with AI builders without losing control. No plan, no code. Human first. Every plan carries a process map, a new-user path"
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [GeorgeAuth26/authentalink-playbook](https://github.com/GeorgeAuth26/authentalink-playbook)
 
-**★ 1** · potential (score 4.8) · JavaScript · ai-agents, claude, claude-code, cursor-rules, developer-workflow
+**★ 1** · potential (score 4.7) · JavaScript · ai-agents, claude, claude-code, cursor-rules, developer-workflow
 
 > How a solo founder ships real software with AI builders without losing control. No plan, no code. Human first. Every plan carries a process map, a new-user path and a kill check. Shipped means walked as a stranger. Claude skills, templates, a referee script and a drop-in CLAUDE.md. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.7 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-11-06
 - 🏷️ Tags: ai-agents, claude, claude-code, cursor-rules, developer-workflow, playbook, prd, qa-gate, software-process, solo-founder

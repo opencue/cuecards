@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "92 community Claude Code skills curated by cue across 14 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "90 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-20
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,26 +10,22 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **92 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **14 profiles**.
-> Last updated: 2026-11-19 · refreshed nightly via GitHub Code Search.
+> **90 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
+> Last updated: 2026-11-20 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 65 | `skill-memory-bank`, `icode-skill`, `qiuxiaoce-football-data` |
-| [**video**](./video.md) | 6 | `youtube-hunter`, `gta6-stream-clipper`, `aurora` |
-| [**backend**](./backend.md) | 4 | `researchforge`, `muninn`, `universal-quant-tournament-mcp` |
-| [**research**](./research.md) | 3 | `market-demand-research`, `cosmosambassador`, `skillassay` |
+| [**core**](./core.md) | 71 | `dex`, `qiuxiaoce-football-data`, `b3sty-skill` |
+| [**backend**](./backend.md) | 6 | `xiaodou-open-platform`, `researchforge`, `mcp-hub` |
+| [**frontend**](./frontend.md) | 3 | `claude-skills`, `awesome-claude-ui-armory`, `keyline` |
 | [**cybersecurity**](./cybersecurity.md) | 3 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**creative-media**](./creative-media.md) | 3 | `video-editor-skill`, `cosmosambassador`, `redesigned-pancake` |
-| [**threejs**](./threejs.md) | 2 | `silkify`, `diorama` |
-| [**niche**](./niche.md) | 2 | `yijian-shipin-chugao`, `stream-miner` |
-| [**fleet-control**](./fleet-control.md) | 2 | `rolepod`, `repo-push-skill` |
-| [**frontend**](./frontend.md) | 1 | `awesome-claude-ui-armory` |
+| [**video**](./video.md) | 2 | `dayan-motion-studio`, `gta6-stream-clipper` |
+| [**research**](./research.md) | 2 | `cosmosambassador`, `skillassay` |
+| [**creative-media**](./creative-media.md) | 2 | `cosmosambassador`, `redesigned-pancake` |
 | [**rust**](./rust.md) | 1 | `intutic` |
-| [**python**](./python.md) | 1 | `softrade-batch` |
-| [**nextjs**](./nextjs.md) | 1 | `sitewright` |
+| [**fleet-control**](./fleet-control.md) | 1 | `multi-bot-agentic` |
 | [**docs-writer**](./docs-writer.md) | 1 | `repo-engineering-skills` |
 
 ## How scoring works

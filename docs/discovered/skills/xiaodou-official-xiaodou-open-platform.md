@@ -1,23 +1,23 @@
 ---
 title: "xiaodou-official/xiaodou-open-platform — Claude Code skill discovered by cue"
-description: "个人支付接口｜个人网站/个人开发者/个人用户接入支付宝+微信聚合支付接口 API：个人/小微无需营业执照，卡密/虚拟商品收款，持牌清算、次日中午前到账（含节假日），兼容易支付。Alipay/WeChat Pay API for individual developers in China; Epay-compatibl"
+description: "个人支付接口：小豆支付开放平台——个人可申请的支付宝、微信支付接口。个人支付接口无需营业执照，身份证+银行卡即可接入；RSA2 签名、webhook 验签、持牌机构清算、次日中午前到账。China individual payment API: Alipay + WeChat Pay."
 layout: page
-updated: 2026-10-21
+updated: 2026-11-20
 tags: [claude-code, skill, backend]
 ---
 
 # 💎 [xiaodou-official/xiaodou-open-platform](https://github.com/xiaodou-official/xiaodou-open-platform)
 
-**★ 346** · exceptional (score 11) · aggregate-payment, ai-agent, alipay, card-key, claude-skill
+**★ 540** · exceptional (score 13) · aggregate-payment, ai-agent, alipay, card-key, claude-skill
 
-> 个人支付接口｜个人网站/个人开发者/个人用户接入支付宝+微信聚合支付接口 API：个人/小微无需营业执照，卡密/虚拟商品收款，持牌清算、次日中午前到账（含节假日），兼容易支付。Alipay/WeChat Pay API for individual developers in China; Epay-compatible; licensed settlement.
+> 个人支付接口：小豆支付开放平台——个人可申请的支付宝、微信支付接口。个人支付接口无需营业执照，身份证+银行卡即可接入；RSA2 签名、webhook 验签、持牌机构清算、次日中午前到账。China individual payment API: Alipay + WeChat Pay.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
-- ⭐ 346 stars
-- 🗓️ Last pushed: 2026-10-21
-- 🏷️ Tags: aggregate-payment, ai-agent, alipay, card-key, claude-skill, epay, epay-protocol, faka, h5-payment, llm-tools, openapi, payment, payment-api, payment-gateway, payment-integration, qr-code, rsa2, virtual-goods, webhook, wechat-pay
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
+- ⭐ 540 stars
+- 🗓️ Last pushed: 2026-11-20
+- 🏷️ Tags: aggregate-payment, ai-agent, alipay, card-key, claude-skill, epay, epay-protocol, faka, llm-tools, new-api, openapi, payment, payment-api, payment-gateway, payment-integration, rsa2, sub2api, virtual-goods, webhook, wechat-pay
 
 ## Best fit cue profiles
 
