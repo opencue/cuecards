@@ -1,17 +1,71 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "1 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="jimmysadek-repo-fit"></a>
+## 💎 [JimmySadek/repo-fit](https://github.com/JimmySadek/repo-fit)
+
+**★ 3** · exceptional (score 13.7) · JavaScript · tags: agent-skills, ai-agents, claude-code, claude-code-skill, codex
+
+A small foundation for any repo: rules, a board, a session brief and safe autosave. It looks at what you have first, and adapts.
+
+✅ SKILL.md
+
+```bash
+cue skills add JimmySadek/repo-fit --profile docs-writer
+```
+
+---
+
+<a id="benjsmith-curiosity-engine"></a>
+## 💎 [benjsmith/curiosity-engine](https://github.com/benjsmith/curiosity-engine)
+
+**★ 0** · exceptional (score 12) · Python · tags: agent-skill, claude-code, claude-skill, knowledge-base, knowledge-management
+
+Self-improving knowledge wiki as a coding-agent skill. Project-aware curation: drop sources in, run curate, occasionally archive. Companion skill curiosity-merge to merge in another wiki.
+
+```bash
+cue skills add benjsmith/curiosity-engine --profile docs-writer
+```
+
+---
+
+<a id="isamu-lab"></a>
+## ✨ [isamu/lab](https://github.com/isamu/lab)
+
+**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
+
+chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
+
+```bash
+cue skills add isamu/lab --profile docs-writer
+```
+
+---
+
+<a id="onemira-space-okf-markdown"></a>
+## ✨ [onemira-space/okf-markdown](https://github.com/onemira-space/okf-markdown)
+
+**★ 0** · strong (score 6) · Rust · tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown
+
+Zero-dependency Open Knowledge Format (OKF v0.2) Markdown validator, relational wiki-link graph builder & VTT/SRT transcript CLI for Obsidian, Claude MCP & OneMira
+
+```bash
+cue skills add onemira-space/okf-markdown --profile docs-writer
+```
 
 ---
 

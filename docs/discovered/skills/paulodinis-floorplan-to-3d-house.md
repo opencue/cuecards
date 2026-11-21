@@ -2,7 +2,7 @@
 title: "paulodinis/floorplan-to-3d-house — Claude Code skill discovered by cue"
 description: "Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D (1-2 storeys) -> GLB/DXF, elevations, sun report, Blender video"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-21
 tags: [claude-code, skill, threejs]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, threejs]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-12
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: architecture, blender, claude-plugin, claude-skill, dxf, floor-plan, three-js, threejs
 
 ## Best fit cue profiles

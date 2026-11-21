@@ -2,7 +2,7 @@
 title: "diborodin/claude-in-docker-linux — Claude Code skill discovered by cue"
 description: "Run Claude Code and Claude Desktop in Docker on Linux. Native host paths, configurable mounts, sandboxed Desktop, and optional Docker-in-Docker with Sysbox."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 

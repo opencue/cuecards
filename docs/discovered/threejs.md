@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "2 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-21
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,30 +15,28 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="russguo-silkify"></a>
-## 💎 [RussGuo/silkify](https://github.com/RussGuo/silkify)
+<a id="37degree-studio-linejig"></a>
+## 💎 [37degree-studio/linejig](https://github.com/37degree-studio/linejig)
 
-**★ 1** · exceptional (score 11.3) · JavaScript · tags: claude-skill, generative-art, silk, threejs, webgl
+**★ 0** · exceptional (score 8) · JavaScript · tags: 3d, agent-skills, claude-code, claude-skill, codex
 
-Silkify anything: turn any image into a touchable silk surface on the web
-
-✅ SKILL.md
+Interactive 3D line illustrations for your product site or app: a free agent skill and engine for three.js line art. Tested in Claude Code and Codex CLI.
 
 ```bash
-cue skills add RussGuo/silkify --profile threejs
+cue skills add 37degree-studio/linejig --profile threejs
 ```
 
 ---
 
-<a id="educlopez-diorama"></a>
-## 💎 [educlopez/diorama](https://github.com/educlopez/diorama)
+<a id="paulodinis-floorplan-to-3d-house"></a>
+## ✨ [paulodinis/floorplan-to-3d-house](https://github.com/paulodinis/floorplan-to-3d-house)
 
-**★ 23** · exceptional (score 8.6) · JavaScript · tags: 3d, agent-skills, animation, claude-code, claude-code-skill
+**★ 1** · strong (score 6.3) · JavaScript · tags: architecture, blender, claude-plugin, claude-skill, dxf
 
-Agent skills that build animated isometric illustrations for the web, each one self-contained HTML. diorama: SVG figures in six themes. diorama-worlds: Three.js miniature worlds, four finishes. diorama-pixel: dithered pixel-art miniatures, no three.js. npx skills add educlopez/diorama
+Claude plugin: house plan (PDF/DXF) -> 2D approval plan -> interactive 3D (1-2 storeys) -> GLB/DXF, elevations, sun report, Blender video
 
 ```bash
-cue skills add educlopez/diorama --profile threejs
+cue skills add paulodinis/floorplan-to-3d-house --profile threejs
 ```
 
 ---

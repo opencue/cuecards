@@ -1,8 +1,8 @@
 ---
 title: "praktijkwerkbank/jensiechat — Claude Code skill discovered by cue"
-description: "Self-hosted Instagram comment-to-DM auto-reply (keyword → private message with a button). A Claude skill by Jens Kemna, Praktijkwerkbank. English & Nederlands."
+description: "Self-hosted Instagram comment-to-DM auto-reply (keyword → private message with a button). A Claude skill by Jens Kemna, Praktijkwerkbank. English, Nederlands & "
 layout: page
-updated: 2026-11-18
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
@@ -10,14 +10,14 @@ tags: [claude-code, skill, core]
 
 **★ 0** · exceptional (score 11) · PHP · claude-skill, comment-to-dm, instagram, manychat-alternative, php
 
-> Self-hosted Instagram comment-to-DM auto-reply (keyword → private message with a button). A Claude skill by Jens Kemna, Praktijkwerkbank. English & Nederlands.
+> Self-hosted Instagram comment-to-DM auto-reply (keyword → private message with a button). A Claude skill by Jens Kemna, Praktijkwerkbank. English, Nederlands & Español.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-18
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: claude-skill, comment-to-dm, instagram, manychat-alternative, php, self-hosted
 
 ## Best fit cue profiles

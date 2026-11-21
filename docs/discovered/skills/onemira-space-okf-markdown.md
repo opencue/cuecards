@@ -2,13 +2,13 @@
 title: "onemira-space/okf-markdown — Claude Code skill discovered by cue"
 description: "Zero-dependency Open Knowledge Format (OKF v0.2) Markdown validator, relational wiki-link graph builder & VTT/SRT transcript CLI for Obsidian, Claude MCP & OneM"
 layout: page
-updated: 2026-11-17
+updated: 2026-11-21
 tags: [claude-code, skill, docs-writer]
 ---
 
 # ✨ [onemira-space/okf-markdown](https://github.com/onemira-space/okf-markdown)
 
-**★ 0** · strong (score 6) · JavaScript · agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown
+**★ 0** · strong (score 6) · Rust · agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown
 
 > Zero-dependency Open Knowledge Format (OKF v0.2) Markdown validator, relational wiki-link graph builder & VTT/SRT transcript CLI for Obsidian, Claude MCP & OneMira
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-17
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown, mcp, meeting-notes, obsidian, open-knowledge-format, voice-recorder
 
 ## Best fit cue profiles

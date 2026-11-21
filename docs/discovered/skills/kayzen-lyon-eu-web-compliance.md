@@ -1,24 +1,24 @@
 ---
 title: "kayzen-lyon/eu-web-compliance — Claude Code skill discovered by cue"
-description: "Agent skill: build websites that meet EU obligations — accessibility (EAA, WCAG 2.2, RGAA), GDPR and cookies, AI Act, ANSSI security, consumer law — with browse"
+description: "Build websites that meet EU obligations — accessibility (EAA, WCAG 2.2, RGAA), GDPR and cookies, AI Act, ANSSI security, consumer law. Agent skill, CLI, GitHub "
 layout: page
-updated: 2026-11-15
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [kayzen-lyon/eu-web-compliance](https://github.com/kayzen-lyon/eu-web-compliance)
 
-**★ 1** · exceptional (score 13.3) · JavaScript · accessibility, agent-skills, ai-act, anssi, claude-code
+**★ 1** · exceptional (score 12.3) · JavaScript · accessibility, agent-skills, ai-act, anssi, claude-code
 
-> Agent skill: build websites that meet EU obligations — accessibility (EAA, WCAG 2.2, RGAA), GDPR and cookies, AI Act, ANSSI security, consumer law — with browser checkers and sourced rules.
+> Build websites that meet EU obligations — accessibility (EAA, WCAG 2.2, RGAA), GDPR and cookies, AI Act, ANSSI security, consumer law. Agent skill, CLI, GitHub Action and MCP server, with browser checkers and sourced rules.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.3 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-15
-- 🏷️ Tags: accessibility, agent-skills, ai-act, anssi, claude-code, claude-skill, codex, compliance, cookies, copilot, cursor, eu, european-accessibility-act, gdpr, rgaa, rgpd, wcag, web-development
+- 🗓️ Last pushed: 2026-11-21
+- 🏷️ Tags: accessibility, agent-skills, ai-act, anssi, claude-code, claude-skill, codex, compliance, cookies, copilot, cursor, eu, european-accessibility-act, gdpr, github-actions, mcp, rgaa, rgpd, wcag, web-development
 
 ## Best fit cue profiles
 

@@ -1,44 +1,70 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jyan5334-lab-dayan-motion-studio"></a>
-## 💎 [jyan5334-lab/dayan-motion-studio](https://github.com/jyan5334-lab/dayan-motion-studio)
+<a id="tofuurem-video-library-skill"></a>
+## 💎 [tofuurem/video-library-skill](https://github.com/tofuurem/video-library-skill)
 
-**★ 0** · exceptional (score 11) · JavaScript · tags: agent-skill, ai-video, chinese, claude-skill, douyin
+**★ 0** · exceptional (score 12) · Python · tags: agent-skills, capcut, claude-code, claude-skill, dji
 
-AI 口播自动剪辑技能：剪口误、字幕、音效、转场和 MG 动画，60 帧成片 + 可编辑工程
+Claude Code skill that keeps raw camera footage on external drives in order: sorts clips by shooting day and camera profile, migrates drives safely, finds duplicates, builds an all-drive catalog and a searchable video map (speech, scenes, best frames)
 
 ✅ SKILL.md
 
 ```bash
-cue skills add jyan5334-lab/dayan-motion-studio --profile video
+cue skills add tofuurem/video-library-skill --profile video
 ```
 
 ---
 
-<a id="jutsuhq-gta6-stream-clipper"></a>
-## 💎 [jutsuhq/gta6-stream-clipper](https://github.com/jutsuhq/gta6-stream-clipper)
+<a id="halitsever-explain-to-customer"></a>
+## 💎 [halitsever/explain-to-customer](https://github.com/halitsever/explain-to-customer)
 
-**★ 2** · exceptional (score 8.5) · Python · tags: 9x16, agent-skills, auto-clip, claude-code, claude-code-plugin
+**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, ai-agents, anthropic, changelog, claude
 
-Claude Code skill: turn GTA 6 stream VODs into 9:16 clips for TikTok, Shorts and Reels, with word captions, facecam split and checks against Rockstar, platform and clipping-campaign rules
+Claude Code skill that turns a code change into a short client-ready explainer video, slides and Mermaid diagrams, in the visual style you pick.
 
 ```bash
-cue skills add jutsuhq/gta6-stream-clipper --profile video
+cue skills add halitsever/explain-to-customer --profile video
+```
+
+---
+
+<a id="nsudy-code-cappus"></a>
+## ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
+
+**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
+
+Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
+
+```bash
+cue skills add nsudy-code/cappus --profile video
+```
+
+---
+
+<a id="bbllhenhj-multilingual-srt-pro-docs"></a>
+## 🔹 [bbllhenhj/multilingual-srt-pro-docs](https://github.com/bbllhenhj/multilingual-srt-pro-docs)
+
+**★ 0** · potential (score 3.5) · Python · tags: agent-skills, claude-code-skill, cursor-skills, davinci-resolve, forced-alignment
+
+多语种SRT PRO：帧级字幕精制 — 10档剪辑帧率整数帧对齐与27语种语法断行实测基准样本库（零源码公开基准与SRT样本）
+
+```bash
+cue skills add bbllhenhj/multilingual-srt-pro-docs --profile video
 ```
 
 ---

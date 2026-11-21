@@ -2,7 +2,7 @@
 title: "halitsever/explain-to-customer — Claude Code skill discovered by cue"
 description: "Claude Code skill that turns a code change into a short client-ready explainer video, slides and Mermaid diagrams, in the visual style you pick."
 layout: page
-updated: 2026-11-18
+updated: 2026-11-21
 tags: [claude-code, skill, video, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, video, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-18
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: agent-skills, ai-agents, anthropic, changelog, claude, claude-code, claude-code-skill, claude-skills, client-communication, developer-tools, diagrams, explainer-video, ffmpeg, hyperframes, mermaid, playwright, release-notes, slides, video-generation
 
 ## Best fit cue profiles

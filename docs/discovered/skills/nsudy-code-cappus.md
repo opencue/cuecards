@@ -1,27 +1,27 @@
 ---
 title: "nsudy-code/cappus — Claude Code skill discovered by cue"
-description: "Claude Code skill that edits your footage into editable CapCut desktop projects. Works with free CapCut and CapCut Pro."
+description: "Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions,"
 layout: page
-updated: 2026-11-20
-tags: [claude-code, skill, core]
+updated: 2026-11-21
+tags: [claude-code, skill, video, creative-media]
 ---
 
-# 💎 [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
+# ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
 
-**★ 0** · exceptional (score 8) · Python · capcut, claude-code, claude-skill, video-editing
+**★ 0** · strong (score 7) · Python · agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
 
-> Claude Code skill that edits your footage into editable CapCut desktop projects. Works with free CapCut and CapCut Pro.
+> Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-20
-- 🏷️ Tags: capcut, claude-code, claude-skill, video-editing
+- 🗓️ Last pushed: 2026-11-21
+- 🏷️ Tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro, captions, claude, claude-code, claude-code-plugin, claude-skill, ffmpeg, jump-cut, reels, short-form-video, subtitles, talking-head, tiktok, video-automation, video-editing, youtube-shorts
 
 ## Best fit cue profiles
 
-[core](../core.md)
+[video](../video.md), [creative-media](../creative-media.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add nsudy-code/cappus --profile core
+cue skills add nsudy-code/cappus --profile video
 ```
 
 ## About

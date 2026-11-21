@@ -2,21 +2,21 @@
 title: "constructelligence-lab/construction-mcp — Claude Code skill discovered by cue"
 description: "Free construction MCP server for Claude, Cursor and AI assistants: cost codes, CPM critical path, pay applications, change orders, earned value, quantity calcul"
 layout: page
-updated: 2026-11-10
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [constructelligence-lab/construction-mcp](https://github.com/constructelligence-lab/construction-mcp)
 
-**★ 2** · strong (score 6.5) · Python · aec, ai, ai-agents, calculator, change-orders
+**★ 3** · strong (score 6.7) · Python · aec, ai, ai-agents, calculator, change-orders
 
 > Free construction MCP server for Claude, Cursor and AI assistants: cost codes, CPM critical path, pay applications, change orders, earned value, quantity calculators. Offline, no dependencies.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-09
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: aec, ai, ai-agents, calculator, change-orders, claude, construction, cost-codes, cpm, critical-path, earned-value, estimating, llm, mcp, mcp-server, model-context-protocol, pay-application, reference-data
 
 ## Best fit cue profiles

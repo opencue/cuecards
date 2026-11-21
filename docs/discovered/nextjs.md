@@ -2,7 +2,7 @@
 title: "Claude Code Skills for nextjs"
 description: "1 community Claude Code skills curated by cue for the nextjs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-19
+updated: 2026-11-21
 tags: [claude-code, nextjs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, nextjs, skills, mcp, ai-agents]
 
 ---
 
-<a id="tsirbiladze-sitewright"></a>
-## ✨ [tsirbiladze/sitewright](https://github.com/tsirbiladze/sitewright)
+<a id="codelady-ship-codelady-skills"></a>
+## ✨ [codelady-ship/codelady-skills](https://github.com/codelady-ship/codelady-skills)
 
-**★ 0** · strong (score 6) · TypeScript · tags: agent-skills, claude-skill, nextjs, personal-site, portfolio
+**★ 0** · strong (score 7.5) · TypeScript · tags: ai-agent, claude, claude-skill, cloudflare-workers, gemini
 
-An agent skill that makes you a site of your own and takes it live on Vercel: your name across the top, projects, a work page, a CV and a blog.
+Claude skills as a website: one working panel per skill (study abroad, visa, jobs, scam check, Azerbaijani voiceover), a 1,500-skill library and a marketplace. Next.js 16, Supabase, Cloudflare Workers, Gemini. Live demo on GitHub Pages.
 
 ```bash
-cue skills add tsirbiladze/sitewright --profile nextjs
+cue skills add codelady-ship/codelady-skills --profile nextjs
 ```
 
 ---

@@ -2,19 +2,19 @@
 title: "jamestkelly/path-scoped-rules — Claude Code skill discovered by cue"
 description: "OpenCode plugin that loads path-scoped Markdown instructions from .claude/rules and .agent as you work on matching files."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [jamestkelly/path-scoped-rules](https://github.com/jamestkelly/path-scoped-rules)
 
-**★ 3** · strong (score 6.7) · TypeScript · claude-code, coding-agents, markdown, opencode, opencode-plugin
+**★ 3** · strong (score 6.6) · TypeScript · claude-code, coding-agents, markdown, opencode, opencode-plugin
 
 > OpenCode plugin that loads path-scoped Markdown instructions from .claude/rules and .agent as you work on matching files.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.6 based on:
 - ⭐ 3 stars
 - 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: claude-code, coding-agents, markdown, opencode, opencode-plugin, typescript

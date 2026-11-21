@@ -2,7 +2,7 @@
 title: "hanlianlu/paper-brush — Claude Code skill discovered by cue"
 description: "Claude skill: flat cut-paper illustrations drawn as code — pen-tool paths, paper tones, soft fades, paper grain."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 

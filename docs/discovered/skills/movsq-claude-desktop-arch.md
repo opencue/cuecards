@@ -2,7 +2,7 @@
 title: "movsq/claude-desktop-arch — Claude Code skill discovered by cue"
 description: "Arch PKGBUILD for Anthropic's official Claude Desktop .deb. Unlike AUR claude-desktop: Cowork VM and sandbox deps optional, build fails if upstream moves a path"
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 

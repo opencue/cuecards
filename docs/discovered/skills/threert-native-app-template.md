@@ -2,7 +2,7 @@
 title: "threert/native-app-template — Claude Code skill discovered by cue"
 description: "Start here to build a native app on ThreeRT: a live path-traced view in the platform's own UI framework (macOS/SwiftUI first), with Claude Code or Codex in a si"
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "3 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3098** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
+**★ 3111** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -50,6 +50,32 @@ Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph,
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="secblok-belay"></a>
+## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
+
+**★ 11** · strong (score 7.9) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+
+Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
+
+```bash
+cue skills add SECBLOK/belay --profile cybersecurity
+```
+
+---
+
+<a id="hansstudy-cisco-switch-config"></a>
+## ✨ [hansstudy/cisco-switch-config](https://github.com/hansstudy/cisco-switch-config)
+
+**★ 1** · strong (score 7.3) · Python · tags: agent-skills, catalyst, cisco, cisco-ios, claude-code
+
+Claude skill that audits Cisco IOS and IOS-XE switch running-configs offline: 121 checks, credentials masked, paste-ready fixes cited to DISA STIG, NSA, CISA and Cisco guidance. Also generates hardened baselines.
+
+```bash
+cue skills add hansstudy/cisco-switch-config --profile cybersecurity
 ```
 
 ---

@@ -1,82 +1,17 @@
 ---
 title: "Claude Code Skills for backend"
-description: "6 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="xiaodou-official-xiaodou-open-platform"></a>
-## 💎 [xiaodou-official/xiaodou-open-platform](https://github.com/xiaodou-official/xiaodou-open-platform)
-
-**★ 540** · exceptional (score 13) · tags: aggregate-payment, ai-agent, alipay, card-key, claude-skill
-
-个人支付接口：小豆支付开放平台——个人可申请的支付宝、微信支付接口。个人支付接口无需营业执照，身份证+银行卡即可接入；RSA2 签名、webhook 验签、持牌机构清算、次日中午前到账。China individual payment API: Alipay + WeChat Pay.
-
-```bash
-cue skills add xiaodou-official/xiaodou-open-platform --profile backend
-```
-
----
-
-<a id="forger-labs-hq-researchforge"></a>
-## 💎 [forger-labs-hq/researchforge](https://github.com/forger-labs-hq/researchforge)
-
-**★ 13** · exceptional (score 12.6) · Python · tags: ai-agents, automated-benchmarking, automated-build, autonomous-research, autonomous-researcher
-
-A lab protocol for coding agents. Freeze baselines, run hypotheses in isolated worktrees, reject failures and validate improvements from Claude Code, Cursor  or a direct API key (Gemini/Anthropic/openAI).
-
-```bash
-cue skills add forger-labs-hq/researchforge --profile backend
-```
-
----
-
-<a id="ni-c-mcp-hub"></a>
-## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
-
-**★ 5** · exceptional (score 12) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
-
-Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
-
-```bash
-cue skills add ni-c/mcp-hub --profile backend
-```
-
----
-
-<a id="nizarhamza-p6-mcp"></a>
-## 💎 [nizarhamza/p6-mcp](https://github.com/nizarhamza/p6-mcp)
-
-**★ 8** · exceptional (score 8.1) · Python · tags: claude, construction, critical-path, dcma, mcp
-
-Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional database. Windows. Not affiliated with Oracle.
-
-```bash
-cue skills add nizarhamza/p6-mcp --profile backend
-```
-
----
-
-<a id="jobspipe-skills"></a>
-## ✨ [jobspipe/skills](https://github.com/jobspipe/skills)
-
-**★ 0** · strong (score 7.5) · tags: agent-skills, ai-agents, claude-skill, jobs-api, jobspipe
-
-Official JobsPipe agent skills: search live job postings, scan company tech stacks, MCP setup, webhooks, agent discovery. npx skills add jobspipe/skills
-
-```bash
-cue skills add jobspipe/skills --profile backend
-```
 
 ---
 

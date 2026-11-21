@@ -2,7 +2,7 @@
 title: "benjsmith/curiosity-merge — Claude Code skill discovered by cue"
 description: "Allows merging/unmerging of curiosity-wikis. Combine someone else's curiosity-engine knowledge base with your own."
 layout: page
-updated: 2026-10-03
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.5 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-03
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: claude-skill, curiosity-engine, knowledge-management, wiki
 
 ## Best fit cue profiles

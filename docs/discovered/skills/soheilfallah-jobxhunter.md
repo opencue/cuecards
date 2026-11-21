@@ -2,22 +2,22 @@
 title: "soheilfallah/jobxhunter — Claude Code skill discovered by cue"
 description: "Searches live UK and Canada jobs, fits an ATS-safe CV to each role from your real experience, and recommends the gaps to close. A Claude Code plugin, and any AG"
 layout: page
-updated: 2026-08-27
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [soheilfallah/jobxhunter](https://github.com/soheilfallah/jobxhunter)
 
-**★ 8** · exceptional (score 14.1) · Python · anthropic, ats, canada, career, claude-code
+**★ 9** · exceptional (score 15.9) · Python · anthropic, ats, canada, career, claude-code
 
 > Searches live UK and Canada jobs, fits an ATS-safe CV to each role from your real experience, and recommends the gaps to close. A Claude Code plugin, and any AGENTS.md CLI.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15.9 based on:
 - ✅ Contains SKILL.md
-- ⭐ 8 stars
-- 🗓️ Last pushed: 2026-08-27
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: anthropic, ats, canada, career, claude-code, claude-plugin, claude-skill, cover-letter, cv, job-hunting, job-search, mcp, recruitment, resume, uk
 
 ## Best fit cue profiles

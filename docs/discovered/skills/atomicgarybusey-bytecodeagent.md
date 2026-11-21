@@ -2,7 +2,7 @@
 title: "AtomicGaryBusey/BytecodeAgent — Claude Code skill discovered by cue"
 description: "Can LLMs write x86-64 and AArch64 machine code directly? Four emission paths (streamed assembly, structured JSON, portable IR, raw hex), a Unicorn differential "
 layout: page
-updated: 2026-11-20
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 

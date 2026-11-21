@@ -2,21 +2,21 @@
 title: "SuruchBoss/pilothouse — Claude Code skill discovered by cue"
 description: "Claude Code skill that runs several sessions as one team with fixed roles. A team lead turns your plain words into work orders; you keep every merge decision."
 layout: page
-updated: 2026-10-18
+updated: 2026-11-21
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [SuruchBoss/pilothouse](https://github.com/SuruchBoss/pilothouse)
 
-**★ 0** · exceptional (score 10.5) · agent-skills, ai-agent, ai-agents, claude-code, claude-code-skill
+**★ 2** · exceptional (score 11) · agent-skills, ai-agent, ai-agents, claude-code, claude-code-skill
 
 > Claude Code skill that runs several sessions as one team with fixed roles. A team lead turns your plain words into work orders; you keep every merge decision.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-21
 - 🏷️ Tags: agent-skills, ai-agent, ai-agents, claude-code, claude-code-skill, claude-skills, multi-agent
 
 ## Best fit cue profiles
