@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "89 community Claude Code skills curated by cue across 12 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "92 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,25 +10,23 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **89 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **12 profiles**.
-> Last updated: 2026-11-21 · refreshed nightly via GitHub Code Search.
+> **92 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
+> Last updated: 2026-11-22 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 64 | `dex`, `qiuxiaoce-football-data`, `Pixelbolt` |
-| [**creative-media**](./creative-media.md) | 6 | `marketing-skill`, `video-library-skill`, `explain-to-customer` |
-| [**docs-writer**](./docs-writer.md) | 5 | `repo-fit`, `curiosity-engine`, `lab` |
-| [**cybersecurity**](./cybersecurity.md) | 5 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
-| [**video**](./video.md) | 4 | `video-library-skill`, `explain-to-customer`, `cappus` |
-| [**research**](./research.md) | 3 | `grant-compass`, `cosmosambassador`, `skillassay` |
-| [**fleet-control**](./fleet-control.md) | 2 | `dev-team-skill`, `multi-bot-agentic` |
-| [**threejs**](./threejs.md) | 2 | `linejig`, `floorplan-to-3d-house` |
-| [**marketing**](./marketing.md) | 1 | `marketing-skill` |
-| [**frontend**](./frontend.md) | 1 | `awesome-claude-ui-armory` |
-| [**nextjs**](./nextjs.md) | 1 | `codelady-skills` |
-| [**backend**](./backend.md) | 1 | `redesigned-pancake` |
+| [**core**](./core.md) | 70 | `contributor-codebase-analyzer`, `qiuxiaoce-football-data`, `strategic-advisor-orchestrator` |
+| [**docs-writer**](./docs-writer.md) | 4 | `brewpage-openapi`, `revizor`, `lab` |
+| [**video**](./video.md) | 4 | `motion-film-skill`, `make-explainer-animated-videos`, `claude-colab-render` |
+| [**creative-media**](./creative-media.md) | 4 | `concept-skills`, `make-explainer-animated-videos`, `cosmosambassador` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
+| [**frontend**](./frontend.md) | 3 | `awesome-claude-ui-armory`, `ionik-capacitor-flux-patterns`, `fe-code-agent` |
+| [**backend**](./backend.md) | 2 | `brewpage-openapi`, `redesigned-pancake` |
+| [**fleet-control**](./fleet-control.md) | 2 | `cortex`, `multi-bot-agentic` |
+| [**research**](./research.md) | 2 | `cosmosambassador`, `skillassay` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `shelfscout` |
 
 ## How scoring works
 

@@ -2,7 +2,7 @@
 title: "jamestkelly/path-scoped-rules — Claude Code skill discovered by cue"
 description: "OpenCode plugin that loads path-scoped Markdown instructions from .claude/rules and .agent as you work on matching files."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 

@@ -2,19 +2,19 @@
 title: "movsq/claude-desktop-arch — Claude Code skill discovered by cue"
 description: "Arch PKGBUILD for Anthropic's official Claude Desktop .deb. Unlike AUR claude-desktop: Cowork VM and sandbox deps optional, build fails if upstream moves a path"
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [movsq/claude-desktop-arch](https://github.com/movsq/claude-desktop-arch)
 
-**★ 1** · potential (score 3.3) · Shell · anthropic, arch-linux, archlinux, claude, claude-desktop
+**★ 1** · potential (score 3.2) · Shell · anthropic, arch-linux, archlinux, claude, claude-desktop
 
 > Arch PKGBUILD for Anthropic's official Claude Desktop .deb. Unlike AUR claude-desktop: Cowork VM and sandbox deps optional, build fails if upstream moves a path it relies on, upstream's AppArmor/search/MIME registrations kept.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-11-20
 - 🏷️ Tags: anthropic, arch-linux, archlinux, claude, claude-desktop, electron, pacman, pkgbuild

@@ -2,19 +2,19 @@
 title: "AtomicGaryBusey/BytecodeAgent — Claude Code skill discovered by cue"
 description: "Can LLMs write x86-64 and AArch64 machine code directly? Four emission paths (streamed assembly, structured JSON, portable IR, raw hex), a Unicorn differential "
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [AtomicGaryBusey/BytecodeAgent](https://github.com/AtomicGaryBusey/BytecodeAgent)
 
-**★ 1** · potential (score 3.3) · Python · aarch64, assembly, benchmark, code-generation, evaluation
+**★ 1** · potential (score 3.2) · Python · aarch64, assembly, benchmark, code-generation, evaluation
 
 > Can LLMs write x86-64 and AArch64 machine code directly? Four emission paths (streamed assembly, structured JSON, portable IR, raw hex), a Unicorn differential harness that proves the code correct, and a fair live eval of 40+ models: Claude, Codex, Gemini, Grok, Kimi, Copilot, Azure Foundry, Fireworks, Apple and local open-weight models.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.2 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-11-19
 - 🏷️ Tags: aarch64, assembly, benchmark, code-generation, evaluation, llm, llm-evaluation, machine-code, unicorn-engine, x86-64

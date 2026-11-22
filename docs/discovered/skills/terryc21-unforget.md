@@ -2,22 +2,21 @@
 title: "Terryc21/unforget — Claude Code skill discovered by cue"
 description: "A Claude Code skill — single source of truth for deferred work. Don't lose track of what you've punted."
 layout: page
-updated: 2026-08-27
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Terryc21/unforget](https://github.com/Terryc21/unforget)
 
-**★ 25** · exceptional (score 16.5) · Python · backlog, claude-code, claude-code-skill, defer, deferred
+**★ 40** · exceptional (score 11.8) · Python · backlog, claude-code, claude-code-skill, defer, deferred
 
 > A Claude Code skill — single source of truth for deferred work. Don't lose track of what you've punted.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.5 based on:
-- ✅ Contains SKILL.md
-- ⭐ 25 stars
-- 🗓️ Last pushed: 2026-08-27
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.8 based on:
+- ⭐ 40 stars
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: backlog, claude-code, claude-code-skill, defer, deferred, deferred-tasks, task-management
 
 ## Best fit cue profiles

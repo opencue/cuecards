@@ -2,22 +2,22 @@
 title: "anivar/india-tax-guru — Claude Code skill discovered by cue"
 description: "Open-source India income-tax planning, salary/CTC restructuring, and ITR filing-support toolkit"
 layout: page
-updated: 2026-08-01
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [anivar/india-tax-guru](https://github.com/anivar/india-tax-guru)
 
-**★ 0** · exceptional (score 11) · Python · agents-md, claude-skill, income-tax, india-tax, itr
+**★ 1** · exceptional (score 12.8) · Python · agents-md, claude-skill, income-tax, india-tax, itr
 
 > Open-source India income-tax planning, salary/CTC restructuring, and ITR filing-support toolkit
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.8 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-08-01
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: agents-md, claude-skill, income-tax, india-tax, itr, python, salary-structuring, tax-planning
 
 ## Best fit cue profiles

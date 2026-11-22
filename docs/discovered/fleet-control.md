@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="ancanglee-dev-team-skill"></a>
-## 💎 [ancanglee/dev-team-skill](https://github.com/ancanglee/dev-team-skill)
+<a id="aksilsmd-cortex"></a>
+## 💎 [aksilsmd/cortex](https://github.com/aksilsmd/cortex)
 
-**★ 0** · exceptional (score 13) · Shell · tags: ai-agents, ai-workflow, claude-code, claude-code-skill, multi-agent
+**★ 1** · exceptional (score 8.3) · Python · tags: ai-agents, ai-coding, ai-governance, ai-security, ai-tools
 
-Claude Code skill: a nine-role virtual dev team (PM, product, design, architect, dev, QA, security, writer, red team) that runs software projects from requirements to release, with parallel subagents.
-
-✅ SKILL.md
+« Cortex : le réseau d’agents experts qui lance vos projets numériques avec Claude ».
 
 ```bash
-cue skills add ancanglee/dev-team-skill --profile fleet-control
+cue skills add aksilsmd/cortex --profile fleet-control
 ```
 
 ---

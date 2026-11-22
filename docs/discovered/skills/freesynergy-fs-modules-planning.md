@@ -2,7 +2,7 @@
 title: "FreeSynergy/fs-modules-planning — Claude Code skill discovered by cue"
 description: "FreeSynergy planning modules: dependencies (RFC 9253), critical path, hand order, checklists, progress states, claims and the to-do data module (JSCalendar Task"
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 

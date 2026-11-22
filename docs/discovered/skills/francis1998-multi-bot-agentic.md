@@ -2,7 +2,7 @@
 title: "Francis1998/multi-bot-agentic — Claude Code skill discovered by cue"
 description: "Deterministic, auditable multi-bot AI-agent orchestrator: Observe→Decide→Act loop with rationale traces, replayable SQLite event log with resume and time-travel"
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, skill, fleet-control]
 ---
 

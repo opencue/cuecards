@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "5 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3111** · exceptional (score 11.3) · Python · tags: agentskills, claude, skills
+**★ 3117** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -46,7 +46,7 @@ cue skills add eriknewton/sanctuary-framework --profile cybersecurity
 
 **★ 7** · exceptional (score 9.7) · Python · tags: agent-governance, agent-security, agentic-ai, ai-agents, ai-governance
 
-Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path.
+Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph, or any agent loop. Pin approved capabilities, detect drift, and refuse unsafe or unapproved actions before execution. No model in the decision path. On PyPI: https://pypi.org/project/recusal/
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
@@ -63,19 +63,6 @@ Belay is an open-source, local-first security layer for AI coding agents (Claude
 
 ```bash
 cue skills add SECBLOK/belay --profile cybersecurity
-```
-
----
-
-<a id="hansstudy-cisco-switch-config"></a>
-## ✨ [hansstudy/cisco-switch-config](https://github.com/hansstudy/cisco-switch-config)
-
-**★ 1** · strong (score 7.3) · Python · tags: agent-skills, catalyst, cisco, cisco-ios, claude-code
-
-Claude skill that audits Cisco IOS and IOS-XE switch running-configs offline: 121 checks, credentials masked, paste-ready fixes cited to DISA STIG, NSA, CISA and Cisco guidance. Also generates hardened baselines.
-
-```bash
-cue skills add hansstudy/cisco-switch-config --profile cybersecurity
 ```
 
 ---

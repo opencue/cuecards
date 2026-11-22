@@ -2,22 +2,22 @@
 title: "CadenceUX/cadenceux-fms-security-skill — Claude Code skill discovered by cue"
 description: "Claude skill: interactive security check of a Claris FileMaker Server you own or manage, with a plain-English findings report."
 layout: page
-updated: 2026-10-31
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [CadenceUX/cadenceux-fms-security-skill](https://github.com/CadenceUX/cadenceux-fms-security-skill)
 
-**★ 0** · exceptional (score 11) · Python · anthropic, claris, claude, claude-skill, filemaker
+**★ 1** · exceptional (score 11.3) · Python · anthropic, claris, claude, claude-skill, filemaker
 
 > Claude skill: interactive security check of a Claris FileMaker Server you own or manage, with a plain-English findings report.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-31
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: anthropic, claris, claude, claude-skill, filemaker, filemaker-server, security
 
 ## Best fit cue profiles

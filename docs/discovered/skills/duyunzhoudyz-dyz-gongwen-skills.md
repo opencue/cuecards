@@ -2,21 +2,21 @@
 title: "duyunzhoudyz/dyz-gongwen-skills — Claude Code skill discovered by cue"
 description: "公文写作 Skills｜AI 公文写作助手：防编造、守保密、GB/T 9704 一键排版，覆盖 22 种文书，支持 Claude Code / Codex / Cursor"
 layout: page
-updated: 2026-11-13
+updated: 2026-11-22
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [duyunzhoudyz/dyz-gongwen-skills](https://github.com/duyunzhoudyz/dyz-gongwen-skills)
 
-**★ 763** · exceptional (score 13.5) · Python · agent-skills, ai-writing, ai-writing-tool, chinese-official-document, chinese-writing
+**★ 949** · exceptional (score 13.5) · Python · agent-skills, ai-writing, ai-writing-tool, chinese-official-document, chinese-writing
 
 > 公文写作 Skills｜AI 公文写作助手：防编造、守保密、GB/T 9704 一键排版，覆盖 22 种文书，支持 Claude Code / Codex / Cursor
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
-- ⭐ 763 stars
-- 🗓️ Last pushed: 2026-11-13
+- ⭐ 949 stars
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: agent-skills, ai-writing, ai-writing-tool, chinese-official-document, chinese-writing, claude-code-skill, claude-skills, codex, cursor, deepseek, docx, gongwen, gongwen-writing, government, llm-prompts, office-automation, official-document, official-document-writing, skills
 
 ## Best fit cue profiles

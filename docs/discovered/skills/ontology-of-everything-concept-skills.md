@@ -2,21 +2,21 @@
 title: "ontology-of-everything/concept-skills — Claude Code skill discovered by cue"
 description: "Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions"
 layout: page
-updated: 2026-11-14
+updated: 2026-11-22
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
 
-**★ 13** · exceptional (score 12.1) · Python · agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
+**★ 15** · exceptional (score 12.2) · Python · agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
 
 > Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.1 based on:
-- ⭐ 13 stars
-- 🗓️ Last pushed: 2026-11-14
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.2 based on:
+- ⭐ 15 stars
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills, codex-skills, concept-design, cursor, knowledge-management, ontology, semantic-modeling, skills-sh, skillsmp, software-architecture, visual-learning
 
 ## Best fit cue profiles

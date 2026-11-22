@@ -1,70 +1,44 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="marcosmodly-marketing-skill"></a>
-## 💎 [marcosmodly/marketing-skill](https://github.com/marcosmodly/marketing-skill)
+<a id="ontology-of-everything-concept-skills"></a>
+## 💎 [ontology-of-everything/concept-skills](https://github.com/ontology-of-everything/concept-skills)
 
-**★ 143** · exceptional (score 13.5) · HTML · tags: ai-agents, anthropic, automation, claude-code, claude-code-plugin
+**★ 15** · exceptional (score 12.2) · Python · tags: agent-skills, bilingual, claude-code, claude-code-skill, claude-skills
 
-Claude Code plugin with 14 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.
+Agent Skills for concept-driven software design, semantic modeling, ontology, knowledge management, and visual learning. English and Simplified Chinese editions for Claude Code, Codex, and Cursor.
 
 ```bash
-cue skills add marcosmodly/marketing-skill --profile creative-media
+cue skills add ontology-of-everything/concept-skills --profile creative-media
 ```
 
 ---
 
-<a id="tofuurem-video-library-skill"></a>
-## 💎 [tofuurem/video-library-skill](https://github.com/tofuurem/video-library-skill)
+<a id="avijeetpandey-make-explainer-animated-videos"></a>
+## 💎 [avijeetpandey/make-explainer-animated-videos](https://github.com/avijeetpandey/make-explainer-animated-videos)
 
-**★ 0** · exceptional (score 12) · Python · tags: agent-skills, capcut, claude-code, claude-skill, dji
+**★ 0** · exceptional (score 12) · Python · tags: claude-code, claude-code-skill, explainer-videos, ffmpeg, hyperframes
 
-Claude Code skill that keeps raw camera footage on external drives in order: sorts clips by shooting day and camera profile, migrates drives safely, finds duplicates, builds an all-drive catalog and a searchable video map (speech, scenes, best frames)
+Voice-over + script -> premium dark-mode animated explainer videos (Reels/Shorts). Cleaned voice, premium music mix, SFX, camera moves, covers, posting kit. Free & open source: HyperFrames + Canvas + ffmpeg + whisper.cpp. A Claude Code skill.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add tofuurem/video-library-skill --profile creative-media
-```
-
----
-
-<a id="halitsever-explain-to-customer"></a>
-## 💎 [halitsever/explain-to-customer](https://github.com/halitsever/explain-to-customer)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, ai-agents, anthropic, changelog, claude
-
-Claude Code skill that turns a code change into a short client-ready explainer video, slides and Mermaid diagrams, in the visual style you pick.
-
-```bash
-cue skills add halitsever/explain-to-customer --profile creative-media
-```
-
----
-
-<a id="nsudy-code-cappus"></a>
-## ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
-
-**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
-
-Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
-
-```bash
-cue skills add nsudy-code/cappus --profile creative-media
+cue skills add avijeetpandey/make-explainer-animated-videos --profile creative-media
 ```
 
 ---

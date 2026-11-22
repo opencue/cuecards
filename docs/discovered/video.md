@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,56 +15,60 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="tofuurem-video-library-skill"></a>
-## 💎 [tofuurem/video-library-skill](https://github.com/tofuurem/video-library-skill)
+<a id="tonyprots-motion-film-skill"></a>
+## 💎 [tonyprots/motion-film-skill](https://github.com/tonyprots/motion-film-skill)
 
-**★ 0** · exceptional (score 12) · Python · tags: agent-skills, capcut, claude-code, claude-skill, dji
+**★ 7** · exceptional (score 14) · JavaScript · tags: agent-skills, ai-video, captions, claude-code, claude-skill
 
-Claude Code skill that keeps raw camera footage on external drives in order: sorts clips by shooting day and camera profile, migrates drives safely, finds duplicates, builds an all-drive catalog and a searchable video map (speech, scenes, best frames)
+Turn a report, a deck or a product into a voice-led motion film, written in code by your AI agent. Skill for Claude Code, Codex and any agent: AI voiceover, beat-synced animation, captions, critic rounds, 60 fps 16:9 + 9:16.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add tofuurem/video-library-skill --profile video
+cue skills add tonyprots/motion-film-skill --profile video
 ```
 
 ---
 
-<a id="halitsever-explain-to-customer"></a>
-## 💎 [halitsever/explain-to-customer](https://github.com/halitsever/explain-to-customer)
+<a id="avijeetpandey-make-explainer-animated-videos"></a>
+## 💎 [avijeetpandey/make-explainer-animated-videos](https://github.com/avijeetpandey/make-explainer-animated-videos)
 
-**★ 0** · exceptional (score 8) · JavaScript · tags: agent-skills, ai-agents, anthropic, changelog, claude
+**★ 0** · exceptional (score 12) · Python · tags: claude-code, claude-code-skill, explainer-videos, ffmpeg, hyperframes
 
-Claude Code skill that turns a code change into a short client-ready explainer video, slides and Mermaid diagrams, in the visual style you pick.
+Voice-over + script -> premium dark-mode animated explainer videos (Reels/Shorts). Cleaned voice, premium music mix, SFX, camera moves, covers, posting kit. Free & open source: HyperFrames + Canvas + ffmpeg + whisper.cpp. A Claude Code skill.
+
+✅ SKILL.md
 
 ```bash
-cue skills add halitsever/explain-to-customer --profile video
+cue skills add avijeetpandey/make-explainer-animated-videos --profile video
 ```
 
 ---
 
-<a id="nsudy-code-cappus"></a>
-## ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
+<a id="tanuu5-claude-colab-render"></a>
+## 💎 [tanuu5/claude-colab-render](https://github.com/tanuu5/claude-colab-render)
 
-**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
+**★ 0** · exceptional (score 12) · Jupyter Notebook · tags: blender, claude-code, claude-code-skill, cycles, eevee
 
-Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
+Blender の描画（EEVEE・Cycles）を Google Colab の GPU に出して、Google Drive に連番と MP4 を書き出す Claude Code のスキルとノートブック / A Claude Code skill and Colab notebooks that render Blender frames on Google Colab GPUs into Google Drive
+
+✅ SKILL.md
 
 ```bash
-cue skills add nsudy-code/cappus --profile video
+cue skills add tanuu5/claude-colab-render --profile video
 ```
 
 ---
 
-<a id="bbllhenhj-multilingual-srt-pro-docs"></a>
-## 🔹 [bbllhenhj/multilingual-srt-pro-docs](https://github.com/bbllhenhj/multilingual-srt-pro-docs)
+<a id="aadi-010-claude-meeting-summary"></a>
+## 💎 [aadi-010/claude-meeting-summary](https://github.com/aadi-010/claude-meeting-summary)
 
-**★ 0** · potential (score 3.5) · Python · tags: agent-skills, claude-code-skill, cursor-skills, davinci-resolve, forced-alignment
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, meeting-notes, transcription, whisper
 
-多语种SRT PRO：帧级字幕精制 — 10档剪辑帧率整数帧对齐与27语种语法断行实测基准样本库（零源码公开基准与SRT样本）
+Claude Code skill: transcribe meeting recordings locally with Whisper (GPU or CPU) and summarize them into decisions and action items.
 
 ```bash
-cue skills add bbllhenhj/multilingual-srt-pro-docs --profile video
+cue skills add aadi-010/claude-meeting-summary --profile video
 ```
 
 ---

@@ -2,13 +2,13 @@
 title: "qttc/revizor — Claude Code skill discovered by cue"
 description: "Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies."
 layout: page
-updated: 2026-11-14
+updated: 2026-11-22
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [qttc/revizor](https://github.com/qttc/revizor)
 
-**★ 0** · exceptional (score 8) · Python · ai-slop, ai-writing, claude, claude-code, claude-skill
+**★ 0** · exceptional (score 8) · JavaScript · ai-slop, ai-writing, claude, claude-code, claude-skill
 
 > Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, docs-writer]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-14
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: ai-slop, ai-writing, claude, claude-code, claude-skill, llm, local-first, markdown, review-tool, writing-style
 
 ## Best fit cue profiles

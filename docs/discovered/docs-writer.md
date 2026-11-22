@@ -1,44 +1,42 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "5 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 5 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="jimmysadek-repo-fit"></a>
-## 💎 [JimmySadek/repo-fit](https://github.com/JimmySadek/repo-fit)
+<a id="kochetkov-ma-brewpage-openapi"></a>
+## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
 
-**★ 3** · exceptional (score 13.7) · JavaScript · tags: agent-skills, ai-agents, claude-code, claude-code-skill, codex
+**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
 
-A small foundation for any repo: rules, a board, a session brief and safe autosave. It looks at what you have first, and adapts.
-
-✅ SKILL.md
+Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
 
 ```bash
-cue skills add JimmySadek/repo-fit --profile docs-writer
+cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
 ```
 
 ---
 
-<a id="benjsmith-curiosity-engine"></a>
-## 💎 [benjsmith/curiosity-engine](https://github.com/benjsmith/curiosity-engine)
+<a id="qttc-revizor"></a>
+## 💎 [qttc/revizor](https://github.com/qttc/revizor)
 
-**★ 0** · exceptional (score 12) · Python · tags: agent-skill, claude-code, claude-skill, knowledge-base, knowledge-management
+**★ 0** · exceptional (score 8) · JavaScript · tags: ai-slop, ai-writing, claude, claude-code, claude-skill
 
-Self-improving knowledge wiki as a coding-agent skill. Project-aware curation: drop sources in, run curate, occasionally archive. Companion skill curiosity-merge to merge in another wiki.
+Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
 
 ```bash
-cue skills add benjsmith/curiosity-engine --profile docs-writer
+cue skills add qttc/revizor --profile docs-writer
 ```
 
 ---
@@ -56,23 +54,10 @@ cue skills add isamu/lab --profile docs-writer
 
 ---
 
-<a id="onemira-space-okf-markdown"></a>
-## ✨ [onemira-space/okf-markdown](https://github.com/onemira-space/okf-markdown)
-
-**★ 0** · strong (score 6) · Rust · tags: agent-skills, claude-code-plugin, claude-code-skill, claude-skills, markdown
-
-Zero-dependency Open Knowledge Format (OKF v0.2) Markdown validator, relational wiki-link graph builder & VTT/SRT transcript CLI for Obsidian, Claude MCP & OneMira
-
-```bash
-cue skills add onemira-space/okf-markdown --profile docs-writer
-```
-
----
-
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## 🔹 [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · potential (score 4.8) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · potential (score 4.7) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

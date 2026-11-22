@@ -1,30 +1,17 @@
 ---
 title: "Claude Code Skills for research"
-description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-22
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="rx290-grant-compass"></a>
-## 💎 [rx290/grant-compass](https://github.com/rx290/grant-compass)
-
-**★ 3** · exceptional (score 9.2) · Python · tags: claude-code, claude-skill, europe, phd, python-cli
-
-Find fully-funded scholarships at any degree level, any country (defaults to Europe), scored against your grades and field. Claude Code skill + CLI, built to save tokens not spend them.
-
-```bash
-cue skills add rx290/grant-compass --profile research
-```
 
 ---
 
