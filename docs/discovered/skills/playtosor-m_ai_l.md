@@ -2,7 +2,7 @@
 title: "playtosor/m_AI_l — Claude Code skill discovered by cue"
 description: "Asynchronous messaging between Claude threads — built entirely in Markdown."
 layout: page
-updated: 2026-10-10
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-10-10
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: async-messaging, beginner-friendly, claude, claude-desktop, claude-skill, claude-skills, markdown, markdown-skills, memory-layer, persistent-memory, thread-coordination
 
 ## Best fit cue profiles

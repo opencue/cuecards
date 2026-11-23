@@ -2,21 +2,21 @@
 title: "threert/native-app-template — Claude Code skill discovered by cue"
 description: "Start here to build a native app on ThreeRT: a live path-traced view in the platform's own UI framework (macOS/SwiftUI first), with Claude Code or Codex in a si"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [threert/native-app-template](https://github.com/threert/native-app-template)
 
-**★ 2** · strong (score 5.4) · TypeScript · agent-client-protocol, claude-code, codex, macos, path-tracing
+**★ 2** · strong (score 5.5) · TypeScript · agent-client-protocol, claude-code, codex, macos, path-tracing
 
 > Start here to build a native app on ThreeRT: a live path-traced view in the platform's own UI framework (macOS/SwiftUI first), with Claude Code or Codex in a side panel editing the scene while it runs.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.4 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-20
+- 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: agent-client-protocol, claude-code, codex, macos, path-tracing, ray-tracing, swiftui, template, threert
 
 ## Best fit cue profiles

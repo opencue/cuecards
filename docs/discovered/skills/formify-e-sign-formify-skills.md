@@ -1,23 +1,23 @@
 ---
 title: "formify-e-sign/formify-skills — Claude Code skill discovered by cue"
-description: "AI agent skills for SMB e-signing and document workflows — build fillable PDF forms, send contracts for electronic signature, verify signers with BankID or an I"
+description: "AI agent skills for SMB e-signing — build fillable PDF forms, send contracts for signature, publish a public signing link your website's form can prefill, verif"
 layout: page
-updated: 2026-11-12
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [formify-e-sign/formify-skills](https://github.com/formify-e-sign/formify-skills)
 
-**★ 5** · strong (score 6) · HTML · agent-skills, bankid, claude-code-skill, claude-skills, contracts
+**★ 5** · strong (score 6) · HTML · agent-skills, bankid, claude-code-skill, claude-skills, codex
 
-> AI agent skills for SMB e-signing and document workflows — build fillable PDF forms, send contracts for electronic signature, verify signers with BankID or an ID scan, and track everything after the send. Works with Claude, ChatGPT, Codex, Cursor and ~25 agents via MCP.
+> AI agent skills for SMB e-signing — build fillable PDF forms, send contracts for signature, publish a public signing link your website's form can prefill, verify signers with BankID or an ID scan, and track everything after the send. Claude, ChatGPT, Codex, Cursor via MCP.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 5 stars
-- 🗓️ Last pushed: 2026-11-12
-- 🏷️ Tags: agent-skills, bankid, claude-code-skill, claude-skills, contracts, document-signing, document-workflow, e-signing, eidas, electronic-signature, esignature, formify, identity-verification, kyc, mcp, model-context-protocol, pdf-forms, skills-sh, small-business, smb
+- 🗓️ Last pushed: 2026-11-23
+- 🏷️ Tags: agent-skills, bankid, claude-code-skill, claude-skills, codex, contracts, document-signing, e-signing, eidas, electronic-signature, esignature, formify, identity-verification, kyc, mcp, model-context-protocol, pdf-forms, signing-link, skills-sh, small-business
 
 ## Best fit cue profiles
 

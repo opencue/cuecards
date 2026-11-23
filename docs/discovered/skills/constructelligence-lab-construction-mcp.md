@@ -2,7 +2,7 @@
 title: "constructelligence-lab/construction-mcp — Claude Code skill discovered by cue"
 description: "Free construction MCP server for Claude, Cursor and AI assistants: cost codes, CPM critical path, pay applications, change orders, earned value, quantity calcul"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 

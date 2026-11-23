@@ -1,22 +1,22 @@
 ---
 title: "handsomeng/LJHskill — Claude Code skill discovered by cue"
-description: "LJHskill 两句话工具箱：内容电商打品的 14 个 Claude Code skill，俗称老家伙 skill。第一句说清你卡在哪，第二句它带你跑对的工具。"
+description: "LJHskill（老家伙 skill）电商增长工具箱：全网首个免费开源的内容电商增长赋能 skill 合集，总共 30 个业务工具。你只需要告诉我你的业务困惑是什么，我会自动选择合适的工具帮你解决问题。"
 layout: page
-updated: 2026-08-05
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [handsomeng/LJHskill](https://github.com/handsomeng/LJHskill)
 
-**★ 6** · exceptional (score 11.5) · Python · ai-agent, chinese, claude-code, claude-code-skill, content-marketing
+**★ 17** · exceptional (score 14.7) · Python · ai-agent, chinese, claude-code, claude-code-skill, content-marketing
 
-> LJHskill 两句话工具箱：内容电商打品的 14 个 Claude Code skill，俗称老家伙 skill。第一句说清你卡在哪，第二句它带你跑对的工具。
+> LJHskill（老家伙 skill）电商增长工具箱：全网首个免费开源的内容电商增长赋能 skill 合集，总共 30 个业务工具。你只需要告诉我你的业务困惑是什么，我会自动选择合适的工具帮你解决问题。
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.5 based on:
-- ⭐ 6 stars
-- 🗓️ Last pushed: 2026-08-05
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.7 based on:
+- ⭐ 17 stars
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: ai-agent, chinese, claude-code, claude-code-skill, content-marketing, douyin, ecommerce, toolkit
 
 ## Best fit cue profiles

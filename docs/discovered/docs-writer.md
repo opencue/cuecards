@@ -1,55 +1,29 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="netresearch-german-technical-writing-skill"></a>
+## 💎 [netresearch/german-technical-writing-skill](https://github.com/netresearch/german-technical-writing-skill)
 
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 9** · exceptional (score 11.4) · tags: agent-skills, ai-agent, claude-code-skill, deutsch, german
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
-
-```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile docs-writer
-```
-
----
-
-<a id="qttc-revizor"></a>
-## 💎 [qttc/revizor](https://github.com/qttc/revizor)
-
-**★ 0** · exceptional (score 8) · JavaScript · tags: ai-slop, ai-writing, claude, claude-code, claude-skill
-
-Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
+Agent Skill for natural German technical register in Jira tickets, internal German docs, and team chat to German-speaking colleagues — catches English→German anglicisms, enforces canonical technical lexicon | Claude Code compatible
 
 ```bash
-cue skills add qttc/revizor --profile docs-writer
-```
-
----
-
-<a id="isamu-lab"></a>
-## ✨ [isamu/lab](https://github.com/isamu/lab)
-
-**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
-
-chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
-
-```bash
-cue skills add isamu/lab --profile docs-writer
+cue skills add netresearch/german-technical-writing-skill --profile docs-writer
 ```
 
 ---

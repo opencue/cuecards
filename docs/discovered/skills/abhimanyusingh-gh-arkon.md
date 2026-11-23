@@ -2,21 +2,21 @@
 title: "abhimanyusingh-gh/Arkon — Claude Code skill discovered by cue"
 description: "Evidence-backed engineering standards for Claude Code — every rule graded against real PR review findings, including the claims the data disproved."
 layout: page
-updated: 2026-11-20
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [abhimanyusingh-gh/Arkon](https://github.com/abhimanyusingh-gh/Arkon)
 
-**★ 3** · exceptional (score 10.2) · Python · claude-code, claude-code-plugin, claude-plugin, claude-skill, code-review
+**★ 4** · exceptional (score 10.3) · Python · claude-code, claude-code-plugin, claude-plugin, claude-skill, code-review
 
 > Evidence-backed engineering standards for Claude Code — every rule graded against real PR review findings, including the claims the data disproved.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
-- ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.3 based on:
+- ⭐ 4 stars
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-plugin, claude-skill, code-review, engineering-standards
 
 ## Best fit cue profiles

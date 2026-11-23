@@ -2,7 +2,7 @@
 title: "nsudy-code/cappus — Claude Code skill discovered by cue"
 description: "Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions,"
 layout: page
-updated: 2026-11-21
+updated: 2026-11-23
 tags: [claude-code, skill, video, creative-media]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, video, creative-media]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-21
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro, captions, claude, claude-code, claude-code-plugin, claude-skill, ffmpeg, jump-cut, reels, short-form-video, subtitles, talking-head, tiktok, video-automation, video-editing, youtube-shorts
 
 ## Best fit cue profiles

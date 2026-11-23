@@ -2,21 +2,21 @@
 title: "nurkamol/website-build-kit — Claude Code skill discovered by cue"
 description: "Build production marketing sites with Claude Code — an Astro + Cloudflare Workers template, a WordPress→Astro migration playbook, and 36 silent failures documen"
 layout: page
-updated: 2026-09-02
+updated: 2026-11-23
 tags: [claude-code, skill, marketing]
 ---
 
 # 💎 [nurkamol/website-build-kit](https://github.com/nurkamol/website-build-kit)
 
-**★ 21** · exceptional (score 10.5) · JavaScript · ai-agents, astro, claude-code, claude-code-skill, cloudflare-workers
+**★ 32** · exceptional (score 11.1) · JavaScript · ai-agents, astro, claude-code, claude-code-skill, cloudflare-workers
 
 > Build production marketing sites with Claude Code — an Astro + Cloudflare Workers template, a WordPress→Astro migration playbook, and 36 silent failures documented from real rebuilds.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.5 based on:
-- ⭐ 21 stars
-- 🗓️ Last pushed: 2026-09-02
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
+- ⭐ 32 stars
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: ai-agents, astro, claude-code, claude-code-skill, cloudflare-workers, elementor, jamstack, marketing-website, seo, site-migration, starter-template, static-site, wcag, web-accessibility, wordpress-migration
 
 ## Best fit cue profiles

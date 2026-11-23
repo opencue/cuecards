@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,21 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="vstlmkh-building-design"></a>
+## 💎 [vstlmkh/building-design](https://github.com/vstlmkh/building-design)
+
+**★ 2** · exceptional (score 15) · Python · tags: accessibility, agent-skill, ai-agents, app-icons, brand-kit
+
+Agent Skill that builds a product design system as a versioned, runnable artifact: brand, DTCG tokens with light/dark themes, web/iOS/Android icon packs, a UI kit, UX artifacts and a zero-install interactive prototype — structured so AI coding agents can reimplement the design exactly.
+
+✅ SKILL.md
+
+```bash
+cue skills add vstlmkh/building-design --profile frontend
+```
 
 ---
 
@@ -28,28 +43,15 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="cs32dasdasd-ionik-capacitor-flux-patterns"></a>
-## 💎 [cs32dasdasd/ionik-capacitor-flux-patterns](https://github.com/cs32dasdasd/ionik-capacitor-flux-patterns)
+<a id="gamemann-nightly"></a>
+## 💎 [gamemann/nightly](https://github.com/gamemann/nightly)
 
-**★ 0** · exceptional (score 9) · HTML · tags: agent, agents, ai, ai-coding, android
+**★ 8** · exceptional (score 8.6) · JavaScript · tags: ai-agent, ai-agents, ai-coding, ai-tools, claude
 
-Ionic Capacitor Pro 2026: AI-Powered Hybrid App Builder for React, Angular & Vue
-
-```bash
-cue skills add cs32dasdasd/ionik-capacitor-flux-patterns --profile frontend
-```
-
----
-
-<a id="yeomyaloo-fe-code-agent"></a>
-## 💎 [yeomyaloo/fe-code-agent](https://github.com/yeomyaloo/fe-code-agent)
-
-**★ 0** · exceptional (score 8) · TypeScript · tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-plugin
-
-Web UI for be-code-agent: index repositories, approve analysis plans, and watch AI agents investigate and verify vulnerabilities in real time.
+A database and web panel that autonomous @claude Code runs work from: a queue of tasks, schedules, run reports, a live board where concurrent agents claim paths, project and asset tooling for games, and the measurements that tell you whether a fix worked.
 
 ```bash
-cue skills add yeomyaloo/fe-code-agent --profile frontend
+cue skills add gamemann/nightly --profile frontend
 ```
 
 ---

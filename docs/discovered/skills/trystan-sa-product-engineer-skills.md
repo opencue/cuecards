@@ -2,20 +2,20 @@
 title: "Trystan-SA/product-engineer-skills — Claude Code skill discovered by cue"
 description: "Agent skills for product engineers: count the clicks on your happy path, test flows against a UX budget, plan adoption, instrument analytics, and design and rea"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Trystan-SA/product-engineer-skills](https://github.com/Trystan-SA/product-engineer-skills)
 
-**★ 2064** · exceptional (score 14) · Python
+**★ 2066** · exceptional (score 13.9) · Python
 
 > Agent skills for product engineers: count the clicks on your happy path, test flows against a UX budget, plan adoption, instrument analytics, and design and read A/B tests. For Claude Code, Codex and any SKILL.md agent.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
-- ⭐ 2064 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.9 based on:
+- ⭐ 2066 stars
 - 🗓️ Last pushed: 2026-11-22
 - 🏷️ Tags: (none)
 

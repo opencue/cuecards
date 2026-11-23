@@ -1,29 +1,42 @@
 ---
 title: "Claude Code Skills for backend"
-description: "2 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kochetkov-ma-brewpage-openapi"></a>
-## 💎 [kochetkov-ma/brewpage-openapi](https://github.com/kochetkov-ma/brewpage-openapi)
+<a id="routinerun-routinerun"></a>
+## 💎 [routinerun/routinerun](https://github.com/routinerun/routinerun)
 
-**★ 5** · exceptional (score 14.1) · TypeScript · tags: ai-agent, ai-tools, anthropic, api-documentation, api-hosting
+**★ 2** · exceptional (score 11) · JavaScript · tags: app-intents, apple-watch, checklist, claude, claude-code
 
-Open API Specification for https://brewpage.app - Free HTML, Markdown, AI Artifacts & File Instant Hosting
+The parts of Routine Run others build on: the method, help, the API, MCP, the skill, and catalogues. Issues welcome.
 
 ```bash
-cue skills add kochetkov-ma/brewpage-openapi --profile backend
+cue skills add routinerun/routinerun --profile backend
+```
+
+---
+
+<a id="jrnoorbaloch-devshop"></a>
+## ✨ [jrnoorbaloch/DevShop](https://github.com/jrnoorbaloch/DevShop)
+
+**★ 0** · strong (score 6) · Python · tags: awesome-list, claude-code-plugin, claude-skill, developer-tools, devops
+
+🛒 DevShop — searchable directory of 1,300+ free developer tiers: hosting, databases, CI/CD, auth, email, monitoring & AI APIs. Fast static site, JSON API, PWA, auto-synced weekly.
+
+```bash
+cue skills add jrnoorbaloch/DevShop --profile backend
 ```
 
 ---

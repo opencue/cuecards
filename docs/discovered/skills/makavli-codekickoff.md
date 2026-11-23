@@ -2,7 +2,7 @@
 title: "makavli/codekickoff — Claude Code skill discovered by cue"
 description: "Just installed Claude Code? One command sets you up like a seasoned user, sized to your plan: model and effort, lean helpers, working rules, safe git."
 layout: page
-updated: 2026-11-13
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-13
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: beginner, claude-code, claude-code-plugin, claude-code-skill, getting-started, onboarding, productivity, subagents
 
 ## Best fit cue profiles

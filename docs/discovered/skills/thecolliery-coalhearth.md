@@ -2,7 +2,7 @@
 title: "TheColliery/CoalHearth — Claude Code skill discovered by cue"
 description: "Session warm-resume + handoff journal for AI coding agents - journals every step so an interrupted session resumes instead of rebuilding. Validated on Claude Co"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 

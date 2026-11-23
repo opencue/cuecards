@@ -2,7 +2,7 @@
 title: "Pyrochem/universal-quant-tournament-mcp — Claude Code skill discovered by cue"
 description: "Institutional quantitative trading MCP server for Claude Desktop & AI agents. Features an 8-strategy out-of-sample walk-forward tournament, Higher-Timeframe reg"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 

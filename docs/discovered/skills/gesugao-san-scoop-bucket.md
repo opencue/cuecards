@@ -1,8 +1,8 @@
 ---
 title: "Gesugao-san/scoop-bucket — Claude Code skill discovered by cue"
-description: "Claude Code skill from Gesugao-san/scoop-bucket"
+description: "Personal Scoop bucket by Gesugao-san."
 layout: page
-updated: 2026-11-21
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 0** · strong (score 7) · PowerShell · claude, claude-ai, claude-code, claude-skill, scoop
 
-> A Claude Code skill repository discovered by cue.
+> Personal Scoop bucket by Gesugao-san.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-21
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-skill, scoop, scoop-apps, scoop-bucket, scoop-buckets, scoop-libs, scoop-tools
 
 ## Best fit cue profiles

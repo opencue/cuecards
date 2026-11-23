@@ -2,22 +2,22 @@
 title: "dpdev69/brickprint — Claude Code skill discovered by cue"
 description: "Turn a LEGO set number into a colour-grouped, multi-plate Bambu Studio 3MF"
 layout: page
-updated: 2026-11-15
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [dpdev69/brickprint](https://github.com/dpdev69/brickprint)
 
-**★ 0** · exceptional (score 11) · Python · 3d-printing, bambu-studio, claude-skill, lego
+**★ 1** · exceptional (score 11.3) · Python · 3d-printing, bambu-studio, claude-skill, lego
 
 > Turn a LEGO set number into a colour-grouped, multi-plate Bambu Studio 3MF
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.3 based on:
 - ✅ Contains SKILL.md
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-15
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: 3d-printing, bambu-studio, claude-skill, lego
 
 ## Best fit cue profiles

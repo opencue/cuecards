@@ -2,21 +2,21 @@
 title: "netresearch/german-technical-writing-skill — Claude Code skill discovered by cue"
 description: "Agent Skill for natural German technical register in Jira tickets, internal German docs, and team chat to German-speaking colleagues — catches English→German an"
 layout: page
-updated: 2026-09-19
+updated: 2026-11-23
 tags: [claude-code, skill, docs-writer]
 ---
 
 # 💎 [netresearch/german-technical-writing-skill](https://github.com/netresearch/german-technical-writing-skill)
 
-**★ 5** · exceptional (score 11.1) · agent-skills, ai-agent, claude-code-skill, deutsch, german
+**★ 9** · exceptional (score 11.4) · agent-skills, ai-agent, claude-code-skill, deutsch, german
 
 > Agent Skill for natural German technical register in Jira tickets, internal German docs, and team chat to German-speaking colleagues — catches English→German anglicisms, enforces canonical technical lexicon | Claude Code compatible
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.1 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-09-19
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.4 based on:
+- ⭐ 9 stars
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: agent-skills, ai-agent, claude-code-skill, deutsch, german, localization, open-standard, skill, style-guide, technical-writing
 
 ## Best fit cue profiles

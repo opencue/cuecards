@@ -2,7 +2,7 @@
 title: "ashiqfardus/claude-sessions-sync — Claude Code skill discovered by cue"
 description: "Back up Claude Code conversations to Google Drive, OneDrive or Dropbox and resume them on another computer: Windows, macOS or Linux, even when the project lives"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, skill, core]
 ---
 

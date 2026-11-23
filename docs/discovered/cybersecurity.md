@@ -1,24 +1,39 @@
 ---
 title: "Claude Code Skills for cybersecurity"
-description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `cybersecurity`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **cybersecurity** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
+<a id="annapurnageeks-rathunter"></a>
+## 💎 [annapurnageeks/rathunter](https://github.com/annapurnageeks/rathunter)
+
+**★ 0** · exceptional (score 13) · Python · tags: blue-team, claude-code, claude-skill, incident-response, macos
+
+Is someone spying on your Mac? Find RATs, stalkerware and spyware in one second, explained in plain English. Read-only, zero dependencies, works as a Claude Code skill.
+
+✅ SKILL.md
+
+```bash
+cue skills add annapurnageeks/rathunter --profile cybersecurity
+```
+
+---
+
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3117** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
+**★ 3126** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -57,12 +72,25 @@ cue skills add philpaz/recusal --profile cybersecurity
 <a id="secblok-belay"></a>
 ## ✨ [SECBLOK/belay](https://github.com/SECBLOK/belay)
 
-**★ 11** · strong (score 7.9) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
+**★ 11** · strong (score 7.8) · Rust · tags: ai-agents, ai-safety, ai-security, ai-security-tool, claude-code
 
 Belay is an open-source, local-first security layer for AI coding agents (Claude Code, Codex, Cursor, OpenClaw, Hermes Agent and MCP) that blocks dangerous commands, secret leaks, and prompt injection at the tool-call boundary in under 100ms — no LLM in the decision path by default, no cloud, no phone-home.
 
 ```bash
 cue skills add SECBLOK/belay --profile cybersecurity
+```
+
+---
+
+<a id="guidancestudio-tech-audit-skill"></a>
+## ✨ [GuidanceStudio/tech-audit-skill](https://github.com/GuidanceStudio/tech-audit-skill)
+
+**★ 0** · strong (score 7.5) · Python · tags: claude-skill, code-audit, code-review, owasp, security-audit
+
+Generalist Claude skill for codebase audits — 13-dimension framework, routing by intent, OSS-tooling wired in. Lean, dogfooded.
+
+```bash
+cue skills add GuidanceStudio/tech-audit-skill --profile cybersecurity
 ```
 
 ---

@@ -1,74 +1,42 @@
 ---
 title: "Claude Code Skills for video"
-description: "4 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-23
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="tonyprots-motion-film-skill"></a>
-## 💎 [tonyprots/motion-film-skill](https://github.com/tonyprots/motion-film-skill)
+<a id="whystrohm-shotkit"></a>
+## 💎 [whystrohm/shotkit](https://github.com/whystrohm/shotkit)
 
-**★ 7** · exceptional (score 14) · JavaScript · tags: agent-skills, ai-video, captions, claude-code, claude-skill
+**★ 88** · exceptional (score 16.3) · Python · tags: agent-skills, ai-storyboard, ai-video, ai-workflow, claude
 
-Turn a report, a deck or a product into a voice-led motion film, written in code by your AI agent. Skill for Claude Code, Codex and any agent: AI voiceover, beat-synced animation, captions, critic rounds, 60 fps 16:9 + 9:16.
-
-✅ SKILL.md
+Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.
 
 ```bash
-cue skills add tonyprots/motion-film-skill --profile video
+cue skills add whystrohm/shotkit --profile video
 ```
 
 ---
 
-<a id="avijeetpandey-make-explainer-animated-videos"></a>
-## 💎 [avijeetpandey/make-explainer-animated-videos](https://github.com/avijeetpandey/make-explainer-animated-videos)
+<a id="nsudy-code-cappus"></a>
+## ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
 
-**★ 0** · exceptional (score 12) · Python · tags: claude-code, claude-code-skill, explainer-videos, ffmpeg, hyperframes
+**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
 
-Voice-over + script -> premium dark-mode animated explainer videos (Reels/Shorts). Cleaned voice, premium music mix, SFX, camera moves, covers, posting kit. Free & open source: HyperFrames + Canvas + ffmpeg + whisper.cpp. A Claude Code skill.
-
-✅ SKILL.md
+Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
 
 ```bash
-cue skills add avijeetpandey/make-explainer-animated-videos --profile video
-```
-
----
-
-<a id="tanuu5-claude-colab-render"></a>
-## 💎 [tanuu5/claude-colab-render](https://github.com/tanuu5/claude-colab-render)
-
-**★ 0** · exceptional (score 12) · Jupyter Notebook · tags: blender, claude-code, claude-code-skill, cycles, eevee
-
-Blender の描画（EEVEE・Cycles）を Google Colab の GPU に出して、Google Drive に連番と MP4 を書き出す Claude Code のスキルとノートブック / A Claude Code skill and Colab notebooks that render Blender frames on Google Colab GPUs into Google Drive
-
-✅ SKILL.md
-
-```bash
-cue skills add tanuu5/claude-colab-render --profile video
-```
-
----
-
-<a id="aadi-010-claude-meeting-summary"></a>
-## 💎 [aadi-010/claude-meeting-summary](https://github.com/aadi-010/claude-meeting-summary)
-
-**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, meeting-notes, transcription, whisper
-
-Claude Code skill: transcribe meeting recordings locally with Whisper (GPU or CPU) and summarize them into decisions and action items.
-
-```bash
-cue skills add aadi-010/claude-meeting-summary --profile video
+cue skills add nsudy-code/cappus --profile video
 ```
 
 ---
