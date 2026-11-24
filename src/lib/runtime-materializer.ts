@@ -22,7 +22,7 @@ import {
   lstat,
   stat,
   copyFile,
-  link,
+  cp,
   readlink,
   realpath,
   rmdir,
@@ -833,7 +833,6 @@ async function atomicSwapRuntime(
   mcpServers: Record<string, McpServerConfig>,
   effectiveInput: MaterializeInput,
 ): Promise<void> {
-  const moved: string[] = [];
   // Codex writes durable thread state directly into CODEX_HOME (sessions/,
   // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
   // Claude, it has no credentialsSource overlay, so an atomic rematerialization
@@ -886,7 +885,6 @@ async function atomicSwapRuntime(
       }
       try {
         await rename(oldPath, newPath);
-        moved.push(name);
       } catch {
         /* best-effort per entry */
       }
@@ -946,14 +944,6 @@ async function atomicSwapRuntime(
   // sessions / ~130 MB of history with it). Transcripts are neither
   // identity-bound nor regenerable, so a real directory is carried across even
   // when the account changed — there is no identity to mispair.
-  if (agent === "claude-code") {
-    await swapClaudeRuntime(runtimeDir, tmpDir, sameAccount);
-    if (effectiveInput.credentialsSource) {
-      await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
-    }
-    await syncMcpsIntoClaudeJson(runtimeDir, mcpServers, effectiveInput.disabledMcpIds);
-    return;
-  }
   const preserveFiles = sameAccount
     ? [
         ".claude.json",
@@ -990,7 +980,6 @@ async function atomicSwapRuntime(
       // or a copy for .credentials.json) so rename can replace it cleanly.
       await rm(newPath, { force: true, recursive: true });
       await rename(oldPath, newPath);
-      moved.push(name);
     } catch {
       /* doesn't exist — skip */
     }
@@ -1010,30 +999,26 @@ async function atomicSwapRuntime(
   const trashDir = `${runtimeDir}.old-${process.pid}-${Date.now().toString(36)}`;
   let trashed = false;
   try {
-    try {
-      await rename(runtimeDir, trashDir);
-      trashed = true;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
-        throw error;
-      }
-      /* first materialization — nothing to move aside */
-    }
-    await rename(tmpDir, runtimeDir);
-  } catch (error) {
-    const oldDir = trashed ? trashDir : runtimeDir;
-    for (const name of moved) {
-      await rename(join(tmpDir, name), join(oldDir, name));
-    }
-    if (trashed) await rename(trashDir, runtimeDir);
-    throw error;
+    await rename(runtimeDir, trashDir);
+    trashed = true;
+  } catch {
+    /* no previous runtime (first materialization) — nothing to move aside */
   }
+  await rename(tmpDir, runtimeDir);
   if (trashed) {
     await rm(trashDir, { recursive: true, force: true }).catch(() => {
       /* the new runtime is already live; a stale .old-* is swept below */
     });
   }
   await sweepStaleSwapDirs(runtimeDir);
+
+  if (agent === "claude-code") {
+    await syncMcpsIntoClaudeJson(
+      runtimeDir,
+      mcpServers,
+      effectiveInput.disabledMcpIds,
+    );
+  }
 }
 
 /**
@@ -1183,7 +1168,10 @@ async function materializeRuntimeUnlocked(
     runtimePathKey(input.runtimeKey ?? profile.name),
     agentSubdir(agent),
   );
-  if (agent === "claude-code") await recoverClaudeSwap(runtimeDir);
+  const plugins = agent === "claude-code" &&
+    (!input.credentialsSource || !sameResolvedPath(runtimeDir, input.credentialsSource))
+    ? await inspectRuntimePlugins(runtimeDir, input.credentialsSource)
+    : undefined;
 
   // Normalize any `uvx --from git+<repo> <bin>` MCP entries: install the
   // package locally with `uv tool install` and rewrite the entry to call the
@@ -1258,7 +1246,8 @@ async function materializeRuntimeUnlocked(
         // Pre-seed the plugin cache so enabled-plugin hooks find their version
         // dir immediately (avoids the "Plugin directory does not exist" race).
         if (!sameResolvedPath(runtimeDir, effectiveInput.credentialsSource)) {
-          await linkPluginCache(runtimeDir, effectiveInput.credentialsSource);
+          if (plugins) await refreshPlugins(plugins);
+          else await seedPluginLinks(runtimeDir, effectiveInput.credentialsSource);
         }
       }
       if (agent === "claude-code") {
@@ -1404,12 +1393,17 @@ async function materializeRuntimeUnlocked(
   // and CLAUDE.md.
   if (input.credentialsSource) {
     await overlaySourceState(tmpDir, input.credentialsSource, runtimeDir);
-    // The Claude swap stages the cache together with any existing plugin state.
-    if (
-      agent !== "claude-code" &&
-      !sameResolvedPath(runtimeDir, input.credentialsSource)
-    ) {
-      await linkPluginCache(tmpDir, input.credentialsSource);
+    // Pre-seed plugins before activation so enabled hooks can resolve immediately.
+    if (!plugins && !sameResolvedPath(runtimeDir, input.credentialsSource)) {
+      await seedPluginLinks(tmpDir, input.credentialsSource);
+    }
+  }
+  if (plugins) {
+    try {
+      await stageRuntimePlugins(plugins, tmpDir);
+    } catch (error) {
+      await rm(tmpDir, { recursive: true, force: true }).catch(() => {});
+      throw error;
     }
   }
 
@@ -1776,11 +1770,6 @@ async function overlaySourceState(
       }
       continue; // cue override — don't touch
     }
-    if (existingType === "symlink") {
-      const previous = await readlink(targetPath).catch(() => undefined);
-      if (previous && isClaudeArchiveEntry(targetDir, previous, name)) continue;
-    }
-
     // Freshness guard on the rotated OAuth token. Anthropic rotates the refresh
     // token on every refresh, so only the copy with the highest expiresAt still
     // holds a LIVE one. This overlay runs on every cache-hit launch — and via
@@ -1839,8 +1828,9 @@ async function overlaySourceState(
  * from the real source config (`~/.claude/plugins`). `plugins` is excluded from
  * the generic overlay (CUE_MANAGED_ENTRIES) because Claude writes per-session
  * state under `plugins/data` — symlinking that whole tree risks the ELOOP
- * documented above. Share the downloaded payload and marketplace metadata,
- * keeping any additional marketplace or cache entries already in the runtime.
+ * documented above. But the *downloaded* plugin payload and marketplace
+ * metadata are read-mostly and identical across profiles, so sharing them is
+ * safe and fixes a real bug:
  *
  *   A fresh per-profile runtime starts with an empty plugin cache. When
  *   settings.json enables a plugin (`enabledPlugins`), its hooks fire on the
@@ -1855,678 +1845,443 @@ async function overlaySourceState(
  *     it risks clobbering the real registry with an empty `{plugins:{}}`.
  *   - `data`: per-plugin writable state; the self-referential ELOOP source.
  */
-export async function linkPluginCache(
+async function seedPluginLinks(
   targetDir: string,
   sourceDir: string,
+  resolved?: ReadonlyMap<string, string>,
 ): Promise<void> {
   if (sameResolvedPath(targetDir, sourceDir)) return;
 
   const srcPlugins = join(sourceDir, "plugins");
-  const pluginsDir = join(targetDir, "plugins");
-  if (await lstat(srcPlugins).catch(() => undefined)) {
-    await mkdir(pluginsDir, { recursive: true });
-  } else if (!(await stat(pluginsDir).catch(() => undefined))?.isDirectory()) {
-    return;
-  }
-
-  const installedPath = join(pluginsDir, "installed_plugins.json");
-  const installed = (await lstat(installedPath).catch(() => undefined))?.isFile()
-    ? await readPluginRecord<unknown>(installedPath, {})
-    : undefined;
-  const keepPrevious = isRecord(installed?.plugins) &&
-    Object.values(installed.plugins).some((entries) => Array.isArray(entries) && entries.length > 0);
-
-  // Cache entries are marketplace/plugin/version. Marketplace clones and
-  // installed versions are leaves: link them whole and never traverse them.
-  const trees = [["cache", 3], ["marketplaces", 1]] as const;
-  for (const [name, depth] of trees) {
-    await linkPluginTree(join(pluginsDir, name), join(srcPlugins, name), depth, keepPrevious);
-  }
-  // Old registries can use the clone link to identify an untracked import.
-  await linkMarketplaceRegistry(pluginsDir, srcPlugins, keepPrevious);
-  for (const [name, depth] of trees) {
-    const target = join(pluginsDir, name);
-    const source = join(srcPlugins, name);
-    await removeStalePluginLinks(target, source, depth, keepPrevious);
-  }
-}
-
-const CLAUDE_PROFILE_STATE = ["projects", "plugins", ".cue-recovered"];
-const CLAUDE_DURABLE_ENTRIES = [
-  ...CLAUDE_PROFILE_STATE, ".claude.json", ".config.json", ".credentials.json",
-  "backups", "session-env", "tasks",
-];
-
-function isClaudeArchiveEntry(runtimeDir: string, path: string, name: string): boolean {
-  const base = resolvePath(`${runtimeDir}.plugin-state`);
-  const archive = dirname(path);
-  return basename(path) === name && dirname(archive) === dirname(base) &&
-    (archive === base || archive.startsWith(`${base}-`));
-}
-
-function pathExists(error: unknown): boolean {
-  const code = (error as NodeJS.ErrnoException).code;
-  return code === "EEXIST" || code === "ENOTEMPTY";
-}
-
-async function lstatIfPresent(path: string) {
   try {
-    return await lstat(path);
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-    return undefined;
-  }
-}
-
-// Archive the whole runtime first. A new projects/ or plugins/ created before
-// that rename travels with it. A recreation after it stays at the live path.
-// The sibling pointer is published before the rename and survives a killed cue.
-async function swapClaudeRuntime(runtimeDir: string, stage: string, sameAccount: boolean) {
-  const archive = await mkdtemp(`${resolvePath(runtimeDir)}.plugin-state-`);
-  const pending = `${runtimeDir}.cue-pending`;
-  await writeFile(join(stage, ".cue-swap"), sameAccount ? "same-account" : "account-switch", { flag: "wx" });
-  await symlink(archive, pending, "dir");
-  let archived = false;
-  try {
-    try {
-      await rename(runtimeDir, archive);
-      archived = true;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-    }
-    if (archived) await stageArchivedClaudeState(runtimeDir, archive, stage, sameAccount);
-    // Treat an already recreated runtime as live, even if it is still empty.
-    // rename's ENOTEMPTY/EEXIST catches recreation with writes after this check.
-    let recreated = !!(await lstatIfPresent(runtimeDir));
-    if (!recreated) {
-      try {
-        await rename(stage, runtimeDir);
-      } catch (error) {
-        if (!pathExists(error)) throw error;
-        recreated = true;
-      }
-    }
-    if (recreated) {
-      if (archived) await restoreClaudeArchive(archive, runtimeDir, sameAccount);
-      await publishRecreatedRuntime(stage, runtimeDir);
-    } else if (archived) {
-      // A process with the old directory open can still create a durable
-      // directory there after staging read its entries.
-      await restoreClaudeArchive(archive, runtimeDir, false);
-    }
-  } catch (error) {
-    if (archived) await restoreClaudeArchive(archive, runtimeDir, true);
-    await rm(pending);
-    await rmdir(archive).catch(() => {});
-    await rm(stage, { recursive: true, force: true });
-    throw error;
-  }
-  await rm(pending);
-  await rm(join(runtimeDir, ".cue-swap"), { force: true });
-  await rm(stage, { recursive: true, force: true });
-  await rmdir(archive).catch(() => {});
-}
-
-async function stageArchivedClaudeState(
-  runtimeDir: string, archive: string, stage: string, sameAccount: boolean,
-) {
-  for (const name of CLAUDE_DURABLE_ENTRIES) {
-    if (!sameAccount && !CLAUDE_PROFILE_STATE.includes(name)) continue;
-    const source = join(archive, name);
-    const target = join(stage, name);
-    const info = await lstatIfPresent(source);
-    if (!info) continue;
-    if (info.isFile()) {
-      if (name === ".credentials.json" &&
-        await credentialsExpiresAt(source) <= await credentialsExpiresAt(target)) continue;
-      await rm(target, { force: true });
-      await link(source, target);
-    } else if (info.isDirectory()) {
-      await rm(target, { force: true });
-      await symlink(source, target, "dir");
-    } else if (info.isSymbolicLink()) {
-      const backing = await readlink(source);
-      if (!isClaudeArchiveEntry(runtimeDir, backing, name)) continue;
-      await rm(target, { force: true });
-      await symlink(backing, target, "dir");
-    }
-  }
-}
-
-async function publishRecreatedRuntime(stage: string, runtimeDir: string) {
-  const entries = await readdir(stage);
-  for (const name of entries) {
-    if (name === ".cue-hash" || name === ".cue-swap") continue;
-    const source = join(stage, name);
-    const target = join(runtimeDir, name);
-    if (!(await lstatIfPresent(target)) || (CUE_MANAGED_ENTRIES.has(name) && !CLAUDE_DURABLE_ENTRIES.includes(name))) {
-      // Generated settings belong to cue; live durable entries take priority.
-      if (CLAUDE_DURABLE_ENTRIES.includes(name)) await mergeClaudeEntry(source, target);
-      else await rename(source, target);
-    }
-  }
-  await rename(join(stage, ".cue-swap"), join(runtimeDir, ".cue-swap"));
-  await rename(join(stage, ".cue-hash"), join(runtimeDir, ".cue-hash"));
-}
-
-async function restoreClaudeArchive(archive: string, runtimeDir: string, sameAccount: boolean) {
-  if (!(await lstatIfPresent(archive))) return;
-  if (!(await lstatIfPresent(runtimeDir))) {
-    try {
-      await rename(archive, runtimeDir);
-      return;
-    } catch (error) {
-      if (!pathExists(error)) throw error;
-    }
-  }
-  for (const name of CLAUDE_DURABLE_ENTRIES) {
-    if (!sameAccount && !CLAUDE_PROFILE_STATE.includes(name)) continue;
-    const path = join(archive, name);
-    const info = await lstatIfPresent(path);
-    if (info?.isDirectory()) {
-      const target = join(runtimeDir, name);
-      if (name === "projects") {
-        const current = await readlink(target).catch(() => undefined);
-        if (current && !isClaudeArchiveEntry(runtimeDir, current, name)) {
-          // A staged account overlay is superseded by real runtime transcripts.
-          if (await publishPluginEntry(target, (staged) => symlink(path, staged, "dir"), false,
-            async () => await readlink(target) === current)) continue;
-        }
-      }
-      await mergeClaudeEntry(path, target, runtimeDir);
-    } else if (info?.isFile()) {
-      await mergeClaudeEntry(path, join(runtimeDir, name));
-    } else if (info?.isSymbolicLink()) {
-      const backing = await readlink(path);
-      if (isClaudeArchiveEntry(runtimeDir, backing, name)) {
-        await mergeClaudeEntry(backing, join(runtimeDir, name), runtimeDir);
-      }
-    }
-  }
-}
-
-async function mergeClaudeEntry(source: string, target: string, runtimeDir?: string): Promise<void> {
-  const info = await lstatIfPresent(source);
-  if (!info) return;
-  let live = await lstatIfPresent(target);
-  if (live?.ino === info.ino && live.dev === info.dev) return;
-  if (info.isDirectory()) {
-    if (!live) {
-      try {
-        if (runtimeDir) {
-          await symlink(source, target, "dir");
-          return;
-        }
-        await mkdir(target);
-      } catch (error) {
-        if (!pathExists(error)) throw error;
-      }
-      live = await lstatIfPresent(target);
-    }
-    const physicalTarget = await realpath(target).catch((error: NodeJS.ErrnoException) => {
-      if (error.code !== "ENOENT") throw error;
-      return undefined;
-    });
-    if (physicalTarget === source) return;
-    const backing = runtimeDir && live?.isSymbolicLink()
-      ? await readlink(target).catch(() => undefined)
-      : undefined;
-    if (physicalTarget && (live?.isDirectory() ||
-      (backing && runtimeDir && isClaudeArchiveEntry(runtimeDir, backing, basename(target))))) {
-      const name = basename(target);
-      if (runtimeDir && (name === "projects" || name === "plugins")) {
-        // An open directory handle can still receive writes after readdir.
-        // Keep that tree reachable from the live runtime as well as merging
-        // the entries visible now into their normal paths.
-        const recovered = join(runtimeDir, ".cue-recovered");
-        await mkdir(recovered, { recursive: true, mode: 0o700 });
-        await symlink(source, join(recovered, `${name}-${info.dev}-${info.ino}`), "dir").catch((error) => {
-          if (!pathExists(error)) throw error;
-        });
-      }
-      for (const name of await readdir(source)) {
-        await mergeClaudeEntry(join(source, name), join(physicalTarget, name));
-      }
-      return;
-    }
-  } else if (!live) {
-    try {
-      await link(source, target);
-      return;
-    } catch (error) {
-      if (!pathExists(error)) throw error;
-    }
-  }
-
-  // Keep both versions of a collision. Registry entries with distinct IDs
-  // can also be brought into the active file in one guarded write.
-  if (info.isFile() && live?.isFile()) {
-    const name = basename(target);
-    if (name === "known_marketplaces.json" || name === "installed_plugins.json") {
-      if (await mergeClaudePluginRegistry(source, target, name === "installed_plugins.json")) return;
-    }
-  }
-  const recovered = join(dirname(target), `.cue-recovered-${info.dev}-${info.ino}-${basename(target)}`);
-  try {
-    if (info.isDirectory()) await symlink(source, recovered, "dir");
-    else await link(source, recovered);
-  } catch (error) {
-    if (!pathExists(error)) throw error;
-  }
-}
-
-async function mergeClaudePluginRegistry(source: string, target: string, installed: boolean) {
-  const snapshot = await registrySnapshot(target);
-  if (snapshot.text === undefined) return false;
-  const live = parsePluginRecord<unknown>(snapshot.text);
-  const archived = await readPluginRecord<unknown>(source, {});
-  if (!live || !archived) return false;
-  const oldEntries = installed ? archived.plugins : archived;
-  const liveEntries = installed ? live.plugins : live;
-  if (!isRecord(oldEntries) || !isRecord(liveEntries)) return false;
-  const merged = { ...oldEntries, ...liveEntries };
-  if (installed) {
-    for (const [name, entries] of Object.entries(oldEntries)) {
-      const active = liveEntries[name];
-      if (!Array.isArray(active) || !Array.isArray(entries)) continue;
-      const locations = new Set(active.map((entry) => entry?.installPath));
-      merged[name] = [...active, ...entries.filter((entry) => !locations.has(entry?.installPath))];
-    }
-  }
-  const conflicts = Object.keys(oldEntries).some((name) =>
-    Object.hasOwn(liveEntries, name) && sortedJson(oldEntries[name]) !== sortedJson(liveEntries[name]));
-  if (sortedJson(merged) === sortedJson(liveEntries)) return !conflicts;
-  const published = await publishPluginEntry(
-    target,
-    (staged) => writeFile(staged, JSON.stringify(installed ? { ...live, plugins: merged } : merged, null, 2) + "\n"),
-    false,
-    async () => JSON.stringify(await registrySnapshot(target)) === JSON.stringify(snapshot),
-  );
-  return published && !conflicts;
-}
-
-// Recover before even checking the runtime hash. A killed swap may already
-// have published that hash, or may have left no live directory at all.
-async function recoverClaudeSwap(runtimeDir: string) {
-  const pending = `${runtimeDir}.cue-pending`;
-  const archive = await readlink(pending).catch((error: NodeJS.ErrnoException) => {
-    if (error.code !== "ENOENT") throw error;
-    return undefined;
-  });
-  if (archive) {
-    if (!isClaudeArchiveEntry(runtimeDir, join(archive, "plugins"), "plugins")) {
-      throw new Error(`Invalid Claude swap archive: ${archive}`);
-    }
-    const activation = await readFile(join(runtimeDir, ".cue-swap"), "utf8").catch(() => undefined);
-    await restoreClaudeArchive(archive, runtimeDir, activation !== "account-switch");
-    await rm(pending);
-    await rm(join(runtimeDir, ".cue-swap"), { force: true });
-  }
-
-  // Earlier builds moved durable entries into staging and chose any available
-  // plugin archive. The staged link identifies the exact archive to restore.
-  const parent = dirname(runtimeDir);
-  const base = basename(runtimeDir);
-  const siblings = await readdir(parent);
-  const stages = await Promise.all(siblings.filter((name) => name.startsWith(`${base}.tmp.`))
-    .map(async (name) => ({ path: join(parent, name), info: await lstatIfPresent(join(parent, name)) })));
-  stages.sort((a, b) => (b.info?.birthtimeMs ?? 0) - (a.info?.birthtimeMs ?? 0) || b.path.localeCompare(a.path));
-  for (const { path, info } of stages) {
-    if (!info?.isDirectory()) continue;
-    if (await lstatIfPresent(join(path, ".cue-swap"))) {
-      // New stages hold only generated files and references into the archive.
-      await rm(path, { recursive: true, force: true });
-      continue;
-    }
-    await recoverLegacyClaudeRuntime(path, runtimeDir, pending);
-  }
-
-  const oldRuntimes = siblings.filter((name) => name.startsWith(`${base}.old-`)).sort().reverse();
-  for (const name of oldRuntimes) {
-    const path = join(parent, name);
-    if (!(await lstatIfPresent(path))?.isDirectory()) continue;
-    await recoverLegacyClaudeRuntime(path, runtimeDir, pending);
-  }
-}
-
-async function recoverLegacyClaudeRuntime(path: string, runtimeDir: string, pending: string) {
-  // Park the entire tree, including entries that had no new live path when
-  // the earlier process stopped. Never prune it after observing its contents.
-  const retired = await mkdtemp(`${resolvePath(runtimeDir)}.plugin-state-recovered-`);
-  await symlink(retired, pending, "dir");
-  await rename(path, retired);
-  await restoreClaudeArchive(retired, runtimeDir, true);
-  await rm(pending);
-}
-
-// Stage on the same filesystem so a hook sees the old entry or the new one
-// throughout replacement. Only Claude's empty lazy directory needs removal
-// before rename; rmdir refuses if an install has since populated it.
-async function publishPluginEntry(
-  target: string,
-  prepare: (staged: string) => Promise<void>,
-  replaceEmptyDir = false,
-  unchanged?: () => Promise<boolean>,
-): Promise<boolean> {
-  const stage = await mkdtemp(`${target}.cue-tmp-`).catch(() => undefined);
-  if (!stage) return false;
-  try {
-    const staged = join(stage, "entry");
-    await prepare(staged);
-    if (replaceEmptyDir) await rmdir(target);
-    if (unchanged && !(await unchanged())) return false;
-    await rename(staged, target);
-    return true;
+    await lstat(srcPlugins);
   } catch {
-    /* race or permission — keep the existing entry when possible */
-    return false;
-  } finally {
-    await rm(stage, { recursive: true, force: true }).catch(() => {});
+    return; // source has no plugins tree — nothing to seed
   }
-}
+  const pluginsDir = join(targetDir, "plugins");
+  await mkdir(pluginsDir, { recursive: true });
 
-async function linkPluginTree(
-  target: string,
-  source: string,
-  depth: number,
-  keepPrevious: boolean,
-): Promise<void> {
-  const canonicalSource = await realpath(source).catch(() => undefined);
-  if (!canonicalSource) {
-    if (depth > 0 && !keepPrevious) await removeOldPassthrough(target, source);
-    return;
-  }
-  const parent = await realpath(dirname(target)).catch(() => undefined);
-  if (!parent) return;
-  const slot = join(parent, basename(target));
-  if (canonicalSource === slot || canonicalSource.startsWith(`${slot}${sep}`)) return;
-  const current = await lstat(target).catch(() => undefined);
-  const publishLink = (replaceEmptyDir = false) => publishPluginEntry(
-    target,
-    async (staged) => {
-      await symlink(canonicalSource, staged);
-      // symlink() succeeds even if the source disappeared during staging.
-      if (await realpath(source) !== canonicalSource) throw new Error("Plugin source changed");
-    },
-    replaceEmptyDir,
-  );
-  if (depth === 0 || !(await stat(canonicalSource).catch(() => undefined))?.isDirectory()) {
-    if (!current || current.isSymbolicLink()) {
-      await publishLink();
+  for (const name of ["cache", "marketplaces", "known_marketplaces.json"]) {
+    const sourcePath = join(srcPlugins, name);
+    try {
+      await lstat(sourcePath);
+    } catch {
+      continue; // not present in source
     }
-    return;
-  }
-
-  if (current?.isDirectory()) {
-    const children = await readdir(target).catch(() => undefined);
-    if (!children) return;
-    if (children.length > 0) {
-      await linkPluginChildren(target, source, depth, keepPrevious);
-      return;
-    }
-  } else if (current?.isSymbolicLink()) {
-    const previous = await realpath(target).catch(() => undefined);
-    if (previous && previous !== canonicalSource) {
-      // A symlink can be swapped atomically for another link. Build the union
-      // in a local directory and keep it as the backing store for that link.
-      const localName = `.${basename(target)}.cue-local`;
-      if (await readlink(target) === localName) {
-        await linkPluginChildren(target, source, depth, keepPrevious);
-        return;
+    const linkTarget = resolved ? resolved.get(name) : sourcePath;
+    if (!linkTarget) continue;
+    const targetPath = join(pluginsDir, name);
+    // Replace whatever's there (Claude's lazy/empty copy or a stale symlink)
+    // with a symlink to the real, already-downloaded tree — atomically.
+    //
+    // A plain rm-then-symlink leaves the path absent for a moment, and
+    // re-materializing happens while sessions are live. A hook firing in that
+    // window sees exactly the error this function exists to prevent:
+    // "Plugin directory does not exist … run /plugin to reinstall". Observed
+    // 2026-08-07, a Stop hook against claude-mem@thedotmack. So stage the new
+    // link beside the target and rename() it over: same directory, so the swap
+    // is atomic and a concurrent reader sees the old entry or the new one,
+    // never neither.
+    const stagePath = `${targetPath}.cue-tmp-${process.pid}`;
+    try {
+      await rm(stagePath, { recursive: true, force: true });
+      await symlink(linkTarget, stagePath);
+      try {
+        await rename(stagePath, targetPath);
+      } catch {
+        // rename refuses to clobber a real directory, and POSIX has no atomic
+        // way to replace a directory with a symlink — so this branch keeps the
+        // old window. It is the first materialization, when the target is
+        // still Claude's lazy empty copy; every later pass finds a symlink and
+        // takes the atomic path above, which is the one that was failing hooks.
+        await rm(targetPath, { recursive: true, force: true });
+        await rename(stagePath, targetPath);
       }
-      if (keepPrevious && await hasExtraPluginEntries(previous, source, depth)) {
-        const localDir = join(dirname(target), localName);
-        await mkdir(localDir, { recursive: true });
-        await linkPluginChildren(localDir, previous, depth, keepPrevious);
-        await linkPluginChildren(localDir, source, depth, keepPrevious);
-        await publishPluginEntry(target, (staged) => symlink(localName, staged, "dir"));
-        return;
-      }
+    } catch {
+      // Race or permission — leave the existing entry in place rather than
+      // removing it, and don't leak the staged link.
+      await rm(stagePath, { recursive: true, force: true }).catch(() => {});
     }
   }
-  if (await readlink(target).catch(() => undefined) !== canonicalSource) {
-    await publishLink(current?.isDirectory());
+}
+
+const PLUGIN_TREES = [["cache", 3], ["marketplaces", 1]] as const;
+const MARKETPLACE_REGISTRY = "known_marketplaces.json";
+const INSTALLED_PLUGINS = "installed_plugins.json";
+const LEGACY_IMPORTS = ".cue-marketplace-imports.json";
+
+function missingPluginPath(error: NodeJS.ErrnoException): undefined {
+  if (error.code === "ENOENT" || error.code === "ENOTDIR") return undefined;
+  throw error;
+}
+
+function pluginRealpath(path: string) {
+  return realpath(path).catch((error: NodeJS.ErrnoException) => {
+    if (error.code === "ELOOP") return undefined;
+    return missingPluginPath(error);
+  });
+}
+
+function insidePluginPath(parent: string, path: string) {
+  return path === parent || path.startsWith(parent.endsWith(sep) ? parent : parent + sep);
+}
+
+function safePluginLink(slot: string, source: string) {
+  return !insidePluginPath(source, slot) && !insidePluginPath(slot, source);
+}
+
+async function pluginFile(path: string) {
+  const info = await lstat(path).catch(missingPluginPath);
+  if (!(info?.isFile() || info?.isSymbolicLink())) return undefined;
+  const linked = info.isSymbolicLink();
+  const text = await readFile(path, "utf8").catch((error: NodeJS.ErrnoException) => {
+    if (linked && error.code === "ELOOP") return undefined;
+    return missingPluginPath(error);
+  });
+  return { linked, text, inode: info.ino, device: info.dev, changed: info.ctimeMs };
+}
+
+function pluginRecord(text: string | undefined): Record<string, unknown> | undefined {
+  if (text === undefined) return {};
+  try {
+    const parsed: unknown = JSON.parse(text);
+    if (isRecord(parsed)) return parsed;
+  } catch {
+    /* Leave a malformed registry for Claude to repair. */
   }
 }
 
-async function linkPluginChildren(
-  target: string,
-  source: string,
-  depth: number,
-  keepPrevious: boolean,
-): Promise<void> {
-  for (const name of await readdir(source).catch(() => [])) {
-    await linkPluginTree(join(target, name), join(source, name), depth - 1, keepPrevious);
-  }
+async function pluginChildren(path: string) {
+  return (await readdir(path).catch(missingPluginPath)) ?? [];
 }
 
-async function removeOldPassthrough(target: string, source: string): Promise<void> {
-  const previous = await readlink(target).catch(() => undefined);
-  const parent = await realpath(dirname(source)).catch(() => undefined);
-  if (
-    previous && isAbsolute(previous) && previous !== resolvePath(source) &&
-    (!parent || previous !== join(parent, basename(source))) &&
-    basename(previous) === basename(source) && basename(dirname(previous)) === "plugins"
-  ) {
-    await unlink(target).catch(() => {});
-  }
+function directoryAt(path: string) {
+  return stat(path).then((entry) => entry.isDirectory(), (error: NodeJS.ErrnoException) => {
+    if (error.code === "ELOOP") return false;
+    return missingPluginPath(error) ?? false;
+  });
 }
 
-async function removeStalePluginLinks(
-  target: string, source: string, depth: number, keepPrevious: boolean,
-): Promise<void> {
-  const kind = basename(source);
-  if (kind === "cache" && keepPrevious) return;
-  const tree = await lstat(target).catch(() => undefined);
-  if (!(tree?.isDirectory() || await readlink(target).catch(() => undefined) === `.${kind}.cue-local`)) {
-    return;
-  }
-  const currentRoot = resolvePath(source);
-  const physicalRoot = await realpath(source).catch(() => undefined);
-  async function visit(relativeDir: string, remaining: number) {
-    for (const name of await readdir(join(target, relativeDir)).catch(() => [])) {
-      const relativePath = join(relativeDir, name);
-      const path = join(target, relativePath);
-      const entry = await lstat(path).catch(() => undefined);
-      if (entry?.isDirectory() && remaining > 1) {
-        await visit(relativePath, remaining - 1);
-      } else if (entry?.isSymbolicLink()) {
-        const link = await readlink(path).catch(() => undefined);
-        const suffix = sep + relativePath;
-        if (!link || !isAbsolute(link) || !link.endsWith(suffix)) continue;
-        const oldRoot = link.slice(0, -suffix.length);
-        const fromCurrent = oldRoot === currentRoot || oldRoot === physicalRoot;
-        const previousPassthrough = !keepPrevious && basename(oldRoot) === kind &&
-          basename(dirname(oldRoot)) === "plugins";
-        const missing = kind === "marketplaces" && await stat(path).then(
-          () => false, (error) => error.code === "ENOENT",
-        );
-        if ((fromCurrent ? missing : previousPassthrough) &&
-          await readlink(path).catch(() => undefined) === link) {
-          await unlink(path).catch(() => {});
-        }
-      }
-    }
-  }
-  await visit("", depth);
-}
-
-async function hasExtraPluginEntries(
-  previous: string,
-  source: string,
-  depth: number,
-): Promise<boolean> {
-  for (const name of await readdir(previous).catch(() => [])) {
-    const current = join(source, name);
-    if (!(await stat(current).catch(() => undefined))) return true;
-    if (
-      depth > 1 &&
-      (await hasExtraPluginEntries(join(previous, name), current, depth - 1))
-    ) {
-      return true;
-    }
+async function hasLocalPluginEntries(path: string, depth: number): Promise<boolean> {
+  for (const entry of (await readdir(path, { withFileTypes: true }).catch(missingPluginPath)) ?? []) {
+    if (!entry.isSymbolicLink() &&
+      (depth === 1 || !entry.isDirectory() ||
+        await hasLocalPluginEntries(join(path, entry.name), depth - 1))) return true;
   }
   return false;
 }
 
-type MarketplaceEntry = { installLocation?: string };
-
-function marketplaceFingerprint(name: string, entry: MarketplaceEntry | string | undefined): string {
-  return createHash("sha256").update(sortedJson([name, entry ?? null])).digest("hex");
-}
-
-function parsePluginRecord<T>(text: string): Record<string, T> | undefined {
-  try {
-    const parsed: unknown = JSON.parse(text);
-    if (isRecord(parsed)) return parsed as Record<string, T>;
-  } catch {
-    /* leave malformed plugin state untouched */
+async function sourceMarketplaces(source: string | undefined, live: string) {
+  const text = source
+    ? await readFile(join(source, MARKETPLACE_REGISTRY), "utf8").catch(missingPluginPath)
+    : undefined;
+  const entries = pluginRecord(text);
+  if (!entries) return undefined;
+  const result: Record<string, unknown> = Object.create(null);
+  for (const [name, entry] of Object.entries(entries)) {
+    if (!isRecord(entry) || !name || name === "." || name === ".." || basename(name) !== name) continue;
+    const original = entry.installLocation;
+    const clone = typeof original === "string" && isAbsolute(original) && await directoryAt(original)
+      ? original : join(source!, "marketplaces", name);
+    const physical = await pluginRealpath(clone);
+    const slot = join(live, "marketplaces", name);
+    if (physical && (physical === slot || safePluginLink(slot, physical)) && await directoryAt(physical)) {
+      result[name] = clone === original ? entry : { ...entry, installLocation: clone };
+    }
   }
-  return undefined;
+  return { entries, result };
 }
 
-async function readPluginRecord<T>(
-  path: string,
-  missing: Record<string, T>,
-): Promise<Record<string, T> | undefined> {
-  try {
-    return parsePluginRecord<T>(await readFile(path, "utf8"));
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return missing;
+async function inspectRuntimePlugins(runtimeDir: string, sourceDir?: string) {
+  const live = join(runtimeDir, "plugins");
+  const physicalRuntime = await pluginRealpath(runtimeDir) ??
+    join(await pluginRealpath(dirname(runtimeDir)) ?? resolvePath(dirname(runtimeDir)), basename(runtimeDir));
+  const physicalLive = join(physicalRuntime, "plugins");
+  const physicalRoot = await pluginRealpath(live);
+  // Previous cue versions linked the active plugins dir into a sibling.
+  // Accept that live link for migration, without looking for sibling archives.
+  const legacyDir = physicalRuntime + ".plugin-state";
+  const physicalParent = physicalRoot && dirname(physicalRoot);
+  const legacyRoot = physicalParent && basename(physicalRoot) === "plugins" &&
+    dirname(physicalParent) === dirname(legacyDir) &&
+    (physicalParent === legacyDir || physicalParent.startsWith(legacyDir + "-"));
+  const foreign = physicalRoot !== undefined && physicalRoot !== physicalLive && !legacyRoot;
+  const source = sourceDir ? join(sourceDir, "plugins") : undefined;
+  const sourceRoot = source && await pluginRealpath(source);
+  const sameSource = sourceRoot === physicalLive;
+  const canSeed = (kind: string, incoming: string) =>
+    safePluginLink(join(physicalLive, kind), incoming) &&
+    (!physicalRoot || safePluginLink(join(physicalRoot, kind), incoming));
+  const localFiles = new Set(physicalRoot && !foreign ? await pluginChildren(live) : []);
+  const sourceFiles = new Set(sourceRoot ? await pluginChildren(sourceRoot) : []);
+  const installed = localFiles.has(INSTALLED_PLUGINS) ? await pluginFile(join(live, INSTALLED_PLUGINS)) : undefined;
+  const registry = localFiles.has(MARKETPLACE_REGISTRY) ? await pluginFile(join(live, MARKETPLACE_REGISTRY)) : undefined;
+  const installedRecord = installed?.linked ? undefined : pluginRecord(installed?.text)?.plugins;
+  const installs = isRecord(installedRecord)
+    ? Object.values(installedRecord).flatMap((entries: unknown) => Array.isArray(entries) ? entries : [])
+    : [];
+  const trees = new Map<string, string>();
+  const seeds = new Map<string, string>();
+  let cleanup = !physicalRoot && !!(await lstat(live).catch(missingPluginPath))?.isSymbolicLink();
+  let retargetMarketplaces = false;
+  for (const [kind, depth] of PLUGIN_TREES) {
+    const path = join(live, kind);
+    const info = localFiles.has(kind) ? await lstat(path).catch(missingPluginPath) : undefined;
+    const current = info?.isSymbolicLink() ? await pluginRealpath(path) : undefined;
+    const incoming = sourceRoot && sourceFiles.has(kind) ? await pluginRealpath(join(sourceRoot, kind)) : undefined;
+    if (incoming && canSeed(kind, incoming)) seeds.set(kind, incoming);
+    const backing = current === join(physicalRoot ?? physicalLive, "." + kind + ".cue-local");
+    if (info?.isDirectory() || backing) {
+      const real = backing ? current! : path;
+      if (await hasLocalPluginEntries(real, depth)) trees.set(kind, real);
+      // With no source to replace a merged tree, reconcile its leftover links in place.
+      if (!incoming && (await pluginChildren(real)).length) cleanup = true;
+    }
+    if (info?.isSymbolicLink() && !current) cleanup = true;
+    if (kind === "marketplaces" && current && incoming && current !== incoming) retargetMarketplaces = true;
+    if (incoming && !seeds.has(kind)) cleanup = true;
   }
-  // Leave an unreadable registry in place. It may have local registrations.
-  return undefined;
+  const sourceRegistry = sourceRoot && sourceFiles.has(MARKETPLACE_REGISTRY)
+    ? await pluginRealpath(join(sourceRoot, MARKETPLACE_REGISTRY)) : undefined;
+  if (sourceRegistry && canSeed(MARKETPLACE_REGISTRY, sourceRegistry)) {
+    seeds.set(MARKETPLACE_REGISTRY, sourceRegistry);
+  }
+  if (registry?.linked && registry.text === undefined) cleanup = true;
+  const upstream = sourceRegistry ? await sourceMarketplaces(sourceRoot, physicalLive) : undefined;
+  const local = registry && !registry.linked && pluginRecord(registry.text);
+  const extraRegistration = local === undefined && !!registry && !registry.linked ||
+    local && Object.entries(local).some(([name, entry]) =>
+      sortedJson(entry) !== sortedJson(upstream?.entries[name]));
+  const sourceNeedsCorrection = upstream &&
+    sortedJson(upstream.entries) !== sortedJson(upstream.result);
+  // Pair an existing marketplace tree with its registry when replacing it
+  // with a populated source. The baseline seeding path has no such check.
+  const protectedRetarget = retargetMarketplaces &&
+    (Object.keys(pluginRecord(registry?.text) ?? {}).length > 0 ||
+      Object.keys(upstream?.entries ?? {}).length > 0);
+  const preserve = trees.size > 0 || installs.length > 0 || !!extraRegistration ||
+    (!!installed && !installed.linked && !pluginRecord(installed.text));
+  const reconcile = preserve || cleanup || sourceNeedsCorrection || protectedRetarget ||
+    !!(sourceRegistry && !seeds.has(MARKETPLACE_REGISTRY)) ||
+    localFiles.has(LEGACY_IMPORTS);
+  return { live, physicalLive, physicalRoot, foreign, source, sourceDir, installed, registry, installs,
+    trees, seeds, preserve, reconcile, sameSource };
 }
 
-async function registrySnapshot(path: string) {
-  const info = await lstat(path).catch((error: NodeJS.ErrnoException) => {
-    if (error.code === "ENOENT") return undefined;
-    throw error;
-  });
-  if (!info) return {};
-  const target = info.isSymbolicLink() ? await readlink(path) : undefined;
-  const text = await readFile(path, "utf8").catch((error: NodeJS.ErrnoException) => {
-    if (error.code === "ENOENT" && target !== undefined) return undefined;
-    throw error;
-  });
-  return { ino: info.ino, dev: info.dev, ctime: info.ctimeMs, target, text };
+type RuntimePlugins = Awaited<ReturnType<typeof inspectRuntimePlugins>>;
+
+async function publishPluginEntry(
+  target: string,
+  prepare: (staged: string) => Promise<void>,
+  unchanged: () => Promise<boolean>,
+  emptyDir = false,
+): Promise<boolean> {
+  const stage = await mkdtemp(target + ".cue-tmp-");
+  try {
+    const staged = join(stage, "entry");
+    await prepare(staged);
+    // A Claude write can still land between this reread and rename. The next
+    // launch re-derives the registry from the source and surviving local entries
+    // with real clones. Cue can't recover metadata overwritten in that window.
+    if (!(await unchanged())) return false;
+    if (emptyDir) await rmdir(target);
+    await rename(staged, target);
+    return true;
+  } finally {
+    await rm(stage, { recursive: true, force: true });
+  }
 }
 
-async function linkMarketplaceRegistry(target: string, source: string, keepPrevious: boolean): Promise<void> {
-  const registryPath = join(target, "known_marketplaces.json");
-  const sourcePath = join(source, "known_marketplaces.json");
-  const missingSource = {};
-  const upstream = await readPluginRecord<MarketplaceEntry>(sourcePath, missingSource);
-  const snapshot = await registrySnapshot(registryPath).catch(() => undefined);
-  if (!snapshot) return;
-  const unchanged = async () =>
-    JSON.stringify(await registrySnapshot(registryPath)) === JSON.stringify(snapshot);
-  const canonicalSource = await realpath(sourcePath).catch(() => undefined);
-  const previousSource = snapshot.target !== undefined &&
-    resolvePath(target, snapshot.target) !== resolvePath(sourcePath) &&
-    resolvePath(target, snapshot.target) !== canonicalSource;
-  const local: Record<string, MarketplaceEntry> | undefined =
-    snapshot.text === undefined || (previousSource && !keepPrevious)
-      ? {}
-      : parsePluginRecord(snapshot.text);
-  const importsPath = join(target, ".cue-marketplace-imports.json");
-  const imported = await readPluginRecord<true>(importsPath, {});
-  if (!upstream || !local || !imported) return;
-  if (upstream === missingSource && Object.keys(local).length === 0 && !(previousSource && !keepPrevious)) return;
-
-  const marketplaceDir = resolvePath(target, "marketplaces");
-  const tree = await lstat(marketplaceDir).catch(() => undefined);
-  const localTree =
-    tree?.isDirectory() ||
-    (tree?.isSymbolicLink() &&
-      (await readlink(marketplaceDir).catch(() => undefined)) === ".marketplaces.cue-local");
-  const merged: Record<string, MarketplaceEntry> = Object.create(null);
-  const previousImports: Record<string, true> = {};
-  const imports: Record<string, true> = {};
-  let needsMergedFile = upstream === missingSource;
-  for (const name of new Set([...Object.keys(local), ...Object.keys(upstream)])) {
-    const hasLocal = Object.hasOwn(local, name);
-    const hasUpstream = Object.hasOwn(upstream, name);
-    const validName = name && name !== "." && name !== ".." && basename(name) === name;
-    const localClone = validName ? join(marketplaceDir, name) : undefined;
-    const upstreamClone = validName ? resolvePath(source, "marketplaces", name) : undefined;
-    const realLocalClone =
-      snapshot.target === undefined && hasLocal && localTree && localClone &&
-      (await lstat(localClone).catch(() => undefined))?.isDirectory();
-
-    const importKey = marketplaceFingerprint(name, local[name]?.installLocation);
-    const legacyKey = marketplaceFingerprint(name, local[name]);
-    const matchedImports = hasLocal
-      ? [importKey, legacyKey].filter((key) => Object.hasOwn(imported, key))
-      : [];
-    const wasImported = matchedImports.length > 0;
-    for (const key of matchedImports) previousImports[key] = true;
-    // Identify older untracked imports when their dead location and the
-    // runtime's clone link both point at the removed source clone.
-    const staleLegacyImport =
-      !hasUpstream && !wasImported && hasLocal && !realLocalClone &&
-      upstreamClone && localClone && local[name]?.installLocation === upstreamClone &&
-      (await readlink(localClone).catch(() => undefined)) === upstreamClone &&
-      !(await stat(upstreamClone).catch(() => undefined));
-    const useLocal =
-      hasLocal && (
-        (realLocalClone && !wasImported) ||
-        (!hasUpstream && !wasImported && !staleLegacyImport && (snapshot.target === undefined || keepPrevious))
-      );
-    if (!useLocal && !hasUpstream) continue;
-
-    let entry = useLocal ? local[name] : upstream[name];
-    if (entry && typeof entry === "object") {
-      let clone = useLocal && realLocalClone ? localClone : undefined;
-      if (
-        !clone && localClone &&
-        (typeof entry.installLocation !== "string" ||
-          !(await stat(entry.installLocation).catch(() => undefined)))
-      ) {
-        // Credentials snapshots can carry the original account's absolute
-        // installLocation. Use the winning clone in this snapshot or runtime.
-        clone = useLocal ? localClone : upstreamClone;
-        if (clone && !(await stat(clone).catch(() => undefined))?.isDirectory()) clone = undefined;
+async function syncPluginTree(
+  target: string, source: string | undefined, depth: number, retained: ReadonlyMap<string, string>,
+  blockedRoot?: string,
+): Promise<boolean> {
+  const info = await lstat(target).catch(missingPluginPath);
+  const incoming = source && await pluginRealpath(source);
+  const parent = await realpath(dirname(target));
+  const slot = join(parent, basename(target));
+  const allowed = incoming && (!blockedRoot || !insidePluginPath(blockedRoot, incoming));
+  if (info?.isDirectory() && depth > 0) {
+    const children = await pluginChildren(target);
+    if (children.length) {
+      const upstream = allowed && (incoming === slot || safePluginLink(slot, incoming))
+        && await directoryAt(incoming) ? source : undefined;
+      for (const name of new Set([...children, ...(upstream ? await pluginChildren(upstream) : [])])) {
+        if (!(await syncPluginTree(join(target, name), upstream && join(upstream, name),
+          depth - 1, retained, blockedRoot))) return false;
       }
-      if (clone && entry.installLocation !== clone) {
-        entry = { ...entry, installLocation: clone };
-        needsMergedFile = true;
+      return true;
+    }
+  }
+  if (info && !info.isSymbolicLink() && !(depth > 0 && info.isDirectory())) return true;
+  const current = info?.isSymbolicLink() ? await pluginRealpath(target) : undefined;
+  if (current && safePluginLink(slot, current) && depth > 0 &&
+    [...retained.keys()].some((path) => path !== target && insidePluginPath(target, path))) {
+    // An installed version still uses this branch of a previous cache.
+    return true;
+  }
+  const saved = retained.get(target);
+  const next = saved ?? (allowed ? incoming : undefined);
+  if (!next || !safePluginLink(slot, next)) {
+    if (info?.isSymbolicLink()) await unlink(target);
+    return true;
+  }
+  if (current === next) return true;
+  return publishPluginEntry(target, (staged) => symlink(next, staged),
+    async () => (await pluginRealpath(saved ?? source!)) === next, info?.isDirectory());
+}
+
+async function referencedCacheVersions(state: RuntimePlugins) {
+  const retained = new Map<string, string>();
+  if (!state.installs.length) return retained;
+  const cache = join(state.live, "cache");
+  const canonicalCache = await pluginRealpath(cache);
+  if (!canonicalCache) return retained;
+  for (const install of state.installs) {
+    if (!isRecord(install) || typeof install.installPath !== "string" || !isAbsolute(install.installPath)) continue;
+    const path = resolvePath(install.installPath);
+    // A prior account's absolute install path can still identify a version
+    // under the runtime's shared cache. Check that both paths reach it.
+    const marker = join("plugins", "cache") + sep;
+    const offset = path.lastIndexOf(sep + marker);
+    const relative = insidePluginPath(cache, path) ? path.slice(cache.length + 1) :
+      insidePluginPath(canonicalCache, path) ? path.slice(canonicalCache.length + 1) :
+      offset < 0 ? "" : path.slice(offset + marker.length + 1);
+    if (!relative) continue;
+    const actual = await pluginRealpath(join(cache, relative));
+    if (actual && actual === await pluginRealpath(path) && await directoryAt(actual)) {
+      retained.set(relative, actual);
+    }
+  }
+  return retained;
+}
+
+async function mergePluginTrees(state: RuntimePlugins, dest: string, staged: boolean) {
+  const retained = await referencedCacheVersions(state);
+  for (const [kind, depth] of PLUGIN_TREES) {
+    const path = join(dest, kind);
+    const source = state.source && join(state.source, kind);
+    const backing = "." + kind + ".cue-local";
+    const backingPath = join(dest, backing);
+    const current = await lstat(path).catch(missingPluginPath);
+    const localLink = current?.isSymbolicLink() && await readlink(path) === backing &&
+      (await lstat(backingPath).catch(missingPluginPath))?.isDirectory();
+    const incoming = source && await pluginRealpath(source);
+    const existingCache = kind === "cache" && retained.size && !state.trees.has(kind) &&
+      incoming !== await pluginRealpath(join(state.live, kind));
+    const useBacking = !staged && existingCache && current?.isSymbolicLink() && !localLink;
+    if (useBacking) {
+      const existing = await lstat(backingPath).catch(missingPluginPath);
+      if (existing && !existing.isDirectory()) return false;
+    }
+    const tree = localLink || useBacking ? backingPath : path;
+    const retainedLinks = new Map<string, string>();
+    if (kind === "cache") {
+      for (const [relative, real] of retained) {
+        if (staged && insidePluginPath(state.physicalRoot ?? state.physicalLive, real)) continue;
+        const target = join(tree, relative);
+        retainedLinks.set(target, real);
+        if (existingCache) {
+          await mkdir(dirname(target), { recursive: true });
+          await syncPluginTree(target, undefined, 0, retainedLinks);
+        }
       }
     }
-    merged[name] = entry;
-    if (useLocal) needsMergedFile = true;
-    else imports[marketplaceFingerprint(name, entry?.installLocation)] = true;
-  }
-
-  if (!needsMergedFile) {
-    const parent = await realpath(target).catch(() => undefined);
-    if (!parent) return;
-    const slot = join(parent, basename(registryPath));
-    if (!canonicalSource || canonicalSource === slot || snapshot.target === canonicalSource) return;
-    if (await publishPluginEntry(
-      registryPath,
-      (staged) => symlink(canonicalSource, staged),
-      false,
-      async () => await realpath(sourcePath) === canonicalSource && await unchanged(),
-    )) {
-      await rm(importsPath, { force: true }).catch(() => {});
+    if (!(await syncPluginTree(tree, source, depth, retainedLinks,
+      staged ? state.physicalRoot ?? state.physicalLive : undefined))) return false;
+    if (useBacking && !(await publishPluginEntry(path, (entry) => symlink(backing, entry), async () => true))) {
+      return false;
     }
+  }
+  return true;
+}
+
+async function mergeMarketplaceRegistry(state: RuntimePlugins, dest: string) {
+  const upstream = await sourceMarketplaces(state.source, state.physicalLive);
+  const local = pluginRecord(state.registry?.linked ? undefined : state.registry?.text);
+  if (!upstream || !local) return;
+  const merged = upstream.result;
+  const tree = state.trees.get("marketplaces");
+  if (tree) {
+    for (const [name, entry] of Object.entries(local)) {
+      if (!isRecord(entry) || basename(name) !== name || name === "." || name === ".." || !name) continue;
+      const location = join(state.live, "marketplaces", name);
+      const clone = join(tree, name);
+      if (!(await lstat(clone).catch(missingPluginPath))?.isDirectory()) continue;
+      // A copied upstream entry can share a name with a different runtime clone.
+      // Its original location must identify this clone before we prefer it.
+      if (entry.installLocation === location ||
+        (typeof entry.installLocation === "string" &&
+          await pluginRealpath(entry.installLocation) === await realpath(clone))) {
+        merged[name] = { ...entry, installLocation: location };
+      }
+    }
+  }
+  const path = join(dest, MARKETPLACE_REGISTRY);
+  const snapshot = dest === state.live ? state.registry : undefined;
+  if (!snapshot && !Object.keys(merged).length && !state.source) return;
+  if (!snapshot?.linked && snapshot?.text && sortedJson(local) === sortedJson(merged)) return;
+  await publishPluginEntry(path, (entry) => writeFile(entry, JSON.stringify(merged, null, 2) + "\n"),
+    async () => JSON.stringify(await pluginFile(path)) === JSON.stringify(snapshot));
+}
+
+export async function linkPluginCache(targetDir: string, sourceDir: string): Promise<void> {
+  if (sameResolvedPath(targetDir, sourceDir)) return;
+  await refreshPlugins(await inspectRuntimePlugins(targetDir, sourceDir));
+}
+
+async function refreshPlugins(state: RuntimePlugins) {
+  if (!state.sourceDir || state.foreign || state.sameSource) return;
+  if (!state.reconcile) return seedPluginLinks(dirname(state.live), state.sourceDir, state.seeds);
+  if (!state.physicalRoot && (await lstat(state.live).catch(missingPluginPath))?.isSymbolicLink()) {
+    await unlink(state.live);
+  }
+  await mkdir(state.live, { recursive: true });
+  if (await mergePluginTrees(state, state.live, false)) await mergeMarketplaceRegistry(state, state.live);
+  await rm(join(state.live, LEGACY_IMPORTS), { force: true });
+}
+
+
+async function pluginStateFingerprint(state: RuntimePlugins) {
+  // Only rebuilds with local state walk the payload. Metadata catches
+  // in-place writes and replacements without reading every file's contents.
+  const metadata = [];
+  for (const [kind, tree] of state.trees) {
+    for (const path of ["", ...(await readdir(tree, { recursive: true })).sort()]) {
+      const info = await lstat(join(tree, path));
+      metadata.push([kind, path, info.dev, info.ino, info.size, info.mtimeMs, info.ctimeMs]);
+    }
+  }
+  return JSON.stringify([state.physicalRoot, state.registry, state.installed, metadata,
+    [...await referencedCacheVersions(state)]]);
+}
+
+async function stageRuntimePlugins(state: RuntimePlugins, stage: string) {
+  if (!state.preserve && (!state.sourceDir || state.sameSource)) return;
+  if (!state.reconcile) {
+    if (state.sourceDir) await seedPluginLinks(stage, state.sourceDir, state.seeds);
     return;
   }
-  // Publish provenance first. Keep fingerprints for both the old and staged
-  // imports so either registry can be refreshed if publication is interrupted.
-  const pending = { ...previousImports, ...imports };
-  const pendingCount = Object.keys(pending).length;
-  const writeImports = (entries: Record<string, true>) =>
-    publishPluginEntry(importsPath, (staged) => writeFile(staged, JSON.stringify(entries) + "\n"));
-  if (pendingCount > 0 && !(await writeImports(pending))) return;
-  const text = JSON.stringify(merged, null, 2) + "\n";
-  if ((snapshot.target !== undefined || snapshot.text !== text) &&
-    !(await publishPluginEntry(registryPath, (staged) => writeFile(staged, text), false, unchanged))) return;
-
-  const importCount = Object.keys(imports).length;
-  if (importCount === 0) await rm(importsPath, { force: true }).catch(() => {});
-  else if (importCount < pendingCount) await writeImports(imports);
+  const original = state.preserve ? await pluginStateFingerprint(state) : undefined;
+  const dest = join(stage, "plugins");
+  await mkdir(dest, { recursive: true });
+  for (const [kind, tree] of state.trees) {
+    await cp(tree, join(dest, kind), { recursive: true, verbatimSymlinks: true });
+  }
+  if (state.installed && !state.installed.linked) {
+    await copyFile(join(state.live, INSTALLED_PLUGINS), join(dest, INSTALLED_PLUGINS));
+  }
+  if (state.registry && !state.registry.linked && !pluginRecord(state.registry.text)) {
+    await copyFile(join(state.live, MARKETPLACE_REGISTRY), join(dest, MARKETPLACE_REGISTRY));
+  }
+  if (!(await mergePluginTrees(state, dest, true))) throw new Error("[cue] Plugin source changed while staging");
+  await mergeMarketplaceRegistry(state, dest);
+  if (original !== undefined) {
+    const current = await inspectRuntimePlugins(dirname(state.live), state.sourceDir);
+    if (original !== await pluginStateFingerprint(current)) {
+      throw new Error("[cue] Plugin state changed while staging. Retry the rebuild.");
+    }
+  }
 }
 
 /**
