@@ -2,20 +2,20 @@
 title: "gamemann/nightly — Claude Code skill discovered by cue"
 description: "A database and web panel that autonomous @claude Code runs work from: a queue of tasks, schedules, run reports, a live board where concurrent agents claim paths"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, skill, frontend]
 ---
 
 # 💎 [gamemann/nightly](https://github.com/gamemann/nightly)
 
-**★ 8** · exceptional (score 8.6) · JavaScript · ai-agent, ai-agents, ai-coding, ai-tools, claude
+**★ 7** · exceptional (score 8.5) · JavaScript · ai-agent, ai-agents, ai-coding, ai-tools, claude
 
 > A database and web panel that autonomous @claude Code runs work from: a queue of tasks, schedules, run reports, a live board where concurrent agents claim paths, project and asset tooling for games, and the measurements that tell you whether a fix worked.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
-- ⭐ 8 stars
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+- ⭐ 7 stars
 - 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: ai-agent, ai-agents, ai-coding, ai-tools, claude, claude-agent, claude-ai, claude-code, claude-runner, claude-usage, next, nextjs, rsi, rsi-ai, tailwindcss-v4, tasks, tasks-list, website
 

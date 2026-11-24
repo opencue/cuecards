@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "92 community Claude Code skills curated by cue across 9 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "91 community Claude Code skills curated by cue across 11 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,22 +10,24 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **92 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **9 profiles**.
-> Last updated: 2026-11-23 · refreshed nightly via GitHub Code Search.
+> **91 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **11 profiles**.
+> Last updated: 2026-11-24 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 72 | `humanizer-ru`, `jira-skill`, `dbt-agent-readiness` |
-| [**creative-media**](./creative-media.md) | 6 | `motionboard`, `shotkit`, `building-design` |
-| [**cybersecurity**](./cybersecurity.md) | 6 | `rathunter`, `Claude-OSINT`, `sanctuary-framework` |
-| [**frontend**](./frontend.md) | 3 | `building-design`, `awesome-claude-ui-armory`, `nightly` |
-| [**backend**](./backend.md) | 3 | `routinerun`, `DevShop`, `redesigned-pancake` |
-| [**video**](./video.md) | 2 | `shotkit`, `cappus` |
-| [**docs-writer**](./docs-writer.md) | 2 | `german-technical-writing-skill`, `repo-engineering-skills` |
-| [**research**](./research.md) | 2 | `cosmosambassador`, `skillassay` |
-| [**marketing**](./marketing.md) | 1 | `website-build-kit` |
+| [**core**](./core.md) | 69 | `internet-court-skill`, `humanizer-ru`, `ai-workspace-archive` |
+| [**frontend**](./frontend.md) | 4 | `awesome-claude-ui-armory`, `ai-studio-skill`, `nightly` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `rakvor-tool-forge`, `sanctuary-framework` |
+| [**creative-media**](./creative-media.md) | 4 | `app-launch-video`, `visual-style-skills`, `cosmosambassador` |
+| [**backend**](./backend.md) | 3 | `context-mode`, `p6-mcp`, `redesigned-pancake` |
+| [**research**](./research.md) | 3 | `short-term-rental-agent`, `cosmosambassador`, `skillassay` |
+| [**docs-writer**](./docs-writer.md) | 2 | `living-docs-skill`, `repo-engineering-skills` |
+| [**video**](./video.md) | 2 | `app-launch-video`, `skill-resolve-edit` |
+| [**medusa-dev**](./medusa-dev.md) | 1 | `etsy-ugc-compliance-harvester` |
+| [**threejs**](./threejs.md) | 1 | `Spectra` |
+| [**niche**](./niche.md) | 1 | `fornaxnode-skill` |
 
 ## How scoring works
 

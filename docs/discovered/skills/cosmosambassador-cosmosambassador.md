@@ -2,7 +2,7 @@
 title: "cosmosambassador/cosmosambassador — Claude Code skill discovered by cue"
 description: "Config files for my GitHub profile.Absolutely. I think JETservices should have its own blog inside the repository so it becomes the operational journal for your"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, skill, research, creative-media]
 ---
 

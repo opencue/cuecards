@@ -2,7 +2,7 @@
 title: "Claude Code Skills for backend"
 description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 
 ---
 
-<a id="routinerun-routinerun"></a>
-## 💎 [routinerun/routinerun](https://github.com/routinerun/routinerun)
+<a id="mksglu-context-mode"></a>
+## 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
 
-**★ 2** · exceptional (score 11) · JavaScript · tags: app-intents, apple-watch, checklist, claude, claude-code
+**★ 34445** · exceptional (score 19.5) · JavaScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
 
-The parts of Routine Run others build on: the method, help, the API, MCP, the skill, and catalogues. Issues welcome.
+Free, local plugin that keeps tool output out of your coding agent's context window. Sandbox and SQLite FTS5 search, 99% fewer bytes in context. Works with Claude Code, Codex, Pi, OMP, OpenCode, Gemini CLI, Copilot CLI and 4 more agents. Zero telemetry.
 
 ```bash
-cue skills add routinerun/routinerun --profile backend
+cue skills add mksglu/context-mode --profile backend
 ```
 
 ---
 
-<a id="jrnoorbaloch-devshop"></a>
-## ✨ [jrnoorbaloch/DevShop](https://github.com/jrnoorbaloch/DevShop)
+<a id="nizarhamza-p6-mcp"></a>
+## 💎 [nizarhamza/p6-mcp](https://github.com/nizarhamza/p6-mcp)
 
-**★ 0** · strong (score 6) · Python · tags: awesome-list, claude-code-plugin, claude-skill, developer-tools, devops
+**★ 10** · exceptional (score 8.2) · Python · tags: claude, construction, critical-path, dcma, mcp
 
-🛒 DevShop — searchable directory of 1,300+ free developer tiers: hosting, databases, CI/CD, auth, email, monitoring & AI APIs. Fast static site, JSON API, PWA, auto-synced weekly.
+Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional database. Windows. Not affiliated with Oracle.
 
 ```bash
-cue skills add jrnoorbaloch/DevShop --profile backend
+cue skills add nizarhamza/p6-mcp --profile backend
 ```
 
 ---

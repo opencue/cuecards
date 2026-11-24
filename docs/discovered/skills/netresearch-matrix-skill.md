@@ -2,21 +2,21 @@
 title: "netresearch/matrix-skill — Claude Code skill discovered by cue"
 description: "Three Agentic Skills for Matrix: encrypted chat with a daemon that follows rooms live, Synapse homeserver administration, and content guidance for announcements"
 layout: page
-updated: 2026-08-29
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [netresearch/matrix-skill](https://github.com/netresearch/matrix-skill)
 
-**★ 5** · exceptional (score 10.1) · Python · agent-skills, agentic-skill, ai-agent, chat, chatops
+**★ 6** · exceptional (score 10.2) · Python · agent-skills, agentic-skill, ai-agent, chat, chatops
 
 > Three Agentic Skills for Matrix: encrypted chat with a daemon that follows rooms live, Synapse homeserver administration, and content guidance for announcements. Chat works with any homeserver; administration requires Synapse.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.1 based on:
-- ⭐ 5 stars
-- 🗓️ Last pushed: 2026-08-29
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-24
 - 🏷️ Tags: agent-skills, agentic-skill, ai-agent, chat, chatops, claude-code-plugin, claude-code-skill, communication, e2ee, element, matrix, matrix-nio, open-standard, python, skill, synapse
 
 ## Best fit cue profiles

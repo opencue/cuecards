@@ -2,13 +2,13 @@
 title: "zilliztech/zilliz-plugin — Claude Code skill discovered by cue"
 description: "Zilliz Cloud plugin for Claude Code & OpenAI Codex — manage clusters, collections, vector search, backups, and more through natural language."
 layout: page
-updated: 2026-10-23
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [zilliztech/zilliz-plugin](https://github.com/zilliztech/zilliz-plugin)
 
-**★ 3** · exceptional (score 10.2) · claude-code, claude-code-skill, codex, openai, plugin
+**★ 3** · exceptional (score 10.2) · PowerShell · claude-code, claude-code-skill, codex, openai, plugin
 
 > Zilliz Cloud plugin for Claude Code & OpenAI Codex — manage clusters, collections, vector search, backups, and more through natural language.
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-10-23
+- 🗓️ Last pushed: 2026-11-24
 - 🏷️ Tags: claude-code, claude-code-skill, codex, openai, plugin, skill, vector-database, zilliz, zilliz-cloud
 
 ## Best fit cue profiles

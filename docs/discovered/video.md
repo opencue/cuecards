@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="whystrohm-shotkit"></a>
-## 💎 [whystrohm/shotkit](https://github.com/whystrohm/shotkit)
+<a id="renthelautomations-app-launch-video"></a>
+## 💎 [renthelautomations/app-launch-video](https://github.com/renthelautomations/app-launch-video)
 
-**★ 88** · exceptional (score 16.3) · Python · tags: agent-skills, ai-storyboard, ai-video, ai-workflow, claude
+**★ 1** · exceptional (score 8.3) · Python · tags: app-marketing, claude-code, claude-skill, launch-video, motion-design
 
-Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.
+Claude skill for Apple-keynote-style app launch films: real UI components in Remotion, spring-physics motion, synced spatial sound, storyboard + frame-level QA, 16:9/9:16/1:1 delivery.
 
 ```bash
-cue skills add whystrohm/shotkit --profile video
+cue skills add renthelautomations/app-launch-video --profile video
 ```
 
 ---
 
-<a id="nsudy-code-cappus"></a>
-## ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
+<a id="toorop-skill-resolve-edit"></a>
+## 💎 [toorop/skill-resolve-edit](https://github.com/toorop/skill-resolve-edit)
 
-**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
+**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, davinci-resolve, mcp, video-editing
 
-Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
+Claude skill: profile-driven YouTube editing in DaVinci Resolve Studio through the Resolve MCP
 
 ```bash
-cue skills add nsudy-code/cappus --profile video
+cue skills add toorop/skill-resolve-edit --profile video
 ```
 
 ---

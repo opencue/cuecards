@@ -2,21 +2,21 @@
 title: "claude-dev-suite/claude-dev-suite — Claude Code skill discovered by cue"
 description: "Point it at a repo and it configures your AI coding assistant for that stack: agents, framework skills, MCP servers, path-scoped rules. One install, seven assis"
 layout: page
-updated: 2026-11-22
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [claude-dev-suite/claude-dev-suite](https://github.com/claude-dev-suite/claude-dev-suite)
 
-**★ 50** · exceptional (score 12.9) · TypeScript · agent-skills, agents-md, ai-agents, ai-coding-assistant, anthropic
+**★ 50** · exceptional (score 13) · TypeScript · agent-skills, agents-md, ai-agents, ai-coding-assistant, anthropic
 
 > Point it at a repo and it configures your AI coding assistant for that stack: agents, framework skills, MCP servers, path-scoped rules. One install, seven assistants - Claude Code, Copilot, Cursor, Gemini CLI, Codex CLI, Cline, Kimi Code. MIT.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.9 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ⭐ 50 stars
-- 🗓️ Last pushed: 2026-11-19
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: agent-skills, agents-md, ai-agents, ai-coding-assistant, anthropic, claude, claude-code, cline, code-assistant, codex-cli, cursor, developer-tools, gemini-cli, github-copilot, kimi-code, llm, mcp, mcp-servers, model-context-protocol, open-source
 
 ## Best fit cue profiles

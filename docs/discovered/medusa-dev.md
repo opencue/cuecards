@@ -2,7 +2,7 @@
 title: "Claude Code Skills for medusa-dev"
 description: "1 community Claude Code skills curated by cue for the medusa-dev profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-24
 tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 ---
 
@@ -15,17 +15,15 @@ tags: [claude-code, medusa-dev, skills, mcp, ai-agents]
 
 ---
 
-<a id="nyxiflare-shelfscout"></a>
-## 💎 [Nyxiflare/shelfscout](https://github.com/Nyxiflare/shelfscout)
+<a id="ghosttown123-etsy-ugc-compliance-harvester"></a>
+## 💎 [ghosttown123/etsy-ugc-compliance-harvester](https://github.com/ghosttown123/etsy-ugc-compliance-harvester)
 
-**★ 0** · exceptional (score 13) · Python · tags: agent-skills, amazon, claude, claude-code, claude-skill
+**★ 10** · exceptional (score 11.5) · HTML · tags: ai-disclosure, claude-code, claude-plugin, claude-skill, dnd
 
-Claude skill for online marketplaces: shoppers get true cost, real-vs-fake deals, review warning signs and seller trust; sellers get profit after fees, demand signals and risk flags.
-
-✅ SKILL.md
+Etsy Seller Ops: The 2026 Open-Source Suite for Claude Code Automation & Compliance
 
 ```bash
-cue skills add Nyxiflare/shelfscout --profile medusa-dev
+cue skills add ghosttown123/etsy-ugc-compliance-harvester --profile medusa-dev
 ```
 
 ---

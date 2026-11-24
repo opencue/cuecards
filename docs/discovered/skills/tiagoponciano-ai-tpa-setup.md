@@ -2,7 +2,7 @@
 title: "tiagoponciano/AI-TPA-Setup — Claude Code skill discovered by cue"
 description: "Organizes every rule TPA uses in development and work: working agreement, path-scoped rules, skills, git guardrails, and the attribution policy — for Claude Cod"
 layout: page
-updated: 2026-11-19
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-18
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

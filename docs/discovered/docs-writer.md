@@ -2,7 +2,7 @@
 title: "Claude Code Skills for docs-writer"
 description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 
 ---
 
-<a id="netresearch-german-technical-writing-skill"></a>
-## 💎 [netresearch/german-technical-writing-skill](https://github.com/netresearch/german-technical-writing-skill)
+<a id="ejklock-living-docs-skill"></a>
+## 💎 [ejklock/living-docs-skill](https://github.com/ejklock/living-docs-skill)
 
-**★ 9** · exceptional (score 11.4) · tags: agent-skills, ai-agent, claude-code-skill, deutsch, german
+**★ 14** · exceptional (score 11.1) · Rust · tags: adr, agent-skills, ai-agents, architecture-decision-records, bdr
 
-Agent Skill for natural German technical register in Jira tickets, internal German docs, and team chat to German-speaking colleagues — catches English→German anglicisms, enforces canonical technical lexicon | Claude Code compatible
+Living Docs —  a AI agent skill that runs your project's documentation as a living system: constitution, ADRs, BDRs, PRDs, issues, research notes & Mermaid architecture diagrams under five no-drift governance invariants. OKF-formatted, stack-agnostic. Works with Claude Code, Cursor, Copilot, OpenCode & Pi.
 
 ```bash
-cue skills add netresearch/german-technical-writing-skill --profile docs-writer
+cue skills add ejklock/living-docs-skill --profile docs-writer
 ```
 
 ---

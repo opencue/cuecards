@@ -2,7 +2,7 @@
 title: "Seawolf0/Spectra — Claude Code skill discovered by cue"
 description: "A real-time light-physics playground in one HTML file. 3D mode: a spectral path tracer with dispersion, caustics, Fresnel glass and depth of field. 2D mode: an "
 layout: page
-updated: 2026-11-12
+updated: 2026-11-24
 tags: [claude-code, skill, threejs]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, threejs]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-10
+- 🗓️ Last pushed: 2026-11-23
 - 🏷️ Tags: 2d-graphics, 3d-graphics, caustics, dispersion, glsl, interactive-visualizations, light-simulation, path-tracing, physically-based-rendering, physics-simulation, ray-tracing, spectral-rendering, webgl2
 
 ## Best fit cue profiles

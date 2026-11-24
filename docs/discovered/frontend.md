@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="vstlmkh-building-design"></a>
-## 💎 [vstlmkh/building-design](https://github.com/vstlmkh/building-design)
-
-**★ 2** · exceptional (score 15) · Python · tags: accessibility, agent-skill, ai-agents, app-icons, brand-kit
-
-Agent Skill that builds a product design system as a versioned, runnable artifact: brand, DTCG tokens with light/dark themes, web/iOS/Android icon packs, a UI kit, UX artifacts and a zero-install interactive prototype — structured so AI coding agents can reimplement the design exactly.
-
-✅ SKILL.md
-
-```bash
-cue skills add vstlmkh/building-design --profile frontend
-```
 
 ---
 
@@ -43,15 +28,41 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
+<a id="scrolltide-ai-studio-skill"></a>
+## 💎 [scrolltide/ai-studio-skill](https://github.com/scrolltide/ai-studio-skill)
+
+**★ 31** · exceptional (score 8.7) · JavaScript · tags: agent-skills, ai-website-builder, anthropic, claude-code, claude-code-plugin
+
+Free Claude skill for websites that move when you scroll: scroll films, layered parallax, self-drawing paths. Built from the real source of Scrolltide builds and checked at scroll checkpoints on desktop and phone.
+
+```bash
+cue skills add scrolltide/ai-studio-skill --profile frontend
+```
+
+---
+
 <a id="gamemann-nightly"></a>
 ## 💎 [gamemann/nightly](https://github.com/gamemann/nightly)
 
-**★ 8** · exceptional (score 8.6) · JavaScript · tags: ai-agent, ai-agents, ai-coding, ai-tools, claude
+**★ 7** · exceptional (score 8.5) · JavaScript · tags: ai-agent, ai-agents, ai-coding, ai-tools, claude
 
 A database and web panel that autonomous @claude Code runs work from: a queue of tasks, schedules, run reports, a live board where concurrent agents claim paths, project and asset tooling for games, and the measurements that tell you whether a fix worked.
 
 ```bash
 cue skills add gamemann/nightly --profile frontend
+```
+
+---
+
+<a id="mrgodlink-rcdesign"></a>
+## ✨ [MrGodLink/RcDesign](https://github.com/MrGodLink/RcDesign)
+
+**★ 0** · strong (score 5) · CSS · tags: bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism
+
+One engine, ten UI design styles, zero markup changes. Skeuomorphism, Neumorphism, Glassmorphism, Claymorphism, Brutalism, Minimalism, Maximalism, Liquid Glass, Bento Grid and Spatial UI, switch the whole look of a page with one attribute.
+
+```bash
+cue skills add MrGodLink/RcDesign --profile frontend
 ```
 
 ---

@@ -1,17 +1,30 @@
 ---
 title: "Claude Code Skills for research"
-description: "2 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the research profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, research, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `research`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **research** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="thelastscraper-short-term-rental-agent"></a>
+## ✨ [thelastscraper/short-term-rental-agent](https://github.com/thelastscraper/short-term-rental-agent)
+
+**★ 1** · strong (score 5.3) · tags: agent-skills, airbnb, airbnb-data, airbnb-data-analysis, airbnb-host
+
+Short Term Rental Agent: a Claude skill and Grok template that analyzes Airbnb and hotel markets with live data via Apify. Comp sets for hosts, channel prices, portfolio checks and investor market scans.
+
+```bash
+cue skills add thelastscraper/short-term-rental-agent --profile research
+```
 
 ---
 

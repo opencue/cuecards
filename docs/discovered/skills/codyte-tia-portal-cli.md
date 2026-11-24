@@ -1,24 +1,23 @@
 ---
 title: "Codyte/Tia-Portal-CLI — Claude Code skill discovered by cue"
-description: "tia-cli - Drive Siemens TIA Portal from the command line via Openness. 99 verbs, dry-run by default. A Claude Code / AI agent skill for PLC programming: S7-1500"
+description: "Tia Portal AI. AI PLC programming and headless TIA Portal automation. Let an AI agent program for you — 346+ CLI verbs over the Siemens Openness API, JSON in an"
 layout: page
-updated: 2026-08-26
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Codyte/Tia-Portal-CLI](https://github.com/Codyte/Tia-Portal-CLI)
 
-**★ 2** · exceptional (score 13.5) · C# · agent-skills, agentic-ai, ai-agents, claude, claude-code
+**★ 7** · exceptional (score 8.2) · Python · agent-skills, agentic-ai, claude, claude-code, claude-code-skill
 
-> tia-cli - Drive Siemens TIA Portal from the command line via Openness. 99 verbs, dry-run by default. A Claude Code / AI agent skill for PLC programming: S7-1500, SIMATIC, SCL and LAD.
+> Tia Portal AI. AI PLC programming and headless TIA Portal automation. Let an AI agent program for you — 346+ CLI verbs over the Siemens Openness API, JSON in and out, dry-run by default. Offline and on-premise, no cloud copilot. S7-1500, S7-1200, SCL, ladder logic, SimaticML, SINAMICS, WinCC. Claude Code, Codex, Cursor skill.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.5 based on:
-- ✅ Contains SKILL.md
-- ⭐ 2 stars
-- 🗓️ Last pushed: 2026-08-26
-- 🏷️ Tags: agent-skills, agentic-ai, ai-agents, claude, claude-code, claude-code-skill, claude-skills, cli, industrial-automation, openness, plc, plc-programming, scl, siemens, siemens-plc, siemens-s7-plcs, simatic, tia, tia-cli, tia-portal
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
+- ⭐ 7 stars
+- 🗓️ Last pushed: 2026-11-24
+- 🏷️ Tags: agent-skills, agentic-ai, claude, claude-code, claude-code-skill, claude-code-skills, claude-skills, ia, plc, plc-program, plc-programming, portal, siemens, siemens-tia, siemens-tia-portal, skill, skills, tia, tia-portal, tiaportal
 
 ## Best fit cue profiles
 

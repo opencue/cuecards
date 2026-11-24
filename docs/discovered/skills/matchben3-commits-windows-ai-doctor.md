@@ -2,7 +2,7 @@
 title: "matchben3-commits/windows-ai-doctor — Claude Code skill discovered by cue"
 description: "Claude Code / Codex not found on Windows? Inspect PATH, duplicate installs and launcher clues. Local, read-only reports. Windows 本地命令行排障。"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-23
+- 🗓️ Last pushed: 2026-11-24
 - 🏷️ Tags: claude-code, claude-code-cli, cli, codex, codex-cli, developer-tools, diagnostics, local-first, python, troubleshooting, windows, wsl
 
 ## Best fit cue profiles

@@ -2,19 +2,19 @@
 title: "MBotirjonDev/skillset-lint — Claude Code skill discovered by cue"
 description: "Lint Agent Skills (SKILL.md) one by one and as a set: spec, triggers, broken paths, risky scripts, overlapping skills. Agent skill + zero-dep CLI + GitHub Actio"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
 # ✨ [MBotirjonDev/skillset-lint](https://github.com/MBotirjonDev/skillset-lint)
 
-**★ 1** · strong (score 5.7) · JavaScript · agent-skills, ai-agents, claude-code, claude-skills, codex
+**★ 1** · strong (score 5.6) · JavaScript · agent-skills, ai-agents, claude-code, claude-skills, codex
 
 > Lint Agent Skills (SKILL.md) one by one and as a set: spec, triggers, broken paths, risky scripts, overlapping skills. Agent skill + zero-dep CLI + GitHub Action.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.7 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.6 based on:
 - ⭐ 1 stars
 - 🗓️ Last pushed: 2026-11-08
 - 🏷️ Tags: agent-skills, ai-agents, claude-code, claude-skills, codex, developer-tools, github-actions, linter, prompt-injection, sarif, skill-md, static-analysis

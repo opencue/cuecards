@@ -1,70 +1,42 @@
 ---
 title: "Claude Code Skills for creative-media"
-description: "6 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-24
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `creative-media`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **creative-media** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="krisyangdev-motionboard"></a>
-## 💎 [krisyangdev/motionboard](https://github.com/krisyangdev/motionboard)
+<a id="renthelautomations-app-launch-video"></a>
+## 💎 [renthelautomations/app-launch-video](https://github.com/renthelautomations/app-launch-video)
 
-**★ 66** · exceptional (score 17.6) · HTML · tags: agent-skill, agent-skills, ai-video, animation, claude-code
+**★ 1** · exceptional (score 8.3) · Python · tags: app-marketing, claude-code, claude-skill, launch-video, motion-design
 
-Make launch videos and motion graphics with Claude Code or Codex: free HyperFrames skill + 38 shot recipes (match cut, logo reveal, kinetic typography, liquid glass effect).
+Claude skill for Apple-keynote-style app launch films: real UI components in Remotion, spring-physics motion, synced spatial sound, storyboard + frame-level QA, 16:9/9:16/1:1 delivery.
 
 ```bash
-cue skills add krisyangdev/motionboard --profile creative-media
+cue skills add renthelautomations/app-launch-video --profile creative-media
 ```
 
 ---
 
-<a id="whystrohm-shotkit"></a>
-## 💎 [whystrohm/shotkit](https://github.com/whystrohm/shotkit)
+<a id="yiyixiaoovo-visual-style-skills"></a>
+## ✨ [yiyixiaoovo/visual-style-skills](https://github.com/yiyixiaoovo/visual-style-skills)
 
-**★ 88** · exceptional (score 16.3) · Python · tags: agent-skills, ai-storyboard, ai-video, ai-workflow, claude
+**★ 0** · strong (score 7.5) · HTML · tags: agent-skill, arknights, bilingual, claude-skill, design-system
 
-Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.
-
-```bash
-cue skills add whystrohm/shotkit --profile creative-media
-```
-
----
-
-<a id="vstlmkh-building-design"></a>
-## 💎 [vstlmkh/building-design](https://github.com/vstlmkh/building-design)
-
-**★ 2** · exceptional (score 15) · Python · tags: accessibility, agent-skill, ai-agents, app-icons, brand-kit
-
-Agent Skill that builds a product design system as a versioned, runnable artifact: brand, DTCG tokens with light/dark themes, web/iOS/Android icon packs, a UI kit, UX artifacts and a zero-install interactive prototype — structured so AI coding agents can reimplement the design exactly.
-
-✅ SKILL.md
+Two parallel visual-style systems as agent skills: Arknights-style monochrome archival design and Endfield-style neon industrial UI. Single-file HTML templates, design tokens, layout recipes, deterministic lint, 1x/2x export. 两套平行语域 · 同人向非官方。
 
 ```bash
-cue skills add vstlmkh/building-design --profile creative-media
-```
-
----
-
-<a id="nsudy-code-cappus"></a>
-## ✨ [nsudy-code/cappus](https://github.com/nsudy-code/cappus)
-
-**★ 0** · strong (score 7) · Python · tags: agent-skills, ai-video-editor, auto-captions, capcut, capcut-pro
-
-Claude Code skill that edits your footage into editable CapCut desktop drafts: cuts, transitions, effects, filters, eased keyframes, word-by-word auto captions, designed looks, music and sound effects, talking-head jump cuts and zooms, vertical reframing. Works with free CapCut and CapCut Pro.
-
-```bash
-cue skills add nsudy-code/cappus --profile creative-media
+cue skills add yiyixiaoovo/visual-style-skills --profile creative-media
 ```
 
 ---

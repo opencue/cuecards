@@ -2,7 +2,7 @@
 title: "MichaelZelbel/querino — Claude Code skill discovered by cue"
 description: "Open-source prompt development and orchestration system powered by Supabase."
 layout: page
-updated: 2026-09-09
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-09-09
+- 🗓️ Last pushed: 2026-11-24
 - 🏷️ Tags: agpl, ai, antigravity-workflow, claude-skill, claw, llm, openclaw, orchestration, prompt-engineering, skill, supabase, workflow
 
 ## Best fit cue profiles

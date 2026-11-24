@@ -2,21 +2,21 @@
 title: "wan-huiyan/morning-fairy — Claude Code skill discovered by cue"
 description: "A Claude Code skill that draws your day as a little world every morning: meetings as hills, a mood mascot, Claude quests, Jira drafts to tick, and a time machin"
 layout: page
-updated: 2026-11-18
+updated: 2026-11-24
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [wan-huiyan/morning-fairy](https://github.com/wan-huiyan/morning-fairy)
 
-**★ 0** · exceptional (score 8) · Python · claude-code, claude-code-plugin, claude-code-skill, jira, morning-brief
+**★ 2** · exceptional (score 8.5) · Python · claude-code, claude-code-plugin, claude-code-skill, jira, morning-brief
 
 > A Claude Code skill that draws your day as a little world every morning: meetings as hills, a mood mascot, Claude quests, Jira drafts to tick, and a time machine. Draft-only.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-24
 - 🏷️ Tags: claude-code, claude-code-plugin, claude-code-skill, jira, morning-brief, productivity
 
 ## Best fit cue profiles
