@@ -1,9 +1,33 @@
 import { describe, expect, test, beforeEach, afterEach } from "bun:test";
-import { mkdtemp, mkdir, writeFile, rm, lstat, readlink, readdir, stat } from "node:fs/promises";
+import { mkdtemp, mkdir, writeFile, readFile, rm, lstat, readlink, readdir, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { linkPluginCache } from "./runtime-materializer";
+import { linkPluginCache, materializeRuntime } from "./runtime-materializer";
+
+async function registerMarketplace(config: string, name: string) {
+  const installLocation = join(config, "plugins", "marketplaces", name);
+  await mkdir(installLocation, { recursive: true });
+  await writeFile(join(installLocation, "marketplace.json"), name);
+  const entry = { source: { source: "github", repo: `test/${name}` }, installLocation };
+  await writeFile(
+    join(config, "plugins", "known_marketplaces.json"),
+    JSON.stringify({ [name]: entry }),
+  );
+  return entry;
+}
+
+async function installPlugin(config: string, marketplace: string) {
+  const installPath = join(config, "plugins", "cache", marketplace, "codex", "1.0.6");
+  const registry = JSON.stringify({
+    version: 2,
+    plugins: { [`codex@${marketplace}`]: [{ installPath }] },
+  });
+  await mkdir(installPath, { recursive: true });
+  await writeFile(join(installPath, "hooks.json"), "{}");
+  await writeFile(join(config, "plugins", "installed_plugins.json"), registry);
+  return { installPath, registry };
+}
 
 /**
  * Re-materializing a runtime happens while sessions are live, so replacing the
@@ -51,6 +75,122 @@ describe("linkPluginCache — atomic swap", () => {
     const entries = await readdir(join(tgt, "plugins"));
     expect(entries.filter((e) => e.includes(".cue-tmp-"))).toEqual([]);
     expect(entries.sort()).toEqual(["cache", "known_marketplaces.json", "marketplaces"]);
+    for (const name of ["known_marketplaces.json", "marketplaces"]) {
+      expect(await readlink(join(tgt, "plugins", name))).toBe(join(src, "plugins", name));
+    }
+  });
+
+  test("preserves a runtime marketplace and install on the second and third passes", async () => {
+    const marketplaceDir = join(tgt, "plugins", "marketplaces");
+    const registryPath = join(tgt, "plugins", "known_marketplaces.json");
+    await rm(join(src, "plugins", "cache"), { recursive: true });
+    await linkPluginCache(tgt, src);
+
+    // Claude registered the marketplace in a runtime-local clone and registry.
+    await rm(marketplaceDir);
+    await rm(registryPath);
+    const local = await registerMarketplace(tgt, "openai-codex");
+    const official = await registerMarketplace(src, "claude-plugins-official");
+    const { installPath, registry } = await installPlugin(tgt, "openai-codex");
+    const clone = await stat(local.installLocation);
+
+    for (let pass = 2; pass <= 3; pass++) {
+      await linkPluginCache(tgt, src);
+
+      expect(JSON.parse(await readFile(registryPath, "utf8"))).toEqual({
+        "openai-codex": local,
+        "claude-plugins-official": official,
+      });
+      expect((await stat(local.installLocation)).ino).toBe(clone.ino);
+      expect(await readlink(join(marketplaceDir, "claude-plugins-official"))).toBe(official.installLocation);
+      expect(await readFile(join(installPath, "hooks.json"), "utf8")).toBe("{}");
+      expect(await readFile(join(tgt, "plugins", "installed_plugins.json"), "utf8")).toBe(registry);
+    }
+  });
+
+  test("preserves marketplace entries read through links to a previous source", async () => {
+    const previous = join(src, "previous");
+    const local = await registerMarketplace(previous, "openai-codex");
+    await installPlugin(previous, "openai-codex");
+    const official = await registerMarketplace(src, "claude-plugins-official");
+    const upstreamPath = join(src, "plugins", "known_marketplaces.json");
+    const upstreamText = JSON.stringify({
+      "claude-plugins-official": { ...official, installLocation: join(src, "missing") },
+    });
+    await writeFile(upstreamPath, upstreamText);
+    await linkPluginCache(tgt, previous);
+    const registryPath = join(tgt, "plugins", "known_marketplaces.json");
+    const marketplaceDir = join(tgt, "plugins", "marketplaces");
+
+    for (let pass = 2; pass <= 3; pass++) {
+      await linkPluginCache(tgt, src);
+
+      const registry = JSON.parse(await readFile(registryPath, "utf8"));
+      expect(registry["openai-codex"].source).toEqual(local.source);
+      expect(registry["claude-plugins-official"].source).toEqual(official.source);
+      for (const name of ["openai-codex", "claude-plugins-official"]) {
+        expect(await readFile(join(registry[name].installLocation, "marketplace.json"), "utf8")).toBe(name);
+        expect(await readFile(join(marketplaceDir, name, "marketplace.json"), "utf8")).toBe(name);
+      }
+      const oldHooks = join(tgt, "plugins", "cache", "openai-codex", "codex", "1.0.6", "hooks.json");
+      expect(await readFile(oldHooks, "utf8")).toBe("{}");
+    }
+    expect(JSON.parse(await readFile(join(previous, "plugins", "known_marketplaces.json"), "utf8")))
+      .toEqual({ "openai-codex": local });
+    expect(await readFile(upstreamPath, "utf8")).toBe(upstreamText);
+  });
+
+  test("carries the installed marketplace, registry, and cache through a hash-changing rebuild", async () => {
+    const input = {
+      profile: {
+        name: "plugin-cache",
+        description: "Plugin cache fixture",
+        agents: ["claude-code" as const],
+        skills: { local: [], npx: [] },
+        mcps: [],
+        plugins: [{ id: "codex@openai-codex" }],
+        env: {},
+        inheritanceChain: ["plugin-cache"],
+      },
+      agent: "claude-code" as const,
+      runtimeRoot: tgt,
+      credentialsSource: src,
+      contextModePath: join(tgt, "context-mode.json"),
+      skillSourceLookup: async () => null,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    };
+    const { runtimeDir } = await materializeRuntime(input);
+    const plugins = join(runtimeDir, "plugins");
+    await rm(join(plugins, "marketplaces"));
+    await rm(join(plugins, "known_marketplaces.json"));
+    await rm(join(plugins, "cache"));
+    const local = await registerMarketplace(runtimeDir, "openai-codex");
+    const official = await registerMarketplace(src, "claude-plugins-official");
+    const { installPath, registry } = await installPlugin(runtimeDir, "openai-codex");
+    const clone = await stat(local.installLocation);
+    // Both sides have this plugin directory, but each has its own version.
+    const sourceVersion = join(src, "plugins", "cache", "openai-codex", "codex", "1.1.0");
+    await mkdir(sourceVersion, { recursive: true });
+    await writeFile(join(sourceVersion, "hooks.json"), "new version");
+
+    for (const description of ["Changed profile", "Another change"]) {
+      const rebuilt = await materializeRuntime({
+        ...input,
+        profile: { ...input.profile, description },
+      });
+
+      expect(rebuilt.rebuilt).toBe(true);
+      expect(JSON.parse(await readFile(join(plugins, "known_marketplaces.json"), "utf8"))).toEqual({
+        "openai-codex": local,
+        "claude-plugins-official": official,
+      });
+      expect((await stat(local.installLocation)).ino).toBe(clone.ino);
+      expect(await readFile(join(plugins, "installed_plugins.json"), "utf8")).toBe(registry);
+      expect(await readFile(join(installPath, "hooks.json"), "utf8")).toBe("{}");
+      expect(await readFile(join(installPath, "..", "1.1.0", "hooks.json"), "utf8")).toBe("new version");
+      expect(await readFile(join(plugins, "cache", "thedotmack", "claude-mem", "13.13.1", "hooks.json"), "utf8")).toBe("{}");
+    }
   });
 
   test("still replaces Claude's lazy empty directory", async () => {
