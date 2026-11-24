@@ -1,15 +1,16 @@
-import { describe, expect, test, beforeEach, afterEach } from "bun:test";
+import { describe, expect, test, beforeEach, afterEach, spyOn } from "bun:test";
+import * as fs from "node:fs/promises";
 import { mkdtemp, mkdir, writeFile, readFile, rm, lstat, readlink, readdir, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { linkPluginCache, materializeRuntime } from "./runtime-materializer";
 
-async function registerMarketplace(config: string, name: string) {
+async function registerMarketplace(config: string, name: string, repo = `test/${name}`) {
   const installLocation = join(config, "plugins", "marketplaces", name);
   await mkdir(installLocation, { recursive: true });
   await writeFile(join(installLocation, "marketplace.json"), name);
-  const entry = { source: { source: "github", repo: `test/${name}` }, installLocation };
+  const entry = { source: { source: "github", repo }, installLocation };
   await writeFile(
     join(config, "plugins", "known_marketplaces.json"),
     JSON.stringify({ [name]: entry }),
@@ -27,6 +28,28 @@ async function installPlugin(config: string, marketplace: string) {
   await writeFile(join(installPath, "hooks.json"), "{}");
   await writeFile(join(config, "plugins", "installed_plugins.json"), registry);
   return { installPath, registry };
+}
+
+function runtimeInput(runtimeRoot: string, credentialsSource: string) {
+  return {
+    profile: {
+      name: "plugin-cache",
+      description: "Plugin cache fixture",
+      agents: ["claude-code" as const],
+      skills: { local: [], npx: [] },
+      mcps: [],
+      plugins: [{ id: "codex@openai-codex" }],
+      env: {},
+      inheritanceChain: ["plugin-cache"],
+    },
+    agent: "claude-code" as const,
+    runtimeRoot,
+    credentialsSource,
+    contextModePath: join(runtimeRoot, "context-mode.json"),
+    skillSourceLookup: async () => null,
+    mcpRegistry: {},
+    userClaudeMd: "",
+  };
 }
 
 /**
@@ -140,26 +163,55 @@ describe("linkPluginCache — atomic swap", () => {
     expect(await readFile(upstreamPath, "utf8")).toBe(upstreamText);
   });
 
+  test("keeps the registration for the runtime clone when the source uses the same name", async () => {
+    const local = await registerMarketplace(tgt, "shared", "runtime/shared");
+    const upstream = await registerMarketplace(src, "shared", "upstream/shared");
+    await writeFile(join(upstream.installLocation, "marketplace.json"), "upstream");
+    const registryPath = join(tgt, "plugins", "known_marketplaces.json");
+
+    for (let pass = 0; pass < 2; pass++) {
+      await linkPluginCache(tgt, src);
+
+      const registry = JSON.parse(await readFile(registryPath, "utf8"));
+      expect(registry).toEqual({ shared: local });
+      expect(await readFile(join(registry.shared.installLocation, "marketplace.json"), "utf8")).toBe("shared");
+      expect(await readFile(join(local.installLocation, "marketplace.json"), "utf8")).toBe("shared");
+    }
+  });
+
+  test("drops removed imports from a merged registry and preserves runtime registrations", async () => {
+    const local = await registerMarketplace(tgt, "local");
+    const removed = await registerMarketplace(src, "removed");
+    const externalClone = join(src, "custom-marketplace");
+    await fs.rename(removed.installLocation, externalClone);
+    removed.installLocation = externalClone;
+    const replaced = await registerMarketplace(src, "replaced");
+    const sourceRegistry = join(src, "plugins", "known_marketplaces.json");
+    await writeFile(sourceRegistry, JSON.stringify({ removed, replaced }));
+    const registryPath = join(tgt, "plugins", "known_marketplaces.json");
+
+    await linkPluginCache(tgt, src);
+    expect(JSON.parse(await readFile(registryPath, "utf8"))).toEqual({ local, removed, replaced });
+
+    const runtimeClone = join(tgt, "plugins", "marketplaces", "replaced");
+    await rm(runtimeClone);
+    const replacement = await registerMarketplace(tgt, "replaced", "runtime/replaced");
+    await writeFile(registryPath, JSON.stringify({ local, removed, replaced: replacement }));
+    await rm(sourceRegistry);
+    await rm(join(src, "plugins", "marketplaces"), { recursive: true });
+    await rm(externalClone, { recursive: true });
+
+    for (let pass = 0; pass < 2; pass++) {
+      await linkPluginCache(tgt, src);
+
+      expect(JSON.parse(await readFile(registryPath, "utf8"))).toEqual({ local, replaced: replacement });
+      expect(await readFile(join(local.installLocation, "marketplace.json"), "utf8")).toBe("local");
+      expect(await readFile(join(replacement.installLocation, "marketplace.json"), "utf8")).toBe("replaced");
+    }
+  });
+
   test("carries the installed marketplace, registry, and cache through a hash-changing rebuild", async () => {
-    const input = {
-      profile: {
-        name: "plugin-cache",
-        description: "Plugin cache fixture",
-        agents: ["claude-code" as const],
-        skills: { local: [], npx: [] },
-        mcps: [],
-        plugins: [{ id: "codex@openai-codex" }],
-        env: {},
-        inheritanceChain: ["plugin-cache"],
-      },
-      agent: "claude-code" as const,
-      runtimeRoot: tgt,
-      credentialsSource: src,
-      contextModePath: join(tgt, "context-mode.json"),
-      skillSourceLookup: async () => null,
-      mcpRegistry: {},
-      userClaudeMd: "",
-    };
+    const input = runtimeInput(tgt, src);
     const { runtimeDir } = await materializeRuntime(input);
     const plugins = join(runtimeDir, "plugins");
     await rm(join(plugins, "marketplaces"));
@@ -190,6 +242,68 @@ describe("linkPluginCache — atomic swap", () => {
       expect(await readFile(join(installPath, "hooks.json"), "utf8")).toBe("{}");
       expect(await readFile(join(installPath, "..", "1.1.0", "hooks.json"), "utf8")).toBe("new version");
       expect(await readFile(join(plugins, "cache", "thedotmack", "claude-mem", "13.13.1", "hooks.json"), "utf8")).toBe("{}");
+    }
+  });
+
+  test("rebuilds with recreated plugins while keeping the old archive and live transcripts", async () => {
+    const input = runtimeInput(tgt, src);
+    const { runtimeDir } = await materializeRuntime(input);
+    const rebuild = (description: string) => materializeRuntime({
+      ...input,
+      profile: { ...input.profile, description },
+    });
+    const plugins = join(runtimeDir, "plugins");
+    await rm(plugins, { recursive: true });
+    await registerMarketplace(runtimeDir, "original");
+    await rebuild("First migration");
+    const originalArchive = await readlink(plugins);
+
+    await rm(plugins);
+    const local = await registerMarketplace(runtimeDir, "recreated");
+    const transcript = join(runtimeDir, "projects", "session.jsonl");
+    await mkdir(join(runtimeDir, "projects"));
+    await writeFile(transcript, "transcript");
+
+    for (const description of ["Migrate recreated plugins", "Reuse the new archive"]) {
+      expect((await rebuild(description)).rebuilt).toBe(true);
+      expect(await readFile(transcript, "utf8")).toBe("transcript");
+      expect(await readFile(join(local.installLocation, "marketplace.json"), "utf8")).toBe("recreated");
+      expect(await readFile(join(originalArchive, "marketplaces", "original", "marketplace.json"), "utf8")).toBe("original");
+    }
+  });
+
+  test("restores live durable files when either swap rename fails", async () => {
+    const input = runtimeInput(tgt, src);
+    const { runtimeDir } = await materializeRuntime(input);
+    const projects = join(runtimeDir, "projects");
+    const transcript = join(projects, "session.jsonl");
+    const config = join(runtimeDir, ".claude.json");
+    await mkdir(projects);
+    await writeFile(transcript, "transcript");
+    await writeFile(config, '{"local":true}');
+
+    const rename = fs.rename;
+    for (const step of ["archive", "activate"]) {
+      const failure = new Error(`failed to ${step} runtime`);
+      const mockedRename = spyOn(fs, "rename").mockImplementation(async (from, to) => {
+        if (
+          (step === "archive" && from === runtimeDir) ||
+          (step === "activate" && to === runtimeDir &&
+            typeof from === "string" && from.startsWith(`${runtimeDir}.tmp.`))
+        ) throw failure;
+        await rename(from, to);
+      });
+      try {
+        await expect(materializeRuntime({
+          ...input,
+          profile: { ...input.profile, description: "Changed profile" },
+        })).rejects.toThrow(failure.message);
+      } finally {
+        mockedRename.mockRestore();
+      }
+      expect(await readFile(transcript, "utf8")).toBe("transcript");
+      expect(JSON.parse(await readFile(config, "utf8"))).toMatchObject({ local: true });
+      expect((await lstat(join(runtimeDir, "plugins"))).isDirectory()).toBe(true);
     }
   });
 

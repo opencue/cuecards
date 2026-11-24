@@ -830,6 +830,7 @@ async function atomicSwapRuntime(
   mcpServers: Record<string, McpServerConfig>,
   effectiveInput: MaterializeInput,
 ): Promise<void> {
+  const moved: string[] = [];
   // Codex writes durable thread state directly into CODEX_HOME (sessions/,
   // history.jsonl, thread-store SQLite files, writer locks, etc.). Unlike
   // Claude, it has no credentialsSource overlay, so an atomic rematerialization
@@ -882,6 +883,7 @@ async function atomicSwapRuntime(
       }
       try {
         await rename(oldPath, newPath);
+        moved.push(name);
       } catch {
         /* best-effort per entry */
       }
@@ -985,6 +987,7 @@ async function atomicSwapRuntime(
       // or a copy for .credentials.json) so rename can replace it cleanly.
       await rm(newPath, { force: true, recursive: true });
       await rename(oldPath, newPath);
+      moved.push(name);
     } catch {
       /* doesn't exist — skip */
     }
@@ -1005,16 +1008,23 @@ async function atomicSwapRuntime(
     pluginStateDir ?? `${runtimeDir}.old-${process.pid}-${Date.now().toString(36)}`;
   let trashed = false;
   try {
-    await rename(runtimeDir, trashDir);
-    trashed = true;
-  } catch (error) {
-    if (pluginStateDir) throw error;
-    /* no previous runtime (first materialization) — nothing to move aside */
-  }
-  try {
+    try {
+      await rename(runtimeDir, trashDir);
+      trashed = true;
+    } catch (error) {
+      if (pluginStateDir || (error as NodeJS.ErrnoException).code !== "ENOENT") {
+        throw error;
+      }
+      /* first materialization — nothing to move aside */
+    }
     await rename(tmpDir, runtimeDir);
   } catch (error) {
-    if (pluginStateDir) await rename(trashDir, runtimeDir);
+    const oldDir = trashed ? trashDir : runtimeDir;
+    for (const name of moved) {
+      await rename(join(tmpDir, name), join(oldDir, name));
+    }
+    if (trashed) await rename(trashDir, runtimeDir);
+    if (pluginStateDir) await rmdir(pluginStateDir).catch(() => {});
     throw error;
   }
   if (trashed) {
@@ -1858,12 +1868,18 @@ export async function linkPluginCache(
   if (sameResolvedPath(targetDir, sourceDir)) return;
 
   const srcPlugins = join(sourceDir, "plugins");
+  const pluginsDir = join(targetDir, "plugins");
   try {
     await lstat(srcPlugins);
-  } catch {
-    return; // source has no plugins tree — nothing to seed
+  } catch (error) {
+    if (
+      (error as NodeJS.ErrnoException).code === "ENOENT" &&
+      (await stat(pluginsDir).catch(() => undefined))?.isDirectory()
+    ) {
+      await linkMarketplaceRegistry(pluginsDir, srcPlugins);
+    }
+    return;
   }
-  const pluginsDir = join(targetDir, "plugins");
   await mkdir(pluginsDir, { recursive: true });
 
   // Cache entries are marketplace/plugin/version. Marketplace clones and
@@ -1885,17 +1901,28 @@ async function stageClaudePluginState(
   tmpDir: string,
   sourceDir: string | undefined,
 ): Promise<string | undefined> {
-  const stateDir = resolvePath(`${runtimeDir}.plugin-state`);
-  const savedPlugins = join(stateDir, "plugins");
+  const archiveBase = resolvePath(`${runtimeDir}.plugin-state`);
   const livePlugins = join(runtimeDir, "plugins");
   const live = await lstat(livePlugins).catch(() => undefined);
   if (live?.isDirectory()) {
     if (sourceDir) await linkPluginCache(runtimeDir, sourceDir);
-    await symlink(savedPlugins, join(tmpDir, "plugins"), "dir");
+    // Existing archives can still be used by sessions. Reserve an unused
+    // sibling before the swap moves any durable files out of the live tree.
+    const stateDir = (await lstat(archiveBase).catch(() => undefined))
+      ? await mkdtemp(`${archiveBase}-`)
+      : archiveBase;
+    await symlink(join(stateDir, "plugins"), join(tmpDir, "plugins"), "dir");
     return stateDir;
   }
+  const savedPlugins = live?.isSymbolicLink()
+    ? await readlink(livePlugins)
+    : join(archiveBase, "plugins");
+  const stateDir = dirname(savedPlugins);
   if (
-    (!live || (live.isSymbolicLink() && (await readlink(livePlugins)) === savedPlugins)) &&
+    (!live || live.isSymbolicLink()) &&
+    basename(savedPlugins) === "plugins" &&
+    (stateDir === archiveBase ||
+      (stateDir.startsWith(`${archiveBase}-`) && dirname(stateDir) === dirname(archiveBase))) &&
     (await lstat(savedPlugins).catch(() => undefined))?.isDirectory()
   ) {
     // The live path may be missing if the previous process stopped between
@@ -1922,16 +1949,18 @@ async function publishPluginEntry(
   target: string,
   prepare: (staged: string) => Promise<void>,
   replaceEmptyDir = false,
-): Promise<void> {
+): Promise<boolean> {
   const stage = await mkdtemp(`${target}.cue-tmp-`).catch(() => undefined);
-  if (!stage) return;
+  if (!stage) return false;
   try {
     const staged = join(stage, "entry");
     await prepare(staged);
     if (replaceEmptyDir) await rmdir(target);
     await rename(staged, target);
+    return true;
   } catch {
     /* race or permission — keep the existing entry when possible */
+    return false;
   } finally {
     await rm(stage, { recursive: true, force: true }).catch(() => {});
   }
@@ -2014,12 +2043,16 @@ async function hasExtraPluginEntries(
   return false;
 }
 
-type MarketplaceRegistry = Record<string, { installLocation?: string }>;
+type MarketplaceEntry = { installLocation?: string };
 
-async function readMarketplaceRegistry(
+function marketplaceFingerprint(name: string, entry: MarketplaceEntry): string {
+  return createHash("sha256").update(sortedJson([name, entry])).digest("hex");
+}
+
+async function readPluginRecord<T>(
   path: string,
-  missing?: MarketplaceRegistry,
-): Promise<MarketplaceRegistry | undefined> {
+  missing: Record<string, T>,
+): Promise<Record<string, T> | undefined> {
   try {
     const parsed = JSON.parse(await readFile(path, "utf8"));
     if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) return parsed;
@@ -2033,37 +2066,101 @@ async function readMarketplaceRegistry(
 async function linkMarketplaceRegistry(target: string, source: string): Promise<void> {
   const registryPath = join(target, "known_marketplaces.json");
   const sourcePath = join(source, "known_marketplaces.json");
-  const upstream = await readMarketplaceRegistry(sourcePath);
-  const local = await readMarketplaceRegistry(registryPath, {});
-  if (!upstream || !local) return;
-  const merged = { ...local, ...upstream };
-  let needsMergedFile = Object.keys(local).some(
-    (name) => !Object.hasOwn(upstream, name),
-  );
-  for (const [name, entry] of Object.entries(merged)) {
-    if (!entry || typeof entry !== "object") continue;
-    if (
-      typeof entry.installLocation === "string" &&
-      (await stat(entry.installLocation).catch(() => undefined))
-    ) continue;
-    if (!name || name === "." || name === ".." || basename(name) !== name) continue;
-    // A credentials snapshot can contain the original account's absolute
-    // installLocation. Point at its clone in the snapshot when necessary.
-    const upstreamClone = resolvePath(source, "marketplaces", name);
-    const clone =
-      Object.hasOwn(upstream, name) &&
-      (await stat(upstreamClone).catch(() => undefined))?.isDirectory()
-        ? upstreamClone
-        : resolvePath(target, "marketplaces", name);
-    if (!(await stat(clone).catch(() => undefined))?.isDirectory()) continue;
-    merged[name] = { ...entry, installLocation: clone };
-    needsMergedFile = true;
+  const missingSource = {};
+  const upstream = await readPluginRecord<MarketplaceEntry>(sourcePath, missingSource);
+  const local = await readPluginRecord<MarketplaceEntry>(registryPath, {});
+  const importsPath = join(target, ".cue-marketplace-imports.json");
+  const imported = await readPluginRecord<true>(importsPath, {});
+  if (!upstream || !local || !imported) return;
+  if (upstream === missingSource && Object.keys(local).length === 0) return;
+
+  const marketplaceDir = resolvePath(target, "marketplaces");
+  const tree = await lstat(marketplaceDir).catch(() => undefined);
+  const localTree =
+    tree?.isDirectory() ||
+    (tree?.isSymbolicLink() &&
+      (await readlink(marketplaceDir).catch(() => undefined)) === ".marketplaces.cue-local");
+  const merged: Record<string, MarketplaceEntry> = Object.create(null);
+  const previousImports: Record<string, true> = {};
+  const imports: Record<string, true> = {};
+  let needsMergedFile = upstream === missingSource;
+  for (const name of new Set([...Object.keys(local), ...Object.keys(upstream)])) {
+    const hasLocal = Object.hasOwn(local, name);
+    const hasUpstream = Object.hasOwn(upstream, name);
+    const validName = name && name !== "." && name !== ".." && basename(name) === name;
+    const localClone = validName ? join(marketplaceDir, name) : undefined;
+    const upstreamClone = validName ? resolvePath(source, "marketplaces", name) : undefined;
+    const realLocalClone =
+      hasLocal && localTree && localClone &&
+      (await lstat(localClone).catch(() => undefined))?.isDirectory();
+
+    const previous = hasLocal && !realLocalClone
+      ? marketplaceFingerprint(name, local[name])
+      : undefined;
+    const wasImported = previous !== undefined && Object.hasOwn(imported, previous);
+    if (wasImported) previousImports[previous] = true;
+    // Identify older untracked imports when their dead location and the
+    // runtime's clone link both point at the removed source clone.
+    const staleLegacyImport =
+      !hasUpstream && !wasImported && hasLocal && !realLocalClone &&
+      upstreamClone && localClone && local[name]?.installLocation === upstreamClone &&
+      (await readlink(localClone).catch(() => undefined)) === upstreamClone &&
+      !(await stat(upstreamClone).catch(() => undefined));
+    const useLocal =
+      hasLocal && (realLocalClone || (!hasUpstream && !wasImported && !staleLegacyImport));
+    if (!useLocal && !hasUpstream) continue;
+
+    let entry = useLocal ? local[name] : upstream[name];
+    if (entry && typeof entry === "object") {
+      let clone = realLocalClone ? localClone : undefined;
+      if (
+        !clone && localClone &&
+        (typeof entry.installLocation !== "string" ||
+          !(await stat(entry.installLocation).catch(() => undefined)))
+      ) {
+        // Credentials snapshots can carry the original account's absolute
+        // installLocation. Use the winning clone in this snapshot or runtime.
+        clone =
+          !useLocal && upstreamClone &&
+          (await stat(upstreamClone).catch(() => undefined))?.isDirectory()
+          ? upstreamClone
+          : localClone;
+        if (!(await stat(clone).catch(() => undefined))?.isDirectory()) clone = undefined;
+      }
+      if (clone && entry.installLocation !== clone) {
+        entry = { ...entry, installLocation: clone };
+        needsMergedFile = true;
+      }
+    }
+    merged[name] = entry;
+    if (useLocal) needsMergedFile = true;
+    else imports[marketplaceFingerprint(name, entry)] = true;
   }
-  await publishPluginEntry(registryPath, (staged) =>
-    needsMergedFile
-      ? writeFile(staged, JSON.stringify(merged, null, 2) + "\n")
-      : symlink(resolvePath(sourcePath), staged),
-  );
+
+  if (!needsMergedFile) {
+    if (await publishPluginEntry(
+      registryPath,
+      (staged) => symlink(resolvePath(sourcePath), staged),
+    )) {
+      await rm(importsPath, { force: true }).catch(() => {});
+    }
+    return;
+  }
+  // Publish provenance first. Keep fingerprints for both the old and staged
+  // imports so either registry can be refreshed if publication is interrupted.
+  const pending = { ...previousImports, ...imports };
+  const pendingCount = Object.keys(pending).length;
+  const writeImports = (entries: Record<string, true>) =>
+    publishPluginEntry(importsPath, (staged) => writeFile(staged, JSON.stringify(entries) + "\n"));
+  if (pendingCount > 0 && !(await writeImports(pending))) return;
+  if (!(await publishPluginEntry(
+    registryPath,
+    (staged) => writeFile(staged, JSON.stringify(merged, null, 2) + "\n"),
+  ))) return;
+
+  const importCount = Object.keys(imports).length;
+  if (importCount === 0) await rm(importsPath, { force: true }).catch(() => {});
+  else if (importCount < pendingCount) await writeImports(imports);
 }
 
 /**
