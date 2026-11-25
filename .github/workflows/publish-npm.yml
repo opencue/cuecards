@@ -25,6 +25,7 @@ jobs:
       id-token: write
     outputs:
       version: ${{ steps.publish.outputs.version }}
+      integrity: ${{ steps.publish.outputs.integrity }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -83,17 +84,47 @@ jobs:
             fi
           fi
 
-          if [[ "$published_head" != "$GITHUB_SHA" ]]; then
+          if [[ "$published_head" == "$GITHUB_SHA" ]]; then
+            integrity="$(jq -er .dist.integrity <<<"$published")"
+          else
             if [[ "$version" != "$floor" ]]; then
               npm version "$version" --no-git-tag-version --ignore-scripts
             fi
-            npm publish --access public --tag latest
+            # Directory publishing fills in gitHead; publishing a tarball does not.
+            npm pkg set "gitHead=$GITHUB_SHA"
+            # Prepack builds the bundle; run it separately to keep pack's JSON clean.
+            npm run prepack
+            pack="$(npm pack --ignore-scripts --json --pack-destination "$RUNNER_TEMP")"
+            tarball="$RUNNER_TEMP/$(jq -er '.[0].filename' <<<"$pack")"
+            integrity="$(jq -er '.[0].integrity' <<<"$pack")"
+            bash scripts/check-npm-tarball.sh "$version" "$tarball"
+            npm publish "$tarball" --access public --tag latest
           fi
-          echo "version=$version" >> "$GITHUB_OUTPUT"
+          printf 'version=%s\nintegrity=%s\n' "$version" "$integrity" >> "$GITHUB_OUTPUT"
 
-  release:
+  verify:
     needs: publish
     if: needs.publish.outputs.version != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - name: Install and run the public npm tarball
+        env:
+          VERSION: ${{ needs.publish.outputs.version }}
+          INTEGRITY: ${{ needs.publish.outputs.integrity }}
+        run: bash scripts/check-npm-tarball.sh "$VERSION" registry "$INTEGRITY"
+
+  release:
+    needs: [publish, verify]
     runs-on: ubuntu-latest
     permissions:
       contents: write
