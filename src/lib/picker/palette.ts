@@ -275,6 +275,20 @@ export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
     .map(({ row }) => ({ ...row, section: MATCHES_SECTION }));
 }
 
+/** Keep the newest characters next to the caret when the query overflows. */
+function queryTail(query: string, width: number): string {
+  if (width <= 0) return "";
+  if (displayWidth(query) <= width) return query;
+  let tail = "";
+  let remaining = width - 1; // leading ellipsis
+  for (const ch of [...query].reverse()) {
+    remaining -= displayWidth(ch);
+    if (remaining < 0) break;
+    tail = ch + tail;
+  }
+  return `…${tail}`;
+}
+
 /**
  * Render one frame of the palette. Pure — same state in, same string out.
  *
@@ -326,7 +340,7 @@ export function renderPaletteFrame(state: PaletteState): string {
       : styleText("dim", `${visible.length} profiles`);
   const fieldWidth = Math.max(0, cols - 13 - visibleWidth(scope));
   const field = state.query.length > 0
-    ? styleText("cyan", `${clipVisible(state.query, Math.max(0, fieldWidth - 1))}▏`)
+    ? styleText("cyan", `${queryTail(state.query, fieldWidth - 1)}▏`)
     : styleText("dim", clipVisible(compact ? "name or keyword…" : "type to filter…", fieldWidth));
   lines.push(
     `${bar}  ${styleText("dim", "search")}  ${compact ? field : padVisible(field, Math.max(0, headWidth - 22))}  ${scope}`,

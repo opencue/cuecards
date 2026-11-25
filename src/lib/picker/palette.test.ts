@@ -230,13 +230,15 @@ describe("renderPaletteFrame", () => {
   });
 
   test("uses fewer lines at 57 columns and keeps a long query and count on one line", () => {
-    const query = "medusa+" + "postgres".repeat(10);
+    const query = "medusa+" + "postgres".repeat(10) + "+vercel";
     const render = (cols: number) => plain(renderPaletteFrame({
       ...base, cols, rows: rows(), selected: [], query,
     })).split("\n");
     const lines = render(57);
     expect(lines.length).toBeLessThan(render(80).length);
-    expect(lines.find((line) => line.includes("search"))).toContain("0 matches");
+    const search = lines.find((line) => line.includes("search"));
+    expect(search).toContain("+vercel▏");
+    expect(search).toContain("0 matches");
     expect(lines.every((line) => displayWidth(line) <= 57)).toBe(true);
   });
 

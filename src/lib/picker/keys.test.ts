@@ -337,6 +337,24 @@ describe("StackPalettePrompt keys", () => {
     expect(await done).toEqual(["medusa-next"]);
   });
 
+  test("typing joined keywords finds a profile by description and Space selects it", async () => {
+    const { input, output, press } = wire();
+    const prompt = new StackPalettePrompt({
+      rows: [
+        ...rows,
+        { value: "data", label: "Data", description: "Vercel and PostgreSQL", section: "other" },
+      ],
+      input,
+      output,
+    });
+    const done = prompt.prompt();
+    for (const ch of "vercel+postgres") press(ch);
+    expect(prompt.visibleRows().map((row) => row.value)).toEqual(["data"]);
+    press(undefined, { name: "space" });
+    press(undefined, { name: "return" });
+    expect(await done).toEqual(["data"]);
+  });
+
   test("esc goes back rather than submitting", async () => {
     const { input, output, press } = wire();
     const prompt = new StackPalettePrompt({ rows, selected: ["rust"], input, output });
