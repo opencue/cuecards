@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { fetcher } from "../../lib/fetcher";
-import { crew, cueRepository, featuredCharacter, filterPublicProfiles, type ProfileFilter, type PublicProfile } from "../../lib/public-profiles";
+import { crew, cueRepository, featuredCharacter, filterPublicProfiles, profileTasks, type ProfileFilter, type ProfileTask, type PublicProfile } from "../../lib/public-profiles";
+import { usePublicProfileRoster } from "../../lib/use-public-profile-roster";
+import { maxProfileSearchLength, type HomeSearch } from "../../route-search";
 import { MarketView } from "./Market";
 import { PublicNav } from "./Welcome";
 import layout from "./Welcome.module.css";
@@ -33,6 +33,7 @@ function ProfileCard({ profile, onCopy }: { profile: PublicProfile; onCopy: (com
         <h3>{member?.name ?? profile.id.replaceAll("-", " ")}</h3>
         <code className={styles.profileId}>{profile.id}</code>
         <p>{member?.summary ?? (profile.description || "View the source for this profile’s configuration and instructions.")}</p>
+        <div className={layout.links}><Link to="/profiles/$id" params={{ id: profile.id }} aria-label={`View profile: ${member?.name ?? profile.id}`}>View profile ↗</Link></div>
         <details className={styles.loadout}>
           <summary aria-label={`View loadout for ${member?.name ?? profile.id}`}>View loadout</summary>
           <div>
@@ -50,17 +51,13 @@ function ProfileCard({ profile, onCopy }: { profile: PublicProfile; onCopy: (com
   );
 }
 
-export function PublicMarket() {
-  const roster = useQuery({
-    queryKey: ["public-profile-roster"],
-    queryFn: () => fetcher<PublicProfile[]>("/profile-roster"),
-    staleTime: Infinity,
-    retry: false,
-  });
-  const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<ProfileFilter>("all");
+type RosterSearch = Pick<HomeSearch, "q" | "task" | "type">;
+export function PublicMarket({ search, onSearchChange }: { search: RosterSearch; onSearchChange: (next: RosterSearch, replace?: boolean) => void }) {
+  const roster = usePublicProfileRoster();
+  const { q: query = "", type: filter = "all", task } = search;
   const [limit, setLimit] = useState(pageSize);
   const [notice, setNotice] = useState("");
+  useEffect(() => setLimit(pageSize), [query, filter, task]);
   useEffect(() => {
     if (!notice) return;
     const timer = setTimeout(() => setNotice(""), 4500);
@@ -71,7 +68,7 @@ export function PublicMarket() {
   const remaining = all.filter(profile => !featuredCharacter(profile.id));
   const visible = filterPublicProfiles([
     ...featured, ...remaining.filter(profile => !profile.id.startsWith("aas-")), ...remaining.filter(profile => profile.id.startsWith("aas-")),
-  ], query, filter);
+  ], query, filter, task);
   async function copy(command: string) {
     try {
       await navigator.clipboard.writeText(command);
@@ -91,8 +88,8 @@ export function PublicMarket() {
             <h1 id="market-title">Find your<br /><em>next specialist.</em></h1>
             <p className={layout.intro}>Explore the complete Cue profile roster. Compare specialties, open a loadout, and bring the right skills to your project.</p>
             <div className={layout.actions}>
-              <Link className={layout.primary} to="/" search={{ view: "market" }} hash="roster">Explore profiles <span aria-hidden="true">↓</span></Link>
-              <Link className={layout.secondary} to="/" search={{ view: "market" }} hash="community">Community listings <span aria-hidden="true">↘</span></Link>
+              <Link className={layout.primary} to="/" search={previous => previous} hash="roster">Explore profiles <span aria-hidden="true">↓</span></Link>
+              <Link className={layout.secondary} to="/" search={previous => previous} hash="community">Community listings <span aria-hidden="true">↘</span></Link>
             </div>
           </div>
         </section>
@@ -104,13 +101,23 @@ export function PublicMarket() {
           <div className={`${layout.catalogFilters} ${styles.filters}`}>
             <div>
               <label htmlFor="roster-search">Search Cue profiles</label>
-              <input type="search" id="roster-search" placeholder="e.g. REST API, React, or deployment" value={query} onChange={e => { setQuery(e.target.value); setLimit(pageSize); }} />
+              <input type="search" id="roster-search" maxLength={maxProfileSearchLength} placeholder="e.g. REST API, React, or deployment" value={query} onChange={e => onSearchChange({ q: e.target.value || undefined }, true)} />
+            </div>
+            <div>
+              <label htmlFor="roster-task">Task</label>
+              <select id="roster-task" value={task ?? ""} onChange={e => {
+                const value = e.target.value;
+                onSearchChange({ task: Object.hasOwn(profileTasks, value) ? value as ProfileTask : undefined });
+              }}>
+                <option value="">All tasks</option>
+                {Object.entries(profileTasks).map(([id, entry]) => <option key={id} value={id}>{entry.label}</option>)}
+              </select>
             </div>
             <div>
               <label htmlFor="roster-type">Profile type</label>
               <select id="roster-type" value={filter} onChange={e => {
                 const option = filters.find(entry => entry.value === e.target.value);
-                if (option) { setFilter(option.value); setLimit(pageSize); }
+                if (option) onSearchChange({ type: option.value === "all" ? undefined : option.value });
               }}>{filters.map(option => <option value={option.value} key={option.value}>{option.label}</option>)}</select>
             </div>
           </div>

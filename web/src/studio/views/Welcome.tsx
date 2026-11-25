@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { crew, cueRepository as repository } from "../../lib/public-profiles";
+import { crew, cueRepository as repository, profileTasks, type ProfileTask } from "../../lib/public-profiles";
 import styles from "./Welcome.module.css";
 
 export function PublicNav({ current }: { current: "home" | "skills" | "market" }) {
@@ -49,6 +49,19 @@ export function Welcome({ onBrowse }: { onBrowse?: () => void }) {
           <span className={styles.heroCaption} aria-hidden="true">01 / CUE COAST</span>
         </section>
 
+        {!onBrowse && <section className={styles.section} aria-labelledby="task-heading">
+          <div className={styles.sectionHead}>
+            <div><p className={styles.eyebrow}>Start with a task</p><h2 id="task-heading">What are you working on?</h2></div>
+          </div>
+          <div className={styles.actions}>
+            {(Object.keys(profileTasks) as ProfileTask[]).map(task => (
+              <Link key={task} className={styles.secondary} to="/" search={{ view: "market", task }} hash="roster">
+                {profileTasks[task].label} <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </section>}
+
         <section className={styles.section} id="crew" aria-labelledby="crew-heading">
           <div className={styles.sectionHead}>
             <div><p className={styles.eyebrow}>01 / Agent profiles</p><h2 id="crew-heading">The crew.</h2></div>
@@ -78,6 +91,7 @@ export function Welcome({ onBrowse }: { onBrowse?: () => void }) {
               <code>{command}</code>
               <div className={styles.links}>
                 <button type="button" onClick={() => void copy(command)}>Copy command</button>
+                {!onBrowse && <Link to="/profiles/$id" params={{ id: character.profile }}>Meet {character.name} ↗</Link>}
                 <a href={`${repository}/tree/main/profiles/${character.profile}`}>Profile source ↗</a>
               </div>
             </div>

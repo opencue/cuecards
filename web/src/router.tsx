@@ -1,8 +1,8 @@
-import { createRootRoute, createRoute, createRouter, lazyRouteComponent, Link, Outlet, redirect } from "@tanstack/react-router";
-import { StudioApp, type View } from "./studio/StudioApp";
+import { createRootRoute, createRoute, createRouter, lazyRouteComponent, Link, notFound, Outlet, redirect } from "@tanstack/react-router";
+import { StudioApp } from "./studio/StudioApp";
 import { Welcome } from "./studio/views/Welcome";
 import { WorkspacesPage } from "./workspaces/Workspaces";
-import { parseStudioView, parseWorkspaceSearch } from "./route-search";
+import { parseHomeSearch, parseProfileId, parseStudioView, parseWorkspaceSearch } from "./route-search";
 import { isDemoMode } from "./lib/fetcher";
 
 const root = createRootRoute({
@@ -12,15 +12,18 @@ const root = createRootRoute({
 });
 const home = createRoute({
   getParentRoute: () => root, path: "/", component: StudioRoute,
-  validateSearch: (raw: Record<string, unknown>): { view?: View } => ({ view: parseStudioView(raw.view) }),
+  validateSearch: parseHomeSearch,
 });
 const PublicMarket = lazyRouteComponent(() => import("./studio/views/PublicMarket"), "PublicMarket");
 function StudioRoute() {
-  const { view } = home.useSearch();
+  const search = home.useSearch();
+  const { view } = search;
   const navigate = home.useNavigate();
   if (isDemoMode()) {
     if (!view || view === "welcome") return <Welcome />;
-    if (view === "market") return <PublicMarket />;
+    if (view === "market") return <PublicMarket search={search} onSearchChange={(next, replace) => {
+      void navigate({ search: previous => ({ ...previous, ...next }), hash: true, hashScrollIntoView: false, resetScroll: false, replace });
+    }} />;
   }
   return <StudioApp view={view ?? "inventory"} onViewChange={next => void navigate({ search: { view: next } })} />;
 }
@@ -36,5 +39,10 @@ const skills = createRoute({
   getParentRoute: () => root, path: "/skills",
   component: lazyRouteComponent(() => import("./routes/SkillCatalog"), "SkillCatalog"),
 });
-export const router = createRouter({ routeTree: root.addChildren([home, skills, workspaces, legacyStudio]) });
+const profile = createRoute({
+  getParentRoute: () => root, path: "/profiles/$id",
+  beforeLoad: ({ params }) => { if (!isDemoMode() || !parseProfileId(params.id)) throw notFound(); },
+  component: lazyRouteComponent(() => import("./studio/views/PublicProfileDetail"), "PublicProfileDetail"),
+});
+export const router = createRouter({ routeTree: root.addChildren([home, skills, profile, workspaces, legacyStudio]) });
 declare module "@tanstack/react-router" { interface Register { router: typeof router } }

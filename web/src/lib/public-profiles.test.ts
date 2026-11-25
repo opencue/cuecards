@@ -26,4 +26,13 @@ describe("public profile roster", () => {
     expect(filterPublicProfiles(all, "", "extensions")).toEqual([api]);
     expect(filterPublicProfiles(all, "", "bundled")).toEqual([builder]);
   });
+
+  test("curated tasks narrow the full roster and compose with search and profile type", () => {
+    const all = [builder, api];
+    expect(filterPublicProfiles(all, "", "all")).toEqual(all);
+    expect(filterPublicProfiles(all, "", "all", "build")).toEqual(all);
+    expect(filterPublicProfiles(all, "graphql", "extensions", "build")).toEqual([api]);
+    expect(filterPublicProfiles(all, "graphql", "bundled", "build")).toEqual([]);
+    expect(filterPublicProfiles(all, "", "all", "ship")).toEqual([]);
+  });
 });
