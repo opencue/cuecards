@@ -58,12 +58,13 @@ With authorized database access, operators can run
 `DATABASE_URL` pointing to the collector database. The command returns cohorts
 by benchmark, model and tool versions, with at least five distinct accounts
 per cohort and no account identifiers.
-First check both arms' completion and timeout counts. Compare correctly
-answered questions and the pairs that scored lower with CodeGraph **only among
-pairs where both arms finished**. Review the average paired difference per
-account (equal weight for each comparable account) before looking at token and
-elapsed-time deltas. Missing token usage is not zero. Token averages require five
-token-contributing accounts. CodeGraph use just means a tool call completed.
+First check both arms' completion and timeout counts. Score and time comparisons
+are withheld until five distinct accounts have a pair where both arms finished.
+Review the average paired score difference per account (equal weight for each
+comparable account) and the pairs that scored lower with CodeGraph before
+looking at tokens or elapsed time. Missing token usage is not zero. Token
+averages require five token-contributing accounts. CodeGraph use just means a
+tool call completed.
 
 Malformed answers after a completed turn count as wrong. Failures after setup
 are reported as `timeout` or `failed`, not as wrong answers; setup failures

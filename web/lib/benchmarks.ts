@@ -21,18 +21,18 @@ type CohortRow = Pick<CommunityReport, "benchmark" | "model" | "codexVersion" | 
   comparablePairs: number;
   offOutcomes: ArmOutcomes;
   onOutcomes: ArmOutcomes;
-  offScore: number;
-  onScore: number;
-  scoreMax: number;
-  wins: number;
-  losses: number;
-  ties: number;
+  offScore: number | null;
+  onScore: number | null;
+  scoreMax: number | null;
+  wins: number | null;
+  losses: number | null;
+  ties: number | null;
   usedPairs: number;
   tokenPairs: number;
   comparableAccounts: number;
-  improvedAccounts: number;
-  regressedAccounts: number;
-  tiedAccounts: number;
+  improvedAccounts: number | null;
+  regressedAccounts: number | null;
+  tiedAccounts: number | null;
   meanAccountScoreDeltaPp: number | null;
   meanDurationDeltaMs: number | null;
   meanInputTokenDelta: number | null;
@@ -46,8 +46,8 @@ export type BenchmarkCohort = CohortRow & {
 };
 
 function accountDirection({ improvedAccounts, regressedAccounts }: CohortRow): Pick<BenchmarkCohort, "improvedAccountShare95" | "accountDirection"> {
-  const changed = improvedAccounts + regressedAccounts;
-  if (changed === 0) return { improvedAccountShare95: null, accountDirection: "inconclusive" };
+  const changed = (improvedAccounts ?? 0) + (regressedAccounts ?? 0);
+  if (changed === 0 || improvedAccounts === null) return { improvedAccountShare95: null, accountDirection: "inconclusive" };
   // Wilson interval for the share of non-tied accounts with a positive delta.
   const z = 1.959963984540054;
   const p = improvedAccounts / changed;
@@ -141,18 +141,25 @@ export class Benchmarks {
        )
        SELECT benchmark, model, codex_version AS "codexVersion", codegraph_version AS "codegraphVersion",
               accounts, pairs, comparable_pairs AS "comparablePairs", off_outcomes AS "offOutcomes", on_outcomes AS "onOutcomes",
-              off_score AS "offScore", on_score AS "onScore", score_max AS "scoreMax", wins, losses, ties,
-              used_pairs AS "usedPairs", token_pairs AS "tokenPairs", duration_delta AS "meanDurationDeltaMs",
+              CASE WHEN show_comparisons THEN off_score END AS "offScore",
+              CASE WHEN show_comparisons THEN on_score END AS "onScore",
+              CASE WHEN show_comparisons THEN score_max END AS "scoreMax",
+              CASE WHEN show_comparisons THEN wins END AS wins,
+              CASE WHEN show_comparisons THEN losses END AS losses,
+              CASE WHEN show_comparisons THEN ties END AS ties,
+              used_pairs AS "usedPairs", token_pairs AS "tokenPairs",
+              CASE WHEN show_comparisons THEN duration_delta END AS "meanDurationDeltaMs",
               CASE WHEN token_accounts >= $3 THEN input_delta END AS "meanInputTokenDelta",
               CASE WHEN token_accounts >= $3 THEN cached_delta END AS "meanCachedInputTokenDelta",
               CASE WHEN token_accounts >= $3 THEN output_delta END AS "meanOutputTokenDelta",
               coalesce(comparable_accounts, 0) AS "comparableAccounts",
-              coalesce(improved_accounts, 0) AS "improvedAccounts",
-              coalesce(regressed_accounts, 0) AS "regressedAccounts",
-              coalesce(tied_accounts, 0) AS "tiedAccounts",
-              mean_account_delta_pp AS "meanAccountScoreDeltaPp"
+              CASE WHEN show_comparisons THEN improved_accounts END AS "improvedAccounts",
+              CASE WHEN show_comparisons THEN regressed_accounts END AS "regressedAccounts",
+              CASE WHEN show_comparisons THEN tied_accounts END AS "tiedAccounts",
+              CASE WHEN show_comparisons THEN mean_account_delta_pp END AS "meanAccountScoreDeltaPp"
          FROM cohorts
          LEFT JOIN account_comparisons USING (benchmark, model, codex_version, codegraph_version)
+         CROSS JOIN LATERAL (SELECT comparable_accounts >= $3 AS show_comparisons) AS privacy
         ORDER BY accounts DESC, benchmark, model, codex_version, codegraph_version
         LIMIT $4`,
       [communityScoreMax(LEGACY_COMMUNITY_BENCHMARK), communityScoreMax(COMMUNITY_BENCHMARK), MIN_ACCOUNTS, MAX_COHORTS],

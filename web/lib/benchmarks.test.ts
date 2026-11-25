@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
 
-import { type CommunityReport, COMMUNITY_REPORT_BYTES } from "../../src/lib/community-eval/result.js";
+import { type CommunityReport, type CommunityReportV2, COMMUNITY_REPORT_BYTES } from "../../src/lib/community-eval/result.js";
 import { type BenchmarkCohort, Benchmarks, handleBenchmarks } from "./benchmarks.js";
 
 const url = "https://example.test/api/v1/benchmarks";
@@ -175,4 +176,49 @@ describe("community benchmark storage boundary", () => {
     expect(results[2].improvedAccountShare95?.lower).toBeGreaterThan(0.5);
     expect(results[3].improvedAccountShare95?.upper).toBeLessThan(0.5);
   });
+});
+
+// Optional integration check: start a disposable cluster with initdb -U cue_benchmark_test.
+const testSocket = process.env.CUE_BENCHMARK_TEST_PG_SOCKET;
+test.skipIf(!testSocket)("PostgreSQL withholds comparisons until five accounts have a completed pair", async () => {
+  if (!testSocket?.startsWith("/")) throw new Error("Use a disposable PostgreSQL Unix socket directory");
+  const { Client } = await import("pg");
+  const client = new Client({ host: testSocket, user: "cue_benchmark_test", database: "postgres" });
+  await client.connect();
+  try {
+    await client.query('CREATE TEMP TABLE "user" (id text PRIMARY KEY)');
+    const migration = readFileSync(new URL("../migrations/003-community-benchmarks.sql", import.meta.url), "utf-8");
+    await client.query(migration.replace("CREATE TABLE", "CREATE TEMP TABLE"));
+    const store = new Benchmarks(client);
+    const off = { ...arm, status: "completed" as const };
+    const on = { ...off, score: 4, durationMs: 300 };
+    const timeout = { ...off, status: "timeout" as const, score: 0, inputTokens: null, cachedInputTokens: null, outputTokens: null };
+    const add = async (i: number, completedPair: boolean) => {
+      const id = `synthetic-${i}`;
+      await client.query('INSERT INTO "user" (id) VALUES ($1)', [id]);
+      const candidate: CommunityReportV2 = {
+        ...report, version: 2, benchmark: "codegraph-v2",
+        pairs: [{ off, on: completedPair ? on : timeout }, { off, on: timeout }],
+      };
+      expect(await store.submit(id, candidate)).toBe(true);
+    };
+    for (let i = 0; i < 5; i++) await add(i, i < 4);
+    expect(await store.list()).toMatchObject([{
+      accounts: 5, comparableAccounts: 4, comparablePairs: 4,
+      onOutcomes: { completed: 4, timeout: 6, failed: 0 },
+      offScore: null, onScore: null, scoreMax: null, wins: null, losses: null, ties: null,
+      meanDurationDeltaMs: null, meanInputTokenDelta: null, meanAccountScoreDeltaPp: null,
+      improvedAccounts: null, regressedAccounts: null, tiedAccounts: null,
+      improvedAccountShare95: null, accountDirection: "inconclusive",
+    }]);
+    await add(5, true);
+    expect(await store.list()).toMatchObject([{
+      accounts: 6, comparableAccounts: 5, comparablePairs: 5,
+      offScore: 5, onScore: 20, scoreMax: 30, wins: 5, losses: 0, ties: 0,
+      meanDurationDeltaMs: -100, meanInputTokenDelta: 0, meanAccountScoreDeltaPp: 50,
+      improvedAccounts: 5, regressedAccounts: 0, tiedAccounts: 0, accountDirection: "favors-on",
+    }]);
+  } finally {
+    await client.end();
+  }
 });
