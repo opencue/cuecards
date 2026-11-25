@@ -90,6 +90,34 @@ describe("materializeRuntime", () => {
     }
   });
 
+  test("re-materializes when a local skill condition starts or stops matching", async () => {
+    const marker = join(root, "activate");
+    const input = {
+      profile: {
+        ...sampleProfile,
+        skills: { local: [{ id: "dev/conditional", when: { has_file: marker } }], npx: [] },
+      },
+      agent: "claude-code" as const,
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async (id: string) => join(root, "skills", id),
+      mcpRegistry: {},
+      userClaudeMd: "",
+    };
+    const initial = await materializeRuntime(input);
+    const manifest = join(initial.runtimeDir, ".cue-skills");
+    expect(await readFile(manifest, "utf8")).toBe("");
+    expect((await materializeRuntime(input)).rebuilt).toBe(false);
+
+    await writeFile(marker, "");
+    expect((await materializeRuntime(input)).rebuilt).toBe(true);
+    expect(await readFile(manifest, "utf8")).toBe("dev/conditional\n");
+    expect((await materializeRuntime(input)).rebuilt).toBe(false);
+
+    await rm(marker);
+    expect((await materializeRuntime(input)).rebuilt).toBe(true);
+    expect(await readFile(manifest, "utf8")).toBe("");
+  });
+
   test("re-materializes when an included persona changes", async () => {
     const personaPath = join(root, "shared-persona.md");
     await writeFile(personaPath, "first persona policy\n");

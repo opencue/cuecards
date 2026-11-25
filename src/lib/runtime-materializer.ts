@@ -281,12 +281,14 @@ function computeHash(
   agent: AgentKind,
   extra = "",
   skillSourceFingerprint?: string,
+  conditionalSkills?: boolean[],
 ): string {
   const canonical = sortedJson({
     v: MATERIALIZER_VERSION,
     agent,
     profile,
     extra,
+    ...(conditionalSkills === undefined ? {} : { conditionalSkills }),
     ...(skillSourceFingerprint === undefined ? {} : { skillSourceFingerprint }),
   });
   return createHash("sha256").update(canonical).digest("hex");
@@ -1033,7 +1035,7 @@ async function atomicSwapRuntime(
 async function resolveAndLinkSkills(
   tmpDir: string,
   profile: ResolvedProfile,
-  agent: AgentKind,
+  activeSkills: ResolvedProfile["skills"]["local"],
   input: Pick<MaterializeInput, "skillSourceLookup">,
 ): Promise<{ slugToSrc: Map<string, string>; deferredSkills: DeferredSkillEntry[] }> {
   // 1. Skills — missing refs are warned + skipped, not fatal. A profile that
@@ -1043,7 +1045,7 @@ async function resolveAndLinkSkills(
   const skillsDir = join(tmpDir, "skills");
   await mkdir(skillsDir, { recursive: true });
   const skippedSkills: string[] = [];
-  let attemptedSkills = 0;
+  const attemptedSkills = activeSkills.length;
   // Skills are linked FLAT — skills/<slug>, not skills/<category>/<slug>.
   // Claude Code (and Codex) only register a personal skill one level deep, by
   // its directory name (skills/<name>/SKILL.md → /<name>); a nested category
@@ -1063,10 +1065,7 @@ async function resolveAndLinkSkills(
   const slugToSrc = new Map<string, string>();
   const slugToId = new Map<string, string>();
   const overridden: string[] = [];
-  for (const skill of profile.skills.local) {
-    if (!appliesToAgent(skill, agent)) continue;
-    if (skill.when && !evaluateCondition(skill.when, process.cwd())) continue;
-    attemptedSkills++;
+  for (const skill of activeSkills) {
     try {
       const src = await input.skillSourceLookup(skill.id);
       loadedSkillIds.push(skill.id);
@@ -1218,11 +1217,23 @@ async function materializeRuntimeUnlocked(
   // source text must participate in the content hash. Otherwise editing a
   // shared policy leaves already-materialized runtimes stale indefinitely.
   const personaIncludesText = await readPersonaIncludes(profile);
+  // A condition can change without changing profile YAML. Hash the same
+  // decisions we use to link skills, without storing files or env values.
+  const cwd = process.cwd();
+  const conditionalSkills: boolean[] = [];
+  const activeSkills = profile.skills.local.filter((skill) => {
+    if (!appliesToAgent(skill, agent)) return false;
+    if (!skill.when) return true;
+    const enabled = evaluateCondition(skill.when, cwd);
+    conditionalSkills.push(enabled);
+    return enabled;
+  });
   const hash = computeHash(
     profile,
     agent,
     `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
     effectiveInput.skillSourceFingerprint,
+    conditionalSkills.length ? conditionalSkills : undefined,
   );
 
   // Short-circuit if hash matches.
@@ -1273,7 +1284,7 @@ async function materializeRuntimeUnlocked(
   const tmpDir = await mkdtemp(`${runtimeDir}.tmp.`);
 
   // 1. Skills — resolve, link flat, write .cue-skills manifest, enforce guard.
-  const { slugToSrc, deferredSkills } = await resolveAndLinkSkills(tmpDir, profile, agent, input);
+  const { slugToSrc, deferredSkills } = await resolveAndLinkSkills(tmpDir, profile, activeSkills, input);
 
   // Defensive defaults — older fixtures may not declare these arrays.
   const profileRules = profile.rules ?? [];
