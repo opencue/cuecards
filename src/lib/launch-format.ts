@@ -10,7 +10,7 @@ import { basename, resolve, join, sep } from "node:path";
 import { stripVTControlCharacters } from "node:util";
 import { tokenLevelEmoji, type TokenBreakdown } from "./token-budget";
 import type { PickerOption } from "./picker";
-import { clipVisible, fitLine, padVisible, visibleWidth } from "./picker/ui";
+import { fitLine } from "./picker/ui";
 import { countProfileSkills } from "./profile-capabilities";
 import type { DetectionResultV2 } from "./auto-detect";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -155,17 +155,20 @@ function makeColorFns(enabled: boolean) {
 // Token-overhead display
 // ---------------------------------------------------------------------------
 
-/** Format the token-overhead block. Returns `[]` under the 2K always-on floor. */
-export function formatTokenWarning(b: TokenBreakdown): string[] {
-  if (b.alwaysOn < 2000) return [];
+const VERY_HEAVY_TOKEN_FLOOR = 50_000;
+
+/** Compact launches only show the very-heavy warning; logs keep the breakdown. */
+export function formatTokenWarning(b: TokenBreakdown, detailed = true): string[] {
+  if (b.alwaysOn < (detailed ? 2000 : VERY_HEAVY_TOKEN_FLOOR)) return [];
   const c = colorFns();
   const lines: string[] = [];
   const level = tokenLevelEmoji(b.alwaysOn);
   const alwaysK = `${(b.alwaysOn / 1000).toFixed(1)}K`;
+  if (!detailed) return [`${level} ${c.yellow(`~${alwaysK}`)} always-on · cue cost`];
   lines.push(
     `${level} Skill overhead: ${c.yellow(`~${alwaysK}`)} always-on (${b.totalSkills} skills)`,
   );
-  if (b.alwaysOn >= 50_000) {
+  if (b.alwaysOn >= VERY_HEAVY_TOKEN_FLOOR) {
     lines.push(
       `   ${c.yellow("Very heavy profile:")} prefer \`core\` or a narrow stack; use \`--subset "<task>"\` before launching broad composites.`,
     );
@@ -223,111 +226,53 @@ export function formatTokenWarning(b: TokenBreakdown): string[] {
 }
 
 /**
- * Startup handoff: a profile card in a roomy terminal, a compact summary
- * elsewhere. No redraws or delays; the launch loader has already released the terminal.
+ * Startup handoff: profile-first in a terminal, stable format in redirected logs.
  */
 const BANNER_TOKEN_FLOOR = 2000;
 const BANNER_HEAVY = 10_000;
 
 export interface StartupBannerInfo {
-  /** Pre-collapsed title from formatTmuxTitle, e.g. "claude · 🏭 gstack +4". */
-  title: string;
+  /** Display name of the active profile or stack, e.g. "🏭 gstack +4". */
+  profile: string;
+  agent: "claude" | "codex";
   /** Total skills selected for materialization (local + resolved npx). */
   skills: number;
-  /** Resolved npx skills, shown separately when a local loadout is active. */
-  npxSkills?: number;
-  /** MCP server count. */
   mcps: number;
-  plugins?: number;
-  commands?: number;
-  /** Always-on token estimate, or undefined when not computed (light profile). */
   alwaysOn?: number;
-  /** Project-local skill split when the project loadout is active. */
   loadout?: { full: number; deferred: number };
   columns?: number;
   terminal?: boolean;
 }
 
 export function formatStartupBanner(info: StartupBannerInfo): string {
-  const c = makeColorFns(
-    info.terminal === true && process.stderr.isTTY === true && !process.env.NO_COLOR,
-  );
   const columns = info.columns ?? 80;
-  const brand = c.cyan("◆ cue");
-  const identity = c.bold(stripVTControlCharacters(info.title).replace(/[\p{Cc}\u2028\u2029]+/gu, " "));
-  const title = fitLine(columns, `${brand}  ${identity}`);
-  const skills = info.loadout
-    ? [`${info.loadout.full} local`, `${info.loadout.deferred} deferred`]
-    : [`${info.skills} skill${info.skills === 1 ? "" : "s"}`];
-  if (info.terminal && info.loadout && info.npxSkills) skills.push(`${info.npxSkills} npx`);
+  const profile = stripVTControlCharacters(info.profile).replace(/[\p{Cc}\u2028\u2029]+/gu, " ").trim();
+  const skills = `${info.skills} skill${info.skills === 1 ? "" : "s"}`;
+  const deferred = info.loadout ? [`${info.loadout.deferred} deferred`] : [];
   const mcps = info.mcps > 0 ? [`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`] : [];
-  const separator = c.dim(" · ");
-  const context: string[] = [];
-  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_TOKEN_FLOOR) {
-    context.push(
-      `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`,
-    );
-    if (info.alwaysOn >= BANNER_HEAVY) context.push(c.dim("→ cue cost"));
-  }
-  if (!info.terminal) {
-    const capabilities = [...skills, ...mcps];
-    const summary = `  ${capabilities.join(separator)}`;
-    const detail = [...capabilities, ...context.slice(0, 1)];
-    return `${title}\n${fitLine(
+  if (info.terminal) {
+    const c = makeColorFns(process.stderr.isTTY === true && !process.env.NO_COLOR);
+    const agent = info.agent === "claude" ? "Claude" : "Codex";
+    const heading = `${c.cyan("◆")}  ${c.bold(profile || agent)}`;
+    const title = fitLine(columns, profile ? `${heading}${c.dim(` · ${agent}`)}` : heading, heading);
+    const counts = fitLine(
       columns,
-      `  ${[...capabilities, ...context].join(separator)}`,
-      `  ${detail.join(separator)}`,
-      summary,
-    )}`;
-  }
-
-  const tools = [...mcps];
-  if (info.plugins) tools.push(`${info.plugins} plugin${info.plugins === 1 ? "" : "s"}`);
-  if (info.commands) tools.push(`${info.commands} command${info.commands === 1 ? "" : "s"}`);
-  const shortcuts = info.loadout ? ["cue loadout", "--cue-full"] : [];
-  if (columns < 48) {
-    return [
-      title,
-      ...[[...skills, ...tools], context, shortcuts].flatMap((items) =>
-        wrapBannerItems(items, Math.max(0, columns - 2), separator)
-          .map((line) => clipVisible(`  ${line}`, columns)),
-      ),
-    ].join("\n");
-  }
-
-  const width = Math.min(62, columns);
-  const row = (value: string) =>
-    `${c.dim("│")} ${padVisible(clipVisible(value, width - 4), width - 4)} ${c.dim("│")}`;
-  const section = (label: string, items: string[]) =>
-    wrapBannerItems(items, width - 13, separator).map((line, i) =>
-      row(`${c.cyan((i === 0 ? label : "").padEnd(9))}${line}`),
+      `   ${[skills, ...deferred, ...mcps].join(c.dim(" · "))}`,
+      `   ${[skills, ...deferred].join(c.dim(" · "))}`,
+      `   ${[skills, ...mcps].join(c.dim(" · "))}`,
+      `   ${skills}`,
     );
-  return [
-    `${c.dim("╭─")} ${brand} ${c.dim(`${"─".repeat(width - 10)}╮`)}`,
-    row(identity),
-    ...section("Skills", skills),
-    ...section("Tools", tools),
-    ...section("Context", context),
-    ...section("Loadout", shortcuts),
-    c.dim(`╰${"─".repeat(width - 2)}╯`),
-  ].join("\n");
-}
-
-/** Wrap at separators, preserving complete count/label pairs on normal terminals. */
-function wrapBannerItems(items: string[], width: number, separator: string): string[] {
-  const lines: string[] = [];
-  let line = "";
-  for (const item of items) {
-    const joined = line ? line + separator + item : item;
-    if (line && visibleWidth(joined) > width) {
-      lines.push(line);
-      line = item;
-    } else {
-      line = joined;
-    }
+    return `${title}\n${counts}`;
   }
-  if (line) lines.push(line);
-  return lines;
+
+  const title = fitLine(columns, `◆ cue  ${[info.agent, profile].filter(Boolean).join(" · ")}`);
+  const local = info.loadout ? `${info.loadout.full} local` : skills;
+  const summary = `  ${[local, ...deferred, ...mcps].join(" · ")}`;
+  if (info.alwaysOn === undefined || info.alwaysOn < BANNER_TOKEN_FLOOR)
+    return `${title}\n${fitLine(columns, summary)}`;
+  const detail = `${summary} · ${tokenLevelEmoji(info.alwaysOn)} ~${Math.round(info.alwaysOn / 1000)}K always-on`;
+  const full = info.alwaysOn >= BANNER_HEAVY ? `${detail} · → cue cost` : detail;
+  return `${title}\n${fitLine(columns, full, detail, summary)}`;
 }
 
 // ---------------------------------------------------------------------------
