@@ -31,13 +31,18 @@ jobs:
             exit 1
           fi
           cat "$RUNNER_TEMP/fork-skills.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify the candidate catalog and profile
+        run: |
+          bun install --frozen-lockfile
+          bun test scripts/refresh-fork-skills.test.ts src/commands/fork-skills.test.ts
+          git diff --check
       - name: Propose changed pins for review
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.FORK_SKILLS_PR_TOKEN }}
           BASE_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
-          files=(web/src/skill-catalog.json profiles/nagyvikt-skills/profile.yaml)
+          files=(web/src/skill-catalog.json web/src/fork-skill-listings.json profiles/nagyvikt-skills/profile.yaml)
           if git diff --quiet -- "${files[@]}"; then exit 0; fi
           if [ -z "$GH_TOKEN" ]; then
             {
