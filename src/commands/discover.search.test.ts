@@ -22,7 +22,7 @@ describe("cue discover search --skills-sh", () => {
       expect(await run(["search", "--skills-sh", "react & tests", "--json", "--limit", "1"])).toBe(0);
       const url = new URL(String(fetcher.mock.calls[0]?.[0]));
       expect(url.origin + url.pathname).toBe("https://skills.sh/api/search");
-      expect(Object.fromEntries(url.searchParams)).toEqual({ q: "react & tests" });
+      expect(Object.fromEntries(url.searchParams)).toEqual({ q: "react & tests", limit: "1" });
       expect(JSON.parse(String(out.mock.calls[0]?.[0]))).toEqual([{
         id: "vercel-labs/agent-skills/react", source: "vercel-labs/agent-skills",
         name: "React", installs: 3, url: "https://skills.sh/vercel-labs/agent-skills/react",
@@ -42,9 +42,27 @@ describe("cue discover search --skills-sh", () => {
       expect(await run(["search", "--skills-sh", "react", "--profile", "core"])).toBe(1);
       expect(fetcher).not.toHaveBeenCalled();
       expect(await run(["search", "--skills-sh", "react"])).toBe(1);
-      expect(String(err.mock.calls[1]?.[0])).toContain("skills.sh");
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(String(err.mock.calls[1]?.[0])).toContain("Unexpected skills.sh response");
     } finally {
       err.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("keeps valid results when some entries do not match the expected schema", async () => {
+    const fetcher = spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({
+      skills: [
+        { id: "example/repo/react", source: "example/repo", name: "\x1b[31mReact", installs: 2 },
+        { id: "example/repo/vue", source: "example/repo", name: "Vue", installs: 1 },
+      ],
+    }));
+    const out = spyOn(process.stdout, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "frontend", "--json"])).toBe(0);
+      expect(JSON.parse(String(out.mock.calls[0]?.[0])).map((entry: { name: string }) => entry.name)).toEqual(["Vue"]);
+    } finally {
+      out.mockRestore();
       fetcher.mockRestore();
     }
   });

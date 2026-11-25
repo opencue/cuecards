@@ -17,8 +17,9 @@
 
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { join, relative } from "node:path";
+import { isAbsolute, join, relative } from "node:path";
 
+import { findRealAgentBin } from "../lib/claude-binary";
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { getAdapter, AGENT_IDS, type AgentAdapter } from "../lib/agent-adapters";
@@ -67,7 +68,18 @@ function runRulesync(args: string[]): number {
     return 1;
   }
 
-  const result = spawnSync("rulesync", ["generate", check ? "--check" : "--dry-run"], {
+  // Do not use a shell or search the target project for an npm .cmd launcher.
+  const bin = process.platform === "win32"
+    ? findRealAgentBin("rulesync.exe", {
+      pathValue: (process.env.PATH ?? "").split(";").filter((entry) => isAbsolute(entry)).join(";"),
+      pathExt: "",
+    })
+    : "rulesync";
+  if (!bin) {
+    process.stderr.write("Add the native Rulesync release executable to PATH as rulesync.exe.\n");
+    return 1;
+  }
+  const result = spawnSync(bin, ["generate", check ? "--check" : "--dry-run"], {
     cwd: dir,
     env: process.env,
     stdio: "inherit",

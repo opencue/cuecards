@@ -18,7 +18,9 @@ but is not a documented stable API.
 ## Preview or check a Rulesync project
 
 With a trusted [Rulesync](https://github.com/dyoshikawa/rulesync) executable on
-`PATH` and a `rulesync.jsonc` in the project:
+`PATH` and a `rulesync.jsonc` in the project (on Windows, use the native
+[release executable](https://github.com/dyoshikawa/rulesync/releases) as
+`rulesync.exe`, not an npm `.cmd` shim):
 
 ```sh
 cue ruler --rulesync --dir .

@@ -1563,10 +1563,10 @@ function cmdList(opts: { json: boolean; limit: number; filter?: GemFilter; rende
 
 function parseSkillsShResult(body: unknown, limit: number) {
   if (!body || typeof body !== "object" || !("skills" in body) || !Array.isArray(body.skills)) {
-    throw new Error("Unexpected skills.sh response");
+    return null;
   }
-  return body.skills.slice(0, limit).map((entry: unknown) => {
-    if (!entry || typeof entry !== "object") throw new Error("Invalid skills.sh result");
+  const results = body.skills.slice(0, limit).flatMap((entry: unknown) => {
+    if (!entry || typeof entry !== "object") return [];
     const { id, source, name, installs } = entry as Record<string, unknown>;
     if (
       typeof id !== "string" || !/^[\w-]+\/[a-z0-9_][\w.-]*\/[a-z0-9_][\w.-]*$/i.test(id)
@@ -1574,10 +1574,11 @@ function parseSkillsShResult(body: unknown, limit: number) {
       || typeof name !== "string" || !name.trim() || name.length > 200 || /[\p{Cc}\p{Cf}\p{Zl}\p{Zp}]/u.test(name)
       || typeof installs !== "number" || !Number.isSafeInteger(installs) || installs < 0
     ) {
-      throw new Error("Invalid skills.sh result");
+      return [];
     }
-    return { id, source, name, installs, url: `https://skills.sh/${id}` };
+    return [{ id, source, name, installs, url: `https://skills.sh/${id}` }];
   });
+  return body.skills.length > 0 && results.length === 0 ? null : results;
 }
 
 async function cmdSearchSkillsSh(args: string[]): Promise<number> {
@@ -1608,22 +1609,29 @@ async function cmdSearchSkillsSh(args: string[]): Promise<number> {
     return 1;
   }
 
+  let payload: unknown;
   try {
     const url = new URL("https://skills.sh/api/search");
     url.searchParams.set("q", query);
+    url.searchParams.set("limit", String(limit));
     const response = await fetch(url, { signal: AbortSignal.timeout(5_000), redirect: "error" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const skills = parseSkillsShResult(await response.json(), limit);
-    if (json) process.stdout.write(`${JSON.stringify(skills, null, 2)}\n`);
-    else if (!skills.length) process.stdout.write("No skills.sh results.\n");
-    else for (const skill of skills) {
-      process.stdout.write(`${skill.name}  ${skill.url}  (${skill.installs} installs)\n`);
-    }
-    return 0;
+    payload = await response.json().catch(() => undefined);
   } catch {
     process.stderr.write("skills.sh search unavailable. Retry or use `cue discover search <query>` for GitHub.\n");
     return 1;
   }
+  const skills = parseSkillsShResult(payload, limit);
+  if (!skills) {
+    process.stderr.write("Unexpected skills.sh response. Use `cue discover search <query>` for GitHub.\n");
+    return 1;
+  }
+  if (json) process.stdout.write(`${JSON.stringify(skills, null, 2)}\n`);
+  else if (!skills.length) process.stdout.write("No skills.sh results.\n");
+  else for (const skill of skills) {
+    process.stdout.write(`${skill.name}  ${skill.url}  (${skill.installs} installs)\n`);
+  }
+  return 0;
 }
 
 /** Pull `--flag <value>` out of args, returning value (or undefined). */
