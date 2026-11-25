@@ -24,8 +24,9 @@ npm install -g cue-ai
 cue setup
 ```
 
-Setup suggests a profile and configures the launch shims. Open a fresh shell if
-the setup output asks you to. Then run `claude` or `codex` as usual.
+Setup suggests a profile, installs the launch shims, and can update your PATH.
+It asks before installing optional tooling such as CodeGraph; declining is safe.
+Open a fresh shell if prompted, then run `claude` or `codex` as usual.
 
 [Agent-guided setup](setup/lean-cue.md) · [macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
 
@@ -48,9 +49,10 @@ the original Claude Code or Codex binary. No daemon. Other clients can receive
 native config files through `cue materialize`; they do not use the launch shim.
 [See the launch flow](docs/launch.md).
 
-The interactive picker shows local matches first. Claude Code or Codex can
-then suggest profiles and catalog skills from project signals, without
-installing anything. Set `CUE_PROFILE_ADVISOR=off` to keep suggestions local.
+With the [picker advisor](https://github.com/opencue/cuecards/pull/249), Claude
+Code or Codex can suggest profiles and skills after the local matches. It uses
+dependency, language, and project-marker signals, not source files or dotenv
+values, and installs nothing. Set `CUE_PROFILE_ADVISOR=off` for local-only matches.
 
 ## The catalog
 
@@ -59,6 +61,9 @@ Start with `core` for a minimal baseline, `backend` for API work, or
 to browse available profiles. [See the full catalog](docs/data/profiles.md).
 
 ## Skills and rules
+
+The `--skills-sh` and `--rulesync` options require a build that includes
+[#248](https://github.com/opencue/cuecards/pull/248); they're not in `cue-ai` 0.10.0.
 
 | I want to… | Run |
 | --- | --- |
