@@ -1028,13 +1028,27 @@ describe("tokenLevelEmoji", () => {
 
 describe("formatTokenWarning", () => {
   test("quiet launch only warns at the very-heavy floor", () => {
-    const breakdown = computeTokenBreakdown(makeProfile());
-    const heavy = { ...breakdown, alwaysOn: 49_999 };
+    const heavy = {
+      alwaysOn: 49_999,
+      maxIfAllActivate: 80_000,
+      totalSkills: 3,
+      byProfile: [
+        { name: "primary", icon: "⭐", tokens: 30_000, skillCount: 1 },
+        { name: "smaller", tokens: 9_999, skillCount: 1 },
+        { name: "companion", tokens: 10_000, skillCount: 1 },
+      ],
+      heaviestBodies: [{ id: "tools/example", tokens: 20_000 }],
+    };
     expect(formatTokenWarning(heavy)[0]).toContain("Skill overhead");
     expect(formatTokenWarning(heavy, false)).toEqual([]);
     expect(formatTokenWarning({ ...heavy, alwaysOn: 50_000 }, false)).toEqual([
       "🔴 ~50.0K always-on · cue cost",
     ]);
+    const detailed = formatTokenWarning({ ...heavy, alwaysOn: 50_000 }).join("\n");
+    expect(detailed).toContain("Very heavy profile:");
+    expect(detailed).toContain("⭐ primary 30.0K ← heaviest");
+    expect(detailed).toContain("Heaviest bodies:  example (20.0K)");
+    expect(detailed).toContain('Drop "companion" to save ~10.0K always-on');
   });
 });
 
