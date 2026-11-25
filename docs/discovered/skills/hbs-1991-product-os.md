@@ -2,21 +2,21 @@
 title: "hbs-1991/product-os — Claude Code skill discovered by cue"
 description: "Owner-gated path from idea to merged code for Claude Code: discovery chain, roadmap, feature pipeline, project wiki."
 layout: page
-updated: 2026-11-17
+updated: 2026-11-25
 tags: [claude-code, skill, core]
 ---
 
 # 🔹 [hbs-1991/product-os](https://github.com/hbs-1991/product-os)
 
-**★ 1** · potential (score 4.3) · Shell
+**★ 2** · potential (score 4.5) · Shell
 
 > Owner-gated path from idea to merged code for Claude Code: discovery chain, roadmap, feature pipeline, project wiki.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-17
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

@@ -1,14 +1,14 @@
 ---
 title: "Claude Code Skills for backend"
-description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-25
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
@@ -18,12 +18,25 @@ tags: [claude-code, backend, skills, mcp, ai-agents]
 <a id="mksglu-context-mode"></a>
 ## 💎 [mksglu/context-mode](https://github.com/mksglu/context-mode)
 
-**★ 34445** · exceptional (score 19.5) · JavaScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
+**★ 34468** · exceptional (score 19.5) · JavaScript · tags: antigravity, claude, claude-code, claude-code-hooks, claude-code-plugins
 
 Free, local plugin that keeps tool output out of your coding agent's context window. Sandbox and SQLite FTS5 search, 99% fewer bytes in context. Works with Claude Code, Codex, Pi, OMP, OpenCode, Gemini CLI, Copilot CLI and 4 more agents. Zero telemetry.
 
 ```bash
 cue skills add mksglu/context-mode --profile backend
+```
+
+---
+
+<a id="mobilereality-mdma"></a>
+## 💎 [MobileReality/mdma](https://github.com/MobileReality/mdma)
+
+**★ 77** · exceptional (score 12.8) · TypeScript · tags: agent-skills, ai-agents, claude-skill, generative-ui, interactive-markdown
+
+Interactive documents from Markdown. Extends MD with forms, approvals, webhooks, and more — built for next gen apps
+
+```bash
+cue skills add MobileReality/mdma --profile backend
 ```
 
 ---

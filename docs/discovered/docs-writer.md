@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "2 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-25
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ejklock-living-docs-skill"></a>
-## 💎 [ejklock/living-docs-skill](https://github.com/ejklock/living-docs-skill)
+<a id="lightspeedwp-ls-skill-scaffold"></a>
+## 💎 [lightspeedwp/ls-skill-scaffold](https://github.com/lightspeedwp/ls-skill-scaffold)
 
-**★ 14** · exceptional (score 11.1) · Rust · tags: adr, agent-skills, ai-agents, architecture-decision-records, bdr
+**★ 0** · exceptional (score 10) · TypeScript · tags: claude-skill, lefthook, mcp, mustache, scaffolding
 
-Living Docs —  a AI agent skill that runs your project's documentation as a living system: constitution, ADRs, BDRs, PRDs, issues, research notes & Mermaid architecture diagrams under five no-drift governance invariants. OKF-formatted, stack-agnostic. Works with Claude Code, Cursor, Copilot, OpenCode & Pi.
+Claude skill and MCP server that generates new skill repositories from Mustache templates (CLI, validation, documentation and agent types). It previews every file before writing and applies LightSpeed's standard tooling: ESLint, Prettier, Markdownlint, Jest, Lefthook hooks and CodeRabbit.
+
+✅ SKILL.md
 
 ```bash
-cue skills add ejklock/living-docs-skill --profile docs-writer
+cue skills add lightspeedwp/ls-skill-scaffold --profile docs-writer
+```
+
+---
+
+<a id="qttc-revizor"></a>
+## 💎 [qttc/revizor](https://github.com/qttc/revizor)
+
+**★ 0** · exceptional (score 8) · Python · tags: ai-slop, ai-writing, claude, claude-code, claude-skill
+
+Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
+
+```bash
+cue skills add qttc/revizor --profile docs-writer
 ```
 
 ---
@@ -31,7 +46,7 @@ cue skills add ejklock/living-docs-skill --profile docs-writer
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## 🔹 [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · potential (score 4.7) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · potential (score 4.6) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

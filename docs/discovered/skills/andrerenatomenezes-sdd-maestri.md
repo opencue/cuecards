@@ -2,21 +2,21 @@
 title: "AndreRenatoMenezes/SDD-Maestri — Claude Code skill discovered by cue"
 description: "Skill de Spec-Driven Development para times de agentes de IA no Maestri: papéis com fronteiras que não se cruzam, spec como contrato e um painel auditável no ca"
 layout: page
-updated: 2026-08-18
+updated: 2026-11-25
 tags: [claude-code, skill, fleet-control]
 ---
 
 # 💎 [AndreRenatoMenezes/SDD-Maestri](https://github.com/AndreRenatoMenezes/SDD-Maestri)
 
-**★ 1** · exceptional (score 8.3) · agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude
+**★ 3** · exceptional (score 10.2) · Shell · agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude
 
 > Skill de Spec-Driven Development para times de agentes de IA no Maestri: papéis com fronteiras que não se cruzam, spec como contrato e um painel auditável no canvas.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
-- ⭐ 1 stars
-- 🗓️ Last pushed: 2026-08-18
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 3 stars
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude, claude-code, claude-code-skill, developer-tools, developer-tools-ai-agent, maestri, model-agnostic, multi-agent, spec-driven-development
 
 ## Best fit cue profiles

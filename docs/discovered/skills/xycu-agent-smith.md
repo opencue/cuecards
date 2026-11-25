@@ -2,7 +2,7 @@
 title: "xycu/agent-smith — Claude Code skill discovered by cue"
 description: "Agent orchestrating AI SDLC workflows (10xDevs + OpenSpec)"
 layout: page
-updated: 2026-11-24
+updated: 2026-11-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-11-24
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: 10xdevs, ai-agent, claude-code, claude-code-plugin, claude-code-skill, llm-routing, openspec, sdlc, sdlc-tools
 
 ## Best fit cue profiles

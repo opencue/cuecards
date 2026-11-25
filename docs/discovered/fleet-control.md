@@ -1,29 +1,57 @@
 ---
 title: "Claude Code Skills for fleet-control"
-description: "2 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-22
+updated: 2026-11-25
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `fleet-control`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **fleet-control** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="aksilsmd-cortex"></a>
-## 💎 [aksilsmd/cortex](https://github.com/aksilsmd/cortex)
+<a id="ankitkpandey1-hubkit"></a>
+## 💎 [ankitkpandey1/hubkit](https://github.com/ankitkpandey1/hubkit)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: ai-agents, ai-coding, ai-governance, ai-security, ai-tools
+**★ 0** · exceptional (score 13) · Python · tags: adaptive, agent-coordination, agent-orchestration, ai-agents, claude-code
 
-« Cortex : le réseau d’agents experts qui lance vos projets numériques avec Claude ».
+Session supervisor for Claude Code: hooks-based multi-agent orchestration with order clocks, routed-work tracking, a watchdog and a stop gate.
+
+✅ SKILL.md
 
 ```bash
-cue skills add aksilsmd/cortex --profile fleet-control
+cue skills add ankitkpandey1/hubkit --profile fleet-control
+```
+
+---
+
+<a id="andrerenatomenezes-sdd-maestri"></a>
+## 💎 [AndreRenatoMenezes/SDD-Maestri](https://github.com/AndreRenatoMenezes/SDD-Maestri)
+
+**★ 3** · exceptional (score 10.2) · Shell · tags: agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude
+
+Skill de Spec-Driven Development para times de agentes de IA no Maestri: papéis com fronteiras que não se cruzam, spec como contrato e um painel auditável no canvas.
+
+```bash
+cue skills add AndreRenatoMenezes/SDD-Maestri --profile fleet-control
+```
+
+---
+
+<a id="aezzatelashry-maestro"></a>
+## 💎 [aezzatelashry/maestro](https://github.com/aezzatelashry/maestro)
+
+**★ 1** · exceptional (score 8.3) · Python · tags: arabic, claude-code, claude-code-plugin, claude-skill, model-routing
+
+Cost-aware multi-model orchestration for Claude Code: the strongest model plans and reviews, smaller models build.
+
+```bash
+cue skills add aezzatelashry/maestro --profile fleet-control
 ```
 
 ---
@@ -31,7 +59,7 @@ cue skills add aksilsmd/cortex --profile fleet-control
 <a id="francis1998-multi-bot-agentic"></a>
 ## ✨ [Francis1998/multi-bot-agentic](https://github.com/Francis1998/multi-bot-agentic)
 
-**★ 11** · strong (score 6.9) · Python · tags: agent-orchestration, agentic-ai, ai-agents, checkpointing, claude
+**★ 11** · strong (score 7) · Python · tags: agent-orchestration, agentic-ai, ai-agents, checkpointing, claude
 
 Deterministic, auditable multi-bot AI-agent orchestrator: Observe→Decide→Act loop with rationale traces, replayable SQLite event log with resume and time-travel forks, strict golden-path offline evals, OpenTelemetry GenAI trace export, MCP tool bridge, safety controls, and GPT-6.2, Claude 5.5 / Fable 5.2, Gemini 4 and Kimi K3.1 adapters.
 

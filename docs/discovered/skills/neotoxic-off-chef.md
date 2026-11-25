@@ -1,8 +1,8 @@
 ---
 title: "Neotoxic-off/Chef — Claude Code skill discovered by cue"
-description: "Your kitchen, your rules. Claude cooks the way you do"
+description: "🧑‍🍳  Your AI-powered coding chef crafting clean, secure, and maintainable code with precision"
 layout: page
-updated: 2026-11-20
+updated: 2026-11-25
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 0** · exceptional (score 10) · Python · claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill
 
-> Your kitchen, your rules. Claude cooks the way you do
+> 🧑‍🍳  Your AI-powered coding chef crafting clean, secure, and maintainable code with precision
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-20
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: claude, claude-ai, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skill, claude-skills
 
 ## Best fit cue profiles

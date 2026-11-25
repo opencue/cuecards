@@ -2,21 +2,21 @@
 title: "whystrohm/shotkit — Claude Code skill discovered by cue"
 description: "Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-25
 tags: [claude-code, skill, creative-media, video]
 ---
 
 # 💎 [whystrohm/shotkit](https://github.com/whystrohm/shotkit)
 
-**★ 88** · exceptional (score 16.3) · Python · agent-skills, ai-storyboard, ai-video, ai-workflow, claude
+**★ 93** · exceptional (score 16.4) · Python · agent-skills, ai-storyboard, ai-video, ai-workflow, claude
 
 > Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.3 based on:
-- ⭐ 88 stars
-- 🗓️ Last pushed: 2026-11-23
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 16.4 based on:
+- ⭐ 93 stars
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: agent-skills, ai-storyboard, ai-video, ai-workflow, claude, claude-code, claude-code-plugin, claude-code-skill, claude-skills, codex, creative-tools, fal-ai, image-to-video, mcp, pre-production, shot-list, storyboard, storyboarding, text-to-video, video-production
 
 ## Best fit cue profiles

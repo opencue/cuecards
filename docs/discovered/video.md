@@ -2,7 +2,7 @@
 title: "Claude Code Skills for video"
 description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-25
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,28 @@ tags: [claude-code, video, skills, mcp, ai-agents]
 
 ---
 
-<a id="renthelautomations-app-launch-video"></a>
-## 💎 [renthelautomations/app-launch-video](https://github.com/renthelautomations/app-launch-video)
+<a id="whystrohm-shotkit"></a>
+## 💎 [whystrohm/shotkit](https://github.com/whystrohm/shotkit)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: app-marketing, claude-code, claude-skill, launch-video, motion-design
+**★ 93** · exceptional (score 16.4) · Python · tags: agent-skills, ai-storyboard, ai-video, ai-workflow, claude
 
-Claude skill for Apple-keynote-style app launch films: real UI components in Remotion, spring-physics motion, synced spatial sound, storyboard + frame-level QA, 16:9/9:16/1:1 delivery.
+Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.
 
 ```bash
-cue skills add renthelautomations/app-launch-video --profile video
+cue skills add whystrohm/shotkit --profile video
 ```
 
 ---
 
-<a id="toorop-skill-resolve-edit"></a>
-## 💎 [toorop/skill-resolve-edit](https://github.com/toorop/skill-resolve-edit)
+<a id="malenaaza-video-editor-skill"></a>
+## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
 
-**★ 0** · exceptional (score 8) · Python · tags: claude-code, claude-skill, davinci-resolve, mcp, video-editing
+**★ 1** · exceptional (score 8.3) · Python · tags: captions, claude-code, claude-code-plugin, claude-skill, claude-skills
 
-Claude skill: profile-driven YouTube editing in DaVinci Resolve Studio through the Resolve MCP
+A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
 
 ```bash
-cue skills add toorop/skill-resolve-edit --profile video
+cue skills add malenaaza/video-editor-skill --profile video
 ```
 
 ---

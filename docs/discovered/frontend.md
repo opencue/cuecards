@@ -2,7 +2,7 @@
 title: "Claude Code Skills for frontend"
 description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-25
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
@@ -12,6 +12,34 @@ tags: [claude-code, frontend, skills, mcp, ai-agents]
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
+
+---
+
+<a id="kubai087-kubai-icons"></a>
+## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
+
+**★ 1216** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
+
+An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
+
+✅ SKILL.md
+
+```bash
+cue skills add kubai087/kubai-icons --profile frontend
+```
+
+---
+
+<a id="mobilereality-mdma"></a>
+## 💎 [MobileReality/mdma](https://github.com/MobileReality/mdma)
+
+**★ 77** · exceptional (score 12.8) · TypeScript · tags: agent-skills, ai-agents, claude-skill, generative-ui, interactive-markdown
+
+Interactive documents from Markdown. Extends MD with forms, approvals, webhooks, and more — built for next gen apps
+
+```bash
+cue skills add MobileReality/mdma --profile frontend
+```
 
 ---
 
@@ -28,19 +56,6 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="scrolltide-ai-studio-skill"></a>
-## 💎 [scrolltide/ai-studio-skill](https://github.com/scrolltide/ai-studio-skill)
-
-**★ 31** · exceptional (score 8.7) · JavaScript · tags: agent-skills, ai-website-builder, anthropic, claude-code, claude-code-plugin
-
-Free Claude skill for websites that move when you scroll: scroll films, layered parallax, self-drawing paths. Built from the real source of Scrolltide builds and checked at scroll checkpoints on desktop and phone.
-
-```bash
-cue skills add scrolltide/ai-studio-skill --profile frontend
-```
-
----
-
 <a id="gamemann-nightly"></a>
 ## 💎 [gamemann/nightly](https://github.com/gamemann/nightly)
 
@@ -50,19 +65,6 @@ A database and web panel that autonomous @claude Code runs work from: a queue of
 
 ```bash
 cue skills add gamemann/nightly --profile frontend
-```
-
----
-
-<a id="mrgodlink-rcdesign"></a>
-## ✨ [MrGodLink/RcDesign](https://github.com/MrGodLink/RcDesign)
-
-**★ 0** · strong (score 5) · CSS · tags: bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism
-
-One engine, ten UI design styles, zero markup changes. Skeuomorphism, Neumorphism, Glassmorphism, Claymorphism, Brutalism, Minimalism, Maximalism, Liquid Glass, Bento Grid and Spatial UI, switch the whole look of a page with one attribute.
-
-```bash
-cue skills add MrGodLink/RcDesign --profile frontend
 ```
 
 ---

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for marketing"
 description: "1 community Claude Code skills curated by cue for the marketing profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-23
+updated: 2026-11-25
 tags: [claude-code, marketing, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, marketing, skills, mcp, ai-agents]
 
 ---
 
-<a id="nurkamol-website-build-kit"></a>
-## 💎 [nurkamol/website-build-kit](https://github.com/nurkamol/website-build-kit)
+<a id="emelia-io-claude-outreach"></a>
+## 💎 [emelia-io/claude-outreach](https://github.com/emelia-io/claude-outreach)
 
-**★ 32** · exceptional (score 11.1) · JavaScript · tags: ai-agents, astro, claude-code, claude-code-skill, cloudflare-workers
+**★ 24** · exceptional (score 9.9) · Python · tags: ai, ai-sdr, b2b, claude-code, claude-code-skill
 
-Build production marketing sites with Claude Code — an Astro + Cloudflare Workers template, a WordPress→Astro migration playbook, and 36 silent failures documented from real rebuilds.
+Universal B2B outreach skill for Claude Code. 16 sub-skills + 5 sub-agents: ICP targeting, lead sourcing, email finder, phone finder, verification, AI personalization, multichannel sequences, deliverability, campaign launch, reply handling and GDPR compliance.
 
 ```bash
-cue skills add nurkamol/website-build-kit --profile marketing
+cue skills add emelia-io/claude-outreach --profile marketing
 ```
 
 ---

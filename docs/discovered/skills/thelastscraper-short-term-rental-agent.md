@@ -1,27 +1,27 @@
 ---
 title: "thelastscraper/short-term-rental-agent — Claude Code skill discovered by cue"
-description: "Short Term Rental Agent: a Claude skill and Grok template that analyzes Airbnb and hotel markets with live data via Apify. Comp sets for hosts, channel prices, "
+description: "Airbnb AI agent for hosts, managers and investors: compares a listing with its real competitors (price, occupancy, reviews, amenities) and checks its price on B"
 layout: page
-updated: 2026-11-24
-tags: [claude-code, skill, research]
+updated: 2026-11-25
+tags: [claude-code, skill, core]
 ---
 
 # ✨ [thelastscraper/short-term-rental-agent](https://github.com/thelastscraper/short-term-rental-agent)
 
-**★ 1** · strong (score 5.3) · agent-skills, airbnb, airbnb-data, airbnb-data-analysis, airbnb-host
+**★ 1** · strong (score 7.8) · agent-skills, ai-agent, airbnb, airbnb-agent, airbnb-assistant
 
-> Short Term Rental Agent: a Claude skill and Grok template that analyzes Airbnb and hotel markets with live data via Apify. Comp sets for hosts, channel prices, portfolio checks and investor market scans.
+> Airbnb AI agent for hosts, managers and investors: compares a listing with its real competitors (price, occupancy, reviews, amenities) and checks its price on Booking.com and other sites, with live data. Works in ChatGPT, Claude and Grok via Apify.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-24
-- 🏷️ Tags: agent-skills, airbnb, airbnb-data, airbnb-data-analysis, airbnb-host, apify, claude-code-skills, claude-skill, claude-skills, mcp, short-term-rental, short-term-rental-analytics, short-term-rental-market-analysis, short-term-rental-research, short-term-rentals, vacation-rental, vacation-rental-analytics, vacation-rental-insights, vacation-rentals, vacation-rentals-data
+- 🗓️ Last pushed: 2026-11-25
+- 🏷️ Tags: agent-skills, ai-agent, airbnb, airbnb-agent, airbnb-assistant, airbnb-data, airbnb-data-analysis, airbnb-host, airbnb-skills, apify, chatgpt, claude-code-skills, claude-skill, claude-skills, mcp, short-term-rental, short-term-rentals, vacation-rental, vacation-rentals, vacation-rentals-data
 
 ## Best fit cue profiles
 
-[research](../research.md)
+[core](../core.md)
 
 
 
@@ -29,7 +29,7 @@ cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-
 
 ```bash
 npm install -g cue-ai
-cue skills add thelastscraper/short-term-rental-agent --profile research
+cue skills add thelastscraper/short-term-rental-agent --profile core
 ```
 
 ## About

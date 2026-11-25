@@ -2,7 +2,7 @@
 title: "Pyrochem/universal-quant-tournament-mcp — Claude Code skill discovered by cue"
 description: "Institutional quantitative trading MCP server for Claude Desktop & AI agents. Features an 8-strategy out-of-sample walk-forward tournament, Higher-Timeframe reg"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-25
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-21
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: agent-skills, ai-trading-bot-execution, algorithmic-trading-quantitative, alpaca, backtesting, claude-desktop, crypto-trading-toolkit, forex-trading-ai, futures-trading-indicator, mcp, mcp-server, metatrader5, model-context-protocol, monte-carlo-simulation, mt5, quant-trading-system, quantitative-finance, risk-management, skill-md, walk-forward-analysis
 
 ## Best fit cue profiles

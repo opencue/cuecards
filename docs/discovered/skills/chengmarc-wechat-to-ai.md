@@ -1,23 +1,23 @@
 ---
 title: "chengmarc/wechat-to-ai — Claude Code skill discovered by cue"
-description: "你的微信记录，本地喂给 AI。导出双人会话、群聊、按消息量排名的重要联系人 —— 全程离线，数据不出本机。A local-first WeChat 4.1+ chat export plugin for Claude Code: no cloud, no telemetry, no account access."
+description: "微信.skill: 让 AI 读懂你的微信"
 layout: page
-updated: 2026-10-06
+updated: 2026-11-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [chengmarc/wechat-to-ai](https://github.com/chengmarc/wechat-to-ai)
 
-**★ 29** · exceptional (score 9.7) · Python · ai-tools, anthropic, chat-export, chat-history, chinese
+**★ 42** · exceptional (score 10.2) · HTML · chat-backup, chat-export, chat-history, chat-summary, chinese
 
-> 你的微信记录，本地喂给 AI。导出双人会话、群聊、按消息量排名的重要联系人 —— 全程离线，数据不出本机。A local-first WeChat 4.1+ chat export plugin for Claude Code: no cloud, no telemetry, no account access.
+> 微信.skill: 让 AI 读懂你的微信
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.7 based on:
-- ⭐ 29 stars
-- 🗓️ Last pushed: 2026-10-06
-- 🏷️ Tags: ai-tools, anthropic, chat-export, chat-history, chinese, claude, claude-code, claude-code-plugin, claude-skill, data-export, data-portability, llm, local-first, powershell, privacy, python, sqlcipher, sqlite, wechat, windows
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 10.2 based on:
+- ⭐ 42 stars
+- 🗓️ Last pushed: 2026-11-25
+- 🏷️ Tags: chat-backup, chat-export, chat-history, chat-summary, chinese, claude-code, claude-code-plugin, claude-skill, local-first, offline, privacy, wechat, wechat-export, weixin, windows
 
 ## Best fit cue profiles
 

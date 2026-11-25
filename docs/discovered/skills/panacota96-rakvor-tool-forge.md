@@ -2,7 +2,7 @@
 title: "Panacota96/rakvor-tool-forge — Claude Code skill discovered by cue"
 description: "Skill that turns \"we need a tool that does X\" into a Rakvor DFIR tool that builds, passes its tests and meets the forensic contract from the first commit."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-25
 tags: [claude-code, skill, cybersecurity]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, cybersecurity]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 11 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-24
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: claude-skill, dfir, digital-forensics, python, rakvor, rust, scaffolding
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "ankitkpandey1/hubkit — Claude Code skill discovered by cue"
 description: "Session supervisor for Claude Code: hooks-based multi-agent orchestration with order clocks, routed-work tracking, a watchdog and a stop gate."
 layout: page
-updated: 2026-11-06
+updated: 2026-11-25
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, fleet-control]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13 based on:
 - ✅ Contains SKILL.md
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-06
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: adaptive, agent-coordination, agent-orchestration, ai-agents, claude-code, claude-code-skill, hooks, multi-agent, orchestration, python, stdlib-only, supervisor, watchdog
 
 ## Best fit cue profiles

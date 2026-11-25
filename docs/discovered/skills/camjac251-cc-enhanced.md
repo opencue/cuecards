@@ -2,21 +2,21 @@
 title: "camjac251/cc-enhanced — Claude Code skill discovered by cue"
 description: "Stock Claude Code enhancements through a standard plugin and system-prompt PATH wrapper, with read-only release inspection tools."
 layout: page
-updated: 2026-11-01
+updated: 2026-11-25
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [camjac251/cc-enhanced](https://github.com/camjac251/cc-enhanced)
 
-**★ 7** · exceptional (score 8.6) · TypeScript · anthropic, ast-transformation, babel, bun, claude-code
+**★ 7** · exceptional (score 8.8) · TypeScript · anthropic, ast-transformation, babel, bun, claude-code
 
 > Stock Claude Code enhancements through a standard plugin and system-prompt PATH wrapper, with read-only release inspection tools.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.6 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
 - ⭐ 7 stars
-- 🗓️ Last pushed: 2026-10-29
+- 🗓️ Last pushed: 2026-11-25
 - 🏷️ Tags: anthropic, ast-transformation, babel, bun, claude-code, claude-code-native, claude-code-plugin, claude-code-system-prompts, cli, customization, developer-tools, system-prompts, terminal, typescript
 
 ## Best fit cue profiles
