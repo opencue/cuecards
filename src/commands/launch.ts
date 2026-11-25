@@ -470,21 +470,26 @@ export function formatTmuxTitle(
   profileName: string,
   icons: ReadonlyArray<string>,
 ): string {
+  const profile = formatProfileTitle(profileName, icons);
+  return profile ? `${friendly} · ${profile}` : friendly;
+}
+
+function formatProfileTitle(profileName: string, icons: ReadonlyArray<string>): string {
   const parts = profileName
     .split("+")
     .map((s) => s.trim())
     .filter((s) => s.length > 0);
-  if (parts.length === 0) return friendly;
+  if (parts.length === 0) return "";
   const segment = (i: number): string => {
     const icon = (icons[i] ?? "").trim();
     const name = parts[i]!;
     return icon ? `${icon} ${name}` : name;
   };
-  if (parts.length === 1) return `${friendly} · ${segment(0)}`;
-  if (parts.length === 2) return `${friendly} · ${segment(0)} + ${segment(1)}`;
+  if (parts.length === 1) return segment(0);
+  if (parts.length === 2) return `${segment(0)} + ${segment(1)}`;
   // 3+ parts: lead with primary, collapse the tail to a numeric badge so
   // long composites don't shove the tab title off-screen.
-  return `${friendly} · ${segment(0)} +${parts.length - 1}`;
+  return `${segment(0)} +${parts.length - 1}`;
 }
 
 /** Field separator for the batched option read-back. Never appears in a value. */
@@ -2114,6 +2119,7 @@ async function applyMcpPruning(
 async function emitTokenBudgetWarning(
   profile: ResolvedProfile,
   profileName: string,
+  detailed: boolean,
 ): Promise<number | undefined> {
   // Token budget warning — accurate measurement, actionable advice
   const skillCount = profile.skills.local.length;
@@ -2175,7 +2181,7 @@ async function emitTokenBudgetWarning(
 
       const breakdown = computeTokenBreakdown(profile, parts, tokensForSkill);
       alwaysOnForBadge = breakdown.alwaysOn;
-      const lines = formatTokenWarning(breakdown);
+      const lines = formatTokenWarning(breakdown, detailed);
 
       // Model-aware startup budget: skills frontmatter + MCP tool-schema cost
       // should stay under 50% of the model's context window so the other half
@@ -2845,7 +2851,6 @@ export async function run(args: string[]): Promise<number> {
   };
 
   let runtime!: Awaited<ReturnType<typeof materializeRuntime>>;
-  let npxSkills = 0;
   const npxDegraded: NpxEntryFailure[] = [];
   try {
     // Skill subsetting runs ONLY when this launch carries a real prompt:
@@ -2921,7 +2926,6 @@ export async function run(args: string[]): Promise<number> {
         npxDegraded.push(...failures);
       },
     });
-    npxSkills = npxSkillMap.size;
     if (npxSkillMap.size > 0) {
       const existingIds = new Set(profile.skills.local.map((skill) => skill.id));
       const newSkills = [...npxSkillMap.keys()]
@@ -2938,7 +2942,7 @@ export async function run(args: string[]): Promise<number> {
       }
     }
 
-    progress("Preparing runtime…", "");
+    progress("Preparing…", "");
     const resolveLocalSkill = createLocalSkillResolver();
     runtime = await materializeRuntime({
       profile,
@@ -2967,6 +2971,7 @@ export async function run(args: string[]): Promise<number> {
 
   // Printed after the loader releases the terminal so the warning survives.
   const columns = process.stderr.columns ?? 80;
+  const terminal = process.stderr.isTTY === true && process.env.TERM !== "dumb";
   for (const line of formatNpxDegraded(npxDegraded, { detailed: debugEnabled(), columns })) {
     process.stderr.write(`${line}\n`);
   }
@@ -3162,7 +3167,7 @@ export async function run(args: string[]): Promise<number> {
     return 127;
   }
 
-  const alwaysOnForBadge = await emitTokenBudgetWarning(profile, profileName);
+  const alwaysOnForBadge = await emitTokenBudgetWarning(profile, profileName, !terminal || debugEnabled());
 
   // First-run: prompt to star the repo (once ever, non-blocking)
   try {
@@ -3268,17 +3273,15 @@ export async function run(args: string[]): Promise<number> {
     const friendly = agentKind === "claude-code" ? "claude" : agentKind;
     process.stderr.write(
       `${formatStartupBanner({
-        title: formatTmuxTitle(friendly, profileName, profileIcons),
+        profile: formatProfileTitle(profileName, profileIcons),
+        agent: friendly,
         // Successful npx resolutions already appear in the local list.
         skills: profile.skills.local.length,
-        npxSkills,
         mcps: profile.mcps.length,
-        plugins: profile.plugins.length,
-        commands: profile.commands?.length,
         alwaysOn: alwaysOnForBadge,
         loadout,
         columns,
-        terminal: process.stderr.isTTY === true && process.env.TERM !== "dumb",
+        terminal,
       })}\n`,
     );
   }

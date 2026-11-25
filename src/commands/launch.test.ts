@@ -10,6 +10,7 @@ import {
   formatProfileSummary,
   formatStartupBanner,
   formatTmuxTitle,
+  formatTokenWarning,
   getDefaultSelector,
   mergeProfileSuggestions,
   ownsPaneBadge,
@@ -1020,8 +1021,20 @@ describe("tokenLevelEmoji", () => {
 
   test("matches the dot used by formatStartupBanner's token segment", () => {
     // Cross-check: if the helper and the banner ever drift, this fails.
-    const out = formatStartupBanner({ title: "x", skills: 30, mcps: 0, alwaysOn: 12000 });
+    const out = formatStartupBanner({ profile: "x", agent: "claude", skills: 30, mcps: 0, alwaysOn: 12000 });
     expect(out).toContain(tokenLevelEmoji(12000));
+  });
+});
+
+describe("formatTokenWarning", () => {
+  test("quiet launch only warns at the very-heavy floor", () => {
+    const breakdown = computeTokenBreakdown(makeProfile());
+    const heavy = { ...breakdown, alwaysOn: 49_999 };
+    expect(formatTokenWarning(heavy)[0]).toContain("Skill overhead");
+    expect(formatTokenWarning(heavy, false)).toEqual([]);
+    expect(formatTokenWarning({ ...heavy, alwaysOn: 50_000 }, false)).toEqual([
+      "🔴 ~50.0K always-on · cue cost",
+    ]);
   });
 });
 
@@ -1029,79 +1042,68 @@ describe("formatStartupBanner", () => {
   // colorFns() disables ANSI when stdout isn't a TTY (the test env), so these
   // assertions are plain text.
   test("leads with the agent and profile, then puts counts on one quiet line", () => {
-    expect(formatStartupBanner({ title: "claude · 🦊 core", skills: 3, mcps: 0 })).toBe(
+    expect(formatStartupBanner({ profile: "🦊 core", agent: "claude", skills: 3, mcps: 0 })).toBe(
       "◆ cue  claude · 🦊 core\n  3 skills",
     );
   });
 
   test("singular skill/MCP words and an MCP segment when present", () => {
-    expect(formatStartupBanner({ title: "codex · 🧪 x", skills: 1, mcps: 1 })).toBe(
+    expect(formatStartupBanner({ profile: "🧪 x", agent: "codex", skills: 1, mcps: 1 })).toBe(
       "◆ cue  codex · 🧪 x\n  1 skill · 1 MCP",
     );
   });
 
   test("omits the token segment under the 2K always-on floor", () => {
     expect(
-      formatStartupBanner({ title: "claude · core", skills: 20, mcps: 0, alwaysOn: 1500 }),
+      formatStartupBanner({ profile: "core", agent: "claude", skills: 20, mcps: 0, alwaysOn: 1500 }),
     ).toBe("◆ cue  claude · core\n  20 skills");
   });
 
   test("shows the level dot and ~NK, but no pointer below the 10K heavy mark", () => {
     expect(
-      formatStartupBanner({ title: "claude · core", skills: 53, mcps: 7, alwaysOn: 8000 }),
+      formatStartupBanner({ profile: "core", agent: "claude", skills: 53, mcps: 7, alwaysOn: 8000 }),
     ).toBe("◆ cue  claude · core\n  53 skills · 7 MCPs · 🟡 ~8K always-on");
   });
 
   test("appends → cue cost for heavy profiles (>=10K always-on)", () => {
     expect(
-      formatStartupBanner({ title: "claude · 🏭 gstack +4", skills: 96, mcps: 7, alwaysOn: 22845 }),
+      formatStartupBanner({ profile: "🏭 gstack +4", agent: "claude", skills: 96, mcps: 7, alwaysOn: 22845 }),
     ).toBe("◆ cue  claude · 🏭 gstack +4\n  96 skills · 7 MCPs · 🔴 ~23K always-on · → cue cost");
   });
 
   test("integrates the local loadout and drops optional token text before wrapping", () => {
     expect(formatStartupBanner({
-      title: "codex · ▲ vercel +2", skills: 110, mcps: 6, alwaysOn: 22845,
-      loadout: { full: 8, deferred: 25 }, npxSkills: 4, columns: 38,
+      profile: "▲ vercel +2", agent: "codex", skills: 110, mcps: 6, alwaysOn: 22845,
+      loadout: { full: 8, deferred: 25 }, columns: 38,
     })).toBe("◆ cue  codex · ▲ vercel +2\n  8 local · 25 deferred · 6 MCPs");
   });
 
-  test("frames the profile, skill split and loadout shortcuts for a wide terminal", () => {
+  test("shows only the profile and counts in two lines, even in a wide terminal", () => {
     const out = formatStartupBanner({
-      title: "codex · ⭐ core", skills: 13, mcps: 4, npxSkills: 4,
-      plugins: 2, commands: 10,
+      profile: "⭐ core", agent: "codex", skills: 13, mcps: 4, alwaysOn: 12000,
       loadout: { full: 9, deferred: 17 }, columns: 80, terminal: true,
     });
-    const lines = out.split("\n");
-    expect(lines[0]).toStartWith("╭─ ◆ cue ");
-    expect(lines[1]).toStartWith("│ codex · ⭐ core");
-    expect(lines[2]).toContain("Skills   9 local · 17 deferred · 4 npx");
-    expect(lines[3]).toContain("Tools    4 MCPs · 2 plugins · 10 commands");
-    expect(lines[4]).toContain("cue loadout · --cue-full");
-    expect(lines[5]).toEndWith("╯");
-    expect(new Set(lines.map(visibleWidth)).size).toBe(1);
+    expect(out).toBe("◆  ⭐ core · Codex\n   13 skills · 17 deferred · 4 MCPs");
   });
 
-  test("keeps the counts readable at 32 columns without a frame or clipped labels", () => {
+  test("keeps the primary profile and skill counts at 32 columns", () => {
     const out = formatStartupBanner({
-      title: "claude · 🏭 gstack +4", skills: 118, mcps: 17, npxSkills: 23,
-      loadout: { full: 95, deferred: 102 }, alwaysOn: 17000,
+      profile: "🧠 core + 🐆 caveman-quick", agent: "claude", skills: 118, mcps: 17,
+      loadout: { full: 95, deferred: 102 },
       columns: 32, terminal: true,
     });
-    expect(out).not.toContain("╭");
-    expect(out).toContain("95 local · 102 deferred");
-    expect(out).toContain("23 npx · 17 MCPs");
-    expect(out).toContain("~17K always-on");
+    const [heading, counts] = out.split("\n");
+    expect(heading).toBe("◆  🧠 core + 🐆 caveman-quick");
+    expect(counts).toBe("   118 skills · 102 deferred");
     expect(out.split("\n").every(line => visibleWidth(line) <= 32)).toBe(true);
   });
 
-  test("contains control characters in the profile identity without breaking the frame", () => {
+  test("keeps the startup summary on two lines if an icon contains control characters", () => {
     const lines = formatStartupBanner({
-      title: "codex · \x1b[2J🦊\ncore", skills: 1, mcps: 0,
+      profile: "\x1b[2J🦊\ncore", agent: "codex", skills: 1, mcps: 0,
       columns: 48, terminal: true,
     }).split("\n");
-    expect(lines).toHaveLength(4);
-    expect(lines[1]).toContain("codex · 🦊 core");
-    expect(lines.every(line => visibleWidth(line) === 48)).toBe(true);
+    expect(lines).toEqual(["◆  🦊 core · Codex", "   1 skill"]);
   });
 });
 
