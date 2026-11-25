@@ -90,6 +90,24 @@ describe("filterRows", () => {
     expect(out.map((r) => r.value)).toEqual(["rust"]);
   });
 
+  test("matches descriptions below direct name hits and requires every search term", () => {
+    const all = buildPaletteRows({
+      profiles: [
+        { value: "data", label: "Data", hint: "Vercel and PostgreSQL" },
+        { value: "vercel-postgres", label: "Vercel Postgres" },
+        { value: "vercel", label: "Vercel" },
+      ],
+      suggested: [],
+      recents: [{ name: "data", sessions: 3 }],
+    });
+    expect(all[0]?.hint).toBe("3× sessions");
+    for (const query of ["postgres+vercel", "postgres vercel"]) {
+      expect(filterRows(all, query).map((r) => r.value)).toEqual(["vercel-postgres", "data"]);
+    }
+    expect(filterRows(all, "vercel").map((r) => r.value)).toEqual(["vercel", "vercel-postgres", "data"]);
+    expect(filterRows(all, "linux+vercel")).toEqual([]);
+  });
+
   test("returns nothing for a query that matches nothing", () => {
     expect(filterRows(rows(), "zzzz")).toEqual([]);
   });
@@ -209,6 +227,17 @@ describe("renderPaletteFrame", () => {
     );
     expect(searching).toContain("2 matches");
     expect(searching).toContain("none selected");
+  });
+
+  test("uses fewer lines at 57 columns and keeps a long query and count on one line", () => {
+    const query = "medusa+" + "postgres".repeat(10);
+    const render = (cols: number) => plain(renderPaletteFrame({
+      ...base, cols, rows: rows(), selected: [], query,
+    })).split("\n");
+    const lines = render(57);
+    expect(lines.length).toBeLessThan(render(80).length);
+    expect(lines.find((line) => line.includes("search"))).toContain("0 matches");
+    expect(lines.every((line) => displayWidth(line) <= 57)).toBe(true);
   });
 
   test("disables a row that conflicts with the selection and says why", () => {
