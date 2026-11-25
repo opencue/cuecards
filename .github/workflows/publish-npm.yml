@@ -51,7 +51,7 @@ jobs:
             exit 0
           fi
 
-          published="$(npm view cue-ai@latest version gitHead --prefer-online --json)"
+          published="$(npm view cue-ai@latest --prefer-online --json)"
           latest="$(jq -er .version <<<"$published")"
           published_head="$(jq -r '.gitHead // ""' <<<"$published")"
           floor="$(node -p 'require("./package.json").version')"
@@ -70,6 +70,21 @@ jobs:
             else
               version="$floor"
             fi
+          fi
+
+          # An existing tag must match before we issue an immutable npm version.
+          tag="v$version"
+          ref="$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/$tag" \
+            --jq ".[] | select(.ref == \"refs/tags/$tag\") | .ref")"
+          if [[ -n "$ref" ]]; then
+            target="$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag" --jq .sha)"
+            if [[ "$target" != "$GITHUB_SHA" ]]; then
+              echo "$tag already exists on a different commit." >&2
+              exit 1
+            fi
+          fi
+
+          if [[ "$published_head" != "$GITHUB_SHA" ]]; then
             if [[ "$version" != "$floor" ]]; then
               npm version "$version" --no-git-tag-version --ignore-scripts
             fi
