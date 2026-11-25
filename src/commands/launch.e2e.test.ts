@@ -261,6 +261,8 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
     expect(normal.status).toBe(0);
     expect(normal.stdout).toContain("UPDATE_SETUP=external");
     const runtimeHome = /^CODEX_HOME=(.+)$/m.exec(normal.stdout)![1]!;
+    expect(runtimeHome).not.toBe(codexHome);
+    expect(existsSync(join(codexHome, "hooks.json"))).toBe(false);
     const { hooks } = JSON.parse(await readFile(join(runtimeHome, "hooks.json"), "utf8"));
     const lifecycleHook = {
       hooks: [{ type: "command", command: `'${wrapper}' codex-native-hook` }],
