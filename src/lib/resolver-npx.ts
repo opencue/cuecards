@@ -2,7 +2,7 @@
  * Resolver for `skills.npx` profile entries.
  *
  * Each entry { repo, pin?, skills } expands into one cache slot
- *   <xdgCache>/cue/npx/<sha256(repo + (pin || "HEAD"))>/  (XDG; tests pin via repoRoot)
+ *   <xdgCache>/cue/npx/<cacheKey(repo, pin)>/  (XDG; tests pin via repoRoot)
  * containing one subdir per skill. The resolver returns a LinkPlan[] mapping
  * each cached skill dir into `.claude/skills/<skill>`.
  *
@@ -124,15 +124,16 @@ export class CacheCorrupt extends ProfileError {
 // ---------------------------------------------------------------------------
 
 /**
- * Cache key = sha256(`<repo>` + `<pin || "HEAD">`).
+ * Version pinned slots so entries fetched by the old, ignored `--ref`
+ * argument are not mistaken for the requested revision.
  *
  * Hex digest, 64 chars. Stable across machines so cache hits work in CI.
  * Note: we deliberately do NOT hash the skill name — one (repo, pin) tuple
  * yields one cache slot containing every skill that's been pulled from it.
  */
 export function cacheKey(repo: string, pin: string | undefined): string {
-  const ref = pin ?? "HEAD";
-  return createHash("sha256").update(repo + ref).digest("hex");
+  const source = pin ? `pinned-v2:${repo}:${pin}` : `${repo}HEAD`;
+  return createHash("sha256").update(source).digest("hex");
 }
 
 // ---------------------------------------------------------------------------
@@ -224,24 +225,49 @@ export const npxFetchMany: NpxBatchFetchFn = async (
   destDir,
 ) => {
   if (skills.length === 0) return;
+  let ref = pin?.replace(/^(git|tag)@/, "");
+  if (pin?.startsWith("git@") && ref && ref.length < 40) {
+    // The installer can fetch a complete SHA but treats an abbreviated SHA as a branch.
+    const prefix = ref.toLowerCase();
+    const repoPath = repo.split("/").map(encodeURIComponent).join("/");
+    const endpoint = `repos/${repoPath}/commits/${encodeURIComponent(prefix)}`;
+    try {
+      const response = await fetch(`https://api.github.com/${endpoint}`, {
+        signal: AbortSignal.timeout(10000),
+      });
+      let sha: unknown;
+      if (response.ok) {
+        ({ sha } = await response.json() as { sha?: unknown });
+      } else if ([401, 403, 404, 429].includes(response.status)) {
+        const result = spawnSync("gh", ["api", "--hostname", "github.com", endpoint, "--jq", ".sha"], {
+          encoding: "utf8", timeout: 10000, windowsHide: true,
+        });
+        if (result.status !== 0) throw new Error(`GitHub HTTP ${response.status}`);
+        sha = result.stdout.trim();
+      } else {
+        throw new Error(`GitHub HTTP ${response.status}`);
+      }
+      if (typeof sha !== "string" || !/^[a-f0-9]{40}$/.test(sha) || !sha.startsWith(prefix)) {
+        throw new Error("GitHub did not return a matching commit");
+      }
+      ref = sha;
+    } catch (error) {
+      throw new NpxFetchFailed(repo, `could not expand short commit ${ref}; use the full SHA`, error);
+    }
+  }
 
   const args = [
     "-y",
     "skills@latest",
     "add",
-    repo,
+    ref ? `${repo}#${ref}` : repo,
     "--skill",
     ...skills,
     "-a",
     "claude-code",
     "-y",
+    ...(ref ? ["--copy"] : []),
   ];
-  if (pin) {
-    // Pin format from schema: "git@<sha>" or "tag@<version>".
-    // `npx skills add` accepts `--ref <ref>` for both shas and tags.
-    const ref = pin.replace(/^git@/, "").replace(/^tag@/, "");
-    args.push("--ref", ref);
-  }
   // Defense-in-depth: a single wedged `npx skills add` must never hang the
   // whole run. On timeout spawnSync sets res.error (ETIMEDOUT), which maps to
   // NpxFetchFailed below. CUE_NPX_TIMEOUT_MS overrides; a non-positive or
@@ -290,6 +316,9 @@ export const npxFetchMany: NpxBatchFetchFn = async (
 
   // Fetch companion files (scripts/, forms.md, reference.md, etc.) so the
   // installed skill is a complete package, not just SKILL.md.
+  // Recovery can fall back to cloning the default branch. For pins use only
+  // the directory copied by the installer from the requested ref.
+  if (ref) return;
   for (const skill of skills) {
     const skillDir = join(destDir, skill);
     if (existsSync(skillDir) && needsCompanionRecovery(skillDir)) {

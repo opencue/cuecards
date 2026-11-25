@@ -167,8 +167,7 @@ full effect on the next rebuild.
 | `git@<sha>`    | `git@a1b2c3d`    | Fetches at that exact commit (full or abbreviated SHA).          |
 | `tag@<version>`| `tag@v0.4.1`     | Fetches at the named git tag.                                    |
 
-The cache key is `sha256(repo + (pin || "HEAD"))`, so changing the pin always
-forces a fresh fetch.
+The cache separates pinned and unpinned sources. Changing a pin fetches a new revision.
 
 ## Inheritance
 

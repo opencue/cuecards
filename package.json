@@ -58,6 +58,8 @@
     "bin/",
     "dist/",
     "src/",
+    "web/src/skill-catalog.json",
+    "web/src/skill-catalog.ts",
     "profiles/*/profile.yaml",
     "profiles/*/logo.png",
     "profiles/*/README.md",

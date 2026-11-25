@@ -13,6 +13,16 @@
 .steps a { display: block; margin-top: 18px; font-size: 13px; }
 .note { max-width: 880px; margin-top: 28px; }
 .page :is(a, button):focus-visible { outline: 2px solid #c4b6ff; outline-offset: 5px; }
+.catalog { height: 100dvh; }
+.catalogFilters { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }
+.catalogFilters label { display: block; margin-bottom: 8px; }
+.catalogFilters div:first-child { width: min(420px, 100%); }
+.catalogFilters :is(input, select), .catalogMore { width: 100%; padding: 10px 12px; color: inherit; background: #191820; border: 1px solid #807d90; border-radius: 6px; font: inherit; }
+.catalogFilters :is(input, select):focus-visible { outline: 2px solid #c4b6ff; outline-offset: 3px; }
+.catalogResults { padding: 0; list-style: none; }
+.catalogResults section { height: 100%; }
+.catalogResults small { display: block; margin-top: 12px; }
+.catalogMore { width: auto; margin-top: 20px; cursor: pointer; }
 .publicShell { grid-template-columns: minmax(0, 1fr); width: 100%; }
 .publicShell :global(.titlebar), .publicShell :global(.statusbar) { min-width: 0; }
 .publicShell :global(.mk-grid), .publicShell :global(.mk-featgrid) { grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); }
