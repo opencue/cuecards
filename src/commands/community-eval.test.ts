@@ -41,7 +41,7 @@ test("run previews the named budget and does not spend or upload without separat
   const { path, deps, calls, requests, stdout } = fixture();
   const args = ["run", "--model", "gpt-5.4", "--out", path];
   expect(await run(args, deps)).toBe(0);
-  expect(stdout.join("")).toContain("4 Codex");
+  expect(stdout.join("")).toContain("4 Codex runs");
   expect(calls).toEqual([]);
   expect(await run([...args, "--yes"], deps)).toBe(0);
   expect(calls).toEqual(["gpt-5.4"]);

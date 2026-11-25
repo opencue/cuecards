@@ -11,15 +11,17 @@ anything. This feature does not read or upload Cue telemetry.
 
 ## Run and contribute
 
-The v1 runner uses Linux, local Codex with a ChatGPT sign-in, and CodeGraph on
-`PATH`. Start with a free preview:
+The v1 runner supports Linux (x64 or arm64), native Codex CLI 0.172.0 with
+a file-backed ChatGPT sign-in, and a native CodeGraph bundle on `PATH`. Both arms run
+with restricted filesystem access and require Codex's Linux sandbox to
+start. Start with a preview that makes no model requests:
 
 ```sh
 cue community-eval run --model gpt-5.4
 ```
 
-To save a local report, add `--yes`. This makes four model calls through the
-participant's Codex account and may consume quota. It does not contribute the
+To save a local report, add `--yes`. This starts four Codex runs, which make
+model requests through the participant's account and may consume quota. It does not contribute the
 report to Cuecards. Use `--out` to change the default output filename.
 
 ```sh
@@ -39,7 +41,8 @@ paired correctness scores, MCP tool usage, elapsed times, and token counts
 where the CLI returns them. It contains no code, prompts, answers, logs, local
 paths, or machine identifier. The collector knows the Cuecards account for
 deduplication (the first report for an account, benchmark, and model counts).
-It does not publish individual reports or account identities.
+Deleting the Cuecards account deletes its reports. The endpoint does not publish
+individual reports or account identities.
 
 ## Read the results
 
@@ -49,6 +52,7 @@ Compare correctly answered questions and the pairs that scored lower with
 CodeGraph first; compare token and elapsed-time deltas second. An arm marked as
 using the MCP says only that the tool call completed. Missing usage is not
 counted as zero. Token averages need five token-contributing accounts too.
+Runs with a sandbox, login, or CLI failure do not produce a complete report.
 
 This is a self-selected, self-reported comparison on a fixed task. It does not
 measure all users' repositories, and the service cannot independently verify

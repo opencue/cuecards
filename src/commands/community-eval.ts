@@ -55,7 +55,7 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
   }
   if (!isCommunityModel(model)) { io.stderr(usage); return 2; }
   out ??= "cue-codegraph-v1.json";
-  io.stdout(`Plan: ${COMMUNITY_PAIR_COUNT * 2} Codex model calls with ${model} using your Codex login. May consume subscription quota. Synthetic code only; no upload.\n`);
+  io.stdout(`Plan: ${COMMUNITY_PAIR_COUNT * 2} Codex runs with ${model} using your Codex login. Runs make model requests and may consume subscription quota. Synthetic code only; no Cuecards upload.\n`);
   if (!yes) { io.stdout("Re-run with --yes to start.\n"); return 0; }
   if (existsSync(out)) {
     io.stderr("BENCHMARK_OUTPUT_EXISTS: choose a new --out path.\n");
