@@ -25,7 +25,7 @@ import * as p from "@clack/prompts";
 import { MultiSelectPrompt } from "@clack/core";
 import { styleText } from "node:util";
 import { CATEGORY_RULE_COL, displayWidth, windowOptions } from "./picker.ts";
-import { clipVisible, fitLine } from "./picker/ui";
+import { clipVisible, fitLine, visibleWidth } from "./picker/ui";
 
 export interface McpPickInput {
   /** Full profile MCP id list (original casing). */
@@ -226,7 +226,7 @@ export function renderMcpFrame(state: McpFrameState): string {
       const labelStyled = styleText("bold", styleText("blueBright", label));
       const ruleLen = Math.max(3, CATEGORY_RULE_COL - displayWidth(label) - 2);
       const rule = styleText("gray", "─".repeat(ruleLen));
-      lines.push(`${BAR}  ${labelStyled} ${rule} ${styleText("dim", String(counts[r.group]))}`);
+      lines.push(clipVisible(`${BAR}  ${labelStyled} ${rule} ${styleText("dim", String(counts[r.group]))}`, columns));
       lastGroup = r.group;
     }
     const isCursor = i === state.cursor;
@@ -235,8 +235,12 @@ export function renderMcpFrame(state: McpFrameState): string {
     const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
     const idStyled = isSel || isCursor ? r.id : styleText("dim", r.id);
     const pad = " ".repeat(Math.max(2, labelCol + 2 - displayWidth(r.id)));
-    const hint = r.hint ? styleText("dim", r.hint) : "";
-    lines.push(`${BAR}  ${arrow} ${box} ${idStyled}${pad}${hint}`);
+    const option = `${BAR}  ${arrow} ${box} ${idStyled}`;
+    // Only truncate the explanation. The ID must distinguish similar servers.
+    const hintWidth = columns - visibleWidth(option) - pad.length;
+    lines.push(r.hint && hintWidth > 1
+      ? `${option}${pad}${styleText("dim", clipVisible(r.hint, hintWidth))}`
+      : option);
   }
   if (win.hiddenBelow > 0) lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
 
@@ -249,5 +253,5 @@ export function renderMcpFrame(state: McpFrameState): string {
   );
   lines.push(`${BAR}  ${styleText("cyan", `${on} of ${rows.length} on`)}`);
   lines.push(`${BAR}  ${styleText("dim", nav)}`);
-  return lines.map((line) => clipVisible(line, columns)).join("\n");
+  return lines.join("\n");
 }

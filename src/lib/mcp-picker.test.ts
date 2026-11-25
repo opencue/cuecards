@@ -154,6 +154,17 @@ describe("renderMcpFrame", () => {
     expect(lines.every((line) => line.length <= 44)).toBe(true);
   });
 
+  test("keeps similar MCP IDs distinguishable when the terminal is narrow", () => {
+    const ids = ["example-long-namespaced-test-server-one", "example-long-namespaced-test-server-two"];
+    const frame = strip(renderMcpFrame({
+      rows: ids.map((id) => ({ ...rows[0], id })),
+      cursor: 0,
+      selected: new Set(),
+      columns: 32,
+    }));
+    for (const id of ids) expect(frame).toContain(id);
+  });
+
   test("cursor row carries the › marker", () => {
     const frame = strip(renderMcpFrame({ rows, cursor: 1, selected: new Set() }));
     expect(frame).toContain("› [ ] coolify");
