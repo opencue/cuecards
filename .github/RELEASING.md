@@ -8,7 +8,9 @@ package, the workflow creates the matching GitHub release.
 The next version is a patch above npm's `latest`, unless `package.json` sets
 a higher version. To make the next release a minor or major, raise that version
 in a PR. Automatic patches update the manifest in the packaged artifact, not
-in Git. If publishing fails, rerun the failed jobs after fixing the cause.
+in Git. If publishing fails due to an external setting, fix it and rerun the
+failed jobs. If the fix is a new commit on `main`, its own CI run triggers
+the release.
 
 ## One-time npm setup
 

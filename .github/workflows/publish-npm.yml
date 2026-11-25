@@ -45,12 +45,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          head="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)"
-          if [[ "$head" != "$GITHUB_SHA" ]]; then
-            echo "A newer main commit is available; skipping this run."
-            exit 0
-          fi
-
           published="$(npm view cue-ai@latest --prefer-online --json)"
           latest="$(jq -er .version <<<"$published")"
           published_head="$(jq -r '.gitHead // ""' <<<"$published")"
@@ -64,6 +58,11 @@ jobs:
           if [[ "$published_head" == "$GITHUB_SHA" ]]; then
             version="$latest"
           else
+            head="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)"
+            if [[ "$head" != "$GITHUB_SHA" ]]; then
+              echo "A newer main commit is available; skipping this run."
+              exit 0
+            fi
             if [[ "$(printf '%s\n' "$floor" "$latest" | sort -V | tail -1)" == "$latest" ]]; then
               IFS=. read -r major minor patch <<<"$latest"
               version="$major.$minor.$((patch + 1))"
