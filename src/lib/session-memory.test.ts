@@ -29,7 +29,7 @@ test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and othe
     add(18, 12, ["unreadable"]);
     add(19, 1, ["unrelated"], 900);
     add(20, 1, ["codex"]);
-    add(21, 1, ["node", "/repo/dist/cue.js", "launch", "claude"], 100);
+    add(21, 12, ["node", "/repo/dist/cue.js", "launch", "claude"], 100);
     add(22, 21, ["claude"], 1);
     add(23, 21, ["claude"], 2);
     add(24, 12, ["bun", "/repo/src/index.ts", "launch", "codex"], 50);
@@ -39,7 +39,7 @@ test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and othe
     add(28, 10, ["launcher-helper"], 70);
     add(29, 25, ["nested-wrapper-helper"], 80);
     add(30, 12, ["different-owner"], 999, uid + 1);
-    expect(await measureSessionMemory(new Map([[12, 12], [16, 16], [20, 20], [26, 26], [27, 2], [99, 99]]), proc)).toEqual(new Map([
+    expect(await measureSessionMemory(new Map([[12, 12], [16, 16], [20, 20], [22, 22], [23, 23], [26, 26], [27, 2], [99, 99]]), proc)).toEqual(new Map([
       [12, {
         totalPssKiB: 860,
         byRole: { launcher: 100, agent: 300, mcp: 300, other: 160 },
@@ -58,6 +58,18 @@ test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and othe
         measuredProcesses: 0,
         unreadableProcesses: 1,
       }],
+      [22, {
+        totalPssKiB: 1,
+        byRole: { launcher: 0, agent: 1, mcp: 0, other: 0 },
+        measuredProcesses: 1,
+        unreadableProcesses: 0,
+      }],
+      [23, {
+        totalPssKiB: 2,
+        byRole: { launcher: 0, agent: 2, mcp: 0, other: 0 },
+        measuredProcesses: 1,
+        unreadableProcesses: 0,
+      }],
       [26, {
         totalPssKiB: 340,
         byRole: { launcher: 50, agent: 200, mcp: 0, other: 90 },
@@ -65,9 +77,6 @@ test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and othe
         unreadableProcesses: 0,
       }],
     ]));
-    const shared = await measureSessionMemory(new Map([[22, 22], [23, 23]]), proc);
-    expect(shared.get(22)?.totalPssKiB).toBe(1);
-    expect(shared.get(23)?.totalPssKiB).toBe(2);
   } finally {
     rmSync(proc, { recursive: true, force: true });
   }

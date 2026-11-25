@@ -401,7 +401,7 @@ test("active-sessions rejects invalid or duplicate memory query flags", async ()
   }
 });
 
-test.skipIf(!supportsProcScan())("active-sessions includes memory only when requested", async () => {
+test.skipIf(!supportsProcScan() || !existsSync("/proc/self/smaps_rollup"))("active-sessions includes memory only when requested", async () => {
   const child = Bun.spawn([process.execPath, "-e", 'console.log("ready"); setInterval(() => {}, 1000)', "codex"], {
     stdout: "pipe",
   });
@@ -415,10 +415,7 @@ test.skipIf(!supportsProcScan())("active-sessions includes memory only when requ
     expect(row).toBeDefined();
     expect(row).not.toHaveProperty("memory");
     const measured = await (await handler(new Request(url + "?memory=1"))).json();
-    expect(measured.data.sessions.find(byPid)?.memory).toMatchObject({
-      measuredProcesses: expect.any(Number),
-      unreadableProcesses: expect.any(Number),
-    });
+    expect(measured.data.sessions.find(byPid)?.memory?.totalPssKiB).toBeGreaterThan(0);
   } finally {
     child.kill();
     await child.exited;

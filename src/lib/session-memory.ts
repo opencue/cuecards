@@ -163,9 +163,9 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
       if (!parent) continue;
       for (const child of children.get(current) ?? []) {
         const row = rows.get(child);
-        const owner = owners.get(child);
         if (!row || row.started < parent.started ||
-            (roots.has(child) && child !== pid) || (owner != null && owner !== pid)) continue;
+            (roots.has(child) && child !== pid) ||
+            (owners.has(child) && owners.get(child) !== pid)) continue;
         pending.push([child, child === pid ? "agent" : role === "mcp" || isMcp(argv(child)) ? "mcp" : "other"]);
       }
     }
