@@ -28,8 +28,8 @@ jobs:
         # Dashboard render tests import React and TanStack Query from web/.
         # Keep the root install frozen; web dependencies have a separate manifest.
         run: |
-          (cd web && bun install)
-          bun test --timeout 30000
+          (cd web && bun install --no-save)
+          bun run test
 
       - name: Enforce critical-path coverage
         run: bun run test:critical:coverage

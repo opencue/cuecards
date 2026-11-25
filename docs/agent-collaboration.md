@@ -25,6 +25,11 @@ For short summaries and reading conditions, use the on-demand
 | This collaboration contract | This guide and the root instruction pointer | `bun test src/lib/agent-collaboration.test.ts` |
 
 These are starting checks, not substitutes for required CI or release gates.
+Cue's local `gx branch finish` preflight initializes missing submodules and
+installs CLI and dashboard dependencies in the worktree. It leaves existing
+submodules at a different revision alone and fails with their status. Local
+preflight and GitHub CI both use `bun run test` and check critical coverage.
+
 Use the repository's package manager and existing skills. Do not install another
 tool just because an upstream workflow uses it. For user-visible changes, keep
 the relevant docs and release-note context with the implementation.

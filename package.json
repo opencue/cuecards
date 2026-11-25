@@ -12,7 +12,7 @@
   },
   "scripts": {
     "cue": "bun src/index.ts",
-    "test": "bun test",
+    "test": "bun test --timeout 30000",
     "eval:profile-suggestions": "bun scripts/evaluate-profile-suggestions.ts",
     "eval:profile-suggestion-replay": "bun scripts/evaluate-profile-suggestion-replay.ts",
     "profiles:aas": "bun scripts/generate-aas-profiles.ts",
