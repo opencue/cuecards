@@ -13,6 +13,9 @@ function jsonl(codegraphUsed: boolean, usage = true, correct = true): string {
       entry: "src/pricing/quote.ts",
       rule: correct ? "seasonalCredit" : "not-in-report",
       boundary: "src/http/quote-input.ts",
+      calendar: correct ? "src/config/quote-cycle.ts" : "src/calendar/quote-clock.ts",
+      preview: correct ? "src/preview/campaign.ts" : "src/pricing/campaign.ts",
+      fee: correct ? "src/pricing/fee-policy.ts" : "src/config/fee-schedules.ts",
     }) }},
     { type: "turn.completed", usage: usage ? { input_tokens: 500, cached_input_tokens: 100, output_tokens: 75 } : {} },
   ].map((event) => JSON.stringify(event)).join("\n");
@@ -20,12 +23,13 @@ function jsonl(codegraphUsed: boolean, usage = true, correct = true): string {
 
 const tools = { codex: "/test/bin/codex", codegraph: "/test/codegraph/bin/codegraph", codegraphRoot: "/test/codegraph" };
 
-function fakeCommand(override?: (args: readonly string[]) => string | undefined) {
+function fakeCommand(override?: (args: readonly string[]) => string | ReturnType<CommunityCommand> | undefined) {
   const calls: {args: readonly string[]; cwd: string; env: NodeJS.ProcessEnv}[] = [];
   const command: CommunityCommand = (bin, args, options) => {
     calls.push({ args, cwd: options.cwd, env: options.env });
-    const stdout = override?.(args);
-    if (stdout !== undefined) return { stdout, stderr: "", ok: true };
+    const output = override?.(args);
+    if (typeof output === "string") return { stdout: output, stderr: "", ok: true };
+    if (output !== undefined) return output;
     if (args[0] === "--version") {
       return { stdout: bin === tools.codex ? "codex-cli 0.172.0\n" : "codegraph 1.6.2\n", stderr: "", ok: true };
     }
@@ -35,6 +39,8 @@ function fakeCommand(override?: (args: readonly string[]) => string | undefined)
     expect(readdirSync(options.cwd)).toEqual(["src"]);
     expect(existsSync(join(options.cwd, ".codegraph"))).toBe(false);
     expect(readFileSync(join(options.cwd, "src/pricing/quote.ts"), "utf8")).toContain("seasonalCredit");
+    expect(readFileSync(join(options.cwd, "src/calendar/quote-clock.ts"), "utf8")).toContain("quoteBillingMonth");
+    expect(readFileSync(join(options.cwd, "src/preview/campaign.ts"), "utf8")).toContain("seasonalCredit");
     const on = args.some((arg) => arg.startsWith("mcp_servers={codegraph="));
     return { stdout: jsonl(on), stderr: "", ok: true };
   };
@@ -51,22 +57,26 @@ describe("community CodeGraph runner", () => {
           expect(readdirSync(options.env.CODEX_HOME!)).toEqual(["auth.json"]);
           expect(readlinkSync(join(options.env.CODEX_HOME!, "auth.json"))).toBe("/private/codex/auth.json");
         }
+        if (args[0] === "exec") {
+          const schema = JSON.parse(readFileSync(args[args.indexOf("--output-schema") + 1], "utf8"));
+          expect(schema.required).toEqual(["entry", "rule", "boundary", "calendar", "preview", "fee"]);
+          expect(args.at(-1)).toContain("fee:");
+        }
         return command(bin, args, options);
       },
     });
     expect(report).toEqual({
-      version: 1, benchmark: "codegraph-v1", model: "gpt-5.4", codexVersion: "0.172.0", codegraphVersion: "1.6.2",
+      version: 2, benchmark: "codegraph-v2", model: "gpt-5.4", codexVersion: "0.172.0", codegraphVersion: "1.6.2",
       pairs: Array.from({length: 2}, () => ({
-        off: { score: 3, durationMs: 1, inputTokens: 500, cachedInputTokens: 100, outputTokens: 75, codegraphUsed: false },
-        on: { score: 3, durationMs: 1, inputTokens: 500, cachedInputTokens: 100, outputTokens: 75, codegraphUsed: true },
+        off: { status: "completed", score: 6, durationMs: 1, inputTokens: 500, cachedInputTokens: 100, outputTokens: 75, codegraphUsed: false },
+        on: { status: "completed", score: 6, durationMs: 1, inputTokens: 500, cachedInputTokens: 100, outputTokens: 75, codegraphUsed: true },
       })),
     });
     const execs = calls.filter(({args}) => args[0] === "exec");
     expect(execs.map(({args}) => args.some((arg) => arg.startsWith("mcp_servers={codegraph=")))).toEqual([false, true, true, false]);
     expect(new Set(execs.map(({cwd}) => cwd)).size).toBe(1);
-    expect(execs[0].args.filter((arg) => !arg.startsWith("mcp_servers="))).toEqual(
-      execs[1].args.filter((arg) => !arg.startsWith("mcp_servers=")),
-    );
+    const commonArgs = execs.map(({args}) => args.filter((arg) => !arg.startsWith("mcp_servers=")));
+    for (const args of commonArgs) expect(args).toEqual(commonArgs[0]);
     expect(execs[0].args).toContain("gpt-5.4");
     expect(execs[0].args).toContain("--ignore-user-config");
     expect(execs[0].args).toContain("--ignore-rules");
@@ -86,10 +96,10 @@ describe("community CodeGraph runner", () => {
     expect(existsSync(execs[0].cwd)).toBe(false);
   });
 
-  test("distinguishes a wrong answer from missing token accounting", async () => {
+  test("rejects lookalike answers without conflating them with missing token accounting", async () => {
     const { command } = fakeCommand((args) => args[0] === "exec" ? jsonl(false, false, false) : undefined);
     const { pairs } = await runCommunityEval("gpt-5.4", { platform: "linux", tools, command });
-    expect(pairs[0].on).toMatchObject({score: 2, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed: false});
+    expect(pairs[0].on).toMatchObject({status: "completed", score: 2, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed: false});
   });
 
   test("counts malformed answers as wrong and grades a partial answer per question", async () => {
@@ -105,12 +115,35 @@ describe("community CodeGraph runner", () => {
     });
     const { pairs } = await runCommunityEval("gpt-5.4", { platform: "linux", tools, command });
     expect(pairs.map(({ off, on }) => [off.score, on.score])).toEqual([[0, 1], [0, 1]]);
+    expect(pairs.flatMap(({ off, on }) => [off, on])).toEqual(Array(4).fill(expect.objectContaining({ status: "completed" })));
   });
 
-  test("stops after first protocol error and does not leak its text", async () => {
-    const { command, calls } = fakeCommand((args) => args[0] === "exec" ? '{"type":"turn.failed","error":{"message":"private-path"}}' : undefined);
+  test("records timeouts and process or protocol failures without leaking text or skipping arms", async () => {
+    let attempt = 0;
+    const { command, calls } = fakeCommand((args) => {
+      if (args[0] !== "exec") return;
+      attempt += 1;
+      if (attempt === 1) return { ok: false, timedOut: true, stdout: "partial private output", stderr: "private timeout" };
+      if (attempt === 2) return '{"type":"turn.failed","error":{"message":"private-path"}}';
+      if (attempt === 3) return { ok: false, stdout: "", stderr: "private process failure" };
+    });
+    const report = await runCommunityEval("gpt-5.4", { platform: "linux", tools, command, now: () => 20 });
+    const blankMetrics = { score: 0, durationMs: 1, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed: false };
+    expect(report.pairs[0]).toEqual({
+      off: { ...blankMetrics, status: "timeout" },
+      on: { ...blankMetrics, status: "failed" },
+    });
+    expect(report.pairs[1].on).toEqual({ ...blankMetrics, status: "failed" });
+    expect(report.pairs[1].off).toMatchObject({ status: "completed", score: 6 });
+    expect(JSON.stringify(report)).not.toContain("private");
+    expect(calls.filter(({args}) => args[0] === "exec")).toHaveLength(4);
+    expect(existsSync(calls.at(-1)!.cwd)).toBe(false);
+  });
+
+  test("stops if an unexpected MCP tool breaks experiment isolation", async () => {
+    const { command, calls } = fakeCommand((args) => args[0] === "exec" ? jsonl(true) : undefined);
     await expect(runCommunityEval("gpt-5.4", { platform: "linux", tools, command }))
-      .rejects.toThrow("BENCHMARK_CODEX_FAILED");
+      .rejects.toThrow("BENCHMARK_UNEXPECTED_MCP_TOOL");
     expect(calls.filter(({args}) => args[0] === "exec")).toHaveLength(1);
     expect(existsSync(calls.at(-1)!.cwd)).toBe(false);
   });
