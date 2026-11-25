@@ -28,7 +28,8 @@ import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
 import { profilesDir } from "../lib/repo-root";
 import { touchRuntime, maybeAutoGc } from "../lib/runtime-gc";
-import { debug } from "../lib/debug-log";
+import { debug, debugEnabled } from "../lib/debug-log";
+import { fitLine } from "../lib/picker/ui";
 import { syncCodexAuth } from "../lib/codex-auth";
 import {
   canonicalCodexAuthPath,
@@ -2565,7 +2566,9 @@ export async function run(args: string[]): Promise<number> {
       combos,
       featured: optionSet.featured,
       defaultSelector: optionSet.defaultSelector,
-      details: async (name) => {
+      // The picker already shows the stack and its resource totals. Keep the
+      // detailed inventory for diagnosis instead of repeating it at startup.
+      details: debugEnabled() ? async (name) => {
         const loaded = await loadProfile(name);
         await expandWildcards(loaded);
         cachedProfile = loaded;
@@ -2575,7 +2578,7 @@ export async function run(args: string[]): Promise<number> {
           parts = await Promise.all(partNames.map((p) => loadProfile(p)));
         }
         return formatProfileSummary(loaded, parts);
-      },
+      } : undefined,
     });
     profileName = picked.profile;
   } else {
@@ -2709,7 +2712,7 @@ export async function run(args: string[]): Promise<number> {
   // materialization so the runtime hash covers the filtered profile.
   // Fail-open: any error keeps the full profile. Escapes: `--cue-full`
   // (once), CUE_LOADOUT=off (globally), `cue loadout off` (this project).
-  let loadoutActive = false;
+  let loadout: { full: number; deferred: number } | undefined;
   const loadoutEnvOff = ["off", "0", "false"].includes(
     (process.env.CUE_LOADOUT ?? "").trim().toLowerCase(),
   );
@@ -2738,13 +2741,8 @@ export async function run(args: string[]): Promise<number> {
       });
       if (result) {
         profile = result.profile;
-        loadoutActive = true;
-        const top = result.signals.slice(0, 4).join(", ");
-        process.stderr.write(
-          `[cue] loadout: ${result.full.length} skills full · ${result.deferred.length} deferred` +
-            (top ? ` (${top}${result.signals.length > 4 ? ", …" : ""})` : "") +
-            ` · --cue-full loads all · cue loadout to edit\n`,
-        );
+        loadout = { full: result.full.length, deferred: result.deferred.length };
+        debug("launch:loadout", { ...loadout, signals: result.signals });
       }
     } catch (err) {
       debug("launch:loadout", err); // fail-open — full profile on any error
@@ -2787,7 +2785,7 @@ export async function run(args: string[]): Promise<number> {
     agentKind,
     parsed,
     pinDir,
-    loadoutActive,
+    loadoutActive: loadout !== undefined,
     runtimeKey,
     profileName,
   });
@@ -2933,7 +2931,8 @@ export async function run(args: string[]): Promise<number> {
   }
 
   // Printed after the loader releases the terminal so the warning survives.
-  for (const line of formatNpxDegraded(npxDegraded)) {
+  const columns = process.stderr.columns ?? 80;
+  for (const line of formatNpxDegraded(npxDegraded, { detailed: debugEnabled(), columns })) {
     process.stderr.write(`${line}\n`);
   }
 
@@ -3003,7 +3002,7 @@ export async function run(args: string[]): Promise<number> {
 
   // W6/W7 description-lint surface — runs on rebuild only, so skill-writer
   // sees weak triggers/capability at the moment the profile materializes,
-  // not just on explicit `cue validate`. Capped at 5 lines to avoid spam.
+  // not just on explicit `cue validate`. Use a single short warning.
   //
   // `npxOffline: true` is critical for launch latency: we only consume W6/W7
   // (local-skill description) issues below, but the linter's npx-fetchability
@@ -3022,9 +3021,12 @@ export async function run(args: string[]): Promise<number> {
       if (descIssues.length > 0) {
         const c = colorFns();
         const n = descIssues.length;
-        process.stderr.write(
-          `${c.yellow(`⚠ ${n} skill description issue${n > 1 ? "s" : ""}`)} ${c.dim(`→ cue validate ${profileName}`)}\n`,
-        );
+        const warning = c.yellow(`⚠ ${n} skill description issue${n > 1 ? "s" : ""}`);
+        process.stderr.write(`${fitLine(columns,
+          `${warning}${c.dim(` · cue validate ${profileName}`)}`,
+          `${warning}${c.dim(" · cue validate <profile>")}`,
+          warning,
+        )}\n`);
       }
     } catch {
       /* non-fatal — lint is observability, not a gate */
@@ -3225,10 +3227,8 @@ export async function run(args: string[]): Promise<number> {
     /* best-effort */
   }
 
-  // One-line startup identity banner (stderr). Always prints on a real launch
-  // so you can see what you landed in — agent, profile (collapsed to `primary
-  // +N` for composites), skill/MCP counts, and always-on token cost. dry-run
-  // and --rematerialize return earlier, so this never pollutes their JSON.
+  // Real launches get a compact identity and loadout; dry-run and
+  // --rematerialize return earlier, keeping their output unchanged.
   {
     const friendly = agentKind === "claude-code" ? "claude" : agentKind;
     process.stderr.write(
@@ -3237,6 +3237,8 @@ export async function run(args: string[]): Promise<number> {
         skills: countProfileSkills(profile),
         mcps: profile.mcps.length,
         alwaysOn: alwaysOnForBadge,
+        loadout,
+        columns,
       })}\n`,
     );
   }

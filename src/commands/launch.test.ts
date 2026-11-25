@@ -133,7 +133,7 @@ describe("resolveNpxSkillSources", () => {
         servedFromCache: ["gamma"],
         error: new Error("npx fetch failed for owner/warm: getaddrinfo EAI_AGAIN"),
       },
-    ]);
+    ], { detailed: true });
 
     expect(lines[0]).toContain("xixu-me/skills unreachable (exit 1 (after 3 attempts))");
     expect(lines[0]).toContain("launching without alpha, beta");
@@ -155,7 +155,7 @@ describe("resolveNpxSkillSources", () => {
         skipped: true,
         retryInMs: 5 * 60 * 60 * 1000 + 48 * 60 * 1000,
       },
-    ]);
+    ], { detailed: true });
 
     expect(lines[0]).toContain("github/awesome-copilot skipped");
     // Must not claim a fetch happened this launch.
@@ -168,6 +168,24 @@ describe("resolveNpxSkillSources", () => {
 
   test("no failures means no output", () => {
     expect(formatNpxDegraded([])).toEqual([]);
+  });
+
+  test("summarizes missing and cached skills without dumping repo errors or names", () => {
+    const lines = formatNpxDegraded([
+      { repo: "owner/large", skills: ["alpha", "beta"], servedFromCache: ["gamma"], error: new Error("long fetch error") },
+      { repo: "owner/cache", skills: [], servedFromCache: ["delta"], error: new Error("network unavailable") },
+    ]);
+    expect(lines).toEqual(["⚠ 2 skills unavailable · 2 cached · cue doctor"]);
+  });
+
+  test("keeps the warning actionable on a narrow terminal", () => {
+    const lines = formatNpxDegraded([
+      { repo: "owner/failure", skills: [], servedFromCache: ["alpha"], error: new Error("offline") },
+    ], { columns: 24 });
+    expect(lines).toEqual(["⚠ cached · cue doctor"]);
+    expect(formatNpxDegraded([
+      { repo: "owner/failure", skills: ["alpha"], servedFromCache: [], error: new Error("offline") },
+    ], { columns: 24 })).toEqual(["⚠ 1 missing · cue doctor"]);
   });
 });
 
@@ -987,34 +1005,41 @@ describe("tokenLevelEmoji", () => {
 describe("formatStartupBanner", () => {
   // colorFns() disables ANSI when stdout isn't a TTY (the test env), so these
   // assertions are plain text.
-  test("identity-only line for a light profile (no token info)", () => {
+  test("leads with the agent and profile, then puts counts on one quiet line", () => {
     expect(formatStartupBanner({ title: "claude · 🦊 core", skills: 3, mcps: 0 })).toBe(
-      "▸ claude · 🦊 core · 3 skills",
+      "◆ cue  claude · 🦊 core\n  3 skills",
     );
   });
 
   test("singular skill/MCP words and an MCP segment when present", () => {
     expect(formatStartupBanner({ title: "codex · 🧪 x", skills: 1, mcps: 1 })).toBe(
-      "▸ codex · 🧪 x · 1 skill · 1 MCP",
+      "◆ cue  codex · 🧪 x\n  1 skill · 1 MCP",
     );
   });
 
   test("omits the token segment under the 2K always-on floor", () => {
     expect(
       formatStartupBanner({ title: "claude · core", skills: 20, mcps: 0, alwaysOn: 1500 }),
-    ).toBe("▸ claude · core · 20 skills");
+    ).toBe("◆ cue  claude · core\n  20 skills");
   });
 
   test("shows the level dot and ~NK, but no pointer below the 10K heavy mark", () => {
     expect(
       formatStartupBanner({ title: "claude · core", skills: 53, mcps: 7, alwaysOn: 8000 }),
-    ).toBe("▸ claude · core · 53 skills · 7 MCPs · 🟡 ~8K always-on");
+    ).toBe("◆ cue  claude · core\n  53 skills · 7 MCPs · 🟡 ~8K always-on");
   });
 
   test("appends → cue cost for heavy profiles (>=10K always-on)", () => {
     expect(
       formatStartupBanner({ title: "claude · 🏭 gstack +4", skills: 96, mcps: 7, alwaysOn: 22845 }),
-    ).toBe("▸ claude · 🏭 gstack +4 · 96 skills · 7 MCPs · 🔴 ~23K always-on · → cue cost");
+    ).toBe("◆ cue  claude · 🏭 gstack +4\n  96 skills · 7 MCPs · 🔴 ~23K always-on · → cue cost");
+  });
+
+  test("integrates the local loadout and drops optional token text before wrapping", () => {
+    expect(formatStartupBanner({
+      title: "codex · ▲ vercel +2", skills: 110, mcps: 6, alwaysOn: 22845,
+      loadout: { full: 8, deferred: 25 }, columns: 38,
+    })).toBe("◆ cue  codex · ▲ vercel +2\n  8 local · 25 deferred · 6 MCPs");
   });
 });
 
@@ -1134,6 +1159,12 @@ describe("ownsPaneBadge", () => {
 // ---------------------------------------------------------------------------
 
 import { __test as launchTest } from "./launch";
+
+test("consumes --cue-full before forwarding the agent's arguments", () => {
+  const parsed = launchTest.parse(["codex", "--cue-full", "--", "--version"]);
+  expect(parsed.fullLoad).toBe(true);
+  expect(parsed.passthrough).toEqual(["--version"]);
+});
 
 describe("invalidateRuntimeHash", () => {
   test("does not throw when the hash file is absent (force:true)", async () => {
