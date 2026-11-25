@@ -31,12 +31,13 @@
 import { existsSync } from "node:fs";
 
 import { clearKittyImageByIdSequence, isKittyTerminal, renderKittyImage } from "./kitty-image";
+import { clipToWidth } from "./picker/render-util";
 
 /** Stable-width braille frames avoid the visual jitter of mixed star glyphs. */
 const FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 const TICK_MS = 80;
 /** Wait this long before drawing anything; warm launches finish first → no-op. */
-const START_DELAY_MS = 64;
+const START_DELAY_MS = 250;
 /**
  * Fixed image id for the loader's logo so we can delete exactly it on stop.
  * Chosen above renderKittyImage's random range (0..999_999) so it can never
@@ -90,6 +91,7 @@ interface CoreDeps {
   clearLogo(): string;
   /** Columns the logo occupies, for the text offset. */
   logoCols: number;
+  columns(): number | undefined;
 }
 
 interface LoaderCore {
@@ -115,13 +117,17 @@ function createLoaderCore(deps: CoreDeps, message: string, accentColor = CORAL):
   const drawFrame = (): void => {
     // 1-based column where the text begins: after the logo (if any) + 1 gap cell.
     const textCol = logo ? deps.logoCols + 2 : 1;
+    const columns = deps.columns() || 80;
+    if (textCol > columns) return;
     const spinner = `${accentColor}${FRAMES[frame % FRAMES.length]}${RESET}`;
     // Strip control chars (CR/LF/ESC/tab) from the message — it can carry the
     // classifier's REASON line, and an embedded \r/\n would break the single-line
     // redraw (cursor leaves the line; stop() then erases the wrong one).
-    const safeMsg = msg.replace(/[\u0000-\u001f\u007f]/g, " ");
+    const safeMsg = msg.replace(/[\p{Cc}\u2028\u2029]/gu, " ");
+    // Reserve the spinner and separator; wrapping would leave stale rows on stop.
+    const label = clipToWidth(safeMsg, columns - textCol - 1);
     // CHA to textCol, erase to EOL (leaves the logo cells intact), draw.
-    deps.write(`\x1b[${textCol}G\x1b[K${spinner} ${DIM}${safeMsg}${RESET}`);
+    deps.write(`\x1b[${textCol}G\x1b[K${spinner}${label ? ` ${DIM}${label}${RESET}` : ""}`);
   };
 
   return {
@@ -188,6 +194,7 @@ export function startLoader(opts: LoaderOptions = {}): LoaderHandle | null {
     renderLogo: () => (useKitty ? renderKittyImage(opts.logoPath!, logoCols, 1, LOGO_IMAGE_ID) : null),
     clearLogo: () => (useKitty ? clearKittyImageByIdSequence(LOGO_IMAGE_ID) : ""),
     logoCols,
+    columns: () => stream.columns,
   };
 
   const core = createLoaderCore(deps, opts.message ?? "Launching Claude…", opts.accentColor);
