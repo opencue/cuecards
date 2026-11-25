@@ -92,7 +92,7 @@ import {
   transmitKittyImage,
 } from "../lib/kitty-image";
 import { computeStats } from "../lib/analytics";
-import { countProfileSkills, profileSkillIds } from "../lib/profile-capabilities";
+import { profileSkillIds } from "../lib/profile-capabilities";
 import { detectProfileV2, type DetectionResultV2 } from "../lib/auto-detect";
 import {
   detectCompanions,
@@ -2845,6 +2845,7 @@ export async function run(args: string[]): Promise<number> {
   };
 
   let runtime!: Awaited<ReturnType<typeof materializeRuntime>>;
+  let npxSkills = 0;
   const npxDegraded: NpxEntryFailure[] = [];
   try {
     // Skill subsetting runs ONLY when this launch carries a real prompt:
@@ -2920,6 +2921,7 @@ export async function run(args: string[]): Promise<number> {
         npxDegraded.push(...failures);
       },
     });
+    npxSkills = npxSkillMap.size;
     if (npxSkillMap.size > 0) {
       const existingIds = new Set(profile.skills.local.map((skill) => skill.id));
       const newSkills = [...npxSkillMap.keys()]
@@ -3267,11 +3269,16 @@ export async function run(args: string[]): Promise<number> {
     process.stderr.write(
       `${formatStartupBanner({
         title: formatTmuxTitle(friendly, profileName, profileIcons),
-        skills: countProfileSkills(profile),
+        // Successful npx resolutions already appear in the local list.
+        skills: profile.skills.local.length,
+        npxSkills,
         mcps: profile.mcps.length,
+        plugins: profile.plugins.length,
+        commands: profile.commands?.length,
         alwaysOn: alwaysOnForBadge,
         loadout,
         columns,
+        terminal: process.stderr.isTTY === true && process.env.TERM !== "dumb",
       })}\n`,
     );
   }
