@@ -81,6 +81,14 @@ test("browse-only refresh discovers added skills without promoting them to insta
   });
   expect(refreshBrowseListings({ commit: head, [kept]: "Edited calendar summary" }, [selected], gh))
     .toEqual({ commit: head, [kept]: "Edited calendar summary" });
+  expect(refreshBrowseListings(previousListings, [selected], endpoint =>
+    endpoint.includes("/git/blobs/") ? {
+      encoding: "base64", content: Buffer.from("---\ndescription: [\n---\n").toString("base64"),
+    } : gh(endpoint))).toEqual({
+    commit: head,
+    [kept]: "Edited calendar summary",
+    "blog-launch": "Read this skill’s instructions at the source.",
+  });
   expect(() => refreshBrowseListings(previousListings, [selected], endpoint =>
     endpoint.includes("/compare/") ? { status: "diverged" } : gh(endpoint))).toThrow("history");
 });

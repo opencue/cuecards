@@ -234,7 +234,12 @@ async function resolveOne(
 
   const parts = trimmed.split("/");
   if (parts.length === 2 && parts[0] === "catalog") {
-    const source = createCatalogSkillStore().source(trimmed);
+    let source: string | undefined;
+    try {
+      source = createCatalogSkillStore().source(trimmed);
+    } catch {
+      // A damaged managed snapshot cannot be used as a local skill.
+    }
     if (!source) throw new SkillNotFound(ref, [], allSlugs);
     return { source, target: `.claude/skills/${parts[1]}`, origin: "local" };
   }

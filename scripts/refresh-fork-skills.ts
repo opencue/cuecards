@@ -111,7 +111,14 @@ export function refreshBrowseListings(
     }
     const file = Buffer.from(content, "base64").toString("utf8");
     const yaml = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(file)?.[1];
-    const description = yaml ? (Bun.YAML.parse(yaml) as { description?: unknown } | null)?.description : undefined;
+    let description: unknown;
+    if (yaml) {
+      try {
+        description = (Bun.YAML.parse(yaml) as { description?: unknown } | null)?.description;
+      } catch {
+        // An unreadable browse-only description is not an install trust decision.
+      }
+    }
     result[id] = (typeof description === "string" && description.replace(/\s+/g, " ").trim().slice(0, 240))
       || previousSummary || "Read this skill’s instructions at the source.";
   }
