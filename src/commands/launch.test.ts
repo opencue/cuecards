@@ -24,6 +24,7 @@ import {
 } from "./launch";
 import { DIVIDER_PREFIX } from "../lib/picker";
 import type { PickerOption } from "../lib/picker";
+import { visibleWidth } from "../lib/picker/ui";
 import type { ResolvedProfile } from "../../profiles/_types";
 
 const make = (value: string): PickerOption => ({ value, label: value, hint: "" });
@@ -1062,6 +1063,45 @@ describe("formatStartupBanner", () => {
       title: "codex · ▲ vercel +2", skills: 110, mcps: 6, alwaysOn: 22845,
       loadout: { full: 8, deferred: 25 }, columns: 38,
     })).toBe("◆ cue  codex · ▲ vercel +2\n  8 local · 25 deferred · 6 MCPs");
+  });
+
+  test("frames the profile, skill split and loadout shortcuts for a wide terminal", () => {
+    const out = formatStartupBanner({
+      title: "codex · ⭐ core", skills: 13, mcps: 4, npxSkills: 4,
+      plugins: 2, commands: 10,
+      loadout: { full: 9, deferred: 17 }, columns: 80, terminal: true,
+    });
+    const lines = out.split("\n");
+    expect(lines[0]).toStartWith("╭─ ◆ cue ");
+    expect(lines[1]).toStartWith("│ codex · ⭐ core");
+    expect(lines[2]).toContain("Skills   9 local · 17 deferred · 4 npx");
+    expect(lines[3]).toContain("Tools    4 MCPs · 2 plugins · 10 commands");
+    expect(lines[4]).toContain("cue loadout · --cue-full");
+    expect(lines[5]).toEndWith("╯");
+    expect(new Set(lines.map(visibleWidth)).size).toBe(1);
+  });
+
+  test("keeps the counts readable at 32 columns without a frame or clipped labels", () => {
+    const out = formatStartupBanner({
+      title: "claude · 🏭 gstack +4", skills: 118, mcps: 17, npxSkills: 23,
+      loadout: { full: 95, deferred: 102 }, alwaysOn: 17000,
+      columns: 32, terminal: true,
+    });
+    expect(out).not.toContain("╭");
+    expect(out).toContain("95 local · 102 deferred");
+    expect(out).toContain("23 npx · 17 MCPs");
+    expect(out).toContain("~17K always-on");
+    expect(out.split("\n").every(line => visibleWidth(line) <= 32)).toBe(true);
+  });
+
+  test("contains control characters in the profile identity without breaking the frame", () => {
+    const lines = formatStartupBanner({
+      title: "codex · \x1b[2J🦊\ncore", skills: 1, mcps: 0,
+      columns: 48, terminal: true,
+    }).split("\n");
+    expect(lines).toHaveLength(4);
+    expect(lines[1]).toContain("codex · 🦊 core");
+    expect(lines.every(line => visibleWidth(line) === 48)).toBe(true);
   });
 });
 

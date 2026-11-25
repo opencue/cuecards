@@ -7,9 +7,10 @@
  */
 
 import { basename, resolve, join, sep } from "node:path";
+import { stripVTControlCharacters } from "node:util";
 import { tokenLevelEmoji, type TokenBreakdown } from "./token-budget";
 import type { PickerOption } from "./picker";
-import { fitLine } from "./picker/ui";
+import { clipVisible, fitLine, padVisible, visibleWidth } from "./picker/ui";
 import { countProfileSkills } from "./profile-capabilities";
 import type { DetectionResultV2 } from "./auto-detect";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -133,21 +134,21 @@ function truncateList(items: string[], max = LIST_TRUNCATE): string {
 
 // isTTY and NO_COLOR are stable after process start — cache the result so
 // colorFns() allocates 4 closures once instead of on every call.
-let _colorFns:
-  | { cyan: (s: string) => string; yellow: (s: string) => string; dim: (s: string) => string; bold: (s: string) => string }
-  | undefined;
+let _colorFns: ReturnType<typeof makeColorFns> | undefined;
 /** Lazy color helpers. Disabled when stdout isn't a TTY or `NO_COLOR` is set. */
 export function colorFns() {
-  if (_colorFns) return _colorFns;
-  const enabled = process.stdout.isTTY === true && !process.env.NO_COLOR;
+  return (_colorFns ??= makeColorFns(process.stdout.isTTY === true && !process.env.NO_COLOR));
+}
+
+function makeColorFns(enabled: boolean) {
   const wrap = (code: string) => (s: string) =>
     enabled ? `\x1b[${code}m${s}\x1b[0m` : s;
-  return (_colorFns = {
+  return {
     cyan: wrap("36"),
     yellow: wrap("33"),
     dim: wrap("2"),
     bold: wrap("1"),
-  });
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -222,12 +223,8 @@ export function formatTokenWarning(b: TokenBreakdown): string[] {
 }
 
 /**
- * Format the compact startup banner shown at the handoff to the agent.
- * Confirms what you landed in: agent · icon+profile (collapsed to `primary +N`
- * for composites, via formatTmuxTitle) · skill and MCP counts · the always-on
- * token cost. The token segment is omitted under the 2K floor; a `→ cue cost`
- * pointer is appended only for genuinely heavy profiles. The full breakdown —
- * per-profile attribution, heaviest bodies — lives in `cue cost`.
+ * Startup handoff: a profile card in a roomy terminal, a compact summary
+ * elsewhere. No redraws or delays; the launch loader has already released the terminal.
  */
 const BANNER_TOKEN_FLOOR = 2000;
 const BANNER_HEAVY = 10_000;
@@ -235,37 +232,102 @@ const BANNER_HEAVY = 10_000;
 export interface StartupBannerInfo {
   /** Pre-collapsed title from formatTmuxTitle, e.g. "claude · 🏭 gstack +4". */
   title: string;
-  /** Total skills (local + npx). */
+  /** Total skills selected for materialization (local + resolved npx). */
   skills: number;
+  /** Resolved npx skills, shown separately when a local loadout is active. */
+  npxSkills?: number;
   /** MCP server count. */
   mcps: number;
+  plugins?: number;
+  commands?: number;
   /** Always-on token estimate, or undefined when not computed (light profile). */
   alwaysOn?: number;
   /** Project-local skill split when the project loadout is active. */
   loadout?: { full: number; deferred: number };
   columns?: number;
+  terminal?: boolean;
 }
 
 export function formatStartupBanner(info: StartupBannerInfo): string {
-  const c = colorFns();
+  const c = makeColorFns(
+    info.terminal === true && process.stderr.isTTY === true && !process.env.NO_COLOR,
+  );
   const columns = info.columns ?? 80;
-  const title = fitLine(columns, `${c.cyan("◆ cue")}  ${c.bold(info.title)}`);
-  const segs = info.loadout
+  const brand = c.cyan("◆ cue");
+  const identity = c.bold(stripVTControlCharacters(info.title).replace(/[\p{Cc}\u2028\u2029]+/gu, " "));
+  const title = fitLine(columns, `${brand}  ${identity}`);
+  const skills = info.loadout
     ? [`${info.loadout.full} local`, `${info.loadout.deferred} deferred`]
     : [`${info.skills} skill${info.skills === 1 ? "" : "s"}`];
-  if (info.mcps > 0) segs.push(`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`);
+  if (info.loadout && info.npxSkills) skills.push(`${info.npxSkills} npx`);
+  const mcps = info.mcps > 0 ? [`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`] : [];
   const separator = c.dim(" · ");
-  const summary = `  ${segs.join(separator)}`;
-  let stats = fitLine(columns, summary);
+  const context: string[] = [];
   if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_TOKEN_FLOOR) {
-    const tokens = `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`;
-    const detail = `${summary}${separator}${tokens}`;
-    stats = fitLine(columns,
-      info.alwaysOn >= BANNER_HEAVY ? `${detail}${separator}${c.dim("→ cue cost")}` : detail,
-      detail, summary,
+    context.push(
+      `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`,
     );
+    if (info.alwaysOn >= BANNER_HEAVY) context.push(c.dim("→ cue cost"));
   }
-  return `${title}\n${stats}`;
+  if (!info.terminal) {
+    const capabilities = [...skills, ...mcps];
+    const summary = `  ${capabilities.join(separator)}`;
+    const detail = [...capabilities, ...context.slice(0, 1)];
+    return `${title}\n${fitLine(
+      columns,
+      `  ${[...capabilities, ...context].join(separator)}`,
+      `  ${detail.join(separator)}`,
+      summary,
+    )}`;
+  }
+
+  const tools = [...mcps];
+  if (info.plugins) tools.push(`${info.plugins} plugin${info.plugins === 1 ? "" : "s"}`);
+  if (info.commands) tools.push(`${info.commands} command${info.commands === 1 ? "" : "s"}`);
+  const shortcuts = info.loadout ? ["cue loadout", "--cue-full"] : [];
+  if (columns < 48) {
+    return [
+      title,
+      ...[[...skills, ...tools], context, shortcuts].flatMap((items) =>
+        wrapBannerItems(items, Math.max(0, columns - 2), separator)
+          .map((line) => clipVisible(`  ${line}`, columns)),
+      ),
+    ].join("\n");
+  }
+
+  const width = Math.min(62, columns);
+  const row = (value: string) =>
+    `${c.dim("│")} ${padVisible(clipVisible(value, width - 4), width - 4)} ${c.dim("│")}`;
+  const section = (label: string, items: string[]) =>
+    wrapBannerItems(items, width - 13, separator).map((line, i) =>
+      row(`${c.cyan((i === 0 ? label : "").padEnd(9))}${line}`),
+    );
+  return [
+    `${c.dim("╭─")} ${brand} ${c.dim(`${"─".repeat(width - 10)}╮`)}`,
+    row(identity),
+    ...section("Skills", skills),
+    ...section("Tools", tools),
+    ...section("Context", context),
+    ...section("Loadout", shortcuts),
+    c.dim(`╰${"─".repeat(width - 2)}╯`),
+  ].join("\n");
+}
+
+/** Wrap at separators, preserving complete count/label pairs on normal terminals. */
+function wrapBannerItems(items: string[], width: number, separator: string): string[] {
+  const lines: string[] = [];
+  let line = "";
+  for (const item of items) {
+    const joined = line ? line + separator + item : item;
+    if (line && visibleWidth(joined) > width) {
+      lines.push(line);
+      line = item;
+    } else {
+      line = joined;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
 }
 
 // ---------------------------------------------------------------------------
