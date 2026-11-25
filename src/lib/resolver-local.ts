@@ -21,6 +21,7 @@ import { basename, dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ProfileError, type LinkPlan, type ResolvedProfile } from "../../profiles/_types";
 import { createCatalogSkillStore } from "./catalog-skill-updates";
+import { isPortableSkillRef, resolvePortableSkill } from "./portable-skills";
 
 // ---------------------------------------------------------------------------
 // Repo-root helpers (used by resolveLocalSkill)
@@ -124,11 +125,15 @@ export async function resolveLocal(
   // lazily so a profile with only `<category>/<slug>` refs only pays for the
   // categories it touches if we wanted — but the cost of a single readdir
   // pass is tiny, so we always walk.
-  const { categoryIndex, slugIndex, allSlugs } = await walk(root);
-
+  let index: SkillsIndex | undefined;
   const plans: LinkPlan[] = [];
   for (const ref of refs) {
     const id = ref.id;
+    if (isPortableSkillRef(id)) {
+      plans.push(resolvePortableLink(id));
+      continue;
+    }
+    const { categoryIndex, slugIndex, allSlugs } = index ??= await walk(root);
 
     // Wildcard: "*/*" means "all skills in all categories".
     if (id === "*/*") {
@@ -158,6 +163,12 @@ interface SkillsIndex {
   slugIndex: Map<string, string[]>;
   /** Every `<category>/<slug>` pair, used for Levenshtein suggestions. */
   allSlugs: string[];
+}
+
+function resolvePortableLink(ref: string): LinkPlan {
+  const source = resolvePortableSkill(ref);
+  if (!source) throw new SkillNotFound(ref, [], []);
+  return { source, target: `.claude/skills/${basename(ref)}`, origin: "local" };
 }
 
 async function walk(root: string): Promise<SkillsIndex> {
@@ -373,6 +384,7 @@ export function createLocalSkillResolver(options?: ResolveLocalOptions): (id: st
   const root = resolve(options?.skillsRoot ?? skillsRoot);
   let index: Promise<SkillsIndex> | undefined;
   return async (id) => {
+    if (isPortableSkillRef(id)) return resolvePortableLink(id).source;
     index ??= walk(root);
     const { categoryIndex, slugIndex, allSlugs } = await index;
     const plan = await resolveOne(id, root, categoryIndex, slugIndex, allSlugs);
