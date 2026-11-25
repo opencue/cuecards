@@ -1,4 +1,4 @@
-import { describe, test, expect, spyOn, afterEach } from "bun:test";
+import { describe, test, expect, spyOn, beforeEach, afterEach } from "bun:test";
 import { run } from "./mcps";
 
 let stdoutBuf = "";
@@ -28,6 +28,16 @@ afterEach(() => {
 });
 
 describe("cue mcps search — official MCP Registry", () => {
+  let inheritedOffline: string | undefined;
+  beforeEach(() => {
+    inheritedOffline = process.env.CUE_OFFLINE;
+    process.env.CUE_OFFLINE = "0";
+  });
+  afterEach(() => {
+    if (inheritedOffline === undefined) delete process.env.CUE_OFFLINE;
+    else process.env.CUE_OFFLINE = inheritedOffline;
+  });
+
   test("only fetches public discovery metadata, not servers or packages", async () => {
     setup();
     fetchSpy = spyOn(globalThis, "fetch").mockResolvedValue(Response.json({
@@ -91,16 +101,35 @@ describe("cue mcps search — official MCP Registry", () => {
   test("does not send a search when offline mode is on", async () => {
     setup();
     fetchSpy = spyOn(globalThis, "fetch");
-    const previous = process.env.CUE_OFFLINE;
     process.env.CUE_OFFLINE = "1";
-    try {
-      expect(await run(["search", "github"])).toBe(1);
-      expect(fetchSpy).not.toHaveBeenCalled();
-      expect(stderrBuf).toContain("offline");
-    } finally {
-      if (previous === undefined) delete process.env.CUE_OFFLINE;
-      else process.env.CUE_OFFLINE = previous;
-    }
+    expect(await run(["search", "github"])).toBe(1);
+    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(stderrBuf).toContain("offline");
+  });
+
+  test("explains that a page with no displayable servers may not be the last page", async () => {
+    setup();
+    fetchSpy = spyOn(globalThis, "fetch").mockResolvedValue(Response.json({
+      servers: [{ server: null }],
+      metadata: { nextCursor: "opaque-cursor" },
+    }));
+    expect(await run(["search", "github"])).toBe(0);
+    expect(stdoutBuf).toContain("More matches exist");
+    expect(stdoutBuf).not.toContain("No matching servers");
+  });
+
+  test("cancels an oversized registry stream before printing any results", async () => {
+    setup();
+    let canceled = false;
+    const body = new ReadableStream({
+      start(controller) { controller.enqueue(new Uint8Array(1024 * 1024 + 1)); },
+      cancel() { canceled = true; },
+    });
+    fetchSpy = spyOn(globalThis, "fetch").mockResolvedValue(new Response(body));
+    expect(await run(["search", "github", "--json"])).toBe(1);
+    expect(canceled).toBe(true);
+    expect(stdoutBuf).toBe("");
+    expect(stderrBuf).toContain("invalid response");
   });
 });
 

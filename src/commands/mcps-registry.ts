@@ -120,7 +120,9 @@ export async function searchMcpRegistry(args: string[]): Promise<number> {
     return 0;
   }
   if (!servers.length) {
-    process.stdout.write("No matching servers in the official MCP Registry.\n");
+    process.stdout.write(hasMore
+      ? "No displayable servers on this page. More matches exist; try refining the query.\n"
+      : "No matching servers in the official MCP Registry.\n");
     return 0;
   }
   const lines = servers.flatMap(({ name, version, description, repository, packages, transports }) => [
