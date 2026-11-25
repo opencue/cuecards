@@ -260,6 +260,24 @@ describe("AI profile advisor", () => {
     expect(attempted).toEqual(["codex", "claude"]);
   });
 
+  test("caches an explicit no-match answer without asking the other provider", async () => {
+    const calls: string[] = [];
+    const options = {
+      cwd: temp(),
+      cacheRoot: temp(),
+      knownProfiles: ["core"],
+      preferredAgent: "codex" as const,
+      knownSkills: [],
+      runner: (agent: string) => {
+        calls.push(agent);
+        return '{"summary":"No match","suggestions":[],"skills":[]}';
+      },
+    };
+    expect(await adviseProfiles(options)).toEqual({ summary: "No match", suggestions: [], skills: [] });
+    expect(getCachedProfileAdvice(options)?.freshness).toBe("fresh");
+    expect(calls).toEqual(["codex"]);
+  });
+
   test.skipIf(process.platform === "win32")("runs both CLI fixtures outside the project directory", async () => {
     const cwd = temp();
     const bin = temp();

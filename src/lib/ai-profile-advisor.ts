@@ -307,7 +307,8 @@ export function parseProfileAdvice(
           (id): id is string => typeof id === "string" && knownSkills.has(id),
         ))].slice(0, 3)
       : [];
-    if (suggestions.length === 0 && skills.length === 0) return null;
+    const noMatch = Array.isArray(value.skills) && value.skills.length === 0;
+    if (suggestions.length === 0 && skills.length === 0 && !noMatch) return null;
     return { summary: cleanAdviceText(value.summary, 240), suggestions, skills };
   } catch {
     return null;

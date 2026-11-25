@@ -161,7 +161,7 @@ export function renderCardFrame(state: CardState): string {
   }
 
   const advice = state.advice;
-  if (advice || state.advicePending) {
+  if (advice?.suggestions.length || advice?.skills.length || state.advicePending) {
     airInCard();
     const rows = [
       advice?.suggestions.length ? `AI profiles: ${advice.suggestions.map(({ profile }) => profile).join(", ")}` : "",
