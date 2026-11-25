@@ -133,7 +133,7 @@ export async function runLocal(options: {
           writeFileSync(join(grade, "acceptance.mjs"),
             readFileSync(join(fixture, "EVAL.ts"), "utf8").replace('from "vitest"', 'from "node:test"'));
           const grader = await command(options.codex, [
-            "sandbox", "-P", ":read-only", "-C", grade, "--", "node", "--test", "acceptance.mjs", "checks.mjs",
+            "sandbox", "-P", ":read-only", "-C", grade, "--", "node", "--test", "--test-reporter=tap", "acceptance.mjs", "checks.mjs",
           ], grade, { PATH: env.PATH, HOME: home, CODEX_HOME: home }, 30_000, "", join(resultDir, "grader.tap"));
           writeFileSync(join(resultDir, "grader.log"), grader.stdout + grader.stderr, { mode: 0o600 });
           if (!grader.stdout.includes("TAP version 13")) throw new Error("Grader sandbox failed to start.");

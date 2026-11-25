@@ -35,8 +35,10 @@ if (args[0] === "sandbox") {
     console.error("fixture grader launch failed");
     process.exit(1);
   }
-  const command = args.slice(args.indexOf("--") + 1);
-  const result = cp.spawnSync(command[0], command.slice(1), { cwd: args[args.indexOf("-C") + 1], encoding: "utf8" });
+  const [bin, ...graderArgs] = args.slice(args.indexOf("--") + 1);
+  // Simulate the Node 23+ default even when this fixture runs on older Node.
+  if (!graderArgs.some((arg) => arg.startsWith("--test-reporter="))) graderArgs.unshift("--test-reporter=spec");
+  const result = cp.spawnSync(bin, graderArgs, { cwd: args[args.indexOf("-C") + 1], encoding: "utf8" });
   process.stdout.write(result.stdout || ""); process.stderr.write(result.stderr || "");
   if (!result.stdout?.includes("TAP version 13")) {
     console.error("Fixture Node:", process.version, "grader exit status:", result.status);
