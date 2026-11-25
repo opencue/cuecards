@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { filterPublicSkills, readBundledSkills, shufflePublicSkills } from "./bundled-skill-catalog";
+import { filterPublicSkills, type PublicSkill, readBundledSkills, shufflePublicSkills } from "./bundled-skill-catalog";
 import blogListings from "./fork-skill-listings.json";
 import { searchForkSkills } from "./skill-catalog";
 
@@ -45,7 +45,7 @@ test("mixes sources and categories without losing items or reshuffling a filtere
     { id: "motion", category: "Forks", source: "Motion" },
     { id: "react", category: "Frontend" },
     { id: "sqlite", category: "Backend" },
-  ].map(skill => ({ ...skill, name: skill.id, description: "Build something" }));
+  ].map((skill): PublicSkill => ({ ...skill, name: skill.id, description: "Build something" }));
   const order = shufflePublicSkills(skills, () => 0);
   expect(new Set(order.slice(0, 4).map(skill => skill.source ?? skill.category)).size).toBe(4);
   expect(order.map(skill => skill.id).sort()).toEqual(skills.map(skill => skill.id).sort());
