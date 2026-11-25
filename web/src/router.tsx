@@ -1,5 +1,8 @@
 import { createRootRoute, createRoute, createRouter, lazyRouteComponent, Link, Outlet, redirect } from "@tanstack/react-router";
 import { StudioApp, type View } from "./studio/StudioApp";
+import { MarketView } from "./studio/views/Market";
+import { PublicNav, Welcome } from "./studio/views/Welcome";
+import publicStyles from "./studio/views/Welcome.module.css";
 import { WorkspacesPage } from "./workspaces/Workspaces";
 import { parseStudioView, parseWorkspaceSearch } from "./route-search";
 import { isDemoMode } from "./lib/fetcher";
@@ -16,7 +19,16 @@ const home = createRoute({
 function StudioRoute() {
   const { view } = home.useSearch();
   const navigate = home.useNavigate();
-  return <StudioApp view={view ?? (isDemoMode() ? "welcome" : "inventory")} onViewChange={next => void navigate({ search: { view: next } })} />;
+  if (isDemoMode()) {
+    if (!view || view === "welcome") return <Welcome />;
+    if (view === "market") {
+      return <div className={`${publicStyles.site} ${publicStyles.viewport} ${publicStyles.marketplace}`}>
+        <PublicNav current="market" />
+        <main><MarketView /></main>
+      </div>;
+    }
+  }
+  return <StudioApp view={view ?? "inventory"} onViewChange={next => void navigate({ search: { view: next } })} />;
 }
 const legacyStudio = createRoute({
   getParentRoute: () => root, path: "/studio/$view",
