@@ -1,8 +1,32 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { readFile } from "node:fs/promises";
+import { readBundledSkills } from "./src/bundled-skill-catalog";
+
+const catalogModule = "virtual:cue-bundled-skills";
+const localCatalog = new URL("../resources/skills/catalog/catalog.json", import.meta.url);
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), {
+    name: "cue-bundled-skills",
+    resolveId: id => id === catalogModule ? `\0${id}` : undefined,
+    async load(id) {
+      if (id !== `\0${catalogModule}`) return;
+      let text: string;
+      try {
+        text = await readFile(localCatalog, "utf8");
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+        // Web-only deployments may not include the public skills submodule.
+        const response = await fetch("https://raw.githubusercontent.com/opencue/skills/main/catalog/catalog.json", {
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!response.ok) throw new Error(`Could not load the public Cue skill catalog (HTTP ${response.status})`);
+        text = await response.text();
+      }
+      return `export default ${JSON.stringify(readBundledSkills(JSON.parse(text)))};`;
+    },
+  }],
   server: {
     port: 5173,
     // Proxy /api/* to the local Bun dashboard server during dev so the

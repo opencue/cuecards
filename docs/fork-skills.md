@@ -1,7 +1,14 @@
 # Curated fork skills
 
-Browse the selected GitHub forks at [Cuecards → Skills](https://cuecards.cc/skills),
-or in Cue:
+Browse and filter the public bundled skill inventory and the two featured
+NagyVikt forks at [Cuecards → Skills](https://cuecards.cc/skills). The web build
+reads the checked-out Cue skills catalog, or the published `opencue/skills`
+catalog in a web-only build. The list refreshes on the next web build rather
+than relying on a manually copied inventory. Local-only skills are not listed.
+
+The blog and motion forks are listed in full, including browse-only entries.
+A source link is not an install recommendation: only entries that show an
+install command are in the reviewed Cue overlay. To use those in Cue:
 
 ```sh
 cue skills catalog
@@ -10,8 +17,8 @@ cue skills catalog install blog-calendar
 cue use core+nagyvikt-skills
 ```
 
-The same [catalog](../web/src/skill-catalog.json) serves both. It shows an
-editor-written summary and an immutable GitHub source link for each skill.
+The [reviewed catalog](../web/src/skill-catalog.json) serves both the CLI and
+website. It shows an editor-written summary and an immutable GitHub source link.
 Installing is opt-in: Cue hands the selected commit and directory to its
 standard skill installer, which installs for your user and offers profile
 registration. No catalog entry changes default profiles.
