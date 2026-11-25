@@ -10,6 +10,7 @@ import { describe, expect, test, afterEach } from "bun:test";
 import { handleProfileDetail, handleMcpCatalog, handleMcpAdd, handleMarket, handleMarketInstall, createHandler, semverGt, computeVersionInfo, buildTimeline, handleHooks, handleHookSource, handleKillSession } from "./dashboard-server";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
+import { supportsProcScan } from "./active-sessions";
 
 // `resources/skills` is a git submodule. The catalogue test below asserts real
 // on-disk skill bodies (e.g. meta/analyze), so skip it when the submodule isn't
@@ -399,6 +400,30 @@ test("active-sessions rejects invalid or duplicate memory query flags", async ()
     expect(await response.json()).toEqual({ ok: false, error: "invalid-memory-flag" });
   }
 });
+
+test.skipIf(!supportsProcScan())("active-sessions includes memory only when requested", async () => {
+  const child = Bun.spawn([process.execPath, "-e", 'console.log("ready"); setInterval(() => {}, 1000)', "codex"], {
+    stdout: "pipe",
+  });
+  try {
+    await child.stdout.getReader().read();
+    const handler = createHandler();
+    const url = "http://localhost/api/v1/active-sessions";
+    const baseline = await (await handler(new Request(url))).json();
+    const byPid = ({ pid }: { pid: number }) => pid === child.pid;
+    const row = baseline.data.sessions.find(byPid);
+    expect(row).toBeDefined();
+    expect(row).not.toHaveProperty("memory");
+    const measured = await (await handler(new Request(url + "?memory=1"))).json();
+    expect(measured.data.sessions.find(byPid)?.memory).toMatchObject({
+      measuredProcesses: expect.any(Number),
+      unreadableProcesses: expect.any(Number),
+    });
+  } finally {
+    child.kill();
+    await child.exited;
+  }
+}, 15000);
 
 // ---------------------------------------------------------------------------
 // handleKillSession — authorization paths

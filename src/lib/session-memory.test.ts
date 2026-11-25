@@ -4,19 +4,21 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { measureSessionMemory } from "./session-memory";
 
-test("attributes launcher, agent, MCP subtrees and other descendants without double counting", async () => {
+test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and other descendants without double counting", async () => {
   const proc = mkdtempSync(join(tmpdir(), "cue-memory-"));
-  const add = (pid: number, parent: number, argv: string[], pss?: number) => {
+  const uid = process.geteuid?.() ?? 0;
+  const add = (pid: number, parent: number, argv: string[], pss?: number, owner = uid) => {
     const dir = join(proc, String(pid));
     mkdirSync(dir);
     writeFileSync(join(dir, "stat"), `${pid} (name ) with spaces) S ${parent} ${"0 ".repeat(17)}${pid} 0\n`);
     writeFileSync(join(dir, "cmdline"), argv.join("\0") + "\0");
+    writeFileSync(join(dir, "status"), `Name:\ttest\nUid:\t${uid}\t${owner}\t${uid}\t${uid}\n`);
     if (pss !== undefined) {
       writeFileSync(join(dir, "smaps_rollup"), `Rss: 999 kB\nPss: ${pss} kB\nSwapPss: 200 kB\n`);
     }
   };
   try {
-    add(10, 1, ["bun", "/repo/src/index.ts", "launch", "codex"], 100);
+    add(10, 1, ["bun", "src/index.ts", "launch", "codex"], 100);
     add(11, 10, ["node", "/path/omx"], 20);
     add(12, 11, ["codex"], 300);
     add(13, 12, ["node", "/path/gitnexus", "mcp"], 250);
@@ -36,12 +38,13 @@ test("attributes launcher, agent, MCP subtrees and other descendants without dou
     add(27, 1, ["reused-pid"], 999);
     add(28, 10, ["launcher-helper"], 70);
     add(29, 25, ["nested-wrapper-helper"], 80);
+    add(30, 12, ["different-owner"], 999, uid + 1);
     expect(await measureSessionMemory(new Map([[12, 12], [16, 16], [20, 20], [26, 26], [27, 2], [99, 99]]), proc)).toEqual(new Map([
       [12, {
         totalPssKiB: 860,
         byRole: { launcher: 100, agent: 300, mcp: 300, other: 160 },
         measuredProcesses: 7,
-        unreadableProcesses: 1,
+        unreadableProcesses: 2,
       }],
       [16, {
         totalPssKiB: 260,

@@ -1,4 +1,4 @@
-import { readFileSync, statSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { readFile, readdir } from "node:fs/promises";
 
 export interface SessionMemory {
@@ -38,7 +38,7 @@ export function processStat(path: string) {
 
 function isLauncher(argv: string[]): boolean {
   return (
-    /\/(?:src\/index\.ts|dist\/cue\.js|bin\/cue(?:\.mjs)?)$/.test(argv[1] ?? "") &&
+    /(?:^|\/)(?:src\/index\.ts|dist\/cue\.js|bin\/cue(?:\.mjs)?)$/.test(argv[1] ?? "") &&
     argv[2] === "launch" &&
     (argv[3] === "codex" || argv[3] === "claude")
   );
@@ -58,11 +58,17 @@ function isMcp(argv: string[]): boolean {
 
 async function readPss(dir: string, started: number): Promise<number | null> {
   try {
-    // Even a privileged dashboard should not expose other users' footprints.
-    if (statSync(dir).uid !== process.geteuid?.()) return null;
+    // A non-dumpable process's /proc directory can be owned by root even
+    // when its effective UID is not. Check the kernel-reported effective UID.
+    const uid = process.geteuid?.();
+    const owned = async () => {
+      const status = await readFile(`${dir}/status`, "utf8");
+      return Number(/^Uid:[ \t]+\d+[ \t]+(\d+)[ \t]/m.exec(status)?.[1]) === uid;
+    };
+    if (uid === undefined || !(await owned())) return null;
     const rollup = await readFile(`${dir}/smaps_rollup`, "utf8");
     const kiB = Number(/^Pss:[ \t]+(\d+)[ \t]+kB$/m.exec(rollup)?.[1]);
-    return Number.isSafeInteger(kiB) && processStat(`${dir}/stat`)?.started === started
+    return Number.isSafeInteger(kiB) && await owned() && processStat(`${dir}/stat`)?.started === started
       ? kiB
       : null;
   } catch {
