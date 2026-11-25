@@ -131,7 +131,7 @@ describe("loadout run() — show subcommand", () => {
       ...SAMPLE_ENTRY,
       deferred: Array.from({ length: 18 }, (_, index) => `skill-${index + 1}`),
       userKeep: ["help"],
-      userDefer: ["skill-18"],
+      userDefer: ["skill-1"],
     });
     expect(await run([])).toBe(0);
     const output = outSpy.mock.calls.map(([chunk]) => String(chunk)).join("");
@@ -152,6 +152,22 @@ describe("loadout run() — show subcommand", () => {
     expect(output).toContain("Disabled");
     expect(output).toContain("Saved groups (inactive)");
     expect(output).toContain("cue loadout on");
+  });
+
+  test("shows the environment bypass without changing the project's setting", async () => {
+    seedLoadout(SAMPLE_ENTRY);
+    const saved = process.env.CUE_LOADOUT;
+    process.env.CUE_LOADOUT = " FaLsE ";
+    try {
+      expect(await run([])).toBe(0);
+      const output = outSpy.mock.calls.map(([chunk]) => String(chunk)).join("");
+      expect(output).toContain("Bypassed (CUE_LOADOUT)");
+      expect(output).toContain("Saved groups (inactive)");
+      expect(readSavedLoadout()?.enabled).toBe(true);
+    } finally {
+      if (saved === undefined) delete process.env.CUE_LOADOUT;
+      else process.env.CUE_LOADOUT = saved;
+    }
   });
 
   test("run([]) with an existing loadout returns 0", async () => {

@@ -36,10 +36,13 @@ function locate(cwd: string): { dir: string; entry: LoadoutEntry } | null {
 
 function show(dir: string, entry: LoadoutEntry): void {
   const columns = process.stdout.columns || 80;
+  const envOff = ["off", "0", "false"].includes((process.env.CUE_LOADOUT ?? "").trim().toLowerCase());
+  const active = entry.enabled && !envOff;
+  const status = envOff ? "Bypassed (CUE_LOADOUT)" : entry.enabled ? "Enabled" : "Disabled";
   const clean = (text: string) =>
     stripVTControlCharacters(text).replace(/[\p{Cc}\u2028\u2029]+/gu, " ");
   const lines = [
-    `${styleText("cyan", "◆ cue loadout")}  ${styleText(entry.enabled ? "green" : "yellow", entry.enabled ? "Enabled" : "Disabled")}`,
+    `${styleText("cyan", "◆ cue loadout")}  ${styleText(active ? "green" : "yellow", status)}`,
     `  Profile   ${clean(entry.profile)}`,
     `  Project   ${clean(dir)}`,
     `  Captured  ${clean(entry.capturedAt)}`,
@@ -49,7 +52,7 @@ function show(dir: string, entry: LoadoutEntry): void {
     lines.push(...wrapText(ids.map(clean).join(", ") || "None", columns - 2, "")
       .map((line) => `  ${line}`));
   };
-  if (!entry.enabled) lines.push("", styleText("yellow", "Saved groups (inactive)"));
+  if (!active) lines.push("", styleText("yellow", "Saved groups (inactive)"));
   group("At startup", entry.full);
   group("On demand", entry.deferred);
   if (entry.userKeep.length > 0) group("Pinned at startup", entry.userKeep);
