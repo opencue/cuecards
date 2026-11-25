@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { readFileSync, readlinkSync } from "node:fs";
 import { readFile, readdir } from "node:fs/promises";
 
 export interface SessionMemory {
@@ -6,9 +7,17 @@ export interface SessionMemory {
   byRole: { launcher: number; agent: number; mcp: number; other: number };
   measuredProcesses: number;
   unreadableProcesses: number;
+  duplicateMcps: McpDuplicate[];
 }
 
 type Role = keyof SessionMemory["byRole"];
+type McpName = "gitnexus" | "rea" | "codegraph";
+type McpDuplicate = {
+  name: McpName;
+  instances: number;
+  totalPssKiB: number;
+  unreadableProcesses: number;
+};
 
 function read(path: string): string {
   try {
@@ -44,16 +53,27 @@ function isLauncher(argv: string[]): boolean {
   );
 }
 
-function isMcp(argv: string[]): boolean {
+function mcpKind(argv: string[]): McpName | "unnamed" | null {
   // Not all MCP transports are identifiable from argv. Unknown helpers stay
   // in "other", and detached servers are not attributed to a session.
   const command = argv.slice(0, -1);
   const mode = argv.at(-1);
-  return (
-    (mode === "mcp" && command.some((arg) => /(?:^|\/)(?:gitnexus|rea(?:-ag)?)(?:\/|@|$)/.test(arg))) ||
-    (mode === "serve" && command.some((arg) => /(?:^|\/)codegraph(?:[-/]|$)/.test(arg))) ||
-    argv.slice(0, 2).some((arg) => /(?:^|\/)mcp-server-[^/]+$/.test(arg))
-  );
+  if (mode === "mcp") {
+    if (command.some((arg) => /(?:^|\/)gitnexus(?:\/|@|$)/.test(arg))) return "gitnexus";
+    if (command.some((arg) => /(?:^|\/)rea(?:-ag)?(?:\/|@|$)/.test(arg))) return "rea";
+  }
+  if (mode === "serve" && command.some((arg) => /(?:^|\/)codegraph(?:[-/]|$)/.test(arg))) return "codegraph";
+  return argv.slice(0, 2).some((arg) => /(?:^|\/)mcp-server-[^/]+$/.test(arg)) ? "unnamed" : null;
+}
+
+function mcpFingerprint(dir: string, argv: string[]): string | null {
+  try {
+    const cwd = readlinkSync(`${dir}/cwd`);
+    if (cwd.endsWith(" (deleted)")) return null;
+    return createHash("sha256").update(JSON.stringify([cwd, argv])).digest("hex");
+  } catch {
+    return null;
+  }
 }
 
 async function readPss(dir: string, started: number): Promise<number | null> {
@@ -106,7 +126,11 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
   for (const [pid, started] of startTicks) {
     if (rows.get(pid)?.started === started) roots.add(pid);
   }
-  const argv = (pid: number) => read(`${proc}/${pid}/cmdline`).split("\0").filter(Boolean);
+  const argv = (pid: number) => {
+    const parts = read(`${proc}/${pid}/cmdline`).split("\0");
+    if (parts.at(-1) === "") parts.pop();
+    return parts;
+  };
   const launchPaths = new Map<number, number[]>();
   // null marks ancestry shared by more than one session, not exclusive.
   const owners = new Map<number, number | null>();
@@ -132,6 +156,7 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
       byRole: { launcher: 0, agent: 0, mcp: 0, other: 0 },
       measuredProcesses: 0,
       unreadableProcesses: 0,
+      duplicateMcps: [],
     };
     const record = async (processId: number, role: Role) => {
       const row = rows.get(processId);
@@ -143,6 +168,7 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
         memory.byRole[role] += pss;
         memory.totalPssKiB = (memory.totalPssKiB ?? 0) + pss;
       }
+      return pss;
     };
 
     const path = launchPaths.get(pid) ?? [];
@@ -152,23 +178,49 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
       if (owners.get(ancestor) === pid) top = ancestor;
     }
 
-    const pending: [number, Role][] = [[top, top === pid ? "agent" : top === launcher ? "launcher" : "other"]];
+    const mcpGroups = new Map<string, McpDuplicate>();
+    const pending: [number, Role, (McpName | McpDuplicate)?][] = [
+      [top, top === pid ? "agent" : top === launcher ? "launcher" : "other"],
+    ];
     const seen = new Set<number>();
     for (let next = pending.pop(); next; next = pending.pop()) {
-      const [current, role] = next;
+      const [current, role, mcp] = next;
       if (seen.has(current)) continue;
       seen.add(current);
-      await record(current, role);
       const parent = rows.get(current);
       if (!parent) continue;
+      const pss = await record(current, role);
+      let group = typeof mcp === "object" ? mcp : undefined;
+      if (typeof mcp === "string" && pss !== null) {
+        // Count only owned, successfully sampled roots, never their wrappers
+        // and children again. Do not expose command arguments or paths.
+        const command = argv(current);
+        const key = mcpKind(command) === mcp ? mcpFingerprint(`${proc}/${current}`, command) : null;
+        if (key && processStat(`${proc}/${current}/stat`)?.started === parent.started) {
+          group = mcpGroups.get(key) ?? { name: mcp, instances: 0, totalPssKiB: 0, unreadableProcesses: 0 };
+          group.instances++;
+          mcpGroups.set(key, group);
+        }
+      }
+      if (group) {
+        if (pss === null) group.unreadableProcesses++;
+        else group.totalPssKiB += pss;
+      }
       for (const child of children.get(current) ?? []) {
         const row = rows.get(child);
         if (!row || row.started < parent.started ||
             (roots.has(child) && child !== pid) ||
             (owners.has(child) && owners.get(child) !== pid)) continue;
-        pending.push([child, child === pid ? "agent" : role === "mcp" || isMcp(argv(child)) ? "mcp" : "other"]);
+        if (child === pid) pending.push([child, "agent"]);
+        else if (role === "mcp") pending.push([child, "mcp", group]);
+        else {
+          const kind = mcpKind(argv(child));
+          pending.push([child, kind ? "mcp" : "other", kind && kind !== "unnamed" ? kind : undefined]);
+        }
       }
     }
+    memory.duplicateMcps = [...mcpGroups.values()].filter(({ instances }) => instances > 1)
+      .sort((a, b) => b.totalPssKiB - a.totalPssKiB || a.name.localeCompare(b.name));
     results.set(pid, memory);
   }
   return results;

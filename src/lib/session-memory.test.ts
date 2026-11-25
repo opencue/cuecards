@@ -1,22 +1,28 @@
 import { expect, test } from "bun:test";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { measureSessionMemory } from "./session-memory";
 
-test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and other descendants without double counting", async () => {
+function procFixture() {
   const proc = mkdtempSync(join(tmpdir(), "cue-memory-"));
   const uid = process.geteuid?.() ?? 0;
-  const add = (pid: number, parent: number, argv: string[], pss?: number, owner = uid) => {
+  const add = (pid: number, parent: number, argv: string[], pss?: number, owner = uid, cwd?: string) => {
     const dir = join(proc, String(pid));
     mkdirSync(dir);
     writeFileSync(join(dir, "stat"), `${pid} (name ) with spaces) S ${parent} ${"0 ".repeat(17)}${pid} 0\n`);
     writeFileSync(join(dir, "cmdline"), argv.join("\0") + "\0");
     writeFileSync(join(dir, "status"), `Name:\ttest\nUid:\t${uid}\t${owner}\t${uid}\t${uid}\n`);
+    if (cwd) symlinkSync(cwd, join(dir, "cwd"), "dir");
     if (pss !== undefined) {
       writeFileSync(join(dir, "smaps_rollup"), `Rss: 999 kB\nPss: ${pss} kB\nSwapPss: 200 kB\n`);
     }
   };
+  return { proc, uid, add };
+}
+
+test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and other descendants without double counting", async () => {
+  const { proc, uid, add } = procFixture();
   try {
     add(10, 1, ["bun", "src/index.ts", "launch", "codex"], 100);
     add(11, 10, ["node", "/path/omx"], 20);
@@ -45,38 +51,71 @@ test.skipIf(!process.geteuid)("attributes launcher, agent, MCP subtrees and othe
         byRole: { launcher: 100, agent: 300, mcp: 300, other: 160 },
         measuredProcesses: 7,
         unreadableProcesses: 2,
+        duplicateMcps: [],
       }],
       [16, {
         totalPssKiB: 260,
         byRole: { launcher: 0, agent: 200, mcp: 0, other: 60 },
         measuredProcesses: 2,
         unreadableProcesses: 0,
+        duplicateMcps: [],
       }],
       [20, {
         totalPssKiB: null,
         byRole: { launcher: 0, agent: 0, mcp: 0, other: 0 },
         measuredProcesses: 0,
         unreadableProcesses: 1,
+        duplicateMcps: [],
       }],
       [22, {
         totalPssKiB: 1,
         byRole: { launcher: 0, agent: 1, mcp: 0, other: 0 },
         measuredProcesses: 1,
         unreadableProcesses: 0,
+        duplicateMcps: [],
       }],
       [23, {
         totalPssKiB: 2,
         byRole: { launcher: 0, agent: 2, mcp: 0, other: 0 },
         measuredProcesses: 1,
         unreadableProcesses: 0,
+        duplicateMcps: [],
       }],
       [26, {
         totalPssKiB: 340,
         byRole: { launcher: 50, agent: 200, mcp: 0, other: 90 },
         measuredProcesses: 4,
         unreadableProcesses: 0,
+        duplicateMcps: [],
       }],
     ]));
+  } finally {
+    rmSync(proc, { recursive: true, force: true });
+  }
+});
+
+test.skipIf(!process.geteuid)("reports matching MCP roots in one session without exposing command or cwd", async () => {
+  const { proc, uid, add } = procFixture();
+  const command = ["pnpm", "dlx", "gitnexus@1.6.10", "--private-fixture", "mcp"];
+  const cwd = "/private/project";
+  try {
+    add(10, 1, ["codex"], 300);
+    add(11, 10, command, 40, uid, cwd);
+    add(12, 11, ["node", "/package/gitnexus", "mcp"], 100, uid, cwd);
+    add(13, 10, command, 20, uid, cwd);
+    add(14, 13, ["helper"], 60, uid, cwd);
+    add(15, 13, ["unreadable-helper"]);
+    add(16, 10, command, 10, uid, "/different/project");
+    add(17, 10, [...command.slice(0, -1), "--different", "mcp"], 10, uid, cwd);
+    add(18, 10, command, 999, uid + 1, cwd);
+    add(19, 10, command, 10, uid);
+    add(20, 10, ["claude"], 200);
+    add(21, 20, command, 250, uid, cwd);
+    const result = await measureSessionMemory(new Map([[10, 10], [20, 20]]), proc);
+    expect(result.get(10)?.duplicateMcps).toEqual([
+      { name: "gitnexus", instances: 2, totalPssKiB: 220, unreadableProcesses: 1 },
+    ]);
+    expect(result.get(20)?.duplicateMcps).toEqual([]);
   } finally {
     rmSync(proc, { recursive: true, force: true });
   }
