@@ -259,7 +259,7 @@ export function formatStartupBanner(info: StartupBannerInfo): string {
   const skills = info.loadout
     ? [`${info.loadout.full} local`, `${info.loadout.deferred} deferred`]
     : [`${info.skills} skill${info.skills === 1 ? "" : "s"}`];
-  if (info.loadout && info.npxSkills) skills.push(`${info.npxSkills} npx`);
+  if (info.terminal && info.loadout && info.npxSkills) skills.push(`${info.npxSkills} npx`);
   const mcps = info.mcps > 0 ? [`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`] : [];
   const separator = c.dim(" · ");
   const context: string[] = [];

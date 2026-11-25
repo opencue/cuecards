@@ -1061,7 +1061,7 @@ describe("formatStartupBanner", () => {
   test("integrates the local loadout and drops optional token text before wrapping", () => {
     expect(formatStartupBanner({
       title: "codex · ▲ vercel +2", skills: 110, mcps: 6, alwaysOn: 22845,
-      loadout: { full: 8, deferred: 25 }, columns: 38,
+      loadout: { full: 8, deferred: 25 }, npxSkills: 4, columns: 38,
     })).toBe("◆ cue  codex · ▲ vercel +2\n  8 local · 25 deferred · 6 MCPs");
   });
 
