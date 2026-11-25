@@ -27,9 +27,10 @@ For short summaries and reading conditions, use the on-demand
 These are starting checks, not substitutes for required CI or release gates.
 Cue's local `gx branch finish` preflight initializes missing submodules and
 installs CLI and dashboard dependencies from their checked-in lockfiles
-(Bun for CLI, npm for dashboard). It leaves existing
-submodules at a different revision alone and fails with their status. Local
-preflight and GitHub CI both use `bun run test` and check critical coverage.
+(Bun for CLI, npm for dashboard). It leaves submodules at a different revision
+alone and fails with their status. The local gate runs typecheck, lint, smoke
+tests, and critical coverage. GitHub CI runs the full suite and coverage
+before merge. Both use the same 30-second per-test limit.
 
 Use the repository's package manager and existing skills. Do not install another
 tool just because an upstream workflow uses it. For user-visible changes, keep

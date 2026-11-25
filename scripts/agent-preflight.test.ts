@@ -32,8 +32,9 @@ exec "$FIXTURE/real-bin/bun" "$@"
 [ "$HOME" = "$FIXTURE" ] || exit 14
 exec "$FIXTURE/real-bin/node" "$@"
 `, { mode: 0o755 });
-  writeFileSync(join(bin, "npm"), `#!/bin/sh
+  writeFileSync(join(realBin, "npm"), `#!/bin/sh
 printf '%s:%s\\n' "$PWD" "$*" >>"$FIXTURE/steps"
+[ "$HOME" != "$FIXTURE" ] && [ -z "$CODEX_HOME" ]
 `, { mode: 0o755 });
   writeFileSync(join(realBin, "node"), `#!/bin/sh
 if [ "$1" = "-p" ]; then printf '%s\\n' "$0"; exit 0; fi
@@ -42,8 +43,8 @@ if [ "$1" = "-p" ]; then printf '%s\\n' "$0"; exit 0; fi
   writeFileSync(join(realBin, "bun"), `#!/bin/sh
 if [ "$1" = "-p" ]; then printf '%s\\n' "$0"; exit 0; fi
 printf '%s:%s\\n' "$PWD" "$*" >>"$FIXTURE/steps"
+[ "$HOME" != "$FIXTURE" ] && [ -z "$CODEX_HOME" ] || exit 13
 if [ "$*" = "install --frozen-lockfile" ] && [ "$FAIL_INSTALL" = 1 ]; then exit 12; fi
-if [ "$1" = run ] && { [ "$HOME" = "$FIXTURE" ] || [ -n "$CODEX_HOME" ]; }; then exit 13; fi
 if [ "$1" = run ]; then node check; fi
 `, { mode: 0o755 });
   try {
@@ -52,6 +53,7 @@ if [ "$1" = run ]; then node check; fi
       env: {
         ...process.env,
         HOME: root,
+        TMPDIR: ".",
         CODEX_HOME: join(root, "host-codex"),
         PATH: `${bin}:/usr/bin:/bin`,
         FIXTURE: root,
@@ -77,7 +79,7 @@ test("hydrates a fresh checkout before running isolated Cue checks", () => {
     "./web:ci --include=dev --no-audit --no-fund",
     ".:run typecheck",
     ".:run lint",
-    ".:run test",
+    ".:run test scripts/agent-preflight.test.ts web/dashboard-loading.test.ts",
     ".:run test:critical:coverage",
   ]);
 });

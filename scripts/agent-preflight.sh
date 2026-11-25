@@ -3,7 +3,7 @@
 set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
-scratch="$(mktemp -d "${TMPDIR:-/tmp}/cue-preflight.XXXXXX")"
+scratch="$(cd -- "${TMPDIR:-/tmp}" && mktemp -d "$PWD/cue-preflight.XXXXXX")"
 trap 'rm -rf -- "$scratch"' EXIT
 unset ALLOW_BASH_ON_NON_AGENT_BRANCH ALLOW_CODE_EDIT_ON_PROTECTED_BRANCH
 unset ALLOW_CODE_EDIT_ON_PRIMARY_WORKTREE ALLOW_COMMIT_ON_PROTECTED_BRANCH
@@ -42,9 +42,6 @@ if grep -q '^-' <<<"$submodules"; then
   fi
 fi
 
-run_step "install CLI dependencies" bun install --frozen-lockfile
-(cd web && run_step "install web dependencies" npm ci --include=dev --no-audit --no-fund)
-
 # Resolve the binaries before swapping HOME so version-manager shims still work.
 bun_path="$(bun -p 'process.execPath')"
 node_path="$(node -p 'process.execPath')"
@@ -55,7 +52,11 @@ export PATH="$tool_path:/usr/local/bin:/usr/bin:/bin"
 unset XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
 unset CODEX_HOME CUE_CANONICAL_CODEX_HOME CLAUDE_CONFIG_DIR CUE_ALWAYS_PICK_MCPS CUE_CLAUDE_MEM_ISOLATE
 
+run_step "install CLI dependencies" bun install --frozen-lockfile
+(cd web && run_step "install web dependencies" npm ci --include=dev --no-audit --no-fund)
 run_step "typecheck" bun run typecheck
 run_step "lint" bun run lint
-run_step "test" bun run test
+run_step "preflight and dashboard smoke tests" bun run test \
+  scripts/agent-preflight.test.ts web/dashboard-loading.test.ts
+# The gated PR still requires the full GitHub suite, including host-sensitive tests.
 run_step "critical coverage" bun run test:critical:coverage
