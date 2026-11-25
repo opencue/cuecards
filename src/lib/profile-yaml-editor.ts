@@ -26,6 +26,11 @@ export function insertSkillsIntoYaml(
   if (content.includes("  local:")) {
     const lines = content.split("\n");
     const localIdx = lines.findIndex((l) => /^\s+local:/.test(l));
+    if (skillLines.length > 0) {
+      // cue create-profile emits "local: []". Convert it to a block list
+      // before adding the first item, preserving any comment on the key.
+      lines[localIdx] = lines[localIdx].replace(/^(\s+local:)[ \t]*\[[ \t]*\](?=[ \t]*(?:#|\r?$))/, "$1");
+    }
     let endIdx = localIdx + 1;
     while (endIdx < lines.length && lines[endIdx]?.match(/^\s{4}-\s/)) endIdx++;
     if (mode === "replace") {
