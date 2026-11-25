@@ -92,6 +92,50 @@ describe("computeSkillUsage", () => {
     });
   });
 
+  test("credits a bare skill name to its unique declared ID", () => {
+    const p = profile("backend", ["research/last30days", "research/last30days", "tools/other"]);
+    const rows = computeSkillUsage(p, {
+      minExposureSessions: 1,
+      source: src(
+        { event: "start", profile: "backend", ts: "2026-05-28T10:00:00Z", session_id: "s1" },
+        { event: "skill_invoked", skill: "last30days", ts: "2026-05-28T11:00:00Z" },
+        { event: "skill_invoked", profile: "unrelated", skill: "last30days", ts: "2026-05-28T12:00:00Z" },
+      ),
+    });
+    expect(rows[0]).toMatchObject({
+      id: "research/last30days",
+      hits: 1,
+      status: "used",
+      lastUsed: "2026-05-28T11:00:00Z",
+      zombie: false,
+    });
+  });
+
+  test("does not guess between two skills with the same bare name", () => {
+    const p = profile("test", ["plan/investigate", "gstack/investigate"]);
+    const rows = computeSkillUsage(p, {
+      source: src(
+        { event: "skill_invoked", skill: "investigate", ts: "2026-05-28T10:00:00Z" },
+        { event: "skill_hit", skill: "plan/investigate", ts: "2026-05-28T11:00:00Z" },
+      ),
+    });
+    expect(rows.map(({ id, hits }) => [id, hits])).toEqual([
+      ["plan/investigate", 1],
+      ["gstack/investigate", 0],
+    ]);
+  });
+
+  test("prefers an exact bare ID over a slug alias", () => {
+    const p = profile("test", ["investigate", "plan/investigate"]);
+    const rows = computeSkillUsage(p, {
+      source: src({ event: "skill_invoked", skill: "investigate", ts: "2026-05-28T10:00:00Z" }),
+    });
+    expect(rows.map(({ id, hits }) => [id, hits])).toEqual([
+      ["investigate", 1],
+      ["plan/investigate", 0],
+    ]);
+  });
+
   test("deduplicates exposure events by session id", () => {
     const p = profile("test", ["a"]);
     const rows = computeSkillUsage(p, {

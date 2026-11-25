@@ -67,6 +67,19 @@ export function computeSkillUsage(
   const source = opts.source ?? (() => readEvents(cutoff));
   const minExposureSessions = opts.minExposureSessions ?? MIN_SKILL_USAGE_EXPOSURES;
 
+  // Wildcards expand at materialization time; they aren't reportable IDs.
+  const declaredIds = new Set(
+    (profile.skills?.local ?? [])
+      .map((skill) => (typeof skill === "string" ? skill : skill.id))
+      .filter((id) => !id.includes("*")),
+  );
+  // The Skill tool can record just the runtime slug. Never guess on collisions.
+  const aliases = new Map<string, string | null>();
+  for (const id of declaredIds) {
+    const slug = id.slice(id.lastIndexOf("/") + 1);
+    if (slug !== id) aliases.set(slug, aliases.has(slug) ? null : id);
+  }
+
   // Sum hits by skill id, restricted to events that could plausibly belong
   // to this profile. A composite like `a+b+c` accepts events tagged with
   // the composite itself OR any of its parts (the user may have launched
@@ -85,25 +98,16 @@ export function computeSkillUsage(
     if (e.event !== "skill_hit" && e.event !== "skill_invoked") continue;
     if (!e.skill) continue;
     if (e.profile && !acceptedProfiles.has(e.profile)) continue;
-    const entry = hits.get(e.skill) ?? { count: 0, last: "" };
+    const id = declaredIds.has(e.skill) ? e.skill : aliases.get(e.skill);
+    if (!id) continue;
+    const entry = hits.get(id) ?? { count: 0, last: "" };
     entry.count++;
     if (e.ts > entry.last) entry.last = e.ts;
-    hits.set(e.skill, entry);
+    hits.set(id, entry);
   }
 
-  const declaredIds = (profile.skills?.local ?? []).map((s) =>
-    typeof s === "string" ? s : s.id,
-  );
-
-  const seen = new Set<string>();
   const rows: SkillUsageRow[] = [];
   for (const id of declaredIds) {
-    if (seen.has(id)) continue;
-    seen.add(id);
-    // Wildcards (e.g. `*/*`) expand to many skills at materialize time, so a
-    // raw `*` ref can't be reported on directly. Skip — they'd always look
-    // zombie. The expanded ids land via the materialized profile's skill list.
-    if (id.includes("*")) continue;
     const h = hits.get(id) ?? { count: 0, last: "" };
     const status: SkillUsageRow["status"] =
       h.count > 0
