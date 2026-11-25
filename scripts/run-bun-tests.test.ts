@@ -47,15 +47,15 @@ posixTest("rejects an invalid whole-run deadline before starting Bun", () => {
   });
 });
 
-posixTest("times out an unresponsive Bun and its subprocess", () => {
+function checkProcessCleanup(script: string, exitCode: number) {
   withFakeBun(
-    'trap "" TERM; sleep 25 & printf "%s %s\\n" "$$" "$!" > pids; wait',
+    script,
     (run, dir) => {
       let verified = false;
       try {
         const result = run("1500");
-        expect(result.status).toBe(124);
-        expect(result.stderr?.toString()).toContain("timed out");
+        expect(result.status).toBe(exitCode);
+        if (exitCode === 124) expect(result.stderr?.toString()).toContain("timed out");
         const pids = readFileSync(join(dir, "pids"), "utf8").trim().split(" ").map(Number);
         for (const pid of pids) {
           const status = spawnSync("ps", ["-o", "stat=", "-p", String(pid)], { encoding: "utf8" });
@@ -73,4 +73,12 @@ posixTest("times out an unresponsive Bun and its subprocess", () => {
       }
     },
   );
+}
+
+posixTest("times out an unresponsive Bun and its subprocess", () => {
+  checkProcessCleanup('trap "" TERM; sleep 25 & printf "%s %s\\n" "$$" "$!" > pids; wait', 124);
+}, 12_000);
+
+posixTest("cleans up subprocesses even when Bun exits before them", () => {
+  checkProcessCleanup('sleep 25 >/dev/null 2>&1 & printf "%s %s\\n" "$$" "$!" > pids; exit 0', 0);
 }, 12_000);

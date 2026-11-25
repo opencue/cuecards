@@ -15,13 +15,18 @@ const child = spawn("bun", ["test", "--timeout", "30000", ...process.argv.slice(
 });
 
 function send(signal) {
-  if (child.pid === undefined) return;
+  if (child.pid === undefined) return false;
   try {
-    if (group) process.kill(-child.pid, signal);
-    else child.kill(signal);
+    return group ? process.kill(-child.pid, signal) : child.kill(signal);
   } catch (error) {
     if (error.code !== "ESRCH") console.error(`Could not stop Bun tests: ${error.message}`);
+    return false;
   }
+}
+
+function terminate(signal) {
+  // The Bun process may exit before a subprocess that ignores the first signal.
+  if (send(signal)) setTimeout(() => send("SIGKILL"), 1000);
 }
 
 let stopping = false;
@@ -30,9 +35,7 @@ function stop(signal, status) {
   stopping = true;
   clearTimeout(deadline);
   process.exitCode = status;
-  send(signal);
-  // The Bun process may exit before a subprocess that ignores the first signal.
-  setTimeout(() => send("SIGKILL"), 1000);
+  terminate(signal);
 }
 
 const deadline = setTimeout(() => {
@@ -51,5 +54,8 @@ child.once("error", (error) => {
 });
 child.once("exit", (code, signal) => {
   clearTimeout(deadline);
-  if (!stopping) process.exitCode = code ?? (signal ? 128 + constants.signals[signal] : 1);
+  if (stopping) return;
+  process.exitCode = code ?? (signal ? 128 + constants.signals[signal] : 1);
+  // No-op if Bun left no other processes in its group.
+  if (group) terminate("SIGTERM");
 });

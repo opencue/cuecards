@@ -73,13 +73,15 @@ bun run test
 bun run test src/lib/kitty-image.test.ts
 
 # Run tests matching a pattern
-bun run test --filter "loadProfile"
+bun run test --test-name-pattern "loadProfile"
 ```
 
 Tests live alongside their source files (`foo.ts` → `foo.test.ts`). We use Bun's built-in test runner.
 Use `bun run test` rather than bare `bun test` to enforce a 10-minute
 deadline for the whole run, in addition to Bun's per-test timeout.
 If a slower machine needs more time, set `CUE_TEST_TIMEOUT_MS` in milliseconds.
+On Unix, the runner also cleans up subprocesses in Bun's process group.
+On Windows, only the Bun process itself is covered.
 
 Some suites read the `resources/skills` / `resources/mcps` submodules (skill resolution, the CLI/MCP catalogs, launch e2e). They **skip automatically** when those submodules aren't checked out, so a fresh clone stays green — run `git submodule update --init --recursive` to enable full coverage.
 
