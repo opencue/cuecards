@@ -29,7 +29,7 @@ function fixture() {
     credentials: () => ({ token: "test-token", apiUrl: "https://cuecards.cc" }),
     request: async (url: string, init: RequestInit) => {
       requests.push({ url, init });
-      return Response.json({ ok: true });
+      return Response.json({ ok: true, data: { accepted: true } });
     },
     stdout: (text: string) => { stdout.push(text); },
     stderr: (text: string) => { stderr.push(text); },
@@ -46,6 +46,7 @@ test("run previews the named budget and does not spend or upload without separat
   expect(await run([...args, "--yes"], deps)).toBe(0);
   expect(calls).toEqual(["gpt-5.4"]);
   expect(JSON.parse(readFileSync(path, "utf8"))).toEqual(report);
+  expect(stdout.join("")).toContain("Correct answers: without CodeGraph 4/6, with CodeGraph 4/6");
   expect(requests).toEqual([]);
   expect(await run([...args, "--yes"], deps)).toBe(1);
   expect(calls).toHaveLength(1);
@@ -63,6 +64,11 @@ test("submit previews exact payload and destination; only explicit consent can P
   expect(requests).toHaveLength(1);
   expect(requests[0]?.init).toMatchObject({ method: "POST", redirect: "error", body: JSON.stringify(report) });
   expect(calls).toHaveLength(0);
+  expect(await run([...args, "--yes"], {
+    ...deps,
+    request: async () => Response.json({ ok: true, data: { accepted: false } }),
+  })).toBe(0);
+  expect(stdout.join("")).toContain("Already contributed");
 });
 
 test("submit rejects private data, oversized files and credentials for other origins before network", async () => {

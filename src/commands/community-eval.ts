@@ -1,7 +1,7 @@
 import { closeSync, constants, existsSync, fstatSync, openSync, readSync, writeFileSync } from "node:fs";
 import { DEFAULT_API_URL, loadCredentials } from "../lib/cue-credentials";
 import {
-  COMMUNITY_MODELS, COMMUNITY_PAIR_COUNT, COMMUNITY_REPORT_BYTES, isCommunityModel, parseCommunityReport,
+  COMMUNITY_MODELS, COMMUNITY_PAIR_COUNT, COMMUNITY_REPORT_BYTES, COMMUNITY_SCORE_MAX, isCommunityModel, parseCommunityReport,
   type CommunityModel, type CommunityReport,
 } from "../lib/community-eval/result";
 
@@ -77,6 +77,10 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
     return 1;
   }
   io.stdout(`Saved local report: ${out}\nPreview optional contribution with cue community-eval submit <report.json>.\n`);
+  const maxScore = COMMUNITY_SCORE_MAX * report.pairs.length;
+  const offScore = report.pairs.reduce((total, pair) => total + pair.off.score, 0);
+  const onScore = report.pairs.reduce((total, pair) => total + pair.on.score, 0);
+  io.stdout(`Correct answers: without CodeGraph ${offScore}/${maxScore}, with CodeGraph ${onScore}/${maxScore}\n`);
   return 0;
 }
 
@@ -93,6 +97,7 @@ async function submit(args: string[], io: Dependencies): Promise<number> {
   }
   io.stdout(`Destination: ${endpoint}\nThe server uses your Cuecards account to prevent duplicate submissions. No individual reports are public.\n${JSON.stringify(report, null, 2)}\n`);
   if (confirm !== "--yes") { io.stdout("Nothing sent. Re-run with --yes to submit.\n"); return 0; }
+  let accepted: boolean;
   try {
     const credentials = io.credentials();
     // Never forward credentials saved for a self-hosted origin.
@@ -107,12 +112,15 @@ async function submit(args: string[], io: Dependencies): Promise<number> {
       redirect: "error",
       signal: AbortSignal.timeout(15_000),
     });
-    if (!response.ok || (await response.json())?.ok !== true) throw new Error("Collector rejected report");
+    if (!response.ok) throw new Error("Collector rejected report");
+    const result = await response.json();
+    if (result?.ok !== true || typeof result.data?.accepted !== "boolean") throw new Error("Invalid collector response");
+    accepted = result.data.accepted;
   } catch {
     io.stderr("BENCHMARK_SUBMIT_FAILED: contribution was not confirmed; the local report remains.\n");
     return 1;
   }
-  io.stdout("Contribution accepted.\n");
+  io.stdout(accepted ? "Contribution accepted.\n" : "Already contributed; only the first report counts.\n");
   return 0;
 }
 
