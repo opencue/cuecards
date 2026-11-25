@@ -104,6 +104,22 @@ describe("launch-scoped local resolver", () => {
     await expect(resolveSkill("missing")).rejects.toBeInstanceOf(SkillNotFound);
   });
 
+  test("reports a corrupt managed snapshot as a missing skill", async () => {
+    const config = join(rootDir, "config");
+    const snapshot = join(config, "cue", "catalog-skills", "blog-brief");
+    const previous = process.env.XDG_CONFIG_HOME;
+    await mkdir(snapshot, { recursive: true });
+    await writeFile(join(snapshot, "selection.json"), "{broken");
+    process.env.XDG_CONFIG_HOME = config;
+    try {
+      const resolver = createLocalSkillResolver({ skillsRoot });
+      await expect(resolver("catalog/blog-brief")).rejects.toBeInstanceOf(SkillNotFound);
+    } finally {
+      if (previous === undefined) delete process.env.XDG_CONFIG_HOME;
+      else process.env.XDG_CONFIG_HOME = previous;
+    }
+  });
+
   test("new resolvers observe added skills and existing resolvers recheck deleted files", async () => {
     const resolveSkill = createLocalSkillResolver({ skillsRoot });
     await resolveSkill("meta/init");

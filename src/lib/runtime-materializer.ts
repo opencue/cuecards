@@ -126,6 +126,8 @@ export interface MaterializeInput {
   runtimeKey?: string;
   /** Map skill id → source dir on disk (caller resolves local/npx/plugin paths). */
   skillSourceLookup: (id: string) => Promise<string>;
+  /** Content identity for explicitly managed sources outside the profile YAML. */
+  skillSourceFingerprint?: string;
   /** Pre-resolved sanitized MCP registry for this agent. */
   mcpRegistry: Record<string, McpServerConfig>;
   /** Content of ~/.claude/CLAUDE.md (or ~/.codex/AGENTS.md) to append. */
@@ -278,12 +280,14 @@ function computeHash(
   profile: ResolvedProfile,
   agent: AgentKind,
   extra = "",
+  skillSourceFingerprint?: string,
 ): string {
   const canonical = sortedJson({
     v: MATERIALIZER_VERSION,
     agent,
     profile,
     extra,
+    ...(skillSourceFingerprint === undefined ? {} : { skillSourceFingerprint }),
   });
   return createHash("sha256").update(canonical).digest("hex");
 }
@@ -1218,6 +1222,7 @@ async function materializeRuntimeUnlocked(
     profile,
     agent,
     `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
+    effectiveInput.skillSourceFingerprint,
   );
 
   // Short-circuit if hash matches.

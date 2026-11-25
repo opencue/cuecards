@@ -6,6 +6,16 @@ import { insertSkillsIntoYaml } from "./profile-yaml-editor";
 // ---------------------------------------------------------------------------
 
 describe("insertSkillsIntoYaml append", () => {
+  it("adds the first skill to the empty list emitted by cue create-profile", () => {
+    const yaml = "name: test\nskills:\n  local: [] # intentionally empty\n  npx: []\n";
+    const result = insertSkillsIntoYaml(yaml, ["catalog/blog-brief"], "append");
+    expect(Bun.YAML.parse(result)).toEqual({
+      name: "test",
+      skills: { local: ["catalog/blog-brief"], npx: [] },
+    });
+    expect(result).toContain("  local: # intentionally empty\n");
+  });
+
   it("appends a single skill to an existing local: section", () => {
     const yaml = `name: test\nskills:\n  local:\n    - meta/a\n`;
     const result = insertSkillsIntoYaml(yaml, ["meta/b"], "append");

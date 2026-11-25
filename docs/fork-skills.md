@@ -6,9 +6,9 @@ reads the checked-out Cue skills catalog, or the published `opencue/skills`
 catalog in a web-only build. The list refreshes on the next web build rather
 than relying on a manually copied inventory. Local-only skills are not listed.
 
-The blog and motion forks are listed in full at the reviewed snapshots.
-Browse-only entries use their own fixed snapshot so refreshing an installable
-pin does not change their source link or imply their contents were reviewed.
+The blog and motion forks are listed at pinned snapshots. The blog’s
+browse-only listings use their own snapshot so a metadata refresh does not
+promote a skill to the installable overlay or move an installable pin.
 Only entries showing an install command are in the Cue overlay. To use those:
 
 ```sh
@@ -30,14 +30,17 @@ project profile. Replace `core` with your existing profile to keep it active.
 ## Source updates
 
 `Check fork skill updates` runs nightly and can be started from Actions. It
-compares Git tree hashes for the selected directories, so unrelated fork
-commits do not move catalog pins. It does not run fork content. Candidates
-adding non-Markdown files or changing the license require manual handling.
+compares Git tree hashes for the selected directories so unrelated fork
+commits do not move their pins. It also discovers added, changed, and removed
+browse-only blog skills by comparing their `SKILL.md` files. It reads new
+descriptions as text and does not run fork content. Candidates adding
+non-Markdown files to installable folders or changing the license require
+manual handling.
 
 The run summary links to the source diffs. If the optional repository secret
 `FORK_SKILLS_PR_TOKEN` is configured (a fine-grained token restricted to this
 repository with contents and pull-request write permissions), the workflow
-opens a PR. Otherwise it prints the proposed patch
+opens a PR after the catalog tests pass. Otherwise it prints the tested proposal
 in the summary. Review the skill text and references before merging, and
 revise the catalog description if the skill's purpose changed. The workflow
 does not auto-merge.

@@ -26,6 +26,8 @@
 .cardBody h3::first-letter { text-transform: uppercase; }
 .profileId { display: inline-block; margin-top: 7px; color: var(--aqua); font-size: 12px; overflow-wrap: anywhere; }
 .cardBody p { margin: 12px 0; color: var(--muted); font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+.profileDetail .cover { border-radius: 7px; border: 1px solid var(--edge); }
+.profileDetail h1 { margin: 8px 0; font-size: clamp(36px, 7vw, 84px); line-height: 1; overflow-wrap: anywhere; }
 .loadout { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--edge); }
 .loadout summary { min-height: 36px; padding-block: 7px; color: var(--coral); font-weight: 700; cursor: pointer; }
 .loadout summary:focus-visible { outline: 2px solid var(--aqua); outline-offset: 4px; }

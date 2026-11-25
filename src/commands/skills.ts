@@ -26,6 +26,7 @@ import { gateFreshSkill } from "./security";
 import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import { insertSkillsIntoYaml } from "../lib/profile-yaml-editor";
 import { forkSkillUrl, searchForkSkills } from "../../web/src/skill-catalog";
+import { createCatalogSkillStore } from "../lib/catalog-skill-updates";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
@@ -247,7 +248,16 @@ async function cmdAddToProfile(id: string, preview = false): Promise<number> {
 
   // Validate skill exists
   const allIds = await listAllSkillIds();
-  if (!allIds.includes(id)) {
+  let exists = allIds.includes(id);
+  if (!exists && id.startsWith("catalog/")) {
+    try {
+      exists = Boolean(createCatalogSkillStore().source(id));
+    } catch {
+      process.stderr.write(`Could not read the managed snapshot for "${id}". Profile unchanged.\n`);
+      return 1;
+    }
+  }
+  if (!exists) {
     process.stderr.write(`Skill "${id}" not found. Run \`cue skills search\` to find valid IDs.\n`);
     return 1;
   }
@@ -953,6 +963,36 @@ async function cmdNpxAdd(args: string[], sourceRepo?: string): Promise<number> {
 }
 
 async function cmdCatalog(args: string[], json: boolean): Promise<number> {
+  if (args[0] === "track" || args[0] === "update" || args[0] === "rollback") {
+    const [action, id] = args;
+    if (args.length !== (action === "update" ? 1 : 2) || (id?.startsWith("-") ?? false)) {
+      process.stderr.write(`Usage: cue skills catalog ${action}${action === "update" ? "" : " <id>"}\n`);
+      return 1;
+    }
+    const store = createCatalogSkillStore();
+    try {
+      if (action === "update") {
+        const results = store.update();
+        if (json) process.stdout.write(JSON.stringify(results, null, 2) + "\n");
+        else if (!results.length) process.stdout.write("No tracked catalog skills to update.\n");
+        else for (const result of results) {
+          if (result.error) process.stderr.write(`${result.id}: ${result.error}\n`);
+          else process.stdout.write(`${result.id} → ${result.commit}\n`);
+        }
+        return results.some(result => result.error) ? 1 : 0;
+      }
+      const commit = action === "track" ? store.install(id!) : store.rollback(id!);
+      if (json) process.stdout.write(JSON.stringify({ id, commit }) + "\n");
+      else {
+        process.stdout.write(`catalog/${id} → ${commit}\n`);
+        if (action === "track") process.stdout.write(`To use in a profile: cue skills add-to-profile catalog/${id}\n`);
+      }
+      return 0;
+    } catch (err) {
+      process.stderr.write(`${(err as Error).message}\n`);
+      return 1;
+    }
+  }
   if (args[0] === "install") {
     const skill = args.length === 2 ? searchForkSkills().find(entry => entry.id === args[1]) : undefined;
     if (!skill) {
@@ -1448,6 +1488,9 @@ Subcommands:
   search <query>       Fuzzy search all skills
   catalog [query]      Browse the curated GitHub fork skills
   catalog install <id> Install a curated skill at its catalog commit
+  catalog track <id>   Install a Cue-managed skill and opt in to reviewed updates
+  catalog update       Update tracked skills from this Cue release's catalog
+  catalog rollback <id> Restore the previous local snapshot
   add-to-profile <id>  Add skill to active profile
   remove-from-profile  Remove skill from active profile
   rank [limit]         Usage leaderboard

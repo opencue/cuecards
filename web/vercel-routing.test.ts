@@ -40,6 +40,7 @@ describe("Vercel routing", () => {
   test("keeps the SPA fallback for browser routes", () => {
     expect(rewrittenTo("/")).toBe("/index.html");
     expect(rewrittenTo("/studio/settings")).toBe("/index.html");
+    expect(rewrittenTo("/profiles/builder")).toBe("/index.html");
   });
 
   test("ships every hosted API handler protected by the routing rule", () => {

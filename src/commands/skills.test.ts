@@ -17,6 +17,8 @@
 
 import { describe, expect, test } from "bun:test";
 import { spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
@@ -105,5 +107,30 @@ describe.skipIf(!BUN_SPAWNABLE)("cue skills", () => {
       // The usage block includes an example with a skill-id placeholder.
       expect(res.stdout).toContain("skill-id");
     });
+  });
+
+  test("add-to-profile reports a damaged managed snapshot without changing the profile", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "cue-catalog-profile-"));
+    try {
+      const profiles = join(cwd, "profiles");
+      const profile = join(profiles, "catalog-test", "profile.yaml");
+      const config = join(cwd, "config");
+      const snapshot = join(config, "cue", "catalog-skills", "blog-brief");
+      const baseline = "name: catalog-test\nskills:\n  local: []\n";
+      mkdirSync(join(profiles, "catalog-test"), { recursive: true });
+      mkdirSync(snapshot, { recursive: true });
+      writeFileSync(profile, baseline);
+      writeFileSync(join(cwd, ".cue.profile"), "catalog-test\n");
+      writeFileSync(join(snapshot, "selection.json"), "{broken");
+      const res = spawnSync("bun", ["run", CUE_BIN, "skills", "add-to-profile", "catalog/blog-brief"], {
+        cwd, encoding: "utf8", timeout: 20_000,
+        env: { ...process.env, CUE_PROFILE: "", CUE_PROFILES_DIR: profiles, XDG_CONFIG_HOME: config },
+      });
+      expect(res.status).toBe(1);
+      expect(res.stderr).toContain('Could not read the managed snapshot for "catalog/blog-brief". Profile unchanged.');
+      expect(readFileSync(profile, "utf8")).toBe(baseline);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
   });
 });

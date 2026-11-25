@@ -15,7 +15,8 @@
  */
 
 import type { ProfileDetail, TimelineData } from "../src/studio/api.js";
-import { projectPublicProfile } from "../src/lib/public-profiles.js";
+import { projectPublicProfile, publicAasCommit, publicAasRepo, readPublicAasSkillIds, verifiedAasFallback } from "../src/lib/public-profiles.js";
+import { loadPublicSkillCatalog } from "./load-public-skill-catalog.js";
 import { fileURLToPath } from "node:url";
 
 interface Envelope { ok: true; data: unknown }
@@ -284,9 +285,23 @@ output["/market"] = env({ items: [], counts: {} });
 const bundled = new URL("../../profiles/", import.meta.url);
 const files = [...new Bun.Glob("*/profile.yaml").scanSync(fileURLToPath(bundled))].sort();
 if (!files.length) throw new Error("No bundled profiles found for the public roster");
+async function loadAasSkillIds() {
+  try {
+    const response = await fetch(`https://raw.githubusercontent.com/${publicAasRepo}/${publicAasCommit}/skills_index.json`, {
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return readPublicAasSkillIds(await response.json());
+  } catch (error) {
+    console.warn("Public AAS skill index unavailable; using verified examples only.", error);
+    return new Set<string>(verifiedAasFallback);
+  }
+}
+const [publicSkills, aasSkillIds] = await Promise.all([loadPublicSkillCatalog(), loadAasSkillIds()]);
+const publicSkillIds = new Set(publicSkills.map(skill => skill.id));
 output["/profile-roster"] = env(await Promise.all(files.map(async file => {
   const id = file.slice(0, file.indexOf("/"));
-  return projectPublicProfile(id, Bun.YAML.parse(await Bun.file(new URL(file, bundled)).text()));
+  return projectPublicProfile(id, Bun.YAML.parse(await Bun.file(new URL(file, bundled)).text()), publicSkillIds, aasSkillIds);
 })));
 
 process.stdout.write(JSON.stringify(output, null, 2) + "\n");

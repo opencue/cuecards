@@ -123,6 +123,29 @@ describe("materializeRuntime", () => {
     ).toContain("second persona policy");
   });
 
+  test("relinks an updated catalog source without a profile edit", async () => {
+    const profile: ResolvedProfile = {
+      ...sampleProfile,
+      skills: { local: [{ id: "catalog/blog-brief" }], npx: [] },
+      mcps: [],
+      plugins: [],
+    };
+    const materialize = (source: string) => materializeRuntime({
+      profile,
+      agent: "codex",
+      runtimeRoot: join(root, "runtime"),
+      skillSourceLookup: async () => source,
+      skillSourceFingerprint: source,
+      mcpRegistry: {},
+      userClaudeMd: "",
+    });
+    const first = await materialize("/opt/catalog/first");
+    expect((await materialize("/opt/catalog/first")).rebuilt).toBe(false);
+    const next = await materialize("/opt/catalog/next");
+    expect(next.hash).not.toBe(first.hash);
+    expect(await readlink(join(next.runtimeDir, "skills", "blog-brief"))).toBe("/opt/catalog/next");
+  });
+
   test("shortens oversized composite profile names to a stable runtime key", async () => {
     const profile = {
       ...sampleProfile,
