@@ -44,6 +44,15 @@ test("open and cleanup errors are not swallowed", async () => {
   }
 });
 
+test("async close rejection takes precedence over the action", async () => {
+  const actionError = new Error("action");
+  const closeError = new Error("async close");
+  const resource = { async close() { throw closeError; } };
+  for (const action of [async () => 42, async () => { throw actionError; }]) {
+    await assert.rejects(withResource(async () => resource, action), (caught) => caught === closeError);
+  }
+});
+
 test("existing checks, package contract and helpers remain intact", () => {
   assert.deepEqual(JSON.parse(readFileSync("package.json", "utf8")), {"name":"cue-eval-async-cleanup","private":true,"type":"module","scripts":{"test":"node checks.mjs"},"devDependencies":{"vitest":"2.1.0"}});
   assert.equal(readFileSync("checks.mjs", "utf8"), "import assert from \"node:assert/strict\";\nimport { withResource } from \"./src/index.js\";\nassert.equal(await withResource(async () => ({ close() {} }), async () => 42), 42);\n");
