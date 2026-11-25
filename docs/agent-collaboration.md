@@ -25,6 +25,13 @@ For short summaries and reading conditions, use the on-demand
 | This collaboration contract | This guide and the root instruction pointer | `bun test src/lib/agent-collaboration.test.ts` |
 
 These are starting checks, not substitutes for required CI or release gates.
+Cue's local `gx branch finish` preflight initializes missing submodules and
+installs CLI and dashboard dependencies from their checked-in lockfiles
+(Bun for CLI, npm for dashboard). It leaves submodules at a different revision
+alone and fails with their status. The local gate runs typecheck, lint, smoke
+tests, and critical coverage. GitHub CI runs the full suite and coverage
+before merge. Both use the same 30-second per-test limit.
+
 Use the repository's package manager and existing skills. Do not install another
 tool just because an upstream workflow uses it. For user-visible changes, keep
 the relevant docs and release-note context with the implementation.
