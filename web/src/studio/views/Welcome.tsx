@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { crew, cueRepository as repository } from "../../lib/public-profiles";
 import styles from "./Welcome.module.css";
-
-const repository = "https://github.com/opencue/cuecards";
-const crew = [
-  { name: "The Architect", profile: "aas-architecture", role: "System design", summary: "See the whole map. Plan the boundaries, model the domain, and make distributed systems easier to reason about.", specialties: ["C4 diagrams", "Domain modeling", "Architecture decisions"], portrait: styles.architect },
-  { name: "The Builder", profile: "builder", role: "Full-stack engineering", summary: "Turn a plan into a working product. Build APIs and interfaces, move across languages, and take features from first commit to release.", specialties: ["Backend APIs", "React", "Python, Go & Rust"], portrait: styles.builder },
-  { name: "The Designer", profile: "designer", role: "UI / UX", summary: "Give the product a point of view. Build a visual system, refine the interface, and carry the design through to code.", specialties: ["Visual identity", "Design systems", "Interface polish"], portrait: styles.designer },
-  { name: "The Operator", profile: "ops", role: "Infrastructure", summary: "Keep the lights on. Work across hosting, deployments, DNS, and the services your team uses to ship.", specialties: ["AWS & Vercel", "Coolify", "DNS & hosting"], portrait: styles.operator },
-] as const;
 
 export function PublicNav({ current }: { current: "home" | "skills" | "market" }) {
   return (
@@ -17,7 +10,7 @@ export function PublicNav({ current }: { current: "home" | "skills" | "market" }
       <nav aria-label="Public navigation">
         <Link to="/" search={{}} hash="crew" activeOptions={{ includeHash: true }}>Crew</Link>
         <Link to="/skills" aria-current={current === "skills" ? "page" : undefined}>Skills</Link>
-        <Link to="/" search={{ view: "market" }} aria-current={current === "market" ? "page" : undefined}>Community</Link>
+        <Link to="/" search={{ view: "market" }} aria-current={current === "market" ? "page" : undefined}>Marketplace</Link>
         <Link to="/" search={{}} hash="setup" activeOptions={{ includeHash: true }}>Setup</Link>
       </nav>
       <a className={styles.github} href={repository}>GitHub <span aria-hidden="true">↗</span></a>
@@ -64,7 +57,7 @@ export function Welcome({ onBrowse }: { onBrowse?: () => void }) {
           <div className={styles.crew} role="group" aria-label="Featured Cue profiles">
             {crew.map((member, index) => (
               <button key={member.profile} type="button" aria-pressed={selected === index} aria-controls="crew-detail" onClick={() => { setSelected(index); setNotice(""); }} className={styles.character}>
-                <span className={`${styles.portrait} ${member.portrait}`} aria-hidden="true" />
+                <span className={`${styles.portrait} ${styles[member.portrait]}`} aria-hidden="true" />
                 <span className={styles.characterIndex} aria-hidden="true">0{index + 1}</span>
                 {selected === index && <span className={styles.selected} aria-hidden="true">Selected</span>}
                 <span className={styles.characterLabel}><strong>{member.name}</strong><small>{member.role}</small></span>
@@ -90,7 +83,7 @@ export function Welcome({ onBrowse }: { onBrowse?: () => void }) {
             </div>
           </div>
           <div className={styles.links}>
-            {onBrowse ? <button type="button" onClick={onBrowse}>Browse community profiles</button> : <Link to="/" search={{ view: "market" }}>Browse community profiles ↗</Link>}
+            {onBrowse ? <button type="button" onClick={onBrowse}>Browse community profiles</button> : <Link to="/" search={{ view: "market" }}>Explore all profile cards ↗</Link>}
             <a href={`${repository}/tree/main/profiles`}>All bundled profiles on GitHub ↗</a>
           </div>
         </section>

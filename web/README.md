@@ -59,13 +59,13 @@ Once `web/dist/` exists, `cue dashboard` serves the static build alongside its `
 
 ## Demo data
 
-`scripts/dashboard-demo-data.ts` produces `public/demo-data.json` from a hand-curated snapshot. Re-generate after editing the script:
+`scripts/dashboard-demo-data.ts` produces `public/demo-data.json`. Studio previews use a hand-curated snapshot, while the public Marketplace roster reads display metadata from the checkout's `profiles/*/profile.yaml`. Regenerate after changing profiles or demo data:
 
 ```bash
 npm run gen-demo-data
 ```
 
-`vercel.json` runs this as part of the build, so the demo on Vercel always has fresh sample data.
+`vercel.json` runs this as part of the build. Build from the full checkout so the profile definitions are available. Community listings are fetched separately from the hosted API; the built-in roster works without that API.
 
 ## Deploy to Vercel
 
