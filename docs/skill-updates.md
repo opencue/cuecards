@@ -14,6 +14,10 @@ skills and manual profile pins aren't rewritten or enrolled. An explicit
 `skills.npx` entry for the same skill and agent takes precedence, even if
 that entry is unavailable.
 
+If you install Cue globally through npm, keep your editable profile in a
+user-owned `CUE_PROFILES_DIR`, outside the npm package directory, so upgrading
+the package does not replace your profile changes.
+
 After upgrading Cue, run `cue skills catalog update`. This is the recurring
 trigger: run it after each Cue upgrade, or schedule that same command if you
 manage Cue upgrades separately. The command only considers tracked IDs and
@@ -21,8 +25,15 @@ full Git commit hashes already reviewed and shipped in the installed Cue
 release. It doesn't look for an upstream branch's latest commit. Launch
 only reads the selected local snapshot; it never checks for catalog updates.
 
+For an npm-managed installation, call the commands in this order from your
+own update job:
+
+```sh
+npm install -g cue-ai@latest && cue skills catalog update
+```
+
 For example, if `command -v cue` returns `/usr/local/bin/cue`, this entry
-in your user crontab checks daily at 03:17:
+in your user crontab checks just the skills daily at 03:17:
 
 ```cron
 17 3 * * * PATH=/usr/local/bin:/usr/bin:/bin /usr/local/bin/cue skills catalog update
