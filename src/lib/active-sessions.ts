@@ -159,13 +159,8 @@ export function listActiveSessions(startTicks?: Map<number, number>): ActiveSess
 
     // comm is cheap and discriminating — fetch it first so we can skip
     // the vast majority of system processes without reading environ.
-    const statPath = `/proc/${pid}/stat`;
-    const identity = startTicks ? processStat(statPath) : null;
-    if (startTicks && !identity) continue;
-    let comm = identity?.comm ?? "";
-    if (!identity) {
-      try { comm = readFileSync(`/proc/${pid}/comm`, "utf8").trim(); } catch { continue; }
-    }
+    let comm = "";
+    try { comm = readFileSync(`/proc/${pid}/comm`, "utf8").trim(); } catch { continue; }
     if (!comm) continue;
 
     // Quick reject: anything that obviously isn't an agent binary.
@@ -173,6 +168,10 @@ export function listActiveSessions(startTicks?: Map<number, number>): ActiveSess
       comm !== "claude" && comm !== "codex" &&
       comm !== "node" && comm !== "bun"
     ) continue;
+
+    const statPath = `/proc/${pid}/stat`;
+    const identity = startTicks ? processStat(statPath) : null;
+    if (startTicks && identity?.comm !== comm) continue;
 
     let cmdline = "";
     try {

@@ -1,5 +1,5 @@
-import { readFileSync, readdirSync, statSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readFileSync, statSync } from "node:fs";
+import { readFile, readdir } from "node:fs/promises";
 
 export interface SessionMemory {
   totalPssKiB: number | null;
@@ -18,8 +18,7 @@ function read(path: string): string {
   }
 }
 
-export function processStat(path: string) {
-  const stat = read(path);
+function parseStat(stat: string) {
   const begin = stat.indexOf("(");
   const end = stat.lastIndexOf(")");
   if (begin === -1 || end <= begin) return null;
@@ -31,6 +30,10 @@ export function processStat(path: string) {
     return null;
   }
   return { comm: stat.slice(begin + 1, end), ppid, started };
+}
+
+export function processStat(path: string) {
+  return parseStat(read(path));
 }
 
 function isLauncher(argv: string[]): boolean {
@@ -73,22 +76,24 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
   if (!startTicks.size) return results;
   let entries: string[];
   try {
-    entries = readdirSync(proc);
+    entries = (await readdir(proc)).filter((entry) => /^\d+$/.test(entry));
   } catch {
     return results;
   }
 
   const rows = new Map<number, NonNullable<ReturnType<typeof processStat>>>();
   const children = new Map<number, number[]>();
-  for (const entry of entries) {
-    if (!/^\d+$/.test(entry)) continue;
-    const row = processStat(`${proc}/${entry}/stat`);
-    if (!row) continue;
-    const pid = Number(entry);
-    rows.set(pid, row);
-    const siblings = children.get(row.ppid);
-    if (siblings) siblings.push(pid);
-    else children.set(row.ppid, [pid]);
+  // Bound concurrent file reads and let unrelated dashboard requests proceed.
+  for (let i = 0; i < entries.length; i += 16) {
+    await Promise.all(entries.slice(i, i + 16).map(async (entry) => {
+      const row = parseStat(await readFile(`${proc}/${entry}/stat`, "utf8").catch(() => ""));
+      if (!row) return;
+      const pid = Number(entry);
+      rows.set(pid, row);
+      const siblings = children.get(row.ppid);
+      if (siblings) siblings.push(pid);
+      else children.set(row.ppid, [pid]);
+    }));
   }
 
   const roots = new Set<number>();
@@ -97,7 +102,8 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
   }
   const argv = (pid: number) => read(`${proc}/${pid}/cmdline`).split("\0").filter(Boolean);
   const launchPaths = new Map<number, number[]>();
-  const owners = new Map<number, number>();
+  // null marks ancestry shared by more than one session, not exclusive.
+  const owners = new Map<number, number | null>();
   for (const pid of roots) {
     const path: number[] = [];
     let child = rows.get(pid);
@@ -107,7 +113,7 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
       path.push(child.ppid);
       if (isLauncher(argv(child.ppid))) {
         launchPaths.set(pid, path);
-        for (const ancestor of path) owners.set(ancestor, (owners.get(ancestor) ?? 0) + 1);
+        for (const ancestor of path) owners.set(ancestor, owners.has(ancestor) ? null : pid);
         break;
       }
       child = parent;
@@ -134,27 +140,27 @@ export async function measureSessionMemory(startTicks: ReadonlyMap<number, numbe
     };
 
     const path = launchPaths.get(pid) ?? [];
-    for (const [index, ancestor] of path.entries()) {
-      if (owners.get(ancestor) === 1) {
-        await record(ancestor, index === path.length - 1 ? "launcher" : "other");
-      }
+    const launcher = path.at(-1);
+    let top = pid;
+    for (const ancestor of path) {
+      if (owners.get(ancestor) === pid) top = ancestor;
     }
 
-    const pending: [number, Role][] = [[pid, "agent"]];
+    const pending: [number, Role][] = [[top, top === pid ? "agent" : top === launcher ? "launcher" : "other"]];
     const seen = new Set<number>();
     for (let next = pending.pop(); next; next = pending.pop()) {
       const [current, role] = next;
       if (seen.has(current)) continue;
       seen.add(current);
-      // A nested session may already own this launcher/wrapper path. Its
-      // other branches still belong to the outer tree, so keep descending.
-      if (owners.get(current) !== 1) await record(current, role);
+      await record(current, role);
       const parent = rows.get(current);
       if (!parent) continue;
       for (const child of children.get(current) ?? []) {
         const row = rows.get(child);
-        if (!row || row.started < parent.started || roots.has(child)) continue;
-        pending.push([child, role === "mcp" || isMcp(argv(child)) ? "mcp" : "other"]);
+        const owner = owners.get(child);
+        if (!row || row.started < parent.started ||
+            (roots.has(child) && child !== pid) || (owner != null && owner !== pid)) continue;
+        pending.push([child, child === pid ? "agent" : role === "mcp" || isMcp(argv(child)) ? "mcp" : "other"]);
       }
     }
     results.set(pid, memory);

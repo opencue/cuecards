@@ -34,11 +34,13 @@ test("attributes launcher, agent, MCP subtrees and other descendants without dou
     add(25, 24, ["node", "/path/omx"], 10);
     add(26, 25, ["codex"], 200);
     add(27, 1, ["reused-pid"], 999);
+    add(28, 10, ["launcher-helper"], 70);
+    add(29, 25, ["nested-wrapper-helper"], 80);
     expect(await measureSessionMemory(new Map([[12, 12], [16, 16], [20, 20], [26, 26], [27, 2], [99, 99]]), proc)).toEqual(new Map([
       [12, {
-        totalPssKiB: 790,
-        byRole: { launcher: 100, agent: 300, mcp: 300, other: 90 },
-        measuredProcesses: 6,
+        totalPssKiB: 860,
+        byRole: { launcher: 100, agent: 300, mcp: 300, other: 160 },
+        measuredProcesses: 7,
         unreadableProcesses: 1,
       }],
       [16, {
@@ -54,9 +56,9 @@ test("attributes launcher, agent, MCP subtrees and other descendants without dou
         unreadableProcesses: 1,
       }],
       [26, {
-        totalPssKiB: 260,
-        byRole: { launcher: 50, agent: 200, mcp: 0, other: 10 },
-        measuredProcesses: 3,
+        totalPssKiB: 340,
+        byRole: { launcher: 50, agent: 200, mcp: 0, other: 90 },
+        measuredProcesses: 4,
         unreadableProcesses: 0,
       }],
     ]));
