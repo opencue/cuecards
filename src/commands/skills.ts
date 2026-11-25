@@ -248,7 +248,16 @@ async function cmdAddToProfile(id: string, preview = false): Promise<number> {
 
   // Validate skill exists
   const allIds = await listAllSkillIds();
-  if (!allIds.includes(id) && !createCatalogSkillStore().source(id)) {
+  let exists = allIds.includes(id);
+  if (!exists && id.startsWith("catalog/")) {
+    try {
+      exists = Boolean(createCatalogSkillStore().source(id));
+    } catch {
+      process.stderr.write(`Could not read the managed snapshot for "${id}". Profile unchanged.\n`);
+      return 1;
+    }
+  }
+  if (!exists) {
     process.stderr.write(`Skill "${id}" not found. Run \`cue skills search\` to find valid IDs.\n`);
     return 1;
   }

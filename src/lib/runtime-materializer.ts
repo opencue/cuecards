@@ -280,12 +280,14 @@ function computeHash(
   profile: ResolvedProfile,
   agent: AgentKind,
   extra = "",
+  skillSourceFingerprint?: string,
 ): string {
   const canonical = sortedJson({
     v: MATERIALIZER_VERSION,
     agent,
     profile,
     extra,
+    ...(skillSourceFingerprint === undefined ? {} : { skillSourceFingerprint }),
   });
   return createHash("sha256").update(canonical).digest("hex");
 }
@@ -1219,7 +1221,8 @@ async function materializeRuntimeUnlocked(
   const hash = computeHash(
     profile,
     agent,
-    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}${effectiveInput.skillSourceFingerprint ?? ""}`,
+    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
+    effectiveInput.skillSourceFingerprint,
   );
 
   // Short-circuit if hash matches.
