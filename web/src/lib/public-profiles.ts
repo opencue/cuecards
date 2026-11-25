@@ -3,6 +3,8 @@ export interface PublicProfile {
   description: string;
   icon: string;
   extends: string[];
+  publicSkillIds: string[];
+  aasSkillIds: string[];
 }
 
 export const cueRepository = "https://github.com/opencue/cuecards";
@@ -15,28 +17,35 @@ export const profileTasks = {
 } as const;
 export type ProfileTask = keyof typeof profileTasks;
 
-const bundledSkills = "https://github.com/opencue/skills/tree/main/skills";
-const architectureSkills = "https://github.com/sickn33/agentic-awesome-skills/tree/50a74ca3ddea4a91a45bdc625f0e354b6e54f1b4/skills";
+export const publicSkillSource = "https://github.com/opencue/skills/tree/main/skills";
+export const publicAasRepo = "sickn33/agentic-awesome-skills";
+export const publicAasCommit = "50a74ca3ddea4a91a45bdc625f0e354b6e54f1b4";
+export const verifiedAasFallback = ["c4-context", "domain-modeling"] as const;
+const aasSource = `https://github.com/${publicAasRepo}/tree/${publicAasCommit}/skills`;
+
+export function readPublicAasSkillIds(index: unknown): Set<string> {
+  if (!Array.isArray(index)) throw new Error("Invalid public AAS skill index");
+  return new Set(index.flatMap(entry => {
+    const { id, path } = entry ?? {};
+    return typeof id === "string" && /^[a-z0-9][a-z0-9_-]*$/.test(id) && path === `skills/${id}` ? [id] : [];
+  }));
+}
 export const characterDetails = {
   "aas-architecture": {
     when: "You need to agree on service boundaries or explain a system before changing it.",
     example: "Draw a C4 context diagram for our checkout and propose boundaries for payment and fulfillment.",
-    skills: [[ "C4 system context", `${architectureSkills}/c4-context` ], [ "Domain modeling", `${architectureSkills}/domain-modeling` ]],
   },
   builder: {
     when: "You have a feature to deliver across an API and an interface, with tests to prove it works.",
     example: "Add pagination to the orders API and wire it into the React table. Test empty and last pages.",
-    skills: [[ "API testing", `${bundledSkills}/review/api-tester` ], [ "Image to code", `${bundledSkills}/design/image-to-code` ]],
   },
   designer: {
     when: "A screen needs a clearer visual hierarchy, a design system, or a design translated to code.",
     example: "Redesign this onboarding screen for mobile and desktop without changing the flow.",
-    skills: [[ "Minimalist UI", `${bundledSkills}/design/minimalist-ui` ], [ "Image to code", `${bundledSkills}/design/image-to-code` ]],
   },
   ops: {
     when: "A service needs a deployment plan, a CI fix, or clearer operating instructions.",
     example: "Prepare a staging deployment with health checks and a rollback plan. Do not deploy it.",
-    skills: [[ "Coolify", `${bundledSkills}/deployment/coolify` ], [ "GitHub CI diagnosis", `${bundledSkills}/github/gh-fix-ci` ]],
   },
 } as const;
 
@@ -51,16 +60,54 @@ export function featuredCharacter(id: string) {
   return crew.find(member => member.profile === id);
 }
 
-export function projectPublicProfile(id: string, value: unknown): PublicProfile {
+export function projectPublicProfile(id: string, value: unknown, publicSkillIds: ReadonlySet<string>, aasSkillIds: ReadonlySet<string> = new Set(verifiedAasFallback)): PublicProfile {
   const row = value as Record<string, unknown> | null;
   if (!/^[a-z0-9][a-z0-9-]*$/.test(id) || row?.name !== id) throw new Error(`Invalid bundled profile: ${id}`);
   const base = Array.isArray(row.inherits) ? row.inherits : [row.inherits];
+  const { local, npx } = (row.skills as { local?: unknown; npx?: unknown } | null) ?? {};
+  const aas = Array.isArray(npx) ? npx.flatMap(source =>
+    source?.repo === publicAasRepo && source.pin === `git@${publicAasCommit}` && Array.isArray(source.skills)
+      ? source.skills.filter((skill: unknown): skill is string => typeof skill === "string" && aasSkillIds.has(skill))
+      : [],
+  ) : [];
   return {
     id,
     description: typeof row.description === "string" ? row.description.replace(/\s+/g, " ").trim() : "",
     icon: typeof row.icon === "string" ? row.icon : "◇",
     extends: base.filter((part): part is string => typeof part === "string"),
+    publicSkillIds: Array.isArray(local)
+      ? [...new Set(local.filter((skill): skill is string => typeof skill === "string" && publicSkillIds.has(skill)))]
+      : [],
+    aasSkillIds: [...new Set<string>(aas)],
   };
+}
+
+export function profilePublicSkills(profile: PublicProfile, roster: PublicProfile[]) {
+  const byId = new Map(roster.map(entry => [entry.id, entry]));
+  function links(entry: PublicProfile) {
+    return [
+      ...(entry.publicSkillIds ?? []).map(id => ({ label: id, href: `${publicSkillSource}/${id}` })),
+      ...(entry.aasSkillIds ?? []).map(id => ({ label: id, href: `${aasSource}/${id}` })),
+    ];
+  }
+  const direct = links(profile);
+  const seenLinks = new Set(direct.map(skill => skill.href));
+  const seenProfiles = new Set([profile.id]);
+  const inherited: typeof direct = [];
+  function visit(id: string) {
+    if (seenProfiles.has(id)) return;
+    seenProfiles.add(id);
+    const parent = byId.get(id);
+    if (!parent) return;
+    for (const skill of links(parent)) {
+      if (seenLinks.has(skill.href)) continue;
+      seenLinks.add(skill.href);
+      inherited.push(skill);
+    }
+    parent.extends.forEach(visit);
+  }
+  profile.extends.forEach(visit);
+  return { direct, inherited };
 }
 
 export type ProfileFilter = "all" | "featured" | "bundled" | "extensions";
