@@ -11,7 +11,7 @@
   color: var(--paper);
   min-width: 0;
 }
-.viewport { height: 100%; overflow: auto; scroll-behavior: smooth; }
+.viewport { height: 100%; overflow: auto; }
 .site a { color: inherit; text-underline-offset: 4px; }
 .site :is(a, button, input, select):focus-visible { outline: 2px solid var(--aqua); outline-offset: 4px; }
 .site button { cursor: pointer; font: inherit; }
@@ -72,8 +72,8 @@
 .sectionHead > p { margin: 0; }
 .crew { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 2vw, 20px); }
 .site .character {
-  isolation: isolate; position: relative; display: flex; align-items: end; text-align: left; min-width: 0;
-  min-height: clamp(142px, 16vw, 240px); aspect-ratio: 3 / 2;
+  isolation: isolate; position: relative; display: flex; align-items: end; text-align: left;
+  width: 100%; min-width: 0; aspect-ratio: 3 / 2;
   border: 1px solid var(--edge); border-radius: 6px; overflow: hidden; padding: clamp(9px, 1.5vw, 18px);
   background: var(--panel); color: var(--paper);
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
@@ -169,6 +169,7 @@
   .hero::after { background: linear-gradient(0deg, #110d1d 7%, #110d1de8 42%, transparent 72%); }
   .heroInner { padding-block: 48px; }
   .heroCaption { display: none; }
+  .site .character { aspect-ratio: 5 / 4; }
   .detail, .steps { grid-template-columns: minmax(0, 1fr); }
   .catalogFilters > div { max-width: 100%; }
   .publicShell :global(.titlebar) { padding: 0 8px; gap: 8px; }
@@ -185,7 +186,6 @@
   .publicShell :global(.mk-top) { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .viewport { scroll-behavior: auto; }
   .heroInner, .heroArt, .dossier { animation: none; }
   .site :is(.character, .character .portrait, .actions a) { transition: none; transform: none; }
 }
