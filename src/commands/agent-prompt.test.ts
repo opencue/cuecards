@@ -36,8 +36,9 @@ describe("agent-paste install prompt", () => {
     }
   });
 
-  test("README inlines the block verbatim", () => {
+  test("README links to the canonical prompt instead of duplicating it", () => {
     const readme = readFileSync(join(REPO_ROOT, "README.md"), "utf8");
-    expect(readme).toContain(promptBlock().trim());
+    expect(readme).toContain("](setup/agent-prompt.md)");
+    expect(readme).not.toContain(promptBlock().trim());
   });
 });

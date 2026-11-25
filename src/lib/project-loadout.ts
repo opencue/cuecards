@@ -267,6 +267,8 @@ export interface ApplyInput {
   /** Resolve a skill id to its SKILL.md content ("" when unresolvable). */
   readSkill: (id: string) => Promise<{ description: string; path: string }>;
   loadoutsFile?: string;
+  /** A preview uses remembered choices without persisting newly computed ones. */
+  persist?: boolean;
 }
 
 /**
@@ -324,7 +326,7 @@ export async function applyProjectLoadout(input: ApplyInput): Promise<ApplyResul
     full = result.full;
     deferredIds = result.deferred;
     computed = true;
-    writeLoadout(
+    if (input.persist !== false) writeLoadout(
       pinDir,
       {
         profile: profile.name,

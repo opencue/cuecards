@@ -85,6 +85,18 @@ function readHooks(runtimeSettingsPath: string): Record<string, string[]> {
 }
 
 export async function run(args: string[]): Promise<number> {
+  if (args.includes("--help") || args.includes("-h")) {
+    process.stdout.write(
+      "Usage: cue current [--verbose] [--json]\n" +
+      "       cue current --plan [--profile <selector>] [--agent claude|codex] [--json]\n\n" +
+      "--plan previews the selected profile without installing or writing anything.\n",
+    );
+    return 0;
+  }
+  if (args.includes("--plan")) {
+    const { runCurrentPlan } = await import("./current-plan");
+    return runCurrentPlan(args);
+  }
   const json = args.includes("--json");
   const verbose = args.includes("--verbose") || args.includes("-v");
   const resolved = await resolveProfileForCwd({

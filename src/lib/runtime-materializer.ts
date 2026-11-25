@@ -50,6 +50,7 @@ import { reconcileCodexHooks } from "./codex-hooks";
 import { withContextMode } from "./context-mode";
 import { normalizeUvxGitServers } from "./uvx-installer";
 import { evaluateCondition } from "./conditional-skills";
+import { repoRoot } from "./repo-root";
 import {
   hasWorkspaces,
   getActiveWorkspace,
@@ -67,7 +68,6 @@ const REPO_ROOT = resolvePath(
   "..",
   "..",
 );
-const RESOURCES_RULES = join(REPO_ROOT, "resources", "rules");
 const RESOURCES_COMMANDS = join(REPO_ROOT, "resources", "commands");
 const RESOURCES_SUBAGENTS = join(REPO_ROOT, "resources", "subagents");
 const RESOURCES_HOOKS = join(REPO_ROOT, "resources", "hooks");
@@ -1302,8 +1302,8 @@ async function materializeRuntimeUnlocked(
     await symlinkResources(profileSubagents, join(tmpDir, "agents"), RESOURCES_SUBAGENTS, ".md");
   }
 
-  // 1c. Rules — symlink into rules/. Contents get appended to CLAUDE.md below.
-  await symlinkResources(profileRules, join(tmpDir, "rules"), RESOURCES_RULES, ".md");
+  // 1c. Rules — symlink into rules/ for on-demand reads.
+  await symlinkResources(profileRules, join(tmpDir, "rules"), join(repoRoot(), "resources", "rules"), ".md");
 
   // 1d. Hooks — symlink scripts into hooks/. settings.json wiring happens in buildClaudeSettings.
   // A hook ref points at a `.json` config; its referenced script (e.g. `<stem>.sh`)
