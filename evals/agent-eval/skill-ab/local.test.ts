@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createExperiment } from "./experiment";
@@ -31,10 +31,18 @@ if (args[0] === "sandbox") {
     const result = cp.spawnSync(native, args, { stdio: "inherit", env: process.env });
     process.exit(result.status ?? 1);
   }
-  if (mode === "sandbox-fail") process.exit(1);
+  if (mode === "sandbox-fail") {
+    console.error("fixture grader launch failed");
+    process.exit(1);
+  }
   const command = args.slice(args.indexOf("--") + 1);
   const result = cp.spawnSync(command[0], command.slice(1), { cwd: args[args.indexOf("-C") + 1], encoding: "utf8" });
   process.stdout.write(result.stdout || ""); process.stderr.write(result.stderr || "");
+  if (!result.stdout?.includes("TAP version 13")) {
+    console.error("Fixture Node:", process.version, "grader exit status:", result.status);
+    if (result.error) console.error(result.error.message);
+    if (result.signal) console.error("Grader terminated by", result.signal);
+  }
   process.exit(result.status ?? 1);
 }
 if (args[0] !== "exec") process.exit(9);
@@ -53,10 +61,27 @@ if (mode !== "incomplete") console.log(JSON.stringify({type:"turn.completed",usa
   return { root, codex, configs, outputRoot: join(root, "results"), smoke: true };
 }
 
+async function runSmoke(options: ReturnType<typeof fixture>) {
+  try {
+    await runLocal(options);
+  } catch (error) {
+    // Only expose the bundled test fixture's output, before teardown deletes it.
+    const logs = ["before", "after"].flatMap((variant) => {
+      const path = join(options.outputRoot, variant, "async-cleanup", "run-1", "grader.log");
+      if (!existsSync(path)) return [];
+      const tail = readFileSync(path, "utf8").slice(-3000).trim();
+      return [`grader.log (${variant}):\n${tail || "(empty)"}`];
+    });
+    if (!logs.length) throw error;
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error([message, ...logs].join("\n"), { cause: error });
+  }
+}
+
 test("native smoke uses saved login and writes instrumented results with hidden graders", async () => {
   const options = fixture();
   try {
-    await runLocal(options);
+    await runSmoke(options);
     for (const variant of ["before", "after"]) {
       const dir = join(options.outputRoot, variant, "async-cleanup");
       const result = JSON.parse(readFileSync(join(dir, "run-1/result.json"), "utf8"));
@@ -69,7 +94,14 @@ test("native smoke uses saved login and writes instrumented results with hidden 
   } finally { rmSync(options.root, { recursive: true, force: true }); }
 });
 
-for (const mode of ["no-login", "exec-fail", "incomplete", "grader-fail", "timeout", "sandbox-fail", "symlink"]) {
+test("native smoke keeps the grader diagnostic visible on sandbox failure", async () => {
+  const options = fixture("sandbox-fail");
+  try {
+    await expect(runSmoke(options)).rejects.toThrow("fixture grader launch failed");
+  } finally { rmSync(options.root, { recursive: true, force: true }); }
+});
+
+for (const mode of ["no-login", "exec-fail", "incomplete", "grader-fail", "timeout", "symlink"]) {
   test(`native runner fails closed on ${mode}`, async () => {
     const options = fixture(mode);
     if (mode === "timeout") for (const config of options.configs) config.timeout = 0.1;
