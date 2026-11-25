@@ -78,8 +78,8 @@ declares that it owns this runtime. An OMX version that supports
 `OMX_DEFERRED_UPDATE_SETUP=external` still updates after you accept and exit,
 but does not run `omx setup` over the Cue-generated config and skill symlinks.
 Bypassed launches do not set this option.
-On Unix, a configured `omx` wrapper also gets lifecycle hooks in the generated
-Codex home so its HUD can show native Codex subagents. Use Codex's normal
+On Unix, an absolute path to an `omx` wrapper also gets lifecycle hooks in the
+generated Codex home so its HUD can show native Codex subagents. Use Codex's normal
 `/hooks` review to trust the new hooks; Cue does not approve them for you.
 
 ## Loading another profile from a running agent

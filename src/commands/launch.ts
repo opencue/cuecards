@@ -23,7 +23,7 @@
 import { spawn, spawnSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { copyFileSync, existsSync, readFileSync, readdirSync } from "node:fs";
-import { basename, dirname, join, resolve, sep } from "node:path";
+import { basename, dirname, isAbsolute, join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { configDir } from "../lib/config-paths";
 import { profilesDir } from "../lib/repo-root";
@@ -1557,11 +1557,12 @@ async function withOmxHudHooks(profile: ResolvedProfile, agentKind: AgentKind): 
   if (agentKind !== "codex" || process.platform === "win32") return profile;
   const { codexExecOverride } = await import("../lib/claude-binary");
   const wrapper = codexExecOverride();
-  if (!wrapper || basename(wrapper) !== "omx") return profile;
+  // Hooks may run from another cwd and PATH. Persist only a pinned executable.
+  if (!wrapper || !isAbsolute(wrapper) || basename(wrapper) !== "omx") return profile;
   const configured = profile.codex?.hooks ?? profile.codexConfig.hooks;
   if (configured !== undefined && (configured === null || typeof configured !== "object" || Array.isArray(configured))) return profile;
   const hooks = { ...configured } as Record<string, unknown>;
-  const command = `'${resolve(wrapper).replaceAll("'", "'\\''")}' codex-native-hook`;
+  const command = `'${wrapper.replaceAll("'", "'\\''")}' codex-native-hook`;
   const group = { hooks: [{ type: "command", command }] };
   for (const event of ["SessionStart", "SubagentStart", "SubagentStop"]) {
     const existing = hooks[event] ?? [];

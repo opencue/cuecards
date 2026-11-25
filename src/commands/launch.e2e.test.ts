@@ -281,6 +281,14 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
     expect(hooks.SessionStart.filter((group: unknown) => JSON.stringify(group) === JSON.stringify(lifecycleHook))).toHaveLength(1);
     expect(hooks.SubagentStart).toContainEqual(lifecycleHook);
     expect(hooks.SubagentStop).toContainEqual(lifecycleHook);
+    const bare = cue(args, { cwd: tmpDir, env: {
+      ...env, CUE_REAL_CODEX: "omx", PATH: `${tmpDir}:${process.env.PATH ?? ""}`,
+      XDG_CONFIG_HOME: join(tmpDir, "xdg-bare"),
+    } });
+    expect(bare.status, bare.stderr).toBe(0);
+    const bareHome = /^CODEX_HOME=(.+)$/m.exec(bare.stdout)![1]!;
+    const bareHooks = JSON.parse(await readFile(join(bareHome, "hooks.json"), "utf8")).hooks;
+    expect(bareHooks.SubagentStart).toBeUndefined();
     const bypassed = cue(args, { cwd: tmpDir, env: { ...env, CUE_BYPASS: "1" } });
     expect(bypassed.status).toBe(0);
     expect(bypassed.stdout).toContain("UPDATE_SETUP=unset");
