@@ -14,73 +14,39 @@ Run the coding agent you already use.
 
 </div>
 
-## Install
+## Quick start
+<a id="install"></a>
 
 Requires Node.js 20+ and an existing [Claude Code](https://github.com/anthropics/claude-code)
-or [Codex](https://github.com/openai/codex) installation. Run this in your project:
+or [Codex](https://github.com/openai/codex) installation. In an API repository:
 
 ```sh
 npm install -g cue-ai
-cue setup
+cue setup --profile backend
+cue current --plan --agent claude
+cue launch claude --cue-profile backend
 ```
 
-Setup suggests a profile, installs the launch shims, and can update your PATH.
-It asks before installing optional tooling such as CodeGraph; declining is safe.
-Open a fresh shell if prompted, then run `claude` or `codex` as usual.
+Use `codex` in the last two commands if that's your agent. Setup pins the profile,
+installs launch shims, and can update your PATH. Once the shims are on PATH, run
+`claude` or `codex` as usual. Optional tooling is not required.
+
+The plan shows why Cue selected the profile and lists local, missing, deferred,
+and remote resources. To try a profile before pinning anything, run
+`cue current --plan --profile backend`. The preview installs and writes nothing.
 
 [macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
-
-<details>
-<summary>Install with an AI agent</summary>
-
-```text
-Install cue (https://github.com/opencue/cuecards) on this machine and set it up
-for this project.
-
-1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
-2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
-3. Ask me before installing anything, then run: `npm install -g cue-ai`
-4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
-   each one is for, and let me pick one — don't choose for me.
-5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile,
-   installs the shim that makes `claude`/`codex` load it, and — if needed —
-   configures the shim directory on PATH (shell rc on Linux/macOS, Current User
-   PATH on native Windows) so the shim takes effect. It will not enable telemetry and will not install
-   third-party skills. If it exits non-zero, stop and show me the output
-   instead of continuing to step 6.
-6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
-   line is added.
-7. Report which profile got pinned and whether the shim is active. Mention that
-   `cue shell uninstall` undoes the shim, or `npm uninstall -g cue-ai` removes the package entirely.
-
-Do not install anything without asking me first.
-```
-
-</details>
 
 <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="Terminal demo: selecting a project profile and launching a coding agent" width="760" loading="lazy">
 
 ## How it works
 
 A **cuecard** is a reusable profile. For example, pin `backend` in an API repo
-and `frontend` in a web app. Each gets a different set of tools instead of one
-shared global loadout.
+and `frontend` in a web app. Cue prepares each profile's runtime and starts
+your existing agent with it. No daemon. [See the launch flow](docs/launch.md).
 
-```sh
-cue use backend   # pin this repository's .cue.profile
-cue current       # see the profile selected for this directory
-cue cost          # estimate its always-on context
-```
-
-At launch, Cue resolves the profile, prepares or reuses its runtime, and runs
-the original Claude Code or Codex binary. No daemon. Other clients can receive
-native config files through `cue materialize`; they do not use the launch shim.
-[See the launch flow](docs/launch.md).
-
-With the [picker advisor](https://github.com/opencue/cuecards/pull/249), Claude
-Code or Codex can suggest profiles and skills after the local matches. It uses
-dependency, language, and project-marker signals, not source files or dotenv
-values, and installs nothing. Set `CUE_PROFILE_ADVISOR=off` for local-only matches.
+The picker can suggest profiles and skills from project signals; it installs
+nothing. Set `CUE_PROFILE_ADVISOR=off` for local-only matches.
 
 ## The catalog
 
@@ -90,15 +56,12 @@ to browse available profiles. [See the full catalog](docs/data/profiles.md).
 
 ## Skills and rules
 
-The `--skills-sh` and `--rulesync` options require a build that includes
-[#248](https://github.com/opencue/cuecards/pull/248); they're not in `cue-ai` 0.10.0.
+Requires Cue 0.11.0 or newer.
 
-| I want to… | Run |
-| --- | --- |
-| Find a skill on skills.sh without installing it | `cue discover search --skills-sh react` |
-| Search GitHub instead | `cue discover search react` |
-| Preview the active profile's rule files | `cue ruler --dry-run` |
-| Check a Rulesync project's generated files for drift | `cue ruler --rulesync --check` |
+```sh
+cue discover search --skills-sh react   # find a skill without installing it
+cue ruler --rulesync --check            # check a Rulesync project for drift
+```
 
 [Integration setup and limits](docs/skill-and-rule-integrations.md) · [Independent review gate](docs/review-visibility.md)
 
