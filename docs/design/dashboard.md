@@ -41,6 +41,13 @@ its memory could not be read). Detached services, other users' memory, and
 launcher branches shared by multiple sessions are not assigned to an individual
 session. The dashboard's usual background polling does not request this snapshot.
 
+`memory.duplicateMcps` flags likely duplicate CodeGraph, GitNexus, and rea
+launches within a session. It lists the server name, instance count, measured
+PSS including helpers, and unreadable process count. Cue compares the visible
+command and working directory of measured MCP roots without exposing either;
+different arguments or working directories are not grouped. A match is a
+diagnostic, not proof of identical server settings, and stops no processes.
+
 Two deployment modes from one codebase:
 
 ### Mode A — Local (`cue dashboard`)
