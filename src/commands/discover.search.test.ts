@@ -66,6 +66,46 @@ describe("cue discover search --skills-sh", () => {
       fetcher.mockRestore();
     }
   });
+
+  test("prints terminal-friendly results and handles an empty search", async () => {
+    const fetcher = spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(Response.json({
+        skills: [{ id: "example/repo/react", source: "example/repo", name: "React", installs: 2 }],
+      }))
+      .mockResolvedValueOnce(Response.json({ skills: [] }));
+    const out = spyOn(process.stdout, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "react"])).toBe(0);
+      expect(out.mock.calls[0]?.[0]).toBe("React  https://skills.sh/example/repo/react  (2 installs)\n");
+      expect(await run(["search", "--skills-sh", "no-match"])).toBe(0);
+      expect(out.mock.calls[1]?.[0]).toBe("No skills.sh results.\n");
+    } finally {
+      out.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("validates limits before fetching and explains a catalog outage", async () => {
+    const fetcher = spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("network down"))
+      .mockResolvedValueOnce(new Response("", { status: 503 }));
+    const err = spyOn(process.stderr, "write").mockImplementation(() => true);
+    try {
+      for (const args of [["--limit"], ["--limit", "101"]]) {
+        expect(await run(["search", "--skills-sh", "react", ...args])).toBe(1);
+        expect(String(err.mock.calls.at(-1)?.[0])).toContain("--limit must be an integer");
+      }
+      expect(fetcher).not.toHaveBeenCalled();
+      for (let i = 0; i < 2; i++) {
+        expect(await run(["search", "--skills-sh", "react"])).toBe(1);
+        expect(String(err.mock.calls.at(-1)?.[0])).toContain("skills.sh search unavailable");
+        expect(String(err.mock.calls.at(-1)?.[0])).toContain("for GitHub");
+      }
+    } finally {
+      err.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
 });
 
 // ---------------------------------------------------------------------------

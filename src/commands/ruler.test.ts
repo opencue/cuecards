@@ -132,6 +132,23 @@ describe("cue ruler --rulesync", () => {
     expect(stderr).toContain("--check requires --rulesync");
   });
 
+  test.skipIf(process.platform === "win32")("distinguishes a signal from a missing executable", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-signal-"));
+    const path = process.env.PATH;
+    try {
+      process.env.PATH = dir;
+      writeFileSync(join(dir, "rulesync.jsonc"), "{}");
+      writeFileSync(join(dir, "rulesync"), '#!/bin/sh\nkill -TERM "$$"\n', { mode: 0o755 });
+      const { code, stderr } = await captureIO(() => run(["--rulesync", "--dir", dir]));
+      expect(code).toBe(1);
+      expect(stderr).toContain("Rulesync was terminated by SIGTERM");
+    } finally {
+      if (path === undefined) delete process.env.PATH;
+      else process.env.PATH = path;
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   test.skipIf(process.platform === "win32")("does not run a Rulesync executable planted in the target", async () => {
     const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-path-"));
     const path = process.env.PATH;

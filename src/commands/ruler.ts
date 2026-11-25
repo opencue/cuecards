@@ -84,8 +84,12 @@ function runRulesync(args: string[]): number {
     env: { ...process.env, PATH: pathValue },
     stdio: "inherit",
   });
-  if (result.error || result.status === null) {
+  if (result.error) {
     process.stderr.write("Could not run Rulesync. Make sure the rulesync executable is on PATH.\n");
+    return 1;
+  }
+  if (result.status === null) {
+    process.stderr.write(`Rulesync was terminated by ${result.signal ?? "a signal"}.\n`);
     return 1;
   }
   return result.status;
