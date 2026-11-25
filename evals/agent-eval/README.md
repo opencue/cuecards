@@ -6,6 +6,10 @@ cue profile's `CLAUDE.md`** (persona + rules + skill-routing). The output is a
 **pass rate** per profile, so "gstack is better than core for X" stops being a
 vibe and becomes a number.
 
+For the opt-in benchmark shipped with Cue, see [Community benchmarks](../../docs/community-benchmark.md).
+It applies the same paired A/B principle locally, but changes CodeGraph MCP
+availability rather than the profile and does not use the hosted eval runner.
+
 ```
 experiments/core.ts       baseline
 experiments/gstack.ts     58-role full profile

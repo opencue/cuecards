@@ -340,6 +340,10 @@ export const COMMANDS = {
     summary: "Measure profile efficiency: tokens, skill usage, cost",
     load: () => import("./benchmark"),
   },
+  "community-eval": {
+    summary: "Run and optionally share a synthetic CodeGraph A/B benchmark",
+    load: () => import("./community-eval"),
+  },
   brief: {
     summary: "Show this directory's verified facts as handed to the agent; --write persists them",
     load: () => import("./brief"),
