@@ -6,9 +6,10 @@ reads the checked-out Cue skills catalog, or the published `opencue/skills`
 catalog in a web-only build. The list refreshes on the next web build rather
 than relying on a manually copied inventory. Local-only skills are not listed.
 
-The blog and motion forks are listed in full, including browse-only entries.
-A source link is not an install recommendation: only entries that show an
-install command are in the reviewed Cue overlay. To use those in Cue:
+The blog and motion forks are listed in full at the reviewed snapshots.
+Browse-only entries use their own fixed snapshot so refreshing an installable
+pin does not change their source link or imply their contents were reviewed.
+Only entries showing an install command are in the Cue overlay. To use those:
 
 ```sh
 cue skills catalog

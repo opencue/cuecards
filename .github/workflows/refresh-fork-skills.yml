@@ -26,9 +26,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          bun scripts/refresh-fork-skills.ts --write > "$RUNNER_TEMP/fork-skills.md"
+          if ! bun scripts/refresh-fork-skills.ts --write > "$RUNNER_TEMP/fork-skills.md"; then
+            echo 'Skill refresh failed. See the compare step log for details; no update PR was created.' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
           cat "$RUNNER_TEMP/fork-skills.md" >> "$GITHUB_STEP_SUMMARY"
       - name: Propose changed pins for review
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.FORK_SKILLS_PR_TOKEN }}
           BASE_BRANCH: ${{ github.event.repository.default_branch }}
