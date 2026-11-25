@@ -43,6 +43,7 @@ import {
   padVisible,
   sectionHeader,
   selectMark,
+  visibleWidth,
 } from "./ui";
 
 /** Section title used for the flat ranked list while a filter is active. */
@@ -66,6 +67,8 @@ export interface PaletteRow {
   label: string;
   /** Short "why is this here" text; shown on the focused row. */
   hint?: string;
+  /** Original description, even when a detection or usage hint is shown. */
+  description?: string;
   /** Section this row belongs to; headers are emitted when it changes. */
   section: string;
   conflicts?: string[];
@@ -98,7 +101,7 @@ const KEY_HELP: ReadonlyArray<[string, string]> = [
   ["space", "add / remove the focused profile"],
   ["↑↓", "move"],
   ["pgup/pgdn", "move ten rows"],
-  ["type", "fuzzy-search every profile"],
+  ["type", "search name/description; + joins terms"],
   ["⌫", "delete a search character"],
   ["?", "toggle this help"],
   ["esc", "back to the suggestion"],
@@ -152,6 +155,7 @@ export function buildPaletteRows(args: BuildPaletteArgs): PaletteRow[] {
       value: opt.value,
       label: opt.label,
       hint: opt.hint,
+      description: opt.hint,
       section,
       conflicts: opt.conflicts,
       searchOnly: opt.searchOnly,
@@ -237,25 +241,55 @@ export function fuzzyScore(query: string, candidate: string): number | null {
 /**
  * Apply a query to the row list. An empty query returns the rows untouched
  * (sections intact); a non-empty query returns a flat list ranked by
- * `fuzzyScore`, re-labelled into a single `matches` section — while searching,
- * relevance beats grouping. Ties keep the original order. Pure.
+ * name/label matches first, then description keywords. Every term must match.
+ * Results share one `matches` section; ties keep the original order. Pure.
  */
 export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
-  if (query.trim().length === 0) {
+  const words = (value: string) => value.match(/[\p{L}\p{N}]+/gu)?.join(" ") ?? "";
+  const terms = query.toLowerCase().split(/[+\s]+/).filter(Boolean)
+    .map((term) => ({ term, phrase: words(term) }));
+  if (terms.length === 0) {
     return rows.some((row) => row.searchOnly === true)
       ? rows.filter((row) => row.searchOnly !== true)
       : rows;
   }
   const scored: Array<{ row: PaletteRow; score: number; i: number }> = [];
   rows.forEach((row, i) => {
-    const byValue = fuzzyScore(query, row.value);
-    const byLabel = fuzzyScore(query, row.label);
-    const score = Math.max(byValue ?? Number.NEGATIVE_INFINITY, byLabel ?? Number.NEGATIVE_INFINITY);
-    if (score > Number.NEGATIVE_INFINITY) scored.push({ row, score, i });
+    // Word boundaries keep a keyword precise while allowing Node.js and CI/CD.
+    const description = ` ${words(row.description?.toLowerCase() ?? "")} `;
+    let score = 0;
+    for (const { term, phrase } of terms) {
+      const byValue = fuzzyScore(term, row.value);
+      const byLabel = fuzzyScore(term, row.label);
+      if (byValue !== null || byLabel !== null) {
+        score += Math.max(100, byValue ?? 0, byLabel ?? 0);
+      } else if (phrase && description.includes(` ${phrase} `)) {
+        score += 50;
+      } else if (phrase.length >= 3 && description.includes(` ${phrase}`)) {
+        score += 25;
+      } else {
+        return;
+      }
+    }
+    scored.push({ row, score, i });
   });
   return scored
     .sort((a, b) => b.score - a.score || a.i - b.i)
     .map(({ row }) => ({ ...row, section: MATCHES_SECTION }));
+}
+
+/** Keep the newest characters next to the caret when the query overflows. */
+function queryTail(query: string, width: number): string {
+  if (width <= 0) return "";
+  if (displayWidth(query) <= width) return query;
+  let tail = "";
+  let remaining = width - 1; // leading ellipsis
+  for (const ch of [...query].reverse()) {
+    remaining -= displayWidth(ch);
+    if (remaining < 0) break;
+    tail = ch + tail;
+  }
+  return `…${tail}`;
 }
 
 /**
@@ -268,6 +302,7 @@ export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
 export function renderPaletteFrame(state: PaletteState): string {
   const bar = BAR();
   const cols = state.cols ?? process.stdout.columns ?? 80;
+  const compact = cols < 64;
   const width = Math.max(24, cols - 6);
   // Rows clip to the full terminal width (a long hint deserves the room), but
   // the right-aligned header meta tracks the card's capped width so the two
@@ -283,7 +318,7 @@ export function renderPaletteFrame(state: PaletteState): string {
 
   // Title bar: the screen's name on the left, how far along you are on the
   // right — the two things you'd check before touching a key.
-  lines.push(bar);
+  if (!compact) lines.push(bar);
   const title = `${styleText("cyan", "◆")}  ${styleText("bold", "build your stack")}`;
   const picked =
     effective.size > 0
@@ -296,27 +331,28 @@ export function renderPaletteFrame(state: PaletteState): string {
     for (const row of keyTable(KEY_HELP, 12)) lines.push(`${bar}  ${row}`);
     lines.push(bar);
     lines.push(`${bar}  ${keyHints([["?", "close help"]])}`);
-    return lines.join("\n");
+    return lines.map((line) => clipVisible(line, cols)).join("\n");
   }
 
   // Search field. Rendering it as its own labelled row — rather than a tag
   // welded onto the title — is what makes "you can just type" discoverable.
-  lines.push(bar);
-  const field =
-    state.query.length > 0
-      ? `${styleText("cyan", state.query)}${styleText("cyan", "▏")}`
-      : styleText("dim", "type to filter…");
+  if (!compact) lines.push(bar);
   const scope =
     state.query.length > 0
       ? styleText("dim", `${visible.length} ${visible.length === 1 ? "match" : "matches"}`)
       : styleText("dim", `${visible.length} profiles`);
+  const fieldWidth = Math.max(0, cols - 13 - visibleWidth(scope));
+  const field = state.query.length > 0
+    ? styleText("cyan", `${queryTail(state.query, fieldWidth - 1)}▏`)
+    : styleText("dim", clipVisible(compact ? "name or keyword…" : "type to filter…", fieldWidth));
   lines.push(
-    `${bar}  ${styleText("dim", "search")}  ${padVisible(field, Math.max(0, headWidth - 22))}${scope}`,
+    `${bar}  ${styleText("dim", "search")}  ${compact ? field : padVisible(field, Math.max(0, headWidth - 22))}  ${scope}`,
   );
 
-  lines.push(bar);
+  if (!compact) lines.push(bar);
   if (visible.length === 0) {
-    lines.push(`${bar}  ${styleText("yellow", `nothing matches "${state.query}"`)}`);
+    const message = compact ? "No profiles found · ⌫ edit search" : `nothing matches "${state.query}"`;
+    lines.push(`${bar}  ${styleText("yellow", message)}`);
   }
 
   // Per-section totals (across the whole filtered list, not just the window) so
@@ -337,7 +373,7 @@ export function renderPaletteFrame(state: PaletteState): string {
   win.items.forEach((row, offset) => {
     const idx = win.start + offset;
     if (row.section !== lastSection) {
-      if (lastSection !== undefined) lines.push(bar);
+      if (!compact && lastSection !== undefined) lines.push(bar);
       lines.push(`${bar}  ${sectionHeader(row.section, sectionTotals.get(row.section) ?? 0)}`);
       lastSection = row.section;
     }
@@ -350,11 +386,11 @@ export function renderPaletteFrame(state: PaletteState): string {
   // Sticky footer: what you're about to launch, and what it costs.
   lines.push(bar);
   const chosen = [...effective];
-  if (chosen.length === 0) {
+  if (chosen.length === 0 && !compact) {
     lines.push(
       `${bar}  ${styleText("dim", "nothing selected yet — press space to add the focused profile")}`,
     );
-  } else {
+  } else if (chosen.length > 0) {
     const labelOf = (v: string) => icon(state.rows.find((r) => r.value === v)?.label ?? v);
     lines.push(
       `${bar}  ${styleText("green", clipToWidth(chosen.map(labelOf).join("  +  "), width))}`,
@@ -378,7 +414,7 @@ export function renderPaletteFrame(state: PaletteState): string {
     }
   }
 
-  lines.push(bar);
+  if (!compact) lines.push(bar);
   const ship =
     chosen.length > 0
       ? button(`⏎ launch ${chosen.length}`)
@@ -407,7 +443,7 @@ export function renderPaletteFrame(state: PaletteState): string {
       ]),
     )}`,
   );
-  return lines.join("\n");
+  return lines.map((line) => clipVisible(line, cols)).join("\n");
 }
 
 /** One list row: selection mark, label, per-row delta, conflict/danger tags. */

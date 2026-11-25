@@ -73,6 +73,10 @@ keep resolving that pin automatically so scripts and one-shot commands do not
 stop for input. Pass `--cue-profile <name>` to skip the picker for a bare launch,
 or `--cue-pick` to force it for a launch that has arguments.
 
+In the default picker, press `/` to search profile names and descriptions.
+Join keywords with `+` (for example, `vercel+postgres`) to require every term,
+then use Space to add or remove the highlighted profile.
+
 ## Materialize
 
 Given a resolved profile, cue builds (or reuses) a fully isolated config tree:
