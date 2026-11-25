@@ -75,6 +75,7 @@ import {
 } from "../lib/launch-loader";
 import { ensureClaudeLogoPath } from "../lib/claude-logo";
 import { createLocalSkillResolver } from "../lib/resolver-local";
+import { createCatalogSkillStore } from "../lib/catalog-skill-updates";
 import {
   resolveNpxDetailed,
   type NpxEntryFailure,
@@ -1786,6 +1787,32 @@ export async function resolveNpxSkillSources(
   return sources;
 }
 
+/** An explicit npx entry wins over a catalog alias even if its fetch fails. */
+export function catalogSkillsForLaunch(
+  profile: ResolvedProfile,
+  agent: AgentKind,
+  source = createCatalogSkillStore().source,
+) {
+  const sources = new Map<string, string>();
+  const explicit = new Set(profile.skills.npx
+    .filter(entry => !entry.agents?.length || entry.agents.includes(agent))
+    .flatMap(entry => entry.skills));
+  const local = profile.skills.local.filter(({ id, agents }) => {
+    if (!id.startsWith("catalog/")) return true;
+    if (!agents?.length || agents.includes(agent)) {
+      if (explicit.has(id.slice("catalog/".length))) return false;
+      try {
+        const path = source(id);
+        if (path) sources.set(id, path);
+      } catch {
+        // Broken catalog state is treated as a missing local skill.
+      }
+    }
+    return true;
+  });
+  return { local, sources };
+}
+
 // formatNpxDegraded — moved to src/lib/launch-format.ts; re-exported for back-compat.
 export { formatNpxDegraded } from "../lib/launch-format";
 
@@ -2882,6 +2909,10 @@ export async function run(args: string[]): Promise<number> {
     // default guidance survives both, without changing the selected runtime key.
     profile = await withCodexPonytail(await applyWorkspaceOverrides(profile), agentKind);
     profile = await withOmxHudHooks(profile, agentKind);
+    const catalog = catalogSkillsForLaunch(profile, agentKind);
+    if (catalog.local.length !== profile.skills.local.length) {
+      profile = { ...profile, skills: { ...profile.skills, local: catalog.local } };
+    }
     const npxSkillMap = await resolveNpxSkillSources(profile, {
       agent: agentKind,
       onDegraded: (failures) => {
@@ -2912,9 +2943,11 @@ export async function run(args: string[]): Promise<number> {
       agent: agentKind,
       runtimeRoot: join(configDir(), "runtime"),
       runtimeKey,
+      skillSourceFingerprint: catalog.sources.size ? JSON.stringify([...catalog.sources]) : undefined,
       skillSourceLookup: (id) => {
-        const npxPath = npxSkillMap.get(id);
-        if (npxPath) return Promise.resolve(npxPath);
+        const path = id.startsWith("catalog/") ? catalog.sources.get(id) : npxSkillMap.get(id);
+        if (path) return Promise.resolve(path);
+        if (id.startsWith("catalog/")) return Promise.reject(new Error(`Missing catalog skill: ${id}`));
         return resolveLocalSkill(id);
       },
       mcpRegistry: await loadMcpRegistry(agentKind),

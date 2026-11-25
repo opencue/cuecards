@@ -126,6 +126,8 @@ export interface MaterializeInput {
   runtimeKey?: string;
   /** Map skill id → source dir on disk (caller resolves local/npx/plugin paths). */
   skillSourceLookup: (id: string) => Promise<string>;
+  /** Content identity for explicitly managed sources outside the profile YAML. */
+  skillSourceFingerprint?: string;
   /** Pre-resolved sanitized MCP registry for this agent. */
   mcpRegistry: Record<string, McpServerConfig>;
   /** Content of ~/.claude/CLAUDE.md (or ~/.codex/AGENTS.md) to append. */
@@ -1217,7 +1219,7 @@ async function materializeRuntimeUnlocked(
   const hash = computeHash(
     profile,
     agent,
-    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}`,
+    `${codexBaseText}\n${codexSkillScopeText}\n${codexMcpText}\n${personaIncludesText}${effectiveInput.skillSourceFingerprint ?? ""}`,
   );
 
   // Short-circuit if hash matches.

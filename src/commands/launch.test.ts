@@ -16,6 +16,7 @@ import {
   relativeTime,
   formatNpxDegraded,
   resolveNpxSkillSources,
+  catalogSkillsForLaunch,
   shouldAppendUserClaudeMd,
   sortProfileOptions,
   splitSkillBytes,
@@ -49,6 +50,27 @@ function makeProfile(overrides: Partial<ResolvedProfile> = {}): ResolvedProfile 
     ...overrides,
   } as ResolvedProfile;
 }
+
+test("catalog launch resolves only explicit local refs and does not replace manual pins", () => {
+  const pin = `git@${"a".repeat(40)}`;
+  const profile = makeProfile({
+    skills: {
+      local: [{ id: "review/code-review" }, { id: "catalog/blog-brief" }, { id: "catalog/blog-calendar" }],
+      npx: [{ repo: "manual/fork", pin, agents: ["codex"], skills: ["blog-brief"] }],
+    },
+  });
+  const seen: string[] = [];
+  const source = (id: string) => {
+    seen.push(id);
+    return `/snapshot/${id}`;
+  };
+  const codex = catalogSkillsForLaunch(profile, "codex", source);
+  expect(seen).toEqual(["catalog/blog-calendar"]);
+  expect(codex.local.map(({ id }) => id)).toEqual(["review/code-review", "catalog/blog-calendar"]);
+  expect(codex.sources.get("catalog/blog-calendar")).toBe("/snapshot/catalog/blog-calendar");
+  expect(profile.skills.npx[0]?.pin).toBe(pin);
+  expect(catalogSkillsForLaunch(profile, "claude-code", source).sources.has("catalog/blog-brief")).toBe(true);
+});
 
 describe("resolveNpxSkillSources", () => {
   test("resolves pinned npx skills through cache sources", async () => {

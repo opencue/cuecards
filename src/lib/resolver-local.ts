@@ -20,6 +20,7 @@ import { readdir, stat } from "node:fs/promises";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ProfileError, type LinkPlan, type ResolvedProfile } from "../../profiles/_types";
+import { createCatalogSkillStore } from "./catalog-skill-updates";
 
 // ---------------------------------------------------------------------------
 // Repo-root helpers (used by resolveLocalSkill)
@@ -232,6 +233,11 @@ async function resolveOne(
   }
 
   const parts = trimmed.split("/");
+  if (parts.length === 2 && parts[0] === "catalog") {
+    const source = createCatalogSkillStore().source(trimmed);
+    if (!source) throw new SkillNotFound(ref, [], allSlugs);
+    return { source, target: `.claude/skills/${parts[1]}`, origin: "local" };
+  }
   let category: string;
   let slug: string;
 
