@@ -1540,10 +1540,37 @@ async function findRealBinary(
  *    the real binary instead of re-entering `cue launch`.
  *  - Unset the override, so a nested `cue launch codex` that slips through some
  *    other shim can't dispatch back into the wrapper a second time.
+ * A normal launch owns its generated CODEX_HOME. Let OMX update its package,
+ * but not run legacy setup against Cue's skill symlinks and generated config.
  */
-function wrapperEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+function wrapperEnv(env: NodeJS.ProcessEnv, managedRuntime = false): NodeJS.ProcessEnv {
   const { CUE_REAL_CODEX: _override, ...rest } = env;
-  return { ...rest, PATH: stripShimDirFromPath(env.PATH, shimDir()) };
+  return {
+    ...rest,
+    PATH: stripShimDirFromPath(env.PATH, shimDir()),
+    ...(managedRuntime ? { OMX_DEFERRED_UPDATE_SETUP: "external" } : {}),
+  };
+}
+
+/** Feed OMX's native subagent tracker without running setup over a Cue runtime. */
+async function withOmxHudHooks(profile: ResolvedProfile, agentKind: AgentKind): Promise<ResolvedProfile> {
+  if (agentKind !== "codex" || process.platform === "win32") return profile;
+  const { codexExecOverride } = await import("../lib/claude-binary");
+  const wrapper = codexExecOverride();
+  if (!wrapper || basename(wrapper) !== "omx") return profile;
+  const configured = profile.codex?.hooks ?? profile.codexConfig.hooks;
+  if (configured !== undefined && (configured === null || typeof configured !== "object" || Array.isArray(configured))) return profile;
+  const hooks = { ...configured } as Record<string, unknown>;
+  const command = `'${resolve(wrapper).replaceAll("'", "'\\''")}' codex-native-hook`;
+  const group = { hooks: [{ type: "command", command }] };
+  for (const event of ["SessionStart", "SubagentStart", "SubagentStop"]) {
+    const existing = hooks[event] ?? [];
+    if (Array.isArray(existing) && !existing.some((entry) =>
+      !entry?.matcher && Array.isArray(entry?.hooks) && entry.hooks.some((hook: { command?: string }) => hook?.command === command))) {
+      hooks[event] = [...existing, group];
+    }
+  }
+  return { ...profile, codex: { ...profile.codex, hooks } };
 }
 
 /**
@@ -2855,6 +2882,7 @@ export async function run(args: string[]): Promise<number> {
     // Apply after skill filtering and workspace persona replacement so Codex's
     // default guidance survives both, without changing the selected runtime key.
     profile = await withCodexPonytail(await applyWorkspaceOverrides(profile), agentKind);
+    profile = await withOmxHudHooks(profile, agentKind);
     const npxSkillMap = await resolveNpxSkillSources(profile, {
       agent: agentKind,
       onDegraded: (failures) => {
@@ -3275,7 +3303,7 @@ export async function run(args: string[]): Promise<number> {
     exitCode = await execAgent(
       realBin.bin,
       [...briefArgs, ...parsed.passthrough],
-      realBin.viaOverride ? wrapperEnv(childEnv) : childEnv,
+      realBin.viaOverride ? wrapperEnv(childEnv, true) : childEnv,
     );
   } finally {
     stopReconciler?.();

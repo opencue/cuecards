@@ -245,4 +245,31 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
     expect(res.status).toBe(42);
     expect(res.stdout.trim()).toBe("FAKE-CLAUDE --print -p hello");
   });
+
+  test("only a materialized Codex wrapper launch delegates OMX setup to Cue", async () => {
+    const wrapper = join(tmpDir, "omx");
+    await writeFile(wrapper, '#!/usr/bin/env bash\nprintf "UPDATE_SETUP=%s\nCODEX_HOME=%s\n" "${OMX_DEFERRED_UPDATE_SETUP:-unset}" "$CODEX_HOME"\n', { mode: 0o755 });
+    const codexHome = join(tmpDir, "codex");
+    await mkdir(codexHome);
+    const env = {
+      CUE_REAL_CODEX: wrapper,
+      CODEX_HOME: codexHome,
+      OMX_DEFERRED_UPDATE_SETUP: "",
+    };
+    const args = ["launch", "codex", "--cue-profile", "caveman-quick", "hello"];
+    const normal = cue(args, { cwd: tmpDir, env });
+    expect(normal.status).toBe(0);
+    expect(normal.stdout).toContain("UPDATE_SETUP=external");
+    const runtimeHome = /^CODEX_HOME=(.+)$/m.exec(normal.stdout)![1]!;
+    const { hooks } = JSON.parse(await readFile(join(runtimeHome, "hooks.json"), "utf8"));
+    const lifecycleHook = {
+      hooks: [{ type: "command", command: `'${wrapper}' codex-native-hook` }],
+    };
+    expect(hooks.SessionStart).toContainEqual(lifecycleHook);
+    expect(hooks.SubagentStart).toContainEqual(lifecycleHook);
+    expect(hooks.SubagentStop).toContainEqual(lifecycleHook);
+    const bypassed = cue(args, { cwd: tmpDir, env: { ...env, CUE_BYPASS: "1" } });
+    expect(bypassed.status).toBe(0);
+    expect(bypassed.stdout).toContain("UPDATE_SETUP=unset");
+  });
 });
