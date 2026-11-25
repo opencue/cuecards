@@ -28,7 +28,35 @@ Setup suggests a profile, installs the launch shims, and can update your PATH.
 It asks before installing optional tooling such as CodeGraph; declining is safe.
 Open a fresh shell if prompted, then run `claude` or `codex` as usual.
 
-[Agent-guided setup](setup/lean-cue.md) · [macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
+[macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
+
+<details>
+<summary>Install with an AI agent</summary>
+
+```text
+Install cue (https://github.com/opencue/cuecards) on this machine and set it up
+for this project.
+
+1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
+2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
+3. Ask me before installing anything, then run: `npm install -g cue-ai`
+4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
+   each one is for, and let me pick one — don't choose for me.
+5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile,
+   installs the shim that makes `claude`/`codex` load it, and — if needed —
+   configures the shim directory on PATH (shell rc on Linux/macOS, Current User
+   PATH on native Windows) so the shim takes effect. It will not enable telemetry and will not install
+   third-party skills. If it exits non-zero, stop and show me the output
+   instead of continuing to step 6.
+6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+   line is added.
+7. Report which profile got pinned and whether the shim is active. Mention that
+   `cue shell uninstall` undoes the shim, or `npm uninstall -g cue-ai` removes the package entirely.
+
+Do not install anything without asking me first.
+```
+
+</details>
 
 <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="Terminal demo: selecting a project profile and launching a coding agent" width="760" loading="lazy">
 
@@ -83,7 +111,7 @@ The `--skills-sh` and `--rulesync` options require a build that includes
 | [Vercel Skills](https://github.com/vercel-labs/skills) | Find and install a standalone skill. |
 | [Rulesync](https://github.com/dyoshikawa/rulesync) | Generate several agents' native config files from one project source. |
 
-[Compare 13 related projects by use case](docs/alternatives.md).
+[See the full feature matrix: Cue and 13 related projects](docs/alternatives.md#feature-comparison).
 
 ## Contributing
 

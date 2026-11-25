@@ -1,39 +1,31 @@
 # Cue and related tools
 
-Cue answers **what should this coding agent start with in this directory?** It
-resolves a profile at launch and runs the existing Claude Code or Codex binary
-against that profile's runtime. See [the launch flow](launch.md).
+**Cue picks what Claude Code or Codex starts with in the current directory.**
+The tools below can instead find a skill, sync agent files, install a kit, or
+switch a provider. Some do more than one.
 
-These tools solve adjacent problems. Pick by the job you want done, not by the
-number of boxes ticked in a feature matrix.
+## Feature comparison
 
-## Find or share skills
+The cells describe how each tool handles an asset. **—** means it is not
+covered in the linked workflow, not that the tool cannot handle it. The MCP
+column compares **server configuration**, not whether the tool offers an MCP API.
 
-| Project | Reach for it when you want to… |
-| --- | --- |
-| [Vercel Skills](https://github.com/vercel-labs/skills) | Search the skills.sh catalog and install skills from a repository. |
-| [Agentic Awesome Skills](https://github.com/sickn33/agentic-awesome-skills) | Browse a large catalog of ready-made skills. |
-| [Skillshare](https://github.com/runkids/skillshare) | Keep a shared skill library in sync across several agent clients. |
-| [skills-sync](https://github.com/ryanreh99/skills-sync) | Import and manage shared skills and MCP configuration for development setups. |
-| [Skills Manager](https://github.com/xingkongliang/skills-manager) | Manage and update local skills from a desktop UI. |
-
-## Distribute project configuration
-
-| Project | Reach for it when you want to… |
-| --- | --- |
-| [HarnessKit](https://github.com/RealZST/HarnessKit#-kits) | Install or distribute a portable kit of project assets such as skills, rules, and MCP configuration. |
-| [Rulesync](https://github.com/dyoshikawa/rulesync) | Generate several agents' native configuration files from one project source and check for drift. |
-| [Ruler](https://github.com/intellectronica/ruler) | Publish one set of repository instructions to several coding agents. |
-| [Agent Layer](https://github.com/conn-castle/agent-layer) | Maintain shared, project-local agent configuration with tracked generated files. |
-| [Caliber](https://github.com/caliber-ai-org/ai-setup) | Keep rules, skills, and MCP config synchronized between agent clients. |
-
-## Switch providers or existing profiles
-
-| Project | Reach for it when you want to… |
-| --- | --- |
-| [CC Switch](https://github.com/farion1231/cc-switch) | Switch providers and manage client settings from a desktop app. |
-| [claude-profiles](https://github.com/julianleopold/claude-profiles) | Switch between saved Claude Code configurations. |
-| [claude-code-profiles](https://github.com/quinnjr/claude-code-profiles) | Use separate Claude Code configurations, including directory-based selection. |
+| Project | Skills | MCP config | Rules / prompts | Profiles / kits | Key difference |
+| --- | --- | --- | --- | --- | --- |
+| **[Cue](launch.md)** | Find, install, load | Load | Distribute | Project launch profiles | Builds the profile runtime, then starts Claude Code or Codex. |
+| [HarnessKit](https://github.com/RealZST/HarnessKit#-kits) | Bundle | Bundle | Bundle | Portable kits | Installs a bundle that can include memory files. |
+| [Rulesync](https://github.com/dyoshikawa/rulesync) | Generate | Generate | Generate | — | Writes native config from one source and can check for drift. |
+| [Ruler](https://github.com/intellectronica/ruler) | Distribute (experimental) | Distribute | Distribute | — | Applies shared repository instructions, including nested rules. |
+| [Agent Layer](https://github.com/conn-castle/agent-layer) | Share | Generate | Generate | — | Tracks the project files it generates. |
+| [Caliber](https://github.com/caliber-ai-org/ai-setup) | Sync | Sync | Sync | — | Mirrors resources between agent clients. |
+| [Vercel Skills](https://github.com/vercel-labs/skills) | Find, install | — | — | — | CLI for the skills.sh catalog and repository installs. |
+| [Agentic Awesome Skills](https://github.com/sickn33/agentic-awesome-skills) | Browse catalog | — | — | Skill groupings | Curated collection with a searchable local catalog. |
+| [Skillshare](https://github.com/runkids/skillshare) | Sync | Sync | Sync as extras | Project libraries | Keeps a shared library in sync across clients. |
+| [skills-sync](https://github.com/ryanreh99/skills-sync) | Import, sync | Sync | — | Workspace profiles | Keeps source locks for workspace imports. |
+| [Skills Manager](https://github.com/xingkongliang/skills-manager) | Manage, update | — | — | Skill presets | Desktop library with agent and project workspaces. |
+| [CC Switch](https://github.com/farion1231/cc-switch) | Find, install, sync | Sync | Prompt presets | Provider presets | Desktop app for switching API providers. |
+| [claude-profiles](https://github.com/julianleopold/claude-profiles) | — | Switch settings | — | Claude configs | Swaps saved files in `~/.claude`. |
+| [claude-code-profiles](https://github.com/quinnjr/claude-code-profiles) | Share, link | — | — | Directory-based Claude configs | Points Claude Code at a different config directory. |
 
 ## Use them together
 
