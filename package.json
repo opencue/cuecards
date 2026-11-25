@@ -12,11 +12,11 @@
   },
   "scripts": {
     "cue": "bun src/index.ts",
-    "test": "bun test --timeout 30000",
+    "test": "node scripts/run-bun-tests.mjs",
     "eval:profile-suggestions": "bun scripts/evaluate-profile-suggestions.ts",
     "eval:profile-suggestion-replay": "bun scripts/evaluate-profile-suggestion-replay.ts",
     "profiles:aas": "bun scripts/generate-aas-profiles.ts",
-    "test:critical:coverage": "bun test src/lib/profile-loader.test.ts src/lib/cwd-resolver.test.ts src/lib/runtime-materializer.test.ts src/lib/runtime-materializer.plugin-cache.test.ts src/commands/launch.test.ts src/commands/launch.parse.test.ts --coverage --coverage-reporter=lcov --coverage-dir=coverage/critical --timeout 30000 && bun scripts/check-critical-coverage.ts",
+    "test:critical:coverage": "node scripts/run-bun-tests.mjs src/lib/profile-loader.test.ts src/lib/cwd-resolver.test.ts src/lib/runtime-materializer.test.ts src/lib/runtime-materializer.plugin-cache.test.ts src/commands/launch.test.ts src/commands/launch.parse.test.ts --coverage --coverage-reporter=lcov --coverage-dir=coverage/critical && bun scripts/check-critical-coverage.ts",
     "lint:skills:baseline": "bun scripts/check-skill-lint-baseline.ts",
     "typecheck": "tsc --noEmit",
     "lint": "biome lint src web/src scripts",

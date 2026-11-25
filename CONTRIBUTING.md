@@ -15,7 +15,7 @@ git submodule update --init --recursive
 bun install
 
 # Run tests
-bun test
+bun run test
 
 # Run cue locally
 bun src/index.ts status
@@ -67,16 +67,19 @@ bun src/index.ts doctor
 
 ```bash
 # Run all tests
-bun test
+bun run test
 
 # Run a specific test file
-bun test src/lib/kitty-image.test.ts
+bun run test src/lib/kitty-image.test.ts
 
 # Run tests matching a pattern
-bun test --filter "loadProfile"
+bun run test --filter "loadProfile"
 ```
 
 Tests live alongside their source files (`foo.ts` → `foo.test.ts`). We use Bun's built-in test runner.
+Use `bun run test` rather than bare `bun test` to enforce a 10-minute
+deadline for the whole run, in addition to Bun's per-test timeout.
+If a slower machine needs more time, set `CUE_TEST_TIMEOUT_MS` in milliseconds.
 
 Some suites read the `resources/skills` / `resources/mcps` submodules (skill resolution, the CLI/MCP catalogs, launch e2e). They **skip automatically** when those submodules aren't checked out, so a fresh clone stays green — run `git submodule update --init --recursive` to enable full coverage.
 
@@ -121,7 +124,7 @@ Icons are 64x64 RGBA PNGs rendered from Simple Icons SVGs.
 
 1. **One concern per PR** — don't mix features with refactors
 2. **Tests required** for new commands and library functions
-3. **Run `bun test`** before submitting — the full suite must pass (1,300+ tests)
+3. **Run `bun run test`** before submitting — the full suite must pass (1,300+ tests)
 4. **Keep the README updated** if you add user-facing features
 5. **Profile changes** — if you modify `profiles/`, run `cue validate --all`
 
