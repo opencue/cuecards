@@ -1160,6 +1160,12 @@ describe("ownsPaneBadge", () => {
 
 import { __test as launchTest } from "./launch";
 
+test("consumes --cue-full before forwarding the agent's arguments", () => {
+  const parsed = launchTest.parse(["codex", "--cue-full", "--", "--version"]);
+  expect(parsed.fullLoad).toBe(true);
+  expect(parsed.passthrough).toEqual(["--version"]);
+});
+
 describe("invalidateRuntimeHash", () => {
   test("does not throw when the hash file is absent (force:true)", async () => {
     await expect(

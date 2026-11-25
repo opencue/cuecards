@@ -715,46 +715,33 @@ describe("materializeRuntime", () => {
     expect(settings.env.AWS_SECRET_ACCESS_KEY).toBeUndefined();
   });
 
-  test("surfaces ANTHROPIC_BASE_URL when the proxy health endpoint responds (health-gate pass)", async () => {
-    const port = 43111;
-    const out = await materializeRuntime({
-      profile: {
-        ...sampleProfile,
-        env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` },
+  test.each([200, 503])("uses the loopback proxy only when /health returns 2xx (HTTP %i)", async (status) => {
+    const requests: string[] = [];
+    const proxy = Bun.serve({
+      hostname: "127.0.0.1",
+      port: 0,
+      fetch(request) {
+        const path = new URL(request.url).pathname;
+        requests.push(path);
+        return new Response(null, { status: path === "/health" ? status : 404 });
       },
-      agent: "claude-code",
-      runtimeRoot: join(root, "runtime"),
-      skillSourceLookup: async (id) => `/fake/skills/${id}`,
-      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
-      userClaudeMd: "# user CLAUDE.md\n",
-      proxyHealthCheck: async () => true,
     });
-    const settings = JSON.parse(
-      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
-    );
-    expect(settings.env).toEqual({
-      ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}`,
-    });
-  });
-
-  test("drops ANTHROPIC_BASE_URL when the port is open but health does not answer", async () => {
-    const port = 43112;
-    const out = await materializeRuntime({
-      profile: {
-        ...sampleProfile,
-        env: { ANTHROPIC_BASE_URL: `http://127.0.0.1:${port}` },
-      },
-      agent: "claude-code",
-      runtimeRoot: join(root, "runtime"),
-      skillSourceLookup: async (id) => `/fake/skills/${id}`,
-      mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
-      userClaudeMd: "# user CLAUDE.md\n",
-      proxyHealthCheck: async () => false,
-    });
-    const settings = JSON.parse(
-      await readFile(join(out.runtimeDir, "settings.json"), "utf8"),
-    );
-    expect(settings.env?.ANTHROPIC_BASE_URL).toBeUndefined();
+    const url = `http://127.0.0.1:${proxy.port}`;
+    try {
+      const out = await materializeRuntime({
+        profile: { ...sampleProfile, env: { ANTHROPIC_BASE_URL: url } },
+        agent: "claude-code",
+        runtimeRoot: join(root, "runtime"),
+        skillSourceLookup: async (id) => `/fake/skills/${id}`,
+        mcpRegistry: { "claude-mem": { command: "claude-mem", args: [] } },
+        userClaudeMd: "# user CLAUDE.md\n",
+      });
+      const settings = JSON.parse(await readFile(join(out.runtimeDir, "settings.json"), "utf8"));
+      expect(requests).toContain("/health");
+      expect(settings.env?.ANTHROPIC_BASE_URL).toBe(status === 200 ? url : undefined);
+    } finally {
+      await proxy.stop(true);
+    }
   });
 
   test("drops ANTHROPIC_BASE_URL when the proxy is unreachable (health-gate fail-open)", async () => {
