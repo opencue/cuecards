@@ -48,6 +48,32 @@ describe("renderCardFrame", () => {
     expect(frame).toContain("/home/u/proj");
   });
 
+  test("shows advisory profiles and skills without changing the launch target", () => {
+    const frame = renderCardFrame({
+      ...base,
+      suggestions: [rust],
+      advice: {
+        summary: "API repository",
+        suggestions: [{ profile: "backend", confidence: 0.9, reasons: ["API dependencies"] }],
+        skills: ["review/api-tester"],
+      },
+    });
+    expect(frame).toContain("AI profiles: backend");
+    expect(frame).toContain("AI skills: review/api-tester");
+    expect(frame).toContain("🦀 rust");
+    expect(frame).toContain("⏎ launch");
+  });
+
+  test("shows loading while refreshing a cached no-match", () => {
+    const frame = renderCardFrame({
+      ...base,
+      suggestions: [rust],
+      advice: { summary: "No match", suggestions: [], skills: [] },
+      advicePending: true,
+    });
+    expect(frame).toContain("AI advice loading");
+  });
+
   /** The card's top border, where the page indicator rides. */
   const topBorder = (frame: string) =>
     plain(frame).split("\n").find((l) => l.startsWith("╭")) ?? "";

@@ -108,6 +108,12 @@ export function renderProfileList(opts: PickerOption[], render: RenderOptions): 
  * into the classic two-screen picker with `CUE_PICKER=classic`.
  */
 export async function runPicker(input: PickerInput): Promise<PickerOutput> {
-  if (pickerV2Enabled()) return runPickerV2(input);
+  if (pickerV2Enabled()) {
+    const { takePickerProfileAdvice } = await import("./ai-profile-advisor");
+    const advice = await takePickerProfileAdvice(input.cwd);
+    return runPickerV2(advice
+      ? { ...input, advice: advice.cached?.advice, adviceRefresh: advice.refresh }
+      : input);
+  }
   return runPickerClassic(input);
 }

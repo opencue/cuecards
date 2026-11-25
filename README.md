@@ -174,7 +174,7 @@ One cuecard per project. Your agent reads the right one the moment you launch it
 
 ## How it works
 
-No daemon, no background process. cue intercepts the *call* to your agent, resolves the directory's cuecard, materializes it once, then hands off to the real binary:
+No resident daemon. cue intercepts the *call* to your agent, resolves the directory's cuecard, materializes it once, then hands off to the real binary:
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/architecture.svg" alt="cue resolve to materialize to exec flow" width="820">
@@ -197,6 +197,8 @@ you type `claude`
 ```
 
 Cold start 50–200 ms, warm start under 5 ms. Nothing stays resident. Full flow: [docs/launch.md](https://github.com/opencue/cuecards/blob/main/docs/launch.md).
+
+In the default interactive picker, cue shows locally detected stacks first. The agent you launched (Codex or Claude Code) can then suggest profiles and local catalog skills in the same picker; if that agent fails, cue tries the other. The advisor receives bounded dependency, language, and project-marker signals, not source files or dotenv values. Advice is cached and never installs a skill or changes the stack under your cursor. Use `CUE_PROFILE_ADVISOR=off` for local-only recommendations.
 
 ---
 

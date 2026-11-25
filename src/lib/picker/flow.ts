@@ -88,6 +88,8 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
     featured: input.featured,
     defaultSelector: input.defaultSelector,
     limit: SUGGESTION_LIMIT,
+    // Live picker advice owns the model call; keep stack ranking local.
+    deepMatch: false,
   });
   const detected = report.detected;
   const suggestions = report.suggestions;
@@ -135,6 +137,8 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
       const card = new CardPrompt({
         cwd: input.cwd,
         suggestions: views,
+        advice: input.advice,
+        adviceRefresh: input.adviceRefresh,
         pin,
         pinDisabled: !pinAllowed,
       });

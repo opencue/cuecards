@@ -48,6 +48,38 @@ const rows: PaletteRow[] = [
 ];
 
 describe("CardPrompt keys", () => {
+  test("displays arriving advice without switching the selected stack or redrawing after launch", async () => {
+    for (const arriveBeforeLaunch of [true, false]) {
+      const { input, output, press } = wire();
+      let screen = "";
+      output.on("data", (chunk) => { screen += String(chunk); });
+      const advice = {
+        summary: "Service",
+        suggestions: [{ profile: "backend", confidence: 0.9, reasons: ["API dependencies"] }],
+        skills: ["review/api-tester"],
+      };
+      const refresh = Promise.withResolvers<typeof advice>();
+      const prompt = new CardPrompt({
+        cwd: "/p", suggestions, pin: true, input, output, adviceRefresh: refresh.promise,
+      });
+      const done = prompt.prompt();
+      expect(screen).toContain("AI advice loading");
+      press(undefined, { name: "tab" });
+      if (arriveBeforeLaunch) {
+        refresh.resolve(advice);
+        await refresh.promise;
+        expect(screen).toContain("AI skills: review/api-tester");
+        expect(prompt.index).toBe(1);
+      }
+      press(undefined, { name: "return" });
+      expect(await done).toBe("launch");
+      const closed = screen;
+      refresh.resolve(advice);
+      await refresh.promise;
+      expect(screen).toBe(closed);
+    }
+  });
+
   test("enter launches", async () => {
     const { input, output, press } = wire();
     const prompt = new CardPrompt({ cwd: "/p", suggestions, pin: true, input, output });
