@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
 
-import { type CommunityReport, COMMUNITY_REPORT_BYTES } from "../../src/lib/community-eval/result.js";
+import { type CommunityReport, type CommunityReportV2, COMMUNITY_REPORT_BYTES } from "../../src/lib/community-eval/result.js";
 import { type BenchmarkCohort, Benchmarks, handleBenchmarks } from "./benchmarks.js";
 
 const url = "https://example.test/api/v1/benchmarks";
@@ -12,11 +13,15 @@ const report: CommunityReport = {
     { off: arm, on: { ...arm, score: 0 } },
   ],
 };
-const cohort: BenchmarkCohort = {
+const cohort: Omit<BenchmarkCohort, "accountDirection" | "improvedAccountShare95"> = {
   benchmark: "codegraph-v1", model: "gpt-5.4", codexVersion: "1.2.3", codegraphVersion: "0.1.2",
   accounts: 5, pairs: 10, offScore: 10, onScore: 15, scoreMax: 30,
+  comparablePairs: 10,
+  offOutcomes: { completed: 10, timeout: 0, failed: 0 },
+  onOutcomes: { completed: 10, timeout: 0, failed: 0 },
   wins: 5, losses: 4, ties: 1, usedPairs: 6, tokenPairs: 0,
   meanDurationDeltaMs: -10, meanInputTokenDelta: null, meanCachedInputTokenDelta: null, meanOutputTokenDelta: null,
+  comparableAccounts: 5, improvedAccounts: 3, regressedAccounts: 1, tiedAccounts: 1, meanAccountScoreDeltaPp: 100 / 6,
 };
 
 function setup() {
@@ -55,6 +60,21 @@ describe("community benchmark HTTP boundary", () => {
     expect(duplicate.status).toBe(200);
     expect(await duplicate.json()).toEqual({ ok: true, data: { accepted: false } });
     expect([...reports.values()]).toEqual([report]);
+  });
+
+  test("accepts a new benchmark revision without overwriting a legacy report", async () => {
+    const { deps, reports } = setup();
+    const v2: CommunityReport = {
+      ...report, version: 2, benchmark: "codegraph-v2",
+      pairs: report.pairs.map(({ off, on }) => ({
+        off: { ...off, status: "completed" },
+        on: { ...on, status: "completed" },
+      })),
+    };
+    for (const candidate of [report, v2]) {
+      expect((await handleBenchmarks(post(JSON.stringify(candidate)), deps)).status).toBe(201);
+    }
+    expect([...reports.values()]).toEqual([report, v2]);
   });
 
   test("does not accept browser cookies or unauthenticated contributions", async () => {
@@ -122,16 +142,88 @@ describe("community benchmark storage boundary", () => {
     ]);
   });
 
-  test("queries aggregated rows, with a contributor threshold and result limit", async () => {
+  test("queries only cohort and paired-account aggregates, with a contributor threshold and result limit", async () => {
     const store = new Benchmarks({
       query: async (sql: string, args: unknown[]) => {
-        expect(sql).toContain("HAVING count(DISTINCT account_id) >= $2");
-        expect(sql).toContain("CASE WHEN token_accounts >= $2 THEN input_delta");
-        expect(sql).toContain("LIMIT $3");
-        expect(args).toEqual([3, 5, 20]);
+        expect(sql).toContain("HAVING count(DISTINCT account_id) >= $3");
+        expect(sql).toContain("CASE WHEN token_accounts >= $3 THEN input_delta");
+        expect(sql).toContain("LIMIT $4");
+        expect(args).toEqual([3, 6, 5, 20]);
         return { rows: [cohort] };
       },
     } as unknown as ConstructorParameters<typeof Benchmarks>[0]);
-    expect(await store.list()).toEqual([cohort]);
+    const [summary] = await store.list();
+    expect(summary).toMatchObject({ ...cohort, accountDirection: "inconclusive" });
+    expect(summary.improvedAccountShare95?.lower).toBeCloseTo(0.3006, 4);
+    expect(summary.improvedAccountShare95?.upper).toBeCloseTo(0.9544, 4);
   });
+
+  test("reports directional uncertainty without treating tied or tiny samples as equivalent", async () => {
+    const store = new Benchmarks({
+      query: async () => ({
+        rows: [
+          { ...cohort, improvedAccounts: 0, regressedAccounts: 0 },
+          { ...cohort, improvedAccounts: 4, regressedAccounts: 0 },
+          { ...cohort, improvedAccounts: 5, regressedAccounts: 0 },
+          { ...cohort, improvedAccounts: 0, regressedAccounts: 5 },
+        ],
+      }),
+    } as unknown as ConstructorParameters<typeof Benchmarks>[0]);
+    const results = await store.list();
+    expect(results.map(({ accountDirection }) => accountDirection))
+      .toEqual(["inconclusive", "inconclusive", "favors-on", "favors-off"]);
+    expect(results[0].improvedAccountShare95).toBeNull();
+    expect(results[2].improvedAccountShare95?.lower).toBeGreaterThan(0.5);
+    expect(results[3].improvedAccountShare95?.upper).toBeLessThan(0.5);
+  });
+});
+
+// Optional integration check: start a disposable cluster with initdb -U cue_benchmark_test.
+const testSocket = process.env.CUE_BENCHMARK_TEST_PG_SOCKET;
+test.skipIf(!testSocket)("PostgreSQL withholds comparisons until five accounts have a completed pair", async () => {
+  if (!testSocket?.startsWith("/")) throw new Error("Use a disposable PostgreSQL Unix socket directory");
+  const { Client } = await import("pg");
+  const client = new Client({ host: testSocket, user: "cue_benchmark_test", database: "postgres" });
+  await client.connect();
+  try {
+    await client.query('CREATE TEMP TABLE "user" (id text PRIMARY KEY)');
+    const migration = readFileSync(new URL("../migrations/003-community-benchmarks.sql", import.meta.url), "utf-8");
+    await client.query(migration.replace("CREATE TABLE", "CREATE TEMP TABLE"));
+    const store = new Benchmarks(client);
+    const off = { ...arm, status: "completed" as const };
+    const on = { ...off, score: 4, durationMs: 300 };
+    const timeout = { ...off, status: "timeout" as const, score: 0, inputTokens: null, cachedInputTokens: null, outputTokens: null };
+    const add = async (i: number, completedPair: boolean) => {
+      const id = `synthetic-${i}`;
+      await client.query('INSERT INTO "user" (id) VALUES ($1)', [id]);
+      const candidate: CommunityReportV2 = {
+        ...report, version: 2, benchmark: "codegraph-v2",
+        pairs: [
+          { off, on: completedPair ? on : timeout },
+          { off, on: i === 0 ? { ...on, score: 0 } : { ...timeout, codegraphUsed: i === 4 } },
+        ],
+      };
+      expect(await store.submit(id, candidate)).toBe(true);
+    };
+    for (let i = 0; i < 5; i++) await add(i, i < 4);
+    expect(await store.list()).toMatchObject([{
+      accounts: 5, comparableAccounts: 4, comparablePairs: 5,
+      onOutcomes: { completed: 5, timeout: 5, failed: 0 }, usedPairs: 1,
+      offScore: null, onScore: null, scoreMax: null, wins: null, losses: null, ties: null,
+      meanDurationDeltaMs: null, meanInputTokenDelta: null, meanAccountScoreDeltaPp: null,
+      improvedAccounts: null, regressedAccounts: null, tiedAccounts: null,
+      improvedAccountShare95: null, accountDirection: "inconclusive",
+    }]);
+    await add(5, true);
+    const published = await store.list();
+    expect(published).toMatchObject([{
+      accounts: 6, comparableAccounts: 5, comparablePairs: 6,
+      offScore: 6, onScore: 20, scoreMax: 36, wins: 5, losses: 1, ties: 0,
+      meanDurationDeltaMs: -100, meanInputTokenDelta: 0,
+      improvedAccounts: 5, regressedAccounts: 0, tiedAccounts: 0, accountDirection: "favors-on",
+    }]);
+    expect(published[0].meanAccountScoreDeltaPp).toBeCloseTo(130 / 3);
+  } finally {
+    await client.end();
+  }
 });

@@ -6,9 +6,9 @@ import { findRealAgentBin } from "../claude-binary";
 import { canonicalCodexHome } from "../codex-config";
 import {
   COMMUNITY_BENCHMARK,
-  type CommunityArm,
+  type CommunityArmV2,
   type CommunityModel,
-  type CommunityReport,
+  type CommunityReportV2,
   isCommunityModel,
   parseCommunityReport,
 } from "./result";
@@ -25,6 +25,11 @@ import { createQuote } from "../pricing/quote";
 export function handleQuote(body: unknown) {
   return createQuote(normalizeQuoteInput(body));
 }`,
+  "src/http/preview.ts": `import { normalizeQuoteInput } from "./quote-input";
+import { createQuote } from "../preview/quote";
+export function handlePreview(body: unknown) {
+  return createQuote(normalizeQuoteInput(body));
+}`,
   "src/http/quote-input.ts": `export function normalizeQuoteInput(body: unknown) {
   if (!body || typeof body !== "object" || !("subtotal" in body) || !("month" in body))
     throw new Error("Invalid quote");
@@ -37,29 +42,58 @@ import { standardFee } from "./fees";
 export function createQuote({ subtotal, month }: { subtotal: number; month: number }) {
   return { total: subtotal + standardFee(subtotal) - seasonalCredit(subtotal, month) };
 }`,
-  "src/pricing/campaign.ts": `export function seasonalCredit(subtotal: number, month: number) {
-  return month === 7 ? subtotal * 0.1 : 0;
+  "src/pricing/campaign.ts": `import { promotionMonth } from "../calendar/quote-clock";
+export function seasonalCredit(subtotal: number, month: number) {
+  return promotionMonth(month) === 7 ? subtotal * 0.1 : 0;
 }`,
-  "src/pricing/fees.ts": `export function standardFee(subtotal: number) {
-  return subtotal < 30 ? 4 : 0;
+  "src/calendar/quote-clock.ts": `import { quoteBillingMonth as campaignMonth } from "../config/quote-cycle";
+export function promotionMonth(month: number) {
+  return campaignMonth(month);
 }`,
+  "src/config/quote-cycle.ts": `export function quoteBillingMonth(month: number) {
+  return month === 13 ? 1 : month;
+}`,
+  "src/preview/quote.ts": `import { seasonalCredit } from "./campaign";
+export function createQuote({ subtotal, month }: { subtotal: number; month: number }) {
+  return { total: subtotal - seasonalCredit(subtotal, month) };
+}`,
+  "src/preview/campaign.ts": `export function seasonalCredit(subtotal: number, month: number) {
+  return month === 7 ? subtotal * 0.2 : 0;
+}`,
+  "src/pricing/fees.ts": `import { selectFeeSchedule } from "./fee-policy";
+export function standardFee(subtotal: number) {
+  const schedule = selectFeeSchedule("web");
+  return subtotal < schedule.threshold ? schedule.fee : 0;
+}`,
+  "src/pricing/fee-policy.ts": `import { customerFeeSchedule, partnerFeeSchedule } from "../config/fee-schedules";
+export function selectFeeSchedule(channel: "web" | "partner") {
+  return channel === "web" ? partnerFeeSchedule : customerFeeSchedule;
+}`,
+  "src/config/fee-schedules.ts": `export const customerFeeSchedule = { threshold: 30, fee: 4 };
+export const partnerFeeSchedule = { threshold: 25, fee: 2 };`,
 };
 
 const QUESTIONS = [
   "entry: Which repository-relative file defines createQuote, the pricing function used by handleQuote?",
   "rule: What is the exact function name that calculates the seasonal credit used by createQuote?",
   "boundary: Which repository-relative file defines the function that validates the unknown request body before pricing?",
+  "calendar: Follow the calendar call from the seasonal credit reached by handleQuote through wrappers and aliases. Which repository-relative file defines the rule that actually remaps the month?",
+  "preview: Which repository-relative file defines the other seasonalCredit implementation used by handlePreview, not the one reached by handleQuote?",
+  "fee: Web quotes with subtotal 29 and month 6 omit the expected $4 customer fee. Which repository-relative file selects the wrong schedule, rather than defining its thresholds or applying the fee?",
 ];
 const ANSWERS = {
   entry: "src/pricing/quote.ts",
   rule: "seasonalCredit",
   boundary: "src/http/quote-input.ts",
+  calendar: "src/config/quote-cycle.ts",
+  preview: "src/preview/campaign.ts",
+  fee: "src/pricing/fee-policy.ts",
 };
 const ANSWER_KEYS = Object.keys(ANSWERS) as (keyof typeof ANSWERS)[];
 const PROMPT = [
   "Answer these questions about this small TypeScript repository. Inspect the repository with the available tools.",
   ...QUESTIONS,
-  "Return just the JSON object with the three requested strings. Use bare repository-relative paths.",
+  "Return just the JSON object with the six requested strings. Use bare repository-relative paths.",
 ].join("\n");
 
 type Tools = { codex: string; codegraph: string; codegraphRoot: string };
@@ -68,7 +102,7 @@ export type CommunityCommand = (
   bin: string,
   args: readonly string[],
   options: CommandOptions,
-) => { ok: boolean; stdout: string; stderr: string };
+) => { ok: boolean; stdout: string; stderr: string; timedOut?: boolean };
 
 const runCommand: CommunityCommand = (bin, args, { cwd, env, stdin }) => {
   const result = spawnSync(bin, args, {
@@ -76,7 +110,12 @@ const runCommand: CommunityCommand = (bin, args, { cwd, env, stdin }) => {
     maxBuffer: 2 * 1024 * 1024, killSignal: "SIGKILL",
     stdio: [stdin === undefined ? "ignore" : "pipe", "pipe", "pipe"],
   });
-  return { ok: result.status === 0, stdout: result.stdout ?? "", stderr: result.stderr ?? "" };
+  return {
+    ok: result.status === 0,
+    timedOut: (result.error as NodeJS.ErrnoException | undefined)?.code === "ETIMEDOUT",
+    stdout: result.stdout ?? "",
+    stderr: result.stderr ?? "",
+  };
 };
 
 function fail(code: string): never {
@@ -166,34 +205,48 @@ function grade(message: string | undefined): number {
   }
 }
 
-function readArm(stdout: string, durationMs: number, on: boolean): CommunityArm {
+function incompleteArm(status: "timeout" | "failed", durationMs: number, codegraphUsed = false): CommunityArmV2 {
+  return { status, score: 0, durationMs, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed };
+}
+
+function readEvent(line: string) {
+  try {
+    return record(JSON.parse(line));
+  } catch {
+    return undefined;
+  }
+}
+
+function readArm(output: ReturnType<CommunityCommand>, durationMs: number, on: boolean): CommunityArmV2 {
   let lastMessage: string | undefined;
   let completed = false;
+  let invalid = false;
   let codegraphUsed = false;
   let usage: Record<string, unknown> | undefined;
-  try {
-    for (const line of stdout.trim().split("\n")) {
-      const event = record(JSON.parse(line));
-      if (!event || event.type === "turn.failed") return fail("CODEX_FAILED");
-      if (event.type === "turn.completed") {
-        if (completed) return fail("CODEX_FAILED");
-        completed = true;
-        usage = record(event.usage);
-      }
-      if (event.type !== "item.completed") continue;
-      const item = record(event.item);
-      if (item?.type === "agent_message" && typeof item.text === "string") lastMessage = item.text;
-      if (item?.type === "mcp_tool_call") {
-        if (!on || item.server !== "codegraph" || item.tool !== TOOL) return fail("CODEX_FAILED");
-        if (item.status === "completed" && !item.error) codegraphUsed = true;
-      }
+  for (const line of output.stdout.trim().split("\n")) {
+    const event = readEvent(line);
+    if (!event || event.type === "turn.failed") {
+      invalid = true;
+      continue;
     }
-    if (!completed) return fail("CODEX_FAILED");
-    return { score: grade(lastMessage), durationMs, ...readTokens(usage), codegraphUsed };
-  } catch {
-    // Raw provider JSONL and filesystem paths never leave this function.
-    return fail("CODEX_FAILED");
+    if (event.type === "turn.completed") {
+      if (completed) invalid = true;
+      completed = true;
+      usage = record(event.usage);
+    }
+    if (event.type !== "item.started" && event.type !== "item.completed") continue;
+    const item = record(event.item);
+    if (item?.type === "mcp_tool_call") {
+      // This is an isolation violation, not an operational failure to compare.
+      if (!on || item.server !== "codegraph" || item.tool !== TOOL) return fail("UNEXPECTED_MCP_TOOL");
+      if (event.type === "item.completed" && item.status === "completed" && !item.error) codegraphUsed = true;
+    }
+    if (event.type === "item.completed" && item?.type === "agent_message" && typeof item.text === "string") lastMessage = item.text;
   }
+  // Raw provider JSONL, stderr, and filesystem paths are never reported.
+  if (output.timedOut) return incompleteArm("timeout", durationMs, codegraphUsed);
+  if (!output.ok || invalid || !completed) return incompleteArm("failed", durationMs, codegraphUsed);
+  return { status: "completed", score: grade(lastMessage), durationMs, ...readTokens(usage), codegraphUsed };
 }
 
 type RunnerOptions = {
@@ -205,7 +258,7 @@ type RunnerOptions = {
   hasSystemConfig?: () => boolean;
 };
 
-export async function runCommunityEval(model: CommunityModel, options: RunnerOptions = {}): Promise<CommunityReport> {
+export async function runCommunityEval(model: CommunityModel, options: RunnerOptions = {}): Promise<CommunityReportV2> {
   if (!isCommunityModel(model)) return fail("UNSUPPORTED_MODEL");
   if ((options.platform ?? process.platform) !== "linux") return fail("UNSUPPORTED_PLATFORM");
   // Codex merges system TOML even with --ignore-user-config. In particular
@@ -288,21 +341,28 @@ export async function runCommunityEval(model: CommunityModel, options: RunnerOpt
     ];
     const runArm = (on: boolean) => {
       const start = now();
-      const output = command(codex, [
-        ...commonArgs, "-c", on ? `mcp_servers={codegraph={${mcp}}}` : "mcp_servers={}", "--", PROMPT,
-      ], client);
-      if (!output.ok) return fail("CODEX_FAILED");
-      return readArm(output.stdout, Math.max(1, Math.round(now() - start)), on);
+      let output: ReturnType<CommunityCommand> | undefined;
+      try {
+        output = command(codex, [
+          ...commonArgs, "-c", on ? `mcp_servers={codegraph={${mcp}}}` : "mcp_servers={}", "--", PROMPT,
+        ], client);
+      } catch {
+        // A process-launch failure still counts as an attempted arm.
+      }
+      const durationMs = Math.min(300_000, Math.max(1, Math.round(now() - start)));
+      return output ? readArm(output, durationMs, on) : incompleteArm("failed", durationMs);
     };
 
     const offFirst = runArm(false);
     const onSecond = runArm(true);
     const onFirst = runArm(true);
     const offSecond = runArm(false);
-    return parseCommunityReport({
-      version: 1, benchmark: COMMUNITY_BENCHMARK, model, codexVersion: CODEX_VERSION, codegraphVersion,
+    const report = parseCommunityReport({
+      version: 2, benchmark: COMMUNITY_BENCHMARK, model, codexVersion: CODEX_VERSION, codegraphVersion,
       pairs: [{ off: offFirst, on: onSecond }, { off: offSecond, on: onFirst }],
     });
+    if (report.version !== 2) return fail("INVALID_REPORT");
+    return report;
   } finally {
     rmSync(scratch, { recursive: true, force: true });
   }
