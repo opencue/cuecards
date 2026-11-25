@@ -31,6 +31,11 @@ Use `codex` in the last two commands if that's your agent. Setup pins the profil
 installs launch shims, and can update your PATH. Once the shims are on PATH, run
 `claude` or `codex` as usual. Optional tooling is not required.
 
+For a global npm installation, interactive starts check for a new Cue version
+at most once a day. Press `y` then Enter to update and continue the same command,
+or Enter to skip. CI, scripts, and profile previews do not prompt.
+Set `CUE_NO_UPDATE_CHECK=1` to turn the check off.
+
 The plan shows why Cue selected the profile and lists local, missing, deferred,
 and remote resources. To try a profile before pinning anything, run
 `cue current --plan --profile backend`. The preview installs and writes nothing.
