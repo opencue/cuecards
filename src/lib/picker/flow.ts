@@ -135,6 +135,8 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
       const card = new CardPrompt({
         cwd: input.cwd,
         suggestions: views,
+        advice: input.advice,
+        adviceRefresh: input.adviceRefresh,
         pin,
         pinDisabled: !pinAllowed,
       });

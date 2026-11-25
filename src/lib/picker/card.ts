@@ -9,6 +9,7 @@
 
 import { Prompt, type PromptOptions } from "@clack/core";
 import { styleText } from "node:util";
+import type { ProfileAdvice } from "../ai-profile-advisor";
 import { asciiIconsEnabled, clipToWidth, stripIconIfAscii } from "./render-util";
 import { OVERHEAD_WARN_TOKENS } from "./tally";
 import {
@@ -47,6 +48,8 @@ export interface CardSuggestion {
 export interface CardState {
   cwd: string;
   suggestions: CardSuggestion[];
+  advice?: ProfileAdvice | null;
+  advicePending?: boolean;
   /** Index of the shown suggestion. */
   index: number;
   /** Whether launching also writes `.cue.profile` here. */
@@ -157,6 +160,19 @@ export function renderCardFrame(state: CardState): string {
     lines.push(cardLine(width, styleText("dim", clipToWidth(reason, inner))));
   }
 
+  const advice = state.advice;
+  if (advice || state.advicePending) {
+    airInCard();
+    const rows = [
+      advice?.suggestions.length ? `AI profiles: ${advice.suggestions.map(({ profile }) => profile).join(", ")}` : "",
+      advice?.skills.length ? `AI skills: ${advice.skills.join(", ")}` : "",
+      !advice && state.advicePending ? "AI advice loading… Launch or edit anytime." : "",
+    ];
+    for (const row of rows) {
+      if (row) lines.push(cardLine(width, styleText("dim", clipToWidth(row, inner))));
+    }
+  }
+
   if (current.totals || (current.alwaysOn ?? 0) > 0) {
     airInCard();
     if (current.totals) lines.push(cardLine(width, styleText("dim", current.totals)));
@@ -247,10 +263,14 @@ export class CardPrompt extends Prompt<CardAction> {
   /** True when the user pressed ctrl-c rather than esc. */
   hardCancel = false;
   private editHintActive = false;
+  private advice?: ProfileAdvice | null;
+  private adviceRefresh?: Promise<ProfileAdvice | null>;
 
   constructor(opts: {
     cwd: string;
     suggestions: CardSuggestion[];
+    advice?: ProfileAdvice | null;
+    adviceRefresh?: Promise<ProfileAdvice | null>;
     pin: boolean;
     pinDisabled?: boolean;
     /** Streams, injectable so the key handling is testable without a TTY. */
@@ -269,6 +289,8 @@ export class CardPrompt extends Prompt<CardAction> {
     );
     this.cwd = opts.cwd;
     this.suggestions = opts.suggestions;
+    this.advice = opts.advice;
+    this.adviceRefresh = opts.adviceRefresh;
     this.pin = opts.pin;
     this.pinDisabled = opts.pinDisabled === true;
     // Enter submits whatever `value` holds; launching is the default action.
@@ -311,6 +333,7 @@ export class CardPrompt extends Prompt<CardAction> {
 
   override async prompt(): ReturnType<Prompt<CardAction>["prompt"]> {
     let timer: ReturnType<typeof setInterval> | undefined;
+    let open = true;
     const stop = () => {
       clearInterval(timer);
       this.editHintActive = false;
@@ -318,6 +341,14 @@ export class CardPrompt extends Prompt<CardAction> {
     this.once("key", stop);
     try {
       const done = super.prompt();
+      if (this.adviceRefresh) {
+        const apply = (advice: ProfileAdvice | null) => {
+          this.adviceRefresh = undefined;
+          if (advice) this.advice = advice;
+          if (open && this.state !== "submit" && this.state !== "cancel") this.redraw();
+        };
+        void this.adviceRefresh.then(apply, () => apply(null));
+      }
       const tty = (stream: unknown) => (stream as { isTTY?: boolean }).isTTY === true;
       if (tty(this.input) && tty(this.output) && process.env.TERM !== "dumb"
         && process.env.NO_COLOR === undefined && !process.env.ACCESSIBLE) {
@@ -325,16 +356,20 @@ export class CardPrompt extends Prompt<CardAction> {
         timer = setInterval(() => {
           this.editHintActive = ++ticks % 2 === 1;
           if (ticks >= 6) stop();
-          // Clack's redraw is private in its types; use the same live-redraw
-          // seam as the classic picker's asynchronously loaded tallies.
-          (this as unknown as { render(): void }).render();
+          this.redraw();
         }, 600);
         timer.unref();
       }
       return await done;
     } finally {
+      open = false;
       stop();
     }
+  }
+
+  private redraw(): void {
+    // Same Clack live-redraw seam as the classic picker's async tallies.
+    (this as unknown as { render(): void }).render();
   }
 
   /** Enter can't launch what doesn't exist — with no suggestion the only ways
@@ -370,6 +405,8 @@ export class CardPrompt extends Prompt<CardAction> {
     return renderCardFrame({
       cwd: this.cwd,
       suggestions: this.suggestions,
+      advice: this.advice,
+      advicePending: this.adviceRefresh !== undefined,
       index: this.index,
       pin: this.pin,
       pinDisabled: this.pinDisabled,

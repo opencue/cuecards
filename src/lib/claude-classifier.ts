@@ -158,7 +158,7 @@ export function teardownClassifierHome(h: ClassifierHome): void {
  * always settles even if the child ignores the signal. `configDirOverride`,
  * when set, points the child at an ephemeral CLAUDE_CONFIG_DIR.
  */
-function spawnClaude(bin: string, prompt: string, timeoutMs: number, configDirOverride?: string): Promise<{ status: number; stdout: string }> {
+function spawnClaude(bin: string, prompt: string, timeoutMs: number, configDirOverride?: string, promptOnly = false): Promise<{ status: number; stdout: string }> {
   return new Promise((resolve) => {
     let stdout = "";
     let settled = false;
@@ -174,7 +174,10 @@ function spawnClaude(bin: string, prompt: string, timeoutMs: number, configDirOv
 
     let child: ReturnType<typeof spawn>;
     try {
-      child = spawn(bin, classifierSpawnArgs(prompt), {
+      const args = classifierSpawnArgs(prompt);
+      if (promptOnly) args.unshift("--tools", "", "--setting-sources", "user", "--no-session-persistence");
+      child = spawn(bin, args, {
+        cwd: promptOnly ? configDirOverride : undefined,
         env,
         stdio: ["ignore", "pipe", "ignore"],
       });
@@ -203,6 +206,10 @@ function spawnClaude(bin: string, prompt: string, timeoutMs: number, configDirOv
 
     child.stdout?.on("data", (d: Buffer) => {
       stdout += d.toString();
+      if (promptOnly && stdout.length > 256 * 1024) {
+        child.kill("SIGKILL");
+        finish(1);
+      }
     });
     child.on("error", () => finish(1));
     child.on("close", (code) => finish(code ?? 1));
@@ -249,15 +256,20 @@ export function classifierBinOrder(): string[] {
  * of the budget — a minimum of 2s each — so repeated timeouts can't stack to
  * several times the stated tolerance and freeze an interactive command.
  */
-export async function runClassifier(prompt: string, timeoutMs = 30_000): Promise<ClassifierResult> {
+export async function runClassifier(
+  prompt: string,
+  timeoutMs = 30_000,
+  { promptOnly = false }: { promptOnly?: boolean } = {},
+): Promise<ClassifierResult> {
   const startedAt = Date.now();
   const home = setupClassifierHome();
+  if (promptOnly && !home) return { ok: false, output: "" };
   const configDir = home?.home;
   try {
     let res = { status: 1, stdout: "" };
     for (const bin of classifierBinOrder()) {
       const remaining = Math.max(2_000, timeoutMs - (Date.now() - startedAt));
-      res = await spawnClaude(bin, prompt, remaining, configDir);
+      res = await spawnClaude(bin, prompt, remaining, configDir, promptOnly);
       if (res.status === 0 && res.stdout.trim()) break;
     }
     if (res.status !== 0 || !res.stdout.trim()) return { ok: false, output: "" };

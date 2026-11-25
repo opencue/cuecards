@@ -4,6 +4,7 @@
  * cycle. `lib/picker` re-exports everything here for back-compat.
  */
 
+import type { ProfileAdvice } from "../ai-profile-advisor";
 import type { CompanionSignal } from "../companion-detect";
 import type { UniversalSuggestion } from "../pair-suggestions";
 import type { ProfileTally } from "./tally";
@@ -72,6 +73,8 @@ export interface PickerCombo {
 export interface PickerInput {
   cwd: string;
   options: PickerOption[];
+  advice?: ProfileAdvice | null;
+  adviceRefresh?: Promise<ProfileAdvice | null>;
   /** Skip writing .cue.profile if true. */
   noPin?: boolean;
   /**
