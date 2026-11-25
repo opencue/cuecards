@@ -175,7 +175,10 @@ function spawnClaude(bin: string, prompt: string, timeoutMs: number, configDirOv
     let child: ReturnType<typeof spawn>;
     try {
       const args = classifierSpawnArgs(prompt);
-      if (promptOnly) args.unshift("--tools", "", "--setting-sources", "user", "--no-session-persistence");
+      if (promptOnly) {
+        // An organization-managed MCP config can supersede strict discovery.
+        args.unshift("--tools", "", "--disallowedTools", "mcp__*", "--setting-sources", "user", "--no-session-persistence");
+      }
       child = spawn(bin, args, {
         cwd: promptOnly ? configDirOverride : undefined,
         env,

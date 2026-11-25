@@ -290,6 +290,7 @@ describe("AI profile advisor", () => {
     writeFileSync(join(bin, "claude"), `#!/bin/sh
       [ "$PWD" -ef "$CLAUDE_CONFIG_DIR" ] || exit 1
       [ "$CUE_BYPASS" = 1 ] || exit 1
+      case " $* " in *" --disallowedTools mcp__* "*) ;; *) exit 1 ;; esac
       case " $* " in *" --setting-sources user --no-session-persistence "*) ;; *) exit 1 ;; esac
       printf '%s\\n' '{"summary":"Claude path","suggestions":[{"profile":"core","confidence":0.8,"reasons":["source"]}]}'
     `, { mode: 0o755 });

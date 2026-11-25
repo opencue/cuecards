@@ -64,6 +64,16 @@ describe("renderCardFrame", () => {
     expect(frame).toContain("⏎ launch");
   });
 
+  test("shows loading while refreshing a cached no-match", () => {
+    const frame = renderCardFrame({
+      ...base,
+      suggestions: [rust],
+      advice: { summary: "No match", suggestions: [], skills: [] },
+      advicePending: true,
+    });
+    expect(frame).toContain("AI advice loading");
+  });
+
   /** The card's top border, where the page indicator rides. */
   const topBorder = (frame: string) =>
     plain(frame).split("\n").find((l) => l.startsWith("╭")) ?? "";

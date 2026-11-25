@@ -161,12 +161,13 @@ export function renderCardFrame(state: CardState): string {
   }
 
   const advice = state.advice;
-  if (advice?.suggestions.length || advice?.skills.length || state.advicePending) {
+  const hasAdvice = Boolean(advice?.suggestions.length || advice?.skills.length);
+  if (hasAdvice || state.advicePending) {
     airInCard();
     const rows = [
       advice?.suggestions.length ? `AI profiles: ${advice.suggestions.map(({ profile }) => profile).join(", ")}` : "",
       advice?.skills.length ? `AI skills: ${advice.skills.join(", ")}` : "",
-      !advice && state.advicePending ? "AI advice loading… Launch or edit anytime." : "",
+      !hasAdvice && state.advicePending ? "AI advice loading… Launch or edit anytime." : "",
     ];
     for (const row of rows) {
       if (row) lines.push(cardLine(width, styleText("dim", clipToWidth(row, inner))));
