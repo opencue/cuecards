@@ -146,7 +146,7 @@ for (const [name, repair] of Object.entries(repairs)) {
       expect(manifest.devDependencies).toEqual({ vitest: "2.1.0" });
       const grader = readFileSync(join(scratch, "EVAL.ts"), "utf8").replace('from "vitest"', 'from "node:test"');
       writeFileSync(join(scratch, "acceptance.mjs"), grader);
-      const run = () => spawnSync("node", ["--test", "acceptance.mjs"], { cwd: scratch, encoding: "utf8", timeout: 10_000 });
+      const run = () => spawnSync("node", ["--test", "--test-reporter=tap", "acceptance.mjs"], { cwd: scratch, encoding: "utf8", timeout: 10_000 });
       expect(run().status).not.toBe(0);
       writeFileSync(join(scratch, "src/index.js"), repair);
       const fixed = run();
@@ -185,7 +185,7 @@ for (const [name, repair] of Object.entries(repairs)) {
         }`);
         const swallowed = run();
         expect(swallowed.status).toBe(1);
-        expect(swallowed.stdout).toContain("async close rejection takes precedence over the action");
+        expect(swallowed.stdout).toMatch(/^not ok \d+ - async close rejection takes precedence over the action$/m);
       }
     } finally {
       rmSync(scratch, { recursive: true, force: true });
