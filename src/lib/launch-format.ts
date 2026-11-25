@@ -259,6 +259,7 @@ export function formatStartupBanner(info: StartupBannerInfo): string {
       columns,
       `   ${[skills, ...deferred, ...mcps].join(c.dim(" · "))}`,
       `   ${[skills, ...deferred].join(c.dim(" · "))}`,
+      `   ${[skills, ...mcps].join(c.dim(" · "))}`,
       `   ${skills}`,
     );
     return `${title}\n${counts}`;

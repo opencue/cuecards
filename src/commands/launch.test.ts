@@ -1105,6 +1105,14 @@ describe("formatStartupBanner", () => {
     }).split("\n");
     expect(lines).toEqual(["◆  🦊 core · Codex", "   1 skill"]);
   });
+
+  test("keeps the MCP count when the deferred count does not fit", () => {
+    const out = formatStartupBanner({
+      profile: "core", agent: "codex", skills: 118, mcps: 17,
+      loadout: { full: 95, deferred: 102 }, columns: 24, terminal: true,
+    });
+    expect(out).toBe("◆  core · Codex\n   118 skills · 17 MCPs");
+  });
 });
 
 describe("formatDoctorWarnings", () => {
