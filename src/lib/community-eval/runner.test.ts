@@ -92,6 +92,21 @@ describe("community CodeGraph runner", () => {
     expect(pairs[0].on).toMatchObject({score: 2, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed: false});
   });
 
+  test("counts malformed answers as wrong and grades a partial answer per question", async () => {
+    const { command } = fakeCommand((args) => {
+      if (args[0] !== "exec") return undefined;
+      const on = args.some((arg) => arg.startsWith("mcp_servers={codegraph="));
+      const text = on ? '{"entry":"src/pricing/quote.ts"}' : 'not JSON';
+      return jsonl(false).split("\n").map((line) => {
+        const event = JSON.parse(line);
+        if (event.type === "item.completed") event.item.text = text;
+        return JSON.stringify(event);
+      }).join("\n");
+    });
+    const { pairs } = await runCommunityEval("gpt-5.4", { platform: "linux", tools, command });
+    expect(pairs.map(({ off, on }) => [off.score, on.score])).toEqual([[0, 1], [0, 1]]);
+  });
+
   test("stops after first protocol error and does not leak its text", async () => {
     const { command, calls } = fakeCommand((args) => args[0] === "exec" ? '{"type":"turn.failed","error":{"message":"private-path"}}' : undefined);
     await expect(runCommunityEval("gpt-5.4", { platform: "linux", tools, command }))

@@ -48,13 +48,19 @@ individual reports or account identities.
 
 ## Read the results
 
-`GET https://cuecards.cc/api/v1/benchmarks` publishes cohorts by benchmark,
-model and tool versions, with at least five distinct accounts per cohort.
+HTTP accepts contributions only. It does not publish live aggregates: comparing
+successive snapshots can expose the metrics of an individual contributor.
+With authorized database access, operators can run
+`bun web/scripts/read-benchmarks.ts` from the repository root with
+`DATABASE_URL` pointing to the collector database. The command returns cohorts
+by benchmark, model and tool versions, with at least five distinct accounts
+per cohort and no account identifiers.
 Compare correctly answered questions and the pairs that scored lower with
 CodeGraph first; compare token and elapsed-time deltas second. An arm marked as
 using the MCP says only that the tool call completed. Missing usage is not
 counted as zero. Token averages need five token-contributing accounts too.
-Runs with a sandbox, login, or CLI failure do not produce a complete report.
+Malformed answers after a completed turn count as wrong. Runs with a sandbox,
+login, or CLI failure do not produce a complete report.
 
 This is a self-selected, self-reported comparison on a fixed task. It does not
 measure all users' repositories, and the service cannot independently verify

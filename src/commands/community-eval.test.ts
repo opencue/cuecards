@@ -49,6 +49,7 @@ test("run previews the named budget and does not spend or upload without separat
   expect(stdout.join("")).toContain("Correct answers: without CodeGraph 4/6, with CodeGraph 4/6");
   expect(requests).toEqual([]);
   expect(await run([...args, "--yes"], deps)).toBe(1);
+  expect(await run(["run", "--model", "gpt-5.4", "--out", join(path, "missing.json"), "--yes"], deps)).toBe(1);
   expect(calls).toHaveLength(1);
 });
 
@@ -61,6 +62,7 @@ test("run explains unsupported setup without printing arbitrary runner output", 
   expect(stderr.join("")).toContain("BENCHMARK_CHATGPT_LOGIN_REQUIRED");
   expect(stderr.join("")).toContain("BENCHMARK_RUN_FAILED");
   expect(stderr.join("")).not.toContain("private provider output");
+  expect(() => readFileSync(path)).toThrow();
 });
 
 test("submit previews exact payload and destination; only explicit consent can POST it", async () => {

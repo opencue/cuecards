@@ -10,10 +10,6 @@ export async function benchmarkRequest(request: Request): Promise<Response> {
       const { getPool } = await import("../../lib/db.js");
       return new Benchmarks(getPool()).submit(accountId, report);
     },
-    async list() {
-      const { getPool } = await import("../../lib/db.js");
-      return new Benchmarks(getPool()).list();
-    },
   });
 }
 

@@ -1,4 +1,4 @@
-import { closeSync, constants, existsSync, fstatSync, openSync, readSync, writeFileSync } from "node:fs";
+import { closeSync, constants, fstatSync, lstatSync, openSync, readSync, unlinkSync, writeFileSync } from "node:fs";
 import { DEFAULT_API_URL, loadCredentials } from "../lib/cue-credentials";
 import {
   COMMUNITY_MODELS, COMMUNITY_PAIR_COUNT, COMMUNITY_REPORT_BYTES, COMMUNITY_SCORE_MAX, isCommunityModel, parseCommunityReport,
@@ -57,26 +57,45 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
   out ??= "cue-codegraph-v1.json";
   io.stdout(`Plan: ${COMMUNITY_PAIR_COUNT * 2} Codex runs with ${model} using your Codex login. Runs make model requests and may consume subscription quota. Synthetic code only; no Cuecards upload.\n`);
   if (!yes) { io.stdout("Re-run with --yes to start.\n"); return 0; }
-  if (existsSync(out)) {
-    io.stderr("BENCHMARK_OUTPUT_EXISTS: choose a new --out path.\n");
+  let fd: number;
+  try {
+    fd = openSync(out, "wx", 0o600);
+  } catch {
+    io.stderr("BENCHMARK_OUTPUT_UNAVAILABLE: choose a writable, unused --out path.\n");
     return 1;
   }
 
   let report: CommunityReport;
+  let saved = false;
   try {
-    report = parseCommunityReport(await io.measure(model));
-    if (report.model !== model) throw new Error("Model mismatch");
-  } catch (error) {
-    const code = error instanceof Error && /^BENCHMARK_[A-Z_]{1,40}$/.test(error.message)
-      ? error.message : "BENCHMARK_RUN_FAILED";
-    io.stderr(`${code}: no report saved. Check your Codex login, supported Codex and CodeGraph versions, and sandbox availability.\n`);
-    return 1;
-  }
-  try {
-    writeFileSync(out, JSON.stringify(report, null, 2) + "\n", { flag: "wx", mode: 0o600 });
-  } catch {
-    io.stderr("BENCHMARK_SAVE_FAILED: choose a writable, unused --out path.\n");
-    return 1;
+    try {
+      report = parseCommunityReport(await io.measure(model));
+      if (report.model !== model) throw new Error("Model mismatch");
+    } catch (error) {
+      const code = error instanceof Error && /^BENCHMARK_[A-Z_]{1,40}$/.test(error.message)
+        ? error.message : "BENCHMARK_RUN_FAILED";
+      io.stderr(`${code}: no report saved. Check your Codex login, supported Codex and CodeGraph versions, and sandbox availability.\n`);
+      return 1;
+    }
+    try {
+      writeFileSync(fd, JSON.stringify(report, null, 2) + "\n");
+      saved = true;
+    } catch {
+      io.stderr("BENCHMARK_SAVE_FAILED: check the output filesystem.\n");
+      return 1;
+    }
+  } finally {
+    try {
+      if (!saved) {
+        const reserved = fstatSync(fd);
+        const current = lstatSync(out, { throwIfNoEntry: false });
+        if (current?.ino === reserved.ino && current.dev === reserved.dev) unlinkSync(out);
+      }
+    } catch {
+      // Best effort: never clear a different file or mask the run failure.
+    } finally {
+      closeSync(fd);
+    }
   }
   io.stdout(`Saved local report: ${out}\nPreview optional contribution with cue community-eval submit <report.json>.\n`);
   const maxScore = COMMUNITY_SCORE_MAX * report.pairs.length;

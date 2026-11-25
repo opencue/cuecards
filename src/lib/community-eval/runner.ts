@@ -154,6 +154,18 @@ function record(value: unknown): Record<string, unknown> | undefined {
   return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
 }
 
+function grade(message: string | undefined): number {
+  try {
+    const answers = message ? record(JSON.parse(message)) : undefined;
+    return ANSWER_KEYS.filter((key) => {
+      const answer = answers?.[key];
+      return typeof answer === "string" && answer.trim() === ANSWERS[key];
+    }).length;
+  } catch {
+    return 0;
+  }
+}
+
 function readArm(stdout: string, durationMs: number, on: boolean): CommunityArm {
   let lastMessage: string | undefined;
   let completed = false;
@@ -176,11 +188,8 @@ function readArm(stdout: string, durationMs: number, on: boolean): CommunityArm 
         if (item.status === "completed" && !item.error) codegraphUsed = true;
       }
     }
-    if (!completed || !lastMessage) return fail("CODEX_FAILED");
-    const response = record(JSON.parse(lastMessage));
-    if (!response || ANSWER_KEYS.some((key) => typeof response[key] !== "string")) return fail("CODEX_FAILED");
-    const score = ANSWER_KEYS.filter((key) => String(response[key]).trim() === ANSWERS[key]).length;
-    return { score, durationMs, ...readTokens(usage), codegraphUsed };
+    if (!completed) return fail("CODEX_FAILED");
+    return { score: grade(lastMessage), durationMs, ...readTokens(usage), codegraphUsed };
   } catch {
     // Raw provider JSONL and filesystem paths never leave this function.
     return fail("CODEX_FAILED");

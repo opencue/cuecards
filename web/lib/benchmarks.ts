@@ -90,7 +90,7 @@ export class Benchmarks {
   }
 }
 
-type BenchmarkDeps = Pick<Benchmarks, "submit" | "list"> & {
+type BenchmarkDeps = Pick<Benchmarks, "submit"> & {
   getUser: (headers: Headers) => Promise<string | null>;
 };
 
@@ -100,13 +100,7 @@ function failure(status: number, code: string, extraHeaders?: Record<string, str
 
 export async function handleBenchmarks(request: Request, deps: BenchmarkDeps): Promise<Response> {
   try {
-    if (request.method === "GET") {
-      return Response.json(
-        { ok: true, data: { source: "self-reported", minAccounts: MIN_ACCOUNTS, cohorts: await deps.list() } },
-        { headers: { "cache-control": "public, max-age=60, s-maxage=300" } },
-      );
-    }
-    if (request.method !== "POST") return failure(405, "METHOD_NOT_ALLOWED", { allow: "GET, POST" });
+    if (request.method !== "POST") return failure(405, "METHOD_NOT_ALLOWED", { allow: "POST" });
     if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") {
       return failure(415, "UNSUPPORTED_MEDIA_TYPE");
     }

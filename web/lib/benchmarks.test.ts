@@ -33,7 +33,6 @@ function setup() {
       reports.set(key, candidate);
       return true;
     },
-    list: async () => [cohort],
   };
   return { deps, reports, authHeaders };
 }
@@ -83,10 +82,11 @@ describe("community benchmark HTTP boundary", () => {
     expect(reports.size).toBe(0);
   });
 
-  test("lists only public self-reported cohorts, not account rows", async () => {
+  test("never exposes individual or successive aggregate snapshots through HTTP", async () => {
     const { deps, authHeaders } = setup();
-    const response = await handleBenchmarks(new Request(url), deps);
-    expect(await response.json()).toEqual({ ok: true, data: { source: "self-reported", minAccounts: 5, cohorts: [cohort] } });
+    const response = await handleBenchmarks(new Request(url, { headers: { authorization: "Bearer test-token" } }), deps);
+    expect(response.status).toBe(405);
+    expect(response.headers.get("allow")).toBe("POST");
     expect(authHeaders).toHaveLength(0);
   });
 
@@ -94,9 +94,9 @@ describe("community benchmark HTTP boundary", () => {
     const { deps } = setup();
     const method = await handleBenchmarks(new Request(url, { method: "DELETE" }), deps);
     expect(method.status).toBe(405);
-    expect(method.headers.get("allow")).toBe("GET, POST");
-    const retry = await handleBenchmarks(new Request(url), {
-      ...deps, list: async () => { throw new Error("database connection string"); },
+    expect(method.headers.get("allow")).toBe("POST");
+    const retry = await handleBenchmarks(post(JSON.stringify(report)), {
+      ...deps, submit: async () => { throw new Error("database connection string"); },
     });
     expect(retry.status).toBe(503);
     expect(await retry.json()).toEqual({ ok: false, error: { code: "BENCHMARK_UNAVAILABLE" } });
