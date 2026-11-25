@@ -74,7 +74,7 @@ export interface CardState {
 export const COMPACT_ROWS = 20;
 
 const KEY_HELP: ReadonlyArray<[string, string]> = [
-  ["⏎", "launch this stack"],
+  ["Enter", "launch this stack"],
   ["↹ / ↑↓", "show another suggestion"],
   ["e", "edit the stack (add or swap profiles)"],
   ["/", "search all profiles"],
@@ -191,16 +191,12 @@ export function renderCardFrame(state: CardState): string {
 
   airInCard();
   lines.push(cardBottom(width));
-  lines.push(bar);
 
-  // One filled pill for the action you almost always want, then the two
-  // controls that change what it would do: which suggestion, and whether it
-  // sticks. The pin reads as a switch — constant label, changing dot.
-  // Everything below is offered in a long and a short form so a narrow
-  // terminal drops words instead of wrapping the row.
+  // Keep the launch key on its own row so it isn't lost among the other keys.
   const budget = cols - 4;
-  const actionRow = (pinLabel: string, nextLabel: string): string => {
-    const parts: string[] = [button("⏎ launch")];
+  lines.push(`${bar}  ${fitLine(budget, button("⏎ Press Enter to launch"), button("Enter to launch"))}`);
+  const choiceRow = (pinLabel: string, nextLabel: string): string => {
+    const parts: string[] = [];
     if (state.suggestions.length > 1) parts.push(keyHints([["↹", nextLabel]]));
     if (state.pinDisabled !== true) {
       const dot = state.pin ? styleText("green", "●") : styleText("dim", "○");
@@ -208,13 +204,13 @@ export function renderCardFrame(state: CardState): string {
     }
     return parts.join(styleText("dim", "   "));
   };
-  lines.push(
-    `${bar}  ${fitLine(
+  if (state.suggestions.length > 1 || state.pinDisabled !== true) {
+    lines.push(`${bar}  ${fitLine(
       budget,
-      actionRow("pin to this folder", "next suggestion"),
-      actionRow("pin here", "next"),
-    )}`,
-  );
+      choiceRow("pin to this folder", "next suggestion"),
+      choiceRow("pin here", "next"),
+    )}`);
+  }
 
   const pointer = state.editHintActive ? ">>" : "> ";
   lines.push(`${bar}  ${fitLine(

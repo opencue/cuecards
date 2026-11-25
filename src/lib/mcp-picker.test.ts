@@ -143,6 +143,17 @@ describe("renderMcpFrame", () => {
     expect(frame).toContain("1 of 3 on");
   });
 
+  test("makes Enter visible before the options even in a narrow terminal", () => {
+    const lines = strip(renderMcpFrame({
+      rows, cursor: 0, selected: new Set(), columns: 44,
+    })).split("\n");
+    const enter = lines.findIndex((line) => line.includes("Press Enter to continue"));
+    const firstOption = lines.findIndex((line) => line.includes("[ ] lightpanda"));
+    expect(enter).toBeGreaterThanOrEqual(0);
+    expect(enter).toBeLessThan(firstOption);
+    expect(lines.every((line) => line.length <= 44)).toBe(true);
+  });
+
   test("cursor row carries the › marker", () => {
     const frame = strip(renderMcpFrame({ rows, cursor: 1, selected: new Set() }));
     expect(frame).toContain("› [ ] coolify");

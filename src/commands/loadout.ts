@@ -13,6 +13,9 @@
  * automatic.
  */
 
+import { stripVTControlCharacters, styleText } from "node:util";
+import { wrapText } from "../lib/discover-format";
+import { visibleWidth } from "../lib/picker/ui";
 import {
   deleteLoadout,
   findLoadoutDir,
@@ -32,19 +35,47 @@ function locate(cwd: string): { dir: string; entry: LoadoutEntry } | null {
 }
 
 function show(dir: string, entry: LoadoutEntry): void {
-  const w = process.stdout.write.bind(process.stdout);
-  w(`loadout for ${dir}\n`);
-  w(`  profile   ${entry.profile}\n`);
-  w(`  captured  ${entry.capturedAt} · ${entry.enabled ? "enabled" : "DISABLED (cue loadout on)"}\n`);
-  w(`  skills    ${entry.full.length} full · ${entry.deferred.length} deferred\n`);
-  if (entry.userKeep.length > 0) w(`  userKeep  ${entry.userKeep.join(", ")}\n`);
-  if (entry.userDefer.length > 0) w(`  userDefer ${entry.userDefer.join(", ")}\n`);
-  if (entry.deferred.length > 0) {
-    const head = entry.deferred.slice(0, 15);
-    const rest = entry.deferred.length - head.length;
-    w(`  deferred  ${head.join(", ")}${rest > 0 ? `, +${rest} more` : ""}\n`);
+  const columns = process.stdout.columns || 80;
+  const clean = (text: string) =>
+    stripVTControlCharacters(text).replace(/[\p{Cc}\u2028\u2029]+/gu, " ");
+  const lines = [
+    `${styleText("cyan", "◆ cue loadout")}  ${styleText(entry.enabled ? "green" : "yellow", entry.enabled ? "Enabled" : "Disabled")}`,
+    `  Profile   ${clean(entry.profile)}`,
+    `  Project   ${clean(dir)}`,
+    `  Captured  ${clean(entry.capturedAt)}`,
+  ];
+  const group = (label: string, ids: string[]) => {
+    lines.push("", styleText("bold", `${label} (${ids.length})`));
+    lines.push(...wrapText(ids.map(clean).join(", ") || "None", columns - 2, "")
+      .map((line) => `  ${line}`));
+  };
+  if (!entry.enabled) lines.push("", styleText("yellow", "Saved groups (inactive)"));
+  group("At startup", entry.full);
+  group("On demand", entry.deferred);
+  if (entry.userKeep.length > 0) group("Pinned at startup", entry.userKeep);
+  if (entry.userDefer.length > 0) group("Pinned on demand", entry.userDefer);
+
+  lines.push("", styleText("bold", "Change for the next launch"));
+  for (const [command, description] of [
+    ["cue loadout keep <id…>", "Load at startup"],
+    ["cue loadout defer <id…>", "Load on demand"],
+    entry.enabled
+      ? ["cue loadout off", "Disable filtering"]
+      : ["cue loadout on", "Enable filtering"],
+    ["cue loadout reset", "Recompute saved loadout"],
+  ]) {
+    const name = styleText("cyan", command);
+    const inline = `  ${name}  ·  ${description}`;
+    if (visibleWidth(inline) <= columns) lines.push(inline);
+    else lines.push(`  ${name}`, `    ${description}`);
   }
-  w(`edit: cue loadout keep <id…> · defer <id…> · on|off · reset · --cue-full at launch loads all\n`);
+  lines.push(
+    "",
+    styleText("bold", "Load all skills once"),
+    ...wrapText("Add --cue-full to the agent command.", columns - 2, "")
+      .map((line) => `  ${line}`),
+  );
+  process.stdout.write(`${lines.join("\n")}\n`);
 }
 
 /** Move ids between full/deferred and pin the choice in userKeep/userDefer. */

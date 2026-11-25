@@ -25,6 +25,7 @@ import * as p from "@clack/prompts";
 import { MultiSelectPrompt } from "@clack/core";
 import { styleText } from "node:util";
 import { CATEGORY_RULE_COL, displayWidth, windowOptions } from "./picker.ts";
+import { clipVisible, fitLine } from "./picker/ui";
 
 export interface McpPickInput {
   /** Full profile MCP id list (original casing). */
@@ -104,12 +105,13 @@ export async function pickMcps(input: McpPickInput): Promise<Set<string> | null>
     initialValues,
     required: false,
     render() {
-      const live = this as unknown as { cursor: number; value?: string[]; output?: { rows?: number } };
+      const live = this as unknown as { cursor: number; value?: string[]; output?: NodeJS.WriteStream };
       const termRows = live.output?.rows ?? process.stdout.rows ?? 24;
       return renderMcpFrame({
         rows,
         cursor: live.cursor,
         selected: new Set(live.value ?? []),
+        columns: live.output?.columns || process.stdout.columns || 80,
         // Reserve lines for the gutter (3), both headers + spacer (3), the
         // footer (2), and the ↑/↓ markers (2); floor at 4 for short terminals.
         maxRows: Math.max(4, termRows - 10),
@@ -185,6 +187,7 @@ export interface McpFrameState {
   selected: Set<string>;
   /** Visible-row cap for windowing; 0/undefined → show all. */
   maxRows?: number;
+  columns?: number;
 }
 
 /**
@@ -195,6 +198,7 @@ export interface McpFrameState {
 export function renderMcpFrame(state: McpFrameState): string {
   const BAR = styleText("gray", "│");
   const { rows } = state;
+  const columns = state.columns ?? 80;
   const counts = {
     used: rows.filter((r) => r.group === "used").length,
     unused: rows.filter((r) => r.group === "unused").length,
@@ -206,7 +210,7 @@ export function renderMcpFrame(state: McpFrameState): string {
   const lines: string[] = [];
   lines.push(BAR);
   lines.push(`${BAR}  ${MESSAGE}`);
-  lines.push(BAR);
+  lines.push(`${BAR}  ${styleText(["bold", "cyan"], "⏎ Press Enter to continue")}`);
 
   const indexed = rows.map((r, i) => ({ r, i }));
   const max = state.maxRows && state.maxRows > 0 ? state.maxRows : rows.length;
@@ -236,12 +240,14 @@ export function renderMcpFrame(state: McpFrameState): string {
   }
   if (win.hiddenBelow > 0) lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
 
-  // Footer: lead with the enter affordance + live on/total count (the #1
-  // question at this screen), nav keys trail dim.
+  // Keep the live count below the options; the action stays at the top.
   const on = rows.filter((r) => state.selected.has(r.id)).length;
-  const enter = styleText(on > 0 ? "cyan" : "dim", `⏎ enter — ${on} of ${rows.length} on`);
-  const nav = styleText("dim", " · space toggle · ↑↓ move · esc cancel");
-  lines.push(BAR);
-  lines.push(`${BAR}  ${enter}${nav}`);
-  return lines.join("\n");
+  const nav = fitLine(
+    Math.max(0, columns - 3),
+    "↑↓ move · Space toggle · Esc cancel",
+    "↑↓ · Space toggle · Esc",
+  );
+  lines.push(`${BAR}  ${styleText("cyan", `${on} of ${rows.length} on`)}`);
+  lines.push(`${BAR}  ${styleText("dim", nav)}`);
+  return lines.map((line) => clipVisible(line, columns)).join("\n");
 }

@@ -250,9 +250,13 @@ The split persists per project in `~/.config/cue/loadouts.json` and is
 recomputed when the profile's skill set or the project's signals change.
 Because the MCP step runs after the loadout, skill→MCP `needed` sets — and
 the interactive MCP toggle's initial suggestion — become project-aware too.
+On the interactive profile card, **press Enter** to launch the shown stack.
+If the Claude Code MCP toggle also opens, **press Enter** to accept the
+current MCP selection. A remembered selection normally skips that step.
 
 Controls: `--cue-full` (this launch loads everything), `CUE_LOADOUT=off`
-(disable globally), `cue loadout` (show), `cue loadout keep|defer <id…>`,
+(disable globally), `cue loadout` (show skill IDs grouped by availability),
+`cue loadout keep|defer <id…>`,
 `cue loadout on|off`, `cue loadout reset`.
 
 ## Bypass paths
