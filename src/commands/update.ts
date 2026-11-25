@@ -3,7 +3,7 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { existsSync, } from "node:fs";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { repoRoot } from "../lib/repo-root";
 
@@ -44,6 +44,15 @@ function gitPull(dir: string): UpdateResult {
 }
 
 export async function run(args: string[]): Promise<number> {
+  if (args.includes("--help") || args.includes("-h")) {
+    process.stdout.write(
+      "Usage: cue update [--check] [--json] [--skills]\n" +
+      "  --check   Check for updates without installing them\n" +
+      "  --json    Output npm results as JSON\n" +
+      "  --skills  Only update skill and MCP Git checkouts\n",
+    );
+    return 0;
+  }
   const check = args.includes("--check");
   const skillsOnly = args.includes("--skills");
   const json = args.includes("--json");

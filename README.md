@@ -35,6 +35,8 @@ For a global npm installation, interactive starts check for a new Cue version
 at most once a day. Press `y` then Enter to update and continue the same command,
 or Enter to skip. CI, scripts, and profile previews do not prompt.
 Set `CUE_NO_UPDATE_CHECK=1` to turn the check off.
+Use `cue update --check` to see the installed and latest npm versions and
+release notes on demand. Run `cue update` to confirm and install the update.
 
 The plan shows why Cue selected the profile and lists local, missing, deferred,
 and remote resources. To try a profile before pinning anything, run
@@ -58,6 +60,18 @@ nothing. Set `CUE_PROFILE_ADVISOR=off` for local-only matches.
 Start with `core` for a minimal baseline, `backend` for API work, or
 `frontend` for UI work. Use `cue auto-detect` for a suggestion, or `cue list`
 to browse available profiles. [See the full catalog](docs/data/profiles.md).
+
+### Share a profile
+
+```sh
+cue export backend --portable --output team.cue.yaml
+cue import team.cue.yaml                           # preview sources and changes
+cue import team.cue.yaml --apply --name team-backend
+```
+
+Portable exports pin skill versions and omit profile environment settings.
+Import previews do not write anything; applying never overwrites a profile.
+Review the sources before using a shared profile.
 
 ## Skills and rules
 

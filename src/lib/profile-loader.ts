@@ -21,6 +21,7 @@ import { parse as parseYaml } from "yaml";
 
 import { profilesDir, repoRoot } from "./repo-root";
 import { pathExists } from "./fs-utils";
+import { importedProfilesDir } from "./portable-skills";
 
 import {
   InheritanceCycle,
@@ -101,6 +102,14 @@ async function getValidator(): Promise<ValidateFunction> {
   }
 }
 
+export async function validateProfileData(name: string, value: unknown): Promise<Profile> {
+  const validate = await getValidator();
+  if (!validate(value)) {
+    throw new SchemaViolation(name, (validate.errors ?? []) as ErrorObject[]);
+  }
+  return value as Profile;
+}
+
 // ---------------------------------------------------------------------------
 // Path helpers
 // ---------------------------------------------------------------------------
@@ -123,6 +132,8 @@ export function profileYamlPath(name: string): string {
   try {
     // Synchronous existsSync avoids async fanout in the hot path.
     if (existsSync(main)) return main;
+    const imported = join(importedProfilesDir(), name, "profile.yaml");
+    if (existsSync(imported)) return imported;
     if (!name.includes("-")) return main;
     const sharedBase =
       process.env.XDG_CONFIG_HOME ?? join(process.env.HOME ?? "", ".config");
@@ -236,12 +247,7 @@ async function readRawProfile(name: string): Promise<Profile> {
     }
   }
 
-  const validate = await getValidator();
-  if (!validate(parsed)) {
-    throw new SchemaViolation(name, (validate.errors ?? []) as ErrorObject[]);
-  }
-
-  const profile = parsed as Profile;
+  const profile = await validateProfileData(name, parsed);
 
   // Lint rule E1 (per SCHEMA.md): directory name must equal the `name:` field.
   if (profile.name !== name) {
@@ -910,6 +916,16 @@ export async function listProfiles(): Promise<string[]> {
     if (await pathExists(profileYamlPath(entry.name))) {
       names.push(entry.name);
     }
+  }
+
+  try {
+    const imported = await readdir(importedProfilesDir(), { withFileTypes: true });
+    for (const entry of imported) {
+      if (entry.isDirectory() && /^[a-z][a-z0-9-]{1,63}$/.test(entry.name)
+        && !names.includes(entry.name) && await pathExists(profileYamlPath(entry.name))) names.push(entry.name);
+    }
+  } catch {
+    /* a fresh installation has no imported profiles */
   }
 
   // Also surface profiles installed via `cue share install` so the picker,

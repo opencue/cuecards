@@ -1,8 +1,7 @@
 /**
  * Tests for src/commands/import-profile.ts
  *
- * Only hermetic paths are tested — no network calls (URLs and org/repo
- * shortcuts require HTTP) and no writes to real config.
+ * Tests make no live network calls or writes to real config.
  *
  * Exported surface: run(args).
  * Unexported helpers tested indirectly: cmdImport source detection, cmdExport
@@ -15,17 +14,23 @@
  *  - export routing via --output flag
  */
 
-import { afterEach, beforeEach, describe, expect, test } from "bun:test";
+import { afterEach, beforeEach, describe, expect, spyOn, test } from "bun:test";
 import {
   existsSync,
+  chmodSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { parse, stringify } from "yaml";
+import { loadProfile } from "../lib/profile-loader";
+import { applyProjectLoadout } from "../lib/project-loadout";
+import { createLocalSkillResolver } from "../lib/resolver-local";
 import { run } from "./import-profile";
 
 // ---- Output capture ----
@@ -169,9 +174,118 @@ describe("cue import — local YAML error paths", () => {
 
     expect(code).toBe(0);
     const written = join(profilesRoot, "safe-profile", "profile.yaml");
+    expect(existsSync(written)).toBe(false);
+    expect(stdoutBuf.join("")).toContain("--apply");
+    expect(await run([source, "--apply"])).toBe(0);
     expect(existsSync(written)).toBe(true);
     expect(readFileSync(written, "utf8")).toContain("safe-profile");
+    expect(await run([source, "--apply"])).toBe(1);
+    expect(readFileSync(written, "utf8")).toContain("Safe");
   });
+
+  test("requires a matching preview digest before applying a remote profile", async () => {
+    const source = "https://example.com/team.yaml";
+    const fetch = spyOn(globalThis, "fetch").mockImplementation(async () =>
+      new Response("name: remote-team\ndescription: Safe\n"));
+    try {
+      expect(await run([source, "--apply"])).toBe(1);
+      expect(fetch).not.toHaveBeenCalled();
+      expect(await run([source])).toBe(0);
+      const digest = stdoutBuf.join("").match(/^SHA-256: ([a-f0-9]{64})$/m)?.[1];
+      expect(digest).toBeDefined();
+      const written = join(profilesRoot, "remote-team", "profile.yaml");
+      expect(existsSync(written)).toBe(false);
+      expect(await run([source, "--apply", "--sha256", "0".repeat(64)])).toBe(1);
+      expect(existsSync(written)).toBe(false);
+      expect(await run([source, "--apply", "--sha256", digest!])).toBe(0);
+      expect(existsSync(written)).toBe(true);
+    } finally {
+      fetch.mockRestore();
+    }
+  });
+});
+
+test("portable export pins local and remote skills, omits env and previews before applying", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "cue-portable-profile-"));
+  const prev = { CUE_REPO_ROOT: process.env.CUE_REPO_ROOT, CUE_PROFILES_DIR: process.env.CUE_PROFILES_DIR,
+    XDG_CONFIG_HOME: process.env.XDG_CONFIG_HOME };
+  const root = join(dir, "repo");
+  const profiles = join(root, "profiles");
+  const skillsRoot = join(root, "resources", "skills", "skills");
+  const skill = join(skillsRoot, "tools", "portable-example");
+  try {
+    mkdirSync(join(profiles, "example"), { recursive: true });
+    const originalSchema = join(import.meta.dir, "..", "..", "profiles", "schema.json");
+    writeFileSync(join(profiles, "schema.json"), readFileSync(originalSchema));
+    mkdirSync(join(skill, "references"), { recursive: true });
+    writeFileSync(join(skill, "SKILL.md"), "---\nname: portable-example\ndescription: Demo\n---\nRun the checks.\n");
+    writeFileSync(join(skill, "references", "checks.md"), "original\n");
+    writeFileSync(join(skill, "references", "prepare.sh"), "#!/bin/sh\nexit 0\n");
+    if (process.platform !== "win32") chmodSync(join(skill, "references", "prepare.sh"), 0o755);
+    writeFileSync(join(skill, ".env"), "PRIVATE=secret-in-env-file\n");
+    writeFileSync(join(profiles, "example", "profile.yaml"), stringify({
+      name: "example", description: "Portable example", env: { PRIVATE: "secret-in-profile" },
+      skills: {
+        local: [{ id: "tools/portable-example", agents: ["codex"] }],
+        npx: [{ repo: "demo/skills", pin: "git@" + "a".repeat(40), skills: ["remote-example"] }],
+      },
+    }));
+    Object.assign(process.env, { CUE_REPO_ROOT: root, CUE_PROFILES_DIR: profiles, XDG_CONFIG_HOME: join(dir, "config") });
+    const bundle = join(dir, "pack.yaml");
+    expect(await run(["export", "example", "--portable", "--output", bundle])).toBe(0);
+    const serialized = readFileSync(bundle, "utf8");
+    expect(serialized).not.toContain("secret-in-profile");
+    expect(serialized).not.toContain("secret-in-env-file");
+    const imported = join(profiles, "team-example", "profile.yaml");
+    expect(await run([bundle, "--name", "team-example"])).toBe(0);
+    expect(existsSync(imported)).toBe(false);
+    expect(existsSync(join(dir, "config"))).toBe(false);
+    expect(stdoutBuf.join("")).toContain("demo/skills");
+    expect(stdoutBuf.join("")).toContain("references/checks.md");
+    expect(await run([bundle, "--apply"])).toBe(1); // existing source profile is never replaced
+    expect(await run([bundle, "--name", "team-example", "--apply"])).toBe(0);
+    writeFileSync(join(skill, "references", "checks.md"), "changed locally\n");
+    const loaded = await loadProfile("team-example");
+    expect(loaded.skills.local[0]?.agents).toEqual(["codex"]);
+    expect(loaded.skills.npx[0]?.pin).toBe("git@" + "a".repeat(40));
+    const resolved = await createLocalSkillResolver({ skillsRoot })(loaded.skills.local[0]!.id);
+    expect(readFileSync(join(resolved, "references", "checks.md"), "utf8")).toBe("original\n");
+    if (process.platform !== "win32") {
+      expect(statSync(join(resolved, "references", "prepare.sh")).mode & 0o777).toBe(0o700);
+      expect(stdoutBuf.join("")).toContain("references/prepare.sh [executable]");
+    }
+
+    const pack = parse(serialized);
+    expect(pack._portable.skills[0].files.map(({ path }: { path: string }) => path))
+      .toEqual(["SKILL.md", "references/checks.md", "references/prepare.sh"]);
+    loaded.skills.local.push(...Array.from({ length: 24 }, (_, index) => ({ id: `test/stub-${index}` })));
+    const loadout = await applyProjectLoadout({
+      profile: loaded, cwd: dir, pinDir: dir, persist: false,
+      readSkill: async () => ({ description: "", path: "" }),
+    });
+    expect(loadout?.deferred.find(row => row.id === loaded.skills.local[0]?.id)?.path)
+      .toBe(join(resolved, "SKILL.md"));
+    expect(existsSync(join(dir, "config", "cue", "loadouts.json"))).toBe(false);
+
+    const invalid = join(dir, "tampered.yaml");
+    const companion = pack._portable.skills[0].files[2];
+    companion.executable = !companion.executable;
+    writeFileSync(invalid, stringify(pack));
+    expect(await run([invalid, "--name", "tampered", "--apply"])).toBe(1);
+    expect(stderrBuf.join("")).toContain("checksum does not match");
+    companion.executable = !companion.executable;
+    pack._portable.skills[0].files[0].path = "../outside";
+    writeFileSync(invalid, stringify(pack));
+    expect(await run([invalid, "--name", "tampered", "--apply"])).toBe(1);
+    expect(existsSync(join(profiles, "tampered"))).toBe(false);
+    expect(existsSync(join(dir, "outside"))).toBe(false);
+  } finally {
+    for (const [key, value] of Object.entries(prev)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 // ---- Export a real profile (P2) ----

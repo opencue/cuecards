@@ -248,7 +248,7 @@ export const COMMANDS = {
     load: () => import("./init"),
   },
   import: {
-    summary: "Import a profile from URL, file, or org/repo",
+    summary: "Preview a profile import from URL, file, or org/repo; --apply to save",
     load: () => import("./import-profile"),
   },
   export: {
@@ -305,7 +305,7 @@ export const COMMANDS = {
     load: () => import("./skills-pin"),
   },
   update: {
-    summary: "Self-update: git pull + bun install + sync",
+    summary: "Check for a Cue update or update your npm or Git installation",
     load: () => import("./update"),
   },
   upgrade: {

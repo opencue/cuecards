@@ -29,16 +29,19 @@
 
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, type Dirent } from "node:fs";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 
 import type { DeferredSkillEntry, ResolvedProfile, ResolvedSkill } from "../../profiles/_types";
 import { evaluateCondition } from "./conditional-skills";
 import { configDir } from "./config-paths";
+import { isPortableSkillRef, resolvePortableSkill } from "./portable-skills";
 import { scanProject } from "./project-scanner";
+import { parseMetadataFromContent } from "./skill-parser";
 import { ALWAYS_KEEP } from "./skill-subset";
 
 /** Loadout only engages on genuinely heavy profiles; lean ones load as today. */
 export const LOADOUT_MIN_SKILLS = 25;
+const ALWAYS_KEEP_SLUGS = new Set([...ALWAYS_KEEP].map(id => basename(id)));
 
 /** One deferred skill's row in the generated index. */
 export type DeferredSkill = DeferredSkillEntry;
@@ -235,7 +238,10 @@ export function classifySkills(input: ClassifyInput): { full: string[]; deferred
       (evaluateCondition(skill.when, input.cwd) ? full : deferred).push(id);
       continue;
     }
-    if (ALWAYS_KEEP.has(id)) { full.push(id); continue; }
+    if (ALWAYS_KEEP.has(id) || (isPortableSkillRef(id) && ALWAYS_KEEP_SLUGS.has(basename(id)))) {
+      full.push(id);
+      continue;
+    }
     const idTokens = tokenize(id);
     if (idTokens.some((t) => input.signals.has(t))) { full.push(id); continue; }
     const desc = input.describe(id).toLowerCase();
@@ -296,7 +302,13 @@ export async function applyProjectLoadout(input: ApplyInput): Promise<ApplyResul
   await Promise.all(
     ids.map(async (id) => {
       try {
-        meta.set(id, await input.readSkill(id));
+        const portable = resolvePortableSkill(id);
+        if (portable) {
+          const path = join(portable, "SKILL.md");
+          meta.set(id, { path, description: parseMetadataFromContent(readFileSync(path, "utf8")).description });
+        } else {
+          meta.set(id, await input.readSkill(id));
+        }
       } catch {
         meta.set(id, { description: "", path: "" });
       }

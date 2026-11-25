@@ -84,6 +84,13 @@ describe("cue update --json (no .git)", () => {
 });
 
 describe("cue update --check (no .git)", () => {
+  test("--help does not run the Git updater", async () => {
+    const { code, out } = await captureStdout(() => run(["--help"]));
+    expect(code).toBe(0);
+    expect(out).toContain("Usage: cue update");
+    expect(out).not.toContain("Updating cue");
+  });
+
   test("returns 0 and prints the checking header", async () => {
     const { code, out } = await captureStdout(() => run(["--check"]));
     expect(code).toBe(0);
