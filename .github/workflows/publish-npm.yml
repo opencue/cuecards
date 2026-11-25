@@ -1,26 +1,120 @@
 name: Publish to npm
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: [CI]
+    branches: [main]
+    types: [completed]
+
+permissions: {}
+
+concurrency:
+  group: publish-npm
+  queue: max
 
 jobs:
   publish:
+    if: >-
+      github.repository == 'opencue/cuecards' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      github.event.workflow_run.head_sha == github.sha
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
+    outputs:
+      version: ${{ steps.publish.outputs.version }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
           submodules: recursive
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: 1.3.13
       - run: bun install --frozen-lockfile
-      - run: npm publish --access public
+      - name: Publish the tested main commit
+        id: publish
+        shell: bash
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          published="$(npm view cue-ai@latest --prefer-online --json)"
+          latest="$(jq -er .version <<<"$published")"
+          published_head="$(jq -r '.gitHead // ""' <<<"$published")"
+          floor="$(node -p 'require("./package.json").version')"
+          stable='^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$'
+          if [[ ! "$latest" =~ $stable || ! "$floor" =~ $stable ]]; then
+            echo "Expected stable versions, got npm=$latest and package.json=$floor." >&2
+            exit 1
+          fi
+
+          if [[ "$published_head" == "$GITHUB_SHA" ]]; then
+            version="$latest"
+          else
+            head="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)"
+            if [[ "$head" != "$GITHUB_SHA" ]]; then
+              echo "A newer main commit is available; skipping this run."
+              exit 0
+            fi
+            if [[ "$(printf '%s\n' "$floor" "$latest" | sort -V | tail -1)" == "$latest" ]]; then
+              IFS=. read -r major minor patch <<<"$latest"
+              version="$major.$minor.$((patch + 1))"
+            else
+              version="$floor"
+            fi
+          fi
+
+          # An existing tag must match before we issue an immutable npm version.
+          tag="v$version"
+          ref="$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/$tag" \
+            --jq ".[] | select(.ref == \"refs/tags/$tag\") | .ref")"
+          if [[ -n "$ref" ]]; then
+            target="$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag" --jq .sha)"
+            if [[ "$target" != "$GITHUB_SHA" ]]; then
+              echo "$tag already exists on a different commit." >&2
+              exit 1
+            fi
+          fi
+
+          if [[ "$published_head" != "$GITHUB_SHA" ]]; then
+            if [[ "$version" != "$floor" ]]; then
+              npm version "$version" --no-git-tag-version --ignore-scripts
+            fi
+            npm publish --access public --tag latest
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+  release:
+    needs: publish
+    if: needs.publish.outputs.version != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Create GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.publish.outputs.version }}
+        run: |
+          tag="v$VERSION"
+          ref="$(gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/$tag" \
+            --jq ".[] | select(.ref == \"refs/tags/$tag\") | .ref")"
+          if [[ -n "$ref" ]]; then
+            target="$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag" --jq .sha)"
+            if [[ "$target" != "$GITHUB_SHA" ]]; then
+              echo "$tag already exists on a different commit." >&2
+              exit 1
+            fi
+          fi
+          if ! gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null; then
+            gh release create "$tag" --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" --title "$tag" --generate-notes
+          fi
