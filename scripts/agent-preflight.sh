@@ -1,137 +1,62 @@
 #!/usr/bin/env bash
-# Pre-flight verification gate for gitguardex-managed projects.
-#
-# Runs in the agent's worktree from `gx branch finish` BEFORE the push
-# happens. Returns non-zero to refuse the push so a broken commit
-# never reaches the PR / CI / merge funnel.
-#
-# Auto-detects the project's stack and runs conventional verification:
-#   - Node/pnpm:   pnpm typecheck && pnpm lint && pnpm test (each only
-#                  if the script exists in package.json)
-#   - Node/npm:    npm test (only if defined)
-#   - Rust:        cargo check
-#   - Python:      ruff check (only if ruff is installed)
-#
-# Override per-project by replacing this file (delete the symlink under
-# scripts/agent-preflight.sh and write your own).
-#
-# Skip a single run with `gx branch finish --no-preflight`.
-
+# GitGuardex's local check for Cue. GitHub still runs the required CI checks.
 set -euo pipefail
 
-repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-cd "$repo_root"
-
-ran=0        # steps that PASSED
-attempted=0  # steps that RAN (pass or fail) — drives stack detection
-fail=0
-# Quiet by default: a green `npm test` run can be hundreds of lines of TAP that
-# floods the agent's context on every `gx branch finish`. Capture each step's
-# output, print a one-line summary on success, and surface only the tail on
-# failure (where it is actually useful). Stream full output live with
-# GUARDEX_PREFLIGHT_VERBOSE=1.
-GUARDEX_PREFLIGHT_FAIL_TAIL="${GUARDEX_PREFLIGHT_FAIL_TAIL:-40}"
-run_verification_command() {
-  env \
-    -u ALLOW_BASH_ON_NON_AGENT_BRANCH \
-    -u ALLOW_CODE_EDIT_ON_PROTECTED_BRANCH \
-    -u ALLOW_CODE_EDIT_ON_PRIMARY_WORKTREE \
-    -u ALLOW_COMMIT_ON_PROTECTED_BRANCH \
-    -u ALLOW_PUSH_ON_PROTECTED_BRANCH \
-    -u GUARDEX_CLI_ENTRY \
-    -u GUARDEX_NODE_BIN \
-    "$@"
-}
+cd "$(git rev-parse --show-toplevel)"
+scratch="$(cd -- "${TMPDIR:-/tmp}" && mktemp -d "$PWD/cue-preflight.XXXXXX")"
+trap 'rm -rf -- "$scratch"' EXIT
+unset ALLOW_BASH_ON_NON_AGENT_BRANCH ALLOW_CODE_EDIT_ON_PROTECTED_BRANCH
+unset ALLOW_CODE_EDIT_ON_PRIMARY_WORKTREE ALLOW_COMMIT_ON_PROTECTED_BRANCH
+unset ALLOW_PUSH_ON_PROTECTED_BRANCH GUARDEX_CLI_ENTRY GUARDEX_NODE_BIN
 
 run_step() {
   local label="$1"
   shift
   echo "[agent-preflight] -> $label"
-  attempted=$((attempted + 1))
-  if [[ "${GUARDEX_PREFLIGHT_VERBOSE:-0}" == "1" ]]; then
-    if run_verification_command "$@"; then
-      ran=$((ran + 1))
-      echo "[agent-preflight]    ok"
-    else
-      echo "[agent-preflight] FAIL: $label" >&2
-      fail=1
-    fi
-    return 0
+  if [[ "${GUARDEX_PREFLIGHT_VERBOSE:-0}" == 1 ]]; then
+    "$@"
+  elif ! "$@" >"$scratch/output" 2>&1; then
+    echo "[agent-preflight] FAIL: $label" >&2
+    tail -n "${GUARDEX_PREFLIGHT_FAIL_TAIL:-40}" "$scratch/output" >&2
+    return 1
   fi
-  local out rc
-  # `if` keeps `set -e` from aborting on a failing step before we capture rc.
-  if out="$(run_verification_command "$@" 2>&1)"; then
-    rc=0
-  else
-    rc=$?
-  fi
-  if [[ "$rc" -eq 0 ]]; then
-    ran=$((ran + 1))
-    echo "[agent-preflight]    ok ($(printf '%s\n' "$out" | wc -l | tr -d ' ') lines suppressed; GUARDEX_PREFLIGHT_VERBOSE=1 to show)"
-  else
-    echo "[agent-preflight] FAIL: $label (exit $rc) — last ${GUARDEX_PREFLIGHT_FAIL_TAIL} lines:" >&2
-    printf '%s\n' "$out" | tail -n "$GUARDEX_PREFLIGHT_FAIL_TAIL" >&2
-    fail=1
-  fi
+  echo "[agent-preflight]    ok"
 }
 
-has_package_script() {
-  local script_name="$1"
-  [[ -f package.json ]] || return 1
-  grep -E "\"${script_name}\"\\s*:" package.json >/dev/null 2>&1
-}
-
-# Node detection
-if [[ -f package.json ]]; then
-  pkg_manager=""
-  if command -v pnpm >/dev/null 2>&1 && [[ -f pnpm-lock.yaml ]]; then
-    pkg_manager="pnpm"
-  elif command -v npm >/dev/null 2>&1 && [[ -f package-lock.json ]]; then
-    pkg_manager="npm"
-  elif command -v bun >/dev/null 2>&1 && [[ -f bun.lock || -f bun.lockb ]]; then
-    pkg_manager="bun"
-  fi
-
-  case "$pkg_manager" in
-    pnpm)
-      has_package_script typecheck && run_step "pnpm typecheck" pnpm typecheck
-      has_package_script lint && run_step "pnpm lint" pnpm lint
-      has_package_script test && run_step "pnpm test" pnpm test
-      ;;
-    npm)
-      has_package_script test && run_step "npm test" npm test
-      ;;
-    bun)
-      has_package_script typecheck && run_step "bun typecheck" bun run typecheck
-      has_package_script lint && run_step "bun lint" bun run lint
-      has_package_script test && run_step "bun test" bun run test
-      ;;
-    *)
-      echo "[agent-preflight] package.json found but no recognized lockfile (pnpm-lock.yaml / package-lock.json / bun.lock); Node checks skipped." >&2
-      ;;
-  esac
-fi
-
-# Rust detection
-if [[ -f Cargo.toml ]] && command -v cargo >/dev/null 2>&1; then
-  run_step "cargo check" cargo check --quiet
-fi
-
-# Python detection (ruff if available; pytest is too project-specific to default)
-if [[ -f pyproject.toml ]] && command -v ruff >/dev/null 2>&1; then
-  run_step "ruff check" ruff check .
-fi
-
-if [[ "$attempted" -eq 0 ]]; then
-  echo "[agent-preflight] No recognized project stack detected; skipping checks." >&2
-  exit 0
-fi
-
-if [[ "$fail" -ne 0 ]]; then
-  echo "[agent-preflight] Verification failed; refusing push." >&2
-  echo "[agent-preflight] Fix the issues, or re-run with: gx branch finish --no-preflight ..." >&2
+submodules="$(git submodule status --recursive)"
+if grep -Eq '^[+U]' <<<"$submodules"; then
+  echo "[agent-preflight] Submodules do not match their recorded revisions; leaving them untouched." >&2
+  printf '%s\n' "$submodules" >&2
   exit 1
 fi
+if grep -q '^-' <<<"$submodules"; then
+  # A fresh submodule checkout must detach at the gitlink, not its own main.
+  # Limit the Guardex checkout exception to this Git subprocess.
+  run_step "initialize submodules" env GUARDEX_ALLOW_PRIMARY_BRANCH_SWITCH=1 \
+    git submodule update --init --recursive --checkout
+  submodules="$(git submodule status --recursive)"
+  if grep -Eq '^[-+U]' <<<"$submodules"; then
+    echo "[agent-preflight] Submodules do not match their recorded revisions after initialization." >&2
+    printf '%s\n' "$submodules" >&2
+    exit 1
+  fi
+fi
 
-echo "[agent-preflight] ${ran} step(s) passed."
-exit 0
+# Resolve the binaries before swapping HOME so version-manager shims still work.
+bun_path="$(bun -p 'process.execPath')"
+node_path="$(node -p 'process.execPath')"
+tool_path="$(dirname "$bun_path"):$(dirname "$node_path")"
+export HOME="$scratch/home" CI=true
+mkdir -p "$HOME"
+export PATH="$tool_path:/usr/local/bin:/usr/bin:/bin"
+unset XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
+unset CODEX_HOME CUE_CANONICAL_CODEX_HOME CLAUDE_CONFIG_DIR CUE_ALWAYS_PICK_MCPS CUE_CLAUDE_MEM_ISOLATE
+
+run_step "install CLI dependencies" bun install --frozen-lockfile
+(cd web && run_step "install web dependencies" npm ci --include=dev --no-audit --no-fund)
+run_step "typecheck" bun run typecheck
+run_step "lint" bun run lint
+run_step "preflight and dashboard smoke tests" bun run test \
+  scripts/agent-preflight.test.ts web/dashboard-loading.test.ts
+# The gated PR still requires the full GitHub suite, including host-sensitive tests.
+run_step "critical coverage" bun run test:critical:coverage
