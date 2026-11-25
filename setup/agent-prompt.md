@@ -4,9 +4,7 @@ The install path for people who already have an agent open. Paste the block
 below into Claude Code, Codex, Cursor, or any other coding agent and it performs
 the install, asking before it touches anything.
 
-This block is inlined verbatim in the README, and
-`src/commands/agent-prompt.test.ts` asserts the two copies stay identical. Edit
-it here, never there.
+The README links here so the copyable prompt only needs to be maintained once.
 
 ```text
 Install cue (https://github.com/opencue/cuecards) on this machine and set it up

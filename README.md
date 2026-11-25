@@ -35,7 +35,7 @@ The plan shows why Cue selected the profile and lists local, missing, deferred,
 and remote resources. To try a profile before pinning anything, run
 `cue current --plan --profile backend`. The preview installs and writes nothing.
 
-[macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
+[Install with an AI agent](setup/agent-prompt.md) · [macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
 
 <img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="Terminal demo: selecting a project profile and launching a coding agent" width="760" loading="lazy">
 
