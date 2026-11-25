@@ -391,6 +391,15 @@ describe("GET /api/v1/telemetry/stream (SSE)", () => {
   });
 });
 
+test("active-sessions rejects invalid or duplicate memory query flags", async () => {
+  const handler = createHandler();
+  for (const query of ["memory=true", "memory=1&memory=1"]) {
+    const response = await handler(new Request(`http://localhost/api/v1/active-sessions?${query}`));
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ ok: false, error: "invalid-memory-flag" });
+  }
+});
+
 // ---------------------------------------------------------------------------
 // handleKillSession — authorization paths
 // ---------------------------------------------------------------------------

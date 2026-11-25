@@ -23,6 +23,7 @@ import { computeStats, computeDailyActivity, sessionDurationSummary } from "./an
 import { discoverInstalledPlugins } from "./plugin-discovery";
 import { listWorkflows, loadWorkflow, saveWorkflow } from "./workflow-store";
 import { listActiveSessions, supportsProcScan } from "./active-sessions";
+import { measureSessionMemory } from "./session-memory";
 import { readGateStatus, readAllGateStatus } from "./gate-status";
 import { computeAffinityMap, suggestionsByProfile } from "./pair-suggestions";
 import { computeSkillUsage } from "./skill-report";
@@ -816,13 +817,26 @@ export async function handleTriggerGaps(params: URLSearchParams): Promise<ApiRes
   }
 }
 
-export async function handleActiveSessions(): Promise<ApiResult<unknown>> {
+export async function handleActiveSessions(params = new URLSearchParams()): Promise<ApiResult<unknown>> {
+  const memory = params.getAll("memory");
+  if (memory.length > 1 || (memory.length === 1 && memory[0] !== "1")) {
+    return { ok: false, error: "invalid-memory-flag" };
+  }
   // Linux-only via /proc. Returning `supported:false` so the UI can render
   // a clear "platform not supported" message instead of a confused empty list.
   if (!supportsProcScan()) {
     return { ok: true, data: { supported: false, sessions: [] } };
   }
-  return { ok: true, data: { supported: true, sessions: listActiveSessions() } };
+  const sessions = listActiveSessions();
+  if (!memory.length) return { ok: true, data: { supported: true, sessions } };
+  const snapshots = await measureSessionMemory(sessions.map(({ pid }) => pid));
+  return {
+    ok: true,
+    data: { supported: true, sessions: sessions.map((session) => ({
+      ...session,
+      memory: snapshots.get(session.pid) ?? null,
+    })) },
+  };
 }
 
 /**
@@ -1469,7 +1483,7 @@ const ROUTES: Record<string, (params: URLSearchParams) => Promise<ApiResult<unkn
   "/api/v1/pairs":              (p) => handlePairs(p),
   "/api/v1/gates":              (p) => handleGates(p),
   "/api/v1/trigger-gaps":       (p) => handleTriggerGaps(p),
-  "/api/v1/active-sessions":    () => handleActiveSessions(),
+  "/api/v1/active-sessions":    (p) => handleActiveSessions(p),
   "/api/v1/telemetry/timeline": (p) => handleTelemetryTimeline(p),
   "/api/v1/mcps/catalog":       () => handleMcpCatalog(),
   "/api/v1/market":             () => handleMarket(),
