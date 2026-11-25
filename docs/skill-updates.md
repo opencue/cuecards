@@ -15,8 +15,9 @@ skills and manual profile pins aren't rewritten or enrolled. An explicit
 that entry is unavailable.
 
 If you install Cue globally through npm, keep your editable profile in a
-user-owned `CUE_PROFILES_DIR`, outside the npm package directory, so upgrading
-the package does not replace your profile changes.
+user-owned `CUE_PROFILES_DIR` along with any profiles it inherits (such as
+`core`). Keep that directory outside the npm package so upgrading does not
+replace your profile changes.
 
 After upgrading Cue, run `cue skills catalog update`. This is the recurring
 trigger: run it after each Cue upgrade, or schedule that same command if you
