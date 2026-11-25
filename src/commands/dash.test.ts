@@ -57,6 +57,12 @@ describe("dashUrl", () => {
 
 describe("ROUTES.build", () => {
   const base = parseDashArgs([]);
+  test("sessions requests an on-demand memory snapshot", () => {
+    expect(ROUTES.sessions!.build(base)).toEqual({
+      path: "/active-sessions",
+      query: { memory: "1" },
+    });
+  });
   test("profile → GET profile-detail with the name query", () => {
     const r = ROUTES.profile!.build({ ...base, rest: ["browser"] });
     expect(r).toEqual({ path: "/profile-detail", query: { profile: "browser" } });

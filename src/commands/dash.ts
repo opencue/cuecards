@@ -108,7 +108,10 @@ export const ROUTES: Record<string, Route> = {
   },
   "skill-report": { summary: "per-skill usage report", build: () => ({ path: "/skill-report" }) },
   pairs: { summary: "profile pair-affinity suggestions", build: () => ({ path: "/pairs" }) },
-  sessions: { summary: "active cue sessions", build: () => ({ path: "/active-sessions" }) },
+  sessions: {
+    summary: "active cue sessions with Linux memory (PSS KiB)",
+    build: () => ({ path: "/active-sessions", query: { memory: "1" } }),
+  },
   mcps: { summary: "the MCP catalog cue knows about", build: () => ({ path: "/mcps/catalog" }) },
   plugins: { summary: "plugins discovered on the machine", build: () => ({ path: "/plugins/discovered" }) },
   timeline: { summary: "telemetry timeline", build: () => ({ path: "/telemetry/timeline" }) },

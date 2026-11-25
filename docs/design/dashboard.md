@@ -32,6 +32,15 @@ No single place answers: *"is everything healthy, where am I spending tokens, wh
 
 ## Architecture
 
+`cue dash sessions` requests an on-demand Linux RAM snapshot. Each session's
+`memory` reports proportional resident memory (PSS, in KiB) for the Cue
+launcher, agent, recognizable local MCP subtrees, and other processes in the
+session tree. PSS apportions shared RAM and excludes swap.
+`unreadableProcesses` signals a partial result (for example, a process exited or
+its memory could not be read). Detached services, other users' memory, and
+launcher branches shared by multiple sessions are not assigned to an individual
+session. The dashboard's usual background polling does not request this snapshot.
+
 Two deployment modes from one codebase:
 
 ### Mode A — Local (`cue dashboard`)
