@@ -52,6 +52,17 @@ test("run previews the named budget and does not spend or upload without separat
   expect(calls).toHaveLength(1);
 });
 
+test("run explains unsupported setup without printing arbitrary runner output", async () => {
+  const { path, deps, stderr } = fixture();
+  const args = ["run", "--model", "gpt-5.4", "--yes", "--out", path];
+  for (const reason of ["BENCHMARK_CHATGPT_LOGIN_REQUIRED", "private provider output"]) {
+    expect(await run(args, { ...deps, measure: async () => { throw new Error(reason); } })).toBe(1);
+  }
+  expect(stderr.join("")).toContain("BENCHMARK_CHATGPT_LOGIN_REQUIRED");
+  expect(stderr.join("")).toContain("BENCHMARK_RUN_FAILED");
+  expect(stderr.join("")).not.toContain("private provider output");
+});
+
 test("submit previews exact payload and destination; only explicit consent can POST it", async () => {
   const { path, deps, calls, requests, stdout } = fixture();
   writeFileSync(path, JSON.stringify(report));

@@ -14,7 +14,9 @@ anything. This feature does not read or upload Cue telemetry.
 The v1 runner supports Linux (x64 or arm64), native Codex CLI 0.172.0 with
 a file-backed ChatGPT sign-in, and a native CodeGraph bundle on `PATH`. Both arms run
 with restricted filesystem access and require Codex's Linux sandbox to
-start. Start with a preview that makes no model requests:
+start. Hosts with system-wide Codex overrides in `/etc/codex` are unsupported
+because those settings could change the comparison. Start with a preview
+that makes no model requests:
 
 ```sh
 cue community-eval run --model gpt-5.4

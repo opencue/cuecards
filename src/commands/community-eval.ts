@@ -66,8 +66,10 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
   try {
     report = parseCommunityReport(await io.measure(model));
     if (report.model !== model) throw new Error("Model mismatch");
-  } catch {
-    io.stderr("BENCHMARK_RUN_FAILED: no report saved. Check your Codex login, supported Codex and CodeGraph versions, and sandbox availability.\n");
+  } catch (error) {
+    const code = error instanceof Error && /^BENCHMARK_[A-Z_]{1,40}$/.test(error.message)
+      ? error.message : "BENCHMARK_RUN_FAILED";
+    io.stderr(`${code}: no report saved. Check your Codex login, supported Codex and CodeGraph versions, and sandbox availability.\n`);
     return 1;
   }
   try {
@@ -113,7 +115,7 @@ async function submit(args: string[], io: Dependencies): Promise<number> {
       signal: AbortSignal.timeout(15_000),
     });
     if (!response.ok) throw new Error("Collector rejected report");
-    const result = await response.json();
+    const result = await response.json() as { ok?: unknown; data?: { accepted?: unknown } } | null;
     if (result?.ok !== true || typeof result.data?.accepted !== "boolean") throw new Error("Invalid collector response");
     accepted = result.data.accepted;
   } catch {

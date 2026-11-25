@@ -76,6 +76,9 @@ describe("community CodeGraph runner", () => {
     expect(execs[1].args.join(" ")).toContain('enabled_tools=["codegraph_explore"]');
     expect(execs[1].args.join(" ")).toContain("required=true");
     expect(execs[1].args.join(" ")).toContain("CODEGRAPH_TELEMETRY");
+    const mcpRules = execs[1].args.join(" ").replaceAll('\\"', '"');
+    expect(mcpRules).toContain('/.codegraph"="write"');
+    expect(mcpRules).toContain('/index"="read"');
     expect(execs[1].args.join(" ")).not.toContain("/private/codex");
     expect(execs[0].env.CODEX_HOME).not.toBe("/private/codex");
     expect(execs[0].env.OPENAI_API_KEY).toBeUndefined();
@@ -104,5 +107,12 @@ describe("community CodeGraph runner", () => {
     await expect(runCommunityEval("gpt-5.4", { platform: "linux", tools, command }))
       .rejects.toThrow("BENCHMARK_UNSUPPORTED_CODEX");
     expect(calls.some(({args}) => args[0] === "exec")).toBe(false);
+  });
+
+  test("does not start Codex with a system configuration that can change the benchmark", async () => {
+    const { command, calls } = fakeCommand();
+    await expect(runCommunityEval("gpt-5.4", { platform: "linux", tools, command, hasSystemConfig: () => true }))
+      .rejects.toThrow("BENCHMARK_SYSTEM_CONFIG_UNSUPPORTED");
+    expect(calls).toEqual([]);
   });
 });

@@ -1,7 +1,6 @@
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
-import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { findRealAgentBin } from "../claude-binary";
 import { canonicalCodexHome } from "../codex-config";
@@ -19,6 +18,7 @@ const PROFILE = "cue-benchmark";
 const TIMEOUT_MS = 120_000;
 const SYSTEM_PATH = "/usr/local/bin:/usr/bin:/bin";
 const TOOL = "codegraph_explore";
+const SYSTEM_CONFIGS = ["config.toml", "requirements.toml", "managed_config.toml"];
 const FIXTURE = {
   "src/http/quotes.ts": `import { normalizeQuoteInput } from "./quote-input";
 import { createQuote } from "../pricing/quote";
@@ -193,15 +193,21 @@ type RunnerOptions = {
   platform?: NodeJS.Platform;
   authHome?: string;
   now?: () => number;
+  hasSystemConfig?: () => boolean;
 };
 
 export async function runCommunityEval(model: CommunityModel, options: RunnerOptions = {}): Promise<CommunityReport> {
   if (!isCommunityModel(model)) return fail("UNSUPPORTED_MODEL");
   if ((options.platform ?? process.platform) !== "linux") return fail("UNSUPPORTED_PLATFORM");
+  // Codex merges system TOML even with --ignore-user-config. In particular
+  // mcp_servers={} does not disable servers from a lower-precedence layer.
+  const hasSystemConfig = options.hasSystemConfig ?? (() => SYSTEM_CONFIGS.some((file) => existsSync(join("/etc/codex", file))));
+  if (hasSystemConfig()) return fail("SYSTEM_CONFIG_UNSUPPORTED");
   const tools = options.tools ?? locateTools();
   const { command = runCommand, now = () => performance.now() } = options;
   const { codex, codegraph, codegraphRoot } = tools;
-  const scratch = realpathSync(mkdtempSync(join(tmpdir(), "cue-benchmark-")));
+  // Avoid inheriting a local project from a TMPDIR nested inside its checkout.
+  const scratch = realpathSync(mkdtempSync("/tmp/cue-benchmark-"));
   try {
     const fixture = join(scratch, "fixture");
     const index = join(scratch, "index");
@@ -238,9 +244,9 @@ export async function runCommunityEval(model: CommunityModel, options: RunnerOpt
     ];
     if (!command(codex, sandboxArgs(fixture, shellRules, probe), isolated).ok) return fail("SANDBOX_UNAVAILABLE");
 
-    const graphRules = (mode: "read" | "write") => permissions({ [codex]: "read", [codegraphRoot]: "read", [index]: mode });
+    const initRules = permissions({ [codex]: "read", [codegraphRoot]: "read", [index]: "write" });
     const init = [codegraph, "init", "--yes", index];
-    if (!command(codex, sandboxArgs(index, graphRules("write"), init), isolated).ok) return fail("INDEX_FAILED");
+    if (!command(codex, sandboxArgs(index, initRules, init), isolated).ok) return fail("INDEX_FAILED");
 
     // Use native file-backed auth without inheriting user config, skills or
     // caches. Codex 0.172.0 resolves this symlink itself, including on refresh.
@@ -249,7 +255,12 @@ export async function runCommunityEval(model: CommunityModel, options: RunnerOpt
     const status = command(codex, ["login", "status", ...auth], client);
     if (!status.ok || !/^Logged in using ChatGPT\s*$/m.test(status.stderr)) return fail("CHATGPT_LOGIN_REQUIRED");
 
-    const serve = sandboxArgs(index, graphRules("read"), [codegraph, "serve", "--mcp", "--path", index, "--no-watch"]);
+    // CodeGraph takes a writer lock even for exploration. Allow its disposable
+    // index state to change, not the source fixture or the rest of the host.
+    const serveRules = permissions({
+      [codex]: "read", [codegraphRoot]: "read", [index]: "read", [join(index, ".codegraph")]: "write",
+    });
+    const serve = sandboxArgs(index, serveRules, [codegraph, "serve", "--mcp", "--path", index, "--no-watch"]);
     const mcp = [
       `command=${JSON.stringify(codex)}`, `args=${JSON.stringify(serve)}`, `cwd=${JSON.stringify(index)}`,
       `env={${Object.entries(sandboxEnv).map(([name, value]) => `${name}=${JSON.stringify(value)}`).join(",")}}`,
