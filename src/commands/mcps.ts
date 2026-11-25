@@ -4,6 +4,7 @@
  * Subcommands:
  *   list [--json]       — MCPs in active profile
  *   available [--json]  — all MCPs NOT in active profile
+ *   search <query>      — search the official MCP Registry
  *   add <id>            — add MCP to active profile
  *   remove <id>         — remove MCP from active profile
  *   health [--json]     — ping each MCP in active profile
@@ -249,6 +250,7 @@ Usage: cue mcps <subcommand> [args]
 Subcommands:
   list              MCPs in active profile
   available         MCPs NOT in active profile
+  search <query>    Search the official MCP Registry without installing anything
   add <id>          Add MCP to active profile
   remove <id>       Remove MCP from active profile
   health            Spawn each MCP and run the MCP handshake; show status
@@ -256,10 +258,12 @@ Subcommands:
 Flags:
   --json            Machine-readable output
   --shallow         Only check that the executable exists (fast, less certain)
+  --limit <n>       Maximum registry search results (1–30, default 10)
 
 Exit code is 1 when any server is down, so CI and hooks can gate on it.
 
 Examples:
+  cue mcps search filesystem --json
   cue mcps add coolify
   cue mcps health
   cue mcps health --json
@@ -273,6 +277,8 @@ Examples:
   const rest = args.filter(a => a !== "--json" && a !== "--shallow");
 
   switch (sub) {
+    case "search":
+      return (await import("./mcps-registry")).searchMcpRegistry(args.slice(1));
     case "list":
       return cmdList(json);
     case "available":
@@ -284,7 +290,7 @@ Examples:
     case "health":
       return cmdHealth(json, shallow);
     default:
-      process.stderr.write(`Unknown subcommand: ${sub}. Use: list, available, add, remove, health\n`);
+      process.stderr.write(`Unknown subcommand: ${sub}. Use: list, available, search, add, remove, health\n`);
       return 1;
   }
 }

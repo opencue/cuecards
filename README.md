@@ -82,6 +82,9 @@ cue discover search --skills-sh react   # find a skill without installing it
 cue ruler --rulesync --check            # check a Rulesync project for drift
 ```
 
+On the current source branch, `cue mcps search filesystem` searches the
+official MCP Registry without installing or configuring a server.
+
 [Integration setup and limits](docs/skill-and-rule-integrations.md) · [Independent review gate](docs/review-visibility.md)
 
 ## How it compares
@@ -91,9 +94,10 @@ cue ruler --rulesync --check            # check a Rulesync project for drift
 | **Cue** | Choose the context an agent starts with in each repository. |
 | [HarnessKit](https://github.com/RealZST/HarnessKit#-kits) | Distribute a portable kit of skills, rules, and other project assets. |
 | [Vercel Skills](https://github.com/vercel-labs/skills) | Find and install a standalone skill. |
+| [MCP Registry](https://github.com/modelcontextprotocol/registry) | Find published MCP servers before choosing what to configure. |
 | [Rulesync](https://github.com/dyoshikawa/rulesync) | Generate several agents' native config files from one project source. |
 
-[See the full feature matrix: Cue and 13 related projects](docs/alternatives.md#feature-comparison).
+[Compare features across all projects](docs/alternatives.md#feature-comparison).
 
 ## Contributing
 
