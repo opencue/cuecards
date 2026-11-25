@@ -3,10 +3,13 @@ import { execFile } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import {
   closeSync,
+  constants,
+  fstatSync,
   mkdirSync,
   mkdtempSync,
   openSync,
   readFileSync,
+  readSync,
   realpathSync,
   renameSync,
   rmSync,
@@ -116,8 +119,22 @@ export function buildAdvisorEvidence(cwd: string): string {
       const target = inside(path);
       if (!target || dotenv.test(basename(target))) return null;
       try {
-        const stat = statSync(target);
-        return stat.isFile() && stat.size <= 512 * 1024 ? REAL_MATCH_PROBE.read(target) : null;
+        const fd = openSync(target, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+        try {
+          const opened = fstatSync(fd);
+          if (!opened.isFile() || opened.size > 512 * 1024) return null;
+          // Recheck the resolved path and identity in case an ancestor or the
+          // manifest changed during open. Read only through the checked handle.
+          const current = statSync(target);
+          if (inside(target) !== target || opened.dev !== current.dev || opened.ino !== current.ino) {
+            return null;
+          }
+          const data = Buffer.allocUnsafe(opened.size + 1);
+          const size = readSync(fd, data, 0, data.length, 0);
+          return size === opened.size ? data.toString("utf8", 0, size) : null;
+        } finally {
+          closeSync(fd);
+        }
       } catch {
         return null;
       }

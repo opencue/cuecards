@@ -298,17 +298,20 @@ describe("AI profile advisor", () => {
     const originalClaudeConfig = process.env.CLAUDE_CONFIG_DIR;
     const originalClaudeBin = process.env.CUE_REAL_CLAUDE;
     const originalCacheHome = process.env.XDG_CACHE_HOME;
+    const originalCwd = process.cwd();
     process.env.PATH = bin;
     process.env.CLAUDE_CONFIG_DIR = temp();
     process.env.CUE_REAL_CLAUDE = join(bin, "claude");
     process.env.XDG_CACHE_HOME = temp();
     try {
+      process.chdir(cwd);
       for (const [preferredAgent, summary] of [["codex", "Codex path"], ["claude", "Claude path"]] as const) {
         expect((await adviseProfiles({
           cwd, cacheRoot: temp(), knownProfiles: ["core"], preferredAgent,
         }))?.summary).toBe(summary);
       }
     } finally {
+      process.chdir(originalCwd);
       if (originalPath === undefined) delete process.env.PATH;
       else process.env.PATH = originalPath;
       if (originalClaudeConfig === undefined) delete process.env.CLAUDE_CONFIG_DIR;
