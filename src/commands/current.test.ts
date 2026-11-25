@@ -56,8 +56,9 @@ skills:
     servers: { "fixture-mcp": { command: process.execPath, env: { SECRET: "not-public" } } },
   }));
   write("project/.git/HEAD", "ref: refs/heads/main\n");
-  const run = (...args: string[]) => {
-    const result = Bun.spawnSync([process.execPath, entry, "current", ...args], {
+  const execute = (args: string[], preload?: string) => {
+    const options = preload ? ["--preload", preload] : [];
+    const result = Bun.spawnSync([process.execPath, ...options, entry, "current", ...args], {
       cwd,
       env: {
         PATH: process.env.PATH,
@@ -71,7 +72,11 @@ skills:
     });
     return { code: result.exitCode, output: result.stdout.toString(), error: result.stderr.toString() };
   };
-  return { root, cwd, write, run, clean: () => rmSync(root, { recursive: true, force: true }) };
+  return {
+    root, cwd, write, execute,
+    run: (...args: string[]) => execute(args),
+    clean: () => rmSync(root, { recursive: true, force: true }),
+  };
 }
 
 test("plans a pinned profile for both agents from a fresh repo without installing or writing", () => {
@@ -119,6 +124,29 @@ test("can preview an unpinned profile and a single agent, without creating a pin
     expect(f.run("--plan", "--agent", "invalid").code).toBe(1);
     expect(readdirSync(f.root).sort()).toEqual(["profiles", "project", "resources"]);
     expect(readdirSync(f.cwd).sort()).toEqual([".git", "activate"]);
+  } finally {
+    f.clean();
+  }
+});
+
+test("planning in a TTY does not contact npm or trigger the update check", () => {
+  const f = fixture();
+  try {
+    f.write("profiles/tty.ts", `
+Object.defineProperty(process.stdin, "isTTY", { value: true });
+Object.defineProperty(process.stdout, "isTTY", { value: true });
+globalThis.fetch = async () => {
+  console.error("unexpected network request");
+  return new Response(JSON.stringify({ version: "0.0.0" }));
+};
+`);
+    const result = f.execute(
+      ["--plan", "--profile", "core", "--agent", "claude"],
+      join(f.root, "profiles", "tty.ts"),
+    );
+    expect(result.code).toBe(0);
+    expect(result.error).toBe("");
+    expect(readdirSync(f.root).sort()).toEqual(["profiles", "project", "resources"]);
   } finally {
     f.clean();
   }
