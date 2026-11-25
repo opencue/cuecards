@@ -9,6 +9,7 @@
 import { basename, resolve, join, sep } from "node:path";
 import { tokenLevelEmoji, type TokenBreakdown } from "./token-budget";
 import type { PickerOption } from "./picker";
+import { fitLine } from "./picker/ui";
 import { countProfileSkills } from "./profile-capabilities";
 import type { DetectionResultV2 } from "./auto-detect";
 import type { ResolvedProfile } from "../../profiles/_types";
@@ -221,7 +222,7 @@ export function formatTokenWarning(b: TokenBreakdown): string[] {
 }
 
 /**
- * Format the single-line startup identity banner shown on every warm launch.
+ * Format the compact startup banner shown at the handoff to the agent.
  * Confirms what you landed in: agent · icon+profile (collapsed to `primary +N`
  * for composites, via formatTmuxTitle) · skill and MCP counts · the always-on
  * token cost. The token segment is omitted under the 2K floor; a `→ cue cost`
@@ -240,23 +241,31 @@ export interface StartupBannerInfo {
   mcps: number;
   /** Always-on token estimate, or undefined when not computed (light profile). */
   alwaysOn?: number;
+  /** Project-local skill split when the project loadout is active. */
+  loadout?: { full: number; deferred: number };
+  columns?: number;
 }
 
 export function formatStartupBanner(info: StartupBannerInfo): string {
   const c = colorFns();
-  const segs: string[] = [`${c.cyan("▸")} ${info.title}`];
-  segs.push(`${info.skills} skill${info.skills === 1 ? "" : "s"}`);
+  const columns = info.columns ?? 80;
+  const title = fitLine(columns, `${c.cyan("◆ cue")}  ${c.bold(info.title)}`);
+  const segs = info.loadout
+    ? [`${info.loadout.full} local`, `${info.loadout.deferred} deferred`]
+    : [`${info.skills} skill${info.skills === 1 ? "" : "s"}`];
   if (info.mcps > 0) segs.push(`${info.mcps} MCP${info.mcps === 1 ? "" : "s"}`);
+  const separator = c.dim(" · ");
+  const summary = `  ${segs.join(separator)}`;
+  let stats = fitLine(columns, summary);
   if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_TOKEN_FLOOR) {
-    segs.push(
-      `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`,
+    const tokens = `${tokenLevelEmoji(info.alwaysOn)} ${c.yellow(`~${Math.round(info.alwaysOn / 1000)}K`)} always-on`;
+    const detail = `${summary}${separator}${tokens}`;
+    stats = fitLine(columns,
+      info.alwaysOn >= BANNER_HEAVY ? `${detail}${separator}${c.dim("→ cue cost")}` : detail,
+      detail, summary,
     );
   }
-  let line = segs.join(c.dim(" · "));
-  if (info.alwaysOn !== undefined && info.alwaysOn >= BANNER_HEAVY) {
-    line += c.dim(" · → cue cost");
-  }
-  return line;
+  return `${title}\n${stats}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -484,7 +493,24 @@ function formatDuration(ms: number): string {
   return `${total}s`;
 }
 
-export function formatNpxDegraded(failures: NpxEntryFailure[]): string[] {
+export function formatNpxDegraded(
+  failures: NpxEntryFailure[],
+  { detailed = false, columns = 80 }: { detailed?: boolean; columns?: number } = {},
+): string[] {
+  if (failures.length === 0) return [];
+  if (!detailed) {
+    const c = colorFns();
+    const missing = new Set(failures.flatMap((failure) => failure.skills)).size;
+    const cached = new Set(failures.flatMap((failure) => failure.servedFromCache)).size;
+    const status = missing
+      ? `${missing} skill${missing === 1 ? "" : "s"} unavailable`
+      : cached ? `${cached} cached skill${cached === 1 ? "" : "s"}` : "skill fetch degraded";
+    const compact = c.yellow(`⚠ ${status}`);
+    const extra = missing && cached ? ` · ${cached} cached` : "";
+    const help = c.dim(" · cue doctor");
+    const short = !missing && cached ? c.yellow("⚠ cached") : compact;
+    return [fitLine(columns, compact + extra + help, short + help, compact)];
+  }
   const lines: string[] = [];
   for (const f of failures) {
     const reason = f.error.message.replace(
