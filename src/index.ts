@@ -39,6 +39,7 @@ const ESSENTIAL_COMMANDS: CommandName[] = [
   "status",
   "list",
   "launch",
+  "work",
   "skills",
   "mcps",
   "auth",
@@ -180,9 +181,9 @@ async function main(argv: string[]): Promise<number> {
   // shim is `exec cue launch ...`, so running it here would open a readline on
   // the agent's stdin (stealing keystrokes) and could fire a blocking
   // `npm install -g` mid-session. Skip for any command that spawns an agent
-  // (`launch`, plus `quick`/`playground`), for trivial or non-interactive
+  // (`launch`, `work`, `quick`, `playground`), for trivial or non-interactive
   // invocations, when launching (CUE_LAUNCHING), or in CI.
-  const AGENT_LAUNCH_COMMANDS = new Set(["launch", "quick", "playground"]);
+  const AGENT_LAUNCH_COMMANDS = new Set(["launch", "work", "quick", "playground"]);
   const TRIVIAL_ARGS = new Set(["--version", "-v", "version", "--help", "-h", "help"]);
   const skipUpdateCheck =
     AGENT_LAUNCH_COMMANDS.has(args[0] ?? "") ||

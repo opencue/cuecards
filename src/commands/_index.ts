@@ -55,6 +55,10 @@ export const COMMANDS = {
     summary: "Resolve+materialize a profile then exec claude/codex (hot path)",
     load: () => import("./launch"),
   },
+  work: {
+    summary: "Start or reuse a GitGuardex task worktree and launch an agent there",
+    load: () => import("./work"),
+  },
   firstmate: {
     summary: "Select and launch a Firstmate coordinator in its own checkout",
     load: () => import("./firstmate"),
