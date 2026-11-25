@@ -25,6 +25,7 @@ import * as p from "@clack/prompts";
 import { MultiSelectPrompt } from "@clack/core";
 import { styleText } from "node:util";
 import { CATEGORY_RULE_COL, displayWidth, windowOptions } from "./picker.ts";
+import { clipVisible, fitLine, visibleWidth } from "./picker/ui";
 
 export interface McpPickInput {
   /** Full profile MCP id list (original casing). */
@@ -104,12 +105,13 @@ export async function pickMcps(input: McpPickInput): Promise<Set<string> | null>
     initialValues,
     required: false,
     render() {
-      const live = this as unknown as { cursor: number; value?: string[]; output?: { rows?: number } };
+      const live = this as unknown as { cursor: number; value?: string[]; output?: NodeJS.WriteStream };
       const termRows = live.output?.rows ?? process.stdout.rows ?? 24;
       return renderMcpFrame({
         rows,
         cursor: live.cursor,
         selected: new Set(live.value ?? []),
+        columns: live.output?.columns || process.stdout.columns || 80,
         // Reserve lines for the gutter (3), both headers + spacer (3), the
         // footer (2), and the ↑/↓ markers (2); floor at 4 for short terminals.
         maxRows: Math.max(4, termRows - 10),
@@ -185,6 +187,7 @@ export interface McpFrameState {
   selected: Set<string>;
   /** Visible-row cap for windowing; 0/undefined → show all. */
   maxRows?: number;
+  columns?: number;
 }
 
 /**
@@ -195,6 +198,7 @@ export interface McpFrameState {
 export function renderMcpFrame(state: McpFrameState): string {
   const BAR = styleText("gray", "│");
   const { rows } = state;
+  const columns = state.columns ?? 80;
   const counts = {
     used: rows.filter((r) => r.group === "used").length,
     unused: rows.filter((r) => r.group === "unused").length,
@@ -206,7 +210,7 @@ export function renderMcpFrame(state: McpFrameState): string {
   const lines: string[] = [];
   lines.push(BAR);
   lines.push(`${BAR}  ${MESSAGE}`);
-  lines.push(BAR);
+  lines.push(`${BAR}  ${styleText(["bold", "cyan"], "⏎ Press Enter to continue")}`);
 
   const indexed = rows.map((r, i) => ({ r, i }));
   const max = state.maxRows && state.maxRows > 0 ? state.maxRows : rows.length;
@@ -222,7 +226,7 @@ export function renderMcpFrame(state: McpFrameState): string {
       const labelStyled = styleText("bold", styleText("blueBright", label));
       const ruleLen = Math.max(3, CATEGORY_RULE_COL - displayWidth(label) - 2);
       const rule = styleText("gray", "─".repeat(ruleLen));
-      lines.push(`${BAR}  ${labelStyled} ${rule} ${styleText("dim", String(counts[r.group]))}`);
+      lines.push(clipVisible(`${BAR}  ${labelStyled} ${rule} ${styleText("dim", String(counts[r.group]))}`, columns));
       lastGroup = r.group;
     }
     const isCursor = i === state.cursor;
@@ -231,17 +235,23 @@ export function renderMcpFrame(state: McpFrameState): string {
     const box = isSel ? styleText("green", "[x]") : styleText("dim", "[ ]");
     const idStyled = isSel || isCursor ? r.id : styleText("dim", r.id);
     const pad = " ".repeat(Math.max(2, labelCol + 2 - displayWidth(r.id)));
-    const hint = r.hint ? styleText("dim", r.hint) : "";
-    lines.push(`${BAR}  ${arrow} ${box} ${idStyled}${pad}${hint}`);
+    const option = `${BAR}  ${arrow} ${box} ${idStyled}`;
+    // Only truncate the explanation. The ID must distinguish similar servers.
+    const hintWidth = columns - visibleWidth(option) - pad.length;
+    lines.push(r.hint && hintWidth > 1
+      ? `${option}${pad}${styleText("dim", clipVisible(r.hint, hintWidth))}`
+      : option);
   }
   if (win.hiddenBelow > 0) lines.push(`${BAR}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
 
-  // Footer: lead with the enter affordance + live on/total count (the #1
-  // question at this screen), nav keys trail dim.
+  // Keep the live count below the options; the action stays at the top.
   const on = rows.filter((r) => state.selected.has(r.id)).length;
-  const enter = styleText(on > 0 ? "cyan" : "dim", `⏎ enter — ${on} of ${rows.length} on`);
-  const nav = styleText("dim", " · space toggle · ↑↓ move · esc cancel");
-  lines.push(BAR);
-  lines.push(`${BAR}  ${enter}${nav}`);
+  const nav = fitLine(
+    Math.max(0, columns - 3),
+    "↑↓ move · Space toggle · Esc cancel",
+    "↑↓ · Space toggle · Esc",
+  );
+  lines.push(`${BAR}  ${styleText("cyan", `${on} of ${rows.length} on`)}`);
+  lines.push(`${BAR}  ${styleText("dim", nav)}`);
   return lines.join("\n");
 }

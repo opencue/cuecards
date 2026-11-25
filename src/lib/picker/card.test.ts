@@ -61,7 +61,7 @@ describe("renderCardFrame", () => {
     expect(frame).toContain("AI profiles: backend");
     expect(frame).toContain("AI skills: review/api-tester");
     expect(frame).toContain("🦀 rust");
-    expect(frame).toContain("⏎ launch");
+    expect(frame).toContain("Press Enter to launch");
   });
 
   test("shows loading while refreshing a cached no-match", () => {
@@ -92,14 +92,14 @@ describe("renderCardFrame", () => {
     expect(topBorder(renderCardFrame({ ...base, suggestions: many, index: 2 }))).toContain("3/12");
   });
 
-  test("shows the pin decision as a switch beside the launch button", () => {
+  test("shows the pin decision separately from the launch button", () => {
     const on = plain(renderCardFrame({ ...base, suggestions: [rust] }));
-    expect(on).toContain("⏎ launch");
+    expect(on).toContain("Press Enter to launch");
     expect(on).toContain("p ● pin to this folder");
     const off = plain(renderCardFrame({ ...base, suggestions: [rust], pin: false }));
     expect(off).toContain("p ○ pin to this folder");
     const disabled = plain(renderCardFrame({ ...base, suggestions: [rust], pinDisabled: true }));
-    expect(disabled).toContain("⏎ launch");
+    expect(disabled).toContain("Press Enter to launch");
     expect(disabled).not.toContain("pin to this folder");
   });
 
@@ -117,7 +117,7 @@ describe("renderCardFrame", () => {
 
   test("help overlay replaces the body and lists every key", () => {
     const frame = renderCardFrame({ ...base, suggestions: [rust], help: true });
-    for (const key of ["⏎", "e", "/", "a", "p", "?", "esc"]) expect(frame).toContain(key);
+    for (const key of ["Enter", "e", "/", "a", "p", "?", "esc"]) expect(frame).toContain(key);
     expect(frame).toContain("edit the stack");
     expect(frame).not.toContain("suggested stack");
   });
@@ -161,14 +161,18 @@ describe("renderCardFrame", () => {
     expect(short.split("\n").length).toBeLessThan(tall.split("\n").length);
     // The essentials survive the squeeze.
     expect(short).toContain("🦀 rust");
-    expect(short).toContain("⏎ launch");
+    expect(short).toContain("Press Enter to launch");
   });
 
   test("the action rows shed words instead of wrapping a narrow terminal", () => {
     for (const cols of [40, 56, 60, 72, 80, 120]) {
       const frame = plain(renderCardFrame({ ...base, cols, suggestions: [rust, python] }));
       for (const line of frame.split("\n")) expect(displayWidth(line)).toBeLessThanOrEqual(cols);
-      expect(frame).toContain("⏎ launch");
+      const actions = frame.split("\n");
+      const launch = actions.findIndex((line) => line.includes("Press Enter to launch"));
+      expect(launch).toBeGreaterThanOrEqual(0);
+      expect(actions[launch]).not.toContain("pin");
+      expect(launch).toBeLessThan(actions.findIndex((line) => line.includes("change profiles")));
       expect(frame).toContain("esc quit");
     }
   });

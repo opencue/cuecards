@@ -126,6 +126,50 @@ describe("loadout run() — no loadout present", () => {
 });
 
 describe("loadout run() — show subcommand", () => {
+  test("groups skills by availability and explains the next-launch commands", async () => {
+    seedLoadout({
+      ...SAMPLE_ENTRY,
+      deferred: Array.from({ length: 18 }, (_, index) => `skill-${index + 1}`),
+      userKeep: ["help"],
+      userDefer: ["skill-1"],
+    });
+    expect(await run([])).toBe(0);
+    const output = outSpy.mock.calls.map(([chunk]) => String(chunk)).join("");
+    expect(output).toContain("At startup (2)");
+    expect(output).toContain("On demand (18)");
+    expect(output).toContain("skill-18");
+    expect(output).toContain("Pinned at startup");
+    expect(output).toContain("Pinned on demand");
+    expect(output).toContain("cue loadout keep <id…>");
+    expect(output).toContain("cue loadout defer <id…>");
+    expect(output).toContain("Add --cue-full to the agent command");
+  });
+
+  test("describes saved groups as inactive when filtering is off", async () => {
+    seedLoadout({ ...SAMPLE_ENTRY, enabled: false });
+    expect(await run(["show"])).toBe(0);
+    const output = outSpy.mock.calls.map(([chunk]) => String(chunk)).join("");
+    expect(output).toContain("Disabled");
+    expect(output).toContain("Saved groups (inactive)");
+    expect(output).toContain("cue loadout on");
+  });
+
+  test("shows the environment bypass without changing the project's setting", async () => {
+    seedLoadout(SAMPLE_ENTRY);
+    const saved = process.env.CUE_LOADOUT;
+    process.env.CUE_LOADOUT = " FaLsE ";
+    try {
+      expect(await run([])).toBe(0);
+      const output = outSpy.mock.calls.map(([chunk]) => String(chunk)).join("");
+      expect(output).toContain("Bypassed (CUE_LOADOUT)");
+      expect(output).toContain("Saved groups (inactive)");
+      expect(readSavedLoadout()?.enabled).toBe(true);
+    } finally {
+      if (saved === undefined) delete process.env.CUE_LOADOUT;
+      else process.env.CUE_LOADOUT = saved;
+    }
+  });
+
   test("run([]) with an existing loadout returns 0", async () => {
     seedLoadout({ ...SAMPLE_ENTRY });
     const code = await run([]);
