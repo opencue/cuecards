@@ -205,8 +205,8 @@ function grade(message: string | undefined): number {
   }
 }
 
-function incompleteArm(status: "timeout" | "failed", durationMs: number): CommunityArmV2 {
-  return { status, score: 0, durationMs, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed: false };
+function incompleteArm(status: "timeout" | "failed", durationMs: number, codegraphUsed = false): CommunityArmV2 {
+  return { status, score: 0, durationMs, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed };
 }
 
 function readEvent(line: string) {
@@ -244,8 +244,8 @@ function readArm(output: ReturnType<CommunityCommand>, durationMs: number, on: b
     if (event.type === "item.completed" && item?.type === "agent_message" && typeof item.text === "string") lastMessage = item.text;
   }
   // Raw provider JSONL, stderr, and filesystem paths are never reported.
-  if (output.timedOut) return incompleteArm("timeout", durationMs);
-  if (!output.ok || invalid || !completed) return incompleteArm("failed", durationMs);
+  if (output.timedOut) return incompleteArm("timeout", durationMs, codegraphUsed);
+  if (!output.ok || invalid || !completed) return incompleteArm("failed", durationMs, codegraphUsed);
   return { status: "completed", score: grade(lastMessage), durationMs, ...readTokens(usage), codegraphUsed };
 }
 

@@ -198,26 +198,31 @@ test.skipIf(!testSocket)("PostgreSQL withholds comparisons until five accounts h
       await client.query('INSERT INTO "user" (id) VALUES ($1)', [id]);
       const candidate: CommunityReportV2 = {
         ...report, version: 2, benchmark: "codegraph-v2",
-        pairs: [{ off, on: completedPair ? on : timeout }, { off, on: timeout }],
+        pairs: [
+          { off, on: completedPair ? on : timeout },
+          { off, on: i === 0 ? { ...on, score: 0 } : { ...timeout, codegraphUsed: i === 4 } },
+        ],
       };
       expect(await store.submit(id, candidate)).toBe(true);
     };
     for (let i = 0; i < 5; i++) await add(i, i < 4);
     expect(await store.list()).toMatchObject([{
-      accounts: 5, comparableAccounts: 4, comparablePairs: 4,
-      onOutcomes: { completed: 4, timeout: 6, failed: 0 },
+      accounts: 5, comparableAccounts: 4, comparablePairs: 5,
+      onOutcomes: { completed: 5, timeout: 5, failed: 0 }, usedPairs: 1,
       offScore: null, onScore: null, scoreMax: null, wins: null, losses: null, ties: null,
       meanDurationDeltaMs: null, meanInputTokenDelta: null, meanAccountScoreDeltaPp: null,
       improvedAccounts: null, regressedAccounts: null, tiedAccounts: null,
       improvedAccountShare95: null, accountDirection: "inconclusive",
     }]);
     await add(5, true);
-    expect(await store.list()).toMatchObject([{
-      accounts: 6, comparableAccounts: 5, comparablePairs: 5,
-      offScore: 5, onScore: 20, scoreMax: 30, wins: 5, losses: 0, ties: 0,
-      meanDurationDeltaMs: -100, meanInputTokenDelta: 0, meanAccountScoreDeltaPp: 50,
+    const published = await store.list();
+    expect(published).toMatchObject([{
+      accounts: 6, comparableAccounts: 5, comparablePairs: 6,
+      offScore: 6, onScore: 20, scoreMax: 36, wins: 5, losses: 1, ties: 0,
+      meanDurationDeltaMs: -100, meanInputTokenDelta: 0,
       improvedAccounts: 5, regressedAccounts: 0, tiedAccounts: 0, accountDirection: "favors-on",
     }]);
+    expect(published[0].meanAccountScoreDeltaPp).toBeCloseTo(130 / 3);
   } finally {
     await client.end();
   }

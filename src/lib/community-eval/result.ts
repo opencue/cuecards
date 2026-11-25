@@ -83,7 +83,7 @@ function parseArmV2(value: unknown, available: boolean): CommunityArmV2 {
   const { status } = arm;
   if (status !== "completed" && status !== "timeout" && status !== "failed") invalid();
   const metrics = parseMetrics(arm, available, COMMUNITY_SCORE_MAX);
-  if (status !== "completed" && (metrics.score !== 0 || metrics.inputTokens !== null || metrics.codegraphUsed)) invalid();
+  if (status !== "completed" && (metrics.score !== 0 || metrics.inputTokens !== null)) invalid();
   return { ...metrics, status };
 }
 

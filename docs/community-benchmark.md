@@ -63,8 +63,8 @@ are withheld until five distinct accounts have a pair where both arms finished.
 Review the average paired score difference per account (equal weight for each
 comparable account) and the pairs that scored lower with CodeGraph before
 looking at tokens or elapsed time. Missing token usage is not zero. Token
-averages require five token-contributing accounts. CodeGraph use just means a
-tool call completed.
+averages require five token-contributing accounts. CodeGraph use means a
+completed tool call was observed, even if the run itself did not finish.
 
 Malformed answers after a completed turn count as wrong. Failures after setup
 are reported as `timeout` or `failed`, not as wrong answers; setup failures

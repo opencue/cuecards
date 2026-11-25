@@ -3,12 +3,12 @@ import { existsSync, readFileSync, readdirSync, readlinkSync } from "node:fs";
 import { join } from "node:path";
 import { type CommunityCommand, runCommunityEval } from "./runner";
 
+const toolEvent = { type: "item.completed", item: { type: "mcp_tool_call", server: "codegraph", tool: "codegraph_explore", status: "completed", error: null } };
+
 function jsonl(codegraphUsed: boolean, usage = true, correct = true): string {
   return [
     { type: "thread.started", thread_id: "not-in-report" },
-    ...(codegraphUsed
-      ? [{type: "item.completed", item: {type: "mcp_tool_call", server: "codegraph", tool: "codegraph_explore", status: "completed", error: null}}]
-      : []),
+    ...(codegraphUsed ? [toolEvent] : []),
     { type: "item.completed", item: { type: "agent_message", text: JSON.stringify({
       entry: "src/pricing/quote.ts",
       rule: correct ? "seasonalCredit" : "not-in-report",
@@ -124,16 +124,16 @@ describe("community CodeGraph runner", () => {
       if (args[0] !== "exec") return;
       attempt += 1;
       if (attempt === 1) return { ok: false, timedOut: true, stdout: "partial private output", stderr: "private timeout" };
-      if (attempt === 2) return '{"type":"turn.failed","error":{"message":"private-path"}}';
-      if (attempt === 3) return { ok: false, stdout: "", stderr: "private process failure" };
+      if (attempt === 2) return `${JSON.stringify(toolEvent)}\n{"type":"turn.failed","error":{"message":"private-path"}}`;
+      if (attempt === 3) return { ok: false, timedOut: true, stdout: JSON.stringify(toolEvent), stderr: "private process failure" };
     });
     const report = await runCommunityEval("gpt-5.4", { platform: "linux", tools, command, now: () => 20 });
     const blankMetrics = { score: 0, durationMs: 1, inputTokens: null, cachedInputTokens: null, outputTokens: null, codegraphUsed: false };
     expect(report.pairs[0]).toEqual({
       off: { ...blankMetrics, status: "timeout" },
-      on: { ...blankMetrics, status: "failed" },
+      on: { ...blankMetrics, status: "failed", codegraphUsed: true },
     });
-    expect(report.pairs[1].on).toEqual({ ...blankMetrics, status: "failed" });
+    expect(report.pairs[1].on).toEqual({ ...blankMetrics, status: "timeout", codegraphUsed: true });
     expect(report.pairs[1].off).toMatchObject({ status: "completed", score: 6 });
     expect(JSON.stringify(report)).not.toContain("private");
     expect(calls.filter(({args}) => args[0] === "exec")).toHaveLength(4);

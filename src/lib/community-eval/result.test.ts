@@ -32,7 +32,9 @@ test("v2 requires an allowlisted outcome and keeps failed attempts out of answer
     expect(() => parseCommunityReport({ ...reportV2, pairs: [v2Pair, { off, on: completed }] }))
       .toThrow("BENCHMARK_INVALID_REPORT");
   }
-  expect(() => parseCommunityReport({ ...reportV2, pairs: [v2Pair, { off: failed, on: { ...failed, codegraphUsed: true } }] }))
+  const usedBeforeFailure = { ...reportV2, pairs: [v2Pair, { off: failed, on: { ...failed, codegraphUsed: true } }] };
+  expect(parseCommunityReport(usedBeforeFailure)).toEqual(usedBeforeFailure);
+  expect(() => parseCommunityReport({ ...reportV2, pairs: [v2Pair, { off: { ...failed, codegraphUsed: true }, on: completed }] }))
     .toThrow("BENCHMARK_INVALID_REPORT");
 });
 
