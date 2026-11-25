@@ -17,7 +17,7 @@
 
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { isAbsolute, join, relative } from "node:path";
+import { delimiter, isAbsolute, join, relative } from "node:path";
 
 import { findRealAgentBin } from "../lib/claude-binary";
 import { loadProfile } from "../lib/profile-loader";
@@ -68,20 +68,20 @@ function runRulesync(args: string[]): number {
     return 1;
   }
 
-  // Do not use a shell or search the target project for an npm .cmd launcher.
-  const bin = process.platform === "win32"
-    ? findRealAgentBin("rulesync.exe", {
-      pathValue: (process.env.PATH ?? "").split(";").filter((entry) => isAbsolute(entry)).join(";"),
-      pathExt: "",
-    })
-    : "rulesync";
+  // Resolve before changing cwd. Relative PATH entries must not pick a tool or
+  // a shebang interpreter from the target project.
+  const pathValue = (process.env.PATH ?? "").split(delimiter).filter(isAbsolute).join(delimiter);
+  const windows = process.platform === "win32";
+  const bin = findRealAgentBin(windows ? "rulesync.exe" : "rulesync", { pathValue, pathExt: "" });
   if (!bin) {
-    process.stderr.write("Add the native Rulesync release executable to PATH as rulesync.exe.\n");
+    process.stderr.write(windows
+      ? "Add the native Rulesync release executable to PATH as rulesync.exe.\n"
+      : "Make sure the rulesync executable is on an absolute PATH entry.\n");
     return 1;
   }
   const result = spawnSync(bin, ["generate", check ? "--check" : "--dry-run"], {
     cwd: dir,
-    env: process.env,
+    env: { ...process.env, PATH: pathValue },
     stdio: "inherit",
   });
   if (result.error || result.status === null) {

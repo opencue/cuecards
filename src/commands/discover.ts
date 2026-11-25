@@ -1565,7 +1565,7 @@ function parseSkillsShResult(body: unknown, limit: number) {
   if (!body || typeof body !== "object" || !("skills" in body) || !Array.isArray(body.skills)) {
     return null;
   }
-  const results = body.skills.slice(0, limit).flatMap((entry: unknown) => {
+  const results = body.skills.flatMap((entry: unknown) => {
     if (!entry || typeof entry !== "object") return [];
     const { id, source, name, installs } = entry as Record<string, unknown>;
     if (
@@ -1577,7 +1577,7 @@ function parseSkillsShResult(body: unknown, limit: number) {
       return [];
     }
     return [{ id, source, name, installs, url: `https://skills.sh/${id}` }];
-  });
+  }).slice(0, limit);
   return body.skills.length > 0 && results.length === 0 ? null : results;
 }
 

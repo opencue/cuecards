@@ -59,7 +59,7 @@ describe("cue discover search --skills-sh", () => {
     }));
     const out = spyOn(process.stdout, "write").mockImplementation(() => true);
     try {
-      expect(await run(["search", "--skills-sh", "frontend", "--json"])).toBe(0);
+      expect(await run(["search", "--skills-sh", "frontend", "--limit", "1", "--json"])).toBe(0);
       expect(JSON.parse(String(out.mock.calls[0]?.[0])).map((entry: { name: string }) => entry.name)).toEqual(["Vue"]);
     } finally {
       out.mockRestore();

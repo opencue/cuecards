@@ -11,7 +11,7 @@
  */
 
 import { describe, expect, test } from "bun:test";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { run } from "./ruler";
@@ -130,5 +130,22 @@ describe("cue ruler --rulesync", () => {
     const { code, stderr } = await captureIO(() => run(["--check"]));
     expect(code).toBe(1);
     expect(stderr).toContain("--check requires --rulesync");
+  });
+
+  test.skipIf(process.platform === "win32")("does not run a Rulesync executable planted in the target", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-path-"));
+    const path = process.env.PATH;
+    try {
+      process.env.PATH = ".";
+      writeFileSync(join(dir, "rulesync.jsonc"), "{}");
+      writeFileSync(join(dir, "rulesync"), "#!/bin/sh\nprintf ran > invocation\n", { mode: 0o755 });
+      const { code } = await captureIO(() => run(["--rulesync", "--dir", dir]));
+      expect(code).toBe(1);
+      expect(existsSync(join(dir, "invocation"))).toBe(false);
+    } finally {
+      if (path === undefined) delete process.env.PATH;
+      else process.env.PATH = path;
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
