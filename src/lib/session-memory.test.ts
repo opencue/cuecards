@@ -30,7 +30,11 @@ test("attributes launcher, agent, MCP subtrees and other descendants without dou
     add(21, 1, ["node", "/repo/dist/cue.js", "launch", "claude"], 100);
     add(22, 21, ["claude"], 1);
     add(23, 21, ["claude"], 2);
-    expect(await measureSessionMemory([12, 16, 20, 99], proc)).toEqual(new Map([
+    add(24, 12, ["bun", "/repo/src/index.ts", "launch", "codex"], 50);
+    add(25, 24, ["node", "/path/omx"], 10);
+    add(26, 25, ["codex"], 200);
+    add(27, 1, ["reused-pid"], 999);
+    expect(await measureSessionMemory(new Map([[12, 12], [16, 16], [20, 20], [26, 26], [27, 2], [99, 99]]), proc)).toEqual(new Map([
       [12, {
         totalPssKiB: 790,
         byRole: { launcher: 100, agent: 300, mcp: 300, other: 90 },
@@ -49,8 +53,14 @@ test("attributes launcher, agent, MCP subtrees and other descendants without dou
         measuredProcesses: 0,
         unreadableProcesses: 1,
       }],
+      [26, {
+        totalPssKiB: 260,
+        byRole: { launcher: 50, agent: 200, mcp: 0, other: 10 },
+        measuredProcesses: 3,
+        unreadableProcesses: 0,
+      }],
     ]));
-    const shared = await measureSessionMemory([22, 23], proc);
+    const shared = await measureSessionMemory(new Map([[22, 22], [23, 23]]), proc);
     expect(shared.get(22)?.totalPssKiB).toBe(1);
     expect(shared.get(23)?.totalPssKiB).toBe(2);
   } finally {

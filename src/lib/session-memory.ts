@@ -18,10 +18,11 @@ function read(path: string): string {
   }
 }
 
-function processStat(path: string) {
+export function processStat(path: string) {
   const stat = read(path);
+  const begin = stat.indexOf("(");
   const end = stat.lastIndexOf(")");
-  if (end === -1) return null;
+  if (begin === -1 || end <= begin) return null;
   // comm may contain parentheses and spaces. Fields after it start at #3.
   const fields = stat.slice(end + 2).trim().split(/\s+/);
   const ppid = Number(fields[1]);
@@ -29,7 +30,7 @@ function processStat(path: string) {
   if (!Number.isSafeInteger(ppid) || !Number.isSafeInteger(started) || fields[0] === "Z") {
     return null;
   }
-  return { ppid, started };
+  return { comm: stat.slice(begin + 1, end), ppid, started };
 }
 
 function isLauncher(argv: string[]): boolean {
@@ -67,9 +68,9 @@ async function readPss(dir: string, started: number): Promise<number | null> {
 }
 
 /** Read proportional resident memory (Linux PSS), without summing nested sessions twice. */
-export async function measureSessionMemory(pids: number[], proc = "/proc"): Promise<Map<number, SessionMemory>> {
+export async function measureSessionMemory(startTicks: ReadonlyMap<number, number>, proc = "/proc"): Promise<Map<number, SessionMemory>> {
   const results = new Map<number, SessionMemory>();
-  if (!pids.length) return results;
+  if (!startTicks.size) return results;
   let entries: string[];
   try {
     entries = readdirSync(proc);
@@ -90,7 +91,10 @@ export async function measureSessionMemory(pids: number[], proc = "/proc"): Prom
     else children.set(row.ppid, [pid]);
   }
 
-  const roots = new Set(pids);
+  const roots = new Set<number>();
+  for (const [pid, started] of startTicks) {
+    if (rows.get(pid)?.started === started) roots.add(pid);
+  }
   const argv = (pid: number) => read(`${proc}/${pid}/cmdline`).split("\0").filter(Boolean);
   const launchPaths = new Map<number, number[]>();
   const owners = new Map<number, number>();
@@ -111,7 +115,6 @@ export async function measureSessionMemory(pids: number[], proc = "/proc"): Prom
   }
 
   for (const pid of roots) {
-    if (!rows.has(pid)) continue;
     const memory: SessionMemory = {
       totalPssKiB: null,
       byRole: { launcher: 0, agent: 0, mcp: 0, other: 0 },
@@ -143,7 +146,9 @@ export async function measureSessionMemory(pids: number[], proc = "/proc"): Prom
       const [current, role] = next;
       if (seen.has(current)) continue;
       seen.add(current);
-      await record(current, role);
+      // A nested session may already own this launcher/wrapper path. Its
+      // other branches still belong to the outer tree, so keep descending.
+      if (owners.get(current) !== 1) await record(current, role);
       const parent = rows.get(current);
       if (!parent) continue;
       for (const child of children.get(current) ?? []) {

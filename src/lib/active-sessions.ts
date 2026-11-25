@@ -25,6 +25,7 @@
 import { existsSync, readdirSync, readFileSync, readlinkSync, } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { processStat } from "./session-memory";
 
 export interface ActiveSession {
   pid: number;
@@ -82,21 +83,6 @@ try {
   if (Number.isFinite(parsed) && parsed > 0) CLK_TCK = parsed;
 } catch { /* keep default */ }
 
-function processStartIso(pid: number, btimeMs: number | null): string {
-  if (btimeMs == null) return "";
-  try {
-    const raw = readFileSync(`/proc/${pid}/stat`, "utf8");
-    const closeParen = raw.lastIndexOf(")");
-    if (closeParen < 0) return "";
-    const fields = raw.slice(closeParen + 2).split(/\s+/);
-    const startTicks = parseInt(fields[19] ?? "", 10);
-    if (!Number.isFinite(startTicks)) return "";
-    return new Date(btimeMs + (startTicks / CLK_TCK) * 1000).toISOString();
-  } catch {
-    return "";
-  }
-}
-
 /**
  * Extract a cue profile name from a `CLAUDE_CONFIG_DIR` value. Matches the
  * canonical `<root>/<profile>/claude` materializer layout. Profile names may
@@ -151,8 +137,8 @@ export function isAgentProcess(comm: string, cmdline: string): boolean {
   return true;
 }
 
-/** Enumerate active agent sessions, newest first. */
-export function listActiveSessions(): ActiveSession[] {
+/** Enumerate active agent sessions, newest first. Optionally capture their undisplayed kernel identities. */
+export function listActiveSessions(startTicks?: Map<number, number>): ActiveSession[] {
   if (!supportsProcScan()) return [];
 
   const btimeMs = bootTimeMs();
@@ -173,8 +159,13 @@ export function listActiveSessions(): ActiveSession[] {
 
     // comm is cheap and discriminating — fetch it first so we can skip
     // the vast majority of system processes without reading environ.
-    let comm = "";
-    try { comm = readFileSync(`/proc/${pid}/comm`, "utf8").trim(); } catch { continue; }
+    const statPath = `/proc/${pid}/stat`;
+    const identity = startTicks ? processStat(statPath) : null;
+    if (startTicks && !identity) continue;
+    let comm = identity?.comm ?? "";
+    if (!identity) {
+      try { comm = readFileSync(`/proc/${pid}/comm`, "utf8").trim(); } catch { continue; }
+    }
     if (!comm) continue;
 
     // Quick reject: anything that obviously isn't an agent binary.
@@ -233,13 +224,18 @@ export function listActiveSessions(): ActiveSession[] {
       displayCwd = "~" + cwd.slice(home.length);
     }
 
+    if (identity && identity.started !== processStat(statPath)?.started) continue;
+    const started = identity?.started ?? (btimeMs ? processStat(statPath)?.started : undefined);
+    if (started !== undefined) startTicks?.set(pid, started);
     out.push({
       pid,
       profile,
       profileSource,
       agent: env?.get("CUE_AGENT") ?? (comm === "codex" ? "codex" : "claude"),
       cwd: displayCwd,
-      startedAt: btimeMs ? processStartIso(pid, btimeMs) : "",
+      startedAt: btimeMs && started !== undefined
+        ? new Date(btimeMs + (started / CLK_TCK) * 1000).toISOString()
+        : "",
     });
   }
 

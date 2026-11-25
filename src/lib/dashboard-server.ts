@@ -827,9 +827,10 @@ export async function handleActiveSessions(params = new URLSearchParams()): Prom
   if (!supportsProcScan()) {
     return { ok: true, data: { supported: false, sessions: [] } };
   }
-  const sessions = listActiveSessions();
-  if (!memory.length) return { ok: true, data: { supported: true, sessions } };
-  const snapshots = await measureSessionMemory(sessions.map(({ pid }) => pid));
+  if (!memory.length) return { ok: true, data: { supported: true, sessions: listActiveSessions() } };
+  const startTicks = new Map<number, number>();
+  const sessions = listActiveSessions(startTicks);
+  const snapshots = await measureSessionMemory(startTicks);
   return {
     ok: true,
     data: { supported: true, sessions: sessions.map((session) => ({
