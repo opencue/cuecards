@@ -6,8 +6,107 @@
  * All tests use an injectable mock searchFn; no real network calls are made.
  */
 
-import { describe, expect, test } from "bun:test";
-import { runQueryBatches, type GitHubRepoItem } from "./discover";
+import { describe, expect, spyOn, test } from "bun:test";
+import { run, runQueryBatches, type GitHubRepoItem } from "./discover";
+
+describe("cue discover search --skills-sh", () => {
+  test("sends only the explicit query to skills.sh and honors the result limit", async () => {
+    const fetcher = spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({
+      skills: [
+        { id: "vercel-labs/agent-skills/react", source: "vercel-labs/agent-skills", name: "React", installs: 3 },
+        { id: "example/skills/other", source: "example/skills", name: "Other", installs: 1 },
+      ],
+    }));
+    const out = spyOn(process.stdout, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "react & tests", "--json", "--limit", "1"])).toBe(0);
+      const url = new URL(String(fetcher.mock.calls[0]?.[0]));
+      expect(url.origin + url.pathname).toBe("https://skills.sh/api/search");
+      expect(Object.fromEntries(url.searchParams)).toEqual({ q: "react & tests", limit: "1" });
+      expect(JSON.parse(String(out.mock.calls[0]?.[0]))).toEqual([{
+        id: "vercel-labs/agent-skills/react", source: "vercel-labs/agent-skills",
+        name: "React", installs: 3, url: "https://skills.sh/vercel-labs/agent-skills/react",
+      }]);
+    } finally {
+      out.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("rejects malformed results and never mixes in repository filters", async () => {
+    const fetcher = spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({
+      skills: [{ id: "another/repo/react", source: "example/repo", name: "React", installs: 0 }],
+    }));
+    const err = spyOn(process.stderr, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "react", "--profile", "core"])).toBe(1);
+      expect(fetcher).not.toHaveBeenCalled();
+      expect(await run(["search", "--skills-sh", "react"])).toBe(1);
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(String(err.mock.calls[1]?.[0])).toContain("Unexpected skills.sh response");
+    } finally {
+      err.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("keeps valid results when some entries do not match the expected schema", async () => {
+    const fetcher = spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({
+      skills: [
+        { id: "example/repo/react", source: "example/repo", name: "\x1b[31mReact", installs: 2 },
+        { id: "example/repo/vue", source: "example/repo", name: "Vue", installs: 1 },
+      ],
+    }));
+    const out = spyOn(process.stdout, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "frontend", "--limit", "1", "--json"])).toBe(0);
+      expect(JSON.parse(String(out.mock.calls[0]?.[0])).map((entry: { name: string }) => entry.name)).toEqual(["Vue"]);
+    } finally {
+      out.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("prints terminal-friendly results and handles an empty search", async () => {
+    const fetcher = spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(Response.json({
+        skills: [{ id: "example/repo/react", source: "example/repo", name: "React", installs: 2 }],
+      }))
+      .mockResolvedValueOnce(Response.json({ skills: [] }));
+    const out = spyOn(process.stdout, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "react"])).toBe(0);
+      expect(out.mock.calls[0]?.[0]).toBe("React  https://skills.sh/example/repo/react  (2 installs)\n");
+      expect(await run(["search", "--skills-sh", "no-match"])).toBe(0);
+      expect(out.mock.calls[1]?.[0]).toBe("No skills.sh results.\n");
+    } finally {
+      out.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("validates limits before fetching and explains a catalog outage", async () => {
+    const fetcher = spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("network down"))
+      .mockResolvedValueOnce(new Response("", { status: 503 }));
+    const err = spyOn(process.stderr, "write").mockImplementation(() => true);
+    try {
+      for (const args of [["--limit"], ["--limit", "101"]]) {
+        expect(await run(["search", "--skills-sh", "react", ...args])).toBe(1);
+        expect(String(err.mock.calls.at(-1)?.[0])).toContain("--limit must be an integer");
+      }
+      expect(fetcher).not.toHaveBeenCalled();
+      for (let i = 0; i < 2; i++) {
+        expect(await run(["search", "--skills-sh", "react"])).toBe(1);
+        expect(String(err.mock.calls.at(-1)?.[0])).toContain("skills.sh search unavailable");
+        expect(String(err.mock.calls.at(-1)?.[0])).toContain("for GitHub");
+      }
+    } finally {
+      err.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+});
 
 // ---------------------------------------------------------------------------
 // Helpers

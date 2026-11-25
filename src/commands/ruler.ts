@@ -15,8 +15,11 @@
  *   cue ruler --revert --all      # restore .bak / remove generated files
  */
 
-import { relative } from "node:path";
+import { spawnSync } from "node:child_process";
+import { existsSync } from "node:fs";
+import { delimiter, isAbsolute, join, relative } from "node:path";
 
+import { findRealAgentBin } from "../lib/claude-binary";
 import { loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { getAdapter, AGENT_IDS, type AgentAdapter } from "../lib/agent-adapters";
@@ -44,6 +47,52 @@ function rel(targetDir: string, p: string | null): string {
   if (!p) return "";
   const r = relative(targetDir, p);
   return r.startsWith("..") ? p : r;
+}
+
+function runRulesync(args: string[]): number {
+  const dir = flagValue(args, "--dir") ?? process.cwd();
+  const check = args.includes("--check");
+  const dryRun = args.includes("--dry-run");
+  const dirIndex = args.indexOf("--dir");
+  if (
+    (check && dryRun)
+    || (dirIndex !== -1 && (!args[dirIndex + 1] || args[dirIndex + 1]!.startsWith("-")))
+    || args.some((arg, i) => (dirIndex === -1 || i !== dirIndex + 1)
+      && !["--rulesync", "--check", "--dry-run", "--dir"].includes(arg))
+  ) {
+    process.stderr.write("Usage: cue ruler --rulesync [--dry-run | --check] [--dir <path>]\n");
+    return 1;
+  }
+  if (!existsSync(join(dir, "rulesync.jsonc"))) {
+    process.stderr.write("Rulesync requires rulesync.jsonc in the selected project.\n");
+    return 1;
+  }
+
+  // Resolve before changing cwd. Relative PATH entries must not pick a tool or
+  // a shebang interpreter from the target project.
+  const pathValue = (process.env.PATH ?? "").split(delimiter).filter(isAbsolute).join(delimiter);
+  const windows = process.platform === "win32";
+  const bin = findRealAgentBin(windows ? "rulesync.exe" : "rulesync", { pathValue, pathExt: "" });
+  if (!bin) {
+    process.stderr.write(windows
+      ? "Add the native Rulesync release executable to PATH as rulesync.exe.\n"
+      : "Make sure the rulesync executable is on an absolute PATH entry.\n");
+    return 1;
+  }
+  const result = spawnSync(bin, ["generate", check ? "--check" : "--dry-run"], {
+    cwd: dir,
+    env: { ...process.env, PATH: pathValue },
+    stdio: "inherit",
+  });
+  if (result.error) {
+    process.stderr.write("Could not run Rulesync. Make sure the rulesync executable is on PATH.\n");
+    return 1;
+  }
+  if (result.status === null) {
+    process.stderr.write(`Rulesync was terminated by ${result.signal ?? "a signal"}.\n`);
+    return 1;
+  }
+  return result.status;
 }
 
 function printAction(targetDir: string, name: string, a: RulerAction): void {
@@ -95,6 +144,7 @@ export async function run(args: string[]): Promise<number> {
 
 Usage: cue ruler [--all | --agents <a,b,...>] [--dir <path>] [options]
        cue ruler --revert [--all | --agents <a,b,...>] [--keep-backups]
+       cue ruler --rulesync [--dry-run | --check] [--dir <path>]
 
 Targets:
   (default)            the profile's own agents (its agents: list)
@@ -108,6 +158,8 @@ Options:
   --gitignore          add the generated rule files (+ .bak) to .gitignore
   --revert             restore .bak files / remove cue-generated rule files
   --keep-backups       on --revert, keep the .bak files after restoring
+  --rulesync           preview configured Rulesync output using the installed CLI
+  --check              with --rulesync, fail if generated files are out of sync
 
 Notes:
   Source of truth is the profile's rules[] (resolved from resources/rules/).
@@ -122,6 +174,11 @@ Notes:
     return 0;
   }
 
+  if (args.includes("--rulesync")) return runRulesync(args);
+  if (args.includes("--check")) {
+    process.stderr.write("--check requires --rulesync.\n");
+    return 1;
+  }
   const dryRun = args.includes("--dry-run");
   const doRevert = args.includes("--revert");
   const keepBackups = args.includes("--keep-backups");

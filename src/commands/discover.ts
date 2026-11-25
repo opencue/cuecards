@@ -1561,6 +1561,79 @@ function cmdList(opts: { json: boolean; limit: number; filter?: GemFilter; rende
 // Router
 // ---------------------------------------------------------------------------
 
+function parseSkillsShResult(body: unknown, limit: number) {
+  if (!body || typeof body !== "object" || !("skills" in body) || !Array.isArray(body.skills)) {
+    return null;
+  }
+  const results = body.skills.flatMap((entry: unknown) => {
+    if (!entry || typeof entry !== "object") return [];
+    const { id, source, name, installs } = entry as Record<string, unknown>;
+    if (
+      typeof id !== "string" || !/^[\w-]+\/[a-z0-9_][\w.-]*\/[a-z0-9_][\w.-]*$/i.test(id)
+      || typeof source !== "string" || source !== id.slice(0, id.lastIndexOf("/"))
+      || typeof name !== "string" || !name.trim() || name.length > 200 || /[\p{Cc}\p{Cf}\p{Zl}\p{Zp}]/u.test(name)
+      || typeof installs !== "number" || !Number.isSafeInteger(installs) || installs < 0
+    ) {
+      return [];
+    }
+    return [{ id, source, name, installs, url: `https://skills.sh/${id}` }];
+  }).slice(0, limit);
+  return body.skills.length > 0 && results.length === 0 ? null : results;
+}
+
+async function cmdSearchSkillsSh(args: string[]): Promise<number> {
+  const terms: string[] = [];
+  let limit = 50;
+  const json = args.includes("--json");
+  for (const [i, arg] of args.entries()) {
+    if (arg === "--skills-sh" || arg === "--json") continue;
+    if (arg === "--limit") {
+      const value = args[i + 1];
+      if (!value || !/^\d+$/.test(value) || Number(value) < 1 || Number(value) > 100) {
+        process.stderr.write("skills.sh search: --limit must be an integer from 1 to 100.\n");
+        return 1;
+      }
+      limit = Number(value);
+    } else if (args[i - 1] === "--limit") {
+      continue;
+    } else if (arg.startsWith("-")) {
+      process.stderr.write("skills.sh search only supports --limit and --json.\n");
+      return 1;
+    } else {
+      terms.push(arg);
+    }
+  }
+  const query = terms.join(" ").trim();
+  if (!query || query.length > 200) {
+    process.stderr.write("skills.sh search requires a query of 1–200 characters.\n");
+    return 1;
+  }
+
+  let payload: unknown;
+  try {
+    const url = new URL("https://skills.sh/api/search");
+    url.searchParams.set("q", query);
+    url.searchParams.set("limit", String(limit));
+    const response = await fetch(url, { signal: AbortSignal.timeout(5_000), redirect: "error" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    payload = await response.json().catch(() => undefined);
+  } catch {
+    process.stderr.write("skills.sh search unavailable. Retry or use `cue discover search <query>` for GitHub.\n");
+    return 1;
+  }
+  const skills = parseSkillsShResult(payload, limit);
+  if (!skills) {
+    process.stderr.write("Unexpected skills.sh response. Use `cue discover search <query>` for GitHub.\n");
+    return 1;
+  }
+  if (json) process.stdout.write(`${JSON.stringify(skills, null, 2)}\n`);
+  else if (!skills.length) process.stdout.write("No skills.sh results.\n");
+  else for (const skill of skills) {
+    process.stdout.write(`${skill.name}  ${skill.url}  (${skill.installs} installs)\n`);
+  }
+  return 0;
+}
+
 /** Pull `--flag <value>` out of args, returning value (or undefined). */
 function flagValue(args: string[], flag: string): string | undefined {
   const i = args.indexOf(flag);
@@ -1639,6 +1712,8 @@ Usage:
   cue discover mcps --profile <name>       Scope to a specific profile
   cue discover search [query]              Scan GitHub for undiscovered skill repos
   cue discover search --profile <name>     Find gems for a specific profile
+  cue discover search --skills-sh <query>  Search Vercel's skill index (no install)
+                                             --limit <n> --json
   cue discover analyze                     Use Claude to determine best profile per gem
   cue discover install                     Install cached gems into their suggested profiles
   cue discover install --profile <name>    Install only gems for a profile
@@ -1732,6 +1807,11 @@ Examples:
     return 0;
   }
 
+  if (args.includes("--skills-sh")) {
+    if (args[0] === "search") return cmdSearchSkillsSh(args.slice(1));
+    process.stderr.write("--skills-sh is only supported by `cue discover search`.\n");
+    return 1;
+  }
   if (exportFlag) return cmdExport(exportPath, { site: siteMode, html: htmlMode });
 
   // Strip flag values from positional args.

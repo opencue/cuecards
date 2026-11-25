@@ -11,6 +11,9 @@
  */
 
 import { describe, expect, test } from "bun:test";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { run } from "./ruler";
 
 function captureIO(fn: () => Promise<number>): Promise<{ stdout: string; stderr: string; code: number }> {
@@ -90,5 +93,76 @@ describe("cue ruler --dry-run", () => {
     // Either "dry-run" appears in the output or the profile has no rules to distribute
     const hasRules = stdout.includes("dry-run") || stdout.includes("no rules");
     expect(hasRules).toBe(true);
+  });
+});
+
+describe("cue ruler --rulesync", () => {
+  test.skipIf(process.platform === "win32")("defaults to preview and propagates the check exit code", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-"));
+    const path = process.env.PATH;
+    try {
+      process.env.PATH = dir;
+      writeFileSync(join(dir, "rulesync.jsonc"), "{}");
+      writeFileSync(join(dir, "rulesync"), [
+        "#!/bin/sh",
+        "printf '%s\\n' \"$@\" > invocation",
+        "[ \"$2\" != --check ]",
+      ].join("\n"), { mode: 0o755 });
+
+      expect(await run(["--rulesync", "--dir", dir])).toBe(0);
+      expect(readFileSync(join(dir, "invocation"), "utf8")).toBe("generate\n--dry-run\n");
+      expect(await run(["--rulesync", "--dir", dir, "--check"])).toBe(1);
+      expect(readFileSync(join(dir, "invocation"), "utf8")).toBe("generate\n--check\n");
+    } finally {
+      if (path === undefined) delete process.env.PATH;
+      else process.env.PATH = path;
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  test("rejects a mix of Cue and Rulesync options before running anything", async () => {
+    const { code, stderr } = await captureIO(() => run(["--rulesync", "--revert"]));
+    expect(code).toBe(1);
+    expect(stderr).toContain("--rulesync");
+  });
+
+  test("does not turn a bare --check into a Cue write", async () => {
+    const { code, stderr } = await captureIO(() => run(["--check"]));
+    expect(code).toBe(1);
+    expect(stderr).toContain("--check requires --rulesync");
+  });
+
+  test.skipIf(process.platform === "win32")("distinguishes a signal from a missing executable", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-signal-"));
+    const path = process.env.PATH;
+    try {
+      process.env.PATH = dir;
+      writeFileSync(join(dir, "rulesync.jsonc"), "{}");
+      writeFileSync(join(dir, "rulesync"), '#!/bin/sh\nkill -TERM "$$"\n', { mode: 0o755 });
+      const { code, stderr } = await captureIO(() => run(["--rulesync", "--dir", dir]));
+      expect(code).toBe(1);
+      expect(stderr).toContain("Rulesync was terminated by SIGTERM");
+    } finally {
+      if (path === undefined) delete process.env.PATH;
+      else process.env.PATH = path;
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  test.skipIf(process.platform === "win32")("does not run a Rulesync executable planted in the target", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-path-"));
+    const path = process.env.PATH;
+    try {
+      process.env.PATH = ".";
+      writeFileSync(join(dir, "rulesync.jsonc"), "{}");
+      writeFileSync(join(dir, "rulesync"), "#!/bin/sh\nprintf ran > invocation\n", { mode: 0o755 });
+      const { code } = await captureIO(() => run(["--rulesync", "--dir", dir]));
+      expect(code).toBe(1);
+      expect(existsSync(join(dir, "invocation"))).toBe(false);
+    } finally {
+      if (path === undefined) delete process.env.PATH;
+      else process.env.PATH = path;
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
