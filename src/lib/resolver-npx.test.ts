@@ -81,15 +81,15 @@ function seedCache(repo: string, pin: string | undefined, skills: string[]): str
 // --- cache-key scheme ------------------------------------------------------
 
 describe("cacheKey", () => {
-  it("uses sha256(repo + (pin || 'HEAD'))", () => {
+  it("preserves unpinned keys but invalidates old pinned keys", () => {
     expect(cacheKey("anthropics/skills", undefined)).toBe(
       createHash("sha256").update("anthropics/skillsHEAD").digest("hex"),
     );
     expect(cacheKey("anthropics/skills", "tag@v1.2.3")).toBe(
-      createHash("sha256").update("anthropics/skillstag@v1.2.3").digest("hex"),
+      createHash("sha256").update("pinned-v2:anthropics/skills:tag@v1.2.3").digest("hex"),
     );
     expect(cacheKey("anthropics/skills", "git@abcdef0")).toBe(
-      createHash("sha256").update("anthropics/skillsgit@abcdef0").digest("hex"),
+      createHash("sha256").update("pinned-v2:anthropics/skills:git@abcdef0").digest("hex"),
     );
   });
 

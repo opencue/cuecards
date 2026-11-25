@@ -1,6 +1,7 @@
 import { createRootRoute, createRoute, createRouter, Link, Outlet, redirect } from "@tanstack/react-router";
 import { StudioApp, type View } from "./studio/StudioApp";
 import { WorkspacesPage } from "./workspaces/Workspaces";
+import { SkillCatalog } from "./routes/SkillCatalog";
 import { parseStudioView, parseWorkspaceSearch } from "./route-search";
 import { isDemoMode } from "./lib/fetcher";
 
@@ -26,5 +27,8 @@ const workspaces = createRoute({
   getParentRoute: () => root, path: "/workspaces", component: WorkspacesPage,
   validateSearch: parseWorkspaceSearch,
 });
-export const router = createRouter({ routeTree: root.addChildren([home, workspaces, legacyStudio]) });
+const skills = createRoute({
+  getParentRoute: () => root, path: "/skills", component: SkillCatalog,
+});
+export const router = createRouter({ routeTree: root.addChildren([home, skills, workspaces, legacyStudio]) });
 declare module "@tanstack/react-router" { interface Register { router: typeof router } }

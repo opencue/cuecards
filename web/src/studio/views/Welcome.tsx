@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import styles from "./Welcome.module.css";
 
 export function Welcome({ onBrowse }: { onBrowse: () => void }) {
@@ -19,6 +20,7 @@ export function Welcome({ onBrowse }: { onBrowse: () => void }) {
       <p className={styles.intro}>Cue gives each project the skills, tools and instructions its coding agent needs. Discover how other people work, inspect their profiles, and try them with the Cue CLI on your own machine.</p>
       <div className={styles.actions}>
         <button className="de-btn primary" onClick={onBrowse}>Browse community profiles →</button>
+        <Link to="/skills">Browse skills →</Link>
         <a href="https://github.com/opencue/cuecards" target="_blank" rel="noopener noreferrer">Explore Cue on GitHub ↗</a>
       </div>
       <div className={styles.steps}>

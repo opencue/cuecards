@@ -1,0 +1,61 @@
+name: Check fork skill updates
+on:
+  schedule:
+    - cron: "43 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-fork-skills
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.3.13
+      - name: Compare catalog pins to source trees
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bun scripts/refresh-fork-skills.ts --write > "$RUNNER_TEMP/fork-skills.md"
+          cat "$RUNNER_TEMP/fork-skills.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Propose changed pins for review
+        env:
+          GH_TOKEN: ${{ secrets.FORK_SKILLS_PR_TOKEN }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          files=(web/src/skill-catalog.json profiles/nagyvikt-skills/profile.yaml)
+          if git diff --quiet -- "${files[@]}"; then exit 0; fi
+          if [ -z "$GH_TOKEN" ]; then
+            {
+              echo 'No scoped PR token configured. Review the sources and apply the proposed pins manually:'
+              echo '~~~diff'
+              git diff -- "${files[@]}"
+              echo '~~~'
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          open="$(gh pr list --base "$BASE_BRANCH" --state open --json headRefName \
+            --jq 'any(.[]; .headRefName | startswith("automation/fork-skill-refresh-"))')"
+          if [ "$open" = true ]; then
+            echo 'A fork skill update PR is already open.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          branch="automation/fork-skill-refresh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          git switch -c "$branch"
+          git add -- "${files[@]}"
+          git -c user.name=cue-bot -c user.email=cue-bot@users.noreply.github.com \
+            commit -m 'chore(skills): refresh reviewed fork candidates'
+          gh auth setup-git
+          git push origin "HEAD:refs/heads/$branch"
+          gh pr create --base "$BASE_BRANCH" --head "$branch" --title 'chore(skills): review fork skill updates' \
+            --body-file "$RUNNER_TEMP/fork-skills.md" >> "$GITHUB_STEP_SUMMARY"

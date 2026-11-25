@@ -25,6 +25,7 @@ import { fetchCompanionFiles, readSourceFile, findIncompleteSkills } from "../li
 import { gateFreshSkill } from "./security";
 import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import { insertSkillsIntoYaml } from "../lib/profile-yaml-editor";
+import { forkSkillUrl, searchForkSkills } from "../../web/src/skill-catalog";
 
 const PROFILES_DIR = process.env.CUE_PROFILES_DIR ?? join(repoRoot(), "profiles");
 const SKILLS_ROOT = join(repoRoot(), "resources", "skills", "skills");
@@ -831,9 +832,9 @@ async function handleAddToExistingProfile(selectedSkills: string[]): Promise<num
   return 0;
 }
 
-async function cmdNpxAdd(args: string[]): Promise<number> {
+async function cmdNpxAdd(args: string[], sourceRepo?: string): Promise<number> {
   const addArgs = args.slice(1); // skip "add"
-  const repo = addArgs.find(
+  const repo = sourceRepo ?? addArgs.find(
     (a) => !a.startsWith("-") && !["claude-code", "codex", "*"].includes(a),
   );
 
@@ -948,6 +949,28 @@ async function cmdNpxAdd(args: string[]): Promise<number> {
     return handleAddToExistingProfile(selectedSkills);
   }
 
+  return 0;
+}
+
+async function cmdCatalog(args: string[], json: boolean): Promise<number> {
+  if (args[0] === "install") {
+    const skill = args.length === 2 ? searchForkSkills().find(entry => entry.id === args[1]) : undefined;
+    if (!skill) {
+      process.stderr.write("Choose a catalog skill: cue skills catalog install <id>\n");
+      return 1;
+    }
+    return cmdNpxAdd(["add", forkSkillUrl(skill), "--skill", skill.id, "--global"], skill.repo);
+  }
+
+  const skills = searchForkSkills(args.join(" "));
+  if (json) process.stdout.write(`${JSON.stringify(skills, null, 2)}\n`);
+  else if (!skills.length) process.stdout.write("No fork skills match your search.\n");
+  else {
+    for (const skill of skills) {
+      process.stdout.write(`${skill.id} — ${skill.description}\n  ${forkSkillUrl(skill)}\n`);
+    }
+    process.stdout.write("\nInstall a reviewed version: cue skills catalog install <id>\n");
+  }
   return 0;
 }
 // ---------------------------------------------------------------------------
@@ -1423,6 +1446,8 @@ Subcommands:
   list                 Skills in active profile
   available            Skills NOT in active profile
   search <query>       Fuzzy search all skills
+  catalog [query]      Browse the curated GitHub fork skills
+  catalog install <id> Install a curated skill at its catalog commit
   add-to-profile <id>  Add skill to active profile
   remove-from-profile  Remove skill from active profile
   rank [limit]         Usage leaderboard
@@ -1461,6 +1486,8 @@ Examples:
       return cmdAvailable(json);
     case "search":
       return cmdSearch(rest.slice(1).join(" ") || "", json);
+    case "catalog":
+      return cmdCatalog(rest.slice(1), json);
     case "add-to-profile":
       return cmdAddToProfile(rest[1] ?? "", args.includes("--preview"));
     case "remove-from-profile":

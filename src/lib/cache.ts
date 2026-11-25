@@ -5,7 +5,7 @@
  *
  *   <repoRoot>/profiles/_cache/npx/<key>/<skill-name>/SKILL.md
  *
- * Callers compute `<key>` (sha256 of repo + pin) and hand it to:
+ * Callers compute `<key>` from the repository and pin and hand it to:
  *   - cachePath(key)        -> absolute dir path (may or may not exist)
  *   - cacheHit(key)         -> true iff a non-empty cache dir exists
  *   - cachePut(key, srcDir) -> atomic-ish move of an already-prepared

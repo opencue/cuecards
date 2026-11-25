@@ -1,0 +1,23 @@
+[
+  {
+    "id": "blog-brief",
+    "description": "Create a blog brief with search intent, keywords, an outline, and internal links.",
+    "repo": "NagyVikt/claude-blog",
+    "directory": "skills/blog-brief",
+    "commit": "901e9217b0f542e10a0b0c0f8692a95d1f42f43c"
+  },
+  {
+    "id": "blog-calendar",
+    "description": "Plan a monthly or quarterly publishing calendar, topic clusters, and content refreshes.",
+    "repo": "NagyVikt/claude-blog",
+    "directory": "skills/blog-calendar",
+    "commit": "901e9217b0f542e10a0b0c0f8692a95d1f42f43c"
+  },
+  {
+    "id": "design-motion-principles",
+    "description": "Review UI animations, transitions, and hover states for timing, accessibility, and performance.",
+    "repo": "NagyVikt/design-motion-principles",
+    "directory": "skills/design-motion-principles",
+    "commit": "74d1f62d8095c51c024bcd828cccda793b5f26e4"
+  }
+]
