@@ -5,14 +5,16 @@ import { join } from "node:path";
 
 function runCue({
   answer = "y", args = ["launch", "codex", "two words"], isTTY = true,
-  latest = "0.12.0", installFails = false, local = false, recent = false, env = {},
+  latest = "0.12.0", installFails = false, local = false, recent = false, busy = false, env = {},
 }: {
   answer?: string; args?: string[]; isTTY?: boolean; latest?: string;
-  installFails?: boolean; local?: boolean; recent?: boolean; env?: Record<string, string>;
+  installFails?: boolean; local?: boolean; recent?: boolean; busy?: boolean; env?: Record<string, string>;
 } = {}) {
   const dir = realpathSync(mkdtempSync(join(tmpdir(), "cue-npm-update-")));
-  const globalRoot = join(dir, "global");
-  const pkg = join(local ? join(dir, "local") : globalRoot, "cue-ai");
+  const globalRoot = process.platform === "win32"
+    ? join(dir, "global", "node_modules")
+    : join(dir, "global", "lib", "node_modules");
+  const pkg = join(local ? join(dir, "local", "node_modules") : globalRoot, "cue-ai");
   const project = join(dir, "project");
   const config = join(dir, "config");
   const events = join(dir, "events");
@@ -25,6 +27,7 @@ function runCue({
     writeFileSync(join(pkg, "package.json"), JSON.stringify({ type: "module", version: "0.11.7" }));
     writeFileSync(join(pkg, "dist", "cue.js"), "console.log('old bundle')");
     writeFileSync(events, "");
+    if (busy) mkdirSync(join(globalRoot, ".cue-ai-0.11.7.update-lock"));
     if (recent) {
       mkdirSync(join(config, "cue"), { recursive: true });
       writeFileSync(join(config, "cue", ".last-update-check"), String(Date.now()));
@@ -45,11 +48,12 @@ globalThis.fetch = async (url) => {
   record(["fetch", url]);
   return new Response(JSON.stringify({ version: latest }));
 };
-require("node:child_process").spawnSync = (cmd, args) => {
+require("node:child_process").spawnSync = (cmd, args, options) => {
   if (cmd === "cmd.exe") args = args.slice(3);
   record(args);
   if (args[0] === "root") return { status: 0, stdout: globalRoot + "\\n" };
   if (args[0] !== "install" || installFails) return { status: 1 };
+  if (options.timeout !== undefined) throw Error("do not forcibly terminate npm during install");
   fs.writeFileSync(path.join(pkg, "package.json"), JSON.stringify({ type: "module", version: latest }));
   fs.writeFileSync(path.join(pkg, "dist", "cue.js"),
     'console.log(JSON.stringify({ args: process.argv.slice(2), cwd: process.cwd(), root: process.env.CUE_REPO_ROOT })); process.exitCode = 7;');
@@ -102,6 +106,13 @@ test("failed npm install continues with the old bundle", () => {
   expect(result.code).toBe(0);
 });
 
+test("does not offer or run a second update while this installation is locked", () => {
+  const result = runCue({ busy: true });
+  expect(result.stdout).toBe("old bundle");
+  expect(result.stderr).not.toContain("[y/N]");
+  expect(result.events).toEqual([["root", "-g"]]);
+});
+
 test("non-interactive, nested, opt-out, cached, and read-only calls do not check", () => {
   for (const flags of [
     { isTTY: false }, { env: { CUE_LAUNCHING: "1" } }, { env: { CI: "true" } },
@@ -116,7 +127,7 @@ test("non-interactive, nested, opt-out, cached, and read-only calls do not check
 });
 
 test("does not offer updates for local installs, downgrades, or invalid registry versions", () => {
-  expect(runCue({ local: true }).events).toEqual([["root", "-g"]]);
+  expect(runCue({ local: true }).events).toEqual(process.platform === "win32" ? [["root", "-g"]] : []);
   for (const latest of ["0.10.3", "0.11.7", "3.4.5; unexpected"]) {
     const result = runCue({ latest });
     expect(result.stderr).not.toContain("[y/N]");

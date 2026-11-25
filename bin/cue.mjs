@@ -9,9 +9,9 @@
  *
  * The repo's own dev/shim path uses bin/cue (bash → bun src), not this file.
  */
-import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, realpathSync, rmdirSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const pkgRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -36,11 +36,18 @@ async function maybeUpdate() {
       args.some((arg) => ["--help", "-h", "--version", "-v", "--json"].includes(arg)) ||
       (args[0] === "current" && args.includes("--plan"))) return;
 
+  // POSIX global npm installs use <prefix>/lib/node_modules. Avoid starting
+  // npm at all for the usual local and npx paths.
+  const scope = dirname(pkgRoot);
+  if (process.platform !== "win32" &&
+      (basename(scope) !== "node_modules" || basename(dirname(scope)) !== "lib")) return;
+
   const current = readVersion();
   if (typeof current !== "string" || !stableVersion.test(current)) return;
   const cueConfig = join(process.env.XDG_CONFIG_HOME || join(homedir(), ".config"), "cue");
   const stamp = join(cueConfig, ".last-update-check");
-  if (existsSync(stamp) && Date.now() - Number(readFileSync(stamp, "utf8")) < 86_400_000) return;
+  const checkedRecently = () => existsSync(stamp) && Date.now() - Number(readFileSync(stamp, "utf8")) < 86_400_000;
+  if (checkedRecently()) return;
 
   const { spawnSync } = await import("node:child_process");
   function npm(args, timeout) {
@@ -54,6 +61,21 @@ async function maybeUpdate() {
   if (globalRoot.status !== 0 || !globalRoot.stdout.trim() ||
       join(realpathSync(globalRoot.stdout.trim()), "cue-ai") !== pkgRoot) return;
 
+  // Serialize updates to this installation, even across different config dirs.
+  // A manual npm upgrade also sidesteps a lock left by an uncatchable exit.
+  const lock = join(scope, `.cue-ai-${current}.update-lock`);
+  try { mkdirSync(lock); } catch { return; }
+  const release = () => { try { rmdirSync(lock); } catch {} };
+  process.once("exit", release);
+  try {
+    if (!checkedRecently() && current === readVersion()) await checkAndUpdate(current, cueConfig, stamp, npm);
+  } finally {
+    process.removeListener("exit", release);
+    release();
+  }
+}
+
+async function checkAndUpdate(current, cueConfig, stamp, npm) {
   // Throttle attempts even when offline so the interactive start stays responsive.
   mkdirSync(cueConfig, { recursive: true });
   writeFileSync(stamp, String(Date.now()));
@@ -79,8 +101,13 @@ async function maybeUpdate() {
   if (!/^y(es)?$/i.test(answer.trim()) || current !== readVersion()) return;
 
   process.stderr.write(`Updating Cue to ${latest}…\n`);
-  const result = npm(["install", "-g", `cue-ai@${latest}`, `--registry=${registry}`, "--ignore-scripts", "--no-audit", "--no-fund"], 60_000);
-  if (result.status === 0 && readVersion() === latest && existsSync(bundle)) {
+  // Let npm finish or roll back package writes; limit network retries instead
+  // of killing the installer in the middle of the transaction.
+  const result = npm([
+    "install", "-g", `cue-ai@${latest}`, `--registry=${registry}`, "--ignore-scripts", "--no-audit", "--no-fund",
+    "--fetch-timeout=20000", "--fetch-retries=1",
+  ]);
+  if (result.status === 0 && existsSync(bundle) && readVersion() === latest) {
     process.stderr.write(`Cue updated to ${latest}. Continuing…\n`);
   } else {
     process.stderr.write("Cue update failed. To retry manually: npm install -g cue-ai\n");
@@ -90,5 +117,9 @@ async function maybeUpdate() {
 // Import only after npm finishes: the selected bundle inherits this exact argv,
 // cwd, and terminal, without re-launching the shim or loading the old CLI first.
 await maybeUpdate().catch(() => {});
+if (!existsSync(bundle)) {
+  process.stderr.write("Cue is missing its CLI bundle. Reinstall with: npm install -g cue-ai\n");
+  process.exit(2);
+}
 if (!process.env.CUE_REPO_ROOT) process.env.CUE_REPO_ROOT = pkgRoot;
 await import(pathToFileURL(bundle).href);
