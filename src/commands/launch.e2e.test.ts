@@ -11,6 +11,7 @@ import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { loadProfile } from "../lib/profile-loader";
 import { cacheKey } from "../lib/resolver-npx";
+import { profilesDir } from "../lib/repo-root";
 
 const CUE_BIN = join(import.meta.dir, "../index.ts");
 
@@ -246,28 +247,38 @@ describe.skipIf(!BUN_SPAWNABLE || !SKILLS_PRESENT)("cue launch e2e", () => {
     expect(res.stdout.trim()).toBe("FAKE-CLAUDE --print -p hello");
   });
 
-  test("only a materialized Codex wrapper launch delegates OMX setup to Cue", async () => {
+  test.skipIf(process.platform === "win32")("only a materialized Codex wrapper launch delegates OMX setup to Cue", async () => {
     const wrapper = join(tmpDir, "omx");
     await writeFile(wrapper, '#!/usr/bin/env bash\nprintf "UPDATE_SETUP=%s\nCODEX_HOME=%s\n" "${OMX_DEFERRED_UPDATE_SETUP:-unset}" "$CODEX_HOME"\n', { mode: 0o755 });
+    const lifecycleHook = { hooks: [{ type: "command", command: `'${wrapper}' codex-native-hook` }] };
+    const customHook = { hooks: [{ type: "command", command: "echo custom-session-hook" }] };
+    const fixtureProfiles = join(tmpDir, "profiles");
+    for (const name of ["core", "ponytail", "caveman-quick"]) {
+      await mkdir(join(fixtureProfiles, name), { recursive: true });
+      const yaml = await readFile(join(profilesDir(), name, "profile.yaml"), "utf8");
+      const extra = name === "caveman-quick"
+        ? `\ncodex:\n  hooks:\n    SessionStart: ${JSON.stringify([customHook, lifecycleHook])}\n`
+        : "";
+      await writeFile(join(fixtureProfiles, name, "profile.yaml"), yaml + extra);
+    }
     const codexHome = join(tmpDir, "codex");
     await mkdir(codexHome);
     const env = {
+      CUE_PROFILES_DIR: fixtureProfiles,
       CUE_REAL_CODEX: wrapper,
       CODEX_HOME: codexHome,
       OMX_DEFERRED_UPDATE_SETUP: "",
     };
     const args = ["launch", "codex", "--cue-profile", "caveman-quick", "hello"];
     const normal = cue(args, { cwd: tmpDir, env });
-    expect(normal.status).toBe(0);
+    expect(normal.status, normal.stderr).toBe(0);
     expect(normal.stdout).toContain("UPDATE_SETUP=external");
     const runtimeHome = /^CODEX_HOME=(.+)$/m.exec(normal.stdout)![1]!;
     expect(runtimeHome).not.toBe(codexHome);
     expect(existsSync(join(codexHome, "hooks.json"))).toBe(false);
     const { hooks } = JSON.parse(await readFile(join(runtimeHome, "hooks.json"), "utf8"));
-    const lifecycleHook = {
-      hooks: [{ type: "command", command: `'${wrapper}' codex-native-hook` }],
-    };
-    expect(hooks.SessionStart).toContainEqual(lifecycleHook);
+    expect(hooks.SessionStart).toContainEqual(customHook);
+    expect(hooks.SessionStart.filter((group: unknown) => JSON.stringify(group) === JSON.stringify(lifecycleHook))).toHaveLength(1);
     expect(hooks.SubagentStart).toContainEqual(lifecycleHook);
     expect(hooks.SubagentStop).toContainEqual(lifecycleHook);
     const bypassed = cue(args, { cwd: tmpDir, env: { ...env, CUE_BYPASS: "1" } });
