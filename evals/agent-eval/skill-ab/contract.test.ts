@@ -174,6 +174,18 @@ for (const [name, repair] of Object.entries(repairs)) {
         const premature = run();
         expect(premature.status).not.toBe(0);
         expect(premature.stdout).toContain("resource stays open until the async action completes");
+
+        writeFileSync(join(scratch, "src/index.js"), `export async function withResource(open, action) {
+          const resource = await open();
+          try { return await action(resource); }
+          finally {
+            const closing = resource.close();
+            await Promise.resolve(closing).catch(() => {});
+          }
+        }`);
+        const swallowed = run();
+        expect(swallowed.status).toBe(1);
+        expect(swallowed.stdout).toContain("async close rejection takes precedence over the action");
       }
     } finally {
       rmSync(scratch, { recursive: true, force: true });
