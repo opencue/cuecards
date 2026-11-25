@@ -90,6 +90,7 @@ function Card({ i, where, starred, fmtStars, toggleStar, copyCommand, install, i
   const openMenu = (e: React.MouseEvent) => { e.stopPropagation(); setAddFor(addFor === key ? null : key); };
   return (
     <div className={"mk-card" + (addFor === key ? " menu-open" : "")} style={{ "--tc": t.color } as React.CSSProperties}>
+      {publicMode && i.type === "profile" && <div className="mk-register" aria-hidden="true"><span>Community loadout</span><span>{draft ? "Private draft" : "User submission"}</span></div>}
       <div className="mk-top">
         <span className="mk-typeicon" style={{ color: t.color, background: t.color + "1a", borderColor: t.color + "40" }}>{t.glyph}</span>
         <div className="mk-headtext">
@@ -137,6 +138,7 @@ function Card({ i, where, starred, fmtStars, toggleStar, copyCommand, install, i
         </div>
       </div>
       <div className="mk-desc">{i.desc}</div>
+      {publicMode && i.tags.length > 0 && <div className="mk-tags">{i.tags.map((tag, index) => <span key={`${index}:${tag}`}>{tag}</span>)}</div>}
       {i.sourceUrl?.startsWith("https://github.com/") && <p><a href={i.sourceUrl} target="_blank" rel="noopener noreferrer">Inspect profile source ↗</a></p>}
       {command && !draft && <code style={{ display: "block", overflowWrap: "anywhere", padding: "10px 0", fontSize: 12 }}>{command}</code>}
       <div className="mk-foot">
@@ -283,30 +285,32 @@ export function MarketView() {
     <div className="marketpage">
       <div className="mk-hero">
         <div>
-          <div className="page-title">🛍 Cue Marketplace</div>
+          {publicMode ? <h2 className="page-title">Community listings.</h2> : <div className="page-title">🛍 Cue Marketplace</div>}
           <div className="page-sub">Discover shared agent profiles. Review their source, then run the copied command with Cue on your machine. Stars and unsigned drafts are saved only in this browser.</div>
         </div>
         <button className="mk-publish" onClick={() => setPubOpen(true)}>＋ Publish</button>
       </div>
       <p className="page-sub">Community code is not automatically trusted. Inspect hooks, skills and MCP servers before installing. {publicMode && "This public catalog cannot install or launch anything on your computer."}</p>
       {community.isPending && <p role="status">Loading community profiles…</p>}
-      {community.isError && <p role="alert">Community catalog unavailable. Try again later; local profiles are unchanged.</p>}
+      {community.isError && <p role="alert">{publicMode
+        ? "Community listings are unavailable. You can still browse the official Cue profiles above."
+        : "Community catalog unavailable. Try again later; local profiles are unchanged."}</p>}
 
       <div className="mk-toolbar">
         <div className="mk-search">
           <span className="mk-search-ic">⌕</span>
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search profiles, workflows, skills, CLIs…" spellCheck={false} />
-          {q ? <span className="mk-search-clear" onClick={() => setQ("")}>×</span> : <kbd className="mk-search-kbd">/</kbd>}
+          <input aria-label="Search community listings" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search profiles, workflows, skills, CLIs…" spellCheck={false} />
+          {q && <button type="button" className="mk-search-clear" aria-label="Clear community search" onClick={() => setQ("")}>×</button>}
         </div>
         <div className="mk-types">
           {(["all", ...TYPE_KEYS] as const).map((t) => (
-            <button key={t} className={"mk-chip" + (type === t ? " on" : "")} onClick={() => setType(t)}>
+            <button key={t} aria-pressed={type === t} className={"mk-chip" + (type === t ? " on" : "")} onClick={() => setType(t)}>
               {t === "all" ? "All" : TYPE[t].label}<span className="mk-chip-n">{counts[t] || 0}</span>
             </button>
           ))}
         </div>
         <div className="mk-sort">
-          <button className={"mk-sortbtn" + (sortOpen ? " open" : "")} onClick={(e) => { e.stopPropagation(); setSortOpen((o) => !o); }}>
+          <button aria-expanded={sortOpen} className={"mk-sortbtn" + (sortOpen ? " open" : "")} onClick={(e) => { e.stopPropagation(); setSortOpen((o) => !o); }}>
             <span className="mk-sort-ic">⇅</span>
             <span className="mk-sort-cur">{cur[1]}</span>
             <span className="mk-sort-caret">▾</span>

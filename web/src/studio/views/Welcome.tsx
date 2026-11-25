@@ -1,11 +1,29 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { crew, cueRepository as repository } from "../../lib/public-profiles";
 import styles from "./Welcome.module.css";
 
-export function Welcome({ onBrowse }: { onBrowse: () => void }) {
+export function PublicNav({ current }: { current: "home" | "skills" | "market" }) {
+  return (
+    <header className={styles.header}>
+      <Link className={styles.brand} to="/" search={{}} activeOptions={{ exact: true }} aria-label="Cuecards home"><span aria-hidden="true">C</span> cuecards</Link>
+      <nav aria-label="Public navigation">
+        <Link to="/" search={{}} hash="crew" activeOptions={{ includeHash: true }}>Crew</Link>
+        <Link to="/skills" aria-current={current === "skills" ? "page" : undefined}>Skills</Link>
+        <Link to="/" search={{ view: "market" }} aria-current={current === "market" ? "page" : undefined}>Marketplace</Link>
+        <Link to="/" search={{}} hash="setup" activeOptions={{ includeHash: true }}>Setup</Link>
+      </nav>
+      <a className={styles.github} href={repository}>GitHub <span aria-hidden="true">↗</span></a>
+    </header>
+  );
+}
+
+export function Welcome({ onBrowse }: { onBrowse?: () => void }) {
   const [notice, setNotice] = useState("");
+  const [selected, setSelected] = useState(0);
+  const character = crew[selected] ?? crew[0];
+  const command = `cue use ${character.profile}`;
   async function copy(command: string) {
-    setNotice("Copy requested. If your browser does not allow it, select and copy the displayed command manually.");
     try {
       await navigator.clipboard.writeText(command);
       setNotice("Command copied. Review it, then run it in your terminal.");
@@ -14,22 +32,77 @@ export function Welcome({ onBrowse }: { onBrowse: () => void }) {
     }
   }
   return (
-    <main className={styles.page}>
-      <p className={styles.eyebrow}>CUECARDS · THE CUE COMMUNITY</p>
-      <h1>Find your next<br /><span>agent profile.</span></h1>
-      <p className={styles.intro}>Cue gives each project the skills, tools and instructions its coding agent needs. Discover how other people work, inspect their profiles, and try them with the Cue CLI on your own machine.</p>
-      <div className={styles.actions}>
-        <button className="de-btn primary" onClick={onBrowse}>Browse community profiles →</button>
-        <Link to="/skills">Browse skills →</Link>
-        <a href="https://github.com/opencue/cuecards" target="_blank" rel="noopener noreferrer">Explore Cue on GitHub ↗</a>
-      </div>
-      <div className={styles.steps}>
-        <section><span className={styles.number}>01 / SET UP</span><h2>Bring Cue to your project</h2><p>Install the CLI, then run setup inside your project. Setup helps you choose your agent and profile.</p><code>npm install -g cue-ai</code><button className="de-btn" onClick={() => void copy("npm install -g cue-ai")}>Copy install command</button><code>cue setup</code></section>
-        <section><span className={styles.number}>02 / EXPLORE</span><h2>Review before you run</h2><p>Browse shared profiles and inspect their source. Copy a profile’s install command into your terminal. Community hooks, skills and MCP servers can execute code: only use sources you trust.</p><button className="de-btn" onClick={onBrowse}>Find a profile</button></section>
-        <section><span className={styles.number}>03 / MAKE IT YOURS</span><h2>Open your local Studio</h2><p>Run this in your project to manage your actual profiles. This public site does not connect to or control your computer.</p><code>cue dashboard</code><button className="de-btn" onClick={() => void copy("cue dashboard")}>Copy dashboard command</button><a href="http://127.0.0.1:7891" target="_blank" rel="noopener noreferrer">Open local Studio after starting Cue ↗</a></section>
-      </div>
-      <p className={styles.note}>Share a profile from Marketplace using its public GitHub source. Community publishing needs an account; browsing does not. Studio previews show sample data, not your machine.</p>
-      <p role="status">{notice}</p>
-    </main>
+    <div className={`${styles.site} ${onBrowse ? "" : styles.viewport}`}>
+      {!onBrowse && <PublicNav current="home" />}
+      <main>
+        <section className={styles.hero} aria-labelledby="welcome-heading">
+          <img className={styles.heroArt} src="/cuecards-coast.webp" alt="" fetchPriority="high" />
+          <div className={styles.heroInner}>
+            <p className={styles.eyebrow}><span /> The Cue community</p>
+            <h1 id="welcome-heading">Build your<br /><em>crew.</em></h1>
+            <p className={styles.intro}>Give your coding agent the right skills, tools, and instructions. Pick a profile built for the job and run it locally with Cue.</p>
+            <div className={styles.actions}>
+              <Link className={styles.primary} to="/" search={onBrowse ? { view: "welcome" } : {}} hash="crew">Choose your character <span aria-hidden="true">↓</span></Link>
+              <Link className={styles.secondary} to="/skills">Browse skills <span aria-hidden="true">↗</span></Link>
+            </div>
+          </div>
+          <span className={styles.heroCaption} aria-hidden="true">01 / CUE COAST</span>
+        </section>
+
+        <section className={styles.section} id="crew" aria-labelledby="crew-heading">
+          <div className={styles.sectionHead}>
+            <div><p className={styles.eyebrow}>01 / Agent profiles</p><h2 id="crew-heading">The crew.</h2></div>
+            <p>Four profiles, four ways to work. Select a character to see what their Cue profile brings to your project.</p>
+          </div>
+          <div className={styles.crew} role="group" aria-label="Featured Cue profiles">
+            {crew.map((member, index) => (
+              <button key={member.profile} type="button" aria-pressed={selected === index} aria-controls="crew-detail" onClick={() => { setSelected(index); setNotice(""); }} className={styles.character}>
+                <span className={`${styles.portrait} ${styles[member.portrait]}`} aria-hidden="true" />
+                <span className={styles.characterIndex} aria-hidden="true">0{index + 1}</span>
+                {selected === index && <span className={styles.selected} aria-hidden="true">Selected</span>}
+                <span className={styles.characterLabel}><strong>{member.name}</strong><small>{member.role}</small></span>
+              </button>
+            ))}
+          </div>
+          <div className={styles.detail} id="crew-detail">
+            <div aria-live="polite">
+              <div className={styles.dossier} key={character.profile}>
+                <p className={styles.eyebrow}>{character.role} / Cue profile</p>
+                <h3>{character.name}</h3>
+                <p>{character.summary}</p>
+                <ul className={styles.tags} aria-label="Specialties">{character.specialties.map(skill => <li key={skill}>{skill}</li>)}</ul>
+              </div>
+            </div>
+            <div className={styles.loadout}>
+              <p className={styles.eyebrow}>Run in your project</p>
+              <code>{command}</code>
+              <div className={styles.links}>
+                <button type="button" onClick={() => void copy(command)}>Copy command</button>
+                <a href={`${repository}/tree/main/profiles/${character.profile}`}>Profile source ↗</a>
+              </div>
+            </div>
+          </div>
+          <div className={styles.links}>
+            {onBrowse ? <button type="button" onClick={onBrowse}>Browse community profiles</button> : <Link to="/" search={{ view: "market" }}>Explore all profile cards ↗</Link>}
+            <a href={`${repository}/tree/main/profiles`}>All bundled profiles on GitHub ↗</a>
+          </div>
+        </section>
+
+        <section className={styles.section} id="setup" aria-labelledby="setup-heading">
+          <div className={styles.sectionHead}>
+            <div><p className={styles.eyebrow}>02 / Set up Cue</p><h2 id="setup-heading">Ready to run?</h2></div>
+            <p>Install the CLI, run setup in your project, then select a profile. This site never connects to your local machine.</p>
+          </div>
+          <div className={styles.steps}>
+            <section><span className={styles.eyebrow}>01 / Install</span><h3>Get the CLI</h3><code>npm install -g cue-ai</code><button type="button" onClick={() => void copy("npm install -g cue-ai")}>Copy install command</button></section>
+            <section><span className={styles.eyebrow}>02 / Configure</span><h3>Set up your project</h3><code>cue setup</code><button type="button" onClick={() => void copy("cue setup")}>Copy setup command</button></section>
+            <section><span className={styles.eyebrow}>03 / Inspect</span><h3>Open local Studio</h3><code>cue dashboard</code><button type="button" onClick={() => void copy("cue dashboard")}>Copy dashboard command</button><a href="http://127.0.0.1:7891" target="_blank" rel="noopener noreferrer">Open after starting Cue ↗</a></section>
+          </div>
+          <p className={styles.note}>Review third-party tools before running them. Community hooks, skills and MCP servers can execute code.</p>
+        </section>
+        <div className={styles.status} role="status">{notice}</div>
+      </main>
+      <footer className={styles.footer}><span>Cuecards · The Cue community</span><a href={repository}>Open source on GitHub ↗</a></footer>
+    </div>
   );
 }

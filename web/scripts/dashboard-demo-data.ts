@@ -15,6 +15,8 @@
  */
 
 import type { ProfileDetail, TimelineData } from "../src/studio/api.js";
+import { projectPublicProfile } from "../src/lib/public-profiles.js";
+import { fileURLToPath } from "node:url";
 
 interface Envelope { ok: true; data: unknown }
 function env<T>(data: T): Envelope { return { ok: true, data: data as unknown as unknown }; }
@@ -277,5 +279,14 @@ output["/plugins/discovered"] = env({ plugins: [] });
 output["/permissions"] = env({ rules: [], counts: { allow: 0, ask: 0, deny: 0 }, defaultMode: null, sources: [] });
 output["/env/folders"] = env({ folders: [] });
 output["/market"] = env({ items: [], counts: {} });
+
+// Unlike the demo Studio fixtures, the public roster describes shipped profiles.
+const bundled = new URL("../../profiles/", import.meta.url);
+const files = [...new Bun.Glob("*/profile.yaml").scanSync(fileURLToPath(bundled))].sort();
+if (!files.length) throw new Error("No bundled profiles found for the public roster");
+output["/profile-roster"] = env(await Promise.all(files.map(async file => {
+  const id = file.slice(0, file.indexOf("/"));
+  return projectPublicProfile(id, Bun.YAML.parse(await Bun.file(new URL(file, bundled)).text()));
+})));
 
 process.stdout.write(JSON.stringify(output, null, 2) + "\n");
