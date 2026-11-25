@@ -26,7 +26,8 @@ For short summaries and reading conditions, use the on-demand
 
 These are starting checks, not substitutes for required CI or release gates.
 Cue's local `gx branch finish` preflight initializes missing submodules and
-installs CLI and dashboard dependencies in the worktree. It leaves existing
+installs CLI and dashboard dependencies from their checked-in lockfiles
+(Bun for CLI, npm for dashboard). It leaves existing
 submodules at a different revision alone and fails with their status. Local
 preflight and GitHub CI both use `bun run test` and check critical coverage.
 

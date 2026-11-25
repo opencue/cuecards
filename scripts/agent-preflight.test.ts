@@ -6,8 +6,10 @@ import { join } from "node:path";
 function runPreflight(status: string, failInstall = false) {
   const root = mkdtempSync(join(tmpdir(), "cue-preflight-test-"));
   const bin = join(root, "bin");
+  const realBin = join(root, "real-bin");
   const log = join(root, "steps");
   mkdirSync(bin);
+  mkdirSync(realBin);
   mkdirSync(join(root, "web"));
   writeFileSync(join(root, "status"), status);
   writeFileSync(log, "");
@@ -23,9 +25,26 @@ case "$*" in
 esac
 `, { mode: 0o755 });
   writeFileSync(join(bin, "bun"), `#!/bin/sh
+[ "$HOME" = "$FIXTURE" ] || exit 14
+exec "$FIXTURE/real-bin/bun" "$@"
+`, { mode: 0o755 });
+  writeFileSync(join(bin, "node"), `#!/bin/sh
+[ "$HOME" = "$FIXTURE" ] || exit 14
+exec "$FIXTURE/real-bin/node" "$@"
+`, { mode: 0o755 });
+  writeFileSync(join(bin, "npm"), `#!/bin/sh
+printf '%s:%s\\n' "$PWD" "$*" >>"$FIXTURE/steps"
+`, { mode: 0o755 });
+  writeFileSync(join(realBin, "node"), `#!/bin/sh
+if [ "$1" = "-p" ]; then printf '%s\\n' "$0"; exit 0; fi
+[ "$1" = "check" ] && [ "$HOME" != "$FIXTURE" ]
+`, { mode: 0o755 });
+  writeFileSync(join(realBin, "bun"), `#!/bin/sh
+if [ "$1" = "-p" ]; then printf '%s\\n' "$0"; exit 0; fi
 printf '%s:%s\\n' "$PWD" "$*" >>"$FIXTURE/steps"
 if [ "$*" = "install --frozen-lockfile" ] && [ "$FAIL_INSTALL" = 1 ]; then exit 12; fi
 if [ "$1" = run ] && { [ "$HOME" = "$FIXTURE" ] || [ -n "$CODEX_HOME" ]; }; then exit 13; fi
+if [ "$1" = run ]; then node check; fi
 `, { mode: 0o755 });
   try {
     const result = Bun.spawnSync(["bash", join(import.meta.dir, "agent-preflight.sh")], {
@@ -51,11 +70,11 @@ if [ "$1" = run ] && { [ "$HOME" = "$FIXTURE" ] || [ -n "$CODEX_HOME" ]; }; then
 
 test("hydrates a fresh checkout before running isolated Cue checks", () => {
   const result = runPreflight("-abc resources/skills\n");
-  expect(result.code).toBe(0);
+  expect(result.code, result.output).toBe(0);
   expect(result.steps).toEqual([
     "submodules",
     ".:install --frozen-lockfile",
-    "./web:install --no-save",
+    "./web:ci --include=dev --no-audit --no-fund",
     ".:run typecheck",
     ".:run lint",
     ".:run test",

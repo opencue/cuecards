@@ -43,13 +43,12 @@ if grep -q '^-' <<<"$submodules"; then
 fi
 
 run_step "install CLI dependencies" bun install --frozen-lockfile
-(cd web && run_step "install web dependencies" bun install --no-save)
+(cd web && run_step "install web dependencies" npm ci --include=dev --no-audit --no-fund)
 
-# Do not pick up the user's agent configuration, hooks, or HOME-dependent shims.
-tool_path="$(dirname "$(command -v bun)")"
-if command -v node >/dev/null; then
-  tool_path="$tool_path:$(dirname "$(command -v node)")"
-fi
+# Resolve the binaries before swapping HOME so version-manager shims still work.
+bun_path="$(bun -p 'process.execPath')"
+node_path="$(node -p 'process.execPath')"
+tool_path="$(dirname "$bun_path"):$(dirname "$node_path")"
 export HOME="$scratch/home" CI=true
 mkdir -p "$HOME"
 export PATH="$tool_path:/usr/local/bin:/usr/bin:/bin"
