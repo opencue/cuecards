@@ -1,6 +1,6 @@
 import { useState } from "react";
 import bundledSkills from "virtual:cue-bundled-skills";
-import { filterPublicSkills, type PublicSkill } from "../bundled-skill-catalog";
+import { filterPublicSkills, type PublicSkill, shufflePublicSkills } from "../bundled-skill-catalog";
 import blogListings from "../fork-skill-listings.json";
 import { forkSkillUrl, searchForkSkills } from "../skill-catalog";
 import { PublicNav } from "../studio/views/Welcome";
@@ -21,14 +21,15 @@ const catalog: (PublicSkill & { sourceUrl?: string; install?: string })[] = [
     id, name: id, description, category: forkCategory, source: blogRepo,
     sourceUrl: `https://github.com/${blogRepo}/tree/${blogPin}/skills/${id}`,
   })),
-].sort((a, b) => a.id.localeCompare(b.id, "en"));
+];
 const categories = [...new Set(catalog.map(skill => skill.category))].sort((a, b) => a.localeCompare(b, "en"));
 
 export function SkillCatalog() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [limit, setLimit] = useState(pageSize);
-  const skills = filterPublicSkills(catalog, query, category);
+  const [order, setOrder] = useState(() => shufflePublicSkills(catalog));
+  const skills = filterPublicSkills(order, query, category);
 
   return (
     <div className={`${styles.site} ${styles.viewport}`}>
@@ -60,6 +61,9 @@ export function SkillCatalog() {
                 {categories.map(name => <option key={name}>{name}</option>)}
               </select>
             </div>
+            <button type="button" className={styles.catalogMore} onClick={() => setOrder(shufflePublicSkills(catalog))}>
+              Shuffle skills
+            </button>
           </div>
           <p className={styles.note} role="status">{skills.length === 0 ? "No skills match your search." :
             `Showing ${Math.min(limit, skills.length)} of ${skills.length} ${skills.length === 1 ? "skill" : "skills"}.`}</p>

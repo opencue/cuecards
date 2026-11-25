@@ -42,3 +42,33 @@ export function filterPublicSkills<T extends PublicSkill>(skills: T[], query: st
     return words.every(word => text.includes(word));
   });
 }
+
+export function shufflePublicSkills<T extends PublicSkill>(skills: readonly T[], random = Math.random): T[] {
+  function shuffle<U>(items: U[]) {
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+  }
+
+  const groups = new Map<string, T[]>();
+  for (const skill of skills) {
+    const key = skill.source ? `source:${skill.source}` : `category:${skill.category}`;
+    const bucket = groups.get(key) ?? [];
+    bucket.push(skill);
+    groups.set(key, bucket);
+  }
+
+  const result: T[] = [];
+  let buckets = [...groups.values()];
+  for (const bucket of buckets) shuffle(bucket);
+  while (buckets.length) {
+    shuffle(buckets);
+    for (const bucket of buckets) {
+      const skill = bucket.pop();
+      if (skill) result.push(skill);
+    }
+    buckets = buckets.filter(bucket => bucket.length > 0);
+  }
+  return result;
+}

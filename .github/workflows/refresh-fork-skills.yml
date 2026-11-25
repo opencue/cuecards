@@ -34,7 +34,7 @@ jobs:
       - name: Verify the candidate catalog and profile
         run: |
           bun install --frozen-lockfile
-          bun test scripts/refresh-fork-skills.test.ts src/commands/fork-skills.test.ts
+          bun test scripts/refresh-fork-skills.test.ts src/commands/fork-skills.test.ts web/src/bundled-skill-catalog.test.ts
           git diff --check
       - name: Propose changed pins for review
         shell: bash
