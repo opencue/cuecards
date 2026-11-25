@@ -183,6 +183,9 @@ describe("resolveNpxSkillSources", () => {
       { repo: "owner/failure", skills: [], servedFromCache: ["alpha"], error: new Error("offline") },
     ], { columns: 24 });
     expect(lines).toEqual(["⚠ cached · cue doctor"]);
+    expect(formatNpxDegraded([
+      { repo: "owner/failure", skills: ["alpha"], servedFromCache: [], error: new Error("offline") },
+    ], { columns: 24 })).toEqual(["⚠ 1 missing · cue doctor"]);
   });
 });
 

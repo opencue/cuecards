@@ -508,7 +508,7 @@ export function formatNpxDegraded(
     const compact = c.yellow(`⚠ ${status}`);
     const extra = missing && cached ? ` · ${cached} cached` : "";
     const help = c.dim(" · cue doctor");
-    const short = !missing && cached ? c.yellow("⚠ cached") : compact;
+    const short = missing ? c.yellow(`⚠ ${missing} missing`) : cached ? c.yellow("⚠ cached") : compact;
     return [fitLine(columns, compact + extra + help, short + help, compact)];
   }
   const lines: string[] = [];
