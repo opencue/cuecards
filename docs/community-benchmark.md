@@ -91,4 +91,5 @@ The collector lives in `web/api/v1/benchmarks.ts`. Apply
 the existing auth schema, using the usual migration process. Vercel builds
 with `web/` as their root must include source files outside that root because
 the CLI and collector share the report validator in `src/lib/community-eval/`.
-Deploying the collector and releasing the Cue CLI are separate steps.
+Deploy the updated collector before releasing the v2 CLI: an older collector
+rejects v2 reports. If the migration is already applied, v2 needs no schema change.
