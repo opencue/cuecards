@@ -98,6 +98,12 @@ jobs:
             tarball="$RUNNER_TEMP/$(jq -er '.[0].filename' <<<"$pack")"
             integrity="$(jq -er '.[0].integrity' <<<"$pack")"
             bash scripts/check-npm-tarball.sh "$version" "$tarball"
+            # Packaging can take long enough for main to move again.
+            head="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)"
+            if [[ "$head" != "$GITHUB_SHA" ]]; then
+              echo "A newer main commit is available; skipping this run."
+              exit 0
+            fi
             npm publish "$tarball" --access public --tag latest
           fi
           printf 'version=%s\nintegrity=%s\n' "$version" "$integrity" >> "$GITHUB_OUTPUT"
