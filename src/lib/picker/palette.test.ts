@@ -93,7 +93,7 @@ describe("filterRows", () => {
   test("matches descriptions below direct name hits and requires every search term", () => {
     const all = buildPaletteRows({
       profiles: [
-        { value: "data", label: "Data", hint: "Vercel and PostgreSQL" },
+        { value: "data", label: "Data", hint: "Vercel, PostgreSQL, and Node.js" },
         { value: "vercel-postgres", label: "Vercel Postgres" },
         { value: "vercel", label: "Vercel" },
       ],
@@ -105,6 +105,7 @@ describe("filterRows", () => {
       expect(filterRows(all, query).map((r) => r.value)).toEqual(["vercel-postgres", "data"]);
     }
     expect(filterRows(all, "vercel").map((r) => r.value)).toEqual(["vercel", "vercel-postgres", "data"]);
+    expect(filterRows(all, "node.js+postgres").map((r) => r.value)).toEqual(["data"]);
     expect(filterRows(all, "linux+vercel")).toEqual([]);
   });
 
@@ -240,6 +241,7 @@ describe("renderPaletteFrame", () => {
     expect(search).toContain("+vercel▏");
     expect(search).toContain("0 matches");
     expect(lines.every((line) => displayWidth(line) <= 57)).toBe(true);
+    expect(render(64).find((line) => line.includes("search"))).toContain("+vercel▏  0 matches");
   });
 
   test("disables a row that conflicts with the selection and says why", () => {

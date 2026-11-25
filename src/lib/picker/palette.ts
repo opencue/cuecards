@@ -245,7 +245,9 @@ export function fuzzyScore(query: string, candidate: string): number | null {
  * Results share one `matches` section; ties keep the original order. Pure.
  */
 export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
-  const terms = query.toLowerCase().split(/[+\s]+/).filter(Boolean);
+  const words = (value: string) => value.match(/[\p{L}\p{N}]+/gu)?.join(" ") ?? "";
+  const terms = query.toLowerCase().split(/[+\s]+/).filter(Boolean)
+    .map((term) => ({ term, phrase: words(term) }));
   if (terms.length === 0) {
     return rows.some((row) => row.searchOnly === true)
       ? rows.filter((row) => row.searchOnly !== true)
@@ -253,16 +255,17 @@ export function filterRows(rows: PaletteRow[], query: string): PaletteRow[] {
   }
   const scored: Array<{ row: PaletteRow; score: number; i: number }> = [];
   rows.forEach((row, i) => {
-    const words: string[] = row.description?.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? [];
+    // Word boundaries keep a keyword precise while allowing Node.js and CI/CD.
+    const description = ` ${words(row.description?.toLowerCase() ?? "")} `;
     let score = 0;
-    for (const term of terms) {
+    for (const { term, phrase } of terms) {
       const byValue = fuzzyScore(term, row.value);
       const byLabel = fuzzyScore(term, row.label);
       if (byValue !== null || byLabel !== null) {
         score += Math.max(100, byValue ?? 0, byLabel ?? 0);
-      } else if (words.includes(term)) {
+      } else if (phrase && description.includes(` ${phrase} `)) {
         score += 50;
-      } else if (term.length >= 3 && words.some((word) => word.startsWith(term))) {
+      } else if (phrase.length >= 3 && description.includes(` ${phrase}`)) {
         score += 25;
       } else {
         return;
