@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { __test, agentLaunchAccent, agentLaunchMessage, startLoader } from "./launch-loader";
+import { displayWidth } from "./picker/render-util";
 
 const { createLoaderCore, FRAMES, ESC } = __test;
 
@@ -16,7 +17,9 @@ describe("agentLaunchMessage", () => {
 });
 
 /** A CoreDeps stub that records every write into a single string. */
-function makeRecorder(opts: { logo?: string | null; clear?: string; logoCols?: number } = {}) {
+function makeRecorder(
+  opts: { logo?: string | null; clear?: string; logoCols?: number; columns?: () => number } = {},
+) {
   let out = "";
   const deps = {
     write: (s: string) => {
@@ -25,6 +28,7 @@ function makeRecorder(opts: { logo?: string | null; clear?: string; logoCols?: n
     renderLogo: () => (opts.logo === undefined ? null : opts.logo),
     clearLogo: () => opts.clear ?? "",
     logoCols: opts.logoCols ?? 2,
+    columns: opts.columns ?? (() => 80),
   };
   return { deps, get: () => out };
 }
@@ -76,6 +80,21 @@ describe("launch-loader core — ANSI path (no logo)", () => {
     expect(r.get()).toContain("new message");
   });
 
+  test("keeps status updates on one line after the terminal narrows", () => {
+    let columns = 50;
+    const r = makeRecorder({ columns: () => columns });
+    const core = createLoaderCore(r.deps, "Loading skills…");
+    core.start();
+    expect(r.get()).toContain("Loading skills…");
+
+    columns = 24;
+    core.setMessage("Preparing runtime… 🐘 database and frontend tools");
+    const frame = r.get().split("\x1b[1G\x1b[K").at(-1)!.replace(/\x1b\[[0-9;]*m/g, "");
+    expect(frame).toStartWith("⠋ Preparing runtime…");
+    expect(frame).toEndWith("…");
+    expect(displayWidth(frame)).toBeLessThanOrEqual(columns);
+  });
+
   test("strips embedded CR/LF/ESC from the message (classifier REASON safety)", () => {
     const r = makeRecorder();
     const core = createLoaderCore(r.deps, "5/12 kept — line1\r\nline2\x1b[31mx");
@@ -101,6 +120,15 @@ describe("launch-loader core — Kitty path (logo present)", () => {
     expect(out).toContain("\x1b[4G\x1b[K");
   });
 
+  test("reserves columns for the logo and spinner", () => {
+    const r = makeRecorder({ logo: "<IMG>", logoCols: 2, columns: () => 12 });
+    const core = createLoaderCore(r.deps, "Preparing runtime…");
+    core.start();
+    const frame = r.get().split("\x1b[4G\x1b[K").at(-1)!.replace(/\x1b\[[0-9;]*m/g, "");
+    expect(frame).toBe("⠋ Prepar…");
+    expect(displayWidth(frame) + 3).toBeLessThanOrEqual(12);
+  });
+
   test("stop deletes the logo before showing the cursor", () => {
     const r = makeRecorder({ logo: "<IMG>", clear: "<CLR>" });
     const core = createLoaderCore(r.deps, "m");
@@ -112,6 +140,28 @@ describe("launch-loader core — Kitty path (logo present)", () => {
     expect(clearIdx).toBeGreaterThan(-1);
     expect(showIdx).toBeGreaterThan(clearIdx);
   });
+});
+
+test("a quick real loader finishes without writing to its TTY", async () => {
+  let output = "";
+  const stream = {
+    isTTY: true,
+    columns: 50,
+    write: (s: string) => {
+      output += s;
+      return true;
+    },
+  } as unknown as NodeJS.WriteStream;
+  const handle = startLoader({ stream });
+  expect(handle).not.toBeNull();
+  try {
+    handle!.setMessage("Preparing runtime…");
+    await Bun.sleep(120);
+    expect(output).toBe("");
+  } finally {
+    handle?.stop();
+  }
+  expect(output).toBe("");
 });
 
 describe("launch-loader core — lifecycle guards", () => {

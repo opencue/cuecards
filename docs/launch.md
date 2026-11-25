@@ -94,6 +94,11 @@ last run, materialize is a no-op (sub-millisecond). When the profile changes,
 cue writes to a sibling `.tmp` directory and atomically swaps it in, so a
 concurrent running session never sees a partial state.
 
+In an interactive terminal, Cue waits 250 ms before drawing a progress line.
+That line updates in place, fits the terminal width, and is cleared before
+warnings or agent output appear. Fast launches and non-interactive runs do not
+show it.
+
 For Codex the shape is identical under `runtime/<profile>/codex/` with
 `CODEX_HOME` and a `config.toml` instead of `settings.json`.
 When `CUE_REAL_CODEX` wraps a materialized Codex launch in Oh My Codex, Cue
