@@ -67,6 +67,7 @@ export function renderForkProfile(skills: ForkSkill[]): string {
     "name: nagyvikt-skills",
     "kind: overlay",
     'description: "Selected skills from the NagyVikt GitHub forks at reviewed versions."',
+    "inherits: core",
     "skills:",
     "  npx:",
     ...[...repos].flatMap(([repo, entry]) => [

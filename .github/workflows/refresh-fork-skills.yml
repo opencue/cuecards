@@ -44,8 +44,9 @@ jobs:
             } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          open="$(gh pr list --base "$BASE_BRANCH" --state open --json headRefName \
-            --jq 'any(.[]; .headRefName | startswith("automation/fork-skill-refresh-"))')"
+          open="$(gh api --method GET --paginate --slurp "repos/$GITHUB_REPOSITORY/pulls" \
+            -f state=open -f "base=$BASE_BRANCH" -F per_page=100 \
+            | jq 'any(.[][]; .head.ref | startswith("automation/fork-skill-refresh-"))')"
           if [ "$open" = true ]; then
             echo 'A fork skill update PR is already open.' >> "$GITHUB_STEP_SUMMARY"
             exit 0

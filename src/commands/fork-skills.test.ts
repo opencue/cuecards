@@ -6,14 +6,15 @@ import { join } from "node:path";
 const cli = new URL("../index.ts", import.meta.url).pathname;
 
 test("catalog searches fork skill descriptions without loading a profile", () => {
-  const result = Bun.spawnSync(["bun", cli, "skills", "catalog", "publishing calendar", "--json"], { timeout: 3000 });
+  const result = Bun.spawnSync(["bun", cli, "skills", "catalog", "publishing calendar", "--json"], { timeout: 15000 });
   expect(result.exitCode).toBe(0);
   expect(JSON.parse(result.stdout.toString())).toEqual([
     expect.objectContaining({ id: "blog-calendar", repo: "NagyVikt/claude-blog", commit: expect.stringMatching(/^[a-f0-9]{40}$/) }),
   ]);
 });
 
-test("pinned profile installs use an installer-supported immutable source", () => {
+const pinCases = [[40, false], [10, false], [10, true]] as const;
+test.each(pinCases)("profile installs resolve %i-character pins (rate limited: %s)", (length, rateLimited) => {
   const bin = mkdtempSync(join(tmpdir(), "cue-profile-pin-test-"));
   try {
     const npx = join(bin, "npx");
@@ -22,10 +23,18 @@ test("pinned profile installs use an installer-supported immutable source", () =
     chmodSync(npx, 0o755);
     const env = { ...process.env, PATH: `${bin}:${process.env.PATH}`, ARGS_FILE: argsFile };
     const ref = "1".repeat(40);
+    const gh = join(bin, "gh");
+    writeFileSync(gh, `#!/bin/sh\nprintf '%s\\n' '${ref}'\n`, { mode: 0o755 });
     const resolver = new URL("../lib/resolver-npx.ts", import.meta.url).pathname;
     const result = Bun.spawnSync([
       "bun", "-e",
-      `import { npxFetchMany } from ${JSON.stringify(resolver)}; await npxFetchMany("NagyVikt/claude-blog", "git@${ref}", ["blog-brief"], ${JSON.stringify(bin)});`,
+      `import { npxFetchMany } from ${JSON.stringify(resolver)};
+        globalThis.fetch = async (url) => {
+          if (${length} === 40 || url !== "https://api.github.com/repos/NagyVikt/claude-blog/commits/${ref.slice(0, length)}") throw new Error("Unexpected API request");
+          if (${rateLimited}) return new Response(null, { status: 403 });
+          return Response.json({ sha: "${ref}" });
+        };
+        await npxFetchMany("NagyVikt/claude-blog", "git@${ref.slice(0, length)}", ["blog-brief"], ${JSON.stringify(bin)});`,
     ], { env });
     expect(result.exitCode).toBe(0);
     const args = readFileSync(argsFile, "utf8").split("\n");

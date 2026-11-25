@@ -42,3 +42,24 @@ rewrites local skills directly.
 
 To check sources locally (read-only), run
 `bun scripts/refresh-fork-skills.ts` with an authenticated `gh`.
+
+To smoke-test a pin, call the Cue resolver in an empty temporary directory
+with the full SHA and again with a unique prefix. Compare each installed
+`blog-brief/SKILL.md` to GitHub's raw file at the full SHA:
+
+```sh
+pin="$(jq -r '.[0].commit' web/src/skill-catalog.json)"
+tmp="$(mktemp -d)"
+gh api -H 'Accept: application/vnd.github.raw+json' \
+  "repos/NagyVikt/claude-blog/contents/skills/blog-brief/SKILL.md?ref=$pin" > "$tmp/expected"
+export GH_CONFIG_DIR="${GH_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/gh}"
+mkdir "$tmp/home"
+for ref in "$pin" "$(printf '%.10s' "$pin")"; do
+  mkdir "$tmp/$ref"
+  HOME="$tmp/home" XDG_CONFIG_HOME="$tmp/home/.config" XDG_CACHE_HOME="$tmp/home/.cache" \
+    DISABLE_TELEMETRY=1 PIN="$ref" DEST="$tmp/$ref" bun -e '
+    import { npxFetchMany } from "./src/lib/resolver-npx";
+    await npxFetchMany("NagyVikt/claude-blog", "git@" + process.env.PIN, ["blog-brief"], process.env.DEST);'
+  cmp "$tmp/expected" "$tmp/$ref/blog-brief/SKILL.md" || break
+done
+```

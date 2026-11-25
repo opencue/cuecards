@@ -225,7 +225,36 @@ export const npxFetchMany: NpxBatchFetchFn = async (
   destDir,
 ) => {
   if (skills.length === 0) return;
-  const ref = pin?.replace(/^(git|tag)@/, "");
+  let ref = pin?.replace(/^(git|tag)@/, "");
+  if (pin?.startsWith("git@") && ref && ref.length < 40) {
+    // The installer can fetch a complete SHA but treats an abbreviated SHA as a branch.
+    const prefix = ref.toLowerCase();
+    const repoPath = repo.split("/").map(encodeURIComponent).join("/");
+    const endpoint = `repos/${repoPath}/commits/${encodeURIComponent(prefix)}`;
+    try {
+      const response = await fetch(`https://api.github.com/${endpoint}`, {
+        signal: AbortSignal.timeout(10000),
+      });
+      let sha: unknown;
+      if (response.ok) {
+        ({ sha } = await response.json() as { sha?: unknown });
+      } else if (response.status === 403 || response.status === 429) {
+        const result = spawnSync("gh", ["api", "--hostname", "github.com", endpoint, "--jq", ".sha"], {
+          encoding: "utf8", timeout: 10000, windowsHide: true,
+        });
+        if (result.status !== 0) throw new Error(`GitHub HTTP ${response.status}`);
+        sha = result.stdout.trim();
+      } else {
+        throw new Error(`GitHub HTTP ${response.status}`);
+      }
+      if (typeof sha !== "string" || !/^[a-f0-9]{40}$/.test(sha) || !sha.startsWith(prefix)) {
+        throw new Error("GitHub did not return a matching commit");
+      }
+      ref = sha;
+    } catch (error) {
+      throw new NpxFetchFailed(repo, `could not expand short commit ${ref}; use the full SHA`, error);
+    }
+  }
 
   const args = [
     "-y",
