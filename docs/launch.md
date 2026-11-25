@@ -33,6 +33,25 @@ to `cue launch <agent> "$@"`. This is the hot path:
             4. exec real claude    ← with CLAUDE_CONFIG_DIR set
 ```
 
+## Start an isolated GitGuardex task
+
+In a GitGuardex-managed repository with `gx` on PATH:
+
+```sh
+cue work "Fix the checkout tests"
+cue work "Fix the checkout tests" --task-id checkout-tests --agent claude --profile backend
+```
+
+`cue work` asks GitGuardex to create or reuse a task worktree without moving
+changes from the source checkout. It starts Codex by default, carries the Cue
+profile selected in the source directory (or `--profile`), and passes the title
+as the initial prompt. With no explicit ID, the title determines the ID; supply
+`--task-id` on the first invocation to keep that identity if the title changes.
+Reuse the same ID and agent after the previous writer exits. GitGuardex owns
+worktree reuse and file claims; the command does not transfer ownership, open
+PRs, or merge. If Guardex is inactive or creation fails, no agent is launched.
+Normal `claude`, `codex`, and `cue launch` calls do not create worktrees.
+
 ## Resolve precedence
 
 Profile resolution stops at the first match, in this order:
