@@ -1,8 +1,8 @@
 import { closeSync, constants, fstatSync, lstatSync, openSync, readSync, unlinkSync, writeFileSync } from "node:fs";
 import { DEFAULT_API_URL, loadCredentials } from "../lib/cue-credentials";
 import {
-  COMMUNITY_MODELS, COMMUNITY_PAIR_COUNT, COMMUNITY_REPORT_BYTES, COMMUNITY_SCORE_MAX, isCommunityModel, parseCommunityReport,
-  type CommunityModel, type CommunityReport,
+  COMMUNITY_BENCHMARK, COMMUNITY_MODELS, COMMUNITY_PAIR_COUNT, COMMUNITY_REPORT_BYTES, COMMUNITY_SCORE_MAX,
+  isCommunityModel, parseCommunityReport, type CommunityModel, type CommunityReport, type CommunityReportV2,
 } from "../lib/community-eval/result";
 
 const endpoint = DEFAULT_API_URL + "/api/v1/benchmarks";
@@ -54,8 +54,8 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
     else { io.stderr(usage); return 2; }
   }
   if (!isCommunityModel(model)) { io.stderr(usage); return 2; }
-  out ??= "cue-codegraph-v1.json";
-  io.stdout(`Plan: ${COMMUNITY_PAIR_COUNT * 2} Codex runs with ${model} using your Codex login. Runs make model requests and may consume subscription quota. Synthetic code only; no Cuecards upload.\n`);
+  out ??= `cue-${COMMUNITY_BENCHMARK}.json`;
+  io.stdout(`Plan: ${COMMUNITY_PAIR_COUNT * 2} Codex runs with ${model} (${COMMUNITY_BENCHMARK}) using your Codex login. Runs make model requests and may consume subscription quota. Synthetic code only; no Cuecards upload.\n`);
   if (!yes) { io.stdout("Re-run with --yes to start.\n"); return 0; }
   let fd: number;
   try {
@@ -65,12 +65,13 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
     return 1;
   }
 
-  let report: CommunityReport;
+  let report: CommunityReportV2;
   let saved = false;
   try {
     try {
-      report = parseCommunityReport(await io.measure(model));
-      if (report.model !== model) throw new Error("Model mismatch");
+      const measured = parseCommunityReport(await io.measure(model));
+      if (measured.version !== 2 || measured.model !== model) throw new Error("Benchmark or model mismatch");
+      report = measured;
     } catch (error) {
       const code = error instanceof Error && /^BENCHMARK_[A-Z_]{1,40}$/.test(error.message)
         ? error.message : "BENCHMARK_RUN_FAILED";
@@ -98,10 +99,19 @@ async function measure(args: string[], io: Dependencies): Promise<number> {
     }
   }
   io.stdout(`Saved local report: ${out}\nPreview optional contribution with cue community-eval submit <report.json>.\n`);
-  const maxScore = COMMUNITY_SCORE_MAX * report.pairs.length;
-  const offScore = report.pairs.reduce((total, pair) => total + pair.off.score, 0);
-  const onScore = report.pairs.reduce((total, pair) => total + pair.on.score, 0);
-  io.stdout(`Correct answers: without CodeGraph ${offScore}/${maxScore}, with CodeGraph ${onScore}/${maxScore}\n`);
+  const attempts = report.pairs.length;
+  const failuresOff = report.pairs.filter((pair) => pair.off.status !== "completed").length;
+  const failuresOn = report.pairs.filter((pair) => pair.on.status !== "completed").length;
+  io.stdout(`Incomplete runs: without CodeGraph ${failuresOff}/${attempts}, with CodeGraph ${failuresOn}/${attempts}\n`);
+  const complete = report.pairs.filter((pair) => pair.off.status === "completed" && pair.on.status === "completed");
+  if (complete.length > 0) {
+    const maxScore = COMMUNITY_SCORE_MAX * complete.length;
+    const offScore = complete.reduce((total, pair) => total + pair.off.score, 0);
+    const onScore = complete.reduce((total, pair) => total + pair.on.score, 0);
+    io.stdout(`Correct answers in complete pairs: without CodeGraph ${offScore}/${maxScore}, with CodeGraph ${onScore}/${maxScore}\n`);
+  } else {
+    io.stdout("No complete A/B pairs; correctness was not compared.\n");
+  }
   return 0;
 }
 

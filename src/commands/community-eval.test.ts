@@ -2,7 +2,7 @@ import { afterEach, expect, test } from "bun:test";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { CommunityReport } from "../lib/community-eval/result";
+import type { CommunityArmV2, CommunityReport, CommunityReportV2 } from "../lib/community-eval/result";
 import { run } from "./community-eval";
 
 const roots: string[] = [];
@@ -12,9 +12,18 @@ afterEach(() => {
 
 const arm = { score: 2, durationMs: 500, inputTokens: 900, cachedInputTokens: 100, outputTokens: 80, codegraphUsed: false };
 const pair = { off: arm, on: { ...arm, codegraphUsed: true } };
-const report: CommunityReport = {
+const legacy: CommunityReport = {
   version: 1, benchmark: "codegraph-v1", model: "gpt-5.4",
   codexVersion: "0.172.0", codegraphVersion: "1.6.4", pairs: [pair, pair],
+};
+const currentPair = {
+  off: { ...pair.off, status: "completed" },
+  on: { ...pair.on, status: "completed" },
+} satisfies CommunityReportV2["pairs"][number];
+const report: CommunityReportV2 = { ...legacy, version: 2, benchmark: "codegraph-v2", pairs: [currentPair, currentPair] };
+const timeout: CommunityArmV2 = {
+  score: 0, durationMs: 120_000, inputTokens: null, cachedInputTokens: null, outputTokens: null,
+  codegraphUsed: false, status: "timeout",
 };
 
 function fixture() {
@@ -42,15 +51,27 @@ test("run previews the named budget and does not spend or upload without separat
   const args = ["run", "--model", "gpt-5.4", "--out", path];
   expect(await run(args, deps)).toBe(0);
   expect(stdout.join("")).toContain("4 Codex runs");
+  expect(stdout.join("")).toContain("codegraph-v2");
   expect(calls).toEqual([]);
   expect(await run([...args, "--yes"], deps)).toBe(0);
   expect(calls).toEqual(["gpt-5.4"]);
   expect(JSON.parse(readFileSync(path, "utf8"))).toEqual(report);
-  expect(stdout.join("")).toContain("Correct answers: without CodeGraph 4/6, with CodeGraph 4/6");
+  expect(stdout.join("")).toContain("Correct answers in complete pairs: without CodeGraph 4/12, with CodeGraph 4/12");
   expect(requests).toEqual([]);
   expect(await run([...args, "--yes"], deps)).toBe(1);
   expect(await run(["run", "--model", "gpt-5.4", "--out", join(path, "missing.json"), "--yes"], deps)).toBe(1);
   expect(calls).toHaveLength(1);
+});
+
+test("run preserves failed attempts without counting them as comparative answers", async () => {
+  const { path, deps, stdout } = fixture();
+  const incomplete: CommunityReportV2 = { ...report, pairs: [currentPair, { ...currentPair, on: timeout }] };
+  expect(await run(["run", "--model", "gpt-5.4", "--out", path, "--yes"], {
+    ...deps, measure: async () => incomplete,
+  })).toBe(0);
+  expect(JSON.parse(readFileSync(path, "utf8"))).toEqual(incomplete);
+  expect(stdout.join("")).toContain("Incomplete runs: without CodeGraph 0/2, with CodeGraph 1/2");
+  expect(stdout.join("")).toContain("Correct answers in complete pairs: without CodeGraph 2/6, with CodeGraph 2/6");
 });
 
 test("run explains unsupported setup without printing arbitrary runner output", async () => {
@@ -96,4 +117,11 @@ test("submit rejects private data, oversized files and credentials for other ori
   expect(requests).toHaveLength(0);
   expect(stderr.join("")).not.toContain("private");
   expect(stderr.join("")).not.toContain("never-send");
+});
+
+test("an earlier v1 report can still be submitted unchanged", async () => {
+  const { path, deps, requests } = fixture();
+  writeFileSync(path, JSON.stringify(legacy));
+  expect(await run(["submit", path, "--yes"], deps)).toBe(0);
+  expect(JSON.parse(String(requests[0]?.init.body))).toEqual(legacy);
 });

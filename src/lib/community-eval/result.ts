@@ -103,12 +103,12 @@ export function parseCommunityReport(value: unknown): CommunityReport {
     codegraphVersion: version(report.codegraphVersion),
   };
   if (report.version === 2 && report.benchmark === COMMUNITY_BENCHMARK) {
-    return { ...fields, version: 2, benchmark: COMMUNITY_BENCHMARK, pairs: parsePairs(report.pairs, parseArmV2) };
+    return { version: 2, benchmark: COMMUNITY_BENCHMARK, ...fields, pairs: parsePairs(report.pairs, parseArmV2) };
   }
   if (report.version === 1 && report.benchmark === LEGACY_COMMUNITY_BENCHMARK) {
     const max = communityScoreMax(LEGACY_COMMUNITY_BENCHMARK);
     const pairs = parsePairs(report.pairs, (arm, available) => parseMetrics(exactRecord(arm, ARM_KEYS), available, max));
-    return { ...fields, version: 1, benchmark: LEGACY_COMMUNITY_BENCHMARK, pairs };
+    return { version: 1, benchmark: LEGACY_COMMUNITY_BENCHMARK, ...fields, pairs };
   }
   return invalid();
 }
