@@ -6,8 +6,49 @@
  * All tests use an injectable mock searchFn; no real network calls are made.
  */
 
-import { describe, expect, test } from "bun:test";
-import { runQueryBatches, type GitHubRepoItem } from "./discover";
+import { describe, expect, spyOn, test } from "bun:test";
+import { run, runQueryBatches, type GitHubRepoItem } from "./discover";
+
+describe("cue discover search --skills-sh", () => {
+  test("sends only the explicit query to skills.sh and honors the result limit", async () => {
+    const fetcher = spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({
+      skills: [
+        { id: "vercel-labs/agent-skills/react", source: "vercel-labs/agent-skills", name: "React", installs: 3 },
+        { id: "example/skills/other", source: "example/skills", name: "Other", installs: 1 },
+      ],
+    }));
+    const out = spyOn(process.stdout, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "react & tests", "--json", "--limit", "1"])).toBe(0);
+      const url = new URL(String(fetcher.mock.calls[0]?.[0]));
+      expect(url.origin + url.pathname).toBe("https://skills.sh/api/search");
+      expect(Object.fromEntries(url.searchParams)).toEqual({ q: "react & tests" });
+      expect(JSON.parse(String(out.mock.calls[0]?.[0]))).toEqual([{
+        id: "vercel-labs/agent-skills/react", source: "vercel-labs/agent-skills",
+        name: "React", installs: 3, url: "https://skills.sh/vercel-labs/agent-skills/react",
+      }]);
+    } finally {
+      out.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+
+  test("rejects malformed results and never mixes in repository filters", async () => {
+    const fetcher = spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({
+      skills: [{ id: "another/repo/react", source: "example/repo", name: "React", installs: 0 }],
+    }));
+    const err = spyOn(process.stderr, "write").mockImplementation(() => true);
+    try {
+      expect(await run(["search", "--skills-sh", "react", "--profile", "core"])).toBe(1);
+      expect(fetcher).not.toHaveBeenCalled();
+      expect(await run(["search", "--skills-sh", "react"])).toBe(1);
+      expect(String(err.mock.calls[1]?.[0])).toContain("skills.sh");
+    } finally {
+      err.mockRestore();
+      fetcher.mockRestore();
+    }
+  });
+});
 
 // ---------------------------------------------------------------------------
 // Helpers
