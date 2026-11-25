@@ -55,6 +55,31 @@ export interface ProfileAdvisorOptions {
   runner?: AdvisorRunner;
 }
 
+interface PreparedProfileAdvice {
+  cached?: CachedProfileAdvice | null;
+  refresh?: Promise<ProfileAdvice | null>;
+}
+
+// Launch already hands the advisor its resolved agent and options when it
+// builds the rows. Retain that request until the one interactive picker takes
+// it, so cold-cache warming and live display share the same provider call.
+interface PickerAdviceRequest {
+  options: ProfileAdvisorOptions;
+  prepared?: Promise<PreparedProfileAdvice>;
+}
+let pickerRequest: PickerAdviceRequest | undefined;
+
+function preparePickerRequest(request: PickerAdviceRequest): Promise<PreparedProfileAdvice> {
+  return request.prepared ??= prepareProfileAdvice(request.options).catch(() => ({}));
+}
+
+export function takePickerProfileAdvice(cwd: string): Promise<PreparedProfileAdvice> | undefined {
+  if (!pickerRequest || resolve(pickerRequest.options.cwd) !== resolve(cwd)) return undefined;
+  const request = pickerRequest;
+  pickerRequest = undefined;
+  return preparePickerRequest(request);
+}
+
 /** One stable cache file per repository so changed evidence can reuse stale advice. */
 export function advisorCacheKey(cwd: string): string {
   return createHash("sha256").update(resolve(cwd)).digest("hex");
@@ -295,6 +320,7 @@ function cacheContext(
   dir: string;
   evidence: string;
   fingerprint: string;
+  profileFingerprint: string;
   known: Set<string>;
   knownProfiles: string[];
   knownSkills: string[];
@@ -306,10 +332,14 @@ function cacheContext(
   const knownProfiles = [...opts.knownProfiles].sort();
   const knownSkills = shortlistSkills(opts.knownSkills ?? [], evidence);
   const fingerprint = advisorEvidenceFingerprint(evidence, knownProfiles, knownSkills, opts.currentProfile);
+  const profileFingerprint = knownSkills.length === 0
+    ? fingerprint
+    : advisorEvidenceFingerprint(evidence, knownProfiles, [], opts.currentProfile);
   return {
     dir,
     evidence,
     fingerprint,
+    profileFingerprint,
     known: new Set(knownProfiles),
     knownProfiles,
     knownSkills,
@@ -322,11 +352,13 @@ function readCachedAdvice(
   known: ReadonlySet<string>,
   knownSkills: ReadonlySet<string>,
   fingerprint: string,
+  profileOnly = false,
 ): CachedProfileAdvice | null {
   try {
     const cached = JSON.parse(readFileSync(path, "utf8")) as {
       advice?: unknown;
       fingerprint?: string;
+      profileFingerprint?: string;
       version?: number;
     };
     if (cached.version !== ADVISOR_CACHE_VERSION) return null;
@@ -334,7 +366,8 @@ function readCachedAdvice(
     if (!advice) return null;
     return {
       advice,
-      freshness: cached.fingerprint === fingerprint ? "fresh" : "stale",
+      freshness: (profileOnly ? cached.profileFingerprint : cached.fingerprint) === fingerprint
+        ? "fresh" : "stale",
     };
   } catch {
     return null;
@@ -348,8 +381,13 @@ function readCachedAdvice(
 export function getCachedProfileAdvice(
   opts: Omit<ProfileAdvisorOptions, "runner">,
 ): CachedProfileAdvice | null {
+  const profileOnly = opts.preferredAgent !== undefined && opts.knownSkills === undefined;
+  if (profileOnly) {
+    pickerRequest = { options: opts };
+    if (process.env.CUE_PROFILE_ADVISOR === "off") return null;
+  }
   const { fingerprint, known, knownSkills, path } = cacheContext(opts);
-  return readCachedAdvice(path, known, new Set(knownSkills), fingerprint);
+  return readCachedAdvice(path, known, new Set(knownSkills), fingerprint, profileOnly);
 }
 
 interface RefreshLock {
@@ -414,6 +452,10 @@ function releaseRefreshLock(lock: RefreshLock): void {
 export async function adviseProfiles(
   opts: ProfileAdvisorOptions,
 ): Promise<ProfileAdvice | null> {
+  if (pickerRequest?.options === opts) {
+    const { cached, refresh } = await preparePickerRequest(pickerRequest);
+    return refresh ?? cached?.advice ?? null;
+  }
   const context = cacheContext(opts);
   const cached = readCachedAdvice(
     context.path, context.known, new Set(context.knownSkills), context.fingerprint,
@@ -422,10 +464,7 @@ export async function adviseProfiles(
 }
 
 /** Open the picker using cached/local advice while the selected agent works. */
-export async function prepareProfileAdvice(opts: ProfileAdvisorOptions): Promise<{
-  cached?: CachedProfileAdvice | null;
-  refresh?: Promise<ProfileAdvice | null>;
-}> {
+export async function prepareProfileAdvice(opts: ProfileAdvisorOptions): Promise<PreparedProfileAdvice> {
   if (process.env.CUE_PROFILE_ADVISOR === "off") return {};
   const { listAllSkillIds } = await import("./resolver-local");
   const knownSkills = opts.knownSkills ?? await listAllSkillIds().catch(() => []);
@@ -441,7 +480,7 @@ export async function prepareProfileAdvice(opts: ProfileAdvisorOptions): Promise
 
 async function refreshAdvice(
   opts: ProfileAdvisorOptions,
-  { dir, evidence, fingerprint, known, knownProfiles, knownSkills, path }: ReturnType<typeof cacheContext>,
+  { dir, evidence, fingerprint, profileFingerprint, known, knownProfiles, knownSkills, path }: ReturnType<typeof cacheContext>,
   cached: CachedProfileAdvice | null,
 ): Promise<ProfileAdvice | null> {
   const skillSet = new Set(knownSkills);
@@ -476,6 +515,7 @@ async function refreshAdvice(
           version: ADVISOR_CACHE_VERSION,
           cwd: resolve(opts.cwd),
           fingerprint,
+          profileFingerprint,
           updatedAt: new Date().toISOString(),
           advice,
         })}\n`,

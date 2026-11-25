@@ -9,6 +9,7 @@ import {
   getCachedProfileAdvice,
   parseProfileAdvice,
   prepareProfileAdvice,
+  takePickerProfileAdvice,
 } from "./ai-profile-advisor";
 
 const dirs: string[] = [];
@@ -190,6 +191,43 @@ describe("AI profile advisor", () => {
     expect(warm.cached?.advice.skills).toEqual(["review/api-tester"]);
     expect(warm.refresh).toBeUndefined();
     expect(calls).toBe(1);
+  });
+
+  test("picker takes the launcher's already-started advice request instead of invoking the provider twice", async () => {
+    const cwd = temp();
+    const catalog = temp();
+    const skill = join(catalog, "resources", "skills", "skills", "review", "api-tester");
+    mkdirSync(skill, { recursive: true });
+    writeFileSync(join(skill, "SKILL.md"), "# API tester\n");
+    const old = process.env.CUE_REPO_ROOT;
+    process.env.CUE_REPO_ROOT = catalog;
+    const response = Promise.withResolvers<string>();
+    const calls: string[] = [];
+    const options = {
+      cwd,
+      cacheRoot: temp(),
+      knownProfiles: ["core"],
+      preferredAgent: "claude" as const,
+      runner: (agent: string) => { calls.push(agent); return response.promise; },
+    };
+    try {
+      expect(getCachedProfileAdvice(options)).toBeNull();
+      const warming = adviseProfiles(options);
+      expect(takePickerProfileAdvice(temp())).toBeUndefined();
+      const picking = await takePickerProfileAdvice(cwd);
+      expect(picking?.cached).toBeNull();
+      expect(takePickerProfileAdvice(cwd)).toBeUndefined();
+      response.resolve('{"summary":"API","suggestions":[{"profile":"core","confidence":0.8,"reasons":["API"]}],"skills":["review/api-tester"]}');
+      expect(await picking?.refresh).toEqual(await warming);
+      expect(getCachedProfileAdvice(options)?.freshness).toBe("fresh");
+      const warm = await takePickerProfileAdvice(cwd);
+      expect(warm?.cached?.advice.skills).toEqual(["review/api-tester"]);
+      expect(warm?.refresh).toBeUndefined();
+      expect(calls).toEqual(["claude"]);
+    } finally {
+      if (old === undefined) delete process.env.CUE_REPO_ROOT;
+      else process.env.CUE_REPO_ROOT = old;
+    }
   });
 
   test("can disable both cached and live AI advice for the picker", async () => {
