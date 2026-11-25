@@ -17,8 +17,10 @@ export interface HomeSearch {
 
 export function parseHomeSearch(raw: Record<string, unknown>): HomeSearch {
   const view = parseStudioView(raw.view);
-  if (view !== "market") return view ? { view } : {};
-  const result: HomeSearch = { view };
+  // TanStack merges validation results over raw search, so invalid known
+  // parameters must be cleared explicitly rather than omitted.
+  const result: HomeSearch = { view, task: undefined, q: undefined, type: undefined };
+  if (view !== "market") return result;
   if (typeof raw.task === "string" && Object.hasOwn(profileTasks, raw.task)) result.task = raw.task as ProfileTask;
   if (typeof raw.q === "string" && raw.q.length > 0 && raw.q.length <= maxProfileSearchLength) result.q = raw.q;
   if (raw.type === "featured" || raw.type === "bundled" || raw.type === "extensions") result.type = raw.type;

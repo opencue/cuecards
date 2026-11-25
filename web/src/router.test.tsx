@@ -1,4 +1,5 @@
 import { expect, test } from "bun:test";
+import { createMemoryHistory, createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
 import { parseHomeSearch, parseProfileId, parseStudioView, parseWorkspaceSearch } from "./route-search";
 
 test("studio deep links accept supported views and reject arbitrary values", () => {
@@ -23,4 +24,15 @@ test("only Marketplace URLs accept bounded search and allowlisted filters", () =
 test("public profile IDs are bounded safe slugs", () => {
   expect(parseProfileId("aas-architecture")).toBe("aas-architecture");
   for (const id of ["../core", "builder; exit", "OPS", "a".repeat(81)]) expect(parseProfileId(id)).toBeUndefined();
+});
+
+test("TanStack search merges cannot restore rejected Marketplace filters", () => {
+  const root = createRootRoute();
+  const home = createRoute({ getParentRoute: () => root, path: "/", validateSearch: parseHomeSearch });
+  const router = createRouter({
+    routeTree: root.addChildren([home]),
+    history: createMemoryHistory({ initialEntries: [`/?view=market&task=unknown&type=private&q=${"x".repeat(121)}`] }),
+  });
+  const search = router.matchRoutes(router.state.location).at(-1)?.search;
+  expect(search).toMatchObject({ view: "market", task: undefined, type: undefined, q: undefined });
 });
