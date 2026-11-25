@@ -13,8 +13,16 @@ test("catalog searches fork skill descriptions without loading a profile", () =>
   ]);
 });
 
-const pinCases = [[40, false], [10, false], [10, true]] as const;
-test.each(pinCases)("profile installs resolve %i-character pins (rate limited: %s)", (length, rateLimited) => {
+const fullSha = "1".repeat(40);
+const prefix = fullSha.slice(0, 10);
+const pinCases = [
+  [`git@${fullSha}`, 0, fullSha],
+  [`git@${prefix}`, 200, fullSha],
+  [`git@${prefix}`, 403, fullSha],
+  [`git@${prefix}`, 404, fullSha],
+  ["tag@v1.2.3", 0, "v1.2.3"],
+] as const;
+test.each(pinCases)("profile installs honor %s (API status: %i)", (pin, apiStatus, ref) => {
   const bin = mkdtempSync(join(tmpdir(), "cue-profile-pin-test-"));
   try {
     const npx = join(bin, "npx");
@@ -22,19 +30,18 @@ test.each(pinCases)("profile installs resolve %i-character pins (rate limited: %
     writeFileSync(npx, '#!/bin/sh\nprintf "%s\\n" "$@" > "$ARGS_FILE"\nexit 0\n');
     chmodSync(npx, 0o755);
     const env = { ...process.env, PATH: `${bin}:${process.env.PATH}`, ARGS_FILE: argsFile };
-    const ref = "1".repeat(40);
     const gh = join(bin, "gh");
-    writeFileSync(gh, `#!/bin/sh\nprintf '%s\\n' '${ref}'\n`, { mode: 0o755 });
+    writeFileSync(gh, `#!/bin/sh\nprintf '%s\\n' '${fullSha}'\n`, { mode: 0o755 });
     const resolver = new URL("../lib/resolver-npx.ts", import.meta.url).pathname;
     const result = Bun.spawnSync([
       "bun", "-e",
       `import { npxFetchMany } from ${JSON.stringify(resolver)};
         globalThis.fetch = async (url) => {
-          if (${length} === 40 || url !== "https://api.github.com/repos/NagyVikt/claude-blog/commits/${ref.slice(0, length)}") throw new Error("Unexpected API request");
-          if (${rateLimited}) return new Response(null, { status: 403 });
-          return Response.json({ sha: "${ref}" });
+          if (!${apiStatus} || url !== "https://api.github.com/repos/NagyVikt/claude-blog/commits/${prefix}") throw new Error("Unexpected API request");
+          if (${apiStatus} !== 200) return new Response(null, { status: ${apiStatus} });
+          return Response.json({ sha: "${fullSha}" });
         };
-        await npxFetchMany("NagyVikt/claude-blog", "git@${ref.slice(0, length)}", ["blog-brief"], ${JSON.stringify(bin)});`,
+        await npxFetchMany("NagyVikt/claude-blog", "${pin}", ["blog-brief"], ${JSON.stringify(bin)});`,
     ], { env });
     expect(result.exitCode).toBe(0);
     const args = readFileSync(argsFile, "utf8").split("\n");

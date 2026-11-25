@@ -238,7 +238,7 @@ export const npxFetchMany: NpxBatchFetchFn = async (
       let sha: unknown;
       if (response.ok) {
         ({ sha } = await response.json() as { sha?: unknown });
-      } else if (response.status === 403 || response.status === 429) {
+      } else if ([401, 403, 404, 429].includes(response.status)) {
         const result = spawnSync("gh", ["api", "--hostname", "github.com", endpoint, "--jq", ".sha"], {
           encoding: "utf8", timeout: 10000, windowsHide: true,
         });
