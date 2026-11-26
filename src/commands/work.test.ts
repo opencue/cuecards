@@ -69,18 +69,51 @@ if [ "$*" = "status --json" ]; then
   printf '{"repo":{"inGitRepo":true,"guardexEnabled":true,"serviceStatus":"%s"}}\\n' "${"$"}{GX_STATUS:-active}"
   exit 0
 fi
+if [ "$*" = "branch tasks --help" ]; then
+  case "${"$"}{GX_PROBE:-normal}" in
+    failed) echo 'service temporarily unavailable' >&2; exit 1 ;;
+    changed) echo 'New usage banner'; exit 0 ;;
+  esac
+  if [ "${"$"}{GX_STRUCTURED:-0}" != 1 ]; then
+    printf 'Usage: gx branch <start|finish|merge> [options] (examples:\\n'
+    exit 1
+  fi
+  printf 'Usage: gx branch tasks --json\\n'
+  exit 0
+fi
+if [ "$*" = "branch tasks --json" ]; then
+  printf '{"version":1,"tasks":[{"taskId":"fixture-task","agent":"codex","branch":"agent/codex/fixture","worktree":"%s","busy":%s}]}\\n' "$GX_WORKTREE" "${"$"}{GX_BUSY:-false}"
+  exit 0
+fi
+if [ "$1 $2" = "branch run-task" ]; then
+  [ "$4" = "agent/codex/fixture" ] && [ "$5" = "$GX_WORKTREE" ] && [ "$6" = "--" ]
+  if [ "${"$"}{GX_RUN_BUSY:-0}" = 1 ]; then echo "task became busy" >&2; exit 75; fi
+  cd "$5"
+  shift 6
+  exec "$@"
+fi
 [ "$1 $2 $3 $4" = "branch start --tier T1" ]
 [ "$5 $6" = "--no-transfer --reuse-existing" ]
 [ "$7" = "--task-id" ] && [ -n "$8" ]
+id="$8"
 [ "$9" = "--task" ]
 shift 10
 [ "$1" = "--agent" ]
 if [ "${"$"}{GX_FAIL:-0}" = 1 ]; then echo "task is unavailable" >&2; exit 9; fi
+if [ "${"$"}{3:-}" = "--preview" ]; then
+  printf 'Checkout estimate: 123 bytes\\n'
+  exit 0
+fi
 if [ "${"$"}{GX_BAD_PATH:-0}" = 1 ]; then
   printf '[agent-branch-start] Worktree: %s\\n' "$GX_BASE"
   exit 0
 fi
 [ -f "$GX_WORKTREE/.git" ] || git -C "$GX_BASE" worktree add -qb "agent/$2/fixture" "$GX_WORKTREE"
+if [ "${"$"}{GX_STRUCTURED:-0}" = 1 ]; then
+  [ "${"$"}{3:-}" = "--json" ]
+  printf '{"version":%s,"taskId":"%s","agent":"%s","branch":"agent/%s/%s","worktree":"%s"}\\n' "${"$"}{GX_VERSION:-1}" "$id" "$2" "$2" "${"$"}{GX_BRANCH_SUFFIX:-fixture}" "$GX_WORKTREE"
+  exit 0
+fi
 printf '[agent-branch-start] Worktree: %s\\n' "$GX_WORKTREE"
 `, { mode: 0o755 });
     check({ run: (args, extra) => invoke(base, args, { ...env, ...extra }), base, worktree, git, log });
@@ -111,6 +144,80 @@ test.skipIf(process.platform === "win32")("reuses a task worktree without transf
     expect(readFileSync(join(base, "tracked.txt"), "utf8")).toBe("dirty on main");
     expect(readFileSync(join(worktree, "tracked.txt"), "utf8")).toBe("committed");
     expect(existsSync(join(worktree, "untracked.txt"))).toBe(false);
+  });
+});
+
+test.skipIf(process.platform === "win32")("preview prints the plan without creating a worktree or starting a writer", () => {
+  withCheckout(({ run, git, log }) => {
+    const before = git("worktree", "list", "--porcelain");
+    const result = run(["Preview me", "--task-id", "preview", "--profile", "override", "--agent", "claude", "--preview"]);
+    expect(result.status, result.stderr).toBe(0);
+    for (const line of ["Task: Preview me", "Task ID: preview", "Agent: claude", "Cue profile: override", "Checkout estimate: 123 bytes"]) {
+      expect(result.stdout).toContain(line);
+    }
+    expect(result.stdout).not.toContain("AGENT_CWD");
+    expect(git("worktree", "list", "--porcelain")).toBe(before);
+    expect(readFileSync(log, "utf8")).toContain("--agent claude --preview");
+  });
+});
+
+test.skipIf(process.platform === "win32")("structured start checks the reported version and branch and never retries the legacy mutation", () => {
+  withCheckout(({ run, worktree, log }) => {
+    const env = { GX_STRUCTURED: "1" };
+    const ok = run(["Structured", "--task-id", "fixture-task"], { ...env, AGENT_EXIT: "7" });
+    expect(ok.status, ok.stderr).toBe(7);
+    expect(ok.stdout).toContain(`AGENT_CWD=${worktree}`);
+    expect(ok.stdout).toContain("AGENT_PROFILE=fixture");
+    for (const invalid of [{ GX_VERSION: "2" }, { GX_BRANCH_SUFFIX: "other" }]) {
+      const rejected = run(["Structured", "--task-id", "fixture-task"], { ...env, ...invalid });
+      expect(rejected.status).toBe(1);
+      expect(rejected.stderr).toContain("linked agent worktree");
+      expect(rejected.stdout).not.toContain("AGENT_CWD");
+    }
+    const trace = readFileSync(log, "utf8");
+    expect(trace.match(/^branch start.* --json$/gm)).toHaveLength(3);
+    expect(trace.match(/^branch run-task /gm)).toHaveLength(1);
+  });
+});
+
+test.skipIf(process.platform === "win32")("an ambiguous capability probe cannot downgrade to an unguarded start", () => {
+  withCheckout(({ run, log }) => {
+    for (const probe of ["failed", "changed"]) {
+      const result = run(["No fallback"], { GX_PROBE: probe });
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("Could not determine GitGuardex task support");
+      expect(result.stdout).not.toContain("AGENT_CWD");
+    }
+    expect(readFileSync(log, "utf8")).not.toContain("branch start");
+  });
+});
+
+test.skipIf(process.platform === "win32")("resume lists tasks noninteractively and only launches a selected idle worktree", () => {
+  withCheckout(({ run, git, worktree, log }) => {
+    const env = { GX_STRUCTURED: "1" };
+    git("worktree", "add", "-qb", "agent/codex/fixture", worktree);
+    const before = git("worktree", "list", "--porcelain");
+    const list = run(["--resume"], env);
+    expect(list.status).toBe(1);
+    expect(list.stderr).toContain("1. fixture-task");
+    expect(list.stderr).toContain("Use --task-id");
+    const args = ["--resume", "--task-id", "fixture-task"];
+    const busy = run(args, { ...env, GX_BUSY: "true" });
+    expect(busy.status).toBe(1);
+    expect(busy.stderr).toContain("in use");
+    expect(run(["--resume", "--task-id", "missing"], env).status).toBe(1);
+    const becameBusy = run(args, { ...env, GX_RUN_BUSY: "1" });
+    expect(becameBusy.status).toBe(75);
+    expect(becameBusy.stderr).toContain("task became busy");
+    expect(becameBusy.stdout).not.toContain("AGENT_CWD");
+    const resumed = run(args, env);
+    expect(resumed.status, resumed.stderr).toBe(0);
+    expect(resumed.stdout).toContain(`AGENT_CWD=${worktree}`);
+    expect(resumed.stdout).toContain("AGENT_ARGS=Continue task fixture-task");
+    expect(git("worktree", "list", "--porcelain")).toBe(before);
+    const trace = readFileSync(log, "utf8");
+    expect(trace).not.toContain("branch start");
+    expect(trace.match(/^branch run-task /gm)).toHaveLength(2);
   });
 });
 
