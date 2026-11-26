@@ -14,8 +14,9 @@ import {
 import { profilesDir } from "../lib/repo-root";
 import { createLocalSkillResolver } from "../lib/resolver-local";
 import { expandSkillWildcards } from "../lib/runtime-install";
+import { previewHarnessKit } from "./harnesskit-preview";
 
-const importUsage = "Usage: cue import <url|file|org/repo> [--name <name>] [--apply [--sha256 <digest>]]";
+const importUsage = "Usage: cue import <url|file|org/repo> [--name <name>] [--apply [--sha256 <digest>]]\n       cue import --harnesskit <manifest.json> (local preview only)";
 const exportUsage = "Usage: cue export <profile> [--output <path>] [--portable] [--name <name>]";
 const resourceFields = ["rules", "commands", "subagents", "hooks", "persona_includes", "playbooks", "qualityGates", "evals"] as const;
 
@@ -24,7 +25,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 export async function run(args: string[]): Promise<number> {
-  const exporting = args[0] === "export" || args.includes("--output");
+  const exporting = args[0] === "export" || (!args.includes("--harnesskit") && args.includes("--output"));
   try {
     if (exporting) return await cmdExport(args[0] === "export" ? args.slice(1) : args);
     return await cmdImport(args);
@@ -72,10 +73,16 @@ async function cmdImport(args: string[]): Promise<number> {
   if (args.length === 0) throw new Error(importUsage + "\n       " + exportUsage);
   const { values, positionals } = parseArgs({
     args, allowPositionals: true,
-    options: { apply: { type: "boolean" }, name: { type: "string" }, sha256: { type: "string" } },
+    options: { apply: { type: "boolean" }, name: { type: "string" }, sha256: { type: "string" }, harnesskit: { type: "boolean" } },
   });
   if (positionals.length !== 1) throw new Error(importUsage);
   const source = positionals[0]!;
+  if (values.harnesskit) {
+    if (values.apply || values.name !== undefined || values.sha256 !== undefined) {
+      throw new Error("HarnessKit import is preview only; do not use --apply, --name or --sha256");
+    }
+    return previewHarnessKit(source);
+  }
   if (values.apply && !values.sha256 && /^https?:\/\//.test(source)) {
     throw new Error("Preview the URL first, then apply using --sha256 <digest> from the preview");
   }
