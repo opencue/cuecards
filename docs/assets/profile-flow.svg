@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 124" role="img" aria-labelledby="title">
+  <title id="title">Cue launch: select a profile, prepare the runtime, start the agent</title>
+  <style>
+    .pulse { animation: travel 2s ease-in-out 2 both }
+    .second { animation-delay: .5s }
+    @keyframes travel { 0%, 25% { opacity: 0 } 40%, 64% { opacity: 1 } 85%, 100% { opacity: 0; transform: translateX(27px) } }
+    @media (prefers-reduced-motion: reduce) { .pulse { display: none } }
+  </style>
+  <rect width="760" height="124" rx="16" fill="#171729"/>
+  <path d="M217 75h41l-8-7m8 7-8 7M501 75h41l-8-7m8 7-8 7" fill="none" stroke="#827ba0" stroke-width="2"/>
+  <g font-family="system-ui,sans-serif" font-weight="700" text-anchor="middle">
+    <text x="380" y="32" fill="#c4badf" font-size="12" letter-spacing="3">CUE LAUNCH</text>
+    <text x="118" y="81" fill="#f2c6ff" font-size="19">01 · Select a profile</text>
+    <text x="380" y="81" fill="#99e9dc" font-size="19">02 · Prepare the runtime</text>
+    <text x="644" y="81" fill="#ffd3a8" font-size="19">03 · Start the agent</text>
+  </g>
+  <circle class="pulse" cx="222" cy="75" r="5" fill="#f2c6ff"/>
+  <circle class="pulse second" cx="506" cy="75" r="5" fill="#99e9dc"/>
+</svg>
