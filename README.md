@@ -44,7 +44,31 @@ and remote resources. To try a profile before pinning anything, run
 
 [Install with an AI agent](setup/agent-prompt.md) · [macOS](setup/macos.md) · [Linux](setup/linux.md) · [Windows](setup/windows.md) · [Shell setup and removal](docs/shell-setup.md)
 
-<img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/demo.gif" alt="Terminal demo: selecting a project profile and launching a coding agent" width="760" loading="lazy">
+## Profile demos
+
+<img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/profile-flow.svg" alt="Cue launch: select a profile, prepare its runtime, then start the agent" width="760">
+
+These recordings run the real Cue CLI. The Codex process is simulated: it
+checks that Cue handed it a generated config, then prints a sample response.
+The recordings use local resources only and make no model calls.
+
+### Start with `core`
+
+`cue launch codex --cue-profile core` skips the picker and starts with the
+baseline profile.
+
+<img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/profile-core.gif" alt="Cue launches the core profile; simulated Codex confirms that config.toml was loaded" width="760" loading="lazy">
+
+### Stack `backend` and `frontend`
+
+`cue launch codex` opens the picker. Press `/` to search, Space to add or remove
+a profile from the stack, and Enter to launch with the selection.
+
+<img src="https://raw.githubusercontent.com/opencue/cuecards/main/docs/assets/profile-stack.gif" alt="Cue's picker combines backend and frontend, then simulated Codex confirms the resulting runtime" width="760" loading="lazy">
+
+To re-record, [set up the development checkout](CONTRIBUTING.md), then run
+`vhs docs/demos/core.tape` and `vhs docs/demos/stack.tape` from its root with
+[VHS](https://github.com/charmbracelet/vhs).
 
 ## How it works
 
