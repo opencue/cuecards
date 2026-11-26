@@ -17,12 +17,12 @@ interface Wired {
   press: (char: string | undefined, key?: Record<string, unknown>) => void;
 }
 
-function wire(): Wired {
+function wire(columns = 80): Wired {
   const input = new PassThrough() as PassThrough & { isTTY?: boolean; setRawMode?: () => void };
   const output = new PassThrough() as PassThrough & { columns?: number; rows?: number };
   input.isTTY = true;
   input.setRawMode = () => {};
-  output.columns = 80;
+  output.columns = columns;
   output.rows = 40;
   // Drain, or the PassThrough fills and the prompt's writes block.
   output.resume();
@@ -371,13 +371,43 @@ describe("StackPalettePrompt keys", () => {
       rows,
       input,
       output,
-      onNeedTally: (v) => wanted.push(v),
+      onNeedTally: (v) => { wanted.push(v); },
     });
     const done = prompt.prompt();
     press(undefined, { name: "space" });
     expect(wanted).toEqual(["rust"]);
     press(undefined, { name: "return" });
     await done;
+  });
+
+  test("wide preview loads only focused profiles, redraws on arrival, and leaves selection alone", async () => {
+    const { input, output, press } = wire(100);
+    let screen = "";
+    output.on("data", (chunk) => { screen += String(chunk); });
+    const wanted: string[] = [];
+    const tallies = new Map();
+    const ready = Promise.withResolvers<void>();
+    const prompt = new StackPalettePrompt({
+      rows, input, output, tallies, selected: ["rust"],
+      onNeedTally: async (v) => {
+        wanted.push(v);
+        await ready.promise;
+        tallies.set(v, { skills: [`detail-for-${v}`], mcps: [], commands: [], plugins: [] });
+      },
+    });
+    const done = prompt.prompt();
+    press(undefined, { name: "down" });
+    press(undefined, { name: "up" });
+    press(undefined, { name: "down" });
+    expect(wanted).toEqual(["rust", "secops"]);
+    expect(screen).toContain("Loading resources");
+    screen = "";
+    ready.resolve();
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    expect(screen).toContain("detail-for-secops");
+    expect(screen).not.toContain("detail-for-rust");
+    press(undefined, { name: "return" });
+    expect(await done).toEqual(["rust"]);
   });
 
   test("cursorAt starts the cursor on a named row", async () => {

@@ -13,6 +13,7 @@
 
 import { Prompt, type PromptOptions } from "@clack/core";
 import { styleText } from "node:util";
+import { wrapText } from "../discover-format";
 import { buildConflictMap, resolveConflicts } from "../profile-conflicts";
 import { COMBINE_CATEGORY_ORDER, combineCategoryOf } from "./categories";
 import {
@@ -25,6 +26,7 @@ import {
 import {
   EMPTY_TALLY,
   formatStackTotals,
+  formatTallyDelta,
   OVERHEAD_WARN_TOKENS,
   unionTallyCounts,
   type ProfileTally,
@@ -33,6 +35,10 @@ import {
   BAR,
   button,
   CARD_MAX_WIDTH,
+  cardBottom,
+  cardInner,
+  cardLine,
+  cardTop,
   clipVisible,
   fitLine,
   formatAlwaysOn,
@@ -93,8 +99,13 @@ export interface PaletteState {
   maxRows?: number;
   ascii?: boolean;
   cols?: number;
+  terminalRows?: number;
+  tallyRequests?: ReadonlyMap<string, "loading" | "done">;
   help?: boolean;
 }
+
+const previewWidth = (cols: number, rows: number): number =>
+  cols >= 100 && rows >= 22 ? Math.min(52, Math.floor(cols * 0.46)) : 0;
 
 const KEY_HELP: ReadonlyArray<[string, string]> = [
   ["⏎", "launch the stack you built"],
@@ -304,6 +315,7 @@ export function renderPaletteFrame(state: PaletteState): string {
   const cols = state.cols ?? process.stdout.columns ?? 80;
   const compact = cols < 64;
   const width = Math.max(24, cols - 6);
+  const panelWidth = previewWidth(cols, state.terminalRows ?? 24);
   // Rows clip to the full terminal width (a long hint deserves the room), but
   // the right-aligned header meta tracks the card's capped width so the two
   // screens line up instead of drifting apart on a wide terminal.
@@ -314,7 +326,8 @@ export function renderPaletteFrame(state: PaletteState): string {
 
   const visible = filterRows(state.rows, state.query);
   const conflictMap = buildConflictMap(state.rows);
-  const effective = new Set(resolveConflicts(state.selected, conflictMap));
+  const chosen = resolveConflicts(state.selected, conflictMap);
+  const effective = new Set(chosen);
 
   // Title bar: the screen's name on the left, how far along you are on the
   // right — the two things you'd check before touching a key.
@@ -350,9 +363,10 @@ export function renderPaletteFrame(state: PaletteState): string {
   );
 
   if (!compact) lines.push(bar);
+  const catalogue: string[] = [];
   if (visible.length === 0) {
     const message = compact ? "No profiles found · ⌫ edit search" : `nothing matches "${state.query}"`;
-    lines.push(`${bar}  ${styleText("yellow", message)}`);
+    catalogue.push(`${bar}  ${styleText("yellow", message)}`);
   }
 
   // Per-section totals (across the whole filtered list, not just the window) so
@@ -367,34 +381,47 @@ export function renderPaletteFrame(state: PaletteState): string {
   const max = state.maxRows && state.maxRows > 0 ? state.maxRows : visible.length;
   const cursor = Math.max(0, Math.min(state.cursor, visible.length - 1));
   const win = windowOptions(visible, cursor, max);
-  if (win.hiddenAbove > 0) lines.push(`${bar}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
+  if (win.hiddenAbove > 0) catalogue.push(`${bar}  ${styleText("dim", `↑ ${win.hiddenAbove} more`)}`);
 
   let lastSection: string | undefined;
   win.items.forEach((row, offset) => {
     const idx = win.start + offset;
     if (row.section !== lastSection) {
-      if (!compact && lastSection !== undefined) lines.push(bar);
-      lines.push(`${bar}  ${sectionHeader(row.section, sectionTotals.get(row.section) ?? 0)}`);
+      if (!compact && lastSection !== undefined) catalogue.push(bar);
+      catalogue.push(`${bar}  ${sectionHeader(row.section, sectionTotals.get(row.section) ?? 0)}`);
       lastSection = row.section;
     }
-    lines.push(
-      renderRow(row, idx === cursor, effective, conflictMap, { icon, labelCol, state, width, ascii }),
+    catalogue.push(
+      renderRow(row, idx === cursor, effective, conflictMap, {
+        icon, labelCol, state, width, ascii, showHint: panelWidth === 0,
+      }),
     );
   });
-  if (win.hiddenBelow > 0) lines.push(`${bar}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
+  if (win.hiddenBelow > 0) catalogue.push(`${bar}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
 
-  // Sticky footer: what you're about to launch, and what it costs.
+  if (panelWidth > 0) {
+    const focused = visible[cursor];
+    const panel = renderProfilePreview(panelWidth, focused, chosen, conflictMap, state, icon);
+    const listWidth = cols - panelWidth - 3;
+    for (let i = 0; i < Math.max(catalogue.length, panel.length); i++) {
+      const row = clipVisible(catalogue[i] ?? bar, listWidth);
+      lines.push(panel[i] ? `${padVisible(row, listWidth)}   ${panel[i]}` : row);
+    }
+  } else {
+    lines.push(...catalogue);
+  }
+
+  // Keep Enter and its target on the same line, even in compact mode.
   lines.push(bar);
-  const chosen = [...effective];
-  if (chosen.length === 0 && !compact) {
-    lines.push(
-      `${bar}  ${styleText("dim", "nothing selected yet — press space to add the focused profile")}`,
-    );
-  } else if (chosen.length > 0) {
-    const labelOf = (v: string) => icon(state.rows.find((r) => r.value === v)?.label ?? v);
-    lines.push(
-      `${bar}  ${styleText("green", clipToWidth(chosen.map(labelOf).join("  +  "), width))}`,
-    );
+  const enter = ascii ? "Enter" : "⏎";
+  if (chosen.length === 0) {
+    const hint = visible.length > 0 ? "Space to add a profile" : "No profiles selected";
+    lines.push(`${bar}  ${styleText("dim", ` ${enter} disabled `)} ${hint}`);
+  } else {
+    const launch = button(`${enter} launch ${chosen.length}`);
+    const stack = chosen.map((v) => icon(state.rows.find((r) => r.value === v)?.label ?? v));
+    const preview = clipToWidth(stack.join("  +  "), cols - 4 - visibleWidth(launch));
+    lines.push(`${bar}  ${launch} ${styleText(["bold", "green"], preview)}`);
     const tallies = state.tallies;
     if (tallies) {
       const pickedTallies = chosen.map((v) => tallies.get(v));
@@ -415,35 +442,80 @@ export function renderPaletteFrame(state: PaletteState): string {
   }
 
   if (!compact) lines.push(bar);
-  const ship =
-    chosen.length > 0
-      ? button(`⏎ launch ${chosen.length}`)
-      : styleText("dim", " ⏎ pick a profile ");
-  // Three widths of the same row, so a narrow terminal drops words rather than
-  // wrapping — a wrapped action row reflows the list on every keystroke.
-  const row = (pairs: ReadonlyArray<[string, string]>) => `${ship}   ${keyHints(pairs)}`;
+  // Shed secondary hints rather than wrapping in a narrow terminal.
   lines.push(
     `${bar}  ${fitLine(
       cols - 4,
-      row([
+      keyHints([
         ["space", "add/remove"],
+        ["↑↓", "move focus"],
+        ["?", "keys"],
+        ["esc", "back"],
+      ]),
+      keyHints([
+        ["space", "toggle"],
         ["↑↓", "move"],
         ["?", "keys"],
         ["esc", "back"],
       ]),
-      row([
-        ["space", "add"],
-        ["↑↓", "move"],
-        ["?", "keys"],
-        ["esc", "back"],
-      ]),
-      row([
-        ["space", "add"],
+      keyHints([
+        ["space", "toggle"],
         ["esc", "back"],
       ]),
     )}`,
   );
   return lines.map((line) => clipVisible(line, cols)).join("\n");
+}
+
+function renderProfilePreview(
+  width: number,
+  row: PaletteRow | undefined,
+  chosen: string[],
+  conflicts: Map<string, Set<string>>,
+  state: PaletteState,
+  icon: (s: string) => string,
+): string[] {
+  const body: string[] = [];
+  if (row) {
+    const selected = chosen.includes(row.value);
+    const blockedBy = chosen.find((value) => conflicts.get(row.value)?.has(value));
+    const status = selected ? styleText("green", "Selected · Space to remove")
+      : blockedBy ? styleText("yellow", `Conflicts with ${blockedBy}`)
+      : styleText("dim", "Not selected · Space to add");
+    const description = wrapText(row.description || row.hint || "No description available", cardInner(width), "");
+    body.push(styleText(["cyan", "bold"], icon(row.label)), status,
+      description[0] ?? "", description.slice(1).join(" "), "");
+
+    const tally = state.tallies?.get(row.value);
+    const baseline = chosen.map((value) => state.tallies?.get(value));
+    const stackDelta = !selected && !blockedBy && baseline.every((entry) => entry !== undefined);
+    body.push(sectionHeader(stackDelta ? "adds to stack" : "in this profile"));
+    if (tally) {
+      const added = (key: keyof Omit<ProfileTally, "alwaysOn">) => {
+        const existing = new Set(stackDelta ? baseline.flatMap((entry) => entry?.[key] ?? []) : []);
+        return [...new Set(tally[key])].filter((id) => !existing.has(id));
+      };
+      const resources = {
+        skills: added("skills"), mcps: added("mcps"), plugins: added("plugins"), commands: added("commands"),
+      };
+      const tools = [...resources.mcps, ...resources.plugins, ...resources.commands];
+      body.push(
+        formatTallyDelta(resources) || (stackDelta ? "No new resources" : "No resources"),
+        resources.skills.length ? `Skills  ${resources.skills.join(", ")}` : "",
+        tools.length ? `Tools   ${tools.join(", ")}` : "",
+      );
+    } else {
+      body.push(styleText("dim", state.tallyRequests?.get(row.value) === "loading"
+        ? "Loading resources…" : "Resource details unavailable"));
+    }
+  } else {
+    body.push("No profile in focus", styleText("dim", "Edit your search to see details"));
+  }
+  return [
+    cardTop(width, styleText("cyan", "Profile preview")),
+    ...Array.from({ length: 9 }, (_, i) => cardLine(width, body[i] ?? "")),
+    cardBottom(width),
+  ];
 }
 
 /** One list row: selection mark, label, per-row delta, conflict/danger tags. */
@@ -458,12 +530,13 @@ function renderRow(
     state: PaletteState;
     width: number;
     ascii: boolean;
+    showHint: boolean;
   },
 ): string {
   const bar = BAR();
   const isSel = effective.has(row.value);
   const arrow = isCursor
-    ? styleText("cyan", "›")
+    ? styleText(["bold", "cyan"], ctx.ascii ? ">" : "❯")
     : row.recommended === true
       ? styleText("magenta", "→")
       : " ";
@@ -501,7 +574,7 @@ function renderRow(
   const gutter = 6 + markWidth(ctx.ascii); // "│  › ● "
   const used = gutter + Math.max(displayWidth(rawLabel), ctx.labelCol) + displayWidth(delta) + 4;
   const hint =
-    row.hint && isCursor
+    row.hint && isCursor && ctx.showHint
       ? styleText("dim", ` (${clipToWidth(row.hint, Math.max(16, ctx.width - used))})`)
       : "";
   // The "suggested" tag earns its place only where the section header doesn't
@@ -532,9 +605,9 @@ export class StackPalettePrompt extends Prompt<string[]> {
   tallies: Map<string, ProfileTally>;
   help = false;
   hardCancel = false;
-  /** Invoked when a row without a loaded tally is toggled, so the caller can
-   *  fetch it and re-render. Best-effort; failures are swallowed. */
-  onNeedTally?: (value: string) => void;
+  private tallyRequests = new Map<string, "loading" | "done">();
+  /** Load one profile on demand, not the full catalogue. */
+  onNeedTally?: (value: string) => void | Promise<void>;
 
   constructor(opts: {
     rows: PaletteRow[];
@@ -543,7 +616,7 @@ export class StackPalettePrompt extends Prompt<string[]> {
     tallies?: Map<string, ProfileTally>;
     /** Row value the cursor should start on (e.g. the first "all profiles" row). */
     cursorAt?: string;
-    onNeedTally?: (value: string) => void;
+    onNeedTally?: (value: string) => void | Promise<void>;
     /** Streams, injectable so the key handling is testable without a TTY. */
     input?: NodeJS.ReadableStream;
     output?: NodeJS.WritableStream;
@@ -635,13 +708,28 @@ export class StackPalettePrompt extends Prompt<string[]> {
       this.selected = this.selected.filter((v) => v !== row.value);
     } else {
       this.selected = [...this.selected, row.value];
-      if (!this.tallies.has(row.value)) this.onNeedTally?.(row.value);
+      void this.requestTally(row.value);
     }
     this.syncValue();
   }
 
   private syncValue(): void {
     this.value = resolveConflicts(this.selected, buildConflictMap(this.rows));
+  }
+
+  private async requestTally(value: string): Promise<void> {
+    if (!this.onNeedTally || this.tallies.has(value) || this.tallyRequests.has(value)) return;
+    this.tallyRequests.set(value, "loading");
+    try {
+      await this.onNeedTally(value);
+    } catch {
+      // A read failure shouldn't block navigation or launch.
+    }
+    this.tallyRequests.set(value, "done");
+    if (this.state !== "submit" && this.state !== "cancel") {
+      // Same Clack async redraw as the suggestion card.
+      (this as unknown as { render(): void }).render();
+    }
   }
 
   /** Enter is a no-op until at least one profile is selected. */
@@ -656,8 +744,13 @@ export class StackPalettePrompt extends Prompt<string[]> {
    * above the viewport and made it appear impossible to deselect.
    */
   private renderActiveFrame(): string {
-    const terminalRows =
-      (this.output as { rows?: number } | undefined)?.rows ?? process.stdout.rows ?? 24;
+    const output = this.output as Partial<NodeJS.WriteStream>;
+    const terminalRows = output.rows ?? process.stdout.rows ?? 24;
+    const cols = output.columns ?? process.stdout.columns ?? 80;
+    if (!this.help && previewWidth(cols, terminalRows) > 0) {
+      const focused = this.visibleRows()[this.cursor];
+      if (focused) void this.requestTally(focused.value);
+    }
     const render = (maxRows: number): string =>
       renderPaletteFrame({
         rows: this.rows,
@@ -667,7 +760,9 @@ export class StackPalettePrompt extends Prompt<string[]> {
         tallies: this.tallies,
         help: this.help,
         maxRows,
-        cols: (this.output as { columns?: number } | undefined)?.columns,
+        cols,
+        terminalRows,
+        tallyRequests: this.tallyRequests,
       });
 
     if (this.help) return render(1);
