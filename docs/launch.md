@@ -76,6 +76,9 @@ or `--cue-pick` to force it for a launch that has arguments.
 In the default picker, press `/` to search profile names and descriptions.
 Join keywords with `+` (for example, `vercel+postgres`) to require every term,
 then use Space to add or remove the highlighted profile.
+In the profile list, the chevron marks keyboard focus and the filled circle
+marks selected profiles. The footer previews what Enter will launch; Enter does
+nothing until at least one profile is selected.
 
 ## Materialize
 

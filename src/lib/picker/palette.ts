@@ -314,7 +314,8 @@ export function renderPaletteFrame(state: PaletteState): string {
 
   const visible = filterRows(state.rows, state.query);
   const conflictMap = buildConflictMap(state.rows);
-  const effective = new Set(resolveConflicts(state.selected, conflictMap));
+  const chosen = resolveConflicts(state.selected, conflictMap);
+  const effective = new Set(chosen);
 
   // Title bar: the screen's name on the left, how far along you are on the
   // right — the two things you'd check before touching a key.
@@ -383,18 +384,17 @@ export function renderPaletteFrame(state: PaletteState): string {
   });
   if (win.hiddenBelow > 0) lines.push(`${bar}  ${styleText("dim", `↓ ${win.hiddenBelow} more`)}`);
 
-  // Sticky footer: what you're about to launch, and what it costs.
+  // Keep Enter and its target on the same line, even in compact mode.
   lines.push(bar);
-  const chosen = [...effective];
-  if (chosen.length === 0 && !compact) {
-    lines.push(
-      `${bar}  ${styleText("dim", "nothing selected yet — press space to add the focused profile")}`,
-    );
-  } else if (chosen.length > 0) {
-    const labelOf = (v: string) => icon(state.rows.find((r) => r.value === v)?.label ?? v);
-    lines.push(
-      `${bar}  ${styleText("green", clipToWidth(chosen.map(labelOf).join("  +  "), width))}`,
-    );
+  const enter = ascii ? "Enter" : "⏎";
+  if (chosen.length === 0) {
+    const hint = visible.length > 0 ? "Space to add a profile" : "No profiles selected";
+    lines.push(`${bar}  ${styleText("dim", ` ${enter} disabled `)} ${hint}`);
+  } else {
+    const launch = button(`${enter} launch ${chosen.length}`);
+    const stack = chosen.map((v) => icon(state.rows.find((r) => r.value === v)?.label ?? v));
+    const preview = clipToWidth(stack.join("  +  "), cols - 4 - visibleWidth(launch));
+    lines.push(`${bar}  ${launch} ${styleText(["bold", "green"], preview)}`);
     const tallies = state.tallies;
     if (tallies) {
       const pickedTallies = chosen.map((v) => tallies.get(v));
@@ -415,30 +415,24 @@ export function renderPaletteFrame(state: PaletteState): string {
   }
 
   if (!compact) lines.push(bar);
-  const ship =
-    chosen.length > 0
-      ? button(`⏎ launch ${chosen.length}`)
-      : styleText("dim", " ⏎ pick a profile ");
-  // Three widths of the same row, so a narrow terminal drops words rather than
-  // wrapping — a wrapped action row reflows the list on every keystroke.
-  const row = (pairs: ReadonlyArray<[string, string]>) => `${ship}   ${keyHints(pairs)}`;
+  // Shed secondary hints rather than wrapping in a narrow terminal.
   lines.push(
     `${bar}  ${fitLine(
       cols - 4,
-      row([
+      keyHints([
         ["space", "add/remove"],
+        ["↑↓", "move focus"],
+        ["?", "keys"],
+        ["esc", "back"],
+      ]),
+      keyHints([
+        ["space", "toggle"],
         ["↑↓", "move"],
         ["?", "keys"],
         ["esc", "back"],
       ]),
-      row([
-        ["space", "add"],
-        ["↑↓", "move"],
-        ["?", "keys"],
-        ["esc", "back"],
-      ]),
-      row([
-        ["space", "add"],
+      keyHints([
+        ["space", "toggle"],
         ["esc", "back"],
       ]),
     )}`,
@@ -463,7 +457,7 @@ function renderRow(
   const bar = BAR();
   const isSel = effective.has(row.value);
   const arrow = isCursor
-    ? styleText("cyan", "›")
+    ? styleText(["bold", "cyan"], ctx.ascii ? ">" : "❯")
     : row.recommended === true
       ? styleText("magenta", "→")
       : " ";

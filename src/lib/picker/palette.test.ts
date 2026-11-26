@@ -203,7 +203,7 @@ describe("renderPaletteFrame", () => {
   test("shows selection marks and an uppercase section header", () => {
     const frame = plain(renderPaletteFrame({ ...base, rows: rows(), selected: ["rust"] }));
     expect(frame).toContain(SUGGESTED_SECTION.toUpperCase());
-    expect(frame).toContain("● 🦀 rust");
+    expect(frame).toContain("❯ ● 🦀 rust");
     expect(frame).toContain("○ 🔒 secops");
     // The section header already says "suggested" — the per-row tag would only
     // repeat it, so it stays off until a search flattens the sections away.
@@ -258,7 +258,7 @@ describe("renderPaletteFrame", () => {
     const frame = plain(
       renderPaletteFrame({ ...base, rows: rows(), selected: ["rust", "secops"], tallies }),
     );
-    expect(frame).toContain("🦀 rust  +  🔒 secops");
+    expect(frame).toMatch(/⏎ launch 2 +🦀 rust  \+  🔒 secops/);
     expect(frame).toContain("31 skills");
     expect(frame).toContain("~13k always-on");
     expect(frame).toContain("⚠ heavy, slows the agent");
@@ -277,9 +277,19 @@ describe("renderPaletteFrame", () => {
   });
 
   test("nudges when nothing is selected", () => {
-    const frame = plain(renderPaletteFrame({ ...base, rows: rows(), selected: [] }));
-    expect(frame).toContain("nothing selected yet — press space to add the focused profile");
-    expect(frame).toContain("⏎ pick a profile");
+    for (const cols of [40, 80]) {
+      const frame = plain(renderPaletteFrame({ ...base, cols, rows: rows(), selected: [] }));
+      expect(frame).toMatch(/⏎ disabled +Space to add a profile/);
+    }
+  });
+
+  test("previews the effective selection even when search hides it", () => {
+    const frame = plain(renderPaletteFrame({
+      ...base, rows: rows(), query: "secops", selected: ["medusa-next", "medusa-vite"],
+    }));
+    expect(frame).toContain("❯ ○ 🔒 secops");
+    expect(frame).toMatch(/⏎ launch 1 +medusa-next/);
+    expect(frame).not.toContain("medusa-vite");
   });
 
   test("the action row sheds words instead of wrapping a narrow terminal", () => {
@@ -289,9 +299,18 @@ describe("renderPaletteFrame", () => {
       );
       for (const line of frame.split("\n")) expect(displayWidth(line)).toBeLessThanOrEqual(cols);
       // However narrow it gets, the two keys you cannot guess still show.
-      expect(frame).toContain("⏎ launch 1");
-      expect(frame).toContain("space add");
+      expect(frame).toMatch(/⏎ launch 1 +🦀 rust/);
+      expect(frame).toMatch(/space (add\/remove|toggle)/);
     }
+  });
+
+  test("a long stack clips its names without losing the launch count", () => {
+    const frame = plain(renderPaletteFrame({
+      ...base, cols: 40, rows: rows(), selected: ["rust", "secops", "medusa-next"],
+    }));
+    const launch = frame.split("\n").find((line) => line.includes("⏎ launch"));
+    expect(launch).toMatch(/⏎ launch 3 +🦀 rust.*…$/);
+    expect(displayWidth(launch ?? "")).toBeLessThanOrEqual(40);
   });
 
   test("windows a long list with scroll markers", () => {
@@ -320,8 +339,9 @@ describe("renderPaletteFrame", () => {
 
   test("ascii mode drops the emoji icons and keeps bracket checkboxes", () => {
     const frame = renderPaletteFrame({ ...base, rows: rows(), selected: ["rust"], ascii: true });
-    expect(plain(frame)).toContain("[x] rust");
+    expect(plain(frame)).toContain("> [x] rust");
     expect(plain(frame)).toContain("[ ] secops");
+    expect(plain(frame)).toMatch(/Enter launch 1 +rust/);
     expect(frame).not.toContain("🦀");
   });
 });
