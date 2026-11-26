@@ -73,6 +73,26 @@ No assessment certifies that a test passed just because the sender wrote that it
 did. Check the actual diff, evidence, and coordinator before resuming work.
 Ownership/job references without a live coordinator check remain unknown.
 
+### Guardex lane snapshot and receiving check
+
+When created from an isolated Guardex `agent/*` worktree, Cue automatically
+adds a `guardex` snapshot with claimed paths and changed paths from
+`gx context`. It is historical metadata, not proof of ownership or tests.
+Primary checkouts are excluded. Only up to 32 distinct repository-relative
+paths are saved; `truncated` means some paths were omitted.
+
+On injection, Cue checks those paths again using read-only `gx context` in the
+selected checkout. It does not query a different or stale repository state.
+The JSON assessment reports `checked` for a complete answer about the listed
+paths, `conflict` when another lane owns one, or `unknown` when there is no
+usable snapshot or live reply. `file_ownership` identifies each reported lock.
+A conflict prints the result and exits nonzero. An unavailable or older Guardex
+leaves the handoff usable as unverified historical context.
+
+Cue never transfers a lock or starts a job. A lock check is point-in-time;
+“unclaimed” is not permission to write. Continue to follow the repository's
+Guardex claim and handoff workflow.
+
 The repository fingerprint considers dirty content, not only the HEAD commit or
 the list of modified filenames. A second edit to an already-dirty file can make
 the record stale even when `git status --porcelain` looks unchanged.

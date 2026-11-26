@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -29,7 +29,8 @@ function initRepo(path: string) {
 function cue(args: string[], cwd = repo) {
   const result = spawnSync(process.execPath, [cli, "handoff", ...args], {
     cwd, encoding: "utf8", timeout: 20000,
-    env: { ...process.env, XDG_CONFIG_HOME: join(root, "config"),
+    env: { ...process.env, XDG_CONFIG_HOME: join(root, "config"), PATH: `${join(root, "bin")}:${process.env.PATH}`,
+      CUE_FIXTURE_GX: root,
       GIT_CONFIG_GLOBAL: "/dev/null", GIT_CONFIG_SYSTEM: "/dev/null" },
   });
   expect(result.error).toBeUndefined();
@@ -42,6 +43,20 @@ function create(agent = "claude-code", notes = "Run the remaining focused check"
   expect(result.status).toBe(0);
   expect(typeof result.body.id).toBe("string");
   return result.body;
+}
+
+const senderBranch = "agent/codex/handoff-fixture";
+function stubGuardex(fields: Record<string, unknown>) {
+  const bin = join(root, "bin");
+  mkdirSync(bin, { recursive: true });
+  writeFileSync(join(bin, "gx"), `#!/bin/sh
+printf '%s\\n' "$@" >> "$CUE_FIXTURE_GX/gx.calls"
+cat "$CUE_FIXTURE_GX/gx.json"
+`, { mode: 0o755 });
+  writeFileSync(join(root, "gx.json"), JSON.stringify({
+    complete: true, worktree: realpathSync(repo), branch: senderBranch, agent: "codex",
+    onPrimaryCheckout: false, ...fields,
+  }));
 }
 
 beforeEach(() => {
@@ -98,6 +113,55 @@ describe("explicit handoff across isolated CLI processes (not live model evaluat
     const result = cue(["inject", handoff.id, "--repo", other, "--json"], other);
     expect(result.status).not.toBe(0);
     expect(result.body.assessment.status).toBe("repo-mismatch");
+  });
+
+  test("isolated sender captures Guardex scope and receiver checks current owners", () => {
+    git(repo, ["switch", "-qc", senderBranch]);
+    writeFileSync(join(repo, "new task.txt"), "new work\n");
+    stubGuardex({ locks: ["task.txt"], dirty: ["new task.txt", "../outside", "token=secret.txt"] });
+    const handoff = create("codex");
+    expect(handoff.guardex).toEqual({ claimed_paths: ["task.txt"], dirty_paths: ["new task.txt"], truncated: true });
+    stubGuardex({ ownership: [
+      { file: "task.txt", owner: { branch: senderBranch, agent: "codex" } },
+      { file: "new task.txt", owner: null },
+    ] });
+    const checked = cue(["inject", handoff.id, "--repo", repo, "--json"]);
+    expect(checked.status).toBe(0);
+    expect(checked.body.assessment.ownership).toBe("checked");
+    expect(checked.body.assessment.file_ownership.map((row: { status: string }) => row.status))
+      .toEqual(["same-lane", "unclaimed"]);
+    expect(readFileSync(join(root, "gx.calls"), "utf8")).toEndWith("--\ntask.txt\nnew task.txt\n");
+
+    // Same branch is not enough if the live lock belongs to a different agent.
+    stubGuardex({ ownership: [
+      { file: "task.txt", owner: { branch: senderBranch, agent: "claude" } },
+      { file: "new task.txt", owner: null },
+    ] });
+    const conflict = cue(["inject", handoff.id, "--repo", repo, "--json"]);
+    expect(conflict.status).toBe(1);
+    expect(conflict.body.assessment.ownership).toBe("conflict");
+    expect(conflict.body.assessment.file_ownership[0].owner.agent).toBe("claude");
+    expect(conflict.body.formatted).toContain("ownership: conflict");
+  });
+
+  test("missing or incomplete Guardex evidence stays unknown and stale context is not queried", () => {
+    git(repo, ["switch", "-qc", senderBranch]);
+    stubGuardex({ locks: ["task.txt"], dirty: [] });
+    const handoff = create("codex");
+    for (const fields of [{ complete: false }, { ownership: [] }, { worktree: join(root, "other") }]) {
+      stubGuardex(fields);
+      const received = cue(["inject", handoff.id, "--repo", repo, "--json"]);
+      expect(received.status).toBe(0);
+      expect(received.body.assessment.ownership).toBe("unknown");
+      expect(received.body.assessment.file_ownership).toBeUndefined();
+    }
+    writeFileSync(join(root, "bin", "gx"), "#!/bin/sh\nexit 127\n");
+    expect(cue(["inject", handoff.id, "--repo", repo, "--json"]).body.assessment.ownership).toBe("unknown");
+    stubGuardex({ ownership: [{ file: "task.txt", owner: null }] });
+    const calls = readFileSync(join(root, "gx.calls"), "utf8");
+    writeFileSync(join(repo, "task.txt"), "new dirty state\n");
+    expect(cue(["inject", handoff.id, "--repo", repo, "--json"]).body.assessment.status).toBe("stale");
+    expect(readFileSync(join(root, "gx.calls"), "utf8")).toBe(calls);
   });
 
   test("changed dirty content invalidates context even with identical HEAD and status", () => {

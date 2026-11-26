@@ -10,7 +10,7 @@
  *   hook                — internal native Codex lifecycle hook entrypoint
  */
 
-import { assessHandoff, captureRepository, createHandoff, getLatestHandoff, getHandoff, listHandoffs, formatHandoffForAgent, HandoffError, readHandoffDetails } from "../lib/handoff";
+import { assessHandoffForInjection, captureRepository, createHandoff, getLatestHandoff, getHandoff, listHandoffs, formatHandoffForAgent, HandoffError, readHandoffDetails } from "../lib/handoff";
 import { handleCheckpointHook, type CheckpointHookPayload } from "../lib/session-checkpoint";
 
 export async function run(args: string[]): Promise<number> {
@@ -79,9 +79,13 @@ function cmdCreate(args: Record<string, string>, json: boolean): number {
     skills_used: skills,
     mcps_used: [],
     notes: args["--notes"] ?? "",
-  }, { repoPath: args["--repo"] });
+  }, { repoPath: args["--repo"], captureGuardex: true });
   if (json) { process.stdout.write(JSON.stringify(handoff, null, 2) + "\n"); return 0; }
   process.stdout.write(`✅ Handoff created: ${handoff.id}\n`);
+  if (handoff.guardex) {
+    const { claimed_paths, dirty_paths, truncated } = handoff.guardex;
+    process.stdout.write(`   Guardex snapshot: ${claimed_paths.length} claimed, ${dirty_paths.length} changed${truncated ? " (limited)" : ""}\n`);
+  }
   process.stdout.write(`   Pass to receiving agent: cue handoff inject ${handoff.id}\n`);
   return 0;
 }
@@ -121,8 +125,8 @@ function cmdInject(id: string | undefined, repoPath: string | undefined, json: b
   const current = captureRepository(repoPath);
   const h = id ? getHandoff(id) : getLatestHandoff({ repoPath: repoPath! });
   if (!h) throw new HandoffError("HANDOFF_NOT_FOUND", "No handoffs to inject.");
-  const assessment = assessHandoff(h, current);
+  const assessment = assessHandoffForInjection(h, current);
   const formatted = formatHandoffForAgent(h, assessment);
   process.stdout.write(json ? JSON.stringify({ handoff: h, assessment, formatted }, null, 2) + "\n" : formatted);
-  return assessment.status === "stale" || assessment.status === "repo-mismatch" ? 1 : 0;
+  return assessment.status === "stale" || assessment.status === "repo-mismatch" || assessment.ownership === "conflict" ? 1 : 0;
 }
