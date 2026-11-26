@@ -177,9 +177,7 @@ export async function runPickerV2(input: PickerInput): Promise<PickerOutput> {
       query: "",
       tallies,
       cursorAt: action === "all" ? firstAllRow : undefined,
-      onNeedTally: (value) => {
-        void loadTallies([value]);
-      },
+      onNeedTally: input.resourceTally ? (value) => loadTallies([value]) : undefined,
     });
     const picked = await palette.prompt();
     if (palette.hardCancel) {
