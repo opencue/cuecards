@@ -96,6 +96,38 @@ describe("cue ruler --dry-run", () => {
   });
 });
 
+describe("cue ruler --check", () => {
+  test("distinguishes missing, current, and hand-edited files without writing", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "cue-ruler-check-"));
+    const args = ["--profile", "rust-core", "--agents", "codex", "--dir", dir];
+    const path = join(dir, "AGENTS.md");
+    const check = () => captureIO(() => run([...args, "--check"]));
+    try {
+      const missing = await check();
+      expect(missing.code).toBe(1);
+      expect(missing.stdout).toContain("missing");
+      expect(existsSync(path)).toBe(false);
+
+      expect((await captureIO(() => run(args))).code).toBe(0);
+      const original = readFileSync(path, "utf8");
+      expect((await check()).code).toBe(0);
+      const edited = `${original}\nA local instruction.\n`;
+      writeFileSync(path, edited);
+      const changed = await check();
+      expect(changed.code).toBe(1);
+      expect(changed.stdout).toContain("conflict");
+      expect(readFileSync(path, "utf8")).toBe(edited);
+      expect(existsSync(`${path}.bak`)).toBe(false);
+
+      const revert = await captureIO(() => run([...args, "--check", "--revert"]));
+      expect(revert.code).toBe(1);
+      expect(readFileSync(path, "utf8")).toBe(edited);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+
 describe("cue ruler --rulesync", () => {
   test.skipIf(process.platform === "win32")("defaults to preview and propagates the check exit code", async () => {
     const dir = mkdtempSync(join(tmpdir(), "cue-rulesync-"));
@@ -124,12 +156,6 @@ describe("cue ruler --rulesync", () => {
     const { code, stderr } = await captureIO(() => run(["--rulesync", "--revert"]));
     expect(code).toBe(1);
     expect(stderr).toContain("--rulesync");
-  });
-
-  test("does not turn a bare --check into a Cue write", async () => {
-    const { code, stderr } = await captureIO(() => run(["--check"]));
-    expect(code).toBe(1);
-    expect(stderr).toContain("--check requires --rulesync");
   });
 
   test.skipIf(process.platform === "win32")("distinguishes a signal from a missing executable", async () => {
