@@ -112,7 +112,7 @@ function printAction(targetDir: string, name: string, a: RulerAction): void {
       process.stdout.write(`${YELLOW}[dry-run]${RESET} ${name} → would back up ${p} → ${bak}, then write\n`);
       break;
     case "skip-shared":
-      process.stdout.write(`${DIM}↳ ${name}: shares ${p} (already written)${RESET}\n`);
+      process.stdout.write(`${DIM}↳ ${name}: shares ${p} (already handled)${RESET}\n`);
       break;
     case "skip-no-file":
       process.stdout.write(`${DIM}– ${name}: no native rules file, skipped${RESET}\n`);
@@ -134,6 +134,17 @@ function printAction(targetDir: string, name: string, a: RulerAction): void {
       break;
     case "revert-none":
       process.stdout.write(`${DIM}– ${name}: nothing to revert${RESET}\n`);
+      break;
+    case "skip-current":
+      process.stdout.write(`${name}: ${p} is current\n`);
+      break;
+    case "missing":
+    case "stale":
+      process.stdout.write(`${name}: ${p} is ${a.kind}\n`);
+      break;
+    case "skip-foreign-safe":
+    case "conflict":
+      process.stdout.write(`${name}: conflict at ${p} (${a.kind === "skip-foreign-safe" ? "not Cue-generated" : "edited or unverified"}); left untouched\n`);
       break;
   }
 }
@@ -159,7 +170,7 @@ Options:
   --revert             restore .bak files / remove cue-generated rule files
   --keep-backups       on --revert, keep the .bak files after restoring
   --rulesync           preview configured Rulesync output using the installed CLI
-  --check              with --rulesync, fail if generated files are out of sync
+  --check              read-only; fail on missing, stale or conflicting files
 
 Notes:
   Source of truth is the profile's rules[] (resolved from resources/rules/).
@@ -168,21 +179,21 @@ Notes:
   hand-written CLAUDE.md) already exists.
 
   Auto-on-launch: set CUE_RULER_AUTO=1 to sync the profile's rules on every
-  \`cue launch\` (safe mode — never overwrites a hand-written file, no-ops when
-  already current).
+  \`cue launch\` (safe mode — never overwrites edited or unverified files).
 `);
     return 0;
   }
 
   if (args.includes("--rulesync")) return runRulesync(args);
-  if (args.includes("--check")) {
-    process.stderr.write("--check requires --rulesync.\n");
-    return 1;
-  }
+  const check = args.includes("--check");
   const dryRun = args.includes("--dry-run");
   const doRevert = args.includes("--revert");
   const keepBackups = args.includes("--keep-backups");
   const doGitignore = args.includes("--gitignore");
+  if (check && (doRevert || doGitignore || dryRun || keepBackups)) {
+    process.stderr.write("--check cannot be combined with --revert, --keep-backups, --gitignore or --dry-run.\n");
+    return 1;
+  }
   const all = args.includes("--all");
   const targetDir = flagValue(args, "--dir") ?? process.cwd();
   const profileArg = flagValue(args, "--profile");
@@ -252,8 +263,11 @@ Notes:
   process.stdout.write(
     `${profile.name}: ${rules.length} rule file(s) → ${adapters.length} agent target(s)\n`,
   );
-  const actions = applyRuler({ adapters, content, targetDir, dryRun });
+  const actions = applyRuler({ adapters, content, targetDir, dryRun, mode: check ? "check" : "overwrite" });
   for (const a of actions) printAction(targetDir, getAdapter(a.agent)?.name ?? a.agent, a);
+  if (check) {
+    return actions.some((a) => ["missing", "stale", "conflict", "skip-foreign-safe"].includes(a.kind)) ? 1 : 0;
+  }
 
   if (doGitignore) {
     const writtenPaths = actions

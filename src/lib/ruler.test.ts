@@ -167,12 +167,46 @@ describe("applyRuler — safe mode", () => {
     expect(actions[0]!.kind).toBe("skip-current");
   });
 
-  test("refreshes our file when content drifted", async () => {
+  test("refreshes an untouched generated file when its source changes", async () => {
     const adapters = [fakeAdapter("cursor", ".cursorrules")];
-    await writeFile(join(work, ".cursorrules"), marked("OLD"));
-    const actions = applyRuler({ adapters, content: marked("NEW"), targetDir: work, mode: "safe" });
+    const makeRules = (content: string) => concatRules([{ source: "common/a.md", content }]);
+    const path = join(work, ".cursorrules");
+    const opts = { adapters, content: makeRules("NEW"), targetDir: work };
+    await writeFile(path, makeRules("OLD"));
+    expect(applyRuler({ ...opts, mode: "check" })[0]!.kind).toBe("stale");
+    expect(await readFile(path, "utf8")).toBe(makeRules("OLD"));
+    const actions = applyRuler({ ...opts, mode: "safe" });
     expect(actions[0]!.kind).toBe("write");
-    expect(await readFile(join(work, ".cursorrules"), "utf8")).toBe(marked("NEW"));
+    expect(await readFile(path, "utf8")).toBe(makeRules("NEW"));
+  });
+
+  test("upgrades legacy files only when they match the current rules", async () => {
+    const adapters = [fakeAdapter("codex", "AGENTS.md")];
+    const path = join(work, "AGENTS.md");
+    const content = concatRules([{ source: "common/a.md", content: "NEW" }]);
+    const legacy = content.replace(/^<!-- cue:ruler sha256:[^\n]*\n/m, "");
+    const opts = { adapters, content, targetDir: work, mode: "safe" as const };
+
+    await writeFile(path, legacy + "Unverified legacy change\n");
+    expect(applyRuler(opts)[0]!.kind).toBe("conflict");
+    expect(await readFile(path, "utf8")).toBe(legacy + "Unverified legacy change\n");
+
+    await writeFile(path, legacy);
+    expect(applyRuler(opts)[0]!.kind).toBe("write");
+    expect(await readFile(path, "utf8")).toBe(content);
+  });
+
+  test("preserves hand edits inside a generated AGENTS.md on auto-sync", async () => {
+    const path = join(work, "AGENTS.md");
+    const profile = { rules: ["common/a"], agents: ["codex"] };
+    runAutoRuler({ profile, targetDir: work });
+    const edited = (await readFile(path, "utf8")) + "\nKeep these local rules.\n";
+    await writeFile(path, edited);
+    await writeFile(join(repo, "resources/rules/common/a.md"), "# Updated rule");
+
+    expect(runAutoRuler({ profile, targetDir: work })[0]!.kind).toBe("conflict");
+    expect(await readFile(path, "utf8")).toBe(edited);
+    expect(existsSync(`${path}.bak`)).toBe(false);
   });
 
   test("dry-run writes nothing", () => {

@@ -3111,13 +3111,13 @@ export async function run(args: string[]): Promise<number> {
         (a) => a.kind === "write" || a.kind === "dry-write",
       ).length;
       const skipped = actions.filter(
-        (a) => a.kind === "skip-foreign-safe",
+        (a) => a.kind === "skip-foreign-safe" || a.kind === "conflict",
       ).length;
       if (wrote || skipped) {
         process.stderr.write(
           `[cue] ruler: ${parsed.dryRun ? "would sync" : "synced"} rules → ${wrote} agent file(s)` +
             (skipped
-              ? `; left ${skipped} hand-written file(s) untouched`
+              ? `; left ${skipped} edited or unverified file(s) untouched`
               : "") +
             "\n",
         );
