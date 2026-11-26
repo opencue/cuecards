@@ -30,11 +30,13 @@ const CUE_BIN = join(import.meta.dir, "../index.ts");
 const BUN_SPAWNABLE = spawnSync("bun", ["--version"], { encoding: "utf8" }).status === 0;
 
 let xdg: string;
+let repo: string;
 
 function cue(args: string[]): { status: number; stdout: string; stderr: string } {
   const env = { ...process.env, XDG_CONFIG_HOME: xdg };
   delete env.CUE_LAUNCHING;
   const res = spawnSync("bun", ["run", CUE_BIN, "handoff", ...args], {
+    cwd: repo,
     encoding: "utf8",
     timeout: 20000,
     env,
@@ -61,6 +63,10 @@ function seed(task = "Implement the auth feature"): string {
 
 beforeEach(() => {
   xdg = mkdtempSync(join(tmpdir(), "cue-handoff-cmd-"));
+  // These generic CLI tests must not inspect the developer's live Guardex lane.
+  repo = join(xdg, "repo");
+  mkdirSync(repo);
+  expect(spawnSync("git", ["init", "-q", "--initial-branch=main"], { cwd: repo }).status).toBe(0);
 });
 
 afterEach(() => {
@@ -71,7 +77,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff create", () => {
   test("parallel processes publish distinct complete records", async () => {
     const env = { ...process.env, XDG_CONFIG_HOME: xdg }; delete env.CUE_LAUNCHING;
     const records = await Promise.all(Array.from({ length: 6 }, async (_, index) => {
-      const child = Bun.spawn(["bun", "run", CUE_BIN, "handoff", "create", "--task", `parallel ${index}`, "--json"], { env, stdout: "pipe", stderr: "pipe" });
+      const child = Bun.spawn(["bun", "run", CUE_BIN, "handoff", "create", "--task", `parallel ${index}`, "--json"], { cwd: repo, env, stdout: "pipe", stderr: "pipe" });
       const [stdout, , status] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text(), child.exited]);
       expect(status).toBe(0); return JSON.parse(stdout);
     }));
@@ -97,21 +103,21 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff create", () => {
 
   test("--skills levels are parsed and routed to the right section", () => {
     seed();
-    const { stdout } = cue(["inject", "--repo", process.cwd()]);
+    const { stdout } = cue(["inject", "--repo", repo]);
     expect(stdout).toContain("**Most useful skills:** meta/careful");
     expect(stdout).toContain("**Also helpful:** tools/context7");
   });
 
   test("a skill without an explicit level defaults to medium", () => {
     cue(["create", "--from", "core", "--task", "t", "--skills", "plan/autoplan"]);
-    const { stdout } = cue(["inject", "--repo", process.cwd()]);
+    const { stdout } = cue(["inject", "--repo", repo]);
     expect(stdout).toContain("**Also helpful:** plan/autoplan");
     expect(stdout).not.toContain("Most useful");
   });
 
   test("--from defaults to 'unknown' when omitted", () => {
     cue(["create", "--task", "no from flag"]);
-    const { stdout } = cue(["inject", "--repo", process.cwd()]);
+    const { stdout } = cue(["inject", "--repo", repo]);
     expect(stdout).toContain('## Handoff from \\"unknown\\"');
   });
 });
@@ -231,7 +237,7 @@ describe.skipIf(!BUN_SPAWNABLE)("cue handoff inject", () => {
     expect(parsed.handoff.repository).toBeUndefined(); expect(parsed.formatted).toContain("untrusted historical");
   });
   test("with no handoffs writes an error to stderr and returns 1", () => {
-    const res = cue(["inject", "--repo", process.cwd()]);
+    const res = cue(["inject", "--repo", repo]);
     expect(res.status).toBe(1);
     expect(res.stderr).toContain("No handoffs to inject.");
   });
