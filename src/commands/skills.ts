@@ -11,7 +11,7 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, realpathSync, statSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { styleText } from "node:util";
@@ -22,6 +22,7 @@ import { listProfiles, loadProfile } from "../lib/profile-loader";
 import { resolveActiveProfile } from "../lib/cwd-resolver";
 import { listAllSkillIds } from "../lib/resolver-local";
 import { fetchCompanionFiles, readSourceFile, findIncompleteSkills } from "../lib/companion-fetch";
+import { isGitHubSkillRepo, previewSkillUpdate, resolveSkillCommit, trackInstalledSkills } from "../lib/skill-source";
 import { gateFreshSkill } from "./security";
 import { unavailableNote, formatVerdict } from "../lib/skillspector";
 import { insertSkillsIntoYaml } from "../lib/profile-yaml-editor";
@@ -857,6 +858,15 @@ async function cmdNpxAdd(args: string[], sourceRepo?: string): Promise<number> {
     passedArgs.push("--skill", "*");
   }
 
+  // Carry one immutable revision through install and provenance collection.
+  const remote = sourceRepo ? undefined : repo?.match(/^([\w-]+\/[\w.-]+)(?:#(.+))?$/);
+  const sourceRepoSlug = remote?.[1];
+  const sourceRevision = sourceRepoSlug && isGitHubSkillRepo(sourceRepoSlug)
+    ? resolveSkillCommit(sourceRepoSlug, remote?.[2] ?? "HEAD") : undefined;
+  if (sourceRevision && repo) {
+    passedArgs[passedArgs.indexOf(repo)] = `${sourceRepoSlug}#${sourceRevision}`;
+  }
+
   // Phase 1: run npx and diff installed skills
   const { status, before, after } = runNpxInstallPhase(passedArgs);
   if (status !== null) return status;
@@ -867,6 +877,12 @@ async function cmdNpxAdd(args: string[], sourceRepo?: string): Promise<number> {
   // Phase 2: security gate
   const newSkills = await scanSecurityGate(rawNewSkills, allowUnsafe);
   if (newSkills.length === 0) return 1;
+
+  if (sourceRepoSlug && sourceRevision && !isReinstall) {
+    const installs = newSkills.filter(skill => /^[\w-]+$/.test(skill)).flatMap(skill =>
+      INSTALL_DIRS.map(root => join(root, skill)).filter(dir => existsSync(join(dir, "SKILL.md"))));
+    trackInstalledSkills(sourceRepoSlug, sourceRevision, installs);
+  }
 
   // Phase 3: enrichment
   const repoDescription = await fetchRepoDescription(repo);
@@ -1315,9 +1331,37 @@ async function cmdUpgrade(args: string[]): Promise<number> {
 // `cue skills update` — re-fetch companion files for installed skills
 // ---------------------------------------------------------------------------
 
-async function cmdUpdate(args: string[]): Promise<number> {
+async function cmdUpdate(args: string[], json: boolean): Promise<number> {
   const targetId = args.find(a => !a.startsWith("-"));
   const all = args.includes("--all");
+  if (args.includes("--preview")) {
+    if (args.length !== 2 || !targetId || !/^[\w-]+(?:\/[\w-]+)*$/.test(targetId)) {
+      process.stderr.write("Usage: cue skills update <skill-id> --preview [--json]\n");
+      return 1;
+    }
+    try {
+      const dirs = [join(SKILLS_ROOT, targetId), ...INSTALL_DIRS.map(root => join(root, targetId))];
+      const tracked = [...new Set(dirs.filter(dir => readSourceFile(dir)?.sha256).map(dir => realpathSync(dir)))];
+      if (tracked.length > 1) throw new Error("Multiple installed skills have this ID; use a catalog category to disambiguate");
+      if (!tracked[0]) throw new Error("No exact provenance for this installed skill");
+      const preview = previewSkillUpdate(tracked[0]);
+      if (json) process.stdout.write(JSON.stringify(preview, null, 2) + "\n");
+      else {
+        const { repo, skillPath, from, to, added, modified, removed, localModified } = preview;
+        process.stdout.write(`${repo}::${skillPath}: ${from} → ${to}\n`);
+        if (localModified) process.stdout.write("Local skill differs from its recorded installation fingerprint.\n");
+        for (const path of added) process.stdout.write(`  + ${JSON.stringify(path)}\n`);
+        for (const path of modified) process.stdout.write(`  ~ ${JSON.stringify(path)}\n`);
+        for (const path of removed) process.stdout.write(`  - ${JSON.stringify(path)}\n`);
+        if (!added.length && !modified.length && !removed.length) process.stdout.write("No upstream file changes.\n");
+        process.stdout.write("Preview only; no files changed.\n");
+      }
+      return 0;
+    } catch (error) {
+      process.stderr.write(`Skill update preview failed: ${error instanceof Error ? error.message : String(error)}\n`);
+      return 1;
+    }
+  }
 
   if (!targetId && !all) {
     process.stdout.write(`cue skills update — re-fetch companion files for skills
@@ -1325,6 +1369,7 @@ async function cmdUpdate(args: string[]): Promise<number> {
 Usage:
   cue skills update <skill-id>   Re-fetch companions for one skill
   cue skills update --all        Re-fetch companions for all incomplete skills
+  cue skills update <skill-id> --preview [--json]  Show upstream file changes without installing
 
 Examples:
   cue skills update content/pdf
@@ -1507,6 +1552,7 @@ Subcommands:
   upgrade [--yes]      Upgrade outdated locked skills
   why <id>             Explain why a skill is included (dependency paths)
   update <id>|--all    Re-fetch companion files (scripts, docs)
+  update <id> --preview  Preview upstream file changes without installing
   sandbox [--profile]  Sandbox report: allowed-tools and risk levels
   score <id>|--all     Quality score (0-100) with breakdown
 
@@ -1574,7 +1620,7 @@ Examples:
     case "add":
       return cmdNpxAdd(args);
     case "update":
-      return cmdUpdate(rest.slice(1));
+      return cmdUpdate(rest.slice(1), json);
     case "sandbox":
       return cmdSandbox(rest.slice(1));
     case "score":
