@@ -80,6 +80,10 @@ In the profile list, the chevron marks keyboard focus and the filled circle
 marks selected profiles. The footer previews what Enter will launch; Enter does
 nothing until at least one profile is selected.
 
+On terminals at least 100 columns wide and 22 rows high, a side panel follows
+keyboard focus and previews the profile's description, skills, and tools. It
+shows only new resources when it can compare against the selected stack.
+
 ## Materialize
 
 Given a resolved profile, cue builds (or reuses) a fully isolated config tree:

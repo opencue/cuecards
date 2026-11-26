@@ -313,6 +313,48 @@ describe("renderPaletteFrame", () => {
     expect(displayWidth(launch ?? "")).toBeLessThanOrEqual(40);
   });
 
+  test("wide preview describes the focused profile and de-duplicates its additions", () => {
+    const catalog = rows();
+    catalog[1] = { ...catalog[1]!, description: "Secure dependency reviews", hint: "used often" };
+    const frame = plain(renderPaletteFrame({
+      ...base, cols: 100, cursor: 1, rows: catalog, selected: ["rust"],
+      tallies: new Map([
+        ["rust", { ...tally("rust", 1), skills: ["shared-skill"], mcps: ["shared-mcp"] }],
+        ["secops", {
+          ...tally("secops", 0), skills: ["shared-skill", "security-review"],
+          mcps: ["shared-mcp", "osv"], commands: ["scan"],
+        }],
+      ]),
+    }));
+    expect(frame).toMatch(/SUGGESTED.*╭─ Profile preview/);
+    expect(frame).toContain("Secure dependency reviews");
+    expect(frame).toContain("ADDS TO STACK");
+    expect(frame).toContain("1 skill · 1 mcp · 1 cmd");
+    expect(frame).toContain("Skills  security-review");
+    expect(frame).toContain("Tools   osv, scan");
+    expect(frame).not.toContain("shared-skill");
+    expect(frame).not.toContain("shared-mcp");
+    expect(frame).not.toContain("used often");
+    expect(frame.split("\n").every((line) => displayWidth(line) <= 100)).toBe(true);
+  });
+
+  test("preview falls back in short or narrow terminals and clears on no match", () => {
+    const state = { ...base, rows: rows(), selected: ["rust"] };
+    expect(renderPaletteFrame({ ...state, cols: 99 })).not.toContain("Profile preview");
+    expect(renderPaletteFrame({ ...state, cols: 120, terminalRows: 21 })).not.toContain("Profile preview");
+    const empty = renderPaletteFrame({ ...state, cols: 100, query: "zzz" });
+    expect(empty).toContain("No profile in focus");
+    expect(empty).toContain("⏎ launch 1");
+  });
+
+  test("a conflicting profile shows why it can't be added", () => {
+    const frame = renderPaletteFrame({
+      ...base, cols: 100, rows: rows(), cursor: 3, selected: ["medusa-next"],
+    });
+    expect(frame).toContain("Conflicts with medusa-next");
+    expect(frame).not.toContain("ADDS TO STACK");
+  });
+
   test("windows a long list with scroll markers", () => {
     const many: PaletteRow[] = Array.from({ length: 40 }, (_, i) => ({
       value: `p${i}`,
