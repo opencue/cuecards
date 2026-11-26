@@ -156,6 +156,7 @@ async function maybeUpdate() {
   if (!isInteractive() || process.env.CUE_LAUNCHING || process.env.CUE_NO_UPDATE_CHECK === "1" ||
       hasCustomRoot || ["help", "version", "update"].includes(args[0]) ||
       args.some((arg) => ["--help", "-h", "--version", "-v", "--json"].includes(arg)) ||
+      (args[0] === "work" && args.includes("--preview")) ||
       (args[0] === "current" && args.includes("--plan"))) return;
 
   const cueConfig = join(process.env.XDG_CONFIG_HOME || join(homedir(), ".config"), "cue");

@@ -122,6 +122,7 @@ test("non-interactive, nested, opt-out, cached, and read-only calls do not check
     { env: { CUE_NO_UPDATE_CHECK: "1" } }, { recent: true },
     { args: ["--version"] }, { args: ["launch", "codex", "--version"] },
     { args: ["current", "--plan"] }, { args: ["list", "--json"] },
+    { args: ["work", "Preview a task", "--preview"] },
   ]) {
     const result = runCue(flags);
     expect(result.stdout).toBe("old bundle");
