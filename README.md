@@ -7,12 +7,44 @@
 Give each repository its own skills, MCP servers, and instructions.<br>
 Run the coding agent you already use.
 
-[Install](#install) · [Profile catalog](#the-catalog) · [Compare tools](#how-it-compares) · [Community](https://cuecards.cc)
+[Agent install](#install-with-an-agent) · [Manual install](#install) · [Profile catalog](#the-catalog) · [Compare tools](#how-it-compares) · [Community](https://cuecards.cc)
 
 [![npm version](https://img.shields.io/npm/v/cue-ai)](https://www.npmjs.com/package/cue-ai)
 [![MIT license](https://img.shields.io/github/license/opencue/cuecards)](LICENSE)
 
 </div>
+
+## Install with an agent
+
+**Copy the prompt below** with the copy button in the top-right of the block.
+Paste it into Claude Code, Codex, or another coding agent opened in your project.
+
+```text
+Install cue (https://github.com/opencue/cuecards) on this machine and set it up
+for this project.
+
+1. Check Node.js 20+, npm, and an installed Claude Code or Codex CLI. Stop and
+   tell me if a prerequisite is missing.
+2. Check whether cue is already on PATH (`command -v cue`, or `Get-Command cue`
+   in PowerShell). If it is, skip to step 4.
+3. Ask me before installing anything, then run: `npm install -g cue-ai`
+4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
+   each one is for, and let me pick one — don't choose for me.
+5. Explain the project, shim, and PATH changes below. Only after I approve,
+   run `cue setup --profile <the one I picked> --yes`. That pins the profile,
+   installs the shim that makes `claude`/`codex` load it, and — if needed —
+   configures the shim directory on PATH (shell rc on Linux/macOS, Current User
+   PATH on native Windows) so the shim takes effect. It will not enable telemetry and will not install
+   third-party skills. If it exits non-zero, stop and show me the output
+   instead of continuing to step 6.
+6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
+   line is added.
+7. Verify with `cue --version` and `cue current`. Report which profile was
+   pinned and whether the shim is active. Mention that `cue shell uninstall`
+   undoes the shim, or `npm uninstall -g cue-ai` removes the CLI package.
+
+Do not install anything without asking me first.
+```
 
 ## Quick start
 <a id="install"></a>

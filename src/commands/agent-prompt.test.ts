@@ -36,9 +36,10 @@ describe("agent-paste install prompt", () => {
     }
   });
 
-  test("README links to the canonical prompt instead of duplicating it", () => {
+  test("README shows the canonical copyable prompt before the manual setup", () => {
     const readme = readFileSync(join(REPO_ROOT, "README.md"), "utf8");
-    expect(readme).toContain("](setup/agent-prompt.md)");
-    expect(readme).not.toContain(promptBlock().trim());
+    const handoff = readme.match(/## Install with an agent\n([\s\S]*?)\n## Quick start\n/);
+    const visiblePrompt = handoff?.[1].match(/```text\n([\s\S]*?)```/)?.[1];
+    expect(visiblePrompt).toBe(promptBlock());
   });
 });
