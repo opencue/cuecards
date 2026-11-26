@@ -2,7 +2,7 @@
 title: "hbs-1991/product-os — Claude Code skill discovered by cue"
 description: "Owner-gated path from idea to merged code for Claude Code: discovery chain, roadmap, feature pipeline, project wiki."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-25
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

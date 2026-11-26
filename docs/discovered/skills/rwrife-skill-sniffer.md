@@ -2,7 +2,7 @@
 title: "rwrife/skill-sniffer — Claude Code skill discovered by cue"
 description: "An ESLint for the Skills era: a paranoid, offline CLI that lints, audits, and scores your SKILL.md / agent-skill files for secrets, prompt-injection bait, token"
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 

@@ -1,44 +1,59 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="lightspeedwp-ls-skill-scaffold"></a>
-## 💎 [lightspeedwp/ls-skill-scaffold](https://github.com/lightspeedwp/ls-skill-scaffold)
+<a id="shxuk-sayplain"></a>
+## 💎 [shxuk/sayplain](https://github.com/shxuk/sayplain)
 
-**★ 0** · exceptional (score 10) · TypeScript · tags: claude-skill, lefthook, mcp, mustache, scaffolding
+**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, ai-skill, chinese-nlp, claude-skill, de-ai
 
-Claude skill and MCP server that generates new skill repositories from Mustache templates (CLI, validation, documentation and agent types). It previews every file before writing and applies LightSpeed's standard tooling: ESLint, Prettier, Markdownlint, Jest, Lefthook hooks and CodeRabbit.
+中文技术写作「去 AI 味」审校工作流 Agent Skill + 零依赖 Python 质检脚本 · 事实锚对齐 · MIT
 
 ✅ SKILL.md
 
 ```bash
-cue skills add lightspeedwp/ls-skill-scaffold --profile docs-writer
+cue skills add shxuk/sayplain --profile docs-writer
 ```
 
 ---
 
-<a id="qttc-revizor"></a>
-## 💎 [qttc/revizor](https://github.com/qttc/revizor)
+<a id="isamu-lab"></a>
+## ✨ [isamu/lab](https://github.com/isamu/lab)
 
-**★ 0** · exceptional (score 8) · Python · tags: ai-slop, ai-writing, claude, claude-code, claude-skill
+**★ 2** · strong (score 7.5) · TypeScript · tags: agent-skills, ai-generated-text, ai-writing, claude-code, claude-skill
 
-Edit AI-written docs in the browser, and Claude Code applies your edits. Flags AI slop, learns your writing style. Local, Python stdlib, no dependencies.
+chaff: a prose linter for English and Japanese that finds what makes writing hard to read and never rewrites it. Runs as a CLI or as a Claude Code skill. Also scoria, a code quality assay for TypeScript.
 
 ```bash
-cue skills add qttc/revizor --profile docs-writer
+cue skills add isamu/lab --profile docs-writer
+```
+
+---
+
+<a id="juanje-codebase-documenter"></a>
+## ✨ [juanje/codebase-documenter](https://github.com/juanje/codebase-documenter)
+
+**★ 1** · strong (score 5.6) · Shell
+
+A Claude Code skill that generates developer-facing documentation for any codebase. It reads the actual code — not the README — and produces a single `docs/CODEBASE.md` with architecture diagrams, component descriptions, data flow, setup instructions, and an onboarding path for new developers.
+
+✅ SKILL.md
+
+```bash
+cue skills add juanje/codebase-documenter --profile docs-writer
 ```
 
 ---

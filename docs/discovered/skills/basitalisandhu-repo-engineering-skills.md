@@ -2,7 +2,7 @@
 title: "basitalisandhu/repo-engineering-skills — Claude Code skill discovered by cue"
 description: "Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable pa"
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skill, docs-writer]
 ---
 

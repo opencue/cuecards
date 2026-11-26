@@ -2,7 +2,7 @@
 title: "arthurengstler-ux/second-brain-path — Claude Code skill discovered by cue"
 description: "A guided path for Claude Code: builds an Obsidian second brain from your projects and LinkedIn export, so every Claude session starts with your context. macOS, "
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-25
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: claude-code, linkedin, obsidian, para, second-brain
 
 ## Best fit cue profiles

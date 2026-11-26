@@ -1,29 +1,46 @@
 ---
 title: "Claude Code Skills for niche"
-description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-26
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="inotechstudio-fornaxnode-skill"></a>
-## 🔹 [inotechstudio/fornaxnode-skill](https://github.com/inotechstudio/fornaxnode-skill)
+<a id="solplum-high-confidence-mingli-skill"></a>
+## 💎 [solplum/high-confidence-mingli-skill](https://github.com/solplum/high-confidence-mingli-skill)
 
-**★ 0** · potential (score 3.5) · C++ · tags: ai-skill, arduino, claude-skill, esp32, esp32-c3
+**★ 12** · exceptional (score 17) · Python · tags: agent-skill, ai-agent, bazi, chinese-metaphysics, claude-code
 
-AI skill that teaches Claude, ChatGPT, Cursor and others to write ESP32 code for the FornaxNode IoT cloud
+🔮 高置信度命理分析伴侣：八字/紫微/七政四余三盘互译，置信度门禁与斯多葛克制语风，数据全本地闭环。
+
+✅ SKILL.md
 
 ```bash
-cue skills add inotechstudio/fornaxnode-skill --profile niche
+cue skills add solplum/high-confidence-mingli-skill --profile niche
+```
+
+---
+
+<a id="engheng-art-guaikei-douyin-public-data-fetcher"></a>
+## 💎 [engheng-art/guaikei-douyin-public-data-fetcher](https://github.com/engheng-art/guaikei-douyin-public-data-fetcher)
+
+**★ 0** · exceptional (score 9.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
+
+当用户需要抖音公开数据时，使用本技能。覆盖四类数据：关键词搜索（视频/图文/用户）、博主作品批量抓取、视频评论获取分析、实时热榜查询。适用于内容调研、竞品账号分析、用户评论洞察、热点趋势追踪；用户做短视频调研未明确提到\"抖音\"时同样触发。不适用于发布/剪辑/下载视频、涨粉代运营咨询，也不覆盖其他短视频平台。｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+
+✅ SKILL.md
+
+```bash
+cue skills add engheng-art/guaikei-douyin-public-data-fetcher --profile niche
 ```
 
 ---

@@ -1,22 +1,22 @@
 ---
 title: "krisyangdev/motionboard — Claude Code skill discovered by cue"
-description: "Make launch videos and motion graphics with Claude Code or Codex: free HyperFrames skill + 38 shot recipes (match cut, logo reveal, kinetic typography, liquid g"
+description: "Make launch videos and motion graphics with Claude Code or Codex: free HyperFrames skill + 48 shot recipes (match cut, logo reveal, kinetic typography, liquid g"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-26
 tags: [claude-code, skill, creative-media]
 ---
 
 # 💎 [krisyangdev/motionboard](https://github.com/krisyangdev/motionboard)
 
-**★ 66** · exceptional (score 17.6) · HTML · agent-skill, agent-skills, ai-video, animation, claude-code
+**★ 69** · exceptional (score 17.6) · HTML · agent-skill, agent-skills, ai-video, animation, claude-code
 
-> Make launch videos and motion graphics with Claude Code or Codex: free HyperFrames skill + 38 shot recipes (match cut, logo reveal, kinetic typography, liquid glass effect).
+> Make launch videos and motion graphics with Claude Code or Codex: free HyperFrames skill + 48 shot recipes (match cut, logo reveal, kinetic typography, liquid glass effect).
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.6 based on:
-- ⭐ 66 stars
-- 🗓️ Last pushed: 2026-11-23
+- ⭐ 69 stars
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: agent-skill, agent-skills, ai-video, animation, claude-code, claude-code-skill, claude-skills, codex, gsap, hyperframes, launch-video, logo-animation, match-cut, motion-design, motion-graphics, product-video, remotion-alternative, text-animation, video-generation
 
 ## Best fit cue profiles

@@ -1,44 +1,46 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "4 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="kubai087-kubai-icons"></a>
-## 💎 [kubai087/kubai-icons](https://github.com/kubai087/kubai-icons)
+<a id="sergiobanhos-generate-icons"></a>
+## 💎 [sergiobanhos/generate-icons](https://github.com/sergiobanhos/generate-icons)
 
-**★ 1216** · exceptional (score 17.5) · JavaScript · tags: agent-skills, ai-agents, animated-icons, animation, claude
+**★ 7** · exceptional (score 15) · Python · tags: agent-skills, claude-code, claude-skill, design-system, icons
 
-An agent skill that draws animated icons in one consistent style, for Claude Code, Codex and other coding agents. Comes with 2,600+ open-source icons for React, Vue and SVG, and a website to browse them.
+Agent skill that draws an original icon library matching your design system (React, Vue, Svelte, React Native, SVG).
 
 ✅ SKILL.md
 
 ```bash
-cue skills add kubai087/kubai-icons --profile frontend
+cue skills add sergiobanhos/generate-icons --profile frontend
 ```
 
 ---
 
-<a id="mobilereality-mdma"></a>
-## 💎 [MobileReality/mdma](https://github.com/MobileReality/mdma)
+<a id="shxuk-seedtone"></a>
+## 💎 [shxuk/seedtone](https://github.com/shxuk/seedtone)
 
-**★ 77** · exceptional (score 12.8) · TypeScript · tags: agent-skills, ai-agents, claude-skill, generative-ui, interactive-markdown
+**★ 0** · exceptional (score 13.5) · JavaScript · tags: agent-skill, ai-skill, apca, claude-skill, color-palette
 
-Interactive documents from Markdown. Extends MD with forms, approvals, webhooks, and more — built for next gen apps
+给 1 个 Hex 色号，生成明暗双模式 UI 颜色矩阵、HTML 报告与 CSS/Tailwind 约束工具 · Primer + Leonardo + OKLCH + APCA · MIT
+
+✅ SKILL.md
 
 ```bash
-cue skills add MobileReality/mdma --profile frontend
+cue skills add shxuk/seedtone --profile frontend
 ```
 
 ---
@@ -56,15 +58,41 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="gamemann-nightly"></a>
-## 💎 [gamemann/nightly](https://github.com/gamemann/nightly)
+<a id="gengsong-shijing-agent"></a>
+## 💎 [gengsong/shijing-agent](https://github.com/gengsong/shijing-agent)
 
-**★ 7** · exceptional (score 8.5) · JavaScript · tags: ai-agent, ai-agents, ai-coding, ai-tools, claude
+**★ 1** · exceptional (score 8.8) · JavaScript · tags: agent-skills, ai-agent, ai-coding, browser-automation, claude
 
-A database and web panel that autonomous @claude Code runs work from: a queue of tasks, schedules, run reports, a live board where concurrent agents claim paths, project and asset tooling for games, and the measurements that tell you whether a fix worked.
+Your AI agent changed the UI. Did it get easier? Runs the same user task before and after the change and reports clicks, path and output diffs. CLI + MCP for Claude Code, Cursor, Codex.
 
 ```bash
-cue skills add gamemann/nightly --profile frontend
+cue skills add gengsong/shijing-agent --profile frontend
+```
+
+---
+
+<a id="vikdevarstudio-t-minus"></a>
+## 💎 [VikDevarStudio/t-minus](https://github.com/VikDevarStudio/t-minus)
+
+**★ 1** · exceptional (score 8.3) · tags: accessibility, agent-skills, ai-coding, claude, claude-code
+
+The countdown before you ship. A Claude skill that audits and fixes your app before launch: security, legal, UX, edge cases, accessibility and AI design slop.
+
+```bash
+cue skills add VikDevarStudio/t-minus --profile frontend
+```
+
+---
+
+<a id="mrgodlink-rcdesign"></a>
+## ✨ [MrGodLink/RcDesign](https://github.com/MrGodLink/RcDesign)
+
+**★ 1** · strong (score 5.3) · CSS · tags: bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism
+
+One engine, ten UI design styles, zero markup changes. Skeuomorphism, Neumorphism, Glassmorphism, Claymorphism, Brutalism, Minimalism, Maximalism, Liquid Glass, Bento Grid and Spatial UI, switch the whole look of a page with one attribute.
+
+```bash
+cue skills add MrGodLink/RcDesign --profile frontend
 ```
 
 ---

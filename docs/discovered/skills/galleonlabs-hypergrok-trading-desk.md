@@ -2,21 +2,21 @@
 title: "galleonlabs/hypergrok-trading-desk — Claude Code skill discovered by cue"
 description: "Hyperliquid trading desk for AI agents: 7 roles, 17 skills and keyless market tools. Research first; execution requires your API wallet and approved tickets. Gr"
 layout: page
-updated: 2026-11-17
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [galleonlabs/hypergrok-trading-desk](https://github.com/galleonlabs/hypergrok-trading-desk)
 
-**★ 550** · exceptional (score 17.7) · Python · agent-plugins, agent-skills, ai-agents, ai-trading, claude-code
+**★ 603** · exceptional (score 17.8) · Python · agent-plugins, agent-skills, ai-agents, ai-trading, claude-code
 
 > Hyperliquid trading desk for AI agents: 7 roles, 17 skills and keyless market tools. Research first; execution requires your API wallet and approved tickets. Grok Bot, Claude Code, Cursor, Codex, Gemini CLI and Grok Build.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.7 based on:
-- ⭐ 550 stars
-- 🗓️ Last pushed: 2026-11-17
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.8 based on:
+- ⭐ 603 stars
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: agent-plugins, agent-skills, ai-agents, ai-trading, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, claude-skills, codex, cursor-plugin, defi, gemini-cli-extension, grok-bot, hypergrok, hyperliquid, open-source, trading, trading-bot, trading-desk
 
 ## Best fit cue profiles

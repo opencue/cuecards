@@ -2,7 +2,7 @@
 title: "JiuYue-sky/ww-auto-model-extractor-skill — Claude Code skill discovered by cue"
 description: "《鸣潮》(Wuthering Waves) 自机角色提取、Blender 卡渲动作展示与标准化 UE 交接包 — 跨平台 Agent Skill (SKILL.md) & 独立 CLI"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
@@ -17,7 +17,7 @@ tags: [claude-code, skill, core]
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 13.8 based on:
 - ✅ Contains SKILL.md
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-23
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: 3d-pipeline, agent-skill, blender, claude-code-skill, cue4parse, cursor-skill, ueformat, wuthering-waves
 
 ## Best fit cue profiles

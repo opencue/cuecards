@@ -2,21 +2,21 @@
 title: "MrGodLink/RcDesign — Claude Code skill discovered by cue"
 description: "One engine, ten UI design styles, zero markup changes. Skeuomorphism, Neumorphism, Glassmorphism, Claymorphism, Brutalism, Minimalism, Maximalism, Liquid Glass,"
 layout: page
-updated: 2026-11-24
+updated: 2026-11-26
 tags: [claude-code, skill, frontend]
 ---
 
 # ✨ [MrGodLink/RcDesign](https://github.com/MrGodLink/RcDesign)
 
-**★ 0** · strong (score 5) · CSS · bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism
+**★ 1** · strong (score 5.3) · CSS · bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism
 
 > One engine, ten UI design styles, zero markup changes. Skeuomorphism, Neumorphism, Glassmorphism, Claymorphism, Brutalism, Minimalism, Maximalism, Liquid Glass, Bento Grid and Spatial UI, switch the whole look of a page with one attribute.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
+- ⭐ 1 stars
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism, css, dark-mode, design-system, design-tokens, glassmorphism, javascript, liquid-glass, maximalism, minimalism, neumorphism, skeuomorphism, spatial-ui, ui-components, ui-library, vanilla-js
 
 ## Best fit cue profiles

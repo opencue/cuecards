@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,27 +18,12 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3142** · exceptional (score 11.2) · Python · tags: agentskills, claude, skills
+**★ 3155** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
 ```bash
 cue skills add elementalsouls/Claude-OSINT --profile cybersecurity
-```
-
----
-
-<a id="panacota96-rakvor-tool-forge"></a>
-## 💎 [Panacota96/rakvor-tool-forge](https://github.com/Panacota96/rakvor-tool-forge)
-
-**★ 0** · exceptional (score 11) · Rust · tags: claude-skill, dfir, digital-forensics, python, rakvor
-
-Skill that turns "we need a tool that does X" into a Rakvor DFIR tool that builds, passes its tests and meets the forensic contract from the first commit.
-
-✅ SKILL.md
-
-```bash
-cue skills add Panacota96/rakvor-tool-forge --profile cybersecurity
 ```
 
 ---
@@ -65,6 +50,19 @@ Deterministic governance for AI agent tool calls in Claude Code, MCP, LangGraph,
 
 ```bash
 cue skills add philpaz/recusal --profile cybersecurity
+```
+
+---
+
+<a id="vikdevarstudio-t-minus"></a>
+## 💎 [VikDevarStudio/t-minus](https://github.com/VikDevarStudio/t-minus)
+
+**★ 1** · exceptional (score 8.3) · tags: accessibility, agent-skills, ai-coding, claude, claude-code
+
+The countdown before you ship. A Claude skill that audits and fixes your app before launch: security, legal, UX, edge cases, accessibility and AI design slop.
+
+```bash
+cue skills add VikDevarStudio/t-minus --profile cybersecurity
 ```
 
 ---

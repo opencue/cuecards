@@ -2,7 +2,7 @@
 title: "DexComm69/malaysia-gov-web-guidance — Claude Code skill discovered by cue"
 description: "Unofficial Claude skill for Malaysian government web standards: MYDS design system + JDN SPLaSK criteria and splwpk-* tags. English & Bahasa Melayu."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-25
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: accessibility, bahasa-melayu, claude-code, claude-skill, government, malaysia, myds, splask
 
 ## Best fit cue profiles

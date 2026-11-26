@@ -2,13 +2,13 @@
 title: "luisedu/job-hunt-skill — Claude Code skill discovered by cue"
 description: "Claude Code skill for an honest, low-noise job search: 11 job boards, ghost-job/location/scam filters, tailored PDFs, application tracking"
 layout: page
-updated: 2026-11-23
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [luisedu/job-hunt-skill](https://github.com/luisedu/job-hunt-skill)
 
-**★ 0** · exceptional (score 8) · Python · claude-code, claude-skill, job-search, remote-jobs
+**★ 0** · exceptional (score 8) · Python · agent-skills, ats, career, claude-code, claude-code-plugin
 
 > Claude Code skill for an honest, low-noise job search: 11 job boards, ghost-job/location/scam filters, tailored PDFs, application tracking
 
@@ -16,8 +16,8 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-23
-- 🏷️ Tags: claude-code, claude-skill, job-search, remote-jobs
+- 🗓️ Last pushed: 2026-11-26
+- 🏷️ Tags: agent-skills, ats, career, claude-code, claude-code-plugin, claude-skill, cover-letter, job-search, remote-jobs, resume
 
 ## Best fit cue profiles
 

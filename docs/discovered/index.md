@@ -1,8 +1,8 @@
 ---
 title: "Discovered Claude Code Skills"
-description: "91 community Claude Code skills curated by cue across 10 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
+description: "92 community Claude Code skills curated by cue across 8 profiles. Find skills for backend, frontend, marketing, cybersecurity, and more."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skills, mcp, ai-agents, marketplace]
 ---
 
@@ -10,23 +10,21 @@ tags: [claude-code, skills, mcp, ai-agents, marketplace]
 
 These are community-built skills for Claude Code, Codex, and other AI coding agents, discovered by cue via GitHub Code Search and scored on signal quality (stars, recency, structure). Updated automatically.
 
-> **91 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **10 profiles**.
-> Last updated: 2026-11-25 · refreshed nightly via GitHub Code Search.
+> **92 hidden-gem skills** discovered by [cue](https://github.com/opencue/cuecards) across **8 profiles**.
+> Last updated: 2026-11-26 · refreshed nightly via GitHub Code Search.
 
 ## Browse by profile
 
 | Profile | Skills | Sample |
 |---|---|---|
-| [**core**](./core.md) | 68 | `trace-mcp`, `digital-twin-of-yourself`, `strategic-advisor-orchestrator` |
-| [**backend**](./backend.md) | 4 | `context-mode`, `mdma`, `p6-mcp` |
-| [**frontend**](./frontend.md) | 4 | `kubai-icons`, `mdma`, `awesome-claude-ui-armory` |
-| [**creative-media**](./creative-media.md) | 4 | `shotkit`, `video-editor-skill`, `cosmosambassador` |
-| [**fleet-control**](./fleet-control.md) | 4 | `hubkit`, `SDD-Maestri`, `maestro` |
-| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `rakvor-tool-forge`, `sanctuary-framework` |
-| [**docs-writer**](./docs-writer.md) | 3 | `ls-skill-scaffold`, `revizor`, `repo-engineering-skills` |
-| [**video**](./video.md) | 2 | `shotkit`, `video-editor-skill` |
+| [**core**](./core.md) | 70 | `hypergrok-trading-desk`, `jira-skill`, `cuecards` |
+| [**frontend**](./frontend.md) | 6 | `generate-icons`, `seedtone`, `awesome-claude-ui-armory` |
+| [**creative-media**](./creative-media.md) | 4 | `motionboard`, `skills`, `cosmosambassador` |
+| [**docs-writer**](./docs-writer.md) | 4 | `sayplain`, `lab`, `codebase-documenter` |
+| [**cybersecurity**](./cybersecurity.md) | 4 | `Claude-OSINT`, `sanctuary-framework`, `recusal` |
+| [**backend**](./backend.md) | 3 | `mcp-hub`, `p6-mcp`, `redesigned-pancake` |
+| [**niche**](./niche.md) | 2 | `high-confidence-mingli-skill`, `guaikei-douyin-public-data-fetcher` |
 | [**research**](./research.md) | 2 | `cosmosambassador`, `skillassay` |
-| [**marketing**](./marketing.md) | 1 | `claude-outreach` |
 
 ## How scoring works
 

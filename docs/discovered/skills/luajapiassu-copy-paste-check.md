@@ -2,7 +2,7 @@
 title: "luajapiassu/copy-paste-check — Claude Code skill discovered by cue"
 description: "Catches duplicated Python functions and formulas the moment an AI agent writes them: a Claude Code hook blocks the copy and points to the original. Deterministi"
 layout: page
-updated: 2026-11-25
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 

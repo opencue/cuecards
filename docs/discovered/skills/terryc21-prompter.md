@@ -2,22 +2,21 @@
 title: "Terryc21/prompter — Claude Code skill discovered by cue"
 description: "A Claude Code skill that rewrites your prompts for clarity before they run."
 layout: page
-updated: 2026-08-28
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [Terryc21/prompter](https://github.com/Terryc21/prompter)
 
-**★ 27** · exceptional (score 17.5) · claude-code, claude-code-skill, productivity, prompt-engineering
+**★ 48** · exceptional (score 12.9) · claude-code, claude-code-skill, productivity, prompt-engineering
 
 > A Claude Code skill that rewrites your prompts for clarity before they run.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 17.5 based on:
-- ✅ Contains SKILL.md
-- ⭐ 27 stars
-- 🗓️ Last pushed: 2026-08-28
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 12.9 based on:
+- ⭐ 48 stars
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: claude-code, claude-code-skill, productivity, prompt-engineering
 
 ## Best fit cue profiles

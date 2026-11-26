@@ -2,21 +2,21 @@
 title: "ToRvaLDz/trailhead — Claude Code skill discovered by cue"
 description: "Chart a project from a loose idea, then navigate it ticket by ticket on GitHub Issues."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-26
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [ToRvaLDz/trailhead](https://github.com/ToRvaLDz/trailhead)
 
-**★ 34** · exceptional (score 14.1) · JavaScript · agent-skill, agentic, ai-agents, anthropic, claude
+**★ 37** · exceptional (score 14.2) · JavaScript · agent-skill, agentic, ai-agents, anthropic, claude
 
 > Chart a project from a loose idea, then navigate it ticket by ticket on GitHub Issues.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.1 based on:
-- ⭐ 34 stars
-- 🗓️ Last pushed: 2026-11-24
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14.2 based on:
+- ⭐ 37 stars
+- 🗓️ Last pushed: 2026-11-26
 - 🏷️ Tags: agent-skill, agentic, ai-agents, anthropic, claude, claude-code, claude-code-plugin, claude-code-skill, claude-plugin, codex, codex-cli, developer-tools, github-issues, openai, openai-codex, orchestration, planning, project-management
 
 ## Best fit cue profiles
