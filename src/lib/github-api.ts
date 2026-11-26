@@ -131,7 +131,8 @@ export function _resetGhCache(): void {
 
 /** List directory contents via GitHub API with ETag caching + retry. */
 export function ghListDir(repo: string, path: string, ref?: string): GitHubContentEntry[] | null {
-  const endpoint = `repos/${repo}/contents/${path}${ref && ref !== "HEAD" ? `?ref=${ref}` : ""}`;
+  const relative = path === "." ? "" : path.split("/").map(encodeURIComponent).join("/");
+  const endpoint = `repos/${repo}/contents${relative ? `/${relative}` : ""}${ref && ref !== "HEAD" ? `?ref=${encodeURIComponent(ref)}` : ""}`;
   const cacheKey = `${repo}/${path}@${ref ?? "HEAD"}`;
   const cache = loadETagCache();
   const cached = cache[cacheKey];

@@ -34,6 +34,9 @@ import {
   findIncompleteSkills,
   readSourceFile,
   writeSourceFile,
+  recordSkillSource,
+  resolveSkillCommit,
+  type SkillSourceRequest,
 } from "./skill-source";
 
 // Re-export public types and functions so existing importers see no change.
@@ -60,6 +63,8 @@ export interface FetchOptions {
   fetcher?: Fetcher;
   /** Write .source file for traceability (default: true). */
   writeSource?: boolean;
+  /** Override immutable source resolution without using the network in tests. */
+  requestSource?: SkillSourceRequest;
   /** Verify sha256 after download (default: true). */
   verifySha?: boolean;
 }
@@ -91,7 +96,22 @@ function writeSha256Sidecar(filePath: string): boolean {
 // Core fetch logic
 // ---------------------------------------------------------------------------
 
-const SKIP_FILES = new Set(["SKILL.md"]);
+const SKIP_FILES = new Set(["SKILL.md", ".source"]);
+
+function companionRevision(repo: string, localDir: string, opts: FetchOptions): string | undefined {
+  if (opts.writeSource === false || (opts.fetcher && !opts.requestSource) || readSourceFile(localDir)?.sha256) return undefined;
+  return resolveSkillCommit(repo, opts.ref ?? "HEAD", opts.requestSource);
+}
+
+function trackCompanions(
+  repo: string, path: string, localDir: string, opts: FetchOptions, result: FetchResult,
+  entries?: GitHubContentEntry[], revision?: string,
+): void {
+  if (opts.writeSource === false || readSourceFile(localDir)?.sha256) return;
+  const blob = entries?.find(entry => entry.name === "SKILL.md" && entry.type === "file")?.sha;
+  if (revision && blob && result.errors.length === 0 && recordSkillSource(localDir, repo, path, revision, blob)) return;
+  if (result.fetched.length > 0) writeSourceFile(localDir, repo, path, opts.ref);
+}
 
 /**
  * Fetch companion files for a skill installed via `npx skills add`.
@@ -103,7 +123,6 @@ export function fetchCompanionFiles(
   opts: FetchOptions = {},
 ): FetchResult {
   const fetcher = opts.fetcher ?? defaultFetcher;
-  const writeSource = opts.writeSource !== false;
   const fetched: string[] = [];
   const errors: string[] = [];
 
@@ -112,7 +131,9 @@ export function fetchCompanionFiles(
   const declaredCompanions = parseCompanionsField(skillMdPath);
 
   // List the skill directory
-  const entries = fetcher.listDir(repo, skillPath, opts.ref);
+  const revision = companionRevision(repo, localDir, opts);
+  const ref = revision ?? opts.ref;
+  const entries = fetcher.listDir(repo, skillPath, ref);
   if (!entries) {
     return fetchViaGitClone(repo, skillPath, localDir, opts);
   }
@@ -139,7 +160,7 @@ export function fetchCompanionFiles(
     const localPath = join(localDir, dir.name);
     if (existsSync(localPath)) continue;
     mkdirSync(localPath, { recursive: true });
-    const subResult = fetchCompanionFiles(repo, `${skillPath}/${dir.name}`, localPath, { ...opts, writeSource: false });
+    const subResult = fetchCompanionFiles(repo, `${skillPath}/${dir.name}`, localPath, { ...opts, ref, writeSource: false });
     if (subResult.fetched.length > 0) {
       fetched.push(`${dir.name}/ (${subResult.fetched.length} files)`);
     }
@@ -147,9 +168,7 @@ export function fetchCompanionFiles(
   }
 
   // Write .source file for traceability
-  if (writeSource && fetched.length > 0) {
-    writeSourceFile(localDir, repo, skillPath, opts.ref);
-  }
+  trackCompanions(repo, skillPath, localDir, opts, { fetched, errors }, entries, revision);
 
   // Vendor if requested
   if (opts.vendorDir && fetched.length > 0) {
@@ -170,14 +189,15 @@ export async function fetchCompanionFilesAsync(
   opts: FetchOptions = {},
 ): Promise<FetchResult> {
   const fetcher = opts.fetcher ?? defaultFetcher;
-  const writeSource = opts.writeSource !== false;
   const fetched: string[] = [];
   const errors: string[] = [];
 
   const skillMdPath = join(localDir, "SKILL.md");
   const declaredCompanions = parseCompanionsField(skillMdPath);
 
-  const entries = fetcher.listDir(repo, skillPath, opts.ref);
+  const revision = companionRevision(repo, localDir, opts);
+  const ref = revision ?? opts.ref;
+  const entries = fetcher.listDir(repo, skillPath, ref);
   if (!entries) {
     return fetchViaGitClone(repo, skillPath, localDir, opts);
   }
@@ -215,16 +235,14 @@ export async function fetchCompanionFilesAsync(
     const localPath = join(localDir, dir.name);
     if (existsSync(localPath)) continue;
     mkdirSync(localPath, { recursive: true });
-    const subResult = await fetchCompanionFilesAsync(repo, `${skillPath}/${dir.name}`, localPath, { ...opts, writeSource: false });
+    const subResult = await fetchCompanionFilesAsync(repo, `${skillPath}/${dir.name}`, localPath, { ...opts, ref, writeSource: false });
     if (subResult.fetched.length > 0) {
       fetched.push(`${dir.name}/ (${subResult.fetched.length} files)`);
     }
     errors.push(...subResult.errors);
   }
 
-  if (writeSource && fetched.length > 0) {
-    writeSourceFile(localDir, repo, skillPath, opts.ref);
-  }
+  trackCompanions(repo, skillPath, localDir, opts, { fetched, errors }, entries, revision);
   if (opts.vendorDir && fetched.length > 0) {
     vendorSkill(localDir, opts.vendorDir);
   }
@@ -272,6 +290,8 @@ function fetchViaGitClone(
   const fetched: string[] = [];
   const errors: string[] = [];
 
+  // The sparse shallow clone below only checks out the default branch.
+  if (opts.ref && opts.ref !== "HEAD") return { fetched, errors: ["Could not fetch companions at the requested revision"] };
   const tmp = mkdtempSync(join(tmpdir(), "cue-companion-"));
   try {
     const cloneRes = retrySpawn("git", [
@@ -304,9 +324,7 @@ function fetchViaGitClone(
       }
     }
 
-    if (opts.writeSource !== false && fetched.length > 0) {
-      writeSourceFile(localDir, repo, skillPath, opts.ref);
-    }
+    trackCompanions(repo, skillPath, localDir, opts, { fetched, errors });
     if (opts.vendorDir && fetched.length > 0) {
       vendorSkill(localDir, opts.vendorDir);
     }
