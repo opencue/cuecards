@@ -70,7 +70,14 @@ if [ "$*" = "status --json" ]; then
   exit 0
 fi
 if [ "$*" = "branch tasks --help" ]; then
-  [ "${"$"}{GX_STRUCTURED:-0}" = 1 ] || exit 1
+  case "${"$"}{GX_PROBE:-normal}" in
+    failed) echo 'service temporarily unavailable' >&2; exit 1 ;;
+    changed) echo 'New usage banner'; exit 0 ;;
+  esac
+  if [ "${"$"}{GX_STRUCTURED:-0}" != 1 ]; then
+    printf 'Usage: gx branch <start|finish|merge> [options] (examples:\\n'
+    exit 1
+  fi
   printf 'Usage: gx branch tasks --json\\n'
   exit 0
 fi
@@ -80,6 +87,7 @@ if [ "$*" = "branch tasks --json" ]; then
 fi
 if [ "$1 $2" = "branch run-task" ]; then
   [ "$4" = "agent/codex/fixture" ] && [ "$5" = "$GX_WORKTREE" ] && [ "$6" = "--" ]
+  if [ "${"$"}{GX_RUN_BUSY:-0}" = 1 ]; then echo "task became busy" >&2; exit 75; fi
   cd "$5"
   shift 6
   exec "$@"
@@ -172,6 +180,18 @@ test.skipIf(process.platform === "win32")("structured start checks the reported 
   });
 });
 
+test.skipIf(process.platform === "win32")("an ambiguous capability probe cannot downgrade to an unguarded start", () => {
+  withCheckout(({ run, log }) => {
+    for (const probe of ["failed", "changed"]) {
+      const result = run(["No fallback"], { GX_PROBE: probe });
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("Could not determine GitGuardex task support");
+      expect(result.stdout).not.toContain("AGENT_CWD");
+    }
+    expect(readFileSync(log, "utf8")).not.toContain("branch start");
+  });
+});
+
 test.skipIf(process.platform === "win32")("resume lists tasks noninteractively and only launches a selected idle worktree", () => {
   withCheckout(({ run, git, worktree, log }) => {
     const env = { GX_STRUCTURED: "1" };
@@ -186,6 +206,10 @@ test.skipIf(process.platform === "win32")("resume lists tasks noninteractively a
     expect(busy.status).toBe(1);
     expect(busy.stderr).toContain("in use");
     expect(run(["--resume", "--task-id", "missing"], env).status).toBe(1);
+    const becameBusy = run(args, { ...env, GX_RUN_BUSY: "1" });
+    expect(becameBusy.status).toBe(75);
+    expect(becameBusy.stderr).toContain("task became busy");
+    expect(becameBusy.stdout).not.toContain("AGENT_CWD");
     const resumed = run(args, env);
     expect(resumed.status, resumed.stderr).toBe(0);
     expect(resumed.stdout).toContain(`AGENT_CWD=${worktree}`);
@@ -193,7 +217,7 @@ test.skipIf(process.platform === "win32")("resume lists tasks noninteractively a
     expect(git("worktree", "list", "--porcelain")).toBe(before);
     const trace = readFileSync(log, "utf8");
     expect(trace).not.toContain("branch start");
-    expect(trace.match(/^branch run-task /gm)).toHaveLength(1);
+    expect(trace.match(/^branch run-task /gm)).toHaveLength(2);
   });
 });
 

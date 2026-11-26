@@ -159,6 +159,11 @@ export async function run(args: string[]): Promise<number> {
 
   const support = gx(["branch", "tasks", "--help"]);
   const structured = support.status === 0 && support.stdout.startsWith("Usage: gx branch tasks --json\n");
+  // Only the legacy CLI's explicit unknown-subcommand response permits an
+  // unguarded legacy launch. A failed or changed probe must fail closed.
+  const legacy = support.status === 1 && !support.error && !support.signal &&
+    support.stdout.startsWith("Usage: gx branch <start|finish|merge> [options] (examples:");
+  if (!structured && !legacy) return fail("Could not determine GitGuardex task support. No agent launched.");
   if (resume) {
     if (!structured) return fail("--resume requires a GitGuardex version with `gx branch tasks --json`.");
     const list = gx(["branch", "tasks", "--json"]);
