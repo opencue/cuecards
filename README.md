@@ -39,8 +39,10 @@ for this project.
    instead of continuing to step 6.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
-7. Verify with `cue --version` and `cue current`. Report which profile was
-   pinned and whether the shim is active. Mention that `cue shell uninstall`
+7. Verify with `cue --version` and `cue current`. In a fresh shell, check
+   whether `claude` or `codex` resolves to the Cue shim using `command -v`
+   (or `Get-Command` in PowerShell). Report the pinned profile and the
+   resolved path. Mention that `cue shell uninstall`
    undoes the shim, or `npm uninstall -g cue-ai` removes the CLI package.
 
 Do not install anything without asking me first.
