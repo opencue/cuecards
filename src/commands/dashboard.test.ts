@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { createServer } from "node:http";
 
-import { parseArgs } from "./dashboard";
+import { parseArgs, run } from "./dashboard";
 import { createHandler } from "../lib/dashboard-server";
 
 describe("dashboard parseArgs", () => {
@@ -28,6 +29,44 @@ describe("dashboard parseArgs", () => {
   test("--help short-circuits", () => {
     expect(parseArgs(["--help"]).help).toBe(true);
     expect(parseArgs(["-h"]).help).toBe(true);
+  });
+});
+
+describe("dashboard port reuse", () => {
+  async function withListener(
+    status: unknown,
+    check: (port: number) => Promise<void>,
+  ): Promise<void> {
+    const listener = createServer((req, res) => {
+      res.writeHead(req.url === "/api/v1/status" ? 200 : 404, {
+        "Content-Type": "application/json",
+      });
+      res.end(JSON.stringify(status));
+    });
+    await new Promise<void>((resolve) => listener.listen(0, "127.0.0.1", resolve));
+    try {
+      const address = listener.address();
+      if (!address || typeof address === "string") throw new Error("Missing test port");
+      await check(address.port);
+    } finally {
+      listener.closeAllConnections();
+      await new Promise<void>((resolve) => listener.close(() => resolve()));
+    }
+  }
+
+  test("reuses a running Cue dashboard and exits", async () => {
+    await withListener({
+      ok: true,
+      data: { parts: [], warnings: [], totalProfiles: 1, telemetryEnabled: false },
+    }, async (port) => {
+      expect(await run(["--port", String(port), "--no-open"])).toBe(0);
+    });
+  });
+
+  test("still fails when an unrelated service owns the port", async () => {
+    await withListener({ ok: true, data: { status: "healthy" } }, async (port) => {
+      expect(await run(["--port", String(port), "--no-open"])).toBe(1);
+    });
   });
 });
 

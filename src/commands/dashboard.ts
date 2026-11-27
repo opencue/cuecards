@@ -121,6 +121,30 @@ function openBrowser(url: string): void {
   } catch { /* non-fatal */ }
 }
 
+async function isRunningDashboard(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(`${url}/api/v1/status`, {
+      redirect: "error",
+      signal: AbortSignal.timeout(1500),
+    });
+    if (!response.ok || !response.headers.get("content-type")?.startsWith("application/json")) {
+      await response.body?.cancel();
+      return false;
+    }
+    const body = await response.json() as {
+      ok?: boolean;
+      data?: { parts?: unknown; warnings?: unknown; totalProfiles?: unknown; telemetryEnabled?: unknown };
+    } | null;
+    return body?.ok === true
+      && Array.isArray(body.data?.parts)
+      && Array.isArray(body.data?.warnings)
+      && typeof body.data?.totalProfiles === "number"
+      && typeof body.data.telemetryEnabled === "boolean";
+  } catch {
+    return false;
+  }
+}
+
 function helpText(): string {
   return [
     "cue dashboard — local read-only dashboard server",
@@ -129,6 +153,7 @@ function helpText(): string {
     "  cue dashboard [--port <n>] [--host <h>] [--no-open] [--once]",
     "",
     "Defaults: --port 7891 --host 127.0.0.1",
+    "If a Cue dashboard is already listening on loopback, reuse it.",
     "",
     "Endpoints (JSON):",
     "  GET /api/v1/status",
@@ -178,6 +203,18 @@ export async function run(argv: string[]): Promise<number> {
       server.listen(args.port, args.host, resolve);
     });
   } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === "EADDRINUSE"
+      && (args.host === "127.0.0.1" || args.host === "localhost")
+      && await isRunningDashboard(url)) {
+      process.stdout.write(`cue dashboard ▸ ${url}  (already running)\n`);
+      if (!args.once && !args.noOpen) {
+        try {
+          const page = await fetch(url, { method: "HEAD", redirect: "error", signal: AbortSignal.timeout(1500) });
+          if (page.ok && page.headers.get("content-type")?.startsWith("text/html")) openBrowser(url);
+        } catch { /* the existing dashboard was already identified */ }
+      }
+      return 0;
+    }
     process.stderr.write(`cue dashboard: failed to bind ${url}: ${(err as Error).message}\n`);
     return 1;
   }
