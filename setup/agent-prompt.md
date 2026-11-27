@@ -4,18 +4,21 @@ The install path for people who already have an agent open. Paste the block
 below into Claude Code, Codex, Cursor, or any other coding agent and it performs
 the install, asking before it touches anything.
 
-The README links here so the copyable prompt only needs to be maintained once.
+This is the canonical prompt, also shown at the [top of the README](../README.md#install-with-an-agent).
 
 ```text
 Install cue (https://github.com/opencue/cuecards) on this machine and set it up
 for this project.
 
-1. Check Node >= 20 with `node --version`. If it's missing or older, stop and tell me.
-2. Check whether cue is already installed: `command -v cue`. If it resolves, skip to 4.
+1. Check Node.js 20+, npm, and an installed Claude Code or Codex CLI. Stop and
+   tell me if a prerequisite is missing.
+2. Check whether cue is already on PATH (`command -v cue`, or `Get-Command cue`
+   in PowerShell). If it is, skip to step 4.
 3. Ask me before installing anything, then run: `npm install -g cue-ai`
 4. Run `cue auto-detect --json`. Show me the profile suggestions it returns and what
    each one is for, and let me pick one — don't choose for me.
-5. Run `cue setup --profile <the one I picked> --yes`. That pins the profile,
+5. Explain the project, shim, and PATH changes below. Only after I approve,
+   run `cue setup --profile <the one I picked> --yes`. That pins the profile,
    installs the shim that makes `claude`/`codex` load it, and — if needed —
    configures the shim directory on PATH (shell rc on Linux/macOS, Current User
    PATH on native Windows) so the shim takes effect. It will not enable telemetry and will not install
@@ -23,8 +26,11 @@ for this project.
    instead of continuing to step 6.
 6. If it prints PATH guidance, show it verbatim — the shims do nothing until that
    line is added.
-7. Report which profile got pinned and whether the shim is active. Mention that
-   `cue shell uninstall` undoes the shim, or `npm uninstall -g cue-ai` removes the package entirely.
+7. Verify with `cue --version` and `cue current`. In a fresh shell, check
+   whether `claude` or `codex` resolves to the Cue shim using `command -v`
+   (or `Get-Command` in PowerShell). Report the pinned profile and the
+   resolved path. Mention that `cue shell uninstall`
+   undoes the shim, or `npm uninstall -g cue-ai` removes the CLI package.
 
 Do not install anything without asking me first.
 ```
