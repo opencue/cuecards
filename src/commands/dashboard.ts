@@ -206,13 +206,20 @@ export async function run(argv: string[]): Promise<number> {
     if ((err as NodeJS.ErrnoException).code === "EADDRINUSE"
       && (args.host === "127.0.0.1" || args.host === "localhost")
       && await isRunningDashboard(url)) {
-      process.stdout.write(`cue dashboard ▸ ${url}  (already running)\n`);
+      let note = "already running";
       if (!args.once && !args.noOpen) {
         try {
           const page = await fetch(url, { method: "HEAD", redirect: "error", signal: AbortSignal.timeout(1500) });
-          if (page.ok && page.headers.get("content-type")?.startsWith("text/html")) openBrowser(url);
-        } catch { /* the existing dashboard was already identified */ }
+          const contentType = page.headers.get("content-type") ?? "";
+          if (page.ok && contentType.startsWith("text/html")) openBrowser(url);
+          else if (page.ok && contentType.startsWith("application/json")) note += "; JSON-only (no web UI)";
+          else throw new Error(`unexpected dashboard response (HTTP ${page.status})`);
+        } catch (pageError) {
+          process.stderr.write(`cue dashboard: already running at ${url}, but could not open the UI: ${(pageError as Error).message}\n`);
+          return 1;
+        }
       }
+      process.stdout.write(`cue dashboard ▸ ${url}  (${note})\n`);
       return 0;
     }
     process.stderr.write(`cue dashboard: failed to bind ${url}: ${(err as Error).message}\n`);

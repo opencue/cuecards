@@ -33,12 +33,18 @@ describe("dashboard parseArgs", () => {
 });
 
 describe("dashboard port reuse", () => {
+  const cueStatus = {
+    ok: true,
+    data: { parts: [], warnings: [], totalProfiles: 1, telemetryEnabled: false },
+  };
+
   async function withListener(
     status: unknown,
     check: (port: number) => Promise<void>,
+    rootStatus = 200,
   ): Promise<void> {
     const listener = createServer((req, res) => {
-      res.writeHead(req.url === "/api/v1/status" ? 200 : 404, {
+      res.writeHead(req.url === "/api/v1/status" ? 200 : rootStatus, {
         "Content-Type": "application/json",
       });
       res.end(JSON.stringify(status));
@@ -55,12 +61,21 @@ describe("dashboard port reuse", () => {
   }
 
   test("reuses a running Cue dashboard and exits", async () => {
-    await withListener({
-      ok: true,
-      data: { parts: [], warnings: [], totalProfiles: 1, telemetryEnabled: false },
-    }, async (port) => {
+    await withListener(cueStatus, async (port) => {
       expect(await run(["--port", String(port), "--no-open"])).toBe(0);
     });
+  });
+
+  test("reuses a running JSON-only dashboard in browser mode", async () => {
+    await withListener(cueStatus, async (port) => {
+      expect(await run(["--port", String(port)])).toBe(0);
+    });
+  });
+
+  test("reports an unavailable UI in browser mode", async () => {
+    await withListener(cueStatus, async (port) => {
+      expect(await run(["--port", String(port)])).toBe(1);
+    }, 503);
   });
 
   test("still fails when an unrelated service owns the port", async () => {
