@@ -1,42 +1,57 @@
 ---
 title: "Claude Code Skills for video"
-description: "2 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the video profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-27
 tags: [claude-code, video, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `video`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **video** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="whystrohm-shotkit"></a>
-## 💎 [whystrohm/shotkit](https://github.com/whystrohm/shotkit)
+<a id="badassx-showreel"></a>
+## 💎 [badassX/showreel](https://github.com/badassX/showreel)
 
-**★ 93** · exceptional (score 16.4) · Python · tags: agent-skills, ai-storyboard, ai-video, ai-workflow, claude
+**★ 0** · exceptional (score 14.5) · Python · tags: agent-skills, annotation, anthropic, automation, canvas
 
-Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.
+Generate Korean motion-graphics videos from a single request: concept, script, narration, render, critique, mix and QA.
+
+✅ SKILL.md
 
 ```bash
-cue skills add whystrohm/shotkit --profile video
+cue skills add badassX/showreel --profile video
 ```
 
 ---
 
-<a id="malenaaza-video-editor-skill"></a>
-## 💎 [malenaaza/video-editor-skill](https://github.com/malenaaza/video-editor-skill)
+<a id="munvard-video-skill"></a>
+## 💎 [munvard/video-skill](https://github.com/munvard/video-skill)
 
-**★ 1** · exceptional (score 8.3) · Python · tags: captions, claude-code, claude-code-plugin, claude-skill, claude-skills
+**★ 3** · exceptional (score 8.7) · Python · tags: agent-skills, ai-video, animation, blender, claude-code
 
-A Claude Code skill that edits talking-head videos on your own computer: cuts retakes, pauses and fillers, adds captions and branding, and adapts to your hardware.
+Type /video in Claude Code and get a launch film for your app: motion design or 3D, with sound, checked frame by frame.
 
 ```bash
-cue skills add malenaaza/video-editor-skill --profile video
+cue skills add munvard/video-skill --profile video
+```
+
+---
+
+<a id="ashugithubrit-lemo-stampy"></a>
+## 💎 [ashugithubrit/lemo-stampy](https://github.com/ashugithubrit/lemo-stampy)
+
+**★ 0** · exceptional (score 8.5) · Swift · tags: agent-skills, ai-short-film, ai-video, amd, claude
+
+Stamp "For XX use only" on Mac file copies from the menu bar—a tiny, free, open-source stamp for Preview.
+
+```bash
+cue skills add ashugithubrit/lemo-stampy --profile video
 ```
 
 ---

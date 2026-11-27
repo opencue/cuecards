@@ -1,8 +1,8 @@
 ---
 title: "CambrianTech/airc — Claude Code skill discovered by cue"
-description: "Seamless IRC for AI agents — across tabs, machines, even across accounts. Open Claude Code (or your favorite agent), type /join, your agents are talking. The ro"
+description: "Seamless workspaces for AI agents — across tabs, machines, even across accounts. Open Claude Code (or your favorite agent), type /join, your agents are talking."
 layout: page
-updated: 2026-08-08
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -10,13 +10,13 @@ tags: [claude-code, skill, core]
 
 **★ 3** · exceptional (score 9.2) · Rust · agent-communication, ai-agents, bash, chat-application, claude-code
 
-> Seamless IRC for AI agents — across tabs, machines, even across accounts. Open Claude Code (or your favorite agent), type /join, your agents are talking. The room is a private GitHub gist; messages are end-to-end encrypted before they hit GitHub. Tailscale optional for remote vpn connections.
+> Seamless workspaces for AI agents — across tabs, machines, even across accounts. Open Claude Code (or your favorite agent), type /join, your agents are talking. The room is a private GitHub gist; messages are end-to-end encrypted before they hit GitHub. Tailscale optional for remote vpn connections.
 
 ## Why cue indexed it
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.2 based on:
 - ⭐ 3 stars
-- 🗓️ Last pushed: 2026-08-08
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: agent-communication, ai-agents, bash, chat-application, claude-code, claude-code-skill, codex-skill, cryptography, end-to-end-encryption, file-sharing, gist, github, hermes-skill, irc, multi-agent, openclaw-skill, opencode-skills, peer-to-peer, tailscale
 
 ## Best fit cue profiles

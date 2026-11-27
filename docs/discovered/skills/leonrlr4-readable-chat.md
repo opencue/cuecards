@@ -2,7 +2,7 @@
 title: "leonrlr4/readable-chat — Claude Code skill discovered by cue"
 description: "Readable Claude Code replies in the terminal: leaf rendering, folding, reader pane, clickable paths, collapsed tool output, mermaid images"
 layout: page
-updated: 2026-11-17
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 4.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-16
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

@@ -1,47 +1,17 @@
 ---
 title: "Claude Code Skills for frontend"
-description: "6 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the frontend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, frontend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `frontend`
 
-> 6 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **frontend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="sergiobanhos-generate-icons"></a>
-## 💎 [sergiobanhos/generate-icons](https://github.com/sergiobanhos/generate-icons)
-
-**★ 7** · exceptional (score 15) · Python · tags: agent-skills, claude-code, claude-skill, design-system, icons
-
-Agent skill that draws an original icon library matching your design system (React, Vue, Svelte, React Native, SVG).
-
-✅ SKILL.md
-
-```bash
-cue skills add sergiobanhos/generate-icons --profile frontend
-```
-
----
-
-<a id="shxuk-seedtone"></a>
-## 💎 [shxuk/seedtone](https://github.com/shxuk/seedtone)
-
-**★ 0** · exceptional (score 13.5) · JavaScript · tags: agent-skill, ai-skill, apca, claude-skill, color-palette
-
-给 1 个 Hex 色号，生成明暗双模式 UI 颜色矩阵、HTML 报告与 CSS/Tailwind 约束工具 · Primer + Leonardo + OKLCH + APCA · MIT
-
-✅ SKILL.md
-
-```bash
-cue skills add shxuk/seedtone --profile frontend
-```
 
 ---
 
@@ -58,41 +28,28 @@ cue skills add ezra-y/awesome-claude-ui-armory --profile frontend
 
 ---
 
-<a id="gengsong-shijing-agent"></a>
-## 💎 [gengsong/shijing-agent](https://github.com/gengsong/shijing-agent)
+<a id="airupt-frontend-craft"></a>
+## 💎 [airupt/frontend-craft](https://github.com/airupt/frontend-craft)
 
-**★ 1** · exceptional (score 8.8) · JavaScript · tags: agent-skills, ai-agent, ai-coding, browser-automation, claude
+**★ 1** · exceptional (score 8.3) · CSS · tags: claude-code, claude-skill, css, design-system, frontend
 
-Your AI agent changed the UI. Did it get easier? Runs the same user task before and after the change and reports clicks, path and output diffs. CLI + MCP for Claude Code, Cursor, Codex.
+Claude Code skill for building and reviewing marketing-site frontends to a top-tier standard: measured reference, starter CSS, worked showcase, browser verification scripts.
 
 ```bash
-cue skills add gengsong/shijing-agent --profile frontend
+cue skills add airupt/frontend-craft --profile frontend
 ```
 
 ---
 
-<a id="vikdevarstudio-t-minus"></a>
-## 💎 [VikDevarStudio/t-minus](https://github.com/VikDevarStudio/t-minus)
+<a id="yeomyaloo-cotcha-jar"></a>
+## 💎 [yeomyaloo/cotcha-jar](https://github.com/yeomyaloo/cotcha-jar)
 
-**★ 1** · exceptional (score 8.3) · tags: accessibility, agent-skills, ai-coding, claude, claude-code
+**★ 0** · exceptional (score 8) · TypeScript · tags: claude, claude-code, claude-code-plugin, claude-code-skill, claude-plugin
 
-The countdown before you ship. A Claude skill that audits and fixes your app before launch: security, legal, UX, edge cases, accessibility and AI design slop.
-
-```bash
-cue skills add VikDevarStudio/t-minus --profile frontend
-```
-
----
-
-<a id="mrgodlink-rcdesign"></a>
-## ✨ [MrGodLink/RcDesign](https://github.com/MrGodLink/RcDesign)
-
-**★ 1** · strong (score 5.3) · CSS · tags: bento-grid, brutalism, claude-code-plugin, claude-code-skill, claymorphism
-
-One engine, ten UI design styles, zero markup changes. Skeuomorphism, Neumorphism, Glassmorphism, Claymorphism, Brutalism, Minimalism, Maximalism, Liquid Glass, Bento Grid and Spatial UI, switch the whole look of a page with one attribute.
+Web UI for be-code-agent: index repositories, approve analysis plans, and watch AI agents investigate and verify vulnerabilities in real time.
 
 ```bash
-cue skills add MrGodLink/RcDesign --profile frontend
+cue skills add yeomyaloo/cotcha-jar --profile frontend
 ```
 
 ---

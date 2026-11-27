@@ -1,46 +1,31 @@
 ---
 title: "Claude Code Skills for niche"
-description: "2 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "1 community Claude Code skills curated by cue for the niche profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, niche, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `niche`
 
-> 2 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
+> 1 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **niche** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="solplum-high-confidence-mingli-skill"></a>
-## 💎 [solplum/high-confidence-mingli-skill](https://github.com/solplum/high-confidence-mingli-skill)
+<a id="engheng-art-guaikei-douyin-videos-posts-comments-hot"></a>
+## 💎 [engheng-art/guaikei-douyin-videos-posts-comments-hot](https://github.com/engheng-art/guaikei-douyin-videos-posts-comments-hot)
 
-**★ 12** · exceptional (score 17) · Python · tags: agent-skill, ai-agent, bazi, chinese-metaphysics, claude-code
+**★ 0** · exceptional (score 10.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
 
-🔮 高置信度命理分析伴侣：八字/紫微/七政四余三盘互译，置信度门禁与斯多葛克制语风，数据全本地闭环。
-
-✅ SKILL.md
-
-```bash
-cue skills add solplum/high-confidence-mingli-skill --profile niche
-```
-
----
-
-<a id="engheng-art-guaikei-douyin-public-data-fetcher"></a>
-## 💎 [engheng-art/guaikei-douyin-public-data-fetcher](https://github.com/engheng-art/guaikei-douyin-public-data-fetcher)
-
-**★ 0** · exceptional (score 9.5) · JavaScript · tags: claude-code-skill, claude-skill, codex-skill, codex-skills, doubao-skill
-
-当用户需要抖音公开数据时，使用本技能。覆盖四类数据：关键词搜索（视频/图文/用户）、博主作品批量抓取、视频评论获取分析、实时热榜查询。适用于内容调研、竞品账号分析、用户评论洞察、热点趋势追踪；用户做短视频调研未明确提到\"抖音\"时同样触发。不适用于发布/剪辑/下载视频、涨粉代运营咨询，也不覆盖其他短视频平台。｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
+当用户需要公开数据支撑抖音相关决策时，使用本技能：关键词搜索排序、博主作品批量抓取、评论抓取分析、实时热榜查询。适用于营销选品、内容策划、流量研究，即使用户没说出"抖音数据分析"这类术语。不适用于需要登录权限的私域数据（如后台播放量）。｜抖音公开数据只读：关键词搜视频/图文、用户搜索、博主作品、作品详情、评论、热榜，输出结构化 JSON
 
 ✅ SKILL.md
 
 ```bash
-cue skills add engheng-art/guaikei-douyin-public-data-fetcher --profile niche
+cue skills add engheng-art/guaikei-douyin-videos-posts-comments-hot --profile niche
 ```
 
 ---

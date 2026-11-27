@@ -2,7 +2,7 @@
 title: "Claude Code Skills for cybersecurity"
 description: "4 community Claude Code skills curated by cue for the cybersecurity profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 ---
 
@@ -18,7 +18,7 @@ tags: [claude-code, cybersecurity, skills, mcp, ai-agents]
 <a id="elementalsouls-claude-osint"></a>
 ## 💎 [elementalsouls/Claude-OSINT](https://github.com/elementalsouls/Claude-OSINT)
 
-**★ 3155** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
+**★ 3166** · exceptional (score 11.1) · Python · tags: agentskills, claude, skills
 
 8 Claude skills · 100+ recon capabilities · 80 secret-regex patterns · 80+ dorks · 9 read-only credential validators · 27 attack-path templates · ~10,000 lines of structured tradecraft. Drop-in SKILL.md files that turn Claude into a god-mode external recon operator for authorized red-team and bug-bounty engagements.
 
@@ -54,15 +54,15 @@ cue skills add philpaz/recusal --profile cybersecurity
 
 ---
 
-<a id="vikdevarstudio-t-minus"></a>
-## 💎 [VikDevarStudio/t-minus](https://github.com/VikDevarStudio/t-minus)
+<a id="atharv-sketch-claude-bug-hunter"></a>
+## ✨ [atharv-sketch/-CLAUDE-BUG-HUNTER](https://github.com/atharv-sketch/-CLAUDE-BUG-HUNTER)
 
-**★ 1** · exceptional (score 8.3) · tags: accessibility, agent-skills, ai-coding, claude, claude-code
+**★ 0** · strong (score 7) · Python · tags: ai, aisecurity, anthropic, application-security, bug-bounty
 
-The countdown before you ship. A Claude skill that audits and fixes your app before launch: security, legal, UX, edge cases, accessibility and AI design slop.
+A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.
 
 ```bash
-cue skills add VikDevarStudio/t-minus --profile cybersecurity
+cue skills add atharv-sketch/-CLAUDE-BUG-HUNTER --profile cybersecurity
 ```
 
 ---

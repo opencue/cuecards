@@ -1,29 +1,44 @@
 ---
 title: "Claude Code Skills for backend"
-description: "3 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "4 community Claude Code skills curated by cue for the backend profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, backend, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `backend`
 
-> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
+> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **backend** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
 
 ---
 
-<a id="ni-c-mcp-hub"></a>
-## 💎 [ni-c/mcp-hub](https://github.com/ni-c/mcp-hub)
+<a id="aisenseapi-aisense-free-public-rest-apis"></a>
+## 💎 [aisenseapi/aisense-free-public-rest-apis](https://github.com/aisenseapi/aisense-free-public-rest-apis)
 
-**★ 5** · exceptional (score 12) · TypeScript · tags: ai, chatgpt, claude, claude-code, docker
+**★ 1** · exceptional (score 14.3) · HTML · tags: ai-agents, claude-skill, claude-skills, free-api, free-apis
 
-Serve multiple stdio MCP servers from one container: path routing, hub meta-tools, OAuth 2.1 + API tokens for ChatGPT, Claude, Cursor and other MCP clients
+Free public REST APIs from AI SENSE AS, with no account or API key: encoding, hashing, time, QR codes and barcodes, images, PDF, audio and music, and agent workflows, plus a free MCP server, skills for Claude and OpenClaw, and clients for Python, JavaScript and OpenAI function calling.
+
+✅ SKILL.md
 
 ```bash
-cue skills add ni-c/mcp-hub --profile backend
+cue skills add aisenseapi/aisense-free-public-rest-apis --profile backend
+```
+
+---
+
+<a id="hyperextendedreality-terser"></a>
+## 💎 [HyperExtendedReality/terser](https://github.com/HyperExtendedReality/terser)
+
+**★ 1** · exceptional (score 8.8) · Python · tags: ai-coding-agents, antigravity, ast, claude-code, codex
+
+Lossless context compression & token-efficiency engine for AI coding agents (Antigravity 2.0, Claude Code, Codex). 94% measured savings, 14× faster Rust hot-path with pure-Python fallback.
+
+```bash
+cue skills add HyperExtendedReality/terser --profile backend
 ```
 
 ---

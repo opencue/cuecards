@@ -1,32 +1,17 @@
 ---
 title: "Claude Code Skills for docs-writer"
-description: "4 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
+description: "3 community Claude Code skills curated by cue for the docs-writer profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, docs-writer, skills, mcp, ai-agents]
 ---
 
 # Claude Code Skills for `docs-writer`
 
-> 4 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
+> 3 community-built skills curated by [cue](https://github.com/opencue/cuecards) for the **docs-writer** profile.
 > Each one was discovered via GitHub Code Search, scored on signal quality, and mapped to this profile by keyword overlap.
 
 **[← back to all discovered skills](./index.md)**
-
----
-
-<a id="shxuk-sayplain"></a>
-## 💎 [shxuk/sayplain](https://github.com/shxuk/sayplain)
-
-**★ 0** · exceptional (score 13.5) · Python · tags: agent-skill, ai-skill, chinese-nlp, claude-skill, de-ai
-
-中文技术写作「去 AI 味」审校工作流 Agent Skill + 零依赖 Python 质检脚本 · 事实锚对齐 · MIT
-
-✅ SKILL.md
-
-```bash
-cue skills add shxuk/sayplain --profile docs-writer
-```
 
 ---
 
@@ -61,7 +46,7 @@ cue skills add juanje/codebase-documenter --profile docs-writer
 <a id="basitalisandhu-repo-engineering-skills"></a>
 ## 🔹 [basitalisandhu/repo-engineering-skills](https://github.com/basitalisandhu/repo-engineering-skills)
 
-**★ 1** · potential (score 4.6) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
+**★ 1** · potential (score 4.5) · Python · tags: agent-skills, agents-md, characterization-tests, claude-code, claude-code-plugin
 
 Claude Code skills for repository audits and documentation: verify README and docs claims against the code, run audits where every finding cites a resolvable path:line, write AGENTS.md and CLAUDE.md with only what code cannot say, check a README's first screen, rank test gaps. Tested standard-library scripts, no network.
 

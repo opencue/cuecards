@@ -2,7 +2,7 @@
 title: "rodrigopg/claude-skill-prime-context — Claude Code skill discovered by cue"
 description: "Claude Code skill — on-demand context loading + AGENTS.md refactor for token efficiency"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9.8 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: agents-md, claude-code, claude-code-plugin, claude-skill, context-engineering
 
 ## Best fit cue profiles

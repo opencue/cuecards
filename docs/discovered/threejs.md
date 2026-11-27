@@ -2,7 +2,7 @@
 title: "Claude Code Skills for threejs"
 description: "1 community Claude Code skills curated by cue for the threejs profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-24
+updated: 2026-11-27
 tags: [claude-code, threejs, skills, mcp, ai-agents]
 ---
 
@@ -15,15 +15,15 @@ tags: [claude-code, threejs, skills, mcp, ai-agents]
 
 ---
 
-<a id="seawolf0-spectra"></a>
-## 🔹 [Seawolf0/Spectra](https://github.com/Seawolf0/Spectra)
+<a id="lukehollis-sceneagent-mcp"></a>
+## 💎 [lukehollis/sceneagent-mcp](https://github.com/lukehollis/sceneagent-mcp)
 
-**★ 2** · potential (score 3.5) · HTML · tags: 2d-graphics, 3d-graphics, caustics, dispersion, glsl
+**★ 0** · exceptional (score 8.5) · tags: 3d-gaussian-splatting, agent-skills, claude-code-plugin, claude-code-skill, claude-skills
 
-A real-time light-physics playground in one HTML file. 3D mode: a spectral path tracer with dispersion, caustics, Fresnel glass and depth of field. 2D mode: an optics light table for building setups with lenses, prisms and mirrors. Runs in the browser with WebGL2. Built by prompting Claude Fable 5.2, with testing and debugging by me.
+SceneAgent MCP server: turn 3D scans, Gaussian splats and video into sim-ready OpenUSD and MJCF robot scenes for Isaac Sim, Isaac Lab and MuJoCo.
 
 ```bash
-cue skills add Seawolf0/Spectra --profile threejs
+cue skills add lukehollis/sceneagent-mcp --profile threejs
 ```
 
 ---

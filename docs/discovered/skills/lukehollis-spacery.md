@@ -2,21 +2,21 @@
 title: "lukehollis/spacery — Claude Code skill discovered by cue"
 description: "Spacery MCP server and agent skill. Publish 3D scans, Gaussian splats and 360 tours from your AI agent, and build guided tours in them."
 layout: page
-updated: 2026-10-20
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [lukehollis/spacery](https://github.com/lukehollis/spacery)
 
-**★ 0** · exceptional (score 8.5) · 360-photo, 3d-gaussian-splatting, agent-skills, claude-code-plugin, claude-code-skill
+**★ 2** · exceptional (score 9) · 360-photo, 3d-gaussian-splatting, agent-skills, claude-code-plugin, claude-code-skill
 
 > Spacery MCP server and agent skill. Publish 3D scans, Gaussian splats and 360 tours from your AI agent, and build guided tours in them.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
-- ⭐ 0 stars
-- 🗓️ Last pushed: 2026-10-20
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 2 stars
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: 360-photo, 3d-gaussian-splatting, agent-skills, claude-code-plugin, claude-code-skill, claude-skills, digital-twin, e57, gemini-cli-extension, lidar, matterport, mcp, mcp-server, model-context-protocol, virtual-tour
 
 ## Best fit cue profiles

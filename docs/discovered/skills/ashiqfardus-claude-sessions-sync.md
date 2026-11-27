@@ -2,7 +2,7 @@
 title: "ashiqfardus/claude-sessions-sync — Claude Code skill discovered by cue"
 description: "Back up Claude Code conversations to Google Drive, OneDrive or Dropbox and resume them on another computer: Windows, macOS or Linux, even when the project lives"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: ai-coding, anthropic, backup, chat-history, claude, claude-ai, claude-code, cli, developer-tools, dropbox, golang, google-drive, linux, macos, onedrive, session-sync, sync, windows
 
 ## Best fit cue profiles

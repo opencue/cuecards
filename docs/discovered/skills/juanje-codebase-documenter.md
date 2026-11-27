@@ -2,7 +2,7 @@
 title: "juanje/codebase-documenter — Claude Code skill discovered by cue"
 description: "A Claude Code skill that generates developer-facing documentation for any codebase. It reads the actual code — not the README — and produces a single `docs/CODE"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, docs-writer]
 ---
 

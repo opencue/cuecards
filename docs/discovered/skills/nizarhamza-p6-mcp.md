@@ -2,7 +2,7 @@
 title: "nizarhamza/p6-mcp — Claude Code skill discovered by cue"
 description: "Primavera P6 MCP server for Claude, ChatGPT, Cursor and VS Code: critical path, DCMA 14-point check, what-if, and safe write-back to the P6 Professional databas"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, backend]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, backend]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.2 based on:
 - ⭐ 10 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: claude, construction, critical-path, dcma, mcp, mcp-server, primavera-p6, project-controls, scheduling, windows, xer
 
 ## Best fit cue profiles

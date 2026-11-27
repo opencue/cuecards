@@ -2,7 +2,7 @@
 title: "bamchoh/tsukuraku — Claude Code skill discovered by cue"
 description: "Tsukuraku (ツクラク): an HMI designer and runtime whose screens an AI can draw. Runs on a PC and on Raspberry Pi touch panels (LVGL); Modbus, SLMP, FINS, OPC UA, MQ"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: ai, claude-skill, hmi, industrial-automation, lvgl, modbus, opc-ua, plc, raspberry-pi, scada
 
 ## Best fit cue profiles

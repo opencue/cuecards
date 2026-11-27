@@ -2,7 +2,7 @@
 title: "Claude Code Skills for fleet-control"
 description: "4 community Claude Code skills curated by cue for the fleet-control profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-25
+updated: 2026-11-27
 tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 ---
 
@@ -15,43 +15,43 @@ tags: [claude-code, fleet-control, skills, mcp, ai-agents]
 
 ---
 
-<a id="ankitkpandey1-hubkit"></a>
-## 💎 [ankitkpandey1/hubkit](https://github.com/ankitkpandey1/hubkit)
+<a id="vikashjeyaraman-opencouncil-contract-inspector"></a>
+## 💎 [vikashjeyaraman/opencouncil-contract-inspector](https://github.com/vikashjeyaraman/opencouncil-contract-inspector)
 
-**★ 0** · exceptional (score 13) · Python · tags: adaptive, agent-coordination, agent-orchestration, ai-agents, claude-code
+**★ 124** · exceptional (score 15) · HTML · tags: agent-orchestration, ai-agents, ai-hallucination, ai-quality, anthropic
 
-Session supervisor for Claude Code: hooks-based multi-agent orchestration with order clocks, routed-work tracking, a watchdog and a stop gate.
+Proven 2026 Multi-Agent AI Review System – Verdict-Driven Quality Control
+
+```bash
+cue skills add vikashjeyaraman/opencouncil-contract-inspector --profile fleet-control
+```
+
+---
+
+<a id="taherfarg-claude-delegate-skill"></a>
+## 💎 [taherfarg/claude-delegate-skill](https://github.com/taherfarg/claude-delegate-skill)
+
+**★ 0** · exceptional (score 12) · Python · tags: ai-agents, antigravity, claude-code, claude-skill, cli
+
+Claude orchestrates ChatGPT (Codex CLI) and Gemini (Antigravity CLI) as workers and fresh-context reviewers, on your existing subscriptions. A stdlib Python engine enforces timeouts, secret scanning and evidence-based, risk-tiered gates.
 
 ✅ SKILL.md
 
 ```bash
-cue skills add ankitkpandey1/hubkit --profile fleet-control
+cue skills add taherfarg/claude-delegate-skill --profile fleet-control
 ```
 
 ---
 
-<a id="andrerenatomenezes-sdd-maestri"></a>
-## 💎 [AndreRenatoMenezes/SDD-Maestri](https://github.com/AndreRenatoMenezes/SDD-Maestri)
+<a id="aadiieee-multi-agent-revenue-orchestrator"></a>
+## 💎 [aadiieee/multi-agent-revenue-orchestrator](https://github.com/aadiieee/multi-agent-revenue-orchestrator)
 
-**★ 3** · exceptional (score 10.2) · Shell · tags: agent-orchestration, agentic-ai, ai-agents, anthropic, anthropic-claude
+**★ 1** · exceptional (score 9.3) · HTML · tags: agents, ai-agents, ai-sdr, apollo-io, business-development
 
-Skill de Spec-Driven Development para times de agentes de IA no Maestri: papéis com fronteiras que não se cruzam, spec como contrato e um painel auditável no canvas.
-
-```bash
-cue skills add AndreRenatoMenezes/SDD-Maestri --profile fleet-control
-```
-
----
-
-<a id="aezzatelashry-maestro"></a>
-## 💎 [aezzatelashry/maestro](https://github.com/aezzatelashry/maestro)
-
-**★ 1** · exceptional (score 8.3) · Python · tags: arabic, claude-code, claude-code-plugin, claude-skill, model-routing
-
-Cost-aware multi-model orchestration for Claude Code: the strongest model plans and reviews, smaller models build.
+2026 Multi-Agent BD Orchestrator – Apollo, Notion, Gmail & Slack Integration
 
 ```bash
-cue skills add aezzatelashry/maestro --profile fleet-control
+cue skills add aadiieee/multi-agent-revenue-orchestrator --profile fleet-control
 ```
 
 ---

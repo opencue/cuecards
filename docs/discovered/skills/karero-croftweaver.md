@@ -2,21 +2,21 @@
 title: "karero/croftweaver — Claude Code skill discovered by cue"
 description: "A free, open-source suite of website skills: instructions your AI coding assistant follows to build and test a site you own, so people find it on Google and in "
 layout: page
-updated: 2026-11-20
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [karero/croftweaver](https://github.com/karero/croftweaver)
 
-**★ 11** · exceptional (score 14) · Python · agent-skills, ai-coding, ai-coding-assistant, ai-website-builder, astro
+**★ 11** · exceptional (score 15) · Python · agent-skills, ai-coding, ai-coding-assistant, ai-website-builder, astro
 
 > A free, open-source suite of website skills: instructions your AI coding assistant follows to build and test a site you own, so people find it on Google and in AI answers.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 14 based on:
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 15 based on:
 - ⭐ 11 stars
-- 🗓️ Last pushed: 2026-11-20
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: agent-skills, ai-coding, ai-coding-assistant, ai-website-builder, astro, claude-code, claude-code-plugin, claude-code-skill, claude-skills, cloudflare-pages, codex-plugin, codex-skills, croftweaver, generative-engine-optimization, geo, llms-txt, seo, website-generator, website-skills, wordpress-migration
 
 ## Best fit cue profiles

@@ -2,7 +2,7 @@
 title: "Chamba-Lab/studyforge — Claude Code skill discovered by cue"
 description: "Forge hands-on study paths with any AI agent: a refined syllabus first, then verifiable labs and an integrator project per block. An Agent Skill + Claude Code p"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.3 based on:
 - ⭐ 1 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: agent-skills, claude-code, education, labs, learning, syllabus
 
 ## Best fit cue profiles

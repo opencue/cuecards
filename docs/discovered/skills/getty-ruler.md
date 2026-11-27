@@ -2,7 +2,7 @@
 title: "Getty/ruler — Claude Code skill discovered by cue"
 description: "Claude Code plugin: keeps CLAUDE.md and the rules without paths in context across every compaction, and their copies out of the compaction summary. Python stdli"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 

@@ -2,7 +2,7 @@
 title: "Claude Code Skills for creative-media"
 description: "4 community Claude Code skills curated by cue for the creative-media profile. Hidden-gem repos with SKILL.md, MCP servers, and CLI integrations."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, creative-media, skills, mcp, ai-agents]
 ---
 
@@ -15,28 +15,30 @@ tags: [claude-code, creative-media, skills, mcp, ai-agents]
 
 ---
 
-<a id="krisyangdev-motionboard"></a>
-## 💎 [krisyangdev/motionboard](https://github.com/krisyangdev/motionboard)
+<a id="badassx-showreel"></a>
+## 💎 [badassX/showreel](https://github.com/badassX/showreel)
 
-**★ 69** · exceptional (score 17.6) · HTML · tags: agent-skill, agent-skills, ai-video, animation, claude-code
+**★ 0** · exceptional (score 14.5) · Python · tags: agent-skills, annotation, anthropic, automation, canvas
 
-Make launch videos and motion graphics with Claude Code or Codex: free HyperFrames skill + 48 shot recipes (match cut, logo reveal, kinetic typography, liquid glass effect).
+Generate Korean motion-graphics videos from a single request: concept, script, narration, render, critique, mix and QA.
+
+✅ SKILL.md
 
 ```bash
-cue skills add krisyangdev/motionboard --profile creative-media
+cue skills add badassX/showreel --profile creative-media
 ```
 
 ---
 
-<a id="nimply-skills"></a>
-## ✨ [nimply/skills](https://github.com/nimply/skills)
+<a id="munvard-video-skill"></a>
+## 💎 [munvard/video-skill](https://github.com/munvard/video-skill)
 
-**★ 0** · strong (score 6) · JavaScript · tags: agent-skills, ai-agents, claude-code-marketplace, claude-code-plugin, claude-code-skills
+**★ 3** · exceptional (score 8.7) · Python · tags: agent-skills, ai-video, animation, blender, claude-code
 
-Official Nimply skill: understand the AI social media workforce and design a setup for any business
+Type /video in Claude Code and get a launch film for your app: motion design or 3D, with sound, checked frame by frame.
 
 ```bash
-cue skills add nimply/skills --profile creative-media
+cue skills add munvard/video-skill --profile creative-media
 ```
 
 ---

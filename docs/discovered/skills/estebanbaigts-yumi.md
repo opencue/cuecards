@@ -2,21 +2,21 @@
 title: "estebanbaigts/Yumi — Claude Code skill discovered by cue"
 description: "Yumi the  compagnon AI in your notch that asks before it acts. Reminders, calendar events, notes: shown exactly before, checked after. Native macOS, no account,"
 layout: page
-updated: 2026-10-08
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
-# ✨ [estebanbaigts/Yumi](https://github.com/estebanbaigts/Yumi)
+# 💎 [estebanbaigts/Yumi](https://github.com/estebanbaigts/Yumi)
 
-**★ 14** · strong (score 7.4) · Swift · agentic-ai-development, agentic-ai-security, ai, ai-agents, ai-assistants
+**★ 20** · exceptional (score 8.5) · Swift · agentic-ai-development, agentic-ai-security, ai, ai-agents, ai-assistants
 
 > Yumi the  compagnon AI in your notch that asks before it acts. Reminders, calendar events, notes: shown exactly before, checked after. Native macOS, no account, no telemetry
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7.4 based on:
-- ⭐ 14 stars
-- 🗓️ Last pushed: 2026-10-08
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.5 based on:
+- ⭐ 20 stars
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: agentic-ai-development, agentic-ai-security, ai, ai-agents, ai-assistants, claude-ai, claude-code-skill, local-first, macos-app, macos-package, macos-swift, notch, notch-app, ollama, open-source, privacy, swiftui
 
 ## Best fit cue profiles

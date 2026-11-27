@@ -2,7 +2,7 @@
 title: "MoatChrysalis/Everything-Claude-Code — Claude Code skill discovered by cue"
 description: "⭐️ Discover ECC Everything Claude Code the powerful all-in-one solution with Setup Installer v1.0. This release delivers the Full Version Latest Build 2026 comp"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 6.5 based on:
 - ⭐ 0 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: anthropic-claude, claude, claude-agents, claude-ai, claude-code, claude-code-desktop, claude-code-hooks, claude-code-memory, claude-code-plugin, claude-code-plugins, claude-code-router, claude-code-skill, claude-code-skills, claude-fable-5, claude-opus-4-6, claude-skills, claudecode, subagents
 
 ## Best fit cue profiles

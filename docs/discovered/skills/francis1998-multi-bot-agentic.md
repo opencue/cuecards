@@ -2,7 +2,7 @@
 title: "Francis1998/multi-bot-agentic — Claude Code skill discovered by cue"
 description: "Deterministic, auditable multi-bot AI-agent orchestrator: Observe→Decide→Act loop with rationale traces, replayable SQLite event log with resume and time-travel"
 layout: page
-updated: 2026-11-25
+updated: 2026-11-27
 tags: [claude-code, skill, fleet-control]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, fleet-control]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 7 based on:
 - ⭐ 11 stars
-- 🗓️ Last pushed: 2026-11-25
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: agent-orchestration, agentic-ai, ai-agents, checkpointing, claude, claude-code, deterministic, event-sourcing, gemini, human-in-the-loop, kimi, llm, mcp-client, model-context-protocol, multi-agent, observe-decide-act, openai, opentelemetry, python, time-travel-debugging
 
 ## Best fit cue profiles

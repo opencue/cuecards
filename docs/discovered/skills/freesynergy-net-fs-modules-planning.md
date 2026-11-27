@@ -2,7 +2,7 @@
 title: "FreeSynergy-Net/fs-modules-planning — Claude Code skill discovered by cue"
 description: "FreeSynergy planning modules: dependencies (RFC 9253), critical path, hand order, checklists, progress states, claims and the to-do data module (JSCalendar Task"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 3.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: (none)
 
 ## Best fit cue profiles

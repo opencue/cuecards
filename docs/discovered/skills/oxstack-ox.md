@@ -2,7 +2,7 @@
 title: "oxstack/ox — Claude Code skill discovered by cue"
 description: "OX: run stock Codex and Claude Code side by side on your subscriptions or any API provider, with the standard path untouched. A small Rust relay, a native deskt"
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
@@ -16,7 +16,7 @@ tags: [claude-code, skill, core]
 
 cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 5.5 based on:
 - ⭐ 2 stars
-- 🗓️ Last pushed: 2026-11-26
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: claude, claude-code, codex, coding-agents, gpui, llm-gateway, pwa, rust, tailscale
 
 ## Best fit cue profiles

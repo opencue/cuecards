@@ -2,21 +2,21 @@
 title: "GodFaizT/makerworld-to-any — Claude Code skill discovered by cue"
 description: " MakerWorld to Any — a Claude Code skill that adapts 3MF projects from Bambu Studio / MakerWorld for the Anycubic. Created by Megatic."
 layout: page
-updated: 2026-11-26
+updated: 2026-11-27
 tags: [claude-code, skill, core]
 ---
 
 # 💎 [GodFaizT/makerworld-to-any](https://github.com/GodFaizT/makerworld-to-any)
 
-**★ 4** · exceptional (score 8.8) · Python · 3d-printing, 3mf, anycubic, bambu-lab, claude-code
+**★ 6** · exceptional (score 9) · Python · 3d-printing, 3mf, anycubic, bambu-lab, claude-code
 
 >  MakerWorld to Any — a Claude Code skill that adapts 3MF projects from Bambu Studio / MakerWorld for the Anycubic. Created by Megatic.
 
 ## Why cue indexed it
 
-cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 8.8 based on:
-- ⭐ 4 stars
-- 🗓️ Last pushed: 2026-11-26
+cue ran [GitHub Code Search](https://docs.github.com/en/search-github/searching-on-github/searching-code) for `filename:SKILL.md` and found this repo. It scored 9 based on:
+- ⭐ 6 stars
+- 🗓️ Last pushed: 2026-11-27
 - 🏷️ Tags: 3d-printing, 3mf, anycubic, bambu-lab, claude-code, claude-code-plugin, claude-skill, kobra-x, makerworld
 
 ## Best fit cue profiles
