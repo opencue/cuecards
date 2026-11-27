@@ -127,11 +127,24 @@ async function isRunningDashboard(url: string): Promise<boolean> {
       redirect: "error",
       signal: AbortSignal.timeout(1500),
     });
-    if (!response.ok || !response.headers.get("content-type")?.startsWith("application/json")) {
+    if (!response.ok || !response.body || !response.headers.get("content-type")?.startsWith("application/json")) {
       await response.body?.cancel();
       return false;
     }
-    const body = await response.json() as {
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let json = "", bytes = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > 256 * 1024) {
+        await reader.cancel();
+        return false;
+      }
+      json += decoder.decode(value, { stream: true });
+    }
+    const body = JSON.parse(json + decoder.decode()) as {
       ok?: boolean;
       data?: { parts?: unknown; warnings?: unknown; totalProfiles?: unknown; telemetryEnabled?: unknown };
     } | null;
@@ -206,20 +219,8 @@ export async function run(argv: string[]): Promise<number> {
     if ((err as NodeJS.ErrnoException).code === "EADDRINUSE"
       && (args.host === "127.0.0.1" || args.host === "localhost")
       && await isRunningDashboard(url)) {
-      let note = "already running";
-      if (!args.once && !args.noOpen) {
-        try {
-          const page = await fetch(url, { method: "HEAD", redirect: "error", signal: AbortSignal.timeout(1500) });
-          const contentType = page.headers.get("content-type") ?? "";
-          if (page.ok && contentType.startsWith("text/html")) openBrowser(url);
-          else if (page.ok && contentType.startsWith("application/json")) note += "; JSON-only (no web UI)";
-          else throw new Error(`unexpected dashboard response (HTTP ${page.status})`);
-        } catch (pageError) {
-          process.stderr.write(`cue dashboard: already running at ${url}, but could not open the UI: ${(pageError as Error).message}\n`);
-          return 1;
-        }
-      }
-      process.stdout.write(`cue dashboard ▸ ${url}  (${note})\n`);
+      // The status shape is enough to report a likely match, not to trust its HTML.
+      process.stdout.write(`cue dashboard ▸ ${url}  (already running; browser not opened)\n`);
       return 0;
     }
     process.stderr.write(`cue dashboard: failed to bind ${url}: ${(err as Error).message}\n`);

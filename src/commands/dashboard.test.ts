@@ -40,11 +40,12 @@ describe("dashboard port reuse", () => {
 
   async function withListener(
     status: unknown,
-    check: (port: number) => Promise<void>,
-    rootStatus = 200,
+    check: (port: number, requests: string[]) => Promise<void>,
   ): Promise<void> {
+    const requests: string[] = [];
     const listener = createServer((req, res) => {
-      res.writeHead(req.url === "/api/v1/status" ? 200 : rootStatus, {
+      requests.push(req.url ?? "");
+      res.writeHead(req.url === "/api/v1/status" ? 200 : 404, {
         "Content-Type": "application/json",
       });
       res.end(JSON.stringify(status));
@@ -53,7 +54,7 @@ describe("dashboard port reuse", () => {
     try {
       const address = listener.address();
       if (!address || typeof address === "string") throw new Error("Missing test port");
-      await check(address.port);
+      await check(address.port, requests);
     } finally {
       listener.closeAllConnections();
       await new Promise<void>((resolve) => listener.close(() => resolve()));
@@ -66,16 +67,17 @@ describe("dashboard port reuse", () => {
     });
   });
 
-  test("reuses a running JSON-only dashboard in browser mode", async () => {
-    await withListener(cueStatus, async (port) => {
+  test("does not request an existing listener's web page by default", async () => {
+    await withListener(cueStatus, async (port, requests) => {
       expect(await run(["--port", String(port)])).toBe(0);
+      expect(requests).toEqual(["/api/v1/status"]);
     });
   });
 
-  test("reports an unavailable UI in browser mode", async () => {
-    await withListener(cueStatus, async (port) => {
+  test("rejects oversized status replies", async () => {
+    await withListener({ ...cueStatus, oversized: "x".repeat(300 * 1024) }, async (port) => {
       expect(await run(["--port", String(port)])).toBe(1);
-    }, 503);
+    });
   });
 
   test("still fails when an unrelated service owns the port", async () => {
