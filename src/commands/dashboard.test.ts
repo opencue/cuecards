@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { createServer } from "node:http";
 
-import { parseArgs } from "./dashboard";
+import { parseArgs, run } from "./dashboard";
 import { createHandler } from "../lib/dashboard-server";
 
 describe("dashboard parseArgs", () => {
@@ -28,6 +29,61 @@ describe("dashboard parseArgs", () => {
   test("--help short-circuits", () => {
     expect(parseArgs(["--help"]).help).toBe(true);
     expect(parseArgs(["-h"]).help).toBe(true);
+  });
+});
+
+describe("dashboard port reuse", () => {
+  const cueStatus = {
+    ok: true,
+    data: { parts: [], warnings: [], totalProfiles: 1, telemetryEnabled: false },
+  };
+
+  async function withListener(
+    status: unknown,
+    check: (port: number, requests: string[]) => Promise<void>,
+  ): Promise<void> {
+    const requests: string[] = [];
+    const listener = createServer((req, res) => {
+      requests.push(req.url ?? "");
+      res.writeHead(req.url === "/api/v1/status" ? 200 : 404, {
+        "Content-Type": "application/json",
+      });
+      res.end(JSON.stringify(status));
+    });
+    await new Promise<void>((resolve) => listener.listen(0, "127.0.0.1", resolve));
+    try {
+      const address = listener.address();
+      if (!address || typeof address === "string") throw new Error("Missing test port");
+      await check(address.port, requests);
+    } finally {
+      listener.closeAllConnections();
+      await new Promise<void>((resolve) => listener.close(() => resolve()));
+    }
+  }
+
+  test("reuses a running Cue dashboard and exits", async () => {
+    await withListener(cueStatus, async (port) => {
+      expect(await run(["--port", String(port), "--no-open"])).toBe(0);
+    });
+  });
+
+  test("does not request an existing listener's web page by default", async () => {
+    await withListener(cueStatus, async (port, requests) => {
+      expect(await run(["--port", String(port)])).toBe(0);
+      expect(requests).toEqual(["/api/v1/status"]);
+    });
+  });
+
+  test("rejects oversized status replies", async () => {
+    await withListener({ ...cueStatus, oversized: "x".repeat(300 * 1024) }, async (port) => {
+      expect(await run(["--port", String(port)])).toBe(1);
+    });
+  });
+
+  test("still fails when an unrelated service owns the port", async () => {
+    await withListener({ ok: true, data: { status: "healthy" } }, async (port) => {
+      expect(await run(["--port", String(port), "--no-open"])).toBe(1);
+    });
   });
 });
 

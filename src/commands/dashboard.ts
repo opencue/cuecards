@@ -121,6 +121,43 @@ function openBrowser(url: string): void {
   } catch { /* non-fatal */ }
 }
 
+async function isRunningDashboard(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(`${url}/api/v1/status`, {
+      redirect: "error",
+      signal: AbortSignal.timeout(1500),
+    });
+    if (!response.ok || !response.body || !response.headers.get("content-type")?.startsWith("application/json")) {
+      await response.body?.cancel();
+      return false;
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let json = "", bytes = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > 256 * 1024) {
+        await reader.cancel();
+        return false;
+      }
+      json += decoder.decode(value, { stream: true });
+    }
+    const body = JSON.parse(json + decoder.decode()) as {
+      ok?: boolean;
+      data?: { parts?: unknown; warnings?: unknown; totalProfiles?: unknown; telemetryEnabled?: unknown };
+    } | null;
+    return body?.ok === true
+      && Array.isArray(body.data?.parts)
+      && Array.isArray(body.data?.warnings)
+      && typeof body.data?.totalProfiles === "number"
+      && typeof body.data.telemetryEnabled === "boolean";
+  } catch {
+    return false;
+  }
+}
+
 function helpText(): string {
   return [
     "cue dashboard — local read-only dashboard server",
@@ -129,6 +166,7 @@ function helpText(): string {
     "  cue dashboard [--port <n>] [--host <h>] [--no-open] [--once]",
     "",
     "Defaults: --port 7891 --host 127.0.0.1",
+    "If a Cue dashboard is already listening on loopback, reuse it.",
     "",
     "Endpoints (JSON):",
     "  GET /api/v1/status",
@@ -178,6 +216,13 @@ export async function run(argv: string[]): Promise<number> {
       server.listen(args.port, args.host, resolve);
     });
   } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === "EADDRINUSE"
+      && (args.host === "127.0.0.1" || args.host === "localhost")
+      && await isRunningDashboard(url)) {
+      // The status shape is enough to report a likely match, not to trust its HTML.
+      process.stdout.write(`cue dashboard ▸ ${url}  (already running; browser not opened)\n`);
+      return 0;
+    }
     process.stderr.write(`cue dashboard: failed to bind ${url}: ${(err as Error).message}\n`);
     return 1;
   }
